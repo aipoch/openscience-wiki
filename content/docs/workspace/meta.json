@@ -1,0 +1,5 @@
+{
+  "title": "Workspace and research",
+  "description": "Projects, sessions, prompts, files, previews, notebooks, and provenance records.",
+  "pages": ["home-projects", "conversation", "files", "previews", "notebook-provenance", "permissions-activity", "sessions-collaboration"]
+}

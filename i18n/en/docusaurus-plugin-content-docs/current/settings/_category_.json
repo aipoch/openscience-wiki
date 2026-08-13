@@ -1,5 +1,0 @@
-{
-  "label": "Settings",
-  "position": 4,
-  "link": {"type": "generated-index", "description": "Configure models, agents, capabilities, permissions, runtimes, storage, and remote control."}
-}

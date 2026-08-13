@@ -1,20 +1,18 @@
-# Dependencies
-/node_modules
-
-# Production
-/build
-
-# Generated files
+node_modules
+.source
+.next
 .docusaurus
-.cache-loader
-
-# Misc
+build
+out
+coverage
+*.tsbuildinfo
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
+.env*.local
+.vercel
+next-env.d.ts
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
+output/playwright
+.playwright-cli

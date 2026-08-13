@@ -1,0 +1,5 @@
+{
+  "title": "Reference and troubleshooting",
+  "description": "File formats, shortcuts, architecture, the control index, and troubleshooting.",
+  "pages": ["control-index", "file-formats", "shortcuts", "architecture", "troubleshooting"]
+}

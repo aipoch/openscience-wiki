@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-fd-primary: #2563eb;
+  --color-fd-ring: #2563eb;
+}
+
+:root {
+  --fd-layout-width: 1480px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-fd-primary) 24%, transparent);
+}
+
+.docs-shot {
+  border: 1px solid var(--color-fd-border);
+  border-radius: 1rem;
+  box-shadow: 0 16px 40px rgb(15 23 42 / 8%);
+}
+
+.dark .docs-shot {
+  box-shadow: 0 18px 46px rgb(0 0 0 / 28%);
+}
+
+.fd-steps {
+  --color-fd-primary: #2563eb;
+}

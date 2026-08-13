@@ -1,0 +1,5 @@
+{
+  "title": "Settings",
+  "description": "Models, agents, capabilities, permissions, runtimes, storage, and remote control.",
+  "pages": ["overview", "skills", "connectors", "specialists", "compute-network", "model-agent", "permissions-runtimes", "storage-general", "remote-archived"]
+}
