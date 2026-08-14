@@ -1,0 +1,19 @@
+# Local dependencies and generated output
+node_modules
+build
+.docusaurus
+.cache-loader
+
+# Repository and agent metadata
+.git
+.codex
+.playwright-cli
+
+# Local environment and registry credentials
+.env.local
+.env.*.local
+.npmrc
+
+# Local logs and operating-system files
+npm-debug.log*
+.DS_Store

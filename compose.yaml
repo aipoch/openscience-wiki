@@ -1,0 +1,15 @@
+services:
+  wiki:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: openscience-wiki:local
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3002}:80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
