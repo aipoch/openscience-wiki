@@ -7,7 +7,7 @@ description: Product, operation, and reproducibility guides for AIPOCH Open Scie
 
 # Open Science
 
-Open Science is AIPOCH's open-source AI workspace for scientific research. It keeps agent conversations, project files, Python and R notebooks, scientific file previews, execution records, and artifact provenance in one local-first desktop app. This Wiki covers **Open Science v0.14.0**. Its contents come from the latest `main` branch of `aipoch/open-science`, renderer tests, and hands-on runs in an isolated local environment.
+Open Science is AIPOCH's open-source AI workspace for scientific research. It keeps agent conversations, project files, Python and R notebooks, scientific file previews, execution records, and artifact provenance in one local-first desktop app. This Wiki covers the stable **Open Science v0.25.1** release. Its contents come from the exact `v0.25.1` tag of `aipoch/open-science`, implementation and renderer tests, production builds, and hands-on runs in an isolated local environment.
 
 ![Open Science workspace after a completed conversation](/img/open-science/conversation-completed.png)
 
@@ -30,7 +30,7 @@ Open Science is AIPOCH's open-source AI workspace for scientific research. It ke
 3. [Your first project](./getting-started/first-project.md): create a project and send the first request.
 4. [Conversation and composer](./workspace/conversation.md): learn prompts, attachments, models, and permission controls.
 5. [Notebook and provenance](./workspace/notebook-provenance.md): verify how a research result was produced.
-6. [Settings](./settings/overview.md): configure all 13 settings panels.
+6. [Settings](./settings/overview.md): configure all 17 settings panels.
 7. [Control index](./reference/control-index.md): find every button, input, and switch by page.
 
 :::info[About the screenshots]
@@ -39,7 +39,19 @@ The screenshots use an isolated local data directory. The UI, IPC layer, SQLite 
 
 ## Version and scope
 
-- Application repository: `aipoch/open-science`; documented version: `v0.14.0`.
+- Application repository: `aipoch/open-science`; documented version: stable tag `v0.25.1` at `b3d37e29cc14433c18f9cd3807dc00a556d23a34`.
 - Wiki repository: `aipoch/openscience-wiki`; Docusaurus builds the sidebar from the document tree.
 - Control names stay mostly the same on macOS, Windows, and Linux. System file pickers, tray behavior, and close-window behavior vary by platform.
 - The Wiki explains confirmations for high-impact actions such as deleting a project, removing a session, uninstalling a runtime, moving the data directory, or saving an API key. It never performs those actions against a user's real data.
+
+## v0.25.1 maintenance notes
+
+This update catches the English guide up from its previous v0.14.0 baseline through all stable releases ending at v0.25.1. The current patch release makes these user-visible reliability changes:
+
+- Protected Notebook kernels use the direct sandbox launch path on Windows. Network protection still requires the one-time administrator setup shown by the app.
+- File and package exports publish atomically. A failed export should not leave a partially written destination file; retry to a writable destination with enough free space.
+- Generated image previews render again. If an image still shows a placeholder, wait for artifact publication, reopen the preview, and use Download as a fallback.
+- Skills detects and repairs catalog inconsistencies. Follow any source-recovery guidance before replacing an interrupted Specialist package.
+- Session concurrency, artifact-finalization recovery, PDF reading identity, Claude usage recovery, and interrupted cleanup are more resilient. These fixes preserve records; they do not make an unverified result scientifically valid.
+
+The exact v0.25.1 source installed, type-checked, and produced Electron and Web production builds. Real Electron project-switching tests passed on desktop and mobile, and targeted tests covered the new persistence, PDF, memory, credentials, runtime, and network behavior. Windows-only sandbox setup, SSH password hosts, paid providers, OAuth accounts, and live marketplace services were verified from implementation and tests but were not exercised with external credentials or hardware.

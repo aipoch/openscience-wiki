@@ -44,3 +44,9 @@ A modal header can contain Download, status, File actions, Full screen, and Clos
 :::tip
 Record both the file name and artifact version when citing a research result. Two files with the same name can contain different data. The immutable provenance version ID is the reproducible reference.
 :::
+
+## PDF reading context and source previews
+
+The PDF preview supports thumbnails, outline, document search, page navigation, zoom, selectable text, and rectangular region selection. Link up to three PDFs to the current session when the agent needs reading context; unlink them when later turns should not read them. Evidence annotations reveal their original page and region.
+
+HTTPS citations in agent responses open in a sandboxed source preview with the full URL and an external-browser action. Verify the hostname before leaving the app. A blocked, redirected, or failed page should be treated as unavailable evidence, not as confirmation of its contents.

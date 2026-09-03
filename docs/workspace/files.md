@@ -45,3 +45,9 @@ Open previews uses tabs for multiple files. Select a tab to switch, `Close previ
 ## Download and trace a result
 
 A Generated file can offer `Provenance` in its file actions. A normal upload has no production chain, so Open Science doesn't invent one. Project and session artifact download dialogs let you choose a range and prepare a saveable bundle. Moving or deleting the downloaded copy doesn't change the managed project file.
+
+## Edit a text version
+
+Markdown, plain text, scripts, and recognized source-code files can offer `Edit`. Saving publishes a new immutable version with the original lineage; `Compare` shows the predecessor diff. Navigate versions before downloading or citing one. Binary documents, images, and notebooks remain read-only. If another writer changed the file, reload the latest version and reconcile the conflict deliberately.
+
+Exports appear at the destination only after they are fully written. If export fails, check permissions and free space and retry; do not treat a temporary or partial external file as a managed artifact.
