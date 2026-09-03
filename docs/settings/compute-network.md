@@ -41,3 +41,9 @@ When an agent asks to execute remotely, Compute shows an approval request with `
 | `CA bundle path` | An optional PEM file trusted by Conda, pip, and R behind a corporate TLS proxy |
 
 `Cancel` discards the draft, `Save` stores it, and `View available mirrors` opens help. Mirrors affect package downloads only; they are not general Provider proxies. An incorrect mirror can cause runtime or package installation to fail.
+
+### Global proxy and runtime domains
+
+Proxy offers System, Manual, and Direct. Manual applies to Electron and subsequently spawned agents, notebooks, compute helpers, and installers; URLs with embedded credentials are rejected and loopback is bypassed. Direct clears inherited proxy variables for child processes. Test provider and package connectivity after changing it.
+
+Notebook network domains control which destinations Notebook and compute runtimes may reach. Review blocked-domain approvals in the conversation. `Allow once` is command-scoped; `Always allow` persists more broadly. Windows reports whether its one-time administrator sandbox setup is complete. This is a runtime boundary, not a whole-device firewall.

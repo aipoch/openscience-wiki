@@ -38,3 +38,9 @@ Agent Framework 卡展示 OpenCode、Claude Agent、Codex 等的安装状态、�
 - Framework card：切换 Active。
 
 若安装中断，先查看 `Install log`，再 Retry/Repair；不要在安装进程运行时手工删除 runtime 目录。
+
+## Scenario models 与 CodeBuddy
+
+Model 面板把 main model 与 Subagent、Reviewer、Vision、Session details 策略放在一起。`Follow active model` 跟随主选择；pinned 策略必须指定兼容的 provider、model 与 reasoning effort。只有 active backend 不支持图片时，Vision 才 relay 图片证据。Session-details generation 使用受限的 no-tools call，也可禁用。
+
+CodeBuddy 是与 Claude Code、OpenCode、Codex 并列的第四个 app-managed、无需单独登录的 framework，但仍需要兼容的已配置 model provider。切换 framework 不能迁移 in-flight tool state；应等待当前操作完成或明确停止。

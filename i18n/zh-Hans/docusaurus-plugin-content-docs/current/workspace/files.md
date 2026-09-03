@@ -45,3 +45,9 @@ title: 附件与项目文件
 ## 下载与追踪
 
 Generated file 的文件操作菜单可出现 `Provenance`；普通 upload 没有生成链，因此不会伪造 provenance。下载整个项目/会话 artifact 的对话框会让你选择范围并生成可保存的数据包。移动、删除本地下载不会反向修改 Open Science 受管理的项目文件。
+
+## 编辑文本版本
+
+Markdown、纯文本、脚本与已识别源码文件可提供 `Edit`。保存会发布保留原 lineage 的新 immutable version；`Compare` 显示与前一版本的差异。下载或引用前应先确认版本。二进制文档、图片与 Notebook 仍为只读。若另一 writer 已修改文件，应 reload 最新版本并明确解决 conflict。
+
+Export 只有完整写入后才出现在目标位置。失败时检查权限与磁盘空间并重试；不要把临时或不完整的外部文件当成托管 artifact。

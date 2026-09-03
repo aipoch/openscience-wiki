@@ -2,11 +2,11 @@
 
 This repository contains the official operating and reproducibility documentation for [AIPOCH Open Science](https://github.com/aipoch/open-science). The site uses [Docusaurus](https://docusaurus.io/), and AIPOCH.com can sync the current Wiki pages and product screenshots from this repository.
 
-English is the default language and is served from `/docs/`. Simplified Chinese is available at `/docs/zh-Hans/`. The locale registry and translation layout allow maintainers to add more languages without changing existing document URLs.
+English is the default language and is served from `/`. Simplified Chinese is available at `/zh-Hans/`. The locale registry and translation layout allow maintainers to add more languages without changing existing document URLs.
 
 ## Content structure
 
-- `docs/` contains the English documentation source; `docs/intro.mdx` is served at `/docs/intro`.
+- `docs/` contains the English documentation source; `docs/intro.mdx` is served at `/intro`.
 - `i18n/<locale>/docusaurus-plugin-content-docs/current/` contains translated documentation with the same file structure as `docs/`.
 - Each `_category_.json` file sets a sidebar section label and description.
 - `static/img/open-science/` contains screenshots captured from a running Open Science installation.
@@ -24,7 +24,7 @@ npm install
 npm start
 ```
 
-The development server opens [http://localhost:3000/docs/](http://localhost:3000/docs/). Use a locale-specific development command when you only need one language:
+The development server opens [http://localhost:3000/](http://localhost:3000/). Use a locale-specific development command when you only need one language:
 
 ```bash
 npm run start:en

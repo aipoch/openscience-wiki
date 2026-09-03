@@ -5,7 +5,7 @@ title: Settings overview
 
 # Settings overview
 
-Open Settings from the lower-left corner of the workspace. The navigation is divided into Capabilities, Workspace, Remote access, and Archived. The top bar contains browsing history, maximize, and close controls.
+Open Settings from the lower-left corner of the workspace. The navigation is divided into Capabilities and Workspace, followed by Archived. The top bar contains browsing history, maximize, and close controls.
 
 | Global control | Behavior |
 | --- | --- |
@@ -18,22 +18,26 @@ Open Settings from the lower-left corner of the workspace. The navigation is div
 
 ![Maximized Model settings](/img/open-science/settings-model-maximized.png)
 
-## The 13 main panels
+## The 17 main panels
 
 | Group | Panel | What it manages |
 | --- | --- | --- |
 | Capabilities | Skills | Skill packages, enable switches, search, import, and creation |
 |  | Connectors | Built-in and custom MCP connectors, OAuth, import, and export |
 |  | Specialists | Specialist identities, instructions, and Skill/Connector access |
+|  | Memory | Opt-in project-scoped facts recalled across sessions |
 |  | Compute | Local and SSH hosts, resources, scratch space, and concurrency limits |
-|  | Network | Network status and Conda/pip package mirrors |
-| Workspace | Model | Provider, active and subagent models, and reasoning effort |
-|  | Agent | OpenCode, Claude, and Codex runtimes, including switch, install, and repair operations |
+|  | Network | Network status, global proxy, package mirrors, and Notebook domain allowlist |
+| Workspace | Model | Provider and scenario models for main, subagent, reviewer, vision, and session details |
+|  | Agent | OpenCode, Claude, Codex, and CodeBuddy runtimes, including switch, install, and repair operations |
+|  | Tags | Cross-resource tags and Favorites ordering |
 |  | Permissions | Default mode and saved scope grants |
+|  | Credentials | Device-wide keys, tokens, OAuth sign-ins, health, and recovery |
 |  | Runtimes | Python and R environments, package installation, and environment management |
 |  | Storage | Configuration write access, data-root migration, and disk usage |
-|  | General | Notifications, theme, app icon, close behavior, GitHub token, and version |
-| Remote access | Remote control | Browser access, pairing, Remote.It, and trusted devices |
+|  | Remote | Browser access, pairing, Remote.It, and trusted devices |
+|  | Usage | Token, call, run, project, and artifact analytics |
+|  | General | Notifications, theme, language, app icon, close behavior, diagnostics, and version |
 | — | Archived | Restore or permanently delete archived projects and sessions |
 
 :::info[How settings are saved]

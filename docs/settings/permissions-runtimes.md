@@ -38,3 +38,7 @@ Revocation applies only to later requests; it does not reverse finished operatio
 | Repair/Retry | Detect or repair a failed app-managed environment again |
 
 Package installation for a user interpreter writes to your own environment, not app-managed storage. Do not bypass the interface by running `%pip`, `!pip`, `install.packages()`, or a system installer in a Notebook cell; doing so breaks tracked environment selection. An R runtime can initialize only when needed, so its first run may take longer.
+
+`Restore defaults` re-adds only missing safe baseline grants and leaves other grants unchanged. A denial applies to the current turn: the agent is told not to retry or approximate the refused operation.
+
+For an app-managed runtime, Reinstall drains running kernels and durably rebinds sessions before replacing managed files. External interpreters are never changed by this action. `Allow agent-created environments` controls autonomous creation; explicit setup and repair remain available when it is off. Network protection status links to the runtime-domain settings and must not be read as protected until the panel reports it active.

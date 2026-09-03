@@ -7,7 +7,7 @@ description: Product, operation, and reproducibility guides for AIPOCH Open Scie
 
 # Open Science
 
-Open Science is AIPOCH's open-source AI workspace for scientific research. It keeps agent conversations, project files, Python and R notebooks, scientific file previews, execution records, and artifact provenance in one local-first desktop app. This Wiki covers **Open Science v0.14.0**. Its contents come from the latest `main` branch of `aipoch/open-science`, renderer tests, and hands-on runs in an isolated local environment.
+Open Science is AIPOCH's open-source AI workspace for scientific research. It keeps agent conversations, project files, Python and R notebooks, scientific file previews, execution records, and artifact provenance in one local-first desktop app. This Wiki covers the stable **Open Science v0.25.1** release. Its contents come from the exact `v0.25.1` tag of `aipoch/open-science`, implementation and renderer tests, production builds, and hands-on runs in an isolated local environment.
 
 ![Open Science workspace after a completed conversation](/img/open-science/conversation-completed.png)
 
@@ -30,8 +30,9 @@ Open Science is AIPOCH's open-source AI workspace for scientific research. It ke
 3. [Your first project](./getting-started/first-project.md): create a project and send the first request.
 4. [Conversation and composer](./workspace/conversation.md): learn prompts, attachments, models, and permission controls.
 5. [Notebook and provenance](./workspace/notebook-provenance.md): verify how a research result was produced.
-6. [Settings](./settings/overview.md): configure all 13 settings panels.
+6. [Settings](./settings/overview.md): configure all 17 settings panels.
 7. [Control index](./reference/control-index.md): find every button, input, and switch by page.
+8. [v0.25.1 release guide](/releases/v0-25-1): review the catch-up changes since v0.14.0 and current verification limits.
 
 :::info[About the screenshots]
 The screenshots use an isolated local data directory. The UI, IPC layer, SQLite database, files, notebooks, and permission flow all ran normally. To avoid personal API keys and model charges, the example responses came from the repository's deterministic E2E agent fixture. The screenshots therefore reproduce the interface state, but the sample answers don't represent the output of a production model.
@@ -39,7 +40,7 @@ The screenshots use an isolated local data directory. The UI, IPC layer, SQLite 
 
 ## Version and scope
 
-- Application repository: `aipoch/open-science`; documented version: `v0.14.0`.
+- Application repository: `aipoch/open-science`; documented version: stable tag `v0.25.1` at `b3d37e29cc14433c18f9cd3807dc00a556d23a34`.
 - Wiki repository: `aipoch/openscience-wiki`; Docusaurus builds the sidebar from the document tree.
 - Control names stay mostly the same on macOS, Windows, and Linux. System file pickers, tray behavior, and close-window behavior vary by platform.
 - The Wiki explains confirmations for high-impact actions such as deleting a project, removing a session, uninstalling a runtime, moving the data directory, or saving an API key. It never performs those actions against a user's real data.

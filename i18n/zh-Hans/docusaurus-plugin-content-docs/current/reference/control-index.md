@@ -53,12 +53,12 @@ description: 按页面查找 Open Science 的按钮、输入、开关和结果�
 | Revision | Previous、`n/N`、Next | 浏览消息修订 |
 | Assistant result | Usage、Elapsed、generated file | 检查用量/耗时，打开输出 |
 | Activity | 折叠标题、Details、Copy、Report error | 展开工具/代码/diff/search/错误 |
-| Input | Ask anything、`↑↓`、`/`、`@`、`⌘K/Ctrl+K` | 输入、历史、Skill、文件引用、搜索 |
+| Input | Ask anything、`↑↓`、`/`、`@`、`#`、`⌘K/Ctrl+K` | 输入、历史、Skill、文件/session 引用、搜索 |
 | `+` | Attach files、Your files、Review、Context | 暂存新/已有文件、复核、上下文详情 |
 | Attachment chip | Preview、Remove | 发送前检查或取消引用 |
 | Agent controls | Specialist、Delegation、Auto-review、Permission mode | 改变后续 request 策略 |
 | Model | Active model、Reasoning effort | 改变后续 request 的模型/强度 |
-| Send | Send、Plan first、Side chat、Branch、Stop | 发送不同模式或停止运行 |
+| Queue/Send | Queue edit/delete/reorder、Send now、Send、Plan first、Side chat、Branch、Stop | 暂存或发送 follow-up、选择模式、停止运行 |
 | Scroll to end | 回到最新消息 |
 
 ## 权限、计划与结构化追问
@@ -85,15 +85,16 @@ description: 按页面查找 Open Science 的按钮、输入、开关和结果�
 | Preview tab、Close tab | 切换/关闭预览 |
 | Full screen preview | 放大当前文件 |
 | File actions → Provenance | 打开 artifact 证据；普通 upload 无此项 |
+| File actions → Edit/Compare | 发布新文本版本或与前一版本比较 |
 | Previous/vN/Next | 切 artifact version |
 | PDB Cartoon/Stick/Sphere/Surface/Line | 改变三维表示方式 |
-| PDF/Office/Image controls | 翻页、缩放、缩略图/下载；按 renderer 显示 |
+| PDF/Office/Image controls | 翻页/搜索、缩放、选择 PDF evidence、缩略图或下载 |
 
 ## Notebook 与 Provenance
 
 | 页面 | 控件 | 结果 |
 | --- | --- | --- |
-| Notebook | Agent filter、Python/R/Bash tabs | 按 agent/语言查看 runs |
+| Notebook | Agent filter、Python/R/Bash tabs、Variables | 按 agent/语言查看 run，或检查 live kernel namespace |
 | Notebook cell | Copy、Show/Hide output | 复制输入、展开输出 |
 | Notebook footer | Download `.ipynb`、Close | 可转换时下载；关闭对话框 |
 | Provenance | version arrows、Close Provenance | 版本导航/返回 preview |
@@ -107,6 +108,10 @@ description: 按页面查找 Open Science 的按钮、输入、开关和结果�
 ### Skills
 
 Conversation Skill imports、source filter、Search、Add skill、分类折叠、Skill detail、Enable toggle、Create/Upload/Import、Preview、Edit、Export、Delete、Cancel/Save。
+
+### Memory、Tags、Credentials 与 Usage
+
+Memory category/entry 的 Create、Edit、Delete、Clear；Tags 的 create/edit/delete、assignment、Favorites、filter 与 reorder；Credentials 的 create/recover/remove、health、usage 与 Connector binding；Usage 的 period、metric、heatmap、daily chart、Turns/Calls 与 grouping。
 
 ### Connectors
 
@@ -122,15 +127,15 @@ Add host、Host card/enable、Probe/Retry、Detail/Edit/Remove、Resources、Det
 
 ### Network
 
-Check again；Package mirror Configure/Edit；Conda channel、pip index、CA bundle；View mirrors、Cancel、Save。
+Check again；Proxy System/Manual/Direct；Notebook domain allowlist；Package mirror Configure/Edit；Conda channel、pip index、CA bundle；View mirrors、Cancel、Save。
 
 ### Model
 
-Active model、Reasoning radios、Subagent model/effort；Provider Test/Edit/Delete/Add；Provider 表单所有 Onboarding Model 字段以及 Cancel/Save。
+Active model、Reasoning radios、Subagent/Reviewer/Vision/Session-details model policy；Provider Test/Edit/Delete/Add；Provider 表单所有 Onboarding Model 字段以及 Cancel/Save。
 
 ### Agent
 
-Framework card、Switch、Install source、Install/Cancel/Retry、Install log、Repair、Sign in/auth、Import config/home、Uninstall confirmation。
+OpenCode/Claude/Codex/CodeBuddy framework card、Switch、Install source、Install/Cancel/Retry、Install log、Repair、Sign in/auth、Import config/home、Uninstall confirmation。
 
 ### Permissions
 
