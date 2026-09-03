@@ -69,3 +69,11 @@ Session `…` → `View notebook`。
 显示 reviewer 状态与审查材料。`Review` 不等于证明结论正确；它记录何种检查在何时对哪个版本执行。
 
 顶部 `Previous/Next Artifact version` 和 `vN` 在不可变版本间导航，`Close Provenance` 返回文件预览。每个版本独立保留证据链。
+
+## Variables、依赖状态与网络边界
+
+`Variables` 可在不启动 kernel 的前提下检查实时 Python/R namespace：支持筛选名称、按需包含 private name，并在执行后刷新。宽 preview 会把 Variables dock 在 cell 与 terminal 旁，窄 preview 切换视图；terminal completion 会提示当前变量名与类型。
+
+跨 run 分析会在后续代码改变依赖时把输出标为 `clear`、`stale` 或 `unknown`。Stale 结果应重新运行；unknown 结果应调查或重新运行后再使用。
+
+Notebook 与 compute process 遵循 Settings → Network 的 domain 规则。被阻止的目标会在对话中要求选择 Deny、Allow once 或 Always allow；应核对准确 domain 与 command。Windows 需完成一次性管理员 sandbox setup 才开始强制执行；应用外进程不受此边界覆盖。

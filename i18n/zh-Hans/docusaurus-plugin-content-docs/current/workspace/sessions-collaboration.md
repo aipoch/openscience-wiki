@@ -11,7 +11,7 @@ title: 会话分支、Side chat 与 Subagents
 
 ## Side chat
 
-`More send options` → `Side chat` 打开旁路讨论。它用于澄清概念、撰写辅助文本或讨论下一步，避免立即改变主 session 的执行序列。面板可关闭；需要把结论带回主线时，明确复制或引用，不要假设上下文自动合并。
+`More send options` → `Side chat` 打开旁路讨论。它用于澄清概念、撰写辅助文本或讨论下一步，避免立即改变主 session 的执行序列。Advice 可通过 framework 的 native follow-up 通道送入正在运行的主 turn；若无法 live injection，则随下一条用户 turn relay。仅关闭面板不代表未发送结论已进入主线。
 
 ## Specialists
 
@@ -30,6 +30,8 @@ Agent controls 可选择 Specialist。Specialist 是带身份、说明、基础�
 ## Context window
 
 Composer `+` → `Context` 显示模型上限、当前使用和趋势。达到阈值时 agent 可触发 compaction，时间线出现明确活动记录。更换更大上下文模型不会自动恢复已压缩内容；重要输入应保存为项目文件并用 `@` 引用。
+
+Context dialog 可显示 stacked composition bar、compaction marker 与 per-call input/cache/output。Provider-reported total 为权威值，分类可能是本地估算。Coverage notice 表示部分历史 call 未上报，不能按零用量处理。
 
 ## 归档与删除
 

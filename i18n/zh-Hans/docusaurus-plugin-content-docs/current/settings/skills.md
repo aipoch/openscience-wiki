@@ -36,3 +36,5 @@ Skill 是按需加载的工作流程说明与资源包。列表分为 Featured�
 ## 科研实践
 
 只启用当前研究需要的技能，减少无关选择。引用外部模型或服务的 Skill 仍可能需要网络、Connector、运行时或许可证；“Skill 已启用”不代表依赖已安装。
+
+Tags（包括受保护的 Favorites）可跨 catalog 组织 Skills。管理视图可按实际使用者（main agent 与 Specialists）、source、status、tag 和文字筛选；bulk enable、disable 或 delete 会先校验整个选择。Built-in 与 Specialist-linked Skill 保持受保护。v0.25.1 catalog repair 会检测缺失或重复 projection，并从权威 package 重建。

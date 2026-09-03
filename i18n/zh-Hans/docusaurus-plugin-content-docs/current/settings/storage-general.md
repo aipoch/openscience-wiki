@@ -38,3 +38,7 @@ title: Storage 与 General
 | About | 当前版本；`Check for updates`、下载/安装更新等依构建渠道显示 |
 
 主题和通知即时生效。GitHub token 以秘密保存，不会注入普通项目文件；清除后依赖它的私有仓库/限额能力会失效。
+
+Data migration 会先 staging，再原子发布。完成前保持 source 与 target 均已挂载；出现 recovery 时使用界面提供的 Retry、Restart、Adopt 或 Discard，不要手动移动内部文件。Diagnostic report 默认 redacted，但共享前仍需检查本地路径与研究标识。
+
+General 还提供 runtime language selector 与 Help Center/release-note 链接。界面支持 German、Spanish、French、简体/繁体中文、Japanese、Korean、Russian 与 English。System-language 变化会在下次启动时检测。
