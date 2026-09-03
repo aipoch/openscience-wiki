@@ -38,7 +38,3 @@ title: Permissions 与 Runtimes
 | Repair/Retry | 重新检测失败的应用管理环境 |
 
 用户解释器的 package install 会写入你自己的环境，而非应用管理存储。不要在 Notebook cell 里绕过界面运行 `%pip`、`!pip`、`install.packages()` 或系统 installer；这样会破坏可追踪环境选择。R runtime 可按需延迟初始化，首次执行可能需要更长时间。
-
-`Restore defaults` 只补回缺失的安全 baseline grant，不改变其他 grant。Deny 对当前 turn 生效，智能体会被告知不可重试或绕路近似执行。
-
-对 app-managed runtime，Reinstall 会先排空运行中 kernel 并持久 rebind session，再替换托管文件；外部 interpreter 不会被修改。`Allow agent-created environments` 控制自动创建，关闭后用户仍可显式 setup 与 repair。Network protection status 会链接到 runtime-domain settings；只有面板报告 active 时才能视为已保护。

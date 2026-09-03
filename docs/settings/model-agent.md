@@ -38,9 +38,3 @@ Main operations:
 - Framework card: make that framework Active.
 
 If installation stops, inspect `Install log`, then use Retry or Repair. Do not manually delete runtime directories while an installer is running.
-
-## Scenario models and CodeBuddy
-
-The Model panel groups the main model with policies for Subagent, Reviewer, Vision, and Session details. `Follow active model` tracks the main selection; a pinned policy must name a compatible provider, model, and reasoning effort. Vision relays image evidence only when the active backend cannot accept images. Session-details generation uses a restricted no-tools call and can be disabled.
-
-CodeBuddy is an app-managed, login-free fourth framework alongside Claude Code, OpenCode, and Codex. It still needs a compatible configured model provider. Switching frameworks cannot transfer an in-flight tool state; wait for the current action to finish or explicitly stop it first.

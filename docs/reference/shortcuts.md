@@ -11,10 +11,6 @@ title: Keyboard and efficient operation
 | Prompt history | `↑` / `↓` | `↑` / `↓` | Composer is empty and the caret is at the start |
 | Skill trigger | Type `/` | Type `/` | Composer |
 | File/artifact reference | Type `@` | Type `@` | Composer |
-| Session reference | Type `#` | Type `#` | Composer |
-| Undo draft/archive | `⌘Z` | `Ctrl+Z` | Composer or supported archive notice |
-| Redo composer draft | `⌘⇧Z` | `Ctrl+Shift+Z` | Composer |
-| Close active preview | `⌘W` | `Ctrl+W` | Workspace Preview |
 | Close menu/dialog | `Esc` | `Esc` | Most overlays; follow the prompt if a form has unsaved changes |
 | Send | Use the displayed shortcut or select Send | Same | Prefer the button while editing multiple lines to prevent accidental submission |
 

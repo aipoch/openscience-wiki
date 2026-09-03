@@ -44,9 +44,3 @@ PDB 使用 3Dmol 视图。鼠标拖动旋转、滚轮缩放、Shift+拖动平移
 :::tip
 引用研究结果时记录文件名和 artifact 版本。文件名相同不代表内容相同，Provenance 的不可变 version ID 才是复现锚点。
 :::
-
-## PDF 阅读上下文与来源预览
-
-PDF preview 支持 thumbnails、outline、document search、翻页、缩放、文字选择与矩形区域选择。智能体需要阅读时，最多把三份 PDF 链接到当前 session；后续 turn 不应再读取时要 unlink。Evidence annotation 可返回原页与区域。
-
-智能体回复中的 HTTPS citation 会在 sandboxed source preview 打开，并显示完整 URL 与外部浏览器操作。离开应用前核对 hostname。被阻止、重定向或加载失败的页面应视为 unavailable evidence，而不是内容已获确认。

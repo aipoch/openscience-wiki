@@ -53,12 +53,12 @@ This page condenses the application's entry points into a searchable, page-by-pa
 | Revision | Previous, `n/N`, Next | Browse message revisions |
 | Assistant result | Usage, Elapsed, generated file | Inspect usage and time, or open an output |
 | Activity | Collapsible title, Details, Copy, Report error | Open tool, code, diff, search, or error details |
-| Input | Ask anything, `↑↓`, `/`, `@`, `#`, `⌘K/Ctrl+K` | Enter text, browse history, select a Skill, reference a file/session, or search |
+| Input | Ask anything, `↑↓`, `/`, `@`, `⌘K/Ctrl+K` | Enter text, browse history, select a Skill, reference a file, or search |
 | `+` | Attach files, Your files, Review, Context | Stage a new or existing file, request review, or inspect context |
 | Attachment chip | Preview, Remove | Inspect or remove a reference before sending |
 | Agent controls | Specialist, Delegation, Auto-review, Permission mode | Change the policy for later requests |
 | Model | Active model, Reasoning effort | Change the model or effort for later requests |
-| Queue/Send | Queue edit/delete/reorder, Send now, Send, Plan first, Side chat, Branch, Stop | Stage or submit follow-ups, choose a mode, or stop the current run |
+| Send | Send, Plan first, Side chat, Branch, Stop | Submit in the selected mode or stop the current run |
 | Scroll to end | Jump to the latest message |
 
 ## Permission, plan, and structured questions
@@ -85,16 +85,15 @@ This page condenses the application's entry points into a searchable, page-by-pa
 | Preview tab, Close tab | Switch or close Preview tabs |
 | Full screen preview | Enlarge the current file |
 | File actions → Provenance | Open artifact evidence; ordinary uploads do not have this action |
-| File actions → Edit/Compare | Publish a new text version or compare it with its predecessor |
 | Previous/vN/Next | Change artifact version |
 | PDB Cartoon/Stick/Sphere/Surface/Line | Change the three-dimensional representation |
-| PDF/Office/Image controls | Navigate/search pages, zoom, select PDF evidence, show thumbnails, or download as supported |
+| PDF/Office/Image controls | Navigate pages, zoom, show thumbnails, or download as supported by the renderer |
 
 ## Notebook and Provenance
 
 | Page | Controls | Result |
 | --- | --- | --- |
-| Notebook | Agent filter, Python/R/Bash tabs, Variables | Filter runs or inspect the live kernel namespace |
+| Notebook | Agent filter, Python/R/Bash tabs | Filter runs by agent or language |
 | Notebook cell | Copy, Show/Hide output | Copy input or expand output |
 | Notebook footer | Download `.ipynb`, Close | Download when cells can be converted, or close the dialog |
 | Provenance | Version arrows, Close Provenance | Change version or return to Preview |
@@ -108,10 +107,6 @@ This page condenses the application's entry points into a searchable, page-by-pa
 ### Skills
 
 Conversation Skill imports, source filter, Search, Add skill, category collapse, Skill detail, enable switch, Create/Upload/Import, Preview, Edit, Export, Delete, Cancel, and Save.
-
-### Memory, Tags, Credentials, and Usage
-
-Memory category/entry Create, Edit, Delete, and Clear; Tags create/edit/delete, assignment, Favorites, filters, and reorder; Credentials create/recover/remove, health, usage, and Connector binding; Usage period, metric, heatmap, daily chart, Turns/Calls, and grouping controls.
 
 ### Connectors
 
@@ -127,15 +122,15 @@ Add host, Host card/enable, Probe/Retry, Detail/Edit/Remove, Resources, Details 
 
 ### Network
 
-Check again; Proxy System/Manual/Direct; Notebook domain allowlist; Package mirror Configure/Edit; Conda channel, pip index, and CA bundle; View mirrors, Cancel, and Save.
+Check again; Package mirror Configure/Edit; Conda channel, pip index, and CA bundle; View mirrors, Cancel, and Save.
 
 ### Model
 
-Active model, Reasoning radios, and Subagent/Reviewer/Vision/Session-details model policies; Provider Test/Edit/Delete/Add. The Provider form contains all fields from the Onboarding Model page plus Cancel and Save.
+Active model, Reasoning radios, and Subagent model/effort; Provider Test/Edit/Delete/Add. The Provider form contains all fields from the Onboarding Model page plus Cancel and Save.
 
 ### Agent
 
-OpenCode/Claude/Codex/CodeBuddy framework card, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Uninstall confirmation.
+Framework card, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Uninstall confirmation.
 
 ### Permissions
 

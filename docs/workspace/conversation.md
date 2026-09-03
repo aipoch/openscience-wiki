@@ -9,7 +9,7 @@ The middle of the workspace contains the Conversation log and Composer. After a 
 
 ## Composer input
 
-`Ask anything` accepts multiple lines. If the field is empty and the cursor sits at the beginning, `↑` and `↓` move through prompt history. `/` suggests Skills, `@` references a project file or artifact, `#` references another session's visible transcript for one turn, and `⌘K` or `Ctrl+K` opens search. A plain-text paste over 10,000 characters or 300 lines becomes a managed attachment; `Show in text field` restores it. During a request, a follow-up can enter the session queue or use `Send now` without cancelling the active turn.
+`Ask anything` accepts multiple lines. If the field is empty and the cursor sits at the beginning, `↑` and `↓` move through prompt history. `/` suggests Skills, `@` references a project file or artifact, and `⌘K` or `Ctrl+K` opens search. During a request, the composer may become unavailable or change to a stop control so that another prompt can't modify the active turn.
 
 ### The `+` menu
 
@@ -24,7 +24,7 @@ The middle of the workspace contains the Conversation log and Composer. After a 
 
 ![Agent controls](/img/open-science/composer-agent-controls.png)
 
-This menu groups the permission mode, Auto-review, Specialist selection, and a per-session Delegation switch. A change applies to later requests. A request already running keeps the policy with which it started.
+This menu groups the permission mode, Auto-review, Specialist selection, and Delegation controls. A change applies to later requests. A request already running keeps the policy with which it started.
 
 ![Permission modes](/img/open-science/composer-permission-modes.png)
 
@@ -64,8 +64,6 @@ User messages provide `Copy message` and `Edit message`. Editing and confirming 
 ![Message revisions](/img/open-science/message-revisions.png)
 
 Assistant messages show completion time, Elapsed, and `Usage`. If usage data exists, the control reports token and context figures. A fixture or provider that omits usage marks it unavailable. `Scroll to end` returns a long conversation to its newest event.
-
-Completed assistant messages also provide Copy and `Branch in new session`. Text or image annotations appear as source-linked cards and can be revealed in their original transcript, activity, or preview location. Configuration dividers identify framework, model, and reasoning-effort changes between turns. Long desktop conversations show a run-marks rail for jumping between user prompts.
 
 ## Run activity
 

@@ -9,7 +9,7 @@ title: 对话与输入区
 
 ## Composer 输入
 
-`Ask anything` 支持多行文本。输入为空且光标位于开头时，`↑`/`↓` 浏览历史提示词；`/` 触发 Skill 建议，`@` 引用项目文件/artifact，`#` 在单个 turn 内引用另一会话的可见 transcript，`⌘K`/`Ctrl+K` 搜索。超过 10,000 字符或 300 行的纯文本粘贴会成为托管附件，可用 `Show in text field` 还原。运行中的 follow-up 可进入会话队列或使用 `Send now`，不会取消当前 turn。
+`Ask anything` 支持多行文本。输入为空且光标位于开头时，`↑`/`↓` 浏览历史提示词；`/` 触发 Skill 建议，`@` 引用项目文件/artifact，`⌘K`/`Ctrl+K` 搜索。发送中输入区会禁用或切换为停止控制，防止并发修改同一 active turn。
 
 ### 左侧 `+` 菜单
 
@@ -24,7 +24,7 @@ title: 对话与输入区
 
 ![Agent controls](/img/open-science/composer-agent-controls.png)
 
-该菜单集中配置权限模式、Auto-review、Specialist 和 per-session Delegation switch。选择只影响后续请求；运行中的请求仍按启动时策略完成。
+该菜单集中配置权限模式、Auto-review 和 Specialist/Delegation 能力。选择只影响后续请求；运行中的请求仍按启动时策略完成。
 
 ![权限模式](/img/open-science/composer-permission-modes.png)
 
@@ -64,8 +64,6 @@ title: 对话与输入区
 ![消息修订](/img/open-science/message-revisions.png)
 
 助手消息显示完成时间、Elapsed 和 `Usage`。Usage 有数据时展示 token/上下文使用；fixture 或 Provider 未返回 usage 时按钮会标记 unavailable。长对话底部的 `Scroll to end` 回到最新事件。
-
-已完成的助手消息还提供 Copy 与 `Branch in new session`。文字或图片 annotation 会显示为带来源的卡片，可返回 transcript、activity 或 preview 原位置。Framework、model 或 reasoning effort 变化会在 turn 之间显示配置分隔线；桌面端长对话可用 run-marks rail 在用户 prompt 间跳转。
 
 ## 运行活动
 

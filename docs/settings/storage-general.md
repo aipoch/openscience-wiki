@@ -38,7 +38,3 @@ After a failed migration, the dialog offers recovery operations such as Retry, R
 | About | Shows the installed version; `Check for updates`, download, and install operations depend on the release channel |
 
 Theme and notification changes take effect immediately. The GitHub token is stored as a secret and is not written into ordinary project files. Clearing it disables private-repository and rate-limit features that depend on it.
-
-Data migration is staged and published atomically. Keep both locations mounted until completion; if recovery appears, use the offered Retry, Restart, Adopt, or Discard action rather than moving internal files manually. Diagnostic reports are redacted by default, but review them for local paths and research identifiers before sharing.
-
-General also provides the runtime language selector and Help Center/release-note links. The interface includes German, Spanish, French, Simplified and Traditional Chinese, Japanese, Korean, Russian, and English. A System-language change is detected on the next app launch.

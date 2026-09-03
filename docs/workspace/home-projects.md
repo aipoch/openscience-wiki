@@ -42,9 +42,3 @@ Before a project or session switch, Open Science coordinates the current agent, 
 ## Search and notifications
 
 Global Search matches projects, sessions, and files. Selecting a result opens its project or file preview. An empty search shows recent items; `Esc` closes the dialog. The notification center collects completion, permission, failure, and background-task notices. Select a notice to open its session, and use the available read-state actions to clear its badge.
-
-## Faster project and session navigation
-
-The workspace project menu lists other active projects with title and description previews. It initially shows five; use `Show remaining` to expand. When enough projects exist, search ranks title matches above description matches. On mobile, selecting a project also closes the navigation drawer.
-
-New sessions can generate an editable title and description from the first prompt. Hovering or focusing a desktop session row previews both; session numbers are also searchable, with exact matches first. Notification rows show project, task/session, and event context, keep unread items first, and retain a safe unavailable state when their target was deleted.

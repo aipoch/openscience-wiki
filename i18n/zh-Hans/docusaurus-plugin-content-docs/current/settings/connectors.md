@@ -40,5 +40,3 @@ Connector 将 MCP server 暴露给 agent。内置项可启用；自定义项可�
 Detail 展示 transport、命令/URL、auth、状态、capabilities 与 policy，提供 Test/Reconnect/Edit/Export/Remove。Import 先选择包/配置，`Configuration preview` 与 `Configuration diagnostics` 展示将写入的字段；错误必须修复后才能 `Import`。Export 生成可共享模板时不会把本机秘密当作普通文本外泄；导入者仍需补充凭据。
 
 Connector 第一次执行可能弹出 Deny、Allow once、Allow for session、project 或 global。宽 scope 会增加后续自动调用范围，应优先 once/session。
-
-标准 MCP client configuration import 会读取 `mcpServers`；多 server 文件可选择其中一项。Export 可生成 Open Science Connector 或 portable MCP client JSON，secret 与 header 会替换成 `${NAME}` 占位符。预注册 OAuth 可填写 client ID 与只写 client secret；修改 issuer 或 client ID 会使已存 authorization 失效。Device credential 可按名称绑定，不必复制进 Connector。

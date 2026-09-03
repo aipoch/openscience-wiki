@@ -42,9 +42,3 @@ Open Science 的导航层级是 **主页 → 项目 → 会话**。项目保存�
 ## 搜索与通知
 
 全局 Search 可匹配项目、session 和文件。选择结果会跳到所属项目或打开文件预览。输入为空时显示最近项；`Esc` 关闭。通知中心汇总完成、权限、失败和后台任务消息；单项可进入关联 session，顶部操作可处理已读状态。
-
-## 更快切换项目与会话
-
-Workspace project menu 会显示其他 active project 的标题与描述预览，默认先显示五个，可用 `Show remaining` 展开。项目较多时，search 会让标题命中排在仅描述命中之前；移动端选择项目后会关闭导航抽屉。
-
-新 session 可根据首条 prompt 生成可编辑标题和描述。桌面端悬停或聚焦 session row 可预览两者；global search 也支持 session number，精确命中优先。通知行包含 project、task/session 与 event 上下文，未读项优先；目标已删除时保留安全的 unavailable 状态。

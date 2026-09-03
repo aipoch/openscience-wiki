@@ -11,7 +11,7 @@ Editing an earlier message creates a revision. `Previous/Next message revision` 
 
 ## Side chat
 
-`More send options` → `Side chat` opens a parallel discussion. Use it to clarify a concept, draft supporting text, or discuss the next action without immediately changing the main session's execution order. Advice can reach a running main turn through the framework's native follow-up channel; if live injection is unavailable, it is relayed with the next user turn. Closing the panel alone does not guarantee that unsent conclusions enter the main path.
+`More send options` → `Side chat` opens a parallel discussion. Use it to clarify a concept, draft supporting text, or discuss the next action without immediately changing the main session's execution order. Closing the panel doesn't merge its conclusions. Copy or reference anything that must enter the main path.
 
 ## Specialists
 
@@ -30,8 +30,6 @@ With Delegation enabled, the main agent can create subagents. Each subagent has 
 ## Context window
 
 Composer `+` → `Context` reports the model limit, current use, and trend. When usage reaches the configured threshold, the agent can compact the conversation and add an explicit activity row. Changing to a larger-context model doesn't restore content already compressed. Save important inputs as project files and reference them with `@`.
-
-The Context dialog can show stacked composition bars, compaction markers, and per-call input/cache/output details. The provider-reported total is authoritative; category attribution can be a local estimate. A coverage notice means some historical calls were not reported and must not be treated as zero usage.
 
 ## Archive and delete
 

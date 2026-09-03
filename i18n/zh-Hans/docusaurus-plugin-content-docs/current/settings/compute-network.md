@@ -41,9 +41,3 @@ Agent 请求远程执行时会弹出 Compute approval：`Deny`、`Allow once`、
 | `CA bundle path` | 可选 PEM，供企业 TLS proxy 的 Conda、pip、R 下载信任 |
 
 `Cancel` 放弃草稿，`Save` 保存，`View available mirrors` 打开帮助链接。镜像只改变包下载来源，不是通用 Provider proxy；填写错误会导致 runtime/package 安装失败。
-
-### 全局 proxy 与 runtime domain
-
-Proxy 提供 System、Manual 与 Direct。Manual 会作用于 Electron 及之后启动的 agents、notebooks、compute helper 与 installer；含内嵌 credential 的 URL 会被拒绝，loopback 始终 bypass。Direct 会清除 child process 继承的 proxy 变量。修改后应测试 provider 与 package connectivity。
-
-Notebook network domains 控制 Notebook 与 compute runtime 可访问的目标。对话中的 blocked-domain approval 需要核对；`Allow once` 只针对当前 command，`Always allow` 持久范围更大。Windows 会显示一次性管理员 sandbox setup 是否完成。这是 runtime boundary，不是整机 firewall。

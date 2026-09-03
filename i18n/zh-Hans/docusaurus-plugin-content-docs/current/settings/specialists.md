@@ -35,7 +35,3 @@ Specialist 是可复用的专家角色：Identity + Instructions + Capabilities�
 ## 导入与导出
 
 Import 选择 Specialist ZIP 后显示 package preview、Skills、Archive limits 和 Diagnostics；`Select ZIP`、重新选择、Cancel、Import 控制流程。导出可把专家配置和允许的资源打包；秘密和机器专属凭据不应进入共享包。删除前会显示该 Specialist 的引用/影响，active specialist 可能需要先切换。
-
-## Marketplace package
-
-Installed 与 Marketplace 为独立视图。可按 Official、Community 或 update 筛选；安装前打开 card，检查 publisher、version、Skills、Connectors 与签名来源。Marketplace 内容只读；update 必须在已安装内容基线上提升 SemVer，需要编辑时应制作副本。离线时可能显示此前验证的 cache，并提供明确 Refresh。

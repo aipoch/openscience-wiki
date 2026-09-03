@@ -58,7 +58,7 @@ export default function Home() {
       title: translate({id: 'homepage.guides.settings.title', message: 'Settings and reference'}),
       description: translate({
         id: 'homepage.guides.settings.description',
-        message: 'Configure all 17 settings panels and find any action in the control index.',
+        message: 'Configure all 13 settings panels and find any action in the control index.',
       }),
       to: 'settings/overview',
     },

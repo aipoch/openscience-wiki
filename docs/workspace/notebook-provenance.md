@@ -69,11 +69,3 @@ Environment reports captured runtime and dependency context. Compare it when Pyt
 Review reports reviewer state and material. A review doesn't prove the conclusion; it records which check ran, when it ran, and which artifact version it covered.
 
 Use `Previous/Next Artifact version` and `vN` to move through immutable versions. `Close Provenance` returns to the file preview. Each version keeps its own evidence chain.
-
-## Variables, dependency state, and network boundaries
-
-`Variables` inspects the live Python or R namespace without starting a kernel: filter names, include private names when necessary, and refresh after execution. Wide previews dock Variables beside cells and the terminal; narrow previews switch views. Terminal completion suggests current variable names and types.
-
-Cross-run analysis marks outputs `clear`, `stale`, or `unknown` when later code changes their dependencies. Rerun stale results; investigate or rerun unknown results before relying on them.
-
-Notebook and compute processes follow Settings → Network domain rules. A blocked destination produces a conversation approval with Deny, Allow once, and Always allow. Review the exact domain and command. On Windows, enforcement begins only after the app's one-time administrator sandbox setup; outside-app processes are not covered.

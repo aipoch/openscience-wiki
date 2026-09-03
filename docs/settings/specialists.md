@@ -35,7 +35,3 @@ A Specialist is a reusable expert role made from Identity, Instructions, and Cap
 ## Import and export
 
 After you select a Specialist ZIP, Import shows the package preview, Skills, Archive limits, and Diagnostics. `Select ZIP`, reselect, Cancel, and Import control the process. Export can package the Specialist configuration and approved resources. Secrets and machine-specific credentials must not be included in a shared package. Before deletion, the application shows references to the Specialist and the effect of removing it; you may need to switch away from an active Specialist first.
-
-## Marketplace packages
-
-Installed and Marketplace are separate views. Filter the marketplace by Official, Community, or updates; open a card to review publisher, version, Skills, Connectors, and signature-backed source before installing. Marketplace content is read-only. Updating requires a higher SemVer against the installed content baseline; make an editable copy instead of modifying publisher files. If offline, a previously verified cache may be shown with an explicit Refresh action.
