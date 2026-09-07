@@ -22,6 +22,16 @@ Host detail provides:
 - Probe/Refresh: detect online status and resources again.
 - Remove/Delete: remove the configuration after confirmation; remote files on the host are not deleted.
 
+### Direct SSH and Slurm
+
+Each host has an `Execution mode` selector. **Direct SSH** starts the workload through the SSH connection. **Slurm** submits it to the cluster scheduler, then polls, recovers, cancels, and cleans up through durable job receipts. The selected mode persists per host.
+
+![Slurm execution mode for an SSH host](/img/open-science/v0.26.0/compute-slurm-mode.png)
+
+Before choosing Slurm, confirm `sbatch`, `squeue`, `sacct`, and `scancel` are available as required by the cluster; verify the login-node policy, account/partition/QoS, wall-time, scratch path, modules, and environment activation. Use the **Compute Environment Setup** Skill to produce host-specific setup or repair instructions, then review them with the cluster administrator. The Skill does not grant scheduler access and should not be applied blindly.
+
+If submission fails, expand the job activity and keep the scheduler job ID. Check account/partition policy and remote storage before retrying. Cancel through Open Science when possible so scheduler state and staged-file cleanup stay synchronized; confirm the job in the cluster's own tools if recovery remains uncertain.
+
 When an agent asks to execute remotely, Compute shows an approval request with `Deny`, `Allow once`, `Allow for session`, project, and global options. Project and global scopes need an extra confirmation. Long jobs can be submitted and tracked; Open Science can then harvest their results into the project.
 
 ## Network

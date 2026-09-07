@@ -22,7 +22,7 @@ description: 按页面查找 Open Science 的按钮、输入、开关和结果�
 
 | 页面 | 控件 | 结果 |
 | --- | --- | --- |
-| Home header | GitHub、Search、Theme、Messages、Model settings | 外链、全局搜索、主题、通知、打开 Model |
+| Home header | GitHub、Search、Library、Theme、Messages、Model settings | 外链、全局搜索、文献资料库、主题、通知、打开 Model |
 | Home body | New project、项目卡、Recent session | 新建或打开项目/session |
 | Theme menu | System、Light、Dark | 设置外观并同步 General |
 | Search | Search input、结果项、Esc | 查找并跳转项目/session/file |
@@ -40,6 +40,7 @@ description: 按页面查找 Open Science 的按钮、输入、开关和结果�
 | New | 新 session |
 | Customize | 启动 Skill/Specialist 定制对话 |
 | Files | 切换右侧项目文件面板 |
+| Library | 打开与项目关联的资料库文献 |
 | Session row | 切换 session；状态显示 Idle/Running/Permission 等 |
 | Session actions | Pin/Unpin、Rename、View notebook、Archive、Delete |
 | Messages、Settings、GitHub | 通知、设置、官方仓库 |
@@ -65,7 +66,7 @@ description: 按页面查找 Open Science 的按钮、输入、开关和结果�
 
 | 表面 | 控件 | 结果 |
 | --- | --- | --- |
-| Permission | Impact info、Permission info、Allow once、Deny | 检查并批准/拒绝一次 |
+| Permission | Impact info、Permission info、可展开 Skill 文档、Allow once、Deny | 检查并批准/拒绝一次 |
 | Scope confirmation | Cancel、Confirm session/project/global | 保存更宽 grant；宽 scope 需二次确认 |
 | Plan | Approve/Run、Feedback 输入、Cancel | 接受计划、要求修改或取消 |
 | Elicitation | 结构化输入/选项、Submit、Cancel | 回答 agent 追问 |
@@ -89,6 +90,20 @@ description: 按页面查找 Open Science 的按钮、输入、开关和结果�
 | Previous/vN/Next | 切 artifact version |
 | PDB Cartoon/Stick/Sphere/Surface/Line | 改变三维表示方式 |
 | PDF/Office/Image controls | 翻页/搜索、缩放、选择 PDF evidence、缩略图或下载 |
+| Preview content context menu | 按来源提供 Copy path、Download、Save as artifact、Provenance 或返回上下文 |
+
+## 文献资料库
+
+| 区域 | 控件 | 结果 |
+| --- | --- | --- |
+| 侧栏 | Inbox、All references、Duplicates、Trash、Projects、Collections、Citation settings | 选择 catalog scope 或管理引用样式 |
+| Add | Add reference、Import PDF、Import references | 创建元数据或预览 PDF/BibTeX/RIS/NBIB 导入 |
+| Catalog | Search、Sort、Filters、Customize columns、page size | 筛选并排列文献 |
+| Selection rail | 集合/项目目标、全文查找、Trash、export | 对已选文献执行有边界的批量操作 |
+| 文献详情 | 元数据 edit/complete、标识符、集合、项目、附件、citation、full text | 检查或更新单条文献 |
+| Inbox | Accept、Dismiss、batch selection、Undo | 文献正式入库前复核智能体候选项 |
+| Duplicates | Select groups、Compare、字段选择、Merge | 复核并合并记录，同时保留关联 |
+| Background tasks | Pause、Resume、Review、Cancel | 控制批量元数据/全文任务 |
 
 ## Notebook 与 Provenance
 
@@ -123,7 +138,7 @@ Category filter、Search、Enable、Detail、Actions、Create/Import；Editor �
 
 ### Compute
 
-Add host、Host card/enable、Probe/Retry、Detail/Edit/Remove、Resources、Details document、Scratch root Edit/Input/Save/Cancel、Concurrent job limit Edit/Input/Save/Cancel；执行审批含 Deny、once、session、project、global。
+Add host、Host card/enable、Probe/Retry、Detail/Edit/Remove、Resources、Direct SSH/Slurm execution mode、Details document、Scratch root Edit/Input/Save/Cancel、Concurrent job limit Edit/Input/Save/Cancel；执行审批含 Deny、once、session、project、global。
 
 ### Network
 

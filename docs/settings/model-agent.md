@@ -22,6 +22,8 @@ The Provider form contains Provider type and name, Base URL or Endpoint, API for
 
 When you switch models, the application tries to keep a similar reasoning level. A compatibility alert means the active agent framework cannot reliably carry the selected model or format; follow the prompt to change the Provider or Agent.
 
+v0.26.0 adds the built-in **Apodex** provider with `apodex-1.1` and `apodex-1.1-mini`, and refreshes the bundled OpenAI and Anthropic catalogs with GPT-6 Astra and Claude Fable 5.1. Catalog metadata describes supported context and reasoning controls; it does not confirm account access. Add the required credential, run `Test connection`, and treat the installed picker as authoritative.
+
 ## Agent framework
 
 ![Agent panel](/img/open-science/settings-agent.png)

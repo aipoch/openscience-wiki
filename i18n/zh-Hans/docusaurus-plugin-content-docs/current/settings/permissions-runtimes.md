@@ -41,4 +41,6 @@ title: Permissions 与 Runtimes
 
 `Restore defaults` 只补回缺失的安全 baseline grant，不改变其他 grant。Deny 对当前 turn 生效，智能体会被告知不可重试或绕路近似执行。
 
+v0.26.0 的安全 baseline 还覆盖常规只读 Notebook runtime/state 检查、Memory 查询、包清单，以及已批准 plan 的进度更新。这些默认项减少重复提示，但不会授权写入、修改 package、访问网络或批准新 plan。请在 Settings 核对具体 capability 与 scope，不再适合项目时及时撤销。
+
 对 app-managed runtime，Reinstall 会先排空运行中 kernel 并持久 rebind session，再替换托管文件；外部 interpreter 不会被修改。`Allow agent-created environments` 控制自动创建，关闭后用户仍可显式 setup 与 repair。Network protection status 会链接到 runtime-domain settings；只有面板报告 active 时才能视为已保护。

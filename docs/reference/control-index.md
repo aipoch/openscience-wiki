@@ -22,7 +22,7 @@ This page condenses the application's entry points into a searchable, page-by-pa
 
 | Page | Controls | Result |
 | --- | --- | --- |
-| Home header | GitHub, Search, Theme, Messages, Model settings | Open the repository, global search, appearance menu, notifications, or Model settings |
+| Home header | GitHub, Search, Library, Theme, Messages, Model settings | Open the repository, global search, literature library, appearance menu, notifications, or Model settings |
 | Home body | New project, project card, Recent session | Create or open a project or session |
 | Theme menu | System, Light, Dark | Set appearance and keep it in sync with General |
 | Search | Search input, result item, Esc | Find and open a project, session, or file |
@@ -40,6 +40,7 @@ This page condenses the application's entry points into a searchable, page-by-pa
 | New | Create a session |
 | Customize | Start a Skill/Specialist customization conversation |
 | Files | Show the project files panel on the right |
+| Library | Open project-linked references in the literature library |
 | Session row | Switch sessions; status reports Idle, Running, Permission, or another state |
 | Session actions | Pin/Unpin, Rename, View notebook, Archive, Delete |
 | Messages, Settings, GitHub | Open notifications, settings, or the official repository |
@@ -65,7 +66,7 @@ This page condenses the application's entry points into a searchable, page-by-pa
 
 | Surface | Controls | Result |
 | --- | --- | --- |
-| Permission | Impact info, Permission info, Allow once, Deny | Inspect and approve or reject a single request |
+| Permission | Impact info, Permission info, expandable Skill document, Allow once, Deny | Inspect and approve or reject a single request |
 | Scope confirmation | Cancel, Confirm session/project/global | Save a broader grant; broad scopes require a second confirmation |
 | Plan | Approve/Run, Feedback input, Cancel | Accept a plan, ask for changes, or cancel |
 | Elicitation | Structured input or options, Submit, Cancel | Answer an agent question |
@@ -89,6 +90,20 @@ This page condenses the application's entry points into a searchable, page-by-pa
 | Previous/vN/Next | Change artifact version |
 | PDB Cartoon/Stick/Sphere/Surface/Line | Change the three-dimensional representation |
 | PDF/Office/Image controls | Navigate/search pages, zoom, select PDF evidence, show thumbnails, or download as supported |
+| Preview content context menu | Copy path, Download, Save as artifact, Provenance, or return to context when applicable |
+
+## Literature Library
+
+| Area | Controls | Result |
+| --- | --- | --- |
+| Sidebar | Inbox, All references, Duplicates, Trash, Projects, Collections, Citation settings | Choose the catalog scope or citation-style manager |
+| Add | Add reference, Import PDF, Import references | Create metadata or preview PDF/BibTeX/RIS/NBIB import |
+| Catalog | Search, Sort, Filters, Customize columns, page size | Narrow and arrange references |
+| Selection rail | Collection/project destination, full-text lookup, move to Trash, export | Apply a bounded bulk action to selected references |
+| Reference detail | Metadata edit/complete, identifiers, collections, projects, attachments, citation, full text | Inspect or update one reference |
+| Inbox | Accept, Dismiss, batch selection, Undo | Review agent-discovered candidates before library admission |
+| Duplicates | Select groups, Compare, field choices, Merge | Review and merge records while preserving associations |
+| Background tasks | Pause, Resume, Review, Cancel | Control bulk metadata/full-text operations |
 
 ## Notebook and Provenance
 
@@ -123,7 +138,7 @@ Category filter, Search, Enable, Detail, Actions, Create, and Import. The Editor
 
 ### Compute
 
-Add host, Host card/enable, Probe/Retry, Detail/Edit/Remove, Resources, Details document, Scratch root Edit/Input/Save/Cancel, and Concurrent job limit Edit/Input/Save/Cancel. Execution approvals offer Deny, once, session, project, and global.
+Add host, Host card/enable, Probe/Retry, Detail/Edit/Remove, Resources, Direct SSH/Slurm execution mode, Details document, Scratch root Edit/Input/Save/Cancel, and Concurrent job limit Edit/Input/Save/Cancel. Execution approvals offer Deny, once, session, project, and global.
 
 ### Network
 
