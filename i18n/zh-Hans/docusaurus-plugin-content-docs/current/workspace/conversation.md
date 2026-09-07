@@ -70,3 +70,5 @@ title: 对话与输入区
 ## 运行活动
 
 时间线可展示工具名称、命令/代码、参数详情、diff、输出、Web search、计划进度、context compaction、handoff、subagent 与 elicitation。折叠行点击后展开；复制按钮复制代码或输出；错误行可进入 `Report error`。在执行结果不确定时，应先展开详情，再决定授权下一步。
+
+v0.26.0 将 artifact 写入和常用 Notebook 控制（runtime 检查、restart、binding、kernel state）显示为紧凑摘要卡片。摘要用于快速浏览；若准确路径、版本、参数或状态变化会影响决定，仍需展开卡片核对。

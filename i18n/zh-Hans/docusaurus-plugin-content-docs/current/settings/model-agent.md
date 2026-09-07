@@ -22,6 +22,8 @@ Provider 表单包含 Provider type/name、Base URL/Endpoint、API format、API 
 
 切换模型时应用会尽量保持相对 reasoning 强度。兼容性 alert 表示当前 agent framework 不能可靠承载所选模型/格式，应按建议改 Provider 或 Agent。
 
+v0.26.0 新增内置 **Apodex** provider，提供 `apodex-1.1` 与 `apodex-1.1-mini`，并在 OpenAI/Anthropic 内置目录加入 GPT-6 Astra 与 Claude Fable 5.1。目录元数据描述 context 和 reasoning 控件，并不代表账号已有访问资格。配置所需 credential，执行 `Test connection`，并以已安装版本的 picker 为准。
+
 ## Agent（代理框架）
 
 ![Agent 面板](/img/open-science/settings-agent.png)

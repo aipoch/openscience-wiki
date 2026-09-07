@@ -41,4 +41,6 @@ Package installation for a user interpreter writes to your own environment, not 
 
 `Restore defaults` re-adds only missing safe baseline grants and leaves other grants unchanged. A denial applies to the current turn: the agent is told not to retry or approximate the refused operation.
 
+In v0.26.0, the safe baseline also covers routine read-only notebook runtime/state inspection, Memory queries, package inventories, and progress updates for an already approved plan. These defaults reduce repetitive prompts but do not authorize writes, package changes, network access, or a new plan. Inspect the exact capability and scope in Settings and revoke it when it no longer fits the project.
+
 For an app-managed runtime, Reinstall drains running kernels and durably rebinds sessions before replacing managed files. External interpreters are never changed by this action. `Allow agent-created environments` controls autonomous creation; explicit setup and repair remain available when it is off. Network protection status links to the runtime-domain settings and must not be read as protected until the panel reports it active.

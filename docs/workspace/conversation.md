@@ -70,3 +70,5 @@ Completed assistant messages also provide Copy and `Branch in new session`. Text
 ## Run activity
 
 The timeline can show tool names, commands or code, parameter details, diffs, output, web searches, plan progress, context compaction, handoffs, subagents, and elicitation. Select a collapsed row to open it. Copy controls copy code or output, while an error row can open `Report error`. When an execution result looks uncertain, inspect its details before approving the next request.
+
+In v0.26.0, artifact writes and common notebook controls—runtime inspection, restart, binding, and kernel state—use compact summary cards in messages and approvals. The summary is for scanning; expand the card whenever exact paths, versions, arguments, or state transitions affect your decision.

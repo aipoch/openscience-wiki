@@ -41,6 +41,8 @@ PDB files use a 3Dmol view. Drag to rotate, use the wheel to zoom, and hold Shif
 
 A modal header can contain Download, status, File actions, Full screen, and Close. Split-view tabs also show artifact `v1`, `v2`, and later versions. `Previous/Next Artifact version` changes version; Full screen only changes the layout and doesn't create a new version.
 
+Right-click inside preview content for actions appropriate to its source. A local file can offer **Copy path**, **Download**, and **Save as artifact**. A managed artifact can offer provenance or return-to-context actions. Saving a local file as an artifact starts a managed publication; wait for success before citing its version. A context menu does not broaden access—unknown files and links remain untrusted.
+
 :::tip
 Record both the file name and artifact version when citing a research result. Two files with the same name can contain different data. The immutable provenance version ID is the reproducible reference.
 :::

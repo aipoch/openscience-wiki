@@ -22,6 +22,16 @@ Host detail 提供：
 - Probe/Refresh：重新检测在线状态与资源。
 - Remove/Delete：确认后移除配置，不等于删除远程主机文件。
 
+### Direct SSH 与 Slurm
+
+每个 host 都有 `Execution mode`。**Direct SSH** 通过 SSH 连接直接启动 workload；**Slurm** 提交到集群调度器，并通过持久 job receipt 轮询、恢复、取消和清理。所选模式按 host 保存。
+
+![SSH host 的 Slurm execution mode](/img/open-science/v0.26.0/compute-slurm-mode.png)
+
+选择 Slurm 前，确认集群按需提供 `sbatch`、`squeue`、`sacct` 和 `scancel`，并核对登录节点规则、account/partition/QoS、wall time、scratch 路径、modules 与环境激活。可用 **Compute Environment Setup** Skill 生成该 host 的 setup/repair 指令，再与集群管理员一起审核。该 Skill 不会授予调度权限，不应直接照抄执行。
+
+提交失败时展开 job activity 并保留 scheduler job ID；重试前检查 account/partition 规则和远程存储。尽量通过 Open Science 取消，使调度器状态与 staging-file cleanup 保持同步；恢复状态仍不确定时，用集群自身工具确认。
+
 Agent 请求远程执行时会弹出 Compute approval：`Deny`、`Allow once`、`Allow for session`、project、global；项目/全局 scope 需要额外确认。长任务可以提交、跟踪、harvest 结果并把输出带回项目。
 
 ## Network（网络）

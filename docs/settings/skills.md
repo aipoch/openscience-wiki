@@ -38,3 +38,7 @@ The import candidate's `Preview`, `Close preview`, file list, and diagnostics he
 Enable only the Skills needed for the current research task so the agent has fewer irrelevant choices. A Skill that calls an external model or service may still need network access, a Connector, a runtime, or a license. An enabled Skill does not mean its dependencies are installed.
 
 Tags, including the protected Favorites tag, can group Skills across catalogs. The management view filters by actual users (main agent and Specialists), source, status, tag, and text; bulk enable, disable, or delete validates the whole selection. Built-in and Specialist-linked Skills remain protected. The v0.25.1 catalog repair detects missing or duplicate projections and rebuilds them from the authoritative packages.
+
+v0.26.0 imports asset-heavy Skill bundles through a bounded path designed for tens of thousands of files while preserving archive and integrity checks. Size and entry limits still apply; do not split or rename package internals to evade them. During a `load_skill` permission request, expand the complete Skill document and review its instructions before Allow or Deny.
+
+![Expanded Skill document before approval](/img/open-science/v0.26.0/skill-approval-expanded.png)

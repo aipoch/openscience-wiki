@@ -41,6 +41,8 @@ PDB 使用 3Dmol 视图。鼠标拖动旋转、滚轮缩放、Shift+拖动平移
 
 模态顶部依次可有 Download、状态、File actions、Full screen、Close。分栏标签还显示 artifact `v1/v2…`，`Previous/Next Artifact version` 在版本间切换；Full screen 只改变布局，不创建新版本。
 
+在 preview 内容中右键，会按来源显示对应操作。本地文件可提供 **Copy path**、**Download** 和 **Save as artifact**；托管 artifact 可提供 provenance 或返回来源上下文。将本地文件保存为 artifact 会启动托管发布，成功前不要引用其版本。Context menu 不会扩大访问权限；未知文件与链接仍应视为不可信。
+
 :::tip
 引用研究结果时记录文件名和 artifact 版本。文件名相同不代表内容相同，Provenance 的不可变 version ID 才是复现锚点。
 :::
