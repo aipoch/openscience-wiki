@@ -1,6 +1,8 @@
 ---
 sidebar_position: 2
 title: 对话与输入区
+last_update:
+  date: '2026-09-07'
 ---
 
 # 对话与输入区

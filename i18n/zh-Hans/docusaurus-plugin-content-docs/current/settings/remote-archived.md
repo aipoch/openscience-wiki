@@ -1,6 +1,8 @@
 ---
 sidebar_position: 9
 title: Remote control 与 Archived
+last_update:
+  date: '2026-08-13'
 ---
 
 # Remote control 与 Archived

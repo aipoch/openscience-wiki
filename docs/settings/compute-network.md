@@ -1,6 +1,8 @@
 ---
 sidebar_position: 5
 title: Compute and Network
+last_update:
+  date: '2026-09-07'
 ---
 
 # Compute and Network

@@ -1,6 +1,8 @@
 ---
 sidebar_position: 2
 title: 首次引导
+last_update:
+  date: '2026-08-13'
 ---
 
 # 首次引导

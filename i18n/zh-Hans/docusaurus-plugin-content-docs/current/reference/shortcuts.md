@@ -1,6 +1,8 @@
 ---
 sidebar_position: 3
 title: 键盘与高效操作
+last_update:
+  date: '2026-09-03'
 ---
 
 # 键盘与高效操作

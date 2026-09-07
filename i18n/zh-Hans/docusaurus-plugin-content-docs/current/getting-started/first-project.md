@@ -1,6 +1,8 @@
 ---
 sidebar_position: 3
 title: 第一个项目
+last_update:
+  date: '2026-08-13'
 ---
 
 # 创建第一个项目

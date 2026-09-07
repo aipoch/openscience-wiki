@@ -1,6 +1,8 @@
 ---
 sidebar_position: 2
 title: First-time Setup
+last_update:
+  date: '2026-08-13'
 ---
 
 # First-time Setup

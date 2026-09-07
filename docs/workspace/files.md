@@ -1,6 +1,8 @@
 ---
 sidebar_position: 3
 title: Attachments and Project Files
+last_update:
+  date: '2026-09-03'
 ---
 
 # Attachments and Project Files

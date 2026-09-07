@@ -1,6 +1,8 @@
 ---
 sidebar_position: 4
 title: Architecture and data flow
+last_update:
+  date: '2026-08-13'
 ---
 
 # Architecture and data flow

@@ -1,6 +1,8 @@
 ---
 sidebar_position: 4
 title: 架构与数据流
+last_update:
+  date: '2026-08-13'
 ---
 
 # 架构与数据流

@@ -1,6 +1,8 @@
 ---
 sidebar_position: 9
 title: Remote control and Archived
+last_update:
+  date: '2026-08-13'
 ---
 
 # Remote control and Archived

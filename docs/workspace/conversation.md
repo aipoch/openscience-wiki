@@ -1,6 +1,8 @@
 ---
 sidebar_position: 2
 title: Conversation and Composer
+last_update:
+  date: '2026-09-07'
 ---
 
 # Conversation and Composer

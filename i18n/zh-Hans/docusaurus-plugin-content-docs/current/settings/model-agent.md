@@ -1,6 +1,8 @@
 ---
 sidebar_position: 6
 title: Model 与 Agent
+last_update:
+  date: '2026-09-07'
 ---
 
 # Model 与 Agent

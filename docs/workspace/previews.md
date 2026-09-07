@@ -1,6 +1,8 @@
 ---
 sidebar_position: 4
 title: File Previews
+last_update:
+  date: '2026-09-07'
 ---
 
 # File Previews

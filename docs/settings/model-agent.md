@@ -1,6 +1,8 @@
 ---
 sidebar_position: 6
 title: Model and Agent
+last_update:
+  date: '2026-09-07'
 ---
 
 # Model and Agent

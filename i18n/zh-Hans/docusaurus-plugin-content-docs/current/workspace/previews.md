@@ -1,6 +1,8 @@
 ---
 sidebar_position: 4
 title: 文件预览
+last_update:
+  date: '2026-09-07'
 ---
 
 # 文件预览

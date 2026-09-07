@@ -29,6 +29,8 @@ const config = {
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/docs/',
+  // Keep generated URLs consistent with the directory URLs served by Nginx.
+  trailingSlash: true,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -53,8 +55,29 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
+          // Read explicit content dates even when Git is absent in Docker.
+          showLastUpdateTime: true,
         },
         blog: false,
+        sitemap: {
+          lastmod: 'date',
+          createSitemapItems: async ({defaultCreateSitemapItems, ...params}) => {
+            // Missing dates must stay absent: the default fallback queries Git,
+            // which is unavailable in the production Docker build context.
+            const withExplicitDates = (routes) => routes.map((route) => ({
+              ...route,
+              metadata: {
+                ...route.metadata,
+                lastUpdatedAt: route.metadata?.lastUpdatedAt ?? null,
+              },
+              ...(route.routes && {routes: withExplicitDates(route.routes)}),
+            }));
+            return defaultCreateSitemapItems({
+              ...params,
+              routes: withExplicitDates(params.routes),
+            });
+          },
+        },
         theme: {
           customCss: './src/css/custom.css',
         },

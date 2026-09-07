@@ -1,6 +1,8 @@
 ---
 sidebar_position: 2
 title: Files, formats, and naming
+last_update:
+  date: '2026-08-13'
 ---
 
 # Files, formats, and naming
