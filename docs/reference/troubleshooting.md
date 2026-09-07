@@ -1,6 +1,8 @@
 ---
 sidebar_position: 5
 title: Troubleshooting
+last_update:
+  date: '2026-08-13'
 ---
 
 # Troubleshooting

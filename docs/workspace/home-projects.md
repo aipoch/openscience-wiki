@@ -1,6 +1,8 @@
 ---
 sidebar_position: 1
 title: Home, Projects, and Navigation
+last_update:
+  date: '2026-09-03'
 ---
 
 # Home, Projects, and Navigation

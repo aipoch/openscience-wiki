@@ -2,6 +2,8 @@
 sidebar_position: 5
 title: Literature Library
 description: Import, organize, verify, and cite research references in Open Science v0.26.0.
+last_update:
+  date: '2026-09-07'
 ---
 
 # Literature Library

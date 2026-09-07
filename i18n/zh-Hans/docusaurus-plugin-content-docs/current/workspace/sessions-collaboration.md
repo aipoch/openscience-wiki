@@ -1,6 +1,8 @@
 ---
 sidebar_position: 8
 title: 会话分支、Side chat 与 Subagents
+last_update:
+  date: '2026-09-07'
 ---
 
 # 会话分支、Side chat 与 Subagents

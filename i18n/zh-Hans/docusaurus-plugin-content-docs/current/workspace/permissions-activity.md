@@ -1,6 +1,8 @@
 ---
 sidebar_position: 7
 title: 权限、计划与活动
+last_update:
+  date: '2026-09-07'
 ---
 
 # 权限、计划与活动

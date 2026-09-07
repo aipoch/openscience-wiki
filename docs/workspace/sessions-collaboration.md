@@ -1,6 +1,8 @@
 ---
 sidebar_position: 8
 title: Branches, Side Chat, and Subagents
+last_update:
+  date: '2026-09-07'
 ---
 
 # Branches, Side Chat, and Subagents

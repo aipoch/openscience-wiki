@@ -1,6 +1,8 @@
 ---
 sidebar_position: 5
 title: 故障排查
+last_update:
+  date: '2026-08-13'
 ---
 
 # 故障排查

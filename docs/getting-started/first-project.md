@@ -1,6 +1,8 @@
 ---
 sidebar_position: 3
 title: Your First Project
+last_update:
+  date: '2026-08-13'
 ---
 
 # Create Your First Project

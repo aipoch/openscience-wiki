@@ -2,6 +2,8 @@
 sidebar_position: 1
 title: Complete page and control index
 description: Find every documented Open Science button, input, switch, and result by page.
+last_update:
+  date: '2026-09-07'
 ---
 
 # Complete page and control index

@@ -2,6 +2,8 @@
 sidebar_position: 5
 title: 文献资料库
 description: 在 Open Science v0.26.0 中导入、整理、核验和引用研究文献。
+last_update:
+  date: '2026-09-07'
 ---
 
 # 文献资料库

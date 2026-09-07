@@ -1,6 +1,8 @@
 ---
 sidebar_position: 5
 title: Memory、Tags、Credentials 与 Usage
+last_update:
+  date: '2026-09-03'
 ---
 
 # Memory、Tags、Credentials 与 Usage

@@ -1,6 +1,8 @@
 ---
 sidebar_position: 5
 title: Compute 与 Network
+last_update:
+  date: '2026-09-07'
 ---
 
 # Compute 与 Network

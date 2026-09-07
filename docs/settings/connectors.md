@@ -1,6 +1,8 @@
 ---
 sidebar_position: 3
 title: Connectors
+last_update:
+  date: '2026-09-03'
 ---
 
 # Connectors

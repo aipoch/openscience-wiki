@@ -2,6 +2,8 @@
 sidebar_position: 1
 title: 完整页面与控件索引
 description: 按页面查找 Open Science 的按钮、输入、开关和结果。
+last_update:
+  date: '2026-09-07'
 ---
 
 # 完整页面与控件索引

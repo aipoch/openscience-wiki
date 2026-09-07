@@ -1,6 +1,8 @@
 ---
 sidebar_position: 1
 title: 设置中心总览
+last_update:
+  date: '2026-09-03'
 ---
 
 # 设置中心总览

@@ -1,6 +1,8 @@
 ---
 sidebar_position: 1
 title: Install and Run
+last_update:
+  date: '2026-08-13'
 ---
 
 # Install and Run

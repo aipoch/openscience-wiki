@@ -1,6 +1,8 @@
 ---
 sidebar_position: 5
 title: Memory, Tags, Credentials, and Usage
+last_update:
+  date: '2026-09-03'
 ---
 
 # Memory, Tags, Credentials, and Usage

@@ -1,6 +1,8 @@
 ---
 sidebar_position: 7
 title: Permissions 与 Runtimes
+last_update:
+  date: '2026-09-07'
 ---
 
 # Permissions 与 Runtimes

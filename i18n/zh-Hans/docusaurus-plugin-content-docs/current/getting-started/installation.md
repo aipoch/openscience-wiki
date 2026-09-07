@@ -1,6 +1,8 @@
 ---
 sidebar_position: 1
 title: 安装与运行
+last_update:
+  date: '2026-08-13'
 ---
 
 # 安装与运行
