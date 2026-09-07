@@ -84,7 +84,13 @@ def main():
 
             status, headers, body = request('/sitemap')
             assert status == 200 and headers.get_content_type() == 'application/xml'
+            # Preserve the existing single-sitemap API for current consumers.
+            assert body == (build / 'sitemap.xml').read_bytes(), '/sitemap must serve the English sitemap'
+
+            status, headers, body = request('/sitemap-index')
+            assert status == 200 and headers.get_content_type() == 'application/xml', (status, dict(headers))
             assert body == (build / 'sitemap-index.xml').read_bytes()
+            assert body == (repository / 'static/sitemap-index.xml').read_bytes()
             namespace = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
             index = ET.fromstring(body)
             children = [item.text for item in index.findall('s:sitemap/s:loc', namespace)]
@@ -101,7 +107,7 @@ def main():
                     assert request(url.path)[0] == 200, location.text
                     count += 1
             assert request('/docs/__missing-seo-probe__/')[0] == 404
-            print(f'PASS: relative redirects, multilingual sitemap endpoint, and {count} direct HTTP 200 pages')
+            print(f'PASS: relative redirects, legacy sitemap and multilingual index endpoints, and {count} direct HTTP 200 pages')
         finally:
             process.terminate()
             try:
