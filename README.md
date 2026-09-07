@@ -47,7 +47,8 @@ python3 tests/nginx-seo.py --nginx /absolute/path/to/nginx
 ```
 
 This test uses a temporary directory and loopback port to check relative
-redirects, the multilingual sitemap endpoint, and every sitemap page response.
+redirects, the legacy sitemap and multilingual index endpoints, and every
+sitemap page response.
 
 ## Run the production container
 
@@ -58,7 +59,8 @@ docker compose up --build -d
 ```
 
 The generated multilingual sitemap index is available as an XML API at
-`http://localhost:3002/sitemap`. Set `PORT` to publish the container on a
+`http://localhost:3002/sitemap-index`. The existing `/sitemap` endpoint serves
+the English sitemap. Set `PORT` to publish the container on a
 different host port. The repository-managed Nginx configuration serves this
 endpoint directly without a redirect.
 
@@ -82,7 +84,9 @@ history. Generated category pages and the React home page omit `lastmod`
 when no explicit source date is available; the sitemap never queries Git.
 
 `/docs/sitemap-index.xml` lists the English and Chinese generated sitemaps.
-The container's `/sitemap` endpoint serves this index. If the main website
+The container's `/sitemap-index` endpoint serves this index, copied from
+`static/sitemap-index.xml` during the build. The existing `/sitemap` endpoint
+continues to serve `/docs/sitemap.xml`. If the main website
 aggregates Docs separately, it must discover this index (or both child
 sitemaps), rather than importing only `/docs/sitemap.xml`.
 
