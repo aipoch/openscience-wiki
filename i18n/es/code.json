@@ -63,13 +63,31 @@
     "message": "Catálogo de Skills"
   },
   "homepage.meta.title": {
-    "message": "Documentación de AIPOCH Open-Science"
+    "message": "Documentación de Open-Science"
   },
   "homepage.meta.description": {
     "message": "Documentación de AIPOCH Open-Science: instalación, configuración del espacio de trabajo y de modelos, reproducibilidad, flujos de trabajo de investigación, skills, herramientas, CLI y referencia de API."
   },
   "homepage.lead": {
-    "message": "AIPOCH Open-Science es un entorno de investigación con IA, de código abierto y con prioridad local. Ejecuta flujos de trabajo de agentes, ejecuta Python y R, se conecta a fuentes de datos científicos y escribe cada resultado en un registro de proyecto verificable. La elección del modelo queda en manos de la persona investigadora: Open-Science funciona con proveedores integrados, una pasarela personalizada, un servidor de modelos local como Ollama o una suscripción existente, y el estado del proyecto permanece en la máquina que lo generó. Cada artefacto generado conserva un registro de procedencia, por lo que una tabla o una figura puede rastrearse hasta la sesión, el código y los archivos que la produjeron. Esta documentación cubre la instalación en macOS, Windows y Linux; la configuración del espacio de trabajo y de los proveedores de modelos; permisos y entornos de ejecución; proyectos, conversaciones, archivos y artefactos; flujos de trabajo de investigación basados en conjuntos de datos reales; herramientas, habilidades y especialistas; y material de referencia sobre controles, formatos de archivo, la CLI y las API. Las páginas se mantienen sincronizadas con la versión publicada, por lo que los pasos descritos aquí coinciden con la versión que has instalado."
+    "message": "AIPOCH Open-Science es un entorno de investigación con IA, de código abierto y con prioridad local."
+  },
+  "homepage.lead.model.title": {
+    "message": "Elección de modelo"
+  },
+  "homepage.lead.model.description": {
+    "message": "conéctate a proveedores de modelos compatibles, una pasarela personalizada o un servidor de modelos local compatible."
+  },
+  "homepage.lead.provenance.title": {
+    "message": "Almacenamiento local y procedencia"
+  },
+  "homepage.lead.provenance.description": {
+    "message": "los datos del proyecto y los resultados de investigación se guardan localmente, con el código, las entradas y los registros de ejecución disponibles para su revisión."
+  },
+  "homepage.lead.guides.title": {
+    "message": "Guías prácticas"
+  },
+  "homepage.lead.guides.description": {
+    "message": "configura tu espacio de trabajo, sigue flujos de trabajo de investigación y aprende a inspeccionar y compartir tus resultados."
   },
   "homepage.eyebrow": {
     "message": "Documentación"

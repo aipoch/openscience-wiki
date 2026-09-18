@@ -63,13 +63,31 @@
     "message": "Skill マーケットプレイス"
   },
   "homepage.meta.title": {
-    "message": "AIPOCH Open-Science ドキュメント"
+    "message": "Open-Science ドキュメント"
   },
   "homepage.meta.description": {
     "message": "AIPOCH Open-Science のドキュメント：インストール、ワークスペースとモデルの設定、再現性、研究ワークフロー、スキル、ツール、CLI と API リファレンス。"
   },
   "homepage.lead": {
-    "message": "AIPOCH Open-Science は、オープンソースでローカルファーストの AI 研究ワークベンチです。エージェントのワークフローを実行し、Python と R を実行し、科学データソースに接続し、すべての結果を検証可能なプロジェクト記録として書き戻します。モデル選択は研究者に委ねられます。Open-Science は組み込みプロバイダー、カスタムゲートウェイ、Ollama などのローカルモデルサーバー、既存のサブスクリプションに対応し、プロジェクトの状態はそれを生成したマシンに残ります。生成された成果物はすべて来歴を保持するため、表や図を、それを生成したセッション、コード、ファイルまでさかのぼって確認できます。このドキュメントは、macOS・Windows・Linux へのインストール、ワークスペースとモデルプロバイダーの設定、権限とランタイム、プロジェクト・会話・ファイル・成果物、実データを用いた研究ワークフロー、ツール・スキル・スペシャリスト、そしてコントロール・ファイル形式・CLI・API のリファレンスを扱います。ページは現在のリリースに合わせて更新されるため、ここで説明する手順はインストールしたバージョンと一致します。"
+    "message": "AIPOCH Open-Science は、オープンソースでローカルファーストの AI 研究ワークベンチです。"
+  },
+  "homepage.lead.model.title": {
+    "message": "モデルの選択"
+  },
+  "homepage.lead.model.description": {
+    "message": "対応するモデルプロバイダー、カスタムゲートウェイ、または互換性のあるローカルモデルサーバーに接続できます。"
+  },
+  "homepage.lead.provenance.title": {
+    "message": "ローカル保存と来歴"
+  },
+  "homepage.lead.provenance.description": {
+    "message": "プロジェクトのデータと研究成果はローカルに保存され、利用可能なコード・入力・実行記録を確認できます。"
+  },
+  "homepage.lead.guides.title": {
+    "message": "実践ガイド"
+  },
+  "homepage.lead.guides.description": {
+    "message": "ワークスペースを設定し、研究ワークフローに沿って進め、結果の確認と共有の方法を学べます。"
   },
   "homepage.eyebrow": {
     "message": "ドキュメント"

@@ -37,6 +37,11 @@
   line-height: 1.08;
 }
 .description {max-width: 460px; margin: 0; color: var(--aip-muted); font-size: 17px; line-height: 1.8;}
+.leadList {max-width: 520px; margin: 20px 0 0; padding: 0; list-style: none;}
+.leadList li {position: relative; padding-left: 18px; color: var(--aip-muted); font-size: 16px; line-height: 1.72;}
+.leadList li + li {margin-top: 11px;}
+.leadList li::before {content: ""; position: absolute; top: .66em; left: 0; width: 6px; height: 6px; background: var(--aip-ink);}
+.leadList strong {color: var(--aip-ink); font-weight: 600;}
 .actions {display: flex; align-items: center; flex-wrap: wrap; gap: 18px 24px; margin-top: 30px;}
 .arrow {width: 20px; height: 20px; flex: 0 0 20px;}
 
@@ -120,6 +125,7 @@
   .eyebrow {margin-bottom: 18px;}
   .title {font-size: clamp(38px, 10.8vw, 54px);}
   .description {font-size: 16px;}
+  .leadList li {font-size: 15px;}
   .actions {gap: 12px 20px; margin-top: 24px;}
   .primaryLink {gap: 18px; padding: 12px 14px;}
   .directory {padding-top: 28px;}

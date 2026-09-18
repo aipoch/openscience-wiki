@@ -63,13 +63,31 @@
     "message": "Skill-Marktplatz"
   },
   "homepage.meta.title": {
-    "message": "AIPOCH Open-Science Dokumentation"
+    "message": "Open-Science Dokumentation"
   },
   "homepage.meta.description": {
     "message": "Dokumentation für AIPOCH Open-Science: Installation, Einrichtung von Arbeitsbereich und Modellen, Reproduzierbarkeit, Forschung-Workflows, Skills, Tools, CLI und API-Referenz."
   },
   "homepage.lead": {
-    "message": "AIPOCH Open-Science ist eine Open-Source-Forschungsumgebung mit KI und lokalem Vorrang. Sie führt Agenten-Workflows aus, führt Python und R aus, bindet wissenschaftliche Datenquellen an und schreibt jedes Ergebnis in einen prüfbaren Projektdatensatz zurück. Die Wahl des Modells bleibt bei den Forschenden: Open-Science arbeitet mit integrierten Anbietern, einem eigenen Gateway, einem lokalen Modells wie Ollama oder einem bestehenden Abonnement, und der Projektzustand bleibt auf dem Rechner, der ihn erzeugt hat. Jedes erzeugte Artefakt behält einen Herkunftsnachweis, sodass eine Tabelle oder Abbildung bis zur Sitzung, zum Code und zu den Dateien zurückverfolgt werden kann, die sie erzeugt haben. Diese Dokumentation behandelt die Installation unter macOS, Windows und Linux; die Einrichtung von Arbeitsbereich und Modellanbietern; Berechtigungen und Laufzeitumgebungen; Projekte, Unterhaltungen, Dateien und Artefakte; Forschung-Workflows auf Basis realer Datensätze; Werkzeuge, Fähigkeiten und Spezialisten; sowie Referenzmaterial zu Bedienelementen, Dateiformaten, CLI und APIs. Die Seiten werden mit der aktuellen Version gepflegt, damit die hier beschriebenen Schritte zur installierten Version passen."
+    "message": "AIPOCH Open-Science ist eine Open-Source-Forschungsumgebung mit KI und lokalem Vorrang."
+  },
+  "homepage.lead.model.title": {
+    "message": "Modellwahl"
+  },
+  "homepage.lead.model.description": {
+    "message": "verbinden Sie sich mit unterstützten Modellanbietern, einem eigenen Gateway oder einem kompatiblen lokalen Modellserver."
+  },
+  "homepage.lead.provenance.title": {
+    "message": "Lokale Speicherung und Herkunft"
+  },
+  "homepage.lead.provenance.description": {
+    "message": "Projektdaten und Forschungsergebnisse werden lokal gespeichert; verfügbarer Code, Eingaben und Ausführungsprotokolle bleiben einsehbar."
+  },
+  "homepage.lead.guides.title": {
+    "message": "Praktische Anleitungen"
+  },
+  "homepage.lead.guides.description": {
+    "message": "richten Sie Ihren Arbeitsbereich ein, folgen Sie Forschungs-Workflows und erfahren Sie, wie Sie Ergebnisse prüfen und teilen."
   },
   "homepage.eyebrow": {
     "message": "Dokumentation"

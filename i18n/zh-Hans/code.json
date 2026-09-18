@@ -84,13 +84,31 @@
     "message": "Skill 市场"
   },
   "homepage.meta.title": {
-    "message": "AIPOCH Open-Science 文档"
+    "message": "Open-Science 文档"
   },
   "homepage.meta.description": {
     "message": "AIPOCH Open-Science 文档：安装、工作区与模型配置、可复现性、科研工作流、技能、工具、CLI 与 API 参考。"
   },
   "homepage.lead": {
-    "message": "AIPOCH Open-Science 是一款开源、本地优先的 AI 科研工作台。它可以运行智能体工作流、执行 Python 与 R、连接科研数据源，并把每一项结果写回可审查的项目记录中。模型选择权始终在研究者手中：Open-Science 支持内置服务商、自定义网关、Ollama 等本地模型服务，也可以复用你已有的订阅，项目数据则留在生成它的那台机器上。每个生成的产物都保留溯源记录，一张表格或一幅图都能回溯到产生它的会话、代码与文件。本文档涵盖 macOS、Windows 与 Linux 上的安装；工作区与模型服务配置；权限与运行环境；项目、对话、文件与产物；基于真实数据集的科研工作流；工具、技能与专家；以及控件、文件格式、CLI 与 API 的参考资料。文档与当前发布版本保持同步，因此这里描述的操作步骤与你安装的版本一致。"
+    "message": "AIPOCH Open-Science 是一款开源、本地优先的 AI 科研工作台。"
+  },
+  "homepage.lead.model.title": {
+    "message": "模型选择"
+  },
+  "homepage.lead.model.description": {
+    "message": "可连接受支持的模型服务商、自定义网关，或兼容的本地模型服务。"
+  },
+  "homepage.lead.provenance.title": {
+    "message": "本地存储与溯源"
+  },
+  "homepage.lead.provenance.description": {
+    "message": "项目数据与研究成果保存在本地，可用的代码、输入与执行记录均可查阅复核。"
+  },
+  "homepage.lead.guides.title": {
+    "message": "实用指南"
+  },
+  "homepage.lead.guides.description": {
+    "message": "配置你的工作区，跟着科研工作流操作，并学会检查与分享研究结果。"
   },
   "theme.ErrorPageContent.title": {
     "message": "页面已崩溃。",
