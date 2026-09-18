@@ -24,8 +24,9 @@ References: Docusaurus [deployment](https://docusaurus.io/docs/deployment), [rou
 
 ## Required validation
 
+- **Completion gate:** Report a task as complete, or a pull request as deliverable, only after the local lint (when the project configures one), `npm run check`, and `npm run build` all pass on the final change set. If any of them fails, is unavailable, or was not run, say so plainly and state what remains; never present unverified work as done.
 - Define acceptance criteria before implementation. Add/update relevant regression coverage for behavior changes. Run `npm run check` and `git diff --check`; review the full diff against the integration contract. Never disable content or broken-link checks to pass.
-- For site behavior, content, routes, assets, or locale changes, also run `npm run build` for all locales. For rendered behavior, then run `node --test tests/*.test.mjs` (requires generated bilingual HTML). Instruction-only changes require source/configuration consistency review, not a site build.
+- For site behavior, content, routes, assets, or locale changes, also run `npm run build` for all locales. For rendered behavior, then run `node --test tests/*.test.mjs` (requires generated bilingual HTML). Instruction-only changes require source/configuration consistency review; when delivered as a pull request, the completion gate above still applies.
 - For navigation/UI changes, use `npm run serve` to inspect affected English/Chinese routes: direct entry, deep-link refresh, internal links, locale switching, assets, and main-site return; check keyboard, viewport, color-mode, console, and hydration behavior.
 - Report exact commands, results, uncovered cases, and contract compliance. A Wiki-only local server cannot prove main-site integration; claim gateway/production verification only when exercised with required authorization. Use Conventional Commits; omit TAPD information from PRs.
 
