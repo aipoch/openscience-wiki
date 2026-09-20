@@ -99,4 +99,8 @@ v0.31.1에서 이 서비스는 **Codex Chat Completions** 또는 **CodeBuddy**�
 
 ![API 키가 여전히 빈으로 분류 서비스 양식](/img/open-science/v0311/classification-add-service.webp)
 
-스크린샷은 v0.31.1의 기본 상태와 서비스 추가 양식을 보여 줍니다. 이 예제에서는 분류 서비스를 설정하지 않았으며 분류 모델 호출도 검증하지 않았습니다.
+Jev를 사용할 때는 **Automatic capability selection**에서 **TypeSafe AI / Jev Latest**를 선택한 후 **Check model**을 누릅니다. **Check passed**는 서비스가 응답함을 뜻합니다. Settings를 다시 열어 선택한 설정이 유지되는지 확인합니다.
+
+![TypeSafe AI / Jev Latest 선택 및 Check passed 표시, API 키는 숨김](/img/open-science/v0311/classification-connected.webp)
+
+v0.31.1 실측에서 서비스 저장과 모델 검사가 성공했습니다. Codex Chat Completions 세션에서 공개 TP53 데이터 조회를 요청하자 Jev가 정상 호출되어 `mcp-genes`를 선택했습니다. 이는 기능 선택 검증이며 데이터베이스 조회 완료를 뜻하지 않습니다. Codex 구독 세션은 기존 기능 로딩 방식을 사용합니다. Jev 설정을 저장해도 이 세션들이 Jev를 사용하도록 바뀌지는 않습니다.

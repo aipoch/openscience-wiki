@@ -99,4 +99,8 @@ Vea [Configuración del proveedor](providers.md) para modelos de conversación. 
 
 ![Formulario de servicio de clasificación con la tecla API aún vacía](/img/open-science/v0311/classification-add-service.webp)
 
-Las capturas muestran el estado predeterminado y el formulario para añadir un servicio en v0.31.1. En esta demostración no se configuró ningún servicio de clasificación ni se verificó una llamada a un modelo de clasificación.
+Para Jev, seleccione **TypeSafe AI / Jev Latest** en **Automatic capability selection** y pulse **Check model**. **Check passed** confirma que el servicio responde. Vuelva a abrir Settings y compruebe que la selección se conserva.
+
+![TypeSafe AI / Jev Latest seleccionado, con Check passed y la clave API oculta](/img/open-science/v0311/classification-connected.webp)
+
+En la prueba con v0.31.1 se guardó el servicio y se verificó el modelo correctamente. Una solicitud de datos públicos de TP53 en una sesión de Codex Chat Completions también llamó correctamente a Jev y seleccionó `mcp-genes`. Esto verifica la selección de capacidades, no la finalización de la consulta a la base de datos. Las sesiones con suscripción Codex mantienen su mecanismo de carga de capacidades; guardar una vinculación Jev no hace que esas sesiones utilicen Jev.

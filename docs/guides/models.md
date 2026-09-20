@@ -99,4 +99,8 @@ See [provider setup](providers.md) for conversation models. Local PDF parsing re
 
 ![Classification service form with the API key still empty](/img/open-science/v0311/classification-add-service.webp)
 
-The screenshots record the default state and add-service form in v0.31.1. No classification service was configured or model call verified in this walkthrough.
+For Jev, select **TypeSafe AI / Jev Latest** under **Automatic capability selection**, then choose **Check model**. **Check passed** confirms that the service responds. Reopen Settings to confirm the binding is retained.
+
+![TypeSafe AI / Jev Latest selected with Check passed and the API key masked](/img/open-science/v0311/classification-connected.webp)
+
+In the v0.31.1 test, saving the service and checking the model succeeded. A public TP53 lookup request in a Codex Chat Completions session also invoked Jev successfully and selected `mcp-genes`. This verifies capability selection, not completion of the database query. Codex subscription sessions use their existing capability-loading path; a saved Jev binding does not make those sessions use Jev.

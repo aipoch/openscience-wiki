@@ -100,4 +100,8 @@ v0.31.1 中，该路径用于 **Codex Chat Completions** 或 **CodeBuddy** 的�
 
 ![分类服务表单，API key 尚未填写](/img/open-science/v0311/classification-add-service.webp)
 
-截图记录 v0.31.1 的默认状态及添加表单，未配置分类服务，也未验证该服务的模型调用。
+使用 Jev 时，在 **Automatic capability selection** 中选择 **TypeSafe AI / Jev Latest**，再点击 **Check model**。出现 **Check passed** 表示服务可以响应；重新打开 Settings，确认所选绑定仍然保留。
+
+![已选中 TypeSafe AI / Jev Latest，显示 Check passed，密钥保持隐藏](/img/open-science/v0311/classification-connected.webp)
+
+v0.31.1 实测中，服务保存和模型检查均通过。在 Codex Chat Completions 会话中发送公开的 TP53 查询请求，也成功调用了 Jev 并选中 `mcp-genes`。这验证了能力选择，不代表数据库查询已经完成。Codex 订阅会话使用原有的能力加载方式；保存 Jev 绑定不会让这类会话改用 Jev。

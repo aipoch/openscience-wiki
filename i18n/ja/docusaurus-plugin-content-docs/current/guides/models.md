@@ -99,4 +99,8 @@ v0.31.1 では、このサービスは **Codex Chat Completions** または **Co
 
 ![APIキーの分類サービスフォームは、まだ空の](/img/open-science/v0311/classification-add-service.webp)
 
-スクリーンショットは v0.31.1 の初期状態とサービス追加フォームを示しています。この手順では分類サービスを設定しておらず、分類モデルへの呼び出しも検証していません。
+Jev を使う場合は、**Automatic capability selection** で **TypeSafe AI / Jev Latest** を選択し、**Check model** を押します。**Check passed** はサービスが応答できることを示します。Settings を開き直し、選択が保持されていることを確認してください。
+
+![TypeSafe AI / Jev Latest を選択し、API キーを伏せた状態で Check passed を表示](/img/open-science/v0311/classification-connected.webp)
+
+v0.31.1 の実測では、サービスの保存とモデルの確認が成功しました。Codex Chat Completions のセッションで公開データの TP53 検索を依頼すると、Jev が正常に呼び出され、`mcp-genes` が選択されました。これは機能選択の検証であり、データベース検索の完了を意味しません。Codex サブスクリプションのセッションは従来の機能読み込み方式を使います。Jev の設定を保存しても、それらのセッションが Jev を使うようにはなりません。
