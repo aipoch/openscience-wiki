@@ -1,0 +1,21 @@
+{
+  "accession": "SRR037073",
+  "n_runs_returned": 1,
+  "truncated": false,
+  "runs": [
+    {
+      "run_accession": "SRR037073",
+      "study_accession": "PRJNA123835",
+      "secondary_study_accession": "SRP002056",
+      "sample_accession": "SAMN00009557",
+      "experiment_accession": "SRX017289",
+      "tax_id": "6239",
+      "scientific_name": "Caenorhabditis elegans",
+      "instrument_platform": "ILLUMINA",
+      "instrument_model": "Illumina Genome Analyzer II",
+      "library_layout": "SINGLE",
+      "library_strategy": "RNA-Seq",
+      "library_source": "TRANSCRIPTOMIC"
+    }
+  ]
+}

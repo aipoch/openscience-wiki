@@ -5,6 +5,8 @@ last_update:
   date: '2026-09-20'
 ---
 
+import ExampleDownload from '@site/src/components/ExampleDownload';
+
 # .science-Forschungspakete {/* #science-research-packages */}
 
 Ein **.science** Forschungspaket bringt Konversationszweige, Dateien und aufgezeichnete Beweise für eine Übergabe zusammen. Ein Kollege kann es in ein Projekt importieren und die Forschungsaufzeichnung inspizieren. Importierte Sessions sind Read-only. Verwenden Sie von v0.31.0 aus **Fork** in der Desktop-App, um eine beschreibbare Kopie zu erstellen und die Recherche fortzusetzen.
@@ -38,9 +40,11 @@ Literatur-Metadaten sind immer enthalten. Wenn eine Literatur PDF erforderlich i
 
 <p className="example-label"><strong>Praxisbeispiel</strong> Übergeben Sie eine Beispiel-QC-Sitzung</p>
 
-Die folgenden Bildschirme verwenden eine Sitzung, die den [GSE60450 Proben-QC-Tabelle](../reference/example-data.md) zusammenfasst. Vergleichen Sie in der Exportvorschau **Essential export** und **Full export**, prüfen Sie die geschätzte Größe und wählen Sie dann **Export**. Inhalt und Größe hängen von Ihrer Sitzung ab.
+Dieses Beispiel in Open-Science v0.31.1 exportiert eine Sitzung, die das [GSE60450 Proben-QC-Tabelle](../reference/example-data.md) zusammenfasst, es in ein anderes Projekt auf demselben Mac importiert und von einer Fork aus mit **Codex subscription** fortfährt. Beginnen Sie mit der abgeschlossenen Sitzung, die `gse60450-qc-summary.csv` enthält; Die Eingabetabelle allein ist nicht das Forschungspaket.
 
-![Recherchierte Paket-Exportvorschau mit Essential Export, Full Export und Customize Inhalten](/img/open-science/feature-guides-2026-09/research-package-export.webp)
+Wählen Sie **Essential export**, überprüfen Sie den Inhalt und die geschätzte Größe, dann **Export**. Die Vorschau dieser Sitzung schätzte **805.6 KiB**. Warten Sie auf **Package operation completed**, bevor Sie die gespeicherte Datei importieren; Die Größe Ihrer Sitzung wird sich unterscheiden.
+
+![Aktuelle Exportoptionen für QC-Sitzungen und geschätzte Größe](/img/open-science/v0311/package-export.webp)
 
 ## Import in ein Projekt {/* #import-and-inspect-a-package */}
 
@@ -49,9 +53,38 @@ Die folgenden Bildschirme verwenden eine Sitzung, die den [GSE60450 Proben-QC-Ta
 3. Warten Sie auf die Fertigstellung und wählen Sie **Open imported Session**.
 4. Überprüfen Sie die Konversationszweige und öffnen Sie die Dateien, die für die Übergabe benötigt werden. Überprüfen Sie, ob Sie die Eingaben und Ergebnisse finden können, die für Ihre nächste Aufgabe relevant sind.
 
+Wählen Sie in diesem Beispiel das Zielprojekt **Public Genomics Examples** aus. Die Importvorschau listet **1 Branch, 3 Nachrichten und 13 Dateien** auf. Es heißt auch, dass Kontoanmeldeinformationen, Berechtigungszuschüsse und Anbieterfortsetzungsidentitäten ausgeschlossen sind. Überprüfen Sie diese Details, bevor Sie **Import** auswählen.
+
+![QC-Paketvorschau vor dem Import in das Zielprojekt](/img/open-science/v0311/package-import-preview.webp)
+
+Öffnen Sie die importierte Sitzung und die Zusammenfassung CSV. Der **Imported research history**-Hinweis bestätigt, dass diese Kopie schreibgeschützt ist und keinen Code ausführen oder eine Konversation direkt fortsetzen kann.
+
+![Importierter QC-Record mit geerbter Zusammenfassung und Fork to Continue-Button](/img/open-science/v0311/package-import-readonly.webp)
+
 ## Verwenden Sie die erhaltene Forschungsaufzeichnung {/* #use-the-received-research-record */}
 
-Die importierte Sitzung selbst bleibt schreibgeschützt. Öffnen Sie auf dem Desktop das Sitzungsmenü und wählen Sie **Fork**. Warten Sie auf **Fork completed**, öffnen Sie die neue Sitzung und prüfen Sie die geerbten Dateien, bevor Sie ein Follow-up senden. Die Quelle bleibt unverändert; Der Code läuft nicht automatisch. Siehe [Fork eine bestehende Sitzung](sessions.md#fork-session) für die Schritte und Prüfungen. Die importierte Nutzung ist von den Gesamtmengen der lokalen Aktivitäten ausgenommen.
+1. Wählen Sie **Fork to continue** in der importierten Sitzung oder **Fork** aus dem Sitzungsmenü. Warten Sie auf **Fork completed** und öffnen Sie die neue Sitzung. Code läuft nicht automatisch.
+2. Überprüfen Sie die geerbte Zusammenfassung, wählen Sie ein verfügbares Modell aus und bestätigen Sie, dass eine Python-Laufzeit bereit ist. In diesem Beispiel wurde **Codex subscription / gpt-5.6-sol** verwendet. Importierte Anmeldeinformationen und Berechtigungen bieten keine Autorisierung für die empfangende Installation.
+3. Senden Sie die folgende Aufforderung. Wenn eine Python-Genehmigung angezeigt wird, prüfen Sie die angeforderte Berechnung und genehmigen Sie, dass sie fortgesetzt wird.
+
+```text
+Use Python in Session Notebook with the standard library only.
+Read the inherited gse60450-qc-summary.csv. Do not modify inherited files.
+Compute total_raw_counts_sum divided by sample_count using decimal.Decimal
+with precision 28. Save research-package-continuation.csv with metric,value
+rows in this order: sample_count, total_raw_counts_sum,
+mean_raw_counts_per_sample. Save research-package-continuation.md with the
+input filename, calculation and result. Do not use the network or delegate.
+Keep everything in English and return links to both new files.
+```
+
+4. Öffnen Sie beide neuen Dateien. Dieser Lauf lieferte **12**-Proben, eine Gesamtrohzahl von **269027617** und einen Mittelwert von **22418968.08333333333333333333**. Der Mittelwert fasst die gelieferte QC-Tabelle zusammen; Es ist kein normalisierter Ausdruck oder ein Differenzausdruckergebnis.
+
+![Fork abgeschlossen und die neuen Berechnungsdateien mit Codex erstellt](/img/open-science/v0311/package-continued.webp)
+
+<ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">Vererbte Zusammenfassung</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">Neue Berechnung</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">Berechnungshinweise</ExampleDownload>
+
+Nach der Berechnung hatten die Zusammenfassungsdateien in der ursprünglichen Sitzung, der importierten Sitzung und dem Fork identische SHA-256-Hashes. Die beiden neuen Dateien wurden im Fork erstellt. Geprüft wurde Export → Import → Fork → weitere Analyse **zwischen Projekten auf demselben Mac**. Die Wiederherstellung der Umgebung auf einem anderen Gerät, die vollständige Übertragung von Literatur und Anmerkungen sowie die automatische Wiederholung wurden nicht geprüft. Siehe [Fork einer bestehenden Sitzung](sessions.md#fork-session). Importierte Nutzung wird nicht zu den lokalen Aktivitätssummen gezählt.
 
 Ein empfangenes Verifizierungsprotokoll beschreibt die vom Absender gelieferten Schecks. Das bedeutet nicht, dass dieser Computer die Prüfungen erneut ausgeführt hat. Lesen Sie die Dateiversion, die Vergleichskriterien und das Ergebnis; Siehe [Reproduzierbarkeit](reproducibility.md), wie diese Prüfungen funktionieren.
 

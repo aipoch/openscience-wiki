@@ -5,6 +5,8 @@ last_update:
   date: '2026-09-20'
 ---
 
+import ExampleDownload from '@site/src/components/ExampleDownload';
+
 # .science 연구 패키지 {/* #science-research-packages */}
 
 **.science** 연구 패키지는 대화 지점, 파일 및 기록 된 증거를 복부에 제공합니다. colleague는 프로젝트로 가져올 수 있으며 연구 기록을 검사합니다. 수입된 세션은 읽기 전용입니다. v0.31.0에서 데스크톱 앱에서 **Fork**을 사용하여 writable 복사를 만들고 연구를 계속합니다.
@@ -38,9 +40,11 @@ Side Chat 대화, 개인 [독서 bookmarks](bookmarks.md) 및 메모는 패키�
 
 <p className="example-label"><strong>실습 예제</strong> 표본 QC 회의에 손</p>
 
-다음 화면은 [GSE60450 샘플 QC 테이블](../reference/example-data.md)을 요약하는 세션을 사용합니다. 수출 미리보기에서 **Essential export** 및 **Full export**을 비교하면 예상 크기를 검사하고 **Export**를 선택하십시오. 내용과 크기는 세션에 따라 다릅니다.
+Open-Science v0.31.1의 이 예는 [GSE60450 샘플 QC 테이블](../reference/example-data.md)를 합산하는 세션을 내보내고 동일한 Mac에서 다른 프로젝트로 가져올 수 있으며, **Codex subscription**를 사용하여 포크에서 계속됩니다. `gse60450-qc-summary.csv`을 포함하는 완료된 세션으로 시작; 입력 테이블은 혼자 연구 패키지가 아닙니다.
 
-![Essential Export, Full Export, 사용자 정의 콘텐츠로 리서치 패키지 수출 미리보기](/img/open-science/feature-guides-2026-09/research-package-export.webp)
+**Essential export**을 선택하면 내용과 예상 크기, **Export**을 확인하십시오. 이 세션의 미리보기 추정 **805.6 키B**. 저장 된 파일을 가져 오기 전에 **Package operation completed**에 대한 대기; 세션의 크기는 다를 것입니다.
+
+![실제 QC 세션 수출 옵션 및 예상 크기](/img/open-science/v0311/package-export.webp)
 
 ## 프로젝트로 가져 오기 {/* #import-and-inspect-a-package */}
 
@@ -49,9 +53,38 @@ Side Chat 대화, 개인 [독서 bookmarks](bookmarks.md) 및 메모는 패키�
 3. 완료 및 **Open imported Session**을 선택하십시오.
 4. 대화 지점을 검사하고 handover에 필요한 파일을 엽니 다. 다음 작업과 관련된 입력 및 결과를 확인할 수 있습니다.
 
+이 예제의 경우 대상 프로젝트 **Public Genomics Examples**을 선택하십시오. 수입 미리보기 목록 **1 지점, 3 메시지 및 13 파일**. 그것은 또한 계정 자격 증명, 권한 부여 및 공급자 오염 식별은 제외됩니다. **Import**을 선택하기 전에 해당 정보를 확인하십시오.
+
+![대상 프로젝트로 가져 오기 전에 QC 패키지 미리보기](/img/open-science/v0311/package-import-preview.webp)
+
+수입된 세션을 열고 요약 CSV. **Imported research history** 통지는 이 복사본이 읽기 전용이며 코드를 실행하거나 직접 대화를 계속할 수 없다는 것을 확인합니다.
+
+![그 상속 요약과 Fork를 가진 수입된 QC 기록은 단추를 계속합니다](/img/open-science/v0311/package-import-readonly.webp)
+
 ## 수신된 연구 기록 사용 {/* #use-the-received-research-record */}
 
-수입된 세션 자체는 읽기 전용을 유지합니다. 데스크톱에서 세션 메뉴를 열고 **Fork**을 선택합니다. **Fork completed**의 경우, 새로운 세션을 열고, 후속 파일을 전송하기 전에 그 상속 파일을 검사합니다. 소스는 변경되지 않습니다; 코드는 자동으로 실행되지 않습니다. 단계와 체크에 [현재 세션](sessions.md#fork-session)을 참조하십시오. 수입된 사용은 지역 활동 합계에서 제외됩니다.
+1. **Fork to continue**을 수입 세션에서 선택하거나 세션 메뉴에서 **Fork**을 선택합니다. **Fork completed**을 기다리며 새로운 세션을 엽니다. 코드는 자동으로 실행되지 않습니다.
+2. 상속 요약 검사, 사용 가능한 모델을 선택하고 Python 런타임을 확인합니다. 이 예제는 **Codex subscription / gpt-5.6-sol**을 사용했습니다. 수입된 자격 및 권한은 수신 임명에 허가를 제공하지 않습니다.
+3. 다음 프롬프트를 보냅니다. Python 승인이 나타나면 요청된 계산을 검사하고 계속 진행할 수 있습니다.
+
+```text
+Use Python in Session Notebook with the standard library only.
+Read the inherited gse60450-qc-summary.csv. Do not modify inherited files.
+Compute total_raw_counts_sum divided by sample_count using decimal.Decimal
+with precision 28. Save research-package-continuation.csv with metric,value
+rows in this order: sample_count, total_raw_counts_sum,
+mean_raw_counts_per_sample. Save research-package-continuation.md with the
+input filename, calculation and result. Do not use the network or delegate.
+Keep everything in English and return links to both new files.
+```
+
+4. 새 파일을 엽니다. **12** 샘플, **269027617**의 총 원시 카운트 및 **22418968.08333333333333333333**의 의미를 반환합니다. 의미는 공급된 QC 테이블을 요약합니다; 그것은 정상화한 표식 또는 차별 압축 결과 아닙니다.
+
+![포크 완료 및 Codex을 사용하여 생성 된 새로운 계산 파일](/img/open-science/v0311/package-continued.webp)
+
+<ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">자주 묻는 질문</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">새로운 계산</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">계산 노트</ExampleDownload>
+
+계산 후에도 원본 세션, 가져온 세션, Fork의 요약 파일은 SHA-256 해시가 동일했습니다. 새 파일 두 개는 Fork에 생성되었습니다. 이는 **동일한 Mac의 서로 다른 프로젝트 간** 내보내기 → 가져오기 → Fork → 분석 계속하기를 검증한 것입니다. 다른 기기의 환경 복원, 문헌과 주석의 전체 전송, 자동 재실행은 검증하지 않았습니다. 일반적인 사용법은 [기존 세션 Fork](sessions.md#fork-session)를 참고하세요. 가져온 사용량은 로컬 활동 합계에 포함되지 않습니다.
 
 수신 확인 기록은 sender에 의해 공급된 검사를 설명합니다. 이 컴퓨터에서 검증을 다시 실행했다는 뜻은 아닙니다. 파일 버젼, 비교 기준 및 결과 읽기; [재현성](reproducibility.md)을 참조하여 확인 작업을 수행하는 방법.
 

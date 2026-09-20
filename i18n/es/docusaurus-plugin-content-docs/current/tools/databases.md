@@ -107,12 +107,37 @@ Para un informe, adjunte la operación, entrada atada, texto de error y timetamp
 
 ## Resolver las carreras ENA y los archivos FASTQ {/* #ena-runs */}
 
-1. Activar **Archivos de Omics** bajo **Settings → Connectors**. Suministrar una adhesión pública a `ena_search_runs` en el ENA/INSDC, como un estudio de PRJ o una carrera de SRR. Un identificador GEO `GSE` debe vincularse primero a su estudio INSDC; Las palabras clave no son aceptadas.
+1. Activar **Omics Archives** bajo **Settings → Connectors**. Suministrar una adhesión pública a `ena_search_runs` en el ENA/INSDC, como un estudio de PRJ o una carrera de SRR. Un identificador GEO `GSE` debe vincularse primero a su estudio INSDC; Las palabras clave no son aceptadas.
 2. Inspeccione `run_accession`, organismo, estrategia de biblioteca/función y `truncated`. El máximo es que 1,000 corre. No hay señal de compensación o continuación; estrechar la adhesión si la respuesta es truncada.
 3. Pase una vuelta a `ena_get_run_files`. Compruebe `found`, `fastq_available` y cada entrada en `fastq_files`. El inventario proporciona URL, tamaño de archivo comprimido y MD5 de corriente avanzada; no descarga archivos ni verifica su contenido.
 4. Antes de una descarga separada, verifique el almacenamiento y mantenga el manifiesto. Verifique los bytes descargados contra la suma de comprobación lista. Una biblioteca pareada no necesita tener exactamente dos archivos; no inferir la identidad de los compañeros de lectura de `file_index`.
 
-Estos son los contratos de operación v0.31.1, no una descarga completa de secuencias-datos. [Parámetros exactos](../reference/connector-operations.md#ena_search_runs)
+<p className="example-label"><strong>Ejemplo práctico</strong> Construir un manifiesto de archivo para SRR037073</p>
+
+Este ejemplo v0.31.1 utiliza **Codex subscription** y el **Omics Archives** Connector habilitado. Abra una sesión con un tiempo de ejecución Notebook disponible, y luego envíe:
+
+```text
+Use Omics Archives through Session Notebook. Load its connector instructions.
+Call ena_search_runs with accession SRR037073 and limit 10, then
+ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
+Save the complete responses as ena-run.json and ena-files.json.
+Save every returned file entry as ena-fastq-manifest.csv with columns
+file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
+run identity, completeness flags and download limits. Keep everything in
+English. Report actual errors or empty results; do not invent data.
+```
+
+Abra las notas generadas. La búsqueda real devolvió **1 run**, **Caenorhabditis elegans**, estudio **PRJNA123835**, **RNA-Seq**, **SINGLE**, con `truncated: false`. Confirme el organismo y el diseño antes de usar sus archivos.
+
+![ENA entradas de consulta, ejecutar banderas de identidad y integridad en las notas generadas](/img/open-science/v0311/ena-notes.webp)
+
+Abra el CSV y compare con `ena-files.json`. Esta carrera tiene `found: true`, `fastq_available: true` y **Archivo 1**, tamaño **bytes 25,154,397**. El manifiesto conserva su URL FTP y MD5 de corriente. Copie el valor completo del archivo descargable si se corta una columna de vista previa.
+
+![Manifiesto ENA de un solo fichero real con URL, tamaño y suma de verificación de corriente](/img/open-science/v0311/ena-manifest.webp)
+
+<ExampleDownload path="/examples/v0311/ena-run-notes.md">Notas de consulta</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ manifest</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">Respuesta de ejecución</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">Respuesta del archivo</ExampleDownload>
+
+Las dos consultas y la generación del manifiesto se completaron. **En este ejemplo no se descargó ningún archivo FASTQ ni se verificó su suma de comprobación**. La descarga es un paso independiente. [Parámetros exactos](../reference/connector-operations.md#ena_search_runs)
 
 ## Ejecutar e inspeccionar el enriquecimiento de los genes {/* #gene-set-enrichment */}
 
@@ -156,9 +181,41 @@ En la ejecución registrada, ambas llamadas de servicio tuvieron éxito; la gene
 
 ## Confirme la identidad de referencia-genoma {/* #reference-genome */}
 
-Use **Genomes** en tres pasos: `ncbi_resolve_taxon` para el organismo previsto; `ncbi_get_assembly_info` para una adhesión **versionado** GCF/GCA; entonces `ncbi_get_sequence_aliases` para una secuencia como `chr1`. Mantenga los partidos ambiguos y las banderas de truncación visibles. Estas son instrucciones de búsqueda, no un análisis completo de recursos cruzados.
+<p className="example-label"><strong>Ejemplo práctico</strong> Identificar GRCh38.p14 cromosoma 1</p>
 
-Por ejemplo, la llamada de referencia utiliza `GCF_000001405.40`. Un nombre de montaje por sí solo no es un reemplazo para esa identidad versionada. Una adhesión actual no autoriza a sustituir silenciosamente una adhesión histórica solicitada. Los alias de secuencia describen el nombramiento dentro de una asamblea; Convertir una etiqueta cromosoma no es coordinar la elevación entre las construcciones. [Entradas exactas](../reference/connector-operations.md#ncbi_get_assembly_info)
+1. Activar **Genomes** en **Settings → Connectors**. Abra una sesión con un modelo conectado y tiempo de ejecución Notebook disponible. Este ejemplo v0.31.1 utilizó **Codex subscription**.
+2. Consultar el organismo, montaje y secuencia **versionado** en ese orden. Enviar:
+
+```text
+Use Genomes through Session Notebook. Load its connector instructions.
+Call ncbi_resolve_taxon with query human and max_matches 10.
+Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
+Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
+sequence chr1 and max_sequences 200. Save the complete responses as
+ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
+Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
+query, identity, ambiguity and truncation flags, and source URLs.
+Preserve accession versions and RefSeq/GenBank differences. Do not perform
+coordinate liftover or invent results. Keep everything in English.
+```
+
+3. Abra las notas y compare los IDs devueltos a través de los tres archivos JSON. Las tres llamadas tuvieron éxito en este ejemplo.
+
+![Tres llamadas NCBI reales y el taxón devuelto e identidad de reunión](/img/open-science/v0311/ncbi-notes.webp)
+
+| Check | Resultado de este ejemplo |
+| --- | --- |
+| Organismo | Homo sapiens, TaxID **9606**; un partido, `ambiguous: false` |
+| Reunión solicitada/actual | **GCF_000001405.40**, **GRCh38.p14**, nombre UCSC **hg38** |
+| Junta de GenBank Pareada | **GCA_000001405.29**; los registros devueltos reportan diferencias de RefSeq |
+| Chromosome 1 alias | **1**, **chr1**, RefSeq **NC_000001.11**, GenBank **CM000663.2** |
+| Secuencia seleccionada | **248956422 bp**, Asamblea Primaria; un partido, `matches_truncated: false` |
+
+![Respuesta original del cromosoma-1 con alias versionados y cuenta del partido](/img/open-science/v0311/ncbi-aliases.webp)
+
+<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">Notas de consulta</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">Tabla de identidad</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">Respuesta del taxón</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">Respuesta de la Asamblea General</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">Respuesta a la secuencia</ExampleDownload>
+
+Se completó la consulta de **un cromosoma seleccionado**, no la exportación de todas las secuencias del ensamblaje. Al cambiar la consulta, conserve las coincidencias ambiguas y los indicadores de truncamiento. El nombre de un ensamblaje no sustituye su número de acceso con versión. Que se devuelva el número actual no autoriza a reemplazar silenciosamente una versión histórica solicitada. Los alias describen nombres dentro de un ensamblaje; no convierten coordenadas entre ensamblajes. [Entradas exactas](../reference/connector-operations.md#ncbi_get_assembly_info)
 
 ## Leer las poblaciones de gnomAD y las redes de STRING {/* #string-network */}
 

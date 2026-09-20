@@ -118,7 +118,32 @@ Rfam 序列搜索现在使用官方批量端点。旧安装返回已停用端点
 3. 将返回的某个运行传给 `ena_get_run_files`，检查 `found`、`fastq_available` 和全部 `fastq_files` 条目。清单提供地址、压缩文件大小和上游 MD5，本身不会下载或校验文件。
 4. 单独下载前检查存储空间并保存清单，下载后按列出的校验值核对文件。双端文库未必恰有两个文件，不能把 `file_index` 当作 R1/R2 标记。
 
-以上说明 v0.31.1 的操作契约，不代表已经完成测序文件下载。[具体参数](../reference/connector-operations.md#ena_search_runs)
+<p className="example-label"><strong>案例演示</strong> 生成 SRR037073 的文件清单</p>
+
+本例在 v0.31.1 使用 **Codex subscription** 和已启用的 **Omics Archives** Connector。打开 Notebook 运行环境可用的会话，发送：
+
+```text
+Use Omics Archives through Session Notebook. Load its connector instructions.
+Call ena_search_runs with accession SRR037073 and limit 10, then
+ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
+Save the complete responses as ena-run.json and ena-files.json.
+Save every returned file entry as ena-fastq-manifest.csv with columns
+file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
+run identity, completeness flags and download limits. Keep everything in
+English. Report actual errors or empty results; do not invent data.
+```
+
+打开生成的说明。本次实际返回 **1 个运行**，物种为 **Caenorhabditis elegans**，项目为 **PRJNA123835**，文库为 **RNA-Seq、SINGLE**，且 `truncated: false`。使用文件前，先核对物种和文库布局。
+
+![生成说明中的 ENA 查询输入、运行身份和完整性标记](/img/open-science/v0311/ena-notes.webp)
+
+打开 CSV 并与 `ena-files.json` 对照。本次 `found: true`、`fastq_available: true`，返回 **1 个文件**，大小为 **25,154,397 字节**。清单保留 FTP 地址和上游 MD5；预览列显示不全时，从下载文件中复制完整值。
+
+![实际返回的单文件 ENA 清单，包含地址、大小和上游校验值](/img/open-science/v0311/ena-manifest.webp)
+
+<ExampleDownload path="/examples/v0311/ena-run-notes.md">查询说明</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ 清单</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">运行响应</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">文件响应</ExampleDownload>
+
+两次查询和清单生成均已完成。本例**没有下载 FASTQ 或校验文件内容**，后续下载是独立步骤。[具体参数](../reference/connector-operations.md#ena_search_runs)
 
 ## 执行并检查基因集富集 {/* #gene-set-enrichment */}
 
@@ -162,9 +187,41 @@ This is not differential-expression evidence or evidence of regulation direction
 
 ## 核对参考基因组身份 {/* #reference-genome */}
 
-通过 **Genomes** 分三步查询：用 `ncbi_resolve_taxon` 核对物种，用 `ncbi_get_assembly_info` 核对**带版本号**的 GCF/GCA 组装，再用 `ncbi_get_sequence_aliases` 查找 `chr1` 等序列别名。保留歧义匹配和截断标记；这些是查询说明，不是已完成的跨来源分析。
+<p className="example-label"><strong>案例演示</strong> 核对人类 GRCh38.p14 的 1 号染色体</p>
 
-例如参考调用使用 `GCF_000001405.40`，不能只用一个组装名称替代其版本身份。响应中出现当前登录号，不代表可以默默替换请求的历史版本。序列别名描述同一组装内的命名关系；转换染色体标签不等于跨组装的坐标转换。[准确输入](../reference/connector-operations.md#ncbi_get_assembly_info)
+1. 在 **Settings → Connectors** 中启用 **Genomes**，打开已连接模型、Notebook 运行环境可用的会话。本例在 v0.31.1 使用 **Codex subscription**。
+2. 按物种、**带版本号**的组装、序列的顺序查询，发送：
+
+```text
+Use Genomes through Session Notebook. Load its connector instructions.
+Call ncbi_resolve_taxon with query human and max_matches 10.
+Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
+Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
+sequence chr1 and max_sequences 200. Save the complete responses as
+ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
+Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
+query, identity, ambiguity and truncation flags, and source URLs.
+Preserve accession versions and RefSeq/GenBank differences. Do not perform
+coordinate liftover or invent results. Keep everything in English.
+```
+
+3. 打开说明，对照三个 JSON 中返回的标识。本例三次调用均成功。
+
+![三次实际 NCBI 调用及返回的物种、组装身份](/img/open-science/v0311/ncbi-notes.webp)
+
+| 核对项 | 本例结果 |
+| --- | --- |
+| 物种 | Homo sapiens，TaxID **9606**；一个匹配，`ambiguous: false` |
+| 请求与当前组装 | **GCF_000001405.40**，**GRCh38.p14**，UCSC 名称 **hg38** |
+| 配对的 GenBank 组装 | **GCA_000001405.29**；返回记录说明其与 RefSeq 存在差异 |
+| 1 号染色体别名 | **1**、**chr1**、RefSeq **NC_000001.11**、GenBank **CM000663.2** |
+| 选定序列 | **248956422 bp**，Primary Assembly；一个匹配，`matches_truncated: false` |
+
+![1 号染色体原始响应中的带版本别名与匹配数量](/img/open-science/v0311/ncbi-aliases.webp)
+
+<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">查询说明</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">身份对照表</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">物种响应</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">组装响应</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">序列响应</ExampleDownload>
+
+这里完成的是**一条选定染色体**的查询，不是全部组装序列的导出。更换查询时，仍需保留歧义匹配和截断标记。组装名称不能替代带版本号的登录号；响应中出现当前登录号，也不能据此默默替换历史版本。序列别名描述同一组装内的命名关系，不会执行跨组装坐标转换。[准确输入](../reference/connector-operations.md#ncbi_get_assembly_info)
 
 ## 读取 gnomAD 人群与 STRING 网络 {/* #string-network */}
 

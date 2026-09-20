@@ -107,12 +107,37 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## Resolve ENA Runs и файлы FASTQ {/* #ena-runs */}
 
-1. Включите **Архивы Omics** под **Settings → Connectors**. Предоставить публичное присоединение ENA/INSDC к `ena_search_runs`, например, исследование PRJ или запуск SRR. Идентификатор GEO `GSE` должен быть сначала связан с исследованием INSDC. Ключевые слова не принимаются.
+1. Включите **Omics Archives** под **Settings → Connectors**. Предоставить публичное присоединение ENA/INSDC к `ena_search_runs`, например, исследование PRJ или запуск SRR. Идентификатор GEO `GSE` должен быть сначала связан с исследованием INSDC. Ключевые слова не принимаются.
 2. Проверяйте `run_accession`, организм, библиотечную стратегию/раскладку и `truncated`. Максимум — это 1,000. Не существует офсета или продолжения токена; сузить присоединение, если ответ усечен.
 3. Пропуск один раз возвращался в `ena_get_run_files`. Проверьте `found`, `fastq_available` и каждую запись в `fastq_files`. инвентарь поставляет URL, размер сжатого файла и выше по потоку MD5; Он не загружает файлы и не проверяет их содержимое.
 4. Перед отдельной загрузкой проверьте хранилище и сохраните манифест. Проверьте загруженные байты по указанной контрольной сумме. В парной библиотеке не обязательно должно быть ровно два файла. Не делайте вывод о личности считывающего партнера из `file_index`.
 
-Это операционные контракты v0.31.1, а не завершенная загрузка данных секвенирования. [Точные параметры](../reference/connector-operations.md#ena_search_runs)
+<p className="example-label"><strong>Практический пример</strong> Создайте файл манифеста для SRR037073</p>
+
+В этом примере v0.31.1 используется **Codex subscription** и включенный **Omics Archives** Connector. Откройте сессию с доступным временем выполнения Notebook, затем отправьте:
+
+```text
+Use Omics Archives through Session Notebook. Load its connector instructions.
+Call ena_search_runs with accession SRR037073 and limit 10, then
+ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
+Save the complete responses as ena-run.json and ena-files.json.
+Save every returned file entry as ena-fastq-manifest.csv with columns
+file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
+run identity, completeness flags and download limits. Keep everything in
+English. Report actual errors or empty results; do not invent data.
+```
+
+Откройте созданные заметки. Фактический поиск возвращал **1 скачать**, **Caenorhabditis elegans**, исследование **PRJNA123835**, **RNA-Seq**, **SINGLE**, с `truncated: false`. Подтвердите организм и макет перед использованием его файлов.
+
+![ENA запрашивает входы, запускает флаги идентичности и полноты в генерируемых заметках](/img/open-science/v0311/ena-notes.webp)
+
+Откройте CSV и сравните его с `ena-files.json`. В этой версии есть `found: true`, `fastq_available: true` и **Файл 1**, размером с **25,154,397 байты**. Манифест сохраняет свой FTP URL и MD5. Скопируйте полное значение из загружаемого файла, если колонка предварительного просмотра вырезана.
+
+![Фактический однофайловый манифест ENA с URL, размером и контрольной суммой вверх по течению](/img/open-science/v0311/ena-manifest.webp)
+
+<ExampleDownload path="/examples/v0311/ena-run-notes.md">Запросить заметки</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ манифест</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">Запуск ответа</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">Файловый ответ</ExampleDownload>
+
+Оба запроса и создание списка файлов завершены. **В этом примере файлы FASTQ не скачивались и их контрольные суммы не проверялись**. Скачивание выполняется отдельным шагом. [Точные параметры](../reference/connector-operations.md#ena_search_runs)
 
 ## Запуск и проверка обогащения набора генов {/* #gene-set-enrichment */}
 
@@ -156,9 +181,41 @@ This is not differential-expression evidence or evidence of regulation direction
 
 ## Подтвердить идентичность эталонного генома {/* #reference-genome */}
 
-Использовать **геномы** в три этапа: `ncbi_resolve_taxon` для предполагаемого организма; `ncbi_get_assembly_info` для присоединения к **переизданный** GCF/GCA; Затем `ncbi_get_sequence_aliases` для последовательности, такой как `chr1`. Держите двусмысленные матчи и флаги усечения видимыми. Это инструкции по поиску, а не завершенный кросс-исходный анализ.
+<p className="example-label"><strong>Практический пример</strong> Идентифицировать хромосому человека GRCh38.p14 1</p>
 
-Например, при вызове ссылки используется `GCF_000001405.40`. Само по себе название сборки не является заменой этой версии идентичности. Возвращенное нынешнее присоединение не разрешает молча заменять запрашиваемое историческое присоединение. Последовательность псевдонимов описывает именование в собрании; Преобразование ярлыка хромосомы не является координацией подъема между строениями. [Точные входные данные](../reference/connector-operations.md#ncbi_get_assembly_info)
+1. Включить **Genomes** в **Settings → Connectors**. Откройте сеанс с подключенной моделью и доступным временем выполнения Notebook. В этом примере v0.31.1 используется **Codex subscription**.
+2. Запросите организм, сборку и последовательность **переизданный** в этом порядке. Отправить:
+
+```text
+Use Genomes through Session Notebook. Load its connector instructions.
+Call ncbi_resolve_taxon with query human and max_matches 10.
+Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
+Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
+sequence chr1 and max_sequences 200. Save the complete responses as
+ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
+Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
+query, identity, ambiguity and truncation flags, and source URLs.
+Preserve accession versions and RefSeq/GenBank differences. Do not perform
+coordinate liftover or invent results. Keep everything in English.
+```
+
+3. Откройте заметки и сравните возвращенные идентификаторы в трех файлах JSON. Все три вызова увенчались успехом в этом примере.
+
+![Три реальных звонка NCBI и возвращенный таксон и идентификатор сборки](/img/open-science/v0311/ncbi-notes.webp)
+
+| Проверить | Результат этого примера |
+| --- | --- |
+| Организм | Homo sapiens, TaxID **9606**; один матч, `ambiguous: false` |
+| Запрашиваемая/текущая сборка | **GCF_000001405.40**, **GRCh38.p14**Название UCSC **hg38** |
+| Парное собрание GenBank | **GCA_000001405.29**; Возвращенные записи сообщают об отличиях от RefSeq |
+| Хромосома 1 псевдонимы | **1**, **chr1**Рефсек **NC_000001.11**GenBank **CM000663.2** |
+| Выбранная последовательность | **248956422 bp**первичной ассамблеи; один матч, `matches_truncated: false` |
+
+![Оригинальный ответ хромосомы-1 с версионными псевдонимами и количеством совпадений](/img/open-science/v0311/ncbi-aliases.webp)
+
+<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">Запросить заметки</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">Таблица идентификационных данных</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">Ответ таксона</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">Ответ Ассамблеи</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">Последовательность ответов</ExampleDownload>
+
+Завершён поиск для **одной выбранной хромосомы**, а не экспорт всех последовательностей сборки. При изменении запроса сохраняйте неоднозначные совпадения и признаки усечения. Название сборки не заменяет идентификатор с номером версии. Возвращённый актуальный идентификатор не даёт оснований незаметно заменять запрошенную историческую версию. Псевдонимы описывают названия внутри сборки; они не преобразуют координаты между сборками. [Точные входные параметры](../reference/connector-operations.md#ncbi_get_assembly_info)
 
 ## Читать Гномады и сети STRING {/* #string-network */}
 

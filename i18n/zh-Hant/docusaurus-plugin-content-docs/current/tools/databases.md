@@ -118,7 +118,32 @@ Rfam 序列搜尋現在使用官方批次端點。舊安裝返回已停用端點
 3. 將返回的某個執行傳給 `ena_get_run_files`，檢查 `found`、`fastq_available` 和全部 `fastq_files` 條目。清單提供地址、壓縮檔案大小和上游 MD5，本身不會下載或校驗檔案。
 4. 單獨下載前檢查儲存空間並儲存清單，下載後按列出的校驗值核對檔案。雙端文庫未必恰有兩個檔案，不能把 `file_index` 當作 R1/R2 標記。
 
-以上說明 v0.31.1 的操作契約，不代表已經完成測序檔案下載。[具體引數](../reference/connector-operations.md#ena_search_runs)
+<p className="example-label"><strong>案例演示</strong> 生成 SRR037073 的檔案清單</p>
+
+本例在 v0.31.1 使用 **Codex subscription** 和已啟用的 **Omics Archives** Connector。開啟 Notebook 執行環境可用的會話，傳送：
+
+```text
+Use Omics Archives through Session Notebook. Load its connector instructions.
+Call ena_search_runs with accession SRR037073 and limit 10, then
+ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
+Save the complete responses as ena-run.json and ena-files.json.
+Save every returned file entry as ena-fastq-manifest.csv with columns
+file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
+run identity, completeness flags and download limits. Keep everything in
+English. Report actual errors or empty results; do not invent data.
+```
+
+開啟生成的說明。本次實際返回 **1 個執行**，物種為 **Caenorhabditis elegans**，專案為 **PRJNA123835**，文庫為 **RNA-Seq、SINGLE**，且 `truncated: false`。使用檔案前，先核對物種和文庫佈局。
+
+![生成說明中的 ENA 查詢輸入、執行身份和完整性標記](/img/open-science/v0311/ena-notes.webp)
+
+開啟 CSV 並與 `ena-files.json` 對照。本次 `found: true`、`fastq_available: true`，返回 **1 個檔案**，大小為 **25,154,397 位元組**。清單保留 FTP 地址和上游 MD5；預覽列顯示不全時，從下載檔案中複製完整值。
+
+![實際返回的單檔案 ENA 清單，包含地址、大小和上游校驗值](/img/open-science/v0311/ena-manifest.webp)
+
+<ExampleDownload path="/examples/v0311/ena-run-notes.md">查詢說明</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ 清單</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">執行響應</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">檔案響應</ExampleDownload>
+
+兩次查詢和清單生成均已完成。本例**沒有下載 FASTQ 或校驗檔案內容**，後續下載是獨立步驟。[具體引數](../reference/connector-operations.md#ena_search_runs)
 
 ## 執行並檢查基因集富集 {/* #gene-set-enrichment */}
 
@@ -162,9 +187,41 @@ This is not differential-expression evidence or evidence of regulation direction
 
 ## 核對參考基因組身份 {/* #reference-genome */}
 
-透過 **Genomes** 分三步查詢：用 `ncbi_resolve_taxon` 核對物種，用 `ncbi_get_assembly_info` 核對**帶版本號**的 GCF/GCA 組裝，再用 `ncbi_get_sequence_aliases` 查詢 `chr1` 等序列別名。保留歧義匹配和截斷標記；這些是查詢說明，不是已完成的跨來源分析。
+<p className="example-label"><strong>案例演示</strong> 核對人類 GRCh38.p14 的 1 號染色體</p>
 
-例如參考呼叫使用 `GCF_000001405.40`，不能只用一個組裝名稱替代其版本身份。響應中出現當前登入號，不代表可以默默替換請求的歷史版本。序列別名描述同一組裝內的命名關係；轉換染色體標籤不等於跨組裝的座標轉換。[準確輸入](../reference/connector-operations.md#ncbi_get_assembly_info)
+1. 在 **Settings → Connectors** 中啟用 **Genomes**，開啟已連線模型、Notebook 執行環境可用的會話。本例在 v0.31.1 使用 **Codex subscription**。
+2. 按物種、**帶版本號**的組裝、序列的順序查詢，傳送：
+
+```text
+Use Genomes through Session Notebook. Load its connector instructions.
+Call ncbi_resolve_taxon with query human and max_matches 10.
+Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
+Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
+sequence chr1 and max_sequences 200. Save the complete responses as
+ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
+Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
+query, identity, ambiguity and truncation flags, and source URLs.
+Preserve accession versions and RefSeq/GenBank differences. Do not perform
+coordinate liftover or invent results. Keep everything in English.
+```
+
+3. 開啟說明，對照三個 JSON 中返回的標識。本例三次呼叫均成功。
+
+![三次實際 NCBI 呼叫及返回的物種、組裝身份](/img/open-science/v0311/ncbi-notes.webp)
+
+| 核對項 | 本例結果 |
+| --- | --- |
+| 物種 | Homo sapiens，TaxID **9606**；一個匹配，`ambiguous: false` |
+| 請求與當前組裝 | **GCF_000001405.40**，**GRCh38.p14**，UCSC 名稱 **hg38** |
+| 配對的 GenBank 組裝 | **GCA_000001405.29**；返回記錄說明其與 RefSeq 存在差異 |
+| 1 號染色體別名 | **1**、**chr1**、RefSeq **NC_000001.11**、GenBank **CM000663.2** |
+| 選定序列 | **248956422 bp**，Primary Assembly；一個匹配，`matches_truncated: false` |
+
+![1 號染色體原始響應中的帶版本別名與匹配數量](/img/open-science/v0311/ncbi-aliases.webp)
+
+<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">查詢說明</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">身份對照表</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">物種響應</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">組裝響應</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">序列響應</ExampleDownload>
+
+這裡完成的是**一條選定染色體**的查詢，不是全部組裝序列的匯出。更換查詢時，仍需保留歧義匹配和截斷標記。組裝名稱不能替代帶版本號的登入號；響應中出現當前登入號，也不能據此默默替換歷史版本。序列別名描述同一組裝內的命名關係，不會執行跨組裝座標轉換。[準確輸入](../reference/connector-operations.md#ncbi_get_assembly_info)
 
 ## 讀取 gnomAD 人群與 STRING 網路 {/* #string-network */}
 

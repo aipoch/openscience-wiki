@@ -5,6 +5,8 @@ last_update:
   date: '2026-09-20'
 ---
 
+import ExampleDownload from '@site/src/components/ExampleDownload';
+
 # Paquetes de investigación .science {/* #science-research-packages */}
 
 Un paquete de investigación de **.science** trae las ramas de conversación, archivos y evidencia registrada juntos para un traspaso. Un colega puede importarlo en un proyecto e inspeccionar el historial de investigación. Las sesiones importadas son de sólo lectura. Desde v0.31.0, utilice **Fork** en la aplicación de escritorio para crear una copia computarizada y continuar la investigación.
@@ -38,9 +40,11 @@ Los metadatos de literatura siempre están incluidos. Si una literatura PDF es n
 
 <p className="example-label"><strong>Ejemplo práctico</strong> Entregar una muestra de sesión QC</p>
 
-Las siguientes pantallas utilizan una sesión que resume el [GSE60450 muestra tabla QC](../reference/example-data.md). En la vista previa de exportación, compare **Essential export** y **Full export**, inspeccionar el tamaño estimado, luego elegir **Export**. El contenido y el tamaño dependen de su sesión.
+Este ejemplo en Open-Science v0.31.1 exporta una sesión que resume el [GSE60450 muestra tabla QC](../reference/example-data.md), lo importa en otro proyecto en el mismo Mac, y continúa desde un Fork usando **Codex subscription**. Iniciar con la sesión completa que contiene `gse60450-qc-summary.csv`; la tabla de entrada por sí sola no es el paquete de investigación.
 
-![Previsualización de exportación de paquetes de investigación con exportación esencial, exportación completa y contenido personalizado](/img/open-science/feature-guides-2026-09/research-package-export.webp)
+Elija **Essential export**, compruebe el contenido y el tamaño estimado, luego **Export**. La vista previa estimada de esta sesión **805.6 KiB**. Espere a **Package operation completed** antes de importar el archivo guardado; el tamaño de su sesión difiere.
+
+![Opciones de exportación y tamaño estimado del período de sesiones](/img/open-science/v0311/package-export.webp)
 
 ## Importar en un proyecto {/* #import-and-inspect-a-package */}
 
@@ -49,9 +53,38 @@ Las siguientes pantallas utilizan una sesión que resume el [GSE60450 muestra ta
 3. Espera a completar y elegir **Open imported Session**.
 4. Inspeccione las ramas de conversación y abra los archivos necesarios para la entrega. Comprueba que puedes encontrar las entradas y los resultados relevantes para tu próxima tarea.
 
+Por este ejemplo, seleccione el proyecto de destino **Public Genomics Examples**. La lista de vista previa de importación **Sucursal 1, mensajes 3 y archivos 13**. También dice que se excluyen las credenciales de la cuenta, las subvenciones de permiso y las identidades de continuación del proveedor. Compruebe estos detalles antes de seleccionar **Import**.
+
+![Previsualización del paquete QC antes de importar en el proyecto de destino](/img/open-science/v0311/package-import-preview.webp)
+
+Abra la sesión importada y su resumen CSV. El aviso **Imported research history** confirma que esta copia es sólo de lectura y no puede ejecutar código o continuar una conversación directamente.
+
+![Registro QC importado con su resumen heredado y Fork para continuar botón](/img/open-science/v0311/package-import-readonly.webp)
+
 ## Use el registro de investigación recibido {/* #use-the-received-research-record */}
 
-La sesión importada en sí misma se mantiene sólo lectura. En el escritorio, abra su menú de sesión y elija **Fork**. Espere a **Fork completed**, abra la nueva sesión, e inspeccione sus archivos heredados antes de enviar un seguimiento. La fuente no ha cambiado; el código no se ejecuta automáticamente. Vea [Preparar un período de sesiones en curso](sessions.md#fork-session) para los pasos y cheques. El uso importado está excluido de los totales de actividad local.
+1. Seleccione **Fork to continue** en la sesión importada, o **Fork** en su menú de sesión. Espera a **Fork completed** y abre la nueva sesión. El código no funciona automáticamente.
+2. Inspeccione el resumen heredado, elija un modelo disponible y confirme que el tiempo de ejecución Python está listo. Este ejemplo usó **Codex subscription / gpt-5.6-sol**. Las credenciales y permisos importados no proporcionan autorización en la instalación receptora.
+3. Envíe el siguiente aviso. Si aparece una aprobación Python, inspeccione el cálculo solicitado y apruebe que continúe.
+
+```text
+Use Python in Session Notebook with the standard library only.
+Read the inherited gse60450-qc-summary.csv. Do not modify inherited files.
+Compute total_raw_counts_sum divided by sample_count using decimal.Decimal
+with precision 28. Save research-package-continuation.csv with metric,value
+rows in this order: sample_count, total_raw_counts_sum,
+mean_raw_counts_per_sample. Save research-package-continuation.md with the
+input filename, calculation and result. Do not use the network or delegate.
+Keep everything in English and return links to both new files.
+```
+
+4. Abre ambos nuevos archivos. Esta ejecución devolvió muestras **12**, un total de cuenta cruda de **269027617**, y una media de **22418968.08333333333333333333**. La media resume la tabla QC suministrada; no es una expresión normalizada o un resultado de la expresión diferencial.
+
+![Fork completado y los nuevos archivos de cálculo creados con Codex](/img/open-science/v0311/package-continued.webp)
+
+<ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">Resumen heredado</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">Nuevo cálculo</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">Notas de cálculo</ExampleDownload>
+
+Tras el cálculo, los archivos de resumen de la sesión original, la sesión importada y el Fork tenían hashes SHA-256 idénticos. Los dos archivos nuevos se crearon en el Fork. Esto verifica exportación → importación → Fork → continuación del análisis **entre proyectos en el mismo Mac**. No se verificaron la recuperación del entorno en otro dispositivo, la transferencia completa de literatura y anotaciones ni la repetición automática. Consulte [Crear un Fork de una sesión](sessions.md#fork-session). El uso importado queda excluido de los totales de actividad local.
 
 Un registro de verificación recibido describe los cheques suministrados por el remitente. Esto no significa que este equipo haya vuelto a ejecutar las comprobaciones. Lea la versión del archivo, los criterios de comparación y el resultado; ver [Reproducibilidad](reproducibility.md) para cómo funcionan esos cheques.
 

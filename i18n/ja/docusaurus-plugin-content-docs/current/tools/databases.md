@@ -107,12 +107,37 @@ Rfamシーケンス検索では、公式のバッチエンドポイントを使�
 
 ## ENA の実行と FASTQ ファイルの復元 {/* #ena-runs */}
 
-1. **Settings → Connectors** で **Omics アーカイブ** を有効にします。 PRJ の勉強や SRR の実行など、`ena_search_runs` への公開 ENA/INSDC へのアクセスを提供します。 GEO `GSE` 識別子は、最初に INSDC の勉強にリンクする必要があります。 キーワードは受け付けていません。
+1. **Settings → Connectors** で **Omics Archives** を有効にします。 PRJ の勉強や SRR の実行など、`ena_search_runs` への公開 ENA/INSDC へのアクセスを提供します。 GEO `GSE` 識別子は、最初に INSDC の勉強にリンクする必要があります。 キーワードは受け付けていません。
 2. `run_accession`、生物、図書館戦略/レイアウトおよび`truncated`を点検して下さい。 1,000 は最大です。 オフセットや継続トークンはありません。 応答が中断されている場合、アクセスが狭くなります。
 3. `ena_get_run_files` に返された実行を 1 つ渡して下さい。 `found`、`fastq_available`、`fastq_files`の各エントリをチェックします。 在庫はURL、圧縮ファイルサイズ、および上流MD5を供給します; ファイルをダウンロードしたり、コンテンツを検証したりしません。
 4. 別のダウンロードの前に、ストレージを確認し、マニフェストを保持します。 ダウンロードしたバイトをリストされたチェックサムに対して確認します。 ペアリングされたライブラリは、まったく2つのファイルを必要としません。 `file_index` から読み取りメイトの ID を差し込みません。
 
-これらは、v0.31.1の運用契約であり、完成したシーケンシングデータのダウンロードではありません。 [正確なパラメータ](../reference/connector-operations.md#ena_search_runs)
+<p className="example-label"><strong>実践例</strong> SRR037073のためにマニフェストファイルを作成する</p>
+
+このv0.31.1の例では、**Codex subscription**と有効な**Omics Archives** Connectorを使用します。 利用可能なNotebookランタイムでセッションを開き、次のコマンドを実行します。
+
+```text
+Use Omics Archives through Session Notebook. Load its connector instructions.
+Call ena_search_runs with accession SRR037073 and limit 10, then
+ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
+Save the complete responses as ena-run.json and ena-files.json.
+Save every returned file entry as ena-fastq-manifest.csv with columns
+file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
+run identity, completeness flags and download limits. Keep everything in
+English. Report actual errors or empty results; do not invent data.
+```
+
+生成されたメモを開きます。 実際の検索が返された **1 実行**, , **Caenorhabditis elegans**, 研究 **PRJNA123835**, , **RNA-Seq**, , **SINGLE**と、 `truncated: false`. . . . ファイルを使用する前に、生物とレイアウトを確認します。
+
+![ENA のクエリ入力、生成されたノートで ID と完全性フラグを実行します。](/img/open-science/v0311/ena-notes.webp)
+
+CSV を開き、`ena-files.json` で比較します。 この実行には `found: true`, , `fastq_available: true` そして、 **1ファイル**, サイズ **25,154,397バイト**. . . . マニフェストは、FTP URL と上流 MD5 を保持します。 プレビュー列がクリップされている場合は、ダウンロード可能なファイルから完全な値をコピーします。
+
+![実際の1つのファイル ENAは、URL、サイズ、および上流チェックサムで現れます](/img/open-science/v0311/ena-manifest.webp)
+
+<ExampleDownload path="/examples/v0311/ena-run-notes.md">クエリノート</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ マニフェスト</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">応答を実行します</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">ファイル応答</ExampleDownload>
+
+2 件のクエリとファイル一覧の生成が完了しました。本例では **FASTQ ファイルのダウンロードもチェックサム検証も実行していません**。ダウンロードは別の手順です。[入力パラメーター](../reference/connector-operations.md#ena_search_runs)
 
 ## 遺伝子組込みの充実を実践し、検査する {/* #gene-set-enrichment */}
 
@@ -140,7 +165,7 @@ as the returned mapping object. Report errors instead of inventing results.
 This is not differential-expression evidence or evidence of regulation direction.
 ```
 
-4. 生成されたメモを開き、クエリとマッピングのカウントを確認します。 これは、マップされた**11/11**識別子を実行します。, **0**非マップ, あいまいなまたは重複識別子. **GRCh38.p14の特長**、g:Profiler **e114_eg62_p19_27110d83**、GOクラス**2026-01-23**およびReactomeクラス**2026-03-20**を記録しました。 後続のサービスバージョンは異なる条件を返す場合があります。
+4. 生成されたメモを開き、クエリとマッピングのカウントを確認します。 これは、マップされた**11/11**識別子を実行します。, **0**非マップ, あいまいなまたは重複識別子. **GRCh38.p14**、g:Profiler **e114_eg62_p19_27110d83**、GOクラス**2026-01-23**およびReactomeクラス**2026-03-20**を記録しました。 後続のサービスバージョンは異なる条件を返す場合があります。
 
 ![保存された英語のクエリ、背景、ソースバージョン、識別子チェック](/img/open-science/v0311/enrichment-notes.webp)
 
@@ -156,9 +181,41 @@ This is not differential-expression evidence or evidence of regulation direction
 
 ## リファレンス・ゲノム・アイデンティティの確認 {/* #reference-genome */}
 
-**ゲノム** を 3 つのステップで使用して下さい: 目的の生物のための `ncbi_resolve_taxon`; **バージョンアップ** GCF/GCAアクセス用の`ncbi_get_assembly_info`; その後、`chr1`などのシーケンス用の`ncbi_get_sequence_aliases`。 あいまいなマッチやトランジションのフラグを目に見えるようにしてください。 これらは、完全なクロスソース分析ではなく、検索手順です。
+<p className="example-label"><strong>実践例</strong> 人間のGRCh38.p14染色体1を識別します</p>
 
-例えば、参照コールは`GCF_000001405.40`を使用します。 アセンブリ名だけは、そのバージョンIDの代替ではありません。 返された現在のアクセスは、要求された履歴アクセスを静かに置き換えることを承認しません。 シーケンスエイリアスは、アセンブリ内のネーミングを記述します。 染色体ラベルを変換することは、ビルド間でのリフトオーバーを調整しません。 [正確な入力](../reference/connector-operations.md#ncbi_get_assembly_info)
+1. **Settings → Connectors**で**Genomes**を有効にします。 接続されたモデルと利用可能なNotebookランタイムでセッションを開きます。 このv0.31.1の例では、**Codex subscription**が使われています。
+2. その順序で生物、**バージョンアップ**アセンブリおよび順序を照会して下さい。 送信:
+
+```text
+Use Genomes through Session Notebook. Load its connector instructions.
+Call ncbi_resolve_taxon with query human and max_matches 10.
+Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
+Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
+sequence chr1 and max_sequences 200. Save the complete responses as
+ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
+Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
+query, identity, ambiguity and truncation flags, and source URLs.
+Preserve accession versions and RefSeq/GenBank differences. Do not perform
+coordinate liftover or invent results. Keep everything in English.
+```
+
+3. メモを開き、返されたIDを3つのJSONファイル全体で比較します。 この例では3つの呼び出しが成功しました。
+
+![実際のNCBIコールと返された納税者とアセンブリIDの3つ](/img/open-science/v0311/ncbi-notes.webp)
+
+| チェックイン | この例の結果 |
+| --- | --- |
+| 組織図 | ホモ・サピアン、税理士事務所 **9606**; 1つのマッチ、 `ambiguous: false` |
+| 要求される/currentアセンブリ | **GCF_000001405.40**, **GRCh38.p14**、UCSCの名前 **hg38** |
+| 組まれたGenBankアセンブリ | **GCA_000001405.29**; RefSeqの返されたレコードレポートの違い |
+| Chromosome 1 エイリアス | **1**, **chr1**, RefSeq **NC_000001.11**, GenBank , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , **CM000663.2** |
+| 選択されたシーケンス | **248956422のbp**、第一次アセンブリ; 1つのマッチ、 `matches_truncated: false` |
+
+![元の染色体-1 応答とバージョンアップされたエイリアスとマッチカウント](/img/open-science/v0311/ncbi-aliases.webp)
+
+<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">クエリノート</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">アイデンティティテーブル</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">税務申告</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">アセンブリ応答</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">シーケンス応答</ExampleDownload>
+
+本例では **選択した 1 本の染色体**の照会が完了しました。アセンブリの全配列をエクスポートしたわけではありません。クエリを変更する際も、曖昧な一致と打ち切りフラグを保持してください。アセンブリ名はバージョン付きアクセッションの代わりにはなりません。現在のアクセッションが返されても、要求した旧版を無断で置き換えてはいけません。配列の別名は同じアセンブリ内の名前の対応であり、アセンブリ間の座標変換ではありません。[入力パラメーター](../reference/connector-operations.md#ncbi_get_assembly_info)
 
 ## gnomAD人口とストリングネットワークを読みます {/* #string-network */}
 

@@ -112,7 +112,32 @@ For a report, attach the operation, bounded input, error text and timestamp thro
 3. Pass one returned run to `ena_get_run_files`. Check `found`, `fastq_available` and every entry in `fastq_files`. The inventory supplies URL, compressed-file size and upstream MD5; it does not download files or verify their contents.
 4. Before a separate download, check storage and retain the manifest. Verify the downloaded bytes against the listed checksum. A paired library need not have exactly two files; do not infer read-mate identity from `file_index`.
 
-These are the v0.31.1 operation contracts, not a completed sequencing-data download. [Exact parameters](../reference/connector-operations.md#ena_search_runs)
+<p className="example-label"><strong>Worked example</strong> Build a file manifest for SRR037073</p>
+
+This v0.31.1 example uses **Codex subscription** and the enabled **Omics Archives** Connector. Open a session with an available Notebook runtime, then send:
+
+```text
+Use Omics Archives through Session Notebook. Load its connector instructions.
+Call ena_search_runs with accession SRR037073 and limit 10, then
+ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
+Save the complete responses as ena-run.json and ena-files.json.
+Save every returned file entry as ena-fastq-manifest.csv with columns
+file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
+run identity, completeness flags and download limits. Keep everything in
+English. Report actual errors or empty results; do not invent data.
+```
+
+Open the generated notes. The actual search returned **1 run**, **Caenorhabditis elegans**, study **PRJNA123835**, **RNA-Seq**, **SINGLE**, with `truncated: false`. Confirm the organism and layout before using its files.
+
+![ENA query inputs, run identity and completeness flags in the generated notes](/img/open-science/v0311/ena-notes.webp)
+
+Open the CSV and compare it with `ena-files.json`. This run has `found: true`, `fastq_available: true` and **1 file**, sized **25,154,397 bytes**. The manifest retains its FTP URL and upstream MD5. Copy the complete value from the downloadable file if a preview column is clipped.
+
+![Actual one-file ENA manifest with URL, size and upstream checksum](/img/open-science/v0311/ena-manifest.webp)
+
+<ExampleDownload path="/examples/v0311/ena-run-notes.md">Query notes</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ manifest</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">Run response</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">File response</ExampleDownload>
+
+Both queries and manifest generation completed. **No FASTQ file was downloaded or checksum-verified** in this example. A later download is a separate step. [Exact parameters](../reference/connector-operations.md#ena_search_runs)
 
 ## Run and inspect gene-set enrichment {/* #gene-set-enrichment */}
 
@@ -156,9 +181,41 @@ In the recorded run, both service calls succeeded; generating the notes initiall
 
 ## Confirm reference-genome identity {/* #reference-genome */}
 
-Use **Genomes** in three steps: `ncbi_resolve_taxon` for the intended organism; `ncbi_get_assembly_info` for a **versioned** GCF/GCA accession; then `ncbi_get_sequence_aliases` for a sequence such as `chr1`. Keep ambiguous matches and truncation flags visible. These are lookup instructions, not a completed cross-source analysis.
+<p className="example-label"><strong>Worked example</strong> Identify human GRCh38.p14 chromosome 1</p>
 
-For example, the reference call uses `GCF_000001405.40`. An assembly name alone is not a replacement for that versioned identity. A returned current accession does not authorize silently replacing a requested historical accession. Sequence aliases describe naming within an assembly; converting a chromosome label is not coordinate liftover between builds. [Exact inputs](../reference/connector-operations.md#ncbi_get_assembly_info)
+1. Enable **Genomes** in **Settings → Connectors**. Open a session with a connected model and available Notebook runtime. This v0.31.1 example used **Codex subscription**.
+2. Query the organism, **versioned** assembly and sequence in that order. Send:
+
+```text
+Use Genomes through Session Notebook. Load its connector instructions.
+Call ncbi_resolve_taxon with query human and max_matches 10.
+Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
+Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
+sequence chr1 and max_sequences 200. Save the complete responses as
+ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
+Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
+query, identity, ambiguity and truncation flags, and source URLs.
+Preserve accession versions and RefSeq/GenBank differences. Do not perform
+coordinate liftover or invent results. Keep everything in English.
+```
+
+3. Open the notes and compare the returned IDs across the three JSON files. All three calls succeeded in this example.
+
+![Three actual NCBI calls and the returned taxon and assembly identity](/img/open-science/v0311/ncbi-notes.webp)
+
+| Check | This example's result |
+| --- | --- |
+| Organism | Homo sapiens, TaxID **9606**; one match, `ambiguous: false` |
+| Requested/current assembly | **GCF_000001405.40**, **GRCh38.p14**, UCSC name **hg38** |
+| Paired GenBank assembly | **GCA_000001405.29**; the returned record reports differences from RefSeq |
+| Chromosome 1 aliases | **1**, **chr1**, RefSeq **NC_000001.11**, GenBank **CM000663.2** |
+| Selected sequence | **248956422 bp**, Primary Assembly; one match, `matches_truncated: false` |
+
+![Original chromosome-1 response with versioned aliases and match count](/img/open-science/v0311/ncbi-aliases.webp)
+
+<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">Query notes</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">Identity table</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">Taxon response</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">Assembly response</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">Sequence response</ExampleDownload>
+
+This is a completed lookup for **one selected chromosome**, not an export of every assembly sequence. Keep ambiguous matches and truncation flags when changing the query. An assembly name alone cannot replace its versioned accession, and a returned current accession does not authorize silently replacing a historical version. Sequence aliases describe names within an assembly; they do not perform coordinate liftover between builds. [Exact inputs](../reference/connector-operations.md#ncbi_get_assembly_info)
 
 ## Read gnomAD populations and STRING networks {/* #string-network */}
 

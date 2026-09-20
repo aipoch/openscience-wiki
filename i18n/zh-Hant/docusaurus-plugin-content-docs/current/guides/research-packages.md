@@ -5,6 +5,8 @@ last_update:
   date: '2026-09-20'
 ---
 
+import ExampleDownload from '@site/src/components/ExampleDownload';
+
 # .science 研究包 {/* #science-研究包 */}
 
 **.science 研究包** 將會話分支、檔案和已記錄的證據放在一起，供同事交接與檢視。接收方可以將其匯入專案，檢查研究記錄。匯入會話仍為只讀。從 v0.31.0 起，可以在桌面應用中使用 **Fork** 建立可編輯的副本，繼續研究。
@@ -38,9 +40,11 @@ Side Chat 對話、私人[閱讀書籤](bookmarks.md)及備註不會包含在研
 
 <p className="example-label"><strong>案例演示</strong> 交接樣本質控會話</p>
 
-以下截圖使用匯總 [GSE60450 樣本質控表](../reference/example-data.md)的會話。在匯出預覽中比較 **Essential export** 和 **Full export**，檢視預計大小，再選擇 **Export**。具體內容和大小取決於你的會話。
+本例在 Open-Science v0.31.1 中，將彙總 [GSE60450 樣本質控表](../reference/example-data.md)的會話匯出，匯入同一臺 Mac 的另一個專案，再使用 **Codex subscription** 從 Fork 繼續分析。起點是已經生成 `gse60450-qc-summary.csv` 的會話；單獨的輸入表格不是研究包。
 
-![研究包匯出預覽，包含 Essential export、Full export 和 Customize contents](/img/open-science/feature-guides-2026-09/research-package-export.webp)
+選擇 **Essential export**，檢查內容和預計大小，再選擇 **Export**。本例預覽估計為 **805.6 KiB**。等待 **Package operation completed** 後再匯入儲存的檔案；你的會話大小可能不同。
+
+![實際質控會話的匯出選項與預計大小](/img/open-science/v0311/package-export.webp)
 
 ## 匯入到專案 {/* #import-and-inspect-a-package */}
 
@@ -49,9 +53,38 @@ Side Chat 對話、私人[閱讀書籤](bookmarks.md)及備註不會包含在研
 3. 等待完成，選擇 **Open imported Session**。
 4. 檢視會話分支，並開啟交接所需檔案，確認能找到下一項工作涉及的輸入和結果。
 
+本例選擇目標專案 **Public Genomics Examples**，匯入預覽顯示 **1 個分支、3 條訊息、13 個檔案**，並說明不包含賬戶憑據、權限授權和提供方的會話續接身份。確認這些內容後選擇 **Import**。
+
+![匯入目標專案前的質控研究包預覽](/img/open-science/v0311/package-import-preview.webp)
+
+開啟匯入的會話及彙總 CSV。**Imported research history** 提示確認這份記錄為只讀，不能直接執行程式碼或繼續對話。
+
+![匯入的質控記錄、繼承的彙總檔案和 Fork to continue 按鈕](/img/open-science/v0311/package-import-readonly.webp)
+
 ## 使用收到的研究記錄 {/* #使用收到的研究记录 */}
 
-匯入會話本身仍為只讀。在桌面端開啟該會話的選單，選擇 **Fork**；等待 **Fork completed**，進入新會話，檢查繼承的檔案後再傳送後續任務。原會話保持不變，程式碼不會自動執行。詳細步驟和檢查方法見[複製已有會話繼續研究](sessions.md#fork-session)。匯入的用量不會計入本機活動總量。
+1. 在匯入會話中選擇 **Fork to continue**，或從會話選單選擇 **Fork**。等待 **Fork completed**，進入新會話；程式碼不會自動執行。
+2. 檢查繼承的彙總檔案，選擇可用模型，確認 Python 執行環境就緒。本例使用 **Codex subscription / gpt-5.6-sol**。原安裝中的憑據與權限不會隨包成為接收端的授權。
+3. 傳送下方提示詞。如果出現 Python 執行審批，先檢查計算內容，再批准繼續。
+
+```text
+Use Python in Session Notebook with the standard library only.
+Read the inherited gse60450-qc-summary.csv. Do not modify inherited files.
+Compute total_raw_counts_sum divided by sample_count using decimal.Decimal
+with precision 28. Save research-package-continuation.csv with metric,value
+rows in this order: sample_count, total_raw_counts_sum,
+mean_raw_counts_per_sample. Save research-package-continuation.md with the
+input filename, calculation and result. Do not use the network or delegate.
+Keep everything in English and return links to both new files.
+```
+
+4. 開啟兩個新檔案。本次得到 **12** 個樣本、原始計數總和 **269027617**，平均值為 **22418968.08333333333333333333**。這是輸入質控表的彙總，不是標準化表達量或差異表達結果。
+
+![Fork 完成後，Codex 實際建立的新計算檔案](/img/open-science/v0311/package-continued.webp)
+
+<ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">繼承的彙總表</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">新計算結果</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">計算說明</ExampleDownload>
+
+計算後，原會話、匯入會話和 Fork 中的彙總檔案 SHA-256 完全一致，兩個新檔案屬於 Fork。本例驗證了**同一臺 Mac 的不同專案間**匯出 → 匯入 → Fork → 繼續分析，沒有據此驗證跨裝置環境恢復、文獻與批註完整轉移或自動重放。通用操作見[複製已有會話繼續研究](sessions.md#fork-session)。匯入的用量不會計入本機活動總量。
 
 隨包收到的驗證記錄描述傳送方提供的檢查，不代表這臺電腦已經重新執行。閱讀它對應的檔案版本、比較條件和結果；檢查方式見[可復現性](reproducibility.md)。
 

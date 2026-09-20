@@ -107,12 +107,37 @@ Rfam 순서는 지금 공식적인 배치 엔드포인트를 사용합니다. �
 
 ## ENA 실행 및 FASTQ 파일 해결 {/* #ena-runs */}
 
-1. **Settings → Connectors**의 밑에 활성화된 **Omics 아카이브**. PRJ 연구 또는 SRR 실행과 같은 `ena_search_runs`에 대한 공공 ENA / INDC 액세스 공급. GEO `GSE` 식별자는 INSDC 연구에 처음 연결되어야 합니다. 키워드는 허용되지 않습니다.
+1. **Settings → Connectors**의 밑에 활성화된 **Omics Archives**. PRJ 연구 또는 SRR 실행과 같은 `ena_search_runs`에 대한 공공 ENA / INDC 액세스 공급. GEO `GSE` 식별자는 INSDC 연구에 처음 연결되어야 합니다. 키워드는 허용되지 않습니다.
 2. `run_accession`, 생물, 도서관 전략/레이아웃 및 `truncated`를 검사하십시오. 최대는 1,000 실행입니다. 상쇄 또는 continuation 토큰이 없습니다; 응답이 truncated 경우에 접근을 좁은.
 3. `ena_get_run_files`에 반환된 한 번에 전달합니다. `found`, `fastq_available` 및 `fastq_files`의 모든 항목 확인. 재고 공급 URL, 압축 파일 크기 및 업스트림 MD5; 파일을 다운로드하지 않거나 내용을 확인하지 않습니다.
 4. 별도의 다운로드 전에 저장을 확인하고 나타날을 유지하십시오. 목록된 checksum에 대한 다운로드된 바이트를 검증합니다. 쌍의 라이브러리는 정확히 두 개의 파일이 필요하지 않습니다; `file_index`에서 읽기-메이트 ID를 사용하지 마십시오.
 
-이 v0.31.1 운영 계약은 완료된 sequencing-data 다운로드가 아닙니다. [Exact 모수](../reference/connector-operations.md#ena_search_runs)
+<p className="example-label"><strong>실습 예제</strong> SRR037073에 대한 파일 표시</p>
+
+이 v0.31.1 예제는 **Codex subscription** 및 활성화 **Omics Archives** Connector를 사용합니다. 사용할 수 있는 Notebook 런타임과 세션을 열고, 다음을 보냅니다:
+
+```text
+Use Omics Archives through Session Notebook. Load its connector instructions.
+Call ena_search_runs with accession SRR037073 and limit 10, then
+ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
+Save the complete responses as ena-run.json and ena-files.json.
+Save every returned file entry as ena-fastq-manifest.csv with columns
+file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
+run identity, completeness flags and download limits. Keep everything in
+English. Report actual errors or empty results; do not invent data.
+```
+
+생성된 노트를 엽니다. 실제 검색은 **1 실행**, **Caenorhabditis elegans**, **PRJNA123835**, **RNA-Seq**, **SINGLE**를 `truncated: false`로 반환했습니다. 파일을 사용하기 전에 생물과 레이아웃을 확인합니다.
+
+![ENA 쿼리 입력, 생성 된 노트에 ID 및 완전 플래그를 실행](/img/open-science/v0311/ena-notes.webp)
+
+CSV을 열고 `ena-files.json`과 비교하십시오. 이런에는 `found: true`, `fastq_available: true` 및 **1 파일**, 크기 **25,154,397 바이트**가 있습니다. 은 FTP URL과 업스트림 MD5를 유지합니다. 미리보기 컬럼이 클립된 경우 다운로드 가능한 파일에서 전체 값을 복사합니다.
+
+![URL, 크기 및 업스트림 체크섬과 실제 파일 ENA가 나옵니다.](/img/open-science/v0311/ena-manifest.webp)
+
+<ExampleDownload path="/examples/v0311/ena-run-notes.md">Query 노트</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ는 나타납니다</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">빠른 연결</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">파일 응답</ExampleDownload>
+
+두 쿼리와 파일 목록 생성이 완료되었습니다. 이 예에서는 **FASTQ 파일 다운로드와 체크섬 검증을 수행하지 않았습니다**. 다운로드는 별도 단계입니다. [정확한 매개변수](../reference/connector-operations.md#ena_search_runs)
 
 ## 실행 및 검사 유전자 세트 enrichment {/* #gene-set-enrichment */}
 
@@ -140,7 +165,7 @@ as the returned mapping object. Report errors instead of inventing results.
 This is not differential-expression evidence or evidence of regulation direction.
 ```
 
-4. 생성된 노트를 열고 쿼리 및 매핑 카운트를 확인합니다. **0** unmapped, ambiguous 또는 중복 식별자와 함께 맵핑 된 **11/11** 식별자를 실행합니다. **모델: GRCh38.p14**, g:Profiler **e114_eg62_p19_27110d83**, GO 클래스 **2026-01-23** 및 Reactome 클래스 **2026-03-20**를 기록했습니다. 나중에 서비스 버전은 다른 용어를 반환 할 수 있습니다.
+4. 생성된 노트를 열고 쿼리 및 매핑 카운트를 확인합니다. **0** unmapped, ambiguous 또는 중복 식별자와 함께 맵핑 된 **11/11** 식별자를 실행합니다. **GRCh38.p14**, g:Profiler **e114_eg62_p19_27110d83**, GO 클래스 **2026-01-23** 및 Reactome 클래스 **2026-03-20**를 기록했습니다. 나중에 서비스 버전은 다른 용어를 반환 할 수 있습니다.
 
 ![Saved English 쿼리, 배경, 소스 버전 및 식별자 체크](/img/open-science/v0311/enrichment-notes.webp)
 
@@ -156,9 +181,41 @@ This is not differential-expression evidence or evidence of regulation direction
 
 ## 참고-genome ID 확인 {/* #reference-genome */}
 
-**한국어 (Korean)**을 세 단계로 사용합니다. `ncbi_resolve_taxon`은 의도한 유기체에 사용됩니다. `ncbi_get_assembly_info` **이름 &#42;** GCF/GCA 액세스; `chr1`과 같은 순서에 대한 `ncbi_get_sequence_aliases`. ambiguous 일치와 truncation 플래그를 계속. 이 지침은 완료된 크로스 리소스 분석이 아닙니다.
+<p className="example-label"><strong>실습 예제</strong> 인간적인 GRCh38.p14 크롬 1를 확인하십시오</p>
 
-예를 들어, 참조 통화는 `GCF_000001405.40`을 사용합니다. 집합 이름은 단독으로 그 버전의 정체성을 대체하지 않습니다. 반환된 현재 접근은 침묵적으로 요구된 역사적인 접근을 대체하지 않습니다. Sequence aliases는 집합 안에 naming를 설명합니다; chromosome 레이블을 변환하는 것은 빌드 사이에 liftover를 조정하지 않습니다. [Exact 입력](../reference/connector-operations.md#ncbi_get_assembly_info)
+1. **Settings → Connectors**에서 **Genomes**을 활성화하십시오. 연결된 모델과 사용 가능한 Notebook 런타임으로 세션을 엽니다. 이 v0.31.1 예제는 **Codex subscription**을 사용했습니다.
+2. 생물, **이름 &#42;** 집합 및 순서에 조회하십시오. 지불 조건:
+
+```text
+Use Genomes through Session Notebook. Load its connector instructions.
+Call ncbi_resolve_taxon with query human and max_matches 10.
+Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
+Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
+sequence chr1 and max_sequences 200. Save the complete responses as
+ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
+Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
+query, identity, ambiguity and truncation flags, and source URLs.
+Preserve accession versions and RefSeq/GenBank differences. Do not perform
+coordinate liftover or invent results. Keep everything in English.
+```
+
+3. 노트를 열고 3 JSON 파일에서 반환된 ID를 비교합니다. 이 예에서 성공한 모든 3개의 통화.
+
+![세 가지 실제 NCBI 통화 및 반환된 세세논 및 집합 정체성](/img/open-science/v0311/ncbi-notes.webp)
+
+| 【특전】 | 이 예제의 결과 |
+| --- | --- |
+| 학회소개 | Homo sapiens, 세금 **9606**; 1개의 경기, `ambiguous: false` |
+| 요청/현재 집합 | **GCF_000001405.40**, **GRCh38.p14**, UCSC 이름 **hg38** |
+| 쌍 GenBank 어셈블리 | **GCA_000001405.29**; 반환된 기록 보고서는 RefSeq의 차이를 보여줍니다. |
+| Chromosome 1 별칭 | **1**, **chr1**, RefSeq의 **NC_000001.11**, 젠뱅크 **CM000663.2** |
+| 선택된 순서 | **248956422의 bp**, 1 차적인 회의; 1개의 경기, `matches_truncated: false` |
+
+![aliases 및 일치 카운트와 Original chromosome-1 응답](/img/open-science/v0311/ncbi-aliases.webp)
+
+<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">Query 노트</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">Identity 테이블</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">세금 응답</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">회의 응답</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">Sequence 응답</ExampleDownload>
+
+이 예에서는 **선택한 염색체 한 개**의 조회를 완료했습니다. 어셈블리의 모든 서열을 내보낸 것은 아닙니다. 쿼리를 바꿀 때도 모호한 일치와 잘림 표시를 유지하세요. 어셈블리 이름은 버전이 포함된 접근번호를 대신할 수 없습니다. 현재 접근번호가 반환되어도 요청한 과거 버전을 알리지 않고 바꾸면 안 됩니다. 서열 별칭은 같은 어셈블리 안의 이름 대응이며, 어셈블리 간 좌표 변환을 수행하지 않습니다. [정확한 입력](../reference/connector-operations.md#ncbi_get_assembly_info)
 
 ## gnomAD 인구와 STRING 네트워크 읽기 {/* #string-network */}
 

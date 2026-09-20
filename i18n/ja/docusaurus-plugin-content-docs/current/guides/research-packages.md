@@ -5,6 +5,8 @@ last_update:
   date: '2026-09-20'
 ---
 
+import ExampleDownload from '@site/src/components/ExampleDownload';
+
 # .science 研究パッケージ {/* #science-research-packages */}
 
 **.science**の研究パッケージは、会話ブランチ、ファイル、記録された証拠を手元にまとめます。 同僚はプロジェクトにインポートし、研究記録を検査することができます。 インポートされたセッションは読み取り専用です。 v0.31.0から、デスクトップアプリで**Fork**を使用して、書き込み可能なコピーを作成し、研究を継続します。
@@ -38,9 +40,11 @@ Side Chatの会話、プライベート[読書ブックマーク](bookmarks.md)�
 
 <p className="example-label"><strong>実践例</strong> サンプルQCのセッションを渡す</p>
 
-以下の画面では、[GSE60450サンプルQCテーブル](../reference/example-data.md) を要約するセッションを使用します。 輸出プレビューでは、**Essential export**と**Full export**を比較し、推定サイズを調べて、**Export**を選択します。 コンテンツとサイズはセッションによって異なります。
+Open-Science v0.31.1 では、[GSE60450サンプルQCテーブル](../reference/example-data.md) をまとめたセッションをエクスポートし、同じ Mac で別のプロジェクトにインポートし、**Codex subscription** を使用してフォークから継続します。 `gse60450-qc-summary.csv` を含む完了したセッションから始めましょう。 インプットテーブルだけでは研究パッケージではありません。
 
-![エッセンシャルエクスポート、フルエクスポート、コンテンツをカスタマイズするリサーチパッケージエクスポートプレビュー](/img/open-science/feature-guides-2026-09/research-package-export.webp)
+**Essential export** を選択し、内容と推定サイズを確認し、**Export** を選択します。 このセッションのプレビューは、**805.6キブ**を推定しました。 保存したファイルをインポートする前に **Package operation completed** を待ちます。 セッションのサイズは異なります。
+
+![実際のQCセッションのエクスポートオプションと推定サイズ](/img/open-science/v0311/package-export.webp)
 
 ## プロジェクトへのインポート {/* #import-and-inspect-a-package */}
 
@@ -49,9 +53,38 @@ Side Chatの会話、プライベート[読書ブックマーク](bookmarks.md)�
 3. 完了を待ってから、**Open imported Session**を選択します。
 4. 会話ブランチを調べて、ハンドオーバーに必要なファイルを開きます。 次のタスクに関連した入力と結果を見つけることができることを確認してください。
 
+この例では、宛先プロジェクト**Public Genomics Examples**を選択します。 インポートプレビューは、**1 ブランチ、3 メッセージ、13 ファイル** をリストします。 また、アカウントの資格情報、許可付与、プロバイダの継続識別は除外されます。 **Import**を選択する前に、これらの詳細を確認してください。
+
+![QCのパッケージのプレビューは先のプロジェクトに輸入する前に](/img/open-science/v0311/package-import-preview.webp)
+
+インポートされたセッションとそのサマリーCSVを開きます。 **Imported research history** 通知は、このコピーは読み取り専用であり、コードを実行したり、直接会話を続行したりできないことを確認します。
+
+![継承されたサマリーとフォークでQCレコードをインポートし、ボタンを続行](/img/open-science/v0311/package-import-readonly.webp)
+
 ## 受領した研究記録を使用する {/* #use-the-received-research-record */}
 
-インポートされたセッション自体は、読み取り専用にとどまります。 デスクトップでセッションメニューを開き、**Fork**を選択します。 **Fork completed**を待ち、新しいセッションを開き、フォローアップを送信する前に継承されたファイルを調べます。 ソースは変更されずに残っています。 コードは自動的に実行されません。 手順とチェックについては、[既存のセッションをフォークする](sessions.md#fork-session) を参照してください。 ローカルアクティビティの合計からインポートされた使用は除外されます。
+1. インポートされたセッションで**Fork to continue**、またはセッションメニューから**Fork**を選択します。 **Fork completed** を待って、新しいセッションを開きます。 コードは自動的に実行されません。
+2. 継承された要約を調べ、利用可能なモデルを選択し、Pythonランタイムを確認します。 この例では、**Codex subscription / gpt-5.6-sol** を使用します。 インポートされた資格情報と権限は、受信インストールの許可を提供していません。
+3. 下記のプロンプトを送信してください。 Pythonの承認が現れた場合、要求された計算を点検し、それを承認して下さい続行して下さい。
+
+```text
+Use Python in Session Notebook with the standard library only.
+Read the inherited gse60450-qc-summary.csv. Do not modify inherited files.
+Compute total_raw_counts_sum divided by sample_count using decimal.Decimal
+with precision 28. Save research-package-continuation.csv with metric,value
+rows in this order: sample_count, total_raw_counts_sum,
+mean_raw_counts_per_sample. Save research-package-continuation.md with the
+input filename, calculation and result. Do not use the network or delegate.
+Keep everything in English and return links to both new files.
+```
+
+4. 新しいファイルの両方を開きます。 この実行が返された **12** サンプル、合計の未加工計算 **269027617**, と の 意味 **22418968.08333333333333333333**. . . . 平均は供給されたQCのテーブルを要約します; 正規表現や差分表現の結果ではありません。
+
+![フォークが完了し、Codex を使用して作成された新しい計算ファイル](/img/open-science/v0311/package-continued.webp)
+
+<ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">継承された要約</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">新規計算</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">計算ノート</ExampleDownload>
+
+計算後も、元のセッション、インポートしたセッション、Fork の要約ファイルは同じ SHA-256 ハッシュでした。新しい 2 ファイルは Fork に作成されました。検証したのは、**同じ Mac の異なるプロジェクト間**でのエクスポート → インポート → Fork → 分析の継続です。別の端末での環境復元、文献と注釈の完全な転送、自動再実行は検証していません。一般的な操作は[既存セッションの Fork](sessions.md#fork-session)を参照してください。インポートした使用量はローカルの利用集計に含まれません。
 
 受信確認記録は、送信者から提供されたチェックを記述します。 このコンピューターで検証を再実行したことを意味するものではありません。 ファイルバージョン、比較基準、および結果を読みます。 これらのチェックの仕組みについては、[再現性](reproducibility.md)を参照してください。
 

@@ -1,0 +1,15 @@
+{
+  "run_accession": "SRR037073",
+  "found": true,
+  "library_layout": "SINGLE",
+  "fastq_available": true,
+  "n_files": 1,
+  "fastq_files": [
+    {
+      "file_index": 1,
+      "url": "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR037/SRR037073/SRR037073.fastq.gz",
+      "size_bytes": 25154397,
+      "md5": "89359f77f5870d2b563ebd77baeeeaf6"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+metric,value
+sample_count,12
+unique_original_column_name,12
+total_raw_counts_sum,269027617
+rows_where_zero_count_genes_plus_detected_genes_count_gt_0_equals_27179,12
