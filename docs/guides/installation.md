@@ -1,7 +1,7 @@
 ---
 title: "Installation and updates"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -70,7 +70,7 @@ The installation location stores the application; **Data location** in the setup
 
 You need Git, Node.js 22, npm, and the platform build prerequisites for Electron. Install or select an agent framework in the application. During installation, the repository generates the Prisma Client, applies app patches, and prepares Electron native dependencies.
 
-For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v0.30.2.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
+For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v0.31.1.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
 
 Replace `RELEASE_TAG` below with the exact tag shown on the selected release (including its leading `v`). To follow ongoing development instead, omit `--branch RELEASE_TAG --depth 1`; that checkout will follow the default branch.
 
@@ -134,3 +134,7 @@ Reinstalling retains existing data. If you deliberately need a fresh start after
 | First-time setup | Read the failed Environment check and resolve its stated requirement before continuing. |
 | First agent request | Confirm an Active/Ready Agent and run **Test connection** on the Model page. |
 | Provider or local browser connection | Inspect the reported port, proxy or certificate error; see [Troubleshooting](troubleshooting.md). |
+
+## Product naming after v0.31.0 {/* #product-name */}
+
+The current interface and new packages use **Open-Science** consistently. Upgrading preserves existing installation names and locations, research data, credentials and settings. An older installation path containing `Open Science` is not by itself an upgrade failure; do not rename or move its data folders to match the new display name.

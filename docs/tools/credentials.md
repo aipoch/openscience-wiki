@@ -1,7 +1,7 @@
 ---
 title: "Service credentials"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Service credentials
@@ -64,3 +64,7 @@ OpenAlex queries require a valid OpenAlex key. OAuth Connectors require completi
 Implementation reference: [CredentialsPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [ConnectorAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx).
 
 [CLI/SDK credential management](../reference/cli.md#manage-connectors-and-credentials) can create/update shared credentials through authenticated local access. Linux headless installations can explicitly choose [unencrypted file storage](../reference/server.md#credential-storage-on-headless-linux); desktop credentials retain their normal OS-storage behavior. This option does not solve Compute password storage or initiate first-time OAuth login.
+
+## Open the official API key page {/* #official-api-key-page */}
+
+From v0.31.0, OpenAlex and NCBI credential prompts include a link to the official API key page. Opening it keeps the form draft and waiting Connector call. Complete account steps with the service, return to the credential form, then validate and save the intended key before retrying the query. Opening the key page alone neither saves a key nor completes the waiting query.

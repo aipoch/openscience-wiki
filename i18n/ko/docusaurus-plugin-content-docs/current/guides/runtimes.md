@@ -1,7 +1,7 @@
 ---
 title: "Python 및 R 실행 시간"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -252,7 +252,7 @@ Notebook의 출력을 열고 저장된 보고서와 비교하십시오. Windows 
 
 Windows conda R 시작 또는 커널 회복 실패를 위해, 재시동하기 전에 v0.30.2 또는 나중에 사용하십시오. 이 릴리스는 환경 준비 및 R 커널 복구 후 실행 가능한 조회를 수정합니다. 업데이트 후, 환경을 다시 확인하고 Notebook에서 작은 R 계산을 실행; **Ready** 혼자는 실행 결과가 아닙니다. 아래 스크린 샷은 원래 실행의 버전과 결과를 유지합니다.
 
-Windows R는 **R 액세스 권한을 부여하기 전에 보호 모드를 활성화하십시오.**를 보고, **Network settings**와 R 카드의 **Authorize and verify** 지시를 검사하는 것을 실행합니다. rerunning 전에 보고된 허가 prerequisite를 해결하십시오; 혼자 **Ready** 카드는 실행을 확인하지 않습니다. 요청이 차단되고 [문제 해결](troubleshooting.md)을 따르는 경우 전체 오류를 유지하십시오.
+v0.31.0에서, Windows R는 첫번째 조정 보호한 형태 없이 표준 형태에서 실행할 수 있습니다. 버전별 지침으로 이전 릴리스에서 **R 액세스 권한을 부여하기 전에 보호 모드를 활성화하십시오.**을 치료하십시오. 네트워크 보호 및 패키지 설치 권한은 별도의 컨트롤을 유지. v0.31.1에서 Notebook 네트워크 보호에 의해 차단된 실행은 관련 설정에 대한 링크와 인라인 경고를 보여줍니다; 세포가 실행되지 않았습니다. 필요한 접근을 검토 한 다음 다시 실행하고 출력을 확인합니다.
 
 <span id="windows-runtime-qc" />
 

@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.30.2** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.30.2.json">완벽한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `accessions`, `cids`, `rs_id` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `id`을 통과하지 마십시오.
+한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.31.1** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.31.1.json">완벽한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `accessions`, `cids`, `rs_id` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `id`을 통과하지 마십시오.
 
 
 ## 뚱 베어 {/* #family-1 */}
@@ -587,7 +587,7 @@ const result = await host.mcp("genes", "get_go_annotations", {"uniprot_accession
 
 ### `get_uniprot_entries` {/* #get_uniprot_entries */}
 
-액세스 목록에 대한 Fetch UniProtKB 레코드 (배치 된 OR-queries, per-accession). 세 가지 모드 : `fields` 주어진 → 토큰 - 랑 탭의 검색은 UniProt 필드 (예를 들어. &#91;"accession","id","protein_name","gene_names","organism_name","length","sequence"&#93;); `format`은 무시됩니다. 형식 = "fasta" → per-accession FASTA 순서. 형식 = "txt" → per-accession 전체 UniProt 플랫 파일 텍스트 (완전 주석; `fields`을 선호하는 매우 큰 수 있습니다. Args : 액세스 (예 :) &#91;"P04637","P38398"&#93;); 체재 ("fasta"/"txt"는, `fields`가 주어진 때 무시했습니다); 필드 (선택적인 UniProt REST 필드 이름 탭 모드). 반환: 필드 모드 &#123;accessions, 필드, n_records, 레코드:&#91;&#123;&lt;column>:value&#125;&#93;&#125;; fasta/txt 모드 &#123;accessions, 형식, n_found, 누락, 기록:&#123;accession:text&#125;&#125; — `missing` 목록 액세스 UniProt는 레코드를 반환하지 않습니다.
+Fetch UniProtKB는 1 차 또는 2 차 액세스 목록의 레코드를 기록합니다. unsolved 별명으로 직접적인 per-accession fallback를 이용합니다. 세 가지 모드 : `fields` 주어진 → 토큰 - 랑 탭의 검색은 UniProt 필드 (예를 들어. &#91;"accession","id","protein_name","gene_names","organism_name","length","sequence"&#93;); `format`은 무시됩니다. format="fasta" → per-accession FASTA 순서. format="txt" → per-accession 전체 UniProt 플랫 파일 텍스트 (완전 주석; `fields`을 선호하는 매우 큰 수 있습니다. Args : 액세스 (예 :) &#91;"P04637", P38398"&#93;); 형식 ( "fasta"/ "txt", `fields`이 부여 될 때 무시); 필드 (선택적인 UniProt REST 필드 이름 탭 모드). 반환: 필드 모드 &#123;accessions, 필드, n_records, 레코드:&#91;&#123;&lt;column>:value&#125;&#93;&#125;; fasta/txt 모드 &#123;accessions, 형식, n_found, 누락, 기록:&#123;accession:text&#125;&#125; — `missing` 목록 액세스 UniProt는 레코드를 반환하지 않습니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -616,6 +616,42 @@ Reactome Pathways (AnalysisService Token 워크플로우)에 대한 Map 유전�
 const result = await host.mcp("genes", "map_reactome_pathways", {"identifiers": ["TP53", "EGFR", "BRCA1"], "id_type": "symbol"})
 ```
 
+### `list_enrichment_sources` {/* #list_enrichment_sources */}
+
+g:Profiler enrichment 소스와 하나의 유기체의 현재 데이터 버전을 나열합니다. 소스는 생물 의존이며 GO:BP, GO:MF, GO:CC, KEGG, Reactome 및 WikiPathways와 같은 네임스페이스를 포함합니다. g:Profiler는 서비스 가동을 위한 한정된 조회 메타데이터를 저장합니다; 이 읽기 전용 조회는 유전자 목록을 제출하지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `organism` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 64; 패턴: "^&#91;a-z&#93;&#91;a-z0-9_&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("genes", "list_enrichment_sources", {"organism": "hsapiens"})
+```
+
+### `enrich_gene_set` {/* #enrich_gene_set */}
+
+G를 실행:Profiler g:GOSt는 GO, Reactome, KEGG, WikiPathways 및 기타 유기 지원 소스에서 설정된 유전자에 대한 풍부. 명시된 유기체, 사용자 정의 통계 배경, 하위 대표 테스트 및 g:Profiler 다중 테스트 교정. unmapped, ambiguous, 및 중복 식별자는 침묵적으로 불멸되는 대신 메타 데이터에 반환됩니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `genes` | 문자열 배열 | **필수**; 최소품목: 1; 최대품목: 5000 |
+| `organism` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 64; 패턴: "^&#91;a-z&#93;&#91;a-z0-9_&#93;&#42;$" |
+| `sources` | 문자열 배열 | 선택 사항; 최대품목: 100 |
+| `background_genes` | 문자열 배열 | 선택 사항; 최소품목: 1; 최대품목: 20000 |
+| `domain_scope` | 문자열 | 선택 사항; 크기: "annotated", "known", "custom", "custom_annotated"&#93; |
+| `correction_method` | 문자열 | 선택 사항; 기본: "g_SCS"; 한국어 (ko)"사이트맵"· "bonferroni, 영국"· "뚱 베어"· |
+| `user_threshold` | 숫자 | 선택 사항; 최대: 1; 독점적인Minimum: 0 |
+| `all_results` | 불리언 | 선택 사항; 기본값: false |
+| `ordered` | 불리언 | 선택 사항; 기본값: false |
+| `measure_underrepresentation` | 불리언 | 선택 사항; 기본값: false |
+| `no_iea` | 불리언 | 선택 사항; 기본값: false |
+| `no_evidences` | 불리언 | 선택 사항; 기본값: false |
+| `numeric_ns` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 64 |
+
+```javascript
+const result = await host.mcp("genes", "enrich_gene_set", {"genes": ["TP53", "EGFR", "BRCA1"], "organism": "hsapiens", "sources": ["GO:BP", "REAC"], "correction_method": "fdr"})
+```
+
 </ToolOperationGroup>
 
 ## 한국어 (Korean) {/* #family-5 */}
@@ -625,16 +661,17 @@ const result = await host.mcp("genes", "map_reactome_pathways", {"identifiers": 
 
 ### `ensembl_lookup` {/* #ensembl_lookup */}
 
-Ensembl gene/transcript/protein을 안정된 ID 또는 기호에 의한 유전자를 찾습니다. 핵심 표기 기록(위치, 바이오타입, 원시적 특성, 설명)을 반환합니다. Args : 쿼리 (Ensembl 안정적인 ID ENSG ... / ENST ... / ENSP ..., 버전 허용; 또는 BRAF와 같은 유전자 기호 / 별 - 진정한 안정 ID &#91;ENS + 옵션 종 코드 + 기능 문자 + > = 6-digit 블록, 또는 LRG_N&#93; 경로 ID 엔드 포인트; 다른 모든 것, incl. "ENS" 시작하기 ENSA와 같은 기호 엔드포인트에); 종 (암호표에 대한 Ensembl 종 이름, 기본 homo_sapiens; 안정적인 ID를 무시); 확장 (아이 기능 트리 포함 - gene's transcripts/exons/translation; 기본 해제). &#123;found, 쿼리, 종, record&#125; 반환; 기록은 아무것도 일치하지 않을 때, 다른 업스트림 볼업 dict - 유전자 &#123;id, display_name, 설명, 바이오 타입, object_type, seq_region_name, 시작, 끝, 물가, assembly_name, canonical_transcript, 버전, ...&#125; 1 기반 포괄적 인 좌표로. 성공적인 조회를 위해, 반환된 `species`는 상류 기록에서 옵니다. 안정적인 ID는 자신의 종을 선택, 그래서 요청/기본 종은 그 경로에 대 한 무시. 잘못된 결과가 요청/기본 종을 정하고 `record: null`이 있습니다.
+안정된 ID 또는 기호에 의한 유전자, 성적, 단백질을 찾습니다. 쿼리는 ENS ID (버전 허용), FlyBase/WormBase/yeast ID, 또는 BRAF와 같은 기호를 허용한다. query_type: 자동 (과태)는 ID를 첫째로 삼고, 그 후에 입력이 canonical ENS/LRG ID인 경우에만 명시된 부재에 상징합니다; id는 ID 조회만 사용합니다; 기호는 버전 정상화 없이 단지 상징 lookup를 이용합니다. 종은 기호 파열 (기본 homo_sapiens)에만 적용되며, 불이 켜지지 않습니다. transcripts, exons 및 번역 (기본 false)를 포함합니다. 잘못된 요청 및 서비스 실패는 오류를 제기합니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
 | `query` | 문자열 | **필수** |
+| `query_type` | 문자열 | 선택 사항; 기본: "auto"; 크기: "auto", "id", "symbol" |
 | `species` | 문자열 | 선택 사항; 기본: "homo_sapiens" |
 | `expand` | 불리언 | 선택 사항; 기본값: false |
 
 ```javascript
-const result = await host.mcp("genomes", "ensembl_lookup", {"query": "BRAF"})
+const result = await host.mcp("genomes", "ensembl_lookup", {"query": "BRAF", "query_type": "symbol"})
 ```
 
 ### `ensembl_xrefs` {/* #ensembl_xrefs */}
@@ -687,7 +724,7 @@ const result = await host.mcp("genomes", "ensembl_homology", {"gene_symbol": "BR
 
 ### `ensembl_sequence` {/* #ensembl_sequence */}
 
-Ensembl의 Fetch 순서 — 안정된 ID (gene/transcript/protein) 또는 genomic 지구에 의하여. EITHER stable_id 또는 지역을 통과하십시오. Args : stable_id (ENSG ... / ENST ... / ENSP ..., 승인 된 버전); 지역 (1 기반 포함 크롬 : 스타트..end 또는 크롬 : 스타트 엔드, GRCh38 인간, 최대 10Mb); 종 (지역 경로, 기본 homo_sapiens; 안정적인 ID를 무시); seq_type (ID 경로: 게놈 디폴트/cdna/cds/protein - ENST/ENSP에서만 단백질; 항상 genomic을 반환 지역에 대 한 무시; max_bytes (유료로드 가드 기본 400000 - 더 큰 순서는 `seq` omitted; length/sha256/metadata는 항상 돌려보냅니다; 전체 텍스트에 대 한 더 큰 max_bytes와 다시 호출). &#123;found, 쿼리, seq_type, ID, 설명, 분자, 길이, sha256, seq&#125;를 반환 - 분자에 의해 함침되는 단위의 길이 (Dna, 단백질을 위한 잔류물을 위한 기초); seq는 모자를 씌우는 seq_omitted에 의해 대체했습니다; 발견 : 알 수없는 안정적인 ID에 대한 null 필드와 함께; 업스트림 메시지로 구동되는 / oversize 영역.
+Ensembl의 Fetch 순서 — 안정된 ID (gene/transcript/protein) 또는 genomic 지구에 의하여. EITHER stable_id 또는 지역을 통과하십시오. Args : stable_id (ENSG ... / ENST ... / ENSP ..., 승인 된 버전); 지역 (1 기반 포함 크롬 : 스타트..end 또는 크롬 : 스타트 엔드, GRCh38 인간, 최대 10Mb); 종 (지역 경로, 기본 homo_sapiens; 안정적인 ID를 무시); seq_type (ID 경로: genomic default/cdna/cds/protein; 항상 genomic을 돌려주는 지구를 무시했습니다. 이 도구는 한 번의 순서로 돌아갑니다: 유전자 수준 cdna/cds/protein 요청을 위해, 대신 transcript/protein 안정 ID를 지정하십시오; max_bytes (유료로드 가드 기본 400000 - 더 큰 순서는 `seq` omitted; length/sha256/metadata는 항상 돌려보냅니다; 전체 텍스트에 대 한 더 큰 max_bytes와 다시 호출). &#123;found, 쿼리, seq_type, ID, 설명, 분자, 길이, sha256, seq&#125;를 반환 - 분자에 의해 함침되는 단위의 길이 (Dna, 단백질을 위한 잔류물을 위한 기초); seq는 모자를 씌우는 seq_omitted에 의해 대체했습니다; 발견: Ensembl이 명시적으로 요청한 안정된 ID를 찾을 때만 null 필드와 함께 나눕니다. 다중 순서 요구, incompatible 순서 유형 및 다른 상류 실패는 과실을 올립니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -714,6 +751,45 @@ Ensembl은 유전자, 성적, 규제 기능 (enhancers/promoters), 반복, 변�
 
 ```javascript
 const result = await host.mcp("genomes", "ensembl_overlap_region", {"region": "7:140719327-140925199", "feature": "gene"})
+```
+
+### `ncbi_resolve_taxon` {/* #ncbi_resolve_taxon */}
+
+NCBI 세무성 식별자에 종 또는 세무 이름을 해결합니다. 과학/일반적인 이름 또는 숫자 TaxID를 받아들이십시오; 모든 업스트림 경기를 반환 그래서 주위 이름은 처음 결과에 할당되지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `query` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200 |
+| `max_matches` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_resolve_taxon", {"query": "human"})
+```
+
+### `ncbi_get_assembly_info` {/* #ncbi_get_assembly_info */}
+
+GCF/GCA 액세스 버전의 정확한 NCBI 게놈 어셈블리 정체성을 반환, 세금 포함, 어셈블리 이름, UCSC synonym, 상태, 및 쌍 RefSeq/GenBank 액세스. Versionless accessions는 재현성 및 종 호환성 오류를 방지하기 위해 거부됩니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `assembly_accession` | 문자열 | **필수**; 패턴: "^GC&#91;AF&#93;_&#91;0-9&#93;&#123; 9&#125;\\.&#91;0-9&#93;+$" |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_get_assembly_info", {"assembly_accession": "GCF_000001405.40"})
+```
+
+### `ncbi_get_sequence_aliases` {/* #ncbi_get_sequence_aliases */}
+
+순서 이름과 정확한 UCSC/RefSeq/GenBank aliases 한 버전 NCBI 어셈블리. 선택적으로 1개의 순서 이름을 해결하십시오; ambiguous shared chromosome labels는 alt 또는 unlocalized 비계를 선택 대신 여러 경기로 유지됩니다. 결과는 max_sequences (과태 200);에 의해 통제되는 경계된 접두사입니다 전체 조립 보고서가 필요할 때 더 큰 캡을 사용합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `assembly_accession` | 문자열 | **필수**; 패턴: "^GC&#91;AF&#93;_&#91;0-9&#93;&#123; 9&#125;\\.&#91;0-9&#93;+$" |
+| `sequence` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200 |
+| `max_sequences` | 정수 | 선택 사항; 기본: 200; 최소: 1; 최대: 5000 |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_get_sequence_aliases", {"assembly_accession": "GCF_000001405.40", "sequence": "chr1"})
 ```
 
 ### `ucsc_list_tracks` {/* #ucsc_list_tracks */}
@@ -749,7 +825,7 @@ const result = await host.mcp("genomes", "ucsc_track_data", {"track": "cpgIsland
 
 ### `ucsc_conservation` {/* #ucsc_conservation */}
 
-UCSC phyloP / phastCons 트랙의 영역에 대한 진화 보수 요약 (다양한 정렬에 기초 현명한 점수). 아르그: 크롬 (chr prefixed); 시작 (0 기반 반 오픈); 끝 (exclusive; 100000 bp에서 캡핑 된 스팬 - 더 큰 분할); genome (과태 hg38); 궤도 (과태 phyloP100way; positive=conserved, 부정적인=fast 진화; 대안 hg38 phastCons100way, phyloP30way, phastCons30way, phyloP447way, phyloP470way; hg19 phyloP100wayAll/phastCons100way; include_values (또한 기초 &#123;start, 최후, value&#125;를 돌려보내십시오 max_values, values_truncated 플래그에서 캡핑 된 행 캡; default false = 요약만); max_values (기초 모자 기본 2000). &#123;genome, 트랙, 크롬, 시작, 끝, span_bp, n_bases_covered, coverage_fraction, 의미, 분, max&#125; 반환 (+values, 요청시 values_truncated). 각 row's 기초 경간에 의해 무게를 매는 통계, 창에 자르는; coverage_fraction의 0 득점되지 않는 기초. Non-score 트랙 인상; 업스트림-truncated 행 목록도 인상. 좌표는 `end > start`과 더불어 비 부정적인 안전 정수이어야 합니다. 잘못된 값은 거절되지 않고, 다른 locus에 둥글거나 둥글게 되었습니다.
+UCSC phyloP / phastCons 트랙의 영역에 대한 진화 보수 요약 (다양한 정렬에 기초 현명한 점수). 아르그: 크롬 (chr prefixed); 시작 (0 기반 반 오픈); 끝 (exclusive; 100000 bp에서 캡핑 된 스팬 - 더 큰 분할); genome (과태 hg38); (선택; 다른 genomes를 위한 hg19와 phyloP100way를 위한 phyloP100wayAll에 과태; positive=conserved, 부정적인=fast 진화; 대안 hg38 phastCons100way, phyloP30way, phastCons30way, phyloP447way, phyloP470way; hg19 phastCons100way; include_values (또한 기초 &#123;start, 최후, value&#125;를 돌려보내십시오 max_values, values_truncated 플래그에서 캡핑 된 행 캡; default false = 요약만); max_values (기초 모자 기본 2000). &#123;genome, 트랙, 크롬, 시작, 끝, span_bp, n_bases_covered, coverage_fraction, 의미, 분, max&#125; 반환 (+values, 요청시 values_truncated). 각 행의 기초 경간에 의해 무게를 달아, 창에 자르는; coverage_fraction의 0 득점되지 않는 기초. Non-score 트랙 인상; 업스트림-truncated 행 목록도 인상.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -757,7 +833,7 @@ UCSC phyloP / phastCons 트랙의 영역에 대한 진화 보수 요약 (다양�
 | `start` | 정수 | **필수**; 최소: 0; 최대: 9007199254740991 |
 | `end` | 정수 | **필수**; 최소: 0; 최대: 9007199254740991 |
 | `genome` | 문자열 | 선택 사항; 기본: "hg38" |
-| `track` | 문자열 | 선택 사항; 기본: "phyloP100way" |
+| `track` | 문자열 | 옵션 정보 |
 | `include_values` | 불리언 | 선택 사항; 기본값: false |
 | `max_values` | 정수 | 선택 사항; 기본: 2000 |
 
@@ -806,12 +882,13 @@ const result = await host.mcp("genomes", "ucsc_chrom_sizes", {"genome": "hg38", 
 
 ### `get_variant` {/* #get_variant */}
 
-ID로 하나의 gnomAD 짧은 변형을 확인하고 인구 빈도를 반환하십시오. `variant_id`는 dataset's 참고 구조 (R3/r4를 위한 GRCh38, r2.1/ExAC를 위한 GRCh37를 위한 GRCh38)에 `chrom-pos-ref-alt`입니다, 예를들면. `19-44908822-C-T` (APOE rs7412); `search_variants`을 사용하여 rsID를 먼저 해결합니다.
+ID로 1개의 gnomAD 짧은 변종을 찾아서 전체적인 exome/genome 빈도를 반환하십시오. `variant_id`은 데이터셋의 참조 빌드 (GRCh38 for r3/r4, GRCh37 for r2.1/ExAC)에 `chrom-pos-ref-alt`입니다. `19-44908822-C-T` (APOE rs7412); `search_variants`을 사용하여 rsID를 먼저 해결합니다. ancestry-specific counts/frequencies가 개별 변종에 필요한 경우 `include_populations: true`을 설정합니다. dataset, allele counts 및 품질 필터를 유지하면 주파수를 해석 할 수 있습니다. rarity는 혼자 병렬 또는 ACMG 뇌관을 설치하지 않습니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
 | `variant_id` | 문자열 | **필수** |
 | `dataset` | 문자열 | 선택 사항; 기본: "gnomad_r4"; 한국어 (ko)"gnomad_r4"· "gnomad_r4_non_ukb"· "gnomad_r3"· "gnomad_r3_controls_and_biobanks"· "gnomad_r3_non_cancer"· "gnomad_r3_non_neuro"· "gnomad_r3_non_topmed"· "gnomad_r3_non_v2"· "gnomad_r2_1"· "gnomad_r2_1_controls"· "gnomad_r2_1_non_cancer"· "gnomad_r2_1_non_neuro"· "gnomad_r2_1_non_topmed"· "(주)아라"· |
+| `include_populations` | 불리언 | 선택 사항; 기본값: false |
 
 ```javascript
 const result = await host.mcp("variants", "get_variant", {"variant_id": "19-44908822-C-T", "dataset": "gnomad_r4"})
@@ -1101,7 +1178,7 @@ const result = await host.mcp("clinical-trials", "analyze_endpoints", {"nct_id":
 
 ### `search_by_eligibility` {/* #search_by_eligibility */}
 
-환자의 매칭. 상태가 설정되지 않는 한 RECRUITING 시험에 대한 DEFAULTS. min_age/max_age는 PATIENT's 나이 (" 65 years", " 6 Months")이고 나이 창이 환자를 인정하는 일치 시험입니다; 성별 일치 시험은 그 성별 또는 모든 comers를 수용; eligibility_keywords는 포함/외환 표준 텍스트를 검색합니다 (예: "HbA1c >의 8", "BRCA mutation", "ECOG 0-1"). 상태의 적어도 하나, eligibility_keywords, min_age, max_age 또는 성은 요구됩니다. page_token 페이지.
+환자의 매칭. 상태가 설정되지 않는 한 RECRUITING 시험에 대한 DEFAULTS. min_age 또는 max_age 중 하나 환자 연령 ( "65 년", "6 개월"); 두 시험 연령 경계가 검사됩니다. 둘 다 공급되는 경우에, 예심은 전체 환자 나이 간격을 인정해야 합니다. Missing Trial age는 제한되지 않습니다. 성 MALE/FEMALE는 모든 상품 예심을 포함합니다; 모든 또는 omitted 성은 성 필터를 적용하지 않습니다. eligibility_keywords는 포함/외환 표준 텍스트를 검색합니다 (예: "HbA1c > 8", "BRCA mutation", "ECOG 0-1"). 상태의 적어도 하나, eligibility_keywords, min_age, max_age 또는 성은 요구됩니다. page_token 페이지.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -2484,7 +2561,7 @@ const result = await host.mcp("protein-annotation", "map_string_ids", {"symbols"
 
 ### `get_string_network` {/* #get_string_network */}
 
-신뢰 임계 값에서 유전자 목록 (v12.0)에 대한 STRING 단백질 - 단백질 상호 작용 네트워크. 지도 기호 첫번째 (보고되지 않은), 다음 검색 노드, 가장자리, 요약 및 입증.
+신뢰 임계 값에서 유전자 목록 (v12.0)에 대한 STRING 단백질 - 단백질 상호 작용 네트워크. 지도 기호 첫번째 (보고되지 않은), 다음 검색 노드, 가장자리, 요약 및 입증. 단일 맵 입력 요청 10 상호 작용 이웃, 일치 STRING; 여러 맵핑 입력이 확장되지 않습니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -2572,7 +2649,7 @@ const result = await host.mcp("cancer-models", "cbioportal_mutations_in_gene", {
 
 ### `cbioportal_mutation_frequency` {/* #cbioportal_mutation_frequency */}
 
-몇몇 cBioPortal 학문 (1–12)의 1개의 유전자의 돌연변이 빈도: 학문 당 순전한 cohort의 돌연변이 표본 분수, 첫째로 평가했습니다.
+여러 cBioPortal 연구 (1–12)에서 한 유전자의 돌연변이 빈도 : 선택한 돌연변이 프로필 및 샘플 목록에서 유전자를 위해 프로파일을 샘플로 구분 된 고유의 돌연변이 샘플; 가장 빠른 첫 번째 순위.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -2737,6 +2814,31 @@ const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGA
 
 <ToolOperationGroup>
 <summary>작업 및 매개 변수 표시</summary>
+
+### `ena_search_runs` {/* #ena_search_runs */}
+
+ENA / INDC 연구, 실험, 샘플 또는 액세스와 관련된 공공 sequencing 실행을 찾으십시오. PRJ/ERP/SRP/DRP, ERX/SRX/DRX, SAM/ERS/SRS/DRS 및 ERR/SRR/DRR 식별자를 수락하십시오; GEO GSE/GSM, ArrayExpress E-MTAB 및 MGnify MGYS 식별자는 연결되는 INSDC 접근을 첫째로 필요로 합니다. Accession lookup 만 키워드 검색하지 않습니다. 데이터 파일을 fetching하지 않고 유기 및 라이브러리 메타데이터를 반환합니다. 결과는 1000 실행에서 캡핑됩니다; truncated result는 완전한 cohort가 아니고, 반복된 호출은 오프셋 또는 continuation 토큰을 제공하지 않기 때문에 pagination 아닙니다. 완전한 적용이 요구될 때 더 좁은 표본 또는 실험 접근을 사용하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `accession` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 64 |
+| `limit` | 정수 | 선택 사항; 기본: 100; 최소: 1; 최대: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_search_runs", {"accession": "PRJNA123835", "limit": 100})
+```
+
+### `ena_get_run_files` {/* #ena_get_run_files */}
+
+아카이브 생성 FASTQ 다운로드 URL, 바이트 크기 및 업스트림 MD5 체크섬 한 ERR / SRR / DRR 실행. 파일 재고 만 반환; 다운로드 또는 체크섬 검증 없음. 보고 순서에 있는 각 파일을, unpaired 또는 오래 견딘 파일을 포함하여 유지합니다; library_layout=PAIRED는 정확히 두 개의 파일을 무시하지 않습니다. file_index은 위치 만이며 R1/R2 또는 mate 식별자가 아닙니다. 일부 실행 (일부 단일 셀/native-format 제출 포함)에는 아카이브 생성 된 FASTQ가 없습니다. 제출된 BAM/CRAM/SRA 파일은 이 도구 밖에 있습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `run_accession` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 64 |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_get_run_files", {"run_accession": "SRR037073"})
+```
 
 ### `arrayexpress_search_experiments` {/* #arrayexpress_search_experiments */}
 

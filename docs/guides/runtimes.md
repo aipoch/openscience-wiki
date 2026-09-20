@@ -1,7 +1,7 @@
 ---
 title: "Python and R runtimes"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -252,7 +252,7 @@ Open the Notebook's output and compare it with the saved report. This Windows 10
 
 For Windows conda R startup or kernel-recovery failures, use v0.30.2 or later before retrying. The release fixes executable lookup after environment preparation and R kernel recovery. After updating, recheck the environment and run a small R calculation in Notebook; **Ready** alone is not an execution result. The screenshots below retain the versions and results of their original runs.
 
-For a Windows R run that reports **Enable protected mode before authorizing R access.**, inspect **Network settings** and the R card's **Authorize and verify** instructions. Resolve the reported authorization prerequisite before rerunning; a **Ready** card alone does not confirm execution. Keep the full error if the request remains blocked and follow [Troubleshooting](troubleshooting.md).
+From v0.31.0, Windows R can run in standard mode without first setting up protected mode. Treat **Enable protected mode before authorizing R access.** from an older release as version-specific guidance. Network protection and package-installation permissions remain separate controls. In v0.31.1, a run blocked by Notebook network protection shows an inline warning with a link to the relevant setting; the cell was not executed. Review the required access, then rerun and check the output.
 
 <span id="windows-runtime-qc" />
 

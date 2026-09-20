@@ -1,7 +1,7 @@
 ---
 title: "Provider and local model setup"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -24,7 +24,7 @@ Choose **Import existing Codex sign-in** to copy a working local sign-in into Op
 
 ## Choose a provider region or a free catalog model {/* #provider-regions */}
 
-For **SenseNova**, select **China** or **Global** in the provider form before choosing a model. Use the API key for that region, review the resulting model list, save, and test the connection. Switching regions can change both the endpoint and available models; a key or model name from the other region may not work.
+For **SenseNova**, select **China** or **Global** in the provider form before choosing a model. Use the API key for that region, review the resulting model list, select **Save**, and wait for connection validation before the change is committed. Switching regions can change both the endpoint and available models; a key or model name from the other region may not work.
 
 For gateways such as **OpenRouter** or **OpenCode Zen**, select a free model only when that exact entry is offered for the active framework. Use the account and credential required by the service. A free catalog entry does not remove usage limits or establish support for every tool or image input. Do not append `:free` to an arbitrary model ID. Send a small request and check the returned model and result before using the connection for research.
 
@@ -44,7 +44,7 @@ For gateways such as **OpenRouter** or **OpenCode Zen**, select a free model onl
 | --- | --- | --- |
 | **Check Codex login** | The saved connection may have expired. | The pending check settles into the displayed verified or failed state. |
 | **Re-import Codex login** | You have refreshed the external sign-in and want to update the application copy. | Authentication is imported and checked again. |
-| **Edit** | You need to review authentication or transport settings. | Save the intended settings and recheck the connection. |
+| **Edit** | You need to review authentication or transport settings. | Select Save and wait for successful validation before the edit is committed. |
 | **Delete** | An unused provider should be removed. | Availability depends on whether the provider is still required; an active dependency can prevent deletion. |
 
 If import reports that a file-backed Codex login is missing, sign in through the supported Codex flow and retry **Re-import Codex login**. A login held only in an external credential store is not necessarily an importable file.
@@ -56,7 +56,7 @@ The agent runtime runs the work; the model provider supplies the model. Installi
 
 ## Update or remove an API credential
 
-After changing a key at the service, find its provider in **Settings → Model**, select **Edit**, enter the replacement in **API key**, and save. Leaving this field blank keeps the existing key; it does not clear it. Wait for the connection test. If authentication fails, check the endpoint, the account the key belongs to, and its validity before retrying.
+After changing a key at the service, find its provider in **Settings → Model**, select **Edit**, enter the replacement in **API key**, and select **Save**. Leaving this field blank keeps the existing key; it does not clear it. The connection is tested before the edit is committed. If authentication fails, check the endpoint, the account the key belongs to, and its validity before retrying.
 
 After **Connection verified**, complete a small request with that provider. Remove an unused provider with **Delete**, checking its name in the confirmation. Removing the application configuration does not revoke the key at the service.
 
@@ -80,7 +80,7 @@ Start by selecting `Custom Gateway`. Changing the provider type can preserve the
 | `Advanced settings` | Expands or collapses capability and token-limit fields |
 | `More information` (`i`) | Opens contextual help beside the associated label |
 | `Back` | Returns to Agent runtime; the wizard owns the form draft so it can survive navigating back |
-| `Test & continue` | Validates required fields, then saves/tests the provider when valid; advances after a successful applicable validation |
+| `Test & continue` | Validates required fields, then tests the provider before committing valid settings; advances after a successful applicable validation |
 
 The three API formats shown in the menu are:
 
@@ -208,3 +208,7 @@ Local `qwen2.5:7b` completed this call through the Codex framework and a local C
 For 400, 401, 403, 404, 429 or 5xx responses, use the [HTTP troubleshooting table](troubleshooting.md#http-errors-400-403-429-and-5xx). Keep the responding service and its detailed message with the status code.
 
 Source: [ProviderForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ProviderForm.tsx), [ProviderStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/ProviderStep.tsx).
+
+## Save a provider change in v0.31.0 and later {/* #validated-provider-save */}
+
+Provider edits are tested before they are committed. Select **Save**, wait for the connection result, and confirm success before closing the form. A failed test does not replace a working saved configuration. If a previously saved connection is rejected during a request, its availability is updated; check the credential and endpoint, then test again. **Conversation models**, **Classification models** and **Local parsing models** have different purposes; see [model settings](models.md#classification-models).

@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -10,7 +10,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # 科学データベース {/* #scientific-databases */}
 
-アプリは、**23データソースコネクタ** をバンドルし、別々のオフライン Molecule Connector. フルレジストリは、Moleculeの2つの操作を含む**239 ツール操作**を持っています。 237をカバーする下にあるデータソースカタログ。 設定で関連するConnectorを有効にし、正しい識別子タイプでバインドされた質問を尋ねます。
+アプリは、**23データソースコネクタ** をバンドルし、別々のオフライン Molecule Connector. フルレジストリは、Moleculeの2つの操作を含む**246 ツール操作**を持っています。 244をカバーする下にあるデータソースカタログ。 設定で関連するConnectorを有効にし、正しい識別子タイプでバインドされた質問を尋ねます。
 
 <span id="actual-local-queries" />
 
@@ -23,8 +23,8 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | 化学・化学 `chemistry` | PubChem, ChEBI, レア, ビンディングDB | 12 | PubChem、ChEBI、Rhea、BindingDBによる小分子化学。  |
 | 文献グラフ・ `literature` | OpenAlex、arXiv、Crossref、DataCite | 13 | 論文、著者、引用、DOIの更新とデータセット/ソフトウェアレコード。 |
 | パブメッド・ `pubmed` | パブメッド、PMC、欧州PMC | 7 | NCBI Eユーティリティ、PMC IDコンバーター、ヨーロッパPMCによる生物医学文献 — 検索、メタデータ、関連記事、引用ルックアップ、ID変換、完全なテキストと著作権。  |
-| 遺伝子・オントロジー・ `genes` | MyGene、UniProt、OLS、QuickGO、Reactome | 7 | 遺伝子/タンパク質のアイデンティティと腫瘍学の用語 — mygene.info, UniProt, OLS4のオントロジー, GOのアノテーション, Reactomeの経路.  |
-| ゲノム・ `genomes` | 組み立て、UCSC | 11 | ゲノムアノテーション、バリアント、均衡、シーケンス、ブラウザのトラック — REST と UCSC Genome ブラウザーを組み立てます。  |
+| 遺伝子・オントロジー・ `genes` | MyGene、UniProt、OLS、QuickGO、Reactome、g:Profiler | 9 | 遺伝子/タンパク質のアイデンティティと腫瘍学の用語 — mygene.info, UniProt, OLS4のオントロジー, GOのアノテーション, Reactomeの経路.  |
+| ゲノム・ `genomes` | 組み立て、UCSC、NCBI | 14 | ゲノムアノテーション、バリアント、均衡、シーケンス、ブラウザのトラック — REST と UCSC Genome ブラウザーを組み立てます。  |
 | バリアント・ `variants` | gnomAD、ClinVar、dbSNP | 15 | 人間の遺伝的変形 — gnomAD の人口の頻度/対照的、ClinVar の記録/調査(直接 NCBI)、dbSNP、構造的および mitochondrial の変形。  |
 | 治験・臨床試験 `clinical-trials` | 臨床トライアル.gov | 6 | ClinicalTrials.govの臨床試験 — 検索、詳細、スポンサー、投資家、エンドポイント、および適格性。  |
 | 臨床ゲノム・ `clinical-genomics` | ClinGen、CIViC、オープンターゲット | 20 | 臨床ゲノムの知識ベース:ClinGenの治癒、CIViC臨床証拠、およびオープンターゲットプラットフォーム。  |
@@ -37,7 +37,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | 蛋白質のアノテーション · `protein-annotation` | InterPro、Pfam、ヒトプロテインアトラス、ストリング | 13 | タンパク質ドメインアーキテクチャ、家族/クランメンバーシップ、InterPro/Pfam、ヒトプロテインアトラスおよびストリングによる表現アトラスおよび相互作用ネットワーク。  |
 | がんモデル・ `cancer-models` | cBioPortal(バイオポータル) | 6 | cBioPortal REST API によるがんゲノミクス研究記録。  |
 | RNA・RNA `rna` | ラファム | 9 | Rfamを介したRNAファミリーデータ(メタデータ、アライメント、モデル、構造)をノンコーディング。  |
-| Omics アーカイブズ・ `omics-archives` | ArrayExpress、GEO、MetaboLights、MGnify、PRIDE | 17 | Omicsのデータアーカイブ — 式(ArrayExpress、GEO)、メタボロミクス(MetaboLights)、metagenomics(MGnify)、proteomics(PRIDE)。  |
+| Omics アーカイブズ・ `omics-archives` | ArrayExpress、GEO、MetaboLights、MGnify、PRIDE、ENA | 19 | Omicsのデータアーカイブ — 式(ArrayExpress、GEO)、メタボロミクス(MetaboLights)、metagenomics(MGnify)、proteomics(PRIDE)。  |
 | セルガイド・ `cellguide` | セルックスジーン | 5 | セルックスジーン・セルガイドによる細胞型アイデンティティ、マーカー遺伝子、ソースデータセット、組織。  |
 | 規制・規制 `regulation` | エンコード、JASPAR、UniBind | 16 | 遺伝子調整機能ゲノム — ENCODE実験/biosamples/files、JASPAR TF結合プロファイル、UniBind ChIP-seq TFBS。  |
 | リサーチ・リソース・ `research-resources` | Grants.gov, 抗体レジストリ | 5 | 資金調達機会検索(Grants.gov)と抗体カタログ検索(抗体レジストリ)。  |
@@ -105,6 +105,67 @@ Rfamシーケンス検索では、公式のバッチエンドポイントを使�
 
 レポートでは、操作を添付し、入力、エラーテキストとタイムスタンプを[トラブルシューティング](../guides/troubleshooting.md)でバインドします。 共有する前に、認証情報とプライベートデータを削除します。
 
+## ENA の実行と FASTQ ファイルの復元 {/* #ena-runs */}
+
+1. **Settings → Connectors** で **Omics アーカイブ** を有効にします。 PRJ の勉強や SRR の実行など、`ena_search_runs` への公開 ENA/INSDC へのアクセスを提供します。 GEO `GSE` 識別子は、最初に INSDC の勉強にリンクする必要があります。 キーワードは受け付けていません。
+2. `run_accession`、生物、図書館戦略/レイアウトおよび`truncated`を点検して下さい。 1,000 は最大です。 オフセットや継続トークンはありません。 応答が中断されている場合、アクセスが狭くなります。
+3. `ena_get_run_files` に返された実行を 1 つ渡して下さい。 `found`、`fastq_available`、`fastq_files`の各エントリをチェックします。 在庫はURL、圧縮ファイルサイズ、および上流MD5を供給します; ファイルをダウンロードしたり、コンテンツを検証したりしません。
+4. 別のダウンロードの前に、ストレージを確認し、マニフェストを保持します。 ダウンロードしたバイトをリストされたチェックサムに対して確認します。 ペアリングされたライブラリは、まったく2つのファイルを必要としません。 `file_index` から読み取りメイトの ID を差し込みません。
+
+これらは、v0.31.1の運用契約であり、完成したシーケンシングデータのダウンロードではありません。 [正確なパラメータ](../reference/connector-operations.md#ena_search_runs)
+
+## 遺伝子組込みの充実を実践し、検査する {/* #gene-set-enrichment */}
+
+<p className="example-label"><strong>実践例</strong> 意図的に選択されたヒトDNA損傷遺伝子リスト</p>
+
+このv0.31.1の例では、11パブリック遺伝子のシンボルを使用して、g:Profilerを実証します。 既知の生物学的役割で選ばれたので、豊かさが期待されています。 GSE60450プロジェクトや偏見のない発見の証拠から差圧結果は異なります。
+
+1. **Settings → Connectors** では、**ジャンルとオノトロジー** を代理店に利用できるようにします。 接続されたモデルと利用可能なNotebookランタイムでセッションを開きます。
+2. 生物、遺伝子識別子、データソース、統計的な背景を指定します。 実際の実験データでは、実験で選択した遺伝子を使用して背景を正当化します。 このチュートリアルでは、カスタム測定遺伝子の宇宙ではなく、すべてのアノテーション遺伝子を明示的に使用しています。
+3. 下記のプロンプトを送信してください。 ソースバージョンのクエリとエンリッチメントコールを同じセッションで保持し、実際の結果を保存します。
+
+```text
+Use Genes & Ontologies through Session Notebook for an English g:Profiler
+tutorial. The deliberately selected gene list is TP53, ATM, ATR, CHEK1,
+CHEK2, BRCA1, BRCA2, RAD51, CDKN1A, GADD45A, MDM2.
+First call list_enrichment_sources with organism hsapiens.
+Then call enrich_gene_set with these genes, organism hsapiens,
+sources GO:BP and REAC, domain_scope annotated,
+correction_method fdr, and user_threshold 0.05.
+Save the full response as dna-damage-enrichment.json, all returned terms
+as dna-damage-enrichment.csv, and query, source versions, mappings,
+background and limitations as dna-damage-enrichment-notes.md.
+Retain unmapped, ambiguous and duplicate identifiers. Treat mapped_genes
+as the returned mapping object. Report errors instead of inventing results.
+This is not differential-expression evidence or evidence of regulation direction.
+```
+
+4. 生成されたメモを開き、クエリとマッピングのカウントを確認します。 これは、マップされた**11/11**識別子を実行します。, **0**非マップ, あいまいなまたは重複識別子. **GRCh38.p14の特長**、g:Profiler **e114_eg62_p19_27110d83**、GOクラス**2026-01-23**およびReactomeクラス**2026-03-20**を記録しました。 後続のサービスバージョンは異なる条件を返す場合があります。
+
+![保存された英語のクエリ、背景、ソースバージョン、識別子チェック](/img/open-science/v0311/enrichment-notes.webp)
+
+5. CSV を開き、JSON をフルで比較します。 FDR 0.05 で返された **891 用語** を実行します。 プレビューは最初の100行のみを示しています。 表示限界は合計の結果の計算ではないです。 `source`、`native`、修正された`p_value`、`intersection_size`、`query_size`および`effective_domain_size`を条件を解釈するとき保持して下さい。
+
+![正しい確率とドメインサイズの実際のエンリッチメントテーブル](/img/open-science/v0311/enrichment-table.webp)
+
+<ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">解析ノート</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">すべての891結果の列</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">完全な応答</ExampleDownload>
+
+記録された実行では、両方のサービスコールが成功しました。 エージェントが`mapped_genes`を配列として処理したため、初期に失敗したメモを生成します。 既存のレスポンスから3つのファイルを全て処理し保存するのを修正しました。 上記のファイルは、完成した出力です。 彼らの存在は、自動再生や完全に捕獲された環境を認証しません。
+
+`background_size: null`はカスタム背景リストが提出されていないことを意味します。 遺伝子ゼロの統計的な宇宙とは意味しません。 永久有効ドメインサイズを使用してください。 エンゲージメントは、原因の関与、差異的な表現、またはアップ/ダウン規制を確立しません。 [操作パラメータ](../reference/connector-operations.md#enrich_gene_set) を参照してください。
+
+## リファレンス・ゲノム・アイデンティティの確認 {/* #reference-genome */}
+
+**ゲノム** を 3 つのステップで使用して下さい: 目的の生物のための `ncbi_resolve_taxon`; **バージョンアップ** GCF/GCAアクセス用の`ncbi_get_assembly_info`; その後、`chr1`などのシーケンス用の`ncbi_get_sequence_aliases`。 あいまいなマッチやトランジションのフラグを目に見えるようにしてください。 これらは、完全なクロスソース分析ではなく、検索手順です。
+
+例えば、参照コールは`GCF_000001405.40`を使用します。 アセンブリ名だけは、そのバージョンIDの代替ではありません。 返された現在のアクセスは、要求された履歴アクセスを静かに置き換えることを承認しません。 シーケンスエイリアスは、アセンブリ内のネーミングを記述します。 染色体ラベルを変換することは、ビルド間でのリフトオーバーを調整しません。 [正確な入力](../reference/connector-operations.md#ncbi_get_assembly_info)
+
+## gnomAD人口とストリングネットワークを読みます {/* #string-network */}
+
+`get_variant` では、人口の詳細は必要なときにのみ `include_populations: true` を設定します。 データセットとリファレンスビルドを保持します。 ゲノム観測とゲノム観測は別々に残っています。 未利用可能な値は、`null`、ゼロではありません。 集団や性的な strata を重ねるには、要約しないでください。 これらは、alleleの周波数をフィルタリングしていない周波数を観察されます。 [gnomAD パラメータ](../reference/connector-operations.md#get_variant)
+
+v0.31.0から、`get_string_network.nodes`には、返された隣人や分離した地図入力が含まれます。 シングルマップされた入力要求の隣人; 複数のマッピングされた入力は展開されません。 入力ノードを回復するために`is_query`をフィルタリングし、すべてのマップされたエイリアスに`queries`を使用します。 `n_nodes` はグラフをカウントします。 `n_mapped` は入力マッピングをカウントします。 再利用する前に2つを装備したスクリプトを更新します。 [ストリングパラメータ](../reference/connector-operations.md#get_string_network)
+
 <span id="empty-partial-and-failed-responses" />
 
 ## 操作パラメータの検索 {/* #find-operation-parameters */}
@@ -116,4 +177,4 @@ Rfamシーケンス検索では、公式のバッチエンドポイントを使�
 
 実装参照: [コネクタパネル.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorsPanel.tsx).
 
-カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.27.0/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.27.0/src/main/connectors/registry.ts)。
+カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/registry.ts)。

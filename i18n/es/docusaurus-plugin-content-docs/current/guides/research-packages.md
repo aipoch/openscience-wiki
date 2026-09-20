@@ -2,12 +2,12 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
 
 # Paquetes de investigación .science {/* #science-research-packages */}
 
-Un paquete de investigación de **.science** trae las ramas de conversación, archivos y evidencia registrada juntos para un traspaso. Un colega puede importarlo en un proyecto e inspeccionar el historial de investigación. Los períodos de sesiones importados son sólo de lectura; La nueva labor de investigación comienza en una sesión normal.
+Un paquete de investigación de **.science** trae las ramas de conversación, archivos y evidencia registrada juntos para un traspaso. Un colega puede importarlo en un proyecto e inspeccionar el historial de investigación. Las sesiones importadas son de sólo lectura. Desde v0.31.0, utilice **Fork** en la aplicación de escritorio para crear una copia computarizada y continuar la investigación.
 
 ## Elija qué compartir {/* #choose-what-to-share */}
 
@@ -51,7 +51,7 @@ Las siguientes pantallas utilizan una sesión que resume el [GSE60450 muestra ta
 
 ## Use el registro de investigación recibido {/* #use-the-received-research-record */}
 
-La sesión importada se puede consultar y usar como referencia, pero no se puede continuar ni ejecutar. Para hacer un nuevo trabajo, crear una sesión normal y proporcionar explícitamente los archivos de entrada y las instrucciones pertinentes. El uso importado está excluido de los totales de actividad local.
+La sesión importada en sí misma se mantiene sólo lectura. En el escritorio, abra su menú de sesión y elija **Fork**. Espere a **Fork completed**, abra la nueva sesión, e inspeccione sus archivos heredados antes de enviar un seguimiento. La fuente no ha cambiado; el código no se ejecuta automáticamente. Vea [Preparar un período de sesiones en curso](sessions.md#fork-session) para los pasos y cheques. El uso importado está excluido de los totales de actividad local.
 
 Un registro de verificación recibido describe los cheques suministrados por el remitente. Esto no significa que este equipo haya vuelto a ejecutar las comprobaciones. Lea la versión del archivo, los criterios de comparación y el resultado; ver [Reproducibilidad](reproducibility.md) para cómo funcionan esos cheques.
 

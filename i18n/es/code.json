@@ -1611,5 +1611,17 @@
   },
   "docs.outline.reference.v0302.scope": {
     "message": "Carga de Skills de Specialist, Side Chat independiente, consultas de datos y recuperación de Notebook."
+  },
+  "docs.outline.reference.v0311.title": {
+    "message": "v0.31.1"
+  },
+  "docs.outline.reference.v0311.scope": {
+    "message": "ENA, enriquecimiento de conjuntos de genes, genomas de referencia y modelos de clasificación opcionales."
+  },
+  "docs.outline.reference.v0310.title": {
+    "message": "v0.31.0"
+  },
+  "docs.outline.reference.v0310.scope": {
+    "message": "Copias editables de sesiones, validación de proveedores y redes STRING completas."
   }
 }

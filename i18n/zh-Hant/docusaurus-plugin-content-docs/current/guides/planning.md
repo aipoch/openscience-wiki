@@ -1,7 +1,7 @@
 ---
 title: "執行前規劃"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 執行前規劃 {/* #执行前规划 */}
@@ -57,3 +57,7 @@ Open 在對話旁開啟階段、步驟、執行者、預期輸出和可行性說
 後續見[檔案與版本](./files.md)、[Notebook 證據](./notebook.md)、[權限](./approval-modes.md)。
 
 原始碼：[計劃審批和預覽](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/session-plan/SessionPlanSurfaces.tsx)。
+
+## 上下文重建後繼續計劃 {/* #resume-plan */}
+
+從 v0.31.0 起，代理重建上下文後可以恢復當前 Session Plan、修訂版本及待審批狀態。繼續前重新開啟當前計劃，檢查哪些步驟實際完成。待審批的事項仍需審批；恢復計劃不會自動批准，也不會把沒有記錄結果的操作變成已完成。

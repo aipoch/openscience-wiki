@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "設定の概要"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # 設定の概要 {/* #settings-overview */}
@@ -52,3 +52,7 @@ last_update:
 **Feedback** は、設定の下部にある別のエントリのままです。
 
 :::info&#91;保存方法&#93; スイッチはすぐに保存されます。 `Save`、`Add`、または`Import`のロングフォームを使用します。 `Saving…`、`Testing…`、または`Installing…`が示されている間、アプリケーションを閉じないでください。 移行、アンインストール、削除、および広範な権限アクションは、確認が必要です。 :::
+
+## モデル設定タブ {/* #model-tabs */}
+
+内置: **Model**, 使用 **Conversation models** プロバイダーとタスクモデルのため、 **Classification models** 任意のため Skill///////////////////////Connector 選択、および **Local parsing models** ローカルの解析リソース 分類は、モデル設定内のタブで、追加のトップレベルの設定パネルではありません。 [分類のセットアップ](../guides/models.md#classification-models) を参照してください。

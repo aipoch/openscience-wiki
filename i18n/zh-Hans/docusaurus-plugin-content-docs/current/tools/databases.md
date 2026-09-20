@@ -2,7 +2,7 @@
 title: "科学数据库"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -10,7 +10,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # 科学数据库
 
-应用内置 **23 个数据源 Connector**，另有离线 Molecule Connector。完整注册表包含 **239 个工具操作**，其中 Molecule 有 2 个，本页数据源覆盖其余 237 个。先启用相关 Connector，再使用正确编号类型进行小范围查询。
+应用内置 **23 个数据源 Connector**，另有离线 Molecule Connector。完整注册表包含 **246 个工具操作**，其中 Molecule 有 2 个，本页数据源覆盖其余 244 个。先启用相关 Connector，再使用正确编号类型进行小范围查询。
 
 <span id="本地实际查询" />
 
@@ -23,8 +23,8 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | 小分子、化学标识符、反应及结合数据  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 文献、作者、引用、DOI 更新及数据集/软件记录 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | PubMed 文献检索与记录  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome | 7 | 基因符号与标识符映射  |
-| Genomes · `genomes` | Ensembl, UCSC | 11 | 基因组注释与序列  |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 9 | 基因符号与标识符映射  |
+| Genomes · `genomes` | Ensembl, UCSC, NCBI | 14 | 基因组注释与序列  |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | 变异频率与变异记录  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 临床试验登记记录  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | 临床基因组证据资源  |
@@ -37,7 +37,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 13 | 蛋白结构域与功能注释  |
 | Cancer Models · `cancer-models` | cBioPortal | 6 | 癌症研究模型和队列资源  |
 | RNA · `rna` | Rfam | 9 | RNA 家族与相关资源  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE | 17 | GEO 等组学归档和研究记录  |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 19 | GEO 等组学归档和研究记录  |
 | CellGuide · `cellguide` | CELLxGENE | 5 | 细胞类型参考信息  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 调控与功能组学记录  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 研究项目、资助等资源  |
@@ -111,10 +111,71 @@ Rfam 序列搜索现在使用官方批量端点。旧安装返回已停用端点
 通过[故障排查](../guides/troubleshooting.md)反馈时，提供操作名、限定输入、错误原文和时间；分享前移除凭据与私有数据。
 
 
+## 查询 ENA 测序运行与 FASTQ 文件 {/* #ena-runs */}
+
+1. 在 **Settings → Connectors** 中启用 **Omics Archives**。向 `ena_search_runs` 提供公开的 ENA/INSDC 登录号，如 PRJ 项目或 SRR 运行。GEO 的 `GSE` 标识需要先找到关联的 INSDC 项目；本工具不接受关键词搜索。
+2. 检查 `run_accession`、物种、文库策略与布局，以及 `truncated`。最多返回 1,000 个运行，没有偏移量或续页标记；结果截断时应缩小登录号范围。
+3. 将返回的某个运行传给 `ena_get_run_files`，检查 `found`、`fastq_available` 和全部 `fastq_files` 条目。清单提供地址、压缩文件大小和上游 MD5，本身不会下载或校验文件。
+4. 单独下载前检查存储空间并保存清单，下载后按列出的校验值核对文件。双端文库未必恰有两个文件，不能把 `file_index` 当作 R1/R2 标记。
+
+以上说明 v0.31.1 的操作契约，不代表已经完成测序文件下载。[具体参数](../reference/connector-operations.md#ena_search_runs)
+
+## 执行并检查基因集富集 {/* #gene-set-enrichment */}
+
+<p className="example-label"><strong>案例演示</strong> 人工选定的人类 DNA 损伤相关基因集</p>
+
+本例在 v0.31.1 使用 11 个公开基因符号演示 g:Profiler。这些基因按已知生物学功能选定，出现富集符合预期；它们不是 GSE60450 项目的差异表达结果，也不能当作无偏发现的证据。
+
+1. 在 **Settings → Connectors** 中确认 **Genes & Ontologies** 对 Agent 可用，打开已连接模型且 Notebook 运行环境可用的会话。
+2. 指定物种、基因标识、数据来源和统计背景。真实实验应根据哪些基因有机会被实验筛选来确定背景；本例明确使用全部已注释基因，没有提交自定义的实测基因背景。
+3. 发送下方提示词，在同一会话中查询来源版本并执行富集，保存实际结果。
+
+```text
+Use Genes & Ontologies through Session Notebook for an English g:Profiler
+tutorial. The deliberately selected gene list is TP53, ATM, ATR, CHEK1,
+CHEK2, BRCA1, BRCA2, RAD51, CDKN1A, GADD45A, MDM2.
+First call list_enrichment_sources with organism hsapiens.
+Then call enrich_gene_set with these genes, organism hsapiens,
+sources GO:BP and REAC, domain_scope annotated,
+correction_method fdr, and user_threshold 0.05.
+Save the full response as dna-damage-enrichment.json, all returned terms
+as dna-damage-enrichment.csv, and query, source versions, mappings,
+background and limitations as dna-damage-enrichment-notes.md.
+Retain unmapped, ambiguous and duplicate identifiers. Treat mapped_genes
+as the returned mapping object. Report errors instead of inventing results.
+This is not differential-expression evidence or evidence of regulation direction.
+```
+
+4. 打开生成的说明，核对查询与映射数量。本次 **11/11** 个标识映射成功，未映射、歧义和重复标识均为 **0**。记录的版本为 **GRCh38.p14**、g:Profiler **e114_eg62_p19_27110d83**、GO 类别 **2026-01-23**、Reactome 类别 **2026-03-20**。后续服务更新可能返回不同条目。
+
+![保存的英文查询、背景、来源版本及标识核对](/img/open-science/v0311/enrichment-notes.webp)
+
+5. 打开 CSV 并与完整 JSON 比较。本次按 FDR 0.05 返回 **891 条**。预览只显示前 100 行，这个显示上限不是结果总数。解释条目时保留 `source`、`native`、已校正的 `p_value`、`intersection_size`、`query_size` 和 `effective_domain_size`。
+
+![实际富集结果表及校正概率、背景大小](/img/open-science/v0311/enrichment-table.webp)
+
+<ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">分析说明</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">全部 891 行结果</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">完整响应</ExampleDownload>
+
+本次记录中，两次服务调用都成功了；随后生成说明时，Agent 曾将 `mapped_genes` 当成数组而报错。修正读取方式后，它使用已有响应保存了全部三个文件。上面的下载文件是最终完成的输出，不能据此宣称自动重放或环境捕获也已完整验证。
+
+`background_size: null` 表示没有提交自定义背景列表，不代表统计总体有零个基因；应检查每个条目的有效背景大小。富集不能确定因果、差异表达或上调、下调方向。[操作参数](../reference/connector-operations.md#enrich_gene_set)
+
+## 核对参考基因组身份 {/* #reference-genome */}
+
+通过 **Genomes** 分三步查询：用 `ncbi_resolve_taxon` 核对物种，用 `ncbi_get_assembly_info` 核对**带版本号**的 GCF/GCA 组装，再用 `ncbi_get_sequence_aliases` 查找 `chr1` 等序列别名。保留歧义匹配和截断标记；这些是查询说明，不是已完成的跨来源分析。
+
+例如参考调用使用 `GCF_000001405.40`，不能只用一个组装名称替代其版本身份。响应中出现当前登录号，不代表可以默默替换请求的历史版本。序列别名描述同一组装内的命名关系；转换染色体标签不等于跨组装的坐标转换。[准确输入](../reference/connector-operations.md#ncbi_get_assembly_info)
+
+## 读取 gnomAD 人群与 STRING 网络 {/* #string-network */}
+
+需要人群细节时，对 `get_variant` 设置 `include_populations: true`，保留数据集与参考组装。外显子组与基因组观察应分开；不可用值为 `null`，不等于零；相互重叠的人群或性别分层不能相加。这些是观察频率，不是过滤等位基因频率。[gnomAD 参数](../reference/connector-operations.md#get_variant)
+
+从 v0.31.0 起，`get_string_network.nodes` 包含返回的邻居及孤立的已映射输入。单个映射输入会请求邻居，多个映射输入不扩展。只需输入节点时筛选 `is_query`，全部输入别名使用 `queries`。`n_nodes` 是网络节点数，`n_mapped` 是输入映射数；复用旧脚本前修正将两者等同的逻辑。[STRING 参数](../reference/connector-operations.md#get_string_network)
+
 ## 查找操作参数
 
 需要必填字段、可接受的值与调用示例时，查阅 [Connector 操作参数参考](../reference/connector-operations.md)。先在本页选择来源，再按具体操作查参数。
 
 实现依据: [ConnectorsPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorsPanel.tsx)。
 
-目录来源: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.27.0/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.27.0/src/main/connectors/registry.ts).
+目录来源: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/registry.ts).

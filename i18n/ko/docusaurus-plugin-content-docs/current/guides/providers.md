@@ -1,7 +1,7 @@
 ---
 title: "공급자 및 지역 모델 설정"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -24,9 +24,9 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 공급자 지역 또는 무료 카탈로그 모델을 선택하십시오. {/* #provider-regions */}
 
-**SenseNova**의 경우 모델 선택 전에 공급자 형태로 **담당자: Mr. Li** 또는 **Global**를 선택하십시오. 해당 지역의 API 키를 사용하여 결과 모델 목록, 저장 및 연결을 테스트하십시오. 전환 지역은 endpoint와 유효한 모형을 둘 다 바꿀 수 있습니다; 다른 지역의 주요 또는 모델 이름은 작동하지 않을 수 있습니다.
+**SenseNova**의 경우 모델 선택 전에 공급자 형태로 **담당자: Mr. Li** 또는 **Global**를 선택하십시오. 해당 지역의 API 키를 사용하여 결과 모델 목록을 검토하고 **Save**을 선택하고 변경 전에 연결 검증을 기다립니다. 전환 지역은 endpoint와 유효한 모형을 둘 다 바꿀 수 있습니다; 다른 지역의 주요 또는 모델 이름은 작동하지 않을 수 있습니다.
 
-**오픈로자** 또는 **OpenCode 젠**과 같은 게이트웨이의 경우, 정확한 입력이 활성 프레임 워크를 위해 제공 될 때만 무료 모델을 선택하십시오. 서비스에 의해 요구되는 계정 및 자격. 무료 카탈로그 항목은 사용 제한을 제거하거나 모든 도구 또는 이미지 입력에 대한 지원을 설정하지 않습니다. `:free` 을 임의 모델 ID에 추가하지 마십시오. 작은 요청을 보내고 반환 된 모델을 확인하고 연구에 대한 연결을 사용하기 전에 결과를 확인합니다.
+**OpenRouter** 또는 **OpenCode 젠**과 같은 게이트웨이의 경우, 정확한 입력이 활성 프레임 워크를 위해 제공 될 때만 무료 모델을 선택하십시오. 서비스에 의해 요구되는 계정 및 자격. 무료 카탈로그 항목은 사용 제한을 제거하거나 모든 도구 또는 이미지 입력에 대한 지원을 설정하지 않습니다. `:free` 을 임의 모델 ID에 추가하지 마십시오. 작은 요청을 보내고 반환 된 모델을 확인하고 연구에 대한 연결을 사용하기 전에 결과를 확인합니다.
 
 ## 기존 Codex 구독 연결 {/* #connect-an-existing-codex-subscription-verified-procedure */}
 
@@ -44,7 +44,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | --- | --- | --- |
 | **Check Codex login** | 저장된 연결은 만료될 수 있습니다. | 보류 검사는 표시된 확인 또는 실패한 상태로 정착합니다. |
 | **Re-import Codex login** | 외부 로그인을 새로 고침하고 응용 프로그램 복사를 업데이트하고 싶습니다. | 인증은 수입되고 다시 검사됩니다. |
-| **Edit** | 인증 또는 운송 설정을 검토해야합니다. | 해당 설정을 저장하고 연결을 재확인합니다. |
+| **Edit** | 인증 또는 운송 설정을 검토해야합니다. | Save를 선택하고 편집하기 전에 성공적인 검증을 기다립니다. |
 | **Delete** | 사용되지 않는 공급자는 제거되어야 합니다. | Availability는 공급자가 아직도 요구된다는 것을에 달려 있습니다; 활성 의존도는 삭제를 방지 할 수 있습니다. |
 
 파일 백업 Codex 로그인이 누락되었는지 확인한 경우 지원된 Codex 흐름과 리트리 **Re-import Codex login**를 통해 로그인하십시오. 외부 자격 증명 저장소에서만 열린 로그인은 반드시 수입 가능한 파일이 아닙니다.
@@ -56,7 +56,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 업데이트 또는 API 자격 제거 {/* #update-or-remove-an-api-credential */}
 
-서비스에서 키 변경 후 **Settings → Model**의 공급자를 찾아 **Edit**을 선택하고 **API key**의 교체를 입력하고 저장하십시오. 이 필드 공백을 Leaving 기존의 키를 유지; 그것은 그것을 명확하지 않습니다. 연결 시험을 기다리십시오. 인증이 실패한 경우, 엔드포인트를 확인한 후, 키가 속한 상태이며, 복원하기 전에 유효성을 확인합니다.
+서비스에서 키 변경 후 **Settings → Model**의 공급자를 찾아 **Edit**을 선택하고 **API key**의 교체를 입력하고 **Save**를 선택하십시오. 이 필드 공백을 Leaving 기존의 키를 유지; 그것은 그것을 명확하지 않습니다. 연결은 수정하기 전에 테스트됩니다. 인증이 실패한 경우, 엔드포인트를 확인한 후, 키가 속한 상태이며, 복원하기 전에 유효성을 확인합니다.
 
 **Connection verified** 후, 그 공급자와 작은 요청을 완료합니다. **Delete**과 사용하지 않는 공급자를 제거하고 확인의 이름을 확인하십시오. 애플리케이션 구성 제거는 서비스에서 키를 수정하지 않습니다.
 
@@ -80,7 +80,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | `Advanced settings` | 확장 또는 붕괴 기능 및 토큰 제한 필드 |
 | `More information` (`i`) | 관련 라벨 옆에 컨텍스트 도움말을 엽니다. |
 | `Back` | 에이전트 실행에 반환; 마법사는 양식 초안을 소유하므로 다시 항해 할 수 있습니다. |
-| `Test & continue` | 필요한 필드를 유효하게 한 다음 유효 기간 동안 공급자를 저장 / 테스트; 성공적인 적용 가능한 검증 후 사전 |
+| `Test & continue` | 필수 필드를 유효하게, 다음 유효한 설정을 커밋하기 전에 공급자를 테스트; 성공적인 적용 가능한 검증 후 사전 |
 
 메뉴에서 보이는 3개의 API 체재는:
 
@@ -208,3 +208,7 @@ print((8664 + 18515) == 27179)
 400, 401, 403, 404, 429 또는 5xx 응답을 위해, [HTTP 문제 해결 테이블](troubleshooting.md#http-errors-400-403-429-and-5xx)를 사용하십시오. 응답 서비스 및 상태 코드와 상세한 메시지 유지.
 
 출처: [공급자Form.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ProviderForm.tsx), [공급자Step.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/ProviderStep.tsx).
+
+## v0.31.0과 나중에의 공급자 변경을 저장하십시오. {/* #validated-provider-save */}
+
+공급자는 그들이 투입되기 전에 시험됩니다. **Save** 선택, 연결 결과를 기다립니다, 양식을 닫기 전에 성공을 확인합니다. 실패한 시험은 작업 저장된 윤곽을 대체하지 않습니다. 이전에 저장된 연결이 요청 중에 거부되면, 그 가용성이 업데이트됩니다. credential 및 endpoint를 확인한 다음 다시 테스트하십시오. **Conversation models**, **Classification models** 및 **Local parsing models**에는 다른 목적이 있습니다; [모델 설정](models.md#classification-models) 참조.

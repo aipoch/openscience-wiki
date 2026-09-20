@@ -1,7 +1,7 @@
 ---
 title: "遠端瀏覽器訪問"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 遠端瀏覽器訪問 {/* #远程浏览器访问 */}
@@ -63,3 +63,7 @@ Trusted browsers 顯示裝置和上次使用時間。Revoke &#91;browser&#93; �
 原始碼：[Remote 頁面](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/RemoteControlPanel.tsx)。
 
 Linux headless 沒有可用系統金鑰環時，見 [憑據儲存選項](../reference/server.md)。該選項改變適用秘密的本地儲存方式，不會配置 Remote.It、配對瀏覽器或授權遠端訪問。
+
+## v0.31.1 的配對與撤銷 {/* #pairing-v0311 */}
+
+待處理配對請求顯示在 **Trusted browsers** 前方，並提供剩餘時間和臨近到期提示。授權前核對請求裝置顯示的配對碼；到期後需要重新發起請求。受信任瀏覽器可以撤銷自身信任，此後受保護訪問會結束；再次訪問時需要重新配對。**Off**、臨時訪問和撤銷信任仍是不同操作。

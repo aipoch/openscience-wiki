@@ -1,7 +1,7 @@
 ---
 title: "Cátedras de servicio"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Cátedras de servicio {/* #service-credentials */}
@@ -64,3 +64,7 @@ Las consultas de OpenAlex requieren una llave válida de OpenAlex. Los conectore
 Referencia de implementación: [CredencialesPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [ConnectorAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx).
 
 [Gestión de credencial CLI/SDK](../reference/cli.md#manage-connectors-and-credentials) puede crear/actualizar credenciales compartidas a través del acceso local autenticado. Las instalaciones sin cabeza Linux pueden elegir explícitamente [almacenamiento de archivos no cifrado](../reference/server.md#credential-storage-on-headless-linux); Las credenciales de escritorio conservan su comportamiento normal de almacenamiento de OS. Esta opción no soluciona el almacenamiento de contraseñas Compute o inicia el inicio de sesión OAuth.
+
+## Abra la página oficial de teclas API {/* #official-api-key-page */}
+
+Desde v0.31.0, OpenAlex y NCBI las instrucciones de credencial incluyen un enlace a la página oficial de teclas API. Abriendo mantiene el borrador del formulario y esperando la llamada Connector. Pasos completos de cuenta con el servicio, volver a la forma credencial, luego validar y guardar la clave deseada antes de volver a iniciar la consulta. Abrir la página clave por sí sola no guarda una llave ni completa la consulta de espera.

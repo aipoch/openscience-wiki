@@ -1,8 +1,10 @@
 ---
 title: "세션 및 지점"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
+
+import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # 세션 및 지점 {/* #sessions-and-branches */}
 
@@ -130,3 +132,33 @@ Branch 가용성은 메시지 및 프레임 워크 상태에 따라 다릅니다
 아카이브 프로젝트의 경우 **Manage** 항목을 사용하여 프로젝트의 세션을 검사합니다. 아카이브, 복원, 삭제 및 저장 이전의 차이에 대한 [저장과 아카이브 작업](storage.md) 참조. 활성 목록에서 세션의 사라짐은 디스크 공간이 재발견되지 않은 증거입니다.
 
 출처: [세션 편집기](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/EditSessionDialog.tsx), [workspace 구현](https://github.com/aipoch/open-science/tree/v0.26.0/src/renderer/src/pages/workspace).
+
+## 현재 세션 {/* #fork-session */}
+
+로컬 또는 수입 세션의 독립적 인 작업 복사본이 필요할 때 **Fork**을 사용하십시오. **Branch in new session**은 선택한 메시지에서 시작합니다. Fork는 세션의 완전한 저장된 연구 역사를 복사하여 지점, Notebook 레코드, 파일 버전, 문학, 주석 및 개인 책갈피를 포함한. 소스 세션은 변경되지 않습니다. 기록 복사는 재시작하지 않거나 이 컴퓨터에서 환경이 준비되어 있다는 것을 설정하지 않습니다.
+
+1. 데스크톱 앱에서, 완료하거나 현재 작업을 중지합니다. 끝으로 어떤 포장 이동든지를 위해 기다리십시오.
+2. 세션 행의 동작을 열고 **Fork**을 선택합니다. 앱은 이동 진행 상황을 보여줍니다; **Run in background**은 취소하지 않고 창을 숨깁니다.
+3. **Fork completed**을 기다리며 새로운 세션을 엽니다. **Source session**과 새로운 세션 번호를 검사하는 제목을 엽니다.
+4. 상속된 파일을 열고 그 내용을 확인합니다. 선택된 모델을 검사하고 계속하기 전에 실행 시간; 오래된 기계 경로 또는 허가는 주의해야 할 수 있습니다.
+5. 사본에 다음 작업을 보내고 새로운 출력을 확인합니다. 참고 기록으로 원본을 지키십시오.
+
+![세션 작업 메뉴의 포크](/img/open-science/v0311/fork-menu.webp)
+
+![새로운 세션 정보 소스를 표시하고 QC 파일을 상속](/img/open-science/v0311/fork-info.webp)
+
+Fork는 데스크톱 앱에서 사용할 수 있습니다. 수입 세션은 포크에서 작업 할 때까지 읽기 전용 남아. 프로젝트 설정 및 메모리는 별도의 copied 프로젝트가 아닙니다. 오래된 검토 또는 검증 기록은 기록 된 버전을 설명합니다; 현재 체크로 치료하기 전에 모든 결과를 검사합니다.
+
+### 복사에 QC 계산을 계속 {/* #continue-a-qc-calculation-in-the-copy */}
+
+<p className="example-label"><strong>실습 예제</strong> v0.31.1의 현지 세션</p>
+
+GSE60450 프로젝트에서 기존의 QC 세션을 포크하고 `gse60450-qc-summary.csv` 상속을 엽니다. **12** 샘플 및 **269,027,617** 총 원시 카운트를 확인하십시오. 복사에서 Python 파일을 읽고 에이전트를 요청하고, 두 값을 확인하고, 샘플 당 평균 카운트를 계산하고 별도의 `fork-qc-check.csv`을 저장합니다. 결과는 **22,418,968.083333…**입니다. 소스와 상속된 파일은 동일한 내용이 있습니다; 새로운 계산은 별도의 파일입니다. 이 의미는 continuation, 표식 정상적인화를 보여줍니다.
+
+![Python 계산 및 위조 세션에 저장된 새로운 결과](/img/open-science/v0311/fork-result.webp)
+
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">산출된 결과를 다운로드</ExampleDownload>. 이 연습은 로컬 세션 포크를 테스트했습니다. 수신된 `.science` 패키지의 읽기 전용 상태 및 윤곽을 위해, [연구 패키지](research-packages.md)를 참조하십시오.
+
+## 세션 정보 카드 읽기 {/* #session-information */}
+
+세션 제목을 선택하여 번호, 설명, 소스, 생성/업데이트 시간, 현재 지점 및 artifact 카운트에 대한 메시지 수를 참조하십시오. **Pin**을 사용하여 세션을 쉽게 찾을 수 있도록, 또는 **세션 편집**은 제목과 설명을 변경합니다. **채팅에서 계속** 배당자는 기록 된 소스 회전으로 다시 연결합니다.

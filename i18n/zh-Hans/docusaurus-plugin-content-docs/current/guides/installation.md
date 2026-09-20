@@ -1,7 +1,7 @@
 ---
 title: "安装与更新"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -70,7 +70,7 @@ Homebrew 自动选择 Apple Silicon 或 Intel。安装后在 **Settings → Gene
 
 要求：Git、Node.js 22、npm，以及 Electron 在当前平台的构建前提。代理框架可在应用中安装或选择。仓库会在安装阶段生成 Prisma Client、应用补丁并准备 Electron 原生依赖。
 
-需要复现源码安装时，先从 [Changelog](../changelog/v0.30.2.md) 确定目标发布标签，再安装依赖。默认克隆跟随分支，不会固定到某个发布版本。记录所选标签、源码提交及运行时版本，便于他人复现环境。
+需要复现源码安装时，先从 [Changelog](../changelog/v0.31.1.md) 确定目标发布标签，再安装依赖。默认克隆跟随分支，不会固定到某个发布版本。记录所选标签、源码提交及运行时版本，便于他人复现环境。
 
 将下方 `RELEASE_TAG` 替换为所选发行页的完整标签（包括开头的 `v`）。如果需要跟随开发分支，省略 `--branch RELEASE_TAG --depth 1`；这条路线会使用默认分支。
 
@@ -136,3 +136,7 @@ npm run build
 | 首次配置 | 阅读 Environment 中未通过的检查，解决其提示的具体要求 |
 | 首次代理请求 | 确认 Agent 为 Active/Ready，并在 Model 页面执行 **Test connection** |
 | 提供方或本地浏览器连接 | 检查报错中的端口、代理或证书信息，参见[故障排查](troubleshooting.md) |
+
+## v0.31.0 之后的产品名称 {/* #product-name */}
+
+当前界面和新安装包统一使用 **Open-Science**。升级会保留已有安装名称与位置、研究数据、凭据和设置。旧安装路径仍包含 `Open Science`，本身不代表升级失败；不要为了匹配新的显示名称而重命名或移动数据目录。

@@ -1,7 +1,7 @@
 ---
 title: "Rétroviseurs de réseau, de proxies et de paquets"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-20'
 ---
 
 # Rétroviseurs de réseau, de proxies et de paquets {/* #network-proxies-and-package-mirrors */}
@@ -110,3 +110,7 @@ Pour un module Python manquant après une connexion réussie, continuer avec [co
 Pour les réponses 400, 401, 403, 404, 429 ou 5xx, utilisez le [Table de dépannage HTTP](troubleshooting.md#http-errors-400-403-429-and-5xx). Conservez le service répondant et son message détaillé avec le code d'état.
 
 Après avoir modifié les paramètres de domaine proxy, miroir ou Notebook, confirmez que les valeurs ont persisté, puis réessayez l'opération originale dans le même temps d'exécution. Vérifiez à la fois le téléchargement et l'importation du paquet; une sauvegarde réussie des paramètres ne résout pas une erreur d'installation.
+
+## Une cellule R a été bloquée avant exécution {/* #r-network-warning */}
+
+Dans v0.31.1, Notebook affiche un avertissement en ligne lorsque la protection réseau bloque une exécution R. Suivez son lien de réglage et inspectez l'accès demandé. L'avertissement signifie que la cellule n'a pas exécuté; il n'est pas un résultat scientifique ou une course terminée. Après avoir résolu l'exigence spécifique, exécutez à nouveau la cellule et inspectez sa sortie. La prise en charge standard R en mode Windows n'autorise pas elle-même la protection réseau.

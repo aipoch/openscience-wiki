@@ -1,7 +1,7 @@
 ---
 title: "Configuration du fournisseur et du modèle local"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -24,9 +24,9 @@ Choisissez **Import existing Codex sign-in** pour copier une connexion locale de
 
 ## Choisissez une région fournisseur ou un modèle de catalogue gratuit {/* #provider-regions */}
 
-Pour **SenseNova**, sélectionnez **Chine** ou **Global** dans le formulaire fournisseur avant de choisir un modèle. Utilisez la clé API pour cette région, examinez la liste de modèles qui en résulte, enregistrez et testez la connexion. Les régions de commutation peuvent modifier les modèles de point de départ et les modèles disponibles; un nom de clé ou de modèle de l'autre région peut ne pas fonctionner.
+Pour **SenseNova**, sélectionnez **Chine** ou **Global** dans le formulaire fournisseur avant de choisir un modèle. Utilisez la touche API pour cette région, examinez la liste de modèles qui en résulte, sélectionnez **Save** et attendez la validation de la connexion avant que la modification ne soit engagée. Les régions de commutation peuvent modifier les modèles de point de départ et les modèles disponibles; un nom de clé ou de modèle de l'autre région peut ne pas fonctionner.
 
-Pour les passerelles telles que **OuvrirRouter** ou **OpenCode Zen**, sélectionnez un modèle libre uniquement lorsque cette entrée exacte est offerte pour le cadre actif. Utilisez le compte et les justificatifs requis par le service. Une entrée de catalogue gratuite ne supprime pas les limites d'utilisation ou n'établit pas de support pour chaque entrée d'outil ou d'image. Ne pas ajouter `:free` à un modèle d'ID arbitraire. Envoyer une petite demande et vérifier le modèle retourné et le résultat avant d'utiliser la connexion pour la recherche.
+Pour les passerelles telles que **OpenRouter** ou **OpenCode Zen**, sélectionnez un modèle libre uniquement lorsque cette entrée exacte est offerte pour le cadre actif. Utilisez le compte et les justificatifs requis par le service. Une entrée de catalogue gratuite ne supprime pas les limites d'utilisation ou n'établit pas de support pour chaque entrée d'outil ou d'image. Ne pas ajouter `:free` à un modèle d'ID arbitraire. Envoyer une petite demande et vérifier le modèle retourné et le résultat avant d'utiliser la connexion pour la recherche.
 
 ## Connectez un abonnement Codex existant {/* #connect-an-existing-codex-subscription-verified-procedure */}
 
@@ -44,7 +44,7 @@ Pour les passerelles telles que **OuvrirRouter** ou **OpenCode Zen**, sélection
 | --- | --- | --- |
 | **Check Codex login** | La connexion sauvegardée peut avoir expiré. | La vérification en attente s'installe dans l'état affiché vérifié ou défaillant. |
 | **Re-import Codex login** | Vous avez rafraîchi la connexion externe et souhaitez mettre à jour la copie de l'application. | L'authentification est importée et vérifiée à nouveau. |
-| **Edit** | Vous devez revoir les paramètres d'authentification ou de transport. | Enregistrez les paramètres prévus et revérifiez la connexion. |
+| **Edit** | Vous devez revoir les paramètres d'authentification ou de transport. | Sélectionnez Enregistrer et attendre la validation réussie avant que l'édition ne soit engagée. |
 | **Delete** | Un fournisseur non utilisé doit être retiré. | La disponibilité dépend de l'exigence du fournisseur; une dépendance active peut empêcher la suppression. |
 
 Si l'importation signale qu'une connexion Codex soutenue par un fichier est manquante, connectez-vous à travers le flux Codex supporté et réessayez **Re-import Codex login**. Une connexion détenue uniquement dans un magasin de titres de compétence externe n'est pas nécessairement un fichier importable.
@@ -56,7 +56,7 @@ L'agent exécute le travail; le fournisseur de modèle fournit le modèle. L'ins
 
 ## Mettre à jour ou supprimer un justificatif API {/* #update-or-remove-an-api-credential */}
 
-Après avoir modifié une clé au service, trouvez son fournisseur dans **Settings → Model**, sélectionnez **Edit**, entrez le remplacement dans **API key** et enregistrez. Le fait de laisser ce champ vide maintient la clé existante; ça ne l'éclaircit pas. Attendez le test de connexion. Si l'authentification échoue, vérifiez le paramètre, le compte auquel appartient la clé et sa validité avant de réessayer.
+Après avoir modifié une clé au service, trouvez son fournisseur dans **Settings → Model**, sélectionnez **Edit**, entrez le remplacement dans **API key**, et sélectionnez **Save**. Le fait de laisser ce champ vide maintient la clé existante; ça ne l'éclaircit pas. La connexion est testée avant que l'édition ne soit engagée. Si l'authentification échoue, vérifiez le paramètre, le compte auquel appartient la clé et sa validité avant de réessayer.
 
 Après **Connection verified**, remplissez une petite demande avec ce fournisseur. Supprimez un fournisseur non utilisé avec **Delete**, en vérifiant son nom dans la confirmation. La suppression de la configuration de l'application ne révoque pas la clé au service.
 
@@ -80,7 +80,7 @@ Commencez par sélectionner `Custom Gateway`. Changer le type de fournisseur peu
 | `Advanced settings` | Élargit ou effondre la capacité et les champs de limites de jetons |
 | `More information` (`i`) | Ouvre l'aide contextuelle à côté de l'étiquette associée |
 | `Back` | Retourne à Agent runtime; l'assistant possède le brouillon de forme afin qu'il puisse survivre à la navigation arrière |
-| `Test & continue` | Valide les champs requis, puis enregistre/teste le fournisseur lorsque celui-ci est valide; avances après une validation applicable réussie |
+| `Test & continue` | Valide les champs requis, puis teste le fournisseur avant de lancer des paramètres valides; avances après une validation applicable réussie |
 
 Les trois formats API affichés dans le menu sont :
 
@@ -208,3 +208,7 @@ Ce sont les premiers nombres zéro et les nombres de gènes détectés de GSE604
 Pour les réponses 400, 401, 403, 404, 429 ou 5xx, utilisez le [Table de dépannage HTTP](troubleshooting.md#http-errors-400-403-429-and-5xx). Conservez le service répondant et son message détaillé avec le code d'état.
 
 Source: [PrestataireForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ProviderForm.tsx), [PrestataireStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/ProviderStep.tsx).
+
+## Enregistrer un changement de fournisseur dans v0.31.0 et plus tard {/* #validated-provider-save */}
+
+Les modifications des fournisseurs sont testées avant qu'ils ne soient engagés. Sélectionnez **Save**, attendez le résultat de la connexion et confirmez le succès avant de fermer le formulaire. Un test échoué ne remplace pas une configuration sauvegardée de travail. Si une connexion précédemment enregistrée est rejetée lors d'une demande, sa disponibilité est mise à jour; vérifier le titre de compétence et le point final, puis tester à nouveau. **Conversation models**, **Classification models** et **Local parsing models** ont des objectifs différents; Voir [paramètres du modèle](models.md#classification-models).

@@ -1,7 +1,7 @@
 ---
 title: "Сертификаты службы"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Сертификаты службы {/* #service-credentials */}
@@ -64,3 +64,7 @@ last_update:
 Ссылка на осуществление: [Разработчик:Panel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [ConnectorAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx).
 
 [Управление учетными данными CLI/SDK](../reference/cli.md#manage-connectors-and-credentials) может создавать / обновлять общие учетные данные через аутентифицированный локальный доступ. Установки без головы Linux могут явно выбирать [незашифрованное хранилище файлов](../reference/server.md#credential-storage-on-headless-linux); Десктопные учетные данные сохраняют свое нормальное поведение при хранении ОС. Эта опция не решает проблему хранения паролей или не инициирует первый вход в систему OAuth.
+
+## Откройте официальную ключевую страницу API {/* #official-api-key-page */}
+
+От v0.31.0, OpenAlex и NCBI учетные подсказки включают ссылку на официальную ключевую страницу API. Открытие сохраняет черновик формы и ждет звонка Connector. Заполните шаги учетной записи с помощью сервиса, вернитесь к форме учетных данных, затем проверьте и сохраните предполагаемый ключ перед повторным запросом. Открытие только ключевой страницы не сохраняет ключ и не завершает ожидающий запрос.

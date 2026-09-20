@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: 设置中心总览
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # 设置中心总览
@@ -54,3 +54,7 @@ last_update:
 :::info[保存方式]
 部分开关即时保存；复杂表单使用 `Save/Add/Import`。操作中出现 `Saving…`、`Testing…`、`Installing…` 时不要关闭应用。涉及迁移、卸载、删除或宽权限会有二次确认。
 :::
+
+## 模型设置中的标签页 {/* #model-tabs */}
+
+在 **Model** 内，**Conversation models** 管理提供方与任务模型，**Classification models** 配置可选的 Skill/Connector 选择服务，**Local parsing models** 管理本地解析资源。分类模型是模型设置中的标签页，不是新增的顶层设置面板。详见[分类模型配置](../guides/models.md#classification-models)。

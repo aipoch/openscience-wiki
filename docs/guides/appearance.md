@@ -136,7 +136,7 @@ With **General → Close button behaviour → Ask every time**, closing the wind
 | You want to… | Where to go |
 | --- | --- |
 | Check for an app update | **General → About → Check now**; follow [Installation and updates](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Read version changes or get help | **About → Release notes / Help Center** opens the corresponding external page. This wiki also has a [Changelog](../changelog/v0.30.2.md). |
+| Read version changes or get help | **About → Release notes / Help Center** opens the corresponding external page. This wiki also has a [Changelog](../changelog/v0.31.1.md). |
 | Locate or open the diagnostic log | **General → Diagnostics → Reveal / Open**; see [Troubleshooting](troubleshooting.md). Logs stay local until you share them. |
 | Install the command-line entry | **General → Install command**; see [CLI reference](../reference/cli.md). Desktop use does not require this command. |
 | Manage data location or archived work | [Storage and archived work](storage.md). |

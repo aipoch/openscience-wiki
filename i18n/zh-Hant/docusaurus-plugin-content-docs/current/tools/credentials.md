@@ -1,7 +1,7 @@
 ---
 title: "服務憑據"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 服務憑據 {/* #服务凭据 */}
@@ -64,3 +64,7 @@ OpenAlex 查詢需要有效的 OpenAlex 金鑰；OAuth Connector 需要完成對
 實現依據: [CredentialsPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [ConnectorAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx)。
 
 可透過本地認證的 [CLI/SDK 憑據管理](../reference/cli.md)建立/更新共享憑據。Linux headless 可顯式選擇[未加密檔案儲存](../reference/server.md)，桌面憑據仍遵循正常 OS 儲存行為；此選項不解決 Compute 密碼儲存，也不發起首次 OAuth 登入。
+
+## 開啟官方 API Key 頁面 {/* #official-api-key-page */}
+
+從 v0.31.0 起，OpenAlex 和 NCBI 的憑據提示包含官方 API Key 頁面連結。開啟連結時，表單草稿和等待中的 Connector 呼叫會保留。在服務方完成賬戶操作後，返回憑據表單，驗證並儲存所需金鑰，再重試查詢。僅開啟獲取金鑰的頁面，不會自動儲存金鑰或完成查詢。

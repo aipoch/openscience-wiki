@@ -1,7 +1,7 @@
 ---
 title: "模型與任務策略"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 模型與任務策略 {/* #模型与任务策略 */}
@@ -79,3 +79,25 @@ Session details 選擇器不接受 Codex 訂閱模型；Main 或 Vision 中能�
 執行後端見 [Agent](./frameworks.md)，用量見 [Usage](./usage.md)，優先順序見[配置參考](../reference/configuration.md)。
 
 原始碼：[主模型](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx)、[場景策略](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx)。
+
+## 可選的分類模型 {/* #classification-models */}
+
+開啟 **Settings → Model → Classification models**。分類服務在請求開始前輔助選擇相關 Skill 和 Connector，不會替換 Main，也不會增加一個聊天模型。可以將 **Automatic capability selection** 保持為 **Use default method**；不配置分類服務，Skill 和 Connector 仍可使用。
+
+v0.31.1 中，該路徑用於 **Codex Chat Completions** 或 **CodeBuddy** 的主會話。不能據此認為 Codex 訂閱會話或所有框架都會使用此服務。傳送給分類服務的內容僅包括當前請求及能力名稱、描述；服務不可用或分類結果不明確時，會繼續使用預設方式。
+
+![分類模型的預設方式與可選服務入口](/img/open-science/v0311/classification-models.webp)
+
+1. 選擇 **Add service**，再選擇 **TypeSafe AI** 或 **OpenRouter**。
+2. 填寫服務名稱和 API 憑據。OpenRouter 可複用相容的已有賬戶或使用新金鑰；截圖時保持金鑰隱藏。
+3. 點選 **Save**，等待驗證。驗證失敗時，原有設定保持不變。
+4. 在 **Automatic capability selection** 中選擇已儲存的服務和目錄中提供的模型。透過 **Check model** 檢查連線。
+5. 在受支援的主會話中傳送一個範圍明確的請求，檢視實際選擇的工具。模型連線檢查透過，本身不能證明科研結果正確。
+
+移除服務會將其繫結恢復為預設方式。單獨儲存的服務金鑰會一併移除；複用已有賬戶的服務被移除時，不會刪除該賬戶或其金鑰。
+
+聊天模型配置見[提供方設定](providers.md)。本地 PDF 解析資源由另一個 **Local parsing models** 標籤頁管理。
+
+![分類服務表單，API key 尚未填寫](/img/open-science/v0311/classification-add-service.webp)
+
+截圖記錄 v0.31.1 的預設狀態及新增表單，未配置分類服務，也未驗證該服務的模型呼叫。

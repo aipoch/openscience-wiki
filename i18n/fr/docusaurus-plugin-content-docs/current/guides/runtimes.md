@@ -1,7 +1,7 @@
 ---
 title: "Durées d'exécution Python et R"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -252,7 +252,7 @@ Ouvrez la sortie de Notebook et comparez-la avec le rapport enregistré. Cet exe
 
 Pour les pannes de démarrage ou de récupération du noyau de Windows conda R, utilisez v0.30.2 ou plus tard avant de réessayer. La version corrige la recherche exécutable après la préparation de l'environnement et la récupération du noyau R. Après mise à jour, revérifiez l'environnement et exécutez un petit calcul R dans Notebook; **Ready** seul n'est pas un résultat d'exécution. Les captures d'écran ci-dessous conservent les versions et les résultats de leurs sorties originales.
 
-Pour une exécution Windows R qui signale **Activer le mode protégé avant d'autoriser l'accès à R.**, inspectez **Network settings** et les instructions **Authorize and verify** de la carte R. Résoudre la condition préalable à l'autorisation signalée avant de procéder à une nouvelle mise en service; une carte **Ready** seule ne confirme pas l'exécution. Conservez l'erreur complète si la requête reste bloquée et suivez [Dépannage](troubleshooting.md).
+À partir de v0.31.0, Windows R peut fonctionner en mode standard sans mettre en place d'abord un mode protégé. Traitez **Activer le mode protégé avant d'autoriser l'accès à R.** d'une ancienne version comme une ligne directrice spécifique à la version. Les autorisations de protection du réseau et d'installation des paquets restent des contrôles séparés. Dans v0.31.1, une exécution bloquée par la protection réseau Notebook affiche un avertissement en ligne avec un lien vers le réglage pertinent; la cellule n'a pas été exécutée. Examinez l'accès requis, puis recourez et vérifiez la sortie.
 
 <span id="windows-runtime-qc" />
 

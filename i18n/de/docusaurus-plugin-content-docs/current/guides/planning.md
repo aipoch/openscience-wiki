@@ -1,7 +1,7 @@
 ---
 title: "Planung vor Ausführung"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Planung vor Ausführung {/* #planning-before-execution */}
@@ -57,3 +57,7 @@ Schrittstatus können nicht gestartet, in Arbeit, abgeschlossen, blockiert, übe
 Weiter mit [Dateien und Versionen](./files.md), [Notebook-Beweis](./notebook.md) und [Berechtigungen](./approval-modes.md).
 
 Quelle: [Plangenehmigungs- und Vorschaukontrollen](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/session-plan/SessionPlanSurfaces.tsx).
+
+## Resümee nach Kontextrekonstruktion {/* #resume-plan */}
+
+Von v0.31.0 aus kann der Agent den aktuellen Sitzungsplan, seine Überarbeitung und ausstehende Genehmigungen nach dem Wiederaufbau seines Kontexts wiederherstellen. Öffne den aktiven Plan erneut und überprüfe, welche Schritte tatsächlich abgeschlossen wurden, bevor du ihn auffordert, fortzufahren. Eine noch ausstehende Genehmigung steht noch aus. die Wiedereinziehung des Plans ihn nicht genehmigt oder ein Vorhaben bestätigt, dessen Ergebnis nicht erfasst wurde.

@@ -1,7 +1,7 @@
 ---
 title: "서비스 자격"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 서비스 자격 {/* #service-credentials */}
@@ -64,3 +64,7 @@ OpenAlex 쿼리는 유효한 OpenAlex 열쇠를 요구합니다. OAuth 연결관
 구현 참조 : [이메일: sales@tsx.com](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [커넥터AddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx).
 
 [CLI/SDK 자격 관리](../reference/cli.md#manage-connectors-and-credentials)은 인증된 로컬 액세스를 통해 공유된 자격 증명을 만들 수 있습니다. Linux 헤드리스 설치는 [암호화된 파일 저장](../reference/server.md#credential-storage-on-headless-linux)을 명시적으로 선택할 수 있습니다; 데스크톱 자격은 정상적인 OS-storage 동작을 유지합니다. 이 옵션은 Compute 암호 저장을 해결하지 않거나 처음 OAuth 로그인을 시작하지 않습니다.
+
+## 공식 API 키 페이지 열기 {/* #official-api-key-page */}
+
+v0.31.0에서, OpenAlex 및 NCBI 자격 증명 프롬프트는 공식 API 키 페이지에 대한 링크가 포함되어 있습니다. 양식 초안을 열고 Connector 통화를 대기합니다. 서비스로 계정 단계 완료, 자격 양식에 반환, 다음 유효성 검사 및 쿼리를 복원하기 전에 의도 된 키를 저장. 키 페이지를 열어서 키를 저장하지 않고 대기 질의를 완료합니다.

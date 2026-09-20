@@ -1,7 +1,7 @@
 ---
 title: "模型与任务策略"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 模型与任务策略
@@ -79,3 +79,25 @@ Session details 选择器不接受 Codex 订阅模型；Main 或 Vision 中能�
 执行后端见 [Agent](./frameworks.md)，用量见 [Usage](./usage.md)，优先级见[配置参考](../reference/configuration.md)。
 
 源码：[主模型](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx)、[场景策略](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx)。
+
+## 可选的分类模型 {/* #classification-models */}
+
+打开 **Settings → Model → Classification models**。分类服务在请求开始前辅助选择相关 Skill 和 Connector，不会替换 Main，也不会增加一个聊天模型。可以将 **Automatic capability selection** 保持为 **Use default method**；不配置分类服务，Skill 和 Connector 仍可使用。
+
+v0.31.1 中，该路径用于 **Codex Chat Completions** 或 **CodeBuddy** 的主会话。不能据此认为 Codex 订阅会话或所有框架都会使用此服务。发送给分类服务的内容仅包括当前请求及能力名称、描述；服务不可用或分类结果不明确时，会继续使用默认方式。
+
+![分类模型的默认方式与可选服务入口](/img/open-science/v0311/classification-models.webp)
+
+1. 选择 **Add service**，再选择 **TypeSafe AI** 或 **OpenRouter**。
+2. 填写服务名称和 API 凭据。OpenRouter 可复用兼容的已有账户或使用新密钥；截图时保持密钥隐藏。
+3. 点击 **Save**，等待验证。验证失败时，原有设置保持不变。
+4. 在 **Automatic capability selection** 中选择已保存的服务和目录中提供的模型。通过 **Check model** 检查连接。
+5. 在受支持的主会话中发送一个范围明确的请求，查看实际选择的工具。模型连接检查通过，本身不能证明科研结果正确。
+
+移除服务会将其绑定恢复为默认方式。单独保存的服务密钥会一并移除；复用已有账户的服务被移除时，不会删除该账户或其密钥。
+
+聊天模型配置见[提供方设置](providers.md)。本地 PDF 解析资源由另一个 **Local parsing models** 标签页管理。
+
+![分类服务表单，API key 尚未填写](/img/open-science/v0311/classification-add-service.webp)
+
+截图记录 v0.31.1 的默认状态及添加表单，未配置分类服务，也未验证该服务的模型调用。

@@ -1,7 +1,7 @@
 ---
 title: "远程浏览器访问"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 远程浏览器访问
@@ -63,3 +63,7 @@ Trusted browsers 显示设备和上次使用时间。Revoke [browser] 撤销其�
 源码：[Remote 页面](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/RemoteControlPanel.tsx)。
 
 Linux headless 没有可用系统密钥环时，见 [凭据存储选项](../reference/server.md)。该选项改变适用秘密的本地存储方式，不会配置 Remote.It、配对浏览器或授权远程访问。
+
+## v0.31.1 的配对与撤销 {/* #pairing-v0311 */}
+
+待处理配对请求显示在 **Trusted browsers** 前方，并提供剩余时间和临近到期提示。授权前核对请求设备显示的配对码；到期后需要重新发起请求。受信任浏览器可以撤销自身信任，此后受保护访问会结束；再次访问时需要重新配对。**Off**、临时访问和撤销信任仍是不同操作。

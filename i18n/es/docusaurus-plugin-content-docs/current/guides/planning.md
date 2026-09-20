@@ -1,7 +1,7 @@
 ---
 title: "Planificación antes de la ejecución"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Planificación antes de la ejecución {/* #planning-before-execution */}
@@ -57,3 +57,7 @@ Los estados de paso pueden incluir no iniciarse, en progreso, completado, bloque
 Continuar con [Archivos y versiones](./files.md), [Pruebas Notebook](./notebook.md) y [Permisos](./approval-modes.md).
 
 Fuente: [Controles de aprobación y previsualización del plan](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/session-plan/SessionPlanSurfaces.tsx).
+
+## Reanude después de la reconstrucción contextual {/* #resume-plan */}
+
+Desde v0.31.0, el agente puede recuperar el actual Plan de Sesión, su revisión y las aprobaciones pendientes después de reconstruir su contexto. Repita el plan activo y compruebe qué pasos efectivamente completados antes de pedirle que continúe. Todavía está pendiente de aprobación; recuperar el plan no lo aprueba o confirma una operación cuyo resultado no fue registrado.

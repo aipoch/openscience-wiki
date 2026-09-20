@@ -136,7 +136,7 @@ import Screenshot from '@site/src/components/Screenshot';
 | 你想要… | 對應入口 |
 | --- | --- |
 | 檢查應用更新 | **General → About → Check now**；後續步驟見[安裝與更新](installation.md) |
-| 閱讀版本變化或獲取幫助 | **About → Release notes / Help Center** 開啟相應外部頁面；本 Wiki 另有 [Changelog](../changelog/v0.30.2.md) |
+| 閱讀版本變化或獲取幫助 | **About → Release notes / Help Center** 開啟相應外部頁面；本 Wiki 另有 [Changelog](../changelog/v0.31.1.md) |
 | 定位或開啟診斷日誌 | **General → Diagnostics → Reveal / Open**；見[故障排查](troubleshooting.md)。日誌在主動分享前保留於本地 |
 | 安裝命令列入口 | **General → Install command**；見 [CLI 參考](../reference/cli.md)。使用桌面介面不需要安裝此命令 |
 | 管理資料位置或歸檔工作 | [儲存與歸檔](storage.md) |

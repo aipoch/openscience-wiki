@@ -2,7 +2,7 @@
 title: "Connector 操作引數參考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.30.2** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.30.2.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
+每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.31.1** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.31.1.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
 
 
 ## 化學 {/* #family-1 */}
@@ -587,12 +587,12 @@ const result = await host.mcp("genes", "get_go_annotations", {"uniprot_accession
 
 ### `get_uniprot_entries` {/* #get_uniprot_entries */}
 
-批次獲取 UniProtKB 記錄。指定 fields 時返回選定欄位的表格並忽略 format；否則 fasta 返回序列，txt 返回完整平面文字。missing 列出未找到的登入號。完整註釋可能很大，通常先選擇所需欄位。
+按 UniProt 登入號批次獲取條目或序列，支援 JSON、FASTA 和 TXT。次級登入號會對映到當前主條目；檢查輸入對映及未找到項，不要將當前主登入號誤當作另一個輸入。
 
 | 欄位 | 型別 | 要求與約束 |
 | --- | --- | --- |
 | `accessions` | 字串陣列 | **必填** |
-| `format` | 字串 | 可選; 列舉： &#91;&quot;fasta&quot;, &quot;txt&quot;&#93; |
+| `format` | 字串 | 可選; 列舉: &#91;&quot;fasta&quot;, &quot;txt&quot;&#93; |
 | `fields` | 字串陣列 | 可選 |
 
 ```javascript
@@ -616,6 +616,42 @@ const result = await host.mcp("genes", "get_uniprot_entries", {"accessions": ["P
 const result = await host.mcp("genes", "map_reactome_pathways", {"identifiers": ["TP53", "EGFR", "BRCA1"], "id_type": "symbol"})
 ```
 
+### `list_enrichment_sources` {/* #list_enrichment_sources */}
+
+查詢指定物種可用的 g:Profiler 富集資料來源及當前版本。物種使用明確程式碼，如 hsapiens；此操作不提交基因列表。g:Profiler 為服務執行保留有限查詢後設資料。
+
+| 欄位 | 型別 | 要求與約束 |
+| --- | --- | --- |
+| `organism` | 字串 | **必填**; 最短長度: 1; 最長長度: 64; 格式: &quot;^&#91;a-z&#93;&#91;a-z0-9_&#93;&#42;$&quot; |
+
+```javascript
+const result = await host.mcp("genes", "list_enrichment_sources", {"organism": "hsapiens"})
+```
+
+### `enrich_gene_set` {/* #enrich_gene_set */}
+
+對指定物種的基因集執行 g:Profiler 富集，支援 GO、Reactome 等可用來源、統計背景、欠代表檢驗和多重檢驗校正。結果保留未對映、歧義及重複標識，不能將它們靜默丟棄。
+
+| 欄位 | 型別 | 要求與約束 |
+| --- | --- | --- |
+| `genes` | 字串陣列 | **必填**; 最少項數: 1; 最多項數: 5000 |
+| `organism` | 字串 | **必填**; 最短長度: 1; 最長長度: 64; 格式: &quot;^&#91;a-z&#93;&#91;a-z0-9_&#93;&#42;$&quot; |
+| `sources` | 字串陣列 | 可選; 最多項數: 100 |
+| `background_genes` | 字串陣列 | 可選; 最少項數: 1; 最多項數: 20000 |
+| `domain_scope` | 字串 | 可選; 列舉: &#91;&quot;annotated&quot;, &quot;known&quot;, &quot;custom&quot;, &quot;custom_annotated&quot;&#93; |
+| `correction_method` | 字串 | 可選; 預設值: &quot;g_SCS&quot;; 列舉: &#91;&quot;g_SCS&quot;, &quot;bonferroni&quot;, &quot;fdr&quot;&#93; |
+| `user_threshold` | 數值 | 可選; 最大值: 1; 排除最小值: 0 |
+| `all_results` | 布林值 | 可選; 預設值: false |
+| `ordered` | 布林值 | 可選; 預設值: false |
+| `measure_underrepresentation` | 布林值 | 可選; 預設值: false |
+| `no_iea` | 布林值 | 可選; 預設值: false |
+| `no_evidences` | 布林值 | 可選; 預設值: false |
+| `numeric_ns` | 字串 | 可選; 最短長度: 1; 最長長度: 64 |
+
+```javascript
+const result = await host.mcp("genes", "enrich_gene_set", {"genes": ["TP53", "EGFR", "BRCA1"], "organism": "hsapiens", "sources": ["GO:BP", "REAC"], "correction_method": "fdr"})
+```
+
 </ToolOperationGroup>
 
 ## 基因組 {/* #family-5 */}
@@ -625,16 +661,17 @@ const result = await host.mcp("genes", "map_reactome_pathways", {"identifiers": 
 
 ### `ensembl_lookup` {/* #ensembl_lookup */}
 
-按 Ensembl 穩定 ID 或基因符號獲取位置、生物型別、典型轉錄本等註釋。符號查詢使用 species，穩定 ID 查詢忽略它；expand 可加入轉錄本、外顯子和翻譯樹。未找到時 found 為 false、record 為 null。座標為從 1 開始的閉區間。 查詢成功時，返回的 `species` 來自上游記錄。穩定 ID 自帶物種身份，不使用請求或預設的物種；未找到時才回顯請求或預設物種，並返回 `record: null`。
+按穩定標識或基因符號查詢 Ensembl。query_type 可為 auto、id 或 symbol；auto 先查標識，僅在明確未找到且不是規範 ENS/LRG 標識時回退到符號。支援帶版本 ENS、FlyBase、WormBase 和酵母標識。species 僅用於符號查詢，預設 homo_sapiens，不會從符號推斷；expand 可展開轉錄本、外顯子和翻譯。無效請求與服務失敗會報錯。
 
 | 欄位 | 型別 | 要求與約束 |
 | --- | --- | --- |
 | `query` | 字串 | **必填** |
-| `species` | 字串 | 可選; 預設值： &quot;homo_sapiens&quot; |
-| `expand` | 布林值 | 可選; 預設值： false |
+| `query_type` | 字串 | 可選; 預設值: &quot;auto&quot;; 列舉: &#91;&quot;auto&quot;, &quot;id&quot;, &quot;symbol&quot;&#93; |
+| `species` | 字串 | 可選; 預設值: &quot;homo_sapiens&quot; |
+| `expand` | 布林值 | 可選; 預設值: false |
 
 ```javascript
-const result = await host.mcp("genomes", "ensembl_lookup", {"query": "BRAF"})
+const result = await host.mcp("genomes", "ensembl_lookup", {"query": "BRAF", "query_type": "symbol"})
 ```
 
 ### `ensembl_xrefs` {/* #ensembl_xrefs */}
@@ -687,15 +724,15 @@ const result = await host.mcp("genomes", "ensembl_homology", {"gene_symbol": "BR
 
 ### `ensembl_sequence` {/* #ensembl_sequence */}
 
-從 Ensembl 按穩定 ID 或基因組區域獲取序列，兩者二選一。區域是從 1 開始的閉區間，最長 10 Mb；ID 路線可選 genomic、cdna、cds 或適用的 protein。超過 max_bytes 時保留長度、雜湊和後設資料，省略 seq 並說明原因；需要全文時調整上限。
+獲取 Ensembl 標識對應的序列，保留請求型別和身份。CDS 或蛋白序列不支援的標識、無效請求和服務失敗會報告錯誤，不能一概當作空序列或未找到。
 
 | 欄位 | 型別 | 要求與約束 |
 | --- | --- | --- |
 | `stable_id` | 字串 | 可選 |
 | `region` | 字串 | 可選 |
-| `species` | 字串 | 可選; 預設值： &quot;homo_sapiens&quot; |
-| `seq_type` | 字串 | 可選; 預設值： &quot;genomic&quot;; 列舉： &#91;&quot;genomic&quot;, &quot;cdna&quot;, &quot;cds&quot;, &quot;protein&quot;&#93; |
-| `max_bytes` | 整數 | 可選; 預設值： 400000 |
+| `species` | 字串 | 可選; 預設值: &quot;homo_sapiens&quot; |
+| `seq_type` | 字串 | 可選; 預設值: &quot;genomic&quot;; 列舉: &#91;&quot;genomic&quot;, &quot;cdna&quot;, &quot;cds&quot;, &quot;protein&quot;&#93; |
+| `max_bytes` | 整數 | 可選; 預設值: 400000 |
 
 ```javascript
 const result = await host.mcp("genomes", "ensembl_sequence", {"stable_id": "ENSP00000288602", "seq_type": "protein"})
@@ -714,6 +751,45 @@ const result = await host.mcp("genomes", "ensembl_sequence", {"stable_id": "ENSP
 
 ```javascript
 const result = await host.mcp("genomes", "ensembl_overlap_region", {"region": "7:140719327-140925199", "feature": "gene"})
+```
+
+### `ncbi_resolve_taxon` {/* #ncbi_resolve_taxon */}
+
+將物種名稱、常用名或數字 TaxID 解析為 NCBI Taxonomy 標識；保留多個匹配及截斷狀態，不能自動將第一項當作唯一物種。
+
+| 欄位 | 型別 | 要求與約束 |
+| --- | --- | --- |
+| `query` | 字串 | **必填**; 最短長度: 1; 最長長度: 200 |
+| `max_matches` | 整數 | 可選; 預設值: 20; 最小值: 1; 最大值: 100 |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_resolve_taxon", {"query": "human"})
+```
+
+### `ncbi_get_assembly_info` {/* #ncbi_get_assembly_info */}
+
+核對帶版本號的 GCF/GCA 組裝身份，包括物種、組裝名、UCSC 別名、狀態與配對的 RefSeq/GenBank 登入號。拒絕無版本登入號；歷史版本不會被默默替換成最新版。
+
+| 欄位 | 型別 | 要求與約束 |
+| --- | --- | --- |
+| `assembly_accession` | 字串 | **必填**; 格式: &quot;^GC&#91;AF&#93;_&#91;0-9&#93;&#123;9&#125;\\.&#91;0-9&#93;+$&quot; |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_get_assembly_info", {"assembly_accession": "GCF_000001405.40"})
+```
+
+### `ncbi_get_sequence_aliases` {/* #ncbi_get_sequence_aliases */}
+
+查詢指定版本組裝的 UCSC、RefSeq 和 GenBank 序列別名，可限定一個序列名。共享染色體標籤可能對應多條序列，應保留歧義；max_sequences 限制返回字首，需檢查 matches_truncated。
+
+| 欄位 | 型別 | 要求與約束 |
+| --- | --- | --- |
+| `assembly_accession` | 字串 | **必填**; 格式: &quot;^GC&#91;AF&#93;_&#91;0-9&#93;&#123;9&#125;\\.&#91;0-9&#93;+$&quot; |
+| `sequence` | 字串 | 可選; 最短長度: 1; 最長長度: 200 |
+| `max_sequences` | 整數 | 可選; 預設值: 200; 最小值: 1; 最大值: 5000 |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_get_sequence_aliases", {"assembly_accession": "GCF_000001405.40", "sequence": "chr1"})
 ```
 
 ### `ucsc_list_tracks` {/* #ucsc_list_tracks */}
@@ -749,17 +825,17 @@ const result = await host.mcp("genomes", "ucsc_track_data", {"track": "cpgIsland
 
 ### `ucsc_conservation` {/* #ucsc_conservation */}
 
-彙總 UCSC phyloP 或 phastCons 區域保守性。座標從 0 開始、右端不含，視窗最長 100000 bp；統計按覆蓋鹼基加權，未覆蓋鹼基不會當作零分。可附帶受 max_values 限制的逐鹼基值；上游截斷會報錯。座標須為非負安全整數，並滿足 `end > start`；無效值會報錯，不會被取整或截到另一個位置。
+計算 UCSC 區域保守性摘要。座標為 0-based 半開區間，跨度最多 100000 bp；hg19 預設使用 phyloP100wayAll，其他組裝預設 phyloP100way，應核對軌道存在。摘要按覆蓋鹼基跨度加權，未覆蓋鹼基降低覆蓋率，不按零分計入。include_values 可返回受 max_values 限制的逐區間分數；上游截斷或非分數軌道會報錯。
 
 | 欄位 | 型別 | 要求與約束 |
 | --- | --- | --- |
 | `chrom` | 字串 | **必填** |
-| `start` | 整數 | **必填**; 最小值： 0; 最大值： 9007199254740991 |
-| `end` | 整數 | **必填**; 最小值： 0; 最大值： 9007199254740991 |
-| `genome` | 字串 | 可選; 預設值： &quot;hg38&quot; |
-| `track` | 字串 | 可選; 預設值： &quot;phyloP100way&quot; |
-| `include_values` | 布林值 | 可選; 預設值： false |
-| `max_values` | 整數 | 可選; 預設值： 2000 |
+| `start` | 整數 | **必填**; 最小值: 0; 最大值: 9007199254740991 |
+| `end` | 整數 | **必填**; 最小值: 0; 最大值: 9007199254740991 |
+| `genome` | 字串 | 可選; 預設值: &quot;hg38&quot; |
+| `track` | 字串 | 可選 |
+| `include_values` | 布林值 | 可選; 預設值: false |
+| `max_values` | 整數 | 可選; 預設值: 2000 |
 
 ```javascript
 const result = await host.mcp("genomes", "ucsc_conservation", {"chrom": "chr7", "start": 140753330, "end": 140753380, "track": "phyloP100way"})
@@ -806,12 +882,13 @@ const result = await host.mcp("genomes", "ucsc_chrom_sizes", {"genome": "hg38", 
 
 ### `get_variant` {/* #get_variant */}
 
-按 gnomAD 短變異 ID 查詢群體頻率。variant_id 使用 chrom-pos-ref-alt，座標必須匹配 dataset 的參考組裝。rsID 先透過 search_variants 解析。
+按 chrom-pos-ref-alt 查詢 gnomAD 短變異。座標必須對應資料集組裝：r3/r4 為 GRCh38，r2.1/ExAC 為 GRCh37；rsID 先經 search_variants 解析。include_populations 為 true 時附加可用人群計數與頻率。保留資料集、等位基因計數和質量過濾；罕見本身不能確定致病性。
 
 | 欄位 | 型別 | 要求與約束 |
 | --- | --- | --- |
 | `variant_id` | 字串 | **必填** |
-| `dataset` | 字串 | 可選; 預設值： &quot;gnomad_r4&quot;; 列舉： &#91;&quot;gnomad_r4&quot;, &quot;gnomad_r4_non_ukb&quot;, &quot;gnomad_r3&quot;, &quot;gnomad_r3_controls_and_biobanks&quot;, &quot;gnomad_r3_non_cancer&quot;, &quot;gnomad_r3_non_neuro&quot;, &quot;gnomad_r3_non_topmed&quot;, &quot;gnomad_r3_non_v2&quot;, &quot;gnomad_r2_1&quot;, &quot;gnomad_r2_1_controls&quot;, &quot;gnomad_r2_1_non_cancer&quot;, &quot;gnomad_r2_1_non_neuro&quot;, &quot;gnomad_r2_1_non_topmed&quot;, &quot;exac&quot;&#93; |
+| `dataset` | 字串 | 可選; 預設值: &quot;gnomad_r4&quot;; 列舉: &#91;&quot;gnomad_r4&quot;, &quot;gnomad_r4_non_ukb&quot;, &quot;gnomad_r3&quot;, &quot;gnomad_r3_controls_and_biobanks&quot;, &quot;gnomad_r3_non_cancer&quot;, &quot;gnomad_r3_non_neuro&quot;, &quot;gnomad_r3_non_topmed&quot;, &quot;gnomad_r3_non_v2&quot;, &quot;gnomad_r2_1&quot;, &quot;gnomad_r2_1_controls&quot;, &quot;gnomad_r2_1_non_cancer&quot;, &quot;gnomad_r2_1_non_neuro&quot;, &quot;gnomad_r2_1_non_topmed&quot;, &quot;exac&quot;&#93; |
+| `include_populations` | 布林值 | 可選; 預設值: false |
 
 ```javascript
 const result = await host.mcp("variants", "get_variant", {"variant_id": "19-44908822-C-T", "dataset": "gnomad_r4"})
@@ -1103,7 +1180,7 @@ const result = await host.mcp("clinical-trials", "analyze_endpoints", {"nct_id":
 
 ### `search_by_eligibility` {/* #search_by_eligibility */}
 
-根據資格條件篩選試驗，預設僅招募中。min_age/max_age 表示患者年齡，與試驗允許範圍匹配；sex 匹配接受相應性別的試驗。至少提供一項疾病、資格關鍵詞、年齡或性別條件，並用 page_token 翻頁。匹配結果仍需研究團隊核實資格。
+按 ClinicalTrials.gov 納入條件搜尋臨床試驗，核對年齡邊界與生物學性別篩選。返回記錄需繼續閱讀原始納入與排除條件，搜尋匹配不能代替實際入組判斷。
 
 | 欄位 | 型別 | 要求與約束 |
 | --- | --- | --- |
@@ -1111,9 +1188,9 @@ const result = await host.mcp("clinical-trials", "analyze_endpoints", {"nct_id":
 | `eligibility_keywords` | 字串 | 可選 |
 | `min_age` | 字串 | 可選 |
 | `max_age` | 字串 | 可選 |
-| `sex` | 字串 | 可選; 列舉： &#91;&quot;ALL&quot;, &quot;MALE&quot;, &quot;FEMALE&quot;&#93; |
+| `sex` | 字串 | 可選; 列舉: &#91;&quot;ALL&quot;, &quot;MALE&quot;, &quot;FEMALE&quot;&#93; |
 | `status` | 字串陣列 | 可選 |
-| `page_size` | 整數 | 可選; 預設值： 10; 最小值： 1; 最大值： 1000 |
+| `page_size` | 整數 | 可選; 預設值: 10; 最小值: 1; 最大值: 1000 |
 | `page_token` | 字串 | 可選 |
 
 ```javascript
@@ -2486,13 +2563,13 @@ const result = await host.mcp("protein-annotation", "map_string_ids", {"symbols"
 
 ### `get_string_network` {/* #get_string_network */}
 
-按置信閾值獲取基因集合的 STRING 蛋白互作網路。先對映符號並報告未匹配項，再返回節點、邊、摘要和來源。
+按物種和置信閾值獲取 STRING 蛋白相互作用網路。先對映輸入符號並報告未對映項；單個對映輸入請求 10 個鄰居，多個對映輸入不擴充套件。nodes 包含完整返回網路；只需輸入節點時篩選 is_query，全部輸入別名在 queries 中。n_nodes 不是輸入數量。
 
 | 欄位 | 型別 | 要求與約束 |
 | --- | --- | --- |
 | `symbols` | 字串陣列 | **必填** |
-| `species` | 整數 | 可選; 預設值： 9606 |
-| `required_score` | 整數 | 可選; 預設值： 700 |
+| `species` | 整數 | 可選; 預設值: 9606 |
+| `required_score` | 整數 | 可選; 預設值: 700 |
 
 ```javascript
 const result = await host.mcp("protein-annotation", "get_string_network", {"symbols": ["TP53", "BRCA1", "EGFR"], "required_score": 700})
@@ -2574,12 +2651,12 @@ const result = await host.mcp("cancer-models", "cbioportal_mutations_in_gene", {
 
 ### `cbioportal_mutation_frequency` {/* #cbioportal_mutation_frequency */}
 
-比較一個基因在 1–12 項 cBioPortal 研究中的突變頻率。分母為各研究測序佇列，按突變樣本比例降序排列。
+查詢 cBioPortal 基因突變頻率。分母使用該基因確實完成相應分子檢測的樣本數，而不是研究中的所有樣本；保留研究、分子資料集、樣本與缺失資訊後再比較頻率。
 
 | 欄位 | 型別 | 要求與約束 |
 | --- | --- | --- |
 | `gene_symbol` | 字串 | **必填** |
-| `study_ids` | 字串陣列 | **必填**; 最少項數： 1; 最多項數： 12 |
+| `study_ids` | 字串陣列 | **必填**; 最少項數: 1; 最多項數: 12 |
 
 ```javascript
 const result = await host.mcp("cancer-models", "cbioportal_mutation_frequency", {"gene_symbol": "KRAS", "study_ids": ["msk_impact_2017", "difg_msk_2023"]})
@@ -2739,6 +2816,31 @@ const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGA
 
 <ToolOperationGroup>
 <summary>展開操作與引數</summary>
+
+### `ena_search_runs` {/* #ena_search_runs */}
+
+按 ENA/INSDC 的專案、實驗、樣本或執行登入號查詢公開測序執行，返回物種、平臺與文庫後設資料，不下載檔案。GEO GSE/GSM、E-MTAB 和 MGYS 需先找到關聯的 INSDC 登入號。本工具不是關鍵詞檢索；最多返回 1000 條，無分頁遊標，重複呼叫不能補齊截斷佇列。
+
+| 欄位 | 型別 | 要求與約束 |
+| --- | --- | --- |
+| `accession` | 字串 | **必填**; 最短長度: 1; 最長長度: 64 |
+| `limit` | 整數 | 可選; 預設值: 100; 最小值: 1; 最大值: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_search_runs", {"accession": "PRJNA123835", "limit": 100})
+```
+
+### `ena_get_run_files` {/* #ena_get_run_files */}
+
+查詢一個 ERR/SRR/DRR 執行的歸檔生成 FASTQ 清單，包括 URL、位元組數及上游 MD5，不下載或校驗檔案。PAIRED 不保證恰有兩個檔案；file_index 僅代表報告順序，不代表 R1/R2。已找到執行但未列出 FASTQ，與未找到執行不同；提交的 BAM/CRAM/SRA 不在本工具範圍。
+
+| 欄位 | 型別 | 要求與約束 |
+| --- | --- | --- |
+| `run_accession` | 字串 | **必填**; 最短長度: 1; 最長長度: 64 |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_get_run_files", {"run_accession": "SRR037073"})
+```
 
 ### `arrayexpress_search_experiments` {/* #arrayexpress_search_experiments */}
 

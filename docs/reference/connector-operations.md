@@ -2,7 +2,7 @@
 title: "Connector operation reference"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Return field names differ by operation. The descriptions and downloadable schema
 
 ## Operation inputs
 
-Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.30.2** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.30.2.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
+Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.31.1** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.31.1.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
 
 
 ## Chemistry {/* #family-1 */}
@@ -587,7 +587,7 @@ const result = await host.mcp("genes", "get_go_annotations", {"uniprot_accession
 
 ### `get_uniprot_entries`
 
-Fetch UniProtKB records for a list of accessions (batched OR-queries, not per-accession). Three modes: `fields` given → token-lean tabular retrieval of just those UniProt fields (e.g. [&quot;accession&quot;,&quot;id&quot;,&quot;protein_name&quot;,&quot;gene_names&quot;,&quot;organism_name&quot;,&quot;length&quot;,&quot;sequence&quot;]); `format` is ignored. format=&quot;fasta&quot; → per-accession FASTA sequences. format=&quot;txt&quot; → per-accession full UniProt flat-file text (complete annotation; can be very large — prefer `fields`). Args: accessions (e.g. [&quot;P04637&quot;,&quot;P38398&quot;]); format (&quot;fasta&quot;/&quot;txt&quot;, ignored when `fields` given); fields (optional UniProt REST field names for tabular mode). Returns: fields mode &#123;accessions, fields, n_records, records:[&#123;&lt;column&gt;:value&#125;]&#125;; fasta/txt mode &#123;accessions, format, n_found, missing, records:&#123;accession:text&#125;&#125; — `missing` lists accessions UniProt returned no record for.
+Fetch UniProtKB records for a list of primary or secondary accessions (batched OR-queries first; unresolved aliases use a direct per-accession fallback). Three modes: `fields` given → token-lean tabular retrieval of just those UniProt fields (e.g. ["accession","id","protein_name","gene_names","organism_name","length","sequence"]); `format` is ignored. format="fasta" → per-accession FASTA sequences. format="txt" → per-accession full UniProt flat-file text (complete annotation; can be very large — prefer `fields`). Args: accessions (e.g. ["P04637","P38398"]); format ("fasta"/"txt", ignored when `fields` given); fields (optional UniProt REST field names for tabular mode). Returns: fields mode &#123;accessions, fields, n_records, records:[&#123;&lt;column&gt;:value&#125;]&#125;; fasta/txt mode &#123;accessions, format, n_found, missing, records:&#123;accession:text&#125;&#125; — `missing` lists accessions UniProt returned no record for.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
@@ -616,6 +616,42 @@ Map gene symbols or UniProt accessions to Reactome pathways (AnalysisService tok
 const result = await host.mcp("genes", "map_reactome_pathways", {"identifiers": ["TP53", "EGFR", "BRCA1"], "id_type": "symbol"})
 ```
 
+### `list_enrichment_sources`
+
+List the g:Profiler enrichment sources and their current data versions for one organism. Sources are organism-dependent and include namespaces such as GO:BP, GO:MF, GO:CC, KEGG, Reactome, and WikiPathways when available. g:Profiler stores limited query metadata for service operation; this read-only lookup does not submit a gene list.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `organism` | string | **required**; minLength: 1; maxLength: 64; pattern: &quot;^[a-z][a-z0-9_]*$&quot; |
+
+```javascript
+const result = await host.mcp("genes", "list_enrichment_sources", {"organism": "hsapiens"})
+```
+
+### `enrich_gene_set`
+
+Run g:Profiler g:GOSt enrichment for a gene set across GO, Reactome, KEGG, WikiPathways, and other organism-supported sources. Supports an explicit organism, custom statistical background, under-representation testing, and g:Profiler multiple-testing correction. Unmapped, ambiguous, and duplicate identifiers are returned in metadata instead of being silently discarded.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `genes` | array of string | **required**; minItems: 1; maxItems: 5000 |
+| `organism` | string | **required**; minLength: 1; maxLength: 64; pattern: &quot;^[a-z][a-z0-9_]*$&quot; |
+| `sources` | array of string | optional; maxItems: 100 |
+| `background_genes` | array of string | optional; minItems: 1; maxItems: 20000 |
+| `domain_scope` | string | optional; enum: [&quot;annotated&quot;, &quot;known&quot;, &quot;custom&quot;, &quot;custom_annotated&quot;] |
+| `correction_method` | string | optional; default: &quot;g_SCS&quot;; enum: [&quot;g_SCS&quot;, &quot;bonferroni&quot;, &quot;fdr&quot;] |
+| `user_threshold` | number | optional; maximum: 1; exclusiveMinimum: 0 |
+| `all_results` | boolean | optional; default: false |
+| `ordered` | boolean | optional; default: false |
+| `measure_underrepresentation` | boolean | optional; default: false |
+| `no_iea` | boolean | optional; default: false |
+| `no_evidences` | boolean | optional; default: false |
+| `numeric_ns` | string | optional; minLength: 1; maxLength: 64 |
+
+```javascript
+const result = await host.mcp("genes", "enrich_gene_set", {"genes": ["TP53", "EGFR", "BRCA1"], "organism": "hsapiens", "sources": ["GO:BP", "REAC"], "correction_method": "fdr"})
+```
+
 </ToolOperationGroup>
 
 ## Genomes {/* #family-5 */}
@@ -625,16 +661,17 @@ const result = await host.mcp("genes", "map_reactome_pathways", {"identifiers": 
 
 ### `ensembl_lookup`
 
-Look up an Ensembl gene/transcript/protein by stable ID or a gene by symbol; returns the core annotation record (location, biotype, canonical transcript, description). Args: query (Ensembl stable ID ENSG.../ENST.../ENSP..., versioned accepted; or a gene symbol/alias like BRAF — true stable IDs [ENS + optional species code + feature letter + &gt;=6-digit block, or LRG_N] route to the ID endpoint; everything else, incl. symbols starting with &quot;ENS&quot; like ENSA, to the symbol endpoint); species (Ensembl species name for symbol lookups, default homo_sapiens; ignored for stable IDs); expand (include the child feature tree — a gene&#x27;s transcripts/exons/translation; default off). Returns &#123;found, query, species, record&#125;; record is null when nothing matches, else the upstream lookup dict — for a gene &#123;id, display_name, description, biotype, object_type, seq_region_name, start, end, strand, assembly_name, canonical_transcript, version, ...&#125; with 1-based inclusive coordinates. For a successful lookup, the returned `species` comes from the upstream record. A stable ID selects its own species, so the requested/default species is ignored for that route. A not-found result echoes the requested/default species and has `record: null`.
+Look up genes, transcripts, or proteins by stable ID, or genes by symbol. query accepts ENS IDs (versioned allowed), FlyBase/WormBase/yeast IDs, or symbols such as BRAF. query_type: auto (default) tries ID first, then symbol only on explicit absence unless the input is a canonical ENS/LRG ID; id uses only ID lookup; symbol uses only symbol lookup without version normalization. species applies only to symbol lookup (default homo_sapiens) and is not inferred. expand includes transcripts, exons and translations (default false). Invalid requests and service failures raise errors.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
 | `query` | string | **required** |
+| `query_type` | string | optional; default: &quot;auto&quot;; enum: [&quot;auto&quot;, &quot;id&quot;, &quot;symbol&quot;] |
 | `species` | string | optional; default: &quot;homo_sapiens&quot; |
 | `expand` | boolean | optional; default: false |
 
 ```javascript
-const result = await host.mcp("genomes", "ensembl_lookup", {"query": "BRAF"})
+const result = await host.mcp("genomes", "ensembl_lookup", {"query": "BRAF", "query_type": "symbol"})
 ```
 
 ### `ensembl_xrefs`
@@ -687,7 +724,7 @@ const result = await host.mcp("genomes", "ensembl_homology", {"gene_symbol": "BR
 
 ### `ensembl_sequence`
 
-Fetch sequence from Ensembl — by stable ID (gene/transcript/protein) or by genomic region. Pass EITHER stable_id OR region. Args: stable_id (ENSG.../ENST.../ENSP..., versioned accepted); region (1-based inclusive chrom:start..end or chrom:start-end, GRCh38 for human, max 10Mb); species (for region route, default homo_sapiens; ignored for stable IDs); seq_type (ID route: genomic default/cdna/cds/protein — protein only for ENST/ENSP; ignored for regions which always return genomic); max_bytes (payload guard default 400000 — larger sequences have `seq` omitted; length/sha256/metadata always returned; re-call with larger max_bytes for full text). Returns &#123;found, query, seq_type, id, description, molecule, length, sha256, seq&#125; — length in the unit implied by molecule (bases for dna, residues for protein); seq replaced by seq_omitted when capped; found:false with null fields for unknown stable IDs; malformed/oversized regions raise with the upstream message.
+Fetch sequence from Ensembl — by stable ID (gene/transcript/protein) or by genomic region. Pass EITHER stable_id OR region. Args: stable_id (ENSG.../ENST.../ENSP..., versioned accepted); region (1-based inclusive chrom:start..end or chrom:start-end, GRCh38 for human, max 10Mb); species (for region route, default homo_sapiens; ignored for stable IDs); seq_type (ID route: genomic default/cdna/cds/protein; ignored for regions which always return genomic). This tool returns one sequence: for gene-level cdna/cds/protein requests that resolve to multiple sequences, specify a transcript/protein stable ID instead; max_bytes (payload guard default 400000 — larger sequences have `seq` omitted; length/sha256/metadata always returned; re-call with larger max_bytes for full text). Returns &#123;found, query, seq_type, id, description, molecule, length, sha256, seq&#125; — length in the unit implied by molecule (bases for dna, residues for protein); seq replaced by seq_omitted when capped; found:false with null fields only when Ensembl explicitly reports the requested stable ID as not found; multiple-sequence requests, incompatible sequence types, and other upstream failures raise errors.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
@@ -714,6 +751,45 @@ List Ensembl features overlapping a genomic region — genes, transcripts, regul
 
 ```javascript
 const result = await host.mcp("genomes", "ensembl_overlap_region", {"region": "7:140719327-140925199", "feature": "gene"})
+```
+
+### `ncbi_resolve_taxon`
+
+Resolve a species or taxon name to NCBI Taxonomy identifiers. Accepts a scientific/common name or numeric TaxID; returns every upstream match so ambiguous names are not silently assigned to the first result.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 200 |
+| `max_matches` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_resolve_taxon", {"query": "human"})
+```
+
+### `ncbi_get_assembly_info`
+
+Return the exact NCBI genome assembly identity for a versioned GCF/GCA accession, including taxon, assembly name, UCSC synonym, status, and paired RefSeq/GenBank accession. Versionless accessions are rejected to prevent reproducibility and species-compatibility errors.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `assembly_accession` | string | **required**; pattern: &quot;^GC[AF]_[0-9]&#123;9&#125;\\.[0-9]+$&quot; |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_get_assembly_info", {"assembly_accession": "GCF_000001405.40"})
+```
+
+### `ncbi_get_sequence_aliases`
+
+List sequence names and exact UCSC/RefSeq/GenBank aliases for one versioned NCBI assembly. Optionally resolve one sequence name; ambiguous shared chromosome labels are retained as multiple matches instead of choosing an alt or unlocalized scaffold. Results are a bounded prefix controlled by max_sequences (default 200); use a larger cap when the full assembly report is needed.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `assembly_accession` | string | **required**; pattern: &quot;^GC[AF]_[0-9]&#123;9&#125;\\.[0-9]+$&quot; |
+| `sequence` | string | optional; minLength: 1; maxLength: 200 |
+| `max_sequences` | integer | optional; default: 200; minimum: 1; maximum: 5000 |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_get_sequence_aliases", {"assembly_accession": "GCF_000001405.40", "sequence": "chr1"})
 ```
 
 ### `ucsc_list_tracks`
@@ -749,7 +825,7 @@ const result = await host.mcp("genomes", "ucsc_track_data", {"track": "cpgIsland
 
 ### `ucsc_conservation`
 
-Evolutionary conservation summary for a region from UCSC phyloP / phastCons tracks (base-wise scores over multi-species alignments). Args: chrom (chr-prefixed); start (0-based half-open); end (exclusive; span capped at 100000 bp — split larger); genome (default hg38); track (default phyloP100way; positive=conserved, negative=fast-evolving; alternatives hg38 phastCons100way, phyloP30way, phastCons30way, phyloP447way, phyloP470way; hg19 phyloP100wayAll/phastCons100way); include_values (also return per-base &#123;start,end,value&#125; rows capped at max_values, values_truncated flags the cap; default false = summary only); max_values (per-base cap default 2000). Returns &#123;genome, track, chrom, start, end, span_bp, n_bases_covered, coverage_fraction, mean, min, max&#125; (+values, values_truncated when requested). Stats weighted by each row&#x27;s base span, clipped to window; uncovered bases lower coverage_fraction, not zero-scored. Non-score tracks raise; an upstream-truncated row list also raises. Coordinates must be non-negative safe integers, with `end > start`. Invalid values are rejected, not rounded or clamped to another locus.
+Evolutionary conservation summary for a region from UCSC phyloP / phastCons tracks (base-wise scores over multi-species alignments). Args: chrom (chr-prefixed); start (0-based half-open); end (exclusive; span capped at 100000 bp — split larger); genome (default hg38); track (optional; defaults to phyloP100wayAll for hg19 and phyloP100way for other genomes; positive=conserved, negative=fast-evolving; alternatives hg38 phastCons100way, phyloP30way, phastCons30way, phyloP447way, phyloP470way; hg19 phastCons100way); include_values (also return per-base &#123;start,end,value&#125; rows capped at max_values, values_truncated flags the cap; default false = summary only); max_values (per-base cap default 2000). Returns &#123;genome, track, chrom, start, end, span_bp, n_bases_covered, coverage_fraction, mean, min, max&#125; (+values, values_truncated when requested). Stats weighted by each row's base span, clipped to window; uncovered bases lower coverage_fraction, not zero-scored. Non-score tracks raise; an upstream-truncated row list also raises.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
@@ -757,7 +833,7 @@ Evolutionary conservation summary for a region from UCSC phyloP / phastCons trac
 | `start` | integer | **required**; minimum: 0; maximum: 9007199254740991 |
 | `end` | integer | **required**; minimum: 0; maximum: 9007199254740991 |
 | `genome` | string | optional; default: &quot;hg38&quot; |
-| `track` | string | optional; default: &quot;phyloP100way&quot; |
+| `track` | string | optional |
 | `include_values` | boolean | optional; default: false |
 | `max_values` | integer | optional; default: 2000 |
 
@@ -806,12 +882,13 @@ const result = await host.mcp("genomes", "ucsc_chrom_sizes", {"genome": "hg38", 
 
 ### `get_variant`
 
-Look up one gnomAD short variant by ID and return its population frequencies. `variant_id` is `chrom-pos-ref-alt` on the dataset&#x27;s reference build (GRCh38 for r3/r4, GRCh37 for r2.1/ExAC), e.g. `19-44908822-C-T` (APOE rs7412); use `search_variants` to resolve an rsID first.
+Look up one gnomAD short variant by ID and return overall exome/genome frequencies. `variant_id` is `chrom-pos-ref-alt` on the dataset's reference build (GRCh38 for r3/r4, GRCh37 for r2.1/ExAC), e.g. `19-44908822-C-T` (APOE rs7412); use `search_variants` to resolve an rsID first. Set `include_populations: true` when ancestry-specific counts/frequencies are needed for an individual variant. Retain the dataset, allele counts and quality filters when interpreting frequencies; rarity alone does not establish pathogenicity or an ACMG criterion.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
 | `variant_id` | string | **required** |
 | `dataset` | string | optional; default: &quot;gnomad_r4&quot;; enum: [&quot;gnomad_r4&quot;, &quot;gnomad_r4_non_ukb&quot;, &quot;gnomad_r3&quot;, &quot;gnomad_r3_controls_and_biobanks&quot;, &quot;gnomad_r3_non_cancer&quot;, &quot;gnomad_r3_non_neuro&quot;, &quot;gnomad_r3_non_topmed&quot;, &quot;gnomad_r3_non_v2&quot;, &quot;gnomad_r2_1&quot;, &quot;gnomad_r2_1_controls&quot;, &quot;gnomad_r2_1_non_cancer&quot;, &quot;gnomad_r2_1_non_neuro&quot;, &quot;gnomad_r2_1_non_topmed&quot;, &quot;exac&quot;] |
+| `include_populations` | boolean | optional; default: false |
 
 ```javascript
 const result = await host.mcp("variants", "get_variant", {"variant_id": "19-44908822-C-T", "dataset": "gnomad_r4"})
@@ -1101,7 +1178,7 @@ const result = await host.mcp("clinical-trials", "analyze_endpoints", {"nct_id":
 
 ### `search_by_eligibility`
 
-Patient-trial matching. DEFAULTS to RECRUITING trials unless status is set. min_age/max_age are the PATIENT&#x27;s age (&quot;65 Years&quot;, &quot;6 Months&quot;) and match trials whose age window admits the patient; sex matches trials accepting that sex or all comers; eligibility_keywords searches the inclusion/exclusion criteria text (e.g. &quot;HbA1c &gt; 8&quot;, &quot;BRCA mutation&quot;, &quot;ECOG 0-1&quot;). At least one of condition, eligibility_keywords, min_age, max_age or sex is required. Page with page_token.
+Patient-trial matching. DEFAULTS to RECRUITING trials unless status is set. Supply either min_age or max_age for one patient age ("65 Years", "6 Months"); both trial age bounds are checked. If both are supplied, the trial must admit the entire patient age interval. Missing trial age bounds are unrestricted. sex MALE/FEMALE includes all-comer trials; ALL or omitted sex applies no sex filter. eligibility_keywords searches the inclusion/exclusion criteria text (e.g. "HbA1c > 8", "BRCA mutation", "ECOG 0-1"). At least one of condition, eligibility_keywords, min_age, max_age or sex is required. Page with page_token.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
@@ -2484,7 +2561,7 @@ const result = await host.mcp("protein-annotation", "map_string_ids", {"symbols"
 
 ### `get_string_network`
 
-STRING protein-protein interaction network for a gene list (v12.0) at a confidence threshold. Maps symbols first (unmapped reported), then retrieves nodes, edges, summary and provenance.
+STRING protein-protein interaction network for a gene list (v12.0) at a confidence threshold. Maps symbols first (unmapped reported), then retrieves nodes, edges, summary and provenance. A single mapped input requests 10 interaction neighbors, matching STRING; multiple mapped inputs are not expanded.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
@@ -2572,7 +2649,7 @@ const result = await host.mcp("cancer-models", "cbioportal_mutations_in_gene", {
 
 ### `cbioportal_mutation_frequency`
 
-Mutation frequency of one gene across several cBioPortal studies (1–12): mutated-sample fraction of the sequenced cohort per study, ranked most-frequent first.
+Mutation frequency of one gene across several cBioPortal studies (1–12): unique mutated samples divided by samples profiled for that gene in the selected mutation profile and sample list, accounting for targeted gene panels; ranked most-frequent first.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
@@ -2737,6 +2814,31 @@ const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGA
 
 <ToolOperationGroup>
 <summary>Show operations and parameters</summary>
+
+### `ena_search_runs`
+
+Find public sequencing runs associated with one ENA/INSDC study, experiment, sample or run accession. Accepts PRJ/ERP/SRP/DRP, ERX/SRX/DRX, SAM/ERS/SRS/DRS and ERR/SRR/DRR identifiers; GEO GSE/GSM, ArrayExpress E-MTAB and MGnify MGYS identifiers need their linked INSDC accession first. Accession lookup only, not keyword search. Returns organism and library metadata without fetching data files. The result is capped at 1000 runs; a truncated result is not a complete cohort, and repeated calls are not pagination because ENA provides no offset or continuation token. Use a narrower sample or experiment accession when complete coverage is required.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accession` | string | **required**; minLength: 1; maxLength: 64 |
+| `limit` | integer | optional; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_search_runs", {"accession": "PRJNA123835", "limit": 100})
+```
+
+### `ena_get_run_files`
+
+Get archive-generated FASTQ download URLs, byte sizes and upstream MD5 checksums for one ERR/SRR/DRR run. Returns a file inventory only; no download or checksum verification. Retains every file in report order, including unpaired or long-read files; library_layout=PAIRED does not imply exactly two files. file_index is positional only and is not an R1/R2 or mate identifier. Some runs (including some single-cell/native-format submissions) have no archive-generated FASTQ. Submitted BAM/CRAM/SRA files are outside this tool.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `run_accession` | string | **required**; minLength: 1; maxLength: 64 |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_get_run_files", {"run_accession": "SRR037073"})
+```
 
 ### `arrayexpress_search_experiments`
 

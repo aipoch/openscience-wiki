@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: Settings overview
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # Settings overview
@@ -54,3 +54,7 @@ This search covers representative settings across every panel, not every field o
 :::info[How settings are saved]
 Some switches are saved immediately. Longer forms use `Save`, `Add`, or `Import`. Do not close the application while `Saving…`, `Testing…`, or `Installing…` is shown. Migration, uninstall, deletion, and broad-permission actions require confirmation.
 :::
+
+## Model settings tabs {/* #model-tabs */}
+
+Within **Model**, use **Conversation models** for providers and task models, **Classification models** for optional Skill/Connector selection, and **Local parsing models** for local parsing resources. Classification is a tab within model settings, not an additional top-level Settings panel. See [classification setup](../guides/models.md#classification-models).

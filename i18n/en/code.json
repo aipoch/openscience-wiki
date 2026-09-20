@@ -1692,5 +1692,17 @@
   },
   "docs.outline.reference.v0302.scope": {
     "message": "Specialist Skill loading, independent Side Chat, data queries and Notebook recovery."
+  },
+  "docs.outline.reference.v0311.title": {
+    "message": "v0.31.1"
+  },
+  "docs.outline.reference.v0311.scope": {
+    "message": "ENA, gene-set enrichment, reference genomes and optional classification models."
+  },
+  "docs.outline.reference.v0310.title": {
+    "message": "v0.31.0"
+  },
+  "docs.outline.reference.v0310.scope": {
+    "message": "Writable session forks, validated providers and complete STRING networks."
   }
 }

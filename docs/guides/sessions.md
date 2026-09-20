@@ -1,8 +1,10 @@
 ---
 title: "Sessions and branches"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
+
+import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # Sessions and branches
 
@@ -130,3 +132,33 @@ Choose **Archive** on the intended branch, then open **Settings → Archived →
 For an archived project, use its **Manage** entry and inspect the project's sessions. See [Storage and archived work](storage.md) for the difference between archive, restoration, deletion and storage relocation. A session's disappearance from the active list is not evidence that disk space was reclaimed.
 
 Sources: [session editor](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/EditSessionDialog.tsx), [workspace implementation](https://github.com/aipoch/open-science/tree/v0.26.0/src/renderer/src/pages/workspace).
+
+## Fork an existing session {/* #fork-session */}
+
+Use **Fork** when you need an independent working copy of a local or imported session. **Branch in new session** starts from a selected message; Fork copies the session's complete saved research history, including its branches, Notebook records, file versions, literature, annotations and private bookmarks. The source session stays unchanged. Copying a record does not rerun it or establish that its environment is ready on this computer.
+
+1. In the desktop app, finish or stop the current task. Wait for any package transfer to finish.
+2. Open the session row's actions and choose **Fork**. The app shows transfer progress; **Run in background** hides that window without cancelling it.
+3. Wait for **Fork completed** and open the new session. Open its title to inspect **Source session** and the new session number.
+4. Open an inherited file and check its contents. Inspect the selected model and runtime before continuing; old machine paths or permissions may need attention.
+5. Send the next task in the copy and check its new output. Keep the original as the reference record.
+
+![Fork in the session actions menu](/img/open-science/v0311/fork-menu.webp)
+
+![New session information showing its source and inherited QC file](/img/open-science/v0311/fork-info.webp)
+
+Fork is available in the desktop app. Imported sessions remain read-only until you work in their fork. Project settings and memory are not a separate copied project. Old review or verification records describe their recorded versions; inspect any outdated status before treating them as current checks.
+
+### Continue a QC calculation in the copy
+
+<p className="example-label"><strong>Worked example</strong> Fork a local session in v0.31.1</p>
+
+In the GSE60450 project, fork the existing QC session and open the inherited `gse60450-qc-summary.csv`. Check **12** samples and **269,027,617** total raw counts. In the copy, ask the agent to read that file with Python, verify both values, calculate mean counts per sample and save a separate `fork-qc-check.csv`. The result is **22,418,968.083333…**. The source and inherited files have identical contents; the new calculation is a separate file. This mean demonstrates continuation, not expression normalization.
+
+![Python calculation and a new result saved in the forked session](/img/open-science/v0311/fork-result.webp)
+
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Download the calculated result</ExampleDownload>. This walkthrough tested a local session fork. For the read-only state and continuation of a received `.science` package, see [Research packages](research-packages.md).
+
+## Read the session information card {/* #session-information */}
+
+Select the session title to see its number, description, source, creation/update times, message count for the current branch and artifact count. Use **Pin** to keep the session easy to find, or **Edit session** to change its title and description. A **Continued from chat** divider links back to the recorded source turn.

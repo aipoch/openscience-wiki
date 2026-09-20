@@ -1626,5 +1626,17 @@
   },
   "docs.outline.reference.v0302.scope": {
     "message": "Chargement des Skills des Specialists, Side Chat indépendant, requêtes de données et récupération du Notebook."
+  },
+  "docs.outline.reference.v0311.title": {
+    "message": "v0.31.1"
+  },
+  "docs.outline.reference.v0311.scope": {
+    "message": "ENA, enrichissement de jeux de gènes, génomes de référence et modèles de classification facultatifs."
+  },
+  "docs.outline.reference.v0310.title": {
+    "message": "v0.31.0"
+  },
+  "docs.outline.reference.v0310.scope": {
+    "message": "Copies de sessions modifiables, validation des fournisseurs et réseaux STRING complets."
   }
 }

@@ -1,7 +1,7 @@
 ---
 title: "Proveedor y configuración del modelo local"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -24,7 +24,7 @@ Elija **Import existing Codex sign-in** para copiar un registro local de trabajo
 
 ## Elija una región proveedor o un modelo de catálogo gratuito {/* #provider-regions */}
 
-Para **SenseNova**, seleccione **China** o **Global** en el formulario del proveedor antes de elegir un modelo. Usa la tecla API para esa región, revisa la lista de modelos resultante, guarda y prueba la conexión. Las regiones de conmutación pueden cambiar tanto el punto final como los modelos disponibles; un nombre clave o modelo de la otra región puede no funcionar.
+Para **SenseNova**, seleccione **China** o **Global** en el formulario del proveedor antes de elegir un modelo. Utilice la tecla API para esa región, revise la lista de modelos resultante, seleccione **Save**, y espere la validación de la conexión antes de que el cambio se cometa. Las regiones de conmutación pueden cambiar tanto el punto final como los modelos disponibles; un nombre clave o modelo de la otra región puede no funcionar.
 
 Para pasarelas como **OpenRouter** o **OpenCode Zen**, seleccione un modelo gratuito sólo cuando se ofrece la entrada exacta para el marco activo. Utilice la cuenta y la credenciales requeridas por el servicio. Una entrada de catálogo libre no elimina los límites de uso o establece soporte para cada herramienta o entrada de imagen. No anexione `:free` a un ID de modelo arbitrario. Enviar una pequeña solicitud y comprobar el modelo devuelto y el resultado antes de usar la conexión para la investigación.
 
@@ -44,7 +44,7 @@ Para pasarelas como **OpenRouter** o **OpenCode Zen**, seleccione un modelo grat
 | --- | --- | --- |
 | **Check Codex login** | La conexión guardada puede haber expirado. | El cheque pendiente se asienta en el estado verificado o fallido mostrado. |
 | **Re-import Codex login** | Usted ha refrescado el registro externo y desea actualizar la copia de la aplicación. | La autenticación es importada y verificada de nuevo. |
-| **Edit** | Necesita revisar la configuración de autenticación o transporte. | Guardar la configuración prevista y volver a comprobar la conexión. |
+| **Edit** | Necesita revisar la configuración de autenticación o transporte. | Seleccione Guardar y esperar a una validación exitosa antes de que se cometa la edición. |
 | **Delete** | Un proveedor no utilizado debe ser eliminado. | La disponibilidad depende de si el proveedor sigue siendo necesario; una dependencia activa puede prevenir la eliminación. |
 
 Si la importación reporta que falta un inicio de sesión Codex respaldado por archivos, regístrese a través del flujo Codex compatible y vuelva a iniciar **Re-import Codex login**. Un login celebrado sólo en una tienda credencial externa no es necesariamente un archivo importable.
@@ -56,7 +56,7 @@ El agente de tiempo de ejecución maneja el trabajo; el proveedor del modelo sum
 
 ## Actualizar o eliminar una credencial API {/* #update-or-remove-an-api-credential */}
 
-Después de cambiar una llave en el servicio, encuentre su proveedor en **Settings → Model**, seleccione **Edit**, ingrese el reemplazo en **API key**, y ahorre. Dejar este campo en blanco mantiene la clave existente; no lo aclara. Espera a la prueba de conexión. Si la autenticación falla, compruebe el punto final, la cuenta que la clave pertenece, y su validez antes de volver a iniciar.
+Después de cambiar una clave en el servicio, encuentre su proveedor en **Settings → Model**, seleccione **Edit**, introduzca el reemplazo en **API key**, y seleccione **Save**. Dejar este campo en blanco mantiene la clave existente; no lo aclara. La conexión se prueba antes de que se cometa la edición. Si la autenticación falla, compruebe el punto final, la cuenta que la clave pertenece, y su validez antes de volver a iniciar.
 
 Después de **Connection verified**, complete una pequeña solicitud con ese proveedor. Retire un proveedor no utilizado con **Delete**, comprueba su nombre en la confirmación. La eliminación de la configuración de la aplicación no revoca la clave en el servicio.
 
@@ -80,7 +80,7 @@ Empieza seleccionando `Custom Gateway`. Cambiar el tipo de proveedor puede prese
 | `Advanced settings` | Expande o desploma la capacidad y los campos de límite de token |
 | `More information` (`i`) | Abre ayuda contextual junto a la etiqueta asociada |
 | `Back` | Regresa al agente a tiempo de ejecución; el mago posee el borrador de forma para sobrevivir navegando de nuevo |
-| `Test & continue` | Validates campos requeridos, entonces guarda/prueba al proveedor cuando sea válido; anticipos después de una validación aplicable exitosa |
+| `Test & continue` | Valida los campos requeridos, luego prueba al proveedor antes de comprometer la configuración válida; anticipos después de una validación aplicable exitosa |
 
 Los tres formatos API mostrados en el menú son:
 
@@ -208,3 +208,7 @@ Estos son los números de cuenta cero de la primera muestra GSE60450 y detectado
 Para 400, 401, 403, 404, 429 o 5xx, use el [Mesa de solución de problemas HTTP](troubleshooting.md#http-errors-400-403-429-and-5xx). Mantenga el servicio de respuesta y su mensaje detallado con el código de estado.
 
 Fuente: [ProveedorForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ProviderForm.tsx), [ProveedorStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/ProviderStep.tsx).
+
+## Guardar un cambio de proveedor en v0.31.0 y más tarde {/* #validated-provider-save */}
+
+Las ediciones del proveedor se prueban antes de que se cometan. Seleccione **Save**, espere el resultado de la conexión y confirme el éxito antes de cerrar el formulario. Una prueba fallida no reemplaza una configuración ahorrada de trabajo. Si se rechaza una conexión previamente guardada durante una solicitud, se actualiza su disponibilidad; verifique el punto final y credencial, y luego vuelva a probar. **Conversation models**, **Classification models** y **Local parsing models** tienen diferentes propósitos; ver [configuración del modelo](models.md#classification-models).

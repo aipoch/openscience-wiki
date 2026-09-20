@@ -1625,5 +1625,17 @@
   },
   "docs.outline.reference.v0302.scope": {
     "message": "Laden von Specialist-Skills, unabhängiger Side Chat, Datenabfragen und Notebook-Wiederherstellung."
+  },
+  "docs.outline.reference.v0311.title": {
+    "message": "v0.31.1"
+  },
+  "docs.outline.reference.v0311.scope": {
+    "message": "ENA, Genmengen-Anreicherung, Referenzgenome und optionale Klassifikationsmodelle."
+  },
+  "docs.outline.reference.v0310.title": {
+    "message": "v0.31.0"
+  },
+  "docs.outline.reference.v0310.scope": {
+    "message": "Bearbeitbare Sitzungskopien, Anbieterprüfung und vollständige STRING-Netzwerke."
   }
 }

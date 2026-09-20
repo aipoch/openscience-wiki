@@ -2,12 +2,12 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
 
 # .science-Forschungspakete {/* #science-research-packages */}
 
-Ein **.science** Forschungspaket bringt Konversationszweige, Dateien und aufgezeichnete Beweise für eine Übergabe zusammen. Ein Kollege kann es in ein Projekt importieren und die Forschungsaufzeichnung inspizieren. Importierte Sessions sind schreibgeschützt; Neue Forschungsarbeiten beginnen in einer normalen Sitzung.
+Ein **.science** Forschungspaket bringt Konversationszweige, Dateien und aufgezeichnete Beweise für eine Übergabe zusammen. Ein Kollege kann es in ein Projekt importieren und die Forschungsaufzeichnung inspizieren. Importierte Sessions sind Read-only. Verwenden Sie von v0.31.0 aus **Fork** in der Desktop-App, um eine beschreibbare Kopie zu erstellen und die Recherche fortzusetzen.
 
 ## Wählen Sie, was zu teilen {/* #choose-what-to-share */}
 
@@ -51,7 +51,7 @@ Die folgenden Bildschirme verwenden eine Sitzung, die den [GSE60450 Proben-QC-Ta
 
 ## Verwenden Sie die erhaltene Forschungsaufzeichnung {/* #use-the-received-research-record */}
 
-Die importierte Sitzung kann eingesehen und als Referenz verwendet, aber nicht fortgesetzt oder ausgeführt werden. Um neue Arbeiten zu erledigen, erstellen Sie eine normale Sitzung und geben Sie die relevanten Eingabedateien und Anweisungen explizit an. Die importierte Nutzung ist von den Gesamtmengen der lokalen Aktivitäten ausgenommen.
+Die importierte Sitzung selbst bleibt schreibgeschützt. Öffnen Sie auf dem Desktop das Sitzungsmenü und wählen Sie **Fork**. Warten Sie auf **Fork completed**, öffnen Sie die neue Sitzung und prüfen Sie die geerbten Dateien, bevor Sie ein Follow-up senden. Die Quelle bleibt unverändert; Der Code läuft nicht automatisch. Siehe [Fork eine bestehende Sitzung](sessions.md#fork-session) für die Schritte und Prüfungen. Die importierte Nutzung ist von den Gesamtmengen der lokalen Aktivitäten ausgenommen.
 
 Ein empfangenes Verifizierungsprotokoll beschreibt die vom Absender gelieferten Schecks. Das bedeutet nicht, dass dieser Computer die Prüfungen erneut ausgeführt hat. Lesen Sie die Dateiversion, die Vergleichskriterien und das Ergebnis; Siehe [Reproduzierbarkeit](reproducibility.md), wie diese Prüfungen funktionieren.
 

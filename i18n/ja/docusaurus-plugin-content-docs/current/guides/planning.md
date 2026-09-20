@@ -1,7 +1,7 @@
 ---
 title: "実行前の計画"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 実行前の計画 {/* #planning-before-execution */}
@@ -57,3 +57,7 @@ last_update:
 [ファイルとバージョン](./files.md)、[Notebook 証拠](./notebook.md)、[権限](./approval-modes.md) を続けてください。
 
 ソース: [計画の承認および下検分制御](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/session-plan/SessionPlanSurfaces.tsx).
+
+## コンテキスト再構築後の再開 {/* #resume-plan */}
+
+v0.31.0から、エージェントは、コンテキストを再構築した後、現在のセッションプラン、そのリビジョンおよび保留承認を回復できます。 アクティブプランを再オープンし、続行を依頼する前に実際に完了した手順を確認します。 保留中の承認はまだ保留中である。 計画を回復することは、それを承認したり、結果が記録されていない操作を確認したりしません。

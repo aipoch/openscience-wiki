@@ -2,7 +2,7 @@
 title: Private reading bookmarks
 description: Save passages and PDF regions for yourself, add notes and return to their source within a session.
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # Private reading bookmarks
@@ -32,3 +32,7 @@ If the source is unavailable or its exact location cannot be found, use the disp
 - They belong to that session. They do not transfer to another branch or synchronize across machines, and deleting the session removes its bookmarks.
 - [.science research packages](research-packages.md) exclude these private bookmarks. Put information a colleague needs into a saved report or the conversation before preparing a handover.
 - To ask the agent about a passage, use **To Agent** and review the annotation in the intended draft before sending. Moving annotations between Main and a side discussion is covered in [Side Chat](delegation.md).
+
+## Bookmarks in a fork {/* #bookmarks-in-fork */}
+
+From v0.31.0, [Fork](sessions.md#fork-session) copies private bookmarks and notes into the new session with fresh identities. Later edits in the copy do not edit the source bookmarks. This is different from switching branches or exporting a `.science` file: private bookmarks still do not join package exports or synchronize across machines.

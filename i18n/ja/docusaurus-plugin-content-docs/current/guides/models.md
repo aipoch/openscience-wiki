@@ -1,7 +1,7 @@
 ---
 title: "モデルとタスクポリシー"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # モデルとタスクポリシー {/* #models-and-task-policies */}
@@ -78,3 +78,25 @@ Main、Subagent、Viewer、Vision、Session の詳細は異なるモデルが必
 実行バックエンドと[使用量](./usage.md)の[エージェントのセットアップ](./frameworks.md)を使用して、報告されたアクティビティを使用できます。 正確な構成の優先順位は[リファレンス](../reference/configuration.md)にあります。
 
 ソース: [モデル選定](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx)、[シナリオポリシー](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx)。
+
+## オプションの分類モデル {/* #classification-models */}
+
+**Settings → Model → Classification models** を開きます。 分類サービスは要求が始まる前に関連したSkillsおよびコネクターを選ぶのを助けます。 Mainを交換したり、チャットモデルを追加したりしません。 **Use default method**で**Automatic capability selection**を離れることができます。 Skillsとコネクタは、まだそれなしで動作します。
+
+v0.31.1 では、このサービスは **Codex Chat Completions** または **CodeBuddy** を使うメイン会話で利用されます。Codex サブスクリプションや、すべてのフレームワークで利用できるという意味ではありません。送信されるのは現在のリクエストと、機能の名前・説明だけです。サービスが利用できない場合や結果が不明確な場合は、標準の方法が使われます。
+
+![デフォルト機能選択とオプションの分類サービスエントリ](/img/open-science/v0311/classification-models.webp)
+
+1. **Add service**、**TypeSafe AI**、**OpenRouter**を選択します。
+2. サービス名をつけ、APIの資格情報を提供して下さい。 OpenRouter は、既存の互換アカウントまたは新しいキーを使用できます。 スクリーンショットで隠されているキーを保持します。
+3. **Save**を選択し、検証を待ちます。 失敗したバリデーションは、以前の設定が変更されていないままにします。
+4. **Automatic capability selection** では、保存されたサービスと、カタログで提供されるモデルを選択します。 **Check model** を使用して接続を確認します。
+5. サポートされているメインの会話でバインドされたリクエストを試し、選択した実際のツールを調べます。 成功したモデルチェックだけでは、研究結果が確認されていない。
+
+サービスを取り戻すと、デフォルトメソッドへのバインディングが返されます。 別々に保存されたサービスキーはそれによって取除かれます; アカウントを共有するサービスを削除すると、そのアカウントまたはそのキーを削除しません。
+
+[プロバイダーのセットアップ](providers.md) は、会話モデルの形式です。 ローカルPDFパーシングリソースは、別タブの**Local parsing models**の下で管理されます。
+
+![APIキーの分類サービスフォームは、まだ空の](/img/open-science/v0311/classification-add-service.webp)
+
+スクリーンショットは v0.31.1 の初期状態とサービス追加フォームを示しています。この手順では分類サービスを設定しておらず、分類モデルへの呼び出しも検証していません。

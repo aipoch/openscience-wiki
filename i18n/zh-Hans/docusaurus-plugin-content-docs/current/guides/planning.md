@@ -1,7 +1,7 @@
 ---
 title: "执行前规划"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 执行前规划
@@ -57,3 +57,7 @@ Open 在对话旁打开阶段、步骤、执行者、预期输出和可行性说
 后续见[文件与版本](./files.md)、[Notebook 证据](./notebook.md)、[权限](./approval-modes.md)。
 
 源码：[计划审批和预览](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/session-plan/SessionPlanSurfaces.tsx)。
+
+## 上下文重建后继续计划 {/* #resume-plan */}
+
+从 v0.31.0 起，代理重建上下文后可以恢复当前 Session Plan、修订版本及待审批状态。继续前重新打开当前计划，检查哪些步骤实际完成。待审批的事项仍需审批；恢复计划不会自动批准，也不会把没有记录结果的操作变成已完成。

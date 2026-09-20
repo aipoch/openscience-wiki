@@ -1,7 +1,7 @@
 ---
 title: "모델 및 작업 정책"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 모델 및 작업 정책 {/* #models-and-task-policies */}
@@ -78,3 +78,25 @@ auxiliary 요청이 완료된 후 저장된 제목과 설명을 확인합니다.
 [에이전트 설정](./frameworks.md) 을 사용하여 수행 백엔드 및 [사용량](./usage.md) 을 위해 보고된 활동. 정확한 윤곽은 [참고 자료](../reference/configuration.md)에 있습니다.
 
 출처: [모델 선택](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx), [시나리오 정책](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx).
+
+## 선택 분류 모델 {/* #classification-models */}
+
+**Settings → Model → Classification models**을 엽니다. 분류 서비스는 요청이 시작되기 전에 관련 Skills 및 커넥터를 선택합니다. Main을 대체하거나 채팅 모델을 추가하지 않습니다. **Use default method**에서 **Automatic capability selection**을 떠날 수 있습니다; Skills와 연결관은 아직도 그것 없이 작동합니다.
+
+v0.31.1에서 이 서비스는 **Codex Chat Completions** 또는 **CodeBuddy**를 사용하는 기본 대화에 적용됩니다. Codex 구독이나 모든 프레임워크가 지원된다는 뜻은 아닙니다. 현재 요청과 기능의 이름 및 설명만 분류 서비스에 전달됩니다. 서비스를 사용할 수 없거나 결과가 불명확하면 기본 방식을 사용합니다.
+
+![기본 기능 선택 및 선택 분류 서비스 항목](/img/open-science/v0311/classification-models.webp)
+
+1. **Add service**, **TypeSafe AI** 또는 **OpenRouter**를 선택하십시오.
+2. 서비스 이름과 API 자격 부여를 공급합니다. OpenRouter는 기존의 호환 계정 또는 새로운 키를 사용할 수 있습니다; 스크린 샷에 숨겨진 키를 유지합니다.
+3. **Save**을 선택하고 유효성 검사를 기다립니다. 실패된 유효성은 이전 설정이 변경되지 않았습니다.
+4. **Automatic capability selection**의 밑에, 저장된 서비스를 선정하고 그것의 카탈로그에서 제안된 모형. **Check model**을 사용하여 연결을 확인합니다.
+5. 지원되는 주요 대화에서 경계 요청을 시도하고, 선택한 실제 도구를 검사합니다. 성공적인 모델 검사는 혼자 연구 결과를 확인하지 않습니다.
+
+서비스 제거는 기본 메소드에 바인딩을 반환합니다. 별도의 저장 서비스 키가 제거됩니다; 계정을 공유하는 서비스는 계정이나 열쇠를 삭제하지 않습니다.
+
+대화 모델에 [공급자 설정](providers.md)을 참조하십시오. 로컬 PDF 파싱 리소스는 **Local parsing models**, 별도의 탭에서 관리됩니다.
+
+![API 키가 여전히 빈으로 분류 서비스 양식](/img/open-science/v0311/classification-add-service.webp)
+
+스크린샷은 v0.31.1의 기본 상태와 서비스 추가 양식을 보여 줍니다. 이 예제에서는 분류 서비스를 설정하지 않았으며 분류 모델 호출도 검증하지 않았습니다.

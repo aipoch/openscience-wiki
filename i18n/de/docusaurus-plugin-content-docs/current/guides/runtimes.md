@@ -1,7 +1,7 @@
 ---
 title: "Python und R Laufzeiten"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -252,7 +252,7 @@ Für eine schnelle Überprüfung, bevor Sie Forschungsdaten verwenden, bitten Si
 
 Für Windows Conda R Start- oder Kernel-Wiederherstellungsfehler verwenden Sie v0.30.2 oder höher, bevor Sie erneut versuchen. Das Release behebt die ausführbare Suche nach der Umgebungsvorbereitung und der R-Kernelwiederherstellung. Nach dem Aktualisieren überprüfen Sie die Umgebung erneut und führen Sie eine kleine R-Berechnung in Notebook aus; **Ready** allein ist kein Ausführungsergebnis. Die folgenden Screenshots behalten die Versionen und Ergebnisse ihrer ursprünglichen Läufe bei.
 
-Für einen Windows R-Lauf, der **Aktivieren Sie den geschützten Modus, bevor Sie den R-Zugriff autorisieren.** meldet, überprüfen Sie **Network settings** und die **Authorize and verify**-Anweisungen der R-Karte. Beheben Sie die gemeldete Genehmigungsvoraussetzung vor dem erneuten Ausführen; Eine **Ready**-Karte allein bestätigt die Ausführung nicht. Behalten Sie den vollständigen Fehler bei, wenn die Anforderung blockiert bleibt, und folgen Sie [Fehlerbehebung](troubleshooting.md).
+Von v0.31.0 aus kann Windows R im Standardmodus ausgeführt werden, ohne dass zuvor der geschützte Modus eingerichtet wurde. Behandeln Sie **Aktivieren Sie den geschützten Modus, bevor Sie den R-Zugriff autorisieren.** von einem älteren Release als versionspezifische Anleitung. Netzwerkschutz- und Paketinstallationsberechtigungen bleiben getrennte Kontrollen. In v0.31.1 zeigt ein von Notebook Netzwerkschutz blockierter Lauf eine Inline-Warnung mit einem Link zur entsprechenden Einstellung an; Die Zelle wurde nicht hingerichtet. Überprüfen Sie den erforderlichen Zugriff, wiederholen Sie dann und überprüfen Sie die Ausgabe.
 
 <span id="windows-runtime-qc" />
 

@@ -2482,5 +2482,17 @@
   },
   "docs.outline.reference.v0302.scope": {
     "message": "Specialist Skill 載入、獨立旁聊、資料查詢與 Notebook 恢復。"
+  },
+  "docs.outline.reference.v0311.title": {
+    "message": "v0.31.1"
+  },
+  "docs.outline.reference.v0311.scope": {
+    "message": "ENA、基因集富集、參考基因組與可選分類模型。"
+  },
+  "docs.outline.reference.v0310.title": {
+    "message": "v0.31.0"
+  },
+  "docs.outline.reference.v0310.scope": {
+    "message": "可寫會話副本、提供方驗證與完整 STRING 網絡。"
   }
 }

@@ -2,12 +2,12 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
 
 # .science research packages
 
-A **.science** research package brings conversation branches, files and recorded evidence together for a handover. A colleague can import it into a project and inspect the research record. Imported sessions are read-only; new research work starts in a normal session.
+A **.science** research package brings conversation branches, files and recorded evidence together for a handover. A colleague can import it into a project and inspect the research record. Imported sessions are read-only. From v0.31.0, use **Fork** in the desktop app to create a writable copy and continue the research.
 
 ## Choose what to share
 
@@ -51,7 +51,7 @@ The following screens use a session that summarizes the [GSE60450 sample QC tabl
 
 ## Use the received research record
 
-The imported session can be inspected and referenced, but cannot be continued or executed. To do new work, create a normal session and explicitly provide the relevant input files and instructions. Imported usage is excluded from local activity totals.
+The imported session itself stays read-only. On the desktop, open its session menu and choose **Fork**. Wait for **Fork completed**, open the new session, and inspect its inherited files before sending a follow-up. The source remains unchanged; code does not run automatically. See [Fork an existing session](sessions.md#fork-session) for the steps and checks. Imported usage is excluded from local activity totals.
 
 A received verification record describes checks supplied by the sender. It does not mean this computer has rerun them. Read the file version, comparison criteria and outcome; see [Reproducibility](reproducibility.md) for how those checks work.
 

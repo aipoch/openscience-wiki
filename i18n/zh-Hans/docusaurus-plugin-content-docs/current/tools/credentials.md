@@ -1,7 +1,7 @@
 ---
 title: "服务凭据"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 服务凭据
@@ -64,3 +64,7 @@ OpenAlex 查询需要有效的 OpenAlex 密钥；OAuth Connector 需要完成对
 实现依据: [CredentialsPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [ConnectorAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx)。
 
 可通过本地认证的 [CLI/SDK 凭据管理](../reference/cli.md)创建/更新共享凭据。Linux headless 可显式选择[未加密文件存储](../reference/server.md)，桌面凭据仍遵循正常 OS 存储行为；此选项不解决 Compute 密码存储，也不发起首次 OAuth 登录。
+
+## 打开官方 API Key 页面 {/* #official-api-key-page */}
+
+从 v0.31.0 起，OpenAlex 和 NCBI 的凭据提示包含官方 API Key 页面链接。打开链接时，表单草稿和等待中的 Connector 调用会保留。在服务方完成账户操作后，返回凭据表单，验证并保存所需密钥，再重试查询。仅打开获取密钥的页面，不会自动保存密钥或完成查询。

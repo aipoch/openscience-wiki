@@ -1610,5 +1610,17 @@
   },
   "docs.outline.reference.v0302.scope": {
     "message": "Specialist の Skill 読み込み、独立した Side Chat、データ照会と Notebook の復旧。"
+  },
+  "docs.outline.reference.v0311.title": {
+    "message": "v0.31.1"
+  },
+  "docs.outline.reference.v0311.scope": {
+    "message": "ENA、遺伝子セット濃縮、参照ゲノム、任意の分類モデル。"
+  },
+  "docs.outline.reference.v0310.title": {
+    "message": "v0.31.0"
+  },
+  "docs.outline.reference.v0310.scope": {
+    "message": "書き込み可能なセッションのコピー、プロバイダーの検証、完全な STRING ネットワーク。"
   }
 }

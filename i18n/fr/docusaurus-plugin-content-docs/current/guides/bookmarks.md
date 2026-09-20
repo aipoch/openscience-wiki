@@ -2,7 +2,7 @@
 title: "Signets de lecture personnels"
 description: "Sauvegardez les passages et les régions PDF par vous-même, ajoutez des notes et retournez à leur source dans une session."
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # Signets de lecture personnels {/* #private-reading-bookmarks */}
@@ -32,3 +32,7 @@ Si la source n'est pas disponible ou si son emplacement exact ne peut pas être 
 - Ils appartiennent à cette session. Ils ne transfèrent pas vers une autre branche ou synchronisent entre les machines, et la suppression de la session supprime ses signets.
 - [Paquets de recherche .science](research-packages.md) exclut ces signets privés. Mettre l'information dont un collègue a besoin dans un rapport sauvegardé ou dans la conversation avant de préparer un transfert.
 - Pour poser des questions à l'agent sur un passage, utilisez **To Agent** et examinez l'annotation dans le brouillon prévu avant d'envoyer. Le déplacement des annotations entre Main et une discussion parallèle est couvert dans [Side Chat](delegation.md).
+
+## Signets dans une fourchette {/* #bookmarks-in-fork */}
+
+Depuis v0.31.0, [Fourche](sessions.md#fork-session) copie des signets et des notes privés dans la nouvelle session avec de nouvelles identités. Les modifications ultérieures dans la copie ne modifient pas les signets sources. Ceci est différent de la commutation de branches ou de l'exportation d'un fichier `.science` : les signets privés ne rejoignent toujours pas les exportations de paquets ou ne se synchronisent pas entre les machines.

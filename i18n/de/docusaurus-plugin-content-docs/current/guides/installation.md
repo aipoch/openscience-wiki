@@ -1,7 +1,7 @@
 ---
 title: "Installation und Aktualisierungen"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -70,7 +70,7 @@ Der Installationsordner enthält die Anwendung; **Data location** im Einrichtung
 
 Sie benötigen Git, Node.js 22, npm und die Plattformbauvoraussetzungen für Electron. Installieren oder wählen Sie ein Agent-Framework in der Anwendung aus. Während der Installation generiert das Repository den Prisma Client, wendet App-Patches an und bereitet native Electron-Abhängigkeiten vor.
 
-Wählen Sie für eine reproduzierbare Quellinstallation das vorgesehene Release-Tag aus [Changelog](../changelog/v0.30.2.md), bevor Sie Abhängigkeiten installieren. Ein Standardklon folgt dem Branch und nicht einem festen Release. Notieren Sie die ausgewählten Tag-, Source-Commit- und Runtime-Versionen, damit eine andere Person die Umgebung reproduzieren kann.
+Wählen Sie für eine reproduzierbare Quellinstallation das vorgesehene Release-Tag aus [Changelog](../changelog/v0.31.1.md), bevor Sie Abhängigkeiten installieren. Ein Standardklon folgt dem Branch und nicht einem festen Release. Notieren Sie die ausgewählten Tag-, Source-Commit- und Runtime-Versionen, damit eine andere Person die Umgebung reproduzieren kann.
 
 Ersetzen Sie `RELEASE_TAG` unten durch das genaue Tag, das auf dem ausgewählten Release angezeigt wird (einschließlich des führenden `v`). Um der laufenden Entwicklung zu folgen, lassen Sie stattdessen `--branch RELEASE_TAG --depth 1` weg; Dieser Checkout folgt dem Default Branch.
 
@@ -134,3 +134,7 @@ Die Neuinstallation behält vorhandene Daten bei. Wenn Sie nach einem Datenprobl
 | Ersteinrichtung | Lesen Sie den fehlgeschlagenen Umwelt-Check und lösen Sie die angegebene Anforderung, bevor Sie fortfahren. |
 | Erster Agent Request | Bestätigen Sie einen Active/Ready Agent und führen Sie **Test connection** auf der Modellseite. |
 | Provider oder lokale Browserverbindung | Überprüfen Sie den gemeldeten Port-, Proxy- oder Zertifikatsfehler; siehe [Fehlerbehebung](troubleshooting.md). |
+
+## Produktname nach v0.31.0 {/* #product-name */}
+
+Die aktuelle Schnittstelle und neue Pakete verwenden **Open-Science** konsequent. Das Upgrade bewahrt vorhandene Installationsnamen und -standorte, Forschungsdaten, Anmeldeinformationen und Einstellungen. Ein älterer Installationspfad, der `Open Science` enthält, ist an sich kein Upgrade-Fehler. Namen Sie die Datenordner nicht um oder verschieben Sie sie nicht so, dass sie dem neuen Anzeigenamen entsprechen.

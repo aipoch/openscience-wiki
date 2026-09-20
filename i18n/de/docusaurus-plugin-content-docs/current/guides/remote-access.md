@@ -1,7 +1,7 @@
 ---
 title: "Remote-Browserzugriff"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Remote-Browserzugriff {/* #remote-browser-access */}
@@ -61,3 +61,7 @@ Für lokale Headless/Browser-Befehle siehe [Betriebsnummer](../reference/server.
 Quelle: [Fernzugriffsfenster](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/RemoteControlPanel.tsx).
 
 Für Linux-Headless-Bereitstellungen ohne verwendbaren OS-Keyring lesen Sie den [Credential-Speicheroption](../reference/server.md#credential-storage-on-headless-linux). Es ändert die lokale Speicherung von berechtigten Geheimnissen; Es konfiguriert Remote.It nicht, koppelt einen Browser oder gewährt Fernzugriff.
+
+## Pairing und Widerruf in v0.31.1 {/* #pairing-v0311 */}
+
+Ausstehende Pairing-Anfragen erscheinen vor **Trusted browsers**, mit verbleibender Zeit und dringenden Abzeichen. den auf dem anfordernden Gerät angezeigten Code vor der Gewährung des Zugriffs zuordnen; Eine abgelaufene Anfrage muss erneut gestartet werden. Ein vertrauenswürdiger Browser kann sich selbst widerrufen: Erwarten Sie, dass sein geschützter Zugriff beendet und wieder gekoppelt wird, wenn der Zugriff später benötigt wird. **Off**, temporärer Zugang und Vertrauensentzug bleiben unterschiedliche Aktionen.

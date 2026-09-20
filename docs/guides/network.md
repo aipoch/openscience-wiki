@@ -1,7 +1,7 @@
 ---
 title: "Network, proxies, and package mirrors"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-20'
 ---
 
 # Network, proxies, and package mirrors
@@ -110,3 +110,7 @@ For a missing Python module after a successful connection, continue with [runtim
 For 400, 401, 403, 404, 429 or 5xx responses, use the [HTTP troubleshooting table](troubleshooting.md#http-errors-400-403-429-and-5xx). Keep the responding service and its detailed message with the status code.
 
 After changing proxy, mirror or Notebook domain settings, confirm the values persisted, then retry the original operation in the same runtime. Check both the download and package import; a successful settings save alone does not resolve an installation error.
+
+## An R cell was blocked before execution {/* #r-network-warning */}
+
+In v0.31.1, Notebook shows an inline warning when network protection blocks an R run. Follow its setting link and inspect the requested access. The warning means the cell did not execute; it is not a scientific result or a completed run. After resolving the specific requirement, run the cell again and inspect its output. Windows standard-mode R support does not itself enable network protection.

@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.30.2**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.30.2.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`accessions`、`cids`、`rs_id`、または別の名前空間固有のフィールドを期待したときに、一般的な`id`を渡すしないでください。
+Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.31.1**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.31.1.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`accessions`、`cids`、`rs_id`、または別の名前空間固有のフィールドを期待したときに、一般的な`id`を渡すしないでください。
 
 
 ## 化学化学品 {/* #family-1 */}
@@ -587,7 +587,7 @@ const result = await host.mcp("genes", "get_go_annotations", {"uniprot_accession
 
 ### `get_uniprot_entries` {/* #get_uniprot_entries */}
 
-アクセスリストのFetch UniProtKBレコード(許可されていないOR-queries)。 3つのモード:`fields`が与えられた → トークンリーン タブリーガル のみのUniProtフィールド (例:) &#91; &#93; &#91; &#93;"アクセス", ,"ふりがな", ,"protein_name", ,"gene_names", ,"organism_name", ,"長さ", ,"シーケンス";;;; `format` は無視されます。 フォーマット="fasta" →アクセスごとにFASTAシーケンス。 フォーマット="txt" →アクセスフルUniProtフラットファイルテキスト(完全なアノテーション) `fields`を好みます非常に大きい場合もあります。 引数: アクセス(例:アクセス) &#91;"P04637"、"P38398"&#93;; フォーマット("fasta"/"txt"、`fields`が与えられたとき無視される); フィールド(オプションのUniProt REST フィールド名(表モード))。 戻り値: フィールドモード &#123;accessions、フィールド、n_records、レコード:&#91;&#123;&lt;column>:value&#125;&#93;&#125;; fasta/txt モード &#123;accessions、フォーマット、n_found、欠落、レコード:&#123;accession:text&#125;&#125; — `missing` は、アクセス UniProt がレコードを返さないリストをリストします。
+Fetch UniProtKB は、プライマリまたはセカンダリアクセスの一覧 (最初にOR-queries を固定) レコードに記録します。 unresolvedエイリアスは、直接アクセスされたフォールバックを使用します。 3つのモード:`fields`が与えられた → トークンリーン タブリーガル のみのUniProtフィールド (例:) &#91;"accession","id","protein_name","gene_names","organism_name","長さ","シーケンス"&#93;); `format` は無視されます。 format="fasta" → パーアクセス FASTA シーケンス. format="txt" → パーアクセスフルUniProt フラットファイルテキスト (完全なアノテーション; `fields`を好みます非常に大きい場合もあります。 引数: アクセス(例:アクセス) &#91;"P04637"、"P38398"&#93;); フォーマット("fasta"/"txt")、`fields` が与えられたとき無視される; フィールド(オプションのUniProt REST フィールド名(表モード))。 戻り値: フィールドモード &#123;accessions、フィールド、n_records、レコード:&#91;&#123;&lt;column>:value&#125;&#93;&#125;; fasta/txt モード &#123;accessions、フォーマット、n_found、欠落、レコード:&#123;accession:text&#125;&#125; — `missing` は、アクセス UniProt がレコードを返さないリストをリストします。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -616,6 +616,42 @@ const result = await host.mcp("genes", "get_uniprot_entries", {"accessions": ["P
 const result = await host.mcp("genes", "map_reactome_pathways", {"identifiers": ["TP53", "EGFR", "BRCA1"], "id_type": "symbol"})
 ```
 
+### `list_enrichment_sources` {/* #list_enrichment_sources */}
+
+g:Profiler の濃縮源および 1 つの生物のための現在のデータ版をリストして下さい。 出典は、GO:BP、GO:MF、GO:CC、KEGG、Reactome、WikiPathwaysなどの名前空間が組み込まれています。 g:プロファイラーはサービス操作のための限られた照会のメタデータを保存します; この読み取り専用検索は、遺伝子リストを提出しません。
+
+| フィールド | 型 | 要件と制約 |
+| --- | --- | --- |
+| `organism` | 文字列 | **必須**; 最長: 1; 最高長さ: 64; パターン: "^&#91;a-z&#93;&#91;a-z0-9_&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("genes", "list_enrichment_sources", {"organism": "hsapiens"})
+```
+
+### `enrich_gene_set` {/* #enrich_gene_set */}
+
+実行 g:プロファイラー g:GOSt は、GO、Reactome、KEGG、WikiPathways、およびその他の生物がサポートされているソースにセットする遺伝子の充実を促進します。 明示的な生物、カスタム統計背景、アンダー表現テスト、およびg:Profilerの複数のテストの訂正を支えて下さい。 未マッピング、あいまい、および重複識別子は、無声に捨てられる代わりにメタデータで返されます。
+
+| フィールド | 型 | 要件と制約 |
+| --- | --- | --- |
+| `genes` | 文字列の配列 | **必須**; minItems: 1; maxItems: 5000の |
+| `organism` | 文字列 | **必須**; 最長: 1; 最高長さ: 64; パターン: "^&#91;a-z&#93;&#91;a-z0-9_&#93;&#42;$" |
+| `sources` | 文字列の配列 | 任意; maxItems: 100の |
+| `background_genes` | 文字列の配列 | 任意; minItems: 1; maxItems: 20000の |
+| `domain_scope` | 文字列 | 任意; エヌム: &#91;"annotated"、"known"、"custom"、"custom_annotated"&#93; |
+| `correction_method` | 文字列 | 任意; デフォルト: "g_SCS"; エヌム: &#91;"g_SCS"、"bonferroni"、"fdr"&#93; |
+| `user_threshold` | 数値 | 任意; 最高: 1; 排他的な最小限: 0 |
+| `all_results` | 真偽値 | 任意; デフォルト: false |
+| `ordered` | 真偽値 | 任意; デフォルト: false |
+| `measure_underrepresentation` | 真偽値 | 任意; デフォルト: false |
+| `no_iea` | 真偽値 | 任意; デフォルト: false |
+| `no_evidences` | 真偽値 | 任意; デフォルト: false |
+| `numeric_ns` | 文字列 | 任意; 最長: 1; 最高長さ: 64 |
+
+```javascript
+const result = await host.mcp("genes", "enrich_gene_set", {"genes": ["TP53", "EGFR", "BRCA1"], "organism": "hsapiens", "sources": ["GO:BP", "REAC"], "correction_method": "fdr"})
+```
+
 </ToolOperationGroup>
 
 ## ゲノム {/* #family-5 */}
@@ -625,16 +661,17 @@ const result = await host.mcp("genes", "map_reactome_pathways", {"identifiers": 
 
 ### `ensembl_lookup` {/* #ensembl_lookup */}
 
-シンボルで安定したIDや遺伝子によって、遺伝子/トランスクリプト/タンパク質を組み立てます。 コアアノテーションレコード(位置、バイオタイプ、正式な成績、説明)を返します。 アーグ: クエリ (安定した ID ENSG を組み立てる.../ENST.../ENSP..., 受け入れられるバージョン; または、BRAFのような遺伝子のシンボル/エイリアス — 真の安定したID &#91;ENS +オプションの種コード + 機能レター + > = 6-digitブロック、または LRG_N&#93; のルートを ID エンドポイントに渡します。 その他すべて、以下 "ENS"から始まるシンボル ENSAのように、シンボルのエンドポイントに。 種(シンボルルックアップ、デフォルトhomo_sapiensの種名を組み立てます。) 安定した ID を無視します。 拡張(子機能ツリーを含む) — gene's トランスクリプト/エクスソン/トランスレーション; デフォルトオフ)。 &#123;found、クエリ、種、レコード&#125;を返します。 レコードは何もマッチしないとき、他の上流のルックアップのdict - 遺伝子&#123;id、display_name、説明、バイオタイプ、object_type、seq_region_name、開始、終わり、ストランド、assembly_name、canonical_transcript、バージョン、...&#125; 1 ベースの包括的な座標を使って。 成功したルックアップのために、返された`species`は、上流記録から来ています。 安定した ID は独自の種を選択しているため、要求/デフォルト種はそのルートに対して無視されます。 未設立の結果は、要求された/既定の種を選択し、`record: null` を持っています。
+遺伝子、トランスクリプト、またはタンパク質を安定的なID、またはシンボルによる遺伝子を調べます。 クエリは、ENS ID(バージョンアップ)、FlyBase/WormBase/yeast ID、BRAFなどのシンボルを受け入れます。 query_type: 自動 (デフォルト) は ID を最初に試し、入力がcanonical ENS/LRG ID でなければ、明示的な不在だけを象徴します; ID は ID の調査だけを使用します; シンボルは、バージョン正規化なしでシンボルルックアップのみを使用します。 種は、シンボルルックアップ(デフォルトhomo_sapiens)にのみ適用され、劣らない。 展開には、トランスクリプト、エクスン、翻訳(デフォルト false)が含まれます。 無効なリクエストとサービスの失敗はエラーを発生させます。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
 | `query` | 文字列 | **必須** |
+| `query_type` | 文字列 | 任意; デフォルト: "auto"; enum: &#91;"auto"、"id"、"symbol"&#93; |
 | `species` | 文字列 | 任意; デフォルト: "homo_sapiens" |
 | `expand` | 真偽値 | 任意; デフォルト: false |
 
 ```javascript
-const result = await host.mcp("genomes", "ensembl_lookup", {"query": "BRAF"})
+const result = await host.mcp("genomes", "ensembl_lookup", {"query": "BRAF", "query_type": "symbol"})
 ```
 
 ### `ensembl_xrefs` {/* #ensembl_xrefs */}
@@ -687,7 +724,7 @@ const result = await host.mcp("genomes", "ensembl_homology", {"gene_symbol": "BR
 
 ### `ensembl_sequence` {/* #ensembl_sequence */}
 
-安定した ID (gene/transcript/protein) またはゲノム地域によるエンサンブルからのフェッチシーケンス。 EITHER stable_id または地域を渡して下さい。 アーグ: stable_id (ENSG.../ENST.../ENSP...、バージョンアップ)。 地域(1ベースの包括的なクロム:start.end または chrom:start-end、GRCh38 for Human、max 10Mb); 種(地域ルート、デフォルトhomo_sapiens)。 安定した ID を無視します。 seq_type (ID ルート: ゲノムのデフォルト/cdna/cds/protein — ENST/ENSP だけタンパク質; ゲノムを常に戻す地域のために無視されます。 max_bytes (ペイロードガードデフォルト400000 — より大きいシーケンスは`seq`を省略しました; length/sha256/metadata は、常に返されます。 max_bytes を大きいテキストにリコールします。 &#123;found、クエリ、seq_type、id、説明、分子、長さ、sha256、seq&#125;を返す — 分子によって暗示される単位の長さ(dna、蛋白質のための残余のための基盤); seq は、キャップ時に seq_omitted に置換されます。 見つかりました:未知の安定したIDのためのnullの分野と偽; マルフォーメード/オーバーサイズ地域は、上流メッセージで上昇します。
+安定した ID (gene/transcript/protein) またはゲノム地域によるエンサンブルからのフェッチシーケンス。 EITHER stable_id または地域を渡して下さい。 アーグ: stable_id (ENSG.../ENST.../ENSP...、バージョンアップ)。 地域(1ベースの包括的なクロム:start.end または chrom:start-end、GRCh38 for Human、max 10Mb); 種(地域ルート、デフォルトhomo_sapiens)。 安定した ID を無視します。 seq_type (ID ルート: ゲノム デフォルト/cdna/cds/protein; ゲノムを常に戻す地域には無視されます。 このツールは、複数のシーケンスに解決する遺伝子レベルのcdna/cds/proteinリクエストに対して、代わりにトランスクリプト/タンパク質の安定したIDを指定します。 max_bytes (ペイロードガードデフォルト400000 — より大きいシーケンスは`seq`を省略しました; length/sha256/metadata は、常に返されます。 max_bytes を大きいテキストにリコールします。 &#123;found、クエリ、seq_type、id、説明、分子、長さ、sha256、seq&#125;を返す — 分子によって暗示される単位の長さ(dna、蛋白質のための残余のための基盤); seq は、キャップ時に seq_omitted に置換されます。 見つかりました: 明示的に確認されていないように要求された安定した ID を報告するときにのみ、null フィールドで偽造します。 複数のシーケンス要求、非互換シーケンスタイプ、およびその他の上流失敗はエラーを発生させます。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -714,6 +751,45 @@ const result = await host.mcp("genomes", "ensembl_sequence", {"stable_id": "ENSP
 
 ```javascript
 const result = await host.mcp("genomes", "ensembl_overlap_region", {"region": "7:140719327-140925199", "feature": "gene"})
+```
+
+### `ncbi_resolve_taxon` {/* #ncbi_resolve_taxon */}
+
+NCBIの分類識別子に種または税名を分離します。 科学的/一般的な名前または数値の納税を受諾する。 すべての上流マッチを返すので、曖昧な名前は最初の結果に無声に割り当てられません。
+
+| フィールド | 型 | 要件と制約 |
+| --- | --- | --- |
+| `query` | 文字列 | **必須**; 最長: 1; 最高長さ: 200 |
+| `max_matches` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_resolve_taxon", {"query": "human"})
+```
+
+### `ncbi_get_assembly_info` {/* #ncbi_get_assembly_info */}
+
+税務、アセンブリ名、UCSCの同義語、ステータス、および組まれたRefSeq/GenBankのアクセシジョンを含むバージョン化されたGCF/GCAアクセスのための正確なNCBIゲノムアセンブリIDを返します。 再現性や種々の互換性の誤りを防ぐため、バージョンレスなアクセスを拒否します。
+
+| フィールド | 型 | 要件と制約 |
+| --- | --- | --- |
+| `assembly_accession` | 文字列 | **必須**; パターン: "^GC&#91;AF&#93;_&#91;0-9&#93;&#123; 9&#125;\。&#91;0-9&#93;+ $ " |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_get_assembly_info", {"assembly_accession": "GCF_000001405.40"})
+```
+
+### `ncbi_get_sequence_aliases` {/* #ncbi_get_sequence_aliases */}
+
+リストシーケンス名と正確なUCSC/RefSeq/GenBank エイリアスが1つのバージョンのNCBIアセンブリの. オプションで1つのシーケンス名を解決します。 巨大な共有染色体ラベルは、アルトまたは非ローカライズされた足場を選ぶ代わりに、複数のマッチとして保持されます。 結果は、max_sequences(デフォルト200)によって制御される境界接頭辞です。 全アセンブリレポートが必要な場合は、より大きなキャップを使用してください。
+
+| フィールド | 型 | 要件と制約 |
+| --- | --- | --- |
+| `assembly_accession` | 文字列 | **必須**; パターン: "^GC&#91;AF&#93;_&#91;0-9&#93;&#123; 9&#125;\。&#91;0-9&#93;+ $ " |
+| `sequence` | 文字列 | 任意; 最長: 1; 最高長さ: 200 |
+| `max_sequences` | 整数 | 任意; デフォルト: 200; 最小値: 1; 最高: 5000 |
+
+```javascript
+const result = await host.mcp("genomes", "ncbi_get_sequence_aliases", {"assembly_accession": "GCF_000001405.40", "sequence": "chr1"})
 ```
 
 ### `ucsc_list_tracks` {/* #ucsc_list_tracks */}
@@ -749,7 +825,7 @@ const result = await host.mcp("genomes", "ucsc_track_data", {"track": "cpgIsland
 
 ### `ucsc_conservation` {/* #ucsc_conservation */}
 
-UCSC phyloP / phastConsトラック(マルチスペクシーアライメント上のベース・ワイズ・アライメント)から地域のための進化的保存要約。 アーグ: クロム(chr-prefixed)。 開始(0ベースのハーフオープン)。 終了 (排他的; スパンは100000 bpでおおわれた — より大きい割れ目); ゲノム (デフォルト hg38); トラック(デフォルトphyloP100way; 肯定的な = 保存, ネガティブ = 速い進化; 代替hg38 phastCons100way、phyloP30way、phastCons30way、phyloP447way、phyloP470way; hg19 phyloP100wayAll/phastCons100way; include_values(また、ベース&#123;start、end、value&#125;ごとのリターン) max_values、values_truncated でおおわれた行は帽子を旗付けます; デフォルト false = 要約のみ。 max_values (ベースキャップのデフォルト2000)。 &#123;genome、トラック、クロム、開始、端、span_bp、n_bases_covered、coverage_fraction、平均、分、max&#125; (+values, values_truncated をリクエストすると) 各 row's ベーススパンで重ねられた状態、ウィンドウにクリップされた状態。 coverage_fractionを下げる未発見ベースは、ゼロスコアリングではありません。 非スコアは上昇を追跡します; アップストリームを回転させる行リストも上げます。 座標は、`end > start`で非負の安全な整数でなければなりません。 無効な値は、他のローカスに丸めまたはクランプされない、拒否されます。
+UCSC phyloP / phastConsトラック(マルチスペクシーアライメント上のベース・ワイズ・アライメント)から地域のための進化的保存要約。 アーグ: クロム(chr-prefixed)。 開始(0ベースのハーフオープン)。 終了 (排他的; スパンは100000 bpでおおわれた — より大きい割れ目); ゲノム (デフォルト hg38); トラック(任意; デフォルトは、他のゲノムのhg19とphyloP100wayのphyloP100wayの全ての値です。 肯定的な = 保存, ネガティブ = 速い進化; 代替hg38 phastCons100way、phyloP30way、phastCons30way、phyloP447way、phyloP470way; hg19 phastCons100way; include_values(また、ベース&#123;start、end、value&#125;ごとのリターン) max_values、values_truncated でおおわれた行は帽子を旗付けます; デフォルト false = 要約のみ。 max_values (ベースキャップのデフォルト2000)。 &#123;genome、トラック、クロム、開始、端、span_bp、n_bases_covered、coverage_fraction、平均、分、max&#125; (+values, values_truncated をリクエストすると) 各行のベーススパンで重み付けされた状態、ウィンドウに切り込みます。 coverage_fractionを下げる未発見ベースは、ゼロスコアリングではありません。 非スコアは上昇を追跡します; アップストリームを回転させる行リストも上げます。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -757,7 +833,7 @@ UCSC phyloP / phastConsトラック(マルチスペクシーアライメント�
 | `start` | 整数 | **必須**; 最小値: 0; 最高: 9007199254740991 |
 | `end` | 整数 | **必須**; 最小値: 0; 最高: 9007199254740991 |
 | `genome` | 文字列 | 任意; デフォルト: "hg38" |
-| `track` | 文字列 | 任意; デフォルト: "phyloP100way" |
+| `track` | 文字列 | オプション |
 | `include_values` | 真偽値 | 任意; デフォルト: false |
 | `max_values` | 整数 | 任意; デフォルト: 2000 |
 
@@ -806,12 +882,13 @@ const result = await host.mcp("genomes", "ucsc_chrom_sizes", {"genome": "hg38", 
 
 ### `get_variant` {/* #get_variant */}
 
-ID で 1 つの gnomAD の短い variant を探し、その人口の頻度を返します。 `variant_id`は、データセットの'sリファレンスビルド(r3/r4、r2.1/ExAC用GRCh37用GRCh38)の`chrom-pos-ref-alt`です。 `19-44908822-C-T` (APOE rs7412); `search_variants` を使って rsID を最初に解決します。
+ID で 1 つの gnomAD の短い variant を探し、全体的な exome/genome の頻度を戻して下さい。 `variant_id`は、データセットのリファレンスビルド(r3/r4、r2.1/ExAC用GRCh37用GRCh38)の`chrom-pos-ref-alt`です。 `19-44908822-C-T` (APOE rs7412); `search_variants` を使って rsID を最初に解決します。 先祖固有のカウント/周波数が個々のバリアントに必要なときに `include_populations: true` を設定します。 周波数を解釈するときのデータセット、allele カウントおよび品質フィルターを保持します。 rarity 単独では病原性や ACMG の基準を設けていません。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
 | `variant_id` | 文字列 | **必須** |
 | `dataset` | 文字列 | 任意; デフォルト: "gnomad_r4"; enum: &#91; &#93;"gnomad_r4", , "gnomad_r4_non_ukb", , "gnomad_r3", , "gnomad_r3_controls_and_biobanks", , "gnomad_r3_non_cancer", , "gnomad_r3_non_neuro", , "gnomad_r3_non_topmed", , "gnomad_r3_non_v2", , "gnomad_r2_1", , "gnomad_r2_1_controls", , "gnomad_r2_1_non_cancer", , "gnomad_r2_1_non_neuro", , "gnomad_r2_1_non_topmed", , "エクセアック". . . |
+| `include_populations` | 真偽値 | 任意; デフォルト: false |
 
 ```javascript
 const result = await host.mcp("variants", "get_variant", {"variant_id": "19-44908822-C-T", "dataset": "gnomad_r4"})
@@ -1101,7 +1178,7 @@ const result = await host.mcp("clinical-trials", "analyze_endpoints", {"nct_id":
 
 ### `search_by_eligibility` {/* #search_by_eligibility */}
 
-忍耐強いtrial一致。 ステータスが設定されていない限り、再構築試験に従った。 min_age/max_ageはPATIENT'sの年齢(" 65年の"、" 6の月")であり、年齢の窓が患者を認める試験に一致させます; 性別 マッチ 試験 受け入れ その 性別 または すべての 子孫; eligibility_keywordsは、包含/除外基準テキストを検索します(例:. "HbA1c >の特長 8"、"BRCA変異"、"ECOG 0-1")。 条件の少なくとも1つ、eligibility_keywords、min_age、max_ageまたは性は要求されます。 page_tokenでページを移動
+忍耐強いtrial一致。 ステータスが設定されていない限り、再構築試験に従った。 min_age または max_age を 1 つの患者年齢(「65 年」、6 月」)に供給して下さい; 試験年齢の境界線がチェックされます。 両方が供給されると、試験は患者の年齢間隔全体を認めなければなりません。 試用年齢制限が欠かせません。 性別 男性/男性 は、すべてのcomer の試験が含まれています。; 全部または省略された性は性フィルターを適用しません。 eligibility_keywordsは、包含/除外基準テキストを検索します(例:. 「HbA1c > 8」「BRCA変異」「ECOG 0-1」 条件の少なくとも1つ、eligibility_keywords、min_age、max_ageまたは性は要求されます。 page_tokenでページを移動
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -2484,7 +2561,7 @@ const result = await host.mcp("protein-annotation", "map_string_ids", {"symbols"
 
 ### `get_string_network` {/* #get_string_network */}
 
-遺伝子リスト(v12.0)のためのタンパク質タンパク質相互作用ネットワークを自信のしきい値でストリングします。 地図のシンボルは最初に(報告されていない)、そしてノード、エッジ、要約、および実証を取得します。
+遺伝子リスト(v12.0)のためのタンパク質タンパク質相互作用ネットワークを自信のしきい値でストリングします。 地図のシンボルは最初に(報告されていない)、そしてノード、エッジ、要約、および実証を取得します。 単一のマッピングされた入力要求 10 の相互作用の隣接者、一致の力; 複数のマッピングされた入力は展開されません。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -2572,7 +2649,7 @@ const result = await host.mcp("cancer-models", "cbioportal_mutations_in_gene", {
 
 ### `cbioportal_mutation_frequency` {/* #cbioportal_mutation_frequency */}
 
-複数の cBioPortal スタディ (1–12) の 1 つの遺伝子の突然変異-サンプルの分数、配列されたコホート/スタディ、最も頻繁な第一にランク付けしました。
+複数のcBioPortal研究(1–12)に1つの遺伝子の突然変異頻度:選択した変異プロファイルとサンプルリストでその遺伝子のためにプロファイルされた標本によって分けられたユニークな変異サンプル、ターゲット遺伝子パネルの会計; 最も頻繁に最初にランク付けされる。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -2737,6 +2814,31 @@ const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGA
 
 <ToolOperationGroup>
 <summary>操作とパラメータを表示</summary>
+
+### `ena_search_runs` {/* #ena_search_runs */}
+
+1つのENA/INSDCの研究、実験、サンプルまたは実行アクセスに関連するパブリックシーケンシングの実行を検索します。 PRJ/ERP/SRP/DRP、ERX/SRX/DRX、SAM/ERS/SRS/DRS、ERR/SRR/DRR の識別子を受け入れて下さい; GEO GSE/GSM、ArrayExpress E-MTAB、MGnify MGYS 識別子は、最初にリンクされた INSDC アクセシジョンを必要とします。 キーワード検索ではなく、アクセス検索だけ。 データファイルを取得せずに、生物やライブラリメタデータを返します。 結果は、1000 で実行されます。 truncated 結果は完全なコホートではなく、ENA がオフセットや継続トークンを提供しないため、繰り返された呼び出しはパギー化されません。 完全なカバレッジが要求されるときより狭いサンプルか実験アクセスを使用して下さい。
+
+| フィールド | 型 | 要件と制約 |
+| --- | --- | --- |
+| `accession` | 文字列 | **必須**; 最長: 1; 最高長さ: 64 |
+| `limit` | 整数 | 任意; デフォルト: 100; 最小値: 1; 最高: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_search_runs", {"accession": "PRJNA123835", "limit": 100})
+```
+
+### `ena_get_run_files` {/* #ena_get_run_files */}
+
+1つのERR / SRR / DRRの実行のために、アーカイブ生成されたFASTQダウンロードURL、バイトサイズ、および上流MD5チェックサムを取得します。 ファイル在庫のみを返します。 ダウンロードやチェックサム検証は行いません。 不ペアリングまたは長読ファイルを含むレポート順序ですべてのファイルを保持します。 library_layout=PAIREDは2つのファイルではなく、正確に2つのファイルではありません。 file_index は、R1/R2 や mate の識別子のみで、位置情報です。 いくつかの実行(単一セル/ネイティブフォーマットの送信を含む)は、アーカイブ生成されたFASTQがありません。 BAM/CRAM/SRA ファイルは、このツールの外に送信されます。
+
+| フィールド | 型 | 要件と制約 |
+| --- | --- | --- |
+| `run_accession` | 文字列 | **必須**; 最長: 1; 最高長さ: 64 |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_get_run_files", {"run_accession": "SRR037073"})
+```
 
 ### `arrayexpress_search_experiments` {/* #arrayexpress_search_experiments */}
 

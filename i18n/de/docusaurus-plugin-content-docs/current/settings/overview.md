@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Einstellungen Übersicht"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # Einstellungen Übersicht {/* #settings-overview */}
@@ -52,3 +52,7 @@ Diese Suche umfasst repräsentative Einstellungen in jedem Panel, nicht in jedem
 **Feedback** bleibt ein separater Eintrag am Ende der Einstellungen.
 
 :::info&#91;Wie Einstellungen gespeichert werden&#93; Einige Schalter werden sofort gespeichert. Längere Formulare verwenden `Save`, `Add` oder `Import`. Schließen Sie die Anwendung nicht, während `Saving…`, `Testing…` oder `Installing…` angezeigt werden. Migrations-, Deinstallations-, Lösch- und Wide-Permission-Aktionen erfordern eine Bestätigung. :::
+
+## Tabs für Modelleinstellungen {/* #model-tabs */}
+
+Verwenden Sie in **Model** **Conversation models** für Anbieter und Aufgabenmodelle, **Classification models** für die optionale Skill/Connector-Auswahl und **Local parsing models** für lokale Parsing-Ressourcen. Die Klassifizierung ist eine Registerkarte in den Modelleinstellungen, nicht ein zusätzliches Top-Level-Einstellungen-Panel. Siehe [Einstufungsaufbau](../guides/models.md#classification-models).

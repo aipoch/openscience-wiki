@@ -1,7 +1,7 @@
 ---
 title: "Remote browser access"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Remote browser access
@@ -63,3 +63,7 @@ For local headless/browser commands, see [service reference](../reference/server
 Source: [Remote access panel](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/RemoteControlPanel.tsx).
 
 For Linux headless deployments without a usable OS keyring, read the [credential-storage option](../reference/server.md#credential-storage-on-headless-linux). It changes local storage of eligible secrets; it does not configure Remote.It, pair a browser or grant remote access.
+
+## Pairing and revocation in v0.31.1 {/* #pairing-v0311 */}
+
+Pending pairing requests appear before **Trusted browsers**, with remaining time and urgent badges. Match the code shown on the requesting device before granting access; an expired request must be started again. A trusted browser can revoke itself: expect its protected access to end and pair again if access is needed later. **Off**, temporary access and revoking trust remain different actions.

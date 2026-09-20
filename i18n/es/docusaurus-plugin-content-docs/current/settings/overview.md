@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Sinopsis de la configuración"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # Sinopsis de la configuración {/* #settings-overview */}
@@ -52,3 +52,7 @@ Esta búsqueda cubre los ajustes representativos en cada panel, no en cada campo
 **Feedback** sigue siendo una entrada separada en la parte inferior de Ajustes.
 
 :::info&#91;Cómo se guardan los ajustes&#93; Algunos interruptores se guardan inmediatamente. Las formas más largas usan `Save`, `Add`, o `Import`. No cierre la aplicación mientras se muestra `Saving…`, `Testing…`, o `Installing…`. Las medidas de migración, desinstalación, eliminación y de amplias misiones requieren confirmación. :::
+
+## Fichas de configuración modelo {/* #model-tabs */}
+
+Dentro de **Model**, utilice **Conversation models** para proveedores y modelos de tareas, **Classification models** para la selección opcional Skill/Connector y **Local parsing models** para recursos locales de persiana. La clasificación es una pestaña dentro de la configuración del modelo, no un panel adicional de configuración de nivel superior. Ver [Clasificación](../guides/models.md#classification-models).

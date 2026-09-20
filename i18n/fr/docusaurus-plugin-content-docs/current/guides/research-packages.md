@@ -2,12 +2,12 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
 
 # Paquets de recherche .science {/* #science-research-packages */}
 
-Un paquet de recherche **.science** rassemble des branches de conversation, des fichiers et des preuves enregistrées pour un transfert. Un collègue peut l'importer dans un projet et inspecter le dossier de recherche. Les sessions importées sont en lecture seule; de nouveaux travaux de recherche commencent dans une session normale.
+Un paquet de recherche **.science** rassemble des branches de conversation, des fichiers et des preuves enregistrées pour un transfert. Un collègue peut l'importer dans un projet et inspecter le dossier de recherche. Les sessions importées sont en lecture seule. À partir de v0.31.0, utilisez **Fork** dans l'application de bureau pour créer une copie en écriture et poursuivre la recherche.
 
 ## Choisissez ce que vous devez partager {/* #choose-what-to-share */}
 
@@ -51,7 +51,7 @@ Les écrans suivants utilisent une session qui résume le [Tableau QC de l'écha
 
 ## Utiliser le dossier de recherche reçu {/* #use-the-received-research-record */}
 
-La session importée peut être consultée et servir de référence, mais elle ne peut être ni poursuivie ni exécutée. Pour effectuer de nouveaux travaux, créez une session normale et fournissez explicitement les fichiers d'entrée et les instructions pertinentes. L'utilisation importée est exclue des totaux des activités locales.
+La session importée reste en lecture seule. Sur le bureau, ouvrez son menu de session et choisissez **Fork**. Attendez **Fork completed**, ouvrez la nouvelle session et inspectez ses fichiers hérités avant d'envoyer un suivi. La source reste inchangée; code ne fonctionne pas automatiquement. Voir [Fourche une session existante](sessions.md#fork-session) pour les étapes et les vérifications. L'utilisation importée est exclue des totaux des activités locales.
 
 Un dossier de vérification reçu décrit les vérifications fournies par l'expéditeur. Cela ne signifie pas que cet ordinateur a réexécuté les vérifications. Lire la version du fichier, les critères de comparaison et le résultat; voir [Reproductibilité](reproducibility.md) pour savoir comment ces contrôles fonctionnent.
 

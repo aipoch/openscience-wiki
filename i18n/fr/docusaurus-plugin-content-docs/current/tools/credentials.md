@@ -1,7 +1,7 @@
 ---
 title: "Pouvoirs de service"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Pouvoirs de service {/* #service-credentials */}
@@ -64,3 +64,7 @@ Les requêtes OpenAlex nécessitent une clé OpenAlex valide. Les connecteurs OA
 Référence de mise en œuvre: [PouvoirsPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [ConnecteurAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx).
 
 [Gestion des titres de compétence CLI/SDK](../reference/cli.md#manage-connectors-and-credentials) peut créer/mise à jour des identifiants partagés via un accès local authentifié. Les installations sans tête Linux peuvent choisir explicitement [stockage de fichiers non chiffré](../reference/server.md#credential-storage-on-headless-linux); les identifiants de bureau conservent leur comportement normal de stockage de l'OS. Cette option ne résout pas le stockage de mot de passe de Calculer ou d'initier la première connexion OAuth.
+
+## Ouvrir la page clé officielle API {/* #official-api-key-page */}
+
+À partir de v0.31.0, OpenAlex et les invitations de reconnaissance NCBI incluent un lien vers la page clé officielle de API. L'ouvrir garde le formulaire brouillon et attend l'appel Connector. Compléter les étapes du compte avec le service, retourner au formulaire d'attestation, puis valider et enregistrer la clé prévue avant de réessayer la requête. Ouvrir la page clé seule ne permet ni d'enregistrer une clé, ni de compléter la requête d'attente.
