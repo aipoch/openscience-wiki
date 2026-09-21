@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -10,7 +10,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # 과학 데이터베이스 {/* #scientific-databases */}
 
-응용 프로그램 번들 **23 데이터 소스 커넥터**, 플러스 별도의 오프라인 Molecule Connector. 전체 레지스트리에는 Molecule의 두 개의 작업을 포함하여 **239 공구 가동**이 있습니다. 아래 데이터 소스 카탈로그는 237을 포함합니다. 설정에서 관련 Connector을 활성화하면 올바른 식별자 유형과 경계 된 질문을합니다.
+응용 프로그램 번들 **23 데이터 소스 커넥터**, 플러스 별도의 오프라인 Molecule Connector. 전체 레지스트리에는 Molecule의 두 개의 작업을 포함하여 **246 공구 가동**이 있습니다. 아래 데이터 소스 카탈로그는 244을 포함합니다. 설정에서 관련 Connector을 활성화하면 올바른 식별자 유형과 경계 된 질문을합니다.
 
 <span id="actual-local-queries" />
 
@@ -23,8 +23,8 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | 화학 · `chemistry` | PubChem, ChEBI, Rhea, 바인딩DB | 12 | PubChem, ChEBI, Rhea 및 BindingDB를 통해 소형 molecule 화학.  |
 | 문학 그래프 · `literature` | OpenAlex, arXiv, Crossref, 데이터 시트 | 13 | 논문, 저자, 인용, DOI 업데이트 및 dataset/software 레코드. |
 | PubMed · `pubmed` | PubMed, PMC, 유럽 PMC | 7 | NCBI E-utilities, PMC ID 변환기 및 유럽 PMC를 통해 생물 의학 문학 - 검색, 메타 데이터, 관련 기사, 인용 조회, ID 변환, 전체 텍스트 및 저작권.  |
-| 유전자 및 종양학 · `genes` | MyGene, UniProt, OLS, QuickGO, 반응기 | 7 | 유전자/단백 정체성 및 투과율 — mygene.info, UniProt, OLS4 ontologies, GO annotations, Reactome pathways.  |
-| 게놈 · `genomes` | Ensembl, UCSC, 미국 | 11 | 게놈 주석, 변종, 균질학, 순서 및 브라우저 트랙 - Ensembl REST 및 UCSC 게놈 브라우저.  |
+| 유전자 및 종양학 · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler의 장점 | 9 | 유전자/단백 정체성 및 투과율 — mygene.info, UniProt, OLS4 ontologies, GO annotations, Reactome pathways.  |
+| 게놈 · `genomes` | NCBI, UCSC, NCBI | 14 | 게놈 주석, 변종, 균질학, 순서 및 브라우저 트랙 - Ensembl REST 및 UCSC 게놈 브라우저.  |
 | · · `variants` | gnomAD, 클라리바르, dbSNP | 15 | 인간 유전 변형 - gnomAD 인구 frequencies/constraint, ClinVar 기록 / 연구 (direct NCBI), dbSNP, 구조 및 mitochondrial 변형.  |
 | 임상시험 · `clinical-trials` | 임상시험.gov | 6 | ClinicalTrials.gov의 임상 시험 - 검색, 세부 사항, 스폰서, 조사, endpoints 및 자격.  |
 | 임상 Genomics · `clinical-genomics` | ClinGen, CIViC, 열린 대상 | 20 | 임상 genomics 지식 기초: ClinGen 치료, CIViC 임상 증거, 그리고 열린 표적 플랫폼.  |
@@ -37,7 +37,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | 단백질 Annotation · `protein-annotation` | InterPro, Pfam, 인간 단백질 아틀라스, STRING | 13 | 단백질 도메인 아키텍처, 가족 / 클랜 회원, InterPro / Pfam, Human Protein Atlas 및 STRING을 통해 표식 아틀라스 및 상호 작용 네트워크.  |
 | 암 모델 · `cancer-models` | cBio포털 | 6 | 암 genomics 연구는 cBioPortal REST API을 통해 기록합니다.  |
 | RNA · `rna` | Rfam 소개 | 9 | 비 코딩 RNA 제품군 데이터 (metadata, 정렬, 모델, 구조) Rfam을 통해.  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, 메타보라이트, MGnify, PRIDE | 17 | Omics 데이터 아카이브 - 표현 (ArrayExpress, GEO), metabolomics (MetaboLights), metagenomics (MGnify) 및 proteomics (PRIDE).  |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, 메타보라이트, MGnify, PRIDE, ENA | 19 | Omics 데이터 아카이브 - 표현 (ArrayExpress, GEO), metabolomics (MetaboLights), metagenomics (MGnify) 및 proteomics (PRIDE).  |
 | CellGuide · `cellguide` | CELLxGENE의 장점 | 5 | Cell-type identity, 마커 유전자, 소스 데이터 세트 및 CELLxGENEGuide Cell을 통해 조직.  |
 | 규제 · `regulation` | ENCODE, JASPAR, 유니버셜 | 16 | 유전자 조절 기능 genomics - ENCODE 실험 / 생물 샘플 / 파일, JASPAR TF 바인딩 프로파일 및 UniBind ChIP-seq TFBS.  |
 | 연구 자료 · `research-resources` | Grants.gov, 항체 레지스트리 | 5 | Funding-opportunity search (Grants.gov) 및 항체 카탈로그 조회 (Antibody Registry).  |
@@ -105,6 +105,122 @@ Rfam 순서는 지금 공식적인 배치 엔드포인트를 사용합니다. �
 
 보고서의 경우, 작업, 경계 입력, 오류 텍스트 및 타임스탬프를 [문제 해결](../guides/troubleshooting.md)을 통해 첨부합니다. 공유하기 전에 자격 및 개인 데이터를 제거하십시오.
 
+## ENA 실행 및 FASTQ 파일 해결 {/* #ena-runs */}
+
+1. **Settings → Connectors**의 밑에 활성화된 **Omics Archives**. PRJ 연구 또는 SRR 실행과 같은 `ena_search_runs`에 대한 공공 ENA / INDC 액세스 공급. GEO `GSE` 식별자는 INSDC 연구에 처음 연결되어야 합니다. 키워드는 허용되지 않습니다.
+2. `run_accession`, 생물, 도서관 전략/레이아웃 및 `truncated`를 검사하십시오. 최대는 1,000 실행입니다. 상쇄 또는 continuation 토큰이 없습니다; 응답이 truncated 경우에 접근을 좁은.
+3. `ena_get_run_files`에 반환된 한 번에 전달합니다. `found`, `fastq_available` 및 `fastq_files`의 모든 항목 확인. 재고 공급 URL, 압축 파일 크기 및 업스트림 MD5; 파일을 다운로드하지 않거나 내용을 확인하지 않습니다.
+4. 별도의 다운로드 전에 저장을 확인하고 나타날을 유지하십시오. 목록된 checksum에 대한 다운로드된 바이트를 검증합니다. 쌍의 라이브러리는 정확히 두 개의 파일이 필요하지 않습니다; `file_index`에서 읽기-메이트 ID를 사용하지 마십시오.
+
+<p className="example-label"><strong>실습 예제</strong> SRR037073에 대한 파일 표시</p>
+
+이 v0.31.1 예제는 **Codex subscription** 및 활성화 **Omics Archives** Connector를 사용합니다. 사용할 수 있는 Notebook 런타임과 세션을 열고, 다음을 보냅니다:
+
+```text
+Use Omics Archives through Session Notebook. Load its connector instructions.
+Call ena_search_runs with accession SRR037073 and limit 10, then
+ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
+Save the complete responses as ena-run.json and ena-files.json.
+Save every returned file entry as ena-fastq-manifest.csv with columns
+file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
+run identity, completeness flags and download limits. Keep everything in
+English. Report actual errors or empty results; do not invent data.
+```
+
+생성된 노트를 엽니다. 실제 검색은 **1 실행**, **Caenorhabditis elegans**, **PRJNA123835**, **RNA-Seq**, **SINGLE**를 `truncated: false`로 반환했습니다. 파일을 사용하기 전에 생물과 레이아웃을 확인합니다.
+
+![ENA 쿼리 입력, 생성 된 노트에 ID 및 완전 플래그를 실행](/img/open-science/v0311/ena-notes.webp)
+
+CSV을 열고 `ena-files.json`과 비교하십시오. 이런에는 `found: true`, `fastq_available: true` 및 **1 파일**, 크기 **25,154,397 바이트**가 있습니다. 은 FTP URL과 업스트림 MD5를 유지합니다. 미리보기 컬럼이 클립된 경우 다운로드 가능한 파일에서 전체 값을 복사합니다.
+
+![URL, 크기 및 업스트림 체크섬과 실제 파일 ENA가 나옵니다.](/img/open-science/v0311/ena-manifest.webp)
+
+<ExampleDownload path="/examples/v0311/ena-run-notes.md">Query 노트</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ는 나타납니다</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">빠른 연결</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">파일 응답</ExampleDownload>
+
+두 쿼리와 파일 목록 생성이 완료되었습니다. 이 예에서는 **FASTQ 파일 다운로드와 체크섬 검증을 수행하지 않았습니다**. 다운로드는 별도 단계입니다. [정확한 매개변수](../reference/connector-operations.md#ena_search_runs)
+
+## 실행 및 검사 유전자 세트 enrichment {/* #gene-set-enrichment */}
+
+<p className="example-label"><strong>실습 예제</strong> 의도적으로 선택된 인간 DNA-damage 유전자 목록</p>
+
+이 v0.31.1 예제는 11 공개 유전자 기호를 사용하여 g:Profiler를 보여줍니다. 그들은 그들의 알려진 생물학적 역할을 선택했다, 그래서 풍성한 예상된다. 그들은 GSE60450 프로젝트 또는 비난 발견의 증거에서 차별 압축 결과가 아닙니다.
+
+1. **Settings → Connectors**에서 에이전트에 **유전자 및 종양학**을 사용. 연결된 모델과 사용할 수 있는 Notebook 실행 시간으로 세션을 엽니다.
+2. 생물, 유전자 식별자, 데이터 소스 및 통계 배경을 지정합니다. 실제 실험 데이터의 경우 실험에 의해 선택된 유전자를 사용하여 배경을 단화합니다. 이 튜토리얼은 명시적으로 모든 annotated 유전자를 사용하여 사용자 정의 측정 된 유전자 우주가 아닙니다.
+3. 다음 프롬프트를 보냅니다. 같은 세션에서 소스 버전 쿼리 및 enrichment 호출을 유지하고 실제 결과를 저장하십시오.
+
+```text
+Use Genes & Ontologies through Session Notebook for an English g:Profiler
+tutorial. The deliberately selected gene list is TP53, ATM, ATR, CHEK1,
+CHEK2, BRCA1, BRCA2, RAD51, CDKN1A, GADD45A, MDM2.
+First call list_enrichment_sources with organism hsapiens.
+Then call enrich_gene_set with these genes, organism hsapiens,
+sources GO:BP and REAC, domain_scope annotated,
+correction_method fdr, and user_threshold 0.05.
+Save the full response as dna-damage-enrichment.json, all returned terms
+as dna-damage-enrichment.csv, and query, source versions, mappings,
+background and limitations as dna-damage-enrichment-notes.md.
+Retain unmapped, ambiguous and duplicate identifiers. Treat mapped_genes
+as the returned mapping object. Report errors instead of inventing results.
+This is not differential-expression evidence or evidence of regulation direction.
+```
+
+4. 생성된 노트를 열고 쿼리 및 매핑 카운트를 확인합니다. **0** unmapped, ambiguous 또는 중복 식별자와 함께 맵핑 된 **11/11** 식별자를 실행합니다. **GRCh38.p14**, g:Profiler **e114_eg62_p19_27110d83**, GO 클래스 **2026-01-23** 및 Reactome 클래스 **2026-03-20**를 기록했습니다. 나중에 서비스 버전은 다른 용어를 반환 할 수 있습니다.
+
+![Saved English 쿼리, 배경, 소스 버전 및 식별자 체크](/img/open-science/v0311/enrichment-notes.webp)
+
+5. CSV을 열고 전체 JSON과 비교하십시오. 이 런은 FDR 0.05에서 **891 기간**을 반환합니다. 미리보기는 첫 번째 100 행만 보여줍니다. 그 표시 제한은 총 결과 수 없습니다. `source`, `native`, `p_value`, `intersection_size`, `query_size` 및 `effective_domain_size`를 제한하여 용어를 해석 할 때.
+
+![정확한 확률과 도메인 크기를 가진 실제적인 enrichment 테이블](/img/open-science/v0311/enrichment-table.webp)
+
+<ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">분석 노트</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">모든 891 결과 행</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">전체 응답</ExampleDownload>
+
+`background_size: null`은 사용자 정의 배경 목록이 제출되지 않습니다. 그것은 0 유전자의 통계 우주를 의미하지 않습니다. per-term 효과적인 도메인 크기를 사용하십시오. Enrichment는 causal involvement, 차별 표식, 또는 up/down 규칙을 설치하지 않습니다. [작업 매개 변수](../reference/connector-operations.md#enrich_gene_set) 참조.
+
+## 참고-genome ID 확인 {/* #reference-genome */}
+
+<p className="example-label"><strong>실습 예제</strong> 인간적인 GRCh38.p14 크롬 1를 확인하십시오</p>
+
+1. **Settings → Connectors**에서 **Genomes**을 활성화하십시오. 연결된 모델과 사용 가능한 Notebook 런타임으로 세션을 엽니다. 이 v0.31.1 예제는 **Codex subscription**을 사용했습니다.
+2. 생물, **이름 &#42;** 집합 및 순서에 조회하십시오. 지불 조건:
+
+```text
+Use Genomes through Session Notebook. Load its connector instructions.
+Call ncbi_resolve_taxon with query human and max_matches 10.
+Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
+Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
+sequence chr1 and max_sequences 200. Save the complete responses as
+ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
+Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
+query, identity, ambiguity and truncation flags, and source URLs.
+Preserve accession versions and RefSeq/GenBank differences. Do not perform
+coordinate liftover or invent results. Keep everything in English.
+```
+
+3. 노트를 열고 3 JSON 파일에서 반환된 ID를 비교합니다. 이 예에서 성공한 모든 3개의 통화.
+
+![세 가지 실제 NCBI 통화 및 반환된 세세논 및 집합 정체성](/img/open-science/v0311/ncbi-notes.webp)
+
+| 【특전】 | 이 예제의 결과 |
+| --- | --- |
+| 학회소개 | Homo sapiens, 세금 **9606**; 1개의 경기, `ambiguous: false` |
+| 요청/현재 집합 | **GCF_000001405.40**, **GRCh38.p14**, UCSC 이름 **hg38** |
+| 쌍 GenBank 어셈블리 | **GCA_000001405.29**; 반환된 기록 보고서는 RefSeq의 차이를 보여줍니다. |
+| Chromosome 1 별칭 | **1**, **chr1**, RefSeq의 **NC_000001.11**, 젠뱅크 **CM000663.2** |
+| 선택된 순서 | **248956422의 bp**, 1 차적인 회의; 1개의 경기, `matches_truncated: false` |
+
+![aliases 및 일치 카운트와 Original chromosome-1 응답](/img/open-science/v0311/ncbi-aliases.webp)
+
+<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">Query 노트</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">Identity 테이블</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">세금 응답</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">회의 응답</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">Sequence 응답</ExampleDownload>
+
+이 예에서는 **선택한 염색체 한 개**의 조회를 완료했습니다. 어셈블리의 모든 서열을 내보낸 것은 아닙니다. 쿼리를 바꿀 때도 모호한 일치와 잘림 표시를 유지하세요. 어셈블리 이름은 버전이 포함된 접근번호를 대신할 수 없습니다. 현재 접근번호가 반환되어도 요청한 과거 버전을 알리지 않고 바꾸면 안 됩니다. 서열 별칭은 같은 어셈블리 안의 이름 대응이며, 어셈블리 간 좌표 변환을 수행하지 않습니다. [정확한 입력](../reference/connector-operations.md#ncbi_get_assembly_info)
+
+## gnomAD 인구와 STRING 네트워크 읽기 {/* #string-network */}
+
+`get_variant`의 경우, `include_populations: true`을 인구 세부 정보를 필요로 할 때 설정하십시오. dataset 및 참고 빌드를 유지하십시오. Exome 및 게놈 관측은 분리되어 있습니다. 사용할 수없는 값은 `null`, 0이 아닙니다. overlapping 인구 또는 성 strata는 정상적이지 않아야 합니다. 이 관찰된 빈도, allele 빈도를 거르지 않는. [gnomAD 매개 변수](../reference/connector-operations.md#get_variant)
+
+v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력을 반환합니다. 단일 맵 입력 요청 이웃; 여러 맵핑 입력이 확장되지 않습니다. 입력 노드를 복구하는 `is_query` 필터를 필터링하고, 모든 mapped aliases에 `queries`을 사용합니다. `n_nodes`는 그래프를 계산합니다; `n_mapped`는 입력 매핑을 계산합니다. 두 가지를 재사용하기 전에 업데이트 스크립트를 업데이트합니다. [STRING 모수](../reference/connector-operations.md#get_string_network)
+
 <span id="empty-partial-and-failed-responses" />
 
 ## 작업 매개변수 찾기 {/* #find-operation-parameters */}
@@ -116,4 +232,4 @@ genome 빌드, 생물, 조직, 단위 및 접근 버전이 반환된 데이터�
 
 구현 참조 : [커넥터Panel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorsPanel.tsx).
 
-카탈로그 소스: [사이트맵](https://github.com/aipoch/open-science/blob/v0.27.0/src/main/connectors/catalog.ts), [레지스트리.ts](https://github.com/aipoch/open-science/blob/v0.27.0/src/main/connectors/registry.ts).
+카탈로그 소스: [사이트맵](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/catalog.ts), [레지스트리.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/registry.ts).

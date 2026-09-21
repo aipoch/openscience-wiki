@@ -1,7 +1,7 @@
 ---
 title: "Modèles et politiques de travail"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Modèles et politiques de travail {/* #models-and-task-policies */}
@@ -78,3 +78,29 @@ Vérifiez le titre et la description sauvegardés après la fin de la requête a
 Utilisez [Configuration de l'agent](./frameworks.md) pour le moteur d'exécution et [Utilisation](./usage.md) pour l'activité signalée. La priorité de configuration exacte est en [Référence](../reference/configuration.md).
 
 Sources: [sélection du modèle](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx), [les politiques de scénario](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx).
+
+## Modèles de classement facultatifs {/* #classification-models */}
+
+Ouvrez **Settings → Model → Classification models**. Un service de classification aide à sélectionner les connecteurs et Skills pertinents avant le début d'une demande. Il ne remplace pas Main ni n'ajoute un modèle de chat. Vous pouvez laisser **Automatic capability selection** à **Use default method**; Skills et les connecteurs fonctionnent toujours sans elle.
+
+Dans v0.31.1, ce service est utilisé pour les conversations principales avec **Codex Chat Completions** ou **CodeBuddy**. Cela ne signifie pas que les sessions avec un abonnement Codex ou tous les autres frameworks l’utilisent. Seuls la requête actuelle et les noms et descriptions des capacités sont transmis au service de classification. Si le service est indisponible ou sa réponse incertaine, la méthode par défaut est utilisée.
+
+![Sélection par défaut de la capacité et entrée optionnelle du service de classification](/img/open-science/v0311/classification-models.webp)
+
+1. Choisissez **Add service**, puis **TypeSafe AI** ou **OpenRouter**.
+2. Nommez le service et fournissez son certificat API. OpenRouter peut utiliser un compte compatible existant ou une nouvelle clé; garder les clés cachées dans les captures d'écran.
+3. Sélectionnez **Save** et attendez la validation. La validation échouée laisse les paramètres précédents inchangés.
+4. Sous **Automatic capability selection**, sélectionnez le service sauvegardé et un modèle offert dans son catalogue. Utilisez **Check model** pour vérifier la connexion.
+5. Essayez une requête limitée dans une conversation principale prise en charge, puis inspectez les outils réels sélectionnés. Une vérification de modèle réussie ne permet pas à elle seule de vérifier un résultat de recherche.
+
+Supprimer un service renvoie sa liaison à la méthode par défaut. Une clé de service stockée séparément est enlevée avec elle; supprimer un service qui partage un compte ne supprime pas ce compte ou sa clé.
+
+Voir [configuration du fournisseur](providers.md) pour les modèles de conversation. Les ressources d'analyse PDF locales sont gérées sous **Local parsing models**, un onglet séparé.
+
+![Formulaire de service de classification avec la clé API toujours vide](/img/open-science/v0311/classification-add-service.webp)
+
+Pour Jev, sélectionnez **TypeSafe AI / Jev Latest** dans **Automatic capability selection**, puis cliquez sur **Check model**. **Check passed** confirme que le service répond. Rouvrez Settings pour vérifier que la sélection est conservée.
+
+![TypeSafe AI / Jev Latest sélectionné, avec Check passed et la clé API masquée](/img/open-science/v0311/classification-connected.webp)
+
+Par exemple, une recherche publique TP53 dans une session Codex Chat Completions peut utiliser Jev pour sélectionner `mcp-genes`. Inspecter la capacité sélectionnée dans l'activité, puis inspecter la réponse de la base de données pour connaître le résultat de la recherche. Les sessions d'abonnement Codex utilisent leur chemin de chargement de capacité existant; une liaison Jev sauvegardée ne fait pas que ces sessions utilisent Jev.

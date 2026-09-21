@@ -136,7 +136,7 @@ import Screenshot from '@site/src/components/Screenshot';
 | あなたは... | どこへ行くか |
 | --- | --- |
 | アプリの更新をチェックする | **General → About → Check now**; フォロー [インストールとアップデート](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| バージョンの変更を読むか、ヘルプを入手する | **About → Release notes / Help Center** 対応する外部ページを開きます。 このwikiには、 [変更履歴](../changelog/v0.30.2.md). |
+| バージョンの変更を読むか、ヘルプを入手する | **About → Release notes / Help Center** 対応する外部ページを開きます。 このwikiには、 [変更履歴](../changelog/v0.31.1.md). |
 | 診断ログの検索または開く | **General → Diagnostics → Reveal / Open**; 詳しくはこちら [トラブルシューティング](troubleshooting.md). ログは共有するまでローカルに滞在します。 |
 | コマンドラインエントリをインストールします。 | **General → Install command**; 詳しくはこちら [CLI リファレンス](../reference/cli.md). デスクトップの使用は、このコマンドを必要としません。 |
 | データの場所を管理するか、またはアーカイブされた仕事 | [貯蔵およびアーカイブされた仕事](storage.md). |

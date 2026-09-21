@@ -1,7 +1,7 @@
 ---
 title: "Redes, proxies y espejos de paquete"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-20'
 ---
 
 # Redes, proxies y espejos de paquete {/* #network-proxies-and-package-mirrors */}
@@ -110,3 +110,7 @@ Para un módulo Python perdido después de una conexión exitosa, continúe con 
 Para 400, 401, 403, 404, 429 o 5xx, use el [Mesa de solución de problemas HTTP](troubleshooting.md#http-errors-400-403-429-and-5xx). Mantenga el servicio de respuesta y su mensaje detallado con el código de estado.
 
 Después de cambiar la configuración de dominio proxy, mirror o Notebook, confirme los valores persistidos, luego vuelva a introducir la operación original en el mismo tiempo de ejecución. Compruebe tanto la descarga como la importación de paquetes; una configuración exitosa salvo solo no resuelve un error de instalación.
+
+## Una célula R fue bloqueada antes de la ejecución {/* #r-network-warning */}
+
+En v0.31.1, Notebook muestra una advertencia en línea cuando la protección de la red bloquea una carrera R. Siga su enlace de configuración e inspeccione el acceso solicitado. La advertencia significa que la célula no ejecutó; no es un resultado científico o una carrera completa. Después de resolver el requisito específico, ejecute la célula de nuevo e inspeccione su salida. El soporte Windows estándar R no permite la protección de la red.

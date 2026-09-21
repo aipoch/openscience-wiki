@@ -1,8 +1,10 @@
 ---
 title: "會話與分支"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
+
+import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # 會話與分支 {/* #会话与分支 */}
 
@@ -130,3 +132,33 @@ GSE60450 實際執行完成後，透過 **Edit…** 儲存了以下內容：
 歸檔專案透過 **Manage** 檢視內部會話。歸檔、恢復、刪除和資料遷移的區別見[儲存](storage.md)。會話從活躍列表消失不代表已釋放磁碟空間。
 
 原始碼：[會話編輯器](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/EditSessionDialog.tsx)、[工作區實現](https://github.com/aipoch/open-science/tree/v0.26.0/src/renderer/src/pages/workspace)。
+
+## 複製已有會話繼續研究 {/* #fork-session */}
+
+需要本地會話或匯入會話的獨立工作副本時，使用 **Fork**。**Branch in new session** 從選定訊息建立分支；Fork 則複製整個會話已儲存的研究記錄，包括分支、Notebook 記錄、檔案版本、文獻、批註和私人書籤。原會話保持不變。複製記錄不會重新執行程式碼，也不代表當前電腦的執行環境已經準備好。
+
+1. 在桌面應用中完成或停止當前任務，並等待正在進行的研究包傳輸結束。
+2. 開啟會話列表中該會話的選單，選擇 **Fork**。應用會顯示傳輸進度；**Run in background** 只隱藏視窗，不會取消任務。
+3. 等待 **Fork completed**，開啟新會話。點選標題，核對 **Source session** 和新的會話編號。
+4. 開啟一個繼承的檔案，檢查內容。繼續前核對當前模型和執行環境；舊電腦的路徑或權限可能需要重新處理。
+5. 在副本中傳送後續任務，檢查新輸出。保留原會話作為對照記錄。
+
+![會話選單中的 Fork 入口](/img/open-science/v0311/fork-menu.webp)
+
+![新會話資訊卡中的來源會話及繼承的 QC 檔案](/img/open-science/v0311/fork-info.webp)
+
+Fork 目前在桌面端提供。匯入會話仍為只讀，應在其副本中繼續工作。專案設定和記憶不會變成另一個獨立複製的專案。舊的審閱或驗證記錄只描述原記錄版本；使用前檢查是否已經過期。
+
+### 在 QC 副本中繼續計算 {/* #在-qc-副本中继续计算 */}
+
+<p className="example-label"><strong>案例演示</strong> v0.31.1 本地會話 Fork</p>
+
+在 GSE60450 專案中，將已有 QC 會話 Fork 後，開啟繼承的 `gse60450-qc-summary.csv`，確認樣本數為 **12**、原始計數合計為 **269,027,617**。在副本中讓 Agent 用 Python 讀取該檔案，核對兩項數值，計算每個樣本的平均計數，並另存為 `fork-qc-check.csv`。結果為 **22,418,968.083333…**；原始檔與副本中繼承檔案的內容相同，新計算另存為獨立檔案。這個平均數僅演示如何繼續計算，不是表達量歸一化。
+
+![Fork 副本中執行 Python 並儲存新結果](/img/open-science/v0311/fork-result.webp)
+
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">下載示例計算結果</ExampleDownload>。收到 `.science` 包後繼續研究的方法見[研究包](research-packages.md)。
+
+## 檢視會話資訊卡 {/* #session-information */}
+
+點選會話標題，檢視編號、描述、來源、建立與更新時間、當前分支訊息數及檔案數。使用 **Pin** 固定會話，或透過 **Edit session** 修改標題和描述。**Continued from chat** 分隔條可返回記錄的來源訊息。

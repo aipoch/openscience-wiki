@@ -44,7 +44,7 @@ El proyecto **Description** le ayuda a identificar el proyecto. Ponga instruccio
 
 Una conversación necesita un marco de agente de trabajo y una conexión modelo. Un cálculo Python también necesita un tiempo de ejecución Python Notebook. Una búsqueda de servicio necesita el Connector relevante, acceso a la red y cualquier credencial requerido. Un método GPU puede requerir una máquina separada, entorno de software y pesos modelo incluso cuando su Skill ya está lista.
 
-La ejecución local documentada utilizó una suscripción Codex y el entorno Python gestionado por la aplicación. El acceso modelo no instaló los paquetes Python: una dependencia de pandas que faltaba todavía detuvo el primer cálculo. El análisis concluyó después de cambiar la implementación para instalar paquetes sin cambiar la cuestión descriptiva.
+Configure el modelo, horario de ejecución y los servicios de datos por separado. Después de conectar el modelo, revise los paquetes necesarios para el cálculo. Si falta un paquete, instálelo o elija explícitamente un método que utilice el entorno disponible.
 
 Vea [Configuración del proveedor](providers.md), [Horas de ejecución Python y R](runtimes.md) y [Red](network.md) para estos caminos de configuración independientes. Una prueba de conexión modelo exitosa no valida todos los servicios de aguas abajo.
 
@@ -57,7 +57,7 @@ Los ejemplos formales utilizan insumos de investigación pública:
 - [Colección de lectura PRISMA](../workflows/core-reading-list.md): tres documentos reales, revisó los registros de la Biblioteca y un editor adjunto PDF.
 - [Análisis GSE60450 RNA-seq](../workflows/data-quality.md): filas de genes 27,179, muestras 12, métricas de QC verificadas independientemente, una figura de cuenta cruda y código de productor capturado.
 
-[Computación remota](remote-compute.md) demuestra el mismo RNA-seq QC en Direct SSH, incluyendo salidas recolectadas, recuperación de reiniciar y cancelación. La computación Slurm fue confirmada en el servidor, pero la contabilidad de cronogramas deshabilitados evita la cosecha de aplicaciones. El mismo capítulo también verifica un pequeño diseño de secuencia ProteinMPNN en un A100 GPU en un entorno CUDA aislado.
+[Computación remota](remote-compute.md) cubre RNA-seq QC a través de Direct SSH, recolectando resultados, recuperación y cancelación. También explica los requisitos de contabilidad Slurm y un pequeño flujo de trabajo de diseño de secuencia ProteinMPNN en un A100 GPU en un entorno CUDA aislado.
 
 ## Almacenamiento local y procesamiento externo {/* #local-storage-and-external-processing */}
 

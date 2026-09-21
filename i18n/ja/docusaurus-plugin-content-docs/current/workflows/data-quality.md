@@ -57,11 +57,11 @@ Do not perform differential-expression testing or delegate.
 
 入力ファイルと出力名を含むPythonリクエストの許可を読んで、スコープされた操作を許可します。 **Notebook**を会話で開き、完成したセルとその出力を検査します。 寸法、元のラベル、メトリック配列、および前後のハッシュを確認します。 モデルの完了メッセージだけでは不十分です。
 
-入力バージョン ID が解決できない場合は、Agent にこの会話の添付ファイルと再試行からマウントされた入力を使用するように依頼してください。 この実行は、その回復を使用しました。 失敗した試みを完全な計算として扱うか、または別のファイルを無声に置換しないでください。
+入力バージョン ID が解決できない場合は、Agent にこの会話の入力と再試行をお読みください。 続行する前にファイル名とチェックサムを確認します。
 
 ![寸法、ハッシュ、および計算されたサンプルメトリックで成功したNotebook出力](/img/open-science/research-workflows/rnaseq-qc-rerun-notebook.webp)
 
-完全な再実行検証された**27,179遺伝子列と12サンプル列**は、未定の行、重複ID、欠落したエントリ、または無効なカウントなし。 **Generated** では、3つのリクエストファイルがすべて登場しました。 各ファイルを開きます。 アーティファクトとして保存されていない作業ファイルはまだ配信できません。
+例には、誤字行、重複ID、欠落したエントリ、または無効なカウントがない **27,179遺伝子列と12サンプル列** が含まれています。 **Generated** の3つの出力ファイルをすべて開き、保存した結果を確認します。
 
 ## 4. サンプルテーブルを受け入れて下さい {/* #4-accept-the-sample-table */}
 
@@ -69,7 +69,7 @@ Do not perform differential-expression testing or delegate.
 
 サンプルメトリックを[ベースラインテーブル](../reference/example-data.md#sample-qc-baseline)ですべて比較し、完全なサンプル識別子によって一致する行。
 
-![完成した再建から再開された12列テーブル](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
+![保存された12列のサンプルQCテーブル](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
 
 この入力では、各行のゼロカウントと検出された遺伝子は、**27,179**と等しいはずです。 独立したベースラインで**48**サンプルメトリックを比較します。 本契約は、供給された入力のこれらの計算を確認します。 ダウンストリームの仮定は、独自の評価を必要としています。
 
@@ -77,14 +77,14 @@ Do not perform differential-expression testing or delegate.
 
 `rnaseq-library-sizes.png`を開き、拡大します。 値が正規化されていないすべての12個のサンプルラベル、生カウント軸、およびノートを確認してください。 この行列の **20,015,386** から **24,723,827** までの総カウント範囲。
 
-![同じ再実行から保存された生のライブラリサイズのプロット](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
+![保存された生ライブラリサイズのプロット](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
 
-より大きなライブラリの合計は、遺伝子が異なって表現されるという意味ではありません。 別のダウンストリーム解析の前に、サンプル特性をGEOメタデータに合わせ、設計、コントラスト、正規化、フィルタリングルールを指定します。 別のConnectorフォローアップは12個のサンプルのGEO特性を取得しました。 GSM-to-matrix-column マッピング、解析設計、統計的な手順はここで検証されていない。 [コネクタ](../guides/connectors.md) を参照してください。
+より大きなライブラリの合計は、遺伝子が異なって表現されるという意味ではありません。 下流分析の前に、サンプル特性とGSM識別子をGEOメタデータを使用して行列に合わせ、設計、コントラスト、正規化、フィルタリングルールを指定します。 メタデータを取得するには、[コネクタ](../guides/connectors.md) を参照してください。
 
 ## 6. 方法と証拠の保持 {/* #6-retain-the-methods-and-evidence */}
 
 入力チェックサム、寸法、妥当性チェック、正確なラベルマッピング、ランタイム/ライブラリバージョン、解釈制限を含むレポートを保管してください。 値を比較した後にのみ独立したチェックセクションを追加します。 レポートのリビジョンを保存しても、テーブルや図を返さない。
 
-9 月 16 は、独立チェックベースラインに対してすべての **48** メトリックに一致しました。 その入力 SHA-256 は `128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691` を残しました。 報告書は、Python 3.12.14とMetplotlib 3.11.1を記録します。 これらのチェックは、この計算の合意と入力保存を確立します。 レビュアー監査または独立した再生のための正確な環境を確立しません。
+ベースラインですべての**48**サンプルメトリックを比較し、入力SHA-256が`128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691`のままであることを確認します。 例のレポートは、Python 3.12.14 と matplotlib 3.11.1 を記録します。 自分の実行で使用されるバージョンを記録します。
 
-<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>QCのテーブル</a>、<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>プロット</a>、<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>レポート</a>のリランをダウンロードしてください。 元の入力とセッションNotebookも保持します。 [例-データページ](../reference/example-data.md#saved-example-outputs)は、以前のベースラインとNotebookエクスポートを別々に保ちます。 これらのエクスポートは、この再実行からNotebookではありません。 [再現性チェック](../guides/reproducibility.md)は、別の環境と再実行評価のために使用します。
+<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>QCのテーブル</a>、<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>プロット</a>、<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>レポート</a> などをダウンロードできます。 オリジナルの入力とセッション Notebook を出力とともに保持します。 [再現性チェック](../guides/reproducibility.md) を使用して、環境を準備し、計算を再実行します。

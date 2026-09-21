@@ -1,7 +1,7 @@
 ---
 title: "提供商与本地模型配置"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -24,7 +24,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 选择提供商区域或免费目录模型 {/* #provider-regions */}
 
-使用 **SenseNova** 时，先在提供商表单中选择 **China** 或 **Global**，再选择模型。填写该区域对应的 API key，核对模型列表，保存并测试连接。切换区域可能同时改变地址和可选模型，另一区域的密钥或模型名未必可用。
+使用 **SenseNova** 时，先在提供商表单中选择 **China** 或 **Global**，再选择模型。填写该区域对应的 API key，核对模型列表，点击 **Save**，等待连接验证成功后提交修改。切换区域可能同时改变地址和可选模型，另一区域的密钥或模型名未必可用。
 
 使用 **OpenRouter**、**OpenCode Zen** 等网关时，只选择当前框架目录中实际提供的免费模型条目，并按服务要求配置账号和凭据。免费条目仍可能有用量限制，也不代表支持全部工具或图片输入。不要给任意模型 ID 自行添加 `:free`。先发送一个小请求，核对返回模型和结果，再用于研究任务。
 
@@ -44,7 +44,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | --- | --- | --- |
 | **Check Codex login** | 怀疑已保存登录过期 | 等待显示已验证或具体失败状态 |
 | **Re-import Codex login** | 外部登录更新后，希望更新应用中的副本 | 重新导入并检查认证 |
-| **Edit** | 检查认证方式或传输设置 | 保存预期设置后重新验证连接 |
+| **Edit** | 检查认证方式或传输设置 | 点击 Save，等待验证成功后提交修改 |
 | **Delete** | 移除不再使用的提供方 | 取决于是否仍被依赖；仍被使用的提供方可能无法删除 |
 
 **Testing…** 不表示失败，**Connection verified** 也不表示所有模型与工具均已运行成功。导入失败时，先完成支持的 Codex 登录流程再重试；不要将认证 JSON 粘贴到提示词或文档中。
@@ -56,7 +56,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 更新或移除 API 凭据
 
-服务端更换密钥后，在 **Settings → Model** 找到对应提供方，点击 **Edit**，将新密钥填入 **API key** 并保存。编辑时留空会保留旧密钥，不表示清除。等待连接测试结束；若显示认证失败，先核对服务地址、密钥所属账号和有效期，再重试。
+服务端更换密钥后，在 **Settings → Model** 找到对应提供方，点击 **Edit**，将新密钥填入 **API key** 并点击 **Save**。编辑时留空会保留旧密钥，不表示清除。先等待连接验证成功，再提交修改；若显示认证失败，先核对服务地址、密钥所属账号和有效期，再重试。
 
 确认 **Connection verified** 后，用该提供方完成一个小请求。只移除不再被使用的提供方：点击 **Delete** 并核对确认框名称。删除应用中的配置不会替你撤销服务端密钥。
 
@@ -208,3 +208,7 @@ print((8664 + 18515) == 27179)
 遇到 400、401、403、404、429 或 5xx 响应时，查看 [HTTP 故障排查表](troubleshooting.md#http-错误400403429-与-5xx)，同时记录返回错误的服务与详细消息。
 
 源码：[ProviderForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ProviderForm.tsx)、[ProviderStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/ProviderStep.tsx)。
+
+## v0.31.0 及后续版本如何保存提供方修改 {/* #validated-provider-save */}
+
+提供方修改先经过连接验证，通过后才提交保存。点击 **Save** 后等待结果，确认成功再关闭表单。验证失败不会替换原有可用配置。已保存的连接在请求中被拒绝时，可用状态会更新；检查凭据和端点后重新测试。**Conversation models**、**Classification models** 和 **Local parsing models** 用途不同，详见[模型设置](models.md#classification-models)。

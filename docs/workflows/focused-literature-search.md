@@ -36,8 +36,6 @@ Write in English, do not delegate, and reopen the saved files.
 
 ![The actual focused-search request in Open-Science](/img/open-science/workflow-extensions/focused-search-input.webp)
 
-The screenshot shows the initial request. The operational screening rule above incorporates the subsequent review of that run.
-
 ## 2. Check the query and coverage
 
 The run submitted this concept-and-journal query, with the publication-date filter supplied separately:
@@ -57,7 +55,7 @@ When the response completes, open **mindfulness-search-audit.csv** under **Gener
 
 ![The saved candidate table, including uncertain and excluded records](/img/open-science/workflow-extensions/focused-search-table.webp)
 
-Review found inaccurate reasons in the initial draft: for example, PMID **38837133** is a primary randomized trial of a broader psychotherapy, not a secondary analysis. The revised table marks its mindfulness eligibility **uncertain**. PMID **34009273** is a meta-analysis and remains excluded with the corrected reason. Naming the record and the specific error gives the Agent a concrete revision request; then reopen the saved CSV to confirm the change.
+Check each exclusion reason against the abstract. PMID **38837133** is a primary randomized trial of a broader psychotherapy; the example marks its mindfulness eligibility **uncertain**. PMID **34009273** is a meta-analysis and is excluded. When a decision needs correction, name the record and specific issue, ask the Agent to update the CSV, then reopen the saved file.
 
 ![The actual screening revision and saved-file checks in Notebook](/img/open-science/workflow-extensions/focused-search-notebook.webp)
 
@@ -67,7 +65,7 @@ The reviewed example table contains **20 included, 37 excluded and 5 uncertain r
 
 PMID **41418645** was returned by the 2019–2025 PubMed publication-date filter, while its metadata reports a **2026-01** print date. Keep the discrepancy and verify the publication history before making a final date decision. Do not silently replace the year to fit the search window.
 
-Open **mindfulness-search-notes.md** and verify that its counts, eligibility rule and limitations match the CSV. This run revised both files and retained the unchanged raw metadata snapshot.
+Open **mindfulness-search-notes.md** and check that its counts, eligibility rule and limitations match the CSV. Keep the original metadata snapshot alongside these files so each decision can be traced to its source.
 
 ![The revised search note with the 20/37/5 screening counts](/img/open-science/workflow-extensions/focused-search-notes.webp)
 

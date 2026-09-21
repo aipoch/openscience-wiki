@@ -1,0 +1,2 @@
+"tax_id","scientific_name","common_name","taxon_rank","assembly_name","requested_assembly_accession","current_assembly_accession","refseq_assembly_accession","genbank_assembly_accession","refseq_genbank_are_different","ucsc_name","chromosome_1_aliases"
+"9606","Homo sapiens","human","SPECIES","GRCh38.p14","GCF_000001405.40","GCF_000001405.40","GCF_000001405.40","GCA_000001405.29","true","hg38","chr_name=1; ucsc_style_name=chr1; sequence_name=1; refseq_accession=NC_000001.11; genbank_accession=CM000663.2"

@@ -1,7 +1,7 @@
 ---
 title: "원격 브라우저 액세스"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 원격 브라우저 액세스 {/* #remote-browser-access */}
@@ -61,3 +61,7 @@ last_update:
 근원: [먼 접근 위원회](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/RemoteControlPanel.tsx).
 
 Linux 헤드리스 배포는 쓸모없는 OS 키링없이, [credential 저장 선택권](../reference/server.md#credential-storage-on-headless-linux)을 읽습니다. 해당 비밀의 로컬 저장소를 변경; 그것은 Remote.It, 브라우저를 쌍하거나 원격 액세스를 부여하지 않습니다.
+
+## v0.31.1에서 페어링 및 재발행 {/* #pairing-v0311 */}
+
+종료 페어링 요청은 **Trusted browsers** 이전에 나타나며 나머지 시간과 긴급한 배지를 나타냅니다. 액세스 권한을 부여하기 전에 요청 장치에 표시된 코드를 일치; 만료된 요청은 다시 시작해야 합니다. 신뢰할 수있는 브라우저는 스스로를 구할 수 있습니다 : 나중에 액세스가 필요한 경우 종료 및 쌍에 대한 보호 된 액세스를 기대합니다. **Off**, 임시 접근 및 재조합 신뢰는 다른 행동을 남아 있습니다.

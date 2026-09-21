@@ -1625,5 +1625,17 @@
   },
   "docs.outline.reference.v0302.scope": {
     "message": "Загрузка Skills для Specialist, независимый Side Chat, запросы данных и восстановление Notebook."
+  },
+  "docs.outline.reference.v0311.title": {
+    "message": "v0.31.1"
+  },
+  "docs.outline.reference.v0311.scope": {
+    "message": "ENA, обогащение наборов генов, референсные геномы и необязательные модели классификации."
+  },
+  "docs.outline.reference.v0310.title": {
+    "message": "v0.31.0"
+  },
+  "docs.outline.reference.v0310.scope": {
+    "message": "Редактируемые копии сеансов, проверка провайдеров и полные сети STRING."
   }
 }

@@ -136,7 +136,7 @@ Mit **General → Close button behaviour → Ask every time** öffnet das Schlie
 | Sie wollen... | Wohin zu gehen |
 | --- | --- |
 | Suchen Sie nach einem App Update | **General → About → Check now**; Folge [Installation und Aktualisierungen](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Versionsänderungen lesen oder Hilfe erhalten | **About → Release notes / Help Center** öffnet die entsprechende externe Seite. Dieses Wiki hat auch eine [Changelog](../changelog/v0.30.2.md). |
+| Versionsänderungen lesen oder Hilfe erhalten | **About → Release notes / Help Center** öffnet die entsprechende externe Seite. Dieses Wiki hat auch eine [Changelog](../changelog/v0.31.1.md). |
 | Suchen oder öffnen Sie das Diagnoseprotokoll | **General → Diagnostics → Reveal / Open**; siehe [Fehlerbehebung](troubleshooting.md). Logs bleiben lokal, bis Sie sie teilen. |
 | Installieren Sie den Befehlszeileneintrag | **General → Install command**; siehe [CLI Referenz](../reference/cli.md). Die Desktop-Nutzung erfordert diesen Befehl nicht. |
 | Verwalten des Datenstandorts oder der archivierten Arbeit | [Lagerung und archivierte Arbeiten](storage.md). |

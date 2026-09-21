@@ -47,7 +47,7 @@ Mit der Codex-Authentifizierung mit gpt-5.6-sol hat die manuelle Überprüfung *
 | Der Molekülaufruf erzeugte das angegebene Artefakt / die angegebenen Deskriptoren | PASS; die zurückgegebene Artefaktversion und die Werte wurden identifiziert. |
 | Das Modell inspizierte die gespeicherte Molekülvorschau wie gewünscht | FAIL; Der Katalog-Lookup hat den Strukturinhalt nicht gelesen. |
 
-Die Korrekturen stießen auf Managed-Input-Zugriffsprobleme und erreichten **Fix Limit erreicht / Probleme gefunden**. Das manuelle Öffnen der Struktur in der Anwendung bewies, dass der Betrachter funktionierte, änderte jedoch nicht rückwirkend das aufgezeichnete Inspektions- oder Überprüfungsergebnis des Modells. Dies ist ein echtes ungelöstes Review-Ergebnis, kein erfolgreiches Review-Abzeichen.
+Das Beispiel endet mit **Fix Limit erreicht / Probleme gefunden**, da das Modell nicht auf die für die Strukturprüfung benötigte verwaltete Eingabe zugreifen konnte. Öffnen Sie den Befund, um die fehlende Eingabe zu identifizieren, und geben Sie sie an, bevor Sie eine weitere Überprüfung anfordern. Durch das manuelle Öffnen der Struktur im Viewer wird der Inspektionsrekord des Modells nicht aktualisiert.
 
 </details>
 

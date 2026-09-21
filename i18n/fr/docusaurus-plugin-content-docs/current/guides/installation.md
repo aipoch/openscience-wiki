@@ -1,7 +1,7 @@
 ---
 title: "Installation et mises à jour"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -70,7 +70,7 @@ Le dossier d’installation contient l’application ; **Data location**, dans l
 
 Vous avez besoin de Git, Node.js 22, npm, et la plate-forme construit les conditions préalables pour Electron. Installer ou sélectionner un cadre d'agent dans l'application. Pendant l'installation, le dépôt génère le client Prisma, applique les correctifs app et prépare les dépendances natives d'Electron.
 
-Pour une installation source reproductible, choisissez la balise de libération prévue à partir de [Changer de journal](../changelog/v0.30.2.md) avant d'installer les dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
+Pour une installation source reproductible, choisissez la balise de libération prévue à partir de [Changer de journal](../changelog/v0.31.1.md) avant d'installer les dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
 
 Remplacer `RELEASE_TAG` ci-dessous par la balise exacte affichée sur la version sélectionnée (y compris sa `v` de tête). Pour suivre le développement en cours, omettre `--branch RELEASE_TAG --depth 1`; que la commande suivra la branche par défaut.
 
@@ -131,6 +131,10 @@ La réinstallation conserve les données existantes. Si vous avez délibérémen
 | --- | --- |
 | Installation de bureau ou lancement de l'application | Vérifiez la source du paquet, l'architecture OS et CPU, puis lisez l'invite du système d'exploitation. |
 | Installation de la source | Confirmer `node --version` et `npm --version`, et ça `npm install` terminée. Réessayer une installation de dépendance interrompue. |
-| Configuration pour la première fois | Lisez la vérification de l'environnement échouée et résolvez l'exigence énoncée avant de poursuivre. |
+| configuration initiale | Lisez la vérification de l'environnement échouée et résolvez l'exigence énoncée avant de poursuivre. |
 | Première demande d'agent | Confirmer un agent actif/de préparation et exécuter **Test connection** sur la page Modèle. |
 | Connexion du fournisseur ou du navigateur local | Inspecter l'erreur de port, de proxy ou de certificat; voir [Dépannage](troubleshooting.md). |
+
+## Nom du produit après v0.31.0 {/* #product-name */}
+
+L'interface actuelle et les nouveaux paquets utilisent toujours **Open-Science**. La mise à niveau préserve les noms et les emplacements d'installation existants, les données de recherche, les références et les paramètres. Un chemin d'installation plus ancien contenant `Open Science` n'est pas en soi une défaillance de mise à niveau; ne pas renommer ou déplacer ses dossiers de données pour correspondre au nouveau nom d'affichage.

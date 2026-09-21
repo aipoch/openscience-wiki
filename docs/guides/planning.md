@@ -1,7 +1,7 @@
 ---
 title: "Planning before execution"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Planning before execution
@@ -57,3 +57,7 @@ Step statuses can include not started, in progress, completed, blocked, skipped 
 Continue with [Files and versions](./files.md), [Notebook evidence](./notebook.md) and [Permissions](./approval-modes.md).
 
 Source: [plan approval and preview controls](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/session-plan/SessionPlanSurfaces.tsx).
+
+## Resume after context reconstruction {/* #resume-plan */}
+
+From v0.31.0, the agent can recover the current Session Plan, its revision and pending approvals after rebuilding its context. Reopen the active plan and check which steps actually completed before asking it to continue. A pending approval is still pending; recovering the plan does not approve it or confirm an operation whose outcome was not recorded.

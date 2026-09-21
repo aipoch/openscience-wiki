@@ -1,0 +1,14 @@
+{
+  "query": "human",
+  "n_matches": 1,
+  "ambiguous": false,
+  "matches": [
+    {
+      "tax_id": 9606,
+      "scientific_name": "Homo sapiens",
+      "common_name": "human",
+      "rank": "SPECIES"
+    }
+  ],
+  "matches_truncated": false
+}

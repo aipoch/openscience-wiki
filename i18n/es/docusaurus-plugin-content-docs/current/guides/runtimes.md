@@ -1,7 +1,7 @@
 ---
 title: "Horas de ejecución Python y R"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -252,7 +252,7 @@ Abra la salida del Notebook y compare con el informe guardado. Este ejemplo Wind
 
 Para Windows conda R startup o fallos de recuperación del kernel, use v0.30.2 o más tarde antes de reintentar. La versión fija la vigilancia ejecutable después de la preparación del medio ambiente y la recuperación del kernel R. Después de actualizar, vuelva a revisar el medio ambiente y ejecute un pequeño cálculo R en Notebook; **Ready** solo no es un resultado de ejecución. Las capturas de pantalla a continuación conservan las versiones y los resultados de sus carreras originales.
 
-Para una ejecución Windows R que reporta **Activar el modo protegido antes de autorizar el acceso R.**, inspeccionar **Network settings** y las instrucciones R de la tarjeta **Authorize and verify**. Resolver el requisito de autorización notificado antes de la repetición; una tarjeta **Ready** sola no confirma la ejecución. Mantenga el error completo si la solicitud permanece bloqueada y siga [Solución de problemas](troubleshooting.md).
+Desde v0.31.0, Windows R puede funcionar en modo estándar sin establecer el primer modo protegido. Trate a **Activar el modo protegido antes de autorizar el acceso R.** de una versión más antigua como guía específica para la versión. Los permisos de protección de la red y de instalación de paquetes siguen siendo controles separados. En v0.31.1, una carrera bloqueada por la protección de la red Notebook muestra una advertencia en línea con un enlace al entorno pertinente; la celda no fue ejecutada. Revise el acceso requerido, luego vuelva a correr y compruebe la salida.
 
 <span id="windows-runtime-qc" />
 

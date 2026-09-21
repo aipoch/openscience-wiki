@@ -1,7 +1,7 @@
 ---
 title: "サービス資格情報"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # サービス資格情報 {/* #service-credentials */}
@@ -64,3 +64,7 @@ OpenAlex クエリは、有効な OpenAlex キーが必要です。 OAuth コネ
 実装参照: [クレデンシャルパネル.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx)、[コネクタAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx)。
 
 [CLI/SDK 認証管理](../reference/cli.md#manage-connectors-and-credentials)は認証されたローカルアクセスで共有された認証情報を作成/更新できます。 Linuxヘッドレスインストールは、明示的に[暗号化されていないファイルストレージ](../reference/server.md#credential-storage-on-headless-linux)を選ぶことができます。 デスクトップの認証は、通常のOSストレージの動作を保持します。 このオプションは、 Compute パスワード ストレージを解決したり、初回の OAuth ログインを開始したりしません。
+
+## 公式APIキーページを開く {/* #official-api-key-page */}
+
+v0.31.0、OpenAlex、NCBIのクレデンシャルプロンプトから、公式のAPIキーページへのリンクが含まれています。 フォームドラフトを保ち、Connectorコールを待ちます。 サービスのアカウントの手順を完了し、クレデンシャルフォームに戻り、クエリを再試行する前に意図したキーを検証して保存します。 キーページを開くだけで、キーを保存したり、待機クエリを完成したりすることはできません。

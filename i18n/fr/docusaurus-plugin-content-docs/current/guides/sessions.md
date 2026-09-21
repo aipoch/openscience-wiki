@@ -1,8 +1,10 @@
 ---
 title: "Sessions et sections"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
+
+import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # Sessions et sections {/* #sessions-and-branches */}
 
@@ -130,3 +132,33 @@ Choisissez **Archive** sur la branche prévue, puis ouvrez **Settings → Archiv
 Pour un projet archivé, utilisez son entrée **Manage** et inspectez les sessions du projet. Voir [Stockage et travaux archivés](storage.md) pour la différence entre l'archive, la restauration, la suppression et la relocalisation de stockage. La disparition d'une session de la liste active ne prouve pas que l'espace disque a été récupéré.
 
 Sources: [éditeur de session](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/EditSessionDialog.tsx), [Mise en œuvre de l'espace de travail](https://github.com/aipoch/open-science/tree/v0.26.0/src/renderer/src/pages/workspace).
+
+## Fourche une session existante {/* #fork-session */}
+
+Utilisez **Fork** lorsque vous avez besoin d'une copie de travail indépendante d'une session locale ou importée. **Branch in new session** démarre à partir d'un message sélectionné; Fork copie l'historique de recherche sauvegardé de la session, y compris ses succursales, les enregistrements Notebook, les versions de fichiers, la littérature, les annotations et les signets privés. La session source reste inchangée. La copie d'un enregistrement ne le réexécute pas ou n'établit pas que son environnement est prêt sur cet ordinateur.
+
+1. Dans l'application de bureau, terminer ou arrêter la tâche actuelle. Attendez que tout transfert de colis soit terminé.
+2. Ouvrez les actions de la ligne de session et choisissez **Fork**. L'application montre les progrès de transfert; **Run in background** cache cette fenêtre sans l'annuler.
+3. Attendez **Fork completed** et ouvrez la nouvelle session. Ouvrez son titre pour inspecter **Source session** et le nouveau numéro de session.
+4. Ouvrez un fichier hérité et vérifiez son contenu. Inspecter le modèle sélectionné et le temps d'exécution avant de continuer; Les anciennes voies ou permissions de la machine peuvent nécessiter une attention particulière.
+5. Envoyez la tâche suivante dans la copie et vérifiez sa nouvelle sortie. Gardez l'original comme document de référence.
+
+![Fourche dans le menu Actions de session](/img/open-science/v0311/fork-menu.webp)
+
+![Nouvelle information de session montrant sa source et son fichier QC hérité](/img/open-science/v0311/fork-info.webp)
+
+La fourche est disponible dans l'application de bureau. Les sessions importées restent en lecture seule jusqu'à ce que vous travailliez dans leur fourche. Les paramètres et la mémoire du projet ne sont pas un projet séparé copié. les anciens dossiers d'examen ou de vérification décrivent leurs versions enregistrées; Inspecter tout statut obsolète avant de les traiter comme des vérifications actuelles.
+
+### Continuer un calcul de QC dans la copie {/* #continue-a-qc-calculation-in-the-copy */}
+
+<p className="example-label"><strong>Exemple pratique</strong> Fourche une session locale en v0.31.1</p>
+
+Dans le projet GSE60450, fourchez la session QC existante et ouvrez la `gse60450-qc-summary.csv` héritée. Vérifiez les échantillons de **12** et les nombres bruts totaux de **269,027,617**. Dans la copie, demandez à l'agent de lire ce fichier avec Python, de vérifier les deux valeurs, de calculer les nombres moyens par échantillon et d'enregistrer un `fork-qc-check.csv` séparé. Le résultat est **22,418,968.083333…**. La source et les fichiers hérités ont le même contenu; le nouveau calcul est un fichier séparé. Cette moyenne démontre la poursuite, et non la normalisation de l'expression.
+
+![Calcul Python et un nouveau résultat enregistré dans la session fourchue](/img/open-science/v0311/fork-result.webp)
+
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Télécharger le résultat calculé</ExampleDownload>. Pour continuer à partir d'un paquet `.science` reçu, suivez [Dossiers de recherche](research-packages.md).
+
+## Lire la carte d'information de la session {/* #session-information */}
+
+Sélectionnez le titre de la session pour voir son nombre, sa description, sa source, les heures de création/mise à jour, le nombre de messages pour la branche actuelle et le nombre d'objets. Utilisez **Pin** pour garder la session facile à trouver, ou **Modifier la session** pour changer son titre et sa description. Un diviseur **Suite du chat** se lie de nouveau au tour de la source enregistrée.

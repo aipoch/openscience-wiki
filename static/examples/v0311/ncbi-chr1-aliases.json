@@ -1,0 +1,22 @@
+{
+  "assembly_accession": "GCF_000001405.40",
+  "n_sequences": 705,
+  "upstream_total_count": 191,
+  "sequences": [
+    {
+      "assembly_accession": "GCF_000001405.40",
+      "chr_name": "1",
+      "ucsc_style_name": "chr1",
+      "sequence_name": "1",
+      "refseq_accession": "NC_000001.11",
+      "genbank_accession": "CM000663.2",
+      "length": 248956422,
+      "assembly_unit": "Primary Assembly",
+      "assigned_molecule_location_type": "Chromosome",
+      "role": "assembled-molecule"
+    }
+  ],
+  "n_matches": 1,
+  "n_returned": 1,
+  "matches_truncated": false
+}

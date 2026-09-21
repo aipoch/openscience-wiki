@@ -1,0 +1,23 @@
+{
+  "accession": "GCF_000001405.40",
+  "current_accession": "GCF_000001405.40",
+  "paired_accession": "GCA_000001405.29",
+  "tax_id": 9606,
+  "organism_name": "Homo sapiens",
+  "common_name": "human",
+  "assembly_name": "GRCh38.p14",
+  "synonym": "hg38",
+  "assembly_level": "Chromosome",
+  "assembly_status": "current",
+  "assembly_type": "haploid-with-alt-loci",
+  "refseq_category": "reference genome",
+  "release_date": "2022-02-03",
+  "paired_assembly": {
+    "accession": "GCA_000001405.29",
+    "status": "current",
+    "only_genbank": "4 unlocalized and unplaced scaffolds",
+    "manual_diff": "RefSeq dropped two scaffolds that are predominantly rodent or bacterial in origin (KI270752.1/NT_187507.1 and KI270825.1/NT_187580.1), and dropped two unlocalized scaffolds that are now thought to be redundant with assembled chromosome sequence (KI270721.1/NT_187376.1 and KI270734.1/NT_187389.1)",
+    "refseq_genbank_are_different": true,
+    "differences": "Removed 4 unlocalized and unplaced scaffolds; RefSeq dropped two scaffolds that are predominantly rodent or bacterial in origin (KI270752.1/NT_187507.1 and KI270825.1/NT_187580.1), and dropped two unlocalized scaffolds that are now thought to be redundant with assembled chromosome sequence (KI270721.1/NT_187376.1 and KI270734.1/NT_187389.1)"
+  }
+}

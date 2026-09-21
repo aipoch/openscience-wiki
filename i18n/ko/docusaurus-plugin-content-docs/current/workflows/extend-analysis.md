@@ -21,7 +21,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 3. 연구 프로젝트에 새로운 대화를 엽니다. 유효한 모형을, 그 후에 **Agent controls → Specialist → pharmacometrics-pkpd-designer** 선택하십시오. 기록된 실행은 **Codex 구독 / gpt-5.6-sol**을 사용했습니다.
 4. **각 분석 메시지**의 시작에서 `/pkpd`을 입력한 다음 제안에서 **pkpd 모델**를 선택하십시오. 프롬프트를 지나기 전에 Skill 칩이 됩니다.
 
-**버전 안내:** 아래 스크린샷과 결과는 v0.30.1에서 기록했습니다. 당시에는 역할만 선택하면 `Unknown skill`이 반환되어 메시지마다 Skill을 직접 선택해야 했습니다. v0.30.2는 위임된 작업을 포함하여 Specialist에 연결된 Skill의 준비 과정을 수정했습니다. 새 버전에서는 먼저 Specialist를 선택하고 실제 로딩 결과를 확인한 뒤, 필요한 경우 Skill을 직접 선택하세요. 이 예제는 v0.30.2에서 아직 다시 실행하지 않았습니다. 이전 버전의 우회 절차가 항상 필요한 것은 아니며, 이 수정만으로 예제의 재검증 성공을 의미하지도 않습니다.
+**버전 참고:** 스크린 샷은 v0.30.1을 사용하여 Skill가 각 분석 메시지에 명시적으로 선택됩니다. v0.30.2에서 Skills을 바인딩하면 Specialist의 회전 및 위임 작업을 준비합니다. Specialist을 먼저 선택; Skill이 사용할 수 없는 경우 요청을 보내기 전에 `/pkpd-modeling`을 명시적으로 선택하십시오.
 
 ![Pharmacometrics Specialist 및 그 기능 설치](/img/open-science/theoph-specialist/installed.webp)
 
@@ -57,7 +57,7 @@ CSV 미리 보기에는 처음 100개 행이 표시됩니다. 저장된 입력 �
 
 ## 3. 노출 메트릭 추가 {/* #3-add-the-exposure-metrics */}
 
-<ExampleDownload path="/examples/theoph/nca-conventions.md">검토·수정된 NCA 방법 자료</ExampleDownload>를 내려받아 **+ → Attach files**로 첨부하세요. 이 Wiki 버전은 패키지에 포함된 자료의 적분법과 말기 구간 선택에 관한 설명을 수정한 것입니다. 본 예제는 관측된 Cmax/Tmax와 모든 구간에 선형 사다리꼴 공식을 적용한 AUC만 계산하며, 말기 기울기는 추정하지 않습니다. 기록 당시 Notebook에서 Skill 설치 폴더의 자료를 읽을 수 없었으므로 대화에 파일을 첨부합니다.
+<ExampleDownload path="/examples/theoph/nca-conventions.md">NCA 방법 참고</ExampleDownload>을 다운로드하고 **+ → Attach files**을 통해 추가하십시오. 그래서 Notebook는 그것을 읽을 수 있습니다. 예를 들어이 참조를 사용하십시오. Cmax / Tmax 및 all-linear 사다리 사다리꼴 AUC를 관찰 할 수 있으며 터미널 슬로프를 자극하지 않습니다.
 
 동일한 대화에서 `/pkpd-modeling`을 다시 선택하면 다음을 보내주십시오.
 
@@ -77,7 +77,7 @@ Do not estimate AUC to infinity, half-life, clearance or dosing advice.
 Do not install packages, change permissions or delegate. Use English.
 ```
 
-파일을 읽고 R 계산을 검사한 후 제거하십시오. 지원 파일이 누락되면, 계속하기 전에 실제 파일을 첨부합니다. Skill로드 또는 Notebook의 오류가 완료 된 분석이 아닙니다.
+Inspect 및 파일 읽기 및 R 계산을 승인. 지원 파일이 누락된 경우, 계속하기 전에 첨부합니다. Notebook이 오류를 보고 실패한 세포를 열고 재발동하기 전에 이름을 입력 또는 의존성을 수정합니다.
 
 ## 4. 결과보기 및 확인 {/* #4-open-and-check-the-results */}
 

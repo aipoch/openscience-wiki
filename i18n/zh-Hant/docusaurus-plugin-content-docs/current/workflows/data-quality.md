@@ -59,11 +59,11 @@ Do not perform differential-expression testing or delegate.
 
 閱讀 Python 審批，確認輸入檔案與輸出名稱，再允許相應範圍的操作。在會話中開啟 **Notebook**，檢查完成後的單元及輸出，核對維度、原始標籤、指標陣列和前後校驗值；不能只看模型的完成訊息。
 
-如果輸入 Version ID 無法解析，要求 Agent 使用本會話附件掛載的輸入重試。本次透過這一方式繼續計算。失敗的嘗試不能記為完成，也不能悄悄替換成另一個檔案。
+如果輸入 Version ID 無法解析，要求 Agent 使用本會話附件中的輸入重試。繼續前核對檔名與校驗值。
 
 ![成功的 Notebook 輸出包含維度、校驗值和實際計算的樣本指標](/img/open-science/research-workflows/rnaseq-qc-rerun-notebook.webp)
 
-本次重跑檢查了 **27,179 個基因行、12 個樣本列**，沒有行寬異常、重複 ID、缺失值或無效計數。三個結果均出現在 **Generated** 中，應逐一開啟；只存在於工作目錄、尚未儲存為產物的檔案還不算交付結果。
+本例包含 **27,179 個基因行、12 個樣本列**，沒有行寬異常、重複 ID、缺失值或無效計數。在 **Generated** 中逐一開啟三個輸出檔案，檢查儲存的結果。
 
 ## 4. 驗收樣本表 {/* #4-验收样本表 */}
 
@@ -71,7 +71,7 @@ Do not perform differential-expression testing or delegate.
 
 按完整樣本標識與[基準表](../reference/example-data.md#样本-qc-基准)逐行比較全部指標。
 
-![重新開啟本次重跑的十二行樣本表](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
+![儲存的十二行樣本質控表](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
 
 對於本例輸入，每行零計數基因數加檢出基因數應等於 **27,179**。將 **48** 項樣本指標與獨立基準對照。一致性檢查針對該輸入的這些計算；下游分析假設仍需另行評估。
 
@@ -79,7 +79,7 @@ Do not perform differential-expression testing or delegate.
 
 開啟並放大 `rnaseq-library-sizes.png`，核對十二標籤、原始計數軸與未歸一化說明。矩陣總計數範圍為 **20,015,386–24,723,827**。
 
-![同一次重跑儲存的原始計數總量圖](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
+![儲存的原始計數總量圖](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
 
 總計數較大不能證明某基因差異表達。繼續下游分析前，從 GEO 核對樣本特徵，明確 GSM 與矩陣列名對映、研究設計、對比、歸一化及過濾規則。後設資料獲取見[聯結器](../guides/connectors.md)。
 
@@ -87,6 +87,6 @@ Do not perform differential-expression testing or delegate.
 
 保留包含輸入校驗值、維度、有效性檢查、準確標籤對映、執行環境和依賴版本、解釋限制的報告。比較數值後才補充獨立檢查結論。儲存報告修訂版不會重新計算表格和圖片。
 
-9 月 16 日的重跑與已獨立核對的基準相比，**48** 項指標全部一致。輸入 SHA-256 保持為 `128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691`。報告記錄 Python 3.12.14 和 matplotlib 3.11.1。這些檢查證明本次數值一致、輸入未變，不代表已完成 Reviewer 審查或準備好獨立復現所需的精確環境。
+將全部 **48** 項樣本指標與基準比較，核對輸入 SHA-256 是否仍為 `128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691`。示例報告記錄 Python 3.12.14 和 matplotlib 3.11.1；請在自己的報告中記錄實際使用的版本。
 
-下載本次重跑的<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>質控表</a>、<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>圖表</a>和<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>報告</a>，並保留原始輸入及本會話 Notebook。[示例資料頁](../reference/example-data.md#已保存的示例输出)另外保留早期基準與 Notebook 匯出，它們不是本次重跑的 Notebook。如需獨立復現，再按[可復現性檢查](../guides/reproducibility.md)檢查環境與重新執行條件。
+下載示例<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>質控表</a>、<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>圖表</a>和<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>報告</a>。儲存自己的結果時，同時保留原始輸入和本會話 Notebook。如需重新執行計算，按[可復現性檢查](../guides/reproducibility.md)準備環境並執行。

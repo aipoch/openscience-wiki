@@ -28,7 +28,7 @@ Klicken Sie auf den Anhang, um seine Vorschau zu öffnen. Jede Studie beginnt mi
 
 ![Das tatsächlich angehängte Volltextpaket behält die Quellidentität und Artikelabschnitte bei](/img/open-science/research-workflows/mask-trials-input.webp)
 
-Bevor Sie ein Papier als Beweismittel verwenden, überprüfen Sie an der Quelle nach Korrekturen oder Rückzügen. Von v0.30.2 aus überprüft der `verify_dois`-Helfer des `literature-review` Skill die Crossref-Aktualisierungsbeziehungen in beide Richtungen. `retracted: true` kann ein zurückgezogenes Papier oder einen Widerrufsbescheid identifizieren; die verknüpfte Beziehung zu prüfen. `false` bedeutet, dass kein geprüfter Marker gefunden wurde, kein Beweis dafür, dass das Papier nie zurückgezogen wurde. Diese zusätzliche Überprüfung war nicht Teil des aufgezeichneten Zehn-Papier-Laufs unten.
+Bevor Sie ein Papier als Beweismittel verwenden, überprüfen Sie an der Quelle nach Korrekturen oder Rückzügen. Von v0.30.2 aus überprüft der `verify_dois`-Helfer des `literature-review` Skill die Crossref-Aktualisierungsbeziehungen in beide Richtungen. `retracted: true` kann ein zurückgezogenes Papier oder einen Widerrufsbescheid identifizieren; die verknüpfte Beziehung zu prüfen. `false` bedeutet, dass kein geprüfter Marker gefunden wurde, kein Beweis dafür, dass das Papier nie zurückgezogen wurde.
 
 ## Bitten Sie um eine Zeile pro Versuch {/* #ask-for-one-row-per-trial */}
 

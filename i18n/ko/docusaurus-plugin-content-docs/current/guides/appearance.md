@@ -136,7 +136,7 @@ import Screenshot from '@site/src/components/Screenshot';
 | 당신은... | 오시는 길 |
 | --- | --- |
 | 앱 업데이트 확인 | **General → About → Check now**; 이름 &#42; [설치 및 업데이트](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| 버전 변경을 읽거나 도움 받기 | **About → Release notes / Help Center** 해당 외부 페이지를 엽니다. 이 위키는 또한 [관련 링크](../changelog/v0.30.2.md). |
+| 버전 변경을 읽거나 도움 받기 | **About → Release notes / Help Center** 해당 외부 페이지를 엽니다. 이 위키는 또한 [관련 링크](../changelog/v0.31.1.md). |
 | 진단 로그를 찾아내거나 엽니다 | **General → Diagnostics → Reveal / Open**; 은 은 [문제 해결](troubleshooting.md). 공유 할 때까지 로컬로 이동하십시오. |
 | 명령줄 입력 설치 | **General → Install command**; 은 은 [CLI 참조](../reference/cli.md). 데스크톱 사용은이 명령을 요구하지 않습니다. |
 | 데이터 위치 또는 아카이브 작업 관리 | [저장과 아카이브 작업](storage.md). |

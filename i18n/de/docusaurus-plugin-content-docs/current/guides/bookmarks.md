@@ -2,7 +2,7 @@
 title: "Persönliche Lesezeichen"
 description: "Speichern Sie Passagen und PDF-Regionen für sich, fügen Sie Notizen hinzu und kehren Sie innerhalb einer Sitzung zu ihrer Quelle zurück."
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # Persönliche Lesezeichen {/* #private-reading-bookmarks */}
@@ -32,3 +32,7 @@ Wenn die Quelle nicht verfügbar ist oder der genaue Standort nicht gefunden wer
 - Sie gehören zu dieser Sitzung. Sie übertragen sich nicht in einen anderen Zweig oder synchronisieren zwischen den Maschinen, und das Löschen der Sitzung entfernt seine Lesezeichen.
 - [.science-Forschungspakete](research-packages.md) schließt diese privaten Lesezeichen aus. Setzen Sie die Informationen, die ein Kollege benötigt, in einen gespeicherten Bericht oder das Gespräch ein, bevor Sie eine Übergabe vorbereiten.
 - Um den Agenten nach einer Passage zu fragen, verwenden Sie **To Agent** und überprüfen Sie die Anmerkung im beabsichtigten Entwurf, bevor Sie sie senden. Bewegliche Anmerkungen zwischen Main und einer Nebendiskussion werden in [Side Chat](delegation.md) behandelt.
+
+## Lesezeichen in einer Gabel {/* #bookmarks-in-fork */}
+
+Von v0.31.0 kopiert [Gabel](sessions.md#fork-session) private Lesezeichen und Notizen mit neuen Identitäten in die neue Sitzung. Spätere Bearbeitungen in der Kopie bearbeiten die Quell-Lesezeichen nicht. Dies unterscheidet sich vom Wechseln von Zweigen oder dem Exportieren einer `.science`-Datei: Private Bookmarks schließen sich immer noch nicht dem Paketexport an oder synchronisieren sich maschinenübergreifend.

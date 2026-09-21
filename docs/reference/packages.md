@@ -6,7 +6,7 @@ last_update:
 
 # Skill, Specialist, and MCP formats
 
-Skills, Specialists and Connector templates have different package boundaries. This reference centralizes their fields and import budgets. Limits and validation rules are source-verified; importing a particular archive must still be checked in its preview before treating it as installed.
+Skills, Specialists and Connector templates have different package boundaries. This reference lists their fields and import budgets. Inspect the archive preview before importing, then check the installation result.
 
 ## Skill document and resources
 

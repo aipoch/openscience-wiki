@@ -1,8 +1,10 @@
 ---
 title: "Sitzungen und Verzweigungen"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
+
+import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # Sitzungen und Verzweigungen {/* #sessions-and-branches */}
 
@@ -130,3 +132,33 @@ Wählen Sie **Archive** auf dem beabsichtigten Branch und öffnen Sie dann **Set
 Verwenden Sie für ein archiviertes Projekt den **Manage**-Eintrag und prüfen Sie die Sitzungen des Projekts. Siehe [Lagerung und archivierte Arbeiten](storage.md) für den Unterschied zwischen Archivierung, Wiederherstellung, Löschung und Speicherverlagerung. Das Verschwinden einer Sitzung aus der aktiven Liste ist kein Beweis dafür, dass der Speicherplatz zurückgewonnen wurde.
 
 Quellen: [Session Editor](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/EditSessionDialog.tsx), [Implementierung von Arbeitsbereichen](https://github.com/aipoch/open-science/tree/v0.26.0/src/renderer/src/pages/workspace).
+
+## Fork eine bestehende Sitzung {/* #fork-session */}
+
+Verwenden Sie **Fork**, wenn Sie eine unabhängige Arbeitskopie einer lokalen oder importierten Sitzung benötigen. **Branch in new session** startet von einer ausgewählten Nachricht; Fork kopiert die vollständige gespeicherte Forschungshistorie der Sitzung, einschließlich ihrer Zweige, Notebook-Datensätze, Dateiversionen, Literatur, Anmerkungen und privaten Lesezeichen. Die Quellsitzung bleibt unverändert. Das Kopieren eines Datensatzes führt ihn nicht erneut aus oder stellt fest, dass seine Umgebung auf diesem Computer bereit ist.
+
+1. Beenden oder stoppen Sie in der Desktop-App die aktuelle Aufgabe. Warten Sie, bis der Pakettransfer abgeschlossen ist.
+2. Öffnen Sie die Aktionen der Sitzungszeile und wählen Sie **Fork**. Die App zeigt den Transferfortschritt; **Run in background** verbirgt dieses Fenster, ohne es zu annullieren.
+3. Warten Sie auf **Fork completed** und öffnen Sie die neue Sitzung. Öffnen Sie den Titel, um **Source session** und die neue Sitzungsnummer zu inspizieren.
+4. Öffnen Sie eine geerbte Datei und überprüfen Sie deren Inhalt. Überprüfen Sie das ausgewählte Modell und die Laufzeit, bevor Sie fortfahren; Alte Maschinenpfade oder Berechtigungen benötigen möglicherweise Aufmerksamkeit.
+5. Senden Sie die nächste Aufgabe in der Kopie und überprüfen Sie ihre neue Ausgabe. Bewahren Sie das Original als Referenzdatensatz auf.
+
+![Fork im Session-Aktionsmenü](/img/open-science/v0311/fork-menu.webp)
+
+![Neue Sitzungsinformationen, die die Quelle und die geerbte QC-Datei zeigen](/img/open-science/v0311/fork-info.webp)
+
+Fork ist in der Desktop-App verfügbar. Importierte Sitzungen bleiben schreibgeschützt, bis Sie in ihrer Gabel arbeiten. Projekteinstellungen und Speicher sind kein separates kopiertes Projekt. Alte Überprüfungs- oder Überprüfungsaufzeichnungen beschreiben ihre aufgezeichneten Versionen; überprüfen Sie alle veralteten Status, bevor Sie sie als aktuelle Kontrollen behandeln.
+
+### Fortsetzung einer QC-Berechnung in der Kopie {/* #continue-a-qc-calculation-in-the-copy */}
+
+<p className="example-label"><strong>Praxisbeispiel</strong> Fork eine lokale Sitzung in v0.31.1</p>
+
+Im GSE60450-Projekt forken Sie die bestehende QC-Sitzung ab und öffnen Sie das geerbte `gse60450-qc-summary.csv`. Überprüfen Sie **12** Proben und **269,027,617** Gesamtrohzahl. Bitten Sie den Agenten in der Kopie, diese Datei mit Python zu lesen, beide Werte zu überprüfen, die Mittelwerte pro Sample zu berechnen und ein separates `fork-qc-check.csv` zu speichern. Das Ergebnis ist **22,418,968.083333…**. Die Quelle und die geerbten Dateien haben identischen Inhalt; die neue Berechnung ist eine separate Datei. Dieses Mittel zeigt Fortsetzung, nicht Ausdruck Normalisierung.
+
+![Python-Berechnung und ein neues Ergebnis, das in der gegabelten Sitzung gespeichert wurde](/img/open-science/v0311/fork-result.webp)
+
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Laden Sie das berechnete Ergebnis herunter</ExampleDownload>. Um von einem erhaltenen `.science`-Paket fortzufahren, folgen Sie [Forschungspakete](research-packages.md).
+
+## Lesen Sie die Session Information Card {/* #session-information */}
+
+Wählen Sie den Sitzungstitel aus, um die Anzahl, Beschreibung, Quelle, Erstellungs-/Aktualisierungszeiten, Nachrichtenanzahl für den aktuellen Zweig und Artefaktanzahl anzuzeigen. Verwenden Sie **Pin**, um die Sitzung leicht zu finden, oder **Sitzung bearbeiten**, um den Titel und die Beschreibung zu ändern. Ein **Weiter aus dem Chat**-Teiler verbindet sich wieder mit dem aufgezeichneten Source-Turn.

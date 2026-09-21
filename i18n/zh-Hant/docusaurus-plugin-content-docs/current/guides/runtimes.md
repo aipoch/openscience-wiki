@@ -1,7 +1,7 @@
 ---
 title: "Python 與 R 執行環境"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -254,7 +254,7 @@ R.home()
 
 遇到 Windows conda R 啟動或核心恢復失敗時，可先更新至 v0.30.2 或後續版本再重試。該版本修復環境準備後的可執行檔案查詢及 R 核心恢復。更新後重新檢查環境，並在 Notebook 中執行一段簡單的 R 計算；**Ready** 本身不是執行結果。下方截圖仍保留原實操的版本與結果。
 
-Windows R 執行若提示 **Enable protected mode before authorizing R access.**，檢查 **Network settings** 與 R 卡片的 **Authorize and verify** 說明。處理提示中的授權前置條件後再執行；僅有 **Ready** 卡片不能證明執行成功。仍受阻時保留完整錯誤，按[故障排查](troubleshooting.md)處理。
+從 v0.31.0 起，Windows R 可以在標準模式下執行，無需先配置保護模式。舊版本中的 **Enable protected mode before authorizing R access.** 提示屬於當時的版本行為。網路保護和安裝軟體包的權限仍是獨立控制。v0.31.1 中，被 Notebook 網路保護阻止的執行會顯示帶設定入口的行內提示；此時單元格並未執行。檢查所需訪問範圍後再重跑，並核對輸出。
 
 <span id="windows-runtime-qc" />
 

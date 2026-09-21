@@ -6,7 +6,7 @@ last_update:
 
 # Skill, Specialist und MCP Formate {/* #skill-specialist-and-mcp-formats */}
 
-Skills, Spezialisten und Connector-Vorlagen haben unterschiedliche Paketgrenzen. Diese Referenz zentralisiert ihre Felder und Importbudgets. Grenzwerte und Validierungsregeln sind quellenverifiziert; Das Importieren eines bestimmten Archivs muss noch in seiner Vorschau überprüft werden, bevor es als installiert behandelt wird.
+Skills, Spezialisten und Connector-Vorlagen haben unterschiedliche Paketgrenzen. Diese Referenz listet ihre Felder und Importbudgets auf. Überprüfen Sie die Archivvorschau vor dem Import und überprüfen Sie dann das Installationsergebnis.
 
 ## Skill Dokument und Ressourcen {/* #skill-document-and-resources */}
 

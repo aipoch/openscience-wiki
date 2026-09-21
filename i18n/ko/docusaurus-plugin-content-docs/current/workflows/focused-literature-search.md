@@ -36,8 +36,6 @@ Write in English, do not delegate, and reopen the saved files.
 
 ![Open-Science의 실제 초점 연구 요청](/img/open-science/workflow-extensions/focused-search-input.webp)
 
-스크린 샷은 초기 요청을 보여줍니다. 위의 조작상 검열 규칙은 그 실행의 후속 검토를 통합합니다.
-
 ## 2. 자주 묻는 질문 {/* #2-check-the-query-and-coverage */}
 
 이 개념 및 주체 쿼리를 제출 한 실행은 별도로 제공 된 출판 날짜 필터와 함께:
@@ -57,7 +55,7 @@ AND ("JAMA Psychiatry"[Journal] OR "Behaviour Research and Therapy"[Journal])
 
 ![uncertain 및 제외된 레코드를 포함한 저장된 후보자 표](/img/open-science/workflow-extensions/focused-search-table.webp)
 
-초기 초안에서 inaccurate 이유를 찾았습니다. 예를 들어 PMID **38837133**은 더 넓은 정신 요법의 1 차 무작위 시험이며, 이차 분석이 아닙니다. 개정된 테이블은 그것의 mindfulness eligibility **이름 &#42;**를 표합니다. PMID **34009273**은 메타 분석이며 정확한 이유와 제외됩니다. 기록과 특정 오류는 에이전트에게 구체적인 개정 요청을 제공합니다; 그런 다음 저장 된 CSV을 다시 변경을 확인.
+추상적인 것에 대한 각 예외를 확인합니다. PMID **38837133**는 더 넓은 정신 요법의 1 차 무작위 시험입니다; 예를 들어, 마음의 불안정성 **이름 &#42;**을 표시한다. PMID **34009273**은 메타 분석이며 제외됩니다. 결정이 보정 될 때, 기록 및 특정 문제 이름을 입력하고 에이전트가 CSV을 업데이트하려면 저장 된 파일을 다시 열 수 있습니다.
 
 ![Notebook의 실제 상영 개정 및 저장된 파일 체크](/img/open-science/workflow-extensions/focused-search-notebook.webp)
 
@@ -67,7 +65,7 @@ AND ("JAMA Psychiatry"[Journal] OR "Behaviour Research and Therapy"[Journal])
 
 PMID **41418645**는 2019–2025 PubMed 출판 날짜 필터에 의해 반환되었으며, 그 메타 데이터는 **2026-01** 인쇄 날짜를 보여줍니다. 최종 날짜 결정하기 전에 공개 역사를 확인하십시오. 검색 창에 맞는 해를 조용히 교체하지 마십시오.
 
-**mindfulness-search-notes.md**을 열고 계산, 자격 규칙 및 제한이 CSV과 일치한다는 것을 확인합니다. 이 실행은 모두 파일을 수정하고 unchanged raw metadata snapshot을 유지합니다.
+**mindfulness-search-notes.md**을 열고 계산, 자격 규칙 및 제한이 CSV과 일치한다는 것을 확인하십시오. 이 파일을 따라 원래 메타 데이터 스냅 샷을 유지하므로 각 결정은 소스로 추적 할 수 있습니다.
 
 ![20/37/5 스크린 카운트와 함께 검색 노트를 수정](/img/open-science/workflow-extensions/focused-search-notes.webp)
 

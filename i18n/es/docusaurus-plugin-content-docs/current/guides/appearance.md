@@ -136,7 +136,7 @@ Con **General → Close button behaviour → Ask every time**, cerrar la ventana
 | Quieres... | ¿Dónde ir? |
 | --- | --- |
 | Compruebe la actualización de la aplicación | **General → About → Check now**; seguir [Instalación y actualizaciones](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Leer cambios de versión o obtener ayuda | **About → Release notes / Help Center** abre la página externa correspondiente. Este wiki también tiene un [Cambio](../changelog/v0.30.2.md). |
+| Leer cambios de versión o obtener ayuda | **About → Release notes / Help Center** abre la página externa correspondiente. Este wiki también tiene un [Cambio](../changelog/v0.31.1.md). |
 | Localizar o abrir el registro de diagnóstico | **General → Diagnostics → Reveal / Open**; ver [Solución de problemas](troubleshooting.md). Los registros permanecen locales hasta que los compartan. |
 | Instalar la entrada de línea de comandos | **General → Install command**; ver [Referencia CLI](../reference/cli.md). El uso de escritorio no requiere este comando. |
 | Gestionar la ubicación de datos o el trabajo archivado | [Almacenamiento y trabajos archivados](storage.md). |

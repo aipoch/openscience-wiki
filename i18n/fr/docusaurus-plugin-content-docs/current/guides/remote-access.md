@@ -1,7 +1,7 @@
 ---
 title: "Accès au navigateur à distance"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Accès au navigateur à distance {/* #remote-browser-access */}
@@ -61,3 +61,7 @@ Pour les commandes locales sans tête / navigateur, voir [référence du service
 Source: [Panneau d'accès à distance](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/RemoteControlPanel.tsx).
 
 Pour les déploiements sans tête Linux sans clé OS utilisable, lisez le [option de stockage des justificatifs](../reference/server.md#credential-storage-on-headless-linux). Il modifie le stockage local des secrets éligibles; il ne configure pas Remote.It, n'associe pas un navigateur ou n'accorde pas d'accès à distance.
+
+## Jumelage et révocation dans v0.31.1 {/* #pairing-v0311 */}
+
+Les demandes d'appariement en attente apparaissent devant **Trusted browsers**, avec le temps restant et les badges urgents. correspondre au code affiché sur l'appareil demandeur avant d'accorder l'accès; une demande expirée doit être reprise. Un navigateur de confiance peut se révoquer : s'attendre à ce que l'accès protégé se termine et se jumele à nouveau si l'accès est nécessaire plus tard. **Off**, l'accès temporaire et la révocation de la confiance restent des actions différentes.

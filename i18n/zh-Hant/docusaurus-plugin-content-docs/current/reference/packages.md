@@ -6,7 +6,7 @@ last_update:
 
 # Skill、專家與 MCP 格式 {/* #skill专家与-mcp-格式 */}
 
-Skill、Specialist 和 Connector 模板具有不同打包邊界。本頁集中列出欄位與匯入預算，規則已經原始碼核對。具體壓縮包仍需經過預覽和安裝結果檢查，不能僅憑格式正確就視為安裝完成。
+Skill、Specialist 和 Connector 模板具有不同打包邊界。本頁集中列出欄位與匯入預算。匯入前檢視壓縮包預覽，匯入後檢查安裝結果。
 
 ## Skill 文件和資源 {/* #skill-文档和资源 */}
 

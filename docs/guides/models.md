@@ -1,7 +1,7 @@
 ---
 title: "Models and task policies"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Models and task policies
@@ -78,3 +78,29 @@ Check the saved title and description after the auxiliary request finishes. If t
 Use [Agent setup](./frameworks.md) for the execution backend and [Usage](./usage.md) for reported activity. Exact configuration precedence is in [Reference](../reference/configuration.md).
 
 Sources: [model selection](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx), [scenario policies](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx).
+
+## Optional classification models {/* #classification-models */}
+
+Open **Settings → Model → Classification models**. A classification service helps select relevant Skills and Connectors before a request starts. It does not replace Main or add a chat model. You can leave **Automatic capability selection** at **Use default method**; Skills and Connectors still work without it.
+
+In v0.31.1 this route is available for main conversations using **Codex Chat Completions** or **CodeBuddy**. Do not assume Codex subscription sessions or every framework use the service. Only the current request and capability names/descriptions are sent to the classification service. If it is unavailable or its result is unclear, the default method continues.
+
+![Default capability selection and the optional classification service entry](/img/open-science/v0311/classification-models.webp)
+
+1. Choose **Add service**, then **TypeSafe AI** or **OpenRouter**.
+2. Name the service and supply its API credential. OpenRouter can use an existing compatible account or a new key; keep keys hidden in screenshots.
+3. Select **Save** and wait for validation. Failed validation leaves the previous settings unchanged.
+4. Under **Automatic capability selection**, select the saved service and a model offered in its catalog. Use **Check model** to check the connection.
+5. Try a bounded request in a supported main conversation, then inspect the actual tools selected. A successful model check alone does not verify a research result.
+
+Removing a service returns its binding to the default method. A separately stored service key is removed with it; removing a service that shares an account does not delete that account or its key.
+
+See [provider setup](providers.md) for conversation models. Local PDF parsing resources are managed under **Local parsing models**, a separate tab.
+
+![Classification service form with the API key still empty](/img/open-science/v0311/classification-add-service.webp)
+
+For Jev, select **TypeSafe AI / Jev Latest** under **Automatic capability selection**, then choose **Check model**. **Check passed** confirms that the service responds. Reopen Settings to confirm the binding is retained.
+
+![TypeSafe AI / Jev Latest selected with Check passed and the API key masked](/img/open-science/v0311/classification-connected.webp)
+
+For example, a public TP53 lookup in a Codex Chat Completions session can use Jev to select `mcp-genes`. Inspect the selected capability in the activity, then inspect the database response for the research result. Codex subscription sessions use their existing capability-loading path; a saved Jev binding does not make those sessions use Jev.

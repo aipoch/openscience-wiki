@@ -21,7 +21,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 3. 研究プロジェクトで新しい会話を開く。 利用可能なモデルを選択し、**Agent controls → Specialist → pharmacometrics-pkpd-designer** を選択します。 記録された実行は**Codexサブスクリプション/gpt-5.6-sol**を使用しました。
 4. **各解析メッセージ** の開始時、`/pkpd` をタイプして下さい、そして提案から **pkpd モデリング** を選んで下さい。 プロンプトを貼り付ける前に Skill チップになることを確認してください。
 
-**バージョンについて：** 以下のスクリーンショットと結果は v0.30.1 で記録しました。この構成では、役割を選ぶだけでは `Unknown skill` となり、メッセージごとに Skill を明示的に選ぶ必要がありました。v0.30.2 は、委派タスクを含め、Specialist に紐づく Skill の準備を修正しています。新版ではまず Specialist を選び、実際の読み込み結果を確認し、必要なら Skill を明示的に選択してください。この例は v0.30.2 では未再実行です。旧版の回避手順が常に必要とは限らず、この修正を本例の再検証成功とみなすこともできません。
+**バージョンノート:** スクリーンショットは、v0.30.1 を使用しており、Skill は各解析メッセージに対して明示的に選択されます。 から から v0.30.2, 境界 Skills 準備完了です Specialist ターンと委任されたタスク. Specialist を最初に選択します。 Skillが利用できない場合は、リクエストを送信する前に`/pkpd-modeling`を明示的に選択してください。
 
 ![ファーマコメトリクスSpecialistおよびその機能をインストール](/img/open-science/theoph-specialist/installed.webp)
 
@@ -57,7 +57,7 @@ CSV プレビューには最初の 100 行が表示されます。保存され�
 
 ## 3. 露出メトリックの追加 {/* #3-add-the-exposure-metrics */}
 
-<ExampleDownload path="/examples/theoph/nca-conventions.md">校訂済みの NCA 方法資料</ExampleDownload>をダウンロードし、**+ → Attach files** から添付します。この Wiki 版では、同梱資料の積分法と終末相の回帰区間の説明を修正しています。本例で求めるのは実測値に基づく Cmax/Tmax と、全区間に線形台形則を適用した AUC です。終末相の傾きは推定しません。記録時の環境では Notebook から Skill のインストール先にある資料を読めなかったため、会話の添付ファイルとして渡します。
+<ExampleDownload path="/examples/theoph/nca-conventions.md">NCAメソッド参照</ExampleDownload>をダウンロードし、**+ → Attach files**を介して追加して、Notebookはそれを読み込むことができます。 この参考例:ターミナルスロープを推定することなく、観察されたCmax/TmaxとオールリニアトペジドAL AUCを指定します。
 
 同じ会話で再び`/pkpd-modeling`を選択し、次のメッセージを送る:
 
@@ -77,7 +77,7 @@ Do not estimate AUC to infinity, half-life, clearance or dosing advice.
 Do not install packages, change permissions or delegate. Use English.
 ```
 
-ファイルの読み込みとRの計算を承認して、それらを検査した後。 サポートされているファイルが欠落している場合は、続行する前に実際のファイルを添付してください。 Notebook の失敗した Skill の負荷か間違いは完全な分析ではないです。
+ファイルの読み込みとRの計算を調べて承認します。 ファイルが不足している場合は、続行する前に添付してください。 Notebook がエラーを報告したら、失敗したセルを開き、再試行する前に名前付き入力または依存関係を修正します。
 
 ## 4. 結果のオープンとチェック {/* #4-open-and-check-the-results */}
 

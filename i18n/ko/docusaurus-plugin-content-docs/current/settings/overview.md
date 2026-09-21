@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "설정 개요"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # 설정 개요 {/* #settings-overview */}
@@ -52,3 +52,7 @@ last_update:
 **Feedback**은 설정의 하단에 별도의 항목이 남아 있습니다.
 
 :::info&#91;설정이 저장되는 방법&#93; 일부 스위치는 즉시 저장됩니다. 더 긴 모양 사용 `Save`, `Add`, 또는 `Import`. `Saving…`, `Testing…` 또는 `Installing…`가 표시된 동안 응용 프로그램을 닫지 마십시오. 마이그레이션, 제거, 삭제 및 넓은 권한 작업은 확인이 필요합니다. :::
+
+## 모델 설정 탭 {/* #model-tabs */}
+
+**Model** 내에서, 공급자 및 작업 모델에 대한 **Conversation models**을 사용, **Classification models** 옵션 Skill/Connector 선택, 및 **Local parsing models** 로컬 파싱 리소스. Classification는 모델 설정 내에서 탭이며, 추가 최상위 설정 패널이 아닙니다. [분류 설정](../guides/models.md#classification-models) 참조.

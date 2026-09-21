@@ -193,7 +193,7 @@ If the scheduler shows **COMPLETED / ExitCode 0:0** but the app still shows **su
 
 ![The application still awaiting terminal status for a completed Slurm workload](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
 
-Ask the cluster administrator to provide working `sacct` accounting for the account and job. `squeue` no longer listing a job is insufficient evidence of success. Keep the existing work directory and job IDs while accounting is repaired, then inspect the same job again. Do not resubmit a completed analysis to clear a monitoring error. Slurm cancellation, recovery and application harvest remain pending until this environment requirement is resolved.
+Ask the cluster administrator to provide working `sacct` accounting for the account and job. A job disappearing from `squeue` does not confirm success. Keep the existing work directory and both job IDs, then refresh the same job after accounting is restored and check its final state and collected files.
 
 <ToolOperationGroup>
 <summary>Run a small protein sequence design on GPU</summary>
@@ -222,7 +222,7 @@ Use the public [1UBQ ubiquitin structure](https://www.rcsb.org/structure/1UBQ) t
 
 <a href="/docs/examples/ubiquitin/gpu-proteinmpnn-verification.json" download>Download the GPU verification record</a>. The device's 80 GB capacity is not a minimum requirement for this small task; peak memory was not measured. Remote logs and files do not automatically provide complete local Notebook provenance.
 
-This example used an approved direct SSH command. An earlier Slurm submission returned **InvalidAccount**, so this result does not verify a Slurm GPU job. Check partition/account authorization when that error occurs; do not change scheduler services or bypass a required queue.
+This example runs through Direct SSH. For a Slurm GPU job, confirm the partition and account permissions first. If submission returns **InvalidAccount**, ask the cluster administrator to check those settings; use the required queue for scheduler-managed work.
 
 
 </ToolOperationGroup>

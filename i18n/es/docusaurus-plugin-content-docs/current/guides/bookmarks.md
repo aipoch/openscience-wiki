@@ -2,7 +2,7 @@
 title: "Marcadores de lectura personales"
 description: "Guardar pasajes y regiones PDF para ti mismo, añadir notas y volver a su fuente dentro de una sesión."
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # Marcadores de lectura personales {/* #private-reading-bookmarks */}
@@ -32,3 +32,7 @@ Si la fuente no está disponible o su ubicación exacta no se puede encontrar, u
 - Pertenecen a ese período de sesiones. No se transfieren a otra rama ni sincronizan a través de máquinas, y eliminan la sesión elimina sus marcadores.
 - [Paquetes de investigación .science](research-packages.md) excluye estos marcadores privados. Ponga información que un colega necesita en un informe guardado o en la conversación antes de preparar una entrega.
 - Para preguntarle al agente sobre un pasaje, use **To Agent** y revise la anotación en el borrador previsto antes de enviar. Las anotaciones de movimiento entre Main y una discusión lateral están cubiertas en [Side Chat](delegation.md).
+
+## Marcas en un tenedor {/* #bookmarks-in-fork */}
+
+Desde v0.31.0, [Fork](sessions.md#fork-session) copia marcadores privados y notas en la nueva sesión con identidades frescas. Más adelante las ediciones en la copia no editan los marcadores de origen. Esto es diferente de cambiar ramas o exportar un archivo `.science`: los marcadores privados todavía no se unen a las exportaciones de paquetes o sincronizan a través de máquinas.

@@ -36,8 +36,6 @@ Write in English, do not delegate, and reopen the saved files.
 
 ![Open-Scienceの実際の集中調査の要求](/img/open-science/workflow-extensions/focused-search-input.webp)
 
-スクリーンショットは初期リクエストを表示します。 上記の運用審査ルールは、その実行のその後のレビューを組み込んでいます。
-
 ## 2. クエリとカバレッジをチェックする {/* #2-check-the-query-and-coverage */}
 
 実行は、この概念とジャーナルクエリを提出しました。, 出版物日付フィルタは別々に供給しました:
@@ -57,7 +55,7 @@ AND ("JAMA Psychiatry"[Journal] OR "Behaviour Research and Therapy"[Journal])
 
 ![保存された候補テーブル、不確実性および除外されたレコードを含む](/img/open-science/workflow-extensions/focused-search-table.webp)
 
-初期ドラフトの不正確な理由:例えば、PMID **38837133**は、二次的な分析ではなく、より広範な心理療法の第一次ランダム化試験です。 変更されたテーブルは、そのマインドフルネスの適格性**不確実性**をマークします。 PMID **34009273**は、メタ解析であり、修正された理由で除外されたままです。 レコードと特定のエラーを浪費すると、エージェントは具体的なリビジョンリクエストを与えます。 保存した CSV を再起動して、変更を確認します。
+各除外理由を抽象化に対してチェックします。 PMID **38837133**はより広い心理療法の第一次ランダム化試験です; 例は、そのマインドフルネスの適格性**不確実性**をマークします。 PMID **34009273**はメタ分析であり、除外されます。 決定が修正する必要がある場合は、レコードと特定の問題の名前を、エージェントにCSVを更新し、保存したファイルを再オープンしてください。
 
 ![Notebookの実際のスクリーニングリビジョンと保存ファイルチェック](/img/open-science/workflow-extensions/focused-search-notebook.webp)
 
@@ -67,7 +65,7 @@ AND ("JAMA Psychiatry"[Journal] OR "Behaviour Research and Therapy"[Journal])
 
 PMID **41418645**は2019–2025 PubMedの出版物日付フィルターによって、メタデータは**2026-01**の印刷物の日付を報告する間、戻りました。 最終日付決定を行う前に、矛盾し、出版履歴を検証してください。 検索ウィンドウに収まるように、年を静かに交換しないでください。
 
-**mindfulness-search-notes.md** を開き、そのカウント、適格性ルール、制限が CSV に一致していることを検証します。 この実行は、両方のファイルを変更し、変更されていない生のメタデータスナップショットを保持しました。
+**mindfulness-search-notes.md** を開き、そのカウント、適格性ルール、および制限が CSV にマッチすることを確認します。 元のメタデータスナップショットをこれらのファイルと一緒に保存しておくと、各決定はソースにトレースできます。
 
 ![20/37/5スクリーニングカウントで修正された検索ノート](/img/open-science/workflow-extensions/focused-search-notes.webp)
 

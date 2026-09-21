@@ -1,7 +1,7 @@
 ---
 title: "リモートブラウザーアクセス"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # リモートブラウザーアクセス {/* #remote-browser-access */}
@@ -61,3 +61,7 @@ last_update:
 ソース: [リモートアクセスパネル](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/RemoteControlPanel.tsx).
 
 Linux ヘッドレスの展開は、使用可能な OS キーリングなしで、[クレデンシャルストレージオプション](../reference/server.md#credential-storage-on-headless-linux) を読み込みます。 対象となる秘密のローカルストレージを変更します。 Remote.It の設定は行いません。ブラウザを組んだり、リモートアクセスを許可したりしません。
+
+## v0.31.1のペアリングとリボケーション {/* #pairing-v0311 */}
+
+**Trusted browsers** の前にペアリングリクエストを保留し、残り時間と緊急バッジが残っています。 アクセスを許可する前に、リクエストデバイスに示されているコードを一致させます。 期限切れのリクエストは、再び開始する必要があります。 信頼できるブラウザは、その保護されたアクセスをエンドに期待し、後でアクセスが必要な場合は再度ペアリングすることができます。 **Off**、一時的なアクセスおよび取消の信頼は異なった行為を残します。

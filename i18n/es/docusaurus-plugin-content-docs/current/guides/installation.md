@@ -1,7 +1,7 @@
 ---
 title: "Instalación y actualizaciones"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -70,7 +70,7 @@ La carpeta de instalación contiene la aplicación; **Data location**, en el asi
 
 Necesitas Git, Node.js 22, npm, y la plataforma construye requisitos para Electron. Instala o selecciona un marco de agente en la aplicación. Durante la instalación, el repositorio genera el Cliente Prisma, aplica parches de aplicaciones y prepara dependencias nativas de Electron.
 
-Para una instalación de origen reproducible, elija la etiqueta de lanzamiento prevista de [Cambio](../changelog/v0.30.2.md) antes de instalar dependencias. Un clon predeterminado sigue la rama en lugar de una liberación fija. Grabar las versiones seleccionadas de etiqueta, fuente commit y tiempo de ejecución para que otra persona pueda reproducir el ambiente.
+Para una instalación de origen reproducible, elija la etiqueta de lanzamiento prevista de [Cambio](../changelog/v0.31.1.md) antes de instalar dependencias. Un clon predeterminado sigue la rama en lugar de una liberación fija. Grabar las versiones seleccionadas de etiqueta, fuente commit y tiempo de ejecución para que otra persona pueda reproducir el ambiente.
 
 Reemplazar `RELEASE_TAG` abajo con la etiqueta exacta mostrada en la versión seleccionada (incluyendo su `v`) líder. Para seguir el desarrollo en curso, omitir `--branch RELEASE_TAG --depth 1`; que el checkout seguirá la rama predeterminada.
 
@@ -131,6 +131,10 @@ La reinstalación conserva los datos existentes. Si usted necesita deliberadamen
 | --- | --- |
 | Instalación de escritorio o lanzamiento de aplicaciones | Compruebe la fuente del paquete, OS y la arquitectura de CPU, a continuación, lea el indicador del sistema operativo. |
 | Instalación de fuentes | Confirmación `node --version` y `npm --version`, y eso `npm install` completado. Ingrese una instalación de dependencia interrumpida. |
-| Configuración de primera vez | Lea la comprobación del entorno fallida y resuelva su requisito declarado antes de continuar. |
+| configuración inicial | Lea la comprobación del entorno fallida y resuelva su requisito declarado antes de continuar. |
 | Primera solicitud de agente | Confirme un agente activo/acústico y corra **Test connection** en la página Modelo. |
 | Proveedor o conexión del navegador local | Inspeccione el error de puerto, proxy o certificado reportado; ver [Solución de problemas](troubleshooting.md). |
+
+## Nombre del producto después de v0.31.0 {/* #product-name */}
+
+La interfaz actual y los nuevos paquetes utilizan **Open-Science** de forma consistente. Actualizar preserva los nombres de instalación y ubicaciones existentes, datos de investigación, credenciales y ajustes. Un camino de instalación más antiguo que contiene `Open Science` no es por sí mismo un fallo de actualización; no renombrar o mover sus carpetas de datos para que coincida con el nuevo nombre de la pantalla.

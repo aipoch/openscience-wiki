@@ -1,7 +1,7 @@
 ---
 title: "Acceso remoto al navegador"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Acceso remoto al navegador {/* #remote-browser-access */}
@@ -61,3 +61,7 @@ Para los comandos locales sin cabeza/browser, vea [referencia al servicio](../re
 Fuente: [Panel de acceso remoto](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/RemoteControlPanel.tsx).
 
 Para los despliegues sin cabeza Linux sin un llavero de sistema operativo utilizable, lea el [opción de almacenamiento credencial](../reference/server.md#credential-storage-on-headless-linux). Cambia el almacenamiento local de secretos elegibles; no configura Remote.It, empareja un navegador o otorga acceso remoto.
+
+## Pareja y revocación en v0.31.1 {/* #pairing-v0311 */}
+
+Las solicitudes de emparejamiento pendientes aparecen antes de **Trusted browsers**, con tiempo restante y placas urgentes. Coincide con el código mostrado en el dispositivo solicitante antes de conceder acceso; una solicitud caducada debe comenzar de nuevo. Un navegador de confianza puede revocarse: esperar su acceso protegido a fin y par de nuevo si el acceso es necesario más adelante. **Off**, el acceso temporal y la confianza de revocación siguen siendo diferentes acciones.

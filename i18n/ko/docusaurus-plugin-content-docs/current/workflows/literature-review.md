@@ -28,7 +28,7 @@ Open-Science 프로젝트에서 작업 모델을 선택하고 **+ → Attach fil
 
 ![실제 첨부된 풀 텍스트 팩은 소스 정체성 및 문서 섹션을 유지합니다.](/img/open-science/research-workflows/mask-trials-input.webp)
 
-증거로 종이를 사용하기 전에, 그것의 근원에 보정 또는 retractions를 검사하십시오. v0.30.2에서 `literature-review` Skill의 `verify_dois` 헬퍼는 두 방향으로 크로스레프 업데이트 관계를 확인합니다. `retracted: true`는 철회된 종이 또는 retraction 고시를 확인할 수 있습니다; 관련 관계를 검사합니다. `false`는 검사한 감적이 발견되지 않았습니다, 종이가 결코 철회되지 않은 증거. 이 추가 체크는 아래에 기록 된 10 종이의 일부가 아닙니다.
+증거로 종이를 사용하기 전에, 그것의 근원에 보정 또는 retractions를 검사하십시오. v0.30.2에서 `literature-review` Skill의 `verify_dois` 헬퍼는 두 방향으로 크로스레프 업데이트 관계를 확인합니다. `retracted: true`는 철회된 종이 또는 retraction 고시를 확인할 수 있습니다; 관련 관계를 검사합니다. `false`는 검사한 감적이 발견되지 않았습니다, 종이가 결코 철회되지 않은 증거.
 
 ## 시험 당 한 줄에 대해 묻습니다. {/* #ask-for-one-row-per-trial */}
 

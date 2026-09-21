@@ -2,7 +2,7 @@
 title: 私人阅读书签
 description: 为自己保存段落和 PDF 区域，添加备注，并从会话中返回来源。
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # 私人阅读书签
@@ -32,3 +32,7 @@ last_update:
 - 书签属于当前会话，不会转入其他分支或跨机器同步；删除会话时会一并删除其书签。
 - [.science 研究包](research-packages.md) 不包含这些私人书签。同事需要的信息，应先写入保存的报告或对话，再准备交接材料。
 - 需要让 Agent 处理某段内容时，使用 **To Agent**，在目标草稿中检查批注后再发送。Main 与旁聊之间的批注转移见 [Side Chat](delegation.md)。
+
+## Fork 副本中的书签 {/* #bookmarks-in-fork */}
+
+从 v0.31.0 起，[Fork](sessions.md#fork-session) 会将私人书签和笔记复制到新会话，并赋予独立标识。之后修改副本中的书签不会修改原书签。这与切换分支或导出 `.science` 文件不同：私人书签仍不随研究包导出，也不会跨电脑同步。

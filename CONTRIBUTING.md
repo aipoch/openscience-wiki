@@ -24,6 +24,12 @@ Use Node.js 22 LTS or another version satisfying `package.json` (20 or newer). A
 4. Use the product name Open-Science, real public research inputs, and actual English-interface screenshots. Write the user action, expected result and recovery steps before supporting evidence.
 5. Preserve limitations and distinguish source review, visual inspection, independent calculation and actual product execution. Keep private handoffs, raw evidence and internal audit records outside the public repository.
 
+## Keep tutorials separate from internal review records
+
+Public articles explain user actions, prerequisites, expected results and useful recovery steps. Keep pending-verification lists, test coverage inventories, rerun dates and editorial debugging history in private review records, outside `docs/`, translated articles and `static/`. Release notes describe product changes, not the Wiki team's testing progress.
+
+When a test reveals a user-facing requirement or known issue, document the condition, its effect and the action the reader can take. Preserve actual product states and scientific limitations. Removing an internal audit note must never turn an incomplete operation into a claimed success. Keep screenshots and example outputs consistent with the steps and outcomes described.
+
 ## Validate and submit
 
 ```bash

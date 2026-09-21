@@ -44,7 +44,7 @@ Open-Science은 연구 프로젝트의 대화, 소스 파일, 문학 기록 및 
 
 대화는 작업 에이전트 프레임 워크와 모델 연결이 필요합니다. Python 계산은 또한 활성화된 Python Notebook 실행 시간을 필요로 합니다. 서비스 조회는 관련 Connector, 네트워크 접속 및 필요한 자격 증명을 필요로 합니다. GPU 방법은 Skill이 이미 나열된 경우에도 별도의 기계, 소프트웨어 환경 및 모델 무게를 필요로 할 수 있습니다.
 
-문서화된 로컬 실행은 Codex 구독 및 앱 관리 Python 환경을 사용했습니다. 모델 액세스는 Python 패키지를 설치하지 않았다 : 누락 된 팬더 의존도 여전히 첫 번째 계산을 중단했다. 이 분석은 문서의 변경 없이 설치된 패키지를 변경한 후 완료되었습니다.
+모델, 런타임 및 데이터 서비스를 별도로 구성합니다. 모델을 연결 한 후 계산에 필요한 패키지를 확인하십시오. 패키지가 누락되면, 설치하거나 명시적으로 사용 가능한 환경을 사용하는 방법을 선택합니다.
 
 [공급자 설정](providers.md), [Python 및 R 실행 시간](runtimes.md) 및 [네트워크](network.md)를 참조하십시오. 성공적인 모델 연결 테스트는 모든 다운스트림 서비스를 유효하지 않습니다.
 
@@ -57,7 +57,7 @@ Open-Science은 연구 프로젝트의 대화, 소스 파일, 문학 기록 및 
 - [PRISMA 독서 수집](../workflows/core-reading-list.md): 3개의 진짜 종이, 검토된 도서관 기록 및 붙어 있는 발행인 PDF.
 - [GSE60450 RNA-seq 분석](../workflows/data-quality.md): 27,179 유전자 행, 12 샘플, 독립적으로 QC 메트릭스, 원시 카운트 및 캡처 생산 코드 검사.
 
-[먼 compute](remote-compute.md)는 수집한 산출, 재시작 회복 및 취소를 포함하여 Direct SSH에 동일한 RNA-seq QC를, 보여줍니다. Slurm 계산은 서버에서 확인되었지만, 장애 스케줄러 회계는 응용 프로그램 수확을 방지합니다. 동일한 장은 또한 고립된 CUDA 환경에 있는 A100 GPU에 작은 ProteinMPNN 순서 설계를 실행합니다.
+[먼 compute](remote-compute.md)는 Direct SSH를 통해 RNA-seq QC를 커버하고 결과, 회복 및 취소를 수집합니다. 또한 Slurm 회계 요구 사항과 격리 된 CUDA 환경에서 A100 GPU의 작은 ProteinMPNN 시퀀스 디자인 워크플로우를 설명합니다.
 
 ## 로컬 스토리지 및 외부 처리 {/* #local-storage-and-external-processing */}
 

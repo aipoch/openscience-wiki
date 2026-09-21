@@ -2,7 +2,7 @@
 title: "Научные базы данных"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -10,7 +10,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # Научные базы данных {/* #scientific-databases */}
 
-Приложение включает **Источник данных 23 Connectors**, а также отдельную оффлайн-молекулу Connector. Полный реестр имеет **Инструментальные операции 239**, включая две операции Molecule. Каталог данных ниже охватывает 237. Включите соответствующий Connector в настройках, затем задайте ограниченный вопрос с правильным типом идентификатора.
+Приложение включает **Источник данных 23 Connectors**, а также отдельную оффлайн-молекулу Connector. Полный реестр имеет **Инструментальные операции 246**, включая две операции Molecule. Каталог данных ниже охватывает 244. Включите соответствующий Connector в настройках, затем задайте ограниченный вопрос с правильным типом идентификатора.
 
 <span id="actual-local-queries" />
 
@@ -23,8 +23,8 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | Химия · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | Химия малых молекул через PubChem, ChEBI, Rhea и BindingDB.  |
 | Литературный график · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Документы, авторы, цитаты, обновления DOI и записи набора данных / программного обеспечения. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Биомедицинская литература через NCBI E-utilities, PMC ID Converter и Europe PMC — поиск, метаданные, связанные статьи, поиск цитирования, преобразование идентификаторов, полный текст и авторское право.  |
-| Гены и онтологии · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome | 7 | Идентификация генов/белков и онтологические термины — mygene.info, UniProt, онтологии OLS4, аннотации GO, пути Reactome.  |
-| Геномы · `genomes` | Собрание, UCSC | 11 | Аннотация генома, варианты, гомология, последовательность и треки браузера — Ensembl REST и UCSC Genome Browser.  |
+| Гены и онтологии · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 9 | Идентификация генов/белков и онтологические термины — mygene.info, UniProt, онтологии OLS4, аннотации GO, пути Reactome.  |
+| Геномы · `genomes` | Собрание, UCSC, NCBI | 14 | Аннотация генома, варианты, гомология, последовательность и треки браузера — Ensembl REST и UCSC Genome Browser.  |
 | Варианты · `variants` | gnomAD, ClinVar, dbSNP | 15 | Генетические варианты человека — частоты/ограничения популяции гномадов, записи/поиск ClinVar (прямой NCBI), dbSNP, структурные и митохондриальные варианты.  |
 | Клинические испытания · `clinical-trials` | Клинические исследования.gov | 6 | Клинические испытания от ClinicalTrials.gov - поиск, детали, спонсоры, следователи, конечные точки и право.  |
 | Клиническая геномика · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | Базы знаний по клинической геномике: курации ClinGen, клинические данные CIViC и платформа Open Targets.  |
@@ -37,7 +37,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | Белковая аннотация · `protein-annotation` | InterPro, Pfam, Атлас белков человека | 13 | Архитектура белковых доменов, членство в семье / клане, экспрессионный атлас и сети взаимодействия через InterPro / Pfam, Атлас белков человека и STRING.  |
 | Раковые модели · `cancer-models` | Биопортал | 6 | Записи исследования геномики рака с помощью cBioPortal REST API.  |
 | РНК · `rna` | Рфам | 9 | Некодирующие данные семейства РНК (метаданные, выравнивания, модели, структуры) через Rfam.  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE | 17 | Архивы омических данных — экспрессия (ArrayExpress, GEO), метаболомика (MetaboLights), метагеномика (MGnify) и протеомика (PRIDE).  |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 19 | Архивы омических данных — экспрессия (ArrayExpress, GEO), метаболомика (MetaboLights), метагеномика (MGnify) и протеомика (PRIDE).  |
 | CellGuide · `cellguide` | Келлксген | 5 | Идентификация клеточного типа, маркерные гены, наборы исходных данных и ткани с помощью CELLxGENE CellGuide.  |
 | Регулирование ? `regulation` | ENCODE, JASPAR, UniBind | 16 | Функциональная геномика генной регуляции — эксперименты ENCODE / биосамплы / файлы, профили связывания JASPAR TF и UniBind ChIP-seq TFBS.  |
 | исследовательские ресурсы; `research-resources` | Grants.gov, Реестр антител | 5 | Поиск возможностей финансирования (Grants.gov) и поиск каталога антител (Реестр антител).  |
@@ -105,6 +105,122 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 Для отчета прикрепите операцию, ограниченный ввод, текст ошибки и временную метку через [устранение неполадок](../guides/troubleshooting.md). Удалите учетные данные и личные данные перед обменом.
 
+## Resolve ENA Runs и файлы FASTQ {/* #ena-runs */}
+
+1. Включите **Omics Archives** под **Settings → Connectors**. Предоставить публичное присоединение ENA/INSDC к `ena_search_runs`, например, исследование PRJ или запуск SRR. Идентификатор GEO `GSE` должен быть сначала связан с исследованием INSDC. Ключевые слова не принимаются.
+2. Проверяйте `run_accession`, организм, библиотечную стратегию/раскладку и `truncated`. Максимум — это 1,000. Не существует офсета или продолжения токена; сузить присоединение, если ответ усечен.
+3. Пропуск один раз возвращался в `ena_get_run_files`. Проверьте `found`, `fastq_available` и каждую запись в `fastq_files`. инвентарь поставляет URL, размер сжатого файла и выше по потоку MD5; Он не загружает файлы и не проверяет их содержимое.
+4. Перед отдельной загрузкой проверьте хранилище и сохраните манифест. Проверьте загруженные байты по указанной контрольной сумме. В парной библиотеке не обязательно должно быть ровно два файла. Не делайте вывод о личности считывающего партнера из `file_index`.
+
+<p className="example-label"><strong>Практический пример</strong> Создайте файл манифеста для SRR037073</p>
+
+В этом примере v0.31.1 используется **Codex subscription** и включенный **Omics Archives** Connector. Откройте сессию с доступным временем выполнения Notebook, затем отправьте:
+
+```text
+Use Omics Archives through Session Notebook. Load its connector instructions.
+Call ena_search_runs with accession SRR037073 and limit 10, then
+ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
+Save the complete responses as ena-run.json and ena-files.json.
+Save every returned file entry as ena-fastq-manifest.csv with columns
+file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
+run identity, completeness flags and download limits. Keep everything in
+English. Report actual errors or empty results; do not invent data.
+```
+
+Откройте созданные заметки. Фактический поиск возвращал **1 скачать**, **Caenorhabditis elegans**, исследование **PRJNA123835**, **RNA-Seq**, **SINGLE**, с `truncated: false`. Подтвердите организм и макет перед использованием его файлов.
+
+![ENA запрашивает входы, запускает флаги идентичности и полноты в генерируемых заметках](/img/open-science/v0311/ena-notes.webp)
+
+Откройте CSV и сравните его с `ena-files.json`. В этой версии есть `found: true`, `fastq_available: true` и **Файл 1**, размером с **25,154,397 байты**. Манифест сохраняет свой FTP URL и MD5. Скопируйте полное значение из загружаемого файла, если колонка предварительного просмотра вырезана.
+
+![Фактический однофайловый манифест ENA с URL, размером и контрольной суммой вверх по течению](/img/open-science/v0311/ena-manifest.webp)
+
+<ExampleDownload path="/examples/v0311/ena-run-notes.md">Запросить заметки</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ манифест</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">Запуск ответа</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">Файловый ответ</ExampleDownload>
+
+Оба запроса и создание списка файлов завершены. **В этом примере файлы FASTQ не скачивались и их контрольные суммы не проверялись**. Скачивание выполняется отдельным шагом. [Точные параметры](../reference/connector-operations.md#ena_search_runs)
+
+## Запуск и проверка обогащения набора генов {/* #gene-set-enrichment */}
+
+<p className="example-label"><strong>Практический пример</strong> Преднамеренно выбранный список генов повреждения ДНК человека</p>
+
+В этом примере v0.31.1 используются публичные символы гена 11 для демонстрации g:Profiler. Они были выбраны для своих известных биологических ролей, поэтому ожидается обогащение. Они не являются результатом дифференциального выражения проекта GSE60450 или свидетельством беспристрастного открытия.
+
+1. В **Settings → Connectors**, сделать **Гены и онтологии** доступным для агента. Откройте сеанс с подключенной моделью и доступным временем выполнения Notebook.
+2. Укажите организм, генные идентификаторы, источники данных и статистический фон. Для реальных экспериментальных данных обосновывайте фон с помощью генов, которые могли быть отобраны экспериментом. В этом учебнике явно используются все аннотированные гены, а не обычная измеренная вселенная генов.
+3. Отправьте следующее сообщение. Сохраняйте запрос в исходной версии и вызов на обогащение в течение одного сеанса и сохраняйте их фактические результаты.
+
+```text
+Use Genes & Ontologies through Session Notebook for an English g:Profiler
+tutorial. The deliberately selected gene list is TP53, ATM, ATR, CHEK1,
+CHEK2, BRCA1, BRCA2, RAD51, CDKN1A, GADD45A, MDM2.
+First call list_enrichment_sources with organism hsapiens.
+Then call enrich_gene_set with these genes, organism hsapiens,
+sources GO:BP and REAC, domain_scope annotated,
+correction_method fdr, and user_threshold 0.05.
+Save the full response as dna-damage-enrichment.json, all returned terms
+as dna-damage-enrichment.csv, and query, source versions, mappings,
+background and limitations as dna-damage-enrichment-notes.md.
+Retain unmapped, ambiguous and duplicate identifiers. Treat mapped_genes
+as the returned mapping object. Report errors instead of inventing results.
+This is not differential-expression evidence or evidence of regulation direction.
+```
+
+4. Откройте сгенерированные заметки и проверьте количество запросов и карт. Этот запуск отображал идентификаторы **11/11**, с **0** некартированными, двусмысленными или дублирующими идентификаторами. Он записывал **GRCh38.p14**, g:Profiler **e114_eg62_p19_27110d83**, GO классы **2026-01-23** и Reactome классы **2026-03-20**. Более поздняя версия сервиса может возвращать разные условия.
+
+![Сохранение английского запроса, фона, исходных версий и проверки идентификатора](/img/open-science/v0311/enrichment-notes.webp)
+
+5. Откройте CSV и сравните его с полным JSON. Этот забег вернул **891 термины** в FDR 0.05. В предварительном просмотре показаны только первые строки 100; Этот предел отображения не является общим количеством результатов. Сохраните `source`, `native`, исправленные `p_value`, `intersection_size`, `query_size` и `effective_domain_size` при интерпретации термина.
+
+![Таблица фактического обогащения с исправленными вероятностями и размерами доменов](/img/open-science/v0311/enrichment-table.webp)
+
+<ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">Аналитические заметки</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">Все строки результатов 891</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">Полный ответ</ExampleDownload>
+
+`background_size: null` означает, что не было представлено ни одного пользовательского справочного списка; Это не означает статистическую вселенную нулевых генов. Используйте временный эффективный размер домена. Обогащение не устанавливает причинно-следственную связь, дифференциальное выражение или регулирование вверх/вниз. Смотрите [Параметры работы](../reference/connector-operations.md#enrich_gene_set).
+
+## Подтвердить идентичность эталонного генома {/* #reference-genome */}
+
+<p className="example-label"><strong>Практический пример</strong> Идентифицировать хромосому человека GRCh38.p14 1</p>
+
+1. Включить **Genomes** в **Settings → Connectors**. Откройте сеанс с подключенной моделью и доступным временем выполнения Notebook. В этом примере v0.31.1 используется **Codex subscription**.
+2. Запросите организм, сборку и последовательность **переизданный** в этом порядке. Отправить:
+
+```text
+Use Genomes through Session Notebook. Load its connector instructions.
+Call ncbi_resolve_taxon with query human and max_matches 10.
+Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
+Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
+sequence chr1 and max_sequences 200. Save the complete responses as
+ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
+Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
+query, identity, ambiguity and truncation flags, and source URLs.
+Preserve accession versions and RefSeq/GenBank differences. Do not perform
+coordinate liftover or invent results. Keep everything in English.
+```
+
+3. Откройте заметки и сравните возвращенные идентификаторы в трех файлах JSON. Все три вызова увенчались успехом в этом примере.
+
+![Три реальных звонка NCBI и возвращенный таксон и идентификатор сборки](/img/open-science/v0311/ncbi-notes.webp)
+
+| Проверить | Результат этого примера |
+| --- | --- |
+| Организм | Homo sapiens, TaxID **9606**; один матч, `ambiguous: false` |
+| Запрашиваемая/текущая сборка | **GCF_000001405.40**, **GRCh38.p14**Название UCSC **hg38** |
+| Парное собрание GenBank | **GCA_000001405.29**; Возвращенные записи сообщают об отличиях от RefSeq |
+| Хромосома 1 псевдонимы | **1**, **chr1**Рефсек **NC_000001.11**GenBank **CM000663.2** |
+| Выбранная последовательность | **248956422 bp**первичной ассамблеи; один матч, `matches_truncated: false` |
+
+![Оригинальный ответ хромосомы-1 с версионными псевдонимами и количеством совпадений](/img/open-science/v0311/ncbi-aliases.webp)
+
+<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">Запросить заметки</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">Таблица идентификационных данных</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">Ответ таксона</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">Ответ Ассамблеи</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">Последовательность ответов</ExampleDownload>
+
+Завершён поиск для **одной выбранной хромосомы**, а не экспорт всех последовательностей сборки. При изменении запроса сохраняйте неоднозначные совпадения и признаки усечения. Название сборки не заменяет идентификатор с номером версии. Возвращённый актуальный идентификатор не даёт оснований незаметно заменять запрошенную историческую версию. Псевдонимы описывают названия внутри сборки; они не преобразуют координаты между сборками. [Точные входные параметры](../reference/connector-operations.md#ncbi_get_assembly_info)
+
+## Читать Гномады и сети STRING {/* #string-network */}
+
+Для `get_variant` установите `include_populations: true` только тогда, когда нужны данные о населении. Сохраняйте набор данных и сборку ссылок. Наблюдения экзома и генома остаются отдельными. Недоступное значение - `null`, а не ноль. Перекрывающиеся популяционные или половые слои не должны суммироваться. Это наблюдаемые частоты, а не фильтрующие частоты аллелей. [Параметры Гномада](../reference/connector-operations.md#get_variant)
+
+Из v0.31.0 `get_string_network.nodes` включает в себя возвращенные соседи и изолированные отображенные входы. - единый отображаемый входной запрос соседей; Несколько отображенных входов не расширяются. Фильтр `is_query` для восстановления входных узлов и использование `queries` для всех отображенных псевдонимов. `n_nodes` подсчитывает график; `n_mapped` подсчитывает входные отображения. Обновляйте сценарии, которые приравнивали два, прежде чем повторно использовать их. [Параметры стринга](../reference/connector-operations.md#get_string_network)
+
 <span id="empty-partial-and-failed-responses" />
 
 ## Найти параметры работы {/* #find-operation-parameters */}
@@ -116,4 +232,4 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 Ссылка на осуществление: [КоннекторыPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorsPanel.tsx).
 
-Источник: [Каталог.ts](https://github.com/aipoch/open-science/blob/v0.27.0/src/main/connectors/catalog.ts), [Реестр.ts](https://github.com/aipoch/open-science/blob/v0.27.0/src/main/connectors/registry.ts).
+Источник: [Каталог.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/catalog.ts), [Реестр.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/registry.ts).

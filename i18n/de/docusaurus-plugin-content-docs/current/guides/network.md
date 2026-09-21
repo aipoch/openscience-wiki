@@ -1,7 +1,7 @@
 ---
 title: "Netzwerk, Proxies und Paketspiegel"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-20'
 ---
 
 # Netzwerk, Proxies und Paketspiegel {/* #network-proxies-and-package-mirrors */}
@@ -110,3 +110,7 @@ Für ein fehlendes Python-Modul nach einer erfolgreichen Verbindung fahren Sie m
 Verwenden Sie für 400, 401, 403, 404, 429 oder 5xx Antworten den [HTTP Fehlerbehebungstabelle](troubleshooting.md#http-errors-400-403-429-and-5xx). Behalten Sie den antwortenden Dienst und seine detaillierte Nachricht mit dem Statuscode.
 
 Nachdem Sie die Proxy-, Mirror- oder Notebook-Domäneneinstellungen geändert haben, bestätigen Sie, dass die Werte beibehalten wurden, und wiederholen Sie dann die ursprüngliche Operation in derselben Laufzeit. Überprüfen Sie sowohl den Download als auch den Paketimport; a erfolgreiche Einstellungen speichern allein löst keinen Installationsfehler.
+
+## Eine R-Zelle wurde vor der Ausführung blockiert {/* #r-network-warning */}
+
+In v0.31.1 zeigt Notebook eine Inline-Warnung an, wenn der Netzwerkschutz einen R-Lauf blockiert. Folgen Sie dem Einstellungslink und prüfen Sie den angeforderten Zugriff. Die Warnung bedeutet, dass die Zelle nicht ausgeführt wurde; Es handelt sich nicht um ein wissenschaftliches Ergebnis oder einen abgeschlossenen Lauf. Nachdem Sie die spezifische Anforderung gelöst haben, führen Sie die Zelle erneut aus und überprüfen Sie ihre Ausgabe. Windows Standardmodus R Unterstützung ermöglicht nicht selbst Netzwerkschutz.

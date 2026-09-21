@@ -2,12 +2,14 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
+
+import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # Paquets de recherche .science {/* #science-research-packages */}
 
-Un paquet de recherche **.science** rassemble des branches de conversation, des fichiers et des preuves enregistrées pour un transfert. Un collègue peut l'importer dans un projet et inspecter le dossier de recherche. Les sessions importées sont en lecture seule; de nouveaux travaux de recherche commencent dans une session normale.
+Un paquet de recherche **.science** rassemble des branches de conversation, des fichiers et des preuves enregistrées pour un transfert. Un collègue peut l'importer dans un projet et inspecter le dossier de recherche. Les sessions importées sont en lecture seule. À partir de v0.31.0, utilisez **Fork** dans l'application de bureau pour créer une copie en écriture et poursuivre la recherche.
 
 ## Choisissez ce que vous devez partager {/* #choose-what-to-share */}
 
@@ -38,9 +40,11 @@ Les métadonnées bibliographiques sont toujours incluses. Si une documentation 
 
 <p className="example-label"><strong>Exemple pratique</strong> Remise d'un échantillon de session de QC</p>
 
-Les écrans suivants utilisent une session qui résume le [Tableau QC de l'échantillon GSE60450](../reference/example-data.md). Dans l'aperçu d'exportation, comparez **Essential export** et **Full export**, inspectez la taille estimée, puis choisissez **Export**. Le contenu et la taille dépendent de votre session.
+Cet exemple dans Open-Science v0.31.1 exporte une session qui résume le [Tableau QC de l'échantillon GSE60450](../reference/example-data.md), l'importe dans un autre projet sur le même Mac, et continue à partir d'une Fork utilisant **Codex subscription**. Commencez par la session complète contenant `gse60450-qc-summary.csv`; le tableau d’entrée seul ne constitue pas le paquet de recherche.
 
-![Aperçu de l'exportation des paquets de recherche avec l'exportation essentielle, l'exportation complète et personnaliser le contenu](/img/open-science/feature-guides-2026-09/research-package-export.webp)
+Choisissez **Essential export**, vérifiez le contenu et la taille estimée, puis **Export**. L'aperçu de cette session a estimé **805.6 KiB**. Attendez **Package operation completed** avant d'importer le fichier sauvegardé; La taille de votre session sera différente.
+
+![Options d'exportation réelles de la session du CQ et taille estimée](/img/open-science/v0311/package-export.webp)
 
 ## Importation dans un projet {/* #import-and-inspect-a-package */}
 
@@ -49,9 +53,38 @@ Les écrans suivants utilisent une session qui résume le [Tableau QC de l'écha
 3. Attendez l'achèvement et choisissez **Open imported Session**.
 4. Inspectez les branches de conversation et ouvrez les fichiers nécessaires au transfert. Vérifiez que vous pouvez trouver les entrées et les résultats pertinents à votre prochaine tâche.
 
+Pour cet exemple, sélectionnez le projet de destination **Public Genomics Examples**. L'aperçu d'importation liste **Branche 1, messages 3 et fichiers 13**. Il indique également que les titres de compte, les autorisations et les identités de continuation des fournisseurs sont exclus. Vérifiez ces détails avant de sélectionner **Import**.
+
+![Aperçu du paquet QC avant importation dans le projet de destination](/img/open-science/v0311/package-import-preview.webp)
+
+Ouvrez la session importée et son résumé CSV. L'avis **Imported research history** confirme que cette copie est en lecture seule et ne peut pas exécuter de code ou poursuivre une conversation directement.
+
+![Importé QC record avec son résumé hérité et Fork pour continuer bouton](/img/open-science/v0311/package-import-readonly.webp)
+
 ## Utiliser le dossier de recherche reçu {/* #use-the-received-research-record */}
 
-La session importée peut être consultée et servir de référence, mais elle ne peut être ni poursuivie ni exécutée. Pour effectuer de nouveaux travaux, créez une session normale et fournissez explicitement les fichiers d'entrée et les instructions pertinentes. L'utilisation importée est exclue des totaux des activités locales.
+1. Sélectionnez **Fork to continue** dans la session importée, ou **Fork** dans son menu de session. Attendez **Fork completed** et ouvrez la nouvelle session. Le code ne s'exécute pas automatiquement.
+2. Inspectez le résumé hérité, choisissez un modèle disponible et confirmez que l'exécution Python est prête. Cet exemple a utilisé **Codex subscription / gpt-5.6-sol**. Les lettres de créances et les permissions importées ne donnent pas d'autorisation sur l'installation qui les reçoit.
+3. Envoyez l'invite suivante. Si une approbation Python apparaît, inspecter le calcul demandé et l'approuver pour continuer.
+
+```text
+Use Python in Session Notebook with the standard library only.
+Read the inherited gse60450-qc-summary.csv. Do not modify inherited files.
+Compute total_raw_counts_sum divided by sample_count using decimal.Decimal
+with precision 28. Save research-package-continuation.csv with metric,value
+rows in this order: sample_count, total_raw_counts_sum,
+mean_raw_counts_per_sample. Save research-package-continuation.md with the
+input filename, calculation and result. Do not use the network or delegate.
+Keep everything in English and return links to both new files.
+```
+
+4. Ouvrez les deux nouveaux fichiers. Cette opération a retourné des échantillons de **12**, un nombre brut total de **269027617** et une moyenne de **22418968.08333333333333333333**. La moyenne récapitule le tableau de Qc fourni; il n'est pas une expression normalisée ou un résultat d'expression différentielle.
+
+![Fork complété et les nouveaux fichiers de calcul créés en utilisant Codex](/img/open-science/v0311/package-continued.webp)
+
+<ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">Résumé hérité</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">Nouveau calcul</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">Notes de calcul</ExampleDownload>
+
+Les deux nouveaux fichiers sont enregistrés dans le Fork ; les fichiers récapitulatifs de la session source et de la session importée restent inchangés. Voir [Créer un Fork d’une session existante](sessions.md#fork-session). L’utilisation importée est exclue des totaux d’activité locaux.
 
 Un dossier de vérification reçu décrit les vérifications fournies par l'expéditeur. Cela ne signifie pas que cet ordinateur a réexécuté les vérifications. Lire la version du fichier, les critères de comparaison et le résultat; voir [Reproductibilité](reproducibility.md) pour savoir comment ces contrôles fonctionnent.
 

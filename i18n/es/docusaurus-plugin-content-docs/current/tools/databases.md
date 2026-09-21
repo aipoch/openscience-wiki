@@ -2,7 +2,7 @@
 title: "Bases de datos científicos"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -10,7 +10,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # Bases de datos científicos {/* #scientific-databases */}
 
-Los paquetes de la aplicación **23 data-source Connectors**, además de un Molecule Connector. El registro completo tiene **Operaciones de herramienta 239** incluyendo las dos operaciones de Molecule; el catálogo fuente de datos a continuación cubre 237. Habilitar el Connector relevante en Ajustes, luego hacer una pregunta atada con el tipo de identificador correcto.
+Los paquetes de la aplicación **23 data-source Connectors**, además de un Molecule Connector. El registro completo tiene **Operaciones de herramienta 246** incluyendo las dos operaciones de Molecule; el catálogo fuente de datos a continuación cubre 244. Habilitar el Connector relevante en Ajustes, luego hacer una pregunta atada con el tipo de identificador correcto.
 
 <span id="actual-local-queries" />
 
@@ -23,8 +23,8 @@ Elija por identificador y pregunta de investigación. La cobertura de la fuente 
 | Química · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | Química de moléculas pequeñas a través de PubChem, ChEBI, Rhea y BindingDB.  |
 | Gráfico de literatura · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Documentos, autores, citas, actualizaciones de DOI y registros de dataset/software. |
 | PubMed · `pubmed` | PubMed, PMC, Europa PMC | 7 | Bibliografía biomédica a través de NCBI E-utilities, el convertidor de identificación PMC y Europa PMC — búsqueda, metadatos, artículos relacionados, búsqueda de citas, conversión de ID, texto completo y copyright.  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome | 7 | Gene/proteína de identidad y términos de ontología — mygene.info, UniProt, OLS4 ontologies, GO annotations, Reactome pathways.  |
-| Genomes · `genomes` | Ensembl, UCSC | 11 | Anotación genómica, variantes, homología, secuencia y rutas del navegador — Ensembl REST y el navegador UCSC Genome.  |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 9 | Gene/proteína de identidad y términos de ontología — mygene.info, UniProt, OLS4 ontologies, GO annotations, Reactome pathways.  |
+| Genomes · `genomes` | Ensembl, UCSC, NCBI | 14 | Anotación genómica, variantes, homología, secuencia y rutas del navegador — Ensembl REST y el navegador UCSC Genome.  |
 | Variantes · `variants` | gnomAD, ClinVar, dbSNP | 15 | Variaciones genéticas humanas — frecuencias de población de gnomAD/constricción, registros de ClinVar/búsqueda (NCBI directa), dbSNP, variantes estructurales y mitocondriales.  |
 | Pruebas clínicas · `clinical-trials` | ClinicalTrials.gov | 6 | Ensayos clínicos de ClinicalTrials.gov — búsqueda, detalles, patrocinadores, investigadores, puntos finales y elegibilidad.  |
 | Genómica clínica · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | Bases de conocimiento de la genómica clínica: curaciones de ClinGen, evidencia clínica CIViC y Plataforma de objetivos abiertos.  |
@@ -37,7 +37,7 @@ Elija por identificador y pregunta de investigación. La cobertura de la fuente 
 | Anotación de proteínas · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 13 | Arquitectura de dominio Protein, membresía familiar/clan, atlas de expresión y redes de interacción a través de InterPro/Pfam, el Atlas de Proteína Humana y STRING.  |
 | Modelos de cáncer · `cancer-models` | cBioPortal | 6 | Registros de estudio de genómica del cáncer a través del cBioPortal REST API.  |
 | ARN · `rna` | Rfam | 9 | Datos familiares de ARN no codificación (metadatos, alineamientos, modelos, estructuras) a través de Rfam.  |
-| Archivos de Omics · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE | 17 | Archivos de datos Omics — expresión (ArrayExpress, GEO), metabolomics (MetaboLights), metagenomics (MGnify) y proteomics (PRIDE).  |
+| Archivos de Omics · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 19 | Archivos de datos Omics — expresión (ArrayExpress, GEO), metabolomics (MetaboLights), metagenomics (MGnify) y proteomics (PRIDE).  |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Identidad de tipo celular, genes marcadores, conjuntos de datos fuente y tejidos a través de CELLxGENE CellGuide.  |
 | Regulación · `regulation` | ENCODE, JASPAR, UniBind | 16 | Genética-regulación de la genómica funcional — experimentos ENCODE/biosamples/files, perfiles de unión JASPAR TF y TFBS UniBind ChIP-seq.  |
 | Recursos de investigación · `research-resources` | Grants.gov, Antibody Registry | 5 | Búsqueda de financiación-oportunidad (Grants.gov) y búsquedas de catálogo de anticuerpos (Registro Anticuerpo).  |
@@ -105,6 +105,122 @@ Inspeccione el estado devuelto antes de usar un resultado. Utilice el [referenci
 
 Para un informe, adjunte la operación, entrada atada, texto de error y timetamp a través de [Solución de problemas](../guides/troubleshooting.md). Retire las credenciales y los datos privados antes de compartir.
 
+## Resolver las carreras ENA y los archivos FASTQ {/* #ena-runs */}
+
+1. Activar **Omics Archives** bajo **Settings → Connectors**. Suministrar una adhesión pública a `ena_search_runs` en el ENA/INSDC, como un estudio de PRJ o una carrera de SRR. Un identificador GEO `GSE` debe vincularse primero a su estudio INSDC; Las palabras clave no son aceptadas.
+2. Inspeccione `run_accession`, organismo, estrategia de biblioteca/función y `truncated`. El máximo es que 1,000 corre. No hay señal de compensación o continuación; estrechar la adhesión si la respuesta es truncada.
+3. Pase una vuelta a `ena_get_run_files`. Compruebe `found`, `fastq_available` y cada entrada en `fastq_files`. El inventario proporciona URL, tamaño de archivo comprimido y MD5 de corriente avanzada; no descarga archivos ni verifica su contenido.
+4. Antes de una descarga separada, verifique el almacenamiento y mantenga el manifiesto. Verifique los bytes descargados contra la suma de comprobación lista. Una biblioteca pareada no necesita tener exactamente dos archivos; no inferir la identidad de los compañeros de lectura de `file_index`.
+
+<p className="example-label"><strong>Ejemplo práctico</strong> Construir un manifiesto de archivo para SRR037073</p>
+
+Este ejemplo v0.31.1 utiliza **Codex subscription** y el **Omics Archives** Connector habilitado. Abra una sesión con un tiempo de ejecución Notebook disponible, y luego envíe:
+
+```text
+Use Omics Archives through Session Notebook. Load its connector instructions.
+Call ena_search_runs with accession SRR037073 and limit 10, then
+ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
+Save the complete responses as ena-run.json and ena-files.json.
+Save every returned file entry as ena-fastq-manifest.csv with columns
+file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
+run identity, completeness flags and download limits. Keep everything in
+English. Report actual errors or empty results; do not invent data.
+```
+
+Abra las notas generadas. La búsqueda real devolvió **1 run**, **Caenorhabditis elegans**, estudio **PRJNA123835**, **RNA-Seq**, **SINGLE**, con `truncated: false`. Confirme el organismo y el diseño antes de usar sus archivos.
+
+![ENA entradas de consulta, ejecutar banderas de identidad y integridad en las notas generadas](/img/open-science/v0311/ena-notes.webp)
+
+Abra el CSV y compare con `ena-files.json`. Esta carrera tiene `found: true`, `fastq_available: true` y **Archivo 1**, tamaño **bytes 25,154,397**. El manifiesto conserva su URL FTP y MD5 de corriente. Copie el valor completo del archivo descargable si se corta una columna de vista previa.
+
+![Manifiesto ENA de un solo fichero real con URL, tamaño y suma de verificación de corriente](/img/open-science/v0311/ena-manifest.webp)
+
+<ExampleDownload path="/examples/v0311/ena-run-notes.md">Notas de consulta</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ manifest</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">Respuesta de ejecución</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">Respuesta del archivo</ExampleDownload>
+
+Las dos consultas y la generación del manifiesto se completaron. **En este ejemplo no se descargó ningún archivo FASTQ ni se verificó su suma de comprobación**. La descarga es un paso independiente. [Parámetros exactos](../reference/connector-operations.md#ena_search_runs)
+
+## Ejecutar e inspeccionar el enriquecimiento de los genes {/* #gene-set-enrichment */}
+
+<p className="example-label"><strong>Ejemplo práctico</strong> Una lista de genes de ADN-daño humano seleccionada intencionalmente</p>
+
+Este ejemplo v0.31.1 utiliza símbolos de genes públicos 11 para demostrar g:Profiler. Fueron elegidos por sus funciones biológicas conocidas, por lo que se espera el enriquecimiento. No son resultados diferenciales-expresión del proyecto GSE60450 o evidencia de un descubrimiento imparcial.
+
+1. En **Settings → Connectors**, haga que **Genes & Ontologies** esté disponible para el agente. Abra una sesión con un modelo conectado y un tiempo de ejecución Notebook disponible.
+2. Especifique el organismo, identificadores de genes, fuentes de datos y antecedentes estadísticos. Para datos experimentales reales, justifique el fondo usando genes que podrían haber sido seleccionados por el experimento. Este tutorial utiliza explícitamente todos los genes anotados, no un universo personalizado de genes medidos.
+3. Envíe el siguiente aviso. Mantenga la llamada de búsqueda y enriquecimiento de la fuente en el mismo período de sesiones y ahorre sus resultados reales.
+
+```text
+Use Genes & Ontologies through Session Notebook for an English g:Profiler
+tutorial. The deliberately selected gene list is TP53, ATM, ATR, CHEK1,
+CHEK2, BRCA1, BRCA2, RAD51, CDKN1A, GADD45A, MDM2.
+First call list_enrichment_sources with organism hsapiens.
+Then call enrich_gene_set with these genes, organism hsapiens,
+sources GO:BP and REAC, domain_scope annotated,
+correction_method fdr, and user_threshold 0.05.
+Save the full response as dna-damage-enrichment.json, all returned terms
+as dna-damage-enrichment.csv, and query, source versions, mappings,
+background and limitations as dna-damage-enrichment-notes.md.
+Retain unmapped, ambiguous and duplicate identifiers. Treat mapped_genes
+as the returned mapping object. Report errors instead of inventing results.
+This is not differential-expression evidence or evidence of regulation direction.
+```
+
+4. Abra las notas generadas y compruebe los recuentos de consulta y cartografía. Esta ejecución mapeó identificadores **11/11**, con identificadores **0** no marcados, ambiguos o duplicados. Grabó **GRCh38.p14**, g:Profiler **e114_eg62_p19_27110d83**, GO clases **2026-01-23** y Reactome clases **2026-03-20**. Una versión posterior del servicio puede devolver diferentes términos.
+
+![Consultas en inglés guardadas, antecedentes, versiones de fuentes y cheques de identificación](/img/open-science/v0311/enrichment-notes.webp)
+
+5. Abra el CSV y compare con el JSON. Esta carrera devolvió **891 términos** en FDR 0.05. La vista previa muestra sólo sus primeras filas 100; ese límite de visualización no es el recuento total de resultados. Retain `source`, `native`, corregió `p_value`, `intersection_size`, `query_size` y `effective_domain_size` al interpretar un término.
+
+![Tabla de enriquecimiento real con probabilidades corregidas y tamaños de dominio](/img/open-science/v0311/enrichment-table.webp)
+
+<ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">Notas de análisis</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">Todas las filas de resultado 891</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">Respuesta completa</ExampleDownload>
+
+`background_size: null` significa que no se presentó una lista de antecedentes personalizada; no significa un universo estadístico de genes cero. Utilice el tamaño de dominio efectivo por término. El enriquecimiento no establece la implicación causal, la expresión diferencial o la regulación de arriba/abajo. Ver [parámetros de operación](../reference/connector-operations.md#enrich_gene_set).
+
+## Confirme la identidad de referencia-genoma {/* #reference-genome */}
+
+<p className="example-label"><strong>Ejemplo práctico</strong> Identificar GRCh38.p14 cromosoma 1</p>
+
+1. Activar **Genomes** en **Settings → Connectors**. Abra una sesión con un modelo conectado y tiempo de ejecución Notebook disponible. Este ejemplo v0.31.1 utilizó **Codex subscription**.
+2. Consultar el organismo, montaje y secuencia **versionado** en ese orden. Enviar:
+
+```text
+Use Genomes through Session Notebook. Load its connector instructions.
+Call ncbi_resolve_taxon with query human and max_matches 10.
+Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
+Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
+sequence chr1 and max_sequences 200. Save the complete responses as
+ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
+Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
+query, identity, ambiguity and truncation flags, and source URLs.
+Preserve accession versions and RefSeq/GenBank differences. Do not perform
+coordinate liftover or invent results. Keep everything in English.
+```
+
+3. Abra las notas y compare los IDs devueltos a través de los tres archivos JSON. Las tres llamadas tuvieron éxito en este ejemplo.
+
+![Tres llamadas NCBI reales y el taxón devuelto e identidad de reunión](/img/open-science/v0311/ncbi-notes.webp)
+
+| Check | Resultado de este ejemplo |
+| --- | --- |
+| Organismo | Homo sapiens, TaxID **9606**; un partido, `ambiguous: false` |
+| Reunión solicitada/actual | **GCF_000001405.40**, **GRCh38.p14**, nombre UCSC **hg38** |
+| Junta de GenBank Pareada | **GCA_000001405.29**; los registros devueltos reportan diferencias de RefSeq |
+| Chromosome 1 alias | **1**, **chr1**, RefSeq **NC_000001.11**, GenBank **CM000663.2** |
+| Secuencia seleccionada | **248956422 bp**, Asamblea Primaria; un partido, `matches_truncated: false` |
+
+![Respuesta original del cromosoma-1 con alias versionados y cuenta del partido](/img/open-science/v0311/ncbi-aliases.webp)
+
+<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">Notas de consulta</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">Tabla de identidad</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">Respuesta del taxón</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">Respuesta de la Asamblea General</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">Respuesta a la secuencia</ExampleDownload>
+
+Se completó la consulta de **un cromosoma seleccionado**, no la exportación de todas las secuencias del ensamblaje. Al cambiar la consulta, conserve las coincidencias ambiguas y los indicadores de truncamiento. El nombre de un ensamblaje no sustituye su número de acceso con versión. Que se devuelva el número actual no autoriza a reemplazar silenciosamente una versión histórica solicitada. Los alias describen nombres dentro de un ensamblaje; no convierten coordenadas entre ensamblajes. [Entradas exactas](../reference/connector-operations.md#ncbi_get_assembly_info)
+
+## Leer las poblaciones de gnomAD y las redes de STRING {/* #string-network */}
+
+Para `get_variant`, establece `include_populations: true` sólo cuando se necesitan detalles de la población. Retener el conjunto de datos y la compilación de referencia. Las observaciones de exoma y genoma siguen siendo separadas. Un valor no disponible es `null`, no cero; no se debe resumir la población o los estratos sexuales. Estas son frecuencias observadas, no filtrando frecuencias de alelo. [gnomAD parámetros](../reference/connector-operations.md#get_variant)
+
+Desde v0.31.0, `get_string_network.nodes` incluye vecinos devueltos y entradas aisladas de mapeado. Una única entrada mapeada solicita a los vecinos; múltiples entradas mapeadas no se expanden. Filtrar `is_query` para recuperar nodos de entrada, y utilizar `queries` para todos los alias mapeados. `n_nodes` cuenta el gráfico; `n_mapped` cuenta las asignaciones de entrada. Actualizar scripts que equipararon a los dos antes de reutilizarlos. [Parámetros de STRING](../reference/connector-operations.md#get_string_network)
+
 <span id="empty-partial-and-failed-responses" />
 
 ## Encontrar parámetros de operación {/* #find-operation-parameters */}
@@ -116,4 +232,4 @@ Mantenga las versiones de genoma, organismo, tejido, unidades y adhesión con da
 
 Referencia de implementación: [ConectoresPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorsPanel.tsx).
 
-Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/v0.27.0/src/main/connectors/catalog.ts), [registro.ts](https://github.com/aipoch/open-science/blob/v0.27.0/src/main/connectors/registry.ts).
+Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/catalog.ts), [registro.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/registry.ts).

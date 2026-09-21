@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Aperçu des paramètres"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-20'
 ---
 
 # Aperçu des paramètres {/* #settings-overview */}
@@ -52,3 +52,7 @@ Cette recherche couvre les paramètres représentatifs de chaque panel, pas de c
 **Feedback** reste une entrée séparée au bas de Paramètres.
 
 :::info&#91;Comment les paramètres sont enregistrés&#93; Certains commutateurs sont enregistrés immédiatement. Les formulaires plus longs utilisent `Save`, `Add` ou `Import`. Ne fermez pas l'application alors que `Saving…`, `Testing…` ou `Installing…` est affiché. La migration, la désinstallation, la suppression et les actions à autorisation générale doivent être confirmées. :::
+
+## Les onglets de paramètres du modèle {/* #model-tabs */}
+
+Dans **Model**, utilisez **Conversation models** pour les fournisseurs et les modèles de tâches, **Classification models** pour la sélection optionnelle Skill/Connector et **Local parsing models** pour les ressources d'analyse locales. La classification est un onglet dans les paramètres du modèle, pas un panneau de paramètres de haut niveau supplémentaire. Voir [la configuration du classement](../guides/models.md#classification-models).

@@ -1,7 +1,7 @@
 ---
 title: "Planification avant exécution"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Planification avant exécution {/* #planning-before-execution */}
@@ -57,3 +57,7 @@ Les statuts de l'étape peuvent inclure non commencé, en cours, complété, blo
 Continuer avec [Fichiers et versions](./files.md), [Preuves de Notebook](./notebook.md) et [Autorisations](./approval-modes.md).
 
 Source: [contrôle de l'approbation et de l'aperçu du plan](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/session-plan/SessionPlanSurfaces.tsx).
+
+## Reprendre après la reconstruction du contexte {/* #resume-plan */}
+
+À partir de v0.31.0, l'agent peut récupérer le plan de session actuel, sa révision et les approbations en attente après la reconstruction de son contexte. Rouvrir le plan actif et vérifier quelles étapes ont effectivement été accomplies avant de lui demander de continuer. Une approbation en attente est toujours en cours; le recouvrement du plan ne l'approuve pas ou ne confirme pas une opération dont le résultat n'a pas été enregistré.

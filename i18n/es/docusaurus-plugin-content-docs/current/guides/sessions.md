@@ -1,8 +1,10 @@
 ---
 title: "Períodos de sesiones y ramas"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
+
+import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # Períodos de sesiones y ramas {/* #sessions-and-branches */}
 
@@ -130,3 +132,33 @@ Elija **Archive** en la rama prevista, luego abra **Settings → Archived → Se
 Para un proyecto archivado, utilice su entrada **Manage** e inspeccione las sesiones del proyecto. Ver [Almacenamiento y trabajos archivados](storage.md) para la diferencia entre archivo, restauración, eliminación y reubicación de almacenamiento. La desaparición de una sesión de la lista activa no es evidencia de que el espacio de disco fue reclamado.
 
 Fuentes: [editor de sesión](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/EditSessionDialog.tsx), [ejecución del espacio de trabajo](https://github.com/aipoch/open-science/tree/v0.26.0/src/renderer/src/pages/workspace).
+
+## Preparar un período de sesiones en curso {/* #fork-session */}
+
+Utilice **Fork** cuando necesite una copia de trabajo independiente de una sesión local o importada. **Branch in new session** comienza a partir de un mensaje seleccionado; Fork copia el historial completo de investigación guardado de la sesión, incluyendo sus ramas, registros Notebook, versiones de archivos, literatura, anotaciones y marcadores privados. La sesión de origen permanece inalterada. Copiar un registro no lo reimprime o establece que su entorno está listo en este ordenador.
+
+1. En la aplicación de escritorio, termine o pare la tarea actual. Espere a que cualquier transferencia de paquetes termine.
+2. Abra las acciones de la fila de sesión y elija **Fork**. La aplicación muestra los progresos en la transferencia; **Run in background** esconde esa ventana sin cancelarla.
+3. Espera a **Fork completed** y abre la nueva sesión. Abra su título para inspeccionar **Source session** y el nuevo número de sesión.
+4. Abra un archivo heredado y compruebe su contenido. Inspeccione el modelo seleccionado y el tiempo de ejecución antes de continuar; viejos caminos o permisos de la máquina pueden necesitar atención.
+5. Envíe la siguiente tarea en la copia y compruebe su nueva salida. Mantenga el original como el registro de referencia.
+
+![Presione en el menú de acciones de sesión](/img/open-science/v0311/fork-menu.webp)
+
+![Nueva información de sesión que muestra su fuente y archivo QC heredado](/img/open-science/v0311/fork-info.webp)
+
+Fork está disponible en la aplicación de escritorio. Las sesiones importadas permanecen solos hasta que trabajes en su tenedor. Los ajustes del proyecto y la memoria no son un proyecto copiado separado. Los registros antiguos de revisión o verificación describen sus versiones registradas; inspeccionar cualquier estado anticuado antes de tratarlos como cheques actuales.
+
+### Continuar un cálculo de QC en la copia {/* #continue-a-qc-calculation-in-the-copy */}
+
+<p className="example-label"><strong>Ejemplo práctico</strong> Presione una sesión local en v0.31.1</p>
+
+En el proyecto GSE60450, marque la sesión QC existente y abra el `gse60450-qc-summary.csv`. Compruebe las muestras **12** y las cuentas totales de **269,027,617** en bruto. En la copia, pida al agente que lea ese archivo con Python, verifique ambos valores, calcule los promedios por muestra y guarde un `fork-qc-check.csv`. El resultado es **22,418,968.083333…**. La fuente y los archivos heredados tienen contenidos idénticos; el nuevo cálculo es un archivo separado. Esto significa que demuestra la continuación, no la normalización de la expresión.
+
+![Cálculo Python y un nuevo resultado ahorrado en la sesión prefabricada](/img/open-science/v0311/fork-result.webp)
+
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Descarga el resultado calculado</ExampleDownload>. Para continuar con un paquete `.science` recibido, siga [Paquetes de investigación](research-packages.md).
+
+## Lea la tarjeta de información de sesión {/* #session-information */}
+
+Seleccione el título de sesión para ver su número, descripción, fuente, tiempos de creación/actualización, recuento de mensajes para el recuento actual de rama y artefacto. Utilice **Pin** para mantener la sesión fácil de encontrar, o **Editar sesión** para cambiar su título y descripción. Un separador **Continúe con el chat** se vincula de nuevo a la fuente registrada.

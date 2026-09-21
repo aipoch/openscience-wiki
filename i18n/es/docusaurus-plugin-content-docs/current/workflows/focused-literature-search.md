@@ -36,8 +36,6 @@ Write in English, do not delegate, and reopen the saved files.
 
 ![La solicitud de búsqueda enfocada en Open-Science](/img/open-science/workflow-extensions/focused-search-input.webp)
 
-La captura de pantalla muestra la solicitud inicial. La norma de selección operacional anterior incorpora el examen posterior de esa carrera.
-
 ## 2. Compruebe la consulta y la cobertura {/* #2-check-the-query-and-coverage */}
 
 La carrera presentó esta consulta concepto-y-periodario, con el filtro de fecha de publicación suministrado por separado:
@@ -57,7 +55,7 @@ Cuando la respuesta se complete, abra **mindfulness-search-audit.csv** bajo **Ge
 
 ![La tabla de candidatos salvada, incluidos los registros inciertos y excluidos](/img/open-science/workflow-extensions/focused-search-table.webp)
 
-Revisión encontró razones inexactas en el proyecto inicial: por ejemplo, PMID **38837133** es un ensayo aleatorizado primario de una psicoterapia más amplia, no un análisis secundario. La tabla revisada marca su elegibilidad mental **incierto**. PMID **34009273** es un metaanálisis y permanece excluido con la razón corregida. La notificación y el error específico le da al agente una solicitud de revisión concreta; entonces reabrir el CSV salvado para confirmar el cambio.
+Revise cada razón de exclusión contra el resumen. PMID **38837133** es un ensayo aleatorizado primario de una psicoterapia más amplia; el ejemplo marca su elegibilidad mental **incierto**. PMID **34009273** es un metaanálisis y está excluido. Cuando una decisión necesita corrección, nombre el registro y número específico, pida al agente que actualice el CSV, y luego vuelva a abrir el archivo guardado.
 
 ![La revisión real de detección y cheques de archivo guardado en Notebook](/img/open-science/workflow-extensions/focused-search-notebook.webp)
 
@@ -67,7 +65,7 @@ El cuadro de ejemplo revisado contiene **20 incluye, excluidos 37 y registros in
 
 PMID **41418645** fue devuelto por el filtro 2019-2025 PubMed fecha de publicación, mientras que sus metadatos reportan una fecha de impresión **2026-01**. Mantenga la discrepancia y verifique el historial de la publicación antes de tomar una decisión final de fecha. No reemplace silenciosamente el año para adaptarse a la ventana de búsqueda.
 
-Abrir **mindfulness-search-notes.md** y verificar que sus cuentas, regla de elegibilidad y limitaciones coinciden con el CSV. Esta ejecución revisó ambos archivos y retuvo la instantánea de metadatos crudos sin cambios.
+Abra **mindfulness-search-notes.md** y compruebe que sus cuentas, regla de elegibilidad y limitaciones coinciden con el CSV. Mantenga la instantánea de metadatos originales junto con estos archivos para que cada decisión pueda ser rastreada a su fuente.
 
 ![La nota de búsqueda revisada con los recuentos de detección 20/37/5](/img/open-science/workflow-extensions/focused-search-notes.webp)
 

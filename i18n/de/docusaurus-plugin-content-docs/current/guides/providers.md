@@ -1,7 +1,7 @@
 ---
 title: "Anbieter und lokales Modell-Setup"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -24,7 +24,7 @@ Wählen Sie **Import existing Codex sign-in**, um eine funktionierende lokale An
 
 ## Wählen Sie eine Provider-Region oder ein kostenloses Katalogmodell {/* #provider-regions */}
 
-Wählen Sie für **SenseNova** **China** oder **Global** im Anbieterformular, bevor Sie ein Modell auswählen. Verwenden Sie den API-Schlüssel für diese Region, überprüfen Sie die resultierende Modellliste, speichern und testen Sie die Verbindung. Das Wechseln von Regionen kann sowohl das Endpunkt- als auch das verfügbare Modell ändern; ein Schlüssel- oder Modellname aus der anderen Region funktioniert möglicherweise nicht.
+Wählen Sie für **SenseNova** **China** oder **Global** im Anbieterformular, bevor Sie ein Modell auswählen. Verwenden Sie den API-Schlüssel für diese Region, überprüfen Sie die resultierende Modellliste, wählen Sie **Save** aus und warten Sie auf die Verbindungsvalidierung, bevor die Änderung festgelegt wird. Das Wechseln von Regionen kann sowohl das Endpunkt- als auch das verfügbare Modell ändern; ein Schlüssel- oder Modellname aus der anderen Region funktioniert möglicherweise nicht.
 
 Für Gateways wie **OpenRouter** oder **OpenCode Zen** wählen Sie ein kostenloses Modell nur dann aus, wenn genau dieser Eintrag für das aktive Framework angeboten wird. Verwenden sie das konto und die für den dienst erforderlichen anmeldeinformationen. Ein kostenloser Katalogeintrag beseitigt keine Nutzungsbeschränkungen oder stellt Unterstützung für jedes Tool oder jede Bildeingabe her. Füge `:free` nicht an eine beliebige Modell-ID an. Senden sie eine kleine anfrage und überprüfen sie das zurückgegebene modell und ergebnis, bevor sie die verbindung für die forschung verwenden.
 
@@ -44,7 +44,7 @@ Für Gateways wie **OpenRouter** oder **OpenCode Zen** wählen Sie ein kostenlos
 | --- | --- | --- |
 | **Check Codex login** | Möglicherweise ist die gespeicherte Verbindung abgelaufen. | Die ausstehende Überprüfung wird in den angezeigten verifizierten oder fehlgeschlagenen Zustand überführt. |
 | **Re-import Codex login** | Sie haben die externe Anmeldung aktualisiert und möchten die Anwendungskopie aktualisieren. | Die Authentifizierung wird importiert und erneut überprüft. |
-| **Edit** | Sie müssen die Authentifizierungs- oder Transporteinstellungen überprüfen. | Speichern Sie die beabsichtigten Einstellungen und überprüfen Sie die Verbindung erneut. |
+| **Edit** | Sie müssen die Authentifizierungs- oder Transporteinstellungen überprüfen. | Wählen Sie Speichern und warten Sie auf eine erfolgreiche Validierung, bevor die Bearbeitung vorgenommen wird. |
 | **Delete** | Ein ungenutzter Anbieter sollte entfernt werden. | Die Verfügbarkeit hängt davon ab, ob der Anbieter noch benötigt wird; Eine aktive Abhängigkeit kann eine Löschung verhindern. |
 
 Wenn Import meldet, dass ein dateigestütztes Codex-Login fehlt, melden Sie sich über den unterstützten Codex-Flow an und wiederholen Sie **Re-import Codex login**. Ein Login, das nur in einem externen Anmeldedatenspeicher gespeichert wird, ist nicht unbedingt eine importierbare Datei.
@@ -56,7 +56,7 @@ Die Agent Runtime führt die Arbeit aus; Der Modellanbieter liefert das Modell. 
 
 ## Aktualisieren oder Entfernen eines API-Anmelders {/* #update-or-remove-an-api-credential */}
 
-Nachdem Sie einen Schlüssel am Dienst geändert haben, suchen Sie den Anbieter in **Settings → Model**, wählen Sie **Edit**, geben Sie den Ersatz in **API key** ein und speichern Sie. Wenn Sie dieses Feld leer lassen, bleibt der vorhandene Schlüssel erhalten; Sie klärt es nicht. Warten Sie auf den Anschlusstest. Wenn die Authentifizierung fehlschlägt, überprüfen Sie den Endpunkt, das Konto, zu dem der Schlüssel gehört, und seine Gültigkeit, bevor Sie es erneut versuchen.
+Nachdem Sie einen Schlüssel am Dienst geändert haben, suchen Sie den Anbieter in **Settings → Model**, wählen Sie **Edit**, geben Sie den Ersatz in **API key** ein und wählen Sie **Save** aus. Wenn Sie dieses Feld leer lassen, bleibt der vorhandene Schlüssel erhalten; Sie klärt es nicht. Die Verbindung wird getestet, bevor der Edit festgelegt wird. Wenn die Authentifizierung fehlschlägt, überprüfen Sie den Endpunkt, das Konto, zu dem der Schlüssel gehört, und seine Gültigkeit, bevor Sie es erneut versuchen.
 
 Nach **Connection verified**, füllen Sie eine kleine Anfrage mit diesem Anbieter. Entfernen Sie einen nicht verwendeten Anbieter mit **Delete** und überprüfen Sie seinen Namen in der Bestätigung. Durch das Entfernen der Anwendungskonfiguration wird der Schlüssel im Dienst nicht widerrufen.
 
@@ -80,7 +80,7 @@ Beginnen Sie mit der Auswahl von `Custom Gateway`. Durch Ändern des Anbietertyp
 | `Advanced settings` | Erweitert oder zusammenbricht Fähigkeit und Token-Limit-Felder |
 | `More information` (`i`) | Öffnet kontextuelle Hilfe neben dem zugehörigen Label |
 | `Back` | Rückkehr zur Agent Runtime; Der Assistent besitzt den Formularentwurf, damit er überleben kann, zurück zu navigieren |
-| `Test & continue` | Validiert die erforderlichen Felder und speichert/testet den Anbieter, wenn er gültig ist; Vorauszahlungen nach erfolgreicher anwendbarer Validierung |
+| `Test & continue` | Validiert erforderliche Felder und testet dann den Anbieter, bevor er gültige Einstellungen festlegt; Vorauszahlungen nach erfolgreicher anwendbarer Validierung |
 
 Die drei API-Formate, die im Menü angezeigt werden, sind:
 
@@ -208,3 +208,7 @@ Lokales `qwen2.5:7b` hat diesen Aufruf über das Codex-Framework und einen lokal
 Verwenden Sie für 400, 401, 403, 404, 429 oder 5xx Antworten den [HTTP Fehlerbehebungstabelle](troubleshooting.md#http-errors-400-403-429-and-5xx). Behalten Sie den antwortenden Dienst und seine detaillierte Nachricht mit dem Statuscode.
 
 Quelle: [AnbieterForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ProviderForm.tsx), [ProviderStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/ProviderStep.tsx).
+
+## Speichern Sie einen Providerwechsel in v0.31.0 und höher {/* #validated-provider-save */}
+
+Anbieter-Edits werden getestet, bevor sie festgelegt werden. Wählen Sie **Save**, warten Sie auf das Verbindungsergebnis und bestätigen Sie den Erfolg, bevor Sie das Formular schließen. Ein fehlgeschlagener Test ersetzt keine funktionierende gespeicherte Konfiguration. Wenn eine zuvor gespeicherte Verbindung während einer Anforderung abgelehnt wird, wird ihre Verfügbarkeit aktualisiert; Prüfen Sie den Nachweis und den Endpunkt und testen Sie dann erneut. **Conversation models**, **Classification models** und **Local parsing models** haben unterschiedliche Zwecke; siehe [Modelleinstellungen](models.md#classification-models).

@@ -1,7 +1,7 @@
 ---
 title: "Dienstanmeldeinformationen"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Dienstanmeldeinformationen {/* #service-credentials */}
@@ -64,3 +64,7 @@ OpenAlex Abfragen erfordern einen gültigen OpenAlex Schlüssel. OAuth Connector
 Bezugsnummer der Durchführung: [CredentialsPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [ConnectorAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx).
 
 [CLI/SDK Berechtigungsnachweismanagement](../reference/cli.md#manage-connectors-and-credentials) kann freigegebene Anmeldeinformationen durch authentifizierten lokalen Zugriff erstellen / aktualisieren. Linux Headless-Installationen können explizit [unverschlüsselte Dateispeicherung](../reference/server.md#credential-storage-on-headless-linux) wählen; Desktop-Anmeldeinformationen behalten ihr normales OS-Speicherverhalten bei. Diese Option löst keine Compute-Passwortspeicherung oder initiiert die erstmalige OAuth-Anmeldung.
+
+## Öffnen Sie die offizielle API Key Page {/* #official-api-key-page */}
+
+Von v0.31.0 aus enthalten OpenAlex und NCBI-Anmeldeinformationen einen Link zur offiziellen API-Schlüsselseite. Das Öffnen behält den Formularentwurf und wartet auf den Connector-Aufruf. Schließen Sie die Kontoschritte mit dem Dienst ab, kehren Sie zum Anmeldeformular zurück, validieren und speichern Sie dann den beabsichtigten Schlüssel, bevor Sie die Abfrage erneut versuchen. Das Öffnen der Schlüsselseite allein speichert weder einen Schlüssel noch vervollständigt die wartende Abfrage.

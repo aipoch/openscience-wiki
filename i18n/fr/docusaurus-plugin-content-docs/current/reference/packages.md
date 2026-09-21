@@ -6,7 +6,7 @@ last_update:
 
 # Formats Skill, Specialist et MCP {/* #skill-specialist-and-mcp-formats */}
 
-Les modèles Skills, Specialists et Connector ont des limites de paquets différentes. Cette référence centralise leurs champs et leurs budgets d'importation. Les limites et les règles de validation sont vérifiées à la source; l'importation d'une archive particulière doit toujours être vérifiée dans son aperçu avant de le traiter comme installé.
+Les modèles Skills, Specialists et Connector ont des limites de paquets différentes. Cette référence énumère leurs champs et leurs budgets d'importation. Inspectez l'aperçu des archives avant d'importer, puis vérifiez le résultat de l'installation.
 
 ## Skill document et ressources {/* #skill-document-and-resources */}
 

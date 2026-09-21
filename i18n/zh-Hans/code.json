@@ -2559,5 +2559,17 @@
   },
   "docs.outline.reference.v0302.scope": {
     "message": "Specialist Skill 加载、独立旁聊、数据查询与 Notebook 恢复。"
+  },
+  "docs.outline.reference.v0311.title": {
+    "message": "v0.31.1"
+  },
+  "docs.outline.reference.v0311.scope": {
+    "message": "ENA、基因集富集、参考基因组与可选分类模型。"
+  },
+  "docs.outline.reference.v0310.title": {
+    "message": "v0.31.0"
+  },
+  "docs.outline.reference.v0310.scope": {
+    "message": "可写会话副本、提供方验证与完整 STRING 网络。"
   }
 }

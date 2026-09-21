@@ -1,7 +1,7 @@
 ---
 title: "Modelle und Aufgabenrichtlinien"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # Modelle und Aufgabenrichtlinien {/* #models-and-task-policies */}
@@ -78,3 +78,29 @@ Nachdem Sie **Same as main model** oder ein kompatibles festes Modell unter **Se
 Verwenden Sie [Agentsetup](./frameworks.md) für das Ausführungs-Backend und [Verwendung](./usage.md) für gemeldete Aktivität. Genaue Konfigurationspriorität ist in [Referenz](../reference/configuration.md).
 
 Quellen: [Modellauswahl](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx), [Szenariorichtlinien](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx).
+
+## Fakultative Klassifikationsmodelle {/* #classification-models */}
+
+Öffnen Sie **Settings → Model → Classification models**. Ein Klassifikationsdienst hilft bei der Auswahl relevanter Skills und Connectors, bevor eine Anforderung gestartet wird. Es ersetzt nicht Main oder fügt ein Chat-Modell hinzu. Sie können **Automatic capability selection** bei **Use default method** verlassen; Skills und Connectors funktionieren immer noch ohne es.
+
+In v0.31.1 wird dieser Dienst für Hauptunterhaltungen mit **Codex Chat Completions** oder **CodeBuddy** verwendet. Daraus folgt keine Unterstützung für Codex-Abonnements oder alle anderen Frameworks. Übermittelt werden nur die aktuelle Anfrage sowie Namen und Beschreibungen der Fähigkeiten. Ist der Dienst nicht verfügbar oder das Ergebnis unklar, wird das Standardverfahren verwendet.
+
+![Auswahl der Standardfähigkeit und fakultativer Eintrag des Klassifikationsdienstes](/img/open-science/v0311/classification-models.webp)
+
+1. Wählen Sie **Add service**, dann **TypeSafe AI** oder **OpenRouter**.
+2. Benennen Sie den Dienst und geben Sie seinen API-Anmelder an. OpenRouter kann ein bestehendes kompatibles Konto oder einen neuen Schlüssel verwenden; Halten Sie Schlüssel in Screenshots versteckt.
+3. Wählen Sie **Save** und warten Sie auf die Validierung. Die fehlgeschlagene Validierung lässt die vorherigen Einstellungen unverändert.
+4. Wählen Sie unter **Automatic capability selection** den gespeicherten Dienst und ein in seinem Katalog angebotenes Modell aus. Verwenden Sie **Check model**, um die Verbindung zu überprüfen.
+5. Probieren Sie eine begrenzte Anfrage in einer unterstützten Hauptkonversation aus und prüfen Sie dann die tatsächlich ausgewählten Tools. Eine erfolgreiche Modellprüfung allein verifiziert kein Forschungsergebnis.
+
+Das Entfernen eines Dienstes gibt seine Bindung an die Standardmethode zurück. Ein separat gespeicherter Dienstschlüssel wird mit ihm entfernt; Das Entfernen eines Dienstes, der ein Konto teilt, löscht dieses Konto oder seinen Schlüssel nicht.
+
+Siehe [Provider-Setup](providers.md) für konversationsmodelle. Lokale PDF-Parsing-Ressourcen werden unter **Local parsing models**, einem separaten Tab, verwaltet.
+
+![Klassifikationsdienstformular mit dem API-Schlüssel noch leer](/img/open-science/v0311/classification-add-service.webp)
+
+Wählen Sie für Jev unter **Automatic capability selection** den Eintrag **TypeSafe AI / Jev Latest** und klicken Sie auf **Check model**. **Check passed** bestätigt, dass der Dienst antwortet. Öffnen Sie Settings erneut und prüfen Sie, ob die Auswahl erhalten bleibt.
+
+![TypeSafe AI / Jev Latest ausgewählt, mit Check passed und verborgenem API-Schlüssel](/img/open-science/v0311/classification-connected.webp)
+
+Beispielsweise kann ein öffentliches TP53-Lookup in einer Codex Chat Completions-Sitzung Jev verwenden, um `mcp-genes` auszuwählen. Überprüfen Sie die ausgewählte Fähigkeit in der Aktivität und prüfen Sie dann die Datenbankantwort auf das Forschungsergebnis. Codex-Abonnementsitzungen verwenden ihren bestehenden Fähigkeitsladepfad; Eine gespeicherte Jev-Bindung lässt diese Sitzungen nicht Jev verwenden.

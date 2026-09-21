@@ -1,7 +1,7 @@
 ---
 title: "실행하기 전에 계획"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-20'
 ---
 
 # 실행하기 전에 계획 {/* #planning-before-execution */}
@@ -57,3 +57,7 @@ queued follow-ups를 위해, 사용 [Composer 큐 컨트롤](composer.md#manage-
 [파일 및 버전](./files.md), [Notebook 증거](./notebook.md) 및 [권한](./approval-modes.md)로 계속됩니다.
 
 근원: [계획 승인 및 미리보기 컨트롤](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/session-plan/SessionPlanSurfaces.tsx).
+
+## 컨텍스트 재건축 후 재건축 {/* #resume-plan */}
+
+v0.31.0에서 에이전트는 현재 세션 플랜을 복구 할 수 있습니다, 그것의 수정 및 종료 승인 후 컨텍스트를 재건. 활동 계획을 다시 열고 계속하려면 먼저 완료 한 단계를 확인합니다. 대출 승인은 여전히 종료됩니다; 계획을 복구하거나 결과를 확인하지 않는 작업을 확인하지 않습니다.

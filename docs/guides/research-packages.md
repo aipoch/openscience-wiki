@@ -2,12 +2,14 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-20'
 ---
+
+import ExampleDownload from '@site/src/components/ExampleDownload';
 
 # .science research packages
 
-A **.science** research package brings conversation branches, files and recorded evidence together for a handover. A colleague can import it into a project and inspect the research record. Imported sessions are read-only; new research work starts in a normal session.
+A **.science** research package brings conversation branches, files and recorded evidence together for a handover. A colleague can import it into a project and inspect the research record. Imported sessions are read-only. From v0.31.0, use **Fork** in the desktop app to create a writable copy and continue the research.
 
 ## Choose what to share
 
@@ -38,9 +40,11 @@ Literature metadata is always included. If a literature PDF is required evidence
 
 <p className="example-label"><strong>Worked example</strong> Hand over a sample QC session</p>
 
-The following screens use a session that summarizes the [GSE60450 sample QC table](../reference/example-data.md). In the export preview, compare **Essential export** and **Full export**, inspect the estimated size, then choose **Export**. The contents and size depend on your session.
+This example in Open-Science v0.31.1 exports a session that summarizes the [GSE60450 sample QC table](../reference/example-data.md), imports it into another project on the same Mac, and continues from a Fork using **Codex subscription**. Start with the completed session containing `gse60450-qc-summary.csv`; the input table alone is not the research package.
 
-![Research package export preview with Essential export, Full export and Customize contents](/img/open-science/feature-guides-2026-09/research-package-export.webp)
+Choose **Essential export**, check the contents and estimated size, then **Export**. This session's preview estimated **805.6 KiB**. Wait for **Package operation completed** before importing the saved file; your session's size will differ.
+
+![Actual QC session export options and estimated size](/img/open-science/v0311/package-export.webp)
 
 ## Import into a project {/* #import-and-inspect-a-package */}
 
@@ -49,9 +53,38 @@ The following screens use a session that summarizes the [GSE60450 sample QC tabl
 3. Wait for completion and choose **Open imported Session**.
 4. Inspect the conversation branches and open the files needed for the handover. Check that you can find the inputs and results relevant to your next task.
 
+For this example, select the destination project **Public Genomics Examples**. The import preview lists **1 branch, 3 messages and 13 files**. It also says account credentials, permission grants and provider continuation identities are excluded. Check those details before selecting **Import**.
+
+![QC package preview before import into the destination project](/img/open-science/v0311/package-import-preview.webp)
+
+Open the imported session and its summary CSV. The **Imported research history** notice confirms that this copy is read-only and cannot execute code or continue a conversation directly.
+
+![Imported QC record with its inherited summary and Fork to continue button](/img/open-science/v0311/package-import-readonly.webp)
+
 ## Use the received research record
 
-The imported session can be inspected and referenced, but cannot be continued or executed. To do new work, create a normal session and explicitly provide the relevant input files and instructions. Imported usage is excluded from local activity totals.
+1. Select **Fork to continue** in the imported session, or **Fork** from its session menu. Wait for **Fork completed** and open the new session. Code does not run automatically.
+2. Inspect the inherited summary, choose an available model and confirm a Python runtime is ready. This example used **Codex subscription / gpt-5.6-sol**. Imported credentials and permissions do not provide authorization on the receiving installation.
+3. Send the following prompt. If a Python approval appears, inspect the requested calculation and approve it to continue.
+
+```text
+Use Python in Session Notebook with the standard library only.
+Read the inherited gse60450-qc-summary.csv. Do not modify inherited files.
+Compute total_raw_counts_sum divided by sample_count using decimal.Decimal
+with precision 28. Save research-package-continuation.csv with metric,value
+rows in this order: sample_count, total_raw_counts_sum,
+mean_raw_counts_per_sample. Save research-package-continuation.md with the
+input filename, calculation and result. Do not use the network or delegate.
+Keep everything in English and return links to both new files.
+```
+
+4. Open both new files. This run returned **12** samples, a total raw count of **269027617**, and a mean of **22418968.08333333333333333333**. The mean summarizes the supplied QC table; it is not normalized expression or a differential-expression result.
+
+![Fork completed and the new calculation files created using Codex](/img/open-science/v0311/package-continued.webp)
+
+<ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">Inherited summary</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">New calculation</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">Calculation notes</ExampleDownload>
+
+The two new files are saved in the Fork; the source and imported summary remain unchanged. See [Fork an existing session](sessions.md#fork-session) for general usage. Imported usage is excluded from local activity totals.
 
 A received verification record describes checks supplied by the sender. It does not mean this computer has rerun them. Read the file version, comparison criteria and outcome; see [Reproducibility](reproducibility.md) for how those checks work.
 

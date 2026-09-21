@@ -28,7 +28,7 @@ python3 prepare-mask-sources.py
 
 ![实际附加的全文包保留论文身份和正文分节](/img/open-science/research-workflows/mask-trials-input.webp)
 
-将论文用作证据前，先在来源检查更正或撤稿。自 v0.30.2 起，`literature-review` Skill 的 `verify_dois` 辅助方法会检查 Crossref 两个方向的更新关系。`retracted: true` 可能标记被撤稿论文，也可能标记撤稿通知，应打开关联记录区分；`false` 只表示未发现所检查的标记，不能证明论文从未撤稿。下方十篇论文的既有实操记录未包含这项新增检查。
+将论文用作证据前，先在来源检查更正或撤稿。自 v0.30.2 起，`literature-review` Skill 的 `verify_dois` 辅助方法会检查 Crossref 两个方向的更新关系。`retracted: true` 可能标记被撤稿论文，也可能标记撤稿通知，应打开关联记录区分；`false` 只表示未发现所检查的标记，不能证明论文从未撤稿。
 
 ## 要求每项试验占一行
 

@@ -28,7 +28,7 @@ Haga clic en el accesorio para abrir su vista previa. Cada estudio comienza con 
 
 ![El paquete de texto completo adjunto real conserva la identidad de origen y las secciones del artículo](/img/open-science/research-workflows/mask-trials-input.webp)
 
-Antes de usar un documento como evidencia, compruebe las correcciones o retractaciones en su fuente. Desde v0.30.2, el `literature-review` Skill's `verify_dois` helper comprueba las relaciones de actualización Crossref en ambas direcciones. `retracted: true` puede identificar un papel retraído o un aviso de retracción; inspeccionar la relación vinculada. `false` significa que no se encontró ningún marcador comprobado, no prueba de que el papel nunca ha sido retractado. Este cheque adicional no formaba parte de los diez documentos registrados que se ejecutan a continuación.
+Antes de usar un documento como evidencia, compruebe las correcciones o retractaciones en su fuente. Desde v0.30.2, el `literature-review` Skill's `verify_dois` helper comprueba las relaciones de actualización Crossref en ambas direcciones. `retracted: true` puede identificar un papel retraído o un aviso de retracción; inspeccionar la relación vinculada. `false` significa que no se encontró ningún marcador comprobado, no prueba de que el papel nunca ha sido retractado.
 
 ## Solicitar una fila por juicio {/* #ask-for-one-row-per-trial */}
 

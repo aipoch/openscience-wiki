@@ -1343,6 +1343,28 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v0311",
+            "title": "v0.31.1",
+            "scope": "ENA, gene-set enrichment, reference genomes and optional classification models.",
+            "currentDoc": "changelog/v0-31-1",
+            "proposedUrl": "/docs/changelog/v0-31-1/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-31-1"
+            ]
+          },
+          {
+            "id": "v0310",
+            "title": "v0.31.0",
+            "scope": "Writable session forks, validated providers and complete STRING networks.",
+            "currentDoc": "changelog/v0-31-0",
+            "proposedUrl": "/docs/changelog/v0-31-0/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-31-0"
+            ]
+          },
+          {
             "id": "v0302",
             "title": "v0.30.2",
             "scope": "Specialist Skill loading, independent Side Chat, data queries and Notebook recovery.",

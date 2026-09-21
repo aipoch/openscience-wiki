@@ -1615,5 +1615,17 @@
   },
   "docs.outline.reference.v0302.scope": {
     "message": "Specialist Skill 로딩, 독립적인 Side Chat, 데이터 쿼리 및 Notebook 복구."
+  },
+  "docs.outline.reference.v0311.title": {
+    "message": "v0.31.1"
+  },
+  "docs.outline.reference.v0311.scope": {
+    "message": "ENA, 유전자 집합 분석, 참조 게놈 및 선택적 분류 모델."
+  },
+  "docs.outline.reference.v0310.title": {
+    "message": "v0.31.0"
+  },
+  "docs.outline.reference.v0310.scope": {
+    "message": "쓰기 가능한 세션 복사본, 제공자 검증 및 전체 STRING 네트워크."
   }
 }
