@@ -36,8 +36,6 @@ Write in English, do not delegate, and reopen the saved files.
 
 ![La demande de recherche ciblée réelle dans Open-Science](/img/open-science/workflow-extensions/focused-search-input.webp)
 
-La capture d'écran affiche la demande initiale. La règle de sélection opérationnelle ci-dessus intègre l'examen ultérieur de cette opération.
-
 ## 2. Vérifiez la requête et la couverture {/* #2-check-the-query-and-coverage */}
 
 La course a soumis cette question concept-and-journal, avec le filtre de date de publication fourni séparément:
@@ -57,7 +55,7 @@ Une fois la réponse terminée, ouvrez **mindfulness-search-audit.csv** sous **G
 
 ![Le tableau des candidats sauvegardés, y compris les dossiers incertains et exclus](/img/open-science/workflow-extensions/focused-search-table.webp)
 
-L'examen a révélé des raisons inexactes dans l'ébauche initiale : par exemple, PMID **38837133** est un essai randomisé primaire d'une psychothérapie plus large, et non une analyse secondaire. Le tableau révisé indique son admissibilité à la pleine conscience **incertain**. PMID **34009273** est une méta-analyse et reste exclue avec la raison corrigée. Nommer l'enregistrement et l'erreur spécifique donne à l'Agent une demande de révision concrète; puis rouvrez le CSV sauvegardé pour confirmer le changement.
+Vérifiez chaque raison d'exclusion par rapport à l'abstrait. PMID **38837133** est un essai primaire randomisé d'une psychothérapie plus large; l'exemple marque son admissibilité à la pleine conscience **incertain**. PMID **34009273** est une méta-analyse et est exclue. Lorsqu'une décision doit être corrigée, nommez l'enregistrement et la question spécifique, demandez à l'Agent de mettre à jour le CSV, puis rouvrez le fichier sauvegardé.
 
 ![La révision de la sélection et les vérifications de fichier sauvegardées dans Notebook](/img/open-science/workflow-extensions/focused-search-notebook.webp)
 
@@ -67,7 +65,7 @@ Le tableau d'exemples examiné contient **20 inclus, 37 exclu et 5 enregistremen
 
 PMID **41418645** a été retourné par le filtre de publication 2019–2025 PubMed, tandis que ses métadonnées indiquent une date d'impression **2026-01**. Conservez l'écart et vérifiez l'historique de la publication avant de prendre une décision définitive sur la date. Ne remplacez pas silencieusement l'année pour s'adapter à la fenêtre de recherche.
 
-Ouvrez **mindfulness-search-notes.md** et vérifiez que ses nombres, ses règles d'admissibilité et ses limites correspondent à la CSV. Cette opération a révisé les deux fichiers et conservé l'instantané de métadonnées brutes inchangé.
+Ouvrez **mindfulness-search-notes.md** et vérifiez que ses nombres, ses règles d'admissibilité et ses limites correspondent à la CSV. Conservez l'instantané original des métadonnées à côté de ces fichiers afin que chaque décision puisse être retracée à sa source.
 
 ![La note de recherche révisée avec les nombres de dépistage 20/37/5](/img/open-science/workflow-extensions/focused-search-notes.webp)
 

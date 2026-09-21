@@ -104,4 +104,4 @@ v0.31.1 中，該路徑用於 **Codex Chat Completions** 或 **CodeBuddy** 的�
 
 ![已選取 TypeSafe AI / Jev Latest，顯示 Check passed，金鑰保持隱藏](/img/open-science/v0311/classification-connected.webp)
 
-v0.31.1 實測中，服務儲存和模型檢查均通過。在 Codex Chat Completions 工作階段中傳送公開的 TP53 查詢請求，也成功呼叫了 Jev 並選中 `mcp-genes`。這驗證了能力選擇，不代表資料庫查詢已經完成。Codex 訂閱工作階段使用原有的能力載入方式；儲存 Jev 綁定不會讓這類工作階段改用 Jev。
+例如，在 Codex Chat Completions 會話中查詢公開的 TP53 資訊時，可由 Jev 選擇 `mcp-genes`。在活動記錄中檢查選中的能力，再檢視資料庫響應獲取查詢結果。Codex 訂閱會話使用原有的能力載入方式；儲存 Jev 繫結不會讓這類會話改用 Jev。

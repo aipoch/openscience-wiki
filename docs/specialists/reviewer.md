@@ -47,7 +47,7 @@ Using Codex subscription authentication with gpt-5.6-sol, manual review returned
 | The molecule call produced the stated artifact/descriptors | PASS; the returned artifact version and values were identified. |
 | The model inspected the saved molecule preview as requested | FAIL; its catalog lookup did not read the structure content. |
 
-The corrections encountered managed-input access problems and reached **fix limit reached / Issues found**. Opening the structure manually in the application proved that the viewer worked, but did not retroactively change the model's recorded inspection or review result. This is a real unresolved review outcome, not a successful review badge.
+The example ends with **fix limit reached / Issues found** because the model could not access the managed input needed for the structure check. Open the finding to identify the missing input and provide it before requesting another review. Manually opening the structure in the viewer does not update the model’s inspection record.
 
 </details>
 

@@ -6,7 +6,7 @@ last_update:
 
 # Skill, Specialist 및 MCP 형식 {/* #skill-specialist-and-mcp-formats */}
 
-Skills, 전문가 및 Connector 템플릿에는 다른 패키지 경계가 있습니다. 이 참조는 필드와 수입 예산을 중앙화합니다. 제한 및 검증 규칙은 소스 인증; 특정 아카이브를 가져올 수 있습니다 여전히 설치하기 전에 미리보기에 체크해야합니다.
+Skills, 전문가 및 Connector 템플릿에는 다른 패키지 경계가 있습니다. 이 참조는 필드와 수입 예산을 나열합니다. 가져오기 전에 아카이브 미리보기를 검사, 다음 설치 결과를 확인.
 
 ## Skill 문서 및 리소스 {/* #skill-document-and-resources */}
 

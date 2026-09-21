@@ -191,7 +191,7 @@ slurm_poll_failed: Slurm accounting storage is disabled
 
 ![응용 프로그램은 여전히 완료된 Slurm 작업 부하에 대한 터미널 상태를 기다립니다](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
 
-클러스터 관리자에게 계정과 작업에 대해 `sacct` 회계를 제공하도록 요청하십시오. `squeue` 더 이상 직업 목록은 성공의 충분한 증거입니다. 기존의 작업 디렉토리 및 작업 ID를 유지하면서 회계는 수리되고, 다시 동일한 작업을 검사합니다. 모니터링 오류를 취소하기 위해 완료된 분석을 resubmitmit하지 마십시오. Slurm 취소, 복구 및 응용 프로그램 수확은이 환경 요구 사항이 해결 될 때까지 종료됩니다.
+클러스터 관리자에게 계정과 작업에 대해 `sacct` 회계를 제공하도록 요청하십시오. `squeue`에서 사라지는 작업은 성공을 확인하지 않습니다. 기존의 작업 디렉토리 및 작업 ID 모두 유지, 다음 회계 후 동일한 작업을 새로 고침하고 최종 상태를 확인하고 수집 된 파일을 확인합니다.
 
 <ToolOperationGroup>
 <summary>GPU에 작은 단백질 시퀀스 디자인을 실행</summary>
@@ -220,7 +220,7 @@ public [1UBQ ubiquitin 구조](https://www.rcsb.org/structure/1UBQ)을 사용하
 
 <a href="/docs/examples/ubiquitin/gpu-proteinmpnn-verification.json" download>GPU 인증 기록 다운로드</a>. 장치의 80 GB 수용량은 이 작은 일을 위한 최소한도 필요조건이 아닙니다; 피크 메모리는 측정되지 않았습니다. 원격 로그 및 파일은 자동으로 완전한 로컬 Notebook 검증을 제공하지 않습니다.
 
-이 예제는 승인 된 직접 SSH 명령을 사용했습니다. 이전 Slurm 제출은 **InvalidAccount에 대해**을 반환하므로이 결과는 Slurm GPU 작업을 확인할 수 없습니다. 오류가 발생했을 때 파티션 / 계정 인증 확인; 스케줄러 서비스를 변경하거나 필요한 큐를 우회하지 마십시오.
+이 예제는 Direct SSH을 통해 실행됩니다. Slurm GPU 작업의 경우 파티션 및 계정 권한을 먼저 확인합니다. 제출이 **InvalidAccount에 대해**을 반환하면 클러스터 관리자에게 그 설정을 확인하도록 요청하십시오. 스케줄러 관리 작업에 필요한 큐를 사용합니다.
 
 
 </ToolOperationGroup>

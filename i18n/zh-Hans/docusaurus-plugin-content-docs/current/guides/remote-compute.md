@@ -191,7 +191,7 @@ slurm_poll_failed: Slurm accounting storage is disabled
 
 ![Slurm 负载已完成，应用仍等待终态确认](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
 
-请集群管理员提供该账号与作业可用的 `sacct` 记账查询。`squeue` 不再列出任务，并不足以证明成功。修复期间保留原工作目录与作业 ID，恢复后检查同一个任务；不要为了清除监控错误而重跑已经完成的分析。Slurm 取消、恢复和应用结果回收，仍需在这一环境条件解决后验证。
+请集群管理员提供该账号与作业可用的 `sacct` 记账查询。任务从 `squeue` 中消失并不能确认成功。保留原工作目录与两个作业 ID，记账恢复后刷新同一个任务，检查终态和回收文件。
 
 <ToolOperationGroup>
 <summary>在 GPU 上运行小型蛋白序列设计</summary>
@@ -220,7 +220,7 @@ slurm_poll_failed: Slurm accounting storage is disabled
 
 <a href="/docs/examples/ubiquitin/gpu-proteinmpnn-verification.json" download>下载本次 GPU 验证记录</a>。80 GB 是测试设备容量，不是这个小任务的最低显存要求；未测量峰值显存。远程日志与输出也不会自动补齐本地 Notebook 的所有证据字段。
 
-本例通过已批准的直接 SSH 命令完成。此前 Slurm 提交返回 **InvalidAccount**，不能将这次成功写成 Slurm GPU 作业通过。遇到该错误，应核对队列和 account 权限；不要擅自更改调度服务，也不要在要求调度器的集群绕过队列。
+本例通过 Direct SSH 运行。使用 Slurm 提交 GPU 作业前，先确认队列和 account 权限。若返回 **InvalidAccount**，请集群管理员检查这些设置；需要调度器的任务应通过指定队列提交。
 
 
 </ToolOperationGroup>

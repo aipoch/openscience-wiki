@@ -157,7 +157,7 @@ GSE60450 프로젝트에서 기존의 QC 세션을 포크하고 `gse60450-qc-sum
 
 ![Python 계산 및 위조 세션에 저장된 새로운 결과](/img/open-science/v0311/fork-result.webp)
 
-<ExampleDownload path="/examples/v0311/fork-qc-check.csv">산출된 결과를 다운로드</ExampleDownload>. 이 연습은 로컬 세션 포크를 테스트했습니다. 수신된 `.science` 패키지의 읽기 전용 상태 및 윤곽을 위해, [연구 패키지](research-packages.md)를 참조하십시오.
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">산출된 결과를 다운로드</ExampleDownload>. 수신된 `.science` 패키지에서 계속하려면 [연구 패키지](research-packages.md)을 따르십시오.
 
 ## 세션 정보 카드 읽기 {/* #session-information */}
 

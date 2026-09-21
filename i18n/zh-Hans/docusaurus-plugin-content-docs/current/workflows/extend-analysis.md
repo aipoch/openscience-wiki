@@ -21,7 +21,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 3. 在研究项目中新建会话，选择可用模型，再选择 **Agent controls → Specialist → pharmacometrics-pkpd-designer**。本次使用 **Codex subscription / gpt-5.6-sol**。
 4. 在**每条分析消息的开头**输入 `/pkpd`，从候选项中选择 **pkpd-modeling**。确认它变为 Skill 标签后，再粘贴提示词。
 
-**版本说明：**下方截图与结果记录于 v0.30.1。当时仅选择专家角色会返回 `Unknown skill`，按上面的步骤逐条选择 Skill 后才能加载。v0.30.2 已修复专家绑定 Skill 的准备过程，也覆盖委派任务。在新版中可先选择 Specialist，检查实际 Skill 加载结果；需要时再显式选择。本案例尚未在 v0.30.2 重跑，因此旧版绕行步骤不是通用要求，新版修复也不代表本案例已复测通过。
+**版本说明：** 截图使用 v0.30.1，需要为每条分析消息显式选择 Skill。v0.30.2 起，应用会为专家对话和委派任务准备绑定的 Skill。先选择 Specialist；如果对应 Skill 不可用，再显式选择 `/pkpd-modeling` 后发送请求。
 
 ![已安装的 Pharmacometrics Specialist 及包版本](/img/open-science/theoph-specialist/installed.webp)
 
@@ -57,7 +57,7 @@ CSV 预览只显示前 100 行；保存的输入文件包含全部 132 条观测
 
 ## 3. 补充暴露指标
 
-下载<ExampleDownload path="/examples/theoph/nca-conventions.md">已校订的 NCA 方法参考</ExampleDownload>，通过 **+ → Attach files** 添加。本 Wiki 修订版更正了随包参考中的积分和终末区间说明。本例只计算实测 Cmax/Tmax 和明确指定的全线性梯形 AUC，不估计终末斜率。记录本例时，Notebook 无法读取 Skill 安装目录内的参考，因此需要通过会话附件提供。
+下载<ExampleDownload path="/examples/theoph/nca-conventions.md">NCA 方法参考</ExampleDownload>，通过 **+ → Attach files** 添加，以便 Notebook 读取。本例以这份参考为准，计算实测 Cmax/Tmax 和全线性梯形 AUC，不估计终末斜率。
 
 在同一会话中再次选中 `/pkpd-modeling`，然后发送：
 
@@ -77,7 +77,7 @@ Do not estimate AUC to infinity, half-life, clearance or dosing advice.
 Do not install packages, change permissions or delegate. Use English.
 ```
 
-检查并批准相应的文件读取和 R 计算。如果缺少参考文件，先附加真实文件再继续。Skill 加载失败或 Notebook 报错时，不能把分析记为完成。
+检查并批准文件读取和 R 计算。如果缺少参考文件，先附加文件再继续。Notebook 报错时，打开对应单元，修正提示的输入或依赖问题后重试。
 
 ## 4. 打开并核对结果
 

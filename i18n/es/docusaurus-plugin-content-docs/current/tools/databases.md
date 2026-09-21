@@ -175,8 +175,6 @@ This is not differential-expression evidence or evidence of regulation direction
 
 <ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">Notas de análisis</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">Todas las filas de resultado 891</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">Respuesta completa</ExampleDownload>
 
-En la ejecución registrada, ambas llamadas de servicio tuvieron éxito; la generación de las notas inicialmente falló porque el agente trató `mapped_genes` como un array. Corregió ese manejo y guardó los tres archivos de la respuesta existente. Los archivos anteriores son las salidas completadas. Su presencia no certifica la repetición automática ni un ambiente completamente capturado.
-
 `background_size: null` significa que no se presentó una lista de antecedentes personalizada; no significa un universo estadístico de genes cero. Utilice el tamaño de dominio efectivo por término. El enriquecimiento no establece la implicación causal, la expresión diferencial o la regulación de arriba/abajo. Ver [parámetros de operación](../reference/connector-operations.md#enrich_gene_set).
 
 ## Confirme la identidad de referencia-genoma {/* #reference-genome */}

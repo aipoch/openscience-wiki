@@ -157,7 +157,7 @@ Dans le projet GSE60450, fourchez la session QC existante et ouvrez la `gse60450
 
 ![Calcul Python et un nouveau résultat enregistré dans la session fourchue](/img/open-science/v0311/fork-result.webp)
 
-<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Télécharger le résultat calculé</ExampleDownload>. Ce parcours a testé une fourche de session locale. Pour l'état en lecture seule et la suite d'un paquet `.science` reçu, voir [Dossiers de recherche](research-packages.md).
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Télécharger le résultat calculé</ExampleDownload>. Pour continuer à partir d'un paquet `.science` reçu, suivez [Dossiers de recherche](research-packages.md).
 
 ## Lire la carte d'information de la session {/* #session-information */}
 

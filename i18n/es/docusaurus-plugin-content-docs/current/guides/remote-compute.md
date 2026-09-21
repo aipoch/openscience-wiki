@@ -191,7 +191,7 @@ Si el programador muestra **COMPLETED / ExitCode 0:0** pero la aplicación todav
 
 ![La solicitud aún pendiente de estado terminal para un volumen de trabajo Slurm completado](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
 
-Pídale al administrador del grupo que proporcione la contabilidad `sacct` de trabajo para la cuenta y el trabajo. `squeue` ya no está listando un trabajo no es suficiente evidencia de éxito. Mantenga el directorio de trabajo existente y los IDs de trabajo mientras se repara la contabilidad, e inspeccione el mismo trabajo de nuevo. No vuelva a presentar un análisis completado para aclarar un error de monitoreo. La cancelación Slurm, recuperación y cosecha de aplicaciones permanecen pendientes hasta que se resuelva este requisito ambiental.
+Pídale al administrador del grupo que proporcione la contabilidad `sacct` de trabajo para la cuenta y el trabajo. Un trabajo que desaparece de `squeue` no confirma el éxito. Mantenga el directorio de trabajo existente y ambos IDs de trabajo, luego refresque el mismo trabajo después de que se restablezca la contabilidad y compruebe su estado final y los archivos recogidos.
 
 <ToolOperationGroup>
 <summary>Ejecutar un pequeño diseño de secuencia de proteínas en GPU</summary>
@@ -220,7 +220,7 @@ Utilice el [1UBQ ubiquitin structure](https://www.rcsb.org/structure/1UBQ) públ
 
 <a href="/docs/examples/ubiquitin/gpu-proteinmpnn-verification.json" download>Descargar el registro de verificación GPU</a>. La capacidad 80 GB del dispositivo no es un requisito mínimo para esta pequeña tarea; La memoria máxima no se midió. Los registros remotos y los archivos no proporcionan automáticamente la procedencia Notebook local completa.
 
-Este ejemplo utilizó un comando SSH directo aprobado. Una presentación Slurm anterior regresó **InvalidAccount**, por lo que este resultado no verifica un trabajo Slurm GPU. Compruebe la partición/contacto de la autorización cuando se produce ese error; no cambie los servicios de programador o pase una cola requerida.
+Este ejemplo pasa por Direct SSH. Para un trabajo Slurm GPU, confirma primero los permisos de partición y cuenta. Si la presentación devuelve **InvalidAccount**, pídale al administrador del grupo que revise esas configuraciones; utilizar la cola necesaria para el trabajo gestionado por el programador.
 
 
 </ToolOperationGroup>

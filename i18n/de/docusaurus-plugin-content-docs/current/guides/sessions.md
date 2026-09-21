@@ -157,7 +157,7 @@ Im GSE60450-Projekt forken Sie die bestehende QC-Sitzung ab und öffnen Sie das 
 
 ![Python-Berechnung und ein neues Ergebnis, das in der gegabelten Sitzung gespeichert wurde](/img/open-science/v0311/fork-result.webp)
 
-<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Laden Sie das berechnete Ergebnis herunter</ExampleDownload>. Dieser Walkthrough testete eine lokale Session-Fork. Für den schreibgeschützten Zustand und die Fortsetzung eines empfangenen `.science`-Pakets siehe [Forschungspakete](research-packages.md).
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Laden Sie das berechnete Ergebnis herunter</ExampleDownload>. Um von einem erhaltenen `.science`-Paket fortzufahren, folgen Sie [Forschungspakete](research-packages.md).
 
 ## Lesen Sie die Session Information Card {/* #session-information */}
 

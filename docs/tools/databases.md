@@ -175,8 +175,6 @@ This is not differential-expression evidence or evidence of regulation direction
 
 <ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">Analysis notes</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">All 891 result rows</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">Full response</ExampleDownload>
 
-In the recorded run, both service calls succeeded; generating the notes initially failed because the agent treated `mapped_genes` as an array. It corrected that handling and saved all three files from the existing response. The files above are the completed outputs. Their presence does not certify automatic replay or a fully captured environment.
-
 `background_size: null` means no custom background list was submitted; it does not mean a statistical universe of zero genes. Use the per-term effective domain size. Enrichment does not establish causal involvement, differential expression, or up/down regulation. See [operation parameters](../reference/connector-operations.md#enrich_gene_set).
 
 ## Confirm reference-genome identity {/* #reference-genome */}

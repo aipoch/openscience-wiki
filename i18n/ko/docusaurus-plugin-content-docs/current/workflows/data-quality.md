@@ -57,11 +57,11 @@ Do not perform differential-expression testing or delegate.
 
 입력 파일 및 출력 이름을 포함하여 Python 권한 요청을 읽은 다음 범위를 설정 작업을 허용합니다. 대화에서 **Notebook**을 열고 완료된 셀과 출력을 검사합니다. 차원, 본래 상표, 미터 배열 및 hash의 앞에/후를 검사하십시오; 모델의 완성 메시지는 혼자 충분합니다.
 
-입력 버전 ID가 해결되지 않으면 에이전트가이 대화의 첨부 파일과 재스트에서 장착 된 입력을 사용하도록 요청하십시오. 이 실행은 그 복구를 사용. 완료된 계산 또는 침묵으로 다른 파일을 대체하지 마십시오.
+입력 버전 ID가 해결되지 않으면 에이전트가이 대화의 첨부 입력 및 복원을 읽을 수 있습니다. 계속하기 전에 파일명과 체크섬을 확인합니다.
 
 ![차원을 가진 성공적인 Notebook 산출, hashes 및 계산된 표본 미터](/img/open-science/research-workflows/rnaseq-qc-rerun-notebook.webp)
 
-완료 된 재런 유효 **27,179 유전자 행 및 12 샘플 열**은 변형되지 않은 행, 중복 ID, 누락 된 항목 또는 잘못된 카운트가 없습니다. 모든 3 개의 요청된 파일은 **Generated**에서 나타났습니다. 각 파일을 엽니다; artifact로 저장되지 않은 작업 파일은 아직 전달되지 않았습니다.
+예를 들어, **27,179 유전자 행 및 12 샘플 열**이 포함되어 있지 않은 행, 중복 ID, 누락 된 항목 또는 잘못된 수. **Generated**의 밑에 모든 3개의 산출 파일을 저장한 결과를 검열하기 위하여 여십시오.
 
 ## 4. 표본 테이블을 받아들이십시오 {/* #4-accept-the-sample-table */}
 
@@ -69,7 +69,7 @@ Do not perform differential-expression testing or delegate.
 
 [Baseline 테이블](../reference/example-data.md#sample-qc-baseline)과 모든 샘플 메트릭스를 비교하여 전체 샘플 식별자가 일치합니다.
 
-![완료된 재런에서 12row 테이블을 다시 열었습니다.](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
+![저장된 12 줄 표본 QC 테이블](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
 
 이 입력을 위해, 0-count 플러스 각 행에 있는 검출된 유전자는 **27,179**와 동등해야 합니다. **48** 샘플 메트릭을 독립적 인 기본으로 비교하십시오. 계약은 공급된 입력에 대한 이러한 계산을 확인합니다; downstream assumptions는 여전히 자신의 평가를 필요로합니다.
 
@@ -77,14 +77,14 @@ Do not perform differential-expression testing or delegate.
 
 `rnaseq-library-sizes.png`을 열고 확대합니다. 모든 12 개의 샘플 라벨, 원시 카운트 축 및 값이 정상화되지 않는 메모를 확인하십시오. 총 수는 **20,015,386**에서 **24,723,827**에 배열합니다.
 
-![동일한 rerun에서 저장된 원본 라이브러리 크기 도형](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
+![저장된 원본 라이브러리 크기 플로트](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
 
-더 큰 라이브러리 합계는 자체가 유전자가 다르게 표현된다는 것을 의미하지 않습니다. 별도의 다운스트림 분석 전에 GEO 메타데이터에 샘플 특성과 디자인, 대조, 정상화 및 필터링 규칙을 지정합니다. 별도의 Connector 후속 12 샘플의 GEO 특성에 기여; GSM-to-matrix-column 매핑, 분석 디자인 및 통계 단계는 여기에서 유효하지 않았습니다. [커넥터](../guides/connectors.md) 참조.
+더 큰 라이브러리 합계는 자체가 유전자가 다르게 표현된다는 것을 의미하지 않습니다. 다운스트림 분석 전에, 샘플 특성과 GSM 식별자는 GEO 메타데이터를 사용하여 매트릭스 컬럼에 따라 디자인, 대조, 정상화 및 필터링 규칙을 지정합니다. metadata를 검색하려면 [연결관](../guides/connectors.md)을 참조하십시오.
 
 ## 6. 방법 및 증거 유지 {/* #6-retain-the-methods-and-evidence */}
 
 입력 체크섬, 치수, 유효성 검사, 정확한 라벨 매핑, runtime/library 버전 및 해석 제한을 포함하는 보고서를 유지하십시오. 값 비교 후 독립적 인 체크 섹션을 추가하십시오. 보고서 개정을 저장하지 않습니다 테이블 또는 숫자를 recompute.
 
-9 월 16 리런은 독립적으로 검사 된 기본에 대한 모든 **48** 메트릭을 일치했습니다. 그것의 입력 SHA-256는 `128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691`를 남아 있었습니다. 보고서는 Python 3.12.14과 matplotlib 3.11.1를 기록합니다. 이 체크는 이 계산의 계약과 입력 보전을 설치합니다; 그들은 검토 감사 또는 독립적 인 재생산을위한 정확한 환경을 구축하지 않습니다.
+기본으로 모든 **48** 샘플 메트릭을 비교하고 입력 SHA-256이 `128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691` 남아 있는지 확인하십시오. 예를 들어, Python 3.12.14과 matplotlib 3.11.1를 기록합니다. 자신의 실행에 사용 된 버전을 기록합니다.
 
-이 재런의 <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>QC 테이블</a>, <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>팟캐스트</a> 및 <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>- 연혁</a> 다운로드. 원래 입력과 세션 Notebook을 너무 유지합니다. [예-data 페이지](../reference/example-data.md#saved-example-outputs)은 이전 기본 및 Notebook 수출을 별도로 유지; 그 수출은 이 재런에서 Notebook이 아닙니다. [Reproducibility 검사](../guides/reproducibility.md)을 사용하여 별도의 환경 및 레런치 평가를 제공합니다.
+<a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>QC 테이블</a>, <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>팟캐스트</a> 및 <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>- 연혁</a>를 다운로드하십시오. 출력을 따라 원래 입력 및 세션 Notebook을 유지합니다. [Reproducibility 검사](../guides/reproducibility.md)을 사용하여 환경을 준비하고 계산을 다시 실행합니다.

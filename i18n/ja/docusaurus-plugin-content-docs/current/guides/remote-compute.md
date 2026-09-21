@@ -191,7 +191,7 @@ slurm_poll_failed: Slurm accounting storage is disabled
 
 ![アプリケーションはまだ完了したSlurmのワークロードのための末端の状態を待っています](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
 
-クラスター管理者にアカウントとジョブの `sacct` の会計機能を提供するように依頼してください。 `squeue` は、もはや仕事のリストを主張することは、成功の不十分な証拠ではありません。 会計が修理される間、既存の仕事のディレクトリおよび仕事 ID を保って下さい、そして同じ仕事を再度点検して下さい。 監視エラーをクリアするために、完了した解析を再サブミットしないでください。 Slurmのキャンセル、回復および適用収穫はこの環境の条件が解決されるまで保留します。
+クラスター管理者にアカウントとジョブの `sacct` の会計機能を提供するように依頼してください。 `squeue`から消える仕事は成功を確認しません。 既存の作業ディレクトリとジョブ ID の両方を保持し、経理後に同じジョブを更新し、最終的な状態と収集されたファイルを確認します。
 
 <ToolOperationGroup>
 <summary>GPUで小さなタンパク質シーケンスデザインを実行</summary>
@@ -220,7 +220,7 @@ slurm_poll_failed: Slurm accounting storage is disabled
 
 <a href="/docs/examples/ubiquitin/gpu-proteinmpnn-verification.json" download>GPU認証レコードをダウンロード</a>. デバイスの80 GB容量は、この小さなタスクの最小要件ではありません。 ピークメモリは測定されません。 リモート・ログおよびファイルは自動的に完全なローカルNotebookの証明を提供しません。
 
-この例では、承認された直接SSHコマンドを使用します。 以前のSlurm投稿は**Invalidアカウント**を返すので、この結果はSlurm GPUジョブを検証しません。 そのエラーが発生したときにパーティション/アカウントの承認を確認してください。 スケジューラサービスを変更したり、必要なキューをバイパスしたりしないでください。
+この例では、Direct SSH で動作します。 Slurm GPUジョブでは、パーティションとアカウント権限を最初に確認します。 送信が**Invalidアカウント**を返す場合は、クラスター管理者にこれらの設定をチェックするように依頼してください。 スケジューラ管理作業に必要なキューを使用します。
 
 
 </ToolOperationGroup>

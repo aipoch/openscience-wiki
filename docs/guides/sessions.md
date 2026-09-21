@@ -157,7 +157,7 @@ In the GSE60450 project, fork the existing QC session and open the inherited `gs
 
 ![Python calculation and a new result saved in the forked session](/img/open-science/v0311/fork-result.webp)
 
-<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Download the calculated result</ExampleDownload>. This walkthrough tested a local session fork. For the read-only state and continuation of a received `.science` package, see [Research packages](research-packages.md).
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Download the calculated result</ExampleDownload>. To continue from a received `.science` package, follow [Research packages](research-packages.md).
 
 ## Read the session information card {/* #session-information */}
 

@@ -47,7 +47,7 @@ En utilisant l'authentification de l'abonnement Codex avec gpt-5.6-sol, l'examen
 | L'appel à la molécule a produit l'artefact/descripteurs indiqués | PASSÉ; la version de l'artefact retournée et les valeurs ont été identifiées. |
 | Le modèle a inspecté l'aperçu des molécules sauvegardées comme demandé | FEUILLE; sa recherche de catalogue n'a pas lu le contenu de la structure. |
 
-Les corrections ont rencontré des problèmes d'accès gérés et ont atteint **fixer la limite atteinte / Problèmes trouvés**. L'ouverture manuelle de la structure dans l'application a prouvé que le spectateur a fonctionné, mais n'a pas modifié rétroactivement le résultat d'inspection ou d'examen enregistré du modèle. Il s'agit d'un véritable résultat d'examen non résolu, et non d'un badge d'examen réussi.
+L'exemple se termine par **fixer la limite atteinte / Problèmes trouvés** car le modèle n'a pas pu accéder à l'entrée gérée nécessaire à la vérification de la structure. Ouvrir la recherche pour identifier les données manquantes et la fournir avant de demander un autre examen. L'ouverture manuelle de la structure dans le visionneur ne met pas à jour le dossier d'inspection du modèle.
 
 </details>
 

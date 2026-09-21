@@ -84,7 +84,7 @@ Keep everything in English and return links to both new files.
 
 <ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">Résumé hérité</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">Nouveau calcul</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">Notes de calcul</ExampleDownload>
 
-Après le calcul, les fichiers de synthèse de la session source, de la session importée et du Fork avaient des hachages SHA-256 identiques. Les deux nouveaux fichiers ont été créés dans le Fork. Cela vérifie le parcours exportation → importation → Fork → poursuite de l’analyse **entre projets sur un même Mac**. La restauration de l’environnement sur un autre appareil, le transfert intégral des documents et annotations et la réexécution automatique n’ont pas été vérifiés. Voir [Créer un Fork d’une session](sessions.md#fork-session). L’utilisation importée est exclue des totaux d’activité locale.
+Les deux nouveaux fichiers sont enregistrés dans le Fork ; les fichiers récapitulatifs de la session source et de la session importée restent inchangés. Voir [Créer un Fork d’une session existante](sessions.md#fork-session). L’utilisation importée est exclue des totaux d’activité locaux.
 
 Un dossier de vérification reçu décrit les vérifications fournies par l'expéditeur. Cela ne signifie pas que cet ordinateur a réexécuté les vérifications. Lire la version du fichier, les critères de comparaison et le résultat; voir [Reproductibilité](reproducibility.md) pour savoir comment ces contrôles fonctionnent.
 

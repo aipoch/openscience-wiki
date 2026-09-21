@@ -28,7 +28,7 @@ Cliquez sur la pièce jointe pour ouvrir son aperçu. Chaque étude commence par
 
 ![Le paquet texte intégral joint conserve l'identité de la source et les sections d'article](/img/open-science/research-workflows/mask-trials-input.webp)
 
-Avant d'utiliser un papier comme preuve, vérifiez les corrections ou les rétractations à sa source. À partir v0.30.2, les `literature-review` Skill's `verify_dois` helper vérifie les relations de mise à jour de Crossref dans les deux sens. `retracted: true` peut identifier un papier rétracté ou un avis de rétractation; Inspectez la relation liée. `false` signifie qu'aucun marqueur vérifié n'a été trouvé, et non une preuve que le papier n'a jamais été rétracté. Cette vérification supplémentaire ne faisait pas partie de l'exécution de dix documents enregistrée ci-dessous.
+Avant d'utiliser un papier comme preuve, vérifiez les corrections ou les rétractations à sa source. À partir v0.30.2, les `literature-review` Skill's `verify_dois` helper vérifie les relations de mise à jour de Crossref dans les deux sens. `retracted: true` peut identifier un papier rétracté ou un avis de rétractation; Inspectez la relation liée. `false` signifie qu'aucun marqueur vérifié n'a été trouvé, et non une preuve que le papier n'a jamais été rétracté.
 
 ## Demander une rangée par essai {/* #ask-for-one-row-per-trial */}
 

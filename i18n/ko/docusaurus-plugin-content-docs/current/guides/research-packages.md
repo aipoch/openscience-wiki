@@ -84,7 +84,7 @@ Keep everything in English and return links to both new files.
 
 <ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">자주 묻는 질문</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">새로운 계산</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">계산 노트</ExampleDownload>
 
-계산 후에도 원본 세션, 가져온 세션, Fork의 요약 파일은 SHA-256 해시가 동일했습니다. 새 파일 두 개는 Fork에 생성되었습니다. 이는 **동일한 Mac의 서로 다른 프로젝트 간** 내보내기 → 가져오기 → Fork → 분석 계속하기를 검증한 것입니다. 다른 기기의 환경 복원, 문헌과 주석의 전체 전송, 자동 재실행은 검증하지 않았습니다. 일반적인 사용법은 [기존 세션 Fork](sessions.md#fork-session)를 참고하세요. 가져온 사용량은 로컬 활동 합계에 포함되지 않습니다.
+새 파일 두 개는 Fork에 저장되며, 원본 세션과 가져온 세션의 요약 파일은 변경되지 않습니다. 일반적인 사용 방법은 [기존 세션 Fork](sessions.md#fork-session)를 참고하세요. 가져온 사용량은 로컬 활동 합계에 포함되지 않습니다.
 
 수신 확인 기록은 sender에 의해 공급된 검사를 설명합니다. 이 컴퓨터에서 검증을 다시 실행했다는 뜻은 아닙니다. 파일 버젼, 비교 기준 및 결과 읽기; [재현성](reproducibility.md)을 참조하여 확인 작업을 수행하는 방법.
 

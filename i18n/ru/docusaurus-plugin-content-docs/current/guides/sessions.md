@@ -157,7 +157,7 @@ Fork доступен в настольном приложении. Импорт
 
 ![Расчет Python и новый результат сохранены в разветвленной сессии](/img/open-science/v0311/fork-result.webp)
 
-<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Скачать вычисленный результат</ExampleDownload>. Этот переход тестировал локальную вилку сеанса. Для состояния только для чтения и продолжения принятого пакета `.science` см. [Исследовательские пакеты](research-packages.md).
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Скачать вычисленный результат</ExampleDownload>. Чтобы продолжить полученный пакет `.science`, следуйте за [Исследовательские пакеты](research-packages.md).
 
 ## Прочитайте информационную карту сессии {/* #session-information */}
 

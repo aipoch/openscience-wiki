@@ -103,4 +103,4 @@ Jev を使う場合は、**Automatic capability selection** で **TypeSafe AI / 
 
 ![TypeSafe AI / Jev Latest を選択し、API キーを伏せた状態で Check passed を表示](/img/open-science/v0311/classification-connected.webp)
 
-v0.31.1 の実測では、サービスの保存とモデルの確認が成功しました。Codex Chat Completions のセッションで公開データの TP53 検索を依頼すると、Jev が正常に呼び出され、`mcp-genes` が選択されました。これは機能選択の検証であり、データベース検索の完了を意味しません。Codex サブスクリプションのセッションは従来の機能読み込み方式を使います。Jev の設定を保存しても、それらのセッションが Jev を使うようにはなりません。
+たとえば、Codex Chat Completionsセッションで公開TP53の検索では、Jevを使用して`mcp-genes`を選択することができます。 選択した機能の検査を行い、研究結果のデータベース応答を検査します。 Codexサブスクリプションセッションは、既存の機能読み込みパスを使用します。 保存された Jev の結合は、これらのセッションが Jev を使用することはありません。

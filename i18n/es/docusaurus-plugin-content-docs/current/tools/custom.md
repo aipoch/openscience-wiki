@@ -108,7 +108,7 @@ El servidor implementa MCP inicializa, ping, descubrimiento de herramientas y ll
 
 **Cartografía de errores conocida:** un nombre de muestra inválido puede aparecer como **connector_unavailable** en la aplicación incluso cuando el servidor personalizado devuelve un error de dominio específico. Comprueba el registro del servidor y valida el identificador de la muestra antes de reconectarse. Reportar desajustes persistentes utilizando [Solución de problemas](../guides/troubleshooting.md).
 
-No invoque el protocolo `tools/list` como una herramienta de negocio a través de `host.mcp`; la aplicación ya descubre las herramientas del servidor durante la conexión. El intento de llamada `gse60450-qc/tools/list` fue rechazado como herramienta desconocida. Use los nombres de operación descubiertos o inspeccione el esquema propio del servidor.
+La aplicación descubre las herramientas del servidor durante la conexión. Use los nombres de operación descubiertos cuando llame a través de `host.mcp`; protocolo `tools/list` no es una herramienta de negocio. Inspeccione el script descargable para el esquema de entrada.
 
 ## Exportar y pasar a otra computadora {/* #export-and-move-to-another-computer */}
 

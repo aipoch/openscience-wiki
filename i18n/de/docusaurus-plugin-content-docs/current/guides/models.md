@@ -103,4 +103,4 @@ Wählen Sie für Jev unter **Automatic capability selection** den Eintrag **Type
 
 ![TypeSafe AI / Jev Latest ausgewählt, mit Check passed und verborgenem API-Schlüssel](/img/open-science/v0311/classification-connected.webp)
 
-Im Test mit v0.31.1 waren das Speichern des Dienstes und die Modellprüfung erfolgreich. Eine Anfrage nach öffentlichen TP53-Daten in einer Codex Chat Completions-Sitzung rief Jev ebenfalls erfolgreich auf und wählte `mcp-genes` aus. Dies bestätigt die Auswahl der Fähigkeiten, nicht den Abschluss der Datenbankabfrage. Sitzungen mit Codex-Abonnement verwenden weiterhin ihren bisherigen Ladepfad für Fähigkeiten; eine gespeicherte Jev-Bindung stellt diese Sitzungen nicht auf Jev um.
+Beispielsweise kann ein öffentliches TP53-Lookup in einer Codex Chat Completions-Sitzung Jev verwenden, um `mcp-genes` auszuwählen. Überprüfen Sie die ausgewählte Fähigkeit in der Aktivität und prüfen Sie dann die Datenbankantwort auf das Forschungsergebnis. Codex-Abonnementsitzungen verwenden ihren bestehenden Fähigkeitsladepfad; Eine gespeicherte Jev-Bindung lässt diese Sitzungen nicht Jev verwenden.

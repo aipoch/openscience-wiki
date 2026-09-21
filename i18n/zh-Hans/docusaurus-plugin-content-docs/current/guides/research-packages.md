@@ -84,7 +84,7 @@ Keep everything in English and return links to both new files.
 
 <ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">继承的汇总表</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">新计算结果</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">计算说明</ExampleDownload>
 
-计算后，原会话、导入会话和 Fork 中的汇总文件 SHA-256 完全一致，两个新文件属于 Fork。本例验证了**同一台 Mac 的不同项目间**导出 → 导入 → Fork → 继续分析，没有据此验证跨设备环境恢复、文献与批注完整转移或自动重放。通用操作见[复制已有会话继续研究](sessions.md#fork-session)。导入的用量不会计入本机活动总量。
+两个新文件保存在 Fork 中，原会话和导入会话的汇总文件保持不变。通用操作见[复制已有会话继续研究](sessions.md#fork-session)。导入的用量不会计入本机活动总量。
 
 随包收到的验证记录描述发送方提供的检查，不代表这台电脑已经重新运行。阅读它对应的文件版本、比较条件和结果；检查方式见[可复现性](reproducibility.md)。
 

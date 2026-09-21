@@ -84,7 +84,7 @@ Keep everything in English and return links to both new files.
 
 <ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">Resumen heredado</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">Nuevo cálculo</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">Notas de cálculo</ExampleDownload>
 
-Tras el cálculo, los archivos de resumen de la sesión original, la sesión importada y el Fork tenían hashes SHA-256 idénticos. Los dos archivos nuevos se crearon en el Fork. Esto verifica exportación → importación → Fork → continuación del análisis **entre proyectos en el mismo Mac**. No se verificaron la recuperación del entorno en otro dispositivo, la transferencia completa de literatura y anotaciones ni la repetición automática. Consulte [Crear un Fork de una sesión](sessions.md#fork-session). El uso importado queda excluido de los totales de actividad local.
+Los dos archivos nuevos se guardan en el Fork; los archivos de resumen de la sesión original y de la sesión importada permanecen sin cambios. Consulta [Crear un Fork de una sesión existente](sessions.md#fork-session). El uso importado queda excluido de los totales de actividad local.
 
 Un registro de verificación recibido describe los cheques suministrados por el remitente. Esto no significa que este equipo haya vuelto a ejecutar las comprobaciones. Lea la versión del archivo, los criterios de comparación y el resultado; ver [Reproducibilidad](reproducibility.md) para cómo funcionan esos cheques.
 

@@ -191,7 +191,7 @@ Si le programmeur affiche **COMPLÈTE / Code de sortie 0:0** mais que l'applicat
 
 ![L'application attend toujours le statut de terminal pour une charge de travail complète de Slurm](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
 
-Demandez à l'administrateur du cluster de fournir la comptabilité de travail `sacct` pour le compte et l'emploi. `squeue` n'énumère plus d'emploi, ce qui ne prouve pas le succès. Conservez le répertoire de travail existant et les ID de travail pendant que la comptabilité est réparée, puis inspectez à nouveau le même travail. Ne pas soumettre à nouveau une analyse complète pour éliminer une erreur de surveillance. L'annulation de Slurm, la récupération et la récolte d'applications demeurent en attente jusqu'à ce que cette exigence environnementale soit résolue.
+Demandez à l'administrateur du cluster de fournir la comptabilité de travail `sacct` pour le compte et l'emploi. Un emploi qui disparaît de `squeue` ne confirme pas son succès. Gardez le répertoire de travail existant et les deux ID de travail, puis rafraîchir le même travail après la comptabilité est rétabli et vérifier son état final et les fichiers collectés.
 
 <ToolOperationGroup>
 <summary>Exécuter une petite séquence protéique sur GPU</summary>
@@ -220,7 +220,7 @@ Utilisez le public [Structure de l'ubiquitine du 1UBQ](https://www.rcsb.org/stru
 
 <a href="/docs/examples/ubiquitin/gpu-proteinmpnn-verification.json" download>Télécharger l'enregistrement de vérification GPU</a>. La capacité 80 GB de l'appareil n'est pas une exigence minimale pour cette petite tâche; la mémoire maximale n'a pas été mesurée. Les journaux et fichiers distants ne fournissent pas automatiquement une provenance locale complète de Notebook.
 
-Cet exemple utilise une commande SSH directe approuvée. Une soumission antérieure de Slurm a retourné **Nombre d ' affaires non réglées**, donc ce résultat ne vérifie pas un travail Slurm GPU. Vérifier l'autorisation de partition/compte lorsque cette erreur se produit; ne modifiez pas les services de calendrier ou ne contournez pas une file d'attente requise.
+Cet exemple passe par Direct SSH. Pour un travail Slurm GPU, validez d'abord les permissions de partition et de compte. Si la soumission renvoie **Nombre d ' affaires non réglées**, demandez à l'administrateur du cluster de vérifier ces paramètres; utiliser la file d'attente requise pour les travaux gérés par les planificateurs.
 
 
 </ToolOperationGroup>

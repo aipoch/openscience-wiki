@@ -175,8 +175,6 @@ This is not differential-expression evidence or evidence of regulation direction
 
 <ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">Аналитические заметки</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">Все строки результатов 891</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">Полный ответ</ExampleDownload>
 
-В записанном прогоне оба служебных вызова увенчались успехом; Первоначально создание заметок не удалось, потому что агент рассматривал `mapped_genes` как массив. Он исправил эту обработку и сохранил все три файла из существующего ответа. Файлы выше являются завершенными выводами. Их присутствие не подтверждает автоматическое воспроизведение или полностью захваченную среду.
-
 `background_size: null` означает, что не было представлено ни одного пользовательского справочного списка; Это не означает статистическую вселенную нулевых генов. Используйте временный эффективный размер домена. Обогащение не устанавливает причинно-следственную связь, дифференциальное выражение или регулирование вверх/вниз. Смотрите [Параметры работы](../reference/connector-operations.md#enrich_gene_set).
 
 ## Подтвердить идентичность эталонного генома {/* #reference-genome */}

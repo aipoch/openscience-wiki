@@ -108,7 +108,7 @@ Der Server implementiert MCP Initialisieren, Ping, Tool Discovery und Aufrufe ü
 
 **Bekanntes Fehler-Mapping:** kann ein ungültiger Beispielname als **connector_unavailable** in der App erscheinen, auch wenn der benutzerdefinierte Server einen domänenspezifischen Fehler zurückgibt. Überprüfen Sie das Serverprotokoll und validieren Sie die Beispielkennung, bevor Sie die Verbindung wieder herstellen. Anhaltende Inkongruenzen unter Verwendung von [Fehlerbehebung](../guides/troubleshooting.md) melden.
 
-Rufen Sie das Protokoll `tools/list` nicht als Business-Tool über `host.mcp` auf; Die Anwendung entdeckt bereits während der Verbindung die Tools des Servers. Der versuchte `gse60450-qc/tools/list`-Aufruf wurde als unbekanntes Werkzeug abgelehnt. Verwenden Sie die gefundenen Betriebsnamen oder prüfen Sie das eigene Schema des Servers.
+Die Anwendung entdeckt Server-Tools während der Verbindung. Verwenden Sie die gefundenen Operationsnamen beim Aufruf von `host.mcp`; `tools/list` ist kein Business-Tool. Überprüfen Sie das herunterladbare Skript für das Eingabeschema.
 
 ## Exportieren und Wechseln zu einem anderen Computer {/* #export-and-move-to-another-computer */}
 

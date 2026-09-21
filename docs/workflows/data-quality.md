@@ -57,11 +57,11 @@ For each sample, compute total raw counts, number of zero-count genes, number wi
 
 Read the Python permission request, including the input file and output names, then allow the scoped operation. Open **Notebook** in the conversation and inspect the completed cell and its output. Check the dimensions, original labels, metric arrays and before/after hash; the model's completion message alone is insufficient.
 
-If the input Version ID cannot be resolved, ask the Agent to use the input mounted from this conversation's attachment and retry. This run used that recovery. Do not treat the failed attempt as a completed calculation or silently substitute another file.
+If the input Version ID cannot be resolved, ask the Agent to read this conversation's attached input and retry. Confirm the filename and checksum before continuing.
 
 ![Successful Notebook output with dimensions, hashes and calculated sample metrics](/img/open-science/research-workflows/rnaseq-qc-rerun-notebook.webp)
 
-The completed rerun validated **27,179 gene rows and 12 sample columns** with no malformed rows, duplicate IDs, missing entries or invalid counts. All three requested files appeared under **Generated**. Open each file there; a working file that was never saved as an artifact is not yet a deliverable.
+The example contains **27,179 gene rows and 12 sample columns**, with no malformed rows, duplicate IDs, missing entries or invalid counts. Open all three output files under **Generated** to inspect the saved results.
 
 ## 4. Accept the sample table
 
@@ -69,7 +69,7 @@ Open `rnaseq-sample-qc.csv` and check **12 rows · 6 columns**. It retains each 
 
 Compare all sample metrics with the [baseline table](../reference/example-data.md#sample-qc-baseline), matching rows by the complete sample identifier.
 
-![The reopened twelve-row table from the completed rerun](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
+![The saved twelve-row sample QC table](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
 
 For this input, zero-count plus detected genes in each row should equal **27,179**. Compare the **48** sample metrics with the independent baseline. Agreement checks these calculations for the supplied input; downstream assumptions still need their own assessment.
 
@@ -77,14 +77,14 @@ For this input, zero-count plus detected genes in each row should equal **27,179
 
 Open `rnaseq-library-sizes.png` and enlarge it. Check all twelve sample labels, the raw-count axis and the note that values are not normalized. Total counts range from **20,015,386** to **24,723,827** in this matrix.
 
-![The saved raw library-size plot from the same rerun](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
+![The saved raw library-size plot](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
 
-A larger library total does not by itself mean that a gene is differentially expressed. Before a separate downstream analysis, match sample characteristics to the GEO metadata and specify the design, contrasts, normalization and filtering rules. A separate Connector follow-up retrieved the twelve samples’ GEO characteristics; the GSM-to-matrix-column mapping, analysis design and statistical steps were not validated here. See [Connectors](../guides/connectors.md).
+A larger library total does not by itself mean that a gene is differentially expressed. Before downstream analysis, match sample characteristics and GSM identifiers to the matrix columns using GEO metadata, then specify the design, contrasts, normalization and filtering rules. See [Connectors](../guides/connectors.md) for retrieving metadata.
 
 ## 6. Retain the methods and evidence
 
 Keep a report containing the input checksum, dimensions, validity checks, exact label mapping, runtime/library versions and interpretation limits. Add an independent-check section only after comparing the values. Saving a report revision does not recompute the table or figure.
 
-The September 16 rerun matched all **48** metrics against the independently checked baseline. Its input SHA-256 remained `128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691`. The report records Python 3.12.14 and matplotlib 3.11.1. These checks establish this calculation's agreement and input preservation; they do not establish a Reviewer audit or an exact environment for independent reproduction.
+Compare all **48** sample metrics with the baseline and check that the input SHA-256 remains `128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691`. The example report records Python 3.12.14 and matplotlib 3.11.1; record the versions used in your own run.
 
-Download this rerun's <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>QC table</a>, <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>plot</a> and <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>report</a>. Retain the original input and the session Notebook too. The [example-data page](../reference/example-data.md#saved-example-outputs) keeps the earlier baseline and Notebook exports separately; those exports are not the Notebook from this rerun. Use [Reproducibility checks](../guides/reproducibility.md) for a separate environment-and-rerun assessment.
+Download the example <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>QC table</a>, <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>plot</a> and <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>report</a>. Retain your original input and session Notebook alongside the outputs. Use [Reproducibility checks](../guides/reproducibility.md) to prepare the environment and rerun the calculation.

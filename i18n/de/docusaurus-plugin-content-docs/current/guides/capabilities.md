@@ -44,7 +44,7 @@ Project **Description** hilft Ihnen, das Projekt zu identifizieren. Setzen Sie A
 
 Ein Gespräch benötigt ein Work Agent Framework und eine Modellverbindung. Eine Python-Berechnung benötigt auch eine aktivierte Python Notebook-Laufzeit. Ein Service-Lookup benötigt das entsprechende Connector, den Netzwerkzugang und alle erforderlichen Anmeldeinformationen. Eine GPU-Methode kann eine separate Maschine, Softwareumgebung und Modellgewichte erfordern, auch wenn ihre Skill bereits aufgeführt ist.
 
-Der dokumentierte lokale Lauf verwendete ein Codex-Abonnement und die von der App verwaltete Python-Umgebung. Der modellzugriff installierte keine Python-pakete: eine fehlende pandas-abhängigkeit stoppte immer noch die erste berechnung. Die Analyse wurde abgeschlossen, nachdem die Implementierung auf installierte Pakete geändert wurde, ohne die beschreibende Frage zu ändern.
+Konfigurieren Sie das Modell, die Laufzeit und die Datendienste separat. Überprüfen Sie nach dem Verbinden des Modells die für die Berechnung erforderlichen Pakete. Wenn ein Paket fehlt, installieren Sie es oder wählen Sie explizit eine Methode aus, die die verfügbare Umgebung verwendet.
 
 Siehe [Provider-Einrichtung](providers.md), [Python und R Laufzeiten](runtimes.md) und [Netzwerk](network.md) für diese unabhängigen Setup-Pfade. Ein erfolgreicher Modellverbindungstest validiert nicht jeden nachgelagerten Dienst.
 
@@ -57,7 +57,7 @@ Die formalen Beispiele verwenden öffentliche Forschungsbeiträge:
 - [PRISMA Lesesammlung](../workflows/core-reading-list.md): drei echte Papiere, überprüfte Bibliotheksaufzeichnungen und ein beigefügter Verlag PDF.
 - [GSE60450 RNA-seq-Analyse](../workflows/data-quality.md): 27,179-Genreihen, 12-Proben, unabhängig geprüfte QC-Metriken, eine Rohzahl und erfasster Herstellercode.
 
-[Remote Compute](remote-compute.md) zeigt das gleiche RNA-seq QC auf Direct SSH, einschließlich gesammelter Ausgänge, Neustartwiederherstellung und Löschung. Die Slurm-Berechnung wurde auf dem Server bestätigt, aber die deaktivierte Scheduler-Buchhaltung verhindert die Anwendungsernte. Das gleiche Kapitel überprüft auch einen kleinen ProteinMPNN-Sequenz-Design-Lauf auf einem A100 GPU in einer isolierten CUDA-Umgebung.
+[Remote Compute](remote-compute.md) umfasst RNA-seq QC bis Direct SSH, Sammeln von Ergebnissen, Wiederherstellung und Löschung. Es erklärt auch Slurm Buchhaltungsanforderungen und einen kleinen ProteinMPNN Sequenz-Design-Workflow auf einem A100 GPU in einer isolierten CUDA-Umgebung.
 
 ## Lokale Lagerung und externe Verarbeitung {/* #local-storage-and-external-processing */}
 

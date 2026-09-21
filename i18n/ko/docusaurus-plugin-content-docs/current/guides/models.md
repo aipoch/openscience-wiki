@@ -103,4 +103,4 @@ Jev를 사용할 때는 **Automatic capability selection**에서 **TypeSafe AI /
 
 ![TypeSafe AI / Jev Latest 선택 및 Check passed 표시, API 키는 숨김](/img/open-science/v0311/classification-connected.webp)
 
-v0.31.1 실측에서 서비스 저장과 모델 검사가 성공했습니다. Codex Chat Completions 세션에서 공개 TP53 데이터 조회를 요청하자 Jev가 정상 호출되어 `mcp-genes`를 선택했습니다. 이는 기능 선택 검증이며 데이터베이스 조회 완료를 뜻하지 않습니다. Codex 구독 세션은 기존 기능 로딩 방식을 사용합니다. Jev 설정을 저장해도 이 세션들이 Jev를 사용하도록 바뀌지는 않습니다.
+예를 들어, Codex Chat Completions 세션에서 공개 TP53 조회는 `mcp-genes`을 선택하기 위해 Jev를 사용할 수 있습니다. 활동에서 선택한 기능을 검사하고 연구 결과에 대한 데이터베이스 응답을 검사합니다. Codex 구독 세션은 기존의 기능 로드 경로를 사용합니다. 저장된 Jev 바인딩은 그 세션이 Jev를 사용하지 않습니다.

@@ -84,7 +84,7 @@ Keep everything in English and return links to both new files.
 
 <ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">Inherited summary</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">New calculation</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">Calculation notes</ExampleDownload>
 
-The source, imported and forked summary files had identical SHA-256 hashes after the calculation, and the two new files belonged to the Fork. This verifies export → import → Fork → continuation **between projects on one Mac**. It does not establish cross-device environment recovery, full literature/annotation transfer or automatic replay. See [Fork an existing session](sessions.md#fork-session) for general usage. Imported usage is excluded from local activity totals.
+The two new files are saved in the Fork; the source and imported summary remain unchanged. See [Fork an existing session](sessions.md#fork-session) for general usage. Imported usage is excluded from local activity totals.
 
 A received verification record describes checks supplied by the sender. It does not mean this computer has rerun them. Read the file version, comparison criteria and outcome; see [Reproducibility](reproducibility.md) for how those checks work.
 

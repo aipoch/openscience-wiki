@@ -21,7 +21,7 @@ Die Eingabe ist R öffentlichen [Theoph-Datensatz](https://www.stat.ethz.ch/R-ma
 3. Öffnen Sie ein neues Gespräch in Ihrem Forschungsprojekt. Wählen Sie ein verfügbares Modell, dann **Agent controls → Specialist → pharmacometrics-pkpd-designer**. Der aufgezeichnete Durchlauf verwendete **Codex Abonnement / gpt-5.6-sol**.
 4. Zu Beginn von **jede Analysemeldung**, Typ `/pkpd`, wählen Sie dann **pkpd-Modellierung** aus den Vorschlägen aus. Bestätigen Sie, dass es ein Skill-Chip wird, bevor Sie die Eingabeaufforderung einfügen.
 
-**Version des Beispiels:** Die folgenden Screenshots und Ergebnisse stammen aus v0.30.1. Dort führte die Auswahl der Rolle allein zu `Unknown skill`; der Skill musste für jede Nachricht ausdrücklich ausgewählt werden. v0.30.2 korrigiert die Vorbereitung der an Specialists gebundenen Skills, auch für delegierte Aufgaben. Wählen Sie in der neuen Version zunächst den Specialist und prüfen Sie das tatsächliche Laden. Wählen Sie den Skill bei Bedarf ausdrücklich aus. Dieses Beispiel wurde noch nicht mit v0.30.2 wiederholt. Der alte Umweg ist keine allgemeine Voraussetzung; die Korrektur belegt auch keinen erfolgreichen erneuten Test dieses Beispiels.
+**Versionsvermerk:** Die Screenshots verwenden v0.30.1, wobei der Skill explizit für jede Analysenachricht ausgewählt wird. Aus v0.30.2 werden Bounded Skills für Specialist-Windungen und delegierte Aufgaben vorbereitet. Wählen Sie zuerst den Specialist; Wenn Skill nicht verfügbar ist, wählen Sie `/pkpd-modeling` explizit aus, bevor Sie die Anforderung senden.
 
 ![Installierte Pharmakometik Specialist und seine Fähigkeiten](/img/open-science/theoph-specialist/installed.webp)
 
@@ -57,7 +57,7 @@ Referenzdateien: <ExampleDownload path="/examples/theoph/theoph-input.csv">Einga
 
 ## 3. Addieren Sie die Expositionsmetriken {/* #3-add-the-exposure-metrics */}
 
-Laden Sie die <ExampleDownload path="/examples/theoph/nca-conventions.md">korrigierte NCA-Methodenreferenz</ExampleDownload> herunter und hängen Sie sie über **+ → Attach files** an. Diese Wiki-Fassung korrigiert die Erläuterungen zur Integration und zur Auswahl des terminalen Regressionsintervalls in der mitgelieferten Referenz. Das Beispiel berechnet beobachtete Cmax/Tmax und eine AUC mit der linearen Trapezregel über alle Intervalle; eine terminale Steigung wird nicht geschätzt. Nutzen Sie den Gesprächsanhang, da Notebook in der dokumentierten Konfiguration die Referenz im Installationsverzeichnis des Skills nicht lesen konnte.
+Laden Sie das <ExampleDownload path="/examples/theoph/nca-conventions.md">NCA-Methoden</ExampleDownload> herunter und fügen Sie es über **+ → Attach files** hinzu, damit Notebook es lesen kann. Verwenden Sie diese Referenz für das Beispiel: es spezifiziert beobachtete Cmax / Tmax und ganz lineare trapezförmige AUC, ohne eine terminale Steigung zu schätzen.
 
 Wählen Sie `/pkpd-modeling` erneut in der gleichen Konversation aus und senden Sie dann:
 
@@ -77,7 +77,7 @@ Do not estimate AUC to infinity, half-life, clearance or dosing advice.
 Do not install packages, change permissions or delegate. Use English.
 ```
 
-Genehmigen Sie die Datei liest und R Berechnung nach der Inspektion. Wenn eine unterstützende Datei fehlt, fügen Sie die eigentliche Datei an, bevor Sie fortfahren. Eine fehlgeschlagene Skill-Ladung oder ein Fehler in Notebook ist keine abgeschlossene Analyse.
+Überprüfen und genehmigen Sie die Datei liest und R Berechnung. Wenn eine unterstützende Datei fehlt, fügen Sie sie an, bevor Sie fortfahren. Wenn Notebook einen Fehler meldet, öffnen Sie die ausgefallene Zelle und korrigieren Sie die benannte Eingabe oder Abhängigkeit, bevor Sie erneut versuchen.
 
 ## 4. Öffnen und überprüfen Sie die Ergebnisse {/* #4-open-and-check-the-results */}
 

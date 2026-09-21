@@ -84,7 +84,7 @@ Keep everything in English and return links to both new files.
 
 <ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">Vererbte Zusammenfassung</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">Neue Berechnung</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">Berechnungshinweise</ExampleDownload>
 
-Nach der Berechnung hatten die Zusammenfassungsdateien in der ursprünglichen Sitzung, der importierten Sitzung und dem Fork identische SHA-256-Hashes. Die beiden neuen Dateien wurden im Fork erstellt. Geprüft wurde Export → Import → Fork → weitere Analyse **zwischen Projekten auf demselben Mac**. Die Wiederherstellung der Umgebung auf einem anderen Gerät, die vollständige Übertragung von Literatur und Anmerkungen sowie die automatische Wiederholung wurden nicht geprüft. Siehe [Fork einer bestehenden Sitzung](sessions.md#fork-session). Importierte Nutzung wird nicht zu den lokalen Aktivitätssummen gezählt.
+Die beiden neuen Dateien werden im Fork gespeichert. Die Zusammenfassungsdateien der ursprünglichen und der importierten Sitzung bleiben unverändert. Siehe [Fork einer bestehenden Sitzung](sessions.md#fork-session). Importierte Nutzung wird nicht zu den lokalen Aktivitätssummen gezählt.
 
 Ein empfangenes Verifizierungsprotokoll beschreibt die vom Absender gelieferten Schecks. Das bedeutet nicht, dass dieser Computer die Prüfungen erneut ausgeführt hat. Lesen Sie die Dateiversion, die Vergleichskriterien und das Ergebnis; Siehe [Reproduzierbarkeit](reproducibility.md), wie diese Prüfungen funktionieren.
 

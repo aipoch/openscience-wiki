@@ -21,7 +21,7 @@ L'entrée est l'observation publique de R [Ensemble de données Théoph](https:/
 3. Ouvrez une nouvelle conversation dans votre projet de recherche. Choisissez un modèle disponible, puis **Agent controls → Specialist → pharmacometrics-pkpd-designer**. L'exécution enregistrée a utilisé **Abonnement Codex / gpt-5.6-sol**.
 4. Au début de **chaque message d'analyse**, tapez `/pkpd`, puis sélectionnez **Modélisation de pkpd** dans les suggestions. Confirmez qu'il devient une puce Skill avant de coller l'invite.
 
-**Version de l’exemple :** Les captures et résultats ci-dessous ont été enregistrés avec v0.30.1. Dans cette configuration, sélectionner uniquement le rôle renvoyait `Unknown skill` ; il fallait sélectionner le Skill dans chaque message. v0.30.2 corrige la préparation des Skills liés aux Specialists, y compris pour les tâches déléguées. Dans la nouvelle version, sélectionnez d’abord le Specialist et vérifiez le chargement réel, puis sélectionnez explicitement le Skill si nécessaire. Cet exemple n’a pas encore été réexécuté avec v0.30.2. L’ancien contournement n’est donc pas une exigence générale, et le correctif ne constitue pas une validation de cet exemple.
+**Note de version :** Les captures d'écran utilisent v0.30.1, où le Skill est sélectionné explicitement pour chaque message d'analyse. À partir de v0.30.2, Skills lié est préparé pour les tours Specialist et les tâches déléguées. Sélectionnez d'abord le Specialist; si sa Skill n'est pas disponible, sélectionnez explicitement `/pkpd-modeling` avant d'envoyer la demande.
 
 ![Pharmacométrie installée Specialist et ses capacités](/img/open-science/theoph-specialist/installed.webp)
 
@@ -57,7 +57,7 @@ Fichiers de référence : <ExampleDownload path="/examples/theoph/theoph-input.c
 
 ## 3. Ajouter les paramètres d'exposition {/* #3-add-the-exposure-metrics */}
 
-Téléchargez la <ExampleDownload path="/examples/theoph/nca-conventions.md">note méthodologique NCA corrigée</ExampleDownload> et ajoutez-la avec **+ → Attach files**. Cette version du Wiki corrige les explications du document fourni sur l’intégration et le choix de l’intervalle terminal. L’exemple utilise les Cmax/Tmax observés et une AUC calculée par la règle des trapèzes linéaires sur tous les intervalles ; il n’estime pas la pente terminale. Joignez le fichier à la conversation : dans la configuration utilisée, Notebook ne pouvait pas lire le document dans le répertoire d’installation du Skill.
+Téléchargez le <ExampleDownload path="/examples/theoph/nca-conventions.md">Référence des méthodes NCA</ExampleDownload> et ajoutez-le via **+ → Attach files** pour que Notebook puisse le lire. Utilisez cette référence pour l'exemple : elle spécifie la Cmax/Tmax observée et l'ASC trapézoïdale tout linéaire, sans estimer une pente terminale.
 
 Sélectionnez à nouveau `/pkpd-modeling` dans la même conversation, puis envoyez :
 
@@ -77,7 +77,7 @@ Do not estimate AUC to infinity, half-life, clearance or dosing advice.
 Do not install packages, change permissions or delegate. Use English.
 ```
 
-Approuver le fichier lit et le calcul de R après les avoir inspectés. Si un fichier à l'appui est manquant, joignez le fichier réel avant de continuer. Une charge Skill échouée ou une erreur dans Notebook n'est pas une analyse terminée.
+Inspecter et approuver le fichier lit et le calcul de R. Si un fichier à l'appui manque, joignez-le avant de continuer. Si Notebook signale une erreur, ouvrez la cellule défaillante et corrigez l'entrée ou la dépendance nommée avant de réessayer.
 
 ## 4. Ouvrir et vérifier les résultats {/* #4-open-and-check-the-results */}
 

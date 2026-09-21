@@ -47,7 +47,7 @@ Utilizando la autenticación de suscripción Codex con gpt-5.6-sol, la revisión
 | La llamada de molécula produjo el artefacto declarado/descriptores | PASS; la versión y los valores devueltos del artefacto fueron identificados. |
 | El modelo inspeccionó la vista previa de la molécula guardada como se solicitó | FAIL; su búsqueda de catálogo no leyó el contenido de la estructura. |
 
-Las correcciones se encontraron con problemas de acceso controlado y llegaron a **límite de fijación alcanzado / Problemas encontrados**. La apertura de la estructura manualmente en la aplicación demostró que el espectador trabajaba, pero no cambió retroactivamente el resultado de inspección o revisión grabado del modelo. Este es un resultado de revisión sin resolver, no una placa de revisión exitosa.
+El ejemplo termina con **límite de fijación alcanzado / Problemas encontrados** porque el modelo no pudo acceder a la entrada gestionada necesaria para el control de la estructura. Abra el hallazgo para identificar la entrada desaparecida y proporcionarla antes de solicitar otra revisión. La apertura manual de la estructura en el espectador no actualiza el registro de inspección del modelo.
 
 </details>
 

@@ -57,7 +57,7 @@ Open-Science 將研究專案的對話、原始檔案、文獻記錄和生成結�
 - [PRISMA 閱讀集合](../workflows/core-reading-list.md)：三篇真實論文、稽核過的文獻記錄，以及出版方 PDF。
 - [GSE60450 RNA-seq 分析](../workflows/data-quality.md)：27,179 個基因、12 個樣本、獨立核對的質控指標、原始計數圖和產出程式碼。
 
-[遠端計算](remote-compute.md)展示了同一 RNA-seq QC 在 Direct SSH 上的執行、結果回收、重啟恢復和取消。Slurm 計算已在伺服器確認完成，但記賬查詢未啟用，應用尚無法回收結果。同一章節還驗證了在獨立 CUDA 環境中用 A100 完成小型 ProteinMPNN 序列設計及輸出核對。
+[遠端計算](remote-compute.md)介紹透過 Direct SSH 執行 RNA-seq QC、回收結果、恢復和取消任務，還包括 Slurm 記賬要求，以及在獨立 CUDA 環境中使用 A100 執行小型 ProteinMPNN 序列設計的流程。
 
 ## 本地儲存與外部處理 {/* #本地保存与外部处理 */}
 

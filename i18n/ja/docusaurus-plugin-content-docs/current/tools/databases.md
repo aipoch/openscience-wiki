@@ -175,8 +175,6 @@ This is not differential-expression evidence or evidence of regulation direction
 
 <ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">解析ノート</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">すべての891結果の列</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">完全な応答</ExampleDownload>
 
-記録された実行では、両方のサービスコールが成功しました。 エージェントが`mapped_genes`を配列として処理したため、初期に失敗したメモを生成します。 既存のレスポンスから3つのファイルを全て処理し保存するのを修正しました。 上記のファイルは、完成した出力です。 彼らの存在は、自動再生や完全に捕獲された環境を認証しません。
-
 `background_size: null`はカスタム背景リストが提出されていないことを意味します。 遺伝子ゼロの統計的な宇宙とは意味しません。 永久有効ドメインサイズを使用してください。 エンゲージメントは、原因の関与、差異的な表現、またはアップ/ダウン規制を確立しません。 [操作パラメータ](../reference/connector-operations.md#enrich_gene_set) を参照してください。
 
 ## リファレンス・ゲノム・アイデンティティの確認 {/* #reference-genome */}

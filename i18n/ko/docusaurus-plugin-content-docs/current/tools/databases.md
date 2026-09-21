@@ -175,8 +175,6 @@ This is not differential-expression evidence or evidence of regulation direction
 
 <ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">분석 노트</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">모든 891 결과 행</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">전체 응답</ExampleDownload>
 
-기록된 실행에서, 두 서비스 호출은 성공; 에이전트가 `mapped_genes`을 배열로 처리했기 때문에 처음에 메모 생성. 기존 응답에서 모든 3개의 파일을 처리하고 저장하는 것을 수정했습니다. 위의 파일은 완료된 출력입니다. 그들의 존재는 자동 재생 또는 완전히 붙잡힌 환경을 증명하지 않습니다.
-
 `background_size: null`은 사용자 정의 배경 목록이 제출되지 않습니다. 그것은 0 유전자의 통계 우주를 의미하지 않습니다. per-term 효과적인 도메인 크기를 사용하십시오. Enrichment는 causal involvement, 차별 표식, 또는 up/down 규칙을 설치하지 않습니다. [작업 매개 변수](../reference/connector-operations.md#enrich_gene_set) 참조.
 
 ## 참고-genome ID 확인 {/* #reference-genome */}

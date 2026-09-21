@@ -103,4 +103,4 @@ For Jev, select **TypeSafe AI / Jev Latest** under **Automatic capability select
 
 ![TypeSafe AI / Jev Latest selected with Check passed and the API key masked](/img/open-science/v0311/classification-connected.webp)
 
-In the v0.31.1 test, saving the service and checking the model succeeded. A public TP53 lookup request in a Codex Chat Completions session also invoked Jev successfully and selected `mcp-genes`. This verifies capability selection, not completion of the database query. Codex subscription sessions use their existing capability-loading path; a saved Jev binding does not make those sessions use Jev.
+For example, a public TP53 lookup in a Codex Chat Completions session can use Jev to select `mcp-genes`. Inspect the selected capability in the activity, then inspect the database response for the research result. Codex subscription sessions use their existing capability-loading path; a saved Jev binding does not make those sessions use Jev.

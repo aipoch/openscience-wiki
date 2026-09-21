@@ -44,7 +44,7 @@ Project **Description** helps you identify the project. Put instructions the age
 
 A conversation needs a working agent framework and model connection. A Python calculation also needs an enabled Python Notebook runtime. A service lookup needs the relevant Connector, network access and any required credential. A GPU method can require a separate machine, software environment and model weights even when its Skill is already listed.
 
-The documented local run used a Codex subscription and the app-managed Python environment. Model access did not install Python packages: a missing pandas dependency still stopped the first calculation. The analysis completed after changing the implementation to installed packages without changing the descriptive question.
+Configure the model, runtime and data services separately. After connecting the model, check the packages required for the calculation. If a package is missing, install it or explicitly choose a method that uses the available environment.
 
 See [Provider setup](providers.md), [Python and R runtimes](runtimes.md) and [Network](network.md) for these independent setup paths. A successful model connection test does not validate every downstream service.
 
@@ -57,7 +57,7 @@ The formal examples use public research inputs:
 - [PRISMA reading collection](../workflows/core-reading-list.md): three real papers, reviewed Library records and an attached publisher PDF.
 - [GSE60450 RNA-seq analysis](../workflows/data-quality.md): 27,179 gene rows, 12 samples, independently checked QC metrics, a raw-count figure and captured producer code.
 
-[Remote compute](remote-compute.md) demonstrates the same RNA-seq QC on Direct SSH, including collected outputs, restart recovery and cancellation. Slurm computation was confirmed on the server, but disabled scheduler accounting prevents application harvest. The same chapter also verifies a small ProteinMPNN sequence-design run on an A100 GPU in an isolated CUDA environment.
+[Remote compute](remote-compute.md) covers RNA-seq QC through Direct SSH, collecting results, recovery and cancellation. It also explains Slurm accounting requirements and a small ProteinMPNN sequence-design workflow on an A100 GPU in an isolated CUDA environment.
 
 ## Local storage and external processing
 

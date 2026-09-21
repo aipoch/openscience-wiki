@@ -36,8 +36,6 @@ Write in English, do not delegate, and reopen the saved files.
 
 ![Die eigentliche fokussierte Suchanfrage in Open-Science](/img/open-science/workflow-extensions/focused-search-input.webp)
 
-Der Screenshot zeigt die erste Anfrage. Die obige Operational Screening-Regel beinhaltet die nachfolgende Überprüfung dieses Laufs.
-
 ## 2. Überprüfen Sie die Abfrage und Abdeckung {/* #2-check-the-query-and-coverage */}
 
 Der Lauf hat diese Konzept- und Journalabfrage eingereicht, wobei der Filter für das Veröffentlichungsdatum separat bereitgestellt wurde:
@@ -57,7 +55,7 @@ Wenn die Antwort abgeschlossen ist, öffnen Sie **mindfulness-search-audit.csv**
 
 ![Die gespeicherte Kandidatentabelle, einschließlich unsicherer und ausgeschlossener Datensätze](/img/open-science/workflow-extensions/focused-search-table.webp)
 
-Die Überprüfung fand im ursprünglichen Entwurf ungenaue Gründe: PMID **38837133** ist beispielsweise eine primäre randomisierte Studie einer breiteren Psychotherapie, keine Sekundäranalyse. Die überarbeitete Tabelle markiert ihre Achtsamkeitsberechtigung **unsicher**. PMID **34009273** ist eine Meta-Analyse und bleibt mit dem korrigierten Grund ausgeschlossen. Die Benennung des Datensatzes und des spezifischen Fehlers gibt dem Agenten eine konkrete Änderungsanfrage; Öffnen Sie dann das gespeicherte CSV erneut, um die Änderung zu bestätigen.
+Überprüfen Sie jeden Ausschlussgrund gegen das Abstract. PMID **38837133** ist eine primäre randomisierte Studie einer breiteren Psychotherapie; Das Beispiel kennzeichnet seine Achtsamkeitsberechtigung **unsicher**. PMID **34009273** ist eine Meta-Analyse und wird ausgeschlossen. Wenn eine Entscheidung korrigiert werden muss, benennen Sie den Datensatz und das spezifische Problem, bitten Sie den Agenten, die CSV zu aktualisieren, und öffnen Sie dann die gespeicherte Datei erneut.
 
 ![Die eigentliche Überprüfung des Screenings und der gespeicherten Dateien in Notebook](/img/open-science/workflow-extensions/focused-search-notebook.webp)
 
@@ -67,7 +65,7 @@ Die überprüfte Beispieltabelle enthält **20 enthalten, 37 ausgeschlossen und 
 
 PMID **41418645** wurde vom 2019-2025 PubMed-Publikationsdatum-Filter zurückgegeben, während seine Metadaten ein **2026-01**-Druckdatum melden. Behalten Sie die Diskrepanz und überprüfen Sie die Publikationshistorie, bevor Sie eine endgültige Entscheidung treffen. Ersetzen Sie nicht stillschweigend das Jahr, um in das Suchfenster zu passen.
 
-Öffnen Sie **mindfulness-search-notes.md** und überprüfen Sie, ob seine Zählungen, Förderfähigkeitsregeln und Einschränkungen mit dem CSV übereinstimmen. Dieser Lauf überarbeitete beide Dateien und behielt den unveränderten Roh-Metadaten-Snapshot bei.
+Öffnen Sie **mindfulness-search-notes.md** und überprüfen Sie, ob seine Zählungen, Förderfähigkeitsregeln und Einschränkungen mit dem CSV übereinstimmen. Bewahren Sie den ursprünglichen Metadaten-Snapshot neben diesen Dateien auf, damit jede Entscheidung bis zur Quelle zurückverfolgt werden kann.
 
 ![Die überarbeitete Suchnote mit dem 20/37/5 Screening zählt](/img/open-science/workflow-extensions/focused-search-notes.webp)
 

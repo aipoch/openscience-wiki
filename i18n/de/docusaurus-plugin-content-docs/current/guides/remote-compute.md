@@ -191,7 +191,7 @@ Wenn der Scheduler **ABGESCHLOSSEN / ExitCode 0:0** anzeigt, die App jedoch weit
 
 ![Die Anwendung wartet noch auf den Terminalstatus für eine abgeschlossene Slurm-Workload](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
 
-Bitten Sie den Cluster-Administrator, eine funktionierende `sacct`-Buchhaltung für das Konto und den Auftrag bereitzustellen. `squeue`, der keinen Job mehr auflistet, ist kein ausreichender Erfolgsnachweis. Bewahren Sie das vorhandene Arbeitsverzeichnis und die Job-IDs auf, während die Buchhaltung repariert wird, und überprüfen Sie den gleichen Job erneut. Senden Sie keine abgeschlossene Analyse erneut ein, um einen Überwachungsfehler zu beheben. Slurm Stornierung, Wiederherstellung und Anwendungsernte bleiben ausstehend, bis diese Umgebungsanforderung behoben ist.
+Bitten Sie den Cluster-Administrator, eine funktionierende `sacct`-Buchhaltung für das Konto und den Auftrag bereitzustellen. Ein Job, der aus `squeue` verschwindet, bestätigt den Erfolg nicht. Bewahren Sie das vorhandene Arbeitsverzeichnis und beide Job-IDs auf, aktualisieren Sie den gleichen Job, nachdem die Buchhaltung wiederhergestellt wurde, und überprüfen Sie den endgültigen Zustand und die gesammelten Dateien.
 
 <ToolOperationGroup>
 <summary>Führen Sie ein kleines Proteinsequenzdesign auf GPU aus</summary>
@@ -220,7 +220,7 @@ Verwenden Sie das öffentliche [1UBQ Ubiquitin-Struktur](https://www.rcsb.org/st
 
 <a href="/docs/examples/ubiquitin/gpu-proteinmpnn-verification.json" download>Laden Sie den GPU-Verifizierungsprotokoll herunter</a>. Die 80 GB-Kapazität des Geräts ist keine Mindestanforderung für diese kleine Aufgabe; Peak Memory wurde nicht gemessen. Remote-Logs und Dateien bieten nicht automatisch eine vollständige lokale Notebook-Herkunft.
 
-In diesem Beispiel wurde ein genehmigter direkter SSH-Befehl verwendet. Eine frühere Slurm-Einreichung hat **Invalidaccount** zurückgegeben, so dass dieses Ergebnis keinen Slurm GPU Job verifiziert. Überprüfen Sie die Partitions- / Kontoautorisierung, wenn dieser Fehler auftritt; Ändern Sie keine Schedulerdienste oder umgehen Sie eine erforderliche Warteschlange.
+Dieses Beispiel läuft durch Direct SSH. Für einen Slurm GPU-Job bestätigen Sie zuerst die Partitions- und Kontoberechtigungen. Wenn die Übermittlung **Invalidaccount** zurückgibt, bitten Sie den Clusteradministrator, diese Einstellungen zu überprüfen; Verwenden Sie die erforderliche Warteschlange für von Schedulern verwaltete Arbeiten.
 
 
 </ToolOperationGroup>

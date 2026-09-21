@@ -108,7 +108,7 @@ The server implements MCP initialize, ping, tool discovery and calls over stdio.
 
 **Known error mapping:** an invalid sample name can surface as **connector_unavailable** in the app even when the custom server returns a domain-specific error. Check the server log and validate the sample identifier before reconnecting. Report persistent mismatches using [Troubleshooting](../guides/troubleshooting.md).
 
-Do not invoke protocol `tools/list` as a business tool through `host.mcp`; the application already discovers the server's tools during connection. The attempted `gse60450-qc/tools/list` call was rejected as unknown tool. Use the discovered operation names or inspect the server's own schema.
+The application discovers server tools during connection. Use the discovered operation names when calling through `host.mcp`; protocol `tools/list` is not a business tool. Inspect the downloadable script for the input schema.
 
 ## Export and move to another computer
 

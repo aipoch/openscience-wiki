@@ -103,4 +103,4 @@ Para Jev, seleccione **TypeSafe AI / Jev Latest** en **Automatic capability sele
 
 ![TypeSafe AI / Jev Latest seleccionado, con Check passed y la clave API oculta](/img/open-science/v0311/classification-connected.webp)
 
-En la prueba con v0.31.1 se guardó el servicio y se verificó el modelo correctamente. Una solicitud de datos públicos de TP53 en una sesión de Codex Chat Completions también llamó correctamente a Jev y seleccionó `mcp-genes`. Esto verifica la selección de capacidades, no la finalización de la consulta a la base de datos. Las sesiones con suscripción Codex mantienen su mecanismo de carga de capacidades; guardar una vinculación Jev no hace que esas sesiones utilicen Jev.
+Por ejemplo, una búsqueda pública de TP53 en una sesión de Codex Chat Completions puede utilizar Jev para seleccionar `mcp-genes`. Inspeccione la capacidad seleccionada en la actividad, luego inspeccione la respuesta de la base de datos para el resultado de la investigación. Las sesiones de suscripción de Codex utilizan su ruta de carga de capacidad existente; a Jev binding salvado no hace que esas sesiones usen Jev.

@@ -108,7 +108,7 @@ Le serveur implémente MCP initialiser, ping, découverte d'outils et appels sur
 
 **Cartographie des erreurs connues :** un nom d'échantillon invalide peut faire surface comme **connector_unavailable** dans l'application même lorsque le serveur personnalisé retourne une erreur spécifique au domaine. Vérifiez le journal du serveur et validez l'identificateur de l'échantillon avant de vous reconnecter. Signaler des erreurs persistantes avec [Dépannage](../guides/troubleshooting.md).
 
-N'invoquez pas le protocole `tools/list` comme outil d'affaires via `host.mcp`; l'application découvre déjà les outils du serveur lors de la connexion. La tentative d'appel `gse60450-qc/tools/list` a été rejetée en tant qu'outil inconnu. Utilisez les noms d'opération découverts ou inspectez le propre schéma du serveur.
+L'application découvre les outils du serveur lors de la connexion. Utilisez les noms d'opération découverts lors de l'appel via `host.mcp`; protocole `tools/list` n'est pas un outil d'affaires. Inspectez le script téléchargeable pour le schéma d'entrée.
 
 ## Exporter et déplacer vers un autre ordinateur {/* #export-and-move-to-another-computer */}
 

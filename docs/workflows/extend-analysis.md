@@ -21,7 +21,7 @@ The input is R's public [Theoph dataset](https://www.stat.ethz.ch/R-manual/R-dev
 3. Open a new conversation in your research project. Choose an available model, then **Agent controls → Specialist → pharmacometrics-pkpd-designer**. The recorded run used **Codex subscription / gpt-5.6-sol**.
 4. At the start of **each analysis message**, type `/pkpd`, then select **pkpd-modeling** from the suggestions. Confirm that it becomes a Skill chip before pasting the prompt.
 
-**Version note:** The screenshots and outputs below were recorded in v0.30.1. In that configuration, selecting the role alone returned `Unknown skill`, and the per-message Skill selection above enabled the loader. v0.30.2 fixes preparation of Specialist-bound Skills, including delegated tasks. On the newer version, first select the Specialist and inspect the actual Skill-loading result; use explicit selection if needed. This example has not yet been rerun on v0.30.2, so its historical workaround is not a universal requirement and the new fix is not a verified pass for this case.
+**Version note:** The screenshots use v0.30.1, where the Skill is selected explicitly for each analysis message. From v0.30.2, bound Skills are prepared for Specialist turns and delegated tasks. Select the Specialist first; if its Skill is unavailable, select `/pkpd-modeling` explicitly before sending the request.
 
 ![Installed Pharmacometrics Specialist and package version](/img/open-science/theoph-specialist/installed.webp)
 
@@ -57,7 +57,7 @@ Reference files: <ExampleDownload path="/examples/theoph/theoph-input.csv">input
 
 ## 3. Add the exposure metrics
 
-Download the <ExampleDownload path="/examples/theoph/nca-conventions.md">reviewed NCA methods reference</ExampleDownload> and add it through **+ → Attach files**. This Wiki adaptation corrects the packaged reference’s integration and terminal-window explanations. The worked example uses observed Cmax/Tmax and an explicitly chosen all-linear AUC; it does not estimate a terminal slope. Use the conversation attachment because Notebook could not read the reference inside the Skill installation directory in the recorded configuration.
+Download the <ExampleDownload path="/examples/theoph/nca-conventions.md">NCA methods reference</ExampleDownload> and add it through **+ → Attach files** so Notebook can read it. Use this reference for the example: it specifies observed Cmax/Tmax and all-linear trapezoidal AUC, without estimating a terminal slope.
 
 Select `/pkpd-modeling` again in the same conversation, then send:
 
@@ -77,7 +77,7 @@ Do not estimate AUC to infinity, half-life, clearance or dosing advice.
 Do not install packages, change permissions or delegate. Use English.
 ```
 
-Approve the file reads and R calculation after inspecting them. If a supporting file is missing, attach the actual file before continuing. A failed Skill load or an error in Notebook is not a completed analysis.
+Inspect and approve the file reads and R calculation. If a supporting file is missing, attach it before continuing. If Notebook reports an error, open the failed cell and correct the named input or dependency before retrying.
 
 ## 4. Open and check the results
 

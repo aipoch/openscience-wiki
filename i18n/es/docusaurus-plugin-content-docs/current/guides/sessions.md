@@ -157,7 +157,7 @@ En el proyecto GSE60450, marque la sesión QC existente y abra el `gse60450-qc-s
 
 ![Cálculo Python y un nuevo resultado ahorrado en la sesión prefabricada](/img/open-science/v0311/fork-result.webp)
 
-<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Descarga el resultado calculado</ExampleDownload>. Este paseo probó un tenedor de sesión local. Para el estado de sólo lectura y continuación de un paquete `.science` recibido, véase [Paquetes de investigación](research-packages.md).
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">Descarga el resultado calculado</ExampleDownload>. Para continuar con un paquete `.science` recibido, siga [Paquetes de investigación](research-packages.md).
 
 ## Lea la tarjeta de información de sesión {/* #session-information */}
 

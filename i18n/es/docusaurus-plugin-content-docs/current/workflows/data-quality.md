@@ -57,11 +57,11 @@ Para cada muestra, computar los recuentos totales brutos, número de genes de cu
 
 Lea la solicitud de permiso Python, incluyendo el archivo de entrada y los nombres de salida, y luego permita la operación con alcance. Abrir **Notebook** en la conversación e inspeccionar la célula completa y su salida. Verifique las dimensiones, las etiquetas originales, los arrays métricos y antes/después del hash; el mensaje de finalización del modelo es insuficiente.
 
-Si el ID de la versión de entrada no puede ser resuelto, pídale al agente que use la entrada montada del apego y la reingresación de esta conversación. Esta carrera usó esa recuperación. No trate el intento fallido como un cálculo completado o sustituya silenciosamente otro archivo.
+Si el ID de la versión de entrada no puede ser resuelto, pídale al agente que lea la entrada y reingrese adjunta de esta conversación. Confirme el nombre de archivo y la suma de verificación antes de continuar.
 
 ![Salida Notebook exitosa con dimensiones, hashes y métricas de muestra calculadas](/img/open-science/research-workflows/rnaseq-qc-rerun-notebook.webp)
 
-La repetición completa validada **filas de genes 27,179 y columnas de muestra 12** sin filas malformadas, IDs duplicadas, entradas faltantes o conteos inválidos. Los tres archivos solicitados aparecieron bajo **Generated**. Abra cada archivo allí; un archivo de trabajo que nunca fue guardado como un artefacto no es todavía un entregable.
+El ejemplo contiene **filas de genes 27,179 y columnas de muestra 12**, sin filas malformadas, identificaciones duplicadas, entradas faltantes o cuentas inválidas. Abra los tres archivos de salida bajo **Generated** para inspeccionar los resultados guardados.
 
 ## 4. Aceptar la tabla de la muestra {/* #4-accept-the-sample-table */}
 
@@ -69,7 +69,7 @@ Abra `rnaseq-sample-qc.csv` y compruebe **filas 12 · columnas 6**. Retiene cada
 
 Compare todas las métricas de muestra con el [Cuadro de referencia](../reference/example-data.md#sample-qc-baseline), hileras coincidentes por el identificador de muestra completo.
 
-![La tabla de doce hojas reabierto de la repetición completa](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
+![La tabla QC de la muestra de doce hojas guardada](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
 
 Para esta entrada, los genes detectados de cero cuenta más en cada fila deben igualar **27,179**. Compare las métricas de la muestra **48** con la base de referencia independiente. El acuerdo comprueba estos cálculos para la entrada suministrada; Las hipótesis de abajo todavía necesitan su propia evaluación.
 
@@ -77,14 +77,14 @@ Para esta entrada, los genes detectados de cero cuenta más en cada fila deben i
 
 Abra `rnaseq-library-sizes.png` y agrandarla. Revise las doce etiquetas de muestra, el eje de cuenta cruda y la nota de que los valores no se normalizan. Los recuentos totales van desde **20,015,386** a **24,723,827** en esta matriz.
 
-![La trama de tamaño libre guardado de la misma repetición](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
+![La trama de tamaño librería salvada](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
 
-Un total de biblioteca más grande no significa por sí mismo que un gen se expresa de manera diferencial. Antes de un análisis de aguas abajo separadas, se combinan las características de la muestra con los metadatos GEO y se especifican el diseño, los contrastes, la normalización y las reglas de filtrado. Un seguimiento Connector separado recuperó las características GEO de las doce muestras; no se validaron las cartografías, el diseño de análisis y los pasos estadísticos de GSM a Mactrix. Ver [Conectores](../guides/connectors.md).
+Un total de biblioteca más grande no significa por sí mismo que un gen se expresa de manera diferencial. Antes del análisis aguas abajo, combina características de muestra y identificadores GSM a las columnas de matriz utilizando metadatos GEO, luego especifica el diseño, contrastes, normalización y reglas de filtrado. Vea [Conectores](../guides/connectors.md) para recuperar metadatos.
 
 ## 6. Retener los métodos y las pruebas {/* #6-retain-the-methods-and-evidence */}
 
 Mantenga un informe que contenga el checksum de entrada, dimensiones, comprobaciones de validez, cartografía exacta de etiquetas, versiones de tiempo de ejecución/libración y límites de interpretación. Agregue una sección de control independiente sólo después de comparar los valores. Ahorrar una revisión del informe no recomputa el cuadro o la figura.
 
-La repetición 16 de septiembre coincidió con todas las métricas **48** contra la base de referencia comprobada independientemente. Su entrada SHA-256 permaneció `128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691`. El informe registra Python 3.12.14 y matplotlib 3.11.1. Estos cheques establecen el acuerdo de este cálculo y la preservación de insumos; no establecen una auditoría de un examinador o un ambiente exacto para la reproducción independiente.
+Compare todas las métricas de muestra **48** con la base de referencia y compruebe que la entrada SHA-256 sigue siendo `128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691`. El informe de ejemplo registra Python 3.12.14 y matplotlib 3.11.1; graba las versiones utilizadas en tu propio funcionamiento.
 
-Descargar <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>Cuadro QC</a>, <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>parcela</a> y <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>informe</a>. Retener la entrada original y la sesión Notebook también. El [ejemplo-página de datos](../reference/example-data.md#saved-example-outputs) mantiene por separado las exportaciones de referencia y Notebook anteriores; esas exportaciones no son el Notebook de esta repetición. Utilice [Comprobaciones de reproducción](../guides/reproducibility.md) para una evaluación separada del medio ambiente y la repetición.
+Descargar el ejemplo <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>Cuadro QC</a>, <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>parcela</a> y <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>informe</a>. Retenga su entrada original y sesión Notebook junto a las salidas. Utilice [Comprobaciones de reproducción](../guides/reproducibility.md) para preparar el medio ambiente y reequilibrar el cálculo.

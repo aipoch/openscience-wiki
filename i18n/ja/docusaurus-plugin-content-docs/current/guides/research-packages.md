@@ -84,7 +84,7 @@ Keep everything in English and return links to both new files.
 
 <ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">継承された要約</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">新規計算</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">計算ノート</ExampleDownload>
 
-計算後も、元のセッション、インポートしたセッション、Fork の要約ファイルは同じ SHA-256 ハッシュでした。新しい 2 ファイルは Fork に作成されました。検証したのは、**同じ Mac の異なるプロジェクト間**でのエクスポート → インポート → Fork → 分析の継続です。別の端末での環境復元、文献と注釈の完全な転送、自動再実行は検証していません。一般的な操作は[既存セッションの Fork](sessions.md#fork-session)を参照してください。インポートした使用量はローカルの利用集計に含まれません。
+新しい 2 つのファイルは Fork に保存され、元のセッションとインポートしたセッションの要約ファイルは変更されません。一般的な操作は[既存セッションの Fork](sessions.md#fork-session)を参照してください。インポートした使用量はローカルの利用集計に含まれません。
 
 受信確認記録は、送信者から提供されたチェックを記述します。 このコンピューターで検証を再実行したことを意味するものではありません。 ファイルバージョン、比較基準、および結果を読みます。 これらのチェックの仕組みについては、[再現性](reproducibility.md)を参照してください。
 

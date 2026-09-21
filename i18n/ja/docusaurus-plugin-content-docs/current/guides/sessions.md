@@ -157,7 +157,7 @@ GSE60450プロジェクトでは、既存のQCセッションをフォークし�
 
 ![Python計算とフォークされたセッションで保存された新しい結果](/img/open-science/v0311/fork-result.webp)
 
-<ExampleDownload path="/examples/v0311/fork-qc-check.csv">計算された結果をダウンロード</ExampleDownload>. このウォークスルーは、ローカルセッションフォークをテストしました。 受信した`.science`パッケージの読み取り専用状態と継続については、[研究パッケージ](research-packages.md)を参照してください。
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">計算された結果をダウンロード</ExampleDownload>. `.science`パッケージを受け取り続けるには、[研究パッケージ](research-packages.md)に従う。
 
 ## セッション情報カードを読む {/* #session-information */}
 

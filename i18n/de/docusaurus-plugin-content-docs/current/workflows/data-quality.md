@@ -57,11 +57,11 @@ Berechnen Sie für jede Probe die Gesamtrohzahl, die Anzahl der Nullzählgene, d
 
 Lesen Sie die Python-Berechtigungsanforderung, einschließlich der Eingabedatei und der Ausgabenamen, und lassen Sie dann die Operation "Scale" zu. Öffnen Sie **Notebook** im Gespräch und inspizieren Sie die fertige Zelle und ihre Ausgabe. Überprüfen Sie die Dimensionen, Original-Etiketten, metrischen Arrays und Vorher / Nachher Hash; die Vervollständigungsnachricht des Modells allein ist unzureichend.
 
-Wenn die Eingabe-Versions-ID nicht aufgelöst werden kann, bitten Sie den Agenten, die Eingabe aus der Anlage dieser Konversation zu verwenden und erneut zu versuchen. Dieser Lauf nutzte diese Erholung. Behandeln Sie den fehlgeschlagenen Versuch nicht als abgeschlossene Berechnung oder ersetzen Sie stillschweigend eine andere Datei.
+Wenn die Eingabe-Versions-ID nicht aufgelöst werden kann, bitten Sie den Agenten, die angehängte Eingabe dieser Konversation zu lesen und erneut zu versuchen. Bestätigen Sie den Dateinamen und die Prüfsumme, bevor Sie fortfahren.
 
 ![Erfolgreiche Notebook-Ausgabe mit Dimensionen, Hashes und berechneten Beispielmetriken](/img/open-science/research-workflows/rnaseq-qc-rerun-notebook.webp)
 
-Die abgeschlossene Wiederholung validiert **27,179-Genreihen und 12-Probenspalten** ohne fehlerhafte Zeilen, doppelte IDs, fehlende Einträge oder ungültige Zählungen. Alle drei angeforderten Dateien erschienen unter **Generated**. Öffnen Sie jede Datei dort; Eine Arbeitsdatei, die nie als Artefakt gespeichert wurde, ist noch nicht lieferbar.
+Das Beispiel enthält **27,179-Genreihen und 12-Probenspalten**, ohne fehlerhafte Zeilen, doppelte IDs, fehlende Einträge oder ungültige Zählungen. Öffnen Sie alle drei Ausgabedateien unter **Generated**, um die gespeicherten Ergebnisse zu überprüfen.
 
 ## 4. Annahme des Mustertisches {/* #4-accept-the-sample-table */}
 
@@ -69,7 +69,7 @@ Die abgeschlossene Wiederholung validiert **27,179-Genreihen und 12-Probenspalte
 
 Vergleichen Sie alle Sample-Metriken mit dem [Basistabelle](../reference/example-data.md#sample-qc-baseline), wobei die Zeilen mit dem vollständigen Sample-Identifier übereinstimmen.
 
-![Der wiedereröffnete zwölfreihige Tisch aus dem abgeschlossenen Rerun](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
+![Die gespeicherte zwölfreihige Beispiel-QC-Tabelle](/img/open-science/research-workflows/rnaseq-qc-rerun-table.webp)
 
 Für diesen Input sollte die Nullzählung plus nachgewiesene Gene in jeder Zeile gleich **27,179** sein. Vergleichen Sie die **48**-Stichprobenmetriken mit der unabhängigen Baseline. Die Vereinbarung überprüft diese Berechnungen für die gelieferten Vorleistungen; Nachgelagerte Annahmen bedürfen noch einer eigenen Bewertung.
 
@@ -77,14 +77,14 @@ Für diesen Input sollte die Nullzählung plus nachgewiesene Gene in jeder Zeile
 
 Öffnen Sie `rnaseq-library-sizes.png` und vergrößern Sie es. Überprüfen Sie alle zwölf Beispieletiketten, die Rohzählachse und den Hinweis, dass die Werte nicht normalisiert sind. Die Gesamtzahlen reichen von **20,015,386** bis **24,723,827** in dieser Matrix.
 
-![Das gespeicherte rohe Bibliotheks-Größe-Plot aus der gleichen Wiederholung](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
+![Das gespeicherte rohe Bibliotheks-Größe-Plot](/img/open-science/research-workflows/rnaseq-qc-rerun-plot.webp)
 
-Eine größere Bibliothekssumme bedeutet an sich nicht, dass ein Gen differentiell exprimiert wird. Vor einer separaten nachgelagerten Analyse die Stichprobenmerkmale den GEO-Metadaten zuordnen und das Design, die Kontraste, die Normierung und die Filterregeln angeben. Ein separates Connector-Follow-up holte die GEO-Eigenschaften der zwölf Proben ab. die GSM-zu-Matrix-Spalten-Zuordnung, das Analysedesign und die statistischen Schritte wurden hier nicht validiert. Siehe [Konnektoren](../guides/connectors.md).
+Eine größere Bibliothekssumme bedeutet an sich nicht, dass ein Gen differentiell exprimiert wird. Vor der nachgelagerten Analyse passen Sie die Stichprobenmerkmale und GSM-Kennungen mithilfe von GEO-Metadaten an die Matrixspalten an und geben dann die Regeln für Design, Kontraste, Normalisierung und Filterung an. Siehe [Anschlussstücke](../guides/connectors.md) zum Abrufen von Metadaten.
 
 ## 6. Bewahren Sie die Methoden und Beweise auf {/* #6-retain-the-methods-and-evidence */}
 
 Führen Sie einen Bericht mit der Eingabeprüfsumme, den Abmessungen, den Gültigkeitsprüfungen, dem exakten Label-Mapping, den Laufzeit-/Bibliotheksversionen und den Interpretationsgrenzen. Fügen Sie erst nach dem Vergleich der Werte einen Abschnitt mit unabhängiger Überprüfung hinzu. Das Speichern einer Berichtsrevision berechnet die Tabelle oder Figur nicht neu.
 
-Der September 16-Wiederholungstest hat alle **48**-Metriken mit der unabhängig überprüften Baseline verglichen. Sein Eingang SHA-256 blieb `128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691`. Der Bericht zeichnet Python 3.12.14 und matplotlib 3.11.1 auf. Diese Kontrollen stellen die Zustimmung und die Erhaltung der Eingabedaten dieser Berechnung fest; Sie erstellen kein Reviewer-Audit oder eine genaue Umgebung für eine unabhängige Reproduktion.
+Vergleichen Sie alle **48**-Stichprobenmetriken mit der Baseline und überprüfen Sie, ob die Eingabe SHA-256 `128d2411f3169de0cac9963c30152bb5c9a3083ac80fd25651b97cf4b7304691` bleibt. Der Beispielbericht zeichnet Python 3.12.14 und matplotlib 3.11.1 auf; Notieren Sie die Versionen, die in Ihrem eigenen Lauf verwendet werden.
 
-Laden Sie die <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>QC-Tisch</a>, <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>Grundstück</a> und <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>Bericht</a> dieser Wiederholung herunter. Behalten Sie auch die ursprüngliche Eingabe und die Sitzung Notebook bei. Der [Beispieldatenseite](../reference/example-data.md#saved-example-outputs) behält die frühere Baseline und Notebook exportiert separat; Diese Exporte sind nicht der Notebook aus dieser Wiederholung. Verwenden Sie [Reproduzierbarkeitsprüfungen](../guides/reproducibility.md) für eine separate Environment-and-Rerun-Bewertung.
+Laden Sie das Beispiel <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-sample-qc.csv" download>QC-Tisch</a>, <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-library-sizes.png" download>Grundstück</a> und <a href="/docs/examples/gse60450/rerun-20260916/rnaseq-qc-report.md" download>Bericht</a> herunter. Behalten Sie Ihre ursprüngliche Eingabe und Sitzung Notebook neben den Ausgängen. Verwenden Sie [Reproduzierbarkeitsprüfungen](../guides/reproducibility.md), um die Umgebung vorzubereiten und die Berechnung erneut auszuführen.

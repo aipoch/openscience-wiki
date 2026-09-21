@@ -157,7 +157,7 @@ Fork 目前在桌面端提供。导入会话仍为只读，应在其副本中继
 
 ![Fork 副本中执行 Python 并保存新结果](/img/open-science/v0311/fork-result.webp)
 
-<ExampleDownload path="/examples/v0311/fork-qc-check.csv">下载本次计算结果</ExampleDownload>。此处实测的是本地会话 Fork；收到 `.science` 包时的只读与继续使用方式见[研究包](research-packages.md)。
+<ExampleDownload path="/examples/v0311/fork-qc-check.csv">下载示例计算结果</ExampleDownload>。收到 `.science` 包后继续研究的方法见[研究包](research-packages.md)。
 
 ## 查看会话信息卡 {/* #session-information */}
 

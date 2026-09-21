@@ -181,8 +181,6 @@ This is not differential-expression evidence or evidence of regulation direction
 
 <ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">分析說明</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">全部 891 行結果</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">完整響應</ExampleDownload>
 
-本次記錄中，兩次服務呼叫都成功了；隨後生成說明時，Agent 曾將 `mapped_genes` 當成陣列而報錯。修正讀取方式後，它使用已有響應儲存了全部三個檔案。上面的下載檔案是最終完成的輸出，不能據此宣稱自動重放或環境捕獲也已完整驗證。
-
 `background_size: null` 表示沒有提交自定義背景列表，不代表統計總體有零個基因；應檢查每個條目的有效背景大小。富集不能確定因果、差異表達或上調、下調方向。[操作引數](../reference/connector-operations.md#enrich_gene_set)
 
 ## 核對參考基因組身份 {/* #reference-genome */}

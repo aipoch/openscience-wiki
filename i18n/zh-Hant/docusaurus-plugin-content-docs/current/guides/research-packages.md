@@ -84,7 +84,7 @@ Keep everything in English and return links to both new files.
 
 <ExampleDownload path="/examples/v0311/gse60450-qc-summary.csv">繼承的彙總表</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.csv">新計算結果</ExampleDownload> · <ExampleDownload path="/examples/v0311/research-package-continuation.md">計算說明</ExampleDownload>
 
-計算後，原會話、匯入會話和 Fork 中的彙總檔案 SHA-256 完全一致，兩個新檔案屬於 Fork。本例驗證了**同一臺 Mac 的不同專案間**匯出 → 匯入 → Fork → 繼續分析，沒有據此驗證跨裝置環境恢復、文獻與批註完整轉移或自動重放。通用操作見[複製已有會話繼續研究](sessions.md#fork-session)。匯入的用量不會計入本機活動總量。
+兩個新檔案儲存在 Fork 中，原會話和匯入會話的彙總檔案保持不變。通用操作見[複製已有會話繼續研究](sessions.md#fork-session)。匯入的用量不會計入本機活動總量。
 
 隨包收到的驗證記錄描述傳送方提供的檢查，不代表這臺電腦已經重新執行。閱讀它對應的檔案版本、比較條件和結果；檢查方式見[可復現性](reproducibility.md)。
 
