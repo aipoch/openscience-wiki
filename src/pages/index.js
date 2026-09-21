@@ -23,7 +23,7 @@ export default function Home() {
       : `https://aipoch.com/docs/${currentLocale}/`;
   const pageTitle = translate({
     id: 'homepage.meta.title',
-    message: 'AIPOCH Open-Science Documentation',
+    message: 'Open-Science Documentation',
   });
   const pageDescription = translate({
     id: 'homepage.meta.description',
@@ -86,6 +86,20 @@ export default function Home() {
       },
     ],
   };
+  const leadPoints = [
+    {
+      title: translate({id: 'homepage.lead.model.title', message: 'Model choice'}),
+      description: translate({id: 'homepage.lead.model.description', message: 'connect to supported model providers, a custom gateway, or a compatible local model server.'}),
+    },
+    {
+      title: translate({id: 'homepage.lead.provenance.title', message: 'Local storage and provenance'}),
+      description: translate({id: 'homepage.lead.provenance.description', message: 'project data and research outputs are stored locally, with available code, inputs, and execution records accessible for review.'}),
+    },
+    {
+      title: translate({id: 'homepage.lead.guides.title', message: 'Practical guides'}),
+      description: translate({id: 'homepage.lead.guides.description', message: 'set up your workspace, follow research workflows, and learn how to inspect and share your results.'}),
+    },
+  ];
   const steps = [
     {
       title: translate({id: 'homepage.steps.install.title', message: 'Install Open-Science'}),
@@ -152,10 +166,7 @@ export default function Home() {
       <Head>
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{__html: JSON.stringify(documentationSchema)}}
-        />
+        <script type="application/ld+json">{JSON.stringify(documentationSchema)}</script>
       </Head>
       <main className={styles.home}>
         <header className={styles.hero}>
@@ -164,17 +175,19 @@ export default function Home() {
               <span className={styles.marker} aria-hidden="true" />
               <Translate id="homepage.eyebrow">Documentation</Translate>
             </p>
-            <Heading as="h1" className={styles.title}>AIPOCH Open-Science Documentation</Heading>
-            <p className={styles.description}>
-              <Translate id="homepage.introduction">
-                Set up your workspace, work with research data, and check and share your results.
-              </Translate>
-            </p>
+            <Heading as="h1" className={styles.title}>Open-Science Documentation</Heading>
             <p className={styles.description}>
               <Translate id="homepage.lead">
-                AIPOCH Open-Science is an open-source, local-first AI research workbench. It runs agent workflows, executes Python and R, connects to scientific data sources, and writes every result back into an inspectable project record. Model choice stays with the researcher: Open-Science works with built-in providers, a custom gateway, a local model server such as Ollama, or an existing subscription, and project state stays on the machine that produced it. Every generated artifact keeps a provenance record, so a table or figure can be traced back to the session, the code, and the files that produced it. This documentation covers installation for macOS, Windows, and Linux; workspace and model-provider setup; permissions and runtimes; projects, conversations, files, and artifacts; research workflows built on real datasets; tools, skills, and specialists; and reference material for controls, file formats, the CLI, and APIs. Pages are kept in step with the current release, so the steps described here match the version you installed.
+                AIPOCH Open-Science is an open-source, local-first AI research workbench.
               </Translate>
             </p>
+            <ul className={styles.leadList}>
+              {leadPoints.map((point) => (
+                <li key={point.title}>
+                  <strong>{point.title}</strong> &mdash; {point.description}
+                </li>
+              ))}
+            </ul>
             <div className={styles.actions}>
               <Link className={styles.primaryLink} to="intro/">
                 <Translate id="homepage.readDocs">Read the documentation</Translate>

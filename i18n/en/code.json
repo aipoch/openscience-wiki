@@ -63,13 +63,31 @@
     "message": "Skill marketplace"
   },
   "homepage.meta.title": {
-    "message": "AIPOCH Open-Science Documentation"
+    "message": "Open-Science Documentation"
   },
   "homepage.meta.description": {
     "message": "Documentation for AIPOCH Open-Science: installation, workspace and model setup, reproducibility, research workflows, skills, tools, CLI and API reference."
   },
   "homepage.lead": {
-    "message": "AIPOCH Open-Science is an open-source, local-first AI research workbench. It runs agent workflows, executes Python and R, connects to scientific data sources, and writes every result back into an inspectable project record. Model choice stays with the researcher: Open-Science works with built-in providers, a custom gateway, a local model server such as Ollama, or an existing subscription, and project state stays on the machine that produced it. Every generated artifact keeps a provenance record, so a table or figure can be traced back to the session, the code, and the files that produced it. This documentation covers installation for macOS, Windows, and Linux; workspace and model-provider setup; permissions and runtimes; projects, conversations, files, and artifacts; research workflows built on real datasets; tools, skills, and specialists; and reference material for controls, file formats, the CLI, and APIs. Pages are kept in step with the current release, so the steps described here match the version you installed."
+    "message": "AIPOCH Open-Science is an open-source, local-first AI research workbench."
+  },
+  "homepage.lead.model.title": {
+    "message": "Model choice"
+  },
+  "homepage.lead.model.description": {
+    "message": "connect to supported model providers, a custom gateway, or a compatible local model server."
+  },
+  "homepage.lead.provenance.title": {
+    "message": "Local storage and provenance"
+  },
+  "homepage.lead.provenance.description": {
+    "message": "project data and research outputs are stored locally, with available code, inputs, and execution records accessible for review."
+  },
+  "homepage.lead.guides.title": {
+    "message": "Practical guides"
+  },
+  "homepage.lead.guides.description": {
+    "message": "set up your workspace, follow research workflows, and learn how to inspect and share your results."
   },
   "homepage.eyebrow": {
     "message": "Documentation"

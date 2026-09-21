@@ -63,13 +63,31 @@
     "message": "Skill 마켓플레이스"
   },
   "homepage.meta.title": {
-    "message": "AIPOCH Open-Science 문서"
+    "message": "Open-Science 문서"
   },
   "homepage.meta.description": {
     "message": "AIPOCH Open-Science 문서: 설치, 워크스페이스 및 모델 설정, 재현성, 연구 워크플로, 스킬, 도구, CLI 및 API 레퍼런스."
   },
   "homepage.lead": {
-    "message": "AIPOCH Open-Science는 오픈 소스이자 로컬 우선 AI 연구 워크벤치입니다. 에이전트 워크플로를 실행하고, Python과 R을 실행하며, 과학 데이터 소스에 연결하고, 모든 결과를 검토 가능한 프로젝트 기록으로 저장합니다. 모델 선택은 연구자의 몫입니다. Open-Science는 기본 제공 공급자, 사용자 지정 게이트웨이, Ollama와 같은 로컬 모델 서버, 기존 구독과 함께 사용할 수 있으며, 프로젝트 상태는 이를 생성한 컴퓨터에 그대로 남습니다. 생성된 모든 산출물은 출처 기록을 유지하므로 표나 그림을 그것을 만든 세션, 코드, 파일까지 거슬러 확인할 수 있습니다. 이 문서는 macOS, Windows, Linux 설치, 워크스페이스 및 모델 공급자 설정, 권한과 런타임, 프로젝트·대화·파일·산출물, 실제 데이터셋 기반의 연구 워크플로, 도구·스킬·스페셜리스트, 그리고 컨트롤·파일 형식·CLI·API 참고 자료를 다룹니다. 문서는 현재 릴리스와 함께 갱신되므로 여기서 설명하는 단계는 설치한 버전과 일치합니다."
+    "message": "AIPOCH Open-Science는 오픈 소스이자 로컬 우선 AI 연구 워크벤치입니다."
+  },
+  "homepage.lead.model.title": {
+    "message": "모델 선택"
+  },
+  "homepage.lead.model.description": {
+    "message": "지원되는 모델 공급자, 사용자 지정 게이트웨이 또는 호환되는 로컬 모델 서버에 연결할 수 있습니다."
+  },
+  "homepage.lead.provenance.title": {
+    "message": "로컬 저장과 출처 기록"
+  },
+  "homepage.lead.provenance.description": {
+    "message": "프로젝트 데이터와 연구 결과는 로컬에 저장되며, 사용 가능한 코드·입력·실행 기록을 검토할 수 있습니다."
+  },
+  "homepage.lead.guides.title": {
+    "message": "실용 가이드"
+  },
+  "homepage.lead.guides.description": {
+    "message": "워크스페이스를 설정하고, 연구 워크플로를 따라 진행하며, 결과를 확인하고 공유하는 방법을 알아봅니다."
   },
   "homepage.eyebrow": {
     "message": "사용 문서"

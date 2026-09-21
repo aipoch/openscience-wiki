@@ -63,13 +63,31 @@
     "message": "Catalogue de Skills"
   },
   "homepage.meta.title": {
-    "message": "Documentation AIPOCH Open-Science"
+    "message": "Documentation Open-Science"
   },
   "homepage.meta.description": {
     "message": "Documentation d'AIPOCH Open-Science : installation, configuration de l'espace de travail et des modèles, reproductibilité, flux de travail de recherche, compétences, outils, CLI et référence d'API."
   },
   "homepage.lead": {
-    "message": "AIPOCH Open-Science est un poste de travail de recherche IA open source et local-first. Il exécute des workflows d'agents, lance du code Python et R, se connecte à des sources de données scientifiques et réécrit chaque résultat dans un enregistrement de projet vérifiable. Le choix du modèle reste au chercheur : Open-Science fonctionne avec les fournisseurs intégrés, une passerelle personnalisée, un serveur de modèles local comme Ollama, ou un abonnement existant, et l'état du projet reste sur la machine qui l'a produit. Chaque artefact généré conserve un enregistrement de provenance : un tableau ou une figure peut être retracé jusqu'à la session, au code et aux fichiers qui l'ont produit. Cette documentation couvre l'installation sur macOS, Windows et Linux ; la configuration de l'espace de travail et des fournisseurs de modèles ; les autorisations et les environnements d'exécution ; les projets, conversations, fichiers et artefacts ; les workflows de recherche construits sur des jeux de données réels ; les outils, compétences et spécialistes ; ainsi que les références sur les contrôles, les formats de fichiers, la CLI et les API. Les pages suivent la version publiée : les étapes décrites ici correspondent à la version que vous avez installée."
+    "message": "AIPOCH Open-Science est un poste de travail de recherche IA open source et local-first."
+  },
+  "homepage.lead.model.title": {
+    "message": "Choix du modèle"
+  },
+  "homepage.lead.model.description": {
+    "message": "connectez-vous aux fournisseurs de modèles pris en charge, à une passerelle personnalisée ou à un serveur de modèles local compatible."
+  },
+  "homepage.lead.provenance.title": {
+    "message": "Stockage local et provenance"
+  },
+  "homepage.lead.provenance.description": {
+    "message": "les données du projet et les résultats de recherche sont stockés localement, avec le code, les entrées et les journaux d'exécution disponibles pour examen."
+  },
+  "homepage.lead.guides.title": {
+    "message": "Guides pratiques"
+  },
+  "homepage.lead.guides.description": {
+    "message": "configurez votre espace de travail, suivez des workflows de recherche et apprenez à inspecter et partager vos résultats."
   },
   "homepage.eyebrow": {
     "message": "Documentation"
