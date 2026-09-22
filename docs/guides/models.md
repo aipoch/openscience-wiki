@@ -1,7 +1,7 @@
 ---
 title: "Models and task policies"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 # Models and task policies
@@ -87,8 +87,8 @@ In v0.31.1 this route is available for main conversations using **Codex Chat Com
 
 ![Default capability selection and the optional classification service entry](/img/open-science/v0311/classification-models.webp)
 
-1. Choose **Add service**, then **TypeSafe AI** or **OpenRouter**.
-2. Name the service and supply its API credential. OpenRouter can use an existing compatible account or a new key; keep keys hidden in screenshots.
+1. Choose **Add service**, then **TypeSafe AI**, **OpenRouter** or **Custom HTTP service**.
+2. Name the service and supply its API credential when required. OpenRouter can use an existing compatible account or a new key; keep keys hidden in screenshots.
 3. Select **Save** and wait for validation. Failed validation leaves the previous settings unchanged.
 4. Under **Automatic capability selection**, select the saved service and a model offered in its catalog. Use **Check model** to check the connection.
 5. Try a bounded request in a supported main conversation, then inspect the actual tools selected. A successful model check alone does not verify a research result.
@@ -104,3 +104,13 @@ For Jev, select **TypeSafe AI / Jev Latest** under **Automatic capability select
 ![TypeSafe AI / Jev Latest selected with Check passed and the API key masked](/img/open-science/v0311/classification-connected.webp)
 
 For example, a public TP53 lookup in a Codex Chat Completions session can use Jev to select `mcp-genes`. Inspect the selected capability in the activity, then inspect the database response for the research result. Codex subscription sessions use their existing capability-loading path; a saved Jev binding does not make those sessions use Jev.
+
+### Custom classification services {/* #custom-classification */}
+
+In **Add service → Custom HTTP service**, enter a service name, endpoint URL and model ID. The endpoint must implement the **TypeSafe classification protocol**; an ordinary Chat Completions endpoint is not interchangeable. Supply the service's API key when required: a loopback endpoint may use HTTP without a key, while remote endpoints require HTTPS and credentials.
+
+After saving, select the service under **Automatic capability selection** and run **Check model**. Then inspect capability selection in a supported conversation route. This setting does not switch Main or make Codex subscription sessions use the classifier.
+
+The form below illustrates the fields. Replace the sample endpoint and `your-model-id` with your actual service details before checking the connection.
+
+![Custom classification endpoint, model and empty key fields](/img/open-science/v0320/classification-custom.webp)

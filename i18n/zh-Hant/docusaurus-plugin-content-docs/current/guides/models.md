@@ -1,7 +1,7 @@
 ---
 title: "模型與任務策略"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 # 模型與任務策略 {/* #模型与任务策略 */}
@@ -88,8 +88,8 @@ v0.31.1 中，該路徑用於 **Codex Chat Completions** 或 **CodeBuddy** 的�
 
 ![分類模型的預設方式與可選服務入口](/img/open-science/v0311/classification-models.webp)
 
-1. 選擇 **Add service**，再選擇 **TypeSafe AI** 或 **OpenRouter**。
-2. 填寫服務名稱和 API 憑據。OpenRouter 可複用相容的已有賬戶或使用新金鑰；截圖時保持金鑰隱藏。
+1. 選擇 **Add service**，再選擇 **TypeSafe AI**、**OpenRouter** 或 **Custom HTTP service**。
+2. 填寫服務名稱，並按服務要求提供 API 憑據。OpenRouter 可複用相容的已有賬戶或使用新金鑰；截圖時保持金鑰隱藏。
 3. 點選 **Save**，等待驗證。驗證失敗時，原有設定保持不變。
 4. 在 **Automatic capability selection** 中選擇已儲存的服務和目錄中提供的模型。透過 **Check model** 檢查連線。
 5. 在受支援的主會話中傳送一個範圍明確的請求，檢視實際選擇的工具。模型連線檢查透過，本身不能證明科研結果正確。
@@ -105,3 +105,13 @@ v0.31.1 中，該路徑用於 **Codex Chat Completions** 或 **CodeBuddy** 的�
 ![已選取 TypeSafe AI / Jev Latest，顯示 Check passed，金鑰保持隱藏](/img/open-science/v0311/classification-connected.webp)
 
 例如，在 Codex Chat Completions 會話中查詢公開的 TP53 資訊時，可由 Jev 選擇 `mcp-genes`。在活動記錄中檢查選中的能力，再檢視資料庫響應獲取查詢結果。Codex 訂閱會話使用原有的能力載入方式；儲存 Jev 繫結不會讓這類會話改用 Jev。
+
+### 自定義分類服務 {/* #custom-classification */}
+
+在 **Add service → Custom HTTP service** 中填寫服務名稱、端點 URL 和模型 ID。服務必須相容 **TypeSafe 分類協議**；普通 Chat Completions 地址不能直接替代它。按服務要求填寫 API key：本機迴環地址可以使用無金鑰 HTTP，遠端服務必須使用 HTTPS 並提供憑證。
+
+儲存後，在 **Automatic capability selection** 中選擇該服務並執行 **Check model**。連線檢查成功後，再使用受支援的會話路線檢查能力選擇。該設定不切換 Main，也不會讓 Codex 訂閱會話改用分類服務。
+
+下圖僅展示填寫方式：請把示例地址與 `your-model-id` 換成實際服務資訊，再檢查連線。
+
+![自定義分類服務的端點、模型和空白金鑰欄位](/img/open-science/v0320/classification-custom.webp)

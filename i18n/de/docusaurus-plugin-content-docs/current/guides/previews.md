@@ -1,7 +1,7 @@
 ---
 title: "Öffnen und Vorschauen von Dateien"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -24,7 +24,7 @@ Eine generierte Dateikarte öffnet ihre Vorschau. **Offen ... in geteilter Ansic
 | Edit / Vergleichen | Verfügbar nur für unterstützte verwaltete Inhalte; siehe [Dateien](files.md) |
 | Schließen | die Ansicht zu verwerfen; Dies ist nicht Löschen |
 
-Das oben genannte Schließverhalten gilt für Dateivorschaus. Ein [Side Chat Tab](delegation.md) hat eine separate Bestätigung, weil das Schließen stoppt und löscht diese Nebendiskussion.
+Das oben genannte Schließverhalten gilt für Dateivorschaus. Ein [Side Chat Tab](delegation.md) hat eine separate Bestätigung: Das Schließen stoppt diese Nebendiskussion und entfernt seine Konversation. Ein vollständiger neustart der anwendung löscht auch die verbleibenden side chats. Nachrichten, die bereits an Main geliefert wurden, bleiben gespeichert.
 
 Um einen Leseort für sich zu speichern, wählen Sie Text oder eine PDF-Region und wählen Sie **For me**; siehe [Lesebuchzeichen](bookmarks.md).
 
@@ -155,3 +155,9 @@ Meerjungfrau-Diagramme, die Remote-Bilder enthalten, können vor dem Laden block
 ## Wenn eine Vorschau fehlschlägt {/* #when-a-preview-fails */}
 
 Bestätigen Sie die erfolgreich gespeicherte Datei und überprüfen Sie dann die genaue Version und das Format. Versuchen Sie Herunterladen, um eine Viewer-Beschränkung von einer nicht verfügbaren Datei zu unterscheiden. Für eine lokale Datei, die außerhalb der App geändert wird, verwenden Sie Reload, wo angeboten. Überschreiben Sie die Eingabe nicht, um ein Rendering-Problem zu beheben. Melden Sie den Dateinamen, den Typ, die Größe, die App-Version und den angezeigten Fehler; private Dateiinhalte ausschließen, es sei denn, sie werden für die Diagnose benötigt.
+
+## Annotieren eines PDF {/* #annotate-a-pdf */}
+
+Öffnen Sie **Notes & Annotations**, um Highlights, Bereichsmarkierungen, Seitennotizen und Dokumentnotizen zu verwalten. **Show notes sidebar** hält Notizen neben der Originalseite. Das Downloadmenü trennt **Download original PDF** von **Download PDF with annotations**. Folgen Sie [PDF Anmerkungen und Dokumentnotizen](pdf-notes.md) für ein vollständiges Lesen, Suchen und Exportieren.
+
+Für **Abbildungen und Tabellen** kann die erstmalige lokale Modellinstallation genehmigte Download-Spiegel ausprobieren, wenn die Primärquelle nicht erreichbar ist. Warten Sie auf Download- und Integritätsprüfungen, bevor Sie **Analyze PDF** auswählen. Spiegel entfernen nicht die Notwendigkeit, diese Ressourcen zu installieren; ein zwischengespeichertes Ergebnis kann ohne eine neue Analyse wieder geöffnet werden.

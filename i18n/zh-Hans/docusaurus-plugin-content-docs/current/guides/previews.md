@@ -1,7 +1,7 @@
 ---
 title: "打开与预览文件"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -24,7 +24,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | Edit / Compare | 仅适用于支持的托管内容，见[文件](files.md) |
 | Close | 关闭视图，不是删除 |
 
-上述关闭行为适用于文件预览。[Side Chat 标签](delegation.md) 的关闭需要另行确认，因为确认后会停止并删除该旁聊。
+以上关闭行为适用于文件预览。[Side Chat 标签](delegation.md)会另行要求确认：关闭后停止该旁聊并移除对话。完整重启应用也会清除其余旁聊；已经送达 Main 的消息仍会保留。
 
 想为自己保存阅读位置时，选中文字或 PDF 区域后选择 **For me**，参阅[阅读书签](bookmarks.md)。
 
@@ -157,3 +157,9 @@ PDF 上下文只关联当前任务需要的论文，后续不应使用时取消�
 实现依据：[Mermaid](https://github.com/aipoch/open-science/commit/5f6e7995)、[PDF 条件](https://github.com/aipoch/open-science/commit/2722da2a)、[CSV](https://github.com/aipoch/open-science/commit/9275c2c0)、[Office](https://github.com/aipoch/open-science/commit/0291871f)、[TIFF](https://github.com/aipoch/open-science/commit/52152ed4)。
 
 专业格式的入口、控件和文件要求见[科学查看器](../tools/viewers.md)。
+
+## 批注 PDF
+
+打开 **Notes & Annotations** 管理高亮、区域标记、页面笔记和文档笔记。**Show notes sidebar** 可以把笔记显示在原文旁。下载菜单区分 **Download original PDF** 与 **Download PDF with annotations**。完整的阅读、搜索与导出步骤见 [PDF 批注与文档笔记](pdf-notes.md)。
+
+首次使用 **Figures & Tables** 安装本地模型时，如果主下载源无法访问，应用可以尝试受认可的备用镜像。等待下载和完整性检查完成后，再选择 **Analyze PDF**。镜像不会省去本地资源安装；已有缓存结果可以直接重新打开。

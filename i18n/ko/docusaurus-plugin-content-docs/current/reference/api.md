@@ -1,7 +1,7 @@
 ---
 title: "작업 SDK 및 로컬 API"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 # 작업 SDK 및 로컬 API {/* #task-sdk-and-local-api */}
@@ -191,3 +191,9 @@ retry-safe 프로젝트 생성 및 입학을 위해, 최종 옵션 인수에서 
 [SDK 소스](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/index.mjs), [SDK 계약 노트](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/README.md). 쉘 자동화 및 [Headless 서비스](./server.md)에 대한 [CLI](./cli.md)을 참조하십시오.
 
 출처: [계정 관리](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.d.ts), [오시는 길](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.mjs). 구성 및 진단 경계를 위한 [CLI 관리 분야](cli.md#manage-connectors-and-credentials)를 보십시오.
+
+## 실패한 작업 {/* #unattended-runs */}
+
+CLI `--permission-prompts none`에 대응하는 `startRun` 입력에 `permissionPrompts: 'none'`을 설정합니다. 적절한 `permissionProfile` 유지: 이 옵션은 해결되지 않은 인간의 상호 작용을 감소시키고 허가를 확장하지 않습니다. `planFirst: true`과 결합하지 마십시오.
+
+호스트는 `permission-prompts-none` 기능을 선언해야합니다; 그렇지 않으면 클라이언트가 실행을 만들기 전에 `unsupported_capability`을보고합니다. 이 정책은 현재 주장에만 적용됩니다. 런의 실제 상태와 오류를 평소처럼 취급합니다. [무인 CLI 실행](cli.md#unattended-runs) 참조.

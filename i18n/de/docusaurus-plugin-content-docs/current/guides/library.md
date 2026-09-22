@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -317,4 +317,8 @@ Bevor Sie einen Anhang entfernen, lesen Sie die Löschbestätigung und überprü
 Wenn ein anderer Client eine Sammlung ändert, während Ihr Editor geöffnet ist, kann ein veraltetes Speichern abgelehnt werden. Öffne die neueste Sammlung, vergleiche die gespeicherten Werte mit deiner beabsichtigten Änderung und versuche es erneut mit diesem Zustand. Ein Aktualisierungs- oder Bereinigungsfehler nach dem Speichern bedeutet nicht automatisch, dass das Speichern fehlgeschlagen ist: Überprüfen Sie den aktuellen Datensatz, bevor Sie die Aktion wiederholen.
 
 
-Quellen: [Chargeneinfuhr](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx), [Metadateneditor](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteratureMetadataEditor.tsx), [Anhangverlauf/Löschung](https://github.com/aipoch/open-science/commit/f4a82d4a), [Concurrent Edits](https://github.com/aipoch/open-science/commit/dbb9560a).
+Quellen: [Chargeneinfuhr](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx), [Metadaten-Editor](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteratureMetadataEditor.tsx), [Anhangverlauf/Löschung](https://github.com/aipoch/open-science/commit/f4a82d4a), [Concurrent Edits](https://github.com/aipoch/open-science/commit/dbb9560a).
+
+## Halten Sie PDF Lesenotizen {/* #keep-pdf-reading-notes */}
+
+Öffnen Sie den PDF-Anhang einer Referenz und verwenden Sie **Notes & Annotations** für Anmerkungen, Seitenfragen und Dokumentnotizen. Die gleiche Version der Bibliotheksdatei teilt diese Notizen über Projekte und Sitzungen hinweg. Suchen Sie in der globalen Suche eine Notiz unter **Library** und wählen Sie dann **Show annotation source**, um zum PDF zurückzukehren. Siehe [PDF Anmerkungen und Dokumentnotizen](pdf-notes.md) für Schritte und Exporte.

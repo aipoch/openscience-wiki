@@ -1292,7 +1292,7 @@
     "message": "Scientific databases"
   },
   "docs.outline.tools.databases.scope": {
-    "message": "A categorized table for the 23 data-source connectors: source coverage, exact operations, identifiers, credentials and limitations. The local Molecule Viewer is documented under Scientific viewers."
+    "message": "Supported scientific data sources, useful tasks, built-in Connector setup and credentials, with links to complete research workflows."
   },
   "docs.outline.tools.tables.title": {
     "message": "Tables and datasets"
@@ -1722,5 +1722,44 @@
   },
   "docs.outline.reference.v0310.scope": {
     "message": "Writable session forks, validated providers and complete STRING networks."
+  },
+  "docs.outline.workflows.group.public-data": {
+    "message": "Public data and bioinformatics"
+  },
+  "docs.outline.workflows.public-omics-data.title": {
+    "message": "Find public omics data and build a file inventory"
+  },
+  "docs.outline.workflows.public-omics-data.scope": {
+    "message": "Discover public ENA runs and inspect ENA and PRIDE file inventories, source locations, sizes and checksums."
+  },
+  "docs.outline.workflows.protein-sequence-search.title": {
+    "message": "Find a protein sequence and complete a BLAST search"
+  },
+  "docs.outline.workflows.protein-sequence-search.scope": {
+    "message": "Resolve a UniProt protein, retrieve FASTA and inspect a completed BLAST alignment report."
+  },
+  "docs.outline.workflows.gene-set-enrichment.title": {
+    "message": "Run functional enrichment for a candidate gene set"
+  },
+  "docs.outline.workflows.gene-set-enrichment.scope": {
+    "message": "Run g:Profiler enrichment and inspect mappings, corrected probabilities, background and source versions."
+  },
+  "docs.outline.workflows.reference-genome-check.title": {
+    "message": "Check species, reference genome and chromosome identifiers"
+  },
+  "docs.outline.workflows.reference-genome-check.scope": {
+    "message": "Resolve a taxon, versioned reference assembly and chromosome aliases before analysis."
+  },
+  "docs.guides.outline.pdf-notes.title": {
+    "message": "PDF annotations and document notes"
+  },
+  "docs.guides.outline.pdf-notes.scope": {
+    "message": "Mark passages, organize file-version notes, return to sources and export reading copies."
+  },
+  "docs.outline.reference.v0320.title": {
+    "message": "v0.32.0"
+  },
+  "docs.outline.reference.v0320.scope": {
+    "message": "PDF notes, BLAST sequence search, omics discovery and unattended tasks."
   }
 }

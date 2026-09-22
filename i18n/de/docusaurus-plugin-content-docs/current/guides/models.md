@@ -1,7 +1,7 @@
 ---
 title: "Modelle und Aufgabenrichtlinien"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 # Modelle und Aufgabenrichtlinien {/* #models-and-task-policies */}
@@ -87,8 +87,8 @@ In v0.31.1 wird dieser Dienst für Hauptunterhaltungen mit **Codex Chat Completi
 
 ![Auswahl der Standardfähigkeit und fakultativer Eintrag des Klassifikationsdienstes](/img/open-science/v0311/classification-models.webp)
 
-1. Wählen Sie **Add service**, dann **TypeSafe AI** oder **OpenRouter**.
-2. Benennen Sie den Dienst und geben Sie seinen API-Anmelder an. OpenRouter kann ein bestehendes kompatibles Konto oder einen neuen Schlüssel verwenden; Halten Sie Schlüssel in Screenshots versteckt.
+1. Wählen Sie **Add service**, dann **TypeSafe AI**, **OpenRouter** oder **Custom HTTP service**.
+2. Benennen Sie den Dienst und geben Sie bei Bedarf seinen API-Anmelder an. OpenRouter kann ein bestehendes kompatibles Konto oder einen neuen Schlüssel verwenden; Halten Sie Schlüssel in Screenshots versteckt.
 3. Wählen Sie **Save** und warten Sie auf die Validierung. Die fehlgeschlagene Validierung lässt die vorherigen Einstellungen unverändert.
 4. Wählen Sie unter **Automatic capability selection** den gespeicherten Dienst und ein in seinem Katalog angebotenes Modell aus. Verwenden Sie **Check model**, um die Verbindung zu überprüfen.
 5. Probieren Sie eine begrenzte Anfrage in einer unterstützten Hauptkonversation aus und prüfen Sie dann die tatsächlich ausgewählten Tools. Eine erfolgreiche Modellprüfung allein verifiziert kein Forschungsergebnis.
@@ -104,3 +104,13 @@ Wählen Sie für Jev unter **Automatic capability selection** den Eintrag **Type
 ![TypeSafe AI / Jev Latest ausgewählt, mit Check passed und verborgenem API-Schlüssel](/img/open-science/v0311/classification-connected.webp)
 
 Beispielsweise kann ein öffentliches TP53-Lookup in einer Codex Chat Completions-Sitzung Jev verwenden, um `mcp-genes` auszuwählen. Überprüfen Sie die ausgewählte Fähigkeit in der Aktivität und prüfen Sie dann die Datenbankantwort auf das Forschungsergebnis. Codex-Abonnementsitzungen verwenden ihren bestehenden Fähigkeitsladepfad; Eine gespeicherte Jev-Bindung lässt diese Sitzungen nicht Jev verwenden.
+
+### Dienstleistungen der Zollklassifizierung {/* #custom-classification */}
+
+Geben Sie in **Add service → Custom HTTP service** einen Dienstnamen, eine Endpunkt-URL und eine Modell-ID ein. Der Endpunkt muss den **TypeSafe-Klassifizierungsprotokoll** implementieren; ein gewöhnlicher Chat-Endpunkt ist nicht austauschbar. Geben Sie bei Bedarf den API-Schlüssel des Dienstes an: Ein Loopback-Endpunkt kann HTTP ohne Schlüssel verwenden, während entfernte Endpunkte HTTPS und Anmeldeinformationen erfordern.
+
+Wählen Sie nach dem Speichern den Dienst unter **Automatic capability selection** aus und führen Sie **Check model** aus. Überprüfen sie dann die fähigkeitsauswahl in einer unterstützten konversationsroute. Diese Einstellung schaltet Main nicht um oder lässt Codex-Abonnementsitzungen den Klassifikator verwenden.
+
+Das Formular unten veranschaulicht die Felder. Ersetzen Sie den Beispiel-Endpunkt und `your-model-id` durch Ihre tatsächlichen Servicedetails, bevor Sie die Verbindung überprüfen.
+
+![Benutzerdefinierte Klassifikations-Endpunkt-, Modell- und leere Schlüsselfelder](/img/open-science/v0320/classification-custom.webp)

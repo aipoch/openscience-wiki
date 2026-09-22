@@ -1,7 +1,7 @@
 ---
 title: "CLI 및 구조 출력"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -210,3 +210,15 @@ JSONL은 `run.progress` 및 `stream.resync-required`을 포함 할 수 있습니
 [CLI 구현](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [upstream 명령 가이드](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
 
 기술적인 참고: [CLI 계약](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+
+## 무력한 실행 {/* #unattended-runs */}
+
+`--permission-prompts none`을 `run`에 추가하여 무한하게 대기중인 인간 상호 작용을 중단하십시오. 선택한 승인 프로필 및 기억 보조금은 여전히 적용됩니다; 나머지 허가 요청은 거부되며, 사용자 질문은 쇠퇴하고, 인간 검토가 거부되는 계획입니다. 이것은 모든 작업을 승인하지 않습니다.
+
+```bash
+open-science run --project "Sequence and PDF Research" \
+  --prompt "Summarize the existing public-data result. Do not request user input." \
+  --approval-profile ask --permission-prompts none --wait --jsonl
+```
+
+옵션은 이 주장에만 적용되며 세션 선호도로 저장되지 않습니다. `--plan-first`과 결합할 수 없습니다. 최종 상태와 오류를 검사: 인간의 대기를 피하는 것은 작업 완료를 보장하지 않습니다. 호스트 기능 `permission-prompts-none`에 대한 클라이언트 체크; 이전 호스트가 `unsupported_capability`을 반환하면 일치하는 클라이언트와 앱을 업데이트합니다.

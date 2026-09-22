@@ -2,234 +2,162 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
-
-import ExampleDownload from '@site/src/components/ExampleDownload';
-
 
 # 科学データベース {/* #scientific-databases */}
 
-アプリは、**23データソースコネクタ** をバンドルし、別々のオフライン Molecule Connector. フルレジストリは、Moleculeの2つの操作を含む**246 ツール操作**を持っています。 244をカバーする下にあるデータソースカタログ。 設定で関連するConnectorを有効にし、正しい識別子タイプでバインドされた質問を尋ねます。
+このページでは、データソースを選択し、それが返すことができるものを理解し、Open-Scienceで利用可能なツールを作るために使用します。 スクリーンショットと出力ファイルを含むステップバイステップのリサーチ例については、[研究ワークフロー](#database-workflows)を参照してください。
 
-<span id="actual-local-queries" />
+<span id="data-source-catalog" />
 
-## データソースカタログ {/* #data-source-catalog */}
+## サポートされているデータベース {/* #supported-databases */}
 
-識別子および研究の質問によって選ぶ。 ソースカバレッジは異なります。 正確なフィールドの動作参照を参照してください。
+Open-Science v0.32.0は**251 操作で 23 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを253に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
-| 化学・化学 `chemistry` | PubChem, ChEBI, レア, ビンディングDB | 12 | PubChem、ChEBI、Rhea、BindingDBによる小分子化学。  |
-| 文献グラフ・ `literature` | OpenAlex、arXiv、Crossref、DataCite | 13 | 論文、著者、引用、DOIの更新とデータセット/ソフトウェアレコード。 |
-| パブメッド・ `pubmed` | パブメッド、PMC、欧州PMC | 7 | NCBI Eユーティリティ、PMC IDコンバーター、ヨーロッパPMCによる生物医学文献 — 検索、メタデータ、関連記事、引用ルックアップ、ID変換、完全なテキストと著作権。  |
-| 遺伝子・オントロジー・ `genes` | MyGene、UniProt、OLS、QuickGO、Reactome、g:Profiler | 9 | 遺伝子/タンパク質のアイデンティティと腫瘍学の用語 — mygene.info, UniProt, OLS4のオントロジー, GOのアノテーション, Reactomeの経路.  |
-| ゲノム・ `genomes` | 組み立て、UCSC、NCBI | 14 | ゲノムアノテーション、バリアント、均衡、シーケンス、ブラウザのトラック — REST と UCSC Genome ブラウザーを組み立てます。  |
-| バリアント・ `variants` | gnomAD、ClinVar、dbSNP | 15 | 人間の遺伝的変形 — gnomAD の人口の頻度/対照的、ClinVar の記録/調査(直接 NCBI)、dbSNP、構造的および mitochondrial の変形。  |
-| 治験・臨床試験 `clinical-trials` | 臨床トライアル.gov | 6 | ClinicalTrials.govの臨床試験 — 検索、詳細、スポンサー、投資家、エンドポイント、および適格性。  |
-| 臨床ゲノム・ `clinical-genomics` | ClinGen、CIViC、オープンターゲット | 20 | 臨床ゲノムの知識ベース:ClinGenの治癒、CIViC臨床証拠、およびオープンターゲットプラットフォーム。  |
-| 構造・インタラクション・ `structures` | PDB、AlphaFold、EMDB、複雑なポータル、IntAct | 16 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
-| ChEMBL・ `chembl` | チャムBL | 6 | CEMBL REST API による生物活性化合物、薬物、標的、生物活動およびメカニズム。  |
-| バイオRxiv · `biorxiv` | バイオRxiv、medRxiv、ROR | 7 | BioRxiv/medRxiv のプリプリント — 日付/カテゴリ、DOI によるメタデータ、ジャーナル公開リンク、ファンダリスト、およびプラットフォームの統計による検索。  |
-| 薬物規制・ `drug-regulatory` | オープンFDA | 7 | openFDA による FDA アプリケーション、ラベル、およびコルパスの統計。  |
-| ヒト遺伝学・ `human-genetics` | GWASカタログ、eQTLカタログ、PheWeb | 14 | GWASカタログ、eQTLカタログ、PheWeb PheWASポータル(FinnGen、BioBank Japan)  |
-| エクスプレス・ `expression` | GTExの特長 | 12 | GTExポータル経由でのヒト組織表現とeQTL。  |
-| 蛋白質のアノテーション · `protein-annotation` | InterPro、Pfam、ヒトプロテインアトラス、ストリング | 13 | タンパク質ドメインアーキテクチャ、家族/クランメンバーシップ、InterPro/Pfam、ヒトプロテインアトラスおよびストリングによる表現アトラスおよび相互作用ネットワーク。  |
-| がんモデル・ `cancer-models` | cBioPortal(バイオポータル) | 6 | cBioPortal REST API によるがんゲノミクス研究記録。  |
-| RNA・RNA `rna` | ラファム | 9 | Rfamを介したRNAファミリーデータ(メタデータ、アライメント、モデル、構造)をノンコーディング。  |
-| Omics アーカイブズ・ `omics-archives` | ArrayExpress、GEO、MetaboLights、MGnify、PRIDE、ENA | 19 | Omicsのデータアーカイブ — 式(ArrayExpress、GEO)、メタボロミクス(MetaboLights)、metagenomics(MGnify)、proteomics(PRIDE)。  |
-| セルガイド・ `cellguide` | セルックスジーン | 5 | セルックスジーン・セルガイドによる細胞型アイデンティティ、マーカー遺伝子、ソースデータセット、組織。  |
-| 規制・規制 `regulation` | エンコード、JASPAR、UniBind | 16 | 遺伝子調整機能ゲノム — ENCODE実験/biosamples/files、JASPAR TF結合プロファイル、UniBind ChIP-seq TFBS。  |
-| リサーチ・リソース・ `research-resources` | Grants.gov, 抗体レジストリ | 5 | 資金調達機会検索(Grants.gov)と抗体カタログ検索(抗体レジストリ)。  |
-| バイオマート・ `biomart` | バイオマートを組み立てる | 8 | BioMart属性のクエリと識別子の翻訳を統合します。  |
-| ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZIN・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZIN・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZIN・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZIN・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC・ZINC `zinc` | トピックス | 5 | ZINC22 浄化可能な化学空間(CartBlanche22) — ZINC id、SMILES の正確/類似性検索、サプライヤーコードの解像度、ランダムサンプリング、ドックのための 3D 構造の場所による化合物のルックアップ。  |
+| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | パブケム、チェビ、レア、ビンディングDBによる小分子化学。  |
+| Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 論文、著者、引用、DOIの更新とデータセット/ソフトウェアレコード。 |
+| PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI Eユーティリティ、PMC IDコンバーター、ヨーロッパPMCによる生物医学文献 — 検索、メタデータ、関連記事、引用ルックアップ、ID変換、完全なテキストと著作権。  |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 10 | 遺伝子/タンパク質識別子、UniProtシーケンス検出、GOとReactomeアノテーション、およびg:Profiler遺伝子セット濃縮。 |
+| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST | 17 | ゲノムのアノテーション、均質学および順序; NCBIタムン/アセンブリ/シーケンスアイデンティティ; BLAST 提出と報告。 |
+| Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | ヒト遺伝的変形 — gnomAD 人口の頻度/対照的、ClinVar レコード/研究(NCBI 間接)、dbSNP、構造的およびミトコンドリア変異体。  |
+| Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床トライアル.gov — 検索、詳細、スポンサー、投資家、エンドポイント、および適格性。  |
+| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | 臨床ゲノムの知識ベース:ClinGenの治癒、CIViC臨床証拠、およびオープンターゲットプラットフォーム。  |
+| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
+| ChEMBL · `chembl` | ChEMBL | 6 | CEMBL REST API による生体活性化合物、薬物、標的、生体活性およびメカニズム。  |
+| bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | BioRxiv/medRxiv のプリプリント — 日付/カテゴリ、DOI によるメタデータ、ジャーナル公開リンク、ファンダリスト、およびプラットフォームの統計による検索。  |
+| Drug Regulatory · `drug-regulatory` | openFDA | 7 | openFDA による FDA アプリケーション、ラベル、およびコルパスの統計。  |
+| Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | GWASカタログ、eQTLカタログ、PheWeb PheWASポータル(FinnGen、BioBank Japan)  |
+| Expression · `expression` | GTEx | 12 | GTExポータル経由での人体組織表現とeQTLs。  |
+| Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 13 | タンパク質ドメインアーキテクチャ、家族/クランのメンバーシップ、InterPro/Pfam、ヒトプロテインアトラスおよびストリングによる表現アトラスおよび相互作用ネットワーク。  |
+| Cancer Models · `cancer-models` | cBioPortal | 6 | cBioPortal REST API によるがんゲノミクス研究記録。  |
+| RNA · `rna` | Rfam | 9 | Rfam による RNA の家族データ(メタデータ、アライメント、モデル、構造)を非コーディング。  |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | 表現、メタボロミクス、メデックス、プロテオミクスのアーカイブ; ENA は発見および FASTQ/submission の在庫を実行します; PRIDEファイルリスト。 |
+| CellGuide · `cellguide` | CELLxGENE | 5 | セルックスジーン・セルギドによる細胞型アイデンティティ、マーカー遺伝子、ソースデータセット、組織。  |
+| Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 遺伝子調整機能ゲノム — ENCODE実験/biosamples/files、JASPAR TF結合プロファイル、UniBind ChIP-seq TFBS。  |
+| Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 資金調達機会検索(Grants.gov)と抗体カタログ検索(抗体レジストリ)。  |
+| BioMart · `biomart` | Ensembl BioMart | 8 | BioMart 属性のクエリと識別子の翻訳を統合します。  |
+| ZINC · `zinc` | ZINC | 5 | ZINC22 浄化可能な化学空間(CartBlanche22) — ZINC id、SMILES の完全/類似検索、サプライヤーコードの解像度、ランダムサンプリング、ドックのための 3D 構造の場所による化合物のルックアップ。  |
 
-## レコードの取得と本人確認 {/* #retrieve-a-record-and-verify-its-identity */}
+[科学ビューア](viewers.md)でオフラインのモレキュラーツールがカバーされています。 それぞれのデータソースで露出した正確な操作については、[Connectorの操作の参照](../reference/connector-operations.md) を使用します。
 
-1. **Settings → Connectors** を開き、必要なソースを検索し、意図したエージェントの可用性を確認します。
-2. 詳細はこちらをご覧ください。 **Tools**、入力、例、およびサードパーティの要件をお読みください。
-3. 明示的な照会/アクセスおよび結果の限界を供給して下さい。 文献収集または証拠表を作成するときに正確なクエリを保持します。
-4. 返されたIDとソースフィールドを調べます。 空の結果、truncatedのバッチとエラーは異なる結果です。
-5. 必要なレコードをプロジェクト/ライブラリに意図的に保存します。 検索応答は、すべての論文がダウンロードされた文献ライブラリまたはフルテキストに追加されたことを自動的に意味しません。
+<span id="choose-a-query-and-inspect-the-result" />
 
-### 1つの既知の識別子で始まります {/* #start-with-one-known-identifier */}
+## できること {/* #database-capabilities */}
 
-<p className="example-label"><strong>実践例</strong> ヒトTP53遺伝子識別子を解決する</p>
-
-**ジャンルとオノトロジー** を有効にして、以下の例で **query_genes を使用して、スコープ="symbol"、種="human"、およびフィールド="symbol、名前、entrezgene" で TP53 を解決します。 入力クエリと一致しないレコードを返します。** を尋ねます。 ヒト TP53 レコードは Entrez Gene **7157** と **腫瘍タンパク質p53** の名前を識別します。 地図付きIDを使用する前に、レコードの`query`と`symbol`を確認してください。 シンボルはいくつかのマッチを返す可能性があるため、意図した生物と記録を確認するまで、すべての結果を保持します。 [正確なフィールド](../reference/connector-operations.md#query_genes).
-
-## クエリを選択し、結果を調べる {/* #choose-a-query-and-inspect-the-result */}
-
-<p className="example-label"><strong>例</strong> 境界データベースのクエリと応答</p>
-
-表はこれらの例の応答を記録します。 ライブクエリ結果は異なる可能性があります。
-
-| Connector / ツール | 入力 | 観察結果 |
+| 研究課題 | はじめに | 典型的な出力 |
 | --- | --- | --- |
-| Omics アーカイブ/geo_get_series | `accessions: ["GSE60450"]` | 12サンプルを使用したシリーズ/サンプルメタデータ。 メタデータの検索はアップロードされたカウントを返さない。 |
-| ジャンル / query_genes | TP53; シンボルスコープ; 人 人 人 | Entrez Gene ID 7157, シンボル TP53, 名前 腫瘍タンパク質 p53. |
-| パブリッシング/search_articles | GSE60450, 最大 2 | PMIDs 38059347および37306301。 これらは、データセットの元の出版物を自動的にではなく、クエリマッチです。 |
-| 化学 / pubchem_search_compounds | アスピリン、最高 1 CID | CID 2244の方式C9H8O4および分子量180.16。 |
-| 文学 / openalex_search_works | `CRISPR base editing`; 2020から; アクセスを開く。 最高 2 | OpenAlex ID、ソースフィールド、完全性フラグの2つの作業記録。 |
+| 論文を検索し、引用を追跡し、DOIの関係をチェックする | 文献グラフ、パブフィード、バイオRxiv | 文献レコード、識別子、引用リンク、フルテキストの可用性 |
+| 遺伝子やタンパク質を見つけ、シーケンスを比較する | 遺伝子と腫瘍学、ゲノム | 識別子マッピング、タンパク質記録、FASTAおよびBLASTレポート |
+| 公共オミクスデータを発見し、利用可能なファイルを調べる | Omics アーカイブ | ソースの場所、サイズ、利用可能なチェックサムとメタデータとファイルインベントリを学習/実行 |
+| 遺伝子リストを解釈したり、インタラクションネットワークを検査したりする | 遺伝子とオノテーション、タンパク質のアノテーション | 豊富なテーブル、オントロジーの注釈とネットワークレコード |
+| バリアント、式、規制証拠をチェックする | バリアント、臨床ゲノム、ヒト遺伝学、発現、規制 | 生物、組織、参照ビルドおよび関連する証拠フィールドのソースレコード |
+| 化合物、構造、臨床研究記録の取得 | 化学、ChemBL、構造及び相互作用、臨床試験 | 化学識別子/プロパティ、構造レコードおよび試験メタデータ |
 
-### OpenAlex を接続し、引用リンクに従う {/* #connect-openalex-and-follow-citation-links */}
+データベースの応答は、研究のステップをサポートすることができます。 自動的にデータをダウンロードし、すべての論文を文献ライブラリに追加するか、完全な分析を実行しません。 保存したいレコードやファイルを指定します。
 
-1. **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** を開きます。
-2. APIキーを入力し、**Validate**を選択し、検証が成功した後に**Save**を選択します。
-3. 小さな`max_records`制限でトピックを検索します。 結果を記述する前に、`n_records_returned`と`records_truncated`をチェックしてください。
-4. `openalex_get_work` で返された作業 ID を使用します。 `openalex_citations`は、その作品と`openalex_references`を引用する紙に使用します。 反対方向です。
-5. 著者の検索については、著者のプロファイルを取得する前に、機関とORCIDを確認してください。 ソース ID または ISSN を使用して、ジャーナル名を解読します。
+## データベースの接続と起動 {/* #connect-database */}
 
-フィルタとフィールドを返すための[OpenAlex 操作パラメータ](../reference/connector-operations.md#openalex_search_works)を参照してください。
+<span id="retrieve-a-record-and-verify-its-identity" />
 
-### DOIと関連する研究記録を調べる {/* #look-up-a-doi-and-its-related-research-records */}
+### 1. 組み込みのConnectorを有効にします {/* #1-enable-the-built-in-connector */}
 
-**文献グラフ**を有効にします。 `crossref_get_work` は、発行元メタデータと `crossref_get_updates` で、預金された補正/引き込み関係に使用します。 `datacite_search_records` を使用して、データセット/ソフトウェアの DOIs を検索し、`datacite_get_record` を選択して選択したレコードを検査します。 これらの4つのパブリックメソッドは、OpenAlexキーを必要としません。 DOI のアイデンティティ、関係の方向および資源をダウンロードするか、または引用する前に条件を再使用して下さい。 [操作の参照](../reference/connector-operations.md#family-2) では、正確なフィールドが使われています。
+1. **Settings → Connectors** を開き、**Omics アーカイブ** などの上記の家族を検索します。
+2. 細部を開け、拡大して下さい **Tools**. . . . 選択した操作の入力、結果の制限、およびサードパーティの要件をお読みください。
+3. **メインエージェント** の可用性を有効にし、**Used by** をチェックします。 Specialistアクセスは、個々のSpecialistで設定されています。 可用性とパーツールの承認ポリシーは、別々の制御です。
 
-Rfamシーケンス検索では、公式のバッチエンドポイントを使用します。 古いインストールが退職エンドポイントエラーを返す場合、アプリを更新し、意図した操作を再試行します。 保留中のジョブは、ヒットなしの完全検索ではありません。
+![Omics アーカイブツールは、GEOの入力とメタデータのみスコープを示す詳細](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
-## 返されたレコード、空のマッチまたはエラーを処理する {/* #handle-a-returned-record-empty-match-or-error */}
+これらのコネクターはで造られます; 専用のサーバーを追加する必要はありません。 自分で操作する外部サービスについては、[カスタムConnectorセットアップ](../guides/connectors.md)を参照してください。 リストされているか、または有効なConnectorは、認証やクエリが成功する証拠ではありません。
 
-結果を使用する前に、返されたステータスを調べます。 [操作の参照](../reference/connector-operations.md) を使用してフィールドと完全性フラグを解釈します。
+<span id="connect-openalex-and-follow-citation-links" />
 
-| 観察された結果 | 次回の予定 |
+### 2. 操作がそれらを必要とするとき、資格情報を追加 {/* #2-add-credentials-when-the-operation-requires-them */}
+
+| サービスまたは条件 | 設定する場所 |
 | --- | --- |
-| `found: false`、ゼロ レコード、空の調査者か製造者は一致します | 識別子、生物、クエリスコープ、フィルタをチェックします。 空の結果を保存します。 取得したレコードとして提示しないでください。 |
-| `credential_required` OpenAlex について | 要求されたクレデンシャルフォームを開き、再試行する前にキーをバインドします。 |
-| `contact_email_required` 直接NCBIの変形の照会のため | 開く **Settings → Connectors → Manage credentials → Literature access**, 入力 **Contact email** 選択する **Save**. 失敗したクエリを再試行します。 NCBI API キーは任意です。 返された識別子、マッチカウント、およびトランジションフラグをチェックします。 空の結果は接続エラーとは異なる。 |
-| HTTP `410` eQTLから | ソースのURL、操作、応答を保持し、科学的な入力を変更する前にサービス可用性をチェックします。 |
-| Connector要求はの後で時間を計りました `30000ms` | 小さいリクエストを繰り返します。 外部Notebookのタイムアウトだけの増加は、Connectorの独自の期限を変更しません。 |
-| Notebookの実行は、後にタイムアウトしました `60000ms` | 実行は結果なしで終了しました。 個別にリトリート操作。 すべての上流サービスが失敗したことに気付くことはありません。 |
-| BioMart HTMLの維持のページ; プライド `Unexpected end of JSON input` | 想定した構造応答は利用できませんでした。 後で再試行し、応答タイプ/エラーを問題に保ちます。 |
-| ZINCのタスクは時間内に完了しなかった | 返されたタスク/結果の URL を保存し、そのジョブを確認します。 新しいジョブを繰り返し起動すると、その結果が回復しません。 |
+| OpenAlex | **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**に進んでください。 APIキーを入力してください。 **Validate**, それから **Save** 検証が成功した後。 |
+| コンタクト情報が必要なNCBIのバリアントのクエリを直接送信する | **Settings → Connectors → Manage credentials → Literature access**に進んでください。 お問い合わせ **Contact email** 選択する **Save**に進んでください。 NCBI API キーは任意です。 |
+| 資格要件の別の操作 | ツールの要件と要件に従う [認証ガイド](../guides/connectors.md)に進んでください。 意図したサービスに資格を埋めます。 |
 
-レポートでは、操作を添付し、入力、エラーテキストとタイムスタンプを[トラブルシューティング](../guides/troubleshooting.md)でバインドします。 共有する前に、認証情報とプライベートデータを削除します。
+研究プロンプトや共有出力ファイルではなく、クレデンシャルフォームにキーを入力します。 選択された操作のための条件を構成して下さい; 上記の連絡先メール要件は、すべてのNCBIツールが同じ要件を持っているという意味ではありません。
 
-## ENA の実行と FASTQ ファイルの復元 {/* #ena-runs */}
+<span id="look-up-a-doi-and-its-related-research-records" />
 
-1. **Settings → Connectors** で **Omics Archives** を有効にします。 PRJ の勉強や SRR の実行など、`ena_search_runs` への公開 ENA/INSDC へのアクセスを提供します。 GEO `GSE` 識別子は、最初に INSDC の勉強にリンクする必要があります。 キーワードは受け付けていません。
-2. `run_accession`、生物、図書館戦略/レイアウトおよび`truncated`を点検して下さい。 1,000 は最大です。 オフセットや継続トークンはありません。 応答が中断されている場合、アクセスが狭くなります。
-3. `ena_get_run_files` に返された実行を 1 つ渡して下さい。 `found`、`fastq_available`、`fastq_files`の各エントリをチェックします。 在庫はURL、圧縮ファイルサイズ、および上流MD5を供給します; ファイルをダウンロードしたり、コンテンツを検証したりしません。
-4. 別のダウンロードの前に、ストレージを確認し、マニフェストを保持します。 ダウンロードしたバイトをリストされたチェックサムに対して確認します。 ペアリングされたライブラリは、まったく2つのファイルを必要としません。 `file_index` から読み取りメイトの ID を差し込みません。
+文字グラフは、`crossref_get_work`、`crossref_get_updates`、`datacite_search_records`、`datacite_get_record`も提供しています。 これらの4つのパブリックメソッドは、OpenAlexキーを必要としません。 OpenAlex の引用の方向では、`openalex_citations` は、`openalex_references` が引用する作品を見つけます。 [文献グラフパラメータ](../reference/connector-operations.md#family-2).
 
-<p className="example-label"><strong>実践例</strong> SRR037073のためにマニフェストファイルを作成する</p>
+<span id="start-with-one-known-identifier" />
+<span id="actual-local-queries" />
 
-このv0.31.1の例では、**Codex subscription**と有効な**Omics Archives** Connectorを使用します。 利用可能なNotebookランタイムでセッションを開き、次のコマンドを実行します。
+### 3. 小さなクエリでアクセスを確認する {/* #3-confirm-access-with-a-small-query */}
+
+**ジャンルとオノトロジー**を有効にし、接続されたモデルで会話を開き、次のようにします。
+
+<p className="example-label"><strong>例</strong> 既知のヒト遺伝子識別子をチェックする</p>
 
 ```text
-Use Omics Archives through Session Notebook. Load its connector instructions.
-Call ena_search_runs with accession SRR037073 and limit 10, then
-ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
-Save the complete responses as ena-run.json and ena-files.json.
-Save every returned file entry as ena-fastq-manifest.csv with columns
-file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
-run identity, completeness flags and download limits. Keep everything in
-English. Report actual errors or empty results; do not invent data.
+Use Genes & Ontologies query_genes to resolve TP53 with scopes="symbol",
+species="human" and fields="symbol,name,entrezgene". Return the input query,
+matched records and any unmatched identifiers. Keep the response in English.
 ```
 
-生成されたメモを開きます。 実際の検索が返された **1 実行**, , **Caenorhabditis elegans**, 研究 **PRJNA123835**, , **RNA-Seq**, , **SINGLE**と、 `truncated: false`. . . . ファイルを使用する前に、生物とレイアウトを確認します。
+実際のツールの結果を調べます。 ヒトTP53の場合、`query`、`symbol`、Entrez Gene **7157**、**腫瘍タンパク質p53**の名称を確認してください。 生物や記録を確認するまで、複数のマッチを保持します。 成功したクエリは、この特定の操作を確認します。 すべてのソースへのアクセスを確立しません。 [正確なフィールド](../reference/connector-operations.md#query_genes).
 
-![ENA のクエリ入力、生成されたノートで ID と完全性フラグを実行します。](/img/open-science/v0311/ena-notes.webp)
+## 研究ワークフローのフォロー {/* #database-workflows */}
 
-CSV を開き、`ena-files.json` で比較します。 この実行には `found: true`, , `fastq_available: true` そして、 **1ファイル**, サイズ **25,154,397バイト**. . . . マニフェストは、FTP URL と上流 MD5 を保持します。 プレビュー列がクリップされている場合は、ダウンロード可能なファイルから完全な値をコピーします。
+各記事には、入力、手順、実際の英語インターフェイススクリーンショット、ダウンロード可能な例の出力が含まれます。
 
-![実際の1つのファイル ENAは、URL、サイズ、および上流チェックサムで現れます](/img/open-science/v0311/ena-manifest.webp)
+<span id="ena-runs" />
+<span id="omics-discovery" />
 
-<ExampleDownload path="/examples/v0311/ena-run-notes.md">クエリノート</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ マニフェスト</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">応答を実行します</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">ファイル応答</ExampleDownload>
+### 公共オミクスデータを見つける {/* #find-public-omics-data */}
 
-2 件のクエリとファイル一覧の生成が完了しました。本例では **FASTQ ファイルのダウンロードもチェックサム検証も実行していません**。ダウンロードは別の手順です。[入力パラメーター](../reference/connector-operations.md#ena_search_runs)
+[パブリックオミクスデータを見つけてファイル在庫をビルドする](../workflows/public-omics-data.md):既知の実行またはトピックから始めて、ENAとPRIDEのレコードを調べ、ソースの場所とチェックサムを保存します。 データのダウンロードは、別のステップのままです。
 
-## 遺伝子組込みの充実を実践し、検査する {/* #gene-set-enrichment */}
+<span id="sequence-search" />
+<span id="blast-jobs" />
+<span id="blast-report" />
 
-<p className="example-label"><strong>実践例</strong> 意図的に選択されたヒトDNA損傷遺伝子リスト</p>
+### タンパク質シーケンスを比較する {/* #compare-a-protein-sequence */}
 
-このv0.31.1の例では、11パブリック遺伝子のシンボルを使用して、g:Profilerを実証します。 既知の生物学的役割で選ばれたので、豊かさが期待されています。 GSE60450プロジェクトや偏見のない発見の証拠から差圧結果は異なります。
+[タンパク質シーケンスを見つけてBLAST検索を完了](../workflows/protein-sequence-search.md):UniProt FASTAを取得、BLASTジョブIDを保持し、完了したアライメント、アイデンティティ、クエリカバレッジを検査します。
 
-1. **Settings → Connectors** では、**ジャンルとオノトロジー** を代理店に利用できるようにします。 接続されたモデルと利用可能なNotebookランタイムでセッションを開きます。
-2. 生物、遺伝子識別子、データソース、統計的な背景を指定します。 実際の実験データでは、実験で選択した遺伝子を使用して背景を正当化します。 このチュートリアルでは、カスタム測定遺伝子の宇宙ではなく、すべてのアノテーション遺伝子を明示的に使用しています。
-3. 下記のプロンプトを送信してください。 ソースバージョンのクエリとエンリッチメントコールを同じセッションで保持し、実際の結果を保存します。
+<span id="gene-set-enrichment" />
 
-```text
-Use Genes & Ontologies through Session Notebook for an English g:Profiler
-tutorial. The deliberately selected gene list is TP53, ATM, ATR, CHEK1,
-CHEK2, BRCA1, BRCA2, RAD51, CDKN1A, GADD45A, MDM2.
-First call list_enrichment_sources with organism hsapiens.
-Then call enrich_gene_set with these genes, organism hsapiens,
-sources GO:BP and REAC, domain_scope annotated,
-correction_method fdr, and user_threshold 0.05.
-Save the full response as dna-damage-enrichment.json, all returned terms
-as dna-damage-enrichment.csv, and query, source versions, mappings,
-background and limitations as dna-damage-enrichment-notes.md.
-Retain unmapped, ambiguous and duplicate identifiers. Treat mapped_genes
-as the returned mapping object. Report errors instead of inventing results.
-This is not differential-expression evidence or evidence of regulation direction.
-```
+### 候補遺伝子セットを分析する {/* #analyze-a-candidate-gene-set */}
 
-4. 生成されたメモを開き、クエリとマッピングのカウントを確認します。 これは、マップされた**11/11**識別子を実行します。, **0**非マップ, あいまいなまたは重複識別子. **GRCh38.p14**、g:Profiler **e114_eg62_p19_27110d83**、GOクラス**2026-01-23**およびReactomeクラス**2026-03-20**を記録しました。 後続のサービスバージョンは異なる条件を返す場合があります。
+[候補遺伝子セットのための機能強化を実行](../workflows/gene-set-enrichment.md): 生物、識別子、背景を選択し、g:Profilerを実行し、修正された確率をソースバージョンと解釈します。
 
-![保存された英語のクエリ、背景、ソースバージョン、識別子チェック](/img/open-science/v0311/enrichment-notes.webp)
+<span id="reference-genome" />
 
-5. CSV を開き、JSON をフルで比較します。 FDR 0.05 で返された **891 用語** を実行します。 プレビューは最初の100行のみを示しています。 表示限界は合計の結果の計算ではないです。 `source`、`native`、修正された`p_value`、`intersection_size`、`query_size`および`effective_domain_size`を条件を解釈するとき保持して下さい。
+### 参照のゲノムを確かめて下さい {/* #confirm-a-reference-genome */}
 
-![正しい確率とドメインサイズの実際のエンリッチメントテーブル](/img/open-science/v0311/enrichment-table.webp)
+[種、参照のゲノムおよび染色体識別子をチェックして下さい](../workflows/reference-genome-check.md): レコードに参加する前に、タムン、バージョンアップされたアセンブリ、染色体エイリアスを解決します。
 
-<ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">解析ノート</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">すべての891結果の列</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">完全な応答</ExampleDownload>
+他のタスクについては、[構造化された PubChem レコード](../workflows/database-records.md)、[科学的記録の交差チェック](../workflows/cross-check-records.md)、[グループ会議の文献発見](../workflows/journal-club.md)に従う。
 
-`background_size: null`はカスタム背景リストが提出されていないことを意味します。 遺伝子ゼロの統計的な宇宙とは意味しません。 永久有効ドメインサイズを使用してください。 エンゲージメントは、原因の関与、差異的な表現、またはアップ/ダウン規制を確立しません。 [操作パラメータ](../reference/connector-operations.md#enrich_gene_set) を参照してください。
+<span id="handle-a-returned-record-empty-match-or-error" />
+<span id="empty-partial-and-failed-responses" />
 
-## リファレンス・ゲノム・アイデンティティの確認 {/* #reference-genome */}
+## 返されたデータを正しく使用 {/* #database-limits */}
 
-<p className="example-label"><strong>実践例</strong> 人間のGRCh38.p14染色体1を識別します</p>
+- クエリ、ソース、生物、組織、単位およびアクセス版を保持します。 データベースのレコード、予測、および生成された要約は、さまざまな種類の証拠です。
+- 応答を完全に処理する前に、返されたカウント、ペジネーション、およびトランジションフラグを確認してください。 ゼロマッチ、部分的な応答とリクエストエラーは、異なるフォローアップアクションを必要とします。
+- ファイルのインベントリは、場所とメタデータを提供します。 バイトをダウンロードし、チェックサムを確認し、データを分析することは、別の操作です。
+- 要求の資格情報が必要な場合は、再試行の前に関連するフォームを完了してください。 レート制限については、サービスの遅延に従う。 タイムアウトのため、要求のサイズを減らして下さい。 [パッケージのミラーおよび証明書の信頼の構成](../guides/troubleshooting.md) を参照してください。
 
-1. **Settings → Connectors**で**Genomes**を有効にします。 接続されたモデルと利用可能なNotebookランタイムでセッションを開きます。 このv0.31.1の例では、**Codex subscription**が使われています。
-2. その順序で生物、**バージョンアップ**アセンブリおよび順序を照会して下さい。 送信:
-
-```text
-Use Genomes through Session Notebook. Load its connector instructions.
-Call ncbi_resolve_taxon with query human and max_matches 10.
-Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
-Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
-sequence chr1 and max_sequences 200. Save the complete responses as
-ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
-Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
-query, identity, ambiguity and truncation flags, and source URLs.
-Preserve accession versions and RefSeq/GenBank differences. Do not perform
-coordinate liftover or invent results. Keep everything in English.
-```
-
-3. メモを開き、返されたIDを3つのJSONファイル全体で比較します。 この例では3つの呼び出しが成功しました。
-
-![実際のNCBIコールと返された納税者とアセンブリIDの3つ](/img/open-science/v0311/ncbi-notes.webp)
-
-| チェックイン | この例の結果 |
-| --- | --- |
-| 組織図 | ホモ・サピアン、税理士事務所 **9606**; 1つのマッチ、 `ambiguous: false` |
-| 要求される/currentアセンブリ | **GCF_000001405.40**, **GRCh38.p14**、UCSCの名前 **hg38** |
-| 組まれたGenBankアセンブリ | **GCA_000001405.29**; RefSeqの返されたレコードレポートの違い |
-| Chromosome 1 エイリアス | **1**, **chr1**, RefSeq **NC_000001.11**, GenBank , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , **CM000663.2** |
-| 選択されたシーケンス | **248956422のbp**、第一次アセンブリ; 1つのマッチ、 `matches_truncated: false` |
-
-![元の染色体-1 応答とバージョンアップされたエイリアスとマッチカウント](/img/open-science/v0311/ncbi-aliases.webp)
-
-<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">クエリノート</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">アイデンティティテーブル</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">税務申告</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">アセンブリ応答</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">シーケンス応答</ExampleDownload>
-
-本例では **選択した 1 本の染色体**の照会が完了しました。アセンブリの全配列をエクスポートしたわけではありません。クエリを変更する際も、曖昧な一致と打ち切りフラグを保持してください。アセンブリ名はバージョン付きアクセッションの代わりにはなりません。現在のアクセッションが返されても、要求した旧版を無断で置き換えてはいけません。配列の別名は同じアセンブリ内の名前の対応であり、アセンブリ間の座標変換ではありません。[入力パラメーター](../reference/connector-operations.md#ncbi_get_assembly_info)
-
-## gnomAD人口とストリングネットワークを読みます {/* #string-network */}
+### 人口の頻度とインタラクションネットワーク {/* #string-network */}
 
 `get_variant` では、人口の詳細は必要なときにのみ `include_populations: true` を設定します。 データセットとリファレンスビルドを保持します。 ゲノム観測とゲノム観測は別々に残っています。 未利用可能な値は、`null`、ゼロではありません。 集団や性的な strata を重ねるには、要約しないでください。 これらは、alleleの周波数をフィルタリングしていない周波数を観察されます。 [gnomAD パラメータ](../reference/connector-operations.md#get_variant)
 
 v0.31.0から、`get_string_network.nodes`には、返された隣人や分離した地図入力が含まれます。 シングルマップされた入力要求の隣人; 複数のマッピングされた入力は展開されません。 入力ノードを回復するために`is_query`をフィルタリングし、すべてのマップされたエイリアスに`queries`を使用します。 `n_nodes` はグラフをカウントします。 `n_mapped` は入力マッピングをカウントします。 再利用する前に2つを装備したスクリプトを更新します。 [ストリングパラメータ](../reference/connector-operations.md#get_string_network)
 
-<span id="empty-partial-and-failed-responses" />
+<span id="find-operation-parameters" />
 
-## 操作パラメータの検索 {/* #find-operation-parameters */}
+## 操作パラメータの検索 {/* #operation-parameters */}
 
-[Connectorの操作の参照](../reference/connector-operations.md)は、必要なフィールド、受け入れ値、および正確な呼び出しに使用します。 最初にソースを選択します。 特定の操作を準備するとき参照を使用して下さい。
+[Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-ゲノムビルド、生物、組織、ユニット、アクセスバージョンを返したデータを保存します。 一般的なHTTPの意味と回復のために、[トラブルシューティング](../guides/troubleshooting.md)を使用します。 データベースのレコード、予測、および生成された要約は異なる証拠タイプです。 研究クレームを使用する前に引用されたソースを確認してください。
-
-
-実装参照: [コネクタパネル.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorsPanel.tsx).
-
-カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/registry.ts)。
+カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/registry.ts)。

@@ -2,7 +2,7 @@
 title: "Signets de lecture personnels"
 description: "Sauvegardez les passages et les régions PDF par vous-même, ajoutez des notes et retournez à leur source dans une session."
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 # Signets de lecture personnels {/* #private-reading-bookmarks */}
@@ -36,3 +36,7 @@ Si la source n'est pas disponible ou si son emplacement exact ne peut pas être 
 ## Signets dans une fourchette {/* #bookmarks-in-fork */}
 
 Depuis v0.31.0, [Fourche](sessions.md#fork-session) copie des signets et des notes privés dans la nouvelle session avec de nouvelles identités. Les modifications ultérieures dans la copie ne modifient pas les signets sources. Ceci est différent de la commutation de branches ou de l'exportation d'un fichier `.science` : les signets privés ne rejoignent toujours pas les exportations de paquets ou ne se synchronisent pas entre les machines.
+
+## Notes concernant les documents PDF {/* #pdf-document-notes */}
+
+Pour les annotations qui appartiennent à un PDF géré plutôt qu'à une session, utilisez [Annotations et notes de document PDF](pdf-notes.md). Une pièce jointe à la bibliothèque partage ses notes de document partout où cette version de fichier est utilisée; Les téléchargements de projets et les artefacts les partagent entre les sessions du projet propriétaire. Cela ne modifie pas la portée de session ou les exclusions de paquets de signets **For me**. **To Agent** prépare toujours un avant-projet pour un message.

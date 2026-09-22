@@ -1,7 +1,7 @@
 ---
 title: "Modèles et politiques de travail"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 # Modèles et politiques de travail {/* #models-and-task-policies */}
@@ -87,8 +87,8 @@ Dans v0.31.1, ce service est utilisé pour les conversations principales avec **
 
 ![Sélection par défaut de la capacité et entrée optionnelle du service de classification](/img/open-science/v0311/classification-models.webp)
 
-1. Choisissez **Add service**, puis **TypeSafe AI** ou **OpenRouter**.
-2. Nommez le service et fournissez son certificat API. OpenRouter peut utiliser un compte compatible existant ou une nouvelle clé; garder les clés cachées dans les captures d'écran.
+1. Choisissez **Add service**, puis **TypeSafe AI**, **OpenRouter** ou **Custom HTTP service**.
+2. Nommez le service et fournissez son certificat API au besoin. OpenRouter peut utiliser un compte compatible existant ou une nouvelle clé; garder les clés cachées dans les captures d'écran.
 3. Sélectionnez **Save** et attendez la validation. La validation échouée laisse les paramètres précédents inchangés.
 4. Sous **Automatic capability selection**, sélectionnez le service sauvegardé et un modèle offert dans son catalogue. Utilisez **Check model** pour vérifier la connexion.
 5. Essayez une requête limitée dans une conversation principale prise en charge, puis inspectez les outils réels sélectionnés. Une vérification de modèle réussie ne permet pas à elle seule de vérifier un résultat de recherche.
@@ -104,3 +104,13 @@ Pour Jev, sélectionnez **TypeSafe AI / Jev Latest** dans **Automatic capability
 ![TypeSafe AI / Jev Latest sélectionné, avec Check passed et la clé API masquée](/img/open-science/v0311/classification-connected.webp)
 
 Par exemple, une recherche publique TP53 dans une session Codex Chat Completions peut utiliser Jev pour sélectionner `mcp-genes`. Inspecter la capacité sélectionnée dans l'activité, puis inspecter la réponse de la base de données pour connaître le résultat de la recherche. Les sessions d'abonnement Codex utilisent leur chemin de chargement de capacité existant; une liaison Jev sauvegardée ne fait pas que ces sessions utilisent Jev.
+
+### Services de classification sur mesure {/* #custom-classification */}
+
+Dans **Add service → Custom HTTP service**, saisissez un nom de service, une URL de fin de ligne et un ID de modèle. Le paramètre doit mettre en œuvre le **TypeProtocole de classification de sécurité**; un paramètre ordinaire de Finalisation de Chat n'est pas interchangeable. Fournissez la clé API du service au besoin : un paramètre loopback peut utiliser HTTP sans clé, alors que les paramètres distants nécessitent HTTPS et des identifiants.
+
+Après l'enregistrement, sélectionnez le service sous **Automatic capability selection** et exécutez **Check model**. Inspectez ensuite la sélection des capacités dans un itinéraire de conversation pris en charge. Ce réglage ne change pas de Main ou ne fait pas utiliser les sessions d'abonnement Codex du classificateur.
+
+Le formulaire ci-dessous illustre les champs. Remplacez l'échantillon d'extrémité et `your-model-id` par vos détails de service réels avant de vérifier la connexion.
+
+![Paramètres de classification personnalisés, champs de touches modèles et vides](/img/open-science/v0320/classification-custom.webp)

@@ -1,7 +1,7 @@
 ---
 title: "Delegation und Side Chat"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-22'
 ---
 
 # Delegation und Side Chat {/* #delegation-and-side-chat */}
@@ -19,7 +19,7 @@ Verwenden Sie Side Chat, um eine Frage neben Ihrer aktuellen Aufgabe zu besprech
 1. Öffnen Sie in einer vorhandenen Sitzung **More send options → Side chat** neben dem Send-Button. Sie können es mit einem leeren Composer öffnen: Ein neuer Side Chat-Entwurf erscheint sofort. Schreiben Sie die Frage dort, überprüfen Sie das Modell und den Argumentationsaufwand und senden Sie es dann.
 2. Lesen Sie die Antwort in der unabhängigen **Side chat**-Vorschau. Verwenden Sie **Side chat follow up**, um weitere Fragen zu stellen. Sie können mehrere Nebendiskussionen unter derselben Sitzung führen und zwischen ihren Registerkarten wechseln, während Sie weiterhin Main verwenden.
 3. Um Ratschläge mit Main zu teilen, bitten Sie Side Chat ausdrücklich, sie weiterzuleiten. Zum Beispiel: "Senden Sie diesen Rat an Main: Erklären Sie die Behandlung des fehlenden Wertes in einem separaten Teil des Berichts." Überprüfen Sie die Nachricht mit der Bezeichnung **Side chat** in Main. Wenn Main im Leerlauf ist, senden Sie Ihre nächste Anfrage, um die Arbeit fortzusetzen.
-4. Verwenden Sie **Cancel Side chat response**, um die aktuelle Antwort zu stoppen. Um die Unterhaltung aufzubewahren, lassen Sie den Tab geöffnet und wechseln Sie zu einem anderen Tab oder klappen Sie den Vorschaubereich ein.
+4. Mit **Cancel Side chat response** stoppen Sie die aktuelle Antwort. Wechseln Sie den Tab oder klappen Sie den Vorschaubereich ein, um zu Main zurückzukehren. Übertragen Sie Inhalte, die Sie nach einem App-Neustart noch benötigen, vorher an Main oder speichern Sie sie in einem Bericht.
 
 Ein Entwurf, der Text oder Anmerkungen enthält, überlebt das Umschalten von Ansichten. Ein unberührter leerer Entwurf wird verworfen, wenn Sie ihn verlassen; Das Öffnen eines Entwurfs allein sendet keine Modellanforderung.
 
@@ -33,8 +33,9 @@ Private **For me**-Lesezeichen sind ein anderes Lesewerkzeug; siehe [Lesebuchzei
 
 - **Modelleinstellungen:** Ein neues Side Chat erbt das aktuelle Hauptgesprächsmodell und den Argumentationsaufwand. Sie können sie in Side Chat ändern; die Auswahl gilt für den nächsten Versand. Codex Abonnements werden unterstützt. Überprüfen Sie den Selektor vor dem Senden.
 - **Übermittlung und Aktionen:** Gewöhnliche Antworten werden nicht automatisch an Main gesendet. Side Chat kann die Berechtigungen von Main nicht erteilen; Bestätigen Sie die Lieferung, bevor Sie Main auffordern, Maßnahmen zu ergreifen.
-- **Schließen eines Tabs:** Lesen Sie **Close Side chat?** vor der Bestätigung. Das Schließen beendet diesen Side Chat und löscht die gespeicherte Unterhaltung dauerhaft. Wählen Sie **Cancel**, um es beizubehalten, und übertragen Sie nützliche Ratschläge an Main oder einen gespeicherten Bericht, bevor Sie schließen. Wenn die Bereinigung fehlschlägt, kehrt der Tab zurück; Überprüfen Sie den Fehler, bevor Sie erneut versuchen.
-- **Verfügbarkeit:** Seit v0.30.2 wird Side Chat nicht allein dadurch blockiert, dass Main arbeitet oder auf eine Genehmigung wartet. Senden Sie zuerst mindestens eine Nachricht in Main. Schreibgeschützt importierte oder nicht verfügbare übergeordnete Sitzungen verhindern das Öffnen. Zum Senden muss außerdem der Verlauf gespeichert und wiederhergestellt sein. Side Chat unterstützt keine Dateianhänge. Beachten Sie den Hinweis an der Schaltfläche; Verbindungsprobleme behandelt die [Fehlerbehebung](troubleshooting.md).
+- **Einen Tab schließen:** Lesen Sie **Close Side chat?**, bevor Sie bestätigen. Das Schließen stoppt diesen Side Chat und entfernt seinen Gesprächsverlauf. Mit **Cancel** behalten Sie ihn. Um nur zu Main zurückzukehren, wechseln Sie den Tab oder klappen den Vorschaubereich ein. Schlägt die Bereinigung fehl, erscheint der Tab mit einer Fehlermeldung erneut.
+- **Die App neu starten:** Side-Chat-Verläufe und noch nicht an Main übermittelte Hinweise bleiben nur während der aktuellen App-Ausführung erhalten. Nach einem Neuladen der Oberfläche oder einem Projektwechsel kann dieser Arbeitsspeicherzustand wieder verbunden werden. Ein vollständiger Neustart der App löscht ihn. Übermitteln Sie wichtige Hinweise vor dem Beenden an Main oder speichern Sie sie in einem Bericht. Bereits in Main gespeicherte Nachrichten bleiben erhalten.
+- **Verfügbarkeit:** In v0.30.2 blockiert Main, das läuft oder auf die Genehmigung wartet, Side Chat nicht von selbst. Senden Sie zuerst mindestens eine Nachricht in Main. Nur schreibgeschützt importierte Sitzungen und nicht verfügbare Elternsitzungen können Side Chat nicht öffnen. Side Chat akzeptiert keine Dateianhänge. Folgen Sie der eigentlichen Button-Erklärung; Verbindungsprobleme werden in [Fehlerbehebung](troubleshooting.md) behandelt.
 
 ## Aufgaben delegieren {/* #task-delegation */}
 

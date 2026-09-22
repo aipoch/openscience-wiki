@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -24,7 +24,7 @@ Una tarjeta de archivo generada abre su vista previa. **Abierto ... en visión d
 | Editar / comparar | Disponible sólo para el contenido gestionado con soporte; ver [Archivos](files.md) |
 | Cerrar | desestimar la opinión; esto no es Borrar |
 
-El comportamiento de cierre de arriba se aplica a las previsiones de archivo. Un [Side Chat pestaña](delegation.md) tiene una confirmación separada porque el cierre se detiene y elimina esa discusión lateral.
+El comportamiento de cierre de arriba se aplica a las previsiones de archivo. Un [Side Chat pestaña](delegation.md) tiene una confirmación separada: el cierre detiene esa discusión lateral y elimina su conversación. Un reinicio completo de la aplicación también aclara los chats secundarios restantes. Los mensajes ya enviados a Main permanecen salvados.
 
 Para guardar una ubicación de lectura para usted, seleccione texto o una región PDF y seleccione **For me**; ver [Marcas de lectura](bookmarks.md).
 
@@ -155,3 +155,9 @@ Abra la vista previa prevista, seleccione **Download**, confirme el nombre de ar
 ## Cuando una vista previa falla {/* #when-a-preview-fails */}
 
 Confirme el archivo guardado con éxito, luego compruebe la versión exacta y el formato. Pruebe Descargar para distinguir una limitación del espectador de un archivo no disponible. Para un archivo local cambiado fuera de la aplicación, utilice Reload donde se ofrece. No sobreescribir la entrada para reparar un problema de renderización. Informar el nombre de archivo, tipo, tamaño, versión de la aplicación y el error mostrado; excluir contenido de archivo privado a menos que sean necesarios para el diagnóstico.
+
+## Anotar un PDF {/* #annotate-a-pdf */}
+
+Abrir **Notes & Annotations** para gestionar los puntos de interés, las marcas de área, las notas de página y las notas de documentos. **Show notes sidebar** guarda notas al lado de la página original. El menú de descarga separa **Download original PDF** de **Download PDF with annotations**. Siga [Anotaciones PDF y notas de documentos](pdf-notes.md) para una completa lectura, búsqueda y exportación.
+
+Para **Figuras y tablas**, la primera instalación del modelo local puede probar espejos de descarga aprobados cuando la fuente principal es inalcanzable. Espere a que se descarguen e integren los cheques antes de elegir **Analyze PDF**. Los espejos no eliminan la necesidad de instalar estos recursos; un resultado caché puede reabrir sin un análisis fresco.

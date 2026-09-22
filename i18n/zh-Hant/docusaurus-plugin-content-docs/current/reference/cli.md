@@ -1,7 +1,7 @@
 ---
 title: "CLI 與結構化輸出"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -208,3 +208,15 @@ JSONL 可能包含 `run.progress` 和 `stream.resync-required`。重連後無法
 [CLI 實現](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md)。
 
 技術參考：[CLI 約定](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+
+## 無人值守執行 {/* #unattended-runs */}
+
+給 `run` 新增 `--permission-prompts none`，可讓任務拒絕尚需人工處理的互動，避免一直等待。它保留選定審批配置和已記住的授權；剩餘權限請求會被拒絕，使用者提問會被謝絕，需要人工審閱的 Plan 也會被拒絕。這不是自動批准所有操作。
+
+```bash
+open-science run --project "Sequence and PDF Research" \
+  --prompt "Summarize the existing public-data result. Do not request user input." \
+  --approval-profile ask --permission-prompts none --wait --jsonl
+```
+
+選項只針對本次呼叫，不儲存為會話偏好。不能與 `--plan-first` 同用。檢查最終狀態和錯誤；任務不等待人工，不等於任務必然完成。客戶端會檢查主機是否支援 `permission-prompts-none`，舊主機返回 `unsupported_capability` 時應先更新配套客戶端與應用。

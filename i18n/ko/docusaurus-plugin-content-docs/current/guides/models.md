@@ -1,7 +1,7 @@
 ---
 title: "모델 및 작업 정책"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 # 모델 및 작업 정책 {/* #models-and-task-policies */}
@@ -87,8 +87,8 @@ v0.31.1에서 이 서비스는 **Codex Chat Completions** 또는 **CodeBuddy**�
 
 ![기본 기능 선택 및 선택 분류 서비스 항목](/img/open-science/v0311/classification-models.webp)
 
-1. **Add service**, **TypeSafe AI** 또는 **OpenRouter**를 선택하십시오.
-2. 서비스 이름과 API 자격 부여를 공급합니다. OpenRouter는 기존의 호환 계정 또는 새로운 키를 사용할 수 있습니다; 스크린 샷에 숨겨진 키를 유지합니다.
+1. **Add service**, **TypeSafe AI**, **OpenRouter** 또는 **Custom HTTP service**를 선택하십시오.
+2. 서비스 이름을 입력하고 API 자격 증명을 공급하십시오. OpenRouter는 기존의 호환 계정 또는 새로운 키를 사용할 수 있습니다; 스크린 샷에 숨겨진 키를 유지합니다.
 3. **Save**을 선택하고 유효성 검사를 기다립니다. 실패된 유효성은 이전 설정이 변경되지 않았습니다.
 4. **Automatic capability selection**의 밑에, 저장된 서비스를 선정하고 그것의 카탈로그에서 제안된 모형. **Check model**을 사용하여 연결을 확인합니다.
 5. 지원되는 주요 대화에서 경계 요청을 시도하고, 선택한 실제 도구를 검사합니다. 성공적인 모델 검사는 혼자 연구 결과를 확인하지 않습니다.
@@ -104,3 +104,13 @@ Jev를 사용할 때는 **Automatic capability selection**에서 **TypeSafe AI /
 ![TypeSafe AI / Jev Latest 선택 및 Check passed 표시, API 키는 숨김](/img/open-science/v0311/classification-connected.webp)
 
 예를 들어, Codex Chat Completions 세션에서 공개 TP53 조회는 `mcp-genes`을 선택하기 위해 Jev를 사용할 수 있습니다. 활동에서 선택한 기능을 검사하고 연구 결과에 대한 데이터베이스 응답을 검사합니다. Codex 구독 세션은 기존의 기능 로드 경로를 사용합니다. 저장된 Jev 바인딩은 그 세션이 Jev를 사용하지 않습니다.
+
+### 주문 분류 서비스 {/* #custom-classification */}
+
+**Add service → Custom HTTP service**에서 서비스 이름, 엔드포인트 URL 및 모델 ID를 입력합니다. 엔드포인트는 **TypeSafe 분류 프로토콜**을 구현해야 합니다. 정규 채팅 완료 엔드포인트는 교환이 불가능합니다. 필요한 경우 서비스 API 키 공급 : 루프백 엔드 포인트는 키없이 HTTP을 사용할 수 있으며, 원격 엔드 포인트는 HTTPS 및 자격 증명이 필요합니다.
+
+저장 후 **Automatic capability selection**에서 서비스를 선택하고 **Check model**을 실행하십시오. 그런 다음 지원되는 대화 경로에서 기능 선택을 검사합니다. 이 설정은 Main을 전환하지 않거나 Codex 구독 세션은 classifier를 사용합니다.
+
+아래 양식은 필드를 설명합니다. 연결 확인하기 전에 실제 서비스 세부 사항과 샘플 엔드 포인트 및 `your-model-id`을 대체하십시오.
+
+![주문 분류 엔드포인트, 모델 및 빈 키 필드](/img/open-science/v0320/classification-custom.webp)

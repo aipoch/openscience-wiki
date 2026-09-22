@@ -151,6 +151,19 @@
           "contentStatus": "written"
         },
         {
+          "id": "pdf-notes",
+          "title": "PDF annotations and document notes",
+          "scope": "Mark passages, organize file-version notes, return to sources and export reading copies.",
+          "currentDoc": "guides/pdf-notes",
+          "proposedUrl": "/docs/guides/pdf-notes/",
+          "relatedDocs": [
+            "guides/pdf-notes",
+            "guides/bookmarks",
+            "guides/library"
+          ],
+          "contentStatus": "written"
+        },
+        {
           "id": "composer",
           "title": "Conversations and queued requests",
           "scope": "Review the included topics and their planned scope below.",

@@ -1554,7 +1554,7 @@
     "message": "科學資料庫"
   },
   "docs.outline.tools.databases.scope": {
-    "message": "以分類表記錄 23 個資料來源聯結器的來源覆蓋、實際操作、識別符號、憑據與限制；本地 Molecule Viewer 歸入科學檢視器。"
+    "message": "介紹支援的科學資料庫、可完成的任務、內建 Connector 的啟用與憑據設定，並提供完整科研工作流入口"
   },
   "docs.outline.tools.viewers.title": {
     "message": "科學檢視器"
@@ -2512,5 +2512,44 @@
   },
   "docs.outline.reference.v0310.scope": {
     "message": "可寫會話副本、提供方驗證與完整 STRING 網絡。"
+  },
+  "docs.outline.workflows.reference-genome-check.scope": {
+    "message": "分析前確認物種、帶版本的參考組裝和染色體別名"
+  },
+  "docs.outline.workflows.group.public-data": {
+    "message": "公共資料與生物資訊分析"
+  },
+  "docs.outline.workflows.public-omics-data.scope": {
+    "message": "發現公開 ENA 測序執行，檢查 ENA 和 PRIDE 檔案清單、來源地址、大小及校驗值"
+  },
+  "docs.outline.workflows.protein-sequence-search.scope": {
+    "message": "查詢 UniProt 蛋白、獲取 FASTA，並解讀已完成的 BLAST 比對報告"
+  },
+  "docs.guides.outline.pdf-notes.scope": {
+    "message": "標記段落、整理文件筆記、搜尋定位並匯出閱讀副本。"
+  },
+  "docs.outline.workflows.gene-set-enrichment.scope": {
+    "message": "執行 g:Profiler 富集，核對對映、校正後的機率、統計背景和來源版本"
+  },
+  "docs.outline.workflows.gene-set-enrichment.title": {
+    "message": "對候選基因集進行功能富集分析"
+  },
+  "docs.guides.outline.pdf-notes.title": {
+    "message": "PDF 批註與文件筆記"
+  },
+  "docs.outline.reference.v0320.scope": {
+    "message": "PDF 筆記、BLAST 序列檢索、組學資料探索與無人值守任務。"
+  },
+  "docs.outline.workflows.reference-genome-check.title": {
+    "message": "分析前核對物種、參考基因組與染色體編號"
+  },
+  "docs.outline.workflows.public-omics-data.title": {
+    "message": "查詢公共組學資料並整理檔案清單"
+  },
+  "docs.outline.reference.v0320.title": {
+    "message": "v0.32.0"
+  },
+  "docs.outline.workflows.protein-sequence-search.title": {
+    "message": "從基因名稱獲取蛋白序列並完成 BLAST 比對"
   }
 }

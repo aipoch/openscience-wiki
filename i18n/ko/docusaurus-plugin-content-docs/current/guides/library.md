@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -318,3 +318,7 @@ A PDF는 제목의 장소에 추출 된 파일 이름을 중복 그룹에 입력
 
 
 소스: [일괄 수입](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx), [metadata 편집기](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteratureMetadataEditor.tsx), [첨부파일/출발](https://github.com/aipoch/open-science/commit/f4a82d4a), [concurrent 편집](https://github.com/aipoch/open-science/commit/dbb9560a).
+
+## PDF 읽기 노트 유지 {/* #keep-pdf-reading-notes */}
+
+참고 PDF 첨부 파일을 열고 주석, 페이지 질문 및 문서 메모에 **Notes & Annotations**을 사용하십시오. 동일한 라이브러리 파일 버전은 프로젝트와 세션에 걸쳐 이러한 노트를 공유합니다. 글로벌 검색에서 **Library** 아래 메모를 찾으면 **Show annotation source**을 선택하여 PDF로 돌아가십시오. 단계와 수출을 위해 [PDF 주석 및 문서 노트](pdf-notes.md)를 보십시오.

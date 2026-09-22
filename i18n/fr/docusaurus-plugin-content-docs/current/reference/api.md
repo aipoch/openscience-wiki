@@ -1,7 +1,7 @@
 ---
 title: "Tâche SDK et locale API"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 # Tâche SDK et locale API {/* #task-sdk-and-local-api */}
@@ -191,3 +191,9 @@ Les battements cardiaques de connexion sont des cadres de contrôle et ne sont p
 [Source SDK](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/index.mjs), [Billets de contrat SDK](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/README.md). Voir [CLI](./cli.md) pour l'automatisation de shell et [Service sans tête](./server.md) pour la découverte/cycle de vie.
 
 Sources: [Signatures](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.d.ts), [itinéraires](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.mjs). Voir [Champs de gestion CLI](cli.md#manage-connectors-and-credentials) pour les limites de configuration et de diagnostic.
+
+## Tâches non surveillées {/* #unattended-runs */}
+
+Définir `permissionPrompts: 'none'` dans l'entrée `startRun`, correspondant à CLI `--permission-prompts none`. Gardez un `permissionProfile` approprié : cette option décline les interactions humaines non résolues et n'étend pas les permissions. Ne le combinez pas avec `planFirst: true`.
+
+L'hôte doit déclarer la capacité `permission-prompts-none`; Sinon, le client signale `unsupported_capability` avant de créer l'exécution. Cette politique ne s'applique qu'à l'invocation actuelle. Gérez l'état réel et l'erreur de l'exécution comme d'habitude. Voir [des essais CLI sans surveillance](cli.md#unattended-runs).

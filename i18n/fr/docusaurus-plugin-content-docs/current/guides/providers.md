@@ -1,7 +1,7 @@
 ---
 title: "Configuration du fournisseur et du modèle local"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -212,3 +212,9 @@ Source: [PrestataireForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.
 ## Enregistrer un changement de fournisseur dans v0.31.0 et plus tard {/* #validated-provider-save */}
 
 Les modifications des fournisseurs sont testées avant qu'ils ne soient engagés. Sélectionnez **Save**, attendez le résultat de la connexion et confirmez le succès avant de fermer le formulaire. Un test échoué ne remplace pas une configuration sauvegardée de travail. Si une connexion précédemment enregistrée est rejetée lors d'une demande, sa disponibilité est mise à jour; vérifier le titre de compétence et le point final, puis tester à nouveau. **Conversation models**, **Classification models** et **Local parsing models** ont des objectifs différents; Voir [paramètres du modèle](models.md#classification-models).
+
+## Sélection StepFun et région {/* #stepfun-regions */}
+
+Choisissez **StepFun** dans le catalogue des fournisseurs, validez **Chine** ou **Global**, puis sélectionnez un modèle et fournissez des identifiants pour cette région. v0.32.0 ajoute **Step-5 Preview**, avec des métadonnées de catalogue multimodaux et 1M-context. L'accès réel au modèle, le quota et le support d'entrée dépendent toujours du compte du fournisseur et de la compatibilité de l'Agent sélectionné.
+
+Enregistrer et vérifier la connexion avant de la choisir dans une conversation. Les configurations de fournisseurs existantes conservent leur paramètre précédent; mettre à jour l'application ne change pas leur région ou modèle Main.

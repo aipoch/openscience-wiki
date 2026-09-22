@@ -1,7 +1,7 @@
 ---
 title: "Task SDK und lokales API"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 # Task SDK und lokales API {/* #task-sdk-and-local-api */}
@@ -191,3 +191,9 @@ Verbindungsherzschläge sind Kontrollrahmen und werden nicht als gewöhnliche Fo
 [SDK Quelle](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/index.mjs), [SDK-Kontraktnotizen](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/README.md). Siehe [CLI](./cli.md) für Shell Automation und [Kopfloser Dienst](./server.md) für Discovery/Lifecycle.
 
 Quellen: [Unterschriften](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.d.ts), [Strecken](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.mjs). Siehe [CLI Managementfelder](cli.md#manage-connectors-and-credentials) für Konfigurations- und Diagnosegrenzen.
+
+## Unbeaufsichtigte Aufgaben {/* #unattended-runs */}
+
+Setzen Sie `permissionPrompts: 'none'` im `startRun`-Eingang entsprechend CLI `--permission-prompts none`. Halten Sie ein geeignetes `permissionProfile`: Diese Option lehnt ungelöste menschliche Interaktionen ab und erweitert keine Berechtigungen. Kombinieren Sie es nicht mit `planFirst: true`.
+
+Der Host muss die Fähigkeit `permission-prompts-none` deklarieren; Andernfalls meldet der Client `unsupported_capability`, bevor er den Lauf erstellt. Diese Richtlinie gilt nur für die aktuelle Invokation. Behandeln Sie den tatsächlichen Status und Fehler des Laufs wie gewohnt. Siehe [unbeaufsichtigte CLI-Läufe](cli.md#unattended-runs).

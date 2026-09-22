@@ -16,6 +16,6 @@ const sidebars = {tutorialSidebar: [
   section('specialists', 'Specialists'),
   section('reference', 'Reference', ['reference/index', 'reference/control-index',
     'reference/example-data', 'reference/connector-operations',
-    'changelog/v0.31.1', 'changelog/v0.31.0', 'changelog/v0.30.2', 'changelog/v0.30.1', 'changelog/v0.30.0', 'changelog/v0.29.0', 'changelog/v0.28.0', 'changelog/v0.27.0', 'changelog/v0.26.0', 'changelog/v0.25.1']),
+    'changelog/v0.32.0', 'changelog/v0.31.1', 'changelog/v0.31.0', 'changelog/v0.30.2', 'changelog/v0.30.1', 'changelog/v0.30.0', 'changelog/v0.29.0', 'changelog/v0.28.0', 'changelog/v0.27.0', 'changelog/v0.26.0', 'changelog/v0.25.1']),
 ]};
 export default sidebars;

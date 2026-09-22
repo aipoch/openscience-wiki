@@ -1,7 +1,7 @@
 ---
 title: "Anbieter und lokales Modell-Setup"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -212,3 +212,9 @@ Quelle: [AnbieterForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/s
 ## Speichern Sie einen Providerwechsel in v0.31.0 und höher {/* #validated-provider-save */}
 
 Anbieter-Edits werden getestet, bevor sie festgelegt werden. Wählen Sie **Save**, warten Sie auf das Verbindungsergebnis und bestätigen Sie den Erfolg, bevor Sie das Formular schließen. Ein fehlgeschlagener Test ersetzt keine funktionierende gespeicherte Konfiguration. Wenn eine zuvor gespeicherte Verbindung während einer Anforderung abgelehnt wird, wird ihre Verfügbarkeit aktualisiert; Prüfen Sie den Nachweis und den Endpunkt und testen Sie dann erneut. **Conversation models**, **Classification models** und **Local parsing models** haben unterschiedliche Zwecke; siehe [Modelleinstellungen](models.md#classification-models).
+
+## StepFun und Regionsauswahl {/* #stepfun-regions */}
+
+Wählen Sie **StepFun** im Anbieterkatalog, bestätigen Sie **China** oder **Global**, wählen Sie dann ein Modell aus und geben Sie Anmeldeinformationen für diese Region an. v0.32.0 fügt **Step-5 Preview** hinzu, mit multimodalen und 1M-Kontext-Katalog-Metadaten. Der tatsächliche Modellzugriff, die Kontingent- und Eingabeunterstützung hängen weiterhin vom Anbieterkonto und der Kompatibilität des ausgewählten Agenten ab.
+
+Speichern und überprüfen sie die verbindung, bevor sie sie in einer konversation auswählen. Bestehende Provider-Konfigurationen behalten ihren vorherigen Endpunkt bei; Die Aktualisierung der App ändert nicht ihre Region oder das Main-Modell.

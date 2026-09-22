@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -318,3 +318,7 @@ Citation 的四个复制按钮写入不同格式。粘贴到目标编辑器，�
 
 
 源码：[批量导入](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx)、[元数据编辑器](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteratureMetadataEditor.tsx)、[附件历史与删除](https://github.com/aipoch/open-science/commit/f4a82d4a)、[并发编辑](https://github.com/aipoch/open-science/commit/dbb9560a)。
+
+## 保存 PDF 阅读笔记
+
+在文献附件中打开 PDF，使用 **Notes & Annotations** 保存批注、页级问题和整篇笔记。同一文献库文件版本在不同项目和会话中共享这些笔记。通过全局搜索的 **Library** 结果找到笔记，再选择 **Show annotation source** 返回原文。步骤和导出方法见 [PDF 批注与文档笔记](pdf-notes.md)。

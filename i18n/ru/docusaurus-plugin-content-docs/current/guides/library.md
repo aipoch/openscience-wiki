@@ -1,7 +1,7 @@
 ---
 title: "Библиотека литературы и цитаты"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -318,3 +318,7 @@ PDF с извлеченным именем файла вместо его заг
 
 
 Источники: [пакетный импорт](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx), [редактор метаданных](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteratureMetadataEditor.tsx), [История вложений/удаление](https://github.com/aipoch/open-science/commit/f4a82d4a), [одновременные правки](https://github.com/aipoch/open-science/commit/dbb9560a).
+
+## Держите PDF читать {/* #keep-pdf-reading-notes */}
+
+Откройте приложение PDF ссылки и используйте **Notes & Annotations** для аннотаций, вопросов к странице и заметок к документу. Одна и та же версия библиотечного файла делится этими заметками в разных проектах и сессиях. Найдите заметку под **Library** в глобальном поиске, а затем выберите **Show annotation source**, чтобы вернуться к PDF. [PDF аннотации и примечания к документам](pdf-notes.md) для шагов и экспорта.

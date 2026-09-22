@@ -2,7 +2,7 @@
 title: "Referencia de operación Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Los nombres de campo de retorno difieren por operación. Las descripciones y esq
 
 ## Contribuciones de las operaciones {/* #operation-inputs */}
 
-Ampliar un Connector a la vez. Los campos obligatorios están marcados con **obligatorio**; esta referencia y descarga utilizar el esquema Open-Science **v0.31.1** Una lista `input.required` anidada es autorizada; una lista de `required` de alto nivel puede estar ausente. Consulte el <ExampleDownload path="/examples/capabilities/connector-catalog-v0.31.1.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas de agentes. No pase un `id` genérico cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
+Ampliar un Connector a la vez. Los campos obligatorios están marcados con **obligatorio**; esta referencia y descarga utilizar el esquema Open-Science **v0.32.0** Una lista `input.required` anidada es autorizada; una lista de `required` de alto nivel puede estar ausente. Consulte el <ExampleDownload path="/examples/capabilities/connector-catalog-v0.32.0.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas de agentes. No pase un `id` genérico cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
 
 
 ## Química {/* #family-1 */}
@@ -585,6 +585,25 @@ Retrieve GO anotaciones para un producto de genes UniProt de QuickGO (completo, 
 const result = await host.mcp("genes", "get_go_annotations", {"uniprot_accession": "P04637", "aspect": "molecular_function", "evidence": "experimental_manual"})
 ```
 
+### `search_uniprot_entries` {/* #search_uniprot_entries */}
+
+Descubra las entradas activas de proteína UniProtKB por nombre gen exacto (incluyendo sinónimos), frase de nombre de proteína y/o organism_id exacto (ID de taxonomía de la CNBI, no descendientes). Se requiere al menos uno de estos filtros; Los filtros suministrados se combinan con AND. Opcional revisado=true selecciona Swiss-Prot, falsos selecciona TrEMBL; Omitirlo incluye ambos. No hay organismo o predeterminado revisado. El texto utiliza la frase tokenizada UniProt que coincide, no la sintaxis de subestring arbitrarios que coincida o la consulta cruda; citas, barras, comodines y personajes de control son rechazados. Devuelve una página encuadernada en el orden de adhesión, no un conjunto completo de proteínas. Para la siguiente página, pase next_cursor como cursor con filtros idénticos y page_size. Los cursos son opacos, no offsets o instantáneas duraderas; reiniciar si UniProt rechaza un cursor en estadio.
+
+Proporcione al menos un filtro de búsqueda listado; consultar el esquema descargable para reglas de combinación completas.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `gene` | cadena de texto | facultativa; MinLength: `1`; MaxLength: `200`; patrón: `"^(?=[\\s\\S]*\\S)[^\"\\\\*?\\u0000-\\u001f\\u007f]+$"` |
+| `protein_name` | cadena de texto | facultativa; MinLength: `1`; MaxLength: `200`; patrón: `"^(?=[\\s\\S]*\\S)[^\"\\\\*?\\u0000-\\u001f\\u007f]+$"` |
+| `organism_id` | entero | facultativa; mínimo: `1`; máximo: `2147483647` |
+| `reviewed` | booleano | opcional |
+| `page_size` | entero | facultativa; por defecto: `25`; mínimo: `1`; máximo: `500` |
+| `cursor` | cadena de texto | facultativa; MinLength: `1`; MaxLength: `4096`; patrón: `"^[^\\s\\u0000-\\u001f\\u007f]+$"` |
+
+```javascript
+const result = await host.mcp("genes", "search_uniprot_entries", {"gene": "TP53", "organism_id": 9606, "reviewed": true, "page_size": 25})
+```
+
 ### `get_uniprot_entries` {/* #get_uniprot_entries */}
 
 Obtenga registros UniProtKB para una lista de adhesiones primarias o secundarias (primicia de las OR-queries). los alias no resueltos utilizan un retroceso directo por acesión. Tres modos: `fields` dado → la recuperación tabular de token-lean de sólo esos campos UniProt (por ejemplo. &#91;"accession", "id", "protein_name", "gene_names", "organism_name", "length", "sequence"&#93;); `format` es ignorado. format="fasta" → por-accession FASTA secuencias. formato="txt" → por-accessión texto completo UniProt de archivo plano (anotación completa); puede ser muy grande - preferir `fields`). Args: accessions (e.g. &#91;"P04637","P38398"&#93;); formato ("fasta"/"txt", ignorado cuando `fields` dado); campos (optional UniProt REST nombres de campo para modo tabular). Devoluciones: campo modo &#123;accessions, campos, n_records, registros:&#91;&#123;&lt;column>:value&#125;&#93;&#125;; fasta/txt modo &#123;accessions, formato, n_found, desaparecidos, registros:&#123;accession:text&#125;&#125; — `missing` lista adhesiones UniProt no devolvió ningún registro.
@@ -622,7 +641,7 @@ Lista el g: Fuentes de enriquecimiento de los perfiles y sus versiones actuales 
 
 | Campo | Tipo | Requisitos y limitaciones |
 | --- | --- | --- |
-| `organism` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 64; patrón: "^&#91;a-z&#93;&#91;a-z0-9_&#93;&#42;$" |
+| `organism` | cadena de texto | **obligatorio**; MinLength: `1`; MaxLength: `64`; patrón: `"^[a-z][a-z0-9_]*$"` |
 
 ```javascript
 const result = await host.mcp("genes", "list_enrichment_sources", {"organism": "hsapiens"})
@@ -635,7 +654,7 @@ Ejecutar g:Enriquecimiento de la GOST para un gen que se encuentra en GO, Reacto
 | Campo | Tipo | Requisitos y limitaciones |
 | --- | --- | --- |
 | `genes` | matriz de cadenas | **obligatorio**; minItems: 1; maxItems: 5000 |
-| `organism` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 64; patrón: "^&#91;a-z&#93;&#91;a-z0-9_&#93;&#42;$" |
+| `organism` | cadena de texto | **obligatorio**; MinLength: `1`; MaxLength: `64`; patrón: `"^[a-z][a-z0-9_]*$"` |
 | `sources` | matriz de cadenas | facultativa; maxItems: 100 |
 | `background_genes` | matriz de cadenas | facultativa; minItems: 1; maxItems: 20000 |
 | `domain_scope` | cadena de texto | facultativa; enum: &#91;"annotated", "known", "custom", "custom_annotated"&#93; |
@@ -658,6 +677,48 @@ const result = await host.mcp("genes", "enrich_gene_set", {"genes": ["TP53", "EG
 
 <ToolOperationGroup>
 <summary>Mostrar operaciones y parámetros</summary>
+
+### `blast_submit` {/* #blast_submit */}
+
+Presentar una secuencia de nucleótidos o proteínas al servicio público NCBI BLAST para la búsqueda de similitud asincrónica. Establecer molecule_type explícitamente porque una proteína hecha sólo de A/C/G/T es de otra manera ambiguo. Devuelve un RID y la estimación del servidor; Llame a blast_status no más a menudo que una vez por minuto, luego blast_results después de READY. La secuencia se envía a NCBI y no se encaje localmente; a perdido la respuesta de envío eleva blast_submission_unknown y no debe ser retriado automáticamente. Espacio todas las solicitudes BLAST por lo menos 10 segundos y todas las solicitudes para el mismo RID por al menos 60 segundos. Mantenga el RID para reanudar después de reiniciar. NCBI generalmente mantiene los resultados para las horas 36; Esto no es una garantía de eliminación. Cancelación, salida de la aplicación y desinstalación sólo paran las solicitudes locales; este API no tiene ninguna operación de cancelación remota documentada / deleite. No se añade ningún registro de empleo o caché de resultados; La persistencia normal de la conversación y el libro de notas puede retener entradas y salidas.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `sequence` | cadena de texto | **obligatorio**; MinLength: `1`; MaxLength: `100000` |
+| `molecule_type` | cadena de texto | **obligatorio**; enum: `["nucleotide", "protein"]` |
+| `database` | cadena de texto | facultativa; enum: `["nt", "core_nt", "refseq_rna", "nr", "refseq_protein", "swissprot"]` |
+| `evalue` | número | facultativa; exclusivoMinimum: `0`; máximo: `1000` |
+| `hitlist_size` | entero | facultativa; mínimo: `1`; máximo: `100` |
+| `megablast` | booleano | opcional |
+
+```javascript
+const result = await host.mcp("genomes", "blast_submit", {"sequence": "ATGCGTACGTAGCTAG", "molecule_type": "nucleotide", "database": "nt"})
+```
+
+### `blast_status` {/* #blast_status */}
+
+Revise un NCBI BLAST RID una vez. Esta es una única petición SearchInfo y nunca encuestas o esperas; respeto NCBI guía para esperar al menos 60 segundos entre cheques. Retornace el WAITING, READY, FAILED, o UNKNOWN (RID desconocido o vencido). Espacio todas las solicitudes BLAST por lo menos 10 segundos y solicitudes de la misma RD, incluyendo recuperación de resultados, por lo menos 60 segundos.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `rid` | cadena de texto | **obligatorio**; MinLength: `1`; MaxLength: `128` |
+
+```javascript
+const result = await host.mcp("genomes", "blast_status", {"rid": "AYEFB4DT014"})
+```
+
+### `blast_results` {/* #blast_results */}
+
+Obtenga resultados consolidados para un NCBI BLAST RID. Hace una petición y regresa listo=falso cuando el trabajo todavía está esperando; elegir json2, xml2, texto, o salida tabular después de los informes blast_status READY. Los resultados están capped en 2 MiB y devueltos literales. tabular significa NCBI Texto + ALIGNMENT_VIEW=Tabular, que puede incluir comentarios HTML, etiquetas PRE y encabezados de reporte; no es puro TSV o CSV. Espere al menos 60 segundos después de la última solicitud para este RID, incluyendo blast_status. No hay registros automáticos.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `rid` | cadena de texto | **obligatorio**; MinLength: `1`; MaxLength: `128` |
+| `format` | cadena de texto | facultativa; enum: `["json2", "xml2", "text", "tabular"]` |
+
+```javascript
+const result = await host.mcp("genomes", "blast_results", {"rid": "AYEFB4DT014", "format": "json2"})
+```
 
 ### `ensembl_lookup` {/* #ensembl_lookup */}
 
@@ -772,7 +833,7 @@ Devuelve la identidad exacta del genoma NCBI para una adhesión a GCF/GCA versio
 
 | Campo | Tipo | Requisitos y limitaciones |
 | --- | --- | --- |
-| `assembly_accession` | cadena de texto | **obligatorio**; patrón: "^GC&#91;AF&#93;_&#91;0-9&#93;&#123; 9&#125;\\.&#91;0-9&#93;+$" |
+| `assembly_accession` | cadena de texto | **obligatorio**; patrón: `"^GC[AF]_[0-9]{9}\\.[0-9]+$"` |
 
 ```javascript
 const result = await host.mcp("genomes", "ncbi_get_assembly_info", {"assembly_accession": "GCF_000001405.40"})
@@ -784,7 +845,7 @@ Lista nombres de secuencia y alias exactos UCSC/RefSeq/GenBank para un montaje N
 
 | Campo | Tipo | Requisitos y limitaciones |
 | --- | --- | --- |
-| `assembly_accession` | cadena de texto | **obligatorio**; patrón: "^GC&#91;AF&#93;_&#91;0-9&#93;&#123; 9&#125;\\.&#91;0-9&#93;+$" |
+| `assembly_accession` | cadena de texto | **obligatorio**; patrón: `"^GC[AF]_[0-9]{9}\\.[0-9]+$"` |
 | `sequence` | cadena de texto | facultativa; minLength: 1; maxLength: 200 |
 | `max_sequences` | entero | facultativa; predeterminado: 200; mínimo: 1; máximo: 5000 |
 
@@ -1004,15 +1065,15 @@ const result = await host.mcp("variants", "get_structural_variant", {"sv_id": "D
 
 ### `mitochondrial_variants` {/* #mitochondrial_variants */}
 
-Lista de las variantes mitocondriales gnomAD con recuentos heteroplasmáticos (`ac_het`, `ac_hom`, `max_heteroplasmy`) para un gen mitocondrial O una ventana de coordenadas chrM. Pase un gen (`gene_symbol` como `MT-TL1`, o `gene_id`) O una región (`region_start` + `region_stop`), no ambos.
+Lista de las variantes mitocondriales gnomAD con recuentos heteroplasmáticos (`ac_het`, `ac_hom`, `max_heteroplasmy`) para un gen mitocondrial O una ventana de coordenadas chrM. El teléfono mitocondrial sólo está disponible a través de los pines de conjunto de datos GRCh38 gnomAD r3/r4: use dataset `gnomad_r3` o `gnomad_r4`. Pase un gen (`gene_symbol` como `MT-TL1`, o `gene_id`) O una región (`region_start` + `region_stop`), no ambos.
 
 | Campo | Tipo | Requisitos y limitaciones |
 | --- | --- | --- |
 | `gene_symbol` | cadena de texto | opcional |
 | `gene_id` | cadena de texto | opcional |
-| `region_start` | entero | facultativa; mínimo: 1; máximo: 999999999 |
-| `region_stop` | entero | facultativa; mínimo: 1; máximo: 999999999 |
-| `dataset` | cadena de texto | facultativa; predeterminado: "gnomad_r4"; &#91;Enum&#93;"gnomad_r4", "gnomad_r4_non_ukb", "gnomad_r3", "gnomad_r3_controls_and_biobanks", "gnomad_r3_non_cancer", "gnomad_r3_non_neuro", "gnomad_r3_non_topmed", "gnomad_r3_non_v2", "gnomad_r2_1", "gnomad_r2_1_controls", "gnomad_r2_1_non_cancer", "gnomad_r2_1_non_neuro", "gnomad_r2_1_non_topmed", "exac"&#93; |
+| `region_start` | entero | facultativa; mínimo: `1`; máximo: `999999999` |
+| `region_stop` | entero | facultativa; mínimo: `1`; máximo: `999999999` |
+| `dataset` | cadena de texto | facultativa; por defecto: `"gnomad_r4"`; enum: `["gnomad_r4", "gnomad_r3"]` |
 
 ```javascript
 const result = await host.mcp("variants", "mitochondrial_variants", {"gene_symbol": "MT-TL1", "dataset": "gnomad_r4"})
@@ -2815,6 +2876,35 @@ const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGA
 <ToolOperationGroup>
 <summary>Mostrar operaciones y parámetros</summary>
 
+### `ena_query_runs` {/* #ena_query_runs */}
+
+Descubra las carreras de secuenciación pública por NCBI tax_id (incluyendo taxa descendente), library_strategy y/o una palabra clave en los títulos de estudio, experimento o muestra y las descripciones de ejecución. Los filtros suministrados se combinan con AND; al menos uno es requerido. Taxonomía describe el organismo secuenciado, no el anfitrión de una muestra de microbioma. La palabra clave es una subestring literal, no la sintaxis de la consulta ENA; dobles citas, barras de respaldo, comodines y personajes de control son rechazados. Incluye registros de metagenome públicos. Devuelve metadatos atados solamente, no un cohorte completo cuando se truncaron. Filtros estrechos para recuperar un conjunto más pequeño; llamadas repetidas no son paginación. Para las adhesiones conocidas del INSDC usan ena_search_runs.
+
+Proporcione al menos un filtro de búsqueda listado; consultar el esquema descargable para reglas de combinación completas.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `tax_id` | entero | facultativa; mínimo: `1`; máximo: `2147483647` |
+| `library_strategy` | cadena de texto | facultativa; enum: `["AMPLICON", "ATAC-seq", "Bisulfite-Seq", "CLONE", "CLONEEND", "CTS", "ChIA-PET", "ChIP-Seq", "ChM-Seq", "DNase-Hypersensitivity", "EST", "FAIRE-seq", "FINISHING", "FL-cDNA", "GBS", "Hi-C", "MBD-Seq", "MNase-Seq", "MRE-Seq", "MeDIP-Seq", "NOMe-Seq", "OTHER", "POOLCLONE", "RAD-Seq", "RIP-Seq", "RNA-Seq", "Ribo-Seq", "SELEX", "Synthetic-Long-Read", "Targeted-Capture", "Tethered Chromatin Conformation Capture", "Tn-Seq", "VALIDATION", "WCS", "WGA", "WGS", "WXS", "miRNA-Seq", "ncRNA-Seq", "snRNA-seq", "ssRNA-seq"]` |
+| `keyword` | cadena de texto | facultativa; MinLength: `1`; MaxLength: `200`; patrón: `"^(?=[\\s\\S]*\\S)[^\"\\\\*?\\u0000-\\u001f\\u007f]+$"` |
+| `limit` | entero | facultativa; por defecto: `100`; mínimo: `1`; máximo: `1000` |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_query_runs", {"tax_id": 6239, "library_strategy": "RNA-Seq", "keyword": "transcriptome", "limit": 20})
+```
+
+### `ena_get_submitted_files` {/* #ena_get_submitted_files */}
+
+Lista de archivos originales enviados para una carrera ERR/SRR/DRR, incluyendo BAM, CRAM o FASTQ presentados cuando ENA los expone. Devuelve ubicaciones FTP, formatos presentados, tamaños de byte y sumas de comprobación MD5 como metadatos solamente. No descarga, convierte formatos, recupera genomas de referencia o verifica los chequesums. Estos son archivos enviados, no el FASTQ generado por archivos devuelto por ena_get_run_files y no una lista de contenedores SRA generados por archivos. Un CRAM puede requerir su referencia coincidente para el análisis.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `run_accession` | cadena de texto | **obligatorio**; MinLength: `1`; MaxLength: `64` |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_get_submitted_files", {"run_accession": "ERR10015065"})
+```
+
 ### `ena_search_runs` {/* #ena_search_runs */}
 
 Encuentra carreras de secuenciación pública asociadas con un estudio, experimento, muestra o corre de ENA/INSDC. Acepta los identificadores de PRJ/ERP/SRP/DRP, ERX/SRX/DRX, SAM/ERS/SRS/DRS y ERR/SRR/DRR; GEO GSE/GSM, ArrayExpress E-MTAB y MGnify MGYS identifiers need their linked INSDC accession first. Búsqueda de acceso sólo, no búsqueda de palabras clave. Devuelve los metadatos de organismos y bibliotecas sin buscar archivos de datos. El resultado está recortado en las carreras 1000; un resultado truncado no es una cohorte completa, y las llamadas repetidas no son paginación porque ENA no proporciona compensación o continuación token. Use una muestra más estrecha o experimenta adhesión cuando se requiera cobertura completa.
@@ -3009,6 +3099,20 @@ Lista TODOS los análisis de un estudio MGnify (paginación completa y verificad
 
 ```javascript
 const result = await host.mcp("omics-archives", "mgnify_get_study_analyses", {"accession": "MGYS00000410"})
+```
+
+### `pride_get_project_files` {/* #pride_get_project_files */}
+
+Lista una página de archivos públicos de proyecto PRIDE para una adhesión PXD o PRD, incluyendo la categoría de archivo, tamaño byte, checksum y descargas de sitios (FTP, HTTP o Aspera). Metadatos solamente: no descarga archivos o verifica los chequesums. Las páginas están basadas en cero; Mantenga page_size sin cambios y siga next_page hasta que esté nulo. La orden es suministrada por PRIDE, no una instantánea. Una lista vacía no establece si existe o es público un proyecto.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `project_accession` | cadena de texto | **obligatorio**; MaxLength: `32`; patrón: `"^(?:PXD\|PRD)[0-9]{6,}$"` |
+| `page` | entero | facultativa; por defecto: `0`; mínimo: `0`; máximo: `1000000` |
+| `page_size` | entero | facultativa; por defecto: `100`; mínimo: `1`; máximo: `100` |
+
+```javascript
+const result = await host.mcp("omics-archives", "pride_get_project_files", {"project_accession": "PXD000001", "page": 0, "page_size": 100})
 ```
 
 ### `pride_search_projects` {/* #pride_search_projects */}

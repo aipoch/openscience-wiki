@@ -19,6 +19,8 @@ Site-level facts and contacts: https://aipoch.com/llms.txt
 
 ## Guides
 
+- [PDF annotations and document notes](https://aipoch.com/docs/guides/pdf-notes/): Mark passages, collect document notes, find them again and export a reading copy.
+
 - [Appearance and notifications](https://aipoch.com/docs/guides/appearance/): Choose a comfortable theme, set your interface language and receive task alerts while you work in another app. Open Settings → General to adjust these preferences. Open-Science remembers your appearance choices on this device.
 - [Permissions and approvals](https://aipoch.com/docs/guides/approval-modes/): Use Agent controls to choose how the current conversation requests approval. Use Settings → Permissions to set the default for new conversations and inspect remembered access.
 - [Private reading bookmarks](https://aipoch.com/docs/guides/bookmarks/): Save passages and PDF regions for yourself, add notes and return to their source within a session.
@@ -52,6 +54,11 @@ Site-level facts and contacts: https://aipoch.com/llms.txt
 
 ## Research workflows
 
+- [Find public omics data and build a file inventory](https://aipoch.com/docs/workflows/public-omics-data/): Discover ENA runs and inspect ENA and PRIDE file inventories, source locations and checksums.
+- [Find a protein sequence and complete a BLAST search](https://aipoch.com/docs/workflows/protein-sequence-search/): Retrieve UniProt FASTA and inspect a completed BLAST alignment report.
+- [Run functional enrichment for a candidate gene set](https://aipoch.com/docs/workflows/gene-set-enrichment/): Run g:Profiler and retain identifier mappings, background, source versions and corrected probabilities.
+- [Check species, reference genome and chromosome identifiers](https://aipoch.com/docs/workflows/reference-genome-check/): Resolve taxon, versioned assembly and chromosome aliases before combining records.
+
 - [Compare two analysis methods on the same data](https://aipoch.com/docs/workflows/compare-methods/): Worked example PCA and exploratory factor analysis of the psych::bfi items
 - [Build a core reading list for a new research topic](https://aipoch.com/docs/workflows/core-reading-list/): To discover papers from a research topic, follow the topic-search journal-club workflow. The PRISMA example below starts with three known DOIs and demonstrates checking, saving and reading those records.
 - [Cross-check two scientific data sources](https://aipoch.com/docs/workflows/cross-check-records/): Worked example NASA GISTEMP and HadCRUT annual global temperature anomalies
@@ -76,7 +83,7 @@ Site-level facts and contacts: https://aipoch.com/llms.txt
 - [Scientific tool catalog](https://aipoch.com/docs/tools/catalog/): Use this catalog to find the Open-Science entry point and runtime requirements for a scientific method. It is a documentation index, not an application page that installs every listed program.
 - [Service credentials](https://aipoch.com/docs/tools/credentials/): Configure credentials in Settings → Credentials for the service actually making the request. A working Codex subscription supplies model access; it does not supply OpenAlex, GitHub or a custom MCP account.
 - [Connect a custom MCP tool](https://aipoch.com/docs/tools/custom/): Worked example Query a public QC table through a local MCP server
-- [Scientific databases](https://aipoch.com/docs/tools/databases/): The app bundles 23 data-source Connectors, plus a separate offline Molecule Connector. The full registry has 246 tool operations including Molecule&#x27;s two operations; the data-source catalog below covers 244.
+- [Scientific databases](https://aipoch.com/docs/tools/databases/): Supported scientific data sources, available tasks, built-in Connector setup and credentials, with links to complete research workflows.
 - [Connectors and MCP](https://aipoch.com/docs/tools/mcp/): A Connector exposes tools that an agent can call. Use this page to choose the integration type and understand readiness. For field-by-field setup, import/export and connection management, follow Configure Connectors.
 - [Explore tools](https://aipoch.com/docs/tools/overview/): Choose a tool by the result you need: retrieve a record, inspect a file, execute a calculation or connect an external service. The application combines these capabilities, but they have different setup and evidence requirements.
 - [Scientific tools](https://aipoch.com/docs/tools/scientific/): Run a scientific calculation only after its actual input and execution environment are clear. Choose a local Notebook, a Connector or an external runner according to the method and its dependencies.
@@ -122,6 +129,8 @@ Site-level facts and contacts: https://aipoch.com/llms.txt
 - [Headless service and browser access](https://aipoch.com/docs/reference/server/): The local service provides a headless backend and a localhost browser interface. It is distinct from an SSH Compute host and from Remote.It browser pairing. Choose the authentication and credential-storage settings for the host before connecting a client.
 
 ## Changelog
+
+- [Changelog · v0.32.0](https://aipoch.com/docs/changelog/v0-32-0/): PDF notes, BLAST sequence search, omics discovery, classification services and unattended tasks.
 
 - [Changelog · v0.25.1](https://aipoch.com/docs/changelog/v0-25-1/): Open-Science v0.25.1 features and compatibility changes.
 - [Changelog · v0.26.0](https://aipoch.com/docs/changelog/v0-26-0/): Open-Science v0.26.0 features and compatibility changes.

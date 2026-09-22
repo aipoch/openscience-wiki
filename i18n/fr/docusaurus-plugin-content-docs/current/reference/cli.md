@@ -1,7 +1,7 @@
 ---
 title: "CLI et sortie structurée"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -210,3 +210,15 @@ JSONL peut inclure `run.progress` et `stream.resync-required`. Si le replay n'es
 [Mise en œuvre de CLI](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [guide de commande en amont](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
 
 Référence technique: [Contrat CLI](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+
+## Courses sans surveillance {/* #unattended-runs */}
+
+Ajouter `--permission-prompts none` à `run` pour diminuer les interactions humaines non résolues au lieu d'attendre indéfiniment. Le profil d'approbation sélectionné et les subventions mémorisées continuent de s'appliquer; Les demandes de permission restantes sont refusées, les questions des utilisateurs sont refusées et les plans exigeant un examen humain sont rejetés. Cela n'approuve pas toutes les actions.
+
+```bash
+open-science run --project "Sequence and PDF Research" \
+  --prompt "Summarize the existing public-data result. Do not request user input." \
+  --approval-profile ask --permission-prompts none --wait --jsonl
+```
+
+L'option ne s'applique qu'à cette invocation et n'est pas sauvegardée comme préférence de session. Il ne peut pas être combiné avec `--plan-first`. Inspectez le statut final et l'erreur : éviter une attente humaine ne garantit pas l'achèvement de la tâche. Le client vérifie la capacité de l'hôte `permission-prompts-none`; Mettre à jour le client et l'application correspondants si un hôte plus ancien retourne `unsupported_capability`.

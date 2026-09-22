@@ -1225,7 +1225,7 @@
     "message": "Научные базы данных"
   },
   "docs.outline.tools.databases.scope": {
-    "message": "Категоризированная таблица для разъемов 23: охват источника, точные операции, идентификаторы, учетные данные и ограничения. Местный Molecule Viewer задокументирован под научными зрителями."
+    "message": "Поддерживаемые научные источники данных, полезные задачи, встроенная настройка Connector и учетные данные со ссылками на полные рабочие процессы исследования."
   },
   "docs.outline.tools.tables.title": {
     "message": "Таблицы и наборы данных"
@@ -1655,5 +1655,44 @@
   },
   "docs.outline.reference.v0310.scope": {
     "message": "Редактируемые копии сеансов, проверка провайдеров и полные сети STRING."
+  },
+  "docs.outline.workflows.reference-genome-check.scope": {
+    "message": "Решите таксон, референсную сборку и хромосомные псевдонимы перед анализом."
+  },
+  "docs.outline.workflows.group.public-data": {
+    "message": "Публичные данные и биоинформатика"
+  },
+  "docs.outline.workflows.public-omics-data.scope": {
+    "message": "Откройте для себя публичные ENA-запуски и проверьте кадастры файлов ENA и PRIDE, местоположение источников, размеры и контрольные суммы."
+  },
+  "docs.outline.workflows.protein-sequence-search.scope": {
+    "message": "Решите белок UniProt, извлеките FASTA и проверьте завершенный отчет о выравнивании BLAST."
+  },
+  "docs.guides.outline.pdf-notes.scope": {
+    "message": "Выделение фрагментов, заметки к документу, поиск и экспорт копии с аннотациями."
+  },
+  "docs.outline.workflows.gene-set-enrichment.scope": {
+    "message": "Запуск g: Обогащение профайлера и проверка отображений, исправленных вероятностей, фоновых и исходных версий."
+  },
+  "docs.outline.workflows.gene-set-enrichment.title": {
+    "message": "Функциональное обогащение для набора генов-кандидатов"
+  },
+  "docs.guides.outline.pdf-notes.title": {
+    "message": "Аннотации PDF и заметки к документу"
+  },
+  "docs.outline.reference.v0320.scope": {
+    "message": "Заметки PDF, поиск последовательностей BLAST, поиск омиксных данных и задачи без участия пользователя."
+  },
+  "docs.outline.workflows.reference-genome-check.title": {
+    "message": "Проверить виды, ссылочный геном и хромосомные идентификаторы"
+  },
+  "docs.outline.workflows.public-omics-data.title": {
+    "message": "Найдите общедоступные данные омики и создайте инвентарь файлов"
+  },
+  "docs.outline.reference.v0320.title": {
+    "message": "v0.32.0"
+  },
+  "docs.outline.workflows.protein-sequence-search.title": {
+    "message": "Найдите последовательность белка и заполните поиск BLAST"
   }
 }

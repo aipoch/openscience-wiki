@@ -1,7 +1,7 @@
 ---
 title: "提供商与本地模型配置"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -212,3 +212,9 @@ print((8664 + 18515) == 27179)
 ## v0.31.0 及后续版本如何保存提供方修改 {/* #validated-provider-save */}
 
 提供方修改先经过连接验证，通过后才提交保存。点击 **Save** 后等待结果，确认成功再关闭表单。验证失败不会替换原有可用配置。已保存的连接在请求中被拒绝时，可用状态会更新；检查凭据和端点后重新测试。**Conversation models**、**Classification models** 和 **Local parsing models** 用途不同，详见[模型设置](models.md#classification-models)。
+
+## StepFun 与区域选择 {/* #stepfun-regions */}
+
+在提供方目录选择 **StepFun**，先确认 **China** 或 **Global** 区域，再选择模型并填写该区域的凭证。v0.32.0 加入 **Step-5 Preview**，目录标记为支持多模态和 1M 上下文。实际可用模型、额度和输入能力仍以提供方账户及所选 Agent 的兼容性为准。
+
+保存并检查连接后，才在需要使用它的会话中选择该模型。已有提供方保留原先端点；应用升级不会替你切换区域或主模型。

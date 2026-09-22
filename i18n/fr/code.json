@@ -1226,7 +1226,7 @@
     "message": "Bases de données scientifiques"
   },
   "docs.outline.tools.databases.scope": {
-    "message": "Une table catégorisée pour les connecteurs 23 : couverture source, opérations exactes, identifiants, identifiants et limitations. Le visionneur moléculaire local est documenté sous le nom de visionneuses scientifiques."
+    "message": "Sources de données scientifiques supportées, tâches utiles, configuration Connector intégrée et références, avec des liens pour compléter les flux de travail de recherche."
   },
   "docs.outline.tools.tables.title": {
     "message": "Tableaux et ensembles de données"
@@ -1656,5 +1656,44 @@
   },
   "docs.outline.reference.v0310.scope": {
     "message": "Copies de sessions modifiables, validation des fournisseurs et réseaux STRING complets."
+  },
+  "docs.outline.workflows.reference-genome-check.scope": {
+    "message": "Résoudre un taxon, un assemblage de référence en version et des alias chromosomiques avant l'analyse."
+  },
+  "docs.outline.workflows.group.public-data": {
+    "message": "Données publiques et bioinformatique"
+  },
+  "docs.outline.workflows.public-omics-data.scope": {
+    "message": "Découvrez le public ENA gère et inspecte les inventaires de fichiers ENA et PRIDE, les emplacements des sources, les tailles et les montants de contrôle."
+  },
+  "docs.outline.workflows.protein-sequence-search.scope": {
+    "message": "Résoudre une protéine UniProt, récupérer FASTA et inspecter un rapport d'alignement BLAST terminé."
+  },
+  "docs.guides.outline.pdf-notes.scope": {
+    "message": "Annoter des passages, organiser les notes, les retrouver et exporter une copie annotée."
+  },
+  "docs.outline.workflows.gene-set-enrichment.scope": {
+    "message": "Exécuter g:Profiler enrichissement et inspecter les cartes, les probabilités corrigées, les versions de fond et de source."
+  },
+  "docs.outline.workflows.gene-set-enrichment.title": {
+    "message": "Exécuter l'enrichissement fonctionnel d'un ensemble de gènes candidats"
+  },
+  "docs.guides.outline.pdf-notes.title": {
+    "message": "Annotations PDF et notes de document"
+  },
+  "docs.outline.reference.v0320.scope": {
+    "message": "Notes PDF, recherche de séquences BLAST, découverte de données omiques et tâches sans intervention."
+  },
+  "docs.outline.workflows.reference-genome-check.title": {
+    "message": "Vérifier les espèces, le génome de référence et les identifiants chromosomiques"
+  },
+  "docs.outline.workflows.public-omics-data.title": {
+    "message": "Trouver des données omiques publiques et construire un inventaire de fichiers"
+  },
+  "docs.outline.reference.v0320.title": {
+    "message": "v0.32.0"
+  },
+  "docs.outline.workflows.protein-sequence-search.title": {
+    "message": "Trouvez une séquence protéique et effectuez une recherche BLAST"
   }
 }

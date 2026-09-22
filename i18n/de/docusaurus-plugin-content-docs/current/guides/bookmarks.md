@@ -2,7 +2,7 @@
 title: "Persönliche Lesezeichen"
 description: "Speichern Sie Passagen und PDF-Regionen für sich, fügen Sie Notizen hinzu und kehren Sie innerhalb einer Sitzung zu ihrer Quelle zurück."
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 # Persönliche Lesezeichen {/* #private-reading-bookmarks */}
@@ -35,4 +35,8 @@ Wenn die Quelle nicht verfügbar ist oder der genaue Standort nicht gefunden wer
 
 ## Lesezeichen in einer Gabel {/* #bookmarks-in-fork */}
 
-Von v0.31.0 kopiert [Gabel](sessions.md#fork-session) private Lesezeichen und Notizen mit neuen Identitäten in die neue Sitzung. Spätere Bearbeitungen in der Kopie bearbeiten die Quell-Lesezeichen nicht. Dies unterscheidet sich vom Wechseln von Zweigen oder dem Exportieren einer `.science`-Datei: Private Bookmarks schließen sich immer noch nicht dem Paketexport an oder synchronisieren sich maschinenübergreifend.
+Von v0.31.0 kopiert [Abzweigen](sessions.md#fork-session) private Lesezeichen und Notizen mit neuen Identitäten in die neue Sitzung. Spätere Bearbeitungen in der Kopie bearbeiten die Quell-Lesezeichen nicht. Dies unterscheidet sich vom Wechseln von Zweigen oder dem Exportieren einer `.science`-Datei: Private Bookmarks schließen sich immer noch nicht dem Paketexport an oder synchronisieren sich maschinenübergreifend.
+
+## PDF Dokumentnotizen {/* #pdf-document-notes */}
+
+Für Anmerkungen, die zu einem verwalteten PDF und nicht zu einer Sitzung gehören, verwenden Sie [PDF Anmerkungen und Dokumentnotizen](pdf-notes.md). Ein Bibliotheksanhang teilt seine Dokumentnotizen, wo auch immer diese Dateiversion verwendet wird; Projekt-Uploads und Artefakte teilen sie über Sitzungen im Besitzprojekt hinweg. Dies ändert nichts am Sitzungsumfang oder den Paketausschlüssen von **For me**-Lesezeichen. **To Agent** bereitet noch einen Entwurf für eine Nachricht vor.

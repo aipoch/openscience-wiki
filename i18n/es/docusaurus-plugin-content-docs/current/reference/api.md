@@ -1,7 +1,7 @@
 ---
 title: "Tarea SDK y API local"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 # Tarea SDK y API local {/* #task-sdk-and-local-api */}
@@ -191,3 +191,9 @@ Los latidos cardíacos de conexión son marcos de control y no se rinden como ev
 [Fuente SDK](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/index.mjs), [Notas contractuales SDK](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/README.md). Vea [CLI](./cli.md) para la automatización de conchas y [Servicio sin cabeza](./server.md) para el descubrimiento/ciclo de vida.
 
 Fuentes: [firmas](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.d.ts), [rutas](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.mjs). Vea [Campos de gestión CLI](cli.md#manage-connectors-and-credentials) para configuración y límites de diagnóstico.
+
+## Tareas no previstas {/* #unattended-runs */}
+
+Establecer `permissionPrompts: 'none'` en la entrada `startRun`, correspondiente a CLI `--permission-prompts none`. Mantener un `permissionProfile` adecuado: esta opción disminuye las interacciones humanas sin resolver y no amplía los permisos. No lo combine con `planFirst: true`.
+
+El anfitrión debe declarar la capacidad `permission-prompts-none`; de lo contrario el cliente informa `unsupported_capability` antes de crear la carrera. Esta política se aplica únicamente a la invocación actual. Maneja el estado y el error de la carrera como siempre. Ver [CLI no tripulado](cli.md#unattended-runs).

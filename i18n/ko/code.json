@@ -1215,7 +1215,7 @@
     "message": "과학 데이터베이스"
   },
   "docs.outline.tools.databases.scope": {
-    "message": "23 데이터 소스 커넥터에 대한 분류 된 테이블 : 소스 적용, 정확한 작동, 식별자, 자격 및 제한. 지역 Molecule Viewer는 과학적인 시청자에 의해 문서화됩니다."
+    "message": "지원 과학 데이터 소스, 유용한 작업, 내장 Connector 설정 및 자격, 링크를 통해 연구 워크플로우를 완료."
   },
   "docs.outline.tools.tables.title": {
     "message": "테이블 및 데이터 세트"
@@ -1645,5 +1645,44 @@
   },
   "docs.outline.reference.v0310.scope": {
     "message": "쓰기 가능한 세션 복사본, 제공자 검증 및 전체 STRING 네트워크."
+  },
+  "docs.outline.workflows.reference-genome-check.scope": {
+    "message": "분석하기 전에 taxon, versioned reference Assembly 및 chromosome aliases를 해결합니다."
+  },
+  "docs.outline.workflows.group.public-data": {
+    "message": "공공데이터 및 생물 정보학"
+  },
+  "docs.outline.workflows.public-omics-data.scope": {
+    "message": "ENA 실행 및 ENA 및 PRIDE 파일 재고, 소스 위치, 크기 및 체크섬을 검사합니다."
+  },
+  "docs.outline.workflows.protein-sequence-search.scope": {
+    "message": "UniProt 단백질을 해결하고 FASTA를 검색하고 완성 된 BLAST 정렬 보고서를 검사합니다."
+  },
+  "docs.guides.outline.pdf-notes.scope": {
+    "message": "구절 표시, 문서 노트 정리, 검색 및 주석 사본 내보내기."
+  },
+  "docs.outline.workflows.gene-set-enrichment.scope": {
+    "message": "런 g:Profiler enrichment 및 mappings, 정확한 확률, 배경 및 소스 버전을 검사."
+  },
+  "docs.outline.workflows.gene-set-enrichment.title": {
+    "message": "후보 유전자 세트에 대한 기능적 enrichment 실행"
+  },
+  "docs.guides.outline.pdf-notes.title": {
+    "message": "PDF 주석과 문서 노트"
+  },
+  "docs.outline.reference.v0320.scope": {
+    "message": "PDF 노트, BLAST 서열 검색, 오믹스 데이터 검색과 무인 작업."
+  },
+  "docs.outline.workflows.reference-genome-check.title": {
+    "message": "종, 참조 genome 및 크롬 식별자 확인"
+  },
+  "docs.outline.workflows.public-omics-data.title": {
+    "message": "공공 omics 데이터를 찾아 파일 재고를 구축"
+  },
+  "docs.outline.reference.v0320.title": {
+    "message": "v0.32.0"
+  },
+  "docs.outline.workflows.protein-sequence-search.title": {
+    "message": "단백질 시퀀스를 찾아 BLAST 검색 완료"
   }
 }

@@ -1,0 +1,42 @@
+{
+  "selected_run_accession": "SRR077868",
+  "generated_fastq": {
+    "request": {
+      "method": "ena_get_run_files",
+      "arguments": {
+        "run_accession": "SRR077868"
+      }
+    },
+    "response": {
+      "run_accession": "SRR077868",
+      "found": true,
+      "library_layout": "SINGLE",
+      "fastq_available": true,
+      "n_files": 1,
+      "fastq_files": [
+        {
+          "file_index": 1,
+          "url": "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR077/SRR077868/SRR077868.fastq.gz",
+          "size_bytes": 462508712,
+          "md5": "a7ba883364d6eb9996156cb506e3d70f"
+        }
+      ]
+    }
+  },
+  "original_submissions": {
+    "request": {
+      "method": "ena_get_submitted_files",
+      "arguments": {
+        "run_accession": "SRR077868"
+      }
+    },
+    "response": {
+      "run_accession": "SRR077868",
+      "found": true,
+      "library_layout": "SINGLE",
+      "submitted_available": false,
+      "n_files": 0,
+      "submitted_files": []
+    }
+  }
+}

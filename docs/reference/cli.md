@@ -1,7 +1,7 @@
 ---
 title: "CLI and structured output"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -210,3 +210,15 @@ JSONL can include `run.progress` and `stream.resync-required`. If replay is unav
 [CLI implementation](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [upstream command guide](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
 
 Technical reference: [CLI contract](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+
+## Unattended runs {/* #unattended-runs */}
+
+Add `--permission-prompts none` to `run` to decline unresolved human interactions instead of waiting indefinitely. The selected approval profile and remembered grants still apply; remaining permission requests are denied, user questions are declined, and Plans requiring human review are rejected. This does not approve every action.
+
+```bash
+open-science run --project "Sequence and PDF Research" \
+  --prompt "Summarize the existing public-data result. Do not request user input." \
+  --approval-profile ask --permission-prompts none --wait --jsonl
+```
+
+The option applies only to this invocation and is not saved as a session preference. It cannot be combined with `--plan-first`. Inspect the final status and error: avoiding a human wait does not guarantee task completion. The client checks for host capability `permission-prompts-none`; update the matching client and app if an older host returns `unsupported_capability`.
