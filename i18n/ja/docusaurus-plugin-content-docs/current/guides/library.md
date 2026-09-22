@@ -1,7 +1,7 @@
 ---
 title: "文学ライブラリと引用"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -318,3 +318,7 @@ BibTeX は、ここの年と月を格納するので、その往復は `2009-7` 
 
 
 ソース: [バッチ輸入](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx)、[メタデータエディタ](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteratureMetadataEditor.tsx)、[添付ファイル履歴/削除](https://github.com/aipoch/open-science/commit/f4a82d4a)、[同時編集](https://github.com/aipoch/open-science/commit/dbb9560a)。
+
+## PDF読書ノートを保って下さい {/* #keep-pdf-reading-notes */}
+
+リファレンスのPDF添付ファイルを開き、注釈、ページ質問、ドキュメントノートに**Notes & Annotations**を使用します。 同じライブラリファイルバージョンでは、プロジェクトとセッション間でこれらのメモを共有しています。 **Library** をグローバル検索で見つけ、**Show annotation source** を選択して PDF に戻します。 手順とエクスポートについては、[PDFの注釈と文書のメモ](pdf-notes.md) を参照してください。

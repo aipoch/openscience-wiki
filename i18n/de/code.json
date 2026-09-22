@@ -1225,7 +1225,7 @@
     "message": "Wissenschaftliche Datenbanken"
   },
   "docs.outline.tools.databases.scope": {
-    "message": "Eine kategorisierte Tabelle für die 23-Datenquellenkonnektoren: Quellenabdeckung, genaue Operationen, Identifikatoren, Anmeldeinformationen und Einschränkungen. Der lokale Molecule Viewer ist unter Wissenschaftliche Zuschauer dokumentiert."
+    "message": "Unterstützte wissenschaftliche Datenquellen, nützliche Aufgaben, integriertes Connector-Setup und Anmeldeinformationen mit Links zu kompletten Forschungsworkflows."
   },
   "docs.outline.tools.tables.title": {
     "message": "Tabellen und Datensätze"
@@ -1655,5 +1655,44 @@
   },
   "docs.outline.reference.v0310.scope": {
     "message": "Bearbeitbare Sitzungskopien, Anbieterprüfung und vollständige STRING-Netzwerke."
+  },
+  "docs.outline.workflows.reference-genome-check.scope": {
+    "message": "Lösen Sie ein Taxon, eine versionierte Referenzanordnung und Chromosomenaliase vor der Analyse auf."
+  },
+  "docs.outline.workflows.group.public-data": {
+    "message": "Öffentliche Daten und Bioinformatik"
+  },
+  "docs.outline.workflows.public-omics-data.scope": {
+    "message": "Entdecken Sie öffentliche ENA-Läufe und prüfen Sie ENA- und PRIDE-Dateiinventare, Quellorte, Größen und Prüfsummen."
+  },
+  "docs.outline.workflows.protein-sequence-search.scope": {
+    "message": "Lösen Sie ein UniProt-Protein, holen Sie FASTA ab und prüfen Sie einen abgeschlossenen BLAST-Alignment-Bericht."
+  },
+  "docs.guides.outline.pdf-notes.scope": {
+    "message": "Textstellen markieren, Notizen sammeln, wiederfinden und eine kommentierte Kopie exportieren."
+  },
+  "docs.outline.workflows.gene-set-enrichment.scope": {
+    "message": "Führen Sie g:Profiler-Anreicherung und prüfen Sie Mappings, korrigierte Wahrscheinlichkeiten, Hintergrund- und Quellversionen."
+  },
+  "docs.outline.workflows.gene-set-enrichment.title": {
+    "message": "Laufen funktionelle Anreicherung für einen Kandidaten-Gen-Set"
+  },
+  "docs.guides.outline.pdf-notes.title": {
+    "message": "PDF-Anmerkungen und Dokumentnotizen"
+  },
+  "docs.outline.reference.v0320.scope": {
+    "message": "PDF-Notizen, BLAST-Sequenzsuche, Omics-Datensuche und unbeaufsichtigte Aufgaben."
+  },
+  "docs.outline.workflows.reference-genome-check.title": {
+    "message": "Kontrollarten, Referenzgenom und Chromosomenkennzeichen"
+  },
+  "docs.outline.workflows.public-omics-data.title": {
+    "message": "Finden Sie Public Omics-Daten und erstellen Sie ein Dateiinventar"
+  },
+  "docs.outline.reference.v0320.title": {
+    "message": "v0.32.0"
+  },
+  "docs.outline.workflows.protein-sequence-search.title": {
+    "message": "Finden Sie eine Proteinsequenz und vervollständigen Sie eine BLAST-Suche"
   }
 }

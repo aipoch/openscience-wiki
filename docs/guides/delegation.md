@@ -1,7 +1,7 @@
 ---
 title: "Delegation and Side Chat"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-22'
 ---
 
 # Delegation and Side Chat
@@ -19,7 +19,7 @@ Open Side Chat to explain a term in an analysis result, compare two approaches, 
 1. In an existing session, open **More send options → Side chat** beside the send button. You can open it with an empty Composer: a new Side Chat draft appears immediately. Write the question there, check the model and reasoning effort, then send it.
 2. Read the answer in its independent **Side chat** preview tab. Use **Side chat follow up** to ask more questions. You can keep several side discussions under the same session and switch between their tabs while continuing to use Main.
 3. To share advice with Main, explicitly ask Side Chat to relay it. For example: “Send this advice to Main: Explain the missing-value handling in a separate part of the report.” Check for the message labeled **Side chat** in Main. If Main is idle, send your next request to continue the work.
-4. Use **Cancel Side chat response** to stop the current answer. To keep the discussion for later, leave its tab open and switch tabs or collapse the preview area.
+4. Use **Cancel Side chat response** to stop the current answer. Switch tabs or collapse the preview area to return to Main. Transfer anything you need after an application restart to Main or a saved report.
 
 A draft containing text or annotations survives switching views. An untouched empty draft is discarded when you leave it; opening a draft alone does not send a model request.
 
@@ -33,8 +33,9 @@ Private **For me** bookmarks are a different reading tool; see [Reading bookmark
 
 - **Model settings:** A new Side Chat inherits the current main conversation's model and reasoning effort. You can change them in Side Chat; the selection applies to its next send. Codex subscriptions are supported. Check the selector before sending.
 - **Delivery and actions:** Ordinary replies are not automatically sent to Main. Side Chat cannot grant Main's permissions; confirm delivery before asking Main to take action.
-- **Closing a tab:** Read **Close Side chat?** before confirming. Closing stops that Side Chat and permanently deletes its saved conversation. Select **Cancel** to retain it, and transfer useful advice to Main or a saved report before closing. If cleanup fails, the tab returns; inspect the error before retrying.
-- **Availability:** In v0.30.2, Main running or waiting for approval does not by itself block Side Chat. Send at least one message in Main first. Read-only imported sessions and unavailable parent sessions cannot open Side Chat; sending also waits for its history to be saved and restored. Side Chat does not accept file attachments. Follow the actual button explanation; connection problems are covered in [Troubleshooting](troubleshooting.md).
+- **Closing a tab:** Read **Close Side chat?** before confirming. Closing stops that Side Chat and removes its conversation. Select **Cancel** to keep it; switch tabs or collapse the preview area when you only want to return to Main. If cleanup fails, the tab returns with an error.
+- **Restarting the app:** Side Chat conversations and advice not yet delivered to Main exist only during the current application run. Reloading the interface or switching projects can reconnect to that in-memory state; fully restarting the app clears it. Transfer useful advice to Main or save it in a report before quitting. Messages already accepted into Main remain in its saved conversation.
+- **Availability:** In v0.30.2, Main running or waiting for approval does not by itself block Side Chat. Send at least one message in Main first. Read-only imported sessions and unavailable parent sessions cannot open Side Chat. Side Chat does not accept file attachments. Follow the actual button explanation; connection problems are covered in [Troubleshooting](troubleshooting.md).
 
 ## Task delegation
 

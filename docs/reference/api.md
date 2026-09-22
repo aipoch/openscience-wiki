@@ -1,7 +1,7 @@
 ---
 title: "Task SDK and local API"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 # Task SDK and local API
@@ -191,3 +191,9 @@ Connection heartbeats are control frames and are not yielded as ordinary researc
 [SDK source](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/index.mjs), [SDK contract notes](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/README.md). See [CLI](./cli.md) for shell automation and [Headless service](./server.md) for discovery/lifecycle.
 
 Sources: [signatures](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.d.ts), [routes](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.mjs). See [CLI management fields](cli.md#manage-connectors-and-credentials) for configuration and diagnostic boundaries.
+
+## Unattended tasks {/* #unattended-runs */}
+
+Set `permissionPrompts: 'none'` in the `startRun` input, corresponding to CLI `--permission-prompts none`. Keep an appropriate `permissionProfile`: this option declines unresolved human interactions and does not expand permissions. Do not combine it with `planFirst: true`.
+
+The host must declare capability `permission-prompts-none`; otherwise the client reports `unsupported_capability` before creating the run. This policy applies only to the current invocation. Handle the run's actual status and error as usual. See [unattended CLI runs](cli.md#unattended-runs).

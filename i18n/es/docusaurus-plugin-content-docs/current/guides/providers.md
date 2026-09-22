@@ -1,7 +1,7 @@
 ---
 title: "Proveedor y configuración del modelo local"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -212,3 +212,9 @@ Fuente: [ProveedorForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/
 ## Guardar un cambio de proveedor en v0.31.0 y más tarde {/* #validated-provider-save */}
 
 Las ediciones del proveedor se prueban antes de que se cometan. Seleccione **Save**, espere el resultado de la conexión y confirme el éxito antes de cerrar el formulario. Una prueba fallida no reemplaza una configuración ahorrada de trabajo. Si se rechaza una conexión previamente guardada durante una solicitud, se actualiza su disponibilidad; verifique el punto final y credencial, y luego vuelva a probar. **Conversation models**, **Classification models** y **Local parsing models** tienen diferentes propósitos; ver [configuración del modelo](models.md#classification-models).
+
+## StepFun y selección de la región {/* #stepfun-regions */}
+
+Elija **StepFun** en el catálogo de proveedores, confirme **China** o **Global**, a continuación, seleccione un modelo y credenciales de suministro para esa región. v0.32.0 añade **Step-5 Preview**, con metadatos de catálogo multimodal y 1M-contexto. El acceso real del modelo, el soporte de cuota y de entrada todavía dependen de la cuenta del proveedor y de la compatibilidad del agente seleccionado.
+
+Guardar y comprobar la conexión antes de elegirla en una conversación. Las configuraciones existentes de los proveedores conservan su punto final anterior; actualizar la aplicación no cambia su región o modelo Main.

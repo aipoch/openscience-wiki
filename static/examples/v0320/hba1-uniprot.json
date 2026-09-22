@@ -1,0 +1,67 @@
+{
+  "operation_1": {
+    "method": "search_uniprot_entries",
+    "args": {
+      "gene": "HBA1",
+      "organism_id": 9606,
+      "reviewed": true,
+      "page_size": 5
+    },
+    "response": {
+      "filters": {
+        "gene": "HBA1",
+        "protein_name": null,
+        "organism_id": 9606,
+        "reviewed": true
+      },
+      "query": "active:true AND gene_exact:\"HBA1\" AND organism_id:9606 AND reviewed:true",
+      "page_size": 5,
+      "n_records": 1,
+      "total_results": 1,
+      "has_more": false,
+      "next_cursor": null,
+      "release": "2026_03",
+      "records": [
+        {
+          "accession": "P69905",
+          "entry_name": "HBA_HUMAN",
+          "reviewed": true,
+          "protein_names": [
+            "Hemoglobin subunit alpha",
+            "Alpha-globin",
+            "Hemoglobin alpha chain"
+          ],
+          "gene_names": [
+            "HBA1",
+            "HBA2"
+          ],
+          "organism_id": 9606,
+          "organism_name": "Homo sapiens",
+          "length": 142
+        }
+      ]
+    }
+  },
+  "selected_accession": "P69905",
+  "selection_basis": "The sole reviewed Homo sapiens result returned by the exact HBA1 query.",
+  "operation_2": {
+    "method": "get_uniprot_entries",
+    "args": {
+      "accessions": [
+        "P69905"
+      ],
+      "format": "fasta"
+    },
+    "response": {
+      "accessions": [
+        "P69905"
+      ],
+      "format": "fasta",
+      "n_found": 1,
+      "missing": [],
+      "records": {
+        "P69905": ">sp|P69905|HBA_HUMAN Hemoglobin subunit alpha OS=Homo sapiens OX=9606 GN=HBA1 PE=1 SV=2\nMVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHG\nKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTP\nAVHASLDKFLASVSTVLTSKYR\n"
+      }
+    }
+  }
+}

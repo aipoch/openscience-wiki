@@ -2,7 +2,7 @@
 title: "Connector 操作参数参考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作输入
 
-每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.31.1** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.31.1.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
+每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.32.0** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.32.0.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
 
 
 ## 化学 {/* #family-1 */}
@@ -585,6 +585,25 @@ const result = await host.mcp("genes", "get_ontology_term", {"ontology": "go", "
 const result = await host.mcp("genes", "get_go_annotations", {"uniprot_accession": "P04637", "aspect": "molecular_function", "evidence": "experimental_manual"})
 ```
 
+### `search_uniprot_entries`
+
+按精确基因名（含同义名）、蛋白名称短语和／或精确 NCBI 物种 ID 检索活跃 UniProtKB 条目，组合条件按 AND 匹配。至少提供一个检索条件。reviewed 为 true 时只查 Swiss-Prot；不指定则包含已审阅与未审阅条目。返回一个按登录号排序的页面，不返回序列。继续分页时，传回 next_cursor，并保持筛选条件与 page_size 不变；游标不代表持久快照。按返回的 accession 调用 get_uniprot_entries 获取序列。
+
+至少提供一个列出的检索条件；完整组合约束见下载的 schema。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `gene` | string | 可选; minLength: `1`; maxLength: `200`; pattern: `"^(?=[\\s\\S]*\\S)[^\"\\\\*?\\u0000-\\u001f\\u007f]+$"` |
+| `protein_name` | string | 可选; minLength: `1`; maxLength: `200`; pattern: `"^(?=[\\s\\S]*\\S)[^\"\\\\*?\\u0000-\\u001f\\u007f]+$"` |
+| `organism_id` | integer | 可选; minimum: `1`; maximum: `2147483647` |
+| `reviewed` | boolean | 可选 |
+| `page_size` | integer | 可选; default: `25`; minimum: `1`; maximum: `500` |
+| `cursor` | string | 可选; minLength: `1`; maxLength: `4096`; pattern: `"^[^\\s\\u0000-\\u001f\\u007f]+$"` |
+
+```javascript
+const result = await host.mcp("genes", "search_uniprot_entries", {"gene": "TP53", "organism_id": 9606, "reviewed": true, "page_size": 25})
+```
+
 ### `get_uniprot_entries`
 
 按 UniProt 登录号批量获取条目或序列，支持 JSON、FASTA 和 TXT。次级登录号会映射到当前主条目；检查输入映射及未找到项，不要将当前主登录号误当作另一个输入。
@@ -622,7 +641,7 @@ const result = await host.mcp("genes", "map_reactome_pathways", {"identifiers": 
 
 | 字段 | 类型 | 要求与约束 |
 | --- | --- | --- |
-| `organism` | 字符串 | **必填**; 最短长度: 1; 最长长度: 64; 格式: &quot;^[a-z][a-z0-9_]*$&quot; |
+| `organism` | string | **必填**; minLength: `1`; maxLength: `64`; pattern: `"^[a-z][a-z0-9_]*$"` |
 
 ```javascript
 const result = await host.mcp("genes", "list_enrichment_sources", {"organism": "hsapiens"})
@@ -635,7 +654,7 @@ const result = await host.mcp("genes", "list_enrichment_sources", {"organism": "
 | 字段 | 类型 | 要求与约束 |
 | --- | --- | --- |
 | `genes` | 字符串数组 | **必填**; 最少项数: 1; 最多项数: 5000 |
-| `organism` | 字符串 | **必填**; 最短长度: 1; 最长长度: 64; 格式: &quot;^[a-z][a-z0-9_]*$&quot; |
+| `organism` | string | **必填**; minLength: `1`; maxLength: `64`; pattern: `"^[a-z][a-z0-9_]*$"` |
 | `sources` | 字符串数组 | 可选; 最多项数: 100 |
 | `background_genes` | 字符串数组 | 可选; 最少项数: 1; 最多项数: 20000 |
 | `domain_scope` | 字符串 | 可选; 枚举: [&quot;annotated&quot;, &quot;known&quot;, &quot;custom&quot;, &quot;custom_annotated&quot;] |
@@ -658,6 +677,48 @@ const result = await host.mcp("genes", "enrich_gene_set", {"genes": ["TP53", "EG
 
 <ToolOperationGroup>
 <summary>展开操作与参数</summary>
+
+### `blast_submit`
+
+向公共 NCBI BLAST 服务提交一条核酸或蛋白序列。必须明确 molecule_type；序列会发送给 NCBI。保存返回的 RID，至少等候 60 秒再查询状态；同一 RID 的请求至少间隔 60 秒，所有 BLAST 请求至少间隔 10 秒。提交回执丢失时会报告 blast_submission_unknown，不要自动重复提交。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `sequence` | string | **必填**; minLength: `1`; maxLength: `100000` |
+| `molecule_type` | string | **必填**; enum: `["nucleotide", "protein"]` |
+| `database` | string | 可选; enum: `["nt", "core_nt", "refseq_rna", "nr", "refseq_protein", "swissprot"]` |
+| `evalue` | number | 可选; exclusiveMinimum: `0`; maximum: `1000` |
+| `hitlist_size` | integer | 可选; minimum: `1`; maximum: `100` |
+| `megablast` | boolean | 可选 |
+
+```javascript
+const result = await host.mcp("genomes", "blast_submit", {"sequence": "ATGCGTACGTAGCTAG", "molecule_type": "nucleotide", "database": "nt"})
+```
+
+### `blast_status`
+
+查询 NCBI BLAST RID 的状态，保留 READY、WAITING、FAILED 或 UNKNOWN 状态及服务返回的重试间隔。READY 后再取结果；同一 RID 的请求至少间隔 60 秒，不要把 WAITING 当作提交失败后重新提交。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `rid` | string | **必填**; minLength: `1`; maxLength: `128` |
+
+```javascript
+const result = await host.mcp("genomes", "blast_status", {"rid": "AYEFB4DT014"})
+```
+
+### `blast_results`
+
+获取 BLAST RID 的有界报告，支持 json2、xml2、text 或 tabular，最多 2 MiB。等待 blast_status 返回 READY，并距同一 RID 上次请求至少 60 秒后再调用。仍在计算时返回 ready=false。tabular 是 NCBI 的文本表格报告，可能含 HTML 注释、PRE 标签及报告头，不是纯 TSV／CSV；保留原始响应后再解析。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `rid` | string | **必填**; minLength: `1`; maxLength: `128` |
+| `format` | string | 可选; enum: `["json2", "xml2", "text", "tabular"]` |
+
+```javascript
+const result = await host.mcp("genomes", "blast_results", {"rid": "AYEFB4DT014", "format": "json2"})
+```
 
 ### `ensembl_lookup`
 
@@ -772,7 +833,7 @@ const result = await host.mcp("genomes", "ncbi_resolve_taxon", {"query": "human"
 
 | 字段 | 类型 | 要求与约束 |
 | --- | --- | --- |
-| `assembly_accession` | 字符串 | **必填**; 格式: &quot;^GC[AF]_[0-9]&#123;9&#125;\\.[0-9]+$&quot; |
+| `assembly_accession` | string | **必填**; pattern: `"^GC[AF]_[0-9]{9}\\.[0-9]+$"` |
 
 ```javascript
 const result = await host.mcp("genomes", "ncbi_get_assembly_info", {"assembly_accession": "GCF_000001405.40"})
@@ -784,7 +845,7 @@ const result = await host.mcp("genomes", "ncbi_get_assembly_info", {"assembly_ac
 
 | 字段 | 类型 | 要求与约束 |
 | --- | --- | --- |
-| `assembly_accession` | 字符串 | **必填**; 格式: &quot;^GC[AF]_[0-9]&#123;9&#125;\\.[0-9]+$&quot; |
+| `assembly_accession` | string | **必填**; pattern: `"^GC[AF]_[0-9]{9}\\.[0-9]+$"` |
 | `sequence` | 字符串 | 可选; 最短长度: 1; 最长长度: 200 |
 | `max_sequences` | 整数 | 可选; 默认值: 200; 最小值: 1; 最大值: 5000 |
 
@@ -1004,15 +1065,15 @@ const result = await host.mcp("variants", "get_structural_variant", {"sv_id": "D
 
 ### `mitochondrial_variants`
 
-查询 gnomAD 线粒体变异及异质性计数 ac_het、ac_hom、max_heteroplasmy。基因路线与 region_start 加 region_stop 路线二选一。
+按线粒体基因或 chrM 坐标区间查询 gnomAD 线粒体变异，保留异质性相关计数。只支持 GRCh38 的 gnomad_r3 和 gnomad_r4，不能使用 r2.1 或 ExAC。基因与区间二选一；未知基因返回 gene_id=null、原查询和空列表。
 
-| 字段 | 类型 | 要求与约束 |
+| 字段 | 类型 | 必填与约束 |
 | --- | --- | --- |
-| `gene_symbol` | 字符串 | 可选 |
-| `gene_id` | 字符串 | 可选 |
-| `region_start` | 整数 | 可选; 最小值： 1; 最大值： 999999999 |
-| `region_stop` | 整数 | 可选; 最小值： 1; 最大值： 999999999 |
-| `dataset` | 字符串 | 可选; 默认值： &quot;gnomad_r4&quot;; 枚举： [&quot;gnomad_r4&quot;, &quot;gnomad_r4_non_ukb&quot;, &quot;gnomad_r3&quot;, &quot;gnomad_r3_controls_and_biobanks&quot;, &quot;gnomad_r3_non_cancer&quot;, &quot;gnomad_r3_non_neuro&quot;, &quot;gnomad_r3_non_topmed&quot;, &quot;gnomad_r3_non_v2&quot;, &quot;gnomad_r2_1&quot;, &quot;gnomad_r2_1_controls&quot;, &quot;gnomad_r2_1_non_cancer&quot;, &quot;gnomad_r2_1_non_neuro&quot;, &quot;gnomad_r2_1_non_topmed&quot;, &quot;exac&quot;] |
+| `gene_symbol` | string | 可选 |
+| `gene_id` | string | 可选 |
+| `region_start` | integer | 可选; minimum: `1`; maximum: `999999999` |
+| `region_stop` | integer | 可选; minimum: `1`; maximum: `999999999` |
+| `dataset` | string | 可选; default: `"gnomad_r4"`; enum: `["gnomad_r4", "gnomad_r3"]` |
 
 ```javascript
 const result = await host.mcp("variants", "mitochondrial_variants", {"gene_symbol": "MT-TL1", "dataset": "gnomad_r4"})
@@ -2817,6 +2878,35 @@ const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGA
 <ToolOperationGroup>
 <summary>展开操作与参数</summary>
 
+### `ena_query_runs`
+
+按 tax_id、library_strategy 或 keyword 发现公开 ENA 运行；至少提供一个条件，组合条件按 AND 匹配。返回查询表达式、元数据、实际返回数与 truncated。物种条件包含分类后代；关键词查询标题和描述，不接受任意 ENA 查询语法。最多返回 1000 条，无分页游标；截断时缩小条件。n_runs_returned 不是全部匹配数。
+
+至少提供一个列出的检索条件；完整组合约束见下载的 schema。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `tax_id` | integer | 可选; minimum: `1`; maximum: `2147483647` |
+| `library_strategy` | string | 可选; enum: `["AMPLICON", "ATAC-seq", "Bisulfite-Seq", "CLONE", "CLONEEND", "CTS", "ChIA-PET", "ChIP-Seq", "ChM-Seq", "DNase-Hypersensitivity", "EST", "FAIRE-seq", "FINISHING", "FL-cDNA", "GBS", "Hi-C", "MBD-Seq", "MNase-Seq", "MRE-Seq", "MeDIP-Seq", "NOMe-Seq", "OTHER", "POOLCLONE", "RAD-Seq", "RIP-Seq", "RNA-Seq", "Ribo-Seq", "SELEX", "Synthetic-Long-Read", "Targeted-Capture", "Tethered Chromatin Conformation Capture", "Tn-Seq", "VALIDATION", "WCS", "WGA", "WGS", "WXS", "miRNA-Seq", "ncRNA-Seq", "snRNA-seq", "ssRNA-seq"]` |
+| `keyword` | string | 可选; minLength: `1`; maxLength: `200`; pattern: `"^(?=[\\s\\S]*\\S)[^\"\\\\*?\\u0000-\\u001f\\u007f]+$"` |
+| `limit` | integer | 可选; default: `100`; minimum: `1`; maximum: `1000` |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_query_runs", {"tax_id": 6239, "library_strategy": "RNA-Seq", "keyword": "transcriptome", "limit": 20})
+```
+
+### `ena_get_submitted_files`
+
+查询某个 ERR/SRR/DRR 运行的原始提交文件清单，包括上游路径、格式、大小和 MD5；与 ena_get_run_files 的归档生成 FASTQ 分开。found=true 但 submitted_available=false 表示没有列出提交文件，不表示运行不存在。ftp_location 保留上游路径，可能没有协议前缀，文件名可能含字面 #，不能当作已经编码的 URL 直接解析。此操作不下载或校验文件。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `run_accession` | string | **必填**; minLength: `1`; maxLength: `64` |
+
+```javascript
+const result = await host.mcp("omics-archives", "ena_get_submitted_files", {"run_accession": "ERR10015065"})
+```
+
 ### `ena_search_runs`
 
 按 ENA/INSDC 的项目、实验、样本或运行登录号查找公开测序运行，返回物种、平台与文库元数据，不下载文件。GEO GSE/GSM、E-MTAB 和 MGYS 需先找到关联的 INSDC 登录号。本工具不是关键词检索；最多返回 1000 条，无分页游标，重复调用不能补齐截断队列。
@@ -3011,6 +3101,20 @@ const result = await host.mcp("omics-archives", "mgnify_get_studies", {"accessio
 
 ```javascript
 const result = await host.mcp("omics-archives", "mgnify_get_study_analyses", {"accession": "MGYS00000410"})
+```
+
+### `pride_get_project_files`
+
+按 PXD／PRD 项目登录号分页列出 PRIDE 文件，page 从 0 开始。保留文件类别、大小、校验文本与传输位置，并根据 next_page 继续查询。api_total 为空时不能推断总量；缺失值保留 null。不要猜测校验算法或把 Aspera 地址当作 HTTP 下载地址；返回文件清单不等于完成下载。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `project_accession` | string | **必填**; maxLength: `32`; pattern: `"^(?:PXD\|PRD)[0-9]{6,}$"` |
+| `page` | integer | 可选; default: `0`; minimum: `0`; maximum: `1000000` |
+| `page_size` | integer | 可选; default: `100`; minimum: `1`; maximum: `100` |
+
+```javascript
+const result = await host.mcp("omics-archives", "pride_get_project_files", {"project_accession": "PXD000001", "page": 0, "page_size": 100})
 ```
 
 ### `pride_search_projects`

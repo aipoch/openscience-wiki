@@ -1,7 +1,7 @@
 ---
 title: "Задание SDK и местный API"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 # Задание SDK и местный API {/* #task-sdk-and-local-api */}
@@ -190,4 +190,10 @@ console.log(state);
 
 [Источник SDK](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/index.mjs), [Контракты SDK](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/README.md). [CLI](./cli.md) для автоматизации оболочки и [Безголовый сервис](./server.md) для обнаружения / жизненного цикла.
 
-Источники: [подписи](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.d.ts), [маршруты](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.mjs). См. [Области управления CLI](cli.md#manage-connectors-and-credentials) для конфигурационных и диагностических границ.
+Источники: [подписи](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.d.ts), [маршруты](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.mjs). См. [Поля управления CLI](cli.md#manage-connectors-and-credentials) для конфигурационных и диагностических границ.
+
+## Незапланированные задания {/* #unattended-runs */}
+
+Установите `permissionPrompts: 'none'` на вход `startRun`, соответствующий CLI `--permission-prompts none`. Сохраните соответствующий `permissionProfile`: этот вариант уменьшает неразрешенные взаимодействия человека и не расширяет разрешения. Не комбинируйте его с `planFirst: true`.
+
+Хозяин должен заявить о возможности `permission-prompts-none`; В противном случае клиент сообщает `unsupported_capability` перед запуском. Эта политика применяется только к текущему призыву. Обработайте фактический статус и ошибку пробега, как обычно. Смотрите [Без присмотра CLI работает](cli.md#unattended-runs).

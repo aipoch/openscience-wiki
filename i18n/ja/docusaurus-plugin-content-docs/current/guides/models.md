@@ -1,7 +1,7 @@
 ---
 title: "モデルとタスクポリシー"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 # モデルとタスクポリシー {/* #models-and-task-policies */}
@@ -87,8 +87,8 @@ v0.31.1 では、このサービスは **Codex Chat Completions** または **Co
 
 ![デフォルト機能選択とオプションの分類サービスエントリ](/img/open-science/v0311/classification-models.webp)
 
-1. **Add service**、**TypeSafe AI**、**OpenRouter**を選択します。
-2. サービス名をつけ、APIの資格情報を提供して下さい。 OpenRouter は、既存の互換アカウントまたは新しいキーを使用できます。 スクリーンショットで隠されているキーを保持します。
+1. **Add service**、**TypeSafe AI**、**OpenRouter**、**Custom HTTP service** を選択します。
+2. サービスの名称をつけて、必要な時にAPIの資格情報を供給してください。 OpenRouter は、既存の互換アカウントまたは新しいキーを使用できます。 スクリーンショットで隠されているキーを保持します。
 3. **Save**を選択し、検証を待ちます。 失敗したバリデーションは、以前の設定が変更されていないままにします。
 4. **Automatic capability selection** では、保存されたサービスと、カタログで提供されるモデルを選択します。 **Check model** を使用して接続を確認します。
 5. サポートされているメインの会話でバインドされたリクエストを試し、選択した実際のツールを調べます。 成功したモデルチェックだけでは、研究結果が確認されていない。
@@ -104,3 +104,13 @@ Jev を使う場合は、**Automatic capability selection** で **TypeSafe AI / 
 ![TypeSafe AI / Jev Latest を選択し、API キーを伏せた状態で Check passed を表示](/img/open-science/v0311/classification-connected.webp)
 
 たとえば、Codex Chat Completionsセッションで公開TP53の検索では、Jevを使用して`mcp-genes`を選択することができます。 選択した機能の検査を行い、研究結果のデータベース応答を検査します。 Codexサブスクリプションセッションは、既存の機能読み込みパスを使用します。 保存された Jev の結合は、これらのセッションが Jev を使用することはありません。
+
+### カスタム分類サービス {/* #custom-classification */}
+
+**Add service → Custom HTTP service**では、サービス名、エンドポイントURL、モデルIDを入力します。 エンドポイントは、**TypeSafe の分類プロトコル** を実行しなければなりません。 通常のチャット完了エンドポイントは変更できません。 必要に応じて、サービスの API キーを供給します。ループバックエンドポイントは、HTTP をキーなしで使用できますが、リモートエンドポイントでは HTTPS とクレデンシャルが必要です。
+
+保存後、**Automatic capability selection** でサービスを選択し、**Check model** を実行します。 その後、サポートされた会話ルートで機能選択を検査します。 この設定は、Main を切り替えたり、Codex のサブスクリプションセッションは、分類器を使用することはありません。
+
+下のフォームはフィールドを記述します。 サンプルエンドポイントと`your-model-id`を実際のサービスの詳細に置き換えて、接続をチェックします。
+
+![カスタム分類エンドポイント、モデル、および空のキーフィールド](/img/open-science/v0320/classification-custom.webp)

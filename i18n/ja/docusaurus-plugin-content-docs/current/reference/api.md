@@ -1,7 +1,7 @@
 ---
 title: "タスクSDKとローカルAPI"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 # タスクSDKとローカルAPI {/* #task-sdk-and-local-api */}
@@ -190,4 +190,10 @@ console.log(state);
 
 [SDK ソース](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/index.mjs), [SDKコントラクトノート](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/README.md). 発見/ライフサイクルのシェルオートメーションと[ヘッドレスサービス](./server.md)の[CLI](./cli.md)をご覧ください。
 
-ソース: [サインイン](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.d.ts)、[ルート](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.mjs)。 構成および診断境界のための[CLI管理分野](cli.md#manage-connectors-and-credentials)を見て下さい。
+ソース: [シグネチャー](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.d.ts)、[ルート](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.mjs)。 構成および診断境界のための[CLI管理分野](cli.md#manage-connectors-and-credentials)を見て下さい。
+
+## 無人タスク {/* #unattended-runs */}
+
+`startRun`入力で`permissionPrompts: 'none'`を設定し、CLI `--permission-prompts none`に対応。 適切な`permissionProfile`を保ちましょう。このオプションは、未解決の人間の相互作用を低下させ、権限を拡張しません。 `planFirst: true` と組み合わせてはいけない。
+
+ホストは機能`permission-prompts-none`を宣言しなければなりません; それ以外の場合は、クライアントは実行を作成する前に、`unsupported_capability`を報告します。 本方針は、現行の取消にのみ適用されます。 実行中のステータスとエラーを通常の通りに処理します。 [無人 CLI 実行](cli.md#unattended-runs) を参照してください。

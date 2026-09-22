@@ -1630,7 +1630,7 @@
     "message": "科学数据库"
   },
   "docs.outline.tools.databases.scope": {
-    "message": "以分类表记录 23 个数据源连接器的来源覆盖、实际操作、标识符、凭据与限制；本地 Molecule Viewer 归入科学查看器。"
+    "message": "介绍支持的科学数据库、可完成的任务、内置 Connector 的启用与凭据设置，并提供完整科研工作流入口"
   },
   "docs.outline.tools.viewers.title": {
     "message": "科学查看器"
@@ -2589,5 +2589,44 @@
   },
   "docs.outline.reference.v0310.scope": {
     "message": "可写会话副本、提供方验证与完整 STRING 网络。"
+  },
+  "docs.outline.workflows.group.public-data": {
+    "message": "公共数据与生物信息分析"
+  },
+  "docs.outline.workflows.public-omics-data.title": {
+    "message": "查找公共组学数据并整理文件清单"
+  },
+  "docs.outline.workflows.public-omics-data.scope": {
+    "message": "发现公开 ENA 测序运行，检查 ENA 和 PRIDE 文件清单、来源地址、大小及校验值"
+  },
+  "docs.outline.workflows.protein-sequence-search.title": {
+    "message": "从基因名称获取蛋白序列并完成 BLAST 比对"
+  },
+  "docs.outline.workflows.protein-sequence-search.scope": {
+    "message": "查找 UniProt 蛋白、获取 FASTA，并解读已完成的 BLAST 比对报告"
+  },
+  "docs.outline.workflows.gene-set-enrichment.title": {
+    "message": "对候选基因集进行功能富集分析"
+  },
+  "docs.outline.workflows.gene-set-enrichment.scope": {
+    "message": "执行 g:Profiler 富集，核对映射、校正后的概率、统计背景和来源版本"
+  },
+  "docs.outline.workflows.reference-genome-check.title": {
+    "message": "分析前核对物种、参考基因组与染色体编号"
+  },
+  "docs.outline.workflows.reference-genome-check.scope": {
+    "message": "分析前确认物种、带版本的参考组装和染色体别名"
+  },
+  "docs.guides.outline.pdf-notes.title": {
+    "message": "PDF 批注与文档笔记"
+  },
+  "docs.guides.outline.pdf-notes.scope": {
+    "message": "标记段落、整理文档笔记、搜索定位并导出阅读副本。"
+  },
+  "docs.outline.reference.v0320.title": {
+    "message": "v0.32.0"
+  },
+  "docs.outline.reference.v0320.scope": {
+    "message": "PDF 笔记、BLAST 序列检索、组学数据发现与无人值守任务。"
   }
 }

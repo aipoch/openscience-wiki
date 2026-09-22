@@ -1,7 +1,7 @@
 ---
 title: "CLIと構造化された出力"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -210,3 +210,15 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 [CLI実装](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [上流コマンドガイド](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
 
 技術的な参照: [CLI契約](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md)。
+
+## 無人走行 {/* #unattended-runs */}
+
+`--permission-prompts none` を `run` に追加して、無期限に待機する代わりに、未解決の人間の相互作用を低下させます。 選択した承認プロファイルと記憶された助成金はまだ適用されます。 ユーザの質問が拒否され、ヒューマンレビューが必要な計画は拒否されます。 これは、すべてのアクションを承認しません。
+
+```bash
+open-science run --project "Sequence and PDF Research" \
+  --prompt "Summarize the existing public-data result. Do not request user input." \
+  --approval-profile ask --permission-prompts none --wait --jsonl
+```
+
+オプションは、この呼び出しにのみ適用され、セッションの設定として保存されません。 `--plan-first`と併用できません。 最終的なステータスとエラーを調べる: 人間の待ちを避けてタスクの完了を保証するものではありません。 ホスト機能`permission-prompts-none`のクライアントチェック。 古いホストが`unsupported_capability`を返す場合、マッチングクライアントとアプリを更新します。

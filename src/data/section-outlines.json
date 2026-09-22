@@ -327,6 +327,60 @@
         ]
       },
       {
+        "id": "public-data",
+        "title": "Public data and bioinformatics",
+        "chapters": [
+          {
+            "id": "public-omics-data",
+            "title": "Find public omics data and build a file inventory",
+            "scope": "Discover public ENA runs and inspect ENA and PRIDE file inventories, source locations, sizes and checksums.",
+            "currentDoc": "workflows/public-omics-data",
+            "proposedUrl": "/docs/workflows/public-omics-data/",
+            "relatedDocs": [
+              "tools/databases",
+              "reference/connector-operations"
+            ],
+            "contentStatus": "written"
+          },
+          {
+            "id": "protein-sequence-search",
+            "title": "Find a protein sequence and complete a BLAST search",
+            "scope": "Resolve a UniProt protein, retrieve FASTA and inspect a completed BLAST alignment report.",
+            "currentDoc": "workflows/protein-sequence-search",
+            "proposedUrl": "/docs/workflows/protein-sequence-search/",
+            "relatedDocs": [
+              "tools/databases",
+              "reference/connector-operations"
+            ],
+            "contentStatus": "written"
+          },
+          {
+            "id": "gene-set-enrichment",
+            "title": "Run functional enrichment for a candidate gene set",
+            "scope": "Run g:Profiler enrichment and inspect mappings, corrected probabilities, background and source versions.",
+            "currentDoc": "workflows/gene-set-enrichment",
+            "proposedUrl": "/docs/workflows/gene-set-enrichment/",
+            "relatedDocs": [
+              "tools/databases",
+              "reference/connector-operations"
+            ],
+            "contentStatus": "written"
+          },
+          {
+            "id": "reference-genome-check",
+            "title": "Check species, reference genome and chromosome identifiers",
+            "scope": "Resolve a taxon, versioned reference assembly and chromosome aliases before analysis.",
+            "currentDoc": "workflows/reference-genome-check",
+            "proposedUrl": "/docs/workflows/reference-genome-check/",
+            "relatedDocs": [
+              "tools/databases",
+              "reference/connector-operations"
+            ],
+            "contentStatus": "written"
+          }
+        ]
+      },
+      {
         "id": "biology",
         "title": "Sequences, cells, and molecules",
         "chapters": [
@@ -630,7 +684,7 @@
           {
             "id": "databases",
             "title": "Scientific databases",
-            "scope": "A categorized table for the 23 data-source connectors: source coverage, exact operations, identifiers, credentials and limitations. The local Molecule Viewer is documented under Scientific viewers.",
+            "scope": "Supported scientific data sources, useful tasks, built-in Connector setup and credentials, with links to complete research workflows.",
             "currentDoc": "tools/databases",
             "proposedUrl": "/docs/tools/databases/",
             "contentStatus": "written"
@@ -1342,6 +1396,17 @@
         "id": "changelog",
         "title": "Changelog",
         "chapters": [
+          {
+            "id": "v0320",
+            "title": "v0.32.0",
+            "scope": "PDF notes, BLAST sequence search, omics discovery and unattended tasks.",
+            "currentDoc": "changelog/v0-32-0",
+            "proposedUrl": "/docs/changelog/v0-32-0/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-32-0"
+            ]
+          },
           {
             "id": "v0311",
             "title": "v0.31.1",

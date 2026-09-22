@@ -1,7 +1,7 @@
 ---
 title: "공급자 및 지역 모델 설정"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -212,3 +212,9 @@ print((8664 + 18515) == 27179)
 ## v0.31.0과 나중에의 공급자 변경을 저장하십시오. {/* #validated-provider-save */}
 
 공급자는 그들이 투입되기 전에 시험됩니다. **Save** 선택, 연결 결과를 기다립니다, 양식을 닫기 전에 성공을 확인합니다. 실패한 시험은 작업 저장된 윤곽을 대체하지 않습니다. 이전에 저장된 연결이 요청 중에 거부되면, 그 가용성이 업데이트됩니다. credential 및 endpoint를 확인한 다음 다시 테스트하십시오. **Conversation models**, **Classification models** 및 **Local parsing models**에는 다른 목적이 있습니다; [모델 설정](models.md#classification-models) 참조.
+
+## StepFun 및 지역 선택 {/* #stepfun-regions */}
+
+공급자 카탈로그에서 **StepFun**를 선택하고 **담당자: Mr. Li** 또는 **Global**를 확인하십시오. 그런 다음 모델과 공급 자격 증명을 선택하십시오. v0.32.0은 **Step-5 Preview**을 멀티모드 및 1M-context 카탈로그 메타데이터와 함께 추가합니다. 실제 모델 액세스, 할당량 및 입력 지원은 여전히 공급자 계정과 선택한 에이전트의 호환성에 따라 달라집니다.
+
+대화에서 선택하기 전에 연결을 저장하고 확인합니다. 기존의 엔드포인트를 유지합니다. 앱을 업데이트하면 지역 또는 Main 모델을 전환하지 않습니다.

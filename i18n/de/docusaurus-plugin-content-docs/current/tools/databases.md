@@ -2,234 +2,162 @@
 title: "Wissenschaftliche Datenbanken"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
-
-import ExampleDownload from '@site/src/components/ExampleDownload';
-
 
 # Wissenschaftliche Datenbanken {/* #scientific-databases */}
 
-Die App bündelt **23 Datenquelle Konnektoren** sowie ein separates Offline-Molekül Connector. Das vollständige Register verfügt über **246 Werkzeugoperationen**, einschließlich der beiden Operationen von Molecule; Der Datenquellenkatalog unten deckt 244 ab. Aktivieren Sie die entsprechende Connector in den Einstellungen und stellen Sie dann eine begrenzte Frage mit dem richtigen Bezeichnertyp.
+Verwenden Sie diese Seite, um eine Datenquelle auszuwählen, zu verstehen, was sie zurückgeben kann, und ihre Tools in Open-Science verfügbar zu machen. Schritt-für-Schritt-Forschungsbeispiele mit Screenshots und Ausgabedateien finden Sie unter [Forschungsabläufe](#database-workflows).
 
-<span id="actual-local-queries" />
+<span id="data-source-catalog" />
 
-## Datenquellenkatalog {/* #data-source-catalog */}
+## Unterstützte Datenbanken {/* #supported-databases */}
 
-Wählen Sie nach Identifikator und Forschungsfrage. Die Quellenabdeckung unterscheidet sich; die Bezugsnummer des Vorhabens für genaue Felder konsultieren.
+Open-Science v0.32.0 beinhaltet **23-Datenquellenstecker mit 251-Operationen**. Das separate Offline-Molekül Connector fügt zwei Operationen hinzu, wodurch die vollständige Registrierung auf 253 gebracht wird. Connector-Namen unter **Settings → Connectors** übereinstimmen; Jede Familie kann mehrere Datenbanken freilegen. Das Auflisten einer Quelle bedeutet nicht, dass jedes Feature seiner Website verfügbar ist.
 
 | Konnektor | Quellen | Vorgänge | Verwenden Sie es für  |
 | --- | --- | --- | ---  |
-| Chemie · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | Kleinmolekülchemie über PubChem, ChEBI, Rhea und BindingDB.  |
-| Literaturgraph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Papiere, Autoren, Zitate, DOI-Updates und Datensatz / Software-Datensätze. |
+| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | Kleinmolekülchemie über PubChem, ChEBI, Rhea und BindingDB.  |
+| Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Papiere, Autoren, Zitate, DOI-Updates und Datensatz / Software-Datensätze. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Biomedizinische Literatur über NCBI E-utilities, den PMC ID Converter und Europe PMC — Suche, Metadaten, verwandte Artikel, Zitat-Lookup, ID-Konvertierung, Volltext und Copyright.  |
-| Gene & Ontologien · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 9 | Gen/Protein-Identität und Ontologie-Begriffe — mygene.info, UniProt, OLS4-Ontologien, GO-Annotationen, Reactome Pathways.  |
-| Genome · `genomes` | Ensembl, UCSC, NCBI | 14 | Genom-Annotation, Varianten, Homologie, Sequenz und Browser-Tracks — Ensembl REST und der UCSC Genome Browser.  |
-| Varianten · `variants` | gnomAD, ClinVar, dbSNP | 15 | Humangenetische Varianten — gnomAD-Populationshäufigkeit/-einschränkung, ClinVar-Datensätze/Suche (direkt NCBI), dbSNP, strukturelle und mitochondriale Varianten.  |
-| Klinische Studien · `clinical-trials` | ClinicalTrials.gov | 6 | Klinische Studien von ClinicalTrials.gov - Suche, Details, Sponsoren, Ermittler, Endpunkte und Förderfähigkeit.  |
-| Klinische Genomik `clinical-genomics` | ClinGen, CIViC, Offene Ziele | 20 | Klinische Genomik-Wissensdatenbanken: ClinGen-Kurationen, klinische CIViC-Evidenz und die Open Targets Platform.  |
-| Strukturen und Interaktionen · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Strukturen und molekulare Wechselwirkungen — PDB-Strukturen, AlphaFold-Vorhersagen, EMDB-Kryo-EM-Einträge, komplexe Portalkomplexe, IntAct-Interaktionsnetzwerke.  |
-| ChEMBL `chembl` | ChEMBL | 6 | Bioaktive Verbindungen, Medikamente, Targets, Bioaktivität und Mechanismen über das ChEMBL REST API.  |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 10 | Gen-/Protein-Identifikatoren, UniProt-Sequenzentdeckung, GO- und Reactome-Anmerkungen und g:Profiler-Gen-Set-Anreicherung. |
+| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST | 17 | Genomannotation, Homologie und Sequenz; NCBI-Taxon/-assembly/-sequence-Identität; BLAST Einreichung und Berichte. |
+| Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | Humangenetische Varianten — gnomAD-Populationshäufigkeit/-einschränkung, ClinVar-Datensätze/Suche (direkt NCBI), dbSNP, strukturelle und mitochondriale Varianten.  |
+| Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Klinische Studien von ClinicalTrials.gov - Suche, Details, Sponsoren, Ermittler, Endpunkte und Förderfähigkeit.  |
+| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | Klinische Genomik-Wissensdatenbanken: ClinGen-Kurationen, klinische CIViC-Evidenz und die Open Targets Platform.  |
+| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Strukturen und molekulare Wechselwirkungen — PDB-Strukturen, AlphaFold-Vorhersagen, EMDB-Kryo-EM-Einträge, komplexe Portalkomplexe, IntAct-Interaktionsnetzwerke.  |
+| ChEMBL · `chembl` | ChEMBL | 6 | Bioaktive Verbindungen, Medikamente, Targets, Bioaktivität und Mechanismen über das ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv Preprints — Suche nach Datum/Kategorie, Metadaten nach DOI, Links zu Zeitschriftenveröffentlichungen, Funder-Listen und Plattformstatistiken.  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 7 | Drugs@FDA-Anwendungen, Etiketten und Corpus-Statistiken über openFDA.  |
-| Humangenetik · `human-genetics` | GWAS Katalog, eQTL Katalog, PheWeb | 14 | Humangenetische Assoziationsnachweise — GWAS-Katalog, eQTL-Katalog und PheWeb-PheWAS-Portale (FinnGen, BioBank Japan).  |
-| Ausdruck · `expression` | GTEX | 12 | Menschliche Gewebeexpression und eQTLs über das GTEx Portal.  |
-| Proteinannotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 13 | Proteindomänenarchitektur, Familien-/Clan-Mitgliedschaft, Expressionsatlas und Interaktionsnetzwerke über InterPro/Pfam, den Human Protein Atlas und STRING.  |
-| Krebsmodelle · `cancer-models` | cBioPortal | 6 | Krebsgenomik-Studie Aufzeichnungen über die cBioPortal REST API.  |
+| Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | Humangenetische Assoziationsnachweise — GWAS-Katalog, eQTL-Katalog und PheWeb-PheWAS-Portale (FinnGen, BioBank Japan).  |
+| Expression · `expression` | GTEx | 12 | Menschliche Gewebeexpression und eQTLs über das GTEx Portal.  |
+| Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 13 | Proteindomänenarchitektur, Familien-/Clan-Mitgliedschaft, Expressionsatlas und Interaktionsnetzwerke über InterPro/Pfam, den Human Protein Atlas und STRING.  |
+| Cancer Models · `cancer-models` | cBioPortal | 6 | Krebsgenomik-Studie Aufzeichnungen über die cBioPortal REST API.  |
 | RNA · `rna` | Rfam | 9 | Nicht-kodierende RNA-Familiendaten (Metadaten, Ausrichtungen, Modelle, Strukturen) über Rfam.  |
-| Omics-Archive `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 19 | Omics-Datenarchive — Ausdruck (ArrayExpress, GEO), Metabolomik (MetaboLights), Metagenomik (MGnify) und Proteomik (PRIDE).  |
-| CellGuide · `cellguide` | CELLxGEN | 5 | Zelltypidentität, Markergene, Quelldatensätze und Gewebe über CELLxGENE CellGuide.  |
-| Verordnung · `regulation` | ENCODE, JASPAR, UniBind | 16 | Funktionale Genomik der Genregulation — ENCODE-Experimente/Bioproben/Dateien, JASPAR-TF-Bindungsprofile und UniBind-ChIP-seq-TFBS.  |
-| Forschungsressourcen · `research-resources` | Grants.gov, Antikörper-Register | 5 | Funding-Opportunity-Suche (Grants.gov) und Antikörperkatalog-Lookups (Antibody Registry).  |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | Expressions-, Metabolomik-, Metagenomik- und Proteomikarchive; ENA-Lernerkennung und FASTQ/Einreichungsinventare; PRIDE-Dateilisten. |
+| CellGuide · `cellguide` | CELLxGENE | 5 | Zelltypidentität, Markergene, Quelldatensätze und Gewebe über CELLxGENE CellGuide.  |
+| Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | Funktionale Genomik der Genregulation — ENCODE-Experimente/Bioproben/Dateien, JASPAR-TF-Bindungsprofile und UniBind-ChIP-seq-TFBS.  |
+| Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Funding-Opportunity-Suche (Grants.gov) und Antikörperkatalog-Lookups (Antibody Registry).  |
 | BioMart · `biomart` | Ensembl BioMart | 8 | Ensembl BioMart Attributabfragen und Identifier-Übersetzung.  |
-| ZINK · `zinc` | ZINK | 5 | ZINC22-Käuflicher chemischer Raum (CartBlanche22) — Stoffsuche nach ZINC-ID, SMILES-Suche mit exakter Ähnlichkeit, Lieferantencode-Auflösung, Stichprobennahme, 3D-Strukturstellen für das Andocken.  |
+| ZINC · `zinc` | ZINC | 5 | ZINC22-Käuflicher chemischer Raum (CartBlanche22) — Stoffsuche nach ZINC-ID, SMILES-Suche mit exakter Ähnlichkeit, Lieferantencode-Auflösung, Zufallsstichprobenahme, 3D-Strukturstellen für das Andocken.  |
 
-## Einen Datensatz abrufen und seine Identität überprüfen {/* #retrieve-a-record-and-verify-its-identity */}
+Die Offline-Molekül-Tools sind in [Wissenschaftliche Zuschauer](viewers.md) abgedeckt. Für die genauen Operationen, die von jeder Datenquelle ausgesetzt sind, verwenden Sie den [Connector Betriebsnummer](../reference/connector-operations.md).
 
-1. Öffnen Sie **Settings → Connectors**, suchen Sie die gewünschte Quelle und bestätigen Sie die Verfügbarkeit für den beabsichtigten Agenten.
-2. Öffne seine Details. Lesen Sie **Tools**, Eingaben, Beispiel und Anforderungen von Drittanbietern.
-3. Geben Sie ein explizites Abfrage-/Zugriffs- und Ergebnislimit an. Behalten Sie die genaue Abfrage bei der Erstellung einer Literatursammlung oder einer Beweistabelle bei.
-4. Überprüfen Sie zurückgegebene IDs und Quellfelder. Ein leeres Ergebnis, ein verkürzter Batch und ein Fehler sind unterschiedliche Ergebnisse.
-5. Speichern Sie die benötigten Datensätze bewusst in der Projekt-/Bibliothek. Eine Suchantwort bedeutet nicht automatisch, dass alle Papiere in die Literaturbibliothek aufgenommen oder Volltexte heruntergeladen wurden.
+<span id="choose-a-query-and-inspect-the-result" />
 
-### Beginnen Sie mit einem bekannten Identifier {/* #start-with-one-known-identifier */}
+## Was du tun kannst {/* #database-capabilities */}
 
-<p className="example-label"><strong>Praxisbeispiel</strong> Lösen Sie den menschlichen TP53-Gen-Identifikator</p>
-
-**Gene & Ontologien** aktivieren und fragen: **Verwenden Sie query_genes, um TP53 mit scopes="symbol", species="human" und fields="symbol,name,entrezgene" aufzulösen. Geben Sie die Eingabeabfrage und alle nicht übereinstimmenden Datensätze zurück.** In diesem Beispiel identifiziert der menschliche TP53-Datensatz Entrez Gene **7157** und den Namen **Tumorprotein p53**. Überprüfen Sie die `query` und `symbol` des Datensatzes, bevor Sie die abgebildete ID verwenden. Ein Symbol kann mehrere Übereinstimmungen zurückgeben, also behalten Sie alle Ergebnisse, bis Sie den beabsichtigten Organismus bestätigt und aufgezeichnet haben. [Genaue Felder](../reference/connector-operations.md#query_genes).
-
-## Wählen Sie eine Abfrage und prüfen Sie das Ergebnis {/* #choose-a-query-and-inspect-the-result */}
-
-<p className="example-label"><strong>Beispiel</strong> Gebundene Datenbankanfragen und Antworten</p>
-
-In der Tabelle sind diese Beispielantworten aufgeführt; Live-Abfrage-Ergebnisse können abweichen.
-
-| Connector / Werkzeug | Eingabe | Beobachtetes Ergebnis |
+| Forschungsaufgaben | Beginnen Sie mit | Typischer Output |
 | --- | --- | --- |
-| Omics Archives / geo_get_series | `accessions: ["GSE60450"]` | Metadaten für Serien/Stichproben mit 12-Stichproben; Metadaten-Retrieval hat die hochgeladenen Zählungen nicht neu berechnet. |
-| Gene / query_genes | TP53; Symbolumfang; Mensch | Entrez Gene ID 7157, Symbol TP53, Name Tumorprotein p53. |
-| PubMed / search_articles | GSE60450, maximal 2 | PMIDs 38059347 und 37306301. Dies sind Abfrageübereinstimmungen, nicht automatisch die ursprüngliche Veröffentlichung des Datensatzes. |
-| Chemie / pubchem_search_compounds | Aspirin, höchstens 1 CID | CID 2244, Formel C9H8O4 und Molekulargewicht 180.16. |
-| Literatur / openalex_search_works | `CRISPR base editing`; aus 2020; Open Access; maximal 2 | Zwei Arbeitsaufzeichnungen mit OpenAlex IDs, Quellfeldern und Vollständigkeitsflags. |
+| Papiere finden, Zitate nachzeichnen und DOI-Beziehungen überprüfen | Literatur Graph, PubMed, bioRxiv | Literaturaufzeichnungen, Identifikatoren, Zitierlinks und Volltextverfügbarkeit |
+| Gene oder Proteine finden und Sequenzen vergleichen | Gene & Ontologien, Genome | Identifikator-Mappings, Proteinaufzeichnungen, FASTA- und BLAST-Berichte |
+| Entdecken Sie öffentliche Omik-Daten und inspizieren Sie verfügbare Dateien | aus. | Studieren/Ausführen von Metadaten und Dateiinventaren mit Quellorten, Größen und verfügbaren Prüfsummen |
+| Interpretieren Sie eine Genliste oder inspizieren Sie ein Interaktionsnetzwerk | Gene & Ontologien, Protein-Annotation | Anreicherungstabellen, Ontologie-Anmerkungen und Netzaufzeichnungen |
+| Prüfvarianten, Ausdruck und regulatorische Nachweise | Varianten, Klinische Genomik, Humangenetik, Expression, Regulation | Quellenaufzeichnungen mit Organismen, Gewebe, Referenzaufbau und relevanten Evidenzfeldern |
+| Retrieve Verbindung, Struktur oder klinische Studie Aufzeichnungen | Chemie, ChEMBL, Strukturen & Interaktionen, Klinische Studien | Chemische Kennzeichen/Eigenschaften, Strukturaufzeichnungen und Versuchsmetadaten |
 
-### Verbinden Sie OpenAlex und folgen Sie den Zitierlinks {/* #connect-openalex-and-follow-citation-links */}
+Eine Datenbankantwort kann einen Forschungsschritt unterstützen; Es werden nicht automatisch Daten heruntergeladen, jedes Papier in die Literaturbibliothek aufgenommen oder eine vollständige Analyse durchgeführt. Geben Sie an, welche Datensätze und Dateien Sie speichern möchten.
 
-1. Öffnen Sie **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**.
-2. Geben Sie Ihren API-Schlüssel ein, wählen Sie **Validate**, dann **Save**, nachdem die Validierung erfolgreich ist.
-3. Suchen Sie nach einem Thema mit einem kleinen `max_records` Limit. Überprüfen Sie `n_records_returned` und `records_truncated`, bevor Sie das Ergebnis als vollständig beschreiben.
-4. Verwenden Sie eine zurückgegebene Arbeits-ID mit `openalex_get_work`. Verwenden Sie `openalex_citations` für Papiere, die diese Arbeit zitieren, und `openalex_references` für Werke, die sie zitiert. Das sind entgegengesetzte Richtungen.
-5. Für Autorensuchen bestätigen Sie die Institution und ORCID, bevor Sie ein Autorenprofil abrufen. Verwenden Sie eine Quell-ID oder ISSN, um einen Journalnamen zu disambiguieren.
+## Verbinden und Starten der Verwendung einer Datenbank {/* #connect-database */}
 
-Siehe [Betriebsparameter von OpenAlex](../reference/connector-operations.md#openalex_search_works) für Filter und zurückgegebene Felder.
+<span id="retrieve-a-record-and-verify-its-identity" />
 
-### Schauen Sie sich ein DOI und die damit verbundenen Forschungsaufzeichnungen {/* #look-up-a-doi-and-its-related-research-records */}
+### 1. Aktivieren Sie das eingebaute Connector {/* #1-enable-the-built-in-connector */}
 
-**Literaturgraphik** aktivieren. Verwenden Sie `crossref_get_work` für Publisher-Metadaten und `crossref_get_updates` für hinterlegte Korrektur-/Retraktionsbeziehungen. Verwenden Sie `datacite_search_records`, um Datensatz- / Software-DOIs zu finden, und dann `datacite_get_record`, um einen ausgewählten Datensatz zu inspizieren. Diese vier öffentlichen Methoden erfordern keinen OpenAlex-Schlüssel. Überprüfen Sie die DOI-Identität, die Beziehungsrichtung und die Wiederverwendung von Begriffen, bevor Sie eine Ressource herunterladen oder zitieren. Genaue Felder befinden sich im [Betriebsnummer](../reference/connector-operations.md#family-2).
+1. Öffnen Sie **Settings → Connectors** und suchen Sie nach der oben aufgeführten Familie, z. B. **aus.**.
+2. Öffnen Sie seine Details und erweitern Sie **Tools**. Lesen Sie die Eingaben der ausgewählten Operation, Ergebnisgrenzen und Anforderungen von Drittanbietern.
+3. Aktivieren Sie die Verfügbarkeit für **Hauptagent** und überprüfen Sie **Used by**. Der Specialist-Zugriff ist auf dem einzelnen Specialist konfiguriert. Verfügbarkeits- und Genehmigungsrichtlinien pro Werkzeug sind separate Kontrollen.
 
-Die Rfam-Sequenzsuche verwendet nun den offiziellen Batch-Endpunkt. Wenn eine ältere Installation den ausgedienten Endpunktfehler zurückgibt, aktualisieren Sie die App und wiederholen Sie den beabsichtigten Vorgang. Ein ausstehender Job ist keine abgeschlossene Suche ohne Treffer.
+![Omics Archives-Tooldetails mit den GEO-Eingaben und dem Metadaten-only-Scope](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
-## Behandeln Sie einen zurückgegebenen Datensatz, ein leeres Match oder einen Fehler {/* #handle-a-returned-record-empty-match-or-error */}
+Diese Steckverbinder sind eingebaut; Sie müssen keinen benutzerdefinierten server für sie hinzufügen. Für einen externen Dienst, den Sie selbst betreiben, siehe [Benutzerdefiniertes Connector Setup](../guides/connectors.md). Ein aufgelistetes oder aktiviertes Connector ist kein Beweis dafür, dass die Authentifizierung oder eine Abfrage erfolgreich war.
 
-Überprüfen Sie den zurückgegebenen Status, bevor Sie ein Ergebnis verwenden. Verwenden Sie [Betriebsnummer](../reference/connector-operations.md), um Felder und Vollständigkeitsflags zu interpretieren.
+<span id="connect-openalex-and-follow-citation-links" />
 
-| Beobachtetes Ergebnis | Was als nächstes zu tun ist |
+### 2. Hinzufügen von Anmeldeinformationen, wenn die Operation diese erfordert {/* #2-add-credentials-when-the-operation-requires-them */}
+
+| Service oder Bedingung | Wo Sie es konfigurieren |
 | --- | --- |
-| `found: false`, Nulldatensätze, leere Ermittler oder Lieferantenübereinstimmungen | Prüfen Sie Identifikator, Organismus, Abfrageumfang und Filter. Bewahren Sie das leere Ergebnis; Legen Sie ihn nicht als abgerufenen Datensatz vor. |
-| `credential_required` für OpenAlex | Öffnen Sie das angeforderte Anmeldeformular und binden Sie Ihren eigenen Schlüssel, bevor Sie es erneut versuchen. |
-| `contact_email_required` für direkte NCBI-Variantenabfragen | Öffnen **Settings → Connectors → Manage credentials → Literature access**, geben Sie **Contact email** und wählen **Save**. Wiederholen Sie die fehlgeschlagene Abfrage. Ein NCBI API-Schlüssel ist optional. Überprüfen Sie zurückgegebene Identifikatoren, Übereinstimmungszahlen und Verkürzungskennzeichen; ein leeres Ergebnis unterscheidet sich von einem Verbindungsfehler. |
-| HTTP `410` von eQTL | Bewahren Sie die Quell-URL, den Betrieb und die Antwort auf und überprüfen Sie die Verfügbarkeit des Dienstes, bevor Sie wissenschaftliche Eingaben ändern. |
-| Connector-Anfrage nach Ablauf der Zeit `30000ms` | Wiederholen Sie eine kleinere Anfrage. Eine Erhöhung nur des äußeren Notebook-Timeouts ändert nicht die eigene Frist des Connector. |
-| Notebook-Ausführung nach Ablauf der Zeit `60000ms` | Die Ausführung endete ohne Ergebnis. Einzelne Wiederholvorgänge; folgern nicht, dass jeder vorgelagerte Dienst fehlgeschlagen ist. |
-| BioMart HTML Wartungsseite; PRINZ `Unexpected end of JSON input` | Die erwartete strukturierte Antwort war nicht verfügbar. Versuchen Sie es später und behalten Sie den Antworttyp / Fehler für ein Problem bei. |
-| ZINC-Aufgabe nicht rechtzeitig abgeschlossen | Bewahren Sie die zurückgegebene Task / Ergebnis-URL und überprüfen Sie diesen Job; Wiederholtes Starten neuer Jobs gewinnt sein Ergebnis nicht zurück. |
+| OpenAlex | **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**fort. Geben Sie Ihren API Schlüssel ein, wählen **Validate**, dann **Save** Nach der Validierung ist es gelungen. |
+| Direkte NCBI-Variantenabfragen, die Kontaktdaten erfordern | **Settings → Connectors → Manage credentials → Literature access**fort. Füllen Sie ein **Contact email** und wählen **Save**fort. Ein NCBI API-Schlüssel ist optional. |
+| Eine weitere Operation mit Anmeldepflicht | Befolgen Sie die Anforderungen dieses Tools und [Anmeldeinformationen](../guides/connectors.md)fort. Binden Sie den Nachweis an den beabsichtigten Dienst. |
 
-Fügen Sie für einen Bericht die Operation, die begrenzte Eingabe, den Fehlertext und den Zeitstempel über [Fehlerbehebung](../guides/troubleshooting.md) hinzu. Entfernen Sie Anmeldeinformationen und private Daten vor dem Teilen.
+Geben Sie Schlüssel in der Anmeldeformular, nicht in einer Forschungsaufforderung oder eine freigegebene Ausgabedatei. Anforderungen für den ausgewählten Vorgang konfigurieren; die oben genannte Anforderung an die Kontakt-E-Mail bedeutet nicht, dass jedes NCBI-Tool dieselbe Anforderung hat.
 
-## Beheben von ENA Runs und FASTQ Dateien {/* #ena-runs */}
+<span id="look-up-a-doi-and-its-related-research-records" />
 
-1. **Omics Archives** unter **Settings → Connectors** aktivieren. Geben Sie einen öffentlichen ENA/INSDC-Beitritt an `ena_search_runs`, z. B. eine PRJ-Studie oder einen SRR-Durchlauf. Eine GEO `GSE`-Kennung muss zuerst mit ihrer INSDC-Studie verknüpft werden; Keywords werden nicht akzeptiert.
-2. Untersuchen Sie `run_accession`, Organismus, Bibliotheksstrategie/Layout und `truncated`. Das Maximum ist 1,000 läuft. Es gibt kein Offset- oder Continuation-Token; den Beitritt zu verengen, wenn die Antwort verkürzt wird.
-3. Übergeben Sie einen zurückgegebenen Lauf an `ena_get_run_files`. Überprüfen Sie `found`, `fastq_available` und jeden Eintrag in `fastq_files`. Das Inventar liefert URL, komprimierte Dateigröße und vorgelagerte MD5; Es werden keine Dateien heruntergeladen oder deren Inhalt überprüft.
-4. Vor einem separaten Download überprüfen Sie die Speicherung und behalten das Manifest auf. Überprüfen Sie die heruntergeladenen Bytes mit der aufgeführten Prüfsumme. Eine gepaarte Bibliothek muss nicht genau zwei Dateien haben; keine Read-Mate-Identität aus `file_index` ableiten.
+Literatur Graph bietet auch `crossref_get_work`, `crossref_get_updates`, `datacite_search_records` und `datacite_get_record` an. Diese vier öffentlichen Methoden erfordern keinen OpenAlex-Schlüssel. Für OpenAlex-Zitatanweisungen findet `openalex_citations` Werke, die ein Werk zitieren, während `openalex_references` die Werke findet, die es zitiert. [Literatur Graph Parameter](../reference/connector-operations.md#family-2).
 
-<p className="example-label"><strong>Praxisbeispiel</strong> Erstellen Sie ein Dateimanifest für SRR037073</p>
+<span id="start-with-one-known-identifier" />
+<span id="actual-local-queries" />
 
-Dieses v0.31.1-Beispiel verwendet **Codex subscription** und das aktivierte **Omics Archives** Connector. Öffnen Sie eine Sitzung mit einer verfügbaren Notebook-Laufzeit und senden Sie dann:
+### 3. Bestätigen Sie den Zugriff mit einer kleinen Abfrage {/* #3-confirm-access-with-a-small-query */}
+
+Aktivieren Sie **Gene & Ontologien**, öffnen Sie eine Konversation mit einem verbundenen Modell und senden Sie:
+
+<p className="example-label"><strong>Beispiel</strong> Überprüfen Sie einen bekannten menschlichen Gen-Identifikator</p>
 
 ```text
-Use Omics Archives through Session Notebook. Load its connector instructions.
-Call ena_search_runs with accession SRR037073 and limit 10, then
-ena_get_run_files with run_accession SRR037073. Do not download FASTQ files.
-Save the complete responses as ena-run.json and ena-files.json.
-Save every returned file entry as ena-fastq-manifest.csv with columns
-file_index,url,size_bytes,md5. Save ena-run-notes.md with the exact inputs,
-run identity, completeness flags and download limits. Keep everything in
-English. Report actual errors or empty results; do not invent data.
+Use Genes & Ontologies query_genes to resolve TP53 with scopes="symbol",
+species="human" and fields="symbol,name,entrezgene". Return the input query,
+matched records and any unmatched identifiers. Keep the response in English.
 ```
 
-Öffnen Sie die generierten Notizen. Die eigentliche Suche lieferte **1-Lauf**, **Caenorhabditis elegans**, Studie **PRJNA123835**, **RNA-Seq**, **SINGLE**, mit `truncated: false`. Bestätigen Sie den Organismus und das Layout, bevor Sie seine Dateien verwenden.
+Überprüfen Sie das tatsächliche Werkzeugergebnis. Für menschliche TP53, überprüfen Sie `query`, `symbol`, Entrez Gene **7157** und den Namen **Tumorprotein p53**. Behalten Sie mehrere Übereinstimmungen, bis Sie den Organismus bestätigt und aufgezeichnet haben. Eine erfolgreiche Abfrage bestätigt diese bestimmte Operation; Es stellt nicht den Zugang zu allen Quellen her. [Genaue Felder](../reference/connector-operations.md#query_genes).
 
-![ENA-Abfrageeingaben, Ausführen von Identitäts- und Vollständigkeitskennzeichen in den generierten Notizen](/img/open-science/v0311/ena-notes.webp)
+## Folgen Sie einem Forschungs-Workflow {/* #database-workflows */}
 
-Öffnen Sie den CSV und vergleichen Sie ihn mit `ena-files.json`. Dieser Lauf hat `found: true`, `fastq_available: true` und **1-Datei**, Größe **25,154,397 Bytes**. Das Manifest behält seine FTP-URL und Upstream-MD5 bei. Kopieren Sie den vollständigen Wert aus der herunterladbaren Datei, wenn eine Vorschauspalte beschnitten ist.
+Jeder artikel unten enthält die eingaben, schritte, aktuelle englischsprachige screenshots und herunterladbare beispielausgaben.
 
-![Tatsächliches ENA-Manifest mit einer Datei mit URL, Größe und vorgelagerter Prüfsumme](/img/open-science/v0311/ena-manifest.webp)
+<span id="ena-runs" />
+<span id="omics-discovery" />
 
-<ExampleDownload path="/examples/v0311/ena-run-notes.md">Abfragenotizen</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-fastq-manifest.csv">FASTQ-Manifest</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-run.json">Laufendes Verhalten</ExampleDownload> · <ExampleDownload path="/examples/v0311/ena-files.json">Dateiantwort</ExampleDownload>
+### Finden Sie öffentliche Omik-Daten {/* #find-public-omics-data */}
 
-Beide Abfragen und die Erstellung der Dateiliste waren erfolgreich. **In diesem Beispiel wurden keine FASTQ-Dateien heruntergeladen oder anhand einer Prüfsumme geprüft**. Der Download ist ein eigener Schritt. [Genaue Parameter](../reference/connector-operations.md#ena_search_runs)
+[Finden Sie Public Omics-Daten und erstellen Sie ein Dateiinventar](../workflows/public-omics-data.md): Beginnen Sie mit einem bekannten Lauf oder einem Thema, prüfen Sie ENA- und PRIDE-Datensätze und speichern Sie Quellorte und Prüfsummen. Der Download der Daten bleibt ein separater Schritt.
 
-## Durchführung und Untersuchung der Gen-Set-Anreicherung {/* #gene-set-enrichment */}
+<span id="sequence-search" />
+<span id="blast-jobs" />
+<span id="blast-report" />
 
-<p className="example-label"><strong>Praxisbeispiel</strong> Eine absichtlich ausgewählte menschliche DNA-Schäden-Genliste</p>
+### Vergleichen Sie eine Proteinsequenz {/* #compare-a-protein-sequence */}
 
-Dieses v0.31.1-Beispiel verwendet 11 öffentliche Gensymbole, um g:Profiler zu demonstrieren. Sie wurden aufgrund ihrer bekannten biologischen Rollen ausgewählt, so dass eine Anreicherung erwartet wird. Sie sind keine Differenzausdrucksergebnisse aus dem GSE60450-Projekt oder Beweise für eine unvoreingenommene Entdeckung.
+[Finden Sie eine Proteinsequenz und vervollständigen Sie eine BLAST-Suche](../workflows/protein-sequence-search.md): UniProt FASTA abrufen, die BLAST-Job-ID behalten und dann die abgeschlossenen Ausrichtungen, Identität und Abfrageabdeckung überprüfen.
 
-1. Machen Sie in **Settings → Connectors** **Gene & Ontologien** für den Agenten verfügbar. Öffnen Sie eine Sitzung mit einem verbundenen Modell und einer verfügbaren Notebook Laufzeit.
-2. Geben Sie den Organismus, die Genidentifikatoren, die Datenquellen und den statistischen Hintergrund an. Für reale experimentelle Daten ist der Hintergrund anhand von Genen zu begründen, die durch das Experiment hätten ausgewählt werden können. Dieses Tutorial verwendet explizit alle annotierten Gene, nicht ein benutzerdefiniertes Messgen-Universum.
-3. Senden Sie die folgende Aufforderung. Behalten Sie die Quellversionsabfrage und den Anreicherungsaufruf in derselben Sitzung und speichern Sie ihre tatsächlichen Ergebnisse.
+<span id="gene-set-enrichment" />
 
-```text
-Use Genes & Ontologies through Session Notebook for an English g:Profiler
-tutorial. The deliberately selected gene list is TP53, ATM, ATR, CHEK1,
-CHEK2, BRCA1, BRCA2, RAD51, CDKN1A, GADD45A, MDM2.
-First call list_enrichment_sources with organism hsapiens.
-Then call enrich_gene_set with these genes, organism hsapiens,
-sources GO:BP and REAC, domain_scope annotated,
-correction_method fdr, and user_threshold 0.05.
-Save the full response as dna-damage-enrichment.json, all returned terms
-as dna-damage-enrichment.csv, and query, source versions, mappings,
-background and limitations as dna-damage-enrichment-notes.md.
-Retain unmapped, ambiguous and duplicate identifiers. Treat mapped_genes
-as the returned mapping object. Report errors instead of inventing results.
-This is not differential-expression evidence or evidence of regulation direction.
-```
+### Analysieren Sie einen Kandidaten-Gen-Set {/* #analyze-a-candidate-gene-set */}
 
-4. Öffnen Sie die generierten Notizen und überprüfen Sie die Abfrage- und Zuordnungszählung. Dieser Lauf kartierte **11/11**-Identifikatoren mit **0** nicht zugeordneten, mehrdeutigen oder doppelten Identifikatoren. Es aufgezeichnet **GRCh38.p14**, g:Profiler **e114_eg62_p19_27110d83**, GO Klassen **2026-01-23** und Reactome Klassen **2026-03-20**. Eine spätere Serviceversion kann andere Bedingungen zurückgeben.
+[Laufen funktionelle Anreicherung für einen Kandidaten-Gen-Set](../workflows/gene-set-enrichment.md): Wählen Sie den Organismus, die Identifikatoren und den Hintergrund, führen Sie g:Profiler aus und interpretieren Sie korrigierte Wahrscheinlichkeiten mit Quellversionen.
 
-![Gespeicherte englische Abfrage, Hintergrund, Quellversionen und Identifikatorprüfungen](/img/open-science/v0311/enrichment-notes.webp)
+<span id="reference-genome" />
 
-5. Öffnen Sie den CSV und vergleichen Sie ihn mit dem vollständigen JSON. Dieser Lauf gab **891 Begriffe** am FDR 0.05 zurück. Die Vorschau zeigt nur die ersten 100-Zeilen; Das Anzeigelimit ist nicht die Gesamtergebniszählung. Behalten Sie `source`, `native`, korrigiert `p_value`, `intersection_size`, `query_size` und `effective_domain_size` bei der Interpretation eines Begriffs.
+### Bestätigung eines Referenzgenoms {/* #confirm-a-reference-genome */}
 
-![Tatsächliche Anreicherungstabelle mit korrigierten Wahrscheinlichkeiten und Domänengrößen](/img/open-science/v0311/enrichment-table.webp)
+[Kontrollarten, Referenzgenom und Chromosomenkennzeichen](../workflows/reference-genome-check.md): Lösen Sie das Taxon, die versionierte Assembler und die Chromosomenaliase, bevor Sie Datensätze verbinden.
 
-<ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">Analysenotizen</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">Alle 891 Ergebniszeilen</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">Vollständige Antwort</ExampleDownload>
+Bei anderen Aufgaben folgen Sie [strukturierte PubChem-Aufzeichnungen](../workflows/database-records.md), [Abgleich wissenschaftlicher Aufzeichnungen](../workflows/cross-check-records.md) oder [Literaturentdeckung für ein Gruppentreffen](../workflows/journal-club.md).
 
-`background_size: null` bedeutet, dass keine benutzerdefinierte Hintergrundliste eingereicht wurde; Es bedeutet nicht ein statistisches Universum von null Genen. Verwenden Sie die pro-term effektive Domaingröße. Bei der Bereicherung wird keine kausale Beteiligung, kein differentieller Ausdruck oder eine Auf/Ab-Regulierung festgestellt. Siehe [Betriebsparameter](../reference/connector-operations.md#enrich_gene_set).
+<span id="handle-a-returned-record-empty-match-or-error" />
+<span id="empty-partial-and-failed-responses" />
 
-## Identität des Referenzgenoms bestätigen {/* #reference-genome */}
+## Verwenden Sie die zurückgegebenen Daten korrekt {/* #database-limits */}
 
-<p className="example-label"><strong>Praxisbeispiel</strong> Humanes GRCh38.p14-Chromosom 1 identifizieren</p>
+- Bewahren Sie die Abfrage, Quelle, Organismus, Gewebe, Einheiten und Beitrittsversionen auf. Datenbankeinträge, Vorhersagen und generierte Zusammenfassungen sind verschiedene Arten von Beweisen.
+- Überprüfen Sie die zurückgegebenen Zählungen, Paginierungs- und Abkürzungsflags, bevor Sie eine Antwort als vollständig behandeln. Null Übereinstimmungen, eine Teilantwort und ein Anforderungsfehler erfordern unterschiedliche Folgeaktionen.
+- Ein Dateiinventar bietet Standorte und Metadaten. Das Herunterladen von Bytes, das Überprüfen von Prüfsummen und das Analysieren der Daten sind separate Operationen.
+- Wenn eine Anfrage Anmeldeinformationen benötigt, füllen Sie das entsprechende Formular aus, bevor Sie es erneut versuchen. Für Tariflimits, folgen Sie der Verzögerung des Dienstes; für Timeouts die Anforderungsgröße reduzieren. Siehe [Fehlerbehebung](../guides/troubleshooting.md).
 
-1. **Genomes** in **Settings → Connectors** aktivieren. Öffnen Sie eine Sitzung mit einem verbundenen Modell und verfügbarer Notebook Laufzeit. Dieses v0.31.1-Beispiel verwendete **Codex subscription**.
-2. Abfrage des Organismus, **versioniert** Assemblierung und Sequenz in dieser Reihenfolge. Senden:
-
-```text
-Use Genomes through Session Notebook. Load its connector instructions.
-Call ncbi_resolve_taxon with query human and max_matches 10.
-Call ncbi_get_assembly_info with assembly_accession GCF_000001405.40.
-Call ncbi_get_sequence_aliases with assembly_accession GCF_000001405.40,
-sequence chr1 and max_sequences 200. Save the complete responses as
-ncbi-human-taxon.json, ncbi-grch38-assembly.json and ncbi-chr1-aliases.json.
-Save ncbi-reference-identity.csv and ncbi-reference-notes.md with the
-query, identity, ambiguity and truncation flags, and source URLs.
-Preserve accession versions and RefSeq/GenBank differences. Do not perform
-coordinate liftover or invent results. Keep everything in English.
-```
-
-3. Öffnen Sie die Notizen und vergleichen Sie die zurückgegebenen IDs in den drei JSON-Dateien. Alle drei Aufrufe waren in diesem Beispiel erfolgreich.
-
-![Drei tatsächliche NCBI-Aufrufe und zurückgegebene Taxon- und Assembly-Identität](/img/open-science/v0311/ncbi-notes.webp)
-
-| Überprüfung | Ergebnis dieses Beispiels |
-| --- | --- |
-| Organismus | Homo sapiens, TaxID **9606**; ein Spiel, `ambiguous: false` |
-| Beantragte/laufende Montage | **GCF_000001405.40**, **GRCh38.p14**, UCSC Name **hg38** |
-| Gepaarte GenBank Versammlung | **GCA_000001405.29**; Der zurückgegebene Datensatz meldet Unterschiede von RefSeq |
-| Chromosom 1 Aliase | **1**, **chr1**, RefSeq **NC_000001.11**, GenBank **CM000663.2** |
-| Ausgewählte Sequenz | **248956422 bp**, Primärversammlung; ein Spiel, `matches_truncated: false` |
-
-![Ursprüngliche Chromosom-1-Antwort mit versionierten Aliase und Übereinstimmungszahl](/img/open-science/v0311/ncbi-aliases.webp)
-
-<ExampleDownload path="/examples/v0311/ncbi-reference-notes.md">Abfragenotizen</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-reference-identity.csv">Identitätstabelle</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-human-taxon.json">Taxonantwort</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-grch38-assembly.json">Ansprechverhalten der Montage</ExampleDownload> · <ExampleDownload path="/examples/v0311/ncbi-chr1-aliases.json">Sequenzantwort</ExampleDownload>
-
-Die Abfrage wurde für **ein ausgewähltes Chromosom** abgeschlossen. Sie ist kein Export aller Sequenzen der Assembly. Bewahren Sie bei geänderten Abfragen mehrdeutige Treffer und Kürzungskennzeichen auf. Ein Assembly-Name ersetzt keine Zugangsnummer mit Versionsangabe. Eine zurückgegebene aktuelle Nummer rechtfertigt es nicht, eine angeforderte historische Version stillschweigend zu ersetzen. Sequenzaliase beschreiben Namen innerhalb einer Assembly; sie führen keine Koordinatenumrechnung zwischen Assemblies durch. [Genaue Eingaben](../reference/connector-operations.md#ncbi_get_assembly_info)
-
-## Lesen Sie gnomAD Populationen und STRING Netzwerke {/* #string-network */}
+### Populationsfrequenzen und Interaktionsnetze {/* #string-network */}
 
 Setzen Sie für `get_variant` `include_populations: true` nur, wenn Populationsdetails benötigt werden. Bewahren Sie den Dataset und den Referenz-Build auf. Exom- und Genombeobachtungen bleiben getrennt. Ein nicht verfügbarer Wert ist `null`, nicht Null; Überlappende Bevölkerungs- oder Geschlechtsschichten dürfen nicht summiert werden. Dies sind beobachtete Frequenzen, nicht das Filtern von Allelfrequenzen. [gnomAD-Parameter](../reference/connector-operations.md#get_variant)
 
 Von v0.31.0 enthält `get_string_network.nodes` zurückgegebene Nachbarn und isolierte kartierte Eingaben. Eine einzelne kartierte Eingabe fordert Nachbarn an; Mehrere abgebildete Eingänge werden nicht erweitert. Filtern Sie `is_query`, um Eingabeknoten wiederherzustellen, und verwenden Sie `queries` für alle abgebildeten Aliase. `n_nodes` zählt den Graphen `n_mapped` zählt Input-Mappings. Aktualisieren Sie Skripte, die die beiden gleichgesetzt haben, bevor Sie sie wiederverwenden. [STRING-Parameter](../reference/connector-operations.md#get_string_network)
 
-<span id="empty-partial-and-failed-responses" />
+<span id="find-operation-parameters" />
 
-## Suche nach Betriebsparametern {/* #find-operation-parameters */}
+## Suche nach Betriebsparametern {/* #operation-parameters */}
 
-Verwenden Sie den [Connector Betriebsnummer](../reference/connector-operations.md) für erforderliche Felder, akzeptierte Werte und genaue Aufrufe. Wählen Sie hier zuerst eine Quelle; die Referenz bei der Vorbereitung eines bestimmten Vorgangs verwenden.
+Der [Connector Betriebsnummer](../reference/connector-operations.md) listet die erforderlichen Eingaben, erlaubten Werte und genauen Aufrufe auf. Verwenden Sie diese Seite, um eine Quelle auszuwählen und sie zu verbinden; Verwenden Sie die Referenz für die Felder eines bestimmten Werkzeugs.
 
-Halten Sie Genomaufbau, Organismus, Gewebe, Einheiten und Beitrittsversionen mit zurückgegebenen Daten. Für allgemeine HTTP-Bedeutungen und Wiederherstellung verwenden Sie [Fehlerbehebung](../guides/troubleshooting.md). Datenbankeinträge, Vorhersagen und generierte Zusammenfassungen sind unterschiedliche Arten von Beweisen; Überprüfen Sie die zitierte Quelle, bevor Sie einen Forschungsanspruch verwenden.
-
-
-Bezugsnummer der Durchführung: [SteckverbinderPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorsPanel.tsx).
-
-Katalogquelle: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.31.1/src/main/connectors/registry.ts).
+Katalogquelle: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/registry.ts).

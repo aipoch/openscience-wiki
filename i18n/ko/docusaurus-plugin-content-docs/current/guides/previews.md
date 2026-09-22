@@ -1,7 +1,7 @@
 ---
 title: "파일 열기 및 미리보기"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -24,7 +24,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | 편집 / 비교 | 지원된 관리된 내용을 위해 유효한; 은 은 [파일](files.md) |
 | 닫기 | 전망이 떨어졌다; 이것은 삭제되지 않습니다. |
 
-위의 닫힌 동작은 파일 미리보기에 적용됩니다. [Side Chat 탭](delegation.md)은 별도의 확인을 갖기 때문에 중단 및 삭제를 방지합니다.
+위의 닫힌 동작은 파일 미리보기에 적용됩니다. [Side Chat 탭](delegation.md)은 별도의 확인을 가지고 있습니다: 측면 토론을 닫고 대화를 제거합니다. 전체 응용 프로그램 재시작은 또한 나머지 사이드 채팅을 삭제합니다. 이미 Main에 전달된 메시지는 저장됩니다.
 
 자신을위한 독서 위치를 저장하려면 텍스트 또는 PDF 지역을 선택하고 **For me**을 선택하십시오. [독서 bookmarks](bookmarks.md) 참조.
 
@@ -155,3 +155,9 @@ Extraction은 모델 리소스가 다운로드 된 후 로컬로 실행됩니다
 ## 미리보기가 실패할 때 {/* #when-a-preview-fails */}
 
 파일이 성공적으로 저장되면 정확한 버전과 형식을 확인합니다. unavailable 파일에서 뷰어 제한을 구별하는 다운로드를 시도하십시오. 앱 밖에서 로컬 파일이 변경된 경우, Reload를 사용할 수 있습니다. 렌더링 문제를 복구하기 위해 입력을 덮지 마십시오. filename, type, size, app version 및 표시 오류를 보고하십시오. 진단을 필요로 하지 않는 한 개인 파일 내용을 제외합니다.
+
+## PDF에 주석 {/* #annotate-a-pdf */}
+
+강조 표시, 영역 표, 페이지 노트 및 문서 메모를 관리하기 위해 **Notes & Annotations**을 엽니 다. **Show notes sidebar**은 원래 페이지 옆에 메모를 유지합니다. 다운로드 메뉴는 **Download PDF with annotations**에서 **Download original PDF**을 분리합니다. 완전한 독서, 검색 및 내보내기 연습을 위해 [PDF 주석 및 문서 노트](pdf-notes.md)을 따르십시오.
+
+**그림 및 표**를 위해, 첫번째 현지 모형 임명은 1 차적인 근원이 허용될 때 승인된 다운로드 거울을 시도할 수 있습니다. **Analyze PDF**을 선택하기 전에 다운로드 및 무결성 검사를 기다립니다. Mirrors는 이러한 리소스를 설치 할 필요가 없습니다; 캐시 된 결과는 신선한 분석없이 다시 열 수 있습니다.

@@ -1,7 +1,7 @@
 ---
 title: "模型与任务策略"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-22'
 ---
 
 # 模型与任务策略
@@ -88,8 +88,8 @@ v0.31.1 中，该路径用于 **Codex Chat Completions** 或 **CodeBuddy** 的�
 
 ![分类模型的默认方式与可选服务入口](/img/open-science/v0311/classification-models.webp)
 
-1. 选择 **Add service**，再选择 **TypeSafe AI** 或 **OpenRouter**。
-2. 填写服务名称和 API 凭据。OpenRouter 可复用兼容的已有账户或使用新密钥；截图时保持密钥隐藏。
+1. 选择 **Add service**，再选择 **TypeSafe AI**、**OpenRouter** 或 **Custom HTTP service**。
+2. 填写服务名称，并按服务要求提供 API 凭据。OpenRouter 可复用兼容的已有账户或使用新密钥；截图时保持密钥隐藏。
 3. 点击 **Save**，等待验证。验证失败时，原有设置保持不变。
 4. 在 **Automatic capability selection** 中选择已保存的服务和目录中提供的模型。通过 **Check model** 检查连接。
 5. 在受支持的主会话中发送一个范围明确的请求，查看实际选择的工具。模型连接检查通过，本身不能证明科研结果正确。
@@ -105,3 +105,13 @@ v0.31.1 中，该路径用于 **Codex Chat Completions** 或 **CodeBuddy** 的�
 ![已选中 TypeSafe AI / Jev Latest，显示 Check passed，密钥保持隐藏](/img/open-science/v0311/classification-connected.webp)
 
 例如，在 Codex Chat Completions 会话中查询公开的 TP53 信息时，可由 Jev 选择 `mcp-genes`。在活动记录中检查选中的能力，再查看数据库响应获取查询结果。Codex 订阅会话使用原有的能力加载方式；保存 Jev 绑定不会让这类会话改用 Jev。
+
+### 自定义分类服务 {/* #custom-classification */}
+
+在 **Add service → Custom HTTP service** 中填写服务名称、端点 URL 和模型 ID。服务必须兼容 **TypeSafe 分类协议**；普通 Chat Completions 地址不能直接替代它。按服务要求填写 API key：本机回环地址可以使用无密钥 HTTP，远程服务必须使用 HTTPS 并提供凭证。
+
+保存后，在 **Automatic capability selection** 中选择该服务并运行 **Check model**。连接检查成功后，再使用受支持的会话路线检查能力选择。该设置不切换 Main，也不会让 Codex 订阅会话改用分类服务。
+
+下图仅展示填写方式：请把示例地址与 `your-model-id` 换成实际服务信息，再检查连接。
+
+![自定义分类服务的端点、模型和空白密钥字段](/img/open-science/v0320/classification-custom.webp)

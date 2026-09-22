@@ -1,7 +1,7 @@
 ---
 title: "開啟與預覽檔案"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -24,7 +24,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | Edit / Compare | 僅適用於支援的託管內容，見[檔案](files.md) |
 | Close | 關閉檢視，不是刪除 |
 
-上述關閉行為適用於檔案預覽。[Side Chat 標籤](delegation.md) 的關閉需要另行確認，因為確認後會停止並刪除該旁聊。
+以上關閉行為適用於檔案預覽。[Side Chat 標籤](delegation.md)會另行要求確認：關閉後停止該旁聊並移除對話。完整重啟應用也會清除其餘旁聊；已經送達 Main 的訊息仍會保留。
 
 想為自己儲存閱讀位置時，選中文字或 PDF 區域後選擇 **For me**，參閱[閱讀書籤](bookmarks.md)。
 
@@ -157,3 +157,9 @@ PDF 上下文只關聯當前任務需要的論文，後續不應使用時取消�
 實現依據：[Mermaid](https://github.com/aipoch/open-science/commit/5f6e7995)、[PDF 條件](https://github.com/aipoch/open-science/commit/2722da2a)、[CSV](https://github.com/aipoch/open-science/commit/9275c2c0)、[Office](https://github.com/aipoch/open-science/commit/0291871f)、[TIFF](https://github.com/aipoch/open-science/commit/52152ed4)。
 
 專業格式的入口、控制元件和檔案要求見[科學檢視器](../tools/viewers.md)。
+
+## 批註 PDF {/* #批注-pdf */}
+
+開啟 **Notes & Annotations** 管理高亮、區域標記、頁面筆記和文件筆記。**Show notes sidebar** 可以把筆記顯示在原文旁。下載選單區分 **Download original PDF** 與 **Download PDF with annotations**。完整的閱讀、搜尋與匯出步驟見 [PDF 批註與文件筆記](pdf-notes.md)。
+
+首次使用 **Figures & Tables** 安裝本地模型時，如果主下載源無法訪問，應用可以嘗試受認可的備用映象。等待下載和完整性檢查完成後，再選擇 **Analyze PDF**。映象不會省去本地資源安裝；已有快取結果可以直接重新開啟。

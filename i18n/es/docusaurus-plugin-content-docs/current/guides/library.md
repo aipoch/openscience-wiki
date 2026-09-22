@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -318,3 +318,7 @@ Si otro cliente cambia una colección mientras que su editor está abierto, un a
 
 
 Fuentes: [importación por lotes](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx), [metadatos editor](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteratureMetadataEditor.tsx), [historial de apego/deleción](https://github.com/aipoch/open-science/commit/f4a82d4a), [ediciones concurrentes](https://github.com/aipoch/open-science/commit/dbb9560a).
+
+## Mantenga notas de lectura PDF {/* #keep-pdf-reading-notes */}
+
+Abra el accesorio PDF de referencia y utilice **Notes & Annotations** para anotaciones, preguntas de página y notas de documentos. La misma versión de archivo de biblioteca comparte estas notas en proyectos y sesiones. Busque una nota bajo **Library** en la búsqueda global, y luego elija **Show annotation source** para volver al PDF. Vea [Anotaciones PDF y notas de documentos](pdf-notes.md) para pasos y exportaciones.

@@ -1,7 +1,7 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -318,3 +318,7 @@ Citation 的四個複製按鈕寫入不同格式。貼上到目標編輯器，�
 
 
 原始碼：[批次匯入](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx)、[後設資料編輯器](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteratureMetadataEditor.tsx)、[附件歷史與刪除](https://github.com/aipoch/open-science/commit/f4a82d4a)、[併發編輯](https://github.com/aipoch/open-science/commit/dbb9560a)。
+
+## 儲存 PDF 閱讀筆記 {/* #保存-pdf-阅读笔记 */}
+
+在文獻附件中開啟 PDF，使用 **Notes & Annotations** 儲存批註、頁級問題和整篇筆記。同一文獻庫檔案版本在不同專案和會話中共享這些筆記。透過全域搜尋的 **Library** 結果找到筆記，再選擇 **Show annotation source** 返回原文。步驟和匯出方法見 [PDF 批註與文件筆記](pdf-notes.md)。

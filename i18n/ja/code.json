@@ -1210,7 +1210,7 @@
     "message": "科学データベース"
   },
   "docs.outline.tools.databases.scope": {
-    "message": "23のデータソースコネクタの分類されたテーブル:ソースカバレッジ、正確な操作、識別子、資格情報と制限。 Molecule Viewer は、科学的ビューアーの下で文書化されています。"
+    "message": "科学的データソース、便利なタスク、Connector セットアップと資格情報の構築をサポートし、完全な研究ワークフローへのリンク。"
   },
   "docs.outline.tools.tables.title": {
     "message": "テーブルとデータセット"
@@ -1640,5 +1640,44 @@
   },
   "docs.outline.reference.v0310.scope": {
     "message": "書き込み可能なセッションのコピー、プロバイダーの検証、完全な STRING ネットワーク。"
+  },
+  "docs.outline.workflows.reference-genome-check.scope": {
+    "message": "分析前に、タムン、バージョンの参照アセンブリ、染色体エイリアスを解決します。"
+  },
+  "docs.outline.workflows.group.public-data": {
+    "message": "パブリックデータとバイオインフォマティクス"
+  },
+  "docs.outline.workflows.public-omics-data.scope": {
+    "message": "ENA の公開実行と ENA と PRIDE ファイル在庫、ソースの場所、サイズ、チェックサムの検査を調べます。"
+  },
+  "docs.outline.workflows.protein-sequence-search.scope": {
+    "message": "UniProt のタンパク質を解決し、FASTA を取り出し、BLAST のアライメントレポートを完成させます。"
+  },
+  "docs.guides.outline.pdf-notes.scope": {
+    "message": "文章への注釈、文書ノートの整理、検索、注釈付きコピーの書き出し。"
+  },
+  "docs.outline.workflows.gene-set-enrichment.scope": {
+    "message": "g:Profilerの豊かさを実行し、マッピング、修正された確率、背景およびソースバージョンを検査します。"
+  },
+  "docs.outline.workflows.gene-set-enrichment.title": {
+    "message": "候補遺伝子セットのための機能強化を実行"
+  },
+  "docs.guides.outline.pdf-notes.title": {
+    "message": "PDF 注釈と文書ノート"
+  },
+  "docs.outline.reference.v0320.scope": {
+    "message": "PDF ノート、BLAST 配列検索、オミクスデータ検索と無人実行。"
+  },
+  "docs.outline.workflows.reference-genome-check.title": {
+    "message": "種、参照のゲノムおよび染色体識別子をチェックして下さい"
+  },
+  "docs.outline.workflows.public-omics-data.title": {
+    "message": "パブリックオミクスデータを見つけてファイル在庫をビルドする"
+  },
+  "docs.outline.reference.v0320.title": {
+    "message": "v0.32.0"
+  },
+  "docs.outline.workflows.protein-sequence-search.title": {
+    "message": "タンパク質シーケンスを見つけてBLAST検索を完了"
   }
 }

@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -24,7 +24,7 @@ Une carte de fichier généré ouvre son aperçu. **Ouvrir ... en vue scindée �
 | Modifier / Comparer | Disponible uniquement pour les contenus gérés pris en charge; voir [Fichiers](files.md) |
 | Fermer | Rompez la vue; ce n'est pas Supprimer |
 
-Le comportement de fermeture ci-dessus s'applique aux prévisualisations de fichiers. Un [onglet Side Chat](delegation.md) a une confirmation séparée car la fermeture s'arrête et supprime cette discussion latérale.
+Le comportement de fermeture ci-dessus s'applique aux prévisualisations de fichiers. Un [onglet Side Chat](delegation.md) a une confirmation séparée: la fermeture arrête cette discussion latérale et supprime sa conversation. Un redémarrage complet de l'application efface également les discussions latérales restantes. Les messages déjà livrés à Main restent enregistrés.
 
 Pour enregistrer un emplacement de lecture par vous-même, sélectionnez texte ou région PDF et choisissez **For me**; Voir [Lecture des signets](bookmarks.md).
 
@@ -155,3 +155,9 @@ Ouvrez l'aperçu prévu, choisissez **Download**, validez le nom du fichier et l
 ## Quand un aperçu échoue {/* #when-a-preview-fails */}
 
 Confirmez le fichier enregistré avec succès, puis vérifiez la version et le format exacts. Essayez de télécharger pour distinguer une limitation de visionneuse d'un fichier non disponible. Pour un fichier local modifié à l'extérieur de l'application, utilisez Reload là où vous l'offrez. Ne pas écraser l'entrée pour réparer un problème de rendu. Signaler le nom, le type, la taille, la version de l'application et l'erreur affichée; exclure le contenu de fichiers privés à moins qu'ils ne soient nécessaires pour le diagnostic.
+
+## Annoter un PDF {/* #annotate-a-pdf */}
+
+Ouvrez **Notes & Annotations** pour gérer les points saillants, les marques de zone, les notes de page et les notes de document. **Show notes sidebar** garde des notes à côté de la page d'origine. Le menu de téléchargement sépare **Download original PDF** de **Download PDF with annotations**. Suivez [Annotations et notes de document PDF](pdf-notes.md) pour une lecture complète, une recherche et une exportation.
+
+Pour **Figures et tableaux**, la première installation de modèle local peut essayer des miroirs de téléchargement approuvés lorsque la source primaire n'est pas accessible. Attendez le téléchargement et les vérifications d'intégrité avant de choisir **Analyze PDF**. Les miroirs ne suppriment pas le besoin d'installer ces ressources; un résultat mis en cache peut rouvrir sans une nouvelle analyse.

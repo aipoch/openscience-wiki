@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -318,3 +318,7 @@ If another client changes a collection while your editor is open, a stale save c
 
 
 Sources: [batch import](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx), [metadata editor](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteratureMetadataEditor.tsx), [attachment history/deletion](https://github.com/aipoch/open-science/commit/f4a82d4a), [concurrent edits](https://github.com/aipoch/open-science/commit/dbb9560a).
+
+## Keep PDF reading notes
+
+Open a reference's PDF attachment and use **Notes & Annotations** for annotations, page questions and document notes. The same library file version shares these notes across projects and sessions. Find a note under **Library** in global search, then choose **Show annotation source** to return to the PDF. See [PDF annotations and document notes](pdf-notes.md) for steps and exports.

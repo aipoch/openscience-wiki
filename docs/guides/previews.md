@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -24,7 +24,7 @@ A generated-file card opens its preview. **Open … in split view beside the ses
 | Edit / Compare | Available only for supported managed content; see [Files](files.md) |
 | Close | Dismiss the view; this is not Delete |
 
-The closing behavior above applies to file previews. A [Side Chat tab](delegation.md) has a separate confirmation because closing it stops and deletes that side discussion.
+The closing behavior above applies to file previews. A [Side Chat tab](delegation.md) has a separate confirmation: closing stops that side discussion and removes its conversation. A full application restart also clears remaining Side Chats. Messages already delivered to Main remain saved.
 
 To save a reading location for yourself, select text or a PDF region and choose **For me**; see [Reading bookmarks](bookmarks.md).
 
@@ -155,3 +155,9 @@ Open the intended preview, choose **Download**, confirm the filename and locatio
 ## When a preview fails
 
 Confirm the file saved successfully, then check the exact version and format. Try Download to distinguish a viewer limitation from an unavailable file. For a local file changed outside the app, use Reload where offered. Do not overwrite the input to repair a rendering issue. Report the filename, type, size, app version and displayed error; exclude private file contents unless they are needed for diagnosis.
+
+## Annotate a PDF
+
+Open **Notes & Annotations** to manage highlights, area marks, page notes and document notes. **Show notes sidebar** keeps notes beside the original page. The download menu separates **Download original PDF** from **Download PDF with annotations**. Follow [PDF annotations and document notes](pdf-notes.md) for a complete reading, search and export walkthrough.
+
+For **Figures & Tables**, first-time local model installation can try approved download mirrors when the primary source is unreachable. Wait for download and integrity checks before choosing **Analyze PDF**. Mirrors do not remove the need to install these resources; a cached result can reopen without a fresh analysis.

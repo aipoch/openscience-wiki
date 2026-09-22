@@ -1,7 +1,7 @@
 ---
 title: "Task SDK 与本地 API"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 # Task SDK 与本地 API
@@ -191,3 +191,9 @@ console.log(state);
 [SDK 源码](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/index.mjs)、[契约说明](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/README.md)。Shell 自动化见 [CLI](./cli.md)，发现与生命周期见[无界面服务](./server.md)。
 
 源码：[方法签名](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.d.ts)、[路由](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/index.mjs)。配置及诊断边界见 [CLI 管理字段](cli.md)。
+
+## 无人值守任务 {/* #unattended-runs */}
+
+在 `startRun` 的输入中设置 `permissionPrompts: 'none'`，对应 CLI 的 `--permission-prompts none`。仍需设置合适的 `permissionProfile`；此选项拒绝尚需人工处理的请求，不会扩大任务授权。不要与 `planFirst: true` 组合。
+
+主机必须声明 `permission-prompts-none` 能力；不支持时客户端会在创建任务前报告 `unsupported_capability`。此策略仅限当前调用，运行结果仍需按状态和错误处理。详见 [CLI 无人值守运行](cli.md#unattended-runs)。

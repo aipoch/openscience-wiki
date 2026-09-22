@@ -1,0 +1,115 @@
+{
+  "request": {
+    "method": "ena_query_runs",
+    "arguments": {
+      "tax_id": 9606,
+      "library_strategy": "RNA-Seq",
+      "keyword": "breast",
+      "limit": 5
+    }
+  },
+  "response": {
+    "filters": {
+      "tax_id": 9606,
+      "library_strategy": "RNA-Seq",
+      "keyword": "breast"
+    },
+    "query": "tax_tree(9606) AND library_strategy=\"RNA-Seq\" AND (study_title=\"*breast*\" OR experiment_title=\"*breast*\" OR sample_title=\"*breast*\" OR description=\"*breast*\")",
+    "n_runs_returned": 5,
+    "truncated": true,
+    "runs": [
+      {
+        "run_accession": "SRR077868",
+        "study_accession": "PRJNA142511",
+        "secondary_study_accession": "SRP004837",
+        "sample_accession": "SAMN00149457",
+        "experiment_accession": "SRX033237",
+        "tax_id": "9606",
+        "scientific_name": "Homo sapiens",
+        "instrument_platform": "ILLUMINA",
+        "instrument_model": "Illumina Genome Analyzer",
+        "library_layout": "SINGLE",
+        "library_strategy": "RNA-Seq",
+        "library_source": "TRANSCRIPTOMIC",
+        "study_title": "Altered antisense-to-sense transcript ratios in breast cancer: ASSAGE",
+        "experiment_title": "Illumina Genome Analyzer sequencing: GSM636920: ASSAGE_breast_epithelium_cancer_T2",
+        "sample_title": "ASSAGE_breast_epithelium_cancer_T2",
+        "description": "Illumina Genome Analyzer sequencing: GSM636920: ASSAGE_breast_epithelium_cancer_T2"
+      },
+      {
+        "run_accession": "SRR10252105",
+        "study_accession": "PRJNA576660",
+        "secondary_study_accession": "SRP224960",
+        "sample_accession": "SAMN13000884",
+        "experiment_accession": "SRX6970124",
+        "tax_id": "9606",
+        "scientific_name": "Homo sapiens",
+        "instrument_platform": "ILLUMINA",
+        "instrument_model": "Illumina HiSeq 2500",
+        "library_layout": "SINGLE",
+        "library_strategy": "RNA-Seq",
+        "library_source": "TRANSCRIPTOMIC",
+        "study_title": "Hepatic stellate cells suppress NK cell sustained breast cancer dormancy",
+        "experiment_title": "Illumina HiSeq 2500 sequencing: mRNA-seq of breast cancer cells from mouse L10 - Part P1 - Cell population P6",
+        "sample_title": "mRNA-seq of breast cancer cells from mouse L10 - Part P1 - Cell population P6",
+        "description": "Illumina HiSeq 2500 sequencing: mRNA-seq of breast cancer cells from mouse L10 - Part P1 - Cell population P6"
+      },
+      {
+        "run_accession": "SRR10252107",
+        "study_accession": "PRJNA576660",
+        "secondary_study_accession": "SRP224960",
+        "sample_accession": "SAMN13000882",
+        "experiment_accession": "SRX6970122",
+        "tax_id": "9606",
+        "scientific_name": "Homo sapiens",
+        "instrument_platform": "ILLUMINA",
+        "instrument_model": "Illumina HiSeq 2500",
+        "library_layout": "SINGLE",
+        "library_strategy": "RNA-Seq",
+        "library_source": "TRANSCRIPTOMIC",
+        "study_title": "Hepatic stellate cells suppress NK cell sustained breast cancer dormancy",
+        "experiment_title": "Illumina HiSeq 2500 sequencing: mRNA-seq of breast cancer cells from mouse L03 - Part P4 - Cell population P6",
+        "sample_title": "mRNA-seq of breast cancer cells from mouse L03 - Part P4 - Cell population P6",
+        "description": "Illumina HiSeq 2500 sequencing: mRNA-seq of breast cancer cells from mouse L03 - Part P4 - Cell population P6"
+      },
+      {
+        "run_accession": "SRR10252108",
+        "study_accession": "PRJNA576660",
+        "secondary_study_accession": "SRP224960",
+        "sample_accession": "SAMN13000881",
+        "experiment_accession": "SRX6970121",
+        "tax_id": "9606",
+        "scientific_name": "Homo sapiens",
+        "instrument_platform": "ILLUMINA",
+        "instrument_model": "Illumina HiSeq 2500",
+        "library_layout": "SINGLE",
+        "library_strategy": "RNA-Seq",
+        "library_source": "TRANSCRIPTOMIC",
+        "study_title": "Hepatic stellate cells suppress NK cell sustained breast cancer dormancy",
+        "experiment_title": "Illumina HiSeq 2500 sequencing: mRNA-seq of breast cancer cells from mouse L02 - Part P4 - Cell population P7",
+        "sample_title": "mRNA-seq of breast cancer cells from mouse L02 - Part P4 - Cell population P7",
+        "description": "Illumina HiSeq 2500 sequencing: mRNA-seq of breast cancer cells from mouse L02 - Part P4 - Cell population P7"
+      },
+      {
+        "run_accession": "SRR10252113",
+        "study_accession": "PRJNA576660",
+        "secondary_study_accession": "SRP224960",
+        "sample_accession": "SAMN13000897",
+        "experiment_accession": "SRX6970116",
+        "tax_id": "9606",
+        "scientific_name": "Homo sapiens",
+        "instrument_platform": "ILLUMINA",
+        "instrument_model": "Illumina HiSeq 2500",
+        "library_layout": "SINGLE",
+        "library_strategy": "RNA-Seq",
+        "library_source": "TRANSCRIPTOMIC",
+        "study_title": "Hepatic stellate cells suppress NK cell sustained breast cancer dormancy",
+        "experiment_title": "Illumina HiSeq 2500 sequencing: mRNA-seq of breast cancer cells from mouse L1 - Part P5 - Cell population P7",
+        "sample_title": "mRNA-seq of breast cancer cells from mouse L1 - Part P5 - Cell population P7",
+        "description": "Illumina HiSeq 2500 sequencing: mRNA-seq of breast cancer cells from mouse L1 - Part P5 - Cell population P7"
+      }
+    ]
+  },
+  "scope_note": "Bounded discovery example; not a complete dataset.",
+  "selected_run_for_file_inventory": "SRR077868"
+}

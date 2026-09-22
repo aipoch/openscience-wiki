@@ -1,7 +1,7 @@
 ---
 title: "CLI и структурированный выход"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -210,3 +210,15 @@ JSONL может включать `run.progress` и `stream.resync-required`. Е
 [Реализация CLI](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [Руководитель командной строки](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
 
 Технический справочник: [Контракт CLI](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+
+## Без присмотра бегут {/* #unattended-runs */}
+
+Добавьте `--permission-prompts none` в `run`, чтобы отказаться от неразрешенных человеческих взаимодействий, а не ждать бесконечно. Отобранный профиль одобрения и запомнившиеся гранты по-прежнему применяются; Оставшиеся запросы на разрешение отклоняются, пользовательские вопросы отклоняются, а Планы, требующие проверки человеком, отклоняются. Это не одобряет каждое действие.
+
+```bash
+open-science run --project "Sequence and PDF Research" \
+  --prompt "Summarize the existing public-data result. Do not request user input." \
+  --approval-profile ask --permission-prompts none --wait --jsonl
+```
+
+Опция применяется только к этому вызову и не сохраняется в качестве предпочтения сеанса. Его нельзя комбинировать с `--plan-first`. Осмотрите окончательный статус и ошибку: избегание человеческого ожидания не гарантирует выполнение задачи. Клиент проверяет хост-функцию `permission-prompts-none`; Обновите соответствующий клиент и приложение, если старый хост возвращает `unsupported_capability`.
