@@ -1,0 +1,139 @@
+# Open-Science Documentation
+
+> AIPOCH Open-Science is an open-source, local-first AI research workbench. This file lists every official documentation page so AI assistants and researchers can link directly to the authoritative source instead of guessing URLs.
+
+Source repository: https://github.com/aipoch/open-science
+Documentation source: https://github.com/aipoch/openscience-wiki
+Product page: https://aipoch.com/open-science
+Site-level facts and contacts: https://aipoch.com/llms.txt
+
+## Start here
+
+- [Installation and updates](https://aipoch.com/docs/guides/installation/): Most users should install the desktop package from GitHub Releases. Contributors, or anyone testing the newest code, can run the app from source. Open-Science is an Electron application; its renderer also supports token-protected local browser access.
+- [First-time setup](https://aipoch.com/docs/guides/onboarding/): The first-run wizard has five pages in this order: Environment, Data location, Agent runtime, Model provider, and Notebook runtime. Back and the primary action at the bottom move between pages. The primary action remains unavailable until the current page meets its requirements.
+- [Your first project and result](https://aipoch.com/docs/guides/first-project/): Worked example Read a sample-QC table and save a summary
+
+## Get started
+
+- [Get Started with AIPOCH Open-Science](https://aipoch.com/docs/intro/): Learn Open-Science with source-checked guides and real research walkthroughs.
+
+## Guides
+
+- [Appearance and notifications](https://aipoch.com/docs/guides/appearance/): Choose a comfortable theme, set your interface language and receive task alerts while you work in another app. Open Settings → General to adjust these preferences. Open-Science remembers your appearance choices on this device.
+- [Permissions and approvals](https://aipoch.com/docs/guides/approval-modes/): Use Agent controls to choose how the current conversation requests approval. Use Settings → Permissions to set the default for new conversations and inspect remembered access.
+- [Private reading bookmarks](https://aipoch.com/docs/guides/bookmarks/): Save passages and PDF regions for yourself, add notes and return to their source within a session.
+- [Capabilities and supported inputs](https://aipoch.com/docs/guides/capabilities/): Open-Science brings a research project&#x27;s conversations, source files, literature records and generated results into a local workspace.
+- [Conversations and queued requests](https://aipoch.com/docs/guides/composer/): The Composer sends instructions and input references to the current session and lets you prepare follow-ups during execution. Queue · Not saved means a queued request has not yet become a saved transcript instruction.
+- [Connectors and credentials](https://aipoch.com/docs/guides/connectors/): A Connector makes a service&#x27;s tools available to an agent. A Credential supplies authentication when that service requires it. Installing a Skill or assigning a tag does not connect the service.
+- [Delegation and Side Chat](https://aipoch.com/docs/guides/delegation/): Use Side Chat to discuss a question alongside your current task, or delegation to give another agent a separate task. To continue a full conversation in a different direction, use a session branch.
+- [Files, artifacts, and versions](https://aipoch.com/docs/guides/files/): Keep the original file, uploaded copy and generated artifact distinct. This page covers ownership, finding files and saved revisions. See Previews for viewing controls and Sessions for export bundles.
+- [Installing and switching agents](https://aipoch.com/docs/guides/frameworks/): Choose an Agent framework to execute conversations and tools. After installing it, configure a compatible model provider. You can keep several frameworks installed.
+- [Literature library and citations](https://aipoch.com/docs/guides/library/): To find new papers online, describe your topic, date range and selection criteria in a conversation, then review the proposed records in Library → Inbox. See the topic-search journal-club workflow.
+- [Memory and conversation context](https://aipoch.com/docs/guides/memory/): Memory stores reusable notes; the context window is the material available to a particular model request. A saved note is not proof that an agent recalled it, and a visible old message is not proof that the entire original history fits in the next request.
+- [Models and task policies](https://aipoch.com/docs/guides/models/): Choose a model for the work it must perform, then check which settings are inherited. A Provider supplies model access; an Agent runs the conversation and tools; a Specialist supplies a reusable role and selected capabilities.
+- [Navigation and search](https://aipoch.com/docs/guides/navigation/): Use Home to choose the investigation, the session list to choose its conversation, and previews to inspect its sources and results. This chapter follows the real GSE60450 - RNA-seq count quality project.
+- [Network, proxies, and package mirrors](https://aipoch.com/docs/guides/network/): Open Settings → Network when a model, Notebook request or package download cannot reach its destination. This page separates connection status, Notebook allowed domains, a process proxy and package mirrors.
+- [Notebook and execution evidence](https://aipoch.com/docs/guides/notebook/): Use Notebook to inspect executed code, run a command in the current kernel and follow background work. For a saved file, open Provenance to inspect the execution and evidence associated with that file version.
+- [Planning before execution](https://aipoch.com/docs/guides/planning/): Use Plan first to review inputs, method, outputs and acceptance criteria before execution. Plan approval and tool permission are separate decisions. Screenshot inputs are in Example data.
+- [Opening and previewing files](https://aipoch.com/docs/guides/previews/): Open a saved result to inspect its selected version. This page covers shared viewing controls and ordinary document formats. Use Tables for data interpretation and Scientific viewers for sequence and structure controls.
+- [Projects and source folders](https://aipoch.com/docs/guides/projects/): A project is the working container for a research question: it groups sessions, source files and generated results. Its Agent Context supplies durable instructions to every session in that project.
+- [Provider and local model setup](https://aipoch.com/docs/guides/providers/): Choose an access method
+- [Remote browser access](https://aipoch.com/docs/guides/remote-access/): Remote browser access lets another device operate this computer&#x27;s running workspace. Projects, agents, files and Notebook runtimes continue to run on this computer. It is separate from SSH/Slurm compute, which sends computation to a host.
+- [SSH hosts and Slurm setup](https://aipoch.com/docs/guides/remote-compute/): Configure an SSH host and choose Direct SSH or Slurm before submitting a remote job. A saved host profile does not establish successful authentication or execution.
+- [Reproducibility](https://aipoch.com/docs/guides/reproducibility/): Rerun captured research steps, compare a saved result and retain the verification record.
+- [.science research packages](https://aipoch.com/docs/guides/research-packages/): Export a session with its files and evidence, then import and inspect the research record in another project.
+- [Python and R runtimes](https://aipoch.com/docs/guides/runtimes/): Open Settings → Runtimes to select the Python and R environments available to notebooks and the Agent. An environment&#x27;s Ready status indicates successful detection/setup; its Enable switch separately controls availability to the Agent.
+- [Sessions and branches](https://aipoch.com/docs/guides/sessions/): A project groups related sources and work. A session is one conversation within it. Use a new session for a separate question, and a branch when the new question should retain a selected conversation history.
+- [Keyboard shortcuts](https://aipoch.com/docs/guides/shortcuts/): Keyboard actions depend on focus. A key that edits text in the Composer can navigate a result list or close a preview when a different control is focused. Read the visible shortcut and selected surface before using it during a running task.
+- [Storage and archived work](https://aipoch.com/docs/guides/storage/): Use Settings → Storage to inspect the managed data location and disk usage. Use Settings → Archived to organize inactive projects and sessions. Archiving does not move the data root or promise disk-space recovery.
+- [Organizing with tags](https://aipoch.com/docs/guides/tags/): Tags organize Skills, Connectors, Specialists and References. They are not a universal label on every session or arbitrary disk file. Use Settings → Tags to create tags and browse their assigned resources.
+- [Troubleshooting and common questions](https://aipoch.com/docs/guides/troubleshooting/): Find the error text below, follow the checks for the affected operation, then retry that operation. If the problem persists, report a bug or ask the community with the error and the steps that triggered it.
+- [Token usage and activity](https://aipoch.com/docs/guides/usage/): Use Settings → Usage to inspect reported token volume and local activity. Use a response&#x27;s Token usage menu or the session Context window for a narrower view.
+
+## Research workflows
+
+- [Compare two analysis methods on the same data](https://aipoch.com/docs/workflows/compare-methods/): Worked example PCA and exploratory factor analysis of the psych::bfi items
+- [Build a core reading list for a new research topic](https://aipoch.com/docs/workflows/core-reading-list/): To discover papers from a research topic, follow the topic-search journal-club workflow. The PRISMA example below starts with three known DOIs and demonstrates checking, saving and reading those records.
+- [Cross-check two scientific data sources](https://aipoch.com/docs/workflows/cross-check-records/): Worked example NASA GISTEMP and HadCRUT annual global temperature anomalies
+- [Check sample quality in a gene-count matrix](https://aipoch.com/docs/workflows/data-quality/): Worked example Check sample quality in GSE60450
+- [Retrieve structured records from a scientific database](https://aipoch.com/docs/workflows/database-records/): Worked example Seven straight-chain carboxylic acids in PubChem
+- [Extend an analysis with an installed Specialist](https://aipoch.com/docs/workflows/extend-analysis/): Worked example Extend a theophylline concentration plot with observed exposure metrics
+- [Make a traceable figure with error bars](https://aipoch.com/docs/workflows/figures/): Worked example Temperature and electrical conductivity
+- [Search within specified journals and dates](https://aipoch.com/docs/workflows/focused-literature-search/): Worked example Mindfulness intervention trials in two journals, 2019–2025
+- [Take over a researcher&#x27;s literature collection](https://aipoch.com/docs/workflows/inherit-literature/): This workflow starts with an existing bibliography. If you are starting with a topic, use the journal-club workflow to find and review candidate papers first.
+- [Prepare a focused journal-club reading pack](https://aipoch.com/docs/workflows/journal-club/): Start with a research question, find papers in Open-Science, save their full texts, and turn the same papers into a discussion pack. No downloaded PDF is needed for the search step. Full-text reading begins only after the PDFs have been saved and opened.
+- [Extract a literature evidence table](https://aipoch.com/docs/workflows/literature-review/): Worked example Ten trials on masks and respiratory infections
+- [Combine literature search batches](https://aipoch.com/docs/workflows/merge-literature-searches/): Worked example Solid-state electrolyte interfaces and interphases
+- [Check a paper&#x27;s claim against its figures and supplement](https://aipoch.com/docs/workflows/pdf-evidence/): Worked example What does 98.9% catalyst efficiency mean?
+- [Rerun an analysis with updated data](https://aipoch.com/docs/workflows/rerun-updated-data/): Worked example Add a second week of Beijing air-quality observations
+- [Revise a report after feedback](https://aipoch.com/docs/workflows/revise-report/): Worked example Revise a single-atom catalysis briefing against six editorial comments
+- [Check a regression result with a public dataset](https://aipoch.com/docs/workflows/statistics/): Worked example Earnings after a job-training experiment
+- [Update an existing literature collection](https://aipoch.com/docs/workflows/update-literature/): Worked example Freshwater microplastic transport across two publication windows
+
+## Tools
+
+- [Built-in research tools](https://aipoch.com/docs/tools/built-in/): Built-in operations connect the conversation to project files, Notebook execution, literature records and saved results.
+- [Scientific tool catalog](https://aipoch.com/docs/tools/catalog/): Use this catalog to find the Open-Science entry point and runtime requirements for a scientific method. It is a documentation index, not an application page that installs every listed program.
+- [Service credentials](https://aipoch.com/docs/tools/credentials/): Configure credentials in Settings → Credentials for the service actually making the request. A working Codex subscription supplies model access; it does not supply OpenAlex, GitHub or a custom MCP account.
+- [Connect a custom MCP tool](https://aipoch.com/docs/tools/custom/): Worked example Query a public QC table through a local MCP server
+- [Scientific databases](https://aipoch.com/docs/tools/databases/): The app bundles 23 data-source Connectors, plus a separate offline Molecule Connector. The full registry has 246 tool operations including Molecule&#x27;s two operations; the data-source catalog below covers 244.
+- [Connectors and MCP](https://aipoch.com/docs/tools/mcp/): A Connector exposes tools that an agent can call. Use this page to choose the integration type and understand readiness. For field-by-field setup, import/export and connection management, follow Configure Connectors.
+- [Explore tools](https://aipoch.com/docs/tools/overview/): Choose a tool by the result you need: retrieve a record, inspect a file, execute a calculation or connect an external service. The application combines these capabilities, but they have different setup and evidence requirements.
+- [Scientific tools](https://aipoch.com/docs/tools/scientific/): Run a scientific calculation only after its actual input and execution environment are clear. Choose a local Notebook, a Connector or an external runner according to the method and its dependencies.
+- [Tables and datasets](https://aipoch.com/docs/tools/tables/): Use the preview to understand a table&#x27;s structure, then use Python or R to validate and transform the complete file. Common viewing and download controls belong to Opening and previewing files; renderer bounds and extensions are listed in File formats.
+- [Scientific viewers](https://aipoch.com/docs/tools/viewers/): Open a file from an attachment, saved result or Files. The extension determines the renderer. A preview shows the supplied content; it does not run a scientific prediction or establish that the result is correct.
+
+## Skills
+
+- [Create a Skill and its supporting files](https://aipoch.com/docs/skills/create/): Turn a repeated RNA-seq check into a reusable method using the public example input. This method checks raw counts; it does not perform differential-expression testing.
+- [Skill directory](https://aipoch.com/docs/skills/directory/): The application provides 23 bundled Skills. This directory groups them by the work they support. Entries describe the shipped method; they do not claim that every external model, dependency or service is installed.
+- [Manage and validate Skills](https://aipoch.com/docs/skills/manage/): Import a tested method from local files or GitHub, export copies and maintain installed Skills. Export a method first if you need to retain its current version.
+- [Skill marketplace](https://aipoch.com/docs/skills/marketplace/): Discover, install, update and manage research methods from the Skill marketplace.
+- [Skills](https://aipoch.com/docs/skills/overview/): A Skill gives the agent a repeatable method: when to use it, which inputs it needs, what to do, and how to check its outputs. Open-Science loads its instructions when needed. Installing a Skill does not install the scientific software described inside it.
+- [Skill recipes](https://aipoch.com/docs/skills/recipes/): Choose a recipe by its starting material and the decision you need to make. Keep the procedure in the Skill, the actual files in a project, and the result checks in the conversation.
+
+## Specialists
+
+- [Assign Skills and Connectors](https://aipoch.com/docs/specialists/capabilities/): A Specialist&#x27;s capability list determines which Skills and Connectors it can reach. A globally enabled Connector is not automatically available to every restricted Specialist.
+- [Delegate and verify work](https://aipoch.com/docs/specialists/delegate/): Delegation gives a separate child task to a role while Main Agent coordinates the conversation. Selecting a Specialist to speak in the main conversation and delegating a child task are different actions.
+- [Create and instruct a Specialist](https://aipoch.com/docs/specialists/identity/): Example Create an RNA-seq QC Reviewer role
+- [Manage and share Specialists](https://aipoch.com/docs/specialists/manage/): Use a package to move a configured role, and complete its local setup after importing. Skills, Connector references and local permissions have different portability rules.
+- [Specialists and available roles](https://aipoch.com/docs/specialists/overview/): A Specialist is a saved research role: identity, instructions and permitted Skills/Connectors. Use one when a recurring responsibility needs a consistent scope or a separate subtask. A role&#x27;s name alone does not establish expertise or verification.
+- [Reviewer and Auto-review](https://aipoch.com/docs/specialists/reviewer/): The built-in Reviewer checks a completed response against the request and the evidence available to it. It is separate from a custom Specialist whose name contains "Reviewer," and separate from permission approval.
+
+## Workspace settings
+
+- [Settings overview](https://aipoch.com/docs/settings/overview/): Open Settings from the lower-left corner of the workspace. Its 17 panels are organized into four groups: Intelligence, Connections, Workspace and System. Choose a panel by purpose, or search from the header.
+
+## Reference
+
+- [Reference](https://aipoch.com/docs/reference/): Look up fields, limits and interface contracts. Use Guides for setup and the public-data workflow for an end-to-end research task.
+- [Task SDK and local API](https://aipoch.com/docs/reference/api/): The @aipoch/open-science Node.js client connects to an authenticated local application service to manage tasks, sessions, Connectors and shared credentials. Public SDK methods are separate from Electron preload calls and the agent&#x27;s internal host APIs.
+- [CLI and structured output](https://aipoch.com/docs/reference/cli/): Use open-science to inspect application status, run tasks, manage Connectors and credentials, and operate the local service. Start with the installed launcher and confirm which local instance it connects to.
+- [Configuration and context](https://aipoch.com/docs/reference/configuration/): This reference separates project context, new-session defaults and the configuration of an existing session. Use Projects or Provider setup for the corresponding interface walkthrough.
+- [Connector operation reference](https://aipoch.com/docs/reference/connector-operations/): Look up exact operation names, required fields, defaults and example calls. To choose a data source, start with the database catalog. Expand the Connector family you intend to call; availability and credentials must be configured separately.
+- [Page and control index](https://aipoch.com/docs/reference/control-index/): Find every documented Open-Science button, input, switch, and result by page.
+- [Controls and keyboard reference](https://aipoch.com/docs/reference/controls/): Use this index to find a control&#x27;s canonical explanation. It keeps field limits and shortcuts together without repeating the full task walkthroughs. Labels refer to the English interface.
+- [Architecture and diagnostics](https://aipoch.com/docs/reference/diagnostics/): Locate a failure by the component that owns the operation. A successful model response, a successful calculation and a verified saved artifact are different observations; collect the evidence for the stage that failed.
+- [Example data and expected results](https://aipoch.com/docs/reference/example-data/): Use these public files to reproduce the documentation examples. The source description, original-file checksum and sample-QC baseline live here; individual feature guides link to them instead of repeating the dataset history.
+- [File formats and limits](https://aipoch.com/docs/reference/formats/): Look up file routing and limits here. Uploading a file, previewing it, parsing it in a tool and sending it to a model are separate capabilities. An accepted upload is not a promise of an inline viewer or model understanding.
+- [Skill, Specialist, and MCP formats](https://aipoch.com/docs/reference/packages/): Skills, Specialists and Connector templates have different package boundaries. This reference lists their fields and import budgets. Inspect the archive preview before importing, then check the installation result.
+- [Permissions and control](https://aipoch.com/docs/reference/permissions/): Use this page to identify the rule responsible for a permission decision. For the steps to review a card or revoke a grant, see Permissions and approvals.
+- [Headless service and browser access](https://aipoch.com/docs/reference/server/): The local service provides a headless backend and a localhost browser interface. It is distinct from an SSH Compute host and from Remote.It browser pairing. Choose the authentication and credential-storage settings for the host before connecting a client.
+
+## Changelog
+
+- [Changelog · v0.25.1](https://aipoch.com/docs/changelog/v0-25-1/): Open-Science v0.25.1 features and compatibility changes.
+- [Changelog · v0.26.0](https://aipoch.com/docs/changelog/v0-26-0/): Open-Science v0.26.0 features and compatibility changes.
+- [Changelog · v0.27.0](https://aipoch.com/docs/changelog/v0-27-0/): Open-Science updates for literature import, background tasks, Skills and integrations.
+- [Changelog · v0.28.0](https://aipoch.com/docs/changelog/v0-28-0/): Open-Science adds result reproduction checks, workspace-wide search and managed Codex upgrades.
+- [Changelog · v0.29.0](https://aipoch.com/docs/changelog/v0-29-0/): Open-Science adds the verified Skill marketplace, portable research packages, PDF extraction and external R package installation.
+- [Changelog · v0.30.0](https://aipoch.com/docs/changelog/v0-30-0/): Private reading bookmarks, independent Side Chat tabs, a reorganized settings center and PDF evidence for agents.
+- [Changelog · v0.30.1](https://aipoch.com/docs/changelog/v0-30-1/): Side Chat drafts and model selection, reviewed Skill updates, literature PDFs in research packages and recovery tools.
+- [Changelog · v0.30.2](https://aipoch.com/docs/changelog/v0-30-2/): Specialist Skill loading, independent Side Chat, database query accuracy and Notebook recovery fixes.
+- [Changelog · v0.31.0](https://aipoch.com/docs/changelog/v0-31-0/): Released September 18, 2026. This release adds independent session copies and improves continuity when a conversation or connection is restored.
+- [Changelog · v0.31.1](https://aipoch.com/docs/changelog/v0-31-1/): Released September 20, 2026. New database operations cover sequencing runs, gene-set enrichment and reference-genome identity; classification models are optional.
+
+## Documentation home
+
+- [Open-Science Documentation](https://aipoch.com/docs/): Documentation for AIPOCH Open-Science: installation, workspace and model setup, reproducibility, research workflows, skills, tools, CLI and API reference.

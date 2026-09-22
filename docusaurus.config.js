@@ -109,10 +109,12 @@ const config = {
               },
               ...(route.routes && {routes: withExplicitDates(route.routes)}),
             }));
-            return defaultCreateSitemapItems({
+            const items = await defaultCreateSitemapItems({
               ...params,
               routes: withExplicitDates(params.routes),
             });
+            // The client-side search page has no standalone search value.
+            return items.filter((item) => !/\/search\/$/.test(item.url));
           },
         },
         theme: {

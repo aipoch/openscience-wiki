@@ -47,8 +47,8 @@ export default function Home() {
       },
       {
         '@type': 'WebSite',
-        '@id': 'https://aipoch.com/docs/#website',
-        url: 'https://aipoch.com/docs/',
+        '@id': `${docsHomeUrl}#website`,
+        url: docsHomeUrl,
         name: 'Open-Science Wiki',
         inLanguage: currentLocale,
         publisher: {'@id': 'https://aipoch.com/#organization'},
@@ -56,19 +56,19 @@ export default function Home() {
       },
       {
         '@type': 'CollectionPage',
-        '@id': 'https://aipoch.com/docs/#webpage',
+        '@id': `${docsHomeUrl}#webpage`,
         url: docsHomeUrl,
         name: pageTitle,
         description: pageDescription,
         inLanguage: currentLocale,
-        isPartOf: {'@id': 'https://aipoch.com/docs/#website'},
+        isPartOf: {'@id': `${docsHomeUrl}#website`},
         about: {'@id': 'https://aipoch.com/#open-science'},
         publisher: {'@id': 'https://aipoch.com/#organization'},
-        breadcrumb: {'@id': 'https://aipoch.com/docs/#breadcrumb'},
+        breadcrumb: {'@id': `${docsHomeUrl}#breadcrumb`},
       },
       {
         '@type': 'BreadcrumbList',
-        '@id': 'https://aipoch.com/docs/#breadcrumb',
+        '@id': `${docsHomeUrl}#breadcrumb`,
         itemListElement: [
           {
             '@type': 'ListItem',
