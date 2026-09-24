@@ -1,7 +1,7 @@
 ---
 title: "コネクターおよび資格情報"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -27,7 +27,7 @@ Connector は、サービスのツールをエージェントに利用できる�
 | 状態 | それが確立するもの | 次の検証 |
 | --- | --- | --- |
 | ディレクトリにリスト | アプリは Connector 定義を知っています。 | 実際のツールの説明を読む |
-| Mainのみ / 使用中 | エージェントの可用性 | 目的の代理店および機能結合を確認して下さい |
+| Used by | エージェントの可用性 | 目的の代理店および機能結合を確認して下さい |
 | 選択された資格 | 名前付きバインディングが存在します | 意図したサービスに対するテスト認証 |
 | ツールポリシー | コールが許可されているか、要求されるか、または妨げられるかどうか | 記憶された許可の優先順位を点検して下さい |
 | 成功したツール結果 | 特定のコールが完了しました | 返された識別子/データおよびソースの検証 |
@@ -37,18 +37,28 @@ Connector は、サービスのツールをエージェントに利用できる�
 
 **Search connectors** を使用して、**Directory** の下で PubMed を検索します。 リストには、**Featured** と **Custom** のグループも含まれています。 マッチング結果が下に見える間、フィルタリングはグループごとに適用されますので、別のグループは**コネクターがあなたの検索に一致しません**を言うことができます。
 
-**Filter connectors by group**、**Filter Connectors by agent**、**Filter by Tag**を一緒に検索して使用してください。 **Manage credentials** は、共有の連絡先メール/認証設定を開きます。 **Used by** は空室状況を表示します。 **Manage Tags**はConnectorを整理します。 空室状況スイッチはアクセス可能 Main 代理店; スペシャリストへのアクセスは、各スペシャリストで設定します。
+**Filter connectors by group**、**Filter Connectors by agent**、**Filter by Tag**を一緒に検索して使用してください。 **Manage credentials** は、共有の連絡先メール/認証設定を開きます。 **Used by** は空室状況を表示します。 **Manage Tags**はConnectorを整理します。 リソースの**Manage access**制御を使用して、Mainエージェントとスペシャリストへのアクセスを1か所で確認し、調整します。
+
+#### 各エージェントへのアクセスの管理 {/* #resource-access */}
+
+1. **Settings → Connectors**でConnectorを見つけ、**Manage access**コントロールを選択します。
+2. **メインエージェント**とリストされているスペシャリストのレビュー。 利用可能な場合、ロールリストを検索します。 目的の関連付けだけを変更します。 ロールエディタは、その機能リストを管理するための別の方法を残します。
+3. ポップアップを開き、**Used by**を確認してください。 結合は無効なSpecialistに割り当てることができます; そのロールを有効にしないと割り当てる。
+
+![Mainエージェントと個人スペシャリストのConnectorアクセス](/img/open-science/v0330/resource-access.webp)
+
+このConnectorを除く**Full access**のロールは、リソースごとの例外を作成します。 選択したアクセスを持つロールは、明示的なリストを使用します。 マーケットプレースのロールバインディングは、ここでのみ読み込みます。 犯罪者、サーバーの信頼性および操作の承認は、これらの協会とは別です。 Connector の割り当ては、これらの手順を完了しません。
 
 #### 複数のコネクタの有効または無効化 {/* #enable-or-disable-several-connectors */}
 
-**Settings → Connectors → Manage** を開き、リストをフィルタリングし、意図したコネクタを選択します。 選択されたカウントを有効または無効にする前に確認し、各返された状態を確認します。 作業に必要なサービスのみを有効にしてください。 バルク可用性の変更は、資格情報を提供していません。, ツールの承認ポリシーを変更したり、Specialistアクセスを付与したりします。; それぞれ設定します。
+**Settings → Connectors** を開き、リストをフィルタリングし、関連するグループで **Select multiple** を選択し、意図したコネクタを選択します。 選択されたカウントを有効または無効にする前に確認し、各返された状態を確認します。 作業に必要なサービスのみを有効にしてください。 バルク可用性の変更は、資格情報を提供していません。, パーツールの承認ポリシーを変更したり、Specialistアクセスを許可します。; それぞれ設定します。
 
 #### PubMed: 可用性、ツール、および承認ポリシー {/* #pubmed-availability-tools-and-approval-policy */}
 
 1. **パブメッド**を検索し、詳細を開きます。
 2. **search_articles** を拡張し、説明を読んでください。 PMIDsのカウントとページを返し、PubMedクエリタグ、Boolean演算子、日付、およびソートをサポートしています。
 3. **Require approval**、**Block**、**Always allow** を選択して、許可するアクセス権を取得します。 承認の表示 **Ask when no Session, Project, or Global permission applies.** を要求して下さい
-4. PubMed を有効にし、**Used by** を検査します。 Main の可用性は **Main only** として示されます; 無効な空室状況は、**Not in use**を示しています。
+4. **Manage access** で PubMed の **Main Agent** を有効にし、**Used by** を確認します。同じポップアップで、利用させる各 Specialist の設定を個別に確認します。
 
 ![PubMed ツールの説明と承認制御](/img/open-science/walkthrough-2026-09-08/64-pubmed-tool-policy.webp)
 

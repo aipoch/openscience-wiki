@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-24'
 ---
 
 # Skills {/* #skills */}
@@ -34,7 +34,7 @@ Beginnen Sie mit [Skill Verzeichnis](./directory.md), um eine Methode zu finden,
 | --- | --- |
 | Featured / Imported / Persönliche Überschrift | Erweitert die Quellgruppe. Ausgewählte Schiffe mit der App; Importiert stammt aus einem Paket oder Repository; Personal wird lokal erstellt. |
 | Main Agent Switch / row toggle | Ändert die Verfügbarkeit für benutzergesteuertes Skills; Anwendungserforderliche Skills bleiben aktiviert. Dateien bleiben installiert. |
-| Verwendet von | Zeigt die Verfügbarkeit für Main Agent und Spezialisten an. Specialist-Zugriff im Specialist-Editor zuweisen. |
+| Verwendet von | Zeigt die Verfügbarkeit für Main Agent und Spezialisten an. Verwendung **Manage access** auf der Ressource, um Main Agent und Specialist-Zuordnungen anzupassen. |
 | Tags verwalten / einen Tag-Chip entfernen | Hinzufügen oder Entfernen eines Organisationslabels; Es ändert sich nicht die Ausführungsberechtigung. |
 | Fähigkeit hinzufügen | Bietet agentengestützte Erstellung, direktes Authoring, lokalen Upload, GitHub-Import oder installierte Ordnererkennung. |
 | Konversation **+ → Save as skill** | Extrahiert eine wiederverwendbare Methode aus einem abgeschlossenen aktiven Zweig; siehe [Gründungsschritte und Behindertenstaatsgründe](./create.md). |
@@ -52,6 +52,8 @@ Das Verzeichnis enthält immer noch 23 public bundled Skills. Interne Unterstüt
 Der Screenshot zeigt die Erklärung für **Customize**. Diese erforderlichen Skills bleiben aktiviert, auch wenn Sie andere optionale Methoden deaktivieren.
 
 ![Customize bleibt aktiviert und erklärt, warum](/img/open-science/v0.27.0/08-always-enabled-skill.webp)
+
+Für das Per-Agent-Popup und seine schreibgeschützten Bindungen siehe [Ressourcenzugang](../guides/connectors.md#resource-access).
 
 ## Verwenden Sie es in einem Gespräch {/* #use-it-in-a-conversation */}
 

@@ -86,3 +86,31 @@ Para cada primer HSP, la identidad es el recuento idéntico dividido por longitu
 <ExampleDownload path="/examples/v0320/hba1-blast-results.md">Informe completo</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-hits.csv">Mesa de cinco asientos</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-raw.json">Informe NCBI JSON2</ExampleDownload>
 
 El golpe superior P69905 es la secuencia de entrada en sí, por lo que su identidad y cobertura 100% proporcionan un cheque de secuencia conocida. Los otros éxitos muestran secuencias similares, no un nuevo descubrimiento funcional. Retener el informe y la consulta con la tabla de resultados; una versión posterior de la base de datos puede cambiar la lista de éxitos.
+
+Para comparar tres o más secuencias conocidas, continúe con [alineación de secuencia múltiple y posiciones conservadas](multiple-sequence-alignment.md).
+
+## Revise un dominio de proteínas con HMMER {/* #hmmer-domain */}
+
+<p className="example-label"><strong>Ejemplo práctico</strong> Escáner humano P69905 contra Pfam</p>
+
+Después de recuperar la secuencia de proteínas P69905 canónica, active **HMMER** para Main en **Settings → Connectors**. En la misma conversación, pregunte:
+
+```text
+Use the HMMER Connector to scan the same human P69905 sequence against
+Pfam with hmmscan. Keep the job ID, retrieve the completed domain
+annotations, and save the raw result and a concise English interpretation
+with coordinates and significance values. Preserve an unavailable
+result as unavailable.
+```
+
+1. Revisa el ID de trabajo de la presentación, luego sigue a **estado de la situación** para ese mismo trabajo.
+2. Solicitar **resultados** después de la terminación y guardar la respuesta cruda. Compruebe `ready` y el estado del resultado antes de interpretar sus éxitos.
+3. Inspeccione la adhesión familiar de cada golpe, coordenadas de consulta, E-valores e banderas de inclusión. Un fragmento reportado no es necesariamente un dominio significativo.
+
+![El informe HMMER completo para P69905, con coordenadas de dominio y valores de significación](/img/open-science/v0331/hmmer-result.webp)
+
+Esta ejecución devolvió **Globin · PF00042.28**, con un dominio incluido en los residuos de la consulta **27–137** (1-basado, inclusivo), **115.572 bits** y dominio independiente E-value **2.2781 × 10⁻³³**. El fragmento corto en **10–20** no fue incluido y no fue significativo; no es evidencia para un segundo dominio. Estas coordenadas se refieren a la secuencia canónica presentada, no a un esquema de numeración de proteína madura. Los valores electrónicos dependen del espacio de búsqueda y no miden directamente la probabilidad de que una interpretación biológica sea correcta.
+
+<ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">Respuesta del HMMER crudo</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">Interpretación del dominio</ExampleDownload>
+
+Las entradas de HMMER dependen del programa seleccionado. El ejemplo utiliza una secuencia de proteínas con **hmmscan**; ver el [referencia a la operación](../reference/connector-operations.md#family-26) para otros programas. **InterProScan** recupera por separado el estado y los resultados del TSV de un trabajo existente; no se somete a uno.

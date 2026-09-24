@@ -1,7 +1,7 @@
 ---
 title: "Skillディレクトリ"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-24'
 ---
 
 # Skillディレクトリ {/* #skill-directory */}

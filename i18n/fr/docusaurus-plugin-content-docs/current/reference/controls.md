@@ -1,7 +1,7 @@
 ---
 title: "Commandes et référence du clavier"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # Commandes et référence du clavier {/* #controls-and-keyboard-reference */}
@@ -62,4 +62,6 @@ La recherche globale de l'application couvre les projets, les sessions, le texte
 
 La recherche du wiki est séparée : elle indexe les titres de documentation, les titres et les passages du corps dans la langue courante. Un terme tel que "Inbox" peut correspondre à un paragraphe ici même s'il est absent du titre de session d'une application.
 
-Référence technique: [les obligations relatives à la demande](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [manipulation du clavier du compositeur](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [comportement proche](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [recherche mondiale](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx).
+Référence technique: [les liens entre les demandes et les demandes](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [manipulation du clavier du compositeur](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [comportement proche](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [recherche mondiale](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx).
+
+Le panneau de paramètres/la recherche de dialogue utilise **K** sur macOS et **Ctrl+Alt+K** sur Windows/Linux. **Ctrl+K** continue de focaliser la recherche d'en-tête de paramètres. Voir [portée du raccourci](../guides/shortcuts.md#local-settings-search).

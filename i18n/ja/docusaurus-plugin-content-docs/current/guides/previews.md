@@ -161,3 +161,29 @@ PDF 文脈では、現在のタスクに関連する論文のみをリンクし�
 **Notes & Annotations** を開き、ハイライト、エリアマーク、ページノート、ドキュメントノートの管理を行います。 **Show notes sidebar**は、元のページ以外にメモを保持します。 ダウンロードメニューは**Download PDF with annotations**から**Download original PDF**を分離します。 [PDFの注釈と文書のメモ](pdf-notes.md) は、完全な読書、検索、およびエクスポートのウォークスルーのために続きます。
 
 **図表**では、初めてのローカルモデルのインストールは、プライマリソースが到達できないときに承認されたダウンロードミラーを試すことができます。 **Analyze PDF**を選ぶ前にダウンロードと整合性をチェックするのを待ってください。 ミラーは、これらのリソースをインストールする必要はありません。 キャッシュされた結果は、新しい分析なしで再オープンすることができます。
+
+## 最初のメッセージで PDF を読みます {/* #first-message-pdf */}
+
+1. **Library**で読みやすいPDFで紙を開き、**Read with agent**を選択します。
+2. 対象プロジェクトと**New conversation**を選択します。 **閲覧** の下の PDF と、プレビューは **In session context** を示しています。
+3. すぐに質問をしてください。 紙をリンクする前に、別の紹介メッセージを送信する必要はありません。
+
+<p className="example-label"><strong>実践例</strong> Lang et al., 2019 のメカニズムについて尋ねる</p>
+
+たとえば、CC BY 4.0 のオープンアクセスペーパーである [非欠陥安定熱的に安定した単原子触媒](https://doi.org/10.1038/s41467-018-08136-3) は、**Codex subscription** を使っています。
+
+![初めてのメッセージの前に、読み下でリンクされているPDFとの新しい会話](/img/open-science/v0331/pdf-first-message.webp)
+
+```text
+Using the linked PDF, explain how Lang et al. distinguish non-defect
+stabilization from defect trapping. Give the paper title and DOI,
+two specific findings with PDF page or figure locations, and one
+limitation. Keep the answer in English and cite only evidence you
+can actually read.
+```
+
+応答は、リンクされたPDFからパスを取得し、紙、メカニズム、場所を識別してチェックします。 引用されたページをレスポンスとともに開き、元の各クレームを検証します。 テキストの図を参照して、図イメージが抽出されたり視覚的に解釈されたりするという意味ではありません。 画像証拠が必要な場合は、[図表](#pdf-extraction) を使用します。
+
+![元のPDFの横にある英語の応答, 読書のコンテキストは保持されます](/img/open-science/v0331/pdf-first-response.webp)
+
+ハイライトとドキュメントレベルのノートについては、[PDFの注釈](pdf-notes.md) を続けてください。

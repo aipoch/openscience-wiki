@@ -1,7 +1,7 @@
 ---
 title: "聯結器與憑據"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -27,7 +27,7 @@ Connector 讓服務工具可供 Agent 使用，Credential 在服務要求時提�
 | 狀態 | 證明什麼 | 後續檢查 |
 | --- | --- | --- |
 | Directory 中存在 | 應用知道該定義 | 閱讀具體工具說明 |
-| Main only / In use | Agent 可用範圍 | 核對角色和能力繫結 |
+| Used by | Agent 可用範圍 | 核對角色和能力繫結 |
 | 已選 Credential | 存在命名繫結 | 對目標服務驗證認證 |
 | 工具策略 | 允許、詢問或阻止呼叫 | 檢查記憶權限優先順序 |
 | 工具實際成功 | 這次呼叫完成 | 核對返回識別符號、資料與來源 |
@@ -36,18 +36,28 @@ Connector 讓服務工具可供 Agent 使用，Credential 在服務要求時提�
 
 **Search connectors** 搜尋 PubMed 後在 **Directory** 組找到結果；列表還包含 **Featured**、**Custom**。搜尋按組顯示結果，因此其他分組可能顯示 **No connectors match your search**，下方仍有匹配項。
 
-可結合 **Filter connectors by group**、**Filter Connectors by agent**、**Filter by Tag** 篩選。**Manage credentials** 進入共享聯絡郵箱/憑據設定；**Used by** 顯示可用範圍，**Manage Tags** 管理標籤。可用性開關控制 Main Agent 是否能使用；Specialist 的訪問範圍在各自角色中設定。
+組合使用 **Filter connectors by group**、**Filter Connectors by agent**、**Filter by Tag** 和搜尋。**Manage credentials** 開啟共享的聯絡郵箱與憑證設定。**Used by** 顯示關聯的代理；**Manage Tags** 用於整理標籤。使用資源旁的 **Manage access** 統一檢視和調整 Main Agent 與 Specialist 的訪問。
+
+#### 按代理管理資源訪問 {/* #resource-access */}
+
+1. 在 **Settings → Connectors** 找到 Connector，開啟它的 **Manage access** 控制元件。
+2. 檢視 **Main Agent** 和列出的 Specialist；列表支援搜尋時，可按角色名稱篩選。只調整所需關聯；角色編輯器仍可管理該角色的能力列表。
+3. 重新開啟彈窗並檢查 **Used by**。已禁用的 Specialist 仍可能保留繫結；分配資源不會啟用該角色。
+
+![分別檢視 Main Agent 和各 Specialist 的 Connector 訪問](/img/open-science/v0330/resource-access.webp)
+
+對於開啟 **Full access** 的角色，排除該 Connector 會形成單項例外；選擇訪問模式使用明確的資源列表。市場角色的繫結在這裡可能只讀。憑證、服務就緒狀態和操作批准與這些關聯分開管理，分配 Connector 不會完成這些步驟。
 
 #### 批次啟用或禁用 Connectors {/* #批量启用或禁用-connectors */}
 
-開啟 **Settings → Connectors → Manage**，篩選列表並選擇需要操作的 Connector。啟用或禁用前檢查選中數量，完成後核對各項狀態，只保留當前工作需要的服務。批次切換可用性不會補充憑據、更改各工具的審批策略，也不會授予 Specialist 訪問權限，這些設定需分別配置。
+開啟 **Settings → Connectors**，篩選列表，在相應組選擇 **Select multiple** 並勾選需要操作的 Connector。啟用或禁用前檢查選中數量，完成後核對各項狀態，只保留當前工作需要的服務。批次切換可用性不會補充憑據、更改各工具的審批策略，也不會授予 Specialist 訪問權限，這些設定需分別配置。
 
 #### PubMed：可用性、工具與審批 {/* #pubmed可用性工具与审批 */}
 
 1. 搜尋 **PubMed** 並開啟詳情。
 2. 展開 **search_articles** 閱讀說明。它返回匹配總數及一頁 PMID，支援 PubMed 欄位標籤、布林運算、日期和排序。
 3. 根據所需訪問範圍選擇 **Require approval**、**Block** 或 **Always allow**。Require approval 顯示 **Ask when no Session, Project, or Global permission applies.**，即沒有適用的已記憶權限時才詢問。
-4. 啟用 PubMed 並檢查 **Used by**。供 Main 使用時會顯示 **Main only**；關閉後為 **Not in use**。
+4. 透過 **Manage access** 為 PubMed 啟用 **Main Agent**，再檢查 **Used by**。在同一彈窗中單獨核對需要使用它的 Specialist。
 
 ![PubMed 工具說明與審批控制元件](/img/open-science/walkthrough-2026-09-08/64-pubmed-tool-policy.webp)
 

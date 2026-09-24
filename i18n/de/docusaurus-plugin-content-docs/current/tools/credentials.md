@@ -1,7 +1,7 @@
 ---
 title: "Dienstanmeldeinformationen"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # Dienstanmeldeinformationen {/* #service-credentials */}
@@ -14,21 +14,18 @@ Konfigurieren Sie die Anmeldeinformationen in **Settings → Credentials** für 
 | --- | --- | --- |
 | GitHub | Persönliches Zugriffs-Token für Skill Discovery/Importe | Verwenden Sie Connect/Manage und die Token-Steuerelemente; Testen Sie dann die beabsichtigte Repository-Operation. |
 | Literaturzugriff | Kontakt-E-Mail und optionaler NCBI API Schlüssel | Speichern von Kontaktinformationen; NCBI-Schlüssel ist optional für unterstützte Anfragen. |
-| OpenAlex | API-Schlüssel für OpenAlex-Operationen in Literatur | Validieren Sie den eingegebenen Schlüssel, speichern Sie ihn und erstellen Sie eine begrenzte Abfrage. |
+| OpenAlex | Optionaler API-Schlüssel für OpenAlex-Operationen in der Literatur | Validieren Sie den eingegebenen Schlüssel, speichern Sie ihn und erstellen Sie eine begrenzte Abfrage. |
 | Unpaywall | Kontakt-E-Mail für Volltext-Standortsuche | Verwendet die konfigurierte Literatur-Kontakt-E-Mail; Keine erfundene Adresse. |
 
 **Connect** öffnet einen unkonfigurierten Dienst; **Manage** öffnet eine bestehende. **Desktop only** bedeutet, dass die Anmeldeinformationen den Desktop-Kontext benötigen. Ein gespeicherter Schlüsselindikator ist nicht der geheime Wert selbst.
 
-## Hinzufügen eines fehlenden OpenAlex-Schlüssels {/* #openalexs-actual-missing-key-flow */}
+## Konfigurieren Sie einen optionalen OpenAlex-Schlüssel {/* #openalexs-actual-missing-key-flow */}
 
-1. Fordern Sie eine OpenAlex-Suche an, während kein Schlüssel konfiguriert ist.
-2. Die Konversation zeigt **Add your OpenAlex API key** mit einem **API key**-Feld an.
-3. **Save key** speichert den eingegebenen Schlüssel und nimmt den Warteruf bei Erfolg wieder auf. **Not now** lässt das Credential unkonfiguriert.
-4. Lesen Sie den endgültigen Werkzeugstatus. Die Wahl von **Not now** kann **credential_required** zurückgeben; Konfigurieren Sie den Schlüssel vor dem erneuten Versuch.
+Ab v0.33.1 benötigen OpenAlex-Abfragen keinen API-Schlüssel mehr. Beginnen Sie mit einer kleinen Abfrage; die Tariflimits, die Authentifizierungs- und Zugangsrichtlinien des Dienstes gelten weiterhin. Das Zulassen einer schlüssellosen Anfrage verspricht keine unbegrenzte Nutzung oder eine erfolgreiche Antwort.
 
-![OpenAlex Credential Request in der englischen App](/img/open-science/capabilities-walkthrough/25-openalex-credential-request.webp)
+Um Ihren eigenen Schlüssel zu verwenden, öffnen Sie **Settings → Credentials → OpenAlex** (auch verfügbar aus Literatur Graph bis **Manage credentials**), geben Sie **API key** ein, wählen Sie **Validate**, dann **Save** nach erfolgreicher Validierung. Der Schlüssel wird nur für `api.openalex.org` verwendet. **Remove key** entfernt einen vorhandenen Schlüssel; das Ersatzfeld das gespeicherte Geheimnis nicht preisgibt.
 
-Die Eingabeaufforderung besagt, dass der Schlüssel auf diesem Computer verschlüsselt ist und nur an `api.openalex.org` gesendet wird. In den Einstellungen bietet das OpenAlex-Formular auch **Validate**, **Save**, **Remove key**, wenn eines vorhanden ist, und **Cancel**. Ein Ersatzfeld zeigt den gespeicherten Schlüssel nicht an. Secure-Storage-Fehler erfordern das Auflösen des Schlüsselbundzustands des Systems, bevor Geheimnisse gespeichert werden.
+Beheben Sie System Credential-Storage-Fehler vor dem Speichern. Bei 429-Antworten sollten Sie die Quotierung und die Retry-Anleitung des Dienstes überprüfen, anstatt anzunehmen, dass ein Schlüssel obligatorisch ist.
 
 ## Credentials für Custom Connectors {/* #credentials-for-custom-connectors */}
 
@@ -59,7 +56,7 @@ Wiederholen Sie nach dem Speichern eine kleine Operation und überprüfen Sie ih
 
 Das Entfernen eines Berechtigungsnachweises kann sich auf jeden Connector auswirken, der daran gebunden ist. Connector und Specialist-Exporte schließen bewusst gebrauchsfertige Geheimnisse/Vertrauen aus; diese wieder an der Aufnahmevorrichtung zu konfigurieren. Fügen Sie niemals ein Geheimnis in einen Skill-, Eingabeaufforderungs-, Screenshot- oder Ausgabebericht ein.
 
-OpenAlex Abfragen erfordern einen gültigen OpenAlex Schlüssel. OAuth Connectors erfordern das Ausfüllen der Anmeldung des benannten Dienstes. Beheben Sie den angezeigten Authentifizierungsfehler, bevor Sie dieselbe kleine Abfrage erneut versuchen.
+Ein OpenAlex Schlüssel ist optional. OAuth Connectors müssen weiterhin die Anmeldung des benannten Dienstes abschließen. Beheben Sie den angezeigten Authentifizierungsfehler, bevor Sie dieselbe kleine Abfrage erneut versuchen.
 
 Bezugsnummer der Durchführung: [CredentialsPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [ConnectorAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx).
 
@@ -67,4 +64,4 @@ Bezugsnummer der Durchführung: [CredentialsPanel.tsx](https://github.com/aipoch
 
 ## Öffnen Sie die offizielle API Key Page {/* #official-api-key-page */}
 
-Von v0.31.0 aus enthalten OpenAlex und NCBI-Anmeldeinformationen einen Link zur offiziellen API-Schlüsselseite. Das Öffnen behält den Formularentwurf und wartet auf den Connector-Aufruf. Schließen Sie die Kontoschritte mit dem Dienst ab, kehren Sie zum Anmeldeformular zurück, validieren und speichern Sie dann den beabsichtigten Schlüssel, bevor Sie die Abfrage erneut versuchen. Das Öffnen der Schlüsselseite allein speichert weder einen Schlüssel noch vervollständigt die wartende Abfrage.
+Die Formulare OpenAlex und NCBI verlinken auf ihre offiziellen Schlüsselseiten. Schließen Sie die Kontoschritte mit dem Dienst ab, kehren Sie zum Formular zurück, validieren und speichern Sie dann den beabsichtigten Schlüssel. Durch das Öffnen eines Links wird kein Schlüssel gespeichert oder eine Abfrage ausgeführt; Ob ein Schlüssel benötigt wird, hängt vom Dienst und der Bedienung ab.

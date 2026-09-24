@@ -1,0 +1,9 @@
+{
+  "job_id": "clustalo-R20260924-093358-0146-98412985-p1m",
+  "status": "QUEUED",
+  "ready": false,
+  "sequence_count": 3,
+  "sequence_type": "protein",
+  "requested_format": "clustal_num",
+  "poll_after_seconds": 10
+}

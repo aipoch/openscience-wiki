@@ -1,7 +1,7 @@
 ---
 title: "Installations- und Vermittlungsstellen"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-24'
 ---
 
 # Installations- und Vermittlungsstellen {/* #installing-and-switching-agents */}
@@ -37,6 +37,8 @@ Die inspizierte Seite bot Codex, Claude Agent, OpenCode und CodeBuddy an. Verfü
 Für OpenCode lädt **Install → App-managed download (recommended)** eine in sich geschlossene Laufzeit herunter. Die Seite zeigte Auflösen, Herunterladen des Fortschritts und dann eine installierte Karte mit ihrer Version und ihrem Pfad. Wählen Sie diese Karte aus, bestätigen Sie **Wechseln Sie zu OpenCode?** und wählen Sie ein kompatibles Modell. Das Beispiel für die lokale Verbindung hat eine abgeschlossene Antwort zurückgegeben; siehe [Lokale Provider-Einrichtung](./providers.md#connect-a-local-model-endpoint) für seine API und Token-Grenzen.
 
 Für Codex müssen die native Laufzeit und der ACP-Adapter die Erkennung als kompatibles Paar bestehen. Die Installation nur einer Komponente entspricht nicht einem bereiten Backend. Der Anbieter-Abonnement-Login ist in [Provider-Einrichtung](./providers.md) abgedeckt.
+
+In v0.33.0 benötigt **Claude Agent** Claude CLI **2.1.118 oder höher**. Wenn die Erkennung eine nicht unterstützte Version meldet, aktualisieren Sie die erkannte Installation mit der Installationsmethode, verwenden Sie dann **Re-detect** und überprüfen Sie die Bereitschaft, bevor Sie eine Sitzung starten. Durch die Aktualisierung eines anderen CLI auf Ihrem Weg wird die auf der Karte gezeigte Installation nicht repariert.
 
 ## Aktualisieren einer App-verwalteten Codex-Laufzeit {/* #update-codex */}
 

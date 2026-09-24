@@ -1,7 +1,7 @@
 ---
 title: "架構與診斷"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-24'
 ---
 
 # 架構與診斷 {/* #架构与诊断 */}
@@ -73,3 +73,10 @@ flowchart LR
 原始碼：[日誌與保留](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/logger.ts)、[診斷脫敏](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/diagnostic-redaction.ts)、[Notebook 錯誤長度限制](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/failure-diagnostic.ts)、[產物內容狀態](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/artifacts/provenance-content-status.ts)。
 
 排查時，先區分操作失敗與提交後的重新整理/清理失敗，以及後臺作業完成與結果送達。重試寫入前檢查實際儲存狀態。[恢復提示表](../guides/troubleshooting.md)涵蓋佇列恢復受阻、PDF 條目保留、集合過期編輯及 Windows 安裝錯誤。[後臺任務](../guides/notebook.md)說明執行狀態，遠端監控錯誤仍與作業最終結果分別處理。
+
+
+## 會話診斷歸檔 {/* #session-diagnostic-archive */}
+
+**Export diagnostics…** 將所選會話後設資料、資料庫記錄和可用的應用日誌後設資料收集到本地歸檔，並附帶清單和匯出日誌。部分來源缺失不會中止整個匯出；過大或損壞的來源可能只生成摘要。當前及歷史應用日誌可能包含其他會話的活動，應檢查所選來源及各自匯出結果。
+
+常規後設資料來源排除隱私內容欄位。研究包觸發敏感內容檢查後，還可選擇脫敏掃描證據與原始檔案。原始檔案預設不勾選，主動勾選會包含其原始位元組。匯出不上傳，也不呼叫模型。分享前檢查歸檔，它不替代研究包備份或最小復現步驟。具體操作見[診斷匯出圖解](../guides/troubleshooting.md#session-diagnostics)。

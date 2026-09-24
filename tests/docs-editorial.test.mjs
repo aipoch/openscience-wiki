@@ -7,21 +7,21 @@ const buildDir = process.env.DOCS_BUILD_DIR || 'build';
 const availableWorkflows = [
   'core-reading-list', 'inherit-literature', 'journal-club', 'literature-review',
   'pdf-evidence', 'data-quality', 'statistics', 'extend-analysis', 'figures',
-  'focused-literature-search', 'merge-literature-searches', 'database-records',
+  'focused-literature-search', 'screen-literature', 'merge-literature-searches', 'database-records',
   'revise-report', 'update-literature', 'cross-check-records',
   'rerun-updated-data', 'compare-methods',
-  'public-omics-data', 'protein-sequence-search', 'gene-set-enrichment', 'reference-genome-check',
+  'public-omics-data', 'protein-sequence-search', 'multiple-sequence-alignment', 'gene-set-enrichment', 'reference-genome-check',
 ];
 
 const en = readFileSync('docs/reference/connector-operations.md', 'utf8');
 const zh = readFileSync('i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/connector-operations.md', 'utf8');
-const operations = (text) => [...text.matchAll(/^### `([^`]+)`\n\n([^\n]+)/gm)].map((m) => ({name:m[1], description:m[2]}));
+const operations = (text) => [...text.matchAll(/^### `([^`]+)`(?: \{\/\* #[^ ]+ \*\/\})?\n\n([^\n]+)/gm)].map((m) => ({name:m[1], description:m[2]}));
 
 test('translated operation explanations preserve all callable names and example arguments', () => {
   const original = operations(en), translated = operations(zh);
-  const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.32.0.json', 'utf8'));
+  const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.33.1.json', 'utf8'));
   const dataTools = registry.filter((c) => c.id !== 'molecule').flatMap((c) => c.tools);
-  assert.equal(original.length, 251);
+  assert.equal(original.length, 269);
   assert.deepEqual(original.map((t) => t.name).sort(), dataTools.map((t) => t.id).sort());
   assert.deepEqual(translated.map((x) => x.name), original.map((x) => x.name));
   for (let i = 0; i < original.length; i++) {
@@ -51,22 +51,24 @@ for (const prefix of locales.map((locale) => locale === 'en' ? '' : `${locale}/`
   });
 }
 
-const currentRegistry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.32.0.json', 'utf8'));
+const currentRegistry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.33.1.json', 'utf8'));
 for (const prefix of ['', 'zh-Hans/']) {
   test(`${prefix || 'en/'} latest release belongs to the documentation sidebar`, () => {
-    const html = readFileSync(`${buildDir}/${prefix}changelog/v0-32-0/index.html`, 'utf8');
+    const html = readFileSync(`${buildDir}/${prefix}changelog/v0-33-1/index.html`, 'utf8');
     const aside = html.match(/<aside\b[\s\S]*?<\/aside>/)?.[0];
     assert.ok(aside, 'the new release must not become a standalone page without chapter navigation');
-    assert.ok(aside.includes(`/docs/${prefix}changelog/v0-32-0/`));
+    assert.ok(aside.includes(`/docs/${prefix}changelog/v0-33-1/`));
   });
 }
 const currentTools = currentRegistry.filter((c) => c.id !== 'molecule').flatMap((c) => c.tools);
 for (const [locale, prose, marker] of [['en', en, '**required**'], ['zh-Hans', zh, '**\u5fc5\u586b**']]) {
   test(`${locale}: parameter tables preserve schema-required inputs and gnomAD coordinate bounds`, () => {
-    const sections = [...prose.matchAll(/^### `([^`]+)`\n([\s\S]*?)(?=^### `|$(?![\s\S]))/gm)];
-    assert.deepEqual(sections.map((s) => s[1]), currentTools.map((t) => t.id));
-    for (const [i, tool] of currentTools.entries()) {
-      const body = sections[i][2];
+    const sections = [...prose.matchAll(/^### `([^`]+)`(?: \{\/\* #[^ ]+ \*\/\})?\n([\s\S]*?)(?=^### `|$(?![\s\S]))/gm)];
+    // New families are appended to preserve existing family bookmark numbers.
+    assert.deepEqual(sections.map((s) => s[1]).sort(), currentTools.map((t) => t.id).sort());
+    const bodies = new Map(sections.map((section) => [`${section[2].match(/host\.mcp\("([^"]+)"/)?.[1]}/${section[1]}`, section[2]]));
+    for (const tool of currentTools) {
+      const body = bodies.get(`${tool.connector}/${tool.id}`);
       for (const field of tool.input.required ?? tool.required ?? []) {
         const row = body.split('\n').find((line) => line.startsWith(`| \`${field}\` |`));
         assert.ok(row?.includes(marker), `${tool.connector}/${tool.id}: ${field} must be marked required`);

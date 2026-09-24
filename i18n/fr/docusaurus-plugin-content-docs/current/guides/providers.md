@@ -1,7 +1,7 @@
 ---
 title: "Configuration du fournisseur et du modèle local"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -218,3 +218,13 @@ Les modifications des fournisseurs sont testées avant qu'ils ne soient engagés
 Choisissez **StepFun** dans le catalogue des fournisseurs, validez **Chine** ou **Global**, puis sélectionnez un modèle et fournissez des identifiants pour cette région. v0.32.0 ajoute **Step-5 Preview**, avec des métadonnées de catalogue multimodaux et 1M-context. L'accès réel au modèle, le quota et le support d'entrée dépendent toujours du compte du fournisseur et de la compatibilité de l'Agent sélectionné.
 
 Enregistrer et vérifier la connexion avant de la choisir dans une conversation. Les configurations de fournisseurs existantes conservent leur paramètre précédent; mettre à jour l'application ne change pas leur région ou modèle Main.
+
+## Catalogues des fournisseurs mis à jour {/* #provider-catalog-updates */}
+
+Le catalogue v0.33.0 ajoute des modèles **Xiaomi MiMo v2.6** et **xAI Grok 4.7**, et rafraîchit **OpenCode Zen** et **Allez.**. Nouvelles configurations MiMo par défaut vers `mimo-v2.6-pro`; les choix existants de v2.5 restent disponibles. Grok 4.7 devient xAI=s nouveau par défaut alors que les ID précédents du modèle restent listés.
+
+Sélectionnez le modèle exact proposé pour votre Agent actif, vérifiez ses options d'entrée et de raisonnement et lancez une petite requête. Un catalogue par défaut ne modifie pas le modèle dans chaque session existante ou garantit l'accès à votre compte. Codex peut rester Main pendant que vous configurez un [service de classement](models.md#classification-models) séparément.
+
+## Nouveaux choix de catalogue {/* #catalog-models */}
+
+Les catalogues des fournisseurs v0.33.1 ajoutent **GPT-6** et **Claude Opus 5.5**. Ouvrez la liste de modèles du fournisseur et choisissez une entrée prise en charge par le cadre actif et votre compte. La présence du catalogue ne permet pas d'accéder au modèle Main enregistré ou de le changer. Valider le fournisseur et envoyer une petite demande avant d'utiliser un modèle modifié pour la recherche.

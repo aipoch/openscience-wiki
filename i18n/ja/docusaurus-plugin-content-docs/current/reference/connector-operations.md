@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.32.0**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.32.0.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
+Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.33.1**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.1.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
 
 
 ## 化学化学品 {/* #family-1 */}
@@ -618,6 +618,47 @@ Fetch UniProtKB は、プライマリまたはセカンダリアクセスの一�
 const result = await host.mcp("genes", "get_uniprot_entries", {"accessions": ["P04637", "P38398"], "fields": ["accession", "id", "protein_name", "gene_names", "organism_name", "length"]})
 ```
 
+### `submit_uniprot_id_mapping` {/* #submit_uniprot_id_mapping */}
+
+UniProt バッチ ID マッピング用の 100,000 識別子にアップロードします。 from_db/to_db は、UniProt API データベース名 (例: ) です。 Gene_Name、GeneID、Ensembl、RefSeq_Protein、UniProtKB_AC-ID -> UniProtKB; UniProtKB_AC-ID -> ビルドまたは GeneID) 有効なペアは、[https://rest.uniprot.org/configure/idmapping/fields](https://rest.uniprot.org/configure/idmapping/fields) で定義されます。 サポートされていないペアは上流に失敗します。 taxon_id は Gene_Name のみで指定できます。 種を解体するために指定します。 IDは空白や区切り文字なしで個々の文字列でなければなりません。 ケースとバージョンが保存され、一度に提出された正確な重複が保存されます。 from_db=UniProtKB_AC-ID で search_uniprot_entries から id へアクセスします。 1つのPOSTを、自動的に取り戻しか、または投票送らないで下さい。 job_id を保存し、get_uniprot_id_mapping_status と get_uniprot_id_mapping_results を使用します。 UniProt は、7 日以降の結果が期限切れになります。 キャンセルまたはアプリのシャットダウンは、リモートジョブではなく、ローカルリクエストを停止します。 ローカルジョブキャッシュやリモートのキャンセル/削除APIは提供されていません。 投稿がその応答を失えば、仕事は存在します。 ブラインドリサブミットは行いません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `from_db` | 文字列 | **必須**; 最長: 1; 最高長さ: 100; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_-&#93;&#42;$" |
+| `to_db` | 文字列 | **必須**; 最長: 1; 最高長さ: 100; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_-&#93;&#42;$" |
+| `ids` | 文字列の配列 | **必須**; minItems: 1; maxItems: 100000の |
+| `taxon_id` | 整数 | 任意; 最小値: 1; 最高: 2147483647 |
+
+```javascript
+const result = await host.mcp("genes", "submit_uniprot_id_mapping", {"from_db":"Gene_Name","to_db":"UniProtKB","ids":["TP53","BRCA1"],"taxon_id":9606})
+```
+
+### `get_uniprot_id_mapping_status` {/* #get_uniprot_id_mapping_status */}
+
+既存のUniProt ID マッピングジョブを一度チェックします。 NEW/RUNNING は、後からこのツールをポーリングすることを意味します(少なくとも 3 秒間離します)。 FINISHED は、get_uniprot_id_mapping_results のすべてのページをフェッチすることを意味します。 上流 ERROR は FAILED に正規化されます。, 末端のジョブの失敗, 一致しない ID. HTTP 400/500 ジョブの失敗は、自動のレトリーなしで読み込まれます。 他のHTTPの失敗(未知/期限切れのジョブを含む)の伝搬。 新規ジョブを提出したり、自動的に投票したりしません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `job_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 100; パターン: "^&#91;A-Za-z0-9_-&#93;+$" |
+
+```javascript
+const result = await host.mcp("genes", "get_uniprot_id_mapping_status", {"job_id":"ecuuh9h0Md"})
+```
+
+### `get_uniprot_id_mapping_results` {/* #get_uniprot_id_mapping_results */}
+
+UniProt ID マッピングの1ページが完成したジョブのペアをキャプチャします。 next_cursor と job_id/page_size を has_more=false まで繰り返します。 カーソルは、オフセットや耐久性のあるスナップショットではなく、不透明です。 毎行に 1 つずつのマッピングを含むすべての行が保持されます。 多重性を解釈する前に、すべてのページからペアをマージします。 ソースはページをスパンさせることができます。 ページ全体で報告されたfailed_idsの組合を収集します。 ページの不在から比類のないIDを決して劣らないでください。 UniProtKB ターゲット ID は、アノテーションやシーケンスに対して get_uniprot_entries に渡されます。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `job_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 100; パターン: "^&#91;A-Za-z0-9_-&#93;+$" |
+| `page_size` | 整数 | 任意; デフォルト: 100; 最小値: 1; 最高: 500 |
+| `cursor` | 文字列 | 任意; 最長: 1; 最高長さ: 4096; パターン: "^&#91;^\s\\u0000-\u001f\u007f&#93;+$" |
+
+```javascript
+const result = await host.mcp("genes", "get_uniprot_id_mapping_results", {"job_id":"ecuuh9h0Md","page_size":100})
+```
+
 ### `map_reactome_pathways` {/* #map_reactome_pathways */}
 
 遺伝子のシンボルまたはUniProtアクセスをReactomeパスウェイ(AnalysisServiceトークンワークフロー)にマップします。 引数:識別子(id_type="symbol"、"uniprot"の場合のUniProtアクセス)。 重複なし。 id_type ("symbol"/"uniprot"); 種 (デフォルト "Homo sapiens"); リソース(分析サービス分子リソースビュー "TOTAL" デフォルト; "UNIPROT"の特長 タンパク質レベルのマッピングを制限します。 include_disease (サービスのデフォルトは本当); コンパクト(True → 識別子 低レベル パスウェイのみ &#123;stId,name,species&#125; + reactomeリリースバージョン; 偽 → 完全な決定的な結果: 実体/反応統計(p-値、FDR、見つかり/合計)とバッチサマリー(含む)のパー識別子の完全なパスウェイセット identifiers_not_found). 戻り値:&#123;tool、reactome_version、id_type、種、n_input、遺伝子:&#123;identifier:&#123;found、n_lowlevel_pathways、pathways&#125;&#125;&#125;; パスウェイの統計とbatch_summaryをフル追加します。 要求された種に渡る識別子をマッピングし、それらを人間に写し出さない。 `Homo sapiens` や `Mus musculus` など、サポートされている科学名を使用してください。 ダウンロード可能なスキーマは、サポートされているすべての名前をリストします。 空、未サポート、または不一致の種は誤りです。 `found` と `n_found` は、識別子の認識を示し、パスウェイのメンバーシップではありません。認識された識別子はゼロパスウェイを持つことができます。 コンパクトモードは、低レベルな経路のみが格納されます。
@@ -886,7 +927,7 @@ const result = await host.mcp("genomes", "ucsc_track_data", {"track": "cpgIsland
 
 ### `ucsc_conservation` {/* #ucsc_conservation */}
 
-UCSC phyloP / phastConsトラック(マルチスペクシーアライメント上のベース・ワイズ・アライメント)から地域のための進化的保存要約。 アーグ: クロム(chr-prefixed)。 開始(0ベースのハーフオープン)。 終了 (排他的; スパンは100000 bpでおおわれた — より大きい割れ目); ゲノム (デフォルト hg38); トラック(任意; デフォルトは、他のゲノムのhg19とphyloP100wayのphyloP100wayの全ての値です。 肯定的な = 保存, ネガティブ = 速い進化; 代替hg38 phastCons100way、phyloP30way、phastCons30way、phyloP447way、phyloP470way; hg19 phastCons100way; include_values(また、ベース&#123;start、end、value&#125;ごとのリターン) max_values、values_truncated でおおわれた行は帽子を旗付けます; デフォルト false = 要約のみ。 max_values (ベースキャップのデフォルト2000)。 &#123;genome、トラック、クロム、開始、端、span_bp、n_bases_covered、coverage_fraction、平均、分、max&#125; (+values, values_truncated をリクエストすると) 各行のベーススパンで重み付けされた状態、ウィンドウに切り込みます。 coverage_fractionを下げる未発見ベースは、ゼロスコアリングではありません。 非スコアは上昇を追跡します; アップストリームを回転させる行リストも上げます。
+UCSC phyloP / phastConsトラック(マルチスペクシーアライメント上のベース・ワイズ・スコア)から地域のための進化保存要約。 アーグ: クロム(chr-prefixed)。 開始(0ベースのハーフオープン)。 終了 (排他的; スパンは100000 bpでおおわれた — より大きい割れ目); ゲノム (デフォルト hg38); トラック(任意; デフォルト: hg19 phyloP100wayAll、hg38 phyloP100way、mm10 phyloP60wayAll、mm39 phyloP35way; 他のゲノムは phyloP100way フォールバックを保持します。これは存在しません。必要に応じて ucsc_list_tracks からスコアトラックを指定します。 肯定的な = 保存, ネガティブ = 速い進化; 代替hg38 phastCons100way、phyloP30way、phastCons30way、phyloP447way、phyloP470way; hg19 phastCons100way; include_values (また1基ごとのリターン) &#123;start,end,value&#125; max_values、values_truncated でおおわれた行は帽子を旗付けます; デフォルト false = 要約のみ。 max_values (ベースキャップのデフォルト2000)。 返品について &#123;genome, track, chrom, start, end, span_bp, n_bases_covered, coverage_fraction, mean, min, max&#125; (+values, values_truncated をリクエストすると) 各行のベーススパンで重み付けされた状態、ウィンドウに切り込みます。 coverage_fractionを下げる未発見ベースは、ゼロスコアリングではありません。 非スコアは上昇を追跡します; アップストリームを回転させる行リストも上げます。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -930,6 +971,48 @@ UCSCアセンブリの染色体/コンチグ名とサイズ - 座標および反
 
 ```javascript
 const result = await host.mcp("genomes", "ucsc_chrom_sizes", {"genome": "hg38", "filter_text": "chr1", "max_chroms": 25})
+```
+
+### `clustalo_submit` {/* #clustalo_submit */}
+
+EMBL-EBIジョブディスパッチャClustal Omegaに3つ以上のタンパク質、DNAまたはRNAシーケンスを、非同期複数シーケンスアライメントアライメント用に送信します。 入力はFASTAの記録を一意に示さなければなりません; サービスはほとんどの4000シーケンスまたは4 MiBで受け入れます。 job_id を返します。 clustalo_results の前に clustalo_status を保ち、電話をかけて下さい。 コネクターはデフォルトでclustal_numを要求します、保存された場所および下流の進化の分析を点検するために適した位置の数字が付いているClustal直線。 EMBL-EBIは、有効な連絡先メールをリクエストします。 &#91;設定&#93; → &#91;プライバシー&#93; → &#91;連絡先をシェア&#93; 電子メールで、研究データサービスを設定します。 送信された応答を失った場合、受理されたリモートジョブを表す可能性があります。 自動的に再送信しないでください。 EMBL-EBIは、限られたプロバイダ制御期間(最大1週間に文書化)の結果を保存します。 これは、アプリ所有の削除保証ではありません。 job_idを再起動してから再開してください。 このコネクタは、ジョブレジストリ、結果のキャッシュ、自動再送信、およびキャンセル/アプリの出口をローカルリクエストのみ停止しません。 シーケンスはEMBL-EBIに送信され、ホストは会話やNotebookの永続でツールの入力と返されたアライメントコンテンツを保持することができます。 EMBL-EBI の公正な使用の指導を尊重して下さい: バッチで 30 の仕事を要求し、多くを提出する前に処理/結果を待って下さい; このコネクタは、クロスコールの回転を強制しません。 API公式契約の[https://www.ebi.ac.uk/jdispatcher/docs/webservices/](https://www.ebi.ac.uk/jdispatcher/docs/webservices/)を参照してください。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `sequence` | 文字列 | **必須**; 最長: 1; 最高長さ: 4194304 |
+| `stype` | 文字列 | **必須**; enum: &#91;"protein"、"dna"、"rna"&#93; |
+| `outfmt` | 文字列 | 任意; enum: &#91;"clustal_num"&#93; |
+| `title` | 文字列 | 任意; 最長: 1; 最高長さ: 200 |
+| `dealign` | 真偽値 | オプション |
+| `order` | 文字列 | 任意; enum: &#91;"aligned"、"input"&#93; |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_submit", {"sequence": ">human\nMKT\n>mouse\nMRT\n>rat\nMRT\n", "stype": "protein"})
+```
+
+### `clustalo_status` {/* #clustalo_status */}
+
+EMBL-EBI のクラスタのオメガを一度確認して下さい。 これは、単一のステータス要求であり、決して投票や待機しません。 FINISHED、ERROR、FAILURE、NOT_FOUND まで、少なくとも 10 秒後に再び呼び出します。 再起動後に再開すると、job_id を保持します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `job_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 128 |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_status", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m"})
+```
+
+### `clustalo_results` {/* #clustalo_results */}
+
+FINISHEDジョブのClustal Omega clustal_numアライメントファイルを1つ取得します。 clustalo_submitで返された同じoutfmtを渡して下さい; このツールは1つの結果リクエストを生成し、アライメントコンテンツとファイル名の提案を返します。 プロバイダがまだQUEUEDまたはRUNNINGを報告している場合は、retryヒントでrelete:falseを返します。 プロバイダーの故障はエラーであり、診断のためにjob_idを保持します。 結果は8 MiBで捕捉され、発信者が保存されたサイト検査または下流の生理学的分析のためのアライメントファイルとしてコンテンツを保存できるように、返された動詞です。 自動レトリーはありません。 EMBL-EBIは、限られたプロバイダ制御期間(最大1週間に文書化)の結果を保存します。 これは、アプリ所有の削除保証ではありません。 job_idを再起動してから再開してください。 このコネクタは、ジョブレジストリ、結果のキャッシュ、自動再送信、およびキャンセル/アプリの出口をローカルリクエストのみ停止しません。 シーケンスはEMBL-EBIに送信され、ホストは会話やNotebookの永続でツールの入力と返されたアライメントコンテンツを保持することができます。 EMBL-EBI の公正な使用の指導を尊重して下さい: バッチで 30 の仕事を要求し、多くを提出する前に処理/結果を待って下さい; このコネクタは、クロスコールの回転を強制しません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `job_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 128 |
+| `outfmt` | 文字列 | **必須**; enum: &#91;"clustal_num"&#93; |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_results", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m", "outfmt":"clustal_num"})
 ```
 
 </ToolOperationGroup>
@@ -3757,3 +3840,208 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ## 応答レコードの例 {/* #example-response-records */}
 
 <ExampleDownload path="/examples/capabilities/public-database-query-receipts.json">応答レコードの例</ExampleDownload>は、正確な入力、キャプされた応答の抜粋および操作上の結果を含みます。 返されたレコード、空のマッチ、失敗したリクエストを区別します。 結果はメタデータ、スキーマ、または識別子である可能性があります。 ソースフィールドと完全性フラグを調べて、それらを研究で使用する前に確認します。
+
+## GDCの特長 {/* #family-24 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `gdc_list_projects` {/* #gdc_list_projects */}
+
+GDCがんプロジェクトとその場合/ファイル要約を一覧表示します。 フィルターは明示的かつ拘束されます。 これは、データダウンロード操作ではなく、メタデータ検出です。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `project_ids` | 文字列/配列 | オプション |
+| `disease_type` | 文字列 | 任意; 最長: 1; 最高長さ: 200 |
+| `primary_site` | 文字列 | 任意; 最長: 1; 最高長さ: 200 |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10000 |
+| `page_size` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-BRCA", "page_size": 5})
+```
+
+### `gdc_list_cases` {/* #gdc_list_cases */}
+
+プロジェクトや疾患メタデータでGDCケース(サンプルドナー)を一覧表示します。 結果は、ケースを識別し、制御されたデータを露出またはダウンロードしません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `project_ids` | 文字列/配列 | オプション |
+| `submitter_ids` | 文字列/配列 | オプション |
+| `case_ids` | 文字列/配列 | オプション |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10000 |
+| `page_size` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BRCA"], "page_size": 5})
+```
+
+### `gdc_search_files` {/* #gdc_search_files */}
+
+GDCファイル在庫を検索し、各ファイルをオープンまたは管理されたアクセスとして明示的にラベル付けします。 Metadataの発見はダウンロードアクセスを付与しません。 制御されたファイルは適切なGDCの承認を要求します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `project_ids` | 文字列/配列 | オプション |
+| `access` | 文字列 | 任意; デフォルト: "all"; enum: &#91;"all"、"open"、"controlled"&#93; |
+| `data_category` | 文字列 | 任意; 最長: 1; 最高長さ: 200 |
+| `data_type` | 文字列 | 任意; 最長: 1; 最高長さ: 200 |
+| `data_format` | 文字列 | 任意; 最長: 1; 最高長さ: 50 |
+| `file_name` | 文字列 | 任意; 最長: 1; 最高長さ: 500 |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10000 |
+| `page_size` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+```
+
+### `gdc_get_file` {/* #gdc_get_file */}
+
+開いた/制御されたアクセス分類を含む 1 つの GDC ファイル UUID のメタデータを取得します。 これは、ファイルのダウンロードを実行せず、リストされたファイルが現在のユーザーのためにダウンロード可能であることを主張しません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `file_id` | 文字列 | **必須**; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;1- - - -5&lt;unk> &lt;unk>0-9a-fA-F&#123; 3&#125;-&#91;89abAB&#93;&#91;0-9a-fA-F&#123; 3&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_get_file", {"file_id": "cb92f61d-041c-4424-a3e9-891b7545f351"})
+```
+
+### `gdc_get_manifest` {/* #gdc_get_manifest */}
+
+100ファイルUUIDまでのGDCデータ転送ツールマニフェストを作成します。 返されたマニフェストは在庫のみです。 ファイルやバイパスの制御アクセス許可をダウンロードしません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `file_ids` | 文字列の配列 | **必須**; minItems: 1; maxItems: 100; ユニークアイテム: true |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_get_manifest", {"file_ids": ["cb92f61d-041c-4424-a3e9-891b7545f351"]})
+```
+
+</ToolOperationGroup>
+
+## ゼノドー {/* #family-25 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `search_records` {/* #search_records */}
+
+Zenodo クエリ文字列の構文を使用して、公正な Zenodo レコード (データセット、ソフトウェア、出版物) を検索します。 タイトル:「climate」または「10.5281/zenodo.8435696」。 認証なしで、25レコードまで1ページをフェッチします。 デフォルトでは、最新バージョンのみがリストされています。 all_versions には、古いバージョンが含まれています。 次のページでは、クエリ、page_size、ソート、all_versionsは変更されません。 検索ウィンドウは、10,000結果に限定されています。(ページ - 1) &#42; page_sizeは10,000よりも少ない必要があります。 最終ページは一部となります。 pagination_limitedが真の場合、クエリを絞り込みます。 パブリックメタデータは、ファイルアクセスを阻害しません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `query` | 文字列 | **必須**; 最長: 1; 最高長さ: 1000; パターン: "\\S" |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10000 |
+| `page_size` | 整数 | 任意; デフォルト: 10; 最小値: 1; 最高: 25 |
+| `sort` | 文字列 | 任意; デフォルト: "bestmatch"; enum: &#91;"bestmatch"、"mostrecent"&#93; |
+| `all_versions` | 真偽値 | 任意; デフォルト: false |
+
+```javascript
+const result = await host.mcp("zenodo", "search_records", {"query": "title:climate", "page_size": 5})
+```
+
+### `get_record` {/* #get_record */}
+
+レコードのエンドポイントで公開されているZenodoのメタデータとファイル在庫を取得します。 DOI や URL ではなく、小数のレコード ID を渡します。 コンセプト ID は、最新バージョンに解決できます。 requested_record_id、record_id、concept_record_idは異なるままです。 返されたバージョン固有のrecord_idを使用して、再現可能なルックアップを行います。 description_html は HTML を上流しています。 ファイルリンクとチェックサムはメタデータのみです。ダウンロード、チェックサム検証、アクセスプローブは行いません。 制限されたレコードまたはエンバーゴされたレコードは、アクセス可能ファイルなしで公開メタデータを持つことができます。 空のファイルリストは、デポジットがファイルがないことを確立しません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `record_id` | 文字列 | **必須**; 最高長さ: 20; パターン: "^&#91;1-9&#93;&#91;0-9&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("zenodo", "get_record", {"record_id": "8435696"})
+```
+
+</ToolOperationGroup>
+
+## ムマー {/* #family-26 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `search` {/* #hmmer-search */}
+
+1つの非同期EMBL-EBI HMMER3検索を送信します。 プログラムは、phmmer(シーケンスデータベースに対するタンパク質シーケンス)、hmmscan(Pfamプロファイルに対するタンパク質シーケンス)、hmmsearch(プロファイトHMM/シーケンスデータベースとのアライメント)、またはjackhmmer(iterative Remote-homolog search)を選択します。 入力は、FASTA シーケンス、プロファイルHMM、またはそのプログラムによって受け入れられるアライメントテキストです。 データベースはプロバイダデータベース名です。 オプションのしきい値は、HMMERパラメータ名(incE/incdomE、E/domE、incT/incdomT)を使用します。 反復はジャッカーの円形を制御します。 提出は完了しません: 返されたjob_idと状態の投票を保持します。 応答が失われた場合でも、サービスがジョブを受け入れる可能性があります。 不確実な投稿を自動で返還しません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `program` | 文字列 | **必須**; エヌム: &#91;"phmmer"、"hmmscan"、"hmmsearch"、"jackhmmer"&#93; |
+| `database` | 文字列 | **必須**; enum: &#91; &#93;"リプロット", , "ログイン", , "スワシプロット", , "ライブラリ", , "rp15の特長", , "rp35の特長", , "rp55の特長", , "rp75の特長", , "プファム". . . |
+| `input` | 文字列 | **必須**; 最長: 1; 最高長さ: 200000 |
+| `incE` | 数値 | 任意; 排他的な最小限: 0; 最高: 10 |
+| `incdomE` | 数値 | 任意; 排他的な最小限: 0; 最高: 10 |
+| `incT` | 数値 | 任意; 排他的な最小限: 0 |
+| `incdomT` | 数値 | 任意; 排他的な最小限: 0 |
+| `E` | 数値 | 任意; 排他的な最小限: 0; 最高: 10 |
+| `domE` | 数値 | 任意; 排他的な最小限: 0; 最高: 10 |
+| `T` | 数値 | 任意; 排他的な最小限: 0 |
+| `domT` | 数値 | 任意; 排他的な最小限: 0 |
+| `popen` | 数値 | 任意; 最小値: 0 |
+| `pextend` | 数値 | 任意; 最小値: 0 |
+| `mx` | 文字列 | 任意; エヌム: &#91;"BLOSUM45"、"BLOSUM62"、"BLOSUM90"、"PAM30"、"PAM70"&#93; |
+| `iterations` | 整数 | 任意; 最小値: 1; 最高: 9 |
+
+```javascript
+const result = await host.mcp("hmmer", "search", {"program":"hmmscan","database":"pfam","input":">query\nMKTIIALSYIFCLVFADYKDDDDK"})
+```
+
+### `status` {/* #hmmer-status */}
+
+一度に1つのHMMERジョブをチェックし、ポーリングやリサブミットなしで。 SUCCESSは結果が利用できることを意味します; PENDING/RUNNING は、再びチェックする前に待ちます。 ERROR/FAILURE/NOT_FOUND はターミナルのアウトカムであり、ゼロヒットを意味しません。 job_id をそのまま保存します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `job_id` | 文字列 | **必須**; 最高長さ: 36; パターン: "^&#91;A-Fa-f0-&#93;9. . .&#123; 8&#125;-&#91;A-Fa-f0-&#93;9. . .&#123; 4&#125;-&#91;A-Fa-f0-&#93;9. . .&#123; 4&#125;-&#91;A-Fa-f0-&#93;9. . .&#123; 4&#125;-&#91;A-Fa-f0-&#93;9. . .&#123; 12&#125;$ ドル" |
+
+```javascript
+const result = await host.mcp("hmmer", "status", {"job_id":"8ebb1d5f-4457-4da8-808c-f811105c3654"})
+```
+
+### `results` {/* #hmmer-results */}
+
+HMMER のジョブ結果を一度取得します。 プロバイダのステータスを最初にチェックし、ジョブが終了または失敗したときに結果のペイロードを返しません。 SUCCESSでは、ドメインアノテーションを含むすべての結果ページを取得します。 提供者の配列の配列の形状で、 jackhmmer の反復レコードが返されます。 プロバイダの保持が有限であるので、Notebookアーティファクトで結果を保存します。 空のマッチリストは、完了したゼロヒット結果で、保留または失敗したジョブとは異なるものです。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `job_id` | 文字列 | **必須**; 最高長さ: 36; パターン: "^&#91;A-Fa-f0-&#93;9. . .&#123; 8&#125;-&#91;A-Fa-f0-&#93;9. . .&#123; 4&#125;-&#91;A-Fa-f0-&#93;9. . .&#123; 4&#125;-&#91;A-Fa-f0-&#93;9. . .&#123; 4&#125;-&#91;A-Fa-f0-&#93;9. . .&#123; 12&#125;$ ドル" |
+
+```javascript
+const result = await host.mcp("hmmer", "results", {"job_id":"8ebb1d5f-4457-4da8-808c-f811105c3654"})
+```
+
+</ToolOperationGroup>
+
+## インタープロスキャン {/* #family-27 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `status` {/* #interproscan-status */}
+
+再試行またはポーリングなしで、一度InterProScanジョブをチェックしてください。 チェック間で少なくとも10秒待ってください。 FINISHED は、結果が取得できることを意味します。 ERROR/FAILURE は、ジョブの失敗です。NOT_FOUND は、未知または期限切れを意味します。ゼロハイトな結果はありません。 job_id を正確に保持します。 このツールは、再送信しません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `job_id` | 文字列 | **必須**; 最高長さ: 200; パターン: "^&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9_-&#93;&#123; 0,199&#125;$" |
+
+```javascript
+const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+### `results` {/* #interproscan-results */}
+
+ジョブのInterProScan TSVレポートをすべて取得し、2 MiB(特大のレポートが失敗し、決してトランクしません)で取得します。 ステータスを最初にチェックし、TSVをFINISHEDでのみ取得します。 退会、花粉、または退会は行いません。 プロバイダーの結果が期限切れになるため、Notebookアーティファクトの報告書を速やかに保存します。 TSVには、署名マッチごとに1列が含まれています。 座標は1ベースの包括的であり、スコアはアプリケーション固有のものです。 InterPro、GO、パスウェイのアノテーションを保持するオプションの列。 FINISHED の後の空の TSV は、タンパク質が機能に欠けているという証拠ではなく、報告されたマッチを意味しません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `job_id` | 文字列 | **必須**; 最高長さ: 200; パターン: "^&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9_-&#93;&#123; 0,199&#125;$" |
+
+```javascript
+const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+</ToolOperationGroup>

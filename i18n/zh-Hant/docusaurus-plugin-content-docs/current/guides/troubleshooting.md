@@ -1,7 +1,7 @@
 ---
 title: "故障排查與常見問題"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-24'
 ---
 
 # 故障排查與常見問題 {/* #故障排查与常见问题 */}
@@ -133,7 +133,7 @@ Windows 錯誤屬於作業系統程式碼，與 HTTP 狀態碼不同。恢復失
 
 只有明確打算丟棄本地應用資料並從頭開始時，才使用獨立重置工具。**它會永久刪除列出的資料和已儲存憑據，不會修復或備份它們。** 先把需要保留的科研檔案及備份複製到所有待清理目錄之外；單純重灌應用會保留這些資料。
 
-1. 從[官方重置說明](https://github.com/aipoch/open-science/blob/v0.30.1/scripts/windows-reset/README.md)分別透過 **Download raw file** 下載 `reset-open-science.cmd` 和 `reset-open-science.ps1`，放在同一資料夾，且該資料夾不在應用資料目錄內。
+1. 從[官方重置說明](https://github.com/aipoch/open-science/blob/v0.33.0/scripts/windows-reset/README.md)分別透過 **Download raw file** 下載 `reset-open-science.cmd` 和 `reset-open-science.ps1`，放在同一資料夾，且該資料夾不在應用資料目錄內。
 2. 退出 Open-Science 及托盤程序，完成並關閉代理、Notebook、無介面服務和 WSL 程序。使用平時執行應用的 Windows 賬號，無需管理員模式。
 3. 在下載資料夾中開啟命令提示符，執行 `reset-open-science.cmd -Preview`，逐項檢查計劃清理的資料、配置、應用配置檔案及執行快取路徑。預覽不會刪除資料。
 4. 只有檢查並備份這些位置後，才雙擊 `reset-open-science.cmd`。刪除前必須準確輸入 `RESET OPEN SCIENCE`，其他輸入都會取消。
@@ -151,6 +151,17 @@ Windows 錯誤屬於作業系統程式碼，與 HTTP 狀態碼不同。恢復失
 6. 記錄修改後原操作是否實際成功，按鈕可用不是成功條件。
 
 準確技術訊息見[診斷參考](../reference/diagnostics.md)。
+
+### 匯出單個會話的診斷資訊 {/* #session-diagnostics */}
+
+1. 開啟受影響的會話，選擇頁頭 **Export diagnostics…**，或會話選單 **Export → Export diagnostics…**。
+2. 檢查可選來源。**session.json** 和 **Session database records** 對應所選會話；**main.log** 及歷史應用日誌也可能包含其他會話的後設資料，只在相關時選擇。
+3. 點選 **Export** 並選擇本地儲存位置，等待 **Diagnostics exported.**，使用 **Show in folder** 定位歸檔。
+4. 分享前檢查其中的清單與匯出日誌。缺失或損壞的來源可能只留下摘要或被省略，歸檔存在不代表每個來源都已完整收集。
+
+![選擇當前會話的診斷來源並準備本地匯出](/img/open-science/v0330/session-diagnostics.webp)
+
+常規後設資料匯出會排除隱私內容欄位。若 .science 匯出觸發敏感內容檢查，來源列表還可能出現已脫敏的掃描證據和觸發檢查的原始檔案。**原始敏感檔案預設不勾選，主動勾選會將原始位元組寫入診斷歸檔**；只選擇確實需要的來源，分享前檢查歸檔和截圖。匯出僅儲存在本地，不自動上傳或傳送給模型。這是診斷證據，不是研究備份；研究交接應使用 [.science 研究包](research-packages.md)。
 
 ## 提交問題或向社群求助 {/* #提交问题或向社区求助 */}
 

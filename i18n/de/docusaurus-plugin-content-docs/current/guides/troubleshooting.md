@@ -1,7 +1,7 @@
 ---
 title: "Fehlerbehebung und häufige Fragen"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-24'
 ---
 
 # Fehlerbehebung und häufige Fragen {/* #troubleshooting-and-common-questions */}
@@ -129,7 +129,7 @@ Windows-Fehler sind Betriebssystemcodes, die sich von HTTP-Statuscodes untersche
 
 Verwenden Sie das Standalone-Reset-Dienstprogramm nur, wenn Sie die Daten der lokalen Installation verwerfen und neu starten möchten. **Es löscht dauerhaft die aufgeführten Daten und gespeicherten Anmeldeinformationen; Es repariert sie nicht und unterstützt sie nicht.** Copy benötigte zuerst Forschungsdateien und Backups außerhalb aller aufgelisteten Verzeichnisse. Die Neuinstallation der App allein behält diese Daten.
 
-1. Laden Sie vom [Offizieller Reset-Leitfaden](https://github.com/aipoch/open-science/blob/v0.30.1/scripts/windows-reset/README.md) sowohl `reset-open-science.cmd` als auch `reset-open-science.ps1` mit **Rohdatei herunterladen** herunter. Bewahren Sie sie außerhalb der Datenverzeichnisse der App zusammen.
+1. Laden Sie vom [Offizieller Reset-Leitfaden](https://github.com/aipoch/open-science/blob/v0.33.0/scripts/windows-reset/README.md) sowohl `reset-open-science.cmd` als auch `reset-open-science.ps1` mit **Rohdatei herunterladen** herunter. Bewahren Sie sie außerhalb der Datenverzeichnisse der App zusammen.
 2. Beenden Sie Open-Science, einschließlich des Tray-Prozesses, und beenden und schließen Sie seinen Agent, Notebook, Headless- und WSL-Prozesse. Verwenden Sie Ihr normales Windows-Konto; Der Administratormodus ist nicht erforderlich.
 3. Führen Sie in der Eingabeaufforderung, die im Download-Ordner geöffnet wurde, `reset-open-science.cmd -Preview` aus. Überprüfen Sie alle vorgeschlagenen Daten, Konfigurationen, Profile und Laufzeit-Cache-Pfade. Preview löscht keine Daten.
 4. Erst nachdem Sie diese Standorte überprüft und gesichert haben, doppelklicken Sie auf `reset-open-science.cmd`. Es fordert Sie auf, `RESET OPEN SCIENCE` genau vor dem Löschen einzugeben; jede andere Antwort storniert.
@@ -149,6 +149,17 @@ Wenn ein Prozess ausgeführt wird oder nicht inspiziert werden kann oder ein Pfa
 6. Geben Sie an, ob die gleiche Operation nach der Änderung erfolgreich ist. Ein aktivierter Button ist nicht die Erfolgsbedingung.
 
 Technische Nachrichtenbedeutungen werden in [Diagnosereferenz](../reference/diagnostics.md) gesammelt.
+
+### Export-Diagnose für eine Sitzung {/* #session-diagnostics */}
+
+1. Öffnen Sie die betroffene Sitzung und wählen Sie **Export diagnostics…** im Header oder **Export → Export diagnostics…** im Sitzungsmenü.
+2. Überprüfen Sie die verfügbaren Quellen. **session.json** und **Session database records** betreffen die ausgewählte Sitzung. **main.log** und historische Anwendungsprotokolle können auch Metadaten aus anderen Sitzungen enthalten; Wählen Sie sie nur aus, wenn sie relevant sind.
+3. Wählen Sie **Export**, wählen Sie ein lokales Ziel aus und warten Sie auf **Diagnostics exported.** Verwenden Sie **Show in folder**, um das Archiv zu finden.
+4. Überprüfen Sie das Manifest und Exportprotokoll, bevor Sie es teilen. Eine fehlende oder beschädigte Quelle kann zusammengefasst oder weggelassen werden; Die Existenz des Archivs allein beweist nicht, dass jede Quelle gefangen genommen wurde.
+
+![Auswahl von sitzungsspezifischen Diagnosequellen vor einem lokalen Export](/img/open-science/v0330/session-diagnostics.webp)
+
+Der gewöhnliche Metadatenexport schließt private Inhaltsfelder aus. Wenn ein .science-Export die Prüfung des sensiblen Inhalts auslöst, kann die Quellliste auch redigierte Scannernachweise und die markierten Originaldateien enthalten. **Sensible Originaldateien werden standardmäßig nicht überprüft; Auswählen eines enthält seine ursprünglichen Bytes im Archiv.** Wählen Sie nur die benötigten Quellen aus und prüfen Sie das Archiv und die Screenshots, bevor Sie es teilen. Export bleibt lokal und macht keinen Upload oder Model Request. Dies ist ein diagnostischer Beweis, kein Forschungs-Backup; Verwenden Sie ein [.science Paket](research-packages.md) für eine Forschungsübergabe.
 
 ## Melden Sie einen Bug oder fragen Sie die Community {/* #report-a-bug-or-ask-the-community */}
 

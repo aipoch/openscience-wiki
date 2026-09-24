@@ -1,7 +1,7 @@
 ---
 title: "Dépannage et questions communes"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-24'
 ---
 
 # Dépannage et questions communes {/* #troubleshooting-and-common-questions */}
@@ -129,7 +129,7 @@ Les erreurs Windows sont des codes de système d'exploitation, distincts des cod
 
 Utilisez l'utilitaire de réinitialisation autonome seulement lorsque vous avez l'intention de jeter les données de l'installation locale et de recommencer. **Il supprime définitivement les données énumérées et les identifiants enregistrés; il ne les répare ni ne les soutient.** Copiez d'abord les fichiers de recherche et les sauvegardes nécessaires en dehors de tous les répertoires énumérés. Réinstaller l'application seule conserve ces données.
 
-1. Depuis le [guide officiel de réinitialisation](https://github.com/aipoch/open-science/blob/v0.30.1/scripts/windows-reset/README.md), téléchargez `reset-open-science.cmd` et `reset-open-science.ps1` en utilisant **Télécharger le fichier brut**. Conservez-les ensemble en dehors des répertoires de données de l'application.
+1. Depuis le [guide officiel de réinitialisation](https://github.com/aipoch/open-science/blob/v0.33.0/scripts/windows-reset/README.md), téléchargez `reset-open-science.cmd` et `reset-open-science.ps1` en utilisant **Télécharger le fichier brut**. Conservez-les ensemble en dehors des répertoires de données de l'application.
 2. Quitter Open-Science, y compris son processus de plateau, et terminer et fermer son agent, Notebook, sans tête et les processus WSL. Utilisez votre compte Windows normal; le mode administrateur n'est pas requis.
 3. Dans Command Prompt ouvert dans le dossier de téléchargement, exécutez `reset-open-science.cmd -Preview`. Examiner chaque donnée, configuration, profil et chemin d'exécution-cache proposés. Preview ne supprime pas les données.
 4. Seulement après avoir examiné et sauvegardé ces emplacements, double-cliquez sur `reset-open-science.cmd`. Il vous demande de taper `RESET OPEN SCIENCE` exactement avant la suppression; toute autre réponse annule.
@@ -149,6 +149,17 @@ Si un processus est en cours ou ne peut pas être inspecté, ou si un chemin est
 6. Indiquer si la même opération réussit après le changement. Un bouton activé n'est pas la condition de succès.
 
 Les significations des messages techniques sont collectées dans [Référence des diagnostics](../reference/diagnostics.md).
+
+### Diagnostics d'exportation pour une session {/* #session-diagnostics */}
+
+1. Ouvrez la session touchée et choisissez **Export diagnostics…** dans son en-tête, ou **Export → Export diagnostics…** dans le menu de session.
+2. Examiner les sources disponibles. **session.json** et **Session database records** concernent la session sélectionnée. **main.log** et les journaux d'applications historiques peuvent également contenir des métadonnées d'autres sessions; ne les sélectionner que lorsqu'il y a lieu.
+3. Choisissez **Export**, sélectionnez une destination locale et attendez **Diagnostics exported.** Utilisez **Show in folder** pour localiser l'archive.
+4. Inspectez son registre de manifeste et d'exportation avant de partager. Une source manquante ou endommagée peut être résumée ou omise; l'existence de l'archive ne prouve pas que toutes les sources ont été capturées.
+
+![Sélection de sources de diagnostic spécifiques à une session avant une exportation locale](/img/open-science/v0330/session-diagnostics.webp)
+
+L'exportation de métadonnées ordinaires exclut les champs de contenu privé. Si une exportation de .science déclenche la vérification du contenu sensible, la liste des sources peut également contenir des preuves du scanner expurgé et les fichiers marqués d'origine. **Les fichiers sensibles originaux sont décochés par défaut; sélection d'un octets dans l'archive.** Sélectionnez uniquement les sources nécessaires et inspectez l'archive et les captures d'écran avant de partager. Exporter reste local et ne fait aucune demande de téléchargement ou de modèle. Il s'agit de données diagnostiques, et non d'un soutien de recherche; utiliser un [Paquet .science](research-packages.md) pour un transfert de recherche.
 
 ## Signaler un bug ou demander à la communauté {/* #report-a-bug-or-ask-the-community */}
 

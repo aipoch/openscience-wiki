@@ -2,7 +2,7 @@
 title: "Wissenschaftliche Datenbanken"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # Wissenschaftliche Datenbanken {/* #scientific-databases */}
@@ -13,15 +13,15 @@ Verwenden Sie diese Seite, um eine Datenquelle auszuwählen, zu verstehen, was s
 
 ## Unterstützte Datenbanken {/* #supported-databases */}
 
-Open-Science v0.32.0 beinhaltet **23-Datenquellenstecker mit 251-Operationen**. Das separate Offline-Molekül Connector fügt zwei Operationen hinzu, wodurch die vollständige Registrierung auf 253 gebracht wird. Connector-Namen unter **Settings → Connectors** übereinstimmen; Jede Familie kann mehrere Datenbanken freilegen. Das Auflisten einer Quelle bedeutet nicht, dass jedes Feature seiner Website verfügbar ist.
+Open-Science v0.33.1 beinhaltet **27-Datenquellenstecker mit 269-Operationen**. Das separate Offline-Molekül Connector fügt zwei Operationen hinzu, wodurch die vollständige Registrierung auf 271 gebracht wird. Connector-Namen unter **Settings → Connectors** übereinstimmen; Jede Familie kann mehrere Datenbanken freilegen. Das Auflisten einer Quelle bedeutet nicht, dass jedes Feature seiner Website verfügbar ist.
 
 | Konnektor | Quellen | Vorgänge | Verwenden Sie es für  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | Kleinmolekülchemie über PubChem, ChEBI, Rhea und BindingDB.  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Papiere, Autoren, Zitate, DOI-Updates und Datensatz / Software-Datensätze. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Biomedizinische Literatur über NCBI E-utilities, den PMC ID Converter und Europe PMC — Suche, Metadaten, verwandte Artikel, Zitat-Lookup, ID-Konvertierung, Volltext und Copyright.  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 10 | Gen-/Protein-Identifikatoren, UniProt-Sequenzentdeckung, GO- und Reactome-Anmerkungen und g:Profiler-Gen-Set-Anreicherung. |
-| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST | 17 | Genomannotation, Homologie und Sequenz; NCBI-Taxon/-assembly/-sequence-Identität; BLAST Einreichung und Berichte. |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 13 | Gen-/Protein-Identifikatoren, UniProt-Sequenzentdeckung, GO- und Reactome-Anmerkungen und g:Profiler-Gen-Set-Anreicherung. |
+| Genome · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | Genomannotation, Homologie und Sequenz; NCBI-Taxon/-assembly/-sequence-Identität; BLAST-Suche und Clustal Omega Multiple Sequence Alignment |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | Humangenetische Varianten — gnomAD-Populationshäufigkeit/-einschränkung, ClinVar-Datensätze/Suche (direkt NCBI), dbSNP, strukturelle und mitochondriale Varianten.  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Klinische Studien von ClinicalTrials.gov - Suche, Details, Sponsoren, Ermittler, Endpunkte und Förderfähigkeit.  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | Klinische Genomik-Wissensdatenbanken: ClinGen-Kurationen, klinische CIViC-Evidenz und die Open Targets Platform.  |
@@ -40,6 +40,10 @@ Open-Science v0.32.0 beinhaltet **23-Datenquellenstecker mit 251-Operationen**. 
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Funding-Opportunity-Suche (Grants.gov) und Antikörperkatalog-Lookups (Antibody Registry).  |
 | BioMart · `biomart` | Ensembl BioMart | 8 | Ensembl BioMart Attributabfragen und Identifier-Übersetzung.  |
 | ZINC · `zinc` | ZINC | 5 | ZINC22-Käuflicher chemischer Raum (CartBlanche22) — Stoffsuche nach ZINC-ID, SMILES-Suche mit exakter Ähnlichkeit, Lieferantencode-Auflösung, Zufallsstichprobenahme, 3D-Strukturstellen für das Andocken.  |
+| GDC · `gdc` | NCI GDC | 5 | Krebsprojekte, Fälle, Dateimetadaten, offene/kontrollierte Etiketten und Transfermanifeste; kein Download oder Zugangszuschuss. |
+| Zenodo · `zenodo` | Zenodo | 2 | Öffentlicher Datensatz, Software- und Publikationserkennung, versionenspezifische Metadaten und Dateiinventare; Kein Upload oder Download. |
+| HMMER `hmmer` | EMBL-EBI HMMER3 | 3 | Programmspezifische Protein / Profil / Ausrichtung Suche, Job-Status und Ergebnisse. |
+| InterProScan · `interproscan` | EMBL-EBI InterProScan | 2 | Status- und TSV-Berichte für bestehende Annotationsjobs; keine Einreichung. |
 
 Die Offline-Molekül-Tools sind in [Wissenschaftliche Zuschauer](viewers.md) abgedeckt. Für die genauen Operationen, die von jeder Datenquelle ausgesetzt sind, verwenden Sie den [Connector Betriebsnummer](../reference/connector-operations.md).
 
@@ -56,6 +60,10 @@ Die Offline-Molekül-Tools sind in [Wissenschaftliche Zuschauer](viewers.md) abg
 | Prüfvarianten, Ausdruck und regulatorische Nachweise | Varianten, Klinische Genomik, Humangenetik, Expression, Regulation | Quellenaufzeichnungen mit Organismen, Gewebe, Referenzaufbau und relevanten Evidenzfeldern |
 | Retrieve Verbindung, Struktur oder klinische Studie Aufzeichnungen | Chemie, ChEMBL, Strukturen & Interaktionen, Klinische Studien | Chemische Kennzeichen/Eigenschaften, Strukturaufzeichnungen und Versuchsmetadaten |
 
+Für die Batch-Identifier-Konvertierung fügt **Gene & Ontologien** `submit_uniprot_id_mapping`, `get_uniprot_id_mapping_status` und `get_uniprot_id_mapping_results` hinzu. Speichern Sie die Job-ID, wählen Sie mindestens drei Sekunden auseinander und rufen Sie dann jede Ergebnisseite ab. Eins-zu-viele-Mappings und explizites `failed_ids` beibehalten; Fehlen auf einer Seite bedeutet nicht unübertroffen. Der Dienst akzeptiert bis zu 100,000-Identifikatoren und läuft die Ergebnisse nach bis zu sieben Tagen ab. Siehe [genaue Abbildungsfelder](../reference/connector-operations.md#submit_uniprot_id_mapping).
+
+**Zenodon** stellt öffentliche Datensatz-Metadaten ohne Authentifizierung frei. Bewahren Sie die versionenspezifische Datensatz-ID und die Zugriffs- / Lizenzfelder mit dem Dateiinventar auf. **GD** stellt öffentliche Metadaten frei; Ein Manifest ist keine Download-Autorisierung, und kontrollierte Dateien erfordern eine GDC-Berechtigung. [GDC-Operationen](../reference/connector-operations.md#family-24) · [Zenodo-Operationen](../reference/connector-operations.md#family-25).
+
 Eine Datenbankantwort kann einen Forschungsschritt unterstützen; Es werden nicht automatisch Daten heruntergeladen, jedes Papier in die Literaturbibliothek aufgenommen oder eine vollständige Analyse durchgeführt. Geben Sie an, welche Datensätze und Dateien Sie speichern möchten.
 
 ## Verbinden und Starten der Verwendung einer Datenbank {/* #connect-database */}
@@ -66,7 +74,7 @@ Eine Datenbankantwort kann einen Forschungsschritt unterstützen; Es werden nich
 
 1. Öffnen Sie **Settings → Connectors** und suchen Sie nach der oben aufgeführten Familie, z. B. **aus.**.
 2. Öffnen Sie seine Details und erweitern Sie **Tools**. Lesen Sie die Eingaben der ausgewählten Operation, Ergebnisgrenzen und Anforderungen von Drittanbietern.
-3. Aktivieren Sie die Verfügbarkeit für **Hauptagent** und überprüfen Sie **Used by**. Der Specialist-Zugriff ist auf dem einzelnen Specialist konfiguriert. Verfügbarkeits- und Genehmigungsrichtlinien pro Werkzeug sind separate Kontrollen.
+3. Aktivieren Sie die Verfügbarkeit für **Hauptagent** und überprüfen Sie **Used by**. Verwenden Sie **Manage access** in der Ressource, um Main-Agenten- und Specialist-Zuordnungen anzupassen. Verfügbarkeits- und Genehmigungsrichtlinien pro Werkzeug sind separate Kontrollen.
 
 ![Omics Archives-Tooldetails mit den GEO-Eingaben und dem Metadaten-only-Scope](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -78,7 +86,7 @@ Diese Steckverbinder sind eingebaut; Sie müssen keinen benutzerdefinierten serv
 
 | Service oder Bedingung | Wo Sie es konfigurieren |
 | --- | --- |
-| OpenAlex | **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**fort. Geben Sie Ihren API Schlüssel ein, wählen **Validate**, dann **Save** Nach der Validierung ist es gelungen. |
+| OpenAlex | Optionaler Schlüssel. Um einen zu konfigurieren, offen **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**und es zu validieren, dann zu retten. |
 | Direkte NCBI-Variantenabfragen, die Kontaktdaten erfordern | **Settings → Connectors → Manage credentials → Literature access**fort. Füllen Sie ein **Contact email** und wählen **Save**fort. Ein NCBI API-Schlüssel ist optional. |
 | Eine weitere Operation mit Anmeldepflicht | Befolgen Sie die Anforderungen dieses Tools und [Anmeldeinformationen](../guides/connectors.md)fort. Binden Sie den Nachweis an den beabsichtigten Dienst. |
 
@@ -160,4 +168,12 @@ Von v0.31.0 enthält `get_string_network.nodes` zurückgegebene Nachbarn und iso
 
 Der [Connector Betriebsnummer](../reference/connector-operations.md) listet die erforderlichen Eingaben, erlaubten Werte und genauen Aufrufe auf. Verwenden Sie diese Seite, um eine Quelle auszuwählen und sie zu verbinden; Verwenden Sie die Referenz für die Felder eines bestimmten Werkzeugs.
 
-Katalogquelle: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/registry.ts).
+Katalogquelle: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/registry.ts).
+
+## Sequenzsuche und Ausrichtung {/* #sequence-tools */}
+
+**HMMER** bietet programmspezifische Proteinsequenz-, Profil-HMM- und Alignment-Suchen. Wählen Sie das Programm und die Datenbank zusammen, behalten Sie die Job-ID bei und rufen Sie die Ergebnisse erst nach **ERFOLG** ab. [HMMER-Betrieb](../reference/connector-operations.md#family-26).
+
+**InterProScan** ruft Anmerkungen zu einem bestehenden Job ab, der über den EMBL-EBI-Service eingereicht wurde. Behalten Sie die Job-ID, überprüfen Sie den Status mindestens zehn Sekunden auseinander und holen Sie den TSV nach **AUSGESCHLOSSEN** ab. Dieser Connector kann keinen neuen Job einreichen. [InterProScan Operationen](../reference/connector-operations.md#family-27).
+
+**Genomes → Clustal Omega** ordnet mindestens drei eindeutig benannte Protein-, DNA- oder RNA-FASTA-Datensätze an. Konfigurieren Sie die vom Dienst angeforderte Kontakt-E-Mail, senden Sie sie einmal, behalten Sie die Job-ID bei, überprüfen Sie dann den Status und speichern Sie die zurückgegebene Ausrichtung. [Mehrfachsequenz-Ausrichtungs-Workflow](../workflows/multiple-sequence-alignment.md).

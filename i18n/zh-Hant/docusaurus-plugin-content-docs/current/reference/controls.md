@@ -1,7 +1,7 @@
 ---
 title: "控制元件與鍵盤參考"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # 控制元件與鍵盤參考 {/* #控件与键盘参考 */}
@@ -63,3 +63,5 @@ last_update:
 Wiki 的 Search 是另一套搜尋，索引當前語言文件的標題、章節和正文。即使應用會話標題沒有“Inbox”，該詞仍可能命中文件中的一段正文。
 
 技術參考：[應用快捷鍵](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [輸入框鍵盤處理](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [關閉行為](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [全域搜尋](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx).
+
+設定面板或對話方塊內的區域性搜尋使用 macOS 的 **⌘⌥K**、Windows/Linux 的 **Ctrl+Alt+K**；**⌘K / Ctrl+K** 仍聚焦 Settings 頁頭搜尋。見[快捷鍵範圍](../guides/shortcuts.md#local-settings-search)。

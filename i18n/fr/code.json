@@ -1,180 +1,180 @@
 {
   "homepage.steps.install.title": {
-    "message": "Installer Open-Science"
+    "message": "Install Open-Science"
   },
   "homepage.steps.install.description": {
-    "message": "Choisissez votre système d'exploitation."
+    "message": "Choose your operating system."
   },
   "homepage.steps.setup.title": {
-    "message": "Configurez votre espace de travail"
+    "message": "Set up your workspace"
   },
   "homepage.steps.setup.description": {
-    "message": "Connectez un modèle et préparez vos runtimes."
+    "message": "Connect a model and prepare your runtimes."
   },
   "homepage.steps.firstResult.title": {
-    "message": "Créez votre premier résultat"
+    "message": "Create your first result"
   },
   "homepage.steps.firstResult.description": {
-    "message": "Suivez un projet depuis l'entrée jusqu'à la sortie enregistrée."
+    "message": "Follow a project from input to saved output."
   },
   "homepage.sections.guides.title": {
     "message": "Guides"
   },
   "homepage.sections.guides.description": {
-    "message": "Projets, conversations, fichiers et paramètres de l'espace de travail."
+    "message": "Projects, conversations, files and workspace settings."
   },
   "homepage.sections.workflows.title": {
-    "message": "Parcours de recherche"
+    "message": "Research workflows"
   },
   "homepage.sections.workflows.description": {
-    "message": "Suivez des exemples travaillés avec des données de recherche réelles."
+    "message": "Follow worked examples with real research data."
   },
   "homepage.sections.tools.title": {
-    "message": "Explorer les outils"
+    "message": "Explore tools"
   },
   "homepage.sections.tools.description": {
-    "message": "Trouvez des bases de données, inspectez les fichiers et exécutez des calculs."
+    "message": "Find databases, inspect files and run calculations."
   },
   "homepage.sections.skills.title": {
     "message": "Skills"
   },
   "homepage.sections.skills.description": {
-    "message": "Trouver, utiliser et créer des méthodes de recherche réutilisables."
+    "message": "Find, use and create reusable research methods."
   },
   "homepage.sections.specialists.title": {
-    "message": "Spécialistes"
+    "message": "Specialists"
   },
   "homepage.sections.specialists.description": {
-    "message": "Déléguer les tâches ciblées et examiner les résultats."
+    "message": "Delegate focused tasks and review the results."
   },
   "homepage.sections.reference.title": {
-    "message": "Référence"
+    "message": "Reference"
   },
   "homepage.sections.reference.description": {
-    "message": "Rechercher les contrôles, les formats de fichiers, les CLI et les API."
+    "message": "Look up controls, file formats, the CLI and APIs."
   },
   "homepage.topics.reproducibility": {
-    "message": "Reproductibilité"
+    "message": "Reproducibility"
   },
   "homepage.topics.packages": {
-    "message": "Paquets de recherche .science"
+    "message": ".science research packages"
   },
   "homepage.topics.marketplace": {
-    "message": "Catalogue de Skills"
+    "message": "Skill marketplace"
   },
   "homepage.meta.title": {
-    "message": "Documentation Open-Science"
+    "message": "Open-Science Documentation"
   },
   "homepage.meta.description": {
-    "message": "Documentation d'AIPOCH Open-Science : installation, configuration de l'espace de travail et des modèles, reproductibilité, flux de travail de recherche, compétences, outils, CLI et référence d'API."
+    "message": "Documentation for AIPOCH Open-Science: installation, workspace and model setup, reproducibility, research workflows, skills, tools, CLI and API reference."
   },
   "homepage.lead": {
-    "message": "AIPOCH Open-Science est un poste de travail de recherche IA open source et local-first."
+    "message": "AIPOCH Open-Science is an open-source, local-first AI research workbench."
   },
   "homepage.lead.model.title": {
-    "message": "Choix du modèle"
+    "message": "Model choice"
   },
   "homepage.lead.model.description": {
-    "message": "connectez-vous aux fournisseurs de modèles pris en charge, à une passerelle personnalisée ou à un serveur de modèles local compatible."
+    "message": "connect to supported model providers, a custom gateway, or a compatible local model server."
   },
   "homepage.lead.provenance.title": {
-    "message": "Stockage local et provenance"
+    "message": "Local storage and provenance"
   },
   "homepage.lead.provenance.description": {
-    "message": "les données du projet et les résultats de recherche sont stockés localement, avec le code, les entrées et les journaux d'exécution disponibles pour examen."
+    "message": "project data and research outputs are stored locally, with available code, inputs, and execution records accessible for review."
   },
   "homepage.lead.guides.title": {
-    "message": "Guides pratiques"
+    "message": "Practical guides"
   },
   "homepage.lead.guides.description": {
-    "message": "configurez votre espace de travail, suivez des workflows de recherche et apprenez à inspecter et partager vos résultats."
+    "message": "set up your workspace, follow research workflows, and learn how to inspect and share your results."
   },
   "homepage.eyebrow": {
     "message": "Documentation"
   },
   "homepage.introduction": {
-    "message": "Configurez votre espace de travail, travaillez avec les données de recherche, et vérifiez et partagez vos résultats."
+    "message": "Set up your workspace, work with research data, and check and share your results."
   },
   "homepage.readDocs": {
-    "message": "Lire la documentation"
+    "message": "Read the documentation"
   },
   "homepage.troubleshooting": {
-    "message": "Dépannage"
+    "message": "Troubleshooting"
   },
   "homepage.startHeading": {
-    "message": "Commencez ici."
+    "message": "Start here"
   },
   "homepage.browseHeading": {
-    "message": "Explorer la documentation"
+    "message": "Explore the documentation"
   },
   "homepage.topicsHeading": {
-    "message": "Aller plus loin"
+    "message": "Go further"
   },
   "theme.SearchPage.documentsFound.plurals": {
     "message": "{count} résultat trouvé|{count} résultats trouvés"
   },
   "docs.platform.label": {
-    "message": "Plateforme"
+    "message": "Platform"
   },
   "docs.platform.hint": {
-    "message": "Votre choix est gardé à travers les chapitres."
+    "message": "Your choice is kept across chapters."
   },
   "docs.guides.outline.reproducibility.title": {
-    "message": "Reproductibilité"
+    "message": "Reproducibility"
   },
   "docs.guides.outline.reproducibility.scope": {
-    "message": "Reprendre les étapes de recherche capturées, comparer les versions des résultats et conserver les dossiers de vérification."
+    "message": "Rerun captured research steps, compare result versions and retain verification records."
   },
   "docs.guides.outline.research-packages.title": {
-    "message": "Paquets de recherche .science"
+    "message": ".science research packages"
   },
   "docs.guides.outline.research-packages.scope": {
-    "message": "Exporter, importer et inspecter des branches, des dossiers et des preuves de conversation portatives."
+    "message": "Export, import and inspect portable conversation branches, files and evidence."
   },
   "docs.outline.skills.marketplace.title": {
-    "message": "Catalogue de Skills"
+    "message": "Skill marketplace"
   },
   "docs.outline.skills.marketplace.scope": {
-    "message": "Trouver, installer, mettre à jour et gérer les méthodes de recherche du marché."
+    "message": "Find, install, update and manage research methods from the marketplace."
   },
   "docs.guides.outline.bookmarks.title": {
-    "message": "Signets de lecture personnels"
+    "message": "Private reading bookmarks"
   },
   "docs.guides.outline.bookmarks.scope": {
-    "message": "Enregistrer les passages personnels de lecture et les régions PDF, gérer les notes et revenir à leur source."
+    "message": "Save personal reading passages and PDF regions, manage notes and return to their source."
   },
   "docs.outline.reference.v0300.title": {
     "message": "v0.30.0"
   },
   "docs.outline.reference.v0300.scope": {
-    "message": "Les signets privés, les onglets Side Chat indépendants, les paramètres de recherche et extrait les preuves PDF."
+    "message": "Private bookmarks, independent Side Chat tabs, settings search and extracted PDF evidence."
   },
   "theme.docs.breadcrumbs.navAriaLabel": {
     "message": "Fil d'Ariane"
   },
   "docs.sections.label": {
-    "message": "Sections de documentation"
+    "message": "Documentation sections"
   },
   "theme.SearchPage.existingResultsTitle": {
-    "message": "Résultats de recherche pour \"{query}\"",
+    "message": "Search results for \"{query}\"",
     "description": "The search page title for non-empty query"
   },
   "theme.SearchPage.emptyResultsTitle": {
-    "message": "Recherche dans la documentation",
+    "message": "Search the documentation",
     "description": "The search page title for empty query"
   },
   "docs.ui.searchIndex": {
-    "message": "Open-Science / Indice de documentation"
+    "message": "Open-Science / Documentation index"
   },
   "theme.SearchPage.searchContext.everywhere": {
-    "message": "Partout"
+    "message": "Everywhere"
   },
   "theme.SearchPage.noResultsText": {
-    "message": "Aucun document n'a été trouvé",
+    "message": "No documents were found",
     "description": "The paragraph for empty search result"
   },
   "docs.ui.moreResults": {
-    "message": "Afficher plus de résultats"
+    "message": "Show more results"
   },
   "theme.ErrorPageContent.title": {
     "message": "Cette page a planté."
@@ -183,11 +183,11 @@
     "message": "Retour au début de la page"
   },
   "theme.blog.archive.title": {
-    "message": "Archiver",
+    "message": "Archive",
     "description": "The page & hero title of the blog archive page"
   },
   "theme.blog.archive.description": {
-    "message": "Archiver",
+    "message": "Archive",
     "description": "The page & hero description of the blog archive page"
   },
   "theme.blog.paginator.navAriaLabel": {
@@ -212,7 +212,7 @@
     "message": "Article plus ancien"
   },
   "theme.colorToggle.ariaLabel.mode.system": {
-    "message": "mode système",
+    "message": "system mode",
     "description": "The name for the system color mode"
   },
   "theme.colorToggle.ariaLabel.mode.light": {
@@ -240,7 +240,7 @@
     "message": "{nDocsTagged} avec \"{tagName}\""
   },
   "theme.docs.versionBadge.label": {
-    "message": "Version : {versionLabel}"
+    "message": "Version: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
     "message": "Ceci est la documentation de la prochaine version {versionLabel} de {siteTitle}."
@@ -290,7 +290,7 @@
     "description": "The default label used for the Danger admonition (:::danger)"
   },
   "theme.admonition.info": {
-    "message": "Informations",
+    "message": "info",
     "description": "The default label used for the Info admonition (:::info)"
   },
   "theme.admonition.note": {
@@ -312,7 +312,7 @@
     "message": "Réduire la catégorie '{label}' de la barre latérale"
   },
   "theme.IconExternalLink.ariaLabel": {
-    "message": "(ouvre dans un nouvel onglet)",
+    "message": "(opens in new tab)",
     "description": "The ARIA label for the external link icon"
   },
   "theme.NavBar.navAriaLabel": {
@@ -361,15 +361,15 @@
     "message": "Réduire le menu latéral"
   },
   "theme.docs.sidebar.navAriaLabel": {
-    "message": "Barre latérale de Docs",
+    "message": "Docs sidebar",
     "description": "The ARIA label for the sidebar navigation"
   },
   "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
-    "message": "Élargir la liste déroulante",
+    "message": "Expand the dropdown",
     "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
   },
   "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
-    "message": "Effacer le menu déroulant",
+    "message": "Collapse the dropdown",
     "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
   },
   "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
@@ -388,19 +388,19 @@
     "message": "Déplier le menu latéral"
   },
   "theme.SearchBar.noResultsText": {
-    "message": "Aucun résultat"
+    "message": "No results"
   },
   "theme.SearchBar.seeAllOutsideContext": {
-    "message": "Voir tous les résultats à l'extérieur de \"{context}\""
+    "message": "See all results outside \"{context}\""
   },
   "theme.SearchBar.searchInContext": {
-    "message": "Voir tous les résultats dans \"{context}\""
+    "message": "See all results within \"{context}\""
   },
   "theme.SearchBar.seeAll": {
-    "message": "Voir tous les résultats"
+    "message": "See all results"
   },
   "theme.SearchBar.label": {
-    "message": "Rechercher",
+    "message": "Search",
     "description": "The ARIA label and placeholder for search button"
   },
   "theme.blog.post.plurals": {
@@ -414,14 +414,14 @@
     "description": "The title of the page for a blog author"
   },
   "theme.blog.authorsList.pageTitle": {
-    "message": "Auteurs",
+    "message": "Authors",
     "description": "The title of the authors page"
   },
   "theme.blog.authorsList.viewAll": {
     "message": "View All Authors"
   },
   "theme.blog.author.noPosts": {
-    "message": "Cet auteur n'a pas encore écrit de posts.",
+    "message": "This author has not written any posts yet.",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
@@ -431,11 +431,11 @@
     "message": "Cette page n'est pas répertoriée. Les moteurs de recherche ne l'indexeront pas, et seuls les utilisateurs ayant un lien direct peuvent y accéder."
   },
   "theme.contentVisibility.draftBanner.title": {
-    "message": "Projet de page",
+    "message": "Draft page",
     "description": "The draft content banner title"
   },
   "theme.contentVisibility.draftBanner.message": {
-    "message": "Cette page est une ébauche. Elle ne sera visible qu'en dev et sera exclue de la production.",
+    "message": "This page is a draft. It will only be visible in dev and be excluded from the production build.",
     "description": "The draft content banner message"
   },
   "theme.docs.DocCard.categoryDescription.plurals": {
@@ -448,1252 +448,1276 @@
     "message": "Aller au contenu principal"
   },
   "theme.tags.tagsPageTitle": {
-    "message": "Balises",
+    "message": "Tags",
     "description": "The title of the tag list page"
   },
   "docs.guides.outline.overview": {
-    "message": "Aperçu de Open-Science"
+    "message": "Open-Science overview"
   },
   "docs.guides.outline.group.start": {
-    "message": "Commencez ici."
+    "message": "Start here"
   },
   "docs.guides.outline.capabilities.title": {
-    "message": "Capacités et intrants pris en charge"
+    "message": "Capabilities and supported inputs"
   },
   "docs.guides.outline.capabilities.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.capabilities.topic.capabilities.title": {
-    "message": "Ce que Open-Science peut faire"
+    "message": "What Open-Science can do"
   },
   "docs.guides.outline.capabilities.topic.capabilities.scope": {
-    "message": "Activités de recherche soutenues, modèle d'espace de travail local, et où commencer pour chaque entrée ou objectif."
+    "message": "Supported research activities, the local workspace model, and where to start for each input or goal."
   },
   "docs.guides.outline.capabilities.topic.source-types.title": {
-    "message": "Fichiers et données pris en charge"
+    "message": "Supported files and data"
   },
   "docs.guides.outline.capabilities.topic.source-types.scope": {
-    "message": "Entrées acceptées, formats lisibles par rapport aux formats exécutables, et préparation avant importation."
+    "message": "Accepted inputs, readable versus executable formats, and preparation before import."
   },
   "docs.guides.outline.installation.title": {
-    "message": "Installation et mises à jour"
+    "message": "Installation and updates"
   },
   "docs.guides.outline.installation.scope": {
-    "message": "Exigences du système, installation de bureau, construction de source, vérifications de mise à jour et sélection de la version."
+    "message": "System requirements, desktop installation, source builds, update checks, and version selection."
   },
   "docs.guides.outline.onboarding.title": {
-    "message": "Configuration pour la première fois"
+    "message": "First-time setup"
   },
   "docs.guides.outline.onboarding.scope": {
-    "message": "Vérifications d'environnement, localisation des données, l'exécution de l'agent, l'accès au modèle et la configuration Notebook dans l'ordre de l'assistant."
+    "message": "Environment checks, data location, agent runtime, model access, and Notebook setup in wizard order."
   },
   "docs.guides.outline.first-project.title": {
-    "message": "Votre premier projet et résultat"
+    "message": "Your first project and result"
   },
   "docs.guides.outline.first-project.scope": {
-    "message": "Une petite première tâche de la création de projet à une sortie sauvegardée et un contrôle de succès clair."
+    "message": "A small first task from project creation to a saved output and a clear success check."
   },
   "docs.guides.outline.group.workspace": {
-    "message": "Votre espace de travail"
+    "message": "Your workspace"
   },
   "docs.guides.outline.navigation.title": {
-    "message": "Navigation et recherche"
+    "message": "Navigation and search"
   },
   "docs.guides.outline.navigation.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.navigation.topic.navigation.title": {
-    "message": "Accueil et navigation"
+    "message": "Home and navigation"
   },
   "docs.guides.outline.navigation.topic.navigation.scope": {
-    "message": "Entrées d'intérieur, aménagement de l'espace de travail, panneaux latéraux, redimensionnement et retour aux projets."
+    "message": "Home entries, workspace layout, sidebar panels, resizing, and returning to projects."
   },
   "docs.guides.outline.navigation.topic.search.title": {
-    "message": "Trouver des projets, des sessions et des dossiers"
+    "message": "Finding projects, sessions, and files"
   },
   "docs.guides.outline.navigation.topic.search.scope": {
-    "message": "Recherche globale, types de résultats, ouverture d'un résultat, et la différence par rapport aux filtres au niveau du panneau."
+    "message": "Global search, result types, opening a result, and the difference from panel-level filters."
   },
   "docs.guides.outline.projects.title": {
-    "message": "Projets et dossiers sources"
+    "message": "Projects and source folders"
   },
   "docs.guides.outline.projects.scope": {
-    "message": "Créer et modifier des projets, des descriptions de projets et un contexte d'agent, la sélection des dossiers et la portée d'accès."
+    "message": "Create and edit projects, project descriptions and Agent Context, folder selection, and access scope."
   },
   "docs.guides.outline.sessions.title": {
-    "message": "Sessions et sections"
+    "message": "Sessions and branches"
   },
   "docs.guides.outline.sessions.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.sessions.topic.sessions.title": {
-    "message": "Création et gestion de sessions"
+    "message": "Creating and managing sessions"
   },
   "docs.guides.outline.sessions.topic.sessions.scope": {
-    "message": "Débuter, changer, renommer et épingler des sessions; distinguer un projet de ses conversations."
+    "message": "Start, switch, rename, and pin sessions; distinguish a project from its conversations."
   },
   "docs.guides.outline.sessions.topic.revisions.title": {
-    "message": "Révisions de messages et succursales"
+    "message": "Message revisions and branches"
   },
   "docs.guides.outline.sessions.topic.revisions.scope": {
-    "message": "Modifier un message précédent, parcourir les révisions, brancher une conversation et comprendre le contexte conservé."
+    "message": "Edit a previous message, browse revisions, branch a conversation, and understand retained context."
   },
   "docs.guides.outline.composer.title": {
-    "message": "Conversations et demandes en attente"
+    "message": "Conversations and queued requests"
   },
   "docs.guides.outline.composer.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.composer.topic.composer.title": {
-    "message": "Demandes, pièces jointes et mentions"
+    "message": "Prompts, attachments, and mentions"
   },
   "docs.guides.outline.composer.topic.composer.scope": {
-    "message": "Composez une requête, joignez les entrées, sélectionnez Skills et les fichiers ou sessions de référence avant d'envoyer."
+    "message": "Compose a request, attach inputs, select Skills, and reference files or sessions before sending."
   },
   "docs.guides.outline.composer.topic.follow-ups.title": {
-    "message": "Suivi et file d'attente des tâches"
+    "message": "Follow-ups and the task queue"
   },
   "docs.guides.outline.composer.topic.follow-ups.scope": {
-    "message": "Requête, édition, réordre, envoi et arrêt des requêtes; expliquer ce qui continue après l'interruption."
+    "message": "Queue, edit, reorder, send, and stop requests; explain what continues after interruption."
   },
   "docs.guides.outline.group.files": {
-    "message": "Dossiers, littérature et résultats"
+    "message": "Files, literature, and results"
   },
   "docs.guides.outline.files.title": {
-    "message": "Fichiers, artefacts et versions"
+    "message": "Files, artifacts, and versions"
   },
   "docs.guides.outline.files.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.files.topic.files.title": {
-    "message": "Fichiers de projet et téléchargements"
+    "message": "Project files and uploads"
   },
   "docs.guides.outline.files.topic.files.scope": {
-    "message": "Télécharger la référence versus dossier, la recherche de fichiers et la mise en page, des copies de projet, et des emplacements de téléchargement."
+    "message": "Upload versus folder reference, file search and layouts, project copies, and download locations."
   },
   "docs.guides.outline.files.topic.artifacts.title": {
-    "message": "Artefacts et versions de fichiers"
+    "message": "Artifacts and file versions"
   },
   "docs.guides.outline.files.topic.artifacts.scope": {
-    "message": "Distinguer les chargements et les artefacts générés; Inspecter les révisions sauvegardées, modifier les fichiers gérés pris en charge, comparer les modifications de texte ou de Markdown prises en charge et les résultats d'exportation."
+    "message": "Distinguish uploads and generated artifacts; inspect saved revisions, edit supported managed files, compare supported text or Markdown changes, and export results."
   },
   "docs.guides.outline.previews.title": {
-    "message": "Ouverture et prévisualisation des fichiers"
+    "message": "Opening and previewing files"
   },
   "docs.guides.outline.previews.scope": {
-    "message": "Prévisualisations en split et en plein écran, écrans pris en charge, onglets et contrôles spécifiques au format."
+    "message": "Split and full-screen previews, supported viewers, tabs, and format-specific controls."
   },
   "docs.guides.outline.library.title": {
-    "message": "Bibliothèque de littérature et citations"
+    "message": "Literature library and citations"
   },
   "docs.guides.outline.library.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.library.topic.library.title": {
-    "message": "Références et collections"
+    "message": "References and collections"
   },
   "docs.guides.outline.library.topic.library.scope": {
-    "message": "Ajouter et importer des documents, des collections, des liens de projet, des étiquettes, des duplicatas, des corbeilles et des restaurations."
+    "message": "Add and import records, collections, project links, tags, duplicates, Trash, and restoration."
   },
   "docs.guides.outline.library.topic.reading.title": {
-    "message": "Documents de lecture et citations"
+    "message": "Reading papers and citations"
   },
   "docs.guides.outline.library.topic.reading.scope": {
-    "message": "PDF pièces jointes, métadonnées et recherche de texte intégral, état de lecture, styles de citation, copie et exportation."
+    "message": "PDF attachments, metadata and full-text retrieval, reading state, citation styles, copy and export."
   },
   "docs.guides.outline.notebook.title": {
-    "message": "Notebook et preuves d'exécution"
+    "message": "Notebook and execution evidence"
   },
   "docs.guides.outline.notebook.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.notebook.topic.notebook.title": {
-    "message": "La session Notebook"
+    "message": "The Session Notebook"
   },
   "docs.guides.outline.notebook.topic.notebook.scope": {
-    "message": "Exécuté Python, R et Bash unités, sorties, variables, noyaux, arrêt, et l'exportation de portable."
+    "message": "Executed Python, R, and Bash units, outputs, variables, kernels, stopping, and notebook export."
   },
   "docs.guides.outline.notebook.topic.provenance.title": {
-    "message": "Inspecter la provenance de l'artefact"
+    "message": "Inspecting artifact provenance"
   },
   "docs.guides.outline.notebook.topic.provenance.scope": {
-    "message": "Examiner les liens disponibles vers les messages sources, le code, les tirages de carnets et examiner les éléments probants pour une version; expliquer les éléments de preuve manquants et la couverture selon le format."
+    "message": "Inspect available links to source messages, code, notebook runs and review evidence for a version; explain missing evidence and format-dependent coverage."
   },
   "docs.guides.outline.group.models": {
-    "message": "Modèles et agents"
+    "message": "Models and agents"
   },
   "docs.guides.outline.models.title": {
-    "message": "Modèles et politiques de travail"
+    "message": "Models and task policies"
   },
   "docs.guides.outline.models.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.models.topic.models.title": {
-    "message": "Modèles et fournisseurs"
+    "message": "Models and providers"
   },
   "docs.guides.outline.models.topic.models.scope": {
-    "message": "les distinctions entre fournisseurs, modèles, cadres d'agents et Specialist; sélectionner un modèle actif et un effort."
+    "message": "Provider, model, agent framework, and Specialist distinctions; select an active model and effort."
   },
   "docs.guides.outline.models.topic.scenario-models.title": {
-    "message": "Modèles pour différentes tâches"
+    "message": "Models for different tasks"
   },
   "docs.guides.outline.models.topic.scenario-models.scope": {
-    "message": "Main, Subagent, examinateur, Vision et Session détaille les politiques, l'héritage et les choix compatibles."
+    "message": "Main, Subagent, Reviewer, Vision, and Session details policies, inheritance, and compatible choices."
   },
   "docs.guides.outline.providers.title": {
-    "message": "Configuration du fournisseur et du modèle local"
+    "message": "Provider and local model setup"
   },
   "docs.guides.outline.providers.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.providers.topic.providers.title": {
-    "message": "Connexion d'un fournisseur de modèles"
+    "message": "Connecting a model provider"
   },
   "docs.guides.outline.providers.topic.providers.scope": {
-    "message": "Préréglages du fournisseur, connexion à l'abonnement ou accès API, paramètres personnalisés, champs requis et tests de connexion."
+    "message": "Provider presets, subscription sign-in or API access, custom endpoints, required fields, and connection tests."
   },
   "docs.guides.outline.providers.topic.local-models.title": {
-    "message": "Utilisation de modèles locaux"
+    "message": "Using local models"
   },
   "docs.guides.outline.providers.topic.local-models.scope": {
-    "message": "Paramètres locaux compatibles, identificateurs de modèles, limites de capacité et vérification de connexion."
+    "message": "Compatible local endpoints, model identifiers, capability limits, and connection verification."
   },
   "docs.guides.outline.frameworks.title": {
-    "message": "Installation et commutation d'agents"
+    "message": "Installing and switching agents"
   },
   "docs.guides.outline.frameworks.scope": {
-    "message": "Installation du cadre, détection, authentification, activation, commutation, réparation et suppression."
+    "message": "Framework installation, detection, authentication, activation, switching, repair, and removal."
   },
   "docs.guides.outline.usage.title": {
-    "message": "Utilisation et activité des jetons"
+    "message": "Token usage and activity"
   },
   "docs.guides.outline.usage.scope": {
-    "message": "Catégories de jetons signalées, filtres à temps, cartes, comptes de projets/sessions et télémétrie manquante."
+    "message": "Reported token categories, time filters, charts, project/session counts, and missing telemetry."
   },
   "docs.guides.outline.group.control": {
-    "message": "Contrôles de la recherche et contexte"
+    "message": "Research controls and context"
   },
   "docs.guides.outline.approval-modes.title": {
-    "message": "Autorisations et agréments"
+    "message": "Permissions and approvals"
   },
   "docs.guides.outline.approval-modes.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.approval-modes.topic.approval-modes.title": {
-    "message": "Modes d'autorisation et agréments"
+    "message": "Permission modes and approvals"
   },
   "docs.guides.outline.approval-modes.topic.approval-modes.scope": {
-    "message": "Demandez, auto-approuver les modifications, et l'accès complet; inspecter, autoriser ou refuser une demande concrète."
+    "message": "Ask, auto-approve edits, and full access; inspect, allow, or deny a concrete request."
   },
   "docs.guides.outline.approval-modes.topic.remembered-permissions.title": {
-    "message": "Autorisations mémorisées"
+    "message": "Remembered permissions"
   },
   "docs.guides.outline.approval-modes.topic.remembered-permissions.scope": {
-    "message": "Session, projet et portée mondiale; inspecter, révoquer et restaurer les défauts de paiement sans confusion de portée."
+    "message": "Session, project, and global scopes; inspect, revoke, and restore defaults without scope confusion."
   },
   "docs.guides.outline.planning.title": {
-    "message": "Planification avant exécution"
+    "message": "Planning before execution"
   },
   "docs.guides.outline.planning.scope": {
-    "message": "Première entrée du plan, examen d'un plan proposé, rétroaction, approbation et exécution continue."
+    "message": "Plan-first entry, reviewing a proposed plan, feedback, approval, and continuing execution."
   },
   "docs.guides.outline.delegation.title": {
-    "message": "Délégation et Side Chat"
+    "message": "Delegation and Side Chat"
   },
   "docs.guides.outline.delegation.scope": {
-    "message": "Inspecter la délégation appuyée par le cadre, l'activité sous-agent et les conseils Side Chat. La création de Specialist, la reliure des capacités et les détails de l'examinateur appartiennent à la section Spécialistes."
+    "message": "Inspect framework-supported delegation, subagent activity and Side Chat advice. Specialist creation, capability binding and Reviewer details belong to the Specialists section."
   },
   "docs.guides.outline.memory.title": {
-    "message": "Contexte de mémoire et de conversation"
+    "message": "Memory and conversation context"
   },
   "docs.guides.outline.memory.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.memory.topic.memory.title": {
-    "message": "Mémoire et contexte réutilisable"
+    "message": "Memory and reusable context"
   },
   "docs.guides.outline.memory.topic.memory.scope": {
-    "message": "Notes globales et de projet, catégories, rappel automatique, édition manuelle et conservation lorsque désactivé."
+    "message": "Global and project notes, categories, auto-recall, manual editing, and retention when disabled."
   },
   "docs.guides.outline.memory.topic.context.title": {
-    "message": "Contexte, compactage et remises"
+    "message": "Context, compaction, and handoffs"
   },
   "docs.guides.outline.memory.topic.context.scope": {
-    "message": "Inspecter l'utilisation du contexte, comprendre l'historique et le compactage conservés, et préparer une continuation ou une remise."
+    "message": "Inspect context use, understand retained history and compaction, and prepare a continuation or handoff."
   },
   "docs.guides.outline.group.runtime": {
-    "message": "Durées d'exécution et connexions"
+    "message": "Runtimes and connections"
   },
   "docs.guides.outline.runtimes.title": {
-    "message": "Durées d'exécution Python et R"
+    "message": "Python and R runtimes"
   },
   "docs.guides.outline.runtimes.scope": {
-    "message": "Interprètes gérés et externes, installation, activation, accès au paquet et impact de reconstruction."
+    "message": "Managed and external interpreters, installation, enablement, package access, and rebuild impact."
   },
   "docs.guides.outline.connectors.title": {
-    "message": "Connecteurs et identifiants"
+    "message": "Connectors and credentials"
   },
   "docs.guides.outline.connectors.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.connectors.topic.connectors.title": {
-    "message": "Outils de connexion et services de données"
+    "message": "Connecting tools and data services"
   },
   "docs.guides.outline.connectors.topic.connectors.scope": {
-    "message": "Configuration MCP intégrée et personnalisée, disponibilité et politique des outils, reliure des titres de compétence et santé des connexions."
+    "message": "Built-in and custom MCP setup, tool availability and policy, credential binding, and connection health."
   },
   "docs.guides.outline.connectors.topic.credentials.title": {
-    "message": "Pouvoirs et comptes de services"
+    "message": "Credentials and service accounts"
   },
   "docs.guides.outline.connectors.topic.credentials.scope": {
-    "message": "Identification des périphériques, coordonnées de recherche, clés API, jetons, OAuth, réutilisation et suppression."
+    "message": "Device credentials, research contact details, API keys, tokens, OAuth, reuse, and removal."
   },
   "docs.guides.outline.network.title": {
-    "message": "Rétroviseurs de réseau, de proxies et de paquets"
+    "message": "Network, proxies, and package mirrors"
   },
   "docs.guides.outline.network.scope": {
-    "message": "Vérifications réseau, Notebook a permis des domaines, des modes mandataires, des miroirs de paquets et des paquets de certificats."
+    "message": "Network checks, Notebook allowed domains, proxy modes, package mirrors, and certificate bundles."
   },
   "docs.guides.outline.remote-compute.title": {
-    "message": "Hôtes SSH et configuration Slurm"
+    "message": "SSH hosts and Slurm setup"
   },
   "docs.guides.outline.remote-compute.scope": {
-    "message": "Authentification de l'hôte, mode direct versus planificateur, découverte de ressources, chemins de grattage, et concurrence."
+    "message": "Host authentication, direct versus scheduler mode, resource discovery, scratch paths, and concurrency."
   },
   "docs.guides.outline.remote-access.title": {
-    "message": "Accès au navigateur à distance"
+    "message": "Remote browser access"
   },
   "docs.guides.outline.remote-access.scope": {
-    "message": "Prérequis Remote.It, modes d'accès, appariement, navigateurs de confiance et révocation."
+    "message": "Remote.It prerequisites, access modes, pairing, trusted browsers, and revocation."
   },
   "docs.guides.outline.group.preferences": {
-    "message": "Personnaliser et entretenir"
+    "message": "Personalize and maintain"
   },
   "docs.guides.outline.appearance.title": {
-    "message": "Comparution et notifications"
+    "message": "Appearance and notifications"
   },
   "docs.guides.outline.appearance.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.appearance.topic.appearance.title": {
-    "message": "Apparence et langage"
+    "message": "Appearance and language"
   },
   "docs.guides.outline.appearance.topic.appearance.scope": {
-    "message": "Apparence système/lumière/dark, langage d'interface explicite et comportement du langage de démarrage."
+    "message": "System/light/dark appearance, explicit interface language, and startup language behavior."
   },
   "docs.guides.outline.appearance.topic.notifications.title": {
-    "message": "Messages et notifications"
+    "message": "Messages and notifications"
   },
   "docs.guides.outline.appearance.topic.notifications.scope": {
-    "message": "Messages dans l'application, notifications de tâches de bureau, visibilité du contenu, tests de livraison, et autorisations d'exploitation."
+    "message": "In-app messages, desktop task notifications, content visibility, delivery tests, and OS permissions."
   },
   "docs.guides.outline.tags.title": {
-    "message": "Organisation avec tags"
+    "message": "Organizing with tags"
   },
   "docs.guides.outline.tags.scope": {
-    "message": "Créer et modifier des balises, l'apparence, l'affectation des ressources, le filtrage, les noms dupliqués et la suppression."
+    "message": "Create and edit tags, appearance, resource assignment, filtering, duplicate names, and deletion."
   },
   "docs.guides.outline.storage.title": {
-    "message": "Stockage et travaux archivés"
+    "message": "Storage and archived work"
   },
   "docs.guides.outline.storage.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.storage.topic.storage.title": {
-    "message": "Emplacement des données et utilisation du disque"
+    "message": "Data location and disk usage"
   },
   "docs.guides.outline.storage.topic.storage.scope": {
-    "message": "Catégories de stockage, rafraîchissement, limites des répertoires, relocalisation, reconstruction de l'environnement et récupération."
+    "message": "Storage categories, refresh, directory boundaries, relocation, environment rebuilds, and recovery."
   },
   "docs.guides.outline.storage.topic.archived.title": {
-    "message": "Archiver, restaurer et supprimer"
+    "message": "Archive, restore, and delete"
   },
   "docs.guides.outline.storage.topic.archived.scope": {
-    "message": "Archive de projet/session et restauration, suppression permanente, dossiers conservés et limites de confirmation."
+    "message": "Project/session archive and restore, permanent deletion, retained folders, and confirmation boundaries."
   },
   "docs.guides.outline.group.help": {
-    "message": "Aide et dépannage"
+    "message": "Help and troubleshooting"
   },
   "docs.guides.outline.shortcuts.title": {
-    "message": "Raccourcis clavier"
+    "message": "Keyboard shortcuts"
   },
   "docs.guides.outline.shortcuts.scope": {
-    "message": "Navigation, recherche, compositeur et raccourcis de prévisualisation avec différences de plate-forme."
+    "message": "Navigation, search, composer, and preview shortcuts with platform differences."
   },
   "docs.guides.outline.troubleshooting.title": {
-    "message": "Dépannage et questions communes"
+    "message": "Troubleshooting and common questions"
   },
   "docs.guides.outline.troubleshooting.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.troubleshooting.topic.troubleshooting.title": {
-    "message": "Dépannage et diagnostic"
+    "message": "Troubleshooting and diagnostics"
   },
   "docs.guides.outline.troubleshooting.topic.troubleshooting.scope": {
-    "message": "les vérifications basées sur le symptôme pour le démarrage, les modèles, les runtimes, les fichiers et le réseau; recueillir des diagnostics utiles."
+    "message": "Symptom-based checks for startup, models, runtimes, files and network; collect useful diagnostics."
   },
   "docs.guides.outline.troubleshooting.topic.faq.title": {
-    "message": "Foire aux questions"
+    "message": "Frequently asked questions"
   },
   "docs.guides.outline.troubleshooting.topic.faq.scope": {
-    "message": "Des réponses claires sur la propriété des données, les exigences des comptes, les coûts, l'utilisation hors ligne et la récupération; lien vers des guides détaillés."
+    "message": "Clear answers about data ownership, account requirements, costs, offline use, and recovery; link to detailed guides."
   },
   "docs.outline.workflows.overview": {
-    "message": "Aperçu de Open-Science"
+    "message": "Open-Science overview"
   },
   "docs.outline.workflows.scope": {
-    "message": "les situations de recherche avec un point de départ défini et réalisable; Les opérations d'interface appartiennent à l'intérieur de chaque scénario."
+    "message": "Research situations with a defined starting point and deliverable; interface operations belong inside each scenario."
   },
   "docs.outline.workflows.group.start": {
-    "message": "Choisir un workflow"
+    "message": "Choose a workflow"
   },
   "docs.outline.workflows.cookbook.title": {
-    "message": "Livre de recettes sur les flux de travail"
+    "message": "Workflow cookbook"
   },
   "docs.outline.workflows.cookbook.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.cookbook.topic.cookbook.title": {
-    "message": "Livre de recettes sur les flux de travail"
+    "message": "Workflow cookbook"
   },
   "docs.outline.workflows.cookbook.topic.cookbook.scope": {
-    "message": "Choisissez par question de recherche, type d'entrée, rendement prévu et ressources disponibles."
+    "message": "Choose by research question, input type, expected output, and available resources."
   },
   "docs.outline.workflows.cookbook.topic.first-analysis.title": {
-    "message": "Votre première analyse reproductible"
+    "message": "Your first reproducible analysis"
   },
   "docs.outline.workflows.cookbook.topic.first-analysis.scope": {
-    "message": "Un petit exemple de CSV de l'importation à l'inspection, l'exécution, la figure sauvegardée, et la vérification de rediffusion."
+    "message": "A small CSV example from import to inspection, execution, saved figure, and rerun verification."
   },
   "docs.outline.workflows.group.library": {
-    "message": "Construire votre collection de recherche"
+    "message": "Build your research collection"
   },
   "docs.outline.workflows.build-library.title": {
-    "message": "Construire une liste de lecture de base pour un nouveau sujet de recherche"
+    "message": "Build a core reading list for a new research topic"
   },
   "docs.outline.workflows.build-library.scope": {
-    "message": "Lors du démarrage d'un sujet inconnu, collectez des documents de semences, cartographiez les thèmes clés et enregistrez une liste de lectures curées liée au projet. L'importation et le marquage sont des étapes dans ce scénario."
+    "message": "When starting an unfamiliar topic, collect seed papers, map key themes and save a curated reading list linked to the project. Import and tagging are steps within this scenario."
   },
   "docs.outline.workflows.import-library.title": {
-    "message": "Prendre le relais et organiser une collection de papier"
+    "message": "Take over and organize a paper collection"
   },
   "docs.outline.workflows.import-library.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.import-library.topic.import-library.title": {
-    "message": "Reprise d'une précédente collection de littérature de chercheur"
+    "message": "Take over a previous researcher's literature collection"
   },
   "docs.outline.workflows.import-library.topic.import-library.scope": {
-    "message": "Compte tenu des PDF et des exportations de citations d'un chercheur précédent, reconstruire une bibliothèque de projet utilisable et produire une liste de documents manquants ou ambigus."
+    "message": "Given PDFs and citation exports from a previous researcher, reconstruct a usable project library and produce a list of missing or ambiguous records."
   },
   "docs.outline.workflows.import-library.topic.repair-metadata.title": {
-    "message": "Rendre utilisable une collection de papier fragmentée"
+    "message": "Make a fragmented paper collection usable again"
   },
   "docs.outline.workflows.import-library.topic.repair-metadata.scope": {
-    "message": "Compte tenu des dossiers mixtes, des citations incomplètes et des pièces jointes manquantes, rapprocher les dossiers et le texte complet en collections de sujets avec une liste explicite d'éléments non résolus."
+    "message": "Given mixed folders, incomplete citations and missing attachments, reconcile records and full text into topic collections with an explicit unresolved-items list."
   },
   "docs.outline.workflows.organize-library.title": {
-    "message": "Consolider les lots de recherche pour un projet d'examen"
+    "message": "Consolidate search batches for a review project"
   },
   "docs.outline.workflows.organize-library.scope": {
-    "message": "Combiner les documents provenant de plusieurs recherches ou bases de données en un ensemble de candidats dédoublé, en conservant la provenance de la recherche et une remise de présélection documentée."
+    "message": "Combine records from several searches or databases into a deduplicated candidate set, retaining search provenance and a documented screening handoff."
   },
   "docs.outline.workflows.review-inbox.title": {
-    "message": "Préparer un pack de lecture ciblé pour un club de journaux"
+    "message": "Prepare a focused reading pack for a journal club"
   },
   "docs.outline.workflows.review-inbox.scope": {
-    "message": "Pour un club de journaux à venir, sélectionnez des articles autour d'une question, examinez les suggestions de l'agent, recueillez le texte complet disponible et préparez un ordre de lecture avec des questions de discussion."
+    "message": "For an upcoming journal club, select papers around one question, review agent suggestions, collect available full text and prepare a reading order with discussion questions."
   },
   "docs.outline.workflows.deduplicate-library.title": {
-    "message": "Étendre une base de données existante"
+    "message": "Extend an existing evidence base"
   },
   "docs.outline.workflows.deduplicate-library.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.deduplicate-library.topic.deduplicate-library.title": {
-    "message": "Réutiliser une base de documentation pour une question de recherche connexe"
+    "message": "Reuse a literature base for a related research question"
   },
   "docs.outline.workflows.deduplicate-library.topic.deduplicate-library.scope": {
-    "message": "Lorsqu'un projet connexe commence, identifier les documents pertinents dans la bibliothèque existante, les relier sans faire double emploi avec les documents et documenter les lacunes propres à la nouvelle question."
+    "message": "When a related project starts, identify relevant papers in the existing library, link them without duplicating records and document evidence gaps specific to the new question."
   },
   "docs.outline.workflows.deduplicate-library.topic.attach-full-text.title": {
-    "message": "Rafraîchir la base de données probantes avant un jalon du projet"
+    "message": "Refresh the evidence base before a project milestone"
   },
   "docs.outline.workflows.deduplicate-library.topic.attach-full-text.scope": {
-    "message": "Avant une proposition ou un examen des progrès, effectuer une nouvelle recherche, comparer les nouvelles constatations avec la collection sauvegardée et préparer une note datée d'ajouts et d'écarts. Il s'agit d'un workflow manuel, non d'une surveillance programmée."
+    "message": "Before a proposal or progress review, run a fresh search, compare new findings with the saved collection and prepare a dated additions-and-gaps note. This is a manual workflow, not scheduled monitoring."
   },
   "docs.outline.workflows.group.evidence": {
-    "message": "Littérature et preuves"
+    "message": "Literature and evidence"
   },
   "docs.outline.workflows.literature-review.title": {
-    "message": "Revue de la littérature au tableau des éléments de preuve"
+    "message": "Literature review to evidence table"
   },
   "docs.outline.workflows.literature-review.scope": {
-    "message": "Définir une question, rechercher et trier les dossiers, extraire les preuves, citer les sources et signaler les lacunes d'accès."
+    "message": "Define a question, search and screen records, extract evidence, cite sources, and report access gaps."
   },
   "docs.outline.workflows.paper-reading.title": {
-    "message": "Lire les documents et vérifier les réclamations"
+    "message": "Read papers and verify claims"
   },
   "docs.outline.workflows.paper-reading.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.paper-reading.topic.paper-reading.title": {
-    "message": "Lire et comparer les documents"
+    "message": "Read and compare papers"
   },
   "docs.outline.workflows.paper-reading.topic.paper-reading.scope": {
-    "message": "Extraire les méthodes, les populations, les constatations et les limites des documents fournis; conserver les preuves au niveau des pages."
+    "message": "Extract methods, populations, findings and limitations from provided papers; retain page-level evidence."
   },
   "docs.outline.workflows.paper-reading.topic.pdf-evidence.title": {
-    "message": "Vérifier si un papier appuie une revendication"
+    "message": "Check whether a paper supports a claim"
   },
   "docs.outline.workflows.paper-reading.topic.pdf-evidence.scope": {
-    "message": "Compte tenu d'une revendication dans une ébauche ou une note de réunion, localisez les passages et les méthodes pertinents de PDF, conservez les preuves de pages et produisez une conclusion étayée, qualifiée ou non étayée."
+    "message": "Given a claim in a draft or meeting note, locate the relevant PDF passages and methods, retain page evidence and produce a supported, qualified or unsupported finding."
   },
   "docs.outline.workflows.database-search.title": {
-    "message": "Récupérer des enregistrements de bases de données structurées"
+    "message": "Retrieve structured database records"
   },
   "docs.outline.workflows.database-search.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.database-search.topic.database-search.title": {
-    "message": "Recherche de bases de données scientifiques"
+    "message": "Search scientific databases"
   },
   "docs.outline.workflows.database-search.topic.database-search.scope": {
-    "message": "Sélectionnez une source de données, formulez des requêtes limitées, résolvez les identifiants et enregistrez les enregistrements traçables."
+    "message": "Select a data source, formulate bounded queries, resolve identifiers, and save traceable records."
   },
   "docs.outline.workflows.database-search.topic.cross-source-evidence.title": {
-    "message": "Résoudre une inadéquation entre un papier et une base de données"
+    "message": "Resolve a mismatch between a paper and a database"
   },
   "docs.outline.workflows.database-search.topic.cross-source-evidence.scope": {
-    "message": "Lorsqu'un document et une base de données sont en désaccord au sujet d'un gène, d'un composé ou d'un essai, réconcilier les identificateurs et les versions et documenter ce qui reste en suspens."
+    "message": "When a paper and a database disagree about a gene, compound or trial, reconcile identifiers and versions and document what remains unresolved."
   },
   "docs.outline.workflows.indication-dossier.title": {
-    "message": "Construire un dossier d'indication"
+    "message": "Build an indication dossier"
   },
   "docs.outline.workflows.indication-dossier.scope": {
-    "message": "Combiner la biologie, l'épidémiologie, les essais et les données de traitement avec les dates de la source et les lacunes non résolues."
+    "message": "Combine biology, epidemiology, trials and treatment evidence with source dates and unresolved gaps."
   },
   "docs.outline.workflows.format-bibliography.title": {
-    "message": "Préparer les références à soumettre"
+    "message": "Prepare references for submission"
   },
   "docs.outline.workflows.format-bibliography.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.format-bibliography.topic.format-bibliography.title": {
-    "message": "Adapter une bibliographie à un journal cible"
+    "message": "Adapt a bibliography to a target journal"
   },
   "docs.outline.workflows.format-bibliography.topic.format-bibliography.scope": {
-    "message": "Utilisez des ID d'éléments de bibliothèque de confiance et des styles CSL pris en charge. Couverture de citations formatées, DOCX avec des marqueurs sémantiques et un faisceau de LaTeX compatible avec les feuilles arrières; vérifier les champs de sortie et les exigences de style."
+    "message": "Use trusted Library item IDs and supported CSL styles. Cover formatted citations, DOCX with semantic citation markers, and an Overleaf-compatible LaTeX bundle; verify output fields and style requirements."
   },
   "docs.outline.workflows.format-bibliography.topic.restore-library.title": {
-    "message": "Vérification des références d'un manuscrit avant présentation"
+    "message": "Audit a manuscript's references before submission"
   },
   "docs.outline.workflows.format-bibliography.topic.restore-library.scope": {
-    "message": "Compte tenu d'un manuscrit et de sa bibliothèque source, réconcilier les documents cités, les champs bibliographiques, les duplicata et les preuves accessibles, puis produire une bibliographie corrigée et une liste d'exceptions."
+    "message": "Given a manuscript and its source library, reconcile cited records, bibliographic fields, duplicates and accessible evidence, then produce a corrected bibliography and an exceptions list."
   },
   "docs.outline.workflows.group.analysis": {
-    "message": "Analyse et reproduction des données"
+    "message": "Data analysis and reproduction"
   },
   "docs.outline.workflows.data-quality.title": {
-    "message": "Vérifier la qualité de l'échantillon dans une matrice de nombre de gènes"
+    "message": "Check sample quality in a gene-count matrix"
   },
   "docs.outline.workflows.data-quality.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.data-quality.topic.data-quality.title": {
-    "message": "Vérification et nettoyage d'un ensemble de données"
+    "message": "Audit and clean a dataset"
   },
   "docs.outline.workflows.data-quality.topic.data-quality.scope": {
-    "message": "Vérifier les types, les lacunes, les duplicata et les unités; préserver les intrants bruts et les exclusions enregistrées."
+    "message": "Check types, missingness, duplicates and units; preserve raw inputs and record exclusions."
   },
   "docs.outline.workflows.data-quality.topic.python-r.title": {
-    "message": "Analyser avec Python et R"
+    "message": "Analyze with Python and R"
   },
   "docs.outline.workflows.data-quality.topic.python-r.scope": {
-    "message": "Préparer les runtimes, inspecter les variables, exécuter progressivement, récupérer les erreurs et enregistrer les scripts réutilisables."
+    "message": "Prepare runtimes, inspect variables, execute incrementally, recover errors and save reusable scripts."
   },
   "docs.outline.workflows.statistics.title": {
-    "message": "Analyse statistique et validation"
+    "message": "Statistical analysis and validation"
   },
   "docs.outline.workflows.statistics.scope": {
-    "message": "Indiquez les hypothèses, sélectionnez une méthode, vérifiez le diagnostic, signalez l'incertitude et conservez le code exécutable."
+    "message": "State assumptions, select a method, check diagnostics, report uncertainty, and retain runnable code."
   },
   "docs.outline.workflows.reproduce.title": {
-    "message": "Reproduire un résultat publié"
+    "message": "Reproduce a published result"
   },
   "docs.outline.workflows.reproduce.scope": {
-    "message": "le papier d'inventaire, le code et les données; définir les critères d'acceptation, exécuter un pilote et distinguer les allumettes des écarts."
+    "message": "Inventory paper, code and data; define acceptance criteria, run a pilot and distinguish matches from deviations."
   },
   "docs.outline.workflows.extend-analysis.title": {
-    "message": "Étendre une analyse avec un Specialist installé"
+    "message": "Extend an analysis with an installed Specialist"
   },
   "docs.outline.workflows.extend-analysis.scope": {
-    "message": "Méthodes existantes, ACQ, matrice et exemples de planification des données probantes."
+    "message": "Existing Methods, QC PCA, matrix and evidence-planning examples."
   },
   "docs.outline.workflows.group.biology": {
-    "message": "Séquences, cellules et molécules"
+    "message": "Sequences, cells, and molecules"
   },
   "docs.outline.workflows.sequence-qc.title": {
-    "message": "Qualité des séquences et annotation"
+    "message": "Sequence quality and annotation"
   },
   "docs.outline.workflows.sequence-qc.scope": {
-    "message": "Inspecter les registres, les alphabets et les longueurs de l'AFCAT; résoudre les sources d'annotation et préserver les dossiers défaillants."
+    "message": "Inspect FASTA records, alphabets and lengths; resolve annotation sources and preserve failed records."
   },
   "docs.outline.workflows.single-cell.title": {
-    "message": "Analyse par cellule unique"
+    "message": "Single-cell analysis"
   },
   "docs.outline.workflows.single-cell.scope": {
-    "message": "Vérifiez les entrées d'expression et les métadonnées, choisissez scGPT ou scvi-tools le cas échéant, et validez les sorties. Nécessite une entrée monocellulaire compatible, un environnement Python configuré et les dépendances Skill sélectionnées; l'exécution scientifique est toujours en cours."
+    "message": "Check expression inputs and metadata, choose scGPT or scvi-tools where appropriate, and validate outputs. Requires compatible single-cell input, a configured Python environment and the selected Skill dependencies; scientific execution remains pending."
   },
   "docs.outline.workflows.structure-prediction.title": {
-    "message": "Protéines et prédictions complexes"
+    "message": "Protein and complex prediction"
   },
   "docs.outline.workflows.structure-prediction.scope": {
-    "message": "Choisissez une prévision disponible Skill, vérifiez les entrées et calculez les exigences, puis inspectez la confiance et les limitations. Nécessite le paquet sélectionné, les poids du modèle et le calcul local ou à distance approprié; l'inscription d'un Skill ne vérifie pas l'exécution de la prédiction."
+    "message": "Choose an available prediction Skill, check inputs and compute requirements, then inspect confidence and limitations. Requires the selected package, model weights and suitable local or remote compute; listing a Skill does not verify prediction execution."
   },
   "docs.outline.workflows.molecular-analysis.title": {
-    "message": "Structures moléculaires et accostage"
+    "message": "Molecular structures and docking"
   },
   "docs.outline.workflows.molecular-analysis.scope": {
-    "message": "Valider les molécules, inspecter les propriétés et les structures, et examiner les poses d'amarrage sans égaliser les scores avec l'affinité. Séparer le visionneur local de molécules, les sources de chimie en ligne et l'exécution DiffDock; l'arrimage nécessite ses propres dépendances et la validation de calcul."
+    "message": "Validate molecules, inspect properties and structures, and review docking poses without equating scores with affinity. Separate the local molecule viewer, online chemistry sources and DiffDock execution; docking requires its own dependencies and compute validation."
   },
   "docs.outline.workflows.group.deliver": {
-    "message": "Chiffres, rapports et révisions"
+    "message": "Figures, reports, and revisions"
   },
   "docs.outline.workflows.figures.title": {
-    "message": "Créer des chiffres avec des preuves traçables"
+    "message": "Create figures with traceable evidence"
   },
   "docs.outline.workflows.figures.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.figures.topic.figures.title": {
-    "message": "Compiler et valider des chiffres scientifiques"
+    "message": "Compose and validate scientific figures"
   },
   "docs.outline.workflows.figures.topic.figures.scope": {
-    "message": "Créer des panneaux à partir de données traçables, vérifier les étiquettes et la fidélité visuelle, et exporter des biens de publication."
+    "message": "Create panels from traceable data, check labels and visual fidelity, and export publication assets."
   },
   "docs.outline.workflows.figures.topic.trace-result.title": {
-    "message": "Expliquez d'où vient le résultat d'un chiffre"
+    "message": "Explain where a figure's result came from"
   },
   "docs.outline.workflows.figures.topic.trace-result.scope": {
-    "message": "Lorsqu'un collaborateur interroge une figure, tracez l'artefact jusqu'à son exécution et ses entrées, vérifiez les versions et préparez une explication du calcul étayée par des preuves."
+    "message": "When a collaborator questions a figure, trace the artifact to its execution and inputs, verify versions and prepare an evidence-backed explanation of the calculation."
   },
   "docs.outline.workflows.manuscript.title": {
-    "message": "Rédiger et réviser un rapport de recherche"
+    "message": "Write and revise a research report"
   },
   "docs.outline.workflows.manuscript.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.manuscript.topic.manuscript.title": {
-    "message": "Construire un rapport ou un manuscrit narratif"
+    "message": "Build a report or manuscript narrative"
   },
   "docs.outline.workflows.manuscript.topic.manuscript.scope": {
-    "message": "Relier les constatations vérifiées, l'ordre des chiffres, les méthodes et les citations; Drapeau des revendications non étayées."
+    "message": "Connect verified findings, figure order, methods and citations; flag unsupported claims."
   },
   "docs.outline.workflows.manuscript.topic.revise-artifact.title": {
-    "message": "Réviser un chiffre ou un rapport après la rétroaction de l'évaluateur"
+    "message": "Revise a figure or report after reviewer feedback"
   },
   "docs.outline.workflows.manuscript.topic.revise-artifact.scope": {
-    "message": "Carter la rétroaction pour les sorties sauvegardées, faire des modifications prises en charge, comparer les révisions et préparer une réponse reliant chaque changement à l'artefact révisé."
+    "message": "Map feedback to saved outputs, make supported edits, compare revisions and prepare a response linking each change to the revised artifact."
   },
   "docs.outline.workflows.recover-notebook.title": {
-    "message": "Reprise d'une analyse après modification des données sources"
+    "message": "Rerun an analysis after the source data changes"
   },
   "docs.outline.workflows.recover-notebook.scope": {
-    "message": "Compte tenu de la mise à jour de l'ensemble de données, identifier les sorties de carnets statiques, rediriger les dépendances et comparer les nouveaux résultats avec les résultats livrables précédents pour expliquer les changements importants."
+    "message": "Given an updated dataset, identify stale notebook outputs, rerun dependencies and compare new results with the previous deliverable to explain material changes."
   },
   "docs.outline.workflows.group.compute": {
-    "message": "Tâches longues et calcul à distance"
+    "message": "Long tasks and remote compute"
   },
   "docs.outline.workflows.ssh-analysis.title": {
-    "message": "Exécuter et récupérer des analyses à distance"
+    "message": "Run and recover remote analyses"
   },
   "docs.outline.workflows.ssh-analysis.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.ssh-analysis.topic.ssh-analysis.title": {
-    "message": "Exécuter une analyse sur un hôte SSH"
+    "message": "Run an analysis on an SSH host"
   },
   "docs.outline.workflows.ssh-analysis.topic.ssh-analysis.scope": {
-    "message": "Vérifier la politique et l'état de préparation de l'hôte, préparer les intrants, surveiller l'exécution et récupérer les extrants dans le projet. Nécessite un hôte SSH accessible fourni par l'utilisateur et des références testées; aucun emploi à distance n'a été vérifié dans la vérification en cours."
+    "message": "Check host policy and readiness, stage inputs, monitor execution, and recover outputs into the project. Requires a user-provided reachable SSH host and tested credentials; no remote job has been verified in the current audit."
   },
   "docs.outline.workflows.ssh-analysis.topic.slurm-jobs.title": {
-    "message": "Soumettre et récupérer des jobs Slurm"
+    "message": "Submit and recover Slurm jobs"
   },
   "docs.outline.workflows.ssh-analysis.topic.slurm-jobs.scope": {
-    "message": "Confirmer les exigences du planificateur, soumettre un travail limité, suivre sa réception, annuler ou récupérer, et vérifier les fichiers. Nécessite une configuration réelle de cluster, compte et planificateur Slurm; l'exécution du programmeur n'est pas vérifiée par les contrôles en mode local."
+    "message": "Confirm scheduler requirements, submit a bounded job, track its receipt, cancel or recover, and verify files. Requires an actual Slurm cluster, account and scheduler configuration; scheduler execution is not verified by local mode controls."
   },
   "docs.outline.workflows.parallel-review.title": {
-    "message": "Travaux de recherche sur les délégués et les examens"
+    "message": "Delegate and review research work"
   },
   "docs.outline.workflows.parallel-review.scope": {
-    "message": "Avec un cadre soutenu et des modèles de travail, divisez une tâche délimitée, configurez les capacités Specialist, inspectez les activités déléguées et les approbations, et conciliez les preuves retournées. Vérifier la délégation avant de réclamer une exécution parallèle."
+    "message": "With a supported framework and working models, split a bounded task, configure Specialist capabilities, inspect delegated activity and approvals, and reconcile returned evidence. Verify delegation before claiming parallel execution."
   },
   "docs.outline.workflows.group.continue": {
-    "message": "Poursuivre et abandonner la recherche"
+    "message": "Continue and hand off research"
   },
   "docs.outline.workflows.plan-research.title": {
-    "message": "Planifier et reprendre une enquête"
+    "message": "Plan and resume an investigation"
   },
   "docs.outline.workflows.plan-research.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.plan-research.topic.plan-research.title": {
-    "message": "Étendue d'une étude pilote avant de procéder au calcul"
+    "message": "Scope a pilot study before committing compute"
   },
   "docs.outline.workflows.plan-research.topic.plan-research.scope": {
-    "message": "Transformer une question générale et des ressources limitées en un petit plan pilote comportant des intrants, des produits livrables, des conditions d'arrêt et des vérifications d'acceptation avant d'élargir l'analyse."
+    "message": "Turn a broad question and limited resources into a small pilot plan with inputs, deliverables, stop conditions and acceptance checks before expanding the analysis."
   },
   "docs.outline.workflows.plan-research.topic.persistent-goal.title": {
-    "message": "Reprendre une étude inachevée avec un plan de séance"
+    "message": "Resume an unfinished study with a Session Plan"
   },
   "docs.outline.workflows.plan-research.topic.persistent-goal.scope": {
-    "message": "Reprendre les travaux entrepris par l'utilisateur à partir d'un plan de session approuvé, enregistrer l'état des étapes et enregistrer les résultats. Garder une note de travail restante; le plan n'implique pas un calendrier sans surveillance ni une fonction distincte de but persistant."
+    "message": "Resume user-initiated work from an approved Session Plan, recorded step status and saved results. Keep a remaining-work note; the plan does not imply unattended scheduling or a separate persistent-goal feature."
   },
   "docs.outline.workflows.plan-research.topic.continue-context.title": {
-    "message": "Reprendre une étude après une pause sans perdre de décisions"
+    "message": "Resume a study after a break without losing decisions"
   },
   "docs.outline.workflows.plan-research.topic.continue-context.scope": {
-    "message": "Reconstruisez une étude interrompue à partir de sessions antérieures, de mémoire de projet et de fichiers sauvegardés, puis produisez une note d'état courant vérifiée avant de poursuivre l'analyse."
+    "message": "Reconstruct a paused study from prior sessions, project memory and saved files, then produce a verified current-state note before further analysis."
   },
   "docs.outline.workflows.compare-branches.title": {
-    "message": "Comparer deux méthodes d'analyse sur le même ensemble de données"
+    "message": "Compare two analysis methods on the same dataset"
   },
   "docs.outline.workflows.compare-branches.scope": {
-    "message": "Utiliser les mêmes entrées documentées et le prétraitement pour deux méthodes, exécuter les deux et comparer les résultats, les hypothèses et les limites."
+    "message": "Use the same documented inputs and preprocessing for two methods, execute both, and compare results, assumptions and limitations."
   },
   "docs.outline.workflows.save-method.title": {
-    "message": "Réutiliser une analyse validée sur un nouvel ensemble de données"
+    "message": "Reuse a validated analysis on a new dataset"
   },
   "docs.outline.workflows.save-method.scope": {
-    "message": "Conversion d'une analyse réussie en Skill réutilisable, adaptation des entrées déclarées et vérification de la méthode sur un nouvel ensemble de données sans reporter silencieusement les anciennes hypothèses."
+    "message": "Convert a successful analysis into a reusable Skill, adapt declared inputs and verify the method on a new dataset without silently carrying over old assumptions."
   },
   "docs.outline.workflows.handoff.title": {
-    "message": "Délivrer un dossier de recherche reproductible"
+    "message": "Hand off a reproducible research package"
   },
   "docs.outline.workflows.handoff.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.handoff.topic.handoff.title": {
-    "message": "Emballez une remise reproductible"
+    "message": "Package a reproducible handoff"
   },
   "docs.outline.workflows.handoff.topic.handoff.scope": {
-    "message": "Recueillir les entrées, les scripts, les environnements, les résultats et les limitations; vérifier l'emballage à partir d'un état frais."
+    "message": "Collect inputs, scripts, environments, results and limitations; verify the package from a fresh state."
   },
   "docs.outline.workflows.handoff.topic.export-handoff.title": {
-    "message": "Donnez une analyse inachevée à un collaborateur"
+    "message": "Hand an unfinished analysis to a collaborator"
   },
   "docs.outline.workflows.handoff.topic.export-handoff.scope": {
-    "message": "Préparer des preuves de conversation sélectionnées, des dossiers de résultats, des décisions, des exigences environnementales et des questions restantes comme trousse de remise à l'examen."
+    "message": "Prepare selected conversation evidence, result files, decisions, environment requirements and remaining questions as a reviewable handoff package."
   },
   "docs.outline.tools.overview": {
-    "message": "Aperçu de Open-Science"
+    "message": "Open-Science overview"
   },
   "docs.outline.tools.scope": {
-    "message": "Trouver des outils par capacité; Les catalogues et les opérations individuelles sont prévus sous forme de tableaux à l'intérieur de grands chapitres."
+    "message": "Find tools by capability; catalogs and individual operations are planned as tables inside broad chapters."
   },
   "docs.outline.tools.group.find": {
-    "message": "Trouver un outil"
+    "message": "Find a tool"
   },
   "docs.outline.tools.overview.title": {
-    "message": "Explorer les outils"
+    "message": "Explore tools"
   },
   "docs.outline.tools.overview.scope": {
-    "message": "Choisir entre les outils intégrés, les logiciels scientifiques, les connecteurs de base de données et les téléspectateurs; comparer l'accès et l'état de préparation dans un tableau."
+    "message": "Choose between built-in tools, scientific software, database connectors and viewers; compare access and readiness in a table."
   },
   "docs.outline.tools.built-in.title": {
-    "message": "Outils de recherche intégrés"
+    "message": "Built-in research tools"
   },
   "docs.outline.tools.built-in.scope": {
-    "message": "Une table d'opérations de fichiers, de cahiers, de littérature, de mémoire, de planification et de délégation avec entrées, sorties et autorisations."
+    "message": "A table of file, notebook, literature, memory, planning and delegation operations with inputs, outputs and permissions."
   },
   "docs.outline.tools.catalog.title": {
-    "message": "Catalogue des outils scientifiques"
+    "message": "Scientific tool catalog"
   },
   "docs.outline.tools.catalog.scope": {
-    "message": "Une table de documentation des logiciels référencés par Skills groupés et des paquets d'exécution inspectés, avec objectif, dépendances et disponibilité. Les entrées de catalogue ne sont pas toutes des logiciels préinstallés ou un catalogue in-app séparé."
+    "message": "A documentation table of software referenced by bundled Skills and inspected runtime packages, with purpose, dependencies and availability. Catalog entries are not all preinstalled software or a separate in-app catalog."
   },
   "docs.outline.tools.scientific.title": {
-    "message": "Outils scientifiques"
+    "message": "Scientific tools"
   },
   "docs.outline.tools.scientific.scope": {
-    "message": "Expliquez l'exécution à travers Notebook runtimes ou configurés Compute Hosts, avec installation de paquets, contrôles d'entrée/sortie et diagnostic d'échec. Enregistrez les exigences locales et les exigences à distance pour chaque exemple de logiciel."
+    "message": "Explain execution through Notebook runtimes or configured Compute Hosts, with package installation, input/output checks and failure diagnosis. Record local versus remote requirements for each software example."
   },
   "docs.outline.tools.group.data": {
-    "message": "Données et téléspectateurs"
+    "message": "Data and viewers"
   },
   "docs.outline.tools.databases.title": {
-    "message": "Bases de données scientifiques"
+    "message": "Scientific databases"
   },
   "docs.outline.tools.databases.scope": {
-    "message": "Sources de données scientifiques supportées, tâches utiles, configuration Connector intégrée et références, avec des liens pour compléter les flux de travail de recherche."
+    "message": "Supported scientific data sources, useful tasks, built-in Connector setup and credentials, with links to complete research workflows."
   },
   "docs.outline.tools.tables.title": {
-    "message": "Tableaux et ensembles de données"
+    "message": "Tables and datasets"
   },
   "docs.outline.tools.tables.scope": {
-    "message": "Comparer les formats tabulaires pris en charge, les contrôles d'aperçu, l'inspection des données, la manipulation variable, les exportations et les limites de taille dans les tableaux."
+    "message": "Compare supported tabular formats, preview controls, data inspection, variable handling, exports and size limits in tables."
   },
   "docs.outline.tools.viewers.title": {
-    "message": "Vérificateurs scientifiques"
+    "message": "Scientific viewers"
   },
   "docs.outline.tools.viewers.scope": {
-    "message": "Utilisez le registre d'aperçu réel pour les formats PDF, Office, images, FASTA, PDB et moléculaires. Inclure le visionneur de molécules OpenChemLib hors ligne et ses outils de validation; distinguer l'affichage de l'édition ou du calcul scientifique."
+    "message": "Use the actual preview registry for PDF, Office, images, FASTA, PDB and molecular formats. Include the offline OpenChemLib Molecule Viewer and its validation tools; distinguish viewing from editing or scientific computation."
   },
   "docs.outline.tools.group.connect": {
-    "message": "Connecter et étendre"
+    "message": "Connect and extend"
   },
   "docs.outline.tools.mcp.title": {
-    "message": "Connecteurs et MCP"
+    "message": "Connectors and MCP"
   },
   "docs.outline.tools.mcp.scope": {
-    "message": "Comparer les connecteurs intégrés et personnalisés, les transports, la découverte, l'activation et les erreurs; lier les étapes de configuration aux guides."
+    "message": "Compare built-in and custom connectors, transports, discovery, enablement and errors; link configuration steps to Guides."
   },
   "docs.outline.tools.credentials.title": {
-    "message": "Pouvoirs de service"
+    "message": "Service credentials"
   },
   "docs.outline.tools.credentials.scope": {
-    "message": "Une table de service à la crédibilité couvrant les types de titres de compétence, les liaisons, les champs d'application requis, la validation et les défaillances d'accès."
+    "message": "A service-to-credential table covering credential types, bindings, required scopes, validation and access failures."
   },
   "docs.outline.tools.custom.title": {
-    "message": "Connectez un outil personnalisé MCP"
+    "message": "Connect a custom MCP tool"
   },
   "docs.outline.tools.custom.scope": {
-    "message": "Connectez un serveur MCP existant ou mis en œuvre à l'extérieur grâce au transport local stdio ou à distance pris en charge, inspectez les outils découverts et testez les identifiants et les autorisations. La mise en place d'outils est une condition préalable externe."
+    "message": "Connect an existing or externally implemented MCP server through local stdio or supported remote transport, inspect discovered tools and test credentials and permissions. Tool implementation is an external prerequisite."
   },
   "docs.outline.skills.overview": {
-    "message": "Aperçu de Open-Science"
+    "message": "Open-Science overview"
   },
   "docs.outline.skills.scope": {
-    "message": "Choisir, utiliser et maintenir des procédures réutilisables; chaque Skills groupé fait partie des tableaux de chapitres."
+    "message": "Choose, use, and maintain reusable procedures; individual bundled Skills belong in chapter tables."
   },
   "docs.outline.skills.group.use": {
-    "message": "Utiliser Skills"
+    "message": "Use Skills"
   },
   "docs.outline.skills.overview.title": {
     "message": "Skills"
   },
   "docs.outline.skills.overview.scope": {
-    "message": "Expliquer Skills par rapport aux outils et aux spécialistes; rechercher, activer, sélectionner, inspecter les instructions et vérifier qu'un Skill est disponible."
+    "message": "Explain Skills versus tools and Specialists; search, enable, select, inspect instructions and verify a Skill is available."
   },
   "docs.outline.skills.directory.title": {
-    "message": "Répertoire Skill"
+    "message": "Skill directory"
   },
   "docs.outline.skills.directory.scope": {
-    "message": "Un tableau de tous les 23 groupés Skills, regroupés par objectif de recherche, avec entrées, dépendances, sorties et état de vérification."
+    "message": "One table of all 23 bundled Skills, grouped by research purpose, with inputs, dependencies, outputs and verification status."
   },
   "docs.outline.skills.recipes.title": {
-    "message": "Recettes Skill"
+    "message": "Skill recipes"
   },
   "docs.outline.skills.recipes.scope": {
-    "message": "Les recettes basées sur la table relient les objectifs de recherche, le Skills sélectionné, les entrées d'échantillons, les demandes, les extrants attendus et les flux de travail complets."
+    "message": "Table-based recipes connect research goals, selected Skills, sample inputs, requests, expected outputs and full Workflows."
   },
   "docs.outline.skills.group.maintain": {
-    "message": "Créer et maintenir"
+    "message": "Create and maintain"
   },
   "docs.outline.skills.create.title": {
-    "message": "Créer un Skill et ses fichiers support"
+    "message": "Create a Skill and its supporting files"
   },
   "docs.outline.skills.create.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.skills.create.topic.create.title": {
-    "message": "Créer un Skill"
+    "message": "Create a Skill"
   },
   "docs.outline.skills.create.topic.create.scope": {
-    "message": "Écrire un Skill personnel ou extraire une méthode réutilisable d'une conversation; définir les entrées, les étapes, les vérifications et les limites."
+    "message": "Write a personal Skill or extract a reusable method from a conversation; define inputs, steps, checks and boundaries."
   },
   "docs.outline.skills.create.topic.files.title": {
-    "message": "Instructions et fichiers d'appui"
+    "message": "Instructions and supporting files"
   },
   "docs.outline.skills.create.topic.files.scope": {
-    "message": "Décrivez les champs SKILL.md, les scripts, les actifs et les références à l'aide d'un tableau de contenu de paquets et d'une liste de vérification de validation."
+    "message": "Describe SKILL.md fields, scripts, assets and references using a package-contents table and a validation checklist."
   },
   "docs.outline.skills.manage.title": {
-    "message": "Gérer et valider Skills"
+    "message": "Manage and validate Skills"
   },
   "docs.outline.skills.manage.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.skills.manage.topic.manage.title": {
-    "message": "Importer, exporter et mettre à jour Skills"
+    "message": "Import, export, and update Skills"
   },
   "docs.outline.skills.manage.topic.manage.scope": {
-    "message": "Sources d'importation de groupe, prévisualisation, gestion des conflits, édition, exportations, suppression et vérifications de version par opération."
+    "message": "Group import sources, preview, conflict handling, editing, exports, deletion and version checks by operation."
   },
   "docs.outline.skills.manage.topic.validate.title": {
-    "message": "Essai et dépannage Skills"
+    "message": "Test and troubleshoot Skills"
   },
   "docs.outline.skills.manage.topic.validate.scope": {
-    "message": "Valider une entrée fraîche, diagnostiquer les paquets manquants, les poids, les identifiants et les outils, et enregistrer les comportements pris en charge par rapport aux tests."
+    "message": "Validate a fresh input, diagnose missing packages, weights, credentials and tools, and record supported versus tested behavior."
   },
   "docs.outline.reference.overview": {
-    "message": "Aperçu des références"
+    "message": "Reference overview"
   },
   "docs.outline.reference.scope": {
-    "message": "Configuration du projet et intégrations CLI d'abord, suivie par la référence technique spécifique à AIPOCH et Changelog."
+    "message": "Project setup and CLI integrations first, followed by AIPOCH-specific technical reference and Changelog."
   },
   "docs.outline.reference.group.product": {
-    "message": "Référence du produit"
+    "message": "Product reference"
   },
   "docs.outline.reference.configuration.title": {
-    "message": "Configuration et contexte"
+    "message": "Configuration and context"
   },
   "docs.outline.reference.configuration.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.configuration.topic.configuration.title": {
     "message": "Configuration"
   },
   "docs.outline.reference.configuration.topic.configuration.scope": {
-    "message": "Tableaux des paramètres d'application pris en charge, de la portée, des valeurs par défaut, du stockage et de la compatibilité du cadre; lier les étapes d'exploitation aux guides."
+    "message": "Tables of supported app settings, scope, defaults, storage and framework compatibility; link operating steps to Guides."
   },
   "docs.outline.reference.configuration.topic.instructions.title": {
-    "message": "Contexte et instructions du projet"
+    "message": "Project context and instructions"
   },
   "docs.outline.reference.configuration.topic.instructions.scope": {
-    "message": "Commencez par le champ Agent Contexte du projet; le distinguer des notes de mémoire, des instructions Skill et Specialist. Le comportement du fichier d'instruction du cadre doit être documenté par cadre, et non pas comme un mécanisme universel de fichier de projet."
+    "message": "Start with the project's Agent Context field; distinguish it from Memory notes, Skill instructions and Specialist instructions. Framework instruction-file behavior must be documented per framework, not as one universal project-file mechanism."
   },
   "docs.outline.reference.permissions.title": {
-    "message": "Autorisations et contrôle"
+    "message": "Permissions and control"
   },
   "docs.outline.reference.permissions.scope": {
-    "message": "Modes d'approbation des références, préséance sur la portée, subventions mémorisées, restrictions de réseau et sémantique de révocation."
+    "message": "Reference approval modes, scope precedence, remembered grants, network restrictions and revocation semantics."
   },
   "docs.outline.reference.controls.title": {
-    "message": "Commandes et référence du clavier"
+    "message": "Controls and keyboard reference"
   },
   "docs.outline.reference.controls.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.controls.topic.controls.title": {
-    "message": "Index de la page et du contrôle"
+    "message": "Page and control index"
   },
   "docs.outline.reference.controls.topic.controls.scope": {
-    "message": "Une table de recherche page par page pour les étiquettes de bouton et d'entrée, les états résultants et l'état de vérification."
+    "message": "A page-by-page lookup table for button and input labels, resulting states and verification status."
   },
   "docs.outline.reference.controls.topic.commands.title": {
-    "message": "Raccourcis, mentions et commandes de clavier Skill"
+    "message": "Skill shortcuts, mentions, and keyboard controls"
   },
   "docs.outline.reference.controls.topic.commands.scope": {
-    "message": "Documenter les déclencheurs du compositeur réel : / sélectionne les fichiers ou artefacts de référence Skills, @ et les sessions de référence #; liste les actions de clavier supportées et les limites de contexte."
+    "message": "Document the actual composer triggers: / selects Skills, @ references files or artifacts, and # references sessions; list supported keyboard actions and context limits."
   },
   "docs.outline.reference.formats.title": {
-    "message": "Formats et limites des fichiers"
+    "message": "File formats and limits"
   },
   "docs.outline.reference.formats.scope": {
-    "message": "Tableaux pour les aperçus pris en charge, les importations de bibliothèques, les exportations de citations, les limites de taille des fichiers et les cas non pris en charge."
+    "message": "Tables for supported previews, library imports, citation exports, file size limits and unsupported cases."
   },
   "docs.outline.reference.packages.title": {
-    "message": "Formats Skill, Specialist et MCP"
+    "message": "Skill, Specialist, and MCP formats"
   },
   "docs.outline.reference.packages.scope": {
-    "message": "Séparer les tables de schéma pour les paquets Skill, les paquets Specialist et la configuration MCP, avec des contraintes de champ et d'archive."
+    "message": "Separate schema tables for Skill packages, Specialist packages and MCP configuration, with field and archive constraints."
   },
   "docs.outline.reference.example-data.title": {
-    "message": "Exemple de données et résultats attendus"
+    "message": "Example data and expected results"
   },
   "docs.outline.reference.example-data.scope": {
-    "message": "Fichiers sources publics, comptes de contrôle et exemples attendus."
+    "message": "Public source files, checksums and expected example outputs."
   },
   "docs.outline.reference.connector-operations.title": {
-    "message": "Référence de fonctionnement Connector"
+    "message": "Connector operation reference"
   },
   "docs.outline.reference.connector-operations.scope": {
-    "message": "Entrées exactes, par défaut et appels par exemple par Connector."
+    "message": "Exact inputs, defaults and example calls by Connector."
   },
   "docs.outline.reference.group.integration": {
-    "message": "CLI et opérations"
+    "message": "CLI and operations"
   },
   "docs.outline.reference.cli.title": {
-    "message": "CLI et sortie structurée"
+    "message": "CLI and structured output"
   },
   "docs.outline.reference.cli.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.cli.topic.cli.title": {
-    "message": "Référence CLI"
+    "message": "CLI reference"
   },
   "docs.outline.reference.cli.topic.cli.scope": {
-    "message": "Documenter l'arborescence des commandes open-science, les drapeaux, les par défaut, les états de sortie et les exemples du contrat du dépôt CLI."
+    "message": "Document the actual open-science command tree, flags, defaults, exit states and examples from the repository CLI contract."
   },
   "docs.outline.reference.cli.topic.automation.title": {
-    "message": "Automatisation et sortie JSON"
+    "message": "Automation and JSON output"
   },
   "docs.outline.reference.cli.topic.automation.scope": {
-    "message": "Couvrir la soumission des tâches, le sondage, la sortie JSON et JSONL, les erreurs et l'annulation; éviter d'impliquer un planificateur intégré."
+    "message": "Cover supported task submission, polling, JSON and JSONL output, errors and cancellation; avoid implying a built-in scheduler."
   },
   "docs.outline.reference.api.title": {
-    "message": "Tâche SDK et locale API"
+    "message": "Task SDK and local API"
   },
   "docs.outline.reference.api.scope": {
-    "message": "Carte prise en charge des tâches et des sessions API, authentification, événements et compatibilité; distinguer les marchés publics des API internes d'accueil."
+    "message": "Map supported task and session APIs, authentication, events and compatibility; distinguish public contracts from internal host APIs."
   },
   "docs.outline.reference.server.title": {
-    "message": "Service sans tête et accès au navigateur"
+    "message": "Headless service and browser access"
   },
   "docs.outline.reference.server.scope": {
-    "message": "Service de référence start/status/stop, URLs authentifiées, découverte locale et frontières d'accès à distance depuis le CLI réel."
+    "message": "Reference service start/status/stop, authenticated URLs, local discovery and remote-access boundaries from the actual CLI."
   },
   "docs.outline.reference.diagnostics.title": {
-    "message": "Architecture et diagnostic"
+    "message": "Architecture and diagnostics"
   },
   "docs.outline.reference.diagnostics.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.diagnostics.topic.diagnostics.title": {
-    "message": "Erreurs et diagnostics"
+    "message": "Errors and diagnostics"
   },
   "docs.outline.reference.diagnostics.topic.diagnostics.scope": {
-    "message": "Carte des erreurs observées pour les causes, les preuves diagnostiques et les guides de récupération liés; inclure les pannes de CLI et de connecteur."
+    "message": "Map observed errors to causes, diagnostic evidence and linked recovery guides; include CLI and connector failures."
   },
   "docs.outline.reference.diagnostics.topic.architecture.title": {
-    "message": "Architecture et flux de données"
+    "message": "Architecture and data flow"
   },
   "docs.outline.reference.diagnostics.topic.architecture.scope": {
-    "message": "Expliquer les limites de bureau, de service, de cadre, de stockage et d'exécution, y compris la provenance des artefacts et la manipulation des justificatifs."
+    "message": "Explain desktop, service, framework, storage and execution boundaries, including artifact provenance and credential handling."
   },
   "docs.outline.reference.diagnostics.topic.verification.title": {
-    "message": "Dossier de vérification de la documentation"
+    "message": "Documentation verification record"
   },
   "docs.outline.reference.diagnostics.topic.verification.scope": {
-    "message": "Enregistrez les versions sources, les captures d'interface utilisateur en anglais, les contrôles exécutés, les tests conditionnels et les lacunes de vérification en suspens."
+    "message": "Record source versions, English UI captures, executed controls, conditional tests and outstanding verification gaps."
   },
   "docs.outline.reference.group.changelog": {
-    "message": "Changer de journal"
+    "message": "Changelog"
   },
   "docs.outline.reference.v0290.title": {
     "message": "v0.29.0"
   },
   "docs.outline.reference.v0290.scope": {
-    "message": "Skill marketplace, paquets de recherche, extraction PDF et installation externe de paquets R."
+    "message": "Skill marketplace, research packages, PDF extraction and external R package installation."
   },
   "docs.outline.reference.v0280.title": {
     "message": "v0.28.0"
   },
   "docs.outline.reference.v0280.scope": {
-    "message": "Contrôles de reproduction des résultats, recherche globale, changements de confidentialité et mises à jour gérées Codex."
+    "message": "Result reproduction checks, global search, privacy changes and managed Codex upgrades."
   },
   "docs.outline.reference.v0270.title": {
     "message": "v0.27.0"
   },
   "docs.outline.reference.v0270.scope": {
-    "message": "Importations de littérature, tâches de fond, besoins Skills et mises à jour d'intégration."
+    "message": "Literature imports, background tasks, required Skills and integration updates."
   },
   "docs.outline.reference.v0260.title": {
     "message": "v0.26.0"
   },
   "docs.outline.reference.v0260.scope": {
-    "message": "Historique des versions existantes."
+    "message": "Existing version history."
   },
   "docs.outline.reference.v0251.title": {
     "message": "v0.25.1"
   },
   "docs.outline.reference.v0251.scope": {
-    "message": "Historique des versions existantes."
+    "message": "Existing version history."
   },
   "docs.outline.specialists.overview": {
-    "message": "Aperçu de Open-Science"
+    "message": "Open-Science overview"
   },
   "docs.outline.specialists.scope": {
-    "message": "Créer, équiper, déléguer et maintenir des rôles de recherche indépendamment du catalogue Skill."
+    "message": "Create, equip, delegate to, and maintain research roles independently of the Skill catalog."
   },
   "docs.outline.specialists.group.use": {
-    "message": "Rencontrer et utiliser des spécialistes"
+    "message": "Meet and use Specialists"
   },
   "docs.outline.specialists.overview.title": {
-    "message": "Spécialistes et rôles disponibles"
+    "message": "Specialists and available roles"
   },
   "docs.outline.specialists.overview.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.overview.topic.overview.title": {
-    "message": "Aperçu général des spécialistes"
+    "message": "Specialists overview"
   },
   "docs.outline.specialists.overview.topic.overview.scope": {
-    "message": "Expliquer Main Agent, Spécialistes, examinateur intégré et Skills; comparer les rôles et les tâches appropriées dans un tableau."
+    "message": "Explain Main Agent, Specialists, built-in Reviewer and Skills; compare roles and suitable tasks in a table."
   },
   "docs.outline.specialists.overview.topic.directory.title": {
-    "message": "annuaire et marché Specialist"
+    "message": "Specialist directory and marketplace"
   },
   "docs.outline.specialists.overview.topic.directory.scope": {
-    "message": "Distinguer l'examinateur intégré non configurable, les rôles personnels et les paquets en ligne Marketplace. Le manifeste des spécialistes groupés est vide; L'inscription à distance, la signature, l'installation et la préparation à la dépendance nécessitent des vérifications distinctes."
+    "message": "Distinguish the built-in non-configurable Reviewer, personal roles and online Marketplace packages. The bundled Specialists manifest is empty; remote listing, signing, installation and dependency readiness require separate checks."
   },
   "docs.outline.specialists.delegate.title": {
-    "message": "Déléguer et vérifier le travail"
+    "message": "Delegate and verify work"
   },
   "docs.outline.specialists.delegate.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.delegate.topic.delegate.title": {
-    "message": "Travaux de délégation et d ' examen"
+    "message": "Delegate and review work"
   },
   "docs.outline.specialists.delegate.topic.delegate.scope": {
-    "message": "Vérifier l'appui de la délégation du cadre et l'accès aux modèles; distinguer le changement de Specialist de la conversation principale de la délégation d'un sous-tâche. Inspecter les progrès, les interventions et les preuves retournées."
+    "message": "Verify framework delegation support and model access; distinguish switching the main conversation's Specialist from delegating a subtask. Inspect progress, interventions and returned evidence."
   },
   "docs.outline.specialists.delegate.topic.troubleshoot.title": {
-    "message": "Test et dépannage Spécialistes"
+    "message": "Test and troubleshoot Specialists"
   },
   "docs.outline.specialists.delegate.topic.troubleshoot.scope": {
-    "message": "Exécutez une tâche d'essai limitée et diagnostiquez les capacités manquantes, les échecs du modèle, les demandes refusées et les remises incomplètes."
+    "message": "Run a bounded test task and diagnose missing capabilities, model failures, denied requests and incomplete handoffs."
   },
   "docs.outline.specialists.group.create": {
-    "message": "Créer et configurer"
+    "message": "Create and configure"
   },
   "docs.outline.specialists.identity.title": {
-    "message": "Créer et instruire un Specialist"
+    "message": "Create and instruct a Specialist"
   },
   "docs.outline.specialists.identity.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.identity.topic.identity.title": {
-    "message": "Créer un Specialist"
+    "message": "Create a Specialist"
   },
   "docs.outline.specialists.identity.topic.identity.scope": {
-    "message": "Planifier les champs d'identité, les icônes, les couleurs, les descriptions, les modes de création et l'aperçu, avec une table de référence de champ."
+    "message": "Plan identity fields, icons, colors, descriptions, creation modes and preview, with a field reference table."
   },
   "docs.outline.specialists.identity.topic.instructions.title": {
-    "message": "Écrire les instructions Specialist"
+    "message": "Write Specialist instructions"
   },
   "docs.outline.specialists.identity.topic.instructions.scope": {
-    "message": "Définir les responsabilités, les preuves autorisées, les produits livrables et les conditions d'arrêt; utiliser des modèles de rôles dans le chapitre."
+    "message": "Define responsibilities, allowed evidence, deliverables and stopping conditions; use role templates in the chapter."
   },
   "docs.outline.specialists.capabilities.title": {
-    "message": "Attribuer Skills et connecteurs"
+    "message": "Assign Skills and Connectors"
   },
   "docs.outline.specialists.capabilities.scope": {
-    "message": "Comparer l'héritage d'accès complet avec des liaisons de capacité explicites; expliquer les contrôles à ajouter/supprimer et les contrôles de préparation."
+    "message": "Compare full-access inheritance with explicit capability bindings; explain add/remove controls and readiness checks."
   },
   "docs.outline.specialists.reviewer.title": {
-    "message": "examinateur et auto-examen"
+    "message": "Reviewer and Auto-review"
   },
   "docs.outline.specialists.reviewer.scope": {
-    "message": "Décrivez l'examinateur intégré, la politique modèle, les déclencheurs d'examen, les décisions affichées et les limites de l'examen automatisé."
+    "message": "Describe the built-in Reviewer, model policy, review triggers, displayed decisions and the limits of automated review."
   },
   "docs.outline.specialists.group.maintain": {
-    "message": "Gérer et partager"
+    "message": "Manage and share"
   },
   "docs.outline.specialists.manage.title": {
-    "message": "Gérer et partager les spécialistes"
+    "message": "Manage and share Specialists"
   },
   "docs.outline.specialists.manage.scope": {
-    "message": "Examiner les sujets inclus et leur portée prévue ci-dessous."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.manage.topic.manage.title": {
-    "message": "Organiser et maintenir des spécialistes"
+    "message": "Organize and maintain Specialists"
   },
   "docs.outline.specialists.manage.topic.manage.scope": {
-    "message": "Rechercher, filtrer, tag, activer, modifier, dupliquer et supprimer les rôles; vérifier les changements et la disponibilité des capacités."
+    "message": "Search, filter, tag, enable, edit, duplicate and delete roles; verify changes and capability availability."
   },
   "docs.outline.specialists.manage.topic.packages.title": {
-    "message": "Importer et exporter des paquets Specialist"
+    "message": "Import and export Specialist packages"
   },
   "docs.outline.specialists.manage.topic.packages.scope": {
-    "message": "Prévisualiser le contenu du paquet, inspecter les liaisons Skills et Connector, gérer les conflits et valider les rôles importés."
+    "message": "Preview package contents, inspect bundled Skills and Connector bindings, handle conflicts and validate imported roles."
   },
   "docs.outline.availableNotice": {
-    "message": "Index des chapitres"
+    "message": "Chapter index"
   },
   "docs.outline.count": {
-    "message": "Groupes {groups} · Chapitres {chapters}"
+    "message": "{groups} groups · {chapters} chapters"
   },
   "docs.outline.current": {
-    "message": "Voir le document connexe existant"
+    "message": "View related existing document"
   },
   "docs.preferenceScreenshot.notifications": {
-    "message": "Contrôles de notification des tâches et état d'avancement des essais"
+    "message": "Task notification controls and the reported test status"
   },
   "docs.preferenceScreenshot.theme": {
-    "message": "Contrôles des thèmes et des langues en mode {theme}"
+    "message": "Theme and Language controls in {theme} mode"
   },
   "docs.preferenceScreenshot.preview": {
-    "message": "Aperçu de la capture d'écran"
+    "message": "Screenshot preview"
   },
   "docs.preferenceScreenshot.choose": {
-    "message": "Choisissez une capture d'écran thématique"
+    "message": "Choose a theme screenshot"
   },
   "docs.preferenceScreenshot.open": {
-    "message": "{label}; ouvrir la capture d'écran complète"
+    "message": "{label}; open full screenshot"
   },
   "docs.preferenceScreenshot.caption": {
-    "message": "Capture d'écran de l'application en français · Sélectionnez l'image pour la visualiser en entier"
+    "message": "English app screenshot · Select the image to view it in full"
   },
   "docs.translation.note": {
-    "message": "Traduction automatique. Si une étape manque de clarté, consultez l’original anglais."
+    "message": "Automatic translation. Consult the English original if a step is unclear."
   },
   "docs.outline.reference.v0301.title": {
     "message": "v0.30.1"
   },
   "docs.outline.reference.v0301.scope": {
-    "message": "Brouillons Side Chat, révision des mises à jour Skill, PDF dans les paquets de recherche et outils de récupération."
+    "message": "Side Chat drafts, reviewed Skill updates, literature PDFs in packages and recovery tools."
   },
   "docs.outline.workflows.focused-literature-search.title": {
-    "message": "Recherche dans des revues et des dates spécifiées"
+    "message": "Search within specified journals and dates"
   },
   "docs.outline.workflows.focused-literature-search.scope": {
-    "message": "Exécutez une recherche limitée PubMed, vérifiez chaque enregistrement retourné et conservez des décisions d'admissibilité incertaines."
+    "message": "Run a bounded PubMed search, screen every returned record and retain uncertain eligibility decisions."
   },
   "docs.outline.workflows.cross-check-records.title": {
-    "message": "Recoupez deux sources de données scientifiques"
+    "message": "Cross-check two scientific data sources"
   },
   "docs.outline.workflows.cross-check-records.scope": {
-    "message": "Aligner les définitions, les unités, les années et les périodes de référence avant de comparer les relevés annuels de température de la NASA et de HadCRUT."
+    "message": "Align definitions, units, years and reference periods before comparing NASA and HadCRUT annual temperature records."
   },
   "docs.outline.reference.v0302.title": {
     "message": "v0.30.2"
   },
   "docs.outline.reference.v0302.scope": {
-    "message": "Chargement des Skills des Specialists, Side Chat indépendant, requêtes de données et récupération du Notebook."
+    "message": "Specialist Skill loading, independent Side Chat, data queries and Notebook recovery."
   },
   "docs.outline.reference.v0311.title": {
     "message": "v0.31.1"
   },
   "docs.outline.reference.v0311.scope": {
-    "message": "ENA, enrichissement de jeux de gènes, génomes de référence et modèles de classification facultatifs."
+    "message": "ENA, gene-set enrichment, reference genomes and optional classification models."
   },
   "docs.outline.reference.v0310.title": {
     "message": "v0.31.0"
   },
   "docs.outline.reference.v0310.scope": {
-    "message": "Copies de sessions modifiables, validation des fournisseurs et réseaux STRING complets."
-  },
-  "docs.outline.workflows.reference-genome-check.scope": {
-    "message": "Résoudre un taxon, un assemblage de référence en version et des alias chromosomiques avant l'analyse."
+    "message": "Writable session forks, validated providers and complete STRING networks."
   },
   "docs.outline.workflows.group.public-data": {
-    "message": "Données publiques et bioinformatique"
-  },
-  "docs.outline.workflows.public-omics-data.scope": {
-    "message": "Découvrez le public ENA gère et inspecte les inventaires de fichiers ENA et PRIDE, les emplacements des sources, les tailles et les montants de contrôle."
-  },
-  "docs.outline.workflows.protein-sequence-search.scope": {
-    "message": "Résoudre une protéine UniProt, récupérer FASTA et inspecter un rapport d'alignement BLAST terminé."
-  },
-  "docs.guides.outline.pdf-notes.scope": {
-    "message": "Annoter des passages, organiser les notes, les retrouver et exporter une copie annotée."
-  },
-  "docs.outline.workflows.gene-set-enrichment.scope": {
-    "message": "Exécuter g:Profiler enrichissement et inspecter les cartes, les probabilités corrigées, les versions de fond et de source."
-  },
-  "docs.outline.workflows.gene-set-enrichment.title": {
-    "message": "Exécuter l'enrichissement fonctionnel d'un ensemble de gènes candidats"
-  },
-  "docs.guides.outline.pdf-notes.title": {
-    "message": "Annotations PDF et notes de document"
-  },
-  "docs.outline.reference.v0320.scope": {
-    "message": "Notes PDF, recherche de séquences BLAST, découverte de données omiques et tâches sans intervention."
-  },
-  "docs.outline.workflows.reference-genome-check.title": {
-    "message": "Vérifier les espèces, le génome de référence et les identifiants chromosomiques"
+    "message": "Public data and bioinformatics"
   },
   "docs.outline.workflows.public-omics-data.title": {
-    "message": "Trouver des données omiques publiques et construire un inventaire de fichiers"
+    "message": "Find public omics data and build a file inventory"
+  },
+  "docs.outline.workflows.public-omics-data.scope": {
+    "message": "Discover public ENA runs and inspect ENA and PRIDE file inventories, source locations, sizes and checksums."
+  },
+  "docs.outline.workflows.protein-sequence-search.title": {
+    "message": "Find a protein sequence and complete a BLAST search"
+  },
+  "docs.outline.workflows.protein-sequence-search.scope": {
+    "message": "Resolve a UniProt protein, retrieve FASTA and inspect a completed BLAST alignment report."
+  },
+  "docs.outline.workflows.gene-set-enrichment.title": {
+    "message": "Run functional enrichment for a candidate gene set"
+  },
+  "docs.outline.workflows.gene-set-enrichment.scope": {
+    "message": "Run g:Profiler enrichment and inspect mappings, corrected probabilities, background and source versions."
+  },
+  "docs.outline.workflows.reference-genome-check.title": {
+    "message": "Check species, reference genome and chromosome identifiers"
+  },
+  "docs.outline.workflows.reference-genome-check.scope": {
+    "message": "Resolve a taxon, versioned reference assembly and chromosome aliases before analysis."
+  },
+  "docs.guides.outline.pdf-notes.title": {
+    "message": "PDF annotations and document notes"
+  },
+  "docs.guides.outline.pdf-notes.scope": {
+    "message": "Mark passages, organize file-version notes, return to sources and export reading copies."
   },
   "docs.outline.reference.v0320.title": {
     "message": "v0.32.0"
   },
-  "docs.outline.workflows.protein-sequence-search.title": {
-    "message": "Trouvez une séquence protéique et effectuez une recherche BLAST"
+  "docs.outline.reference.v0320.scope": {
+    "message": "PDF notes, BLAST sequence search, omics discovery and unattended tasks."
+  },
+  "docs.outline.workflows.screen-literature.title": {
+    "message": "Screen papers with a smart collection"
+  },
+  "docs.outline.workflows.screen-literature.scope": {
+    "message": "Define eligibility, run a bounded screening pass, review decisions and export the selected papers."
+  },
+  "docs.outline.reference.v0330.title": {
+    "message": "v0.33.0"
+  },
+  "docs.outline.reference.v0330.scope": {
+    "message": "Smart literature screening, agent resource access, RO-Crate research packages and database additions."
+  },
+  "docs.outline.workflows.multiple-sequence-alignment.title": {
+    "message": "Aligner plusieurs séquences"
+  },
+  "docs.outline.workflows.multiple-sequence-alignment.scope": {
+    "message": "Comparer trois séquences protéiques révisées et examiner les positions conservées."
+  },
+  "docs.outline.reference.v0331.title": {
+    "message": "v0.33.1"
+  },
+  "docs.outline.reference.v0331.scope": {
+    "message": "Criblage en direct, outils de séquences, contexte PDF et diagnostics."
   }
 }

@@ -86,3 +86,31 @@ Pour chaque premier PSH, l'identité est le nombre de résidus identiques divis�
 <ExampleDownload path="/examples/v0320/hba1-blast-results.md">Rapport achevé</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-hits.csv">Table à 5 hits</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-raw.json">Rapport de la BCNI JSON2</ExampleDownload>
 
 Le P69905 est la séquence d'entrée elle-même, de sorte que son identité et sa couverture 100% fournissent une vérification de séquence connue. Les autres résultats montrent des séquences semblables, et non une nouvelle découverte fonctionnelle. Conserver le rapport brut et la requête avec le tableau de résultats; une version ultérieure de la base de données peut modifier la liste des succès.
+
+Pour comparer trois séquences ou plus connues, continuer avec [alignement de plusieurs séquences et positions conservées](multiple-sequence-alignment.md).
+
+## Vérifiez un domaine protéique avec HMMER {/* #hmmer-domain */}
+
+<p className="example-label"><strong>Exemple pratique</strong> Scanner P69905 humain contre Pfam</p>
+
+Après avoir récupéré la séquence de protéines canoniques P69905, activez **HMMER** pour Main dans **Settings → Connectors**. Dans la même conversation, demandez:
+
+```text
+Use the HMMER Connector to scan the same human P69905 sequence against
+Pfam with hmmscan. Keep the job ID, retrieve the completed domain
+annotations, and save the raw result and a concise English interpretation
+with coordinates and significance values. Preserve an unavailable
+result as unavailable.
+```
+
+1. Vérifiez l'ID de travail de la soumission, puis suivez **État** pour le même travail.
+2. Demander **résultats** après l'achèvement et enregistrer la réponse brute. Vérifiez `ready` et l'état du résultat avant d'interpréter ses succès.
+3. Inspectez l'adhésion de chaque famille de frappe, les coordonnées de requête, les valeurs E et les drapeaux d'inclusion. Un fragment signalé n'est pas nécessairement un domaine important.
+
+![Le rapport HMMER complété pour P69905, avec les coordonnées de domaine et les valeurs de signification](/img/open-science/v0331/hmmer-result.webp)
+
+Cette exécution a retourné **Globine · PF00042.28**, avec un domaine inclus aux résidus de requête **27–137** (1-basé, inclusivement), **115.572 bits** et un domaine indépendant valeur E **2.2781 × 10⁻³³**. Le fragment court à **10–20** n'était pas inclus et n'était pas significatif; ce n'est pas une preuve pour un deuxième domaine. Ces coordonnées se rapportent à la séquence canonique soumise, et non à un schéma de numérotation des protéines matures. Les valeurs électroniques dépendent de l'espace de recherche et ne mesurent pas directement la probabilité qu'une interprétation biologique soit correcte.
+
+<ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">Réponse du HMMER brut</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">Interprétation du domaine</ExampleDownload>
+
+Les entrées HMMER dépendent du programme sélectionné. L'exemple utilise une séquence protéique avec **C'est bon.**; voir le [Référence de l'opération](../reference/connector-operations.md#family-26) pour d'autres programmes. **InterProScan** récupère séparément l'état et les résultats TSV d'un emploi existant; il ne le soumet pas.

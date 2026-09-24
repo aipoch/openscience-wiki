@@ -1,7 +1,7 @@
 ---
 title: "服务凭据"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # 服务凭据
@@ -14,21 +14,18 @@ last_update:
 | --- | --- | --- |
 | GitHub | Skill 发现/导入用 Personal access token | Connect/Manage 后使用目标仓库操作验证 |
 | Literature access | 联系邮箱及可选 NCBI API key | 保存真实联系信息；支持的 NCBI 请求中密钥可选 |
-| OpenAlex | Literature 中 OpenAlex 操作的 API key | Validate、保存，再运行小查询 |
+| OpenAlex | Literature 中 OpenAlex 操作的可选 API key | Validate、保存，再运行小查询 |
 | Unpaywall | 查询全文位置所需联系邮箱 | 使用文献联系邮箱，不填写虚构地址 |
 
 **Connect** 打开未配置服务，**Manage** 管理已有配置，**Desktop only** 表示需要桌面环境。已存储标记不是密钥明文。
 
-## 补充缺失的 OpenAlex 密钥 {/* #openalex-实际缺密钥流程 */}
+## 配置可选的 OpenAlex 密钥 {/* #openalex-实际缺密钥流程 */}
 
-1. 未配置密钥时请求 OpenAlex 查询。
-2. 对话出现 **Add your OpenAlex API key** 和 **API key** 输入框。
-3. **Save key** 成功保存后继续等待中的调用；**Not now** 保持未配置。
-4. 检查最终状态。选择 **Not now** 可返回 **credential_required**；配置密钥后再重试。
+从 v0.33.1 起，OpenAlex 查询不再强制要求 API key。可以先运行一个小查询；服务方的限额、认证和访问策略仍适用。应用允许不带密钥发起请求，不代表无限额度或保证每次请求成功。
 
-![英文应用中的 OpenAlex 凭据请求](/img/open-science/capabilities-walkthrough/25-openalex-credential-request.webp)
+需要使用自己的密钥时，打开 **Settings → Credentials → OpenAlex**（也可从 Literature Graph 的 **Manage credentials** 进入），填写 **API key**，选择 **Validate**，验证成功后 **Save**。密钥只用于 `api.openalex.org`。已有密钥可通过 **Remove key** 移除；替换输入框不会显示保存的密钥。
 
-界面说明密钥在本机加密并只发送到 `api.openalex.org`。Settings 表单另有 **Validate、Save、Remove key**（已有密钥时）和 **Cancel**。替换字段不显示旧密钥；安全存储不可用时需先解决系统钥匙串状态。
+遇到系统安全存储错误时，先恢复凭据库，再保存。收到 429 时查看服务的额度与重试信息，不要把限流当成必须补密钥。
 
 ## 自定义 Connector 凭据
 
@@ -59,7 +56,7 @@ last_update:
 
 移除凭据可能影响所有绑定的 Connector。Connector 和 Specialist 导出不会携带现成密钥/信任，接收端应重新配置。不要将密钥写入 Skill、提示词、截图或 issue。
 
-OpenAlex 查询需要有效的 OpenAlex 密钥；OAuth Connector 需要完成对应服务登录。处理显示的认证错误后，再重试同一小请求。
+OpenAlex 密钥可选；OAuth Connector 仍需完成对应服务登录。处理显示的认证错误后，再重试同一小请求。
 
 实现依据: [CredentialsPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [ConnectorAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx)。
 
@@ -67,4 +64,4 @@ OpenAlex 查询需要有效的 OpenAlex 密钥；OAuth Connector 需要完成对
 
 ## 打开官方 API Key 页面 {/* #official-api-key-page */}
 
-从 v0.31.0 起，OpenAlex 和 NCBI 的凭据提示包含官方 API Key 页面链接。打开链接时，表单草稿和等待中的 Connector 调用会保留。在服务方完成账户操作后，返回凭据表单，验证并保存所需密钥，再重试查询。仅打开获取密钥的页面，不会自动保存密钥或完成查询。
+OpenAlex 和 NCBI 的凭据表单提供官方密钥页面入口。在服务方完成账户操作后，返回表单，验证并保存所需密钥。打开链接不会自动保存密钥或执行查询；是否需要密钥取决于服务与具体操作。

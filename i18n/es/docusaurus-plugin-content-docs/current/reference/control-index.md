@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Índice de página y control"
 description: "Encontrar cada botón Open-Science documentado, entrada, cambio y resultado por página."
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # Índice de página y control {/* #page-and-control-index */}
@@ -193,3 +193,14 @@ Inicio/Parar/Refresh, Copiar/Abrir URL, y QR; Remote.It setup/retry/disconnect; 
 ### Archivado {/* #archived */}
 
 Proyecto de gestión, restauración, borrador del proyecto; Restore/Delete de sesión; Confirmación de eliminación Cancelar/Confirm.
+
+
+## Examen de la literatura y acceso a los recursos {/* #screening-and-access */}
+
+| Área | Controles | Guía |
+| --- | --- | --- |
+| Biblioteca | Colección inteligente, Alcance, Criterios de inclusión, Criterios de exclusión, Uso de texto completo disponible, Actualización automática | [Colecciones inteligentes](../guides/library.md#smart-collections) |
+| Colección inteligente | Ejecución de juicios, opiniones de decisión, detalles de evaluación, Incluir, Excluir, Utilizar la decisión modelo, exportación incluye referencias | [Documentos de examen y examen](../workflows/screen-literature.md) |
+| Modelos de clasificación | Colecciones inteligentes independientes y vinculantes de selección de capacidades automáticas; Probar modelo | [Modelo de fijación](../guides/models.md#smart-collection-model) |
+| Skills / Connectors | Gestionar el acceso, agente Main, asociaciones Specialist, enlaces de papel sólo lectura | [Acceso a los recursos](../guides/connectors.md#resource-access) |
+| Sesión | Diagnóstico de exportación, fuentes seleccionadas, Exportar, Mostrar en carpeta | [Exportación local de diagnóstico](../guides/troubleshooting.md#session-diagnostics) |

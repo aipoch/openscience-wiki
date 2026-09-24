@@ -1,7 +1,7 @@
 ---
 title: "Storage and archived work"
 last_update:
-  date: '2026-09-11'
+  date: '2026-09-24'
 ---
 
 # Storage and archived work
@@ -136,3 +136,7 @@ Before permanent deletion, export the inputs, outputs and execution records you 
 For a failed download, check the chosen destination and free space. For an unavailable managed file, confirm the selected data location and profile before creating a replacement project. For missing packages after relocation, check the rebuilt runtime rather than assuming research data was lost. Use [Troubleshooting](troubleshooting.md) to collect the first useful error and version information.
 
 Sources: [Storage panel](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StoragePanel.tsx), [migration form](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StorageMigrationModal.tsx). [Library relocation checks](https://github.com/aipoch/open-science/commit/d00c722d).
+
+## Reopen data after an upgrade {/* #historical-data-location */}
+
+An existing saved data location takes precedence. For a completed older installation without an explicit saved location, Open-Science retains the historical location and saves that choice. If that saved folder is unavailable, reconnect it before restarting. If multiple historical locations contain research data, the app asks you to select or recover the original folder instead of silently choosing one. Keep both copies until you have checked their projects and files; do not create a new empty location to resolve an apparent loss of data.

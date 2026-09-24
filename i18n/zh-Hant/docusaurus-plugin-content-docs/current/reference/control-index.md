@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "完整頁面與控制元件索引"
 description: "按頁面查詢 Open-Science 的按鈕、輸入、開關和結果。"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # 完整頁面與控制元件索引 {/* #完整页面与控件索引 */}
@@ -193,3 +193,14 @@ Start/Stop/Refresh、Copy/Open URL、QR；Remote.It setup/retry/disconnect；Tru
 ### Archived {/* #archived */}
 
 Project Manage、Restore project、Delete project；Session Restore/Delete；刪除確認 Cancel/Confirm。
+
+
+## 文獻篩選與資源訪問 {/* #screening-and-access */}
+
+| 區域 | 控制元件 | 指南 |
+| --- | --- | --- |
+| 文獻庫 | Smart collection、Scope、Inclusion criteria、Exclusion criteria、Use available full text、Live rule preview、Update automatically | [智慧集合](../guides/library.md#smart-collections) |
+| 智慧集合 | Trial run、判斷檢視、Evaluation details、Include、Exclude、Use model decision、匯出納入文獻 | [篩選與複核文獻](../workflows/screen-literature.md) |
+| 分類模型 | 獨立的 Smart collections 與 Automatic capability selection 繫結；Check model | [模型繫結](../guides/models.md#smart-collection-model) |
+| Skills / Connectors | Manage access、Main Agent、Specialist associations、只讀角色繫結 | [資源訪問](../guides/connectors.md#resource-access) |
+| 會話 | Export diagnostics、所選來源、Export、Show in folder | [本地診斷匯出](../guides/troubleshooting.md#session-diagnostics) |

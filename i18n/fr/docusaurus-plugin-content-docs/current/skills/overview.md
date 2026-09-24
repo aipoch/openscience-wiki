@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-24'
 ---
 
 # Skills {/* #skills */}
@@ -34,7 +34,7 @@ Commencez par [Répertoire Skill](./directory.md) pour trouver une méthode, ou 
 | --- | --- |
 | En vedette / Importé / Titre personnel | Élargit le groupe source. Les bateaux en vedette avec l'application; Importé provient d'un paquet ou d'un dépôt; Le personnel est créé localement. |
 | Interrupteur d'agent Main / basculement de ligne | Modification de la disponibilité pour Skills contrôlé par l'utilisateur; application requise Skills rester activé. Les fichiers restent installés. |
-| Utilisé par | Affiche la disponibilité à travers Main Agent et Spécialistes. Attribuer l'accès Specialist dans l'éditeur Specialist. |
+| Utilisé par | Affiche les disponibilités dans l'ensemble de Main Agent et Spécialistes. Utilisation **Manage access** sur la ressource pour ajuster les associations Main Agent et Specialist. |
 | Gérer les étiquettes / supprimer une puce d'étiquette | Ajouter ou supprimer une étiquette organisationnelle; il ne change pas la permission d'exécution. |
 | Ajouter une compétence | Offre la création assistée par l'agent, la création directe, le téléchargement local, l'importation GitHub, ou la découverte de dossiers installés. |
 | Conversation **+ → Save as skill** | Extrait une méthode réutilisable d'une branche active complétée; voir [les étapes de la création et les raisons de l'état des personnes handicapées](./create.md). |
@@ -52,6 +52,8 @@ Le répertoire contient toujours 23 public groupé Skills. La prise en charge in
 La capture d'écran affiche l'explication de **Customize**. Ces Skills requis restent activés même lorsque vous désactivez d'autres méthodes optionnelles.
 
 ![Personnaliser les séjours activés et explique pourquoi](/img/open-science/v0.27.0/08-always-enabled-skill.webp)
+
+Pour le popup par agent et ses liaisons en lecture seule, voir [accès aux ressources](../guides/connectors.md#resource-access).
 
 ## Utilisez-le dans une conversation {/* #use-it-in-a-conversation */}
 

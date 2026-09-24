@@ -1,7 +1,7 @@
 ---
 title: "Pouvoirs de service"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # Pouvoirs de service {/* #service-credentials */}
@@ -14,21 +14,18 @@ Configurez les identifiants dans **Settings → Credentials** pour le service qu
 | --- | --- | --- |
 | GitHub | Jeton d'accès personnel pour la découverte/importation Skill | Utiliser Connect/Manage et les commandes de jeton; puis tester l'opération de dépôt prévue. |
 | Accès bibliographique | Courriel de contact et clé optionnelle BCNI API | Enregistrer les coordonnées; La clé de l'ICNE est facultative pour les demandes appuyées. |
-| OpenAlex | Clé API pour les opérations OpenAlex dans la littérature | Valider la clé saisie, la sauvegarder et faire une requête limitée. |
+| OpenAlex | Clé en option API pour les opérations OpenAlex dans la littérature | Valider la clé saisie, la sauvegarder et faire une requête limitée. |
 | Unpaywall | Contacter l'email pour les recherches de localisation en texte intégral | Utilise l'email de contact de littérature configuré; pas d'adresse inventée. |
 
 **Connect** ouvre un service non configuré; **Manage** ouvre une version existante. **Desktop only** signifie que l'opération d'identification a besoin du contexte de bureau. Un indicateur clé stocké n'est pas la valeur secrète elle-même.
 
-## Ajouter une clé OpenAlex manquante {/* #openalexs-actual-missing-key-flow */}
+## Configurer une clé OpenAlex optionnelle {/* #openalexs-actual-missing-key-flow */}
 
-1. Demander une recherche OpenAlex alors qu'aucune clé n'est configurée.
-2. La conversation affiche **Add your OpenAlex API key** avec un champ **API key**.
-3. **Save key** stocke la clé entrée et reprend l'appel d'attente lorsqu'il réussit. **Not now** laisse le titre de compétence non configuré.
-4. Lisez l'état final de l'outil. Choisir **Not now** peut renvoyer **credential_required**; configurer la clé avant de réessayer.
+À partir de v0.33.1, les requêtes OpenAlex ne nécessitent plus de clé API. Commencez par une petite requête; les limites tarifaires, les politiques d'authentification et d'accès du service s'appliquent toujours. Permettre une requête sans clé ne promet pas une utilisation illimitée ou une réponse réussie.
 
-![Demande de titre OpenAlex dans l'application anglaise](/img/open-science/capabilities-walkthrough/25-openalex-credential-request.webp)
+Pour utiliser votre propre clé, ouvrez **Settings → Credentials → OpenAlex** (également disponible depuis Literature Graph via **Manage credentials**), entrez **API key**, choisissez **Validate**, puis **Save** après validation réussie. La clé n'est utilisée que pour `api.openalex.org`. **Remove key** supprime une clé existante; le champ de remplacement ne révèle pas le secret stocké.
 
-L'invite indique que la clé est chiffrée sur cet ordinateur et envoyée uniquement à `api.openalex.org`. Dans les paramètres, le formulaire OpenAlex offre également **Validate**, **Save**, **Remove key** lorsqu'il en existe, et **Cancel**. Un champ de remplacement ne révèle pas la clé stockée. Les erreurs de stockage sécurisé nécessitent de résoudre l'état du porte-clés système avant de sauvegarder des secrets.
+Résoudre les erreurs d'enregistrement-stockage du système avant d'enregistrer. Pour les réponses 429, consultez le quota du service et les directives de réessayer au lieu de supposer qu'une clé est obligatoire.
 
 ## Pouvoirs pour les connecteurs personnalisés {/* #credentials-for-custom-connectors */}
 
@@ -59,7 +56,7 @@ Après avoir économisé, répéter une petite opération et inspecter sa répon
 
 L'enlèvement d'un titre de créance peut affecter chaque Connector lié à celui-ci. Les exportations de Connector et de Specialist excluent délibérément les secrets/trusts prêts à l'emploi; les configurer à nouveau sur le récepteur. Ne collez jamais un secret dans un rapport Skill, une capture d'écran ou un rapport de problème.
 
-Les requêtes OpenAlex nécessitent une clé OpenAlex valide. Les connecteurs OAuth doivent remplir la connexion du service nommé. Résoudre l'erreur d'authentification affichée avant de réessayer la même petite requête.
+Une clé OpenAlex est optionnelle. Les connecteurs OAuth nécessitent toujours l'inscription du service nommé. Résoudre l'erreur d'authentification affichée avant de réessayer la même petite requête.
 
 Référence de mise en œuvre: [PouvoirsPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [ConnecteurAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx).
 
@@ -67,4 +64,4 @@ Référence de mise en œuvre: [PouvoirsPanel.tsx](https://github.com/aipoch/ope
 
 ## Ouvrir la page clé officielle API {/* #official-api-key-page */}
 
-À partir de v0.31.0, OpenAlex et les invitations de reconnaissance NCBI incluent un lien vers la page clé officielle de API. L'ouvrir garde le formulaire brouillon et attend l'appel Connector. Compléter les étapes du compte avec le service, retourner au formulaire d'attestation, puis valider et enregistrer la clé prévue avant de réessayer la requête. Ouvrir la page clé seule ne permet ni d'enregistrer une clé, ni de compléter la requête d'attente.
+Les formulaires d'attestation OpenAlex et NPCI sont reliés à leurs pages clés officielles. Remplissez les étapes du compte avec le service, retournez au formulaire, puis validez et enregistrez la clé prévue. Ouvrir un lien ne sauvegarde pas une clé ou n'exécute pas une requête; La question de savoir si une clé est nécessaire dépend du service et de l'exploitation.

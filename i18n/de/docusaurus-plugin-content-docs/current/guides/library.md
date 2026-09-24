@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -148,9 +148,19 @@ Um **Die PRISMA Gruppe** hinzuzufügen, wählen Sie **Add creator → Creator ro
 
 v0.30.2 korrigiert PubMed Autor-Name-Parsing, einschließlich Nachnamen, Initialen und Suffixe. Überprüfen Sie beim Importieren oder Vervollständigen von Metadaten die Erstellerfelder und generierten Zitate mit der verknüpften Quelle. Gehen Sie nicht davon aus, dass durch die Installation des Updates bereits in Ihrer Bibliothek gespeicherte Metadaten neu geschrieben werden.
 
+## Intelligente Sammlungen {/* #smart-collections */}
+
+Schalten Sie **Smart collection** in **New collection** ein, um Bibliotheksdatensätze mit expliziten Regeln zu screenen. Wählen Sie **Scope** (alle Referenzen, ein Projekt oder eine Sammlung), fügen Sie erforderliche **Inclusion criteria** und optionale **Exclusion criteria** hinzu und wählen Sie dann die Evidenz- und Aktualisierungsoptionen aus. Im Gegensatz zu einer gewöhnlichen Sammlungsbeschreibung bieten Smart-Collection-Beschreibungen einen Kontext für die Modellbewertung.
+
+**Settings → Model → Classification models → Smart collections** zuerst konfigurieren; Dieses Feature hat kein Standardmodell. **Included**, **Needs review**, **Excluded** und **Not evaluated** unterscheiden übereinstimmende, unsichere, abgelehnte und nicht bewertete Datensätze. Öffnen Sie **Evaluation details** und überprüfen Sie die tatsächliche Quelle, bevor Sie **Include** oder **Exclude** auswählen. Manuelle Entscheidungen überleben Updates, bis Sie die Modellentscheidung wiederherstellen.
+
+**Trial run (up to 20 references)** speichert Ergebnisse. **Live rule preview** wertet einen Entwurf aus, ohne ihn zu speichern. **Update automatically** gilt für neue oder geänderte Datensätze im ausgewählten Bereich; es ist opt-in und kann Klassifizierungskosten verursachen. Es entdeckt keine neuen Papiere außerhalb der Bibliothek. Folgen Sie [Der illustrierte Screening-Workflow](../workflows/screen-literature.md) von der Suche bis zum überprüften Export.
+
+Öffnen Sie während eines Laufs **Screening process**, um den Fortschritt zu überprüfen, und verwenden Sie **Pause/Resume Analyse**, um anzuhalten oder fortzufahren. Änderungen an Regeln, Papieren oder gespeicherten Fortschritten können dazu führen, dass ein vorheriger Lauf nicht wieder aufgenommen werden kann. **Zurück zu den Ergebnissen** kehrt zur Entscheidungsliste zurück. **Project** und **Sammlung** Scope Marker unterscheiden Quellentypen und verlinken mit der Quelle; Es handelt sich nicht um Mehrbenutzer-Sharing-Berechtigungen.
+
 ## Organisieren Sie die akzeptierten Aufzeichnungen {/* #organize-the-accepted-records */}
 
-Erstellen Sie eine Sammlung mit **New collection**, füllen Sie **Name** und optional **Description**, dann **Create collection**. Die Beschreibung ist Organisationstext, nicht Agent Context. Cancel/Close verwirft den Entwurf. Wählen Sie Datensätze in Alle Referenzen aus und verwenden Sie **Add to collection** oder **Add to project**. Auswahl nach der Operation löscht; Wieder auswählen, wenn ein anderes Ziel hinzugefügt wird.
+Erstellen Sie eine gewöhnliche Sammlung mit **New collection** und **Smart collection**, füllen Sie **Name** und optional **Description**, dann **Create collection**. Die Beschreibung ist Organisationstext, nicht Agent Context. Cancel/Close verwirft den Entwurf. Wählen Sie Datensätze in Alle Referenzen aus und verwenden Sie **Add to collection** oder **Add to project**. Auswahl nach der Operation löscht; Wieder auswählen, wenn ein anderes Ziel hinzugefügt wird.
 
 In einer Detailansicht zeigen Projekt- und Sammlungs-Checkboxen die Links an. **Manage Tags** fügt organisatorische Tags hinzu. Die eins-zu-fünf-sterne-bewertung des tisches ist ihre annotation, keine automatische evidenzqualität. **Clear selection** lässt die Datensätze unverändert.
 

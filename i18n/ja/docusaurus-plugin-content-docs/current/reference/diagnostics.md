@@ -1,7 +1,7 @@
 ---
 title: "建築および診断"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-24'
 ---
 
 # 建築および診断 {/* #architecture-and-diagnostics */}
@@ -72,4 +72,11 @@ flowchart LR
 
 ソース: [ロガーと保持](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/logger.ts)、[診断の赤化](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/diagnostic-redaction.ts)、[境界Notebookの失敗の細部](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/failure-diagnostic.ts)、[成果物コンテンツのステータス](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/artifacts/provenance-content-status.ts)。
 
-最初は、コミットされた変更の後で失敗したリフレッシュ/クリーンアップからの失敗した操作を区別し、結果の配達からの背景の仕事の完了を区別して下さい。 突然変異を繰り返す前に保存された状態を点検して下さい。 [回復テーブル](../guides/troubleshooting.md#recovery-messages) は、ブロックされたキューの復元、保持された PDF リファレンス、スタイルコレクションの編集、Windows インストーラー メッセージをカバーしています。 [バックグラウンドタスク](../guides/notebook.md#background-tasks-and-result-delivery) は実行状態を説明しています。 リモート監視エラーは、最終ジョブ結果とは異なるままです。
+最初に失敗した操作を、コミットされた変更の後で不安定な更新/cleanup から区別し、結果を配達からの背景の仕事の完了を区別して下さい。 突然変異を繰り返す前に保存された状態を点検して下さい。 [回復テーブル](../guides/troubleshooting.md#recovery-messages) は、ブロックされたキューの復元、保持された PDF リファレンス、スタイルコレクションの編集、Windows インストーラー メッセージをカバーしています。 [バックグラウンドタスク](../guides/notebook.md#background-tasks-and-result-delivery) は実行状態を説明しています。 リモート監視エラーは、最終ジョブ結果とは異なるままです。
+
+
+## セッション診断アーカイブ {/* #session-diagnostic-archive */}
+
+**Export diagnostics…**は選択したセッションメタデータ、データベースレコード、利用可能なアプリケーションログメタデータを、マニフェストとエクスポートログでローカルアーカイブに収集します。 ソースを欠落させることは、全体の輸出を停止しません。 大きいか、または損なわれた源は要約を作り出すことができます。 現在のアプリケーションログと履歴ログは、選択したセッションの外でアクティビティをカバーできるため、選択したソースとキャプチャ結果を確認します。
+
+通常のメタデータソースは、プライベートコンテンツフィールドを除外します。 機密コンテンツのパッケージエクスポートの失敗の後、ダイアログは、赤字のスキャナーの証拠と元のフラグのファイルを提供することもできます。 元のファイルはデフォルトでチェックされていない。 それらを明示的に選択すると、元のバイトが含まれています。 エクスポートはアップロードやモデルリクエストを行わない。 共有する前に、結果のアーカイブを調べます。 研究パッケージのバックアップまたは最小限の再生を交換しません。 [記述された輸出プロシージャ](../guides/troubleshooting.md#session-diagnostics) を参照してください。

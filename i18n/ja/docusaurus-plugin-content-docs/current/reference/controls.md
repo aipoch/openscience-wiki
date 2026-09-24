@@ -1,7 +1,7 @@
 ---
 title: "制御およびキーボードの参照"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # 制御およびキーボードの参照 {/* #controls-and-keyboard-reference */}
@@ -62,4 +62,6 @@ Side Chatタブを閉じるには、確認と停止/削除のサイドディス�
 
 wiki の検索は別です: ドキュメントのタイトルをインデックス化します。, 見出しと現在の言語のボディ パス. 「Inbox」などの用語は、アプリケーションのセッションタイトルから欠損しても、ここに段落と一致させることができます。
 
-技術的な参照: [アプリケーションバインディング](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [作曲家のキーボードの取り扱い](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [行動を閉じる](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [グローバル検索](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx)。
+技術的な参照: [アプリケーション結合](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [作曲家のキーボードの取り扱い](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [行動を閉じる](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [グローバル検索](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx)。
+
+設定パネル/ダイアログ検索機能 **&lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk>** お問い合わせ macOS そして、 **Ctrl+Alt+K の使い方** お問い合わせ Windows///////////////////////Linux. . . . **⌘K / Ctrl+K** は、設定ヘッダーの検索に引き続き焦点を合わせています。 [ショートカットスコープ](../guides/shortcuts.md#local-settings-search) を参照してください。

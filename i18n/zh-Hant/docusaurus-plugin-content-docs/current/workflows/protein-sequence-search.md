@@ -86,3 +86,31 @@ preserve actual errors or empty results. Never invent alignments.
 <ExampleDownload path="/examples/v0320/hba1-blast-results.md">完整結果報告</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-hits.csv">五個命中的結果表</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-raw.json">NCBI JSON2 報告</ExampleDownload>
 
 第一項 P69905 就是輸入序列本身，100% 的一致率和覆蓋率用於核對已知序列。其他命中展示序列相似性，不代表發現了新功能。保留原始報告和查詢序列；資料庫更新後，命中列表可能變化。
+
+要比較三條或更多已知序列，繼續[多序列比對與保守位點檢查](multiple-sequence-alignment.md)。
+
+## 用 HMMER 檢查蛋白質結構域 {/* #hmmer-domain */}
+
+<p className="example-label"><strong>案例演示</strong> 將人 P69905 與 Pfam 比對</p>
+
+取得 P69905 規範蛋白質序列後，在 **Settings → Connectors** 中向 Main 開啟 **HMMER**。在同一會話中傳送：
+
+```text
+Use the HMMER Connector to scan the same human P69905 sequence against
+Pfam with hmmscan. Keep the job ID, retrieve the completed domain
+annotations, and save the raw result and a concise English interpretation
+with coordinates and significance values. Preserve an unavailable
+result as unavailable.
+```
+
+1. 核對提交回執中的任務 ID，使用同一個 ID 查詢 **status**。
+2. 完成後獲取 **results** 並儲存原始響應。解釋命中前，先檢查 `ready` 和結果狀態。
+3. 檢查每個命中的家族編號、查詢序列座標、E-value 和納入標記。返回一個片段不等於發現一個顯著結構域。
+
+![P69905 的 HMMER 完成報告，包含結構域座標和顯著性數值](/img/open-science/v0331/hmmer-result.webp)
+
+本次結果為 **Globin · PF00042.28**：納入的結構域位於查詢序列 **27–137** 位（從 1 開始，包含兩端），得分 **115.572 bits**，獨立結構域 E-value 為 **2.2781 × 10⁻³³**。**10–20** 位的短片段未被納入且不顯著，不能算作第二個結構域。座標對應提交的規範序列，不是成熟蛋白的編號。E-value 受搜尋範圍影響，不直接表示某個生物學解釋正確的機率。
+
+<ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">HMMER 原始響應</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">結構域解釋</ExampleDownload>
+
+HMMER 的輸入隨程式變化。本例使用蛋白質序列與 **hmmscan**，其他程式見[操作參考](../reference/connector-operations.md#family-26)。**InterProScan** 則用於查詢已有任務狀態並獲取 TSV 結果，不提供提交任務的操作。

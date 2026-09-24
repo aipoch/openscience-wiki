@@ -1,7 +1,7 @@
 ---
 title: "Modelle und Aufgabenrichtlinien"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # Modelle und Aufgabenrichtlinien {/* #models-and-task-policies */}
@@ -79,11 +79,11 @@ Verwenden Sie [Agentsetup](./frameworks.md) für das Ausführungs-Backend und [V
 
 Quellen: [Modellauswahl](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx), [Szenariorichtlinien](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx).
 
-## Fakultative Klassifikationsmodelle {/* #classification-models */}
+## Klassifikationsmodelle {/* #classification-models */}
 
-Öffnen Sie **Settings → Model → Classification models**. Ein Klassifikationsdienst hilft bei der Auswahl relevanter Skills und Connectors, bevor eine Anforderung gestartet wird. Es ersetzt nicht Main oder fügt ein Chat-Modell hinzu. Sie können **Automatic capability selection** bei **Use default method** verlassen; Skills und Connectors funktionieren immer noch ohne es.
+Öffnen Sie **Settings → Model → Classification models**. Klassifikationsdienste haben zwei unabhängige Bindungen: **Automatic capability selection** und **Smart collections**. Die erste hilft bei der Auswahl relevanter Skills und Connectors, bevor eine Anforderung gestartet wird. Es ersetzt nicht Main oder fügt ein Chat-Modell hinzu. Sie können **Automatic capability selection** bei **Use default method** verlassen; Skills und Connectors funktionieren immer noch ohne es.
 
-In v0.31.1 wird dieser Dienst für Hauptunterhaltungen mit **Codex Chat Completions** oder **CodeBuddy** verwendet. Daraus folgt keine Unterstützung für Codex-Abonnements oder alle anderen Frameworks. Übermittelt werden nur die aktuelle Anfrage sowie Namen und Beschreibungen der Fähigkeiten. Ist der Dienst nicht verfügbar oder das Ergebnis unklar, wird das Standardverfahren verwendet.
+Die automatische Auswahl von Fähigkeiten über diesen Dienst wird in Hauptgesprächen mit **Codex Chat Completions** oder **CodeBuddy** unterstützt. Sitzungen mit Codex-Abonnement behalten ihren bisherigen Ladeweg. Diese Funktion übermittelt nur die aktuelle Anfrage sowie Namen und Beschreibungen der Fähigkeiten. Ist der Dienst nicht verfügbar oder die Klassifikation unklar, wird die Standardmethode verwendet.
 
 ![Auswahl der Standardfähigkeit und fakultativer Eintrag des Klassifikationsdienstes](/img/open-science/v0311/classification-models.webp)
 
@@ -93,7 +93,7 @@ In v0.31.1 wird dieser Dienst für Hauptunterhaltungen mit **Codex Chat Completi
 4. Wählen Sie unter **Automatic capability selection** den gespeicherten Dienst und ein in seinem Katalog angebotenes Modell aus. Verwenden Sie **Check model**, um die Verbindung zu überprüfen.
 5. Probieren Sie eine begrenzte Anfrage in einer unterstützten Hauptkonversation aus und prüfen Sie dann die tatsächlich ausgewählten Tools. Eine erfolgreiche Modellprüfung allein verifiziert kein Forschungsergebnis.
 
-Das Entfernen eines Dienstes gibt seine Bindung an die Standardmethode zurück. Ein separat gespeicherter Dienstschlüssel wird mit ihm entfernt; Das Entfernen eines Dienstes, der ein Konto teilt, löscht dieses Konto oder seinen Schlüssel nicht.
+Durch Entfernen eines Dienstes wird die automatische Auswahl der Funktionen auf die Standardmethode zurückgeführt und alle Smart-Sammlungen, die an diesen Dienst gebunden sind, sind unkonfiguriert. Ein separat gespeicherter Dienstschlüssel wird mit ihm entfernt; Das Entfernen eines Dienstes, der ein Konto teilt, löscht dieses Konto oder seinen Schlüssel nicht.
 
 Siehe [Provider-Setup](providers.md) für konversationsmodelle. Lokale PDF-Parsing-Ressourcen werden unter **Local parsing models**, einem separaten Tab, verwaltet.
 
@@ -104,6 +104,18 @@ Wählen Sie für Jev unter **Automatic capability selection** den Eintrag **Type
 ![TypeSafe AI / Jev Latest ausgewählt, mit Check passed und verborgenem API-Schlüssel](/img/open-science/v0311/classification-connected.webp)
 
 Beispielsweise kann ein öffentliches TP53-Lookup in einer Codex Chat Completions-Sitzung Jev verwenden, um `mcp-genes` auszuwählen. Überprüfen Sie die ausgewählte Fähigkeit in der Aktivität und prüfen Sie dann die Datenbankantwort auf das Forschungsergebnis. Codex-Abonnementsitzungen verwenden ihren bestehenden Fähigkeitsladepfad; Eine gespeicherte Jev-Bindung lässt diese Sitzungen nicht Jev verwenden.
+
+### Binden Sie ein Modell für Smart Collections {/* #smart-collection-model */}
+
+1. Öffnen Sie **Settings → Model → Classification models** und speichern Sie einen kompatiblen Dienst, wenn Sie noch keinen hinzugefügt haben.
+2. Wählen Sie unter **Smart collections** den Dienst und eines der angebotenen Modelle aus und wählen Sie dann **Check model**. Diese Bindung wird von allen intelligenten Sammlungen geteilt; Es ist unabhängig von **Automatic capability selection**.
+3. Bestätigen Sie **Check passed**, kehren Sie dann in die Bibliothek zurück und erstellen Sie eine kleine, übersichtliche Sammlung. Smart Collections haben **kein Standardmodell**: Konfigurieren Sie diese Bindung, bevor Sie Referenzen auswerten.
+
+Main kann weiterhin **Codex subscription** verwenden. Seine Fähigkeitsladeroute hindert die Bibliothek nicht daran, eine eigene Klassifizierungsbindung zu verwenden. Im folgenden Beispiel wird **den Eintrag** für das Screening ausgewählt.
+
+![Intelligente Sammlungen und die Auswahl der Fähigkeiten haben separate Bindungen, wobei der Serviceschlüssel maskiert ist](/img/open-science/v0330/classification-smart.webp)
+
+Das Screening sendet die Sammelregeln und Referenznachweise an diesen Service. Wenn **Use available full text** ausgeschaltet ist, verwendet es Titel und Abstract. Einschalten sendet verfügbaren PDF-Text; Lange Dokumente verwenden relevante Passagen, und ein nicht verfügbares oder unlesbares PDF fällt auf Titel und Abstract zurück. Überprüfen Sie die für jede Entscheidung gezeigten Beweise. Folgen Sie dem [Smart Screening Workflow](../workflows/screen-literature.md), um eine echte Reihe von Papieren zu bewerten und zu überprüfen.
 
 ### Dienstleistungen der Zollklassifizierung {/* #custom-classification */}
 

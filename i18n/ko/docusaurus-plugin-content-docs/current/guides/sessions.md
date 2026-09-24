@@ -1,7 +1,7 @@
 ---
 title: "세션 및 지점"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -161,4 +161,9 @@ GSE60450 프로젝트에서 기존의 QC 세션을 포크하고 `gse60450-qc-sum
 
 ## 세션 정보 카드 읽기 {/* #session-information */}
 
-세션 제목을 선택하여 번호, 설명, 소스, 생성/업데이트 시간, 현재 지점 및 artifact 카운트에 대한 메시지 수를 참조하십시오. **Pin**을 사용하여 세션을 쉽게 찾을 수 있도록, 또는 **세션 편집**은 제목과 설명을 변경합니다. **채팅에서 계속** 배당자는 기록 된 소스 회전으로 다시 연결합니다.
+세션 제목을 선택하여 번호, 설명, 소스, 생성/업데이트 시간, 현재 지점 및 artifact 카운트에 대한 메시지 수를 참조하십시오. **Pin**을 사용하여 세션을 쉽게 찾을 수 있도록, 또는 **세션 편집**은 제목과 설명을 변경합니다. **이전 대화에서 계속** 배당자는 기록 된 소스 회전으로 다시 연결합니다.
+
+
+## 수출 회의 진단 {/* #session-diagnostics */}
+
+세션 헤더의 **Export diagnostics…** 제어 또는 세션 메뉴의 **Export → Export diagnostics…**을 사용하여 로컬 아카이브에서 선택한 진단 소스를 수집합니다. Application logs는 선택한 세션 밖에 메타데이터를 포함할 수 있습니다. 공유하기 전에 소스 목록, 완료 메시지 및 아카이브 내용을 검토; [진단 수출 단계](troubleshooting.md#session-diagnostics) 참조.

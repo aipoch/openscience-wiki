@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Обзор настроек"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # Обзор настроек {/* #settings-overview */}
@@ -56,3 +56,5 @@ last_update:
 ## Закладки параметров модели {/* #model-tabs */}
 
 В **Model** используйте **Conversation models** для поставщиков и моделей задач, **Classification models** для дополнительного выбора Skill / Connector и **Local parsing models** для локальных ресурсов анализа. Классификация - это вкладка в настройках модели, а не дополнительная панель настроек верхнего уровня. Смотрите [Классификация](../guides/models.md#classification-models).
+
+Поиск заголовка использует **&lt;unk>K / Ctrl+K**. Чтобы сфокусировать текущий поиск панели или диалога, используйте **&lt;unk>K/Ctrl+Alt+K**, когда это поле доступно. Смотрите [Поиск ярлыков](../guides/shortcuts.md#local-settings-search).

@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Einstellungen Übersicht"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # Einstellungen Übersicht {/* #settings-overview */}
@@ -56,3 +56,5 @@ Diese Suche umfasst repräsentative Einstellungen in jedem Panel, nicht in jedem
 ## Tabs für Modelleinstellungen {/* #model-tabs */}
 
 Verwenden Sie in **Model** **Conversation models** für Anbieter und Aufgabenmodelle, **Classification models** für die optionale Skill/Connector-Auswahl und **Local parsing models** für lokale Parsing-Ressourcen. Die Klassifizierung ist eine Registerkarte in den Modelleinstellungen, nicht ein zusätzliches Top-Level-Einstellungen-Panel. Siehe [Einstufungsaufbau](../guides/models.md#classification-models).
+
+Die Header-Suche verwendet **&lt;0xE2>&lt;0x8C>&lt;0x98>K / Strg + K**. Um die Suche des aktuellen Panels oder Dialogs zu fokussieren, verwenden Sie **&lt;0xE2>&lt;0x8C>&lt;0x98>&lt;0xE2>&lt;0x8C>&lt;0xA5>K / Strg + Alt + K**, wenn dieses Feld verfügbar ist. Siehe [Suchabkürzungen](../guides/shortcuts.md#local-settings-search).

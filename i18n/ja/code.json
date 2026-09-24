@@ -1,159 +1,159 @@
 {
   "homepage.steps.install.title": {
-    "message": "Open-Scienceのインストール"
+    "message": "Install Open-Science"
   },
   "homepage.steps.install.description": {
-    "message": "お使いのオペレーティングシステムを選択します。"
+    "message": "Choose your operating system."
   },
   "homepage.steps.setup.title": {
-    "message": "ワークスペースの設定"
+    "message": "Set up your workspace"
   },
   "homepage.steps.setup.description": {
-    "message": "モデルを接続し、ランタイムを準備します。"
+    "message": "Connect a model and prepare your runtimes."
   },
   "homepage.steps.firstResult.title": {
-    "message": "最初の結果を作成する"
+    "message": "Create your first result"
   },
   "homepage.steps.firstResult.description": {
-    "message": "入力から保存された出力までのプロジェクトに従ってください。"
+    "message": "Follow a project from input to saved output."
   },
   "homepage.sections.guides.title": {
-    "message": "ガイド"
+    "message": "Guides"
   },
   "homepage.sections.guides.description": {
-    "message": "プロジェクト、会話、ファイル、ワークスペースの設定。"
+    "message": "Projects, conversations, files and workspace settings."
   },
   "homepage.sections.workflows.title": {
-    "message": "研究ワークフロー"
+    "message": "Research workflows"
   },
   "homepage.sections.workflows.description": {
-    "message": "実際の研究データで作業した例をフォローしてください。"
+    "message": "Follow worked examples with real research data."
   },
   "homepage.sections.tools.title": {
-    "message": "ツールを探す"
+    "message": "Explore tools"
   },
   "homepage.sections.tools.description": {
-    "message": "データベースを見つけ、ファイルを調べ、計算を実行します。"
+    "message": "Find databases, inspect files and run calculations."
   },
   "homepage.sections.skills.title": {
     "message": "Skills"
   },
   "homepage.sections.skills.description": {
-    "message": "再利用可能な研究方法を見つけ、使用し、作成します。"
+    "message": "Find, use and create reusable research methods."
   },
   "homepage.sections.specialists.title": {
-    "message": "スペシャリスト"
+    "message": "Specialists"
   },
   "homepage.sections.specialists.description": {
-    "message": "集中したタスクを委任し、結果を見直します。"
+    "message": "Delegate focused tasks and review the results."
   },
   "homepage.sections.reference.title": {
-    "message": "リファレンス"
+    "message": "Reference"
   },
   "homepage.sections.reference.description": {
-    "message": "制御、ファイル形式、CLIとAPIを調べます。"
+    "message": "Look up controls, file formats, the CLI and APIs."
   },
   "homepage.topics.reproducibility": {
-    "message": "再現性"
+    "message": "Reproducibility"
   },
   "homepage.topics.packages": {
-    "message": ".science 研究パッケージ"
+    "message": ".science research packages"
   },
   "homepage.topics.marketplace": {
-    "message": "Skill マーケットプレイス"
+    "message": "Skill marketplace"
   },
   "homepage.meta.title": {
-    "message": "Open-Science ドキュメント"
+    "message": "Open-Science Documentation"
   },
   "homepage.meta.description": {
-    "message": "AIPOCH Open-Science のドキュメント：インストール、ワークスペースとモデルの設定、再現性、研究ワークフロー、スキル、ツール、CLI と API リファレンス。"
+    "message": "Documentation for AIPOCH Open-Science: installation, workspace and model setup, reproducibility, research workflows, skills, tools, CLI and API reference."
   },
   "homepage.lead": {
-    "message": "AIPOCH Open-Science は、オープンソースでローカルファーストの AI 研究ワークベンチです。"
+    "message": "AIPOCH Open-Science is an open-source, local-first AI research workbench."
   },
   "homepage.lead.model.title": {
-    "message": "モデルの選択"
+    "message": "Model choice"
   },
   "homepage.lead.model.description": {
-    "message": "対応するモデルプロバイダー、カスタムゲートウェイ、または互換性のあるローカルモデルサーバーに接続できます。"
+    "message": "connect to supported model providers, a custom gateway, or a compatible local model server."
   },
   "homepage.lead.provenance.title": {
-    "message": "ローカル保存と来歴"
+    "message": "Local storage and provenance"
   },
   "homepage.lead.provenance.description": {
-    "message": "プロジェクトのデータと研究成果はローカルに保存され、利用可能なコード・入力・実行記録を確認できます。"
+    "message": "project data and research outputs are stored locally, with available code, inputs, and execution records accessible for review."
   },
   "homepage.lead.guides.title": {
-    "message": "実践ガイド"
+    "message": "Practical guides"
   },
   "homepage.lead.guides.description": {
-    "message": "ワークスペースを設定し、研究ワークフローに沿って進め、結果の確認と共有の方法を学べます。"
+    "message": "set up your workspace, follow research workflows, and learn how to inspect and share your results."
   },
   "homepage.eyebrow": {
-    "message": "ドキュメント"
+    "message": "Documentation"
   },
   "homepage.introduction": {
-    "message": "ワークスペースを設定し、研究データと連携し、結果を確認・共有します。"
+    "message": "Set up your workspace, work with research data, and check and share your results."
   },
   "homepage.readDocs": {
-    "message": "ドキュメントを読む"
+    "message": "Read the documentation"
   },
   "homepage.troubleshooting": {
-    "message": "トラブルシューティング"
+    "message": "Troubleshooting"
   },
   "homepage.startHeading": {
-    "message": "はじめに"
+    "message": "Start here"
   },
   "homepage.browseHeading": {
-    "message": "ドキュメントを調べる"
+    "message": "Explore the documentation"
   },
   "homepage.topicsHeading": {
-    "message": "さらに詳しく"
+    "message": "Go further"
   },
   "theme.SearchPage.documentsFound.plurals": {
     "message": "検索結果：{count} 件"
   },
   "docs.platform.label": {
-    "message": "プラットフォーム"
+    "message": "Platform"
   },
   "docs.platform.hint": {
-    "message": "チャプターを通してあなたの選択は保たれています。"
+    "message": "Your choice is kept across chapters."
   },
   "docs.guides.outline.reproducibility.title": {
-    "message": "再現性"
+    "message": "Reproducibility"
   },
   "docs.guides.outline.reproducibility.scope": {
-    "message": "キャプチャした研究ステップを回復し、結果バージョンを比較し、検証レコードを保持します。"
+    "message": "Rerun captured research steps, compare result versions and retain verification records."
   },
   "docs.guides.outline.research-packages.title": {
-    "message": ".science 研究パッケージ"
+    "message": ".science research packages"
   },
   "docs.guides.outline.research-packages.scope": {
-    "message": "ポータブルな会話ブランチ、ファイル、エビデンスをエクスポート、インポート、検査します。"
+    "message": "Export, import and inspect portable conversation branches, files and evidence."
   },
   "docs.outline.skills.marketplace.title": {
-    "message": "Skill マーケットプレイス"
+    "message": "Skill marketplace"
   },
   "docs.outline.skills.marketplace.scope": {
-    "message": "市場からの研究方法を見つけてインストールし、更新し、管理します。"
+    "message": "Find, install, update and manage research methods from the marketplace."
   },
   "docs.guides.outline.bookmarks.title": {
-    "message": "個人用の読書ブックマーク"
+    "message": "Private reading bookmarks"
   },
   "docs.guides.outline.bookmarks.scope": {
-    "message": "個人的な読書通路とPDF地域を保存し、メモを管理し、ソースに戻る。"
+    "message": "Save personal reading passages and PDF regions, manage notes and return to their source."
   },
   "docs.outline.reference.v0300.title": {
     "message": "v0.30.0"
   },
   "docs.outline.reference.v0300.scope": {
-    "message": "プライベートブックマーク、独立したSide Chatタブ、設定検索と抽出されたPDF証拠。"
+    "message": "Private bookmarks, independent Side Chat tabs, settings search and extracted PDF evidence."
   },
   "theme.docs.breadcrumbs.navAriaLabel": {
     "message": "パンくずリストのナビゲーション"
   },
   "docs.sections.label": {
-    "message": "ドキュメントセクション"
+    "message": "Documentation sections"
   },
   "theme.SearchPage.existingResultsTitle": {
     "message": "検索：{query}"
@@ -162,7 +162,7 @@
     "message": "検索したい語句を入力してください。"
   },
   "docs.ui.searchIndex": {
-    "message": "Open-Science / ドキュメントインデックス"
+    "message": "Open-Science / Documentation index"
   },
   "theme.SearchPage.searchContext.everywhere": {
     "message": "すべての場所"
@@ -171,7 +171,7 @@
     "message": "結果が見つかりません。"
   },
   "docs.ui.moreResults": {
-    "message": "より多くの結果を表示"
+    "message": "Show more results"
   },
   "theme.ErrorPageContent.title": {
     "message": "エラーが発生しました"
@@ -303,7 +303,7 @@
     "message": "'{label}'の目次を隠す"
   },
   "theme.IconExternalLink.ariaLabel": {
-    "message": "(新しいタブで開きます)",
+    "message": "(opens in new tab)",
     "description": "The ARIA label for the external link icon"
   },
   "theme.NavBar.navAriaLabel": {
@@ -355,11 +355,11 @@
     "message": "ドキュメントのサイドバー"
   },
   "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
-    "message": "ドロップダウンを拡大する",
+    "message": "Expand the dropdown",
     "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
   },
   "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
-    "message": "ドロップダウンを崩壊させる",
+    "message": "Collapse the dropdown",
     "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
   },
   "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
@@ -436,1248 +436,1272 @@
     "message": "タグ"
   },
   "docs.guides.outline.overview": {
-    "message": "Open-Scienceの概要"
+    "message": "Open-Science overview"
   },
   "docs.guides.outline.group.start": {
-    "message": "はじめに"
+    "message": "Start here"
   },
   "docs.guides.outline.capabilities.title": {
-    "message": "能力とサポートされた入力"
+    "message": "Capabilities and supported inputs"
   },
   "docs.guides.outline.capabilities.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.capabilities.topic.capabilities.title": {
-    "message": "Open-Scienceができること"
+    "message": "What Open-Science can do"
   },
   "docs.guides.outline.capabilities.topic.capabilities.scope": {
-    "message": "リサーチ活動、ローカルワークスペースモデル、各入力またはゴール開始場所をサポート。"
+    "message": "Supported research activities, the local workspace model, and where to start for each input or goal."
   },
   "docs.guides.outline.capabilities.topic.source-types.title": {
-    "message": "サポートされているファイルとデータ"
+    "message": "Supported files and data"
   },
   "docs.guides.outline.capabilities.topic.source-types.scope": {
-    "message": "入力、読みやすいversus実行可能なフォーマット、およびインポート前の準備を受け入れる。"
+    "message": "Accepted inputs, readable versus executable formats, and preparation before import."
   },
   "docs.guides.outline.installation.title": {
-    "message": "インストールとアップデート"
+    "message": "Installation and updates"
   },
   "docs.guides.outline.installation.scope": {
-    "message": "システム要件、デスクトップのインストール、ソースビルド、更新チェック、バージョン選択。"
+    "message": "System requirements, desktop installation, source builds, update checks, and version selection."
   },
   "docs.guides.outline.onboarding.title": {
-    "message": "初回設定"
+    "message": "First-time setup"
   },
   "docs.guides.outline.onboarding.scope": {
-    "message": "環境チェック、データロケーション、エージェントのランタイム、モデルアクセス、ウィザードオーダーのNotebookセットアップ。"
+    "message": "Environment checks, data location, agent runtime, model access, and Notebook setup in wizard order."
   },
   "docs.guides.outline.first-project.title": {
-    "message": "最初のプロジェクトと結果"
+    "message": "Your first project and result"
   },
   "docs.guides.outline.first-project.scope": {
-    "message": "プロジェクト作成から保存された出力とクリアな成功チェックまでの小さな最初のタスク。"
+    "message": "A small first task from project creation to a saved output and a clear success check."
   },
   "docs.guides.outline.group.workspace": {
-    "message": "ワークスペース"
+    "message": "Your workspace"
   },
   "docs.guides.outline.navigation.title": {
-    "message": "ナビゲーションと検索"
+    "message": "Navigation and search"
   },
   "docs.guides.outline.navigation.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.navigation.topic.navigation.title": {
-    "message": "ホーム&ナビゲーション"
+    "message": "Home and navigation"
   },
   "docs.guides.outline.navigation.topic.navigation.scope": {
-    "message": "ホームエントリー、ワークスペースレイアウト、サイドバーパネル、リサイズ、プロジェクトに戻る。"
+    "message": "Home entries, workspace layout, sidebar panels, resizing, and returning to projects."
   },
   "docs.guides.outline.navigation.topic.search.title": {
-    "message": "プロジェクト、セッション、ファイルを見つける"
+    "message": "Finding projects, sessions, and files"
   },
   "docs.guides.outline.navigation.topic.search.scope": {
-    "message": "グローバルな検索、結果タイプ、結果の開き、パネルレベルのフィルタの違い。"
+    "message": "Global search, result types, opening a result, and the difference from panel-level filters."
   },
   "docs.guides.outline.projects.title": {
-    "message": "プロジェクトとソースフォルダ"
+    "message": "Projects and source folders"
   },
   "docs.guides.outline.projects.scope": {
-    "message": "プロジェクトの作成と編集、プロジェクトの説明とエージェントのコンテキスト、フォルダの選択、アクセススコープ。"
+    "message": "Create and edit projects, project descriptions and Agent Context, folder selection, and access scope."
   },
   "docs.guides.outline.sessions.title": {
-    "message": "セッションとブランチ"
+    "message": "Sessions and branches"
   },
   "docs.guides.outline.sessions.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.sessions.topic.sessions.title": {
-    "message": "セッションの作成と管理"
+    "message": "Creating and managing sessions"
   },
   "docs.guides.outline.sessions.topic.sessions.scope": {
-    "message": "開始、スイッチ、名前変更およびピン セッション; 会話からプロジェクトを区別します。"
+    "message": "Start, switch, rename, and pin sessions; distinguish a project from its conversations."
   },
   "docs.guides.outline.sessions.topic.revisions.title": {
-    "message": "メッセージの修正とブランチ"
+    "message": "Message revisions and branches"
   },
   "docs.guides.outline.sessions.topic.revisions.scope": {
-    "message": "以前のメッセージを編集し、リビジョンを参照し、会話を分岐し、保持されたコンテキストを理解します。"
+    "message": "Edit a previous message, browse revisions, branch a conversation, and understand retained context."
   },
   "docs.guides.outline.composer.title": {
-    "message": "会話と送信待ちのリクエスト"
+    "message": "Conversations and queued requests"
   },
   "docs.guides.outline.composer.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.composer.topic.composer.title": {
-    "message": "プロンプト、添付ファイル、および言及"
+    "message": "Prompts, attachments, and mentions"
   },
   "docs.guides.outline.composer.topic.composer.scope": {
-    "message": "リクエストをコンパイルし、入力を添付し、Skillsを選択し、送信前にファイルやセッションを参照します。"
+    "message": "Compose a request, attach inputs, select Skills, and reference files or sessions before sending."
   },
   "docs.guides.outline.composer.topic.follow-ups.title": {
-    "message": "フォローアップとタスクキュー"
+    "message": "Follow-ups and the task queue"
   },
   "docs.guides.outline.composer.topic.follow-ups.scope": {
-    "message": "キュー、編集、リオーダー、送信、および停止リクエスト; 中断後に続くことを説明する。"
+    "message": "Queue, edit, reorder, send, and stop requests; explain what continues after interruption."
   },
   "docs.guides.outline.group.files": {
-    "message": "ファイル、文献、結果"
+    "message": "Files, literature, and results"
   },
   "docs.guides.outline.files.title": {
-    "message": "ファイル、アーティファクト、バージョン"
+    "message": "Files, artifacts, and versions"
   },
   "docs.guides.outline.files.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.files.topic.files.title": {
-    "message": "プロジェクトファイルとアップロード"
+    "message": "Project files and uploads"
   },
   "docs.guides.outline.files.topic.files.scope": {
-    "message": "versusフォルダ参照、ファイル検索、レイアウト、プロジェクトコピー、ダウンロードの場所をアップロードします。"
+    "message": "Upload versus folder reference, file search and layouts, project copies, and download locations."
   },
   "docs.guides.outline.files.topic.artifacts.title": {
-    "message": "アーティファクトとファイルバージョン"
+    "message": "Artifacts and file versions"
   },
   "docs.guides.outline.files.topic.artifacts.scope": {
-    "message": "アップロードと生成されたアーティファクトを区別する。 保存されたリビジョンを調べ、サポートされている管理されたファイルを編集し、サポートされているテキストやマークダウンの変更を比較し、結果をエクスポートします。"
+    "message": "Distinguish uploads and generated artifacts; inspect saved revisions, edit supported managed files, compare supported text or Markdown changes, and export results."
   },
   "docs.guides.outline.previews.title": {
-    "message": "ファイルの開きとプレビュー"
+    "message": "Opening and previewing files"
   },
   "docs.guides.outline.previews.scope": {
-    "message": "分割およびフルスクリーンのプレビュー、サポートされている視聴者、タブ、およびフォーマット固有の制御。"
+    "message": "Split and full-screen previews, supported viewers, tabs, and format-specific controls."
   },
   "docs.guides.outline.library.title": {
-    "message": "文学ライブラリと引用"
+    "message": "Literature library and citations"
   },
   "docs.guides.outline.library.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.library.topic.library.title": {
-    "message": "参考文献とコレクション"
+    "message": "References and collections"
   },
   "docs.guides.outline.library.topic.library.scope": {
-    "message": "レコード、コレクション、プロジェクトリンク、タグ、重複、ゴミ箱、および復元を追加およびインポートします。"
+    "message": "Add and import records, collections, project links, tags, duplicates, Trash, and restoration."
   },
   "docs.guides.outline.library.topic.reading.title": {
-    "message": "読書用紙と引用"
+    "message": "Reading papers and citations"
   },
   "docs.guides.outline.library.topic.reading.scope": {
-    "message": "PDF 添付ファイル、メタデータ、全文検索、読み込み状態、引用スタイル、コピー、エクスポート。"
+    "message": "PDF attachments, metadata and full-text retrieval, reading state, citation styles, copy and export."
   },
   "docs.guides.outline.notebook.title": {
-    "message": "Notebookと実行証拠"
+    "message": "Notebook and execution evidence"
   },
   "docs.guides.outline.notebook.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.notebook.topic.notebook.title": {
-    "message": "セッションNotebook"
+    "message": "The Session Notebook"
   },
   "docs.guides.outline.notebook.topic.notebook.scope": {
-    "message": "Python、R、Bashユニット、出力、変数、カーネル、停止、ノートブックのエクスポートを実行しました。"
+    "message": "Executed Python, R, and Bash units, outputs, variables, kernels, stopping, and notebook export."
   },
   "docs.guides.outline.notebook.topic.provenance.title": {
-    "message": "工芸品の実績を調べる"
+    "message": "Inspecting artifact provenance"
   },
   "docs.guides.outline.notebook.topic.provenance.scope": {
-    "message": "ソースメッセージ、コード、ノートブックの実行とバージョンの証拠をレビューする利用可能なリンクを調べます。 欠落した証拠と形式に依存しないカバレッジを説明してください。"
+    "message": "Inspect available links to source messages, code, notebook runs and review evidence for a version; explain missing evidence and format-dependent coverage."
   },
   "docs.guides.outline.group.models": {
-    "message": "モデルとエージェント"
+    "message": "Models and agents"
   },
   "docs.guides.outline.models.title": {
-    "message": "モデルとタスクポリシー"
+    "message": "Models and task policies"
   },
   "docs.guides.outline.models.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.models.topic.models.title": {
-    "message": "モデルとプロバイダ"
+    "message": "Models and providers"
   },
   "docs.guides.outline.models.topic.models.scope": {
-    "message": "プロバイダー、モデル、エージェントフレームワーク、およびSpecialistの区別。 アクティブなモデルと努力を選択します。"
+    "message": "Provider, model, agent framework, and Specialist distinctions; select an active model and effort."
   },
   "docs.guides.outline.models.topic.scenario-models.title": {
-    "message": "異なるタスクのモデル"
+    "message": "Models for different tasks"
   },
   "docs.guides.outline.models.topic.scenario-models.scope": {
-    "message": "Main、サブエージェント、レビュアー、ビジョン、セッションの詳細ポリシー、継承、互換性のある選択。"
+    "message": "Main, Subagent, Reviewer, Vision, and Session details policies, inheritance, and compatible choices."
   },
   "docs.guides.outline.providers.title": {
-    "message": "プロバイダーとローカルモデルのセットアップ"
+    "message": "Provider and local model setup"
   },
   "docs.guides.outline.providers.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.providers.topic.providers.title": {
-    "message": "モデルプロバイダの接続"
+    "message": "Connecting a model provider"
   },
   "docs.guides.outline.providers.topic.providers.scope": {
-    "message": "プロバイダープリセット、サブスクリプションサインインまたはAPIアクセス、カスタムエンドポイント、必要なフィールド、および接続テスト。"
+    "message": "Provider presets, subscription sign-in or API access, custom endpoints, required fields, and connection tests."
   },
   "docs.guides.outline.providers.topic.local-models.title": {
-    "message": "ローカルモデルの利用"
+    "message": "Using local models"
   },
   "docs.guides.outline.providers.topic.local-models.scope": {
-    "message": "対応するローカルエンドポイント、モデル識別子、機能制限、接続検証。"
+    "message": "Compatible local endpoints, model identifiers, capability limits, and connection verification."
   },
   "docs.guides.outline.frameworks.title": {
-    "message": "エージェントのインストールと切り替え"
+    "message": "Installing and switching agents"
   },
   "docs.guides.outline.frameworks.scope": {
-    "message": "フレームワークのインストール、検出、認証、アクティベーション、スイッチング、修理、削除。"
+    "message": "Framework installation, detection, authentication, activation, switching, repair, and removal."
   },
   "docs.guides.outline.usage.title": {
-    "message": "トークンの使用と活動"
+    "message": "Token usage and activity"
   },
   "docs.guides.outline.usage.scope": {
-    "message": "レポートされたトークンのカテゴリ、タイムフィルタ、チャート、プロジェクト/セッション数、および欠落したテレメトリー。"
+    "message": "Reported token categories, time filters, charts, project/session counts, and missing telemetry."
   },
   "docs.guides.outline.group.control": {
-    "message": "研究制御とコンテキスト"
+    "message": "Research controls and context"
   },
   "docs.guides.outline.approval-modes.title": {
-    "message": "許可と承認"
+    "message": "Permissions and approvals"
   },
   "docs.guides.outline.approval-modes.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.approval-modes.topic.approval-modes.title": {
-    "message": "許可モードと承認"
+    "message": "Permission modes and approvals"
   },
   "docs.guides.outline.approval-modes.topic.approval-modes.scope": {
-    "message": "回答、自動承認された編集、およびフルアクセス。 具体的な要求を点検し、許可するか、または否定して下さい。"
+    "message": "Ask, auto-approve edits, and full access; inspect, allow, or deny a concrete request."
   },
   "docs.guides.outline.approval-modes.topic.remembered-permissions.title": {
-    "message": "保存済みの権限"
+    "message": "Remembered permissions"
   },
   "docs.guides.outline.approval-modes.topic.remembered-permissions.scope": {
-    "message": "セッション、プロジェクト、グローバルスコープ スコープの混乱なしでデフォルトを点検し、逆行し、そして元通りにして下さい。"
+    "message": "Session, project, and global scopes; inspect, revoke, and restore defaults without scope confusion."
   },
   "docs.guides.outline.planning.title": {
-    "message": "実行前の計画"
+    "message": "Planning before execution"
   },
   "docs.guides.outline.planning.scope": {
-    "message": "計画ファーストエントリー、提案された計画、フィードバック、承認、および継続的な実行のレビュー。"
+    "message": "Plan-first entry, reviewing a proposed plan, feedback, approval, and continuing execution."
   },
   "docs.guides.outline.delegation.title": {
-    "message": "タスクの委派と Side Chat"
+    "message": "Delegation and Side Chat"
   },
   "docs.guides.outline.delegation.scope": {
-    "message": "フレームワークをサポートした委任、サブエージェントのアクティビティ、Side Chatのアドバイスを点検します。 Specialistの作成、機能結合および査読者の細部は専門家セクションに属します。"
+    "message": "Inspect framework-supported delegation, subagent activity and Side Chat advice. Specialist creation, capability binding and Reviewer details belong to the Specialists section."
   },
   "docs.guides.outline.memory.title": {
-    "message": "記憶と会話のコンテキスト"
+    "message": "Memory and conversation context"
   },
   "docs.guides.outline.memory.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.memory.topic.memory.title": {
-    "message": "記憶および再使用可能な文脈"
+    "message": "Memory and reusable context"
   },
   "docs.guides.outline.memory.topic.memory.scope": {
-    "message": "グローバルおよびプロジェクトノート、カテゴリ、自動リコール、手動編集、および無効な場合の保持。"
+    "message": "Global and project notes, categories, auto-recall, manual editing, and retention when disabled."
   },
   "docs.guides.outline.memory.topic.context.title": {
-    "message": "コンテキスト、コンパクト、およびハンドオフ"
+    "message": "Context, compaction, and handoffs"
   },
   "docs.guides.outline.memory.topic.context.scope": {
-    "message": "コンテキストの使用を点検し、保持された歴史および圧縮を理解し、継続または手渡を準備して下さい。"
+    "message": "Inspect context use, understand retained history and compaction, and prepare a continuation or handoff."
   },
   "docs.guides.outline.group.runtime": {
-    "message": "実行時間と接続"
+    "message": "Runtimes and connections"
   },
   "docs.guides.outline.runtimes.title": {
-    "message": "PythonとRのランタイム"
+    "message": "Python and R runtimes"
   },
   "docs.guides.outline.runtimes.scope": {
-    "message": "管理し、外部の通訳者、インストール、有効化、パッケージアクセス、および影響を再構築する。"
+    "message": "Managed and external interpreters, installation, enablement, package access, and rebuild impact."
   },
   "docs.guides.outline.connectors.title": {
-    "message": "コネクターおよび資格情報"
+    "message": "Connectors and credentials"
   },
   "docs.guides.outline.connectors.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.connectors.topic.connectors.title": {
-    "message": "ツールとデータサービスを接続する"
+    "message": "Connecting tools and data services"
   },
   "docs.guides.outline.connectors.topic.connectors.scope": {
-    "message": "組み込みおよびカスタムMCPセットアップ、ツールの可用性とポリシー、認証結合、および接続健康。"
+    "message": "Built-in and custom MCP setup, tool availability and policy, credential binding, and connection health."
   },
   "docs.guides.outline.connectors.topic.credentials.title": {
-    "message": "認証およびサービスアカウント"
+    "message": "Credentials and service accounts"
   },
   "docs.guides.outline.connectors.topic.credentials.scope": {
-    "message": "デバイスの資格情報、研究連絡先の詳細、APIキー、トークン、OAuth、再利用、削除。"
+    "message": "Device credentials, research contact details, API keys, tokens, OAuth, reuse, and removal."
   },
   "docs.guides.outline.network.title": {
-    "message": "ネットワーク、プロキシ、パッケージミラー"
+    "message": "Network, proxies, and package mirrors"
   },
   "docs.guides.outline.network.scope": {
-    "message": "ネットワークチェック、Notebook許可ドメイン、プロキシモード、パッケージミラー、および証明書バンドル。"
+    "message": "Network checks, Notebook allowed domains, proxy modes, package mirrors, and certificate bundles."
   },
   "docs.guides.outline.remote-compute.title": {
-    "message": "SSHホストとSlurmセットアップ"
+    "message": "SSH hosts and Slurm setup"
   },
   "docs.guides.outline.remote-compute.scope": {
-    "message": "ホスト認証、ダイレクト対スケジューラモード、リソースディスカバリー、スクラッチパス、およびコンカレント。"
+    "message": "Host authentication, direct versus scheduler mode, resource discovery, scratch paths, and concurrency."
   },
   "docs.guides.outline.remote-access.title": {
-    "message": "リモートブラウザーアクセス"
+    "message": "Remote browser access"
   },
   "docs.guides.outline.remote-access.scope": {
-    "message": "Remote.It前提条件、アクセスモード、ペアリング、信頼できるブラウザ、および取消。"
+    "message": "Remote.It prerequisites, access modes, pairing, trusted browsers, and revocation."
   },
   "docs.guides.outline.group.preferences": {
-    "message": "パーソナライズし、維持"
+    "message": "Personalize and maintain"
   },
   "docs.guides.outline.appearance.title": {
-    "message": "外観と通知"
+    "message": "Appearance and notifications"
   },
   "docs.guides.outline.appearance.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.appearance.topic.appearance.title": {
-    "message": "外観と言語"
+    "message": "Appearance and language"
   },
   "docs.guides.outline.appearance.topic.appearance.scope": {
-    "message": "システム/ライト/ダーク外観, 明示的なインターフェイス言語, スタートアップ言語の動作."
+    "message": "System/light/dark appearance, explicit interface language, and startup language behavior."
   },
   "docs.guides.outline.appearance.topic.notifications.title": {
-    "message": "メッセージと通知"
+    "message": "Messages and notifications"
   },
   "docs.guides.outline.appearance.topic.notifications.scope": {
-    "message": "アプリ内メッセージ、デスクトップタスク通知、コンテンツの可視性、配信テスト、OS権限。"
+    "message": "In-app messages, desktop task notifications, content visibility, delivery tests, and OS permissions."
   },
   "docs.guides.outline.tags.title": {
-    "message": "タグを整理する"
+    "message": "Organizing with tags"
   },
   "docs.guides.outline.tags.scope": {
-    "message": "タグの作成と編集, 外観, リソースの割り当て, フィルタリング, 重複名, 削除."
+    "message": "Create and edit tags, appearance, resource assignment, filtering, duplicate names, and deletion."
   },
   "docs.guides.outline.storage.title": {
-    "message": "貯蔵およびアーカイブされた仕事"
+    "message": "Storage and archived work"
   },
   "docs.guides.outline.storage.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.storage.topic.storage.title": {
-    "message": "データの場所およびディスク使用量"
+    "message": "Data location and disk usage"
   },
   "docs.guides.outline.storage.topic.storage.scope": {
-    "message": "ストレージカテゴリ、リフレッシュ、ディレクトリ境界、リロケーション、環境再構築、および回復。"
+    "message": "Storage categories, refresh, directory boundaries, relocation, environment rebuilds, and recovery."
   },
   "docs.guides.outline.storage.topic.archived.title": {
-    "message": "アーカイブ、復元、削除"
+    "message": "Archive, restore, and delete"
   },
   "docs.guides.outline.storage.topic.archived.scope": {
-    "message": "プロジェクトのアーカイブと復元、永久的な削除、保持されたフォルダ、および確認境界。"
+    "message": "Project/session archive and restore, permanent deletion, retained folders, and confirmation boundaries."
   },
   "docs.guides.outline.group.help": {
-    "message": "ヘルプとトラブルシューティング"
+    "message": "Help and troubleshooting"
   },
   "docs.guides.outline.shortcuts.title": {
-    "message": "キーボードショートカット"
+    "message": "Keyboard shortcuts"
   },
   "docs.guides.outline.shortcuts.scope": {
-    "message": "プラットフォームの違いによるナビゲーション、検索、コンポーザー、プレビューのショートカット。"
+    "message": "Navigation, search, composer, and preview shortcuts with platform differences."
   },
   "docs.guides.outline.troubleshooting.title": {
-    "message": "トラブルシューティングと一般的な質問"
+    "message": "Troubleshooting and common questions"
   },
   "docs.guides.outline.troubleshooting.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.troubleshooting.topic.troubleshooting.title": {
-    "message": "トラブルシューティングと診断"
+    "message": "Troubleshooting and diagnostics"
   },
   "docs.guides.outline.troubleshooting.topic.troubleshooting.scope": {
-    "message": "スタートアップ、モデル、ランタイム、ファイル、ネットワークのSymptomベースのチェック。 有用な診断を集めて下さい。"
+    "message": "Symptom-based checks for startup, models, runtimes, files and network; collect useful diagnostics."
   },
   "docs.guides.outline.troubleshooting.topic.faq.title": {
-    "message": "よくある質問"
+    "message": "Frequently asked questions"
   },
   "docs.guides.outline.troubleshooting.topic.faq.scope": {
-    "message": "データの所有権、アカウントの要件、コスト、オフライン使用、および回復に関する明確な回答。 詳しいガイドへのリンク。"
+    "message": "Clear answers about data ownership, account requirements, costs, offline use, and recovery; link to detailed guides."
   },
   "docs.outline.workflows.overview": {
-    "message": "Open-Scienceの概要"
+    "message": "Open-Science overview"
   },
   "docs.outline.workflows.scope": {
-    "message": "定義された開始点および成果物が付いている研究の状況; インターフェイス操作は各シナリオに所属します。"
+    "message": "Research situations with a defined starting point and deliverable; interface operations belong inside each scenario."
   },
   "docs.outline.workflows.group.start": {
-    "message": "ワークフローを選択"
+    "message": "Choose a workflow"
   },
   "docs.outline.workflows.cookbook.title": {
-    "message": "ワークフローの料理本"
+    "message": "Workflow cookbook"
   },
   "docs.outline.workflows.cookbook.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.cookbook.topic.cookbook.title": {
-    "message": "ワークフローの料理本"
+    "message": "Workflow cookbook"
   },
   "docs.outline.workflows.cookbook.topic.cookbook.scope": {
-    "message": "研究の質問、入力タイプ、予想される出力および利用できる資源によって選んで下さい。"
+    "message": "Choose by research question, input type, expected output, and available resources."
   },
   "docs.outline.workflows.cookbook.topic.first-analysis.title": {
-    "message": "あなたの最初の再現性分析"
+    "message": "Your first reproducible analysis"
   },
   "docs.outline.workflows.cookbook.topic.first-analysis.scope": {
-    "message": "インポートから検査、実行、保存された図、再実行検証までの小さなCSV例。"
+    "message": "A small CSV example from import to inspection, execution, saved figure, and rerun verification."
   },
   "docs.outline.workflows.group.library": {
-    "message": "リサーチコレクションの構築"
+    "message": "Build your research collection"
   },
   "docs.outline.workflows.build-library.title": {
-    "message": "新しい研究トピックのためのコア読書リストを作成する"
+    "message": "Build a core reading list for a new research topic"
   },
   "docs.outline.workflows.build-library.scope": {
-    "message": "不慣れなトピックを始めるとき、種子紙を収集し、重要なテーマをマップし、プロジェクトにリンクされているキュレーションされた読書リストを保存します。 インポートとタグ付けは、このシナリオ内のステップです。"
+    "message": "When starting an unfamiliar topic, collect seed papers, map key themes and save a curated reading list linked to the project. Import and tagging are steps within this scenario."
   },
   "docs.outline.workflows.import-library.title": {
-    "message": "紙の収集を繰り返し、整理する"
+    "message": "Take over and organize a paper collection"
   },
   "docs.outline.workflows.import-library.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.import-library.topic.import-library.title": {
-    "message": "以前の研究者の文献コレクションを引き継ぎます"
+    "message": "Take over a previous researcher's literature collection"
   },
   "docs.outline.workflows.import-library.topic.import-library.scope": {
-    "message": "以前の研究者から PDF や引用のエクスポート, 使用可能なプロジェクトライブラリを再構築し、欠落またはあいまいなレコードのリストを生成する."
+    "message": "Given PDFs and citation exports from a previous researcher, reconstruct a usable project library and produce a list of missing or ambiguous records."
   },
   "docs.outline.workflows.import-library.topic.repair-metadata.title": {
-    "message": "折り紙のコレクションを再び使用可能にする"
+    "message": "Make a fragmented paper collection usable again"
   },
   "docs.outline.workflows.import-library.topic.repair-metadata.scope": {
-    "message": "混合されたフォルダ、不完全な引用と欠落の添付ファイル、レコードを再構成し、完全なテキストを明示的に解決されていない項目のリストとトピックコレクションにまとめました。"
+    "message": "Given mixed folders, incomplete citations and missing attachments, reconcile records and full text into topic collections with an explicit unresolved-items list."
   },
   "docs.outline.workflows.organize-library.title": {
-    "message": "検討プロジェクトのための検索バッチの統合"
+    "message": "Consolidate search batches for a review project"
   },
   "docs.outline.workflows.organize-library.scope": {
-    "message": "複数の検索やデータベースから重複した候補セットにレコードを結合し、検索の実績と文書化されたスクリーニングハンドオフを保持します。"
+    "message": "Combine records from several searches or databases into a deduplicated candidate set, retaining search provenance and a documented screening handoff."
   },
   "docs.outline.workflows.review-inbox.title": {
-    "message": "ジャーナルクラブのための集中した読書パックを用意する"
+    "message": "Prepare a focused reading pack for a journal club"
   },
   "docs.outline.workflows.review-inbox.scope": {
-    "message": "今後のジャーナルクラブでは、1つの質問の周りの紙を選択し、代理店の提案を見直し、利用可能な完全なテキストを収集し、ディスカッションの質問で読書注文を準備します。"
+    "message": "For an upcoming journal club, select papers around one question, review agent suggestions, collect available full text and prepare a reading order with discussion questions."
   },
   "docs.outline.workflows.deduplicate-library.title": {
-    "message": "既存の証拠ベースを拡張する"
+    "message": "Extend an existing evidence base"
   },
   "docs.outline.workflows.deduplicate-library.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.deduplicate-library.topic.deduplicate-library.title": {
-    "message": "関連する研究質問のための文献ベースを再利用する"
+    "message": "Reuse a literature base for a related research question"
   },
   "docs.outline.workflows.deduplicate-library.topic.deduplicate-library.scope": {
-    "message": "関連するプロジェクトが始まると、既存のライブラリの関連論文を識別し、レコードを複製したり、新しい質問に固有の証拠ギャップを文書化することなくリンクします。"
+    "message": "When a related project starts, identify relevant papers in the existing library, link them without duplicating records and document evidence gaps specific to the new question."
   },
   "docs.outline.workflows.deduplicate-library.topic.attach-full-text.title": {
-    "message": "プロジェクトのマイルストーンの前に証拠ベースをリフレッシュ"
+    "message": "Refresh the evidence base before a project milestone"
   },
   "docs.outline.workflows.deduplicate-library.topic.attach-full-text.scope": {
-    "message": "提案または進捗レビューの前に、新鮮な検索を実行し、保存されたコレクションで新しい検索結果を比較し、日付の追加とギャップノートを用意します。 これは、スケジュールされた監視ではなく、手動のワークフローです。"
+    "message": "Before a proposal or progress review, run a fresh search, compare new findings with the saved collection and prepare a dated additions-and-gaps note. This is a manual workflow, not scheduled monitoring."
   },
   "docs.outline.workflows.group.evidence": {
-    "message": "文学と証拠"
+    "message": "Literature and evidence"
   },
   "docs.outline.workflows.literature-review.title": {
-    "message": "証拠表への文献レビュー"
+    "message": "Literature review to evidence table"
   },
   "docs.outline.workflows.literature-review.scope": {
-    "message": "質問、検索、画面レコードを定義し、エビデンス、サイトソースを抽出し、アクセスギャップを報告します。"
+    "message": "Define a question, search and screen records, extract evidence, cite sources, and report access gaps."
   },
   "docs.outline.workflows.paper-reading.title": {
-    "message": "論文を読み、クレームを検証する"
+    "message": "Read papers and verify claims"
   },
   "docs.outline.workflows.paper-reading.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.paper-reading.topic.paper-reading.title": {
-    "message": "紙を読んで比較する"
+    "message": "Read and compare papers"
   },
   "docs.outline.workflows.paper-reading.topic.paper-reading.scope": {
-    "message": "提供された紙から方法、人口、発見および制限を抽出して下さい; ページレベルの証拠を保持します。"
+    "message": "Extract methods, populations, findings and limitations from provided papers; retain page-level evidence."
   },
   "docs.outline.workflows.paper-reading.topic.pdf-evidence.title": {
-    "message": "紙が請求をサポートしているかどうかをチェックする"
+    "message": "Check whether a paper supports a claim"
   },
   "docs.outline.workflows.paper-reading.topic.pdf-evidence.scope": {
-    "message": "ドラフトまたはミーティングノートにクレームを与え、関連するPDFの通路と方法を見つけ、ページ証拠を保持し、サポートされた、資格のある、またはサポートされていない検索を生成します。"
+    "message": "Given a claim in a draft or meeting note, locate the relevant PDF passages and methods, retain page evidence and produce a supported, qualified or unsupported finding."
   },
   "docs.outline.workflows.database-search.title": {
-    "message": "構造化されたデータベースレコードを取得する"
+    "message": "Retrieve structured database records"
   },
   "docs.outline.workflows.database-search.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.database-search.topic.database-search.title": {
-    "message": "科学データベースを検索する"
+    "message": "Search scientific databases"
   },
   "docs.outline.workflows.database-search.topic.database-search.scope": {
-    "message": "データソースを選択し、境界クエリを生成し、識別子を解決し、追跡可能なレコードを保存します。"
+    "message": "Select a data source, formulate bounded queries, resolve identifiers, and save traceable records."
   },
   "docs.outline.workflows.database-search.topic.cross-source-evidence.title": {
-    "message": "紙とデータベースの不一致を解決する"
+    "message": "Resolve a mismatch between a paper and a database"
   },
   "docs.outline.workflows.database-search.topic.cross-source-evidence.scope": {
-    "message": "論文とデータベースが遺伝子、化合物、または試験について解約する場合、識別子とバージョンを再構成し、未解決のままの文書を記述します。"
+    "message": "When a paper and a database disagree about a gene, compound or trial, reconcile identifiers and versions and document what remains unresolved."
   },
   "docs.outline.workflows.indication-dossier.title": {
-    "message": "徴候のdossierを造ります"
+    "message": "Build an indication dossier"
   },
   "docs.outline.workflows.indication-dossier.scope": {
-    "message": "生物学、疫学、試験および治療の証拠をソースの日付と未解決のギャップと組み合わせる。"
+    "message": "Combine biology, epidemiology, trials and treatment evidence with source dates and unresolved gaps."
   },
   "docs.outline.workflows.format-bibliography.title": {
-    "message": "投稿のための参照を用意する"
+    "message": "Prepare references for submission"
   },
   "docs.outline.workflows.format-bibliography.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.format-bibliography.topic.format-bibliography.title": {
-    "message": "標的ジャーナルに伝記を適応させる"
+    "message": "Adapt a bibliography to a target journal"
   },
   "docs.outline.workflows.format-bibliography.topic.format-bibliography.scope": {
-    "message": "信頼できるライブラリ項目IDおよびサポートされたCSL様式を使用して下さい。 表形式の引用符, ドキックスと皮切り引用符, オーバーリーフ互換LaTeXバンドル; 出力フィールドとスタイルの要件を確認します。"
+    "message": "Use trusted Library item IDs and supported CSL styles. Cover formatted citations, DOCX with semantic citation markers, and an Overleaf-compatible LaTeX bundle; verify output fields and style requirements."
   },
   "docs.outline.workflows.format-bibliography.topic.restore-library.title": {
-    "message": "投稿前の原稿の参照を監査する"
+    "message": "Audit a manuscript's references before submission"
   },
   "docs.outline.workflows.format-bibliography.topic.restore-library.scope": {
-    "message": "原稿とそのソースライブラリ、引用されたレコード、書誌フィールド、重複とアクセス可能な証拠を交換し、修正された書誌と例外リストを作成します。"
+    "message": "Given a manuscript and its source library, reconcile cited records, bibliographic fields, duplicates and accessible evidence, then produce a corrected bibliography and an exceptions list."
   },
   "docs.outline.workflows.group.analysis": {
-    "message": "データの解析と再生"
+    "message": "Data analysis and reproduction"
   },
   "docs.outline.workflows.data-quality.title": {
-    "message": "遺伝子計算行列のサンプル品質をチェックする"
+    "message": "Check sample quality in a gene-count matrix"
   },
   "docs.outline.workflows.data-quality.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.data-quality.topic.data-quality.title": {
-    "message": "データセットの監査と清掃"
+    "message": "Audit and clean a dataset"
   },
   "docs.outline.workflows.data-quality.topic.data-quality.scope": {
-    "message": "種類、欠損、重複、ユニットをチェックします。 生の入力を保存し、除外を記録します。"
+    "message": "Check types, missingness, duplicates and units; preserve raw inputs and record exclusions."
   },
   "docs.outline.workflows.data-quality.topic.python-r.title": {
-    "message": "PythonとRで分析"
+    "message": "Analyze with Python and R"
   },
   "docs.outline.workflows.data-quality.topic.python-r.scope": {
-    "message": "実行時間を用意し、変数を調べ、増分的に実行し、エラーを回復し、再使用可能なスクリプトを保存します。"
+    "message": "Prepare runtimes, inspect variables, execute incrementally, recover errors and save reusable scripts."
   },
   "docs.outline.workflows.statistics.title": {
-    "message": "統計分析と検証"
+    "message": "Statistical analysis and validation"
   },
   "docs.outline.workflows.statistics.scope": {
-    "message": "状態の仮定は方法を選び、診断を点検し、不確実性を報告し、実行可能なコードを保持します。"
+    "message": "State assumptions, select a method, check diagnostics, report uncertainty, and retain runnable code."
   },
   "docs.outline.workflows.reproduce.title": {
-    "message": "公開された結果を再生成する"
+    "message": "Reproduce a published result"
   },
   "docs.outline.workflows.reproduce.scope": {
-    "message": "紙、コードおよびデータ。 受諾基準を定義し、パイロットを実行し、逸脱からマッチを区別します。"
+    "message": "Inventory paper, code and data; define acceptance criteria, run a pilot and distinguish matches from deviations."
   },
   "docs.outline.workflows.extend-analysis.title": {
-    "message": "インストールしたSpecialistで解析を拡張する"
+    "message": "Extend an analysis with an installed Specialist"
   },
   "docs.outline.workflows.extend-analysis.scope": {
-    "message": "既存の方法、QC PCA、マトリックスおよび証拠計画例。"
+    "message": "Existing Methods, QC PCA, matrix and evidence-planning examples."
   },
   "docs.outline.workflows.group.biology": {
-    "message": "シーケンス、細胞、分子"
+    "message": "Sequences, cells, and molecules"
   },
   "docs.outline.workflows.sequence-qc.title": {
-    "message": "シーケンス品質とアノテーション"
+    "message": "Sequence quality and annotation"
   },
   "docs.outline.workflows.sequence-qc.scope": {
-    "message": "FASTAレコード、アルファベット、長さを調べる。 アノテーションのソースを解決し、失敗したレコードを保存します。"
+    "message": "Inspect FASTA records, alphabets and lengths; resolve annotation sources and preserve failed records."
   },
   "docs.outline.workflows.single-cell.title": {
-    "message": "単一セル解析"
+    "message": "Single-cell analysis"
   },
   "docs.outline.workflows.single-cell.scope": {
-    "message": "式入力とメタデータをチェックし、必要に応じてscGPTまたはscvi-toolsを選択し、出力を検証します。 互換性のある単一セル入力、構成されたPython環境および選択したSkill依存関係が必要です。 科学的な実行は保留中のままです。"
+    "message": "Check expression inputs and metadata, choose scGPT or scvi-tools where appropriate, and validate outputs. Requires compatible single-cell input, a configured Python environment and the selected Skill dependencies; scientific execution remains pending."
   },
   "docs.outline.workflows.structure-prediction.title": {
-    "message": "タンパク質と複雑な予測"
+    "message": "Protein and complex prediction"
   },
   "docs.outline.workflows.structure-prediction.scope": {
-    "message": "利用可能な予測Skillを選択し、入力と計算の要件を確認し、自信と制限を調べます。 選択されたパッケージ、モデル重量および適したローカルまたはリモート・コンプトを要求して下さい; Skill の一覧は予測の実行を検証しません。"
+    "message": "Choose an available prediction Skill, check inputs and compute requirements, then inspect confidence and limitations. Requires the selected package, model weights and suitable local or remote compute; listing a Skill does not verify prediction execution."
   },
   "docs.outline.workflows.molecular-analysis.title": {
-    "message": "分子構造とドッキング"
+    "message": "Molecular structures and docking"
   },
   "docs.outline.workflows.molecular-analysis.scope": {
-    "message": "分子を検証し、プロパティと構造を検査し、アフィニティでスコアを装備することなくドッキングポーズを見直します。 ローカル分子ビューア、オンライン化学源およびDiffDockの実行を分けて下さい; ドッキングには、独自の依存関係とコンピュート検証が必要です。"
+    "message": "Validate molecules, inspect properties and structures, and review docking poses without equating scores with affinity. Separate the local molecule viewer, online chemistry sources and DiffDock execution; docking requires its own dependencies and compute validation."
   },
   "docs.outline.workflows.group.deliver": {
-    "message": "図、レポート、および修正"
+    "message": "Figures, reports, and revisions"
   },
   "docs.outline.workflows.figures.title": {
-    "message": "トレーサブルな証拠で数字を作成する"
+    "message": "Create figures with traceable evidence"
   },
   "docs.outline.workflows.figures.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.figures.topic.figures.title": {
-    "message": "科学的な数字を作曲し、検証する"
+    "message": "Compose and validate scientific figures"
   },
   "docs.outline.workflows.figures.topic.figures.scope": {
-    "message": "トレーサブルなデータからパネルを作成し、ラベルとビジュアルの忠実性を確認し、出版物資産をエクスポートします。"
+    "message": "Create panels from traceable data, check labels and visual fidelity, and export publication assets."
   },
   "docs.outline.workflows.figures.topic.trace-result.title": {
-    "message": "数値の結果がどこから来たのかを説明する"
+    "message": "Explain where a figure's result came from"
   },
   "docs.outline.workflows.figures.topic.trace-result.scope": {
-    "message": "共同作業者が図を問いかけた場合は、その実行と入力にアーティファクトをトレースし、バージョンを検証し、計算のエビデンスバックされた説明を準備します。"
+    "message": "When a collaborator questions a figure, trace the artifact to its execution and inputs, verify versions and prepare an evidence-backed explanation of the calculation."
   },
   "docs.outline.workflows.manuscript.title": {
-    "message": "研究報告書の作成と見直し"
+    "message": "Write and revise a research report"
   },
   "docs.outline.workflows.manuscript.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.manuscript.topic.manuscript.title": {
-    "message": "レポートや原稿の物語を作成する"
+    "message": "Build a report or manuscript narrative"
   },
   "docs.outline.workflows.manuscript.topic.manuscript.scope": {
-    "message": "検証済みの検索結果、図順、メソッド、引用をつなげる。 未サポートのクレームをフラグします。"
+    "message": "Connect verified findings, figure order, methods and citations; flag unsupported claims."
   },
   "docs.outline.workflows.manuscript.topic.revise-artifact.title": {
-    "message": "査読者のフィードバックの後で図かレポートを見直して下さい"
+    "message": "Revise a figure or report after reviewer feedback"
   },
   "docs.outline.workflows.manuscript.topic.revise-artifact.scope": {
-    "message": "保存された出力にフィードバックをマップし、サポートされている編集を行い、リビジョンを比較し、各変更を改良されたアーティファクトにリンクする応答を用意します。"
+    "message": "Map feedback to saved outputs, make supported edits, compare revisions and prepare a response linking each change to the revised artifact."
   },
   "docs.outline.workflows.recover-notebook.title": {
-    "message": "ソースデータが変化した後の解析を解除する"
+    "message": "Rerun an analysis after the source data changes"
   },
   "docs.outline.workflows.recover-notebook.scope": {
-    "message": "更新されたデータセットを与え、ノートブックの出力を識別し、依存関係を再実行し、以前の成果物と材料の変更を説明するために新しい結果を比較します。"
+    "message": "Given an updated dataset, identify stale notebook outputs, rerun dependencies and compare new results with the previous deliverable to explain material changes."
   },
   "docs.outline.workflows.group.compute": {
-    "message": "長いタスクとリモートコンピューティング"
+    "message": "Long tasks and remote compute"
   },
   "docs.outline.workflows.ssh-analysis.title": {
-    "message": "リモート分析を実行し、回復する"
+    "message": "Run and recover remote analyses"
   },
   "docs.outline.workflows.ssh-analysis.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.ssh-analysis.topic.ssh-analysis.title": {
-    "message": "SSHホスト上で解析を実行"
+    "message": "Run an analysis on an SSH host"
   },
   "docs.outline.workflows.ssh-analysis.topic.ssh-analysis.scope": {
-    "message": "ホストポリシーと読みやすさ、ステージ入力、モニター実行、およびプロジェクトの出力を回復します。 ユーザ認証可能な SSH ホストとテスト済み認証情報が必要です。 現在の監査でリモートジョブが検証されていない。"
+    "message": "Check host policy and readiness, stage inputs, monitor execution, and recover outputs into the project. Requires a user-provided reachable SSH host and tested credentials; no remote job has been verified in the current audit."
   },
   "docs.outline.workflows.ssh-analysis.topic.slurm-jobs.title": {
-    "message": "Slurmジョブの送信と回復"
+    "message": "Submit and recover Slurm jobs"
   },
   "docs.outline.workflows.ssh-analysis.topic.slurm-jobs.scope": {
-    "message": "スケジュール要件を確認し、境界ジョブを送信し、領収書を追跡し、取り消しまたは回復し、ファイルを検証します。 実際のSlurmクラスター、アカウント、スケジューラの設定が必要です。 スケジューラの実行はローカル モード制御によって確認されません。"
+    "message": "Confirm scheduler requirements, submit a bounded job, track its receipt, cancel or recover, and verify files. Requires an actual Slurm cluster, account and scheduler configuration; scheduler execution is not verified by local mode controls."
   },
   "docs.outline.workflows.parallel-review.title": {
-    "message": "リサーチ業務の委任・検討"
+    "message": "Delegate and review research work"
   },
   "docs.outline.workflows.parallel-review.scope": {
-    "message": "サポートされているフレームワークと作業モデルを使用して、境界タスクを分割し、Specialist 機能を設定し、委任されたアクティビティと承認を検査し、返された証拠を再度確認します。 並列実行を主張する前に委任を検証します。"
+    "message": "With a supported framework and working models, split a bounded task, configure Specialist capabilities, inspect delegated activity and approvals, and reconcile returned evidence. Verify delegation before claiming parallel execution."
   },
   "docs.outline.workflows.group.continue": {
-    "message": "研究開発を続け、手渡する"
+    "message": "Continue and hand off research"
   },
   "docs.outline.workflows.plan-research.title": {
-    "message": "計画と調査を再開"
+    "message": "Plan and resume an investigation"
   },
   "docs.outline.workflows.plan-research.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.plan-research.topic.plan-research.title": {
-    "message": "コンピュートをコミットする前にパイロット学習をスコープ化"
+    "message": "Scope a pilot study before committing compute"
   },
   "docs.outline.workflows.plan-research.topic.plan-research.scope": {
-    "message": "広範な質問と限られたリソースを、インプット、成果物、ストップコンディション、受諾チェックで小さなパイロットプランに変えて、分析を拡大します。"
+    "message": "Turn a broad question and limited resources into a small pilot plan with inputs, deliverables, stop conditions and acceptance checks before expanding the analysis."
   },
   "docs.outline.workflows.plan-research.topic.persistent-goal.title": {
-    "message": "セッションプランで未完成の勉強を再開"
+    "message": "Resume an unfinished study with a Session Plan"
   },
   "docs.outline.workflows.plan-research.topic.persistent-goal.scope": {
-    "message": "承認されたセッションプラン、記録されたステップの状態および保存された結果からユーザーの開始された仕事を再開して下さい。 残業メモを保ちましょう。 計画は、意図しないスケジューリングや個別の永続的ゴール機能を意味しません。"
+    "message": "Resume user-initiated work from an approved Session Plan, recorded step status and saved results. Keep a remaining-work note; the plan does not imply unattended scheduling or a separate persistent-goal feature."
   },
   "docs.outline.workflows.plan-research.topic.continue-context.title": {
-    "message": "決定を失うことなく休憩後に勉強を再開"
+    "message": "Resume a study after a break without losing decisions"
   },
   "docs.outline.workflows.plan-research.topic.continue-context.scope": {
-    "message": "事前セッション、プロジェクトメモリ、保存したファイルからパユースされた学習を再構築し、さらに解析前に検証済みの最新のメモを作成します。"
+    "message": "Reconstruct a paused study from prior sessions, project memory and saved files, then produce a verified current-state note before further analysis."
   },
   "docs.outline.workflows.compare-branches.title": {
-    "message": "同じデータセットで2つの解析方法を比較する"
+    "message": "Compare two analysis methods on the same dataset"
   },
   "docs.outline.workflows.compare-branches.scope": {
-    "message": "同じ文書化された入力と2つのメソッドのプリプロセッシングを使用して、両方を実行し、結果、仮定と制限を比較します。"
+    "message": "Use the same documented inputs and preprocessing for two methods, execute both, and compare results, assumptions and limitations."
   },
   "docs.outline.workflows.save-method.title": {
-    "message": "検証済みの分析を新しいデータセットで再利用"
+    "message": "Reuse a validated analysis on a new dataset"
   },
   "docs.outline.workflows.save-method.scope": {
-    "message": "成功した分析を再利用可能なSkillに変換し、宣言された入力を適応させ、古い仮定を介することなく新しいデータセットでメソッドを検証します。"
+    "message": "Convert a successful analysis into a reusable Skill, adapt declared inputs and verify the method on a new dataset without silently carrying over old assumptions."
   },
   "docs.outline.workflows.handoff.title": {
-    "message": "再現性のある研究パッケージを外す"
+    "message": "Hand off a reproducible research package"
   },
   "docs.outline.workflows.handoff.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.handoff.topic.handoff.title": {
-    "message": "再現可能なハンドオフのパッケージ"
+    "message": "Package a reproducible handoff"
   },
   "docs.outline.workflows.handoff.topic.handoff.scope": {
-    "message": "入力、スクリプト、環境、結果、制限を収集します。 パッケージを新鮮な状態から確認します。"
+    "message": "Collect inputs, scripts, environments, results and limitations; verify the package from a fresh state."
   },
   "docs.outline.workflows.handoff.topic.export-handoff.title": {
-    "message": "共同作業者に未完成の分析を手渡する"
+    "message": "Hand an unfinished analysis to a collaborator"
   },
   "docs.outline.workflows.handoff.topic.export-handoff.scope": {
-    "message": "選択された会話証拠、結果ファイル、決定、環境要件、および残りの質問をレビュー可能なハンドオフパッケージとして準備します。"
+    "message": "Prepare selected conversation evidence, result files, decisions, environment requirements and remaining questions as a reviewable handoff package."
   },
   "docs.outline.tools.overview": {
-    "message": "Open-Scienceの概要"
+    "message": "Open-Science overview"
   },
   "docs.outline.tools.scope": {
-    "message": "機能によってツールを見つけます。 カタログや個々の操作は、幅広い章の表として計画されています。"
+    "message": "Find tools by capability; catalogs and individual operations are planned as tables inside broad chapters."
   },
   "docs.outline.tools.group.find": {
-    "message": "ツールを探す"
+    "message": "Find a tool"
   },
   "docs.outline.tools.overview.title": {
-    "message": "ツールを探す"
+    "message": "Explore tools"
   },
   "docs.outline.tools.overview.scope": {
-    "message": "組み込みツール、科学ソフトウェア、データベースコネクタ、ビューアから選択できます。 テーブル内のアクセスと読みやすさを比較します。"
+    "message": "Choose between built-in tools, scientific software, database connectors and viewers; compare access and readiness in a table."
   },
   "docs.outline.tools.built-in.title": {
-    "message": "作り付けの研究用具"
+    "message": "Built-in research tools"
   },
   "docs.outline.tools.built-in.scope": {
-    "message": "ファイル、ノートブック、文学、メモリ、計画、および委任操作の表、入力、出力および許可。"
+    "message": "A table of file, notebook, literature, memory, planning and delegation operations with inputs, outputs and permissions."
   },
   "docs.outline.tools.catalog.title": {
-    "message": "科学ツールカタログ"
+    "message": "Scientific tool catalog"
   },
   "docs.outline.tools.catalog.scope": {
-    "message": "Skillsをバンドルし、ランタイムパッケージを検査したソフトウェアのドキュメントテーブル。目的、依存関係、可用性。 カタログエントリは、すべてのプリインストールされたソフトウェアまたは別々のアプリ内カタログではありません。"
+    "message": "A documentation table of software referenced by bundled Skills and inspected runtime packages, with purpose, dependencies and availability. Catalog entries are not all preinstalled software or a separate in-app catalog."
   },
   "docs.outline.tools.scientific.title": {
-    "message": "科学ツール"
+    "message": "Scientific tools"
   },
   "docs.outline.tools.scientific.scope": {
-    "message": "Notebook のランタイムまたは構成された Compute のホストによる実行を記述して下さい、パッケージの取付け、入出力点検および失敗の診断を使って。 各ソフトウェアの例のためのローカル versus の遠隔条件を録音して下さい。"
+    "message": "Explain execution through Notebook runtimes or configured Compute Hosts, with package installation, input/output checks and failure diagnosis. Record local versus remote requirements for each software example."
   },
   "docs.outline.tools.group.data": {
-    "message": "データとビューア"
+    "message": "Data and viewers"
   },
   "docs.outline.tools.databases.title": {
-    "message": "科学データベース"
+    "message": "Scientific databases"
   },
   "docs.outline.tools.databases.scope": {
-    "message": "科学的データソース、便利なタスク、Connector セットアップと資格情報の構築をサポートし、完全な研究ワークフローへのリンク。"
+    "message": "Supported scientific data sources, useful tasks, built-in Connector setup and credentials, with links to complete research workflows."
   },
   "docs.outline.tools.tables.title": {
-    "message": "テーブルとデータセット"
+    "message": "Tables and datasets"
   },
   "docs.outline.tools.tables.scope": {
-    "message": "サポートされている表形式、プレビュー制御、データ検査、変数処理、エクスポート、およびテーブルのサイズ制限を比較します。"
+    "message": "Compare supported tabular formats, preview controls, data inspection, variable handling, exports and size limits in tables."
   },
   "docs.outline.tools.viewers.title": {
-    "message": "科学ビューア"
+    "message": "Scientific viewers"
   },
   "docs.outline.tools.viewers.scope": {
-    "message": "PDF、オフィス、画像、FASTA、PDB、分子フォーマットの実際のプレビューレジストリを使用します。 オフラインのOpenChemLib Molecule Viewerとその検証ツールを含む。 編集や科学的な計算からの眺めを区別します。"
+    "message": "Use the actual preview registry for PDF, Office, images, FASTA, PDB and molecular formats. Include the offline OpenChemLib Molecule Viewer and its validation tools; distinguish viewing from editing or scientific computation."
   },
   "docs.outline.tools.group.connect": {
-    "message": "接続と拡張"
+    "message": "Connect and extend"
   },
   "docs.outline.tools.mcp.title": {
-    "message": "コネクタと MCP"
+    "message": "Connectors and MCP"
   },
   "docs.outline.tools.mcp.scope": {
-    "message": "組み込みおよびカスタムコネクタ、輸送、発見、有効化およびエラーを比較します。 設定手順をガイドにリンクします。"
+    "message": "Compare built-in and custom connectors, transports, discovery, enablement and errors; link configuration steps to Guides."
   },
   "docs.outline.tools.credentials.title": {
-    "message": "サービス資格情報"
+    "message": "Service credentials"
   },
   "docs.outline.tools.credentials.scope": {
-    "message": "クレデンシャルタイプ、バインディング、必要なスコープ、バリデーション、アクセス障害をカバーするサービス・ツー・クレデンシャル・テーブル。"
+    "message": "A service-to-credential table covering credential types, bindings, required scopes, validation and access failures."
   },
   "docs.outline.tools.custom.title": {
-    "message": "カスタムMCPツールを接続する"
+    "message": "Connect a custom MCP tool"
   },
   "docs.outline.tools.custom.scope": {
-    "message": "ローカルstdioまたはサポートされたリモートトランスポートを介して、既存のまたは外部に実装されたMCPサーバーを接続し、発見されたツールとテストの認証情報と権限を調べます。 ツールの実装は外部の前提条件です。"
+    "message": "Connect an existing or externally implemented MCP server through local stdio or supported remote transport, inspect discovered tools and test credentials and permissions. Tool implementation is an external prerequisite."
   },
   "docs.outline.skills.overview": {
-    "message": "Open-Scienceの概要"
+    "message": "Open-Science overview"
   },
   "docs.outline.skills.scope": {
-    "message": "再利用可能な手順を選択し、使用し、維持します。 Skills をバンドルした個体は、チャプターテーブルにある。"
+    "message": "Choose, use, and maintain reusable procedures; individual bundled Skills belong in chapter tables."
   },
   "docs.outline.skills.group.use": {
-    "message": "Skillsを使う"
+    "message": "Use Skills"
   },
   "docs.outline.skills.overview.title": {
     "message": "Skills"
   },
   "docs.outline.skills.overview.scope": {
-    "message": "Skills 対ツールとスペシャリストの説明 検索、有効化、選択、指示を検査し、Skillが利用可能であることを確認します。"
+    "message": "Explain Skills versus tools and Specialists; search, enable, select, inspect instructions and verify a Skill is available."
   },
   "docs.outline.skills.directory.title": {
-    "message": "Skillディレクトリ"
+    "message": "Skill directory"
   },
   "docs.outline.skills.directory.scope": {
-    "message": "すべての 23 の 1 つのテーブルは Skills を束ねました、研究目的によって、入力、依存関係、出力および確認の状態と分けました。"
+    "message": "One table of all 23 bundled Skills, grouped by research purpose, with inputs, dependencies, outputs and verification status."
   },
   "docs.outline.skills.recipes.title": {
-    "message": "Skillのレシピ"
+    "message": "Skill recipes"
   },
   "docs.outline.skills.recipes.scope": {
-    "message": "表ベースのレシピは、研究目標、選択されたSkills、サンプル入力、要求、期待された出力とフルワークフローを接続します。"
+    "message": "Table-based recipes connect research goals, selected Skills, sample inputs, requests, expected outputs and full Workflows."
   },
   "docs.outline.skills.group.maintain": {
-    "message": "作成と維持"
+    "message": "Create and maintain"
   },
   "docs.outline.skills.create.title": {
-    "message": "Skill とその対応ファイルを作成する"
+    "message": "Create a Skill and its supporting files"
   },
   "docs.outline.skills.create.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.skills.create.topic.create.title": {
-    "message": "Skill を作成する"
+    "message": "Create a Skill"
   },
   "docs.outline.skills.create.topic.create.scope": {
-    "message": "個人的な Skill を書くか、会話から再利用可能な方法を抽出します。 入力、ステップ、チェック、境界を定義します。"
+    "message": "Write a personal Skill or extract a reusable method from a conversation; define inputs, steps, checks and boundaries."
   },
   "docs.outline.skills.create.topic.files.title": {
-    "message": "ファイルの指示とサポート"
+    "message": "Instructions and supporting files"
   },
   "docs.outline.skills.create.topic.files.scope": {
-    "message": "パッケージコンテンツテーブルと検証チェックリストを使用して、SKILL.mdフィールド、スクリプト、アセット、参照を記述します。"
+    "message": "Describe SKILL.md fields, scripts, assets and references using a package-contents table and a validation checklist."
   },
   "docs.outline.skills.manage.title": {
-    "message": "Skillsの管理と検証"
+    "message": "Manage and validate Skills"
   },
   "docs.outline.skills.manage.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.skills.manage.topic.manage.title": {
-    "message": "インポート、エクスポート、および更新 Skills"
+    "message": "Import, export, and update Skills"
   },
   "docs.outline.skills.manage.topic.manage.scope": {
-    "message": "グループインポートソース, プレビュー, 競合処理, 編集, エクスポート, 削除と動作によるバージョンチェック."
+    "message": "Group import sources, preview, conflict handling, editing, exports, deletion and version checks by operation."
   },
   "docs.outline.skills.manage.topic.validate.title": {
-    "message": "Skillsのテストとトラブルシューティング"
+    "message": "Test and troubleshoot Skills"
   },
   "docs.outline.skills.manage.topic.validate.scope": {
-    "message": "新鮮な入力を検証し、不足しているパッケージ、重量、資格情報、ツールを診断し、サポートされたversusのテストされた動作を記録します。"
+    "message": "Validate a fresh input, diagnose missing packages, weights, credentials and tools, and record supported versus tested behavior."
   },
   "docs.outline.reference.overview": {
-    "message": "参考文献"
+    "message": "Reference overview"
   },
   "docs.outline.reference.scope": {
-    "message": "プロジェクトのセットアップと CLI の統合は、まず、AIPOCH 固有の技術リファレンスと Changelog が続きます。"
+    "message": "Project setup and CLI integrations first, followed by AIPOCH-specific technical reference and Changelog."
   },
   "docs.outline.reference.group.product": {
-    "message": "プロダクト参照"
+    "message": "Product reference"
   },
   "docs.outline.reference.configuration.title": {
-    "message": "構成とコンテキスト"
+    "message": "Configuration and context"
   },
   "docs.outline.reference.configuration.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.configuration.topic.configuration.title": {
-    "message": "設定"
+    "message": "Configuration"
   },
   "docs.outline.reference.configuration.topic.configuration.scope": {
-    "message": "サポートされているアプリの設定、スコープ、デフォルト、ストレージおよびフレームワークの互換性の表。 操作手順をガイドにリンクします。"
+    "message": "Tables of supported app settings, scope, defaults, storage and framework compatibility; link operating steps to Guides."
   },
   "docs.outline.reference.configuration.topic.instructions.title": {
-    "message": "プロジェクトコンテキストと指示"
+    "message": "Project context and instructions"
   },
   "docs.outline.reference.configuration.topic.instructions.scope": {
-    "message": "プロジェクトの Agent コンテキストフィールドで起動します。 メモリーノート、Skill の指示と Specialist の指示から区別します。 フレームワークの命令ファイル動作は、一つのユニバーサル・プロジェクト・ファイル・メカニズムではなく、フレームワークごとに文書化する必要があります。"
+    "message": "Start with the project's Agent Context field; distinguish it from Memory notes, Skill instructions and Specialist instructions. Framework instruction-file behavior must be documented per framework, not as one universal project-file mechanism."
   },
   "docs.outline.reference.permissions.title": {
-    "message": "許可および制御"
+    "message": "Permissions and control"
   },
   "docs.outline.reference.permissions.scope": {
-    "message": "参照の承認モード、スコープの優先順位、記憶された助成金、ネットワークの制限および取消のセマンティクス。"
+    "message": "Reference approval modes, scope precedence, remembered grants, network restrictions and revocation semantics."
   },
   "docs.outline.reference.controls.title": {
-    "message": "制御およびキーボードの参照"
+    "message": "Controls and keyboard reference"
   },
   "docs.outline.reference.controls.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.controls.topic.controls.title": {
-    "message": "ページと管理のインデックス"
+    "message": "Page and control index"
   },
   "docs.outline.reference.controls.topic.controls.scope": {
-    "message": "ボタンと入力ラベル用のページビューアップテーブル、結果の状態と検証ステータス。"
+    "message": "A page-by-page lookup table for button and input labels, resulting states and verification status."
   },
   "docs.outline.reference.controls.topic.commands.title": {
-    "message": "Skill ショートカット、言及、キーボード制御"
+    "message": "Skill shortcuts, mentions, and keyboard controls"
   },
   "docs.outline.reference.controls.topic.commands.scope": {
-    "message": "実際のコンポーザーがトリガーする: / Skills, @ 参照ファイルやアーティファクト, # 参照セッションを選択します。 サポートされているキーボード操作とコンテキスト制限をリストします。"
+    "message": "Document the actual composer triggers: / selects Skills, @ references files or artifacts, and # references sessions; list supported keyboard actions and context limits."
   },
   "docs.outline.reference.formats.title": {
-    "message": "ファイルフォーマットと制限"
+    "message": "File formats and limits"
   },
   "docs.outline.reference.formats.scope": {
-    "message": "サポートされているプレビュー、ライブラリのインポート、引用エクスポート、ファイルサイズ制限、サポートされていないケースの表。"
+    "message": "Tables for supported previews, library imports, citation exports, file size limits and unsupported cases."
   },
   "docs.outline.reference.packages.title": {
-    "message": "Skill、Specialist、MCPフォーマット"
+    "message": "Skill, Specialist, and MCP formats"
   },
   "docs.outline.reference.packages.scope": {
-    "message": "Skillパッケージ、SpecialistパッケージとMCPの設定用の別々のスキーマテーブル、フィールドとアーカイブ制約。"
+    "message": "Separate schema tables for Skill packages, Specialist packages and MCP configuration, with field and archive constraints."
   },
   "docs.outline.reference.example-data.title": {
-    "message": "データと期待される結果の例"
+    "message": "Example data and expected results"
   },
   "docs.outline.reference.example-data.scope": {
-    "message": "パブリックソースファイル、チェックサム、および期待される例の出力。"
+    "message": "Public source files, checksums and expected example outputs."
   },
   "docs.outline.reference.connector-operations.title": {
-    "message": "Connectorの操作の参照"
+    "message": "Connector operation reference"
   },
   "docs.outline.reference.connector-operations.scope": {
-    "message": "Connector による入力、デフォルト、および例の呼び出しを実行します。"
+    "message": "Exact inputs, defaults and example calls by Connector."
   },
   "docs.outline.reference.group.integration": {
-    "message": "CLIおよび操作"
+    "message": "CLI and operations"
   },
   "docs.outline.reference.cli.title": {
-    "message": "CLIと構造化された出力"
+    "message": "CLI and structured output"
   },
   "docs.outline.reference.cli.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.cli.topic.cli.title": {
-    "message": "CLI リファレンス"
+    "message": "CLI reference"
   },
   "docs.outline.reference.cli.topic.cli.scope": {
-    "message": "実際の open-science コマンドツリー、フラグ、デフォルト、終了状態、およびリポジトリの CLI コントラクトからの例を文書化します。"
+    "message": "Document the actual open-science command tree, flags, defaults, exit states and examples from the repository CLI contract."
   },
   "docs.outline.reference.cli.topic.automation.title": {
-    "message": "オートメーションとJSON出力"
+    "message": "Automation and JSON output"
   },
   "docs.outline.reference.cli.topic.automation.scope": {
-    "message": "カバーは、タスクの送信、ポーリング、JSONおよびJSONLの出力、エラーおよびキャンセルを支持しました; 組み込みスケジューラを暗くしないでください。"
+    "message": "Cover supported task submission, polling, JSON and JSONL output, errors and cancellation; avoid implying a built-in scheduler."
   },
   "docs.outline.reference.api.title": {
-    "message": "タスクSDKとローカルAPI"
+    "message": "Task SDK and local API"
   },
   "docs.outline.reference.api.scope": {
-    "message": "サポートされているタスクとセッション API、認証、イベント、互換性をマップします。 内部ホスト API からパブリックコントラクトを区別します。"
+    "message": "Map supported task and session APIs, authentication, events and compatibility; distinguish public contracts from internal host APIs."
   },
   "docs.outline.reference.server.title": {
-    "message": "ヘッドレスサービスおよびブラウザアクセス"
+    "message": "Headless service and browser access"
   },
   "docs.outline.reference.server.scope": {
-    "message": "参照サービス開始/ステータス/停止、認証されたURL、ローカルディスカバリー、実際のCLIからリモートアクセス境界。"
+    "message": "Reference service start/status/stop, authenticated URLs, local discovery and remote-access boundaries from the actual CLI."
   },
   "docs.outline.reference.diagnostics.title": {
-    "message": "建築および診断"
+    "message": "Architecture and diagnostics"
   },
   "docs.outline.reference.diagnostics.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.diagnostics.topic.diagnostics.title": {
-    "message": "エラーと診断"
+    "message": "Errors and diagnostics"
   },
   "docs.outline.reference.diagnostics.topic.diagnostics.scope": {
-    "message": "地図は原因、診断証拠およびリンクされた回復ガイドに間違いを観察しました; CLIとコネクタの故障を含みます。"
+    "message": "Map observed errors to causes, diagnostic evidence and linked recovery guides; include CLI and connector failures."
   },
   "docs.outline.reference.diagnostics.topic.architecture.title": {
-    "message": "建築・データフロー"
+    "message": "Architecture and data flow"
   },
   "docs.outline.reference.diagnostics.topic.architecture.scope": {
-    "message": "デスクトップ、サービス、フレームワーク、ストレージ、および実行境界を記述します。これらは、アーティファクトの実証とクレデンシャル処理を含みます。"
+    "message": "Explain desktop, service, framework, storage and execution boundaries, including artifact provenance and credential handling."
   },
   "docs.outline.reference.diagnostics.topic.verification.title": {
-    "message": "ドキュメントの検証レコード"
+    "message": "Documentation verification record"
   },
   "docs.outline.reference.diagnostics.topic.verification.scope": {
-    "message": "レコードソースバージョン、英語UIキャプチャ、実行制御、条件付きテスト、優れた検証ギャップ。"
+    "message": "Record source versions, English UI captures, executed controls, conditional tests and outstanding verification gaps."
   },
   "docs.outline.reference.group.changelog": {
-    "message": "変更履歴"
+    "message": "Changelog"
   },
   "docs.outline.reference.v0290.title": {
     "message": "v0.29.0"
   },
   "docs.outline.reference.v0290.scope": {
-    "message": "Skillの市場、調査のパッケージ、PDF抽出および外的なRのパッケージの取付け。"
+    "message": "Skill marketplace, research packages, PDF extraction and external R package installation."
   },
   "docs.outline.reference.v0280.title": {
     "message": "v0.28.0"
   },
   "docs.outline.reference.v0280.scope": {
-    "message": "結果の再生チェック、グローバル検索、プライバシー変更、および管理されたCodexアップグレード。"
+    "message": "Result reproduction checks, global search, privacy changes and managed Codex upgrades."
   },
   "docs.outline.reference.v0270.title": {
     "message": "v0.27.0"
   },
   "docs.outline.reference.v0270.scope": {
-    "message": "文学のインポート、背景タスク、Skills と統合の更新が必要です。"
+    "message": "Literature imports, background tasks, required Skills and integration updates."
   },
   "docs.outline.reference.v0260.title": {
     "message": "v0.26.0"
   },
   "docs.outline.reference.v0260.scope": {
-    "message": "既存のバージョン履歴。"
+    "message": "Existing version history."
   },
   "docs.outline.reference.v0251.title": {
     "message": "v0.25.1"
   },
   "docs.outline.reference.v0251.scope": {
-    "message": "既存のバージョン履歴。"
+    "message": "Existing version history."
   },
   "docs.outline.specialists.overview": {
-    "message": "Open-Scienceの概要"
+    "message": "Open-Science overview"
   },
   "docs.outline.specialists.scope": {
-    "message": "Skillカタログの独自に研究の役割を作成、装備し、委任し、維持して下さい。"
+    "message": "Create, equip, delegate to, and maintain research roles independently of the Skill catalog."
   },
   "docs.outline.specialists.group.use": {
-    "message": "専門家の出会いと使用"
+    "message": "Meet and use Specialists"
   },
   "docs.outline.specialists.overview.title": {
-    "message": "スペシャリストと利用可能な役割"
+    "message": "Specialists and available roles"
   },
   "docs.outline.specialists.overview.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.overview.topic.overview.title": {
-    "message": "スペシャリストの概要"
+    "message": "Specialists overview"
   },
   "docs.outline.specialists.overview.topic.overview.scope": {
-    "message": "Main エージェント、スペシャリスト、組み込みレビュアー、Skills の説明 役割と適切なタスクをテーブルで比較します。"
+    "message": "Explain Main Agent, Specialists, built-in Reviewer and Skills; compare roles and suitable tasks in a table."
   },
   "docs.outline.specialists.overview.topic.directory.title": {
-    "message": "Specialistディレクトリとマーケットプレイス"
+    "message": "Specialist directory and marketplace"
   },
   "docs.outline.specialists.overview.topic.directory.scope": {
-    "message": "ビルトイン非構成レビュアー、個人的役割、オンラインマーケットプレースパッケージを区別します。 バンドルスペシャリストのマニフェストは空です。 リモートリスト、署名、インストール、および依存性の信頼性は、別のチェックを必要とします。"
+    "message": "Distinguish the built-in non-configurable Reviewer, personal roles and online Marketplace packages. The bundled Specialists manifest is empty; remote listing, signing, installation and dependency readiness require separate checks."
   },
   "docs.outline.specialists.delegate.title": {
-    "message": "作業の委任と検証"
+    "message": "Delegate and verify work"
   },
   "docs.outline.specialists.delegate.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.delegate.topic.delegate.title": {
-    "message": "委任・審査業務"
+    "message": "Delegate and review work"
   },
   "docs.outline.specialists.delegate.topic.delegate.scope": {
-    "message": "フレームワークの委任サポートとモデルアクセスを確認します。 サブタスクを委任する主要な会話のSpecialistを切り替えることを区別します。 進行状況、介入、および返された証拠を点検して下さい。"
+    "message": "Verify framework delegation support and model access; distinguish switching the main conversation's Specialist from delegating a subtask. Inspect progress, interventions and returned evidence."
   },
   "docs.outline.specialists.delegate.topic.troubleshoot.title": {
-    "message": "テストとトラブルシューティングスペシャリスト"
+    "message": "Test and troubleshoot Specialists"
   },
   "docs.outline.specialists.delegate.topic.troubleshoot.scope": {
-    "message": "限界のあるテストタスクを実行し、欠落した機能、モデル障害、拒否された要求、不完全なハンドオフを診断します。"
+    "message": "Run a bounded test task and diagnose missing capabilities, model failures, denied requests and incomplete handoffs."
   },
   "docs.outline.specialists.group.create": {
-    "message": "作成と設定"
+    "message": "Create and configure"
   },
   "docs.outline.specialists.identity.title": {
-    "message": "Specialistの作成と指示"
+    "message": "Create and instruct a Specialist"
   },
   "docs.outline.specialists.identity.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.identity.topic.identity.title": {
-    "message": "Specialist を作成する"
+    "message": "Create a Specialist"
   },
   "docs.outline.specialists.identity.topic.identity.scope": {
-    "message": "フィールド参照テーブルで、アイデンティティフィールド、アイコン、色、説明、作成モード、プレビューを計画します。"
+    "message": "Plan identity fields, icons, colors, descriptions, creation modes and preview, with a field reference table."
   },
   "docs.outline.specialists.identity.topic.instructions.title": {
-    "message": "Specialist の指示を書く"
+    "message": "Write Specialist instructions"
   },
   "docs.outline.specialists.identity.topic.instructions.scope": {
-    "message": "責任を定義し、証拠、成果物、条件の停止を認めた。 チャプターでロールテンプレートを使う。"
+    "message": "Define responsibilities, allowed evidence, deliverables and stopping conditions; use role templates in the chapter."
   },
   "docs.outline.specialists.capabilities.title": {
-    "message": "Skillsおよびコネクターを割り当てて下さい"
+    "message": "Assign Skills and Connectors"
   },
   "docs.outline.specialists.capabilities.scope": {
-    "message": "明示的な機能結合とフルアクセスの相続を比較します。 add/remove 制御と準備チェックを説明します。"
+    "message": "Compare full-access inheritance with explicit capability bindings; explain add/remove controls and readiness checks."
   },
   "docs.outline.specialists.reviewer.title": {
-    "message": "レビュアーとオートレビュー"
+    "message": "Reviewer and Auto-review"
   },
   "docs.outline.specialists.reviewer.scope": {
-    "message": "ビルトイン・レビュアー、モデル・ポリシー、レビュー・トリガー、表示された決定、および自動化されたレビューの制限を記述します。"
+    "message": "Describe the built-in Reviewer, model policy, review triggers, displayed decisions and the limits of automated review."
   },
   "docs.outline.specialists.group.maintain": {
-    "message": "管理と共有"
+    "message": "Manage and share"
   },
   "docs.outline.specialists.manage.title": {
-    "message": "スペシャリストの管理と共有"
+    "message": "Manage and share Specialists"
   },
   "docs.outline.specialists.manage.scope": {
-    "message": "含まれたトピックとその計画範囲を以下で確認します。"
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.manage.topic.manage.title": {
-    "message": "スペシャリストの組織と維持"
+    "message": "Organize and maintain Specialists"
   },
   "docs.outline.specialists.manage.topic.manage.scope": {
-    "message": "検索、フィルタ、タグ、有効化、編集、重複してロールを削除。 変更と機能の可用性を確認します。"
+    "message": "Search, filter, tag, enable, edit, duplicate and delete roles; verify changes and capability availability."
   },
   "docs.outline.specialists.manage.topic.packages.title": {
-    "message": "Specialistパッケージのインポートとエクスポート"
+    "message": "Import and export Specialist packages"
   },
   "docs.outline.specialists.manage.topic.packages.scope": {
-    "message": "パッケージ内容のプレビュー、SkillsとConnectorバインディングのチェック、コンフリクトの処理、インポートされたロールの検証"
+    "message": "Preview package contents, inspect bundled Skills and Connector bindings, handle conflicts and validate imported roles."
   },
   "docs.outline.availableNotice": {
-    "message": "チャプターインデックス"
+    "message": "Chapter index"
   },
   "docs.outline.count": {
-    "message": "{groups}グループ・{chapters}章"
+    "message": "{groups} groups · {chapters} chapters"
   },
   "docs.outline.current": {
-    "message": "関連する既存の文書を見る"
+    "message": "View related existing document"
   },
   "docs.preferenceScreenshot.notifications": {
-    "message": "タスク通知制御と報告されたテストステータス"
+    "message": "Task notification controls and the reported test status"
   },
   "docs.preferenceScreenshot.theme": {
-    "message": "{theme}モードのテーマと言語制御"
+    "message": "Theme and Language controls in {theme} mode"
   },
   "docs.preferenceScreenshot.preview": {
-    "message": "スクリーンショットプレビュー"
+    "message": "Screenshot preview"
   },
   "docs.preferenceScreenshot.choose": {
-    "message": "テーマスクリーンショットを選択"
+    "message": "Choose a theme screenshot"
   },
   "docs.preferenceScreenshot.open": {
-    "message": "{label}; フルスクリーンショットを開く"
+    "message": "{label}; open full screenshot"
   },
   "docs.preferenceScreenshot.caption": {
-    "message": "英語アプリのスクリーンショット・画像を選択して、全体で表示"
+    "message": "English app screenshot · Select the image to view it in full"
   },
   "docs.translation.note": {
-    "message": "自動翻訳版です。手順がわかりにくい場合は、英語の原文を確認してください。"
+    "message": "Automatic translation. Consult the English original if a step is unclear."
   },
   "docs.outline.reference.v0301.title": {
     "message": "v0.30.1"
   },
   "docs.outline.reference.v0301.scope": {
-    "message": "Side Chat の下書き、Skill 更新の確認、研究パッケージの文献 PDF、復旧ツール。"
+    "message": "Side Chat drafts, reviewed Skill updates, literature PDFs in packages and recovery tools."
   },
   "docs.outline.workflows.focused-literature-search.title": {
-    "message": "特定のジャーナルと日付内で検索"
+    "message": "Search within specified journals and dates"
   },
   "docs.outline.workflows.focused-literature-search.scope": {
-    "message": "境界された PubMed の検索を実行します。, すべての返されたレコードをスクリーンし、不確実性の決定を保持."
+    "message": "Run a bounded PubMed search, screen every returned record and retain uncertain eligibility decisions."
   },
   "docs.outline.workflows.cross-check-records.title": {
-    "message": "2つの科学的データソースをクロスチェック"
+    "message": "Cross-check two scientific data sources"
   },
   "docs.outline.workflows.cross-check-records.scope": {
-    "message": "NASA および HadCRUT の年間温度記録を比較する前に定義、単位、年および参照の期間を一直線に並べて下さい。"
+    "message": "Align definitions, units, years and reference periods before comparing NASA and HadCRUT annual temperature records."
   },
   "docs.outline.reference.v0302.title": {
     "message": "v0.30.2"
   },
   "docs.outline.reference.v0302.scope": {
-    "message": "Specialist の Skill 読み込み、独立した Side Chat、データ照会と Notebook の復旧。"
+    "message": "Specialist Skill loading, independent Side Chat, data queries and Notebook recovery."
   },
   "docs.outline.reference.v0311.title": {
     "message": "v0.31.1"
   },
   "docs.outline.reference.v0311.scope": {
-    "message": "ENA、遺伝子セット濃縮、参照ゲノム、任意の分類モデル。"
+    "message": "ENA, gene-set enrichment, reference genomes and optional classification models."
   },
   "docs.outline.reference.v0310.title": {
     "message": "v0.31.0"
   },
   "docs.outline.reference.v0310.scope": {
-    "message": "書き込み可能なセッションのコピー、プロバイダーの検証、完全な STRING ネットワーク。"
-  },
-  "docs.outline.workflows.reference-genome-check.scope": {
-    "message": "分析前に、タムン、バージョンの参照アセンブリ、染色体エイリアスを解決します。"
+    "message": "Writable session forks, validated providers and complete STRING networks."
   },
   "docs.outline.workflows.group.public-data": {
-    "message": "パブリックデータとバイオインフォマティクス"
-  },
-  "docs.outline.workflows.public-omics-data.scope": {
-    "message": "ENA の公開実行と ENA と PRIDE ファイル在庫、ソースの場所、サイズ、チェックサムの検査を調べます。"
-  },
-  "docs.outline.workflows.protein-sequence-search.scope": {
-    "message": "UniProt のタンパク質を解決し、FASTA を取り出し、BLAST のアライメントレポートを完成させます。"
-  },
-  "docs.guides.outline.pdf-notes.scope": {
-    "message": "文章への注釈、文書ノートの整理、検索、注釈付きコピーの書き出し。"
-  },
-  "docs.outline.workflows.gene-set-enrichment.scope": {
-    "message": "g:Profilerの豊かさを実行し、マッピング、修正された確率、背景およびソースバージョンを検査します。"
-  },
-  "docs.outline.workflows.gene-set-enrichment.title": {
-    "message": "候補遺伝子セットのための機能強化を実行"
-  },
-  "docs.guides.outline.pdf-notes.title": {
-    "message": "PDF 注釈と文書ノート"
-  },
-  "docs.outline.reference.v0320.scope": {
-    "message": "PDF ノート、BLAST 配列検索、オミクスデータ検索と無人実行。"
-  },
-  "docs.outline.workflows.reference-genome-check.title": {
-    "message": "種、参照のゲノムおよび染色体識別子をチェックして下さい"
+    "message": "Public data and bioinformatics"
   },
   "docs.outline.workflows.public-omics-data.title": {
-    "message": "パブリックオミクスデータを見つけてファイル在庫をビルドする"
+    "message": "Find public omics data and build a file inventory"
+  },
+  "docs.outline.workflows.public-omics-data.scope": {
+    "message": "Discover public ENA runs and inspect ENA and PRIDE file inventories, source locations, sizes and checksums."
+  },
+  "docs.outline.workflows.protein-sequence-search.title": {
+    "message": "Find a protein sequence and complete a BLAST search"
+  },
+  "docs.outline.workflows.protein-sequence-search.scope": {
+    "message": "Resolve a UniProt protein, retrieve FASTA and inspect a completed BLAST alignment report."
+  },
+  "docs.outline.workflows.gene-set-enrichment.title": {
+    "message": "Run functional enrichment for a candidate gene set"
+  },
+  "docs.outline.workflows.gene-set-enrichment.scope": {
+    "message": "Run g:Profiler enrichment and inspect mappings, corrected probabilities, background and source versions."
+  },
+  "docs.outline.workflows.reference-genome-check.title": {
+    "message": "Check species, reference genome and chromosome identifiers"
+  },
+  "docs.outline.workflows.reference-genome-check.scope": {
+    "message": "Resolve a taxon, versioned reference assembly and chromosome aliases before analysis."
+  },
+  "docs.guides.outline.pdf-notes.title": {
+    "message": "PDF annotations and document notes"
+  },
+  "docs.guides.outline.pdf-notes.scope": {
+    "message": "Mark passages, organize file-version notes, return to sources and export reading copies."
   },
   "docs.outline.reference.v0320.title": {
     "message": "v0.32.0"
   },
-  "docs.outline.workflows.protein-sequence-search.title": {
-    "message": "タンパク質シーケンスを見つけてBLAST検索を完了"
+  "docs.outline.reference.v0320.scope": {
+    "message": "PDF notes, BLAST sequence search, omics discovery and unattended tasks."
+  },
+  "docs.outline.workflows.screen-literature.title": {
+    "message": "Screen papers with a smart collection"
+  },
+  "docs.outline.workflows.screen-literature.scope": {
+    "message": "Define eligibility, run a bounded screening pass, review decisions and export the selected papers."
+  },
+  "docs.outline.reference.v0330.title": {
+    "message": "v0.33.0"
+  },
+  "docs.outline.reference.v0330.scope": {
+    "message": "Smart literature screening, agent resource access, RO-Crate research packages and database additions."
+  },
+  "docs.outline.workflows.multiple-sequence-alignment.title": {
+    "message": "複数配列のアラインメント"
+  },
+  "docs.outline.workflows.multiple-sequence-alignment.scope": {
+    "message": "3つの査読済みタンパク質配列を比較し、保存部位を確認します。"
+  },
+  "docs.outline.reference.v0331.title": {
+    "message": "v0.33.1"
+  },
+  "docs.outline.reference.v0331.scope": {
+    "message": "ライブスクリーニング、配列ツール、PDF コンテキスト、診断。"
   }
 }

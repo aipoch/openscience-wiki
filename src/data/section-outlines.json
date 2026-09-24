@@ -75,6 +75,18 @@
             "contentStatus": "written"
           },
           {
+            "id": "screen-literature",
+            "title": "Screen papers with a smart collection",
+            "scope": "Define eligibility, run a bounded screening pass, review decisions and export the selected papers.",
+            "currentDoc": "workflows/screen-literature",
+            "proposedUrl": "/docs/workflows/screen-literature/",
+            "relatedDocs": [
+              "guides/library",
+              "guides/models"
+            ],
+            "contentStatus": "written"
+          },
+          {
             "id": "import-library",
             "title": "Take over and organize a paper collection",
             "scope": "Review the included topics and their planned scope below.",
@@ -348,6 +360,18 @@
             "scope": "Resolve a UniProt protein, retrieve FASTA and inspect a completed BLAST alignment report.",
             "currentDoc": "workflows/protein-sequence-search",
             "proposedUrl": "/docs/workflows/protein-sequence-search/",
+            "relatedDocs": [
+              "tools/databases",
+              "reference/connector-operations"
+            ],
+            "contentStatus": "written"
+          },
+          {
+            "id": "multiple-sequence-alignment",
+            "title": "Align multiple sequences",
+            "scope": "Compare three reviewed protein sequences and inspect conserved positions.",
+            "currentDoc": "workflows/multiple-sequence-alignment",
+            "proposedUrl": "/docs/workflows/multiple-sequence-alignment/",
             "relatedDocs": [
               "tools/databases",
               "reference/connector-operations"
@@ -1396,6 +1420,28 @@
         "id": "changelog",
         "title": "Changelog",
         "chapters": [
+          {
+            "id": "v0331",
+            "title": "v0.33.1",
+            "scope": "Live screening, sequence tools, PDF context and diagnostic controls.",
+            "currentDoc": "changelog/v0-33-1",
+            "proposedUrl": "/docs/changelog/v0-33-1/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-33-1"
+            ]
+          },
+          {
+            "id": "v0330",
+            "title": "v0.33.0",
+            "scope": "Smart literature screening, agent resource access, RO-Crate research packages and database additions.",
+            "currentDoc": "changelog/v0-33-0",
+            "proposedUrl": "/docs/changelog/v0-33-0/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-33-0"
+            ]
+          },
           {
             "id": "v0320",
             "title": "v0.32.0",

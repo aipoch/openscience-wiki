@@ -1,7 +1,7 @@
 ---
 title: "Sessions and branches"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -162,3 +162,8 @@ In the GSE60450 project, fork the existing QC session and open the inherited `gs
 ## Read the session information card {/* #session-information */}
 
 Select the session title to see its number, description, source, creation/update times, message count for the current branch and artifact count. Use **Pin** to keep the session easy to find, or **Edit session** to change its title and description. A **Continued from chat** divider links back to the recorded source turn.
+
+
+## Export session diagnostics {/* #session-diagnostics */}
+
+Use the session header's **Export diagnostics…** control, or the session menu's **Export → Export diagnostics…**, to collect selected diagnostic sources in a local archive. Application logs can include metadata outside the selected session. Review the source list, completion message and archive contents before sharing; see [diagnostic export steps](troubleshooting.md#session-diagnostics).

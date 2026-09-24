@@ -1,7 +1,7 @@
 ---
 title: "Modèles et politiques de travail"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # Modèles et politiques de travail {/* #models-and-task-policies */}
@@ -79,11 +79,11 @@ Utilisez [Configuration de l'agent](./frameworks.md) pour le moteur d'exécution
 
 Sources: [sélection du modèle](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx), [les politiques de scénario](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx).
 
-## Modèles de classement facultatifs {/* #classification-models */}
+## Modèles de classement {/* #classification-models */}
 
-Ouvrez **Settings → Model → Classification models**. Un service de classification aide à sélectionner les connecteurs et Skills pertinents avant le début d'une demande. Il ne remplace pas Main ni n'ajoute un modèle de chat. Vous pouvez laisser **Automatic capability selection** à **Use default method**; Skills et les connecteurs fonctionnent toujours sans elle.
+Ouvrez **Settings → Model → Classification models**. Les services de classification ont deux liaisons indépendantes : **Automatic capability selection** et **Smart collections**. La première aide à sélectionner les connecteurs et Skills pertinents avant le début d'une requête. Il ne remplace pas Main ni n'ajoute un modèle de chat. Vous pouvez laisser **Automatic capability selection** à **Use default method**; Skills et les connecteurs fonctionnent toujours sans elle.
 
-Dans v0.31.1, ce service est utilisé pour les conversations principales avec **Codex Chat Completions** ou **CodeBuddy**. Cela ne signifie pas que les sessions avec un abonnement Codex ou tous les autres frameworks l’utilisent. Seuls la requête actuelle et les noms et descriptions des capacités sont transmis au service de classification. Si le service est indisponible ou sa réponse incertaine, la méthode par défaut est utilisée.
+La sélection automatique des capacités par ce service est prise en charge dans les conversations principales utilisant **Codex Chat Completions** ou **CodeBuddy**. Les sessions avec un abonnement Codex conservent leur mode de chargement habituel. Cette fonction transmet uniquement la requête actuelle et les noms et descriptions des capacités. Si le service est indisponible ou la classification incertaine, la méthode par défaut prend le relais.
 
 ![Sélection par défaut de la capacité et entrée optionnelle du service de classification](/img/open-science/v0311/classification-models.webp)
 
@@ -93,7 +93,7 @@ Dans v0.31.1, ce service est utilisé pour les conversations principales avec **
 4. Sous **Automatic capability selection**, sélectionnez le service sauvegardé et un modèle offert dans son catalogue. Utilisez **Check model** pour vérifier la connexion.
 5. Essayez une requête limitée dans une conversation principale prise en charge, puis inspectez les outils réels sélectionnés. Une vérification de modèle réussie ne permet pas à elle seule de vérifier un résultat de recherche.
 
-Supprimer un service renvoie sa liaison à la méthode par défaut. Une clé de service stockée séparément est enlevée avec elle; supprimer un service qui partage un compte ne supprime pas ce compte ou sa clé.
+L'élimination d'un service renvoie la sélection automatique de la capacité à la méthode par défaut et laisse toute collection Smart liée à ce service non configuré. Une clé de service stockée séparément est enlevée avec elle; supprimer un service qui partage un compte ne supprime pas ce compte ou sa clé.
 
 Voir [configuration du fournisseur](providers.md) pour les modèles de conversation. Les ressources d'analyse PDF locales sont gérées sous **Local parsing models**, un onglet séparé.
 
@@ -104,6 +104,18 @@ Pour Jev, sélectionnez **TypeSafe AI / Jev Latest** dans **Automatic capability
 ![TypeSafe AI / Jev Latest sélectionné, avec Check passed et la clé API masquée](/img/open-science/v0311/classification-connected.webp)
 
 Par exemple, une recherche publique TP53 dans une session Codex Chat Completions peut utiliser Jev pour sélectionner `mcp-genes`. Inspecter la capacité sélectionnée dans l'activité, puis inspecter la réponse de la base de données pour connaître le résultat de la recherche. Les sessions d'abonnement Codex utilisent leur chemin de chargement de capacité existant; une liaison Jev sauvegardée ne fait pas que ces sessions utilisent Jev.
+
+### Bind un modèle pour les collections intelligentes {/* #smart-collection-model */}
+
+1. Ouvrez **Settings → Model → Classification models** et enregistrez un service compatible si vous n'en avez pas déjà ajouté un.
+2. Sous **Smart collections**, sélectionnez le service et l'un de ses modèles proposés, puis choisissez **Check model**. Cette liaison est partagée par toutes les collections intelligentes; il est indépendant de **Automatic capability selection**.
+3. Confirmez **Check passed**, puis retournez à la bibliothèque et créez une petite collection clairement délimitée. Les collections intelligentes ont **pas de modèle par défaut** : configurez cette liaison avant d'évaluer les références.
+
+Main peut continuer à utiliser **Codex subscription**. Son itinéraire de chargement des capacités n'empêche pas la Bibliothèque d'utiliser sa propre classification. L'exemple ci-dessous sélectionne **TypeSafe AI / Jev Latest** pour la sélection.
+
+![Les collections intelligentes et la sélection des capacités ont des fixations séparées, avec la clé de service masquée](/img/open-science/v0330/classification-smart.webp)
+
+Le dépistage envoie les règles de collecte et les preuves de référence à ce service. Avec **Use available full text** désactivé, il utilise le titre et l'abstrait. Activer le fichier envoie le texte disponible de PDF; les documents longs utilisent des passages pertinents, et un PDF non disponible ou illisible revient au titre et à l'abrégé. Vérifiez les preuves présentées pour chaque décision. Suivez le [smart screening workflow](../workflows/screen-literature.md) pour évaluer et examiner un véritable ensemble de documents.
 
 ### Services de classification sur mesure {/* #custom-classification */}
 

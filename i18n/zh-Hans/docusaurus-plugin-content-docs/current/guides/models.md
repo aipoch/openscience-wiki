@@ -1,7 +1,7 @@
 ---
 title: "模型与任务策略"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # 模型与任务策略
@@ -80,11 +80,11 @@ Session details 选择器不接受 Codex 订阅模型；Main 或 Vision 中能�
 
 源码：[主模型](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx)、[场景策略](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx)。
 
-## 可选的分类模型 {/* #classification-models */}
+## 分类模型 {/* #classification-models */}
 
-打开 **Settings → Model → Classification models**。分类服务在请求开始前辅助选择相关 Skill 和 Connector，不会替换 Main，也不会增加一个聊天模型。可以将 **Automatic capability selection** 保持为 **Use default method**；不配置分类服务，Skill 和 Connector 仍可使用。
+打开 **Settings → Model → Classification models**。分类服务有两个独立绑定：**Automatic capability selection** 和 **Smart collections**。前者在请求开始前辅助选择相关 Skill 和 Connector，不会替换 Main，也不会增加一个聊天模型。可以将 **Automatic capability selection** 保持为 **Use default method**；不配置分类服务，Skill 和 Connector 仍可使用。
 
-v0.31.1 中，该路径用于 **Codex Chat Completions** 或 **CodeBuddy** 的主会话。不能据此认为 Codex 订阅会话或所有框架都会使用此服务。发送给分类服务的内容仅包括当前请求及能力名称、描述；服务不可用或分类结果不明确时，会继续使用默认方式。
+通过此服务自动选择能力，适用于 **Codex Chat Completions** 或 **CodeBuddy** 主会话。Codex 订阅会话保留原有能力加载方式。此功能仅发送当前请求及能力名称、描述；服务不可用或分类结果不明确时，回退到默认方式。
 
 ![分类模型的默认方式与可选服务入口](/img/open-science/v0311/classification-models.webp)
 
@@ -94,7 +94,7 @@ v0.31.1 中，该路径用于 **Codex Chat Completions** 或 **CodeBuddy** 的�
 4. 在 **Automatic capability selection** 中选择已保存的服务和目录中提供的模型。通过 **Check model** 检查连接。
 5. 在受支持的主会话中发送一个范围明确的请求，查看实际选择的工具。模型连接检查通过，本身不能证明科研结果正确。
 
-移除服务会将其绑定恢复为默认方式。单独保存的服务密钥会一并移除；复用已有账户的服务被移除时，不会删除该账户或其密钥。
+删除服务会让自动能力选择恢复默认方式，并清空指向该服务的 Smart collections 绑定。单独保存的服务密钥会一并移除；复用已有账户的服务被移除时，不会删除该账户或其密钥。
 
 聊天模型配置见[提供方设置](providers.md)。本地 PDF 解析资源由另一个 **Local parsing models** 标签页管理。
 
@@ -105,6 +105,18 @@ v0.31.1 中，该路径用于 **Codex Chat Completions** 或 **CodeBuddy** 的�
 ![已选中 TypeSafe AI / Jev Latest，显示 Check passed，密钥保持隐藏](/img/open-science/v0311/classification-connected.webp)
 
 例如，在 Codex Chat Completions 会话中查询公开的 TP53 信息时，可由 Jev 选择 `mcp-genes`。在活动记录中检查选中的能力，再查看数据库响应获取查询结果。Codex 订阅会话使用原有的能力加载方式；保存 Jev 绑定不会让这类会话改用 Jev。
+
+### 为智能集合绑定模型 {/* #smart-collection-model */}
+
+1. 打开 **Settings → Model → Classification models**；尚未添加服务时，先保存一个兼容的分类服务。
+2. 在 **Smart collections** 下选择服务及其提供的模型，再点击 **Check model**。所有智能集合共用这一绑定；它与 **Automatic capability selection** 相互独立。
+3. 确认 **Check passed**，再回到文献库创建范围明确的小集合。智能集合**没有默认模型**，评估前必须配置此绑定。
+
+主会话可以继续使用 **Codex subscription**。主会话的能力加载方式不妨碍文献库使用独立的分类绑定。下图为筛选选择 **TypeSafe AI / Jev Latest**。
+
+![智能集合与能力选择分别绑定模型，服务密钥保持隐藏](/img/open-science/v0330/classification-smart.webp)
+
+筛选会将集合规则和文献证据发送给该服务。关闭 **Use available full text** 时使用标题和摘要；开启后发送可用的 PDF 文本，长文档采用相关片段，PDF 不可用或不可读时回退到标题和摘要。逐条检查判断所用证据。具体操作见[智能文献筛选工作流](../workflows/screen-literature.md)。
 
 ### 自定义分类服务 {/* #custom-classification */}
 

@@ -1,7 +1,7 @@
 ---
 title: "儲存與歸檔內容"
 last_update:
-  date: '2026-09-11'
+  date: '2026-09-24'
 ---
 
 # 儲存與歸檔內容 {/* #存储与归档内容 */}
@@ -136,3 +136,7 @@ last_update:
 下載失敗檢查目標目錄和空間；託管檔案不可用先核對資料位置和配置檔，不要立即新建替代專案；遷移後缺包檢查重建環境，不要直接判斷研究資料丟失。如何收集版本和首條有效錯誤見[排查](troubleshooting.md)。
 
 原始碼：[儲存面板](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StoragePanel.tsx)、[遷移表單](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StorageMigrationModal.tsx)。 [文獻庫遷移檢查](https://github.com/aipoch/open-science/commit/d00c722d)。
+
+## 升級後重新開啟已有資料 {/* #historical-data-location */}
+
+應用優先使用已儲存的資料位置。舊安裝已完成初始化、但沒有明確儲存位置時，Open-Science 會保留歷史位置並儲存該選擇。已儲存的資料夾不可用時，先重新連線，再啟動。若多個歷史位置都含有研究資料，應用會要求選擇或恢復原資料夾，不會靜默選一個。核對專案與檔案前保留各份資料，不要用新建空目錄處理看似丟失的資料。

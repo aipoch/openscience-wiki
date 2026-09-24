@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Page and control index
 description: Find every documented Open-Science button, input, switch, and result by page.
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # Page and control index
@@ -193,3 +193,14 @@ Start/Stop/Refresh, Copy/Open URL, and QR; Remote.It setup/retry/disconnect; Tru
 ### Archived
 
 Project Manage, Restore project, Delete project; Session Restore/Delete; deletion confirmation Cancel/Confirm.
+
+
+## Literature screening and resource access {/* #screening-and-access */}
+
+| Area | Controls | Guide |
+| --- | --- | --- |
+| Library | Smart collection, Scope, Inclusion criteria, Exclusion criteria, Use available full text, Live rule preview, Update automatically | [Smart collections](../guides/library.md#smart-collections) |
+| Smart collection | Trial run, decision views, Evaluation details, Include, Exclude, Use model decision, export included references | [Screen and review papers](../workflows/screen-literature.md) |
+| Classification models | Independent Smart collections and Automatic capability selection bindings; Check model | [Model binding](../guides/models.md#smart-collection-model) |
+| Skills / Connectors | Manage access, Main Agent, Specialist associations, read-only role bindings | [Resource access](../guides/connectors.md#resource-access) |
+| Session | Export diagnostics, selected sources, Export, Show in folder | [Local diagnostic export](../guides/troubleshooting.md#session-diagnostics) |

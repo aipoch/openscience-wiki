@@ -1,7 +1,7 @@
 ---
 title: "Models and task policies"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # Models and task policies
@@ -79,11 +79,11 @@ Use [Agent setup](./frameworks.md) for the execution backend and [Usage](./usage
 
 Sources: [model selection](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx), [scenario policies](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx).
 
-## Optional classification models {/* #classification-models */}
+## Classification models {/* #classification-models */}
 
-Open **Settings → Model → Classification models**. A classification service helps select relevant Skills and Connectors before a request starts. It does not replace Main or add a chat model. You can leave **Automatic capability selection** at **Use default method**; Skills and Connectors still work without it.
+Open **Settings → Model → Classification models**. Classification services have two independent bindings: **Automatic capability selection** and **Smart collections**. The first helps select relevant Skills and Connectors before a request starts. It does not replace Main or add a chat model. You can leave **Automatic capability selection** at **Use default method**; Skills and Connectors still work without it.
 
-In v0.31.1 this route is available for main conversations using **Codex Chat Completions** or **CodeBuddy**. Do not assume Codex subscription sessions or every framework use the service. Only the current request and capability names/descriptions are sent to the classification service. If it is unavailable or its result is unclear, the default method continues.
+Automatic capability selection through this service is supported in main conversations using **Codex Chat Completions** or **CodeBuddy**. Codex subscription sessions keep their existing capability-loading path. Only the current request and capability names/descriptions are sent for this feature; an unavailable or unclear classification falls back to the default method.
 
 ![Default capability selection and the optional classification service entry](/img/open-science/v0311/classification-models.webp)
 
@@ -93,7 +93,7 @@ In v0.31.1 this route is available for main conversations using **Codex Chat Com
 4. Under **Automatic capability selection**, select the saved service and a model offered in its catalog. Use **Check model** to check the connection.
 5. Try a bounded request in a supported main conversation, then inspect the actual tools selected. A successful model check alone does not verify a research result.
 
-Removing a service returns its binding to the default method. A separately stored service key is removed with it; removing a service that shares an account does not delete that account or its key.
+Removing a service returns automatic capability selection to the default method and leaves any Smart collections binding to that service unconfigured. A separately stored service key is removed with it; removing a service that shares an account does not delete that account or its key.
 
 See [provider setup](providers.md) for conversation models. Local PDF parsing resources are managed under **Local parsing models**, a separate tab.
 
@@ -104,6 +104,18 @@ For Jev, select **TypeSafe AI / Jev Latest** under **Automatic capability select
 ![TypeSafe AI / Jev Latest selected with Check passed and the API key masked](/img/open-science/v0311/classification-connected.webp)
 
 For example, a public TP53 lookup in a Codex Chat Completions session can use Jev to select `mcp-genes`. Inspect the selected capability in the activity, then inspect the database response for the research result. Codex subscription sessions use their existing capability-loading path; a saved Jev binding does not make those sessions use Jev.
+
+### Bind a model for smart collections {/* #smart-collection-model */}
+
+1. Open **Settings → Model → Classification models** and save a compatible service if you have not already added one.
+2. Under **Smart collections**, select the service and one of its offered models, then choose **Check model**. This binding is shared by all smart collections; it is independent of **Automatic capability selection**.
+3. Confirm **Check passed**, then return to the Library and create a small, clearly scoped collection. Smart collections have **no default model**: configure this binding before evaluating references.
+
+Main can continue using **Codex subscription**. Its capability-loading route does not prevent the Library from using its own classification binding. The example below selects **TypeSafe AI / Jev Latest** for screening.
+
+![Smart collections and capability selection have separate bindings, with the service key masked](/img/open-science/v0330/classification-smart.webp)
+
+Screening sends the collection rules and reference evidence to this service. With **Use available full text** off, it uses title and abstract. Turning it on sends available PDF text; long documents use relevant passages, and an unavailable or unreadable PDF falls back to title and abstract. Check the evidence shown for each decision. Follow the [smart screening workflow](../workflows/screen-literature.md) to evaluate and review a real set of papers.
 
 ### Custom classification services {/* #custom-classification */}
 

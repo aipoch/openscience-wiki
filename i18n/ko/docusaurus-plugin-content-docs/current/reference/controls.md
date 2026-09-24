@@ -1,7 +1,7 @@
 ---
 title: "제어 및 키보드 참조"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # 제어 및 키보드 참조 {/* #controls-and-keyboard-reference */}
@@ -63,3 +63,5 @@ Side Chat 탭을 닫으면 확인 및 중지 / 삭제는 측면 토론; file-pre
 wiki's Search는 별도입니다. 현재 언어의 문서 제목, 제목 및 신체 통행을 색인합니다. "Inbox"와 같은 용어는 응용 프로그램의 세션 제목에서 부패되는 경우에도 단락과 일치 할 수 있습니다.
 
 기술 참조 : [신청 바인딩](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [composer 키보드 취급](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [닫기 행동](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [글로벌 검색](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx).
+
+설정 패널/dialog 검색 용도 **&lt;unk>** 으로 macOS 으로 **Ctrl+Alt+K로** 으로 Windows/ / /Linux... **⌘K / Ctrl + K**은 설정 헤더 검색에 초점을 맞추고 있습니다. [단축 범위](../guides/shortcuts.md#local-settings-search) 참조.

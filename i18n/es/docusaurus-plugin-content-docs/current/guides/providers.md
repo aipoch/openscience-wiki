@@ -1,7 +1,7 @@
 ---
 title: "Proveedor y configuración del modelo local"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -218,3 +218,13 @@ Las ediciones del proveedor se prueban antes de que se cometan. Seleccione **Sav
 Elija **StepFun** en el catálogo de proveedores, confirme **China** o **Global**, a continuación, seleccione un modelo y credenciales de suministro para esa región. v0.32.0 añade **Step-5 Preview**, con metadatos de catálogo multimodal y 1M-contexto. El acceso real del modelo, el soporte de cuota y de entrada todavía dependen de la cuenta del proveedor y de la compatibilidad del agente seleccionado.
 
 Guardar y comprobar la conexión antes de elegirla en una conversación. Las configuraciones existentes de los proveedores conservan su punto final anterior; actualizar la aplicación no cambia su región o modelo Main.
+
+## Actualización de catálogos de proveedores {/* #provider-catalog-updates */}
+
+El catálogo v0.33.0 añade modelos **Xiaomi MiMo v2.6** y **xAI Grok 4.7**, y refresca **OpenCode Zen** y **Vamos.**. Nuevas configuraciones MiMo por defecto a `mimo-v2.6-pro`; las opciones v2.5 existentes siguen disponibles. Grok 4.7 se convierte en el nuevo predeterminado de xAI, mientras que los IDs anteriores del modelo siguen en la lista.
+
+Seleccione el modelo exacto ofrecido para su agente activo, revise sus opciones de entrada y razonamiento, y ejecute una pequeña solicitud. Un defecto de catálogo no cambia el modelo en cada sesión existente o garantiza que su cuenta tiene acceso. Codex puede permanecer Main mientras configura un [Servicio de clasificación](models.md#classification-models) por separado.
+
+## Nuevas opciones de catálogo {/* #catalog-models */}
+
+Los catálogos de proveedores v0.33.1 añaden **GPT-6** y **Claude Opus 5.5**. Abra la lista de modelos del proveedor y elija una entrada apoyada por el marco activo y su cuenta. La presencia del catálogo no otorga acceso o cambia el modelo Main guardado. Validar al proveedor y enviar una pequeña solicitud antes de utilizar un modelo cambiado para la investigación.

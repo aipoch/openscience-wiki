@@ -1,180 +1,180 @@
 {
   "homepage.steps.install.title": {
-    "message": "Open-Science 설치"
+    "message": "Install Open-Science"
   },
   "homepage.steps.install.description": {
-    "message": "당신의 운영 체계를 선택하십시오."
+    "message": "Choose your operating system."
   },
   "homepage.steps.setup.title": {
-    "message": "작업 공간 설정"
+    "message": "Set up your workspace"
   },
   "homepage.steps.setup.description": {
-    "message": "모델을 연결하고 런타임을 준비합니다."
+    "message": "Connect a model and prepare your runtimes."
   },
   "homepage.steps.firstResult.title": {
-    "message": "당신의 첫번째 결과를 창조하십시오"
+    "message": "Create your first result"
   },
   "homepage.steps.firstResult.description": {
-    "message": "출력을 저장하기 위해 입력에서 프로젝트를 따르십시오."
+    "message": "Follow a project from input to saved output."
   },
   "homepage.sections.guides.title": {
-    "message": "사용 가이드"
+    "message": "Guides"
   },
   "homepage.sections.guides.description": {
-    "message": "프로젝트, 대화, 파일 및 작업 공간 설정."
+    "message": "Projects, conversations, files and workspace settings."
   },
   "homepage.sections.workflows.title": {
-    "message": "연구 워크플로"
+    "message": "Research workflows"
   },
   "homepage.sections.workflows.description": {
-    "message": "실제 연구 데이터와 함께 일한 예제를 따르십시오."
+    "message": "Follow worked examples with real research data."
   },
   "homepage.sections.tools.title": {
-    "message": "도구 살펴보기"
+    "message": "Explore tools"
   },
   "homepage.sections.tools.description": {
-    "message": "데이터베이스 찾기, 파일 검사 및 계산 실행."
+    "message": "Find databases, inspect files and run calculations."
   },
   "homepage.sections.skills.title": {
     "message": "Skills"
   },
   "homepage.sections.skills.description": {
-    "message": "찾기, 사용 및 재사용 가능한 연구 방법을 만듭니다."
+    "message": "Find, use and create reusable research methods."
   },
   "homepage.sections.specialists.title": {
-    "message": "스페셜리스트"
+    "message": "Specialists"
   },
   "homepage.sections.specialists.description": {
-    "message": "Delegate 집중된 작업과 결과를 검토합니다."
+    "message": "Delegate focused tasks and review the results."
   },
   "homepage.sections.reference.title": {
-    "message": "참고 자료"
+    "message": "Reference"
   },
   "homepage.sections.reference.description": {
-    "message": "제어, 파일 형식, CLI 및 API를 찾습니다."
+    "message": "Look up controls, file formats, the CLI and APIs."
   },
   "homepage.topics.reproducibility": {
-    "message": "재현성"
+    "message": "Reproducibility"
   },
   "homepage.topics.packages": {
-    "message": ".science 연구 패키지"
+    "message": ".science research packages"
   },
   "homepage.topics.marketplace": {
-    "message": "Skill 마켓플레이스"
+    "message": "Skill marketplace"
   },
   "homepage.meta.title": {
-    "message": "Open-Science 문서"
+    "message": "Open-Science Documentation"
   },
   "homepage.meta.description": {
-    "message": "AIPOCH Open-Science 문서: 설치, 워크스페이스 및 모델 설정, 재현성, 연구 워크플로, 스킬, 도구, CLI 및 API 레퍼런스."
+    "message": "Documentation for AIPOCH Open-Science: installation, workspace and model setup, reproducibility, research workflows, skills, tools, CLI and API reference."
   },
   "homepage.lead": {
-    "message": "AIPOCH Open-Science는 오픈 소스이자 로컬 우선 AI 연구 워크벤치입니다."
+    "message": "AIPOCH Open-Science is an open-source, local-first AI research workbench."
   },
   "homepage.lead.model.title": {
-    "message": "모델 선택"
+    "message": "Model choice"
   },
   "homepage.lead.model.description": {
-    "message": "지원되는 모델 공급자, 사용자 지정 게이트웨이 또는 호환되는 로컬 모델 서버에 연결할 수 있습니다."
+    "message": "connect to supported model providers, a custom gateway, or a compatible local model server."
   },
   "homepage.lead.provenance.title": {
-    "message": "로컬 저장과 출처 기록"
+    "message": "Local storage and provenance"
   },
   "homepage.lead.provenance.description": {
-    "message": "프로젝트 데이터와 연구 결과는 로컬에 저장되며, 사용 가능한 코드·입력·실행 기록을 검토할 수 있습니다."
+    "message": "project data and research outputs are stored locally, with available code, inputs, and execution records accessible for review."
   },
   "homepage.lead.guides.title": {
-    "message": "실용 가이드"
+    "message": "Practical guides"
   },
   "homepage.lead.guides.description": {
-    "message": "워크스페이스를 설정하고, 연구 워크플로를 따라 진행하며, 결과를 확인하고 공유하는 방법을 알아봅니다."
+    "message": "set up your workspace, follow research workflows, and learn how to inspect and share your results."
   },
   "homepage.eyebrow": {
-    "message": "사용 문서"
+    "message": "Documentation"
   },
   "homepage.introduction": {
-    "message": "작업 공간 설정, 연구 데이터 작업, 확인 및 결과를 공유."
+    "message": "Set up your workspace, work with research data, and check and share your results."
   },
   "homepage.readDocs": {
-    "message": "문서 읽기"
+    "message": "Read the documentation"
   },
   "homepage.troubleshooting": {
-    "message": "문제 해결"
+    "message": "Troubleshooting"
   },
   "homepage.startHeading": {
-    "message": "현재 위치"
+    "message": "Start here"
   },
   "homepage.browseHeading": {
-    "message": "자주 묻는 질문"
+    "message": "Explore the documentation"
   },
   "homepage.topicsHeading": {
-    "message": "더 보기"
+    "message": "Go further"
   },
   "theme.SearchPage.documentsFound.plurals": {
     "message": "검색 결과 {count}개"
   },
   "docs.platform.label": {
-    "message": "회사연혁"
+    "message": "Platform"
   },
   "docs.platform.hint": {
-    "message": "당신의 선택은 장 전체에 보관됩니다."
+    "message": "Your choice is kept across chapters."
   },
   "docs.guides.outline.reproducibility.title": {
-    "message": "재현성"
+    "message": "Reproducibility"
   },
   "docs.guides.outline.reproducibility.scope": {
-    "message": "Rerun 캡처 된 연구 단계, 결과 버전을 비교하고 검증 기록을 유지합니다."
+    "message": "Rerun captured research steps, compare result versions and retain verification records."
   },
   "docs.guides.outline.research-packages.title": {
-    "message": ".science 연구 패키지"
+    "message": ".science research packages"
   },
   "docs.guides.outline.research-packages.scope": {
-    "message": "수출, 수입 및 검사 휴대용 대화 지점, 파일 및 증거."
+    "message": "Export, import and inspect portable conversation branches, files and evidence."
   },
   "docs.outline.skills.marketplace.title": {
-    "message": "Skill 마켓플레이스"
+    "message": "Skill marketplace"
   },
   "docs.outline.skills.marketplace.scope": {
-    "message": "시장의 연구 방법 찾기, 설치, 업데이트 및 관리."
+    "message": "Find, install, update and manage research methods from the marketplace."
   },
   "docs.guides.outline.bookmarks.title": {
-    "message": "개인 읽기 북마크"
+    "message": "Private reading bookmarks"
   },
   "docs.guides.outline.bookmarks.scope": {
-    "message": "개인적인 독서 통행 및 PDF 지구를 저장하고, 주를 관리하고 그들의 근원에 돌려보냅니다."
+    "message": "Save personal reading passages and PDF regions, manage notes and return to their source."
   },
   "docs.outline.reference.v0300.title": {
     "message": "v0.30.0"
   },
   "docs.outline.reference.v0300.scope": {
-    "message": "개인 책갈피, 독립적 인 Side Chat 탭, 설정 검색 및 추출 PDF 증거."
+    "message": "Private bookmarks, independent Side Chat tabs, settings search and extracted PDF evidence."
   },
   "theme.docs.breadcrumbs.navAriaLabel": {
     "message": "탐색 경로"
   },
   "docs.sections.label": {
-    "message": "문서 영역"
+    "message": "Documentation sections"
   },
   "theme.SearchPage.existingResultsTitle": {
-    "message": "다음에 대한 검색 결과: \"{query}\"",
+    "message": "Search results for \"{query}\"",
     "description": "The search page title for non-empty query"
   },
   "theme.SearchPage.emptyResultsTitle": {
-    "message": "자주 묻는 질문",
+    "message": "Search the documentation",
     "description": "The search page title for empty query"
   },
   "docs.ui.searchIndex": {
-    "message": "Open-Science / 문서 인덱스"
+    "message": "Open-Science / Documentation index"
   },
   "theme.SearchPage.searchContext.everywhere": {
-    "message": "모든 것"
+    "message": "Everywhere"
   },
   "theme.SearchPage.noResultsText": {
-    "message": "문서가 없습니다.",
+    "message": "No documents were found",
     "description": "The paragraph for empty search result"
   },
   "docs.ui.moreResults": {
-    "message": "더 보기"
+    "message": "Show more results"
   },
   "theme.ErrorPageContent.title": {
     "message": "페이지에 오류가 발생하였습니다."
@@ -210,7 +210,7 @@
     "message": "다음 게시물"
   },
   "theme.colorToggle.ariaLabel.mode.system": {
-    "message": "시스템 모드",
+    "message": "system mode",
     "description": "The name for the system color mode"
   },
   "theme.colorToggle.ariaLabel.mode.light": {
@@ -307,7 +307,7 @@
     "message": "사이드바 분류 '{label}' 접기"
   },
   "theme.IconExternalLink.ariaLabel": {
-    "message": "(새 탭에서 열림)",
+    "message": "(opens in new tab)",
     "description": "The ARIA label for the external link icon"
   },
   "theme.NavBar.navAriaLabel": {
@@ -359,11 +359,11 @@
     "message": "문서 사이드바"
   },
   "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
-    "message": "드롭다운 확장",
+    "message": "Expand the dropdown",
     "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
   },
   "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
-    "message": "드롭다운을 붕괴",
+    "message": "Collapse the dropdown",
     "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
   },
   "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
@@ -382,19 +382,19 @@
     "message": "사이드바 열기"
   },
   "theme.SearchBar.noResultsText": {
-    "message": "결과 없음"
+    "message": "No results"
   },
   "theme.SearchBar.seeAllOutsideContext": {
-    "message": "\"{context}\" 외의 모든 결과보기"
+    "message": "See all results outside \"{context}\""
   },
   "theme.SearchBar.searchInContext": {
-    "message": "\"{context}\" 내의 모든 결과보기"
+    "message": "See all results within \"{context}\""
   },
   "theme.SearchBar.seeAll": {
-    "message": "모든 결과보기"
+    "message": "See all results"
   },
   "theme.SearchBar.label": {
-    "message": "검색",
+    "message": "Search",
     "description": "The ARIA label and placeholder for search button"
   },
   "theme.blog.post.plurals": {
@@ -441,1248 +441,1272 @@
     "message": "태그"
   },
   "docs.guides.outline.overview": {
-    "message": "Open-Science 개요"
+    "message": "Open-Science overview"
   },
   "docs.guides.outline.group.start": {
-    "message": "현재 위치"
+    "message": "Start here"
   },
   "docs.guides.outline.capabilities.title": {
-    "message": "기능 및 지원된 입력"
+    "message": "Capabilities and supported inputs"
   },
   "docs.guides.outline.capabilities.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.capabilities.topic.capabilities.title": {
-    "message": "Open-Science는 할 수 있습니다"
+    "message": "What Open-Science can do"
   },
   "docs.guides.outline.capabilities.topic.capabilities.scope": {
-    "message": "지원된 연구 활동, 지역 작업 공간 모형 및 각 입력 또는 목표를 위해 시작하는 곳."
+    "message": "Supported research activities, the local workspace model, and where to start for each input or goal."
   },
   "docs.guides.outline.capabilities.topic.source-types.title": {
-    "message": "지원된 파일 및 자료"
+    "message": "Supported files and data"
   },
   "docs.guides.outline.capabilities.topic.source-types.scope": {
-    "message": "입력, 읽기 가능한 versus executable 형식 및 가져 오기 전에 준비."
+    "message": "Accepted inputs, readable versus executable formats, and preparation before import."
   },
   "docs.guides.outline.installation.title": {
-    "message": "설치 및 업데이트"
+    "message": "Installation and updates"
   },
   "docs.guides.outline.installation.scope": {
-    "message": "시스템 요구 사항, 데스크탑 설치, 소스 빌드, 업데이트 체크 및 버전 선택."
+    "message": "System requirements, desktop installation, source builds, update checks, and version selection."
   },
   "docs.guides.outline.onboarding.title": {
-    "message": "첫 번째 시간 설정"
+    "message": "First-time setup"
   },
   "docs.guides.outline.onboarding.scope": {
-    "message": "환경 검사, 데이터 위치, 에이전트 실행 시간, 모델 액세스, 그리고 마법사 순서에 Notebook 설정."
+    "message": "Environment checks, data location, agent runtime, model access, and Notebook setup in wizard order."
   },
   "docs.guides.outline.first-project.title": {
-    "message": "첫 번째 프로젝트 및 결과"
+    "message": "Your first project and result"
   },
   "docs.guides.outline.first-project.scope": {
-    "message": "프로젝트 생성에서 저장한 산출과 명확한 성공 체크에 작은 첫번째 작업."
+    "message": "A small first task from project creation to a saved output and a clear success check."
   },
   "docs.guides.outline.group.workspace": {
-    "message": "작업 공간"
+    "message": "Your workspace"
   },
   "docs.guides.outline.navigation.title": {
-    "message": "탐색 및 검색"
+    "message": "Navigation and search"
   },
   "docs.guides.outline.navigation.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.navigation.topic.navigation.title": {
-    "message": "홈 및 탐색"
+    "message": "Home and navigation"
   },
   "docs.guides.outline.navigation.topic.navigation.scope": {
-    "message": "홈 항목, 작업 공간 레이아웃, 사이드 바 패널, 재조합, 및 프로젝트에 반환."
+    "message": "Home entries, workspace layout, sidebar panels, resizing, and returning to projects."
   },
   "docs.guides.outline.navigation.topic.search.title": {
-    "message": "프로젝트 찾기, 세션 및 파일"
+    "message": "Finding projects, sessions, and files"
   },
   "docs.guides.outline.navigation.topic.search.scope": {
-    "message": "글로벌 검색, 결과 유형, 결과 열기, 패널 레벨 필터의 차이."
+    "message": "Global search, result types, opening a result, and the difference from panel-level filters."
   },
   "docs.guides.outline.projects.title": {
-    "message": "프로젝트 및 소스 폴더"
+    "message": "Projects and source folders"
   },
   "docs.guides.outline.projects.scope": {
-    "message": "프로젝트 작성 및 편집, 프로젝트 설명 및 에이전트 Context, 폴더 선택 및 액세스 범위."
+    "message": "Create and edit projects, project descriptions and Agent Context, folder selection, and access scope."
   },
   "docs.guides.outline.sessions.title": {
-    "message": "세션 및 지점"
+    "message": "Sessions and branches"
   },
   "docs.guides.outline.sessions.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.sessions.topic.sessions.title": {
-    "message": "세션 생성 및 관리"
+    "message": "Creating and managing sessions"
   },
   "docs.guides.outline.sessions.topic.sessions.scope": {
-    "message": "시작, 스위치, 이름 및 핀 세션; 대화에서 프로젝트를 구별합니다."
+    "message": "Start, switch, rename, and pin sessions; distinguish a project from its conversations."
   },
   "docs.guides.outline.sessions.topic.revisions.title": {
-    "message": "메시지 개정 및 지점"
+    "message": "Message revisions and branches"
   },
   "docs.guides.outline.sessions.topic.revisions.scope": {
-    "message": "이전 메시지를 편집하고, 개정을 검색하고, 대화를 분기하고, 유지된 컨텍스트를 이해합니다."
+    "message": "Edit a previous message, browse revisions, branch a conversation, and understand retained context."
   },
   "docs.guides.outline.composer.title": {
-    "message": "대화와 대기 중인 요청"
+    "message": "Conversations and queued requests"
   },
   "docs.guides.outline.composer.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.composer.topic.composer.title": {
-    "message": "Prompts, 첨부 파일 및 언급"
+    "message": "Prompts, attachments, and mentions"
   },
   "docs.guides.outline.composer.topic.composer.scope": {
-    "message": "요청을 준수, 입력을 첨부, Skills 및 참조 파일 또는 전송하기 전에 세션을 선택합니다."
+    "message": "Compose a request, attach inputs, select Skills, and reference files or sessions before sending."
   },
   "docs.guides.outline.composer.topic.follow-ups.title": {
-    "message": "팔로우 및 작업 큐"
+    "message": "Follow-ups and the task queue"
   },
   "docs.guides.outline.composer.topic.follow-ups.scope": {
-    "message": "견적, 편집, 주문, 전송 및 중지 요청; 중단 후 계속되는 것을 설명합니다."
+    "message": "Queue, edit, reorder, send, and stop requests; explain what continues after interruption."
   },
   "docs.guides.outline.group.files": {
-    "message": "파일, 문학 및 결과"
+    "message": "Files, literature, and results"
   },
   "docs.guides.outline.files.title": {
-    "message": "파일, artifacts 및 버전"
+    "message": "Files, artifacts, and versions"
   },
   "docs.guides.outline.files.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.files.topic.files.title": {
-    "message": "프로젝트 파일 및 업로드"
+    "message": "Project files and uploads"
   },
   "docs.guides.outline.files.topic.files.scope": {
-    "message": "versus 폴더 참조, 파일 검색 및 레이아웃, 프로젝트 복사 및 다운로드 위치 업로드."
+    "message": "Upload versus folder reference, file search and layouts, project copies, and download locations."
   },
   "docs.guides.outline.files.topic.artifacts.title": {
-    "message": "Artifacts 및 파일 버전"
+    "message": "Artifacts and file versions"
   },
   "docs.guides.outline.files.topic.artifacts.scope": {
-    "message": "분산된 artifacts; 저장된 개정을 검사하고, 지원된 관리 파일을 편집하고, 지원된 원본 또는 Markdown 변화, 및 수출 결과를 비교하십시오."
+    "message": "Distinguish uploads and generated artifacts; inspect saved revisions, edit supported managed files, compare supported text or Markdown changes, and export results."
   },
   "docs.guides.outline.previews.title": {
-    "message": "파일 열기 및 미리보기"
+    "message": "Opening and previewing files"
   },
   "docs.guides.outline.previews.scope": {
-    "message": "분할 및 풀 스크린 미리보기, 지원 시청자, 탭 및 형식 별 컨트롤."
+    "message": "Split and full-screen previews, supported viewers, tabs, and format-specific controls."
   },
   "docs.guides.outline.library.title": {
-    "message": "문학 도서관 및 인용"
+    "message": "Literature library and citations"
   },
   "docs.guides.outline.library.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.library.topic.library.title": {
-    "message": "참고 및 수집"
+    "message": "References and collections"
   },
   "docs.guides.outline.library.topic.library.scope": {
-    "message": "추가 및 수입 기록, 수집, 프로젝트 링크, 태그, 중복, 쓰레기, 및 복원."
+    "message": "Add and import records, collections, project links, tags, duplicates, Trash, and restoration."
   },
   "docs.guides.outline.library.topic.reading.title": {
-    "message": "종이 및 인용문 읽기"
+    "message": "Reading papers and citations"
   },
   "docs.guides.outline.library.topic.reading.scope": {
-    "message": "PDF 첨부 파일, 메타데이터 및 전체 텍스트 검색, 읽기 상태, 인용 스타일, 복사 및 내보내기."
+    "message": "PDF attachments, metadata and full-text retrieval, reading state, citation styles, copy and export."
   },
   "docs.guides.outline.notebook.title": {
-    "message": "Notebook 및 실행 증거"
+    "message": "Notebook and execution evidence"
   },
   "docs.guides.outline.notebook.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.notebook.topic.notebook.title": {
-    "message": "세션 Notebook"
+    "message": "The Session Notebook"
   },
   "docs.guides.outline.notebook.topic.notebook.scope": {
-    "message": "Python, R 및 Bash 단위, 출력, 변수, 커널, 스톱핑 및 노트북 수출을 실행했습니다."
+    "message": "Executed Python, R, and Bash units, outputs, variables, kernels, stopping, and notebook export."
   },
   "docs.guides.outline.notebook.topic.provenance.title": {
-    "message": "검사 artifact 입증"
+    "message": "Inspecting artifact provenance"
   },
   "docs.guides.outline.notebook.topic.provenance.scope": {
-    "message": "소스 메시지, 코드, 노트북 실행 및 버전에 대한 검토 증거에 대한 사용 가능한 링크 검사; 누락된 증거와 형식 의존도를 설명합니다."
+    "message": "Inspect available links to source messages, code, notebook runs and review evidence for a version; explain missing evidence and format-dependent coverage."
   },
   "docs.guides.outline.group.models": {
-    "message": "모형과 대리인"
+    "message": "Models and agents"
   },
   "docs.guides.outline.models.title": {
-    "message": "모델 및 작업 정책"
+    "message": "Models and task policies"
   },
   "docs.guides.outline.models.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.models.topic.models.title": {
-    "message": "모형과 공급자"
+    "message": "Models and providers"
   },
   "docs.guides.outline.models.topic.models.scope": {
-    "message": "공급자, 모형, 대리인 기구 및 Specialist 명백; 활성 모델 및 노력 선택."
+    "message": "Provider, model, agent framework, and Specialist distinctions; select an active model and effort."
   },
   "docs.guides.outline.models.topic.scenario-models.title": {
-    "message": "다른 작업을 위한 모델"
+    "message": "Models for different tasks"
   },
   "docs.guides.outline.models.topic.scenario-models.scope": {
-    "message": "Main, Subagent, Reviewer, Vision 및 Session 세부 사항 정책, 상속 및 호환 선택."
+    "message": "Main, Subagent, Reviewer, Vision, and Session details policies, inheritance, and compatible choices."
   },
   "docs.guides.outline.providers.title": {
-    "message": "공급자 및 지역 모델 설정"
+    "message": "Provider and local model setup"
   },
   "docs.guides.outline.providers.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.providers.topic.providers.title": {
-    "message": "모델 공급자 연결"
+    "message": "Connecting a model provider"
   },
   "docs.guides.outline.providers.topic.providers.scope": {
-    "message": "공급자 미리 설정, 구독 로그인 또는 API 액세스, 사용자 정의 엔드포인트, 필수 필드 및 연결 테스트."
+    "message": "Provider presets, subscription sign-in or API access, custom endpoints, required fields, and connection tests."
   },
   "docs.guides.outline.providers.topic.local-models.title": {
-    "message": "로컬 모델 사용"
+    "message": "Using local models"
   },
   "docs.guides.outline.providers.topic.local-models.scope": {
-    "message": "호환 로컬 엔드포인트, 모델 식별자, 기능 제한 및 연결 검증."
+    "message": "Compatible local endpoints, model identifiers, capability limits, and connection verification."
   },
   "docs.guides.outline.frameworks.title": {
-    "message": "설치 및 전환 에이전트"
+    "message": "Installing and switching agents"
   },
   "docs.guides.outline.frameworks.scope": {
-    "message": "프레임 워크 설치, 감지, 인증, 활성화, 스위칭, 수리 및 제거."
+    "message": "Framework installation, detection, authentication, activation, switching, repair, and removal."
   },
   "docs.guides.outline.usage.title": {
-    "message": "토큰 사용 및 활동"
+    "message": "Token usage and activity"
   },
   "docs.guides.outline.usage.scope": {
-    "message": "토큰 범주, 시간 필터, 차트, 프로젝트 / 세션 카운트 및 누락된 원격 측정."
+    "message": "Reported token categories, time filters, charts, project/session counts, and missing telemetry."
   },
   "docs.guides.outline.group.control": {
-    "message": "연구 제어 및 컨텍스트"
+    "message": "Research controls and context"
   },
   "docs.guides.outline.approval-modes.title": {
-    "message": "권한 및 승인"
+    "message": "Permissions and approvals"
   },
   "docs.guides.outline.approval-modes.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.approval-modes.topic.approval-modes.title": {
-    "message": "권한 모드 및 승인"
+    "message": "Permission modes and approvals"
   },
   "docs.guides.outline.approval-modes.topic.approval-modes.scope": {
-    "message": "자주 묻는 질문, 자동 승인 편집 및 전체 액세스; 검사, 허용, 또는 콘크리트 요청을 거부."
+    "message": "Ask, auto-approve edits, and full access; inspect, allow, or deny a concrete request."
   },
   "docs.guides.outline.approval-modes.topic.remembered-permissions.title": {
-    "message": "기억된 권한"
+    "message": "Remembered permissions"
   },
   "docs.guides.outline.approval-modes.topic.remembered-permissions.scope": {
-    "message": "세션, 프로젝트 및 글로벌 범위; 검사, 회귀, 그리고 범위 혼란 없이 과태를 복원."
+    "message": "Session, project, and global scopes; inspect, revoke, and restore defaults without scope confusion."
   },
   "docs.guides.outline.planning.title": {
-    "message": "실행하기 전에 계획"
+    "message": "Planning before execution"
   },
   "docs.guides.outline.planning.scope": {
-    "message": "계획 첫 번째 항목, 제안 된 계획, 피드백, 승인 및 지속적인 실행 검토."
+    "message": "Plan-first entry, reviewing a proposed plan, feedback, approval, and continuing execution."
   },
   "docs.guides.outline.delegation.title": {
-    "message": "작업 위임과 Side Chat"
+    "message": "Delegation and Side Chat"
   },
   "docs.guides.outline.delegation.scope": {
-    "message": "Inspect 프레임 워크 지원 위임, 시약 활동 및 Side Chat 조언. Specialist 생성, 기능 바인딩 및 검토자 세부 사항은 전문가 섹션에 속합니다."
+    "message": "Inspect framework-supported delegation, subagent activity and Side Chat advice. Specialist creation, capability binding and Reviewer details belong to the Specialists section."
   },
   "docs.guides.outline.memory.title": {
-    "message": "기억과 대화 맥락"
+    "message": "Memory and conversation context"
   },
   "docs.guides.outline.memory.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.memory.topic.memory.title": {
-    "message": "메모리 및 재사용 가능한 컨텍스트"
+    "message": "Memory and reusable context"
   },
   "docs.guides.outline.memory.topic.memory.scope": {
-    "message": "글로벌 및 프로젝트 노트, 카테고리, 자동 호출, 수동 편집, 및 유지 때 비활성화."
+    "message": "Global and project notes, categories, auto-recall, manual editing, and retention when disabled."
   },
   "docs.guides.outline.memory.topic.context.title": {
-    "message": "컨텍스트, 컴팩트, 핸드오프"
+    "message": "Context, compaction, and handoffs"
   },
   "docs.guides.outline.memory.topic.context.scope": {
-    "message": "Inspect 컨텍스트 사용, 유지된 역사와 조밀함을 이해하고, continuation 또는 handoff를 준비합니다."
+    "message": "Inspect context use, understand retained history and compaction, and prepare a continuation or handoff."
   },
   "docs.guides.outline.group.runtime": {
-    "message": "Runtimes 및 연결"
+    "message": "Runtimes and connections"
   },
   "docs.guides.outline.runtimes.title": {
-    "message": "Python 및 R 실행 시간"
+    "message": "Python and R runtimes"
   },
   "docs.guides.outline.runtimes.scope": {
-    "message": "관리 및 외부 해석기, 임명, 활성화, 포장 접근 및 재건 충격."
+    "message": "Managed and external interpreters, installation, enablement, package access, and rebuild impact."
   },
   "docs.guides.outline.connectors.title": {
-    "message": "커넥터 및 자격"
+    "message": "Connectors and credentials"
   },
   "docs.guides.outline.connectors.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.connectors.topic.connectors.title": {
-    "message": "연결 도구 및 데이터 서비스"
+    "message": "Connecting tools and data services"
   },
   "docs.guides.outline.connectors.topic.connectors.scope": {
-    "message": "내장 및 사용자 정의 MCP 설정, 도구 가용성 및 정책, 자격 바인딩, 및 연결 건강."
+    "message": "Built-in and custom MCP setup, tool availability and policy, credential binding, and connection health."
   },
   "docs.guides.outline.connectors.topic.credentials.title": {
-    "message": "Credentials 및 서비스 계정"
+    "message": "Credentials and service accounts"
   },
   "docs.guides.outline.connectors.topic.credentials.scope": {
-    "message": "장치 credentials, 연구 접촉 세부사항, API 열쇠, 토큰, OAuth, 재사용 및 제거."
+    "message": "Device credentials, research contact details, API keys, tokens, OAuth, reuse, and removal."
   },
   "docs.guides.outline.network.title": {
-    "message": "네트워크, 프록시 및 패키지 미러"
+    "message": "Network, proxies, and package mirrors"
   },
   "docs.guides.outline.network.scope": {
-    "message": "네트워크 체크, Notebook 허용 도메인, 프록시 모드, 패키지 미러 및 인증서 번들."
+    "message": "Network checks, Notebook allowed domains, proxy modes, package mirrors, and certificate bundles."
   },
   "docs.guides.outline.remote-compute.title": {
-    "message": "SSH 호스트 및 Slurm 설정"
+    "message": "SSH hosts and Slurm setup"
   },
   "docs.guides.outline.remote-compute.scope": {
-    "message": "호스트 인증, 직접 versus 스케줄러 모드, 리소스 발견, 스크래치 경로 및 통화."
+    "message": "Host authentication, direct versus scheduler mode, resource discovery, scratch paths, and concurrency."
   },
   "docs.guides.outline.remote-access.title": {
-    "message": "원격 브라우저 액세스"
+    "message": "Remote browser access"
   },
   "docs.guides.outline.remote-access.scope": {
-    "message": "Remote.It prerequisites, 액세스 모드, 페어링, 신뢰할 수있는 브라우저, 및 재직."
+    "message": "Remote.It prerequisites, access modes, pairing, trusted browsers, and revocation."
   },
   "docs.guides.outline.group.preferences": {
-    "message": "개인 및 유지"
+    "message": "Personalize and maintain"
   },
   "docs.guides.outline.appearance.title": {
-    "message": "외관 및 알림"
+    "message": "Appearance and notifications"
   },
   "docs.guides.outline.appearance.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.appearance.topic.appearance.title": {
-    "message": "외관 및 언어"
+    "message": "Appearance and language"
   },
   "docs.guides.outline.appearance.topic.appearance.scope": {
-    "message": "System/light/dark 외관, 명시된 인터페이스 언어 및 시작 언어 행동."
+    "message": "System/light/dark appearance, explicit interface language, and startup language behavior."
   },
   "docs.guides.outline.appearance.topic.notifications.title": {
-    "message": "메시지 및 알림"
+    "message": "Messages and notifications"
   },
   "docs.guides.outline.appearance.topic.notifications.scope": {
-    "message": "인앱 메시지, 데스크탑 작업 알림, 콘텐츠 가시성, 배달 테스트 및 OS 권한."
+    "message": "In-app messages, desktop task notifications, content visibility, delivery tests, and OS permissions."
   },
   "docs.guides.outline.tags.title": {
-    "message": "태그로 구성"
+    "message": "Organizing with tags"
   },
   "docs.guides.outline.tags.scope": {
-    "message": "태그, 외관, 리소스 할당, 필터링, 중복 이름 및 삭제를 만들고 편집합니다."
+    "message": "Create and edit tags, appearance, resource assignment, filtering, duplicate names, and deletion."
   },
   "docs.guides.outline.storage.title": {
-    "message": "저장과 아카이브 작업"
+    "message": "Storage and archived work"
   },
   "docs.guides.outline.storage.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.storage.topic.storage.title": {
-    "message": "데이터 위치 및 디스크 사용"
+    "message": "Data location and disk usage"
   },
   "docs.guides.outline.storage.topic.storage.scope": {
-    "message": "저장 카테고리, 새로 고침, 디렉토리 경계, 이전, 환경 재건, 및 복구."
+    "message": "Storage categories, refresh, directory boundaries, relocation, environment rebuilds, and recovery."
   },
   "docs.guides.outline.storage.topic.archived.title": {
-    "message": "보관, 복원 및 삭제"
+    "message": "Archive, restore, and delete"
   },
   "docs.guides.outline.storage.topic.archived.scope": {
-    "message": "Project/session 아카이브 및 복원, 영구 삭제, 유지 폴더, 및 확인 경계."
+    "message": "Project/session archive and restore, permanent deletion, retained folders, and confirmation boundaries."
   },
   "docs.guides.outline.group.help": {
-    "message": "도움말 및 문제 해결"
+    "message": "Help and troubleshooting"
   },
   "docs.guides.outline.shortcuts.title": {
-    "message": "키보드 단축키"
+    "message": "Keyboard shortcuts"
   },
   "docs.guides.outline.shortcuts.scope": {
-    "message": "탐색, 검색, 작곡가 및 플랫폼 차이로 단축키."
+    "message": "Navigation, search, composer, and preview shortcuts with platform differences."
   },
   "docs.guides.outline.troubleshooting.title": {
-    "message": "문제 해결 및 일반적인 질문"
+    "message": "Troubleshooting and common questions"
   },
   "docs.guides.outline.troubleshooting.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.guides.outline.troubleshooting.topic.troubleshooting.title": {
-    "message": "문제 해결 및 진단"
+    "message": "Troubleshooting and diagnostics"
   },
   "docs.guides.outline.troubleshooting.topic.troubleshooting.scope": {
-    "message": "시동, 모델, 런타임, 파일 및 네트워크에 대한 증상 기반 검사; 유용한 진단을 수집합니다."
+    "message": "Symptom-based checks for startup, models, runtimes, files and network; collect useful diagnostics."
   },
   "docs.guides.outline.troubleshooting.topic.faq.title": {
-    "message": "자주 묻는 질문"
+    "message": "Frequently asked questions"
   },
   "docs.guides.outline.troubleshooting.topic.faq.scope": {
-    "message": "데이터 소유권, 계정 요구 사항, 비용, 오프라인 사용 및 복구에 대한 명확한 답변; 자세한 가이드에 대한 링크."
+    "message": "Clear answers about data ownership, account requirements, costs, offline use, and recovery; link to detailed guides."
   },
   "docs.outline.workflows.overview": {
-    "message": "Open-Science 개요"
+    "message": "Open-Science overview"
   },
   "docs.outline.workflows.scope": {
-    "message": "정의된 출발점과 전달 가능한 연구 상황; 인터페이스 작업은 각 시나리오에 속합니다."
+    "message": "Research situations with a defined starting point and deliverable; interface operations belong inside each scenario."
   },
   "docs.outline.workflows.group.start": {
-    "message": "워크플로우 선택"
+    "message": "Choose a workflow"
   },
   "docs.outline.workflows.cookbook.title": {
-    "message": "Workflow 요리 책"
+    "message": "Workflow cookbook"
   },
   "docs.outline.workflows.cookbook.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.cookbook.topic.cookbook.title": {
-    "message": "Workflow 요리 책"
+    "message": "Workflow cookbook"
   },
   "docs.outline.workflows.cookbook.topic.cookbook.scope": {
-    "message": "연구 질문, 입력 유형, 예상된 산출 및 유효한 자원에 의하여 선택하십시오."
+    "message": "Choose by research question, input type, expected output, and available resources."
   },
   "docs.outline.workflows.cookbook.topic.first-analysis.title": {
-    "message": "첫 번째 재현성 분석"
+    "message": "Your first reproducible analysis"
   },
   "docs.outline.workflows.cookbook.topic.first-analysis.scope": {
-    "message": "검사, 실행, 저장된 그림 및 재 실행 검증에 가져 오기에서 작은 CSV 예."
+    "message": "A small CSV example from import to inspection, execution, saved figure, and rerun verification."
   },
   "docs.outline.workflows.group.library": {
-    "message": "연구 수집"
+    "message": "Build your research collection"
   },
   "docs.outline.workflows.build-library.title": {
-    "message": "새로운 연구 주제에 대한 핵심 읽기 목록 구축"
+    "message": "Build a core reading list for a new research topic"
   },
   "docs.outline.workflows.build-library.scope": {
-    "message": "unfamiliar 주제를 시작하면 씨앗 종이, 지도 키 테마를 수집하고 프로젝트에 연결된 curated 독서 목록을 저장합니다. 가져 오기 및 태그는이 시나리오에서 단계입니다."
+    "message": "When starting an unfamiliar topic, collect seed papers, map key themes and save a curated reading list linked to the project. Import and tagging are steps within this scenario."
   },
   "docs.outline.workflows.import-library.title": {
-    "message": "종이 수집을 통해"
+    "message": "Take over and organize a paper collection"
   },
   "docs.outline.workflows.import-library.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.import-library.topic.import-library.title": {
-    "message": "이전 연구자들의 문학 컬렉션을 통해"
+    "message": "Take over a previous researcher's literature collection"
   },
   "docs.outline.workflows.import-library.topic.import-library.scope": {
-    "message": "이전 연구자로부터 PDF 및 인용 내보내기, 사용 가능한 프로젝트 라이브러리를 재구성하고 누락되거나 주변 기록의 목록을 생성합니다."
+    "message": "Given PDFs and citation exports from a previous researcher, reconstruct a usable project library and produce a list of missing or ambiguous records."
   },
   "docs.outline.workflows.import-library.topic.repair-metadata.title": {
-    "message": "조각된 종이 수집을 다시 만들"
+    "message": "Make a fragmented paper collection usable again"
   },
   "docs.outline.workflows.import-library.topic.repair-metadata.scope": {
-    "message": "섞인 폴더, 불완전한 인용 및 누락된 첨부 파일, reconcile 기록 및 명시되지 않은 결함이있는 항목 컬렉션에 전체 텍스트를 제공합니다."
+    "message": "Given mixed folders, incomplete citations and missing attachments, reconcile records and full text into topic collections with an explicit unresolved-items list."
   },
   "docs.outline.workflows.organize-library.title": {
-    "message": "검토 프로젝트에 대한 검색 배치 통합"
+    "message": "Consolidate search batches for a review project"
   },
   "docs.outline.workflows.organize-library.scope": {
-    "message": "여러 검색 또는 데이터베이스에서 검색 검증된 후보를 설정하고 검색 검증 및 문서화 된 스크리닝 핸드오프를 유지합니다."
+    "message": "Combine records from several searches or databases into a deduplicated candidate set, retaining search provenance and a documented screening handoff."
   },
   "docs.outline.workflows.review-inbox.title": {
-    "message": "저널 클럽에 초점을 맞춘 판독 팩을 준비"
+    "message": "Prepare a focused reading pack for a journal club"
   },
   "docs.outline.workflows.review-inbox.scope": {
-    "message": "다가오는 저널 클럽의 경우, 한 가지 질문, 리뷰 에이전트 제안 주위에 종이를 선택하고 전체 텍스트를 수집하고 토론 질문에 대한 독서 주문을 준비하십시오."
+    "message": "For an upcoming journal club, select papers around one question, review agent suggestions, collect available full text and prepare a reading order with discussion questions."
   },
   "docs.outline.workflows.deduplicate-library.title": {
-    "message": "기존의 증거 기반 확장"
+    "message": "Extend an existing evidence base"
   },
   "docs.outline.workflows.deduplicate-library.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.deduplicate-library.topic.deduplicate-library.title": {
-    "message": "관련 연구 문제에 대한 문학 기초를 재사용"
+    "message": "Reuse a literature base for a related research question"
   },
   "docs.outline.workflows.deduplicate-library.topic.deduplicate-library.scope": {
-    "message": "관련 프로젝트가 시작될 때, 기존 라이브러리의 관련 서류를 식별하고, 레코드를 복제하지 않고 링크하고 새 질문에 대한 특정 문서 증거 격차."
+    "message": "When a related project starts, identify relevant papers in the existing library, link them without duplicating records and document evidence gaps specific to the new question."
   },
   "docs.outline.workflows.deduplicate-library.topic.attach-full-text.title": {
-    "message": "프로젝트 이정표를 하기 전에 증거 기초를 새로 고침"
+    "message": "Refresh the evidence base before a project milestone"
   },
   "docs.outline.workflows.deduplicate-library.topic.attach-full-text.scope": {
-    "message": "제안이나 진행 검토 전에 신선한 검색을 실행하고 저장된 컬렉션과 새로운 발견을 비교하고 날짜 추가 및 개스 노트를 준비하십시오. 이것은 수동 워크플로우이며, 계획된 모니터링이 아닙니다."
+    "message": "Before a proposal or progress review, run a fresh search, compare new findings with the saved collection and prepare a dated additions-and-gaps note. This is a manual workflow, not scheduled monitoring."
   },
   "docs.outline.workflows.group.evidence": {
-    "message": "문학과 증거"
+    "message": "Literature and evidence"
   },
   "docs.outline.workflows.literature-review.title": {
-    "message": "증거 표에 문학 리뷰"
+    "message": "Literature review to evidence table"
   },
   "docs.outline.workflows.literature-review.scope": {
-    "message": "질문, 검색 및 화면 레코드를 정의하고, 증거를 추출, 인용 소스, 및 액세스 격차를보고."
+    "message": "Define a question, search and screen records, extract evidence, cite sources, and report access gaps."
   },
   "docs.outline.workflows.paper-reading.title": {
-    "message": "종이를 읽고 주장"
+    "message": "Read papers and verify claims"
   },
   "docs.outline.workflows.paper-reading.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.paper-reading.topic.paper-reading.title": {
-    "message": "읽기 및 비교 종이"
+    "message": "Read and compare papers"
   },
   "docs.outline.workflows.paper-reading.topic.paper-reading.scope": {
-    "message": "추출 방법, 인구, 제공된 종이에서 발견 및 제한; 페이지 수준 증거 유지."
+    "message": "Extract methods, populations, findings and limitations from provided papers; retain page-level evidence."
   },
   "docs.outline.workflows.paper-reading.topic.pdf-evidence.title": {
-    "message": "종이가 청구를 지원하는지 확인"
+    "message": "Check whether a paper supports a claim"
   },
   "docs.outline.workflows.paper-reading.topic.pdf-evidence.scope": {
-    "message": "관련 PDF 구절 및 방법, 유지 페이지 증거 및 지원, 자격 또는 지원 된 발견을 생성하는 초안 또는 회의 메모에 주장을 부여합니다."
+    "message": "Given a claim in a draft or meeting note, locate the relevant PDF passages and methods, retain page evidence and produce a supported, qualified or unsupported finding."
   },
   "docs.outline.workflows.database-search.title": {
-    "message": "Structured 데이터베이스 기록"
+    "message": "Retrieve structured database records"
   },
   "docs.outline.workflows.database-search.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.database-search.topic.database-search.title": {
-    "message": "과학 데이터베이스 검색"
+    "message": "Search scientific databases"
   },
   "docs.outline.workflows.database-search.topic.database-search.scope": {
-    "message": "데이터 소스를 선택, 경계 쿼리를 형성, 식별자를 해결, 추적 가능한 레코드를 저장."
+    "message": "Select a data source, formulate bounded queries, resolve identifiers, and save traceable records."
   },
   "docs.outline.workflows.database-search.topic.cross-source-evidence.title": {
-    "message": "종이와 데이터베이스 간의 잘못 해결"
+    "message": "Resolve a mismatch between a paper and a database"
   },
   "docs.outline.workflows.database-search.topic.cross-source-evidence.scope": {
-    "message": "종이 및 데이터베이스가 유전자, 화합물 또는 재판, 재난 식별자 및 버전 및 문서에 대해 용해되지 않은 경우."
+    "message": "When a paper and a database disagree about a gene, compound or trial, reconcile identifiers and versions and document what remains unresolved."
   },
   "docs.outline.workflows.indication-dossier.title": {
-    "message": "표시를 구축 dossier"
+    "message": "Build an indication dossier"
   },
   "docs.outline.workflows.indication-dossier.scope": {
-    "message": "biology, epidemiology, 시험 및 치료 증거를 소스 날짜와 해결되지 않은 격차와 결합하십시오."
+    "message": "Combine biology, epidemiology, trials and treatment evidence with source dates and unresolved gaps."
   },
   "docs.outline.workflows.format-bibliography.title": {
-    "message": "제출에 대한 참고 사항"
+    "message": "Prepare references for submission"
   },
   "docs.outline.workflows.format-bibliography.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.format-bibliography.topic.format-bibliography.title": {
-    "message": "대상 저널에 대한 bibliography를 적응"
+    "message": "Adapt a bibliography to a target journal"
   },
   "docs.outline.workflows.format-bibliography.topic.format-bibliography.scope": {
-    "message": "신뢰할 수있는 라이브러리 항목 ID 및 지원 CSL 스타일. 덮은 인용, semantic 인용 감적 감적 감적, 그리고 overleaf-compatible LaTeX 뭉치를 가진 DOCX; 출력 필드 및 스타일 요구 사항을 확인합니다."
+    "message": "Use trusted Library item IDs and supported CSL styles. Cover formatted citations, DOCX with semantic citation markers, and an Overleaf-compatible LaTeX bundle; verify output fields and style requirements."
   },
   "docs.outline.workflows.format-bibliography.topic.restore-library.title": {
-    "message": "제출하기 전에 manuscript의 참조를 감사"
+    "message": "Audit a manuscript's references before submission"
   },
   "docs.outline.workflows.format-bibliography.topic.restore-library.scope": {
-    "message": "원고 및 그 소스 라이브러리, reconcile 인용 레코드, bibliographic 필드, 중복 및 접근 가능한 증거를 제공 한 다음 올바른 생물학적 및 예외 목록을 생성합니다."
+    "message": "Given a manuscript and its source library, reconcile cited records, bibliographic fields, duplicates and accessible evidence, then produce a corrected bibliography and an exceptions list."
   },
   "docs.outline.workflows.group.analysis": {
-    "message": "데이터 분석 및 재생"
+    "message": "Data analysis and reproduction"
   },
   "docs.outline.workflows.data-quality.title": {
-    "message": "Gene-count matrix의 샘플 품질을 확인"
+    "message": "Check sample quality in a gene-count matrix"
   },
   "docs.outline.workflows.data-quality.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.data-quality.topic.data-quality.title": {
-    "message": "감사 및 깨끗한 dataset"
+    "message": "Audit and clean a dataset"
   },
   "docs.outline.workflows.data-quality.topic.data-quality.scope": {
-    "message": "유형, 불완전성, 중복 및 단위를 검사하십시오; 원료 입력 및 기록 exclusions를 보존합니다."
+    "message": "Check types, missingness, duplicates and units; preserve raw inputs and record exclusions."
   },
   "docs.outline.workflows.data-quality.topic.python-r.title": {
-    "message": "Python 및 R와 분석"
+    "message": "Analyze with Python and R"
   },
   "docs.outline.workflows.data-quality.topic.python-r.scope": {
-    "message": "런타임을 준비, 변수를 검사, incrementally 실행, 오류를 복구하고 재사용 가능한 스크립트를 저장."
+    "message": "Prepare runtimes, inspect variables, execute incrementally, recover errors and save reusable scripts."
   },
   "docs.outline.workflows.statistics.title": {
-    "message": "통계 분석 및 검증"
+    "message": "Statistical analysis and validation"
   },
   "docs.outline.workflows.statistics.scope": {
-    "message": "국가 가정, 방법을 선택, 진단 검사, 보고 uncertainty, 및 유지 runnable 코드."
+    "message": "State assumptions, select a method, check diagnostics, report uncertainty, and retain runnable code."
   },
   "docs.outline.workflows.reproduce.title": {
-    "message": "게시 된 결과를 Reproduce"
+    "message": "Reproduce a published result"
   },
   "docs.outline.workflows.reproduce.scope": {
-    "message": "Inventory 종이, 부호 및 자료; 인증 기준을 정의하고, 파일럿을 실행하고 탈선에서 일치를 구분합니다."
+    "message": "Inventory paper, code and data; define acceptance criteria, run a pilot and distinguish matches from deviations."
   },
   "docs.outline.workflows.extend-analysis.title": {
-    "message": "설치 된 Specialist 분석 확장"
+    "message": "Extend an analysis with an installed Specialist"
   },
   "docs.outline.workflows.extend-analysis.scope": {
-    "message": "기존 방법, QC PCA, 매트릭스 및 증거 계획 예."
+    "message": "Existing Methods, QC PCA, matrix and evidence-planning examples."
   },
   "docs.outline.workflows.group.biology": {
-    "message": "Sequences, 세포 및 분자"
+    "message": "Sequences, cells, and molecules"
   },
   "docs.outline.workflows.sequence-qc.title": {
-    "message": "Sequence 질과 표기"
+    "message": "Sequence quality and annotation"
   },
   "docs.outline.workflows.sequence-qc.scope": {
-    "message": "FASTA 레코드, 알파벳 및 길이를 검사; 주석 소스를 해결하고 실패한 기록을 보존하십시오."
+    "message": "Inspect FASTA records, alphabets and lengths; resolve annotation sources and preserve failed records."
   },
   "docs.outline.workflows.single-cell.title": {
-    "message": "단일 셀 분석"
+    "message": "Single-cell analysis"
   },
   "docs.outline.workflows.single-cell.scope": {
-    "message": "문자 입력 및 메타데이터를 확인, scGPT 또는 scvi-tools를 선택하여 적절한 출력을 검증합니다. 호환 가능한 단일 셀 입력, 구성 된 Python 환경 및 선택된 Skill 의존성; 과학적 실행은 종료된다."
+    "message": "Check expression inputs and metadata, choose scGPT or scvi-tools where appropriate, and validate outputs. Requires compatible single-cell input, a configured Python environment and the selected Skill dependencies; scientific execution remains pending."
   },
   "docs.outline.workflows.structure-prediction.title": {
-    "message": "단백질 및 복합 예측"
+    "message": "Protein and complex prediction"
   },
   "docs.outline.workflows.structure-prediction.scope": {
-    "message": "유효한 예측 Skill를, 체크 입력 및 compute 필요조건, 그 후에 신뢰와 한계를 검사하십시오. 선택된 포장, 모형 무게 및 적당한 국부적으로 또는 먼 compute를 요구합니다; Skill 목록은 예측 실행을 검증하지 않습니다."
+    "message": "Choose an available prediction Skill, check inputs and compute requirements, then inspect confidence and limitations. Requires the selected package, model weights and suitable local or remote compute; listing a Skill does not verify prediction execution."
   },
   "docs.outline.workflows.molecular-analysis.title": {
-    "message": "분자 구조 및 도킹"
+    "message": "Molecular structures and docking"
   },
   "docs.outline.workflows.molecular-analysis.scope": {
-    "message": "검증된 분자, 속성 및 구조를 검사하고, 부패 점수를 부과하지 않고 도킹 포즈를 검토합니다. 로컬 분자 뷰어, 온라인 화학 소스 및 DiffDock 실행 분리; 도킹은 자체 의존성 및 계산 검증을 요구합니다."
+    "message": "Validate molecules, inspect properties and structures, and review docking poses without equating scores with affinity. Separate the local molecule viewer, online chemistry sources and DiffDock execution; docking requires its own dependencies and compute validation."
   },
   "docs.outline.workflows.group.deliver": {
-    "message": "그림, 보고, 개정"
+    "message": "Figures, reports, and revisions"
   },
   "docs.outline.workflows.figures.title": {
-    "message": "추적 가능한 증거로 그림 만들기"
+    "message": "Create figures with traceable evidence"
   },
   "docs.outline.workflows.figures.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.figures.topic.figures.title": {
-    "message": "Compose 및 검증 과학적인 인물"
+    "message": "Compose and validate scientific figures"
   },
   "docs.outline.workflows.figures.topic.figures.scope": {
-    "message": "추적 가능한 데이터에서 패널을 생성하고 라벨과 시각 장애 및 수출 발행 자산을 확인합니다."
+    "message": "Create panels from traceable data, check labels and visual fidelity, and export publication assets."
   },
   "docs.outline.workflows.figures.topic.trace-result.title": {
-    "message": "그림의 결과는 다음과 같이 설명합니다."
+    "message": "Explain where a figure's result came from"
   },
   "docs.outline.workflows.figures.topic.trace-result.scope": {
-    "message": "공동 작업자가 숫자를 질문할 때, 실행 및 입력에 artifact를 추적하고, 버전 확인 및 계산의 증거 백업 설명 준비."
+    "message": "When a collaborator questions a figure, trace the artifact to its execution and inputs, verify versions and prepare an evidence-backed explanation of the calculation."
   },
   "docs.outline.workflows.manuscript.title": {
-    "message": "연구 보고서 작성 및 수정"
+    "message": "Write and revise a research report"
   },
   "docs.outline.workflows.manuscript.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.manuscript.topic.manuscript.title": {
-    "message": "보고서 또는 manuscript narrative 구축"
+    "message": "Build a report or manuscript narrative"
   },
   "docs.outline.workflows.manuscript.topic.manuscript.scope": {
-    "message": "검증된 발견, 그림 순서, 방법 및 인용을 연결하십시오; flag 지원되지 않는 주장."
+    "message": "Connect verified findings, figure order, methods and citations; flag unsupported claims."
   },
   "docs.outline.workflows.manuscript.topic.revise-artifact.title": {
-    "message": "검토자 피드백 후에 그림 또는 보고를 개정하십시오"
+    "message": "Revise a figure or report after reviewer feedback"
   },
   "docs.outline.workflows.manuscript.topic.revise-artifact.scope": {
-    "message": "저장된 출력에 대한지도 피드백, 지원된 편집, 비교 개정 및 수정 된 artifact에 각 변경에 대한 응답을 준비."
+    "message": "Map feedback to saved outputs, make supported edits, compare revisions and prepare a response linking each change to the revised artifact."
   },
   "docs.outline.workflows.recover-notebook.title": {
-    "message": "소스 데이터 변경 후 분석 다시 실행"
+    "message": "Rerun an analysis after the source data changes"
   },
   "docs.outline.workflows.recover-notebook.scope": {
-    "message": "업데이트 된 데이터 세트를 제공, stale 노트북 출력을 식별, rerun 의존성 및 이전 전달 가능한 새로운 결과를 비교 자료 변경 설명."
+    "message": "Given an updated dataset, identify stale notebook outputs, rerun dependencies and compare new results with the previous deliverable to explain material changes."
   },
   "docs.outline.workflows.group.compute": {
-    "message": "긴 작업과 먼 compute"
+    "message": "Long tasks and remote compute"
   },
   "docs.outline.workflows.ssh-analysis.title": {
-    "message": "원격 분석 실행 및 복구"
+    "message": "Run and recover remote analyses"
   },
   "docs.outline.workflows.ssh-analysis.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.ssh-analysis.topic.ssh-analysis.title": {
-    "message": "SSH 호스트에 대한 분석"
+    "message": "Run an analysis on an SSH host"
   },
   "docs.outline.workflows.ssh-analysis.topic.ssh-analysis.scope": {
-    "message": "호스트 정책과 읽음을 확인, 단계 입력, 모니터 실행, and recover outputs into the project. 사용자 정의 가능한 SSH 호스트 및 테스트 자격 증명을 요구합니다. 원격 작업은 현재 감사에서 확인되었습니다."
+    "message": "Check host policy and readiness, stage inputs, monitor execution, and recover outputs into the project. Requires a user-provided reachable SSH host and tested credentials; no remote job has been verified in the current audit."
   },
   "docs.outline.workflows.ssh-analysis.topic.slurm-jobs.title": {
-    "message": "Slurm 작업 제출 및 복구"
+    "message": "Submit and recover Slurm jobs"
   },
   "docs.outline.workflows.ssh-analysis.topic.slurm-jobs.scope": {
-    "message": "스케줄러 요구 사항 확인, 바인딩 된 작업을 제출, 영수증을 추적, 취소 또는 복구, 및 파일 확인. 실제 Slurm 클러스터, 계정 및 스케줄러 구성을 요구합니다. 스케줄러 실행은 로컬 모드 컨트롤에 의해 확인되지 않습니다."
+    "message": "Confirm scheduler requirements, submit a bounded job, track its receipt, cancel or recover, and verify files. Requires an actual Slurm cluster, account and scheduler configuration; scheduler execution is not verified by local mode controls."
   },
   "docs.outline.workflows.parallel-review.title": {
-    "message": "Delegate 및 리뷰 연구 작업"
+    "message": "Delegate and review research work"
   },
   "docs.outline.workflows.parallel-review.scope": {
-    "message": "지원 된 프레임 워크 및 작업 모델로, 경계 작업을 분할, Specialist 기능을 구성, 위임 된 활동 및 승인 검사, 및 재난 증거를 반환. 병렬 실행을 주장하기 전에 위임을 검증합니다."
+    "message": "With a supported framework and working models, split a bounded task, configure Specialist capabilities, inspect delegated activity and approvals, and reconcile returned evidence. Verify delegation before claiming parallel execution."
   },
   "docs.outline.workflows.group.continue": {
-    "message": "연구에서 계속 그리고 손"
+    "message": "Continue and hand off research"
   },
   "docs.outline.workflows.plan-research.title": {
-    "message": "계획 및 조사를 재개"
+    "message": "Plan and resume an investigation"
   },
   "docs.outline.workflows.plan-research.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.plan-research.topic.plan-research.title": {
-    "message": "계산하기 전에 파일럿 연구"
+    "message": "Scope a pilot study before committing compute"
   },
   "docs.outline.workflows.plan-research.topic.plan-research.scope": {
-    "message": "광범위한 질문과 제한된 리소스를 입력, 제공, 중지 조건 및 분석을 확장하기 전에 합격 검사로 작은 파일럿 플랜으로 전환하십시오."
+    "message": "Turn a broad question and limited resources into a small pilot plan with inputs, deliverables, stop conditions and acceptance checks before expanding the analysis."
   },
   "docs.outline.workflows.plan-research.topic.persistent-goal.title": {
-    "message": "세션 계획과 함께 완성된 학습을 재개합니다."
+    "message": "Resume an unfinished study with a Session Plan"
   },
   "docs.outline.workflows.plan-research.topic.persistent-goal.scope": {
-    "message": "승인 된 세션 계획에서 사용자 개시 작업, 기록 된 단계 상태 및 저장된 결과. 나머지 작업 메모를 유지; 이 플랜은 별도의 스케줄링 또는 별도의 persistent-goal 기능을 사용하지 않습니다."
+    "message": "Resume user-initiated work from an approved Session Plan, recorded step status and saved results. Keep a remaining-work note; the plan does not imply unattended scheduling or a separate persistent-goal feature."
   },
   "docs.outline.workflows.plan-research.topic.continue-context.title": {
-    "message": "결정을 잃지 않고 휴식 후 학습을 재량"
+    "message": "Resume a study after a break without losing decisions"
   },
   "docs.outline.workflows.plan-research.topic.continue-context.scope": {
-    "message": "이전 세션, 프로젝트 메모리 및 저장된 파일에서 일시적인 연구를 재구성 한 다음 더 분석하기 전에 검증 된 현재 상태 메모를 생성합니다."
+    "message": "Reconstruct a paused study from prior sessions, project memory and saved files, then produce a verified current-state note before further analysis."
   },
   "docs.outline.workflows.compare-branches.title": {
-    "message": "같은 dataset에 두 가지 분석 방법 비교"
+    "message": "Compare two analysis methods on the same dataset"
   },
   "docs.outline.workflows.compare-branches.scope": {
-    "message": "동일한 문서 입력 및 2 가지 방법의 사전 처리를 사용하여 결과, 가정 및 제한을 모두 실행합니다."
+    "message": "Use the same documented inputs and preprocessing for two methods, execute both, and compare results, assumptions and limitations."
   },
   "docs.outline.workflows.save-method.title": {
-    "message": "새로운 dataset에 유효한 분석 재사용"
+    "message": "Reuse a validated analysis on a new dataset"
   },
   "docs.outline.workflows.save-method.scope": {
-    "message": "reusable Skill에 성공적인 분석을 변환하고, 입력을 선언하고 오래된 가정에 조용히 운반하지 않고 새로운 데이터셋에 방법을 확인합니다."
+    "message": "Convert a successful analysis into a reusable Skill, adapt declared inputs and verify the method on a new dataset without silently carrying over old assumptions."
   },
   "docs.outline.workflows.handoff.title": {
-    "message": "reproducible 연구 패키지 떨어져 손"
+    "message": "Hand off a reproducible research package"
   },
   "docs.outline.workflows.handoff.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.workflows.handoff.topic.handoff.title": {
-    "message": "reproducible handoff를 포장하십시오"
+    "message": "Package a reproducible handoff"
   },
   "docs.outline.workflows.handoff.topic.handoff.scope": {
-    "message": "입력, 스크립트, 환경, 결과 및 제한을 수집합니다. 신선한 상태로 패키지를 확인합니다."
+    "message": "Collect inputs, scripts, environments, results and limitations; verify the package from a fresh state."
   },
   "docs.outline.workflows.handoff.topic.export-handoff.title": {
-    "message": "콜라보레이터에 대한 탁월한 분석"
+    "message": "Hand an unfinished analysis to a collaborator"
   },
   "docs.outline.workflows.handoff.topic.export-handoff.scope": {
-    "message": "선택된 대화 증거를 준비, 결과 파일, 결정, 환경 요구 사항 및 나머지 질문으로 reviewable handoff 패키지."
+    "message": "Prepare selected conversation evidence, result files, decisions, environment requirements and remaining questions as a reviewable handoff package."
   },
   "docs.outline.tools.overview": {
-    "message": "Open-Science 개요"
+    "message": "Open-Science overview"
   },
   "docs.outline.tools.scope": {
-    "message": "기능에 의한 도구 찾기; 카탈로그 및 개별 작업은 넓은 장 안에 테이블로 계획됩니다."
+    "message": "Find tools by capability; catalogs and individual operations are planned as tables inside broad chapters."
   },
   "docs.outline.tools.group.find": {
-    "message": "도구 찾기"
+    "message": "Find a tool"
   },
   "docs.outline.tools.overview.title": {
-    "message": "도구 살펴보기"
+    "message": "Explore tools"
   },
   "docs.outline.tools.overview.scope": {
-    "message": "내장 도구, 과학 소프트웨어, 데이터베이스 커넥터 및 뷰어 중에서 선택하십시오. 테이블에 액세스 및 읽음을 비교합니다."
+    "message": "Choose between built-in tools, scientific software, database connectors and viewers; compare access and readiness in a table."
   },
   "docs.outline.tools.built-in.title": {
-    "message": "내장 연구 도구"
+    "message": "Built-in research tools"
   },
   "docs.outline.tools.built-in.scope": {
-    "message": "파일, 노트북, 문학, 메모리, 계획 및 위임 작업의 테이블 입력, 출력 및 권한."
+    "message": "A table of file, notebook, literature, memory, planning and delegation operations with inputs, outputs and permissions."
   },
   "docs.outline.tools.catalog.title": {
-    "message": "과학 도구 카탈로그"
+    "message": "Scientific tool catalog"
   },
   "docs.outline.tools.catalog.scope": {
-    "message": "번들 된 Skills에 의해 참조 된 소프트웨어의 문서 테이블 및 검사 된 실행 패키지, 목적, 의존성 및 가용성. 카탈로그 항목은 모든 사전 설치된 소프트웨어 또는 별도의 인앱 카탈로그가 아닙니다."
+    "message": "A documentation table of software referenced by bundled Skills and inspected runtime packages, with purpose, dependencies and availability. Catalog entries are not all preinstalled software or a separate in-app catalog."
   },
   "docs.outline.tools.scientific.title": {
-    "message": "과학 도구"
+    "message": "Scientific tools"
   },
   "docs.outline.tools.scientific.scope": {
-    "message": "Notebook 런타임을 통해 설명하거나 패키지 설치, 입력/출력 체크 및 실패 진단과 함께 Compute Host를 구성했습니다. 각 소프트웨어 예에 대한 로컬 versus 원격 요구 사항을 기록합니다."
+    "message": "Explain execution through Notebook runtimes or configured Compute Hosts, with package installation, input/output checks and failure diagnosis. Record local versus remote requirements for each software example."
   },
   "docs.outline.tools.group.data": {
-    "message": "데이터 및 뷰어"
+    "message": "Data and viewers"
   },
   "docs.outline.tools.databases.title": {
-    "message": "과학 데이터베이스"
+    "message": "Scientific databases"
   },
   "docs.outline.tools.databases.scope": {
-    "message": "지원 과학 데이터 소스, 유용한 작업, 내장 Connector 설정 및 자격, 링크를 통해 연구 워크플로우를 완료."
+    "message": "Supported scientific data sources, useful tasks, built-in Connector setup and credentials, with links to complete research workflows."
   },
   "docs.outline.tools.tables.title": {
-    "message": "테이블 및 데이터 세트"
+    "message": "Tables and datasets"
   },
   "docs.outline.tools.tables.scope": {
-    "message": "지원된 tabular 형식, 미리보기 컨트롤, 데이터 검사, 가변 처리, 수출 및 테이블의 크기 제한 비교."
+    "message": "Compare supported tabular formats, preview controls, data inspection, variable handling, exports and size limits in tables."
   },
   "docs.outline.tools.viewers.title": {
-    "message": "과학 뷰어"
+    "message": "Scientific viewers"
   },
   "docs.outline.tools.viewers.scope": {
-    "message": "PDF, Office, 이미지, FASTA, PDB 및 분자 형식의 실제 미리보기 레지스트리를 사용합니다. 오프라인 OpenChemLib Molecule Viewer 및 검증 도구 포함; 편집 또는 과학적 계산에서 볼 수 있습니다."
+    "message": "Use the actual preview registry for PDF, Office, images, FASTA, PDB and molecular formats. Include the offline OpenChemLib Molecule Viewer and its validation tools; distinguish viewing from editing or scientific computation."
   },
   "docs.outline.tools.group.connect": {
-    "message": "연결 및 확장"
+    "message": "Connect and extend"
   },
   "docs.outline.tools.mcp.title": {
-    "message": "커넥터 및 MCP"
+    "message": "Connectors and MCP"
   },
   "docs.outline.tools.mcp.scope": {
-    "message": "내장 및 사용자 정의 커넥터, 운송, 발견, 활성화 및 오류 비교; Guides에 연결 구성 단계."
+    "message": "Compare built-in and custom connectors, transports, discovery, enablement and errors; link configuration steps to Guides."
   },
   "docs.outline.tools.credentials.title": {
-    "message": "서비스 자격"
+    "message": "Service credentials"
   },
   "docs.outline.tools.credentials.scope": {
-    "message": "자격 증명 유형, 바인딩, 필수 범위, 유효성 및 접근 실패를 포함하는 서비스-to-credential 테이블."
+    "message": "A service-to-credential table covering credential types, bindings, required scopes, validation and access failures."
   },
   "docs.outline.tools.custom.title": {
-    "message": "사용자 정의 MCP 도구를 연결"
+    "message": "Connect a custom MCP tool"
   },
   "docs.outline.tools.custom.scope": {
-    "message": "기존 또는 외부적으로 로컬 stdio를 통해 MCP 서버를 구현하거나 원격 전송을 지원하며, 발견된 도구와 테스트 자격 및 권한을 검사합니다. 도구 구현은 외부 prerequisite입니다."
+    "message": "Connect an existing or externally implemented MCP server through local stdio or supported remote transport, inspect discovered tools and test credentials and permissions. Tool implementation is an external prerequisite."
   },
   "docs.outline.skills.overview": {
-    "message": "Open-Science 개요"
+    "message": "Open-Science overview"
   },
   "docs.outline.skills.scope": {
-    "message": "선택, 사용, 재사용 가능한 절차를 유지; 개별 번들 Skills은 장 테이블에 속합니다."
+    "message": "Choose, use, and maintain reusable procedures; individual bundled Skills belong in chapter tables."
   },
   "docs.outline.skills.group.use": {
-    "message": "Skills 사용"
+    "message": "Use Skills"
   },
   "docs.outline.skills.overview.title": {
     "message": "Skills"
   },
   "docs.outline.skills.overview.scope": {
-    "message": "설명 Skills versus 도구와 전문가; 검색, 활성화, 선택, 지침을 검사하고 Skill을 확인 할 수 있습니다."
+    "message": "Explain Skills versus tools and Specialists; search, enable, select, inspect instructions and verify a Skill is available."
   },
   "docs.outline.skills.directory.title": {
-    "message": "Skill 디렉토리"
+    "message": "Skill directory"
   },
   "docs.outline.skills.directory.scope": {
-    "message": "모든 23 번들된 Skills의 한 테이블은 입력, 종점, 산출 및 검증 상태와 더불어 연구 목적에 의해, 그룹화했습니다."
+    "message": "One table of all 23 bundled Skills, grouped by research purpose, with inputs, dependencies, outputs and verification status."
   },
   "docs.outline.skills.recipes.title": {
-    "message": "Skill 레시피"
+    "message": "Skill recipes"
   },
   "docs.outline.skills.recipes.scope": {
-    "message": "테이블 기반 요리법은 연구 목표, 선택한 Skills, 샘플 입력, 요청, 예상 출력 및 전체 워크 플로를 연결합니다."
+    "message": "Table-based recipes connect research goals, selected Skills, sample inputs, requests, expected outputs and full Workflows."
   },
   "docs.outline.skills.group.maintain": {
-    "message": "생성 및 유지"
+    "message": "Create and maintain"
   },
   "docs.outline.skills.create.title": {
-    "message": "Skill 및 지원 파일 만들기"
+    "message": "Create a Skill and its supporting files"
   },
   "docs.outline.skills.create.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.skills.create.topic.create.title": {
-    "message": "Skill 만들기"
+    "message": "Create a Skill"
   },
   "docs.outline.skills.create.topic.create.scope": {
-    "message": "개인 Skill 또는 대화에서 재사용 가능한 방법을 추출; 입력, 단계, 체크 및 경계를 정의합니다."
+    "message": "Write a personal Skill or extract a reusable method from a conversation; define inputs, steps, checks and boundaries."
   },
   "docs.outline.skills.create.topic.files.title": {
-    "message": "명령 및 지원 파일"
+    "message": "Instructions and supporting files"
   },
   "docs.outline.skills.create.topic.files.scope": {
-    "message": "Package-contents table 및 validation checklist를 사용하여 SKILL.md 필드, 스크립트, 자산 및 참조를 설명합니다."
+    "message": "Describe SKILL.md fields, scripts, assets and references using a package-contents table and a validation checklist."
   },
   "docs.outline.skills.manage.title": {
-    "message": "Skills 관리 및 검증"
+    "message": "Manage and validate Skills"
   },
   "docs.outline.skills.manage.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.skills.manage.topic.manage.title": {
-    "message": "수입품, 수출 및 갱신 Skills"
+    "message": "Import, export, and update Skills"
   },
   "docs.outline.skills.manage.topic.manage.scope": {
-    "message": "그룹 수입 소스, 미리보기, 충돌 처리, 편집, 수출, 삭제 및 버전은 작업에 의해 확인합니다."
+    "message": "Group import sources, preview, conflict handling, editing, exports, deletion and version checks by operation."
   },
   "docs.outline.skills.manage.topic.validate.title": {
-    "message": "테스트 및 문제 해결 Skills"
+    "message": "Test and troubleshoot Skills"
   },
   "docs.outline.skills.manage.topic.validate.scope": {
-    "message": "신선한 입력을 유효하게 하고, 누락된 포장, 무게, credentials 및 공구를 진단하고, 지원된 versus 시험한 행동을 기록합니다."
+    "message": "Validate a fresh input, diagnose missing packages, weights, credentials and tools, and record supported versus tested behavior."
   },
   "docs.outline.reference.overview": {
-    "message": "회사연혁"
+    "message": "Reference overview"
   },
   "docs.outline.reference.scope": {
-    "message": "프로젝트 설정 및 CLI 통합 먼저, AIPOCH 특정 기술 참조 및 변경 로그에 따라."
+    "message": "Project setup and CLI integrations first, followed by AIPOCH-specific technical reference and Changelog."
   },
   "docs.outline.reference.group.product": {
-    "message": "제품 참고"
+    "message": "Product reference"
   },
   "docs.outline.reference.configuration.title": {
-    "message": "구성 및 컨텍스트"
+    "message": "Configuration and context"
   },
   "docs.outline.reference.configuration.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.configuration.topic.configuration.title": {
-    "message": "구성"
+    "message": "Configuration"
   },
   "docs.outline.reference.configuration.topic.configuration.scope": {
-    "message": "지원되는 앱 설정, 범위, 기본, 저장 및 프레임 워크 호환성의 테이블; 가이드에 대한 링크 작동 단계."
+    "message": "Tables of supported app settings, scope, defaults, storage and framework compatibility; link operating steps to Guides."
   },
   "docs.outline.reference.configuration.topic.instructions.title": {
-    "message": "프로젝트 컨텍스트 및 지침"
+    "message": "Project context and instructions"
   },
   "docs.outline.reference.configuration.topic.instructions.scope": {
-    "message": "프로젝트의 Agent Context 필드로 시작; 메모리 노트, Skill 지침 및 Specialist 지침과 구별하십시오. Framework 교육 파일 동작은 하나의 범용 프로젝트 파일 메커니즘이 아닌 프레임 워크 당 문서화되어야 합니다."
+    "message": "Start with the project's Agent Context field; distinguish it from Memory notes, Skill instructions and Specialist instructions. Framework instruction-file behavior must be documented per framework, not as one universal project-file mechanism."
   },
   "docs.outline.reference.permissions.title": {
-    "message": "권한 및 통제"
+    "message": "Permissions and control"
   },
   "docs.outline.reference.permissions.scope": {
-    "message": "참고 승인 모드, 범위 우선, 기억된 보조금, 네트워크 제한 및 재직 중."
+    "message": "Reference approval modes, scope precedence, remembered grants, network restrictions and revocation semantics."
   },
   "docs.outline.reference.controls.title": {
-    "message": "제어 및 키보드 참조"
+    "message": "Controls and keyboard reference"
   },
   "docs.outline.reference.controls.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.controls.topic.controls.title": {
-    "message": "페이지 및 제어 색인"
+    "message": "Page and control index"
   },
   "docs.outline.reference.controls.topic.controls.scope": {
-    "message": "버튼 및 입력 라벨에 대한 페이지별 검색 테이블, 결과 상태 및 검증 상태."
+    "message": "A page-by-page lookup table for button and input labels, resulting states and verification status."
   },
   "docs.outline.reference.controls.topic.commands.title": {
-    "message": "Skill 단축키, 언급 및 키보드 컨트롤"
+    "message": "Skill shortcuts, mentions, and keyboard controls"
   },
   "docs.outline.reference.controls.topic.commands.scope": {
-    "message": "실제 작곡가 트리거 문서: / Skills, @ 참조 파일 또는 artifacts, 및 # 참조 세션을 선택; 지원되는 키보드 작업 및 컨텍스트 제한 목록."
+    "message": "Document the actual composer triggers: / selects Skills, @ references files or artifacts, and # references sessions; list supported keyboard actions and context limits."
   },
   "docs.outline.reference.formats.title": {
-    "message": "파일 형식 및 제한"
+    "message": "File formats and limits"
   },
   "docs.outline.reference.formats.scope": {
-    "message": "지원 미리보기, 라이브러리 가져 오기, 인용 수출, 파일 크기 제한 및 지원되지 않은 경우 테이블."
+    "message": "Tables for supported previews, library imports, citation exports, file size limits and unsupported cases."
   },
   "docs.outline.reference.packages.title": {
-    "message": "Skill, Specialist 및 MCP 형식"
+    "message": "Skill, Specialist, and MCP formats"
   },
   "docs.outline.reference.packages.scope": {
-    "message": "Skill 패키지, Specialist 패키지 및 MCP 구성에 대한 별도 스키마 테이블, 필드 및 아카이브 제약."
+    "message": "Separate schema tables for Skill packages, Specialist packages and MCP configuration, with field and archive constraints."
   },
   "docs.outline.reference.example-data.title": {
-    "message": "예제 데이터 및 예상 결과"
+    "message": "Example data and expected results"
   },
   "docs.outline.reference.example-data.scope": {
-    "message": "공개 소스 파일, 체크섬 및 예상 예 출력."
+    "message": "Public source files, checksums and expected example outputs."
   },
   "docs.outline.reference.connector-operations.title": {
-    "message": "Connector 가동 참고"
+    "message": "Connector operation reference"
   },
   "docs.outline.reference.connector-operations.scope": {
-    "message": "정확한 입력, 기본 및 예는 Connector로 호출합니다."
+    "message": "Exact inputs, defaults and example calls by Connector."
   },
   "docs.outline.reference.group.integration": {
-    "message": "CLI 및 운영"
+    "message": "CLI and operations"
   },
   "docs.outline.reference.cli.title": {
-    "message": "CLI 및 구조 출력"
+    "message": "CLI and structured output"
   },
   "docs.outline.reference.cli.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.cli.topic.cli.title": {
-    "message": "CLI 참조"
+    "message": "CLI reference"
   },
   "docs.outline.reference.cli.topic.cli.scope": {
-    "message": "실제 open-science 명령 트리, flags, defaults, Exit 상태 및 repository CLI 계약에서 예제를 문서화합니다."
+    "message": "Document the actual open-science command tree, flags, defaults, exit states and examples from the repository CLI contract."
   },
   "docs.outline.reference.cli.topic.automation.title": {
-    "message": "자동화 및 JSON 출력"
+    "message": "Automation and JSON output"
   },
   "docs.outline.reference.cli.topic.automation.scope": {
-    "message": "지원된 작업 제출, 투표, JSON 및 JSONL 출력, 오류 및 취소; 내장된 스케줄러를 부정적으로 피하십시오."
+    "message": "Cover supported task submission, polling, JSON and JSONL output, errors and cancellation; avoid implying a built-in scheduler."
   },
   "docs.outline.reference.api.title": {
-    "message": "작업 SDK 및 로컬 API"
+    "message": "Task SDK and local API"
   },
   "docs.outline.reference.api.scope": {
-    "message": "지도 지원되는 일 및 회의 APIs, 입증, 사건 및 겸용성; 내부 호스트 API에서 공개 계약을 구별합니다."
+    "message": "Map supported task and session APIs, authentication, events and compatibility; distinguish public contracts from internal host APIs."
   },
   "docs.outline.reference.server.title": {
-    "message": "서비스 및 브라우저 액세스"
+    "message": "Headless service and browser access"
   },
   "docs.outline.reference.server.scope": {
-    "message": "참조 서비스 시작 / 통계 / 정지, 인증 된 URL, 실제 CLI의 로컬 발견 및 원격 액세스 경계."
+    "message": "Reference service start/status/stop, authenticated URLs, local discovery and remote-access boundaries from the actual CLI."
   },
   "docs.outline.reference.diagnostics.title": {
-    "message": "건축과 진단"
+    "message": "Architecture and diagnostics"
   },
   "docs.outline.reference.diagnostics.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.reference.diagnostics.topic.diagnostics.title": {
-    "message": "오류 및 진단"
+    "message": "Errors and diagnostics"
   },
   "docs.outline.reference.diagnostics.topic.diagnostics.scope": {
-    "message": "지도는 원인, 진단 증거 및 연결 회복 가이드에 과실을 관찰했습니다; CLI 및 커넥터 실패를 포함합니다."
+    "message": "Map observed errors to causes, diagnostic evidence and linked recovery guides; include CLI and connector failures."
   },
   "docs.outline.reference.diagnostics.topic.architecture.title": {
-    "message": "건축 및 데이터 흐름"
+    "message": "Architecture and data flow"
   },
   "docs.outline.reference.diagnostics.topic.architecture.scope": {
-    "message": "Explain 데스크톱, 서비스, 프레임 워크, 스토리지 및 실행 경계, artifact 입증 및 자격 처리 포함."
+    "message": "Explain desktop, service, framework, storage and execution boundaries, including artifact provenance and credential handling."
   },
   "docs.outline.reference.diagnostics.topic.verification.title": {
-    "message": "문서 검증 기록"
+    "message": "Documentation verification record"
   },
   "docs.outline.reference.diagnostics.topic.verification.scope": {
-    "message": "기록 근원 버전, 영어 UI 붙잡음, 실행된 통제, 상태 시험 및 걸출한 검증 간격."
+    "message": "Record source versions, English UI captures, executed controls, conditional tests and outstanding verification gaps."
   },
   "docs.outline.reference.group.changelog": {
-    "message": "관련 링크"
+    "message": "Changelog"
   },
   "docs.outline.reference.v0290.title": {
     "message": "v0.29.0"
   },
   "docs.outline.reference.v0290.scope": {
-    "message": "Skill 시장, 연구 패키지, PDF 추출 및 외부 R 패키지 설치."
+    "message": "Skill marketplace, research packages, PDF extraction and external R package installation."
   },
   "docs.outline.reference.v0280.title": {
     "message": "v0.28.0"
   },
   "docs.outline.reference.v0280.scope": {
-    "message": "결과 재생산 검사, 글로벌 검색, 개인 정보 보호 변화 및 관리 Codex 업그레이드."
+    "message": "Result reproduction checks, global search, privacy changes and managed Codex upgrades."
   },
   "docs.outline.reference.v0270.title": {
     "message": "v0.27.0"
   },
   "docs.outline.reference.v0270.scope": {
-    "message": "문학 수입, 배경 작업, 필요한 Skills 및 통합 업데이트."
+    "message": "Literature imports, background tasks, required Skills and integration updates."
   },
   "docs.outline.reference.v0260.title": {
     "message": "v0.26.0"
   },
   "docs.outline.reference.v0260.scope": {
-    "message": "Existing 버전 역사."
+    "message": "Existing version history."
   },
   "docs.outline.reference.v0251.title": {
     "message": "v0.25.1"
   },
   "docs.outline.reference.v0251.scope": {
-    "message": "Existing 버전 역사."
+    "message": "Existing version history."
   },
   "docs.outline.specialists.overview": {
-    "message": "Open-Science 개요"
+    "message": "Open-Science overview"
   },
   "docs.outline.specialists.scope": {
-    "message": "생성, 장비, delegate to, 그리고 Skill 카탈로그의 독립적으로 연구 역할을 유지."
+    "message": "Create, equip, delegate to, and maintain research roles independently of the Skill catalog."
   },
   "docs.outline.specialists.group.use": {
-    "message": "대회 및 사용 Specialists"
+    "message": "Meet and use Specialists"
   },
   "docs.outline.specialists.overview.title": {
-    "message": "전문가 및 사용 가능한 역할"
+    "message": "Specialists and available roles"
   },
   "docs.outline.specialists.overview.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.overview.topic.overview.title": {
-    "message": "관련 상품"
+    "message": "Specialists overview"
   },
   "docs.outline.specialists.overview.topic.overview.scope": {
-    "message": "설명 Main 에이전트, 전문가, 내장 검토 및 Skills; 테이블에서 역할과 적합한 작업을 비교합니다."
+    "message": "Explain Main Agent, Specialists, built-in Reviewer and Skills; compare roles and suitable tasks in a table."
   },
   "docs.outline.specialists.overview.topic.directory.title": {
-    "message": "Specialist 디렉토리 및 마켓"
+    "message": "Specialist directory and marketplace"
   },
   "docs.outline.specialists.overview.topic.directory.scope": {
-    "message": "내장 Non-configurable Reviewer, 개인 역할 및 온라인 마켓 플레이스 패키지를 Distinguish. 번들 된 전문가는 빈; 원격 목록, 서명, 임명 및 의존성 읽음은 분리된 체크를 요구합니다."
+    "message": "Distinguish the built-in non-configurable Reviewer, personal roles and online Marketplace packages. The bundled Specialists manifest is empty; remote listing, signing, installation and dependency readiness require separate checks."
   },
   "docs.outline.specialists.delegate.title": {
-    "message": "Delegate 및 확인 작업"
+    "message": "Delegate and verify work"
   },
   "docs.outline.specialists.delegate.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.delegate.topic.delegate.title": {
-    "message": "Delegate 및 리뷰 작업"
+    "message": "Delegate and review work"
   },
   "docs.outline.specialists.delegate.topic.delegate.scope": {
-    "message": "프레임 워크 위임 지원 및 모델 접근; subtask를 위임하여 주된 대화의 Specialist을 전환합니다. Inspect 진행, 개입 및 반환된 증거."
+    "message": "Verify framework delegation support and model access; distinguish switching the main conversation's Specialist from delegating a subtask. Inspect progress, interventions and returned evidence."
   },
   "docs.outline.specialists.delegate.topic.troubleshoot.title": {
-    "message": "시험 및 문제 해결 전문가"
+    "message": "Test and troubleshoot Specialists"
   },
   "docs.outline.specialists.delegate.topic.troubleshoot.scope": {
-    "message": "경계 검사 작업을 실행하고 누락 된 기능, 모델 실패, 거부 된 요청 및 불완전한 손손을 진단합니다."
+    "message": "Run a bounded test task and diagnose missing capabilities, model failures, denied requests and incomplete handoffs."
   },
   "docs.outline.specialists.group.create": {
-    "message": "생성 및 구성"
+    "message": "Create and configure"
   },
   "docs.outline.specialists.identity.title": {
-    "message": "Specialist 생성 및 지시"
+    "message": "Create and instruct a Specialist"
   },
   "docs.outline.specialists.identity.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.identity.topic.identity.title": {
-    "message": "Specialist 만들기"
+    "message": "Create a Specialist"
   },
   "docs.outline.specialists.identity.topic.identity.scope": {
-    "message": "계획 정체성 필드, 아이콘, 색상, 설명, 생성 모드 및 미리보기, 필드 참조 테이블."
+    "message": "Plan identity fields, icons, colors, descriptions, creation modes and preview, with a field reference table."
   },
   "docs.outline.specialists.identity.topic.instructions.title": {
-    "message": "Specialist 지침 작성"
+    "message": "Write Specialist instructions"
   },
   "docs.outline.specialists.identity.topic.instructions.scope": {
-    "message": "책임, 허용된 증거, 배달 및 중지 조건을 정의; 챕터에서 역할 템플릿을 사용합니다."
+    "message": "Define responsibilities, allowed evidence, deliverables and stopping conditions; use role templates in the chapter."
   },
   "docs.outline.specialists.capabilities.title": {
-    "message": "할당 Skills 및 커넥터"
+    "message": "Assign Skills and Connectors"
   },
   "docs.outline.specialists.capabilities.scope": {
-    "message": "명시된 기능 바인딩을 가진 가득 차있 접근 상속 비교; add/remove 제어 및 readiness 체크를 설명합니다."
+    "message": "Compare full-access inheritance with explicit capability bindings; explain add/remove controls and readiness checks."
   },
   "docs.outline.specialists.reviewer.title": {
-    "message": "리뷰 및 이용 후기"
+    "message": "Reviewer and Auto-review"
   },
   "docs.outline.specialists.reviewer.scope": {
-    "message": "내장 된 검토자, 모델 정책, 리뷰 트리거, 표시 결정 및 자동화 된 검토의 한계 설명."
+    "message": "Describe the built-in Reviewer, model policy, review triggers, displayed decisions and the limits of automated review."
   },
   "docs.outline.specialists.group.maintain": {
-    "message": "관리 및 공유"
+    "message": "Manage and share"
   },
   "docs.outline.specialists.manage.title": {
-    "message": "전문가 관리 및 공유"
+    "message": "Manage and share Specialists"
   },
   "docs.outline.specialists.manage.scope": {
-    "message": "포함 된 주제와 계획 된 범위를 검토하십시오."
+    "message": "Review the included topics and their planned scope below."
   },
   "docs.outline.specialists.manage.topic.manage.title": {
-    "message": "Specialists 구성 및 유지"
+    "message": "Organize and maintain Specialists"
   },
   "docs.outline.specialists.manage.topic.manage.scope": {
-    "message": "검색, 필터, 태그, 활성화, 편집, 중복 및 삭제 역할; 변화와 기능의 가용성을 확인합니다."
+    "message": "Search, filter, tag, enable, edit, duplicate and delete roles; verify changes and capability availability."
   },
   "docs.outline.specialists.manage.topic.packages.title": {
-    "message": "수입 및 수출 Specialist 패키지"
+    "message": "Import and export Specialist packages"
   },
   "docs.outline.specialists.manage.topic.packages.scope": {
-    "message": "미리보기 패키지 내용, 번들 Skills 및 Connector 바인딩을 검사하고 충돌을 처리하고 수입 된 역할을 검증합니다."
+    "message": "Preview package contents, inspect bundled Skills and Connector bindings, handle conflicts and validate imported roles."
   },
   "docs.outline.availableNotice": {
-    "message": "장 색인"
+    "message": "Chapter index"
   },
   "docs.outline.count": {
-    "message": "{groups} 그룹 · {chapters} 장"
+    "message": "{groups} groups · {chapters} chapters"
   },
   "docs.outline.current": {
-    "message": "관련 문서 보기"
+    "message": "View related existing document"
   },
   "docs.preferenceScreenshot.notifications": {
-    "message": "작업 알림 제어 및 보고된 테스트 상태"
+    "message": "Task notification controls and the reported test status"
   },
   "docs.preferenceScreenshot.theme": {
-    "message": "{theme} 모드의 테마 및 언어 제어"
+    "message": "Theme and Language controls in {theme} mode"
   },
   "docs.preferenceScreenshot.preview": {
-    "message": "스크린 샷"
+    "message": "Screenshot preview"
   },
   "docs.preferenceScreenshot.choose": {
-    "message": "테마 스크린 샷 선택"
+    "message": "Choose a theme screenshot"
   },
   "docs.preferenceScreenshot.open": {
-    "message": "{label}; 전체 스크린 샷"
+    "message": "{label}; open full screenshot"
   },
   "docs.preferenceScreenshot.caption": {
-    "message": "English 앱 스크린 샷 · 이미지를 선택하여 전체보기"
+    "message": "English app screenshot · Select the image to view it in full"
   },
   "docs.translation.note": {
-    "message": "자동 번역본입니다. 이해하기 어려운 단계는 영어 원문을 확인하세요."
+    "message": "Automatic translation. Consult the English original if a step is unclear."
   },
   "docs.outline.reference.v0301.title": {
     "message": "v0.30.1"
   },
   "docs.outline.reference.v0301.scope": {
-    "message": "Side Chat 초안, Skill 업데이트 검토, 연구 패키지의 문헌 PDF 및 복구 도구."
+    "message": "Side Chat drafts, reviewed Skill updates, literature PDFs in packages and recovery tools."
   },
   "docs.outline.workflows.focused-literature-search.title": {
-    "message": "지정된 저널 및 날짜 내에서 검색"
+    "message": "Search within specified journals and dates"
   },
   "docs.outline.workflows.focused-literature-search.scope": {
-    "message": "바인딩된 PubMed 검색을 실행하고, 모든 반환된 기록과 유지 불확실한 결정."
+    "message": "Run a bounded PubMed search, screen every returned record and retain uncertain eligibility decisions."
   },
   "docs.outline.workflows.cross-check-records.title": {
-    "message": "Cross-check 2개의 과학적인 자료 근원"
+    "message": "Cross-check two scientific data sources"
   },
   "docs.outline.workflows.cross-check-records.scope": {
-    "message": "Align 정의, 단위, 년 및 NASA와 HadCRUT 연간 온도 기록을 비교하기 전에 참조 기간."
+    "message": "Align definitions, units, years and reference periods before comparing NASA and HadCRUT annual temperature records."
   },
   "docs.outline.reference.v0302.title": {
     "message": "v0.30.2"
   },
   "docs.outline.reference.v0302.scope": {
-    "message": "Specialist Skill 로딩, 독립적인 Side Chat, 데이터 쿼리 및 Notebook 복구."
+    "message": "Specialist Skill loading, independent Side Chat, data queries and Notebook recovery."
   },
   "docs.outline.reference.v0311.title": {
     "message": "v0.31.1"
   },
   "docs.outline.reference.v0311.scope": {
-    "message": "ENA, 유전자 집합 분석, 참조 게놈 및 선택적 분류 모델."
+    "message": "ENA, gene-set enrichment, reference genomes and optional classification models."
   },
   "docs.outline.reference.v0310.title": {
     "message": "v0.31.0"
   },
   "docs.outline.reference.v0310.scope": {
-    "message": "쓰기 가능한 세션 복사본, 제공자 검증 및 전체 STRING 네트워크."
-  },
-  "docs.outline.workflows.reference-genome-check.scope": {
-    "message": "분석하기 전에 taxon, versioned reference Assembly 및 chromosome aliases를 해결합니다."
+    "message": "Writable session forks, validated providers and complete STRING networks."
   },
   "docs.outline.workflows.group.public-data": {
-    "message": "공공데이터 및 생물 정보학"
-  },
-  "docs.outline.workflows.public-omics-data.scope": {
-    "message": "ENA 실행 및 ENA 및 PRIDE 파일 재고, 소스 위치, 크기 및 체크섬을 검사합니다."
-  },
-  "docs.outline.workflows.protein-sequence-search.scope": {
-    "message": "UniProt 단백질을 해결하고 FASTA를 검색하고 완성 된 BLAST 정렬 보고서를 검사합니다."
-  },
-  "docs.guides.outline.pdf-notes.scope": {
-    "message": "구절 표시, 문서 노트 정리, 검색 및 주석 사본 내보내기."
-  },
-  "docs.outline.workflows.gene-set-enrichment.scope": {
-    "message": "런 g:Profiler enrichment 및 mappings, 정확한 확률, 배경 및 소스 버전을 검사."
-  },
-  "docs.outline.workflows.gene-set-enrichment.title": {
-    "message": "후보 유전자 세트에 대한 기능적 enrichment 실행"
-  },
-  "docs.guides.outline.pdf-notes.title": {
-    "message": "PDF 주석과 문서 노트"
-  },
-  "docs.outline.reference.v0320.scope": {
-    "message": "PDF 노트, BLAST 서열 검색, 오믹스 데이터 검색과 무인 작업."
-  },
-  "docs.outline.workflows.reference-genome-check.title": {
-    "message": "종, 참조 genome 및 크롬 식별자 확인"
+    "message": "Public data and bioinformatics"
   },
   "docs.outline.workflows.public-omics-data.title": {
-    "message": "공공 omics 데이터를 찾아 파일 재고를 구축"
+    "message": "Find public omics data and build a file inventory"
+  },
+  "docs.outline.workflows.public-omics-data.scope": {
+    "message": "Discover public ENA runs and inspect ENA and PRIDE file inventories, source locations, sizes and checksums."
+  },
+  "docs.outline.workflows.protein-sequence-search.title": {
+    "message": "Find a protein sequence and complete a BLAST search"
+  },
+  "docs.outline.workflows.protein-sequence-search.scope": {
+    "message": "Resolve a UniProt protein, retrieve FASTA and inspect a completed BLAST alignment report."
+  },
+  "docs.outline.workflows.gene-set-enrichment.title": {
+    "message": "Run functional enrichment for a candidate gene set"
+  },
+  "docs.outline.workflows.gene-set-enrichment.scope": {
+    "message": "Run g:Profiler enrichment and inspect mappings, corrected probabilities, background and source versions."
+  },
+  "docs.outline.workflows.reference-genome-check.title": {
+    "message": "Check species, reference genome and chromosome identifiers"
+  },
+  "docs.outline.workflows.reference-genome-check.scope": {
+    "message": "Resolve a taxon, versioned reference assembly and chromosome aliases before analysis."
+  },
+  "docs.guides.outline.pdf-notes.title": {
+    "message": "PDF annotations and document notes"
+  },
+  "docs.guides.outline.pdf-notes.scope": {
+    "message": "Mark passages, organize file-version notes, return to sources and export reading copies."
   },
   "docs.outline.reference.v0320.title": {
     "message": "v0.32.0"
   },
-  "docs.outline.workflows.protein-sequence-search.title": {
-    "message": "단백질 시퀀스를 찾아 BLAST 검색 완료"
+  "docs.outline.reference.v0320.scope": {
+    "message": "PDF notes, BLAST sequence search, omics discovery and unattended tasks."
+  },
+  "docs.outline.workflows.screen-literature.title": {
+    "message": "Screen papers with a smart collection"
+  },
+  "docs.outline.workflows.screen-literature.scope": {
+    "message": "Define eligibility, run a bounded screening pass, review decisions and export the selected papers."
+  },
+  "docs.outline.reference.v0330.title": {
+    "message": "v0.33.0"
+  },
+  "docs.outline.reference.v0330.scope": {
+    "message": "Smart literature screening, agent resource access, RO-Crate research packages and database additions."
+  },
+  "docs.outline.workflows.multiple-sequence-alignment.title": {
+    "message": "다중 서열 정렬"
+  },
+  "docs.outline.workflows.multiple-sequence-alignment.scope": {
+    "message": "검토된 단백질 서열 세 개를 비교하고 보존 위치를 확인합니다."
+  },
+  "docs.outline.reference.v0331.title": {
+    "message": "v0.33.1"
+  },
+  "docs.outline.reference.v0331.scope": {
+    "message": "실시간 선별, 서열 도구, PDF 컨텍스트 및 진단."
   }
 }

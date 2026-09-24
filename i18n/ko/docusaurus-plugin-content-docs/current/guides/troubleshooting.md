@@ -1,7 +1,7 @@
 ---
 title: "문제 해결 및 일반적인 질문"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-24'
 ---
 
 # 문제 해결 및 일반적인 질문 {/* #troubleshooting-and-common-questions */}
@@ -129,7 +129,7 @@ Windows 오류는 HTTP 상태 코드의 운영 체제 코드입니다. 복구가
 
 독립 리셋 유틸리티를 사용하면 로컬 설치의 데이터를 삭제하고 시작 할 때만 사용하십시오. **그것은 영구적으로 나열된 데이터 및 저장된 자격 증명을 삭제; 그것을 수리하지 않고 그들을 백업합니다.** 복사 필요한 연구 파일 및 백업 외부 모든 목록 디렉토리 먼저. 앱을 다시 설치하면 이 데이터를 유지합니다.
 
-1. 으로 [공식 리셋 가이드](https://github.com/aipoch/open-science/blob/v0.30.1/scripts/windows-reset/README.md), 모두 다운로드 `reset-open-science.cmd` 으로 `reset-open-science.ps1` 의 특징 **다운로드 raw file**... 앱의 데이터 디렉토리 밖에서 함께 유지하십시오.
+1. 으로 [공식 리셋 가이드](https://github.com/aipoch/open-science/blob/v0.33.0/scripts/windows-reset/README.md), 모두 다운로드 `reset-open-science.cmd` 으로 `reset-open-science.ps1` 의 특징 **다운로드 raw file**... 앱의 데이터 디렉토리 밖에서 함께 유지하십시오.
 2. 트레이 프로세스를 포함하여 Quit Open-Science, 및 마무리 및 에이전트, Notebook, 헤드리스 및 WSL 프로세스를 닫습니다. 정상적인 Windows 계정을 사용하십시오; 관리자 모드가 필요하지 않습니다.
 3. 명령 프롬프트에서 다운로드 폴더에 열렸는데, `reset-open-science.cmd -Preview`을 실행합니다. 모든 제안 된 데이터, 구성, 프로필 및 실행 시간 캐시 경로 검토. 미리보기는 데이터를 삭제하지 않습니다.
 4. 그 위치를 검토하고 백업 한 후 만, 더블 클릭 `reset-open-science.cmd`. 삭제하기 전에 `RESET OPEN SCIENCE`을 정확히 입력하도록 요청합니다. 다른 응답 취소.
@@ -149,6 +149,17 @@ Windows 오류는 HTTP 상태 코드의 운영 체제 코드입니다. 복구가
 6. 동일한 가동이 변화 후에 성공한다는 것을 국가. 활성화된 버튼은 성공 상태가 아닙니다.
 
 기술 메시지 의미는 [진단 참고](../reference/diagnostics.md)에서 수집됩니다.
+
+### 1개의 회의를 위한 수출 진단 {/* #session-diagnostics */}
+
+1. 영향을 받은 세션을 열고 세션 메뉴에서 **Export diagnostics…**을 헤더 또는 **Export → Export diagnostics…**에서 선택합니다.
+2. 사용 가능한 소스를 검토합니다. **session.json** 및 **Session database records**은 선택한 세션에 관심. **메인.로그** 및 역사적인 응용 프로그램 로그는 다른 세션에서 메타 데이터를 포함 할 수 있습니다; 관련할 때만 선택한다.
+3. **Export**을 선택하고 로컬 목적지를 선택하고 **Diagnostics exported.** 사용 **Show in folder**를 기다리는 아카이브를 찾습니다.
+4. 공유하기 전에 그것의 표시 및 수출 통나무를 검사하십시오. 누락되거나 손상된 근원은 요약되거나 손상될지도 모릅니다; 아카이브의 존재는 혼자는 모든 소스가 캡처되지 않습니다.
+
+![지역 수출 전에 세션별 진단 소스 선택](/img/open-science/v0330/session-diagnostics.webp)
+
+Ordinary metadata 수출은 개인적인 내용 분야를 제외합니다. .science 수출이 민감한 콘텐츠 검사를 트리거하면 소스 목록은 redacted 스캐너 증거와 원본 조각 파일이 포함될 수 있습니다. **Original 민감한 파일은 기본적으로 검사되지 않습니다. 선택은 아카이브에서 원래 바이트를 포함합니다.** 필요한 소스만 선택하고 공유하기 전에 아카이브 및 스크린 샷을 검사합니다. 수출은 지역 주민을 유지하고 업로드 또는 모델 요청을하지 않습니다. 이것은 진단 증거, 연구 백업이 아닙니다; 연구 handover를 위한 [.science 패키지](research-packages.md)를 사용하십시오.
 
 ## 버그를보고 또는 커뮤니티에 요청 {/* #report-a-bug-or-ask-the-community */}
 

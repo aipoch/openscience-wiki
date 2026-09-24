@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "設定の概要"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # 設定の概要 {/* #settings-overview */}
@@ -56,3 +56,5 @@ last_update:
 ## モデル設定タブ {/* #model-tabs */}
 
 内置: **Model**, 使用 **Conversation models** プロバイダーとタスクモデルのため、 **Classification models** 任意のため Skill///////////////////////Connector 選択、および **Local parsing models** ローカルの解析リソース 分類は、モデル設定内のタブで、追加のトップレベルの設定パネルではありません。 [分類のセットアップ](../guides/models.md#classification-models) を参照してください。
+
+ヘッダ検索では、**⌘K / Ctrl+K** を使用します。 現在のパネルやダイアログの検索を集中するには、そのフィールドが利用可能になったときに **&lt;unk>K / Ctrl+Alt+K** を使用します。 [検索ショートカット](../guides/shortcuts.md#local-settings-search) を参照してください。

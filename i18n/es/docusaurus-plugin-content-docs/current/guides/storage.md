@@ -1,7 +1,7 @@
 ---
 title: "Almacenamiento y trabajos archivados"
 last_update:
-  date: '2026-09-11'
+  date: '2026-09-24'
 ---
 
 # Almacenamiento y trabajos archivados {/* #storage-and-archived-work */}
@@ -136,3 +136,7 @@ Antes de la eliminación permanente, exporte los insumos, salidas y registros de
 Para una descarga fallida, compruebe el destino elegido y el espacio libre. Para un archivo gestionado no disponible, confirme la ubicación y perfil de datos seleccionados antes de crear un proyecto de reemplazo. Para los paquetes perdidos después de la reubicación, compruebe el tiempo de ejecución reconstruido en lugar de asumir datos de investigación se perdió. Utilice [Solución de problemas](troubleshooting.md) para recoger la primera información útil de error y versión.
 
 Fuentes: [Panel de almacenamiento](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StoragePanel.tsx), [formulario de migración](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StorageMigrationModal.tsx). [Controles de reubicación de la biblioteca](https://github.com/aipoch/open-science/commit/d00c722d).
+
+## Recuperar datos después de una actualización {/* #historical-data-location */}
+
+Una ubicación de datos guardados existente tiene precedencia. Para una instalación más antigua completa sin una ubicación explícita guardada, Open-Science conserva la ubicación histórica y ahorra esa opción. Si esa carpeta guardada no está disponible, vuelva a conectarla antes de reiniciar. Si múltiples ubicaciones históricas contienen datos de investigación, la aplicación le pide que seleccione o recupere la carpeta original en lugar de elegir silenciosamente uno. Mantenga ambas copias hasta que haya comprobado sus proyectos y archivos; no crear una nueva ubicación vacía para resolver una pérdida aparente de datos.

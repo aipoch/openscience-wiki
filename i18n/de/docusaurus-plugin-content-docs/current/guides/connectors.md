@@ -1,7 +1,7 @@
 ---
 title: "Steckverbinder und Anmeldeinformationen"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -27,7 +27,7 @@ Weisen Sie ein Tag wie **Transkriptomik** einem Connector zu und finden Sie es d
 | Zustand | Was sie festlegt | Nächste Prüfung |
 | --- | --- | --- |
 | Im Verzeichnis aufgeführt | Die App kennt eine Connector Definition | Lesen Sie die tatsächlichen Werkzeugbeschreibungen |
-| Nur Main / In Gebrauch | Verfügbarkeit des Agenten | Bestätigen Sie den beabsichtigten Agenten und die Bindung der Fähigkeit |
+| Used by | Verfügbarkeit des Agenten | Bestätigen Sie den beabsichtigten Agenten und die Bindung der Fähigkeit |
 | Ausgewählte Kennung | Eine benannte Bindung existiert | Test-Authentifizierung für den beabsichtigten Dienst |
 | Instrumentenpolitik | Ob Anrufe erlaubt, angefordert oder blockiert sind | Inspect erinnerte Erlaubnis Vorrang |
 | Erfolgreiches Toolergebnis | Dieser spezielle Anruf wurde abgeschlossen | Validierung der zurückgegebenen Identifikatoren/Daten und Quelle |
@@ -37,18 +37,28 @@ Weisen Sie ein Tag wie **Transkriptomik** einem Connector zu und finden Sie es d
 
 Verwenden Sie **Search connectors**, um PubMed unter **Directory** zu finden; Die Liste enthält auch **Featured** und **Custom** Gruppen. Die Filterung gilt pro Gruppe, so dass eine andere Gruppe **Keine Connectors passen zu Ihrer Suche** sagen kann, während ein übereinstimmendes Ergebnis unten sichtbar bleibt.
 
-Verwenden Sie **Filter connectors by group**, **Filter Connectors by agent** und **Filter by Tag** zusammen mit der Suche. **Manage credentials** öffnet die gemeinsam genutzten Einstellungen für Kontakt-E-Mail/Credential. **Used by** zeigt Verfügbarkeit; **Manage Tags** organisiert ein Connector. Der Verfügbarkeits-Switch ermöglicht den Zugriff auf Main Agent; Der Spezialistenzugriff wird für jeden Spezialisten konfiguriert.
+Verwenden Sie **Filter connectors by group**, **Filter Connectors by agent** und **Filter by Tag** zusammen mit der Suche. **Manage credentials** öffnet die gemeinsam genutzten Einstellungen für Kontakt-E-Mail/Credential. **Used by** zeigt Verfügbarkeit; **Manage Tags** organisiert ein Connector. Verwenden Sie die **Manage access**-Steuerung der Ressource, um den Zugriff für Main-Agenten und Spezialisten an einem Ort zu überprüfen und anzupassen.
+
+#### Verwalten Sie den Zugriff für jeden Agenten {/* #resource-access */}
+
+1. Suchen Sie ein Connector unter **Settings → Connectors** und wählen Sie das **Manage access**-Steuerelement aus.
+2. Überprüfen Sie **Hauptagent** und die aufgeführten Spezialisten. Durchsuchen Sie die Rollenliste, wenn verfügbar. Ändern Sie nur die beabsichtigte Assoziation; Der Rollen-Editor bleibt eine weitere Möglichkeit, seine Fähigkeitsliste zu verwalten.
+3. Öffnen Sie das Popup erneut und überprüfen Sie **Used by**. Eine Bindung kann einem deaktivierten Specialist zugewiesen bleiben; Die Zuweisung ermöglicht diese Rolle nicht.
+
+![Connector-Zugang für Main-Agenten und einzelne Spezialisten](/img/open-science/v0330/resource-access.webp)
+
+Für eine Rolle mit **Full access** erzeugt das Ausschließen dieser Connector eine Ausnahme pro Ressource. Eine Rolle mit ausgewähltem Zugriff verwendet ihre explizite Liste. Marketplace Rollenbindungen können hier nur gelesen werden. Anmeldeinformationen, Serverbereitschaft und Betriebsgenehmigung sind von diesen Assoziationen getrennt; Das Zuweisen eines Connector schließt diese Schritte nicht ab.
 
 #### Mehrere Steckverbinder aktivieren oder deaktivieren {/* #enable-or-disable-several-connectors */}
 
-Öffnen Sie **Settings → Connectors → Manage**, filtern Sie die Liste und wählen Sie die vorgesehenen Connectors aus. Überprüfen Sie die ausgewählte Zählung, bevor Sie sie aktivieren oder deaktivieren, und überprüfen Sie dann jeden zurückgegebenen Zustand. Halten Sie nur die für Ihre Arbeit benötigten Dienste aktiviert. Änderungen der Massenverfügbarkeit enthalten keine Anmeldeinformationen, ändern die Genehmigungsrichtlinien für die einzelnen Werkzeuge oder gewähren einen Specialist-Zugang; Konfigurieren Sie diese separat.
+Öffnen Sie **Settings → Connectors**, filtern Sie die Liste, wählen Sie **Select multiple** in der entsprechenden Gruppe aus und wählen Sie die vorgesehenen Konnektoren aus. Überprüfen Sie die ausgewählte Zählung, bevor Sie sie aktivieren oder deaktivieren, und überprüfen Sie dann jeden zurückgegebenen Zustand. Halten Sie nur die für Ihre Arbeit benötigten Dienste aktiviert. Änderungen der Massenverfügbarkeit enthalten keine Anmeldeinformationen, ändern die Genehmigungsrichtlinien für die einzelnen Werkzeuge oder gewähren einen Specialist-Zugang; Konfigurieren Sie diese separat.
 
 #### PubMed: Verfügbarkeit, Tools und Genehmigungsrichtlinien {/* #pubmed-availability-tools-and-approval-policy */}
 
 1. Durchsuchen Sie **PubMed** und öffnen Sie seine Details.
 2. Erweitern Sie **search_articles**, um seine Beschreibung zu lesen. Es gibt eine Anzahl und eine Seite von PMIDs zurück und unterstützt PubMed-Abfrage-Tags, boolesche Operatoren, Daten und Sortierung.
 3. Wählen Sie **Require approval**, **Block** oder **Always allow** für den Zugriff, den Sie zulassen möchten. Genehmigungsanzeigen benötigen **Ask when no Session, Project, or Global permission applies.**
-4. PubMed aktivieren und **Used by** inspizieren. Die Verfügbarkeit für Main wird als **Main only** angezeigt; Die deaktivierte Verfügbarkeit zeigt **Not in use** an.
+4. Aktivieren Sie unter **Manage access** den **Main Agent** für PubMed und prüfen Sie anschließend **Used by**. Prüfen Sie im selben Fenster den Zugriff jedes gewünschten Specialist einzeln.
 
 ![PubMed Tool Beschreibung und Genehmigungskontrollen](/img/open-science/walkthrough-2026-09-08/64-pubmed-tool-policy.webp)
 

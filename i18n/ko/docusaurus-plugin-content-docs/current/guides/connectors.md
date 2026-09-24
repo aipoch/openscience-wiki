@@ -1,7 +1,7 @@
 ---
 title: "커넥터 및 자격"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -27,7 +27,7 @@ A Connector은 에이전트에 사용할 수있는 서비스 도구입니다. �
 | 상태 | 설치 방법 | 다음 검증 |
 | --- | --- | --- |
 | 자주 묻는 질문 | 앱은 Connector 정의를 알고 있습니다. | 실제 도구 설명 읽기 |
-| Main 전용 / 사용 중 | 에이전트 가용성 | 의도한 대리인 및 기능 바인딩을 확인하십시오 |
+| Used by | 에이전트 가용성 | 의도한 대리인 및 기능 바인딩을 확인하십시오 |
 | 선택 사항 | 이름의 바인딩 존재 | 적용된 서비스에 대한 테스트 인증 |
 | 공구 정책 | 전화가 허용 여부, 요청 또는 차단 | Inspect는 사전 허가를 기억했습니다 |
 | Successful 도구 결과 | 그 특정 호출 완료 | 반환된 식별자/데이터 및 소스를 검증합니다. |
@@ -37,18 +37,28 @@ A Connector은 에이전트에 사용할 수있는 서비스 도구입니다. �
 
 **Search connectors**을 사용하여 PubMed를 **Directory** 아래; 목록은 또한 **Featured** 및 **Custom** 그룹을 포함합니다. 필터링 그룹 당 적용, 그래서 다른 그룹은 **연결관은 당신의 수색에 일치합니다**을 말할 수 있습니다 일치 결과 아래에서 볼 수 있습니다.
 
-**Filter connectors by group**, **Filter Connectors by agent** 및 **Filter by Tag**를 사용하여 검색합니다. **Manage credentials**는 공유 연락처-email/credential 설정을 엽니다. **Used by**는 가용성을 보여줍니다; **Manage Tags**는 Connector을 구성합니다. 가용성 스위치는 Main 대리인을 위한 접근을 가능하게 합니다; 각 스페셜리스트에서 액세스를 설정합니다.
+**Filter connectors by group**, **Filter Connectors by agent** 및 **Filter by Tag**를 사용하여 검색합니다. **Manage credentials**은 공유 연락처-email/credential 설정을 엽니다. **Used by**는 가용성을 보여줍니다; **Manage Tags**는 Connector을 구성합니다. 리소스의 **Manage access** 제어를 사용하여 Main 에이전트 및 전문가에 대한 액세스를 검토하고 조정할 수 있습니다.
+
+#### 각 에이전트에 대한 액세스 관리 {/* #resource-access */}
+
+1. **Settings → Connectors** 아래 Connector을 찾아 **Manage access** 컨트롤을 선택하십시오.
+2. **메인 에이전트** 및 나열된 전문가를 검토하십시오. 사용할 때 역할 목록을 검색합니다. 단지 의도 된 협회를 변경; 역할 편집기는 또 다른 방법을 유지하여 기능 목록을 관리합니다.
+3. 팝업을 열고 **Used by**을 확인합니다. 바인딩은 비활성화 Specialist에 할당 될 수 있습니다; 그 역할을 할 수 없습니다.
+
+![Connector Main 에이전트 및 개별 전문가에 대한 액세스](/img/open-science/v0330/resource-access.webp)
+
+**Full access**의 역할에 대해, 이 Connector을 제외한 모든 리소스 예외를 만듭니다. 선택한 액세스와 역할은 명시된 목록을 사용합니다. Marketplace 역할 바인딩은 여기에서 읽기 전용일 수 있습니다. Credentials, 서버 읽기 및 가동 승인은 이 협회에서 분리됩니다; Connector을 할당하는 것은 그 단계를 완료하지 않습니다.
 
 #### 몇몇 연결관을 활성화하거나 비활성화하십시오 {/* #enable-or-disable-several-connectors */}
 
-**Settings → Connectors → Manage**을 열고, 목록을 필터링하고 의도한 커넥터를 선택합니다. 선택한 카운트를 활성화하거나 비활성화하기 전에, 다음 각 반환 상태 확인. 작업에 필요한 서비스만 유지하십시오. 대량 가용성 변화는 credentials를 공급하지 않으며, 공구 승인 정책 당 변화하거나 Specialist 접근 권한을 부여하지 않습니다; 그를 따로 설정한다.
+**Settings → Connectors**을 열고, 목록을 필터링하고, 관련 그룹에서 **Select multiple**을 선택하고 대상 커넥터를 선택하십시오. 선택한 카운트를 활성화하거나 비활성화하기 전에, 다음 각 반환 상태 확인. 작업에 필요한 서비스만 유지하십시오. 대량 가용성 변화는 credentials를 공급하지 않으며, 공구 승인 정책 당 변화하거나 Specialist 접근 권한을 부여하지 않습니다; 그를 따로 설정한다.
 
 #### PubMed : 가용성, 도구 및 승인 정책 {/* #pubmed-availability-tools-and-approval-policy */}
 
 1. **팟캐스트**을 검색하고 세부 사항을 엽니다.
 2. **search_articles**을 확장하여 설명을 읽습니다. PMIDs의 카운트와 페이지를 반환하고 PubMed 쿼리 태그, Boolean 연산자, 날짜 및 정렬을 지원합니다.
 3. **Require approval**, **Block** 또는 **Always allow**를 선택하십시오. Require 승인 표시 **Ask when no Session, Project, or Global permission applies.**
-4. pubMed를 활성화하고 **Used by**을 검사합니다. Main에 대한 가용성은 **Main only**로 표시됩니다. 사용 가능한 가용성은 **Not in use**을 보여줍니다.
+4. **Manage access**에서 PubMed의 **Main Agent**를 활성화한 다음 **Used by**를 확인합니다. 같은 팝업에서 이 기능을 사용할 각 Specialist의 설정을 개별적으로 확인합니다.
 
 ![PubMed 도구 설명 및 승인 관리](/img/open-science/walkthrough-2026-09-08/64-pubmed-tool-policy.webp)
 

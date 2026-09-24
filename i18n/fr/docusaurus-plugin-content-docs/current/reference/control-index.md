@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Index de la page et du contrôle"
 description: "Trouvez chaque bouton Open-Science documenté, entrée, commutateur et résultat par page."
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # Index de la page et du contrôle {/* #page-and-control-index */}
@@ -193,3 +193,14 @@ Démarrer/stop/réactualiser, copier/ouvrir l'URL et QR; Configuration/reprise/d
 ### Archivé {/* #archived */}
 
 Gestion du projet, restauration du projet, suppression du projet; Restaurer/Supprimer la session; confirmation de suppression Annuler/confirmer.
+
+
+## Examen de la littérature et accès aux ressources {/* #screening-and-access */}
+
+| Zone | Contrôles | Guider |
+| --- | --- | --- |
+| Bibliothèque | Collection intelligente, Portée, Critères d'inclusion, Critères d'exclusion, Utiliser le texte complet disponible, Aperçu des règles en direct, Mettre à jour automatiquement | [Collections intelligentes](../guides/library.md#smart-collections) |
+| Collection intelligente | Essais, opinions sur les décisions, détails de l'évaluation, Inclure, Exclure, Utiliser la décision modèle, exporter des références | [Écran et documents d ' examen](../workflows/screen-literature.md) |
+| Modèles de classement | Collections intelligentes indépendantes et fixations automatiques de sélection des capacités; Tester le modèle | [Modèle contraignant](../guides/models.md#smart-collection-model) |
+| Skills / Connecteurs | Gérer l'accès, Main Agent, les associations Specialist, les liaisons de rôle en lecture seule | [Accès aux ressources](../guides/connectors.md#resource-access) |
+| Session | Exporter des diagnostics, des sources sélectionnées, Exporter, Afficher dans le dossier | [Exportation de diagnostics locaux](../guides/troubleshooting.md#session-diagnostics) |

@@ -1,7 +1,7 @@
 ---
 title: "모델 및 작업 정책"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # 모델 및 작업 정책 {/* #models-and-task-policies */}
@@ -79,11 +79,11 @@ auxiliary 요청이 완료된 후 저장된 제목과 설명을 확인합니다.
 
 출처: [모델 선택](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx), [시나리오 정책](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx).
 
-## 선택 분류 모델 {/* #classification-models */}
+## 은 {/* #classification-models */}
 
-**Settings → Model → Classification models**을 엽니다. 분류 서비스는 요청이 시작되기 전에 관련 Skills 및 커넥터를 선택합니다. Main을 대체하거나 채팅 모델을 추가하지 않습니다. **Use default method**에서 **Automatic capability selection**을 떠날 수 있습니다; Skills와 연결관은 아직도 그것 없이 작동합니다.
+**Settings → Model → Classification models**을 엽니다. 분류 서비스는 2개의 독립적인 의무가 있습니다: **Automatic capability selection**와 **Smart collections**. 먼저 요청하기 전에 관련 Skills 및 커넥터를 선택합니다. Main을 대체하거나 채팅 모델을 추가하지 않습니다. **Use default method**에서 **Automatic capability selection**을 떠날 수 있습니다; Skills와 연결관은 아직도 그것 없이 작동합니다.
 
-v0.31.1에서 이 서비스는 **Codex Chat Completions** 또는 **CodeBuddy**를 사용하는 기본 대화에 적용됩니다. Codex 구독이나 모든 프레임워크가 지원된다는 뜻은 아닙니다. 현재 요청과 기능의 이름 및 설명만 분류 서비스에 전달됩니다. 서비스를 사용할 수 없거나 결과가 불명확하면 기본 방식을 사용합니다.
+이 서비스를 통한 자동 기능 선택은 **Codex Chat Completions** 또는 **CodeBuddy**를 사용하는 주 대화에서 지원됩니다. Codex 구독 세션은 기존 기능 로딩 방식을 유지합니다. 이 기능은 현재 요청과 기능 이름 및 설명만 전송합니다. 서비스를 사용할 수 없거나 분류 결과가 불명확하면 기본 방식으로 돌아갑니다.
 
 ![기본 기능 선택 및 선택 분류 서비스 항목](/img/open-science/v0311/classification-models.webp)
 
@@ -93,7 +93,7 @@ v0.31.1에서 이 서비스는 **Codex Chat Completions** 또는 **CodeBuddy**�
 4. **Automatic capability selection**의 밑에, 저장된 서비스를 선정하고 그것의 카탈로그에서 제안된 모형. **Check model**을 사용하여 연결을 확인합니다.
 5. 지원되는 주요 대화에서 경계 요청을 시도하고, 선택한 실제 도구를 검사합니다. 성공적인 모델 검사는 혼자 연구 결과를 확인하지 않습니다.
 
-서비스 제거는 기본 메소드에 바인딩을 반환합니다. 별도의 저장 서비스 키가 제거됩니다; 계정을 공유하는 서비스는 계정이나 열쇠를 삭제하지 않습니다.
+서비스 반환 자동 기능 선택 기본 방법 및 그 서비스 unconfigured에 관련된 모든 스마트 컬렉션을 나타낸다. 별도의 저장 서비스 키가 제거됩니다; 계정을 공유하는 서비스는 계정이나 열쇠를 삭제하지 않습니다.
 
 대화 모델에 [공급자 설정](providers.md)을 참조하십시오. 로컬 PDF 파싱 리소스는 **Local parsing models**, 별도의 탭에서 관리됩니다.
 
@@ -104,6 +104,18 @@ Jev를 사용할 때는 **Automatic capability selection**에서 **TypeSafe AI /
 ![TypeSafe AI / Jev Latest 선택 및 Check passed 표시, API 키는 숨김](/img/open-science/v0311/classification-connected.webp)
 
 예를 들어, Codex Chat Completions 세션에서 공개 TP53 조회는 `mcp-genes`을 선택하기 위해 Jev를 사용할 수 있습니다. 활동에서 선택한 기능을 검사하고 연구 결과에 대한 데이터베이스 응답을 검사합니다. Codex 구독 세션은 기존의 기능 로드 경로를 사용합니다. 저장된 Jev 바인딩은 그 세션이 Jev를 사용하지 않습니다.
+
+### 스마트 컬렉션의 모델 {/* #smart-collection-model */}
+
+1. **Settings → Model → Classification models**을 열고 이미 추가하지 않은 경우 호환 서비스를 저장합니다.
+2. **Smart collections**의 밑에, 그것의 제안한 모형의 서비스 그리고 하나를 선정하고, 그 후에 **Check model**를 선택합니다. 이 바인딩은 모든 똑똑한 수집에 의해 공유됩니다; **Automatic capability selection**의 독립적입니다.
+3. **테스트 성공**을 확인한 후 라이브러리로 돌아가고 작은 범위의 컬렉션을 만들 수 있습니다. 스마트 컬렉션에는 **기본 모델 없음**이 있습니다. 참조를 증발하기 전에이 바인딩을 구성하십시오.
+
+Main는 **Codex subscription**를 사용하여 계속할 수 있습니다. 자체 분류 바인딩을 사용하여 라이브러리를 방지하지 않습니다. 아래 예제는 심사를 위해 **TypeSafe AI / Jev 최신 정보**을 선택합니다.
+
+![Smart 컬렉션과 기능 선택은 서비스 키로 분리 된 바인딩이 있습니다.](/img/open-science/v0330/classification-smart.webp)
+
+Screening은 수집 규칙과 참조 증거를이 서비스에 보냅니다. **Use available full text**을 끄고 제목과 요약을 사용합니다. PDF 텍스트를 보낼 수 있도록 설정; 긴 문서는 관련 구문을 사용하며 사용할 수 없거나 읽을 수없는 PDF은 제목과 요약으로 돌아갑니다. 각 결정에 대한 증거를 확인합니다. [Smart Screening 워크플로우](../workflows/screen-literature.md)을 따라 실제 종이 세트를 평가하고 검토하십시오.
 
 ### 주문 분류 서비스 {/* #custom-classification */}
 

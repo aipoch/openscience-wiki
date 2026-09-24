@@ -1,7 +1,7 @@
 ---
 title: "モデルとタスクポリシー"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # モデルとタスクポリシー {/* #models-and-task-policies */}
@@ -79,11 +79,11 @@ Main、Subagent、Viewer、Vision、Session の詳細は異なるモデルが必
 
 ソース: [モデル選定](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx)、[シナリオポリシー](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx)。
 
-## オプションの分類モデル {/* #classification-models */}
+## 分類モデル {/* #classification-models */}
 
-**Settings → Model → Classification models** を開きます。 分類サービスは要求が始まる前に関連したSkillsおよびコネクターを選ぶのを助けます。 Mainを交換したり、チャットモデルを追加したりしません。 **Use default method**で**Automatic capability selection**を離れることができます。 Skillsとコネクタは、まだそれなしで動作します。
+**Settings → Model → Classification models** を開きます。 分類サービスは2つの独立した結合を持っています:**Automatic capability selection**および**Smart collections**。 最初に、要求が始まる前に関連したSkillsおよびコネクターを選ぶのを助けます。 Mainを交換したり、チャットモデルを追加したりしません。 **Use default method**で**Automatic capability selection**を離れることができます。 Skillsとコネクタは、まだそれなしで動作します。
 
-v0.31.1 では、このサービスは **Codex Chat Completions** または **CodeBuddy** を使うメイン会話で利用されます。Codex サブスクリプションや、すべてのフレームワークで利用できるという意味ではありません。送信されるのは現在のリクエストと、機能の名前・説明だけです。サービスが利用できない場合や結果が不明確な場合は、標準の方法が使われます。
+このサービスによる自動機能選択は、**Codex Chat Completions** または **CodeBuddy** を使うメイン会話で利用できます。Codex サブスクリプションのセッションでは既存の機能読み込み方式を使います。この機能で送信するのは現在のリクエストと機能の名前・説明のみです。サービスが利用できない場合や分類結果が不明確な場合は、既定の方式に戻ります。
 
 ![デフォルト機能選択とオプションの分類サービスエントリ](/img/open-science/v0311/classification-models.webp)
 
@@ -93,7 +93,7 @@ v0.31.1 では、このサービスは **Codex Chat Completions** または **Co
 4. **Automatic capability selection** では、保存されたサービスと、カタログで提供されるモデルを選択します。 **Check model** を使用して接続を確認します。
 5. サポートされているメインの会話でバインドされたリクエストを試し、選択した実際のツールを調べます。 成功したモデルチェックだけでは、研究結果が確認されていない。
 
-サービスを取り戻すと、デフォルトメソッドへのバインディングが返されます。 別々に保存されたサービスキーはそれによって取除かれます; アカウントを共有するサービスを削除すると、そのアカウントまたはそのキーを削除しません。
+サービスを取り戻すと、デフォルトメソッドに自動機能選択が返され、そのサービスが構成されていないことに、任意のスマートコレクションをバインディングします。 別々に保存されたサービスキーはそれによって取除かれます; アカウントを共有するサービスを削除すると、そのアカウントまたはそのキーを削除しません。
 
 [プロバイダーのセットアップ](providers.md) は、会話モデルの形式です。 ローカルPDFパーシングリソースは、別タブの**Local parsing models**の下で管理されます。
 
@@ -104,6 +104,18 @@ Jev を使う場合は、**Automatic capability selection** で **TypeSafe AI / 
 ![TypeSafe AI / Jev Latest を選択し、API キーを伏せた状態で Check passed を表示](/img/open-science/v0311/classification-connected.webp)
 
 たとえば、Codex Chat Completionsセッションで公開TP53の検索では、Jevを使用して`mcp-genes`を選択することができます。 選択した機能の検査を行い、研究結果のデータベース応答を検査します。 Codexサブスクリプションセッションは、既存の機能読み込みパスを使用します。 保存された Jev の結合は、これらのセッションが Jev を使用することはありません。
+
+### スマートコレクションのモデルを埋め込む {/* #smart-collection-model */}
+
+1. **Settings → Model → Classification models** を開き、既に追加されていない場合は、対応するサービスを保存します。
+2. **Smart collections** では、サービスと提供されているモデルの 1 つを選択し、**Check model** を選択します。 この結合はすべてのスマートなコレクションによって共有されます; それは**Automatic capability selection**の独立しています。
+3. **テスト成功** を確認し、ライブラリに戻り、小規模で明確にスコープ付けされたコレクションを作成します。 スマートコレクションには**デフォルトモデルなし**があります:参照を評価する前にこの結合を構成します。
+
+Main は **Codex subscription** を引き続き使用できます。 機能読み込みのルートは、ライブラリが独自の分類バインディングを使用するのを防ぐものではありません。 以下の例では、スクリーニング用の**TypeSafe AI/Jev最新**を選択します。
+
+![スマートなコレクションおよび機能選択はサービス キーによって隠される別の結合を、持っています](/img/open-science/v0330/classification-smart.webp)
+
+収集ルールと参照証拠をこのサービスに送信します。 **Use available full text**オフでは、タイトルと抽象化を使用します。 PDF テキストを送受信する。 長い文書は関連した通路を使用し、利用できなくなったり、読まれない PDF はタイトルと抽象化に戻ります。 各決定書の証拠を確認してください。 [スマートスクリーニングワークフロー](../workflows/screen-literature.md)をフォローして、実際の論文のセットを評価し、レビューします。
 
 ### カスタム分類サービス {/* #custom-classification */}
 

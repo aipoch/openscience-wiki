@@ -2,7 +2,7 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -22,6 +22,14 @@ Ein **.science** Forschungspaket bringt Konversationszweige, Dateien und aufgeze
 Ein Paket kann hochgeladenes Forschungsmaterial, Konversationstext und generierte Ergebnisse enthalten. Überprüfen Sie den Inhalt vor dem Teilen. Es handelt sich um eine unabhängige Kopie: Durch das Löschen lokaler Arbeiten werden keine Pakete entfernt, die bereits an andere gesendet wurden.
 
 Side Chat-Konversationen, private [Lesebuchzeichen](bookmarks.md) und deren Notizen sind vom Paket ausgeschlossen. Setzen Sie die Informationen, die der Empfänger benötigt, in einen gespeicherten Bericht oder die Konversation ein, bevor Sie exportieren.
+
+## Überprüfen Sie die Version des Empfängers {/* #package-compatibility */}
+
+Pakete, die von **v0.33.0** exportiert werden, enthalten **RO-Kate 1.1**-Metadaten in `ro-crate-metadata.json`. Es beschreibt den endgültig exportierten Snapshot und ausgewählte unveränderliche Dateien, einschließlich Dateinamen, Medientypen und deren Beziehungen. Re-Export baut diese Referenzen für den neuen Snapshot wieder auf.
+
+Verwenden Sie **v0.33.0 oder ein später kompatibler Reader**, um diese neuen Exporte zu öffnen: Sie deklarieren die erforderliche `ro-crate`-Fähigkeit. Aktualisieren einer älteren Empfangs-App vor dem Import; Das Umbenennen oder Entfernen der Metadaten ist kein Kompatibilitäts-Fix. Bestehende ältere Pakete bleiben ohne Migration lesbar.
+
+Diese Metadaten wandern innerhalb des `.science`-Pakets. Es führt keine Berechnungen erneut aus, gewährt keine Anmeldeinformationen oder ersetzt den [Überprüfung der Reproduzierbarkeit einer Artefaktversion](reproducibility.md).
 
 ## Exportieren eines Forschungspakets {/* #export-the-session */}
 

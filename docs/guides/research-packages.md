@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -22,6 +22,14 @@ A **.science** research package brings conversation branches, files and recorded
 A package can contain uploaded research materials, conversation text and generated results. Review its contents before sharing. It is an independent copy: deleting local work does not remove packages already sent to others.
 
 Side Chat conversations, private [reading bookmarks](bookmarks.md) and their notes are excluded from the package. Put information the recipient needs into a saved report or the conversation before exporting.
+
+## Check the recipient’s version {/* #package-compatibility */}
+
+Packages exported by **v0.33.0** include **RO-Crate 1.1** metadata in `ro-crate-metadata.json`. It describes the final exported snapshot and selected immutable files, including filenames, media types and their relationships. Re-export rebuilds those references for the new snapshot.
+
+Use **v0.33.0 or a later compatible reader** to open these new exports: they declare the required `ro-crate` capability. Update an older receiving app before importing; renaming or removing the metadata is not a compatibility fix. Existing older packages remain readable without migration.
+
+This metadata travels inside the `.science` package. It does not rerun calculations, grant credentials or replace the [reproducibility checks on an artifact version](reproducibility.md).
 
 ## Export a research package {/* #export-the-session */}
 

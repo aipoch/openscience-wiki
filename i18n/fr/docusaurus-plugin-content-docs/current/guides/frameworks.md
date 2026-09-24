@@ -1,7 +1,7 @@
 ---
 title: "Installation et commutation d'agents"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-24'
 ---
 
 # Installation et commutation d'agents {/* #installing-and-switching-agents */}
@@ -37,6 +37,8 @@ La page inspectée offrait Codex, Claude Agent, OpenCode et CodeBuddy. Les sourc
 Pour OpenCode, **Install → App-managed download (recommended)** télécharge un temps d'exécution autonome. La page montrait la résolution, la progression de téléchargement, puis une carte Installée avec sa version et son chemin. Sélectionnez cette carte, validez **Passer à OpenCode ?** et choisissez un modèle compatible. L'exemple de connexion locale a retourné une réponse complète; voir [configuration du fournisseur local](./providers.md#connect-a-local-model-endpoint) pour ses limites API et jetons.
 
 Pour Codex, l'adaptateur natif d'exécution et ACP doit passer la détection comme une paire compatible. L'installation d'un seul composant n'est pas l'équivalent d'un moteur prêt. L'accès à l'abonnement du fournisseur est couvert par [Configuration du fournisseur](./providers.md).
+
+Dans v0.33.0, **Claude Agent** nécessite Claude CLI **2.1.118 ou supérieur**. Si la détection signale une version non prise en charge, mettez à jour l'installation détectée par sa méthode d'installation, puis utilisez **Re-detect** et vérifiez l'état de préparation avant de commencer une session. Mettre à jour un autre CLI sur votre chemin ne répare pas l'installation affichée sur la carte.
 
 ## Mettre à jour un programme d'exécution Codex géré par app {/* #update-codex */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Controles y referencia de teclado"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # Controles y referencia de teclado {/* #controls-and-keyboard-reference */}
@@ -63,3 +63,5 @@ App global search covers projects, sessions, message text, uploaded/generated fi
 La búsqueda del wiki es separada: indexa los títulos de documentación, títulos y pasajes corporales en el idioma actual. Un término como “Inbox” puede coincidir con un párrafo aquí incluso si está ausente del título de sesión de una aplicación.
 
 Referencia técnica: [vinculantes para la aplicación](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [composer teclado](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [comportamiento cercano](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [búsqueda mundial](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx).
+
+Ajustes panel/búsqueda de diálogo utiliza **XXXK** en macOS y **Ctrl+Alt+K** en Windows/Linux. **XXXK / Ctrl+K** sigue centrando la búsqueda de encabezados Ajustes. Ver [alcance atajo](../guides/shortcuts.md#local-settings-search).

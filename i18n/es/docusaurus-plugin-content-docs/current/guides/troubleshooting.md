@@ -1,7 +1,7 @@
 ---
 title: "Solución de problemas y preguntas comunes"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-24'
 ---
 
 # Solución de problemas y preguntas comunes {/* #troubleshooting-and-common-questions */}
@@ -129,7 +129,7 @@ Los errores Windows son códigos de sistemas operativos, distintos de los códig
 
 Utilice la utilidad de reseteo independiente sólo cuando usted tiene la intención de descarte los datos de la instalación local y empezar de nuevo. **Elimina permanentemente los datos enumerados y las credenciales guardadas; no las repara ni las respalda.** Copia los archivos de investigación necesarios y copias de seguridad fuera de todos los directorios listados primero. La reinstalación de la aplicación por sí sola conserva estos datos.
 
-1. Desde el [guía oficial de reasentamiento](https://github.com/aipoch/open-science/blob/v0.30.1/scripts/windows-reset/README.md), descargar tanto `reset-open-science.cmd` como `reset-open-science.ps1` utilizando **Descargar archivo crudo**. Manténlos juntos fuera de los directorios de datos de la aplicación.
+1. Desde el [guía oficial de reasentamiento](https://github.com/aipoch/open-science/blob/v0.33.0/scripts/windows-reset/README.md), descargar tanto `reset-open-science.cmd` como `reset-open-science.ps1` utilizando **Descargar archivo crudo**. Manténlos juntos fuera de los directorios de datos de la aplicación.
 2. Quit Open-Science, incluyendo su proceso de bandeja, y terminar y cerrar su agente, Notebook, sin cabeza y procesos WSL. Utilice su cuenta Windows normal; El modo administrador no es necesario.
 3. En Command Prompt se abrió en la carpeta de descarga, ejecute `reset-open-science.cmd -Preview`. Revise todos los datos propuestos, configuración, perfil y ruta de tiempo de ejecución. La vista previa no elimina los datos.
 4. Sólo después de revisar y respaldar esas ubicaciones, haga doble clic en `reset-open-science.cmd`. Le pide que escriba `RESET OPEN SCIENCE` exactamente antes de la eliminación; cualquier otra respuesta cancela.
@@ -149,6 +149,17 @@ Si un proceso está funcionando o no puede ser inspeccionado, o un camino es ins
 6. Declara si la misma operación tiene éxito después del cambio. Un botón habilitado no es la condición de éxito.
 
 Los significados del mensaje técnico se recogen en [Referencia de diagnóstico](../reference/diagnostics.md).
+
+### Diagnósticos de exportación para un período de sesiones {/* #session-diagnostics */}
+
+1. Abra la sesión afectada y elija **Export diagnostics…** en su encabezado, o **Export → Export diagnostics…** en el menú de sesión.
+2. Revise las fuentes disponibles. **session.json** y **Session database records** se refieren a la sesión seleccionada. **main.log** y los registros de aplicaciones históricas también pueden contener metadatos de otras sesiones; seleccione sólo cuando sea relevante.
+3. Elija **Export**, seleccione un destino local, y espere a **Diagnostics exported.** Use **Show in folder** para localizar el archivo.
+4. Inspeccione su registro manifiesto y exportador antes de compartir. Una fuente desaparecida o dañada puede ser resumida o o omitida; la existencia del archivo por sí sola no prueba que todas las fuentes fueron capturadas.
+
+![Seleccionar las fuentes de diagnóstico específicas de sesión antes de una exportación local](/img/open-science/v0330/session-diagnostics.webp)
+
+La exportación de metadatos ordinarios excluye los campos de contenido privado. Si una exportación .science activa el control de contenido sensible, la lista de fuentes también puede contener evidencia de escáner redacted y los archivos marcados original. **Los archivos sensibles originales se descontrolan por defecto; seleccionar uno incluye sus bytes originales en el archivo.** Seleccione sólo las fuentes necesarias e inspeccione el archivo y capturas de pantalla antes de compartir. Exportar se mantiene local y no hace ninguna solicitud de subida o modelo. Esto es evidencia diagnóstica, no una copia de seguridad de investigación; use un [Paquete .science](research-packages.md) para una entrega de investigación.
 
 ## Informar un error o preguntar a la comunidad {/* #report-a-bug-or-ask-the-community */}
 

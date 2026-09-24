@@ -1,7 +1,7 @@
 ---
 title: "Sessions et sections"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -161,4 +161,9 @@ Dans le projet GSE60450, fourchez la session QC existante et ouvrez la `gse60450
 
 ## Lire la carte d'information de la session {/* #session-information */}
 
-Sélectionnez le titre de la session pour voir son nombre, sa description, sa source, les heures de création/mise à jour, le nombre de messages pour la branche actuelle et le nombre d'objets. Utilisez **Pin** pour garder la session facile à trouver, ou **Modifier la session** pour changer son titre et sa description. Un diviseur **Suite du chat** se lie de nouveau au tour de la source enregistrée.
+Sélectionnez le titre de la session pour voir son nombre, sa description, sa source, les heures de création/mise à jour, le nombre de messages pour la branche actuelle et le nombre d'objets. Utilisez **Pin** pour garder la session facile à trouver, ou **Modifier la session** pour changer son titre et sa description. Un diviseur **Suite d’une conversation** se lie de nouveau au tour de la source enregistrée.
+
+
+## Diagnostic des sessions d'exportation {/* #session-diagnostics */}
+
+Utilisez le contrôle **Export diagnostics…** de l'en-tête de session ou **Export → Export diagnostics…** du menu de session pour collecter des sources de diagnostic sélectionnées dans une archive locale. Les journaux d'application peuvent inclure des métadonnées en dehors de la session sélectionnée. Examiner la liste des sources, le message d'achèvement et le contenu des archives avant de partager; Voir [étapes diagnostiques de l'exportation](troubleshooting.md#session-diagnostics).

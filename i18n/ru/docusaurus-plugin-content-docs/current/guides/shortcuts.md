@@ -1,7 +1,7 @@
 ---
 title: "Ярлыки клавиатуры"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -77,3 +77,7 @@ import Screenshot from '@site/src/components/Screenshot';
 Проверьте, в каком поле или диалоге есть фокус, закройте несвязанные наложения и попробуйте видимую кнопку. На macOS некоторые клавиши Home/End требуют сочетания клавиш Fn. Ярлыки ОС / браузера могут перехватывать ключи до того, как приложение их увидит. Окно рабочего стола и точка входа в браузер не должны обрабатывать каждый ключ одинаково.
 
 Источники: [Глобальная поисковая клавиатура](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx), [предварительный просмотр вкладок](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/PreviewPanel.tsx), [очередь](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx).
+
+## Поиск в пределах текущей панели настроек {/* #local-settings-search */}
+
+В настройках **&lt;unk>K** (macOS) или **Ctrl+K** (Windows/Linux) фокусирует поиск заголовка по настройкам. **&lt;unk>K** или **Ctrl+Alt+K** фокусирует поле поиска в текущей панели или диалоге. Для локального ярлыка необходимо доступное поле локального поиска; Он не открывает общий поиск приложений или текстовый поиск PDF.

@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -148,9 +148,19 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 v0.30.2는 PubMed 저자 이름 파싱을 수정하여 성, 초기 및 suffixes를 포함한 수정합니다. metadata를 가져 오거나 완료하면 제작자 필드를 검사하고 연결된 소스에 대한 생성 된 인용을 검사합니다. 업데이트가 라이브러리에 저장 된 메타데이터를 다시 작성하는 것을 가정하지 마십시오.
 
+## 스마트 컬렉션 {/* #smart-collections */}
+
+**Smart collection**을 **New collection**에서 화면 라이브러리 레코드에 명시된 규칙에 켭니다. **Scope** (모든 참조, 프로젝트 또는 수집)을 선택하면 **Inclusion criteria** 및 옵션 **Exclusion criteria**를 추가하고 증거와 업데이트 옵션을 선택합니다. 일반 수집 설명과 달리 smart-collection descriptions는 모델 평가에 대한 컨텍스트를 제공합니다.
+
+**Settings → Model → Classification models → Smart collections**를 먼저 구성하십시오; 이 기능은 기본 모델이 없습니다. **Included**, **Needs review**, **Excluded** 및 **Not evaluated**는 일치하고, 불확실한, 거절하고 unevaluated 기록 구별합니다. **Evaluation details**을 열고 **Include** 또는 **Exclude**를 선택하기 전에 실제 소스를 검토하십시오. 수동 결정은 모델을 복원 할 때까지 업데이트 살아남습니다.
+
+**Trial run (up to 20 references)** 결과 저장. **Live rule preview**은 저장하지 않고 초안을 평가합니다. **Update automatically**은 선택한 범위의 새로운 또는 변경된 레코드에 적용됩니다. 그것은 opt-in이고 분류 비용을 incur 할 수 있습니다. 도서관 밖에서 새로운 종이를 발견하지 않습니다. 검색에서 [스크린 워크플로우](../workflows/screen-literature.md)을 따르고 수출을 검토했습니다.
+
+실행 중에 **Screening process**을 열고 진행 상황을 검사하고 **Pause / 이력서 분석**을 일시 중지하거나 계속 사용하십시오. 규칙, 종이 또는 저장된 진도에 변경은 이전 실행을 비-재무할 수 있습니다. **결과로 돌아가기**은 결정 목록으로 돌아갑니다. **Project** 및 **컬렉션** 범위 마커는 소스 유형과 링크를 구분합니다. 그들은 다중 사용자 공유 권한이 없습니다.
+
 ## 허용된 레코드를 구성 {/* #organize-the-accepted-records */}
 
-수집 만들기 **New collection**, 채 **Name** 그리고 선택 **Description**, 다음 **Create collection**... 설명은 조직 텍스트, 에이전트 Context하지 않습니다. 취소 / 취소는 초안을 삭제합니다. 모든 참조 및 사용 **Add to collection** 또는 **Add to project**의 레코드를 선택하십시오. 선택은 가동 후에 명확합니다; 다른 목적지를 추가하면 다시 선택.
+일반 컬렉션 만들기 **New collection** 으로 **Smart collection** 떨어져서, 채우기 **Name** 그리고 선택 **Description**, 다음 **Create collection**... 설명은 조직 텍스트, 에이전트 Context하지 않습니다. 취소 / 취소는 초안을 삭제합니다. 모든 참조 및 사용 **Add to collection** 또는 **Add to project**의 레코드를 선택하십시오. 선택은 가동 후에 명확합니다; 다른 목적지를 추가하면 재 선택.
 
 상세보기에서, 프로젝트 및 수집 체크 박스는 링크를 보여줍니다. **Manage Tags**은 조직 태그를 추가합니다. 테이블의 1-to-five-star 등급은 자동적인 증거 질 점수가 아닌 당신의 annotation입니다. **Clear selection**는 기록이 변경되지 않았습니다.
 

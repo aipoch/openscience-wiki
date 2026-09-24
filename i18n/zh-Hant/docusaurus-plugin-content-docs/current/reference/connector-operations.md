@@ -2,7 +2,7 @@
 title: "Connector 操作引數參考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.32.0** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.32.0.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
+每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.33.1** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.1.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
 
 
 ## 化學 {/* #family-1 */}
@@ -618,6 +618,47 @@ const result = await host.mcp("genes", "search_uniprot_entries", {"gene": "TP53"
 const result = await host.mcp("genes", "get_uniprot_entries", {"accessions": ["P04637", "P38398"], "fields": ["accession", "id", "protein_name", "gene_names", "organism_name", "length"]})
 ```
 
+### `submit_uniprot_id_mapping` {/* #submit_uniprot_id_mapping */}
+
+向 UniProt 提交最多 100000 個識別符號的批次對映。from_db 與 to_db 必須是 UniProt API 支援的準確資料庫名稱，支援組合見其 configure/idmapping/fields。僅 from_db=Gene_Name 可指定 taxon_id，用於限定物種。每個 ID 獨立成項，不含空白或分隔符；保留大小寫和版本，精確重複項只提交一次。儲存返回的 job_id，再查詢狀態和分頁結果。此操作不自動重試或輪詢；若提交響應丟失，遠端任務可能已存在，不要盲目重提。結果最長保留約 7 天；關閉應用或取消本地請求不會取消遠端任務。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `from_db` | string | **必填**; minLength: 1; maxLength: 100; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_-&#93;&#42;$&quot; |
+| `to_db` | string | **必填**; minLength: 1; maxLength: 100; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_-&#93;&#42;$&quot; |
+| `ids` | array of string | **必填**; minItems: 1; maxItems: 100000 |
+| `taxon_id` | integer | 可選; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("genes", "submit_uniprot_id_mapping", {"from_db":"Gene_Name","to_db":"UniProtKB","ids":["TP53","BRCA1"],"taxon_id":9606})
+```
+
+### `get_uniprot_id_mapping_status` {/* #get_uniprot_id_mapping_status */}
+
+查詢一次已有 UniProt 對映任務。NEW／RUNNING 時至少間隔 3 秒再查詢；FINISHED 後分頁獲取全部結果。上游 ERROR 規範化為 FAILED，表示任務失敗，不等於識別符號未匹配。保留 messages 中的錯誤，未知或過期任務的 HTTP 錯誤會向上傳遞。此操作不建立任務，也不自動輪詢。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; minLength: 1; maxLength: 100; pattern: &quot;^&#91;A-Za-z0-9_-&#93;+$&quot; |
+
+```javascript
+const result = await host.mcp("genes", "get_uniprot_id_mapping_status", {"job_id":"ecuuh9h0Md"})
+```
+
+### `get_uniprot_id_mapping_results` {/* #get_uniprot_id_mapping_results */}
+
+獲取已完成 UniProt 對映任務的一頁 from/to 對。保持 job_id 和 page_size 不變，使用 next_cursor 繼續，直到 has_more=false。一對多對映必須保留；同一輸入的結果可能跨頁，彙總全部頁面後再判斷。收集各頁明確返回的 failed_ids，不要因某頁沒有輸入項就推斷其未匹配。total_results 是對映行數，不是成功輸入 ID 數；one_to_many_in_page 僅反映當前頁。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; minLength: 1; maxLength: 100; pattern: &quot;^&#91;A-Za-z0-9_-&#93;+$&quot; |
+| `page_size` | integer | 可選; default: 100; minimum: 1; maximum: 500 |
+| `cursor` | string | 可選; minLength: 1; maxLength: 4096; pattern: &quot;^&#91;^\\s\\u0000-\\u001f\\u007f&#93;+$&quot; |
+
+```javascript
+const result = await host.mcp("genes", "get_uniprot_id_mapping_results", {"job_id":"ecuuh9h0Md","page_size":100})
+```
+
 ### `map_reactome_pathways` {/* #map_reactome_pathways */}
 
 將基因符號或 UniProt 登入號對映到 Reactome 通路。id_type 與輸入型別匹配，標識不得重複。compact 返回每項低層通路及 Reactome 釋出資訊；完整模式增加實體、反應統計和 identifiers_not_found。物種及分子資源檢視應與研究輸入一致。 按請求的物種對映通路，不會把標識投影到人類。使用受支援的學名，例如 `Homo sapiens` 或 `Mus musculus`；完整名單見下載的結構定義。空值、不支援的物種或返回物種不匹配均會報錯。`found` 和 `n_found` 表示標識被識別，不保證該物種中存在通路；識別成功也可能返回零條通路。compact 模式只返回低層通路。
@@ -886,17 +927,17 @@ const result = await host.mcp("genomes", "ucsc_track_data", {"track": "cpgIsland
 
 ### `ucsc_conservation` {/* #ucsc_conservation */}
 
-計算 UCSC 區域保守性摘要。座標為 0-based 半開區間，跨度最多 100000 bp；hg19 預設使用 phyloP100wayAll，其他組裝預設 phyloP100way，應核對軌道存在。摘要按覆蓋鹼基跨度加權，未覆蓋鹼基降低覆蓋率，不按零分計入。include_values 可返回受 max_values 限制的逐區間分數；上游截斷或非分數軌道會報錯。
+讀取 UCSC phyloP／phastCons 保守性軌道的區域統計。chrom 使用 chr 字首，start/end 為從 0 開始的半開區間，跨度最多 100000 bp。預設 genome=hg38；預設軌道分別為 hg19: phyloP100wayAll、hg38: phyloP100way、mm10: phyloP60wayAll、mm39: phyloP35way。其他基因組保留 phyloP100way 回退，但軌道可能不存在，應先用 ucsc_list_tracks 核對。include_values 可返回受 max_values 限制的逐鹼基資料。統計按覆蓋的鹼基跨度加權並裁剪到視窗；未覆蓋位置降低 coverage_fraction，不作為零分處理。上游結果截斷或非數值軌道會報錯。
 
-| 欄位 | 型別 | 要求與約束 |
+| 欄位 | 型別 | 必填與約束 |
 | --- | --- | --- |
-| `chrom` | 字串 | **必填** |
-| `start` | 整數 | **必填**; 最小值: 0; 最大值: 9007199254740991 |
-| `end` | 整數 | **必填**; 最小值: 0; 最大值: 9007199254740991 |
-| `genome` | 字串 | 可選; 預設值: &quot;hg38&quot; |
-| `track` | 字串 | 可選 |
-| `include_values` | 布林值 | 可選; 預設值: false |
-| `max_values` | 整數 | 可選; 預設值: 2000 |
+| `chrom` | string | **必填** |
+| `start` | integer | **必填**; minimum: 0; maximum: 9007199254740991 |
+| `end` | integer | **必填**; minimum: 0; maximum: 9007199254740991 |
+| `genome` | string | 可選; default: &quot;hg38&quot; |
+| `track` | string | 可選 |
+| `include_values` | boolean | 可選; default: false |
+| `max_values` | integer | 可選; default: 2000 |
 
 ```javascript
 const result = await host.mcp("genomes", "ucsc_conservation", {"chrom": "chr7", "start": 140753330, "end": 140753380, "track": "phyloP100way"})
@@ -930,6 +971,48 @@ const result = await host.mcp("genomes", "ucsc_tfbs_clusters", {"chrom": "chr7",
 
 ```javascript
 const result = await host.mcp("genomes", "ucsc_chrom_sizes", {"genome": "hg38", "filter_text": "chr1", "max_chroms": 25})
+```
+
+### `clustalo_submit` {/* #clustalo_submit */}
+
+向 EMBL-EBI Clustal Omega 提交至少三條蛋白質、DNA 或 RNA FASTA 序列，記錄名稱必須唯一；最多 4000 條或 4 MiB。返回 job_id 後儲存並查詢狀態，再獲取結果。預設 outfmt=clustal_num，包含位置編號。需在 Settings → Privacy → Share contact email with research data services 配置有效聯絡郵箱。序列會傳送到 EMBL-EBI，輸入和結果可能儲存在會話或 Notebook 中。響應丟失不等於未提交，不要自動重提。結果保留期由提供方控制，文件說明最長約一週；應用退出僅停止本地請求，不取消遠端任務。每批最多 30 個任務，等處理或獲取結果後再提交下一批；聯結器不跨呼叫限流。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `sequence` | string | **必填**; minLength: 1; maxLength: 4194304 |
+| `stype` | string | **必填**; enum: &#91;&quot;protein&quot;, &quot;dna&quot;, &quot;rna&quot;&#93; |
+| `outfmt` | string | 可選; enum: &#91;&quot;clustal_num&quot;&#93; |
+| `title` | string | 可選; minLength: 1; maxLength: 200 |
+| `dealign` | boolean | 可選 |
+| `order` | string | 可選; enum: &#91;&quot;aligned&quot;, &quot;input&quot;&#93; |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_submit", {"sequence": ">human\nMKT\n>mouse\nMRT\n>rat\nMRT\n", "stype": "protein"})
+```
+
+### `clustalo_status` {/* #clustalo_status */}
+
+查詢一次已有 Clustal Omega 任務，不自動輪詢或等待。至少間隔 10 秒再查，直到 FINISHED、ERROR、FAILURE 或 NOT_FOUND。重啟後保留原 job_id 繼續查詢。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; minLength: 1; maxLength: 128 |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_status", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m"})
+```
+
+### `clustalo_results` {/* #clustalo_results */}
+
+獲取已完成任務的 clustal_num 原始比對檔案，使用提交返回的相同 outfmt。返回比對內容與建議檔名，需由呼叫者儲存。結果上限 8 MiB；QUEUED／RUNNING 時返回 ready:false 與重試提示，失敗保留 job_id 供診斷，不自動重試或重提。結果可能在約一週內過期，應及時儲存；應用退出不取消遠端任務。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; minLength: 1; maxLength: 128 |
+| `outfmt` | string | **必填**; enum: &#91;&quot;clustal_num&quot;&#93; |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_results", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m", "outfmt":"clustal_num"})
 ```
 
 </ToolOperationGroup>
@@ -3759,3 +3842,208 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ## 示例響應記錄 {/* #示例响应记录 */}
 
 <ExampleDownload path="/examples/capabilities/public-database-query-receipts.json">示例響應記錄</ExampleDownload>提供準確輸入、截短的響應片段和逐項狀態。請區分返回記錄、空匹配和請求失敗。結果可能是後設資料、結構說明或識別符號；用於研究前，先核對來源欄位與完整性標記。
+
+## GDC {/* #family-24 */}
+
+<ToolOperationGroup>
+<summary>展開操作與引數</summary>
+
+### `gdc_list_projects` {/* #gdc_list_projects */}
+
+分頁列出 GDC 癌症專案及病例、檔案彙總。篩選條件和結果數量有明確邊界，此操作只發現後設資料，不下載檔案。頁碼從 1 開始，最多 10000 頁；next_page 為空也可能因為總量未知或達到頁數上限，不能單獨證明已獲取全部結果。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `project_ids` | string / array | 可選 |
+| `disease_type` | string | 可選; minLength: 1; maxLength: 200 |
+| `primary_site` | string | 可選; minLength: 1; maxLength: 200 |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-BRCA", "page_size": 5})
+```
+
+### `gdc_list_cases` {/* #gdc_list_cases */}
+
+分頁列出 GDC 病例（樣本提供者）的專案和疾病後設資料，不讀取或下載受控資料。頁碼從 1 開始，最多 10000 頁；結合 total、total_relation 與 next_page 判斷範圍，達到分頁上限時縮小篩選條件。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `project_ids` | string / array | 可選 |
+| `submitter_ids` | string / array | 可選 |
+| `case_ids` | string / array | 可選 |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BRCA"], "page_size": 5})
+```
+
+### `gdc_search_files` {/* #gdc_search_files */}
+
+檢索 GDC 檔案清單，逐項標明 open 或 controlled。只返回後設資料，不下載檔案或授予訪問權限；受控檔案不提供可下載 URL，狀態為 requires_authorization。access_summary 只描述當前頁。project_id 是單個關聯專案摘要，不代表完整關聯集合。next_page 為空不一定表示全部匹配已取完。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `project_ids` | string / array | 可選 |
+| `access` | string | 可選; default: &quot;all&quot;; enum: &#91;&quot;all&quot;, &quot;open&quot;, &quot;controlled&quot;&#93; |
+| `data_category` | string | 可選; minLength: 1; maxLength: 200 |
+| `data_type` | string | 可選; minLength: 1; maxLength: 200 |
+| `data_format` | string | 可選; minLength: 1; maxLength: 50 |
+| `file_name` | string | 可選; minLength: 1; maxLength: 500 |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+```
+
+### `gdc_get_file` {/* #gdc_get_file */}
+
+按一個 GDC 檔案 UUID 獲取後設資料和 open／controlled 訪問類別，不下載檔案，也不保證當前使用者可下載。只有公開檔案返回 download_url；受控檔案需在此後設資料查詢之外取得 GDC 授權及相應令牌。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `file_id` | string | **必填**; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;1-5&#93;&#91;0-9a-fA-F&#93;&#123;3&#125;-&#91;89abAB&#93;&#91;0-9a-fA-F&#93;&#123;3&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_get_file", {"file_id": "cb92f61d-041c-4424-a3e9-891b7545f351"})
+```
+
+### `gdc_get_manifest` {/* #gdc_get_manifest */}
+
+為最多 100 個檔案 UUID 生成 GDC Data Transfer Tool 清單文字。清單不下載檔案，也不繞過受控訪問授權。按 UUID 對應返回行，不依賴請求順序。任一 UUID 不存在時請求以 HTTP 404 失敗，而非返回部分成功清單。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `file_ids` | array of string | **必填**; minItems: 1; maxItems: 100; uniqueItems: true |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_get_manifest", {"file_ids": ["cb92f61d-041c-4424-a3e9-891b7545f351"]})
+```
+
+</ToolOperationGroup>
+
+## Zenodo {/* #family-25 */}
+
+<ToolOperationGroup>
+<summary>展開操作與引數</summary>
+
+### `search_records` {/* #search_records */}
+
+使用 Zenodo 查詢語法檢索公開記錄，單次最多 25 條，無需認證。預設僅列出最新版本，all_versions 可包含舊版本。翻頁時保持 query、page_size、sort 和 all_versions 不變。檢索視窗最多 10000 條，pagination_limited 為 true 時需縮小查詢。公開後設資料不代表檔案開放下載；total_relation 區分精確總量 eq 與下界 gte。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 1; maxLength: 1000; pattern: &quot;\\S&quot; |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | 可選; default: 10; minimum: 1; maximum: 25 |
+| `sort` | string | 可選; default: &quot;bestmatch&quot;; enum: &#91;&quot;bestmatch&quot;, &quot;mostrecent&quot;&#93; |
+| `all_versions` | boolean | 可選; default: false |
+
+```javascript
+const result = await host.mcp("zenodo", "search_records", {"query": "title:climate", "page_size": 5})
+```
+
+### `get_record` {/* #get_record */}
+
+按十進位制記錄 ID 獲取 Zenodo 公開後設資料及可見檔案清單，不接受 DOI 或 URL。概念 ID 可能解析到最新版本，應儲存返回的版本級 record_id，區分 requested_record_id 與 concept_record_id。description_html 為未經淨化的上游 HTML。檔案連結和校驗值僅為後設資料，不代表已下載、校驗或探測訪問。檔案清單為 null 表示缺失，空陣列表示明確返回空清單；受限記錄的公開後設資料不保證檔案可訪問。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `record_id` | string | **必填**; maxLength: 20; pattern: &quot;^&#91;1-9&#93;&#91;0-9&#93;&#42;$&quot; |
+
+```javascript
+const result = await host.mcp("zenodo", "get_record", {"record_id": "8435696"})
+```
+
+</ToolOperationGroup>
+
+## HMMER {/* #family-26 */}
+
+<ToolOperationGroup>
+<summary>展開操作與引數</summary>
+
+### `search` {/* #hmmer-search */}
+
+提交一次非同步 EMBL-EBI HMMER3 搜尋。program 可選 phmmer（蛋白序列對序列庫）、hmmscan（蛋白序列對 Pfam 模型）、hmmsearch（profile HMM／比對對序列庫）或 jackhmmer（迭代遠緣同源檢索）。input 使用該程式支援的 FASTA、profile HMM 或比對文字，database 為提供方資料庫名。閾值使用 HMMER 引數 incE/incdomE、E/domE、incT/incdomT、T/domT；iterations 控制 jackhmmer 輪數。儲存返回的 job_id，再查詢 status。提交不等於完成；響應丟失可能已有遠端任務，不要自動重提。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `program` | string | **必填**; enum: &#91;&quot;phmmer&quot;, &quot;hmmscan&quot;, &quot;hmmsearch&quot;, &quot;jackhmmer&quot;&#93; |
+| `database` | string | **必填**; enum: &#91;&quot;refprot&quot;, &quot;uniprot&quot;, &quot;swissprot&quot;, &quot;pdb&quot;, &quot;rp15&quot;, &quot;rp35&quot;, &quot;rp55&quot;, &quot;rp75&quot;, &quot;pfam&quot;&#93; |
+| `input` | string | **必填**; minLength: 1; maxLength: 200000 |
+| `incE` | number | 可選; exclusiveMinimum: 0; maximum: 10 |
+| `incdomE` | number | 可選; exclusiveMinimum: 0; maximum: 10 |
+| `incT` | number | 可選; exclusiveMinimum: 0 |
+| `incdomT` | number | 可選; exclusiveMinimum: 0 |
+| `E` | number | 可選; exclusiveMinimum: 0; maximum: 10 |
+| `domE` | number | 可選; exclusiveMinimum: 0; maximum: 10 |
+| `T` | number | 可選; exclusiveMinimum: 0 |
+| `domT` | number | 可選; exclusiveMinimum: 0 |
+| `popen` | number | 可選; minimum: 0 |
+| `pextend` | number | 可選; minimum: 0 |
+| `mx` | string | 可選; enum: &#91;&quot;BLOSUM45&quot;, &quot;BLOSUM62&quot;, &quot;BLOSUM90&quot;, &quot;PAM30&quot;, &quot;PAM70&quot;&#93; |
+| `iterations` | integer | 可選; minimum: 1; maximum: 9 |
+
+```javascript
+const result = await host.mcp("hmmer", "search", {"program":"hmmscan","database":"pfam","input":">query\nMKTIIALSYIFCLVFADYKDDDDK"})
+```
+
+### `status` {/* #hmmer-status */}
+
+查詢一次已有 HMMER 任務，不自動輪詢或重提。SUCCESS 表示可獲取結果，PENDING／RUNNING 表示等待後再查；ERROR／FAILURE／NOT_FOUND 是終止狀態，不等於零命中。保留準確 job_id。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; maxLength: 36; pattern: &quot;^&#91;A-Fa-f0-9&#93;&#123;8&#125;-&#91;A-Fa-f0-9&#93;&#123;4&#125;-&#91;A-Fa-f0-9&#93;&#123;4&#125;-&#91;A-Fa-f0-9&#93;&#123;4&#125;-&#91;A-Fa-f0-9&#93;&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("hmmer", "status", {"job_id":"8ebb1d5f-4457-4da8-808c-f811105c3654"})
+```
+
+### `results` {/* #hmmer-results */}
+
+先查詢一次狀態，僅 SUCCESS 時讀取包含結構域註釋的全部結果頁。等待或失敗時不返回結果載荷；jackhmmer 迭代記錄保留提供方陣列結構。結果保留期有限，應儲存到 Notebook 產物。成功後的空匹配列表是零命中，不能與等待或失敗混淆。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; maxLength: 36; pattern: &quot;^&#91;A-Fa-f0-9&#93;&#123;8&#125;-&#91;A-Fa-f0-9&#93;&#123;4&#125;-&#91;A-Fa-f0-9&#93;&#123;4&#125;-&#91;A-Fa-f0-9&#93;&#123;4&#125;-&#91;A-Fa-f0-9&#93;&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("hmmer", "results", {"job_id":"8ebb1d5f-4457-4da8-808c-f811105c3654"})
+```
+
+</ToolOperationGroup>
+
+## InterProScan {/* #family-27 */}
+
+<ToolOperationGroup>
+<summary>展開操作與引數</summary>
+
+### `status` {/* #interproscan-status */}
+
+透過已有 job_id 查詢一次 InterProScan 註釋任務，至少間隔 10 秒再查。FINISHED 後可獲取結果；ERROR／FAILURE 表示失敗，NOT_FOUND 表示未知或過期，不是零命中。此聯結器不提交或重提任務。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; maxLength: 200; pattern: &quot;^&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9_-&#93;&#123;0,199&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+### `results` {/* #interproscan-results */}
+
+先查詢一次狀態，僅 FINISHED 時獲取完整 TSV 報告，上限 2 MiB，超限報錯而不截斷。不自動重試、輪詢或重提。及時儲存報告，避擴音供方結果過期。每行對應一個 signature 匹配；座標從 1 開始且包含兩端，分數含義由各分析程式決定，可選列含 InterPro、GO 與通路註釋。FINISHED 後的空報告表示沒有返回匹配，不證明蛋白沒有功能。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; maxLength: 200; pattern: &quot;^&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9_-&#93;&#123;0,199&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+</ToolOperationGroup>

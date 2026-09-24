@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -148,9 +148,19 @@ To add **The PRISMA Group**, select **Add creator → Creator role: Author → N
 
 v0.30.2 corrects PubMed author-name parsing, including surnames, initials and suffixes. When importing or completing metadata, inspect the creator fields and generated citation against the linked source. Do not assume that installing the update rewrites metadata already stored in your Library.
 
+## Smart collections {/* #smart-collections */}
+
+Turn **Smart collection** on in **New collection** to screen Library records against explicit rules. Select **Scope** (all references, a project or a collection), add required **Inclusion criteria** and optional **Exclusion criteria**, then choose the evidence and update options. Unlike an ordinary collection description, smart-collection descriptions provide context for model evaluation.
+
+Configure **Settings → Model → Classification models → Smart collections** first; this feature has no default model. **Included**, **Needs review**, **Excluded** and **Not evaluated** distinguish matched, uncertain, rejected and unevaluated records. Open **Evaluation details** and review the actual source before choosing **Include** or **Exclude**. Manual decisions survive updates until you restore the model decision.
+
+**Trial run (up to 20 references)** saves results. **Live rule preview** evaluates a draft without saving them. **Update automatically** applies to new or changed records in the selected scope; it is opt-in and can incur classification costs. It does not discover new papers outside the Library. Follow [the illustrated screening workflow](../workflows/screen-literature.md) from search to reviewed export.
+
+During a run, open **Screening process** to inspect progress and use **Pause / Resume analysis** to pause or continue. Changes to rules, papers or saved progress can make a previous run non-resumable. **Back to results** returns to the decision list. **Project** and **Collection** scope markers distinguish source types and link to the source; they are not multi-user sharing permissions.
+
 ## Organize the accepted records
 
-Create a collection with **New collection**, fill **Name** and optional **Description**, then **Create collection**. The description is organizational text, not Agent Context. Cancel/Close discards the draft. Select records in All references and use **Add to collection** or **Add to project**. Selection clears after the operation; reselect if adding another destination.
+Create an ordinary collection with **New collection** and **Smart collection** off, fill **Name** and optional **Description**, then **Create collection**. The description is organizational text, not Agent Context. Cancel/Close discards the draft. Select records in All references and use **Add to collection** or **Add to project**. Selection clears after the operation; reselect if adding another destination.
 
 In a detail view, project and collection checkboxes show the links. **Manage Tags** adds organizational tags. The table's one-to-five-star rating is your annotation, not an automatic evidence-quality score. **Clear selection** leaves the records unchanged.
 

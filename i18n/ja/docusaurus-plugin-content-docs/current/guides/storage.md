@@ -1,7 +1,7 @@
 ---
 title: "貯蔵およびアーカイブされた仕事"
 last_update:
-  date: '2026-09-11'
+  date: '2026-09-24'
 ---
 
 # 貯蔵およびアーカイブされた仕事 {/* #storage-and-archived-work */}
@@ -136,3 +136,7 @@ last_update:
 失敗したダウンロードについては、選択した目的地と空きスペースを確認してください。 未利用可能な管理ファイルについては、置換プロジェクトを作成する前に、選択したデータ位置とプロファイルを確認します。 再配置後のパッケージを欠落させるには、研究データが失われるのではなく、再構築されたランタイムを確認してください。 [トラブルシューティング](troubleshooting.md) を使用して、最初の有用なエラーとバージョン情報を収集します。
 
 ソース: [ストレージパネル](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StoragePanel.tsx)、[移行フォーム](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StorageMigrationModal.tsx)。 [図書館移転チェック](https://github.com/aipoch/open-science/commit/d00c722d).
+
+## アップグレード後のデータを再開 {/* #historical-data-location */}
+
+既存の保存されたデータの場所は優先されます。 Open-Scienceは、保存場所を明示せずに、古いインストールを完了するために、歴史の場所を保持し、その選択を保存します。 保存したフォルダが利用できなくなった場合は、再起動する前に再接続します。 複数の歴史の場所が研究データを含んでいる場合、アプリは、黙って選択する代わりに元のフォルダを選択または回復するように要求します。 プロジェクトとファイルをチェックするまでのコピーを両方保存します。 データの損失を解決するために、新しい空の場所を作成しないでください。

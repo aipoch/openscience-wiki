@@ -1,7 +1,7 @@
 ---
 title: "건축과 진단"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-24'
 ---
 
 # 건축과 진단 {/* #architecture-and-diagnostics */}
@@ -72,4 +72,11 @@ flowchart LR
 
 소스: [Logger 및 유지](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/logger.ts), [진단 redaction](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/diagnostic-redaction.ts), [경계된 Notebook 실패 세부사항](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/failure-diagnostic.ts) 및 [artifact 내용 상태](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/artifacts/provenance-content-status.ts).
 
-첫 번째는 실패한 작업에서 실패한 새로 고침/클립업 후, 그리고 결과 납품에서 배경 작업 완료를 구별합니다. 구문을 구문하기 전에 저장된 국가를 검사하십시오. [복구 테이블](../guides/troubleshooting.md#recovery-messages)의 사용자 인터페이스는 차단된 큐어 복원, 유지 PDF 참조, stale 컬렉션 편집 및 Windows 설치 메시지. [백그라운드 작업](../guides/notebook.md#background-tasks-and-result-delivery)은 실행 상태를 설명합니다. 원격 모니터링 오류는 최종 작업 결과에서 분리됩니다.
+첫 번째는 실패한 작업에서 실패한 새로 고침/클립업 후, 그리고 결과 배달에서 배경 작업 완료를 구별합니다. Inspect는 뮤테이션을 재발하기 전에 국가를 저장합니다. [복구 테이블](../guides/troubleshooting.md#recovery-messages)의 사용자 인터페이스는 차단된 큐어 복원, 유지 PDF 참조, stale 컬렉션 편집 및 Windows 설치 메시지. [백그라운드 작업](../guides/notebook.md#background-tasks-and-result-delivery)은 실행 상태를 설명합니다. 원격 모니터링 오류는 최종 작업 결과에서 분리됩니다.
+
+
+## 세션 진단 아카이브 {/* #session-diagnostic-archive */}
+
+**Export diagnostics…**은 선택한 세션 메타데이터, 데이터베이스 레코드 및 사용 가능한 애플리케이션 로그 메타데이터를 현명하고 수출 로그와 현지 아카이브로 수집합니다. 근원은 전체적인 수출을 멈추지 않습니다; 큰 손상된 근원은 summaries를 일으킬 수 있습니다. 현재와 과거의 애플리케이션 로그는 선택한 세션 밖에 활동들을 커버할 수 있으므로 선택한 소스를 검토하고 결과를 캡처할 수 있습니다.
+
+Ordinary metadata 소스는 개인 콘텐츠 필드를 제외합니다. 민감한 콘텐츠 패키지 수출 실패 후, 대화 상자는 또한 적층 스캐너 증거와 원본 조각 파일을 제공 할 수 있습니다. 원본 파일은 기본적으로 체크되지 않습니다. 명시적으로 선택하면 원래 바이트가 포함되어 있습니다. 수출은 업로드 또는 모델 요청을하지 않습니다. 공유하기 전에 결과 아카이브를 검사합니다. 연구 패키지 백업 또는 최소 재생산을 대체하지 않습니다. [illustrated 수출 절차](../guides/troubleshooting.md#session-diagnostics) 참조.

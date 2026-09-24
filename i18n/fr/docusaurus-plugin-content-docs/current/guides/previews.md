@@ -161,3 +161,29 @@ Confirmez le fichier enregistré avec succès, puis vérifiez la version et le f
 Ouvrez **Notes & Annotations** pour gérer les points saillants, les marques de zone, les notes de page et les notes de document. **Show notes sidebar** garde des notes à côté de la page d'origine. Le menu de téléchargement sépare **Download original PDF** de **Download PDF with annotations**. Suivez [Annotations et notes de document PDF](pdf-notes.md) pour une lecture complète, une recherche et une exportation.
 
 Pour **Figures et tableaux**, la première installation de modèle local peut essayer des miroirs de téléchargement approuvés lorsque la source primaire n'est pas accessible. Attendez le téléchargement et les vérifications d'intégrité avant de choisir **Analyze PDF**. Les miroirs ne suppriment pas le besoin d'installer ces ressources; un résultat mis en cache peut rouvrir sans une nouvelle analyse.
+
+## Lire un PDF dans le premier message {/* #first-message-pdf */}
+
+1. Ouvrez un papier avec un PDF lisible dans **Library** et choisissez **Read with agent**.
+2. Sélectionnez le projet cible et **New conversation**. Vérifiez que le compositeur affiche le PDF sous **Lecture** et que l'aperçu affiche **In session context**.
+3. Posez une question immédiatement. Vous n'avez pas besoin d'envoyer un message d'introduction séparé avant de relier le document.
+
+<p className="example-label"><strong>Exemple pratique</strong> Interrogez-vous sur le mécanisme dans Lang et al., 2019</p>
+
+L'exemple utilise [Catalyseur monoatome thermiquement stable non stabilisé par défaut](https://doi.org/10.1038/s41467-018-08136-3), un papier ouvert sous CC BY 4.0, avec **Codex subscription**.
+
+![Une nouvelle conversation avec le PDF liée sous Lecture avant son premier message](/img/open-science/v0331/pdf-first-message.webp)
+
+```text
+Using the linked PDF, explain how Lang et al. distinguish non-defect
+stabilization from defect trapping. Give the paper title and DOI,
+two specific findings with PDF page or figure locations, and one
+limitation. Keep the answer in English and cite only evidence you
+can actually read.
+```
+
+La réponse récupère les passages du PDF lié et identifie le papier, le mécanisme et les emplacements à vérifier. Ouvrez les pages citées à côté de la réponse et vérifiez chaque revendication par rapport à l'original. Une référence à une figure dans le texte ne signifie pas que l'image de la figure a été extraite ou interprétée visuellement; utiliser [Figures et tableaux](#pdf-extraction) lorsque l'image est nécessaire.
+
+![Une réponse anglaise à côté du PDF original, avec le contexte de lecture retenu](/img/open-science/v0331/pdf-first-response.webp)
+
+Pour les faits saillants et les notes de niveau document, continuez avec [Annotations PDF](pdf-notes.md).

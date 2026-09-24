@@ -1,7 +1,7 @@
 ---
 title: "Conectores y credenciales"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -27,7 +27,7 @@ Asignar una etiqueta como **Transcripciónomics** a un Connector, y luego encont
 | Estado | Lo que establece | Siguiente verificación |
 | --- | --- | --- |
 | Listado en Directorio | La aplicación conoce una definición Connector | Lea sus descripciones de herramientas reales |
-| Main sólo / En uso | Disponibilidad de agentes | Confirme el agente y la unión de la capacidad previstos |
+| Used by | Disponibilidad de agentes | Confirme el agente y la unión de la capacidad previstos |
 | Credencial seleccionado | Existe una unión de nombre | Prueba de autenticación contra el servicio previsto |
 | Política de herramientas | Si las llamadas se permiten, se solicita o bloquea | Inspección de permiso recordado precedencia |
 | Resultado exitoso de la herramienta | Esa llamada en particular terminada | Validar sus identificadores/datos devueltos y fuente |
@@ -37,18 +37,28 @@ Asignar una etiqueta como **Transcripciónomics** a un Connector, y luego encont
 
 Use **Search connectors** para encontrar PubMed bajo **Directory**; la lista también contiene grupos **Featured** y **Custom**. Filtrar se aplica por grupo, por lo que otro grupo puede decir **No hay conectores que coincidan con su búsqueda** mientras que un resultado coincidente sigue siendo visible a continuación.
 
-Utilice **Filter connectors by group**, **Filter Connectors by agent**, y **Filter by Tag** junto con la búsqueda. **Manage credentials** abre la configuración de contacto/credencial compartida. **Used by** muestra disponibilidad; **Manage Tags** organiza un Connector. El interruptor de disponibilidad permite el acceso para Main Agent; El acceso se configura por separado para cada especialista.
+Utilice **Filter connectors by group**, **Filter Connectors by agent**, y **Filter by Tag** junto con la búsqueda. **Manage credentials** abre la configuración de contacto/credencial compartida. **Used by** muestra disponibilidad; **Manage Tags** organiza un Connector. Utilice el control **Manage access** del recurso para revisar y ajustar el acceso para los agentes y especialistas Main en un solo lugar.
+
+#### Gestionar el acceso de cada agente {/* #resource-access */}
+
+1. Busque un Connector bajo **Settings → Connectors** y elija su control **Manage access**.
+2. Revise **Agente principal** y los Especialistas listados. Busque la lista de funciones cuando esté disponible. Cambiar sólo la asociación prevista; el editor de funciones sigue siendo otra manera de gestionar su lista de capacidades.
+3. Repita el popup y compruebe **Used by**. Se puede asignar un enlace a un Specialist discapacitado; asignarlo no permite ese papel.
+
+![Acceso Connector para Agente Main y Especialistas individuales](/img/open-science/v0330/resource-access.webp)
+
+Para un papel con **Full access**, excluyendo este Connector crea una excepción por fuente. Un papel con acceso seleccionado utiliza su lista explícita. Los enlaces de papel de mercado pueden ser leídos solo aquí. Las credenciales, la preparación del servidor y la aprobación de la operación son separadas de estas asociaciones; asignar un Connector no completa esos pasos.
 
 #### Activar o deshabilitar varios conectores {/* #enable-or-disable-several-connectors */}
 
-Abrir **Settings → Connectors → Manage**, filtrar la lista y seleccionar los conectores previstos. Revise el recuento seleccionado antes de habilitarlos o desactivarlos, a continuación, verifique cada estado devuelto. Mantenga sólo los servicios necesarios para su trabajo habilitado. Los cambios de disponibilidad a granel no suministran credenciales, cambian las políticas de aprobación por taburete o conceden un acceso a Specialist; Configure los por separado.
+Abrir **Settings → Connectors**, filtrar la lista, elegir **Select multiple** en el grupo correspondiente y seleccionar los conectores previstos. Revise el recuento seleccionado antes de habilitarlos o desactivarlos, a continuación, verifique cada estado devuelto. Mantenga sólo los servicios necesarios para su trabajo habilitado. Los cambios de disponibilidad a granel no suministran credenciales, cambian las políticas de aprobación por taburete o conceden un acceso a Specialist; Configure los por separado.
 
 #### PubMed: disponibilidad, herramientas y política de aprobación {/* #pubmed-availability-tools-and-approval-policy */}
 
 1. Busque **PubMed** y abra su detalle.
 2. Ampliar **search_articles** para leer su descripción. Devuelve un conteo y página de PMIDs y soporta las etiquetas de consulta PubMed, operadores booleanos, fechas y clasificación.
 3. Elija **Require approval**, **Block** o **Always allow** para el acceso que desee permitir. Exhibición de la aprobación **Ask when no Session, Project, or Global permission applies.**
-4. Activar PubMed e inspeccionar **Used by**. Disponibilidad para Main se muestra como **Main only**; disponibilidad de discapacitados muestra **Not in use**.
+4. En **Manage access**, active **Main Agent** para PubMed y compruebe **Used by**. Revise por separado cada Specialist que deba tener acceso en la misma ventana.
 
 ![Controles de descripción y aprobación de herramientas PubMed](/img/open-science/walkthrough-2026-09-08/64-pubmed-tool-policy.webp)
 

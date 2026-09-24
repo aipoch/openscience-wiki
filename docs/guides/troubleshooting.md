@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting and common questions"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-24'
 ---
 
 # Troubleshooting and common questions
@@ -129,7 +129,7 @@ Windows errors are operating-system codes, distinct from HTTP status codes. If r
 
 Use the standalone reset utility only when you intend to discard the local installation's data and start over. **It permanently deletes the listed data and saved credentials; it neither repairs nor backs them up.** Copy needed research files and backups outside all listed directories first. Reinstalling the app alone retains this data.
 
-1. From the [official reset guide](https://github.com/aipoch/open-science/blob/v0.30.1/scripts/windows-reset/README.md), download both `reset-open-science.cmd` and `reset-open-science.ps1` using **Download raw file**. Keep them together outside the app's data directories.
+1. From the [official reset guide](https://github.com/aipoch/open-science/blob/v0.33.0/scripts/windows-reset/README.md), download both `reset-open-science.cmd` and `reset-open-science.ps1` using **Download raw file**. Keep them together outside the app's data directories.
 2. Quit Open-Science, including its tray process, and finish and close its agent, Notebook, headless and WSL processes. Use your normal Windows account; administrator mode is not required.
 3. In Command Prompt opened in the download folder, run `reset-open-science.cmd -Preview`. Review every proposed data, configuration, profile and runtime-cache path. Preview does not delete data.
 4. Only after reviewing and backing up those locations, double-click `reset-open-science.cmd`. It asks you to type `RESET OPEN SCIENCE` exactly before deletion; any other response cancels.
@@ -149,6 +149,17 @@ If a process is running or cannot be inspected, or a path is unsafe, resolve the
 6. State whether the same operation succeeds after the change. An enabled button is not the success condition.
 
 Technical message meanings are collected in [Diagnostics reference](../reference/diagnostics.md).
+
+### Export diagnostics for one session {/* #session-diagnostics */}
+
+1. Open the affected session and choose **Export diagnostics…** in its header, or **Export → Export diagnostics…** in the session menu.
+2. Review the available sources. **session.json** and **Session database records** concern the selected session. **main.log** and historical application logs can also contain metadata from other sessions; select them only when relevant.
+3. Choose **Export**, select a local destination, and wait for **Diagnostics exported.** Use **Show in folder** to locate the archive.
+4. Inspect its manifest and export log before sharing. A missing or damaged source may be summarized or omitted; the archive's existence alone does not prove every source was captured.
+
+![Selecting session-specific diagnostic sources before a local export](/img/open-science/v0330/session-diagnostics.webp)
+
+Ordinary metadata export excludes private content fields. If a .science export triggers the sensitive-content check, the source list can also contain redacted scanner evidence and the original flagged files. **Original sensitive files are unchecked by default; selecting one includes its original bytes in the archive.** Select only the sources needed and inspect the archive and screenshots before sharing. Export stays local and makes no upload or model request. This is diagnostic evidence, not a research backup; use a [.science package](research-packages.md) for a research handover.
 
 ## Report a bug or ask the community
 

@@ -1,7 +1,7 @@
 ---
 title: "Stockage et travaux archivés"
 last_update:
-  date: '2026-09-11'
+  date: '2026-09-24'
 ---
 
 # Stockage et travaux archivés {/* #storage-and-archived-work */}
@@ -136,3 +136,7 @@ Avant de supprimer définitivement, exportez les entrées, les sorties et les en
 Pour un téléchargement raté, vérifiez la destination choisie et l'espace libre. Pour un fichier géré non disponible, confirmez l'emplacement et le profil des données sélectionnées avant de créer un projet de remplacement. Pour les paquets manquants après la réinstallation, vérifiez le temps d'exécution reconstruit plutôt que de supposer que les données de recherche ont été perdues. Utilisez [Dépannage](troubleshooting.md) pour recueillir les premières informations utiles sur les erreurs et les versions.
 
 Sources: [Panneau de stockage](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StoragePanel.tsx), [formulaire de migration](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StorageMigrationModal.tsx). [Vérifications de la réinstallation des bibliothèques](https://github.com/aipoch/open-science/commit/d00c722d).
+
+## Réouvrir les données après une mise à jour {/* #historical-data-location */}
+
+Un emplacement de données sauvegardées existant a priorité. Pour une installation ancienne terminée sans emplacement explicitement enregistré, Open-Science conserve l'emplacement historique et enregistre ce choix. Si ce dossier sauvegardé n'est pas disponible, reconnectez-le avant de redémarrer. Si plusieurs emplacements historiques contiennent des données de recherche, l'application vous demande de sélectionner ou de récupérer le dossier original au lieu de choisir silencieusement un. Conservez les deux copies jusqu'à ce que vous ayez vérifié leurs projets et fichiers; ne pas créer un nouvel emplacement vide pour résoudre une perte apparente de données.

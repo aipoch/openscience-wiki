@@ -1,7 +1,7 @@
 ---
 title: "Períodos de sesiones y ramas"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -161,4 +161,9 @@ En el proyecto GSE60450, marque la sesión QC existente y abra el `gse60450-qc-s
 
 ## Lea la tarjeta de información de sesión {/* #session-information */}
 
-Seleccione el título de sesión para ver su número, descripción, fuente, tiempos de creación/actualización, recuento de mensajes para el recuento actual de rama y artefacto. Utilice **Pin** para mantener la sesión fácil de encontrar, o **Editar sesión** para cambiar su título y descripción. Un separador **Continúe con el chat** se vincula de nuevo a la fuente registrada.
+Seleccione el título de sesión para ver su número, descripción, fuente, tiempos de creación/actualización, recuento de mensajes para el recuento actual de rama y artefacto. Utilice **Pin** para mantener la sesión fácil de encontrar, o **Editar sesión** para cambiar su título y descripción. Un separador **Continuación de una conversación** se vincula de nuevo a la fuente registrada.
+
+
+## Diagnóstico de la sesión de exportación {/* #session-diagnostics */}
+
+Utilice el control **Export diagnostics…** del encabezado de sesión, o el **Export → Export diagnostics…** del menú de sesión para recoger fuentes de diagnóstico seleccionadas en un archivo local. Los registros de aplicaciones pueden incluir metadatos fuera de la sesión seleccionada. Revise la lista de fuentes, el mensaje de terminación y el contenido de archivo antes de compartir; ver [Medidas de exportación de diagnóstico](troubleshooting.md#session-diagnostics).

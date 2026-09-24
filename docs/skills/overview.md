@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-24'
 ---
 
 # Skills
@@ -34,7 +34,7 @@ Start with [Skill directory](./directory.md) to find a method, or [recipes](./re
 | --- | --- |
 | Featured / Imported / Personal heading | Expands the source group. Featured ships with the app; Imported comes from a package or repository; Personal is created locally. |
 | Main Agent switch / row toggle | Changes availability for user-controlled Skills; application-required Skills stay enabled. Files remain installed. |
-| Used by | Shows availability across Main Agent and Specialists. Assign Specialist access in the Specialist editor. |
+| Used by | Shows availability across Main Agent and Specialists. Use **Manage access** on the resource to adjust Main Agent and Specialist associations. |
 | Manage Tags / remove a tag chip | Adds or removes an organizational label; it does not change execution permission. |
 | Add skill | Offers agent-assisted creation, direct authoring, local upload, GitHub import, or installed-folder discovery. |
 | Conversation **+ → Save as skill** | Extracts a reusable method from a completed active branch; see [creation steps and disabled-state reasons](./create.md). |
@@ -52,6 +52,8 @@ The directory still contains 23 public bundled Skills. Internal supporting Skill
 The screenshot shows the explanation for **Customize**. These required Skills remain enabled even when you disable other optional methods.
 
 ![Customize stays enabled and explains why](/img/open-science/v0.27.0/08-always-enabled-skill.webp)
+
+For the per-agent popup and its read-only bindings, see [resource access](../guides/connectors.md#resource-access).
 
 ## Use it in a conversation
 

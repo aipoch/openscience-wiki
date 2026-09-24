@@ -2,7 +2,7 @@
 title: ".science 研究包"
 description: "將會話、檔案和證據一起匯出，再匯入專案檢視與交接研究記錄。"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -22,6 +22,14 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 研究包可能包含上傳的研究材料、對話文字和生成結果。分享前先檢查內容。匯出是獨立副本，刪除本地工作不會移除已經傳送給他人的包。
 
 Side Chat 對話、私人[閱讀書籤](bookmarks.md)及備註不會包含在研究包中。同事需要的資訊，應在匯出前寫入儲存的報告或對話。
+
+## 確認接收方版本 {/* #package-compatibility */}
+
+**v0.33.0** 匯出的研究包在 `ro-crate-metadata.json` 中包含 **RO-Crate 1.1** 後設資料，描述最終匯出快照與選定的不可變檔案，包括檔名、媒體型別及相互關係。再次匯出時，會為新快照重新生成這些引用。
+
+使用 **v0.33.0 或後續相容的讀取器** 開啟新匯出的研究包：它們宣告瞭必需的 `ro-crate` 能力。接收方版本較舊時，先更新應用再匯入；改名或刪除後設資料不能解決相容問題。原有舊研究包仍可讀取，無需遷移。
+
+這些後設資料隨 `.science` 研究包儲存，不會重新執行計算、授予憑證，也不替代[針對產物版本的可復現性檢查](reproducibility.md)。
 
 ## 匯出研究包 {/* #export-the-session */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Cátedras de servicio"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # Cátedras de servicio {/* #service-credentials */}
@@ -14,21 +14,18 @@ Configure credenciales en **Settings → Credentials** para el servicio que real
 | --- | --- | --- |
 | GitHub | Token de acceso personal para el descubrimiento/importaciones de Skill | Use Connect/Manage y los controles de token; entonces prueba la operación de repositorio prevista. |
 | Acceso a literatura | Correo electrónico de contacto y llave opcional NCBI API | Guardar información de contacto; La clave NCBI es opcional para las solicitudes apoyadas. |
-| OpenAlex | API clave para operaciones OpenAlex en literatura | Validar la llave entrada, guardarla y hacer una consulta atada. |
+| OpenAlex | Opcional API llave para operaciones OpenAlex en literatura | Validar la llave entrada, guardarla y hacer una consulta atada. |
 | Unpaywall | Correo electrónico de contacto para búsquedas de ubicación de texto completo | Utiliza el correo electrónico de contacto de la literatura configurada; no inventó la dirección. |
 
 **Connect** abre un servicio inconfigurado; **Manage** abre una existente. **Desktop only** significa que la operación credencial necesita el contexto de escritorio. Un indicador de clave almacenada no es el propio valor secreto.
 
-## Añadir una llave de OpenAlex desaparecida {/* #openalexs-actual-missing-key-flow */}
+## Configurar una tecla OpenAlex opcional {/* #openalexs-actual-missing-key-flow */}
 
-1. Solicite una búsqueda de OpenAlex mientras no se configura ninguna clave.
-2. La conversación muestra **Add your OpenAlex API key** con un campo **API key**.
-3. **Save key** almacena la llave entrada y retoma la llamada de espera cuando tenga éxito. **Not now** deja el credencial inconfigurado.
-4. Lea el estado final de la herramienta. Elegir **Not now** puede devolver **credential_required**; configure la clave antes de reintentar.
+Desde v0.33.1, las consultas OpenAlex ya no requieren una clave API. Comience con una pequeña consulta; los límites de tarifas del servicio, las políticas de autenticación y acceso siguen vigentes. Permitir una solicitud sin clave no promete uso ilimitado o una respuesta exitosa.
 
-![Solicitud credencial OpenAlex en la aplicación Inglés](/img/open-science/capabilities-walkthrough/25-openalex-credential-request.webp)
+Para utilizar su propia clave, abra **Settings → Credentials → OpenAlex** (también disponible desde Literatura Graph a **Manage credentials**), introduzca **API key**, elija **Validate**, luego **Save** después de la validación exitosa. La llave se utiliza sólo para `api.openalex.org`. **Remove key** elimina una clave existente; el campo de reemplazo no revela el secreto almacenado.
 
-El aviso indica que la clave está encriptada en este ordenador y enviada sólo a `api.openalex.org`. En Ajustes, el formulario OpenAlex también ofrece **Validate**, **Save**, **Remove key** cuando existe, y **Cancel**. Un campo de reemplazo no revela la llave almacenada. Los errores de almacenamiento seguro requieren resolver el estado de llavero del sistema antes de guardar secretos.
+Resolver errores de almacenamiento de sistema de credenciales antes de guardar. Para las respuestas 429, inspeccione la cuota del servicio y la orientación de reingreso en lugar de asumir una clave es obligatorio.
 
 ## Credenciales para conectores personalizados {/* #credentials-for-custom-connectors */}
 
@@ -59,7 +56,7 @@ Después de guardar, repita una pequeña operación e inspeccione su respuesta. 
 
 La eliminación de una credencial puede afectar a cada Connector ligado a ella. Las exportaciones Connector y Specialist excluyen deliberadamente los secretos y la verdad listos para usar; configurarlos de nuevo en el dispositivo receptor. Nunca pegar un secreto en un informe Skill, rápido, captura de pantalla o edición.
 
-Las consultas de OpenAlex requieren una llave válida de OpenAlex. Los conectores OAuth requieren completar el registro del servicio llamado. Resolver el error de autenticación mostrado antes de reintentar la misma pequeña consulta.
+Una llave OpenAlex es opcional. Los conectores OAuth todavía requieren completar el registro del servicio llamado. Resolver el error de autenticación mostrado antes de reintentar la misma pequeña consulta.
 
 Referencia de implementación: [CredencialesPanel.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx), [ConnectorAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx).
 
@@ -67,4 +64,4 @@ Referencia de implementación: [CredencialesPanel.tsx](https://github.com/aipoch
 
 ## Abra la página oficial de teclas API {/* #official-api-key-page */}
 
-Desde v0.31.0, OpenAlex y NCBI las instrucciones de credencial incluyen un enlace a la página oficial de teclas API. Abriendo mantiene el borrador del formulario y esperando la llamada Connector. Pasos completos de cuenta con el servicio, volver a la forma credencial, luego validar y guardar la clave deseada antes de volver a iniciar la consulta. Abrir la página clave por sí sola no guarda una llave ni completa la consulta de espera.
+Las formas de OpenAlex y NCBI se vinculan a sus páginas clave oficiales. Pasos completos de cuenta con el servicio, volver al formulario, luego validar y guardar la clave deseada. Abrir un enlace no guarda una llave o ejecutar una consulta; si se requiere una llave depende del servicio y la operación.

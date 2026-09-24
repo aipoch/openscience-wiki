@@ -1,7 +1,7 @@
 ---
 title: "설치 및 전환 에이전트"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-24'
 ---
 
 # 설치 및 전환 에이전트 {/* #installing-and-switching-agents */}
@@ -37,6 +37,8 @@ last_update:
 OpenCode의 경우 **Install → App-managed download (recommended)**은 자체 유지 실행 시간을 다운로드합니다. 페이지는 해결, 다운로드 진행 상황을 보여주고, 그 버전과 경로로 설치된 카드. 그 카드를 선택하면 **OpenCode로 전환?**을 확인하고 호환 모델을 선택하십시오. 로컬 연결 예제는 완료 응답을 반환; API과 토큰 제한을 위해 [지역 공급자 설정](./providers.md#connect-a-local-model-endpoint)을 참조하십시오.
 
 Codex의 경우, 기본 런타임 및 ACP 어댑터는 호환 쌍으로 탐지를 통과해야합니다. 하나의 구성 요소만 설치하면 준비된 백엔드와 동일하지 않습니다. 공급자 구독 로그인은 [공급자 설정](./providers.md)에 덮여 있습니다.
+
+v0.33.0에서 **Claude Agent**은 Claude CLI **2.1.118 이상**를 요구합니다. 탐지가 지원되지 않은 버전을 보고하면 설치 방법을 통해 검출된 설치를 업데이트하면 세션을 시작하기 전에 **Re-detect** 및 체크 읽음을 사용합니다. 경로에 다른 CLI을 업데이트하지 않습니다. 카드에 표시된 설치를 복구하지 않습니다.
 
 ## 앱 관리 Codex 실행 시간 업데이트 {/* #update-codex */}
 

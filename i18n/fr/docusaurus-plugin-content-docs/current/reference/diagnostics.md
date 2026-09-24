@@ -1,7 +1,7 @@
 ---
 title: "Architecture et diagnostic"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-24'
 ---
 
 # Architecture et diagnostic {/* #architecture-and-diagnostics */}
@@ -72,4 +72,11 @@ Le logger principal-processus écrit des lignes structurées JSON. Ses fichiers 
 
 Source: [Enregistreur et conservation](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/logger.ts), [rougeur du diagnostic](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/diagnostic-redaction.ts), [détail de défaillance Notebook limité](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/failure-diagnostic.ts) et [état du contenu des artefacts](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/artifacts/provenance-content-status.ts).
 
-Tout d'abord, faire la distinction entre une opération échouée et un rafraîchissement/nettoyage échoué après un changement engagé, et distinguer l'exécution des tâches de base de l'exécution des résultats. Inspecter l'état sauvé avant de réessayer une mutation. Le [Tableau de recouvrement](../guides/troubleshooting.md#recovery-messages) orienté utilisateur couvre la restauration de la file d'attente bloquée, a conservé les références PDF, les modifications de la collection stale et les messages d'installation Windows. [Tâches en arrière-plan](../guides/notebook.md#background-tasks-and-result-delivery) explique l'état de l'exécution; Les erreurs de surveillance à distance demeurent distinctes des résultats finals.
+Tout d'abord, il faut distinguer une opération échouée d'un rafraîchissement ou d'un nettoyage échoué après un changement commis et il faut distinguer l'achèvement des tâches de base de l'exécution des résultats. Inspecter l'état sauvé avant de réessayer une mutation. Le [Tableau de recouvrement](../guides/troubleshooting.md#recovery-messages) orienté utilisateur couvre la restauration de la file d'attente bloquée, a conservé les références PDF, les modifications de la collection stale et les messages d'installation Windows. [Tâches en arrière-plan](../guides/notebook.md#background-tasks-and-result-delivery) explique l'état de l'exécution; Les erreurs de surveillance à distance demeurent distinctes des résultats finals.
+
+
+## Archives diagnostiques des séances {/* #session-diagnostic-archive */}
+
+**Export diagnostics…** recueille les métadonnées de session, les enregistrements de base de données et les métadonnées disponibles dans une archive locale avec un registre de manifeste et d'exportation. Les sources manquantes n'arrêtent pas l'exportation totale; Les sources importantes ou endommagées peuvent produire des résumés. Les journaux d'applications actuels et historiques peuvent couvrir les activités en dehors de la session sélectionnée, donc examiner les sources sélectionnées et saisir les résultats.
+
+Les sources de métadonnées ordinaires excluent les champs de contenu privé. Après une défaillance de paquet-exportation sensible-contenu, la boîte de dialogue peut également offrir des preuves de scanner expurgées et des fichiers d'origine marqués. Les fichiers originaux sont décochés par défaut; Les sélectionner explicitement inclut leurs octets originaux. Exporter ne fait aucune demande de téléchargement ou de modèle. Inspectez l'archive résultante avant de partager. Il ne remplace pas une sauvegarde de paquet de recherche ou une reproduction minimale. Voir [la procédure d'exportation illustrée](../guides/troubleshooting.md#session-diagnostics).

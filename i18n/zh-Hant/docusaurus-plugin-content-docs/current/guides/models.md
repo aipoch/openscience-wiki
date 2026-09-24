@@ -1,7 +1,7 @@
 ---
 title: "模型與任務策略"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # 模型與任務策略 {/* #模型与任务策略 */}
@@ -80,11 +80,11 @@ Session details 選擇器不接受 Codex 訂閱模型；Main 或 Vision 中能�
 
 原始碼：[主模型](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ActiveModelSelect.tsx)、[場景策略](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ScenarioModelList.tsx)。
 
-## 可選的分類模型 {/* #classification-models */}
+## 分類模型 {/* #classification-models */}
 
-開啟 **Settings → Model → Classification models**。分類服務在請求開始前輔助選擇相關 Skill 和 Connector，不會替換 Main，也不會增加一個聊天模型。可以將 **Automatic capability selection** 保持為 **Use default method**；不配置分類服務，Skill 和 Connector 仍可使用。
+開啟 **Settings → Model → Classification models**。分類服務有兩個獨立繫結：**Automatic capability selection** 和 **Smart collections**。前者在請求開始前輔助選擇相關 Skill 和 Connector，不會替換 Main，也不會增加一個聊天模型。可以將 **Automatic capability selection** 保持為 **Use default method**；不配置分類服務，Skill 和 Connector 仍可使用。
 
-v0.31.1 中，該路徑用於 **Codex Chat Completions** 或 **CodeBuddy** 的主會話。不能據此認為 Codex 訂閱會話或所有框架都會使用此服務。傳送給分類服務的內容僅包括當前請求及能力名稱、描述；服務不可用或分類結果不明確時，會繼續使用預設方式。
+透過此服務自動選擇能力，適用於 **Codex Chat Completions** 或 **CodeBuddy** 主會話。Codex 訂閱會話保留原有能力載入方式。此功能僅傳送當前請求及能力名稱、描述；服務不可用或分類結果不明確時，回退到預設方式。
 
 ![分類模型的預設方式與可選服務入口](/img/open-science/v0311/classification-models.webp)
 
@@ -94,7 +94,7 @@ v0.31.1 中，該路徑用於 **Codex Chat Completions** 或 **CodeBuddy** 的�
 4. 在 **Automatic capability selection** 中選擇已儲存的服務和目錄中提供的模型。透過 **Check model** 檢查連線。
 5. 在受支援的主會話中傳送一個範圍明確的請求，檢視實際選擇的工具。模型連線檢查透過，本身不能證明科研結果正確。
 
-移除服務會將其繫結恢復為預設方式。單獨儲存的服務金鑰會一併移除；複用已有賬戶的服務被移除時，不會刪除該賬戶或其金鑰。
+刪除服務會讓自動能力選擇恢復預設方式，並清空指向該服務的 Smart collections 繫結。單獨儲存的服務金鑰會一併移除；複用已有賬戶的服務被移除時，不會刪除該賬戶或其金鑰。
 
 聊天模型配置見[提供方設定](providers.md)。本地 PDF 解析資源由另一個 **Local parsing models** 標籤頁管理。
 
@@ -105,6 +105,18 @@ v0.31.1 中，該路徑用於 **Codex Chat Completions** 或 **CodeBuddy** 的�
 ![已選取 TypeSafe AI / Jev Latest，顯示 Check passed，金鑰保持隱藏](/img/open-science/v0311/classification-connected.webp)
 
 例如，在 Codex Chat Completions 會話中查詢公開的 TP53 資訊時，可由 Jev 選擇 `mcp-genes`。在活動記錄中檢查選中的能力，再檢視資料庫響應獲取查詢結果。Codex 訂閱會話使用原有的能力載入方式；儲存 Jev 繫結不會讓這類會話改用 Jev。
+
+### 為智慧集合繫結模型 {/* #smart-collection-model */}
+
+1. 開啟 **Settings → Model → Classification models**；尚未新增服務時，先儲存一個相容的分類服務。
+2. 在 **Smart collections** 下選擇服務及其提供的模型，再點選 **Check model**。所有智慧集合共用這一繫結；它與 **Automatic capability selection** 相互獨立。
+3. 確認 **Check passed**，再回到文獻庫建立範圍明確的小集合。智慧集合**沒有預設模型**，評估前必須配置此繫結。
+
+主會話可以繼續使用 **Codex subscription**。主會話的能力載入方式不妨礙文獻庫使用獨立的分類繫結。下圖為篩選選擇 **TypeSafe AI / Jev Latest**。
+
+![智慧集合與能力選擇分別繫結模型，服務金鑰保持隱藏](/img/open-science/v0330/classification-smart.webp)
+
+篩選會將集合規則和文獻證據傳送給該服務。關閉 **Use available full text** 時使用標題和摘要；開啟後傳送可用的 PDF 文字，長文件採用相關片段，PDF 不可用或不可讀時回退到標題和摘要。逐條檢查判斷所用證據。具體操作見[智慧文獻篩選工作流](../workflows/screen-literature.md)。
 
 ### 自定義分類服務 {/* #custom-classification */}
 

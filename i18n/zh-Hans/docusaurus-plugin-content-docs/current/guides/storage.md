@@ -1,7 +1,7 @@
 ---
 title: "存储与归档内容"
 last_update:
-  date: '2026-09-11'
+  date: '2026-09-24'
 ---
 
 # 存储与归档内容
@@ -136,3 +136,7 @@ last_update:
 下载失败检查目标目录和空间；托管文件不可用先核对数据位置和配置档，不要立即新建替代项目；迁移后缺包检查重建环境，不要直接判断研究数据丢失。如何收集版本和首条有效错误见[排查](troubleshooting.md)。
 
 源码：[存储面板](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StoragePanel.tsx)、[迁移表单](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StorageMigrationModal.tsx)。 [文献库迁移检查](https://github.com/aipoch/open-science/commit/d00c722d)。
+
+## 升级后重新打开已有数据 {/* #historical-data-location */}
+
+应用优先使用已保存的数据位置。旧安装已完成初始化、但没有明确保存位置时，Open-Science 会保留历史位置并保存该选择。已保存的文件夹不可用时，先重新连接，再启动。若多个历史位置都含有研究数据，应用会要求选择或恢复原文件夹，不会静默选一个。核对项目与文件前保留各份数据，不要用新建空目录处理看似丢失的数据。

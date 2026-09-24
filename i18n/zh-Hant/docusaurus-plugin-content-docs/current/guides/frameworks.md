@@ -1,7 +1,7 @@
 ---
 title: "安裝與切換代理框架"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-24'
 ---
 
 # 安裝與切換代理框架 {/* #安装与切换代理框架 */}
@@ -37,6 +37,8 @@ last_update:
 Codex 原生執行時與 ACP adapter 必須成對透過檢測，只裝其中一個不等於就緒。訂閱認證見[模型接入](./providers.md)。
 
 OpenCode 的 **Install → App-managed download (recommended)** 會下載自包含執行時。介面依次顯示 Resolving、下載進度和帶版本、路徑的 Installed 卡片。點選卡片，確認 **Switch to OpenCode?**，再選擇相容模型。本地連線例已正常返回回覆，介面格式與 token 設定見[本地提供方配置](./providers.md#连接本地模型端点)。
+
+v0.33.0 的 **Claude Agent** 要求 Claude CLI **2.1.118 或更高版本**。若檢測提示版本不受支援，按原安裝方式更新卡片實際指向的安裝，再使用 **Re-detect** 確認就緒後啟動會話。更新另一份 CLI 不會修復卡片所指的安裝。
 
 ## 更新應用管理的 Codex 執行時 {/* #update-codex */}
 

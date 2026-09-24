@@ -1,7 +1,7 @@
 ---
 title: "Sitzungen und Verzweigungen"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -161,4 +161,9 @@ Im GSE60450-Projekt forken Sie die bestehende QC-Sitzung ab und öffnen Sie das 
 
 ## Lesen Sie die Session Information Card {/* #session-information */}
 
-Wählen Sie den Sitzungstitel aus, um die Anzahl, Beschreibung, Quelle, Erstellungs-/Aktualisierungszeiten, Nachrichtenanzahl für den aktuellen Zweig und Artefaktanzahl anzuzeigen. Verwenden Sie **Pin**, um die Sitzung leicht zu finden, oder **Sitzung bearbeiten**, um den Titel und die Beschreibung zu ändern. Ein **Weiter aus dem Chat**-Teiler verbindet sich wieder mit dem aufgezeichneten Source-Turn.
+Wählen Sie den Sitzungstitel aus, um die Anzahl, Beschreibung, Quelle, Erstellungs-/Aktualisierungszeiten, Nachrichtenanzahl für den aktuellen Zweig und Artefaktanzahl anzuzeigen. Verwenden Sie **Pin**, um die Sitzung leicht zu finden, oder **Sitzung bearbeiten**, um den Titel und die Beschreibung zu ändern. Ein **Fortgesetzt aus einem Chat**-Teiler verbindet sich wieder mit dem aufgezeichneten Source-Turn.
+
+
+## Exportsitzungsdiagnosen {/* #session-diagnostics */}
+
+Verwenden Sie das **Export diagnostics…**-Steuerelement des Session-Headers oder das **Export → Export diagnostics…** des Session-Menüs, um ausgewählte Diagnosequellen in einem lokalen Archiv zu sammeln. Anwendungsprotokolle können Metadaten außerhalb der ausgewählten Sitzung enthalten. Überprüfen Sie die Quellliste, die Vervollständigungsnachricht und den Archivinhalt vor dem Teilen; siehe [Diagnoseausfuhrschritte](troubleshooting.md#session-diagnostics).

@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -148,9 +148,19 @@ Pour ajouter **Le groupe PRISMA**, sélectionnez **Add creator → Creator role:
 
 v0.30.2 corrige l'analyse du nom d'auteur PubMed, y compris les noms de famille, les initiales et les suffixes. Lorsque vous importez ou remplissez des métadonnées, inspectez les champs du créateur et produisez des citations en fonction de la source liée. Ne présumez pas que l'installation de la mise à jour réécrit les métadonnées déjà stockées dans votre bibliothèque.
 
+## Collections intelligentes {/* #smart-collections */}
+
+Activer **Smart collection** dans **New collection** pour filtrer les enregistrements de la bibliothèque contre des règles explicites. Sélectionnez **Scope** (toutes les références, un projet ou une collection), ajoutez le **Inclusion criteria** requis et le **Exclusion criteria** optionnel, puis choisissez les options de preuve et de mise à jour. Contrairement à une description de collection ordinaire, les descriptions de collection intelligente fournissent un contexte pour l'évaluation des modèles.
+
+Configurez d'abord **Settings → Model → Classification models → Smart collections**; Cette fonctionnalité n'a pas de modèle par défaut. **Included**, **Needs review**, **Excluded** et **Not evaluated** distinguent les enregistrements appariés, incertains, rejetés et non évalués. Ouvrez **Evaluation details** et examinez la source réelle avant de choisir **Include** ou **Exclude**. Les décisions manuelles survivent aux mises à jour jusqu'à ce que vous rétablissiez la décision modèle.
+
+**Trial run (up to 20 references)** enregistre les résultats. **Live rule preview** évalue un brouillon sans les sauvegarder. **Update automatically** s'applique aux enregistrements nouveaux ou modifiés dans la portée sélectionnée; il est opt-in et peut engager des coûts de classification. Il ne découvre pas de nouveaux documents en dehors de la Bibliothèque. Suivez [le flux de travail illustré de la sélection](../workflows/screen-literature.md) de la recherche à l'exportation examinée.
+
+Au cours d'une course, ouvrez **Screening process** pour inspecter la progression et utilisez **Pause / Analyse des résidus** pour faire une pause ou continuer. Les modifications apportées aux règles, aux documents ou aux progrès enregistrés peuvent rendre une opération antérieure non récupérable. **Retour aux résultats** retourne à la liste des décisions. Les marqueurs de champ **Project** et **Collection** distinguent les types de sources et les liens vers la source; ils ne sont pas des permissions de partage multi-utilisateurs.
+
 ## Organiser les dossiers acceptés {/* #organize-the-accepted-records */}
 
-Créez une collection avec **New collection**, remplissez **Name** et en option **Description**, puis **Create collection**. La description est le texte organisationnel, et non le contexte de l'agent. Annuler/Fermer rejette l'ébauche. Sélectionnez les enregistrements dans toutes les références et utilisez **Add to collection** ou **Add to project**. La sélection s'efface après l'opération; sélectionner si vous ajoutez une autre destination.
+Créez une collection ordinaire avec **New collection** et **Smart collection**, remplissez **Name** et **Description** en option, puis **Create collection**. La description est le texte organisationnel, et non le contexte de l'agent. Annuler/Fermer rejette l'ébauche. Sélectionnez les enregistrements dans toutes les références et utilisez **Add to collection** ou **Add to project**. La sélection s'efface après l'opération; sélectionner si vous ajoutez une autre destination.
 
 Dans une vue détaillée, les cases à cocher projet et collection montrent les liens. **Manage Tags** ajoute des balises organisationnelles. La note d'un à cinq étoiles de la table est votre annotation, pas un score de qualité de preuve automatique. **Clear selection** laisse les enregistrements inchangés.
 

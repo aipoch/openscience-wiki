@@ -2,7 +2,7 @@
 title: ".science 연구 패키지"
 description: "파일 및 증거와 함께 세션을 내보내고 다른 프로젝트에 대한 연구 기록을 검사합니다."
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -22,6 +22,14 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 패키지는 업로드 된 연구 자료, 대화 텍스트 및 생성 된 결과를 포함 할 수 있습니다. 공유하기 전에 내용을 검토하십시오. 그것은 독립적 인 사본입니다 : 로컬 작업을 삭제하는 것은 다른 사람에게 이미 전송 된 패키지를 제거하지 않습니다.
 
 Side Chat 대화, 개인 [독서 bookmarks](bookmarks.md) 및 메모는 패키지에서 제외됩니다. 수신자는 저장된 보고서 또는 수출하기 전에 대화에 필요한 정보를 입력합니다.
+
+## 수신자의 버전 확인 {/* #package-compatibility */}
+
+**v0.33.0**에 의해 수출된 포장은 `ro-crate-metadata.json`에 있는 **RO 크레이트 1.1** 메타데이터를 포함합니다. 그것은 최종 수출된 스냅 샷 및 선택한 immutable 파일, 파일 이름, 미디어 유형 및 그들의 관계를 포함. Re-export는 새로운 스냅 샷에 대한 그 참조를 재구성합니다.
+
+**v0.33.0 또는 나중에 호환 리더**을 사용하여이 새로운 수출을 엽니 다. 그들은 필요한 `ro-crate` 기능을 선언합니다. 수입하기 전에 오래된 수신 앱을 업데이트하십시오. metadata를 renaming 또는 제거하면 호환성 수정이 없습니다. 이전 패키지는 이전없이 읽을 수 있습니다.
+
+이 메타데이터는 `.science` 패키지 안에 여행합니다. 계산, 보조 자격 증명 또는 [artifact 버전의 재현성 검사](reproducibility.md)을 다시 실행하지 않습니다.
 
 ## 연구 패키지 수출 {/* #export-the-session */}
 

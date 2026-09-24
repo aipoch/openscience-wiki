@@ -2,7 +2,7 @@
 title: "Connector 操作参数参考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作输入
 
-每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.32.0** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.32.0.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
+每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.33.1** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.1.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
 
 
 ## 化学 {/* #family-1 */}
@@ -618,6 +618,47 @@ const result = await host.mcp("genes", "search_uniprot_entries", {"gene": "TP53"
 const result = await host.mcp("genes", "get_uniprot_entries", {"accessions": ["P04637", "P38398"], "fields": ["accession", "id", "protein_name", "gene_names", "organism_name", "length"]})
 ```
 
+### `submit_uniprot_id_mapping`
+
+向 UniProt 提交最多 100000 个标识符的批量映射。from_db 与 to_db 必须是 UniProt API 支持的准确数据库名称，支持组合见其 configure/idmapping/fields。仅 from_db=Gene_Name 可指定 taxon_id，用于限定物种。每个 ID 独立成项，不含空白或分隔符；保留大小写和版本，精确重复项只提交一次。保存返回的 job_id，再查询状态和分页结果。此操作不自动重试或轮询；若提交响应丢失，远端任务可能已存在，不要盲目重提。结果最长保留约 7 天；关闭应用或取消本地请求不会取消远端任务。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `from_db` | string | **必填**; minLength: 1; maxLength: 100; pattern: &quot;^[A-Za-z][A-Za-z0-9_-]*$&quot; |
+| `to_db` | string | **必填**; minLength: 1; maxLength: 100; pattern: &quot;^[A-Za-z][A-Za-z0-9_-]*$&quot; |
+| `ids` | array of string | **必填**; minItems: 1; maxItems: 100000 |
+| `taxon_id` | integer | 可选; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("genes", "submit_uniprot_id_mapping", {"from_db":"Gene_Name","to_db":"UniProtKB","ids":["TP53","BRCA1"],"taxon_id":9606})
+```
+
+### `get_uniprot_id_mapping_status`
+
+查询一次已有 UniProt 映射任务。NEW／RUNNING 时至少间隔 3 秒再查询；FINISHED 后分页获取全部结果。上游 ERROR 规范化为 FAILED，表示任务失败，不等于标识符未匹配。保留 messages 中的错误，未知或过期任务的 HTTP 错误会向上传递。此操作不创建任务，也不自动轮询。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; minLength: 1; maxLength: 100; pattern: &quot;^[A-Za-z0-9_-]+$&quot; |
+
+```javascript
+const result = await host.mcp("genes", "get_uniprot_id_mapping_status", {"job_id":"ecuuh9h0Md"})
+```
+
+### `get_uniprot_id_mapping_results`
+
+获取已完成 UniProt 映射任务的一页 from/to 对。保持 job_id 和 page_size 不变，使用 next_cursor 继续，直到 has_more=false。一对多映射必须保留；同一输入的结果可能跨页，汇总全部页面后再判断。收集各页明确返回的 failed_ids，不要因某页没有输入项就推断其未匹配。total_results 是映射行数，不是成功输入 ID 数；one_to_many_in_page 仅反映当前页。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; minLength: 1; maxLength: 100; pattern: &quot;^[A-Za-z0-9_-]+$&quot; |
+| `page_size` | integer | 可选; default: 100; minimum: 1; maximum: 500 |
+| `cursor` | string | 可选; minLength: 1; maxLength: 4096; pattern: &quot;^[^\\s\\u0000-\\u001f\\u007f]+$&quot; |
+
+```javascript
+const result = await host.mcp("genes", "get_uniprot_id_mapping_results", {"job_id":"ecuuh9h0Md","page_size":100})
+```
+
 ### `map_reactome_pathways`
 
 将基因符号或 UniProt 登录号映射到 Reactome 通路。id_type 与输入类型匹配，标识不得重复。compact 返回每项低层通路及 Reactome 发布信息；完整模式增加实体、反应统计和 identifiers_not_found。物种及分子资源视图应与研究输入一致。 按请求的物种映射通路，不会把标识投影到人类。使用受支持的学名，例如 `Homo sapiens` 或 `Mus musculus`；完整名单见下载的结构定义。空值、不支持的物种或返回物种不匹配均会报错。`found` 和 `n_found` 表示标识被识别，不保证该物种中存在通路；识别成功也可能返回零条通路。compact 模式只返回低层通路。
@@ -886,17 +927,17 @@ const result = await host.mcp("genomes", "ucsc_track_data", {"track": "cpgIsland
 
 ### `ucsc_conservation`
 
-计算 UCSC 区域保守性摘要。坐标为 0-based 半开区间，跨度最多 100000 bp；hg19 默认使用 phyloP100wayAll，其他组装默认 phyloP100way，应核对轨道存在。摘要按覆盖碱基跨度加权，未覆盖碱基降低覆盖率，不按零分计入。include_values 可返回受 max_values 限制的逐区间分数；上游截断或非分数轨道会报错。
+读取 UCSC phyloP／phastCons 保守性轨道的区域统计。chrom 使用 chr 前缀，start/end 为从 0 开始的半开区间，跨度最多 100000 bp。默认 genome=hg38；默认轨道分别为 hg19: phyloP100wayAll、hg38: phyloP100way、mm10: phyloP60wayAll、mm39: phyloP35way。其他基因组保留 phyloP100way 回退，但轨道可能不存在，应先用 ucsc_list_tracks 核对。include_values 可返回受 max_values 限制的逐碱基数据。统计按覆盖的碱基跨度加权并裁剪到窗口；未覆盖位置降低 coverage_fraction，不作为零分处理。上游结果截断或非数值轨道会报错。
 
-| 字段 | 类型 | 要求与约束 |
+| 字段 | 类型 | 必填与约束 |
 | --- | --- | --- |
-| `chrom` | 字符串 | **必填** |
-| `start` | 整数 | **必填**; 最小值: 0; 最大值: 9007199254740991 |
-| `end` | 整数 | **必填**; 最小值: 0; 最大值: 9007199254740991 |
-| `genome` | 字符串 | 可选; 默认值: &quot;hg38&quot; |
-| `track` | 字符串 | 可选 |
-| `include_values` | 布尔值 | 可选; 默认值: false |
-| `max_values` | 整数 | 可选; 默认值: 2000 |
+| `chrom` | string | **必填** |
+| `start` | integer | **必填**; minimum: 0; maximum: 9007199254740991 |
+| `end` | integer | **必填**; minimum: 0; maximum: 9007199254740991 |
+| `genome` | string | 可选; default: &quot;hg38&quot; |
+| `track` | string | 可选 |
+| `include_values` | boolean | 可选; default: false |
+| `max_values` | integer | 可选; default: 2000 |
 
 ```javascript
 const result = await host.mcp("genomes", "ucsc_conservation", {"chrom": "chr7", "start": 140753330, "end": 140753380, "track": "phyloP100way"})
@@ -930,6 +971,48 @@ const result = await host.mcp("genomes", "ucsc_tfbs_clusters", {"chrom": "chr7",
 
 ```javascript
 const result = await host.mcp("genomes", "ucsc_chrom_sizes", {"genome": "hg38", "filter_text": "chr1", "max_chroms": 25})
+```
+
+### `clustalo_submit`
+
+向 EMBL-EBI Clustal Omega 提交至少三条蛋白质、DNA 或 RNA FASTA 序列，记录名称必须唯一；最多 4000 条或 4 MiB。返回 job_id 后保存并查询状态，再获取结果。默认 outfmt=clustal_num，包含位置编号。需在 Settings → Privacy → Share contact email with research data services 配置有效联系邮箱。序列会发送到 EMBL-EBI，输入和结果可能保存在会话或 Notebook 中。响应丢失不等于未提交，不要自动重提。结果保留期由提供方控制，文档说明最长约一周；应用退出仅停止本地请求，不取消远端任务。每批最多 30 个任务，等处理或获取结果后再提交下一批；连接器不跨调用限流。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `sequence` | string | **必填**; minLength: 1; maxLength: 4194304 |
+| `stype` | string | **必填**; enum: [&quot;protein&quot;, &quot;dna&quot;, &quot;rna&quot;] |
+| `outfmt` | string | 可选; enum: [&quot;clustal_num&quot;] |
+| `title` | string | 可选; minLength: 1; maxLength: 200 |
+| `dealign` | boolean | 可选 |
+| `order` | string | 可选; enum: [&quot;aligned&quot;, &quot;input&quot;] |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_submit", {"sequence": ">human\nMKT\n>mouse\nMRT\n>rat\nMRT\n", "stype": "protein"})
+```
+
+### `clustalo_status`
+
+查询一次已有 Clustal Omega 任务，不自动轮询或等待。至少间隔 10 秒再查，直到 FINISHED、ERROR、FAILURE 或 NOT_FOUND。重启后保留原 job_id 继续查询。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; minLength: 1; maxLength: 128 |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_status", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m"})
+```
+
+### `clustalo_results`
+
+获取已完成任务的 clustal_num 原始比对文件，使用提交返回的相同 outfmt。返回比对内容与建议文件名，需由调用者保存。结果上限 8 MiB；QUEUED／RUNNING 时返回 ready:false 与重试提示，失败保留 job_id 供诊断，不自动重试或重提。结果可能在约一周内过期，应及时保存；应用退出不取消远端任务。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; minLength: 1; maxLength: 128 |
+| `outfmt` | string | **必填**; enum: [&quot;clustal_num&quot;] |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_results", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m", "outfmt":"clustal_num"})
 ```
 
 </ToolOperationGroup>
@@ -3759,3 +3842,208 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ## 示例响应记录
 
 <ExampleDownload path="/examples/capabilities/public-database-query-receipts.json">示例响应记录</ExampleDownload>提供准确输入、截短的响应片段和逐项状态。请区分返回记录、空匹配和请求失败。结果可能是元数据、结构说明或标识符；用于研究前，先核对来源字段与完整性标记。
+
+## GDC {/* #family-24 */}
+
+<ToolOperationGroup>
+<summary>展开操作与参数</summary>
+
+### `gdc_list_projects`
+
+分页列出 GDC 癌症项目及病例、文件汇总。筛选条件和结果数量有明确边界，此操作只发现元数据，不下载文件。页码从 1 开始，最多 10000 页；next_page 为空也可能因为总量未知或达到页数上限，不能单独证明已获取全部结果。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `project_ids` | string / array | 可选 |
+| `disease_type` | string | 可选; minLength: 1; maxLength: 200 |
+| `primary_site` | string | 可选; minLength: 1; maxLength: 200 |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-BRCA", "page_size": 5})
+```
+
+### `gdc_list_cases`
+
+分页列出 GDC 病例（样本提供者）的项目和疾病元数据，不读取或下载受控数据。页码从 1 开始，最多 10000 页；结合 total、total_relation 与 next_page 判断范围，达到分页上限时缩小筛选条件。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `project_ids` | string / array | 可选 |
+| `submitter_ids` | string / array | 可选 |
+| `case_ids` | string / array | 可选 |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BRCA"], "page_size": 5})
+```
+
+### `gdc_search_files`
+
+检索 GDC 文件清单，逐项标明 open 或 controlled。只返回元数据，不下载文件或授予访问权限；受控文件不提供可下载 URL，状态为 requires_authorization。access_summary 只描述当前页。project_id 是单个关联项目摘要，不代表完整关联集合。next_page 为空不一定表示全部匹配已取完。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `project_ids` | string / array | 可选 |
+| `access` | string | 可选; default: &quot;all&quot;; enum: [&quot;all&quot;, &quot;open&quot;, &quot;controlled&quot;] |
+| `data_category` | string | 可选; minLength: 1; maxLength: 200 |
+| `data_type` | string | 可选; minLength: 1; maxLength: 200 |
+| `data_format` | string | 可选; minLength: 1; maxLength: 50 |
+| `file_name` | string | 可选; minLength: 1; maxLength: 500 |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+```
+
+### `gdc_get_file`
+
+按一个 GDC 文件 UUID 获取元数据和 open／controlled 访问类别，不下载文件，也不保证当前用户可下载。只有公开文件返回 download_url；受控文件需在此元数据查询之外取得 GDC 授权及相应令牌。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `file_id` | string | **必填**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[1-5][0-9a-fA-F]&#123;3&#125;-[89abAB][0-9a-fA-F]&#123;3&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_get_file", {"file_id": "cb92f61d-041c-4424-a3e9-891b7545f351"})
+```
+
+### `gdc_get_manifest`
+
+为最多 100 个文件 UUID 生成 GDC Data Transfer Tool 清单文本。清单不下载文件，也不绕过受控访问授权。按 UUID 对应返回行，不依赖请求顺序。任一 UUID 不存在时请求以 HTTP 404 失败，而非返回部分成功清单。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `file_ids` | array of string | **必填**; minItems: 1; maxItems: 100; uniqueItems: true |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_get_manifest", {"file_ids": ["cb92f61d-041c-4424-a3e9-891b7545f351"]})
+```
+
+</ToolOperationGroup>
+
+## Zenodo {/* #family-25 */}
+
+<ToolOperationGroup>
+<summary>展开操作与参数</summary>
+
+### `search_records`
+
+使用 Zenodo 查询语法检索公开记录，单次最多 25 条，无需认证。默认仅列出最新版本，all_versions 可包含旧版本。翻页时保持 query、page_size、sort 和 all_versions 不变。检索窗口最多 10000 条，pagination_limited 为 true 时需缩小查询。公开元数据不代表文件开放下载；total_relation 区分精确总量 eq 与下界 gte。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 1; maxLength: 1000; pattern: &quot;\\S&quot; |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | 可选; default: 10; minimum: 1; maximum: 25 |
+| `sort` | string | 可选; default: &quot;bestmatch&quot;; enum: [&quot;bestmatch&quot;, &quot;mostrecent&quot;] |
+| `all_versions` | boolean | 可选; default: false |
+
+```javascript
+const result = await host.mcp("zenodo", "search_records", {"query": "title:climate", "page_size": 5})
+```
+
+### `get_record`
+
+按十进制记录 ID 获取 Zenodo 公开元数据及可见文件清单，不接受 DOI 或 URL。概念 ID 可能解析到最新版本，应保存返回的版本级 record_id，区分 requested_record_id 与 concept_record_id。description_html 为未经净化的上游 HTML。文件链接和校验值仅为元数据，不代表已下载、校验或探测访问。文件清单为 null 表示缺失，空数组表示明确返回空清单；受限记录的公开元数据不保证文件可访问。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `record_id` | string | **必填**; maxLength: 20; pattern: &quot;^[1-9][0-9]*$&quot; |
+
+```javascript
+const result = await host.mcp("zenodo", "get_record", {"record_id": "8435696"})
+```
+
+</ToolOperationGroup>
+
+## HMMER {/* #family-26 */}
+
+<ToolOperationGroup>
+<summary>展开操作与参数</summary>
+
+### `search` {/* #hmmer-search */}
+
+提交一次异步 EMBL-EBI HMMER3 搜索。program 可选 phmmer（蛋白序列对序列库）、hmmscan（蛋白序列对 Pfam 模型）、hmmsearch（profile HMM／比对对序列库）或 jackhmmer（迭代远缘同源检索）。input 使用该程序支持的 FASTA、profile HMM 或比对文本，database 为提供方数据库名。阈值使用 HMMER 参数 incE/incdomE、E/domE、incT/incdomT、T/domT；iterations 控制 jackhmmer 轮数。保存返回的 job_id，再查询 status。提交不等于完成；响应丢失可能已有远端任务，不要自动重提。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `program` | string | **必填**; enum: [&quot;phmmer&quot;, &quot;hmmscan&quot;, &quot;hmmsearch&quot;, &quot;jackhmmer&quot;] |
+| `database` | string | **必填**; enum: [&quot;refprot&quot;, &quot;uniprot&quot;, &quot;swissprot&quot;, &quot;pdb&quot;, &quot;rp15&quot;, &quot;rp35&quot;, &quot;rp55&quot;, &quot;rp75&quot;, &quot;pfam&quot;] |
+| `input` | string | **必填**; minLength: 1; maxLength: 200000 |
+| `incE` | number | 可选; exclusiveMinimum: 0; maximum: 10 |
+| `incdomE` | number | 可选; exclusiveMinimum: 0; maximum: 10 |
+| `incT` | number | 可选; exclusiveMinimum: 0 |
+| `incdomT` | number | 可选; exclusiveMinimum: 0 |
+| `E` | number | 可选; exclusiveMinimum: 0; maximum: 10 |
+| `domE` | number | 可选; exclusiveMinimum: 0; maximum: 10 |
+| `T` | number | 可选; exclusiveMinimum: 0 |
+| `domT` | number | 可选; exclusiveMinimum: 0 |
+| `popen` | number | 可选; minimum: 0 |
+| `pextend` | number | 可选; minimum: 0 |
+| `mx` | string | 可选; enum: [&quot;BLOSUM45&quot;, &quot;BLOSUM62&quot;, &quot;BLOSUM90&quot;, &quot;PAM30&quot;, &quot;PAM70&quot;] |
+| `iterations` | integer | 可选; minimum: 1; maximum: 9 |
+
+```javascript
+const result = await host.mcp("hmmer", "search", {"program":"hmmscan","database":"pfam","input":">query\nMKTIIALSYIFCLVFADYKDDDDK"})
+```
+
+### `status` {/* #hmmer-status */}
+
+查询一次已有 HMMER 任务，不自动轮询或重提。SUCCESS 表示可获取结果，PENDING／RUNNING 表示等待后再查；ERROR／FAILURE／NOT_FOUND 是终止状态，不等于零命中。保留准确 job_id。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; maxLength: 36; pattern: &quot;^[A-Fa-f0-9]&#123;8&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("hmmer", "status", {"job_id":"8ebb1d5f-4457-4da8-808c-f811105c3654"})
+```
+
+### `results` {/* #hmmer-results */}
+
+先查询一次状态，仅 SUCCESS 时读取包含结构域注释的全部结果页。等待或失败时不返回结果载荷；jackhmmer 迭代记录保留提供方数组结构。结果保留期有限，应保存到 Notebook 产物。成功后的空匹配列表是零命中，不能与等待或失败混淆。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; maxLength: 36; pattern: &quot;^[A-Fa-f0-9]&#123;8&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("hmmer", "results", {"job_id":"8ebb1d5f-4457-4da8-808c-f811105c3654"})
+```
+
+</ToolOperationGroup>
+
+## InterProScan {/* #family-27 */}
+
+<ToolOperationGroup>
+<summary>展开操作与参数</summary>
+
+### `status` {/* #interproscan-status */}
+
+通过已有 job_id 查询一次 InterProScan 注释任务，至少间隔 10 秒再查。FINISHED 后可获取结果；ERROR／FAILURE 表示失败，NOT_FOUND 表示未知或过期，不是零命中。此连接器不提交或重提任务。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; maxLength: 200; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9_-]&#123;0,199&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+### `results` {/* #interproscan-results */}
+
+先查询一次状态，仅 FINISHED 时获取完整 TSV 报告，上限 2 MiB，超限报错而不截断。不自动重试、轮询或重提。及时保存报告，避免提供方结果过期。每行对应一个 signature 匹配；坐标从 1 开始且包含两端，分数含义由各分析程序决定，可选列含 InterPro、GO 与通路注释。FINISHED 后的空报告表示没有返回匹配，不证明蛋白没有功能。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `job_id` | string | **必填**; maxLength: 200; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9_-]&#123;0,199&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+</ToolOperationGroup>

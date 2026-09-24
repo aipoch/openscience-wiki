@@ -86,3 +86,31 @@ preserve actual errors or empty results. Never invent alignments.
 <ExampleDownload path="/examples/v0320/hba1-blast-results.md">報告書を完成</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-hits.csv">5枚のヒットテーブル</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-raw.json">NCBI JSON2レポート</ExampleDownload>
 
 ヒットしたP69905は入力シーケンス自体なので、100%のアイデンティティとカバレッジは、既知のシーケンスチェックを提供します。 他のヒットは、新しい機能的な発見ではなく、同様のシーケンスを示しています。 結果テーブルで生のレポートとクエリを保持します。 後ほどデータベースリリースはヒットリストを変更できます。
+
+3つ以上の既知のシーケンスを比較するには、[複数の配列の直線および保存された位置](multiple-sequence-alignment.md) を続けてください。
+
+## HMMERでタンパク質ドメインをチェックする {/* #hmmer-domain */}
+
+<p className="example-label"><strong>実践例</strong> Pfam から人間の P69905 をスキャンして下さい</p>
+
+キャノンP69905タンパク質シーケンスを取得した後、有効 **ムマー** のための Main でん **Settings → Connectors**. . . . 同じ会話で、次のことを尋ねます:
+
+```text
+Use the HMMER Connector to scan the same human P69905 sequence against
+Pfam with hmmscan. Keep the job ID, retrieve the completed domain
+annotations, and save the raw result and a concise English interpretation
+with coordinates and significance values. Preserve an unavailable
+result as unavailable.
+```
+
+1. 送信者のジョブ ID をチェックし、同じジョブの **ステータス** に従ってください。
+2. 完了後**結果発表**を要求し、生の応答を救いて下さい。 ヒットを解釈する前に、`ready`と結果のステータスを確認してください。
+3. ヒットした家族のアクセス、クエリ座標、E値、インクルードフラグをそれぞれ調べます。 報告された断片は必ずしも重要なドメインではありません。
+
+![P69905の完成したHMMERレポート、ドメイン座標と意義値](/img/open-science/v0331/hmmer-result.webp)
+
+この実行は、クエリレジデュース**27–137**(1ベース、インクルーシブ)、**115.572ビット**および独立したドメインE値**2.2781 × 10⁻³³**に含まれているドメインで、**Globin・PF00042.28**を返しました。 **10–20**の短いフラグメントは含まれていませんでしたし、重要ではありませんでした。 2番目のドメインの証拠ではありません。 これらの座標は、送信された正式なシーケンスを参照します。, 成熟タンパク質の番号付けスキームではありません. E値は検索スペースに依存し、生物学的解釈が正しい確率を直接測定しません。
+
+<ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">未加工 HMMER 応答</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">ドメインの解釈</ExampleDownload>
+
+HMMER の入力は選択したプログラムによって異なります。 たとえば、**hmmscanの** でタンパク質シーケンスを使用します。 他のプログラムの[操作の参照](../reference/connector-operations.md#family-26)を参照してください。 **インタープロスキャン**は、既存のジョブのステータスとTSV結果を別々に取得します。 提出しない。
