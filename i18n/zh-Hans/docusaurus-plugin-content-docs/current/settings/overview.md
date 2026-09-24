@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: 设置中心总览
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # 设置中心总览
@@ -58,3 +58,5 @@ last_update:
 ## 模型设置中的标签页 {/* #model-tabs */}
 
 在 **Model** 内，**Conversation models** 管理提供方与任务模型，**Classification models** 配置可选的 Skill/Connector 选择服务，**Local parsing models** 管理本地解析资源。分类模型是模型设置中的标签页，不是新增的顶层设置面板。详见[分类模型配置](../guides/models.md#classification-models)。
+
+页头搜索使用 **⌘K / Ctrl+K**。当前面板或对话框内有局部搜索框时，使用 **⌘⌥K / Ctrl+Alt+K** 聚焦该框，见[搜索快捷键](../guides/shortcuts.md#local-settings-search)。

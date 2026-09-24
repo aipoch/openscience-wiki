@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Aperçu des paramètres"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # Aperçu des paramètres {/* #settings-overview */}
@@ -55,4 +55,6 @@ Cette recherche couvre les paramètres représentatifs de chaque panel, pas de c
 
 ## Les onglets de paramètres du modèle {/* #model-tabs */}
 
-Dans **Model**, utilisez **Conversation models** pour les fournisseurs et les modèles de tâches, **Classification models** pour la sélection optionnelle Skill/Connector et **Local parsing models** pour les ressources d'analyse locales. La classification est un onglet dans les paramètres du modèle, pas un panneau de paramètres de haut niveau supplémentaire. Voir [la configuration du classement](../guides/models.md#classification-models).
+Dans **Model**, utilisez **Conversation models** pour les fournisseurs et les modèles de tâches, **Classification models** pour la sélection optionnelle de Skill/Connector et **Local parsing models** pour les ressources d'analyse locales. La classification est un onglet dans les paramètres du modèle, pas un panneau de paramètres de haut niveau supplémentaire. Voir [la configuration du classement](../guides/models.md#classification-models).
+
+La recherche d'en-tête utilise **Ctrl+K**. Pour focaliser la recherche du panneau ou de la boîte de dialogue, utilisez **Ctrl+Alt+K** lorsque ce champ est disponible. Voir [raccourcis de recherche](../guides/shortcuts.md#local-settings-search).

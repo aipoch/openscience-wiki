@@ -2,7 +2,7 @@
 title: "Connector operation reference"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Return field names differ by operation. The descriptions and downloadable schema
 
 ## Operation inputs
 
-Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.32.0** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.32.0.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
+Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.33.1** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.1.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
 
 
 ## Chemistry {/* #family-1 */}
@@ -618,6 +618,47 @@ Fetch UniProtKB records for a list of primary or secondary accessions (batched O
 const result = await host.mcp("genes", "get_uniprot_entries", {"accessions": ["P04637", "P38398"], "fields": ["accession", "id", "protein_name", "gene_names", "organism_name", "length"]})
 ```
 
+### `submit_uniprot_id_mapping`
+
+Submit up to 100,000 identifiers for UniProt batch ID mapping. from_db/to_db are exact UniProt API database names (e.g. Gene_Name, GeneID, Ensembl, RefSeq_Protein, UniProtKB_AC-ID -> UniProtKB; UniProtKB_AC-ID -> Ensembl or GeneID). Valid pairs are defined by https://rest.uniprot.org/configure/idmapping/fields; unsupported pairs fail upstream. taxon_id is optional only for Gene_Name; specify it to disambiguate species. IDs must be individual strings without whitespace or separators; case and versions are preserved, exact duplicates submitted once. Pass accessions from search_uniprot_entries as ids with from_db=UniProtKB_AC-ID. Sends one POST, never automatically retries or polls. Save job_id, then use get_uniprot_id_mapping_status and get_uniprot_id_mapping_results. UniProt expires results after up to 7 days; cancellation or app shutdown stops local requests, not the remote job. No local job cache or remote cancellation/deletion API is provided. If submission loses its response, a job may exist; do not blindly resubmit.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `from_db` | string | **required**; minLength: 1; maxLength: 100; pattern: &quot;^[A-Za-z][A-Za-z0-9_-]*$&quot; |
+| `to_db` | string | **required**; minLength: 1; maxLength: 100; pattern: &quot;^[A-Za-z][A-Za-z0-9_-]*$&quot; |
+| `ids` | array of string | **required**; minItems: 1; maxItems: 100000 |
+| `taxon_id` | integer | optional; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("genes", "submit_uniprot_id_mapping", {"from_db":"Gene_Name","to_db":"UniProtKB","ids":["TP53","BRCA1"],"taxon_id":9606})
+```
+
+### `get_uniprot_id_mapping_status`
+
+Check an existing UniProt ID mapping job once. NEW/RUNNING means poll this tool later (at least 3 seconds apart); FINISHED means fetch all pages with get_uniprot_id_mapping_results. Upstream ERROR is normalized to FAILED, a terminal job failure, not unmatched IDs. HTTP 400/500 job failures are read without automatic retries; other HTTP failures (including unknown/expired jobs) propagate. Does not submit a new job or automatically poll.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `job_id` | string | **required**; minLength: 1; maxLength: 100; pattern: &quot;^[A-Za-z0-9_-]+$&quot; |
+
+```javascript
+const result = await host.mcp("genes", "get_uniprot_id_mapping_status", {"job_id":"ecuuh9h0Md"})
+```
+
+### `get_uniprot_id_mapping_results`
+
+Fetch one page of compact UniProt ID mapping pairs for a finished job. Repeat with next_cursor and identical job_id/page_size until has_more=false; cursors are opaque, not offsets or durable snapshots. Every from/to row is retained, including one-to-many mappings. Merge pairs by from across ALL pages before interpreting multiplicity; a source can span pages. Collect the union of failed_ids reported across pages; never infer unmatched IDs from absence on a page. UniProtKB target IDs can be passed to get_uniprot_entries for annotations or sequences.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `job_id` | string | **required**; minLength: 1; maxLength: 100; pattern: &quot;^[A-Za-z0-9_-]+$&quot; |
+| `page_size` | integer | optional; default: 100; minimum: 1; maximum: 500 |
+| `cursor` | string | optional; minLength: 1; maxLength: 4096; pattern: &quot;^[^\\s\\u0000-\\u001f\\u007f]+$&quot; |
+
+```javascript
+const result = await host.mcp("genes", "get_uniprot_id_mapping_results", {"job_id":"ecuuh9h0Md","page_size":100})
+```
+
 ### `map_reactome_pathways`
 
 Map gene symbols or UniProt accessions to Reactome pathways (AnalysisService token workflow). Args: identifiers (gene symbols if id_type=&quot;symbol&quot;, UniProt accessions if &quot;uniprot&quot;; no duplicates); id_type (&quot;symbol&quot;/&quot;uniprot&quot;); species (default &quot;Homo sapiens&quot;); resource (AnalysisService molecule-resource view &quot;TOTAL&quot; default; &quot;UNIPROT&quot; restricts to protein-level mappings); include_disease (service default True); compact (True → per-identifier low-level pathways only &#123;stId,name,species&#125; + reactome release version; False → full deterministic result: per-identifier complete pathway sets with entity/reaction statistics (p-values, FDR, found/total) and batch summary incl. identifiers_not_found). Returns: compact &#123;tool, reactome_version, id_type, species, n_input, genes:&#123;identifier:&#123;found, n_lowlevel_pathways, pathways&#125;&#125;&#125;; full adds per-pathway statistics and batch_summary. Maps identifiers to pathways in the requested species, without projecting them to human. Use a supported scientific name, such as `Homo sapiens` or `Mus musculus`; the downloadable schema lists all supported names. Empty, unsupported or mismatched species are errors. `found` and `n_found` indicate identifier recognition, not pathway membership: a recognized identifier can have zero pathways. Compact mode contains only low-level pathways.
@@ -886,7 +927,7 @@ const result = await host.mcp("genomes", "ucsc_track_data", {"track": "cpgIsland
 
 ### `ucsc_conservation`
 
-Evolutionary conservation summary for a region from UCSC phyloP / phastCons tracks (base-wise scores over multi-species alignments). Args: chrom (chr-prefixed); start (0-based half-open); end (exclusive; span capped at 100000 bp — split larger); genome (default hg38); track (optional; defaults to phyloP100wayAll for hg19 and phyloP100way for other genomes; positive=conserved, negative=fast-evolving; alternatives hg38 phastCons100way, phyloP30way, phastCons30way, phyloP447way, phyloP470way; hg19 phastCons100way); include_values (also return per-base &#123;start,end,value&#125; rows capped at max_values, values_truncated flags the cap; default false = summary only); max_values (per-base cap default 2000). Returns &#123;genome, track, chrom, start, end, span_bp, n_bases_covered, coverage_fraction, mean, min, max&#125; (+values, values_truncated when requested). Stats weighted by each row's base span, clipped to window; uncovered bases lower coverage_fraction, not zero-scored. Non-score tracks raise; an upstream-truncated row list also raises.
+Evolutionary conservation summary for a region from UCSC phyloP / phastCons tracks (base-wise scores over multi-species alignments). Args: chrom (chr-prefixed); start (0-based half-open); end (exclusive; span capped at 100000 bp — split larger); genome (default hg38); track (optional; defaults: hg19 phyloP100wayAll, hg38 phyloP100way, mm10 phyloP60wayAll, mm39 phyloP35way; other genomes retain the phyloP100way fallback, which may not exist — specify a score track from ucsc_list_tracks when needed; positive=conserved, negative=fast-evolving; alternatives hg38 phastCons100way, phyloP30way, phastCons30way, phyloP447way, phyloP470way; hg19 phastCons100way); include_values (also return per-base &#123;start,end,value&#125; rows capped at max_values, values_truncated flags the cap; default false = summary only); max_values (per-base cap default 2000). Returns &#123;genome, track, chrom, start, end, span_bp, n_bases_covered, coverage_fraction, mean, min, max&#125; (+values, values_truncated when requested). Stats weighted by each row's base span, clipped to window; uncovered bases lower coverage_fraction, not zero-scored. Non-score tracks raise; an upstream-truncated row list also raises.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
@@ -930,6 +971,48 @@ Chromosome/contig names and sizes of a UCSC assembly — for validating coordina
 
 ```javascript
 const result = await host.mcp("genomes", "ucsc_chrom_sizes", {"genome": "hg38", "filter_text": "chr1", "max_chroms": 25})
+```
+
+### `clustalo_submit`
+
+Submit three or more protein, DNA or RNA sequences to EMBL-EBI Job Dispatcher Clustal Omega for asynchronous multiple sequence alignment. Input must be uniquely named FASTA records; the service accepts at most 4000 sequences or 4 MiB. Returns a job_id; keep it and call clustalo_status before clustalo_results. The connector requests clustal_num by default, a Clustal alignment with position numbers, suitable for inspecting conserved sites and downstream evolutionary analysis. EMBL-EBI requests a valid contact email. Set a contact email in Settings → Privacy → Share contact email with research data services. A lost submit response may represent an accepted remote job; do not resubmit automatically. EMBL-EBI stores results for a limited provider-controlled period (documented as up to one week); this is not an app-owned deletion guarantee. Keep the job_id to resume after restart. This connector adds no job registry, result cache or automatic resubmission, and cancellation/app exit only stop local requests. The sequence is sent to EMBL-EBI, and the host may retain tool inputs and returned alignment content in conversation or Notebook persistence. Respect EMBL-EBI fair-use guidance: submit no more than 30 jobs in a batch and wait for processing/results before submitting more; this connector does not enforce cross-call throttling. See https://www.ebi.ac.uk/jdispatcher/docs/webservices/ for the official API contract.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `sequence` | string | **required**; minLength: 1; maxLength: 4194304 |
+| `stype` | string | **required**; enum: [&quot;protein&quot;, &quot;dna&quot;, &quot;rna&quot;] |
+| `outfmt` | string | optional; enum: [&quot;clustal_num&quot;] |
+| `title` | string | optional; minLength: 1; maxLength: 200 |
+| `dealign` | boolean | optional |
+| `order` | string | optional; enum: [&quot;aligned&quot;, &quot;input&quot;] |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_submit", {"sequence": ">human\nMKT\n>mouse\nMRT\n>rat\nMRT\n", "stype": "protein"})
+```
+
+### `clustalo_status`
+
+Check one EMBL-EBI Clustal Omega job once. This is a single status request and never polls or waits; call it again after at least 10 seconds until FINISHED, ERROR, FAILURE or NOT_FOUND. Keep the job_id when resuming after a restart.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `job_id` | string | **required**; minLength: 1; maxLength: 128 |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_status", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m"})
+```
+
+### `clustalo_results`
+
+Fetch one bounded Clustal Omega clustal_num alignment file for a FINISHED job. Pass the same outfmt returned by clustalo_submit; this tool makes one result request and returns the alignment content plus a filename suggestion. If the provider still reports QUEUED or RUNNING, it returns ready:false with a retry hint; provider failures are errors and retain the job_id for diagnosis. Results are capped at 8 MiB and are returned verbatim so the caller can save the content as an alignment file for conserved-site inspection or downstream phylogenetic analysis. No automatic retries. EMBL-EBI stores results for a limited provider-controlled period (documented as up to one week); this is not an app-owned deletion guarantee. Keep the job_id to resume after restart. This connector adds no job registry, result cache or automatic resubmission, and cancellation/app exit only stop local requests. The sequence is sent to EMBL-EBI, and the host may retain tool inputs and returned alignment content in conversation or Notebook persistence. Respect EMBL-EBI fair-use guidance: submit no more than 30 jobs in a batch and wait for processing/results before submitting more; this connector does not enforce cross-call throttling.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `job_id` | string | **required**; minLength: 1; maxLength: 128 |
+| `outfmt` | string | **required**; enum: [&quot;clustal_num&quot;] |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_results", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m", "outfmt":"clustal_num"})
 ```
 
 </ToolOperationGroup>
@@ -3757,3 +3840,208 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ## Example response records
 
 The <ExampleDownload path="/examples/capabilities/public-database-query-receipts.json">example response records</ExampleDownload> include exact inputs, capped response excerpts and per-operation outcomes. Distinguish a returned record, an empty match and a failed request. Results may be metadata, schemas or identifiers; check the source fields and completeness flags before using them in your research.
+
+## GDC {/* #family-24 */}
+
+<ToolOperationGroup>
+<summary>Show operations and parameters</summary>
+
+### `gdc_list_projects`
+
+List GDC cancer projects and their case/file summaries. Filters are explicit and bounded; this is metadata discovery, not a data download operation.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `project_ids` | string / array | optional |
+| `disease_type` | string | optional; minLength: 1; maxLength: 200 |
+| `primary_site` | string | optional; minLength: 1; maxLength: 200 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-BRCA", "page_size": 5})
+```
+
+### `gdc_list_cases`
+
+List GDC cases (sample donors) with project and disease metadata. Results identify cases and do not expose or download controlled data.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `project_ids` | string / array | optional |
+| `submitter_ids` | string / array | optional |
+| `case_ids` | string / array | optional |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BRCA"], "page_size": 5})
+```
+
+### `gdc_search_files`
+
+Search the GDC file inventory and explicitly label each file as open or controlled access. Metadata discovery does not grant download access; controlled files require appropriate GDC authorization.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `project_ids` | string / array | optional |
+| `access` | string | optional; default: &quot;all&quot;; enum: [&quot;all&quot;, &quot;open&quot;, &quot;controlled&quot;] |
+| `data_category` | string | optional; minLength: 1; maxLength: 200 |
+| `data_type` | string | optional; minLength: 1; maxLength: 200 |
+| `data_format` | string | optional; minLength: 1; maxLength: 50 |
+| `file_name` | string | optional; minLength: 1; maxLength: 500 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+```
+
+### `gdc_get_file`
+
+Retrieve metadata for one GDC file UUID, including its open/controlled access classification. This performs no file download and does not claim that a listed file is downloadable for the current user.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `file_id` | string | **required**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[1-5][0-9a-fA-F]&#123;3&#125;-[89abAB][0-9a-fA-F]&#123;3&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_get_file", {"file_id": "cb92f61d-041c-4424-a3e9-891b7545f351"})
+```
+
+### `gdc_get_manifest`
+
+Create a GDC Data Transfer Tool manifest for up to 100 file UUIDs. The returned manifest is an inventory only; it does not download files or bypass controlled-access authorization.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `file_ids` | array of string | **required**; minItems: 1; maxItems: 100; uniqueItems: true |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_get_manifest", {"file_ids": ["cb92f61d-041c-4424-a3e9-891b7545f351"]})
+```
+
+</ToolOperationGroup>
+
+## Zenodo {/* #family-25 */}
+
+<ToolOperationGroup>
+<summary>Show operations and parameters</summary>
+
+### `search_records`
+
+Search public Zenodo records (datasets, software and publications) using Zenodo query-string syntax, e.g. title:"climate" or doi:"10.5281/zenodo.8435696". Fetches one page, up to 25 records, without authentication. By default only the latest version is listed; all_versions includes older versions. For the next page, keep query, page_size, sort and all_versions unchanged. The search window is limited to 10,000 results: (page - 1) * page_size must be less than 10,000; the final page may be partial. If pagination_limited is true, narrow the query. Public metadata does not imply open file access.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 1000; pattern: &quot;\\S&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+| `page_size` | integer | optional; default: 10; minimum: 1; maximum: 25 |
+| `sort` | string | optional; default: &quot;bestmatch&quot;; enum: [&quot;bestmatch&quot;, &quot;mostrecent&quot;] |
+| `all_versions` | boolean | optional; default: false |
+
+```javascript
+const result = await host.mcp("zenodo", "search_records", {"query": "title:climate", "page_size": 5})
+```
+
+### `get_record`
+
+Retrieve public Zenodo metadata and the file inventory exposed by the record endpoint. Pass a decimal record ID, not a DOI or URL. A concept ID may resolve to its latest version; requested_record_id, record_id and concept_record_id remain distinct. Use the returned version-specific record_id for reproducible lookup. description_html is upstream HTML, not sanitized. File links and checksums are metadata only: no download, checksum verification or access probe is performed. Restricted or embargoed records can have public metadata without accessible files; an empty file list does not establish that the deposit has no files.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `record_id` | string | **required**; maxLength: 20; pattern: &quot;^[1-9][0-9]*$&quot; |
+
+```javascript
+const result = await host.mcp("zenodo", "get_record", {"record_id": "8435696"})
+```
+
+</ToolOperationGroup>
+
+## HMMER {/* #family-26 */}
+
+<ToolOperationGroup>
+<summary>Show operations and parameters</summary>
+
+### `search` {/* #hmmer-search */}
+
+Submit one asynchronous EMBL-EBI HMMER3 search. program selects phmmer (protein sequence against a sequence database), hmmscan (protein sequence against Pfam profiles), hmmsearch (profile HMM/alignment against a sequence database), or jackhmmer (iterative remote-homolog search). input is the FASTA sequence, profile HMM, or alignment text accepted by that program. database is the provider database name. Optional thresholds use HMMER parameter names (incE/incdomE, E/domE, incT/incdomT, T/domT); iterations controls jackhmmer rounds. Submission is not completion: retain the returned job_id and poll with status. The service may accept a job even if the response is lost; never automatically resubmit an uncertain submission.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `program` | string | **required**; enum: [&quot;phmmer&quot;, &quot;hmmscan&quot;, &quot;hmmsearch&quot;, &quot;jackhmmer&quot;] |
+| `database` | string | **required**; enum: [&quot;refprot&quot;, &quot;uniprot&quot;, &quot;swissprot&quot;, &quot;pdb&quot;, &quot;rp15&quot;, &quot;rp35&quot;, &quot;rp55&quot;, &quot;rp75&quot;, &quot;pfam&quot;] |
+| `input` | string | **required**; minLength: 1; maxLength: 200000 |
+| `incE` | number | optional; exclusiveMinimum: 0; maximum: 10 |
+| `incdomE` | number | optional; exclusiveMinimum: 0; maximum: 10 |
+| `incT` | number | optional; exclusiveMinimum: 0 |
+| `incdomT` | number | optional; exclusiveMinimum: 0 |
+| `E` | number | optional; exclusiveMinimum: 0; maximum: 10 |
+| `domE` | number | optional; exclusiveMinimum: 0; maximum: 10 |
+| `T` | number | optional; exclusiveMinimum: 0 |
+| `domT` | number | optional; exclusiveMinimum: 0 |
+| `popen` | number | optional; minimum: 0 |
+| `pextend` | number | optional; minimum: 0 |
+| `mx` | string | optional; enum: [&quot;BLOSUM45&quot;, &quot;BLOSUM62&quot;, &quot;BLOSUM90&quot;, &quot;PAM30&quot;, &quot;PAM70&quot;] |
+| `iterations` | integer | optional; minimum: 1; maximum: 9 |
+
+```javascript
+const result = await host.mcp("hmmer", "search", {"program":"hmmscan","database":"pfam","input":">query\nMKTIIALSYIFCLVFADYKDDDDK"})
+```
+
+### `status` {/* #hmmer-status */}
+
+Check one HMMER job once, without polling or resubmitting. SUCCESS means results are available; PENDING/RUNNING means wait before checking again; ERROR/FAILURE/NOT_FOUND are terminal outcomes and never mean zero hits. Keep the exact job_id.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `job_id` | string | **required**; maxLength: 36; pattern: &quot;^[A-Fa-f0-9]&#123;8&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("hmmer", "status", {"job_id":"8ebb1d5f-4457-4da8-808c-f811105c3654"})
+```
+
+### `results` {/* #hmmer-results */}
+
+Retrieve one HMMER job result once. Checks the provider status first and returns no result payload while the job is pending or failed. On SUCCESS, retrieves all result pages, including domain annotations; jackhmmer iteration records are returned in the provider array shape. Preserve the result in a Notebook artifact because provider retention is finite; an empty match list is a completed zero-hit result, distinct from a pending or failed job.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `job_id` | string | **required**; maxLength: 36; pattern: &quot;^[A-Fa-f0-9]&#123;8&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;4&#125;-[A-Fa-f0-9]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("hmmer", "results", {"job_id":"8ebb1d5f-4457-4da8-808c-f811105c3654"})
+```
+
+</ToolOperationGroup>
+
+## InterProScan {/* #family-27 */}
+
+<ToolOperationGroup>
+<summary>Show operations and parameters</summary>
+
+### `status` {/* #interproscan-status */}
+
+Check one InterProScan job once, without retrying or polling. Wait at least 10 seconds between checks. FINISHED means results can be retrieved; ERROR/FAILURE are job failures, NOT_FOUND means unknown or expired, never a zero-hit result. Keep the exact job_id; this tool never resubmits.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `job_id` | string | **required**; maxLength: 200; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9_-]&#123;0,199&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+### `results` {/* #interproscan-results */}
+
+Retrieve the complete InterProScan TSV report for a job, capped at 2 MiB (oversized reports fail, never truncate). Checks status once first, then fetches TSV only for FINISHED. No retries, polling, or resubmission. Preserve the report in a Notebook artifact promptly because provider results expire. TSV contains one row per signature match; coordinates are 1-based inclusive and scores are application-specific. Optional columns hold InterPro, GO and pathway annotations. An empty TSV after FINISHED means no reported matches, not evidence that the protein lacks function.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `job_id` | string | **required**; maxLength: 200; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9_-]&#123;0,199&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+</ToolOperationGroup>

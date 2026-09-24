@@ -1,7 +1,7 @@
 ---
 title: "文学ライブラリと引用"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -148,9 +148,19 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 v0.30.2 は、PubMed の作者の名前の解析を修正しました。例えば、姓、イニシャル、サフィックスなどです。 メタデータをインポートまたはコンパイルする際に、クリエイターのフィールドを調べ、リンクされたソースに対する生成された引用を調べます。 既に保存したメタデータをライブラリに書き換える更新をインストールすることを想定しないでください。
 
+## スマートコレクション {/* #smart-collections */}
+
+**New collection** で **Smart collection** をオンにすると、ライブラリのレコードを明示的なルールからスクリーン化します。 **Scope**(すべての参照、プロジェクト、またはコレクション)を選択し、必要な**Inclusion criteria**とオプションの**Exclusion criteria**を追加し、証拠と更新オプションを選択します。 通常のコレクションの説明とは異なり、スマートコレクションの説明はモデル評価のためのコンテキストを提供します。
+
+**Settings → Model → Classification models → Smart collections** を最初に構成します。 この機能はデフォルトモデルがありません。 **Included**、**Needs review**、**Excluded**、**Not evaluated**は、マッチした、不確実性、拒否された、および評価されたレコードを区別します。 **Evaluation details** を開き、**Include** または **Exclude** を選択する前に実際のソースを確認します。 マニュアル決定は、モデルの決定を復元するまでの更新を生き残ります。
+
+**Trial run (up to 20 references)**は結果を保存します。 **Live rule preview**は、保存せずにドラフトを評価します。 **Update automatically** は、選択したスコープのレコードの新規または変更に適用されます。 オプトインで分類コストを削減できます。 図書館の外に新しい紙が見つかりません。 検索から [説明されたスクリーニングワークフロー](../workflows/screen-literature.md) をフォローして、レビューされたエクスポート.
+
+ランニング中、オープン **Screening process** 進捗状況を調べ、利用する **マウス/リズメ分析** 休止・継続 ルールの変更、紙や保存後の進捗状況は、以前の実行を非推奨にすることができます。 **結果に戻る**は決定リストに戻ります。 **Project**と**コレクション**スコープマーカーは、ソースタイプとソースへのリンクを区別します。 複数のユーザー共有権限ではありません。
+
 ## 採択された記録を整理する {/* #organize-the-accepted-records */}
 
-**New collection**でコレクションを作成、**Name**とオプションの**Description**を埋め、その後**Create collection**を埋めます。 説明は、エージェントのコンテキストではなく、組織的なテキストです。 取り消し/閉じる ドラフトを捨てます。 すべての参照でレコードを選択し、**Add to collection** または **Add to project** を使用します。 選択は操作の後で取り除きます; 別の宛先を追加した場合、再選択します。
+**New collection**と**Smart collection**オフで普通のコレクションを作成し、**Name**とオプションの**Description**を埋め、その後**Create collection**. 説明は、エージェントのコンテキストではなく、組織的なテキストです。 退会/解散は、ドラフトを破棄します。 すべての参照でレコードを選択し、**Add to collection** または **Add to project** を使用します。 選択は操作の後で取り除きます; 別の宛先を追加した場合、再選択します。
 
 詳細ビューでは、プロジェクトとコレクションのチェックボックスがリンクを表示します。 **Manage Tags** は組織タグを追加します。 テーブルのワンツーファイブスターの評価は、自動証拠品質スコアではなく、あなたのアノテーションです。 **Clear selection**は変更されていないレコードを残します。
 

@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: Settings overview
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # Settings overview
@@ -58,3 +58,5 @@ Some switches are saved immediately. Longer forms use `Save`, `Add`, or `Import`
 ## Model settings tabs {/* #model-tabs */}
 
 Within **Model**, use **Conversation models** for providers and task models, **Classification models** for optional Skill/Connector selection, and **Local parsing models** for local parsing resources. Classification is a tab within model settings, not an additional top-level Settings panel. See [classification setup](../guides/models.md#classification-models).
+
+The header search uses **⌘K / Ctrl+K**. To focus the current panel or dialog's own search, use **⌘⌥K / Ctrl+Alt+K** when that field is available. See [search shortcuts](../guides/shortcuts.md#local-settings-search).

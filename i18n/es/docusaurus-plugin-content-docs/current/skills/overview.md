@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-24'
 ---
 
 # Skills {/* #skills */}
@@ -34,7 +34,7 @@ Comience con [directorio Skill](./directory.md) para encontrar un método, o [re
 | --- | --- |
 | Destacado / Importado / Encabezamiento personal | Amplia el grupo fuente. Barcos destacados con la aplicación; Importado proviene de un paquete o repositorio; El personal se crea localmente. |
 | Interruptor de agente Main / remo para cambiar | Modifica la disponibilidad para Skills controlado por el usuario; aplicación requiere Skills permanecer habilitado. Los archivos siguen instalados. |
-| Usada por | Muestra disponibilidad en todo el agente y especialistas de Main. Asignar acceso Specialist en el editor Specialist. |
+| Usada por | Muestra disponibilidad en todo el agente y especialistas de Main. Uso **Manage access** sobre el recurso para ajustar las asociaciones Main Agent y Specialist. |
 | Gestionar etiquetas / eliminar un chip de etiqueta | Añade o elimina una etiqueta de organización; no cambia el permiso de ejecución. |
 | Agregar habilidad | Ofrece creación asistida por agentes, autoría directa, subida local, importación GitHub o descubrimiento de vehículos instalados. |
 | Conversación **+ → Save as skill** | Extracts a reusable method from a completed active branch; ver [pasos de creación y razones de estado discapacitado](./create.md). |
@@ -52,6 +52,8 @@ El directorio todavía contiene 23 public packd Skills. El soporte interno Skill
 La captura muestra la explicación para **Customize**. Estos Skills requeridos permanecen habilitados incluso cuando usted deshabilita otros métodos opcionales.
 
 ![Personalizar las estancias habilitadas y explica por qué](/img/open-science/v0.27.0/08-always-enabled-skill.webp)
+
+Para el popup per-agent y sus únicos enlaces de lectura, vea [acceso a los recursos](../guides/connectors.md#resource-access).
 
 ## Úsalo en una conversación {/* #use-it-in-a-conversation */}
 

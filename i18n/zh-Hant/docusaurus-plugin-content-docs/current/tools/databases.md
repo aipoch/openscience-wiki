@@ -2,7 +2,7 @@
 title: "科學資料庫"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # 科學資料庫 {/* #科学数据库 */}
@@ -13,15 +13,15 @@ last_update:
 
 ## 目前支援哪些資料庫 {/* #supported-databases */}
 
-Open-Science v0.32.0 內建 **23 個資料來源 Connector，提供 251 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整登錄檔共 253 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示覆蓋其網站的全部功能。
+Open-Science v0.33.1 內建 **27 個資料來源 Connector，提供 269 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整登錄檔共 271 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示覆蓋其網站的全部功能。
 
 | Connector | 來源 | 運算元 | 用途  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | 小分子、化學識別符號、反應及結合資料  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 文獻、作者、引用、DOI 更新及資料集/軟體記錄 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | PubMed 文獻檢索與記錄  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 10 | 基因及蛋白標識對映、UniProt 序列查詢、GO 與 Reactome 註釋、g:Profiler 基因集富集 |
-| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST | 17 | 基因組註釋、同源及序列資訊；NCBI 物種、組裝與序列身份；BLAST 提交與報告 |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 13 | 基因及蛋白標識對映、UniProt 序列查詢、GO 與 Reactome 註釋、g:Profiler 基因集富集 |
+| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | 基因組註釋、同源及序列資訊；NCBI 物種、組裝與序列身份；BLAST 提交與報告 |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | 變異頻率與變異記錄  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床試驗登記記錄  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | 臨床基因組證據資源  |
@@ -40,6 +40,10 @@ Open-Science v0.32.0 內建 **23 個資料來源 Connector，提供 251 個操�
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 研究專案、資助等資源  |
 | BioMart · `biomart` | Ensembl BioMart | 8 | BioMart 資料集與欄位查詢  |
 | ZINC · `zinc` | ZINC | 5 | ZINC 化合物記錄  |
+| GDC · `gdc` | NCI GDC | 5 | 癌症專案、病例與檔案後設資料，公開／受控訪問類別及傳輸清單；不下載或授予受控訪問 |
+| Zenodo · `zenodo` | Zenodo | 2 | 公開資料集、軟體和文獻記錄的檢索、版本級後設資料與檔案清單；不上傳或下載檔案 |
+| HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | 按程式提交蛋白序列／profile HMM／比對檢索，查詢狀態並獲取結果 |
+| InterProScan · `interproscan` | EMBL-EBI InterProScan | 2 | 查詢已有註釋任務並獲取 TSV 報告；不支援提交任務 |
 
 離線 Molecule 工具見[科學檢視器](viewers.md)。各資料來源實際提供的操作見 [Connector 操作引數參考](../reference/connector-operations.md)。
 
@@ -56,6 +60,10 @@ Open-Science v0.32.0 內建 **23 個資料來源 Connector，提供 251 個操�
 | 核查變異、表達與調控證據 | Variants、Clinical Genomics、Human Genetics、Expression、Regulation | 帶物種、組織、參考基因組版本和相關證據欄位的來源記錄 |
 | 獲取化合物、結構或臨床研究記錄 | Chemistry、ChEMBL、Structures & Interactions、Clinical Trials | 化學標識及性質、結構檔案和試驗後設資料 |
 
+批次轉換識別符號時，**Genes & Ontologies** 提供 `submit_uniprot_id_mapping`、`get_uniprot_id_mapping_status` 和 `get_uniprot_id_mapping_results`。儲存任務 ID，至少間隔三秒查詢一次狀態，再取完所有結果頁。保留一對多對映和明確返回的 `failed_ids`，某頁未出現不等於未匹配。最多可提交 100000 個識別符號，結果最長保留約七天。見[對映引數](../reference/connector-operations.md#submit_uniprot_id_mapping)。
+
+**Zenodo** 無需認證即可查詢公開記錄後設資料，應保留版本級記錄 ID、訪問和許可欄位。**GDC** 提供公開後設資料，生成清單不等於獲得下載授權，受控檔案仍需 GDC 權限。[GDC 操作](../reference/connector-operations.md#family-24) · [Zenodo 操作](../reference/connector-operations.md#family-25)。
+
 資料庫響應可以支援一個科研步驟，但不會自動下載資料、把所有論文加入文獻庫或完成整套分析。需要儲存哪些記錄和檔案，應在請求中明確說明。
 
 ## 如何連線並開始使用 {/* #connect-database */}
@@ -66,7 +74,7 @@ Open-Science v0.32.0 內建 **23 個資料來源 Connector，提供 251 個操�
 
 1. 開啟 **Settings → Connectors**，搜尋上表中的名稱，例如 **Omics Archives**。
 2. 開啟詳情並展開 **Tools**，閱讀目標操作的輸入、結果上限和第三方要求。
-3. 啟用 **Main** 的訪問權限，檢查 **Used by**。Specialist 的訪問權限在對應 Specialist 中配置。啟用 Connector 與每個工具的審批策略是獨立設定。
+3. 啟用 **Main** 的訪問權限，檢查 **Used by**。透過資源的 **Manage access** 調整 Main Agent 和 Specialist 關聯。啟用 Connector 與每個工具的審批策略是獨立設定。
 
 ![Omics Archives 工具詳情展示 GEO 輸入欄位和僅返回後設資料的範圍](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -78,7 +86,7 @@ Open-Science v0.32.0 內建 **23 個資料來源 Connector，提供 251 個操�
 
 | 服務或使用條件 | 配置位置 |
 | --- | --- |
-| OpenAlex | **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**。輸入自己的 API key，點選 **Validate**，驗證成功後點選 **Save** |
+| OpenAlex | 金鑰可選。需要配置時，開啟 **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**，驗證後儲存 |
 | 要求聯絡郵箱的 NCBI 直接變異查詢 | **Settings → Connectors → Manage credentials → Literature access**。填寫 **Contact email** 並點選 **Save**；NCBI API key 為可選項 |
 | 其他需要憑據的操作 | 按工具要求及[憑據指南](../guides/connectors.md)配置，並將憑據繫結到目標服務 |
 
@@ -160,4 +168,12 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作引數參考](../reference/connector-operations.md)列出必填輸入、可選值和準確呼叫方法。本頁用於選擇和連線資料來源，引數參考用於查詢某個具體工具的欄位。
 
-目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/registry.ts)。
+目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/registry.ts)。
+
+## 序列檢索與多序列比對 {/* #sequence-tools */}
+
+**HMMER** 支援按程式選擇蛋白序列、profile HMM 或比對輸入。將程式與資料庫配對，儲存任務 ID，等 **SUCCESS** 後獲取結果，見 [HMMER 操作](../reference/connector-operations.md#family-26)。
+
+**InterProScan** 獲取已透過 EMBL-EBI 服務提交的註釋任務。保留任務 ID，至少間隔十秒查詢，等 **FINISHED** 後獲取 TSV。此 Connector 不能提交新任務，見 [InterProScan 操作](../reference/connector-operations.md#family-27)。
+
+**Genomes → Clustal Omega** 對至少三條名稱唯一的蛋白質、DNA 或 RNA FASTA 記錄進行比對。配置服務要求的聯絡郵箱，提交一次並儲存任務 ID，再查詢狀態、儲存返回的比對，見[多序列比對工作流](../workflows/multiple-sequence-alignment.md)。

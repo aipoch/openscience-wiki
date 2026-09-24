@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-24'
 ---
 
 # Skills {/* #skills */}
@@ -34,7 +34,7 @@ Skill는 에이전트를 반복 가능한 방법을 제공합니다: 그것을 �
 | --- | --- |
 | 추천 / 수입 / 개인 헤드 | 소스 그룹을 확장합니다. 앱을 가진 추천된 배; 수입된 포장 또는 저장소에서 옵니다; 개인은 현지에서 생성됩니다. |
 | Main 대리인 스위치/열 toggle | 사용자 제어 Skills에 대한 가용성 변경; Application-required Skills 체재 활성화. 파일이 설치됩니다. |
-| 사용자 | Main Agent와 Specialists의 가용성을 보여줍니다. Specialist 편집기에서 Specialist 액세스 할당. |
+| 사용자 | Main Agent와 Specialists의 가용성을 보여줍니다. 제품 정보 **Manage access** Main Agent와 Specialist 협회를 조정하는 자원에. |
 | 태그 관리 / 태그 칩 제거 | 조직 라벨을 추가하거나 제거하십시오. 실행 권한을 변경하지 않습니다. |
 | 스킬 추가 | Agent-assisted Creation, 직접 작성, 로컬 업로드, GitHub 가져 오기, 또는 설치 폴더 검색. |
 | 대화 **+ → Save as skill** | 완료된 활성 분지에서 재사용 가능한 방법을 추출; 은 은 [생성 단계 및 장애 상태 이유](./create.md). |
@@ -52,6 +52,8 @@ Skill는 에이전트를 반복 가능한 방법을 제공합니다: 그것을 �
 스크린 샷은 **Customize**에 대한 설명을 보여줍니다. 이 필요한 Skills은 다른 옵션 방법을 비활성화 할 때도 활성화됩니다.
 
 ![숙박을 사용자 정의하고 이유를 설명](/img/open-science/v0.27.0/08-always-enabled-skill.webp)
+
+per-agent 팝업 및 읽기 전용 바인딩을 위해 [관련 링크](../guides/connectors.md#resource-access)을 참조하십시오.
 
 ## 대화에서 사용 {/* #use-it-in-a-conversation */}
 

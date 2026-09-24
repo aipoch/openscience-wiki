@@ -86,3 +86,31 @@ preserve actual errors or empty results. Never invent alignments.
 <ExampleDownload path="/examples/v0320/hba1-blast-results.md">완료된 보고서</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-hits.csv">다섯 자리 테이블</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-raw.json">NCBI JSON2 보고서</ExampleDownload>
 
 상위 히트 P69905은 입력 순서 자체이므로 100% 정체성과 적용은 알려진 순서 검사를 제공합니다. 다른 히트는 비슷한 순서, 새로운 기능 발견하지. 결과 표에 대한 원시 보고서 및 쿼리를 유지; 나중에 데이터베이스 릴리스는 hit list를 변경할 수 있습니다.
+
+3 개 이상의 알려진 스텝을 비교하려면 [다중 상태 정렬 및 보존 위치](multiple-sequence-alignment.md)을 계속하십시오.
+
+## HMMER로 단백질 도메인 확인 {/* #hmmer-domain */}
+
+<p className="example-label"><strong>실습 예제</strong> Pfam에 대한 인간의 P69905 스캔</p>
+
+canonical P69905 단백질 시퀀싱을 재평가한 후 **Settings → Connectors**의 Main에 **HMMER의 장점**을 활성화합니다. 같은 대화에서, 요청:
+
+```text
+Use the HMMER Connector to scan the same human P69905 sequence against
+Pfam with hmmscan. Keep the job ID, retrieve the completed domain
+annotations, and save the raw result and a concise English interpretation
+with coordinates and significance values. Preserve an unavailable
+result as unavailable.
+```
+
+1. 제출의 작업 ID를 확인, 다음 같은 작업을 위해 **(주)**을 따르십시오.
+2. 완료 후 **제품정보**을 요청하고 원시 응답을 저장하십시오. `ready`과 그 결과를 해석하기 전에 결과의 상태를 확인합니다.
+3. 각 히트의 가족 접근, 쿼리 좌표, E-values 및 포함 플래그를 검사합니다. 보고된 파편은 반드시 중요한 도메인이 아닙니다.
+
+![완료된 HMMER 보고서 P69905, 도메인 좌표 및 서명 값](/img/open-science/v0331/hmmer-result.webp)
+
+**27–137** (1-based, inclusive), **115.572 비트** 및 독립 도메인 E-value **2.2781 × 10⁻³³**에 포함 된 도메인과 함께 **글로빈 · PF00042.28**을 반환합니다. **10–20**의 짧은 파편은 포함되지 않았고 뜻하지 않았습니다. 두 번째 도메인에 대한 증거는 없습니다. 이 좌표는 제출 된 운수, 성숙한 단백질 번호 제도가 아닌 참조. E-values는 검색 공간에 의존하고 직접 생물 해석이 정확하다는 확률을 측정하지 않습니다.
+
+<ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">익지않는 HMMER 응답</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">도메인 해석</ExampleDownload>
+
+HMMER 입력은 선택한 프로그램에 따라 달라집니다. 예를 들어 **hmmscan의**과 단백질 시퀀스를 사용합니다. 다른 프로그램에 대한 [및 다운로드 가능한 레지스트리는 이제 v0.31.1 :](../reference/connector-operations.md#family-26)을 참조하십시오. **InterProScan의 장점**는 별도로 기존 작업의 상태와 TSV 결과를 검색합니다. 제출하지 않습니다.

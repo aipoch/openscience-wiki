@@ -1,7 +1,7 @@
 ---
 title: "Controls and keyboard reference"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # Controls and keyboard reference
@@ -63,3 +63,5 @@ App global search covers projects, sessions, message text, uploaded/generated fi
 The wiki's Search is separate: it indexes documentation titles, headings and body passages in the current language. A term such as “Inbox” can match a paragraph here even if it is absent from an application's session title.
 
 Technical reference: [application bindings](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [composer keyboard handling](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [close behavior](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [global search](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx).
+
+Settings panel/dialog search uses **⌘⌥K** on macOS and **Ctrl+Alt+K** on Windows/Linux. **⌘K / Ctrl+K** continues to focus the Settings header search. See [shortcut scope](../guides/shortcuts.md#local-settings-search).

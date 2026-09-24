@@ -1,7 +1,7 @@
 ---
 title: "Keyboard shortcuts"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -77,3 +77,7 @@ Drag the divider beside the preview to change its width. **Collapse preview pane
 Check which field or dialog owns focus, close unrelated overlays, and try the visible button. On macOS, some Home/End keys require the keyboard's Fn combination. OS/browser shortcuts can intercept keys before the app sees them. The desktop window and browser entry point therefore need not handle every key identically.
 
 Sources: [global search keyboard handling](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx), [preview tabs](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/PreviewPanel.tsx), [queue](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx).
+
+## Search within the current settings panel {/* #local-settings-search */}
+
+In Settings, **⌘K** (macOS) or **Ctrl+K** (Windows/Linux) focuses the header search across settings. **⌘⌥K** or **Ctrl+Alt+K** focuses the eligible search field in the current panel or dialog. The local shortcut needs an available local search field; it does not open application-wide search or PDF text search.

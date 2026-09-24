@@ -1,0 +1,9 @@
+doi,first_pass,final_decision,decision_source,reason
+10.1038/s41467-017-01035-z,Needs review,Included,Manual,Primary experimental CO2 electroreduction study
+10.1002/anie.201906079,Needs review,Included,Manual,Primary experimental FeN5 catalyst study
+10.1038/s41467-020-20769-x,Needs review,Included,Manual,Primary experimental Cu catalyst study
+10.1021/acs.nanolett.1c04382,Needs review,Included,Manual,Primary experimental Fe-N/P-C catalyst study
+10.1002/anie.202014718,Needs review,Included,Manual,Primary experimental supported Ag catalyst study
+10.1021/acs.accounts.8b00478,Excluded,Excluded,"AI, reviewed","Account, not a primary study"
+10.1002/adma.202001848,Excluded,Excluded,"AI, reviewed","Review, not a primary study"
+10.1002/smm2.1101,Not evaluated,Excluded,Manual,Review; first pass had insufficient readable evidence

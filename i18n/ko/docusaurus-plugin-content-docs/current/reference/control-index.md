@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "페이지 및 제어 색인"
 description: "모든 문서화 된 Open-Science 버튼, 입력, 스위치 및 페이지에 의해 결과."
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # 페이지 및 제어 색인 {/* #page-and-control-index */}
@@ -193,3 +193,14 @@ Python/R; 환경 Enable, 해석기 추가, 다운로드/설정, 수리, 패키�
 ### 보관됨 {/* #archived */}
 
 프로젝트 관리, 복원 프로젝트, 삭제 프로젝트; 세션 복원 / 완료; 삭제 확인 취소/확인.
+
+
+## 문학 심사 및 자원 접근 {/* #screening-and-access */}
+
+| 영역 | 제품정보 | 가이드 |
+| --- | --- | --- |
+| 라이브러리 | Smart collection, Scope, Inclusion 표준, 예외 기준, 사용 가능한 전체 텍스트, 라이브 규칙 미리보기, 업데이트 | [스마트 컬렉션](../guides/library.md#smart-collections) |
+| 스마트 컬렉션 | 시험 실행, 결정 전망, 평가 세부 사항, 포함, 제외, 사용 모델 결정, 수출 포함 된 참조 | [스크린 및 리뷰 종이](../workflows/screen-literature.md) |
+| 은 | 독립적 인 스마트 컬렉션 및 자동 기능 선택 바인딩; 모델 테스트 | [모델 바인딩](../guides/models.md#smart-collection-model) |
+| Skills / 커넥터 | 액세스 관리, Main 에이전트, Specialist 협회, 읽기 전용 역할 바인딩 | [Resource 액세스](../guides/connectors.md#resource-access) |
+| 세션 | 수출 진단, 선정된 근원, 수출, 폴더에 있는 쇼 | [지역 진단 수출](../guides/troubleshooting.md#session-diagnostics) |

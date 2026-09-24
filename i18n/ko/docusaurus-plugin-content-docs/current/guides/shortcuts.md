@@ -1,7 +1,7 @@
 ---
 title: "키보드 단축키"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -76,4 +76,8 @@ A 초점 **Side Chat** 탭에는 destructive-close 확인이 있습니다. 채�
 
 어떤 필드 또는 대화 상자가 초점을 소유하고, 관련 오버레이를 닫고, 눈에 보이는 버튼을 시도하십시오. macOS에, 몇몇 가정/끝 열쇠는 키보드의 Fn 조합을 요구합니다. OS/browser 단축키는 앱이 보기 전에 키를 가로챌 수 있습니다. 바탕 화면 창 및 브라우저 항목 포인트 따라서 모든 키를 동일하게 처리 할 필요가 없습니다.
 
-소스: [글로벌 검색 keyboard handling](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx), [탭 미리보기](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/PreviewPanel.tsx), [이름 &#42;](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx).
+소스: [글로벌 검색 keyboard handling](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx), [탭 미리보기](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/PreviewPanel.tsx), [쿼크](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx).
+
+## 현재 설정 패널 내에서 검색 {/* #local-settings-search */}
+
+설정에서 **⌘K's 수** (macOS) 또는 **Ctrl+K로** (Windows/Linux)는 설정에서 헤더 검색에 중점을 둡니다. **&lt;unk>** 또는 **Ctrl+Alt+K로**는 현재 패널 또는 대화 상자에서 자격이 된 검색 필드를 초점을 맞추고 있습니다. 로컬 단축키는 사용 가능한 로컬 검색 필드를 필요로합니다. 응용 프로그램 전체 검색 또는 PDF 텍스트 검색을 열지 않습니다.

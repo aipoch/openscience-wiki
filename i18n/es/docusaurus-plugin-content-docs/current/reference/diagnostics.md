@@ -1,7 +1,7 @@
 ---
 title: "Arquitectura y diagnósticos"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-24'
 ---
 
 # Arquitectura y diagnósticos {/* #architecture-and-diagnostics */}
@@ -73,3 +73,10 @@ El logger de proceso principal escribe líneas JSON estructuradas. Sus archivos 
 Fuente: [logger y retención](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/logger.ts), [Reproducción diagnóstica](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/diagnostic-redaction.ts), [limitado Notebook detalle de falla](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/failure-diagnostic.ts) y [estado del contenido del artefacto](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/artifacts/provenance-content-status.ts).
 
 En primer lugar, distinguir una operación fallida del refresco/limpia fallido después de un cambio cometido, y distinguir la terminación del trabajo de fondo de la entrega de resultados. Inspeccione el estado salvado antes de reintentar una mutación. El [Cuadro de recuperación](../guides/troubleshooting.md#recovery-messages) de cara al usuario cubre la restauración de colas bloqueadas, referencias retenidas PDF, ediciones de colección de estalas y mensajes de instalador Windows. [Tareas en segundo plano](../guides/notebook.md#background-tasks-and-result-delivery) explica el estado de ejecución; Los errores de control remoto siguen separados de los resultados finales del trabajo.
+
+
+## Archivo de diagnóstico de sesión {/* #session-diagnostic-archive */}
+
+**Export diagnostics…** recoge metadatos de sesión elegidos, registros de bases de datos y metadatos de registro de aplicaciones disponibles en un archivo local con un registro de manifiesto y exportación. Las fuentes desaparecidas no detienen toda la exportación; fuentes grandes o dañadas pueden producir resúmenes. Los registros de aplicaciones actuales e históricos pueden cubrir la actividad fuera de la sesión seleccionada, así que revise las fuentes seleccionadas y capture los resultados.
+
+Las fuentes ordinarias de metadatos excluyen los campos de contenido privado. Después de un fallo sensible-contenido paquete-exportación, el diálogo también puede ofrecer evidencia de escáner redacted y archivos originales marcados. Los archivos originales no se verifican por defecto; La selección explícita incluye sus bytes originales. Exportar no hace ninguna carga o solicitud de modelo. Inspeccione el archivo resultante antes de compartir. No reemplaza una copia de seguridad de paquete de investigación o una reproducción mínima. Ver [el procedimiento de exportación ilustrado](../guides/troubleshooting.md#session-diagnostics).

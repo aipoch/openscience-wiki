@@ -1,7 +1,7 @@
 ---
 title: "Управление и ссылка на клавиатуру"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # Управление и ссылка на клавиатуру {/* #controls-and-keyboard-reference */}
@@ -62,4 +62,6 @@ last_update:
 
 Поиск вики является отдельным: он индексирует названия документации, заголовки и пассажи на текущем языке. Термин, такой как «Входящие», может соответствовать абзацу здесь, даже если он отсутствует в названии сессии приложения.
 
-Технический справочник: [обязательные для применения](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [Композиторная клавиатура](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [Близкое поведение](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [Глобальный поиск](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx).
+Технический справочник: [прикладной связывающий](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [Композитор клавиатура для управления](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [Близкое поведение](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [Глобальный поиск](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx).
+
+Настройка панельного/диалогового поиска использует **&lt;unk>K** на macOS и **Ctrl+Alt+K** на Windows/Linux. **&lt;unk>K / Ctrl+K** продолжает фокусировать поиск заголовка Настройки. Смотрите [краткая граница](../guides/shortcuts.md#local-settings-search).

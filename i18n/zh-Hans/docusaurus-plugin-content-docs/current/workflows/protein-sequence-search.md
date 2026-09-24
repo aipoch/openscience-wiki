@@ -86,3 +86,31 @@ preserve actual errors or empty results. Never invent alignments.
 <ExampleDownload path="/examples/v0320/hba1-blast-results.md">完整结果报告</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-hits.csv">五个命中的结果表</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-raw.json">NCBI JSON2 报告</ExampleDownload>
 
 第一项 P69905 就是输入序列本身，100% 的一致率和覆盖率用于核对已知序列。其他命中展示序列相似性，不代表发现了新功能。保留原始报告和查询序列；数据库更新后，命中列表可能变化。
+
+要比较三条或更多已知序列，继续[多序列比对与保守位点检查](multiple-sequence-alignment.md)。
+
+## 用 HMMER 检查蛋白质结构域 {/* #hmmer-domain */}
+
+<p className="example-label"><strong>案例演示</strong> 将人 P69905 与 Pfam 比对</p>
+
+取得 P69905 规范蛋白质序列后，在 **Settings → Connectors** 中向 Main 开启 **HMMER**。在同一会话中发送：
+
+```text
+Use the HMMER Connector to scan the same human P69905 sequence against
+Pfam with hmmscan. Keep the job ID, retrieve the completed domain
+annotations, and save the raw result and a concise English interpretation
+with coordinates and significance values. Preserve an unavailable
+result as unavailable.
+```
+
+1. 核对提交回执中的任务 ID，使用同一个 ID 查询 **status**。
+2. 完成后获取 **results** 并保存原始响应。解释命中前，先检查 `ready` 和结果状态。
+3. 检查每个命中的家族编号、查询序列坐标、E-value 和纳入标记。返回一个片段不等于发现一个显著结构域。
+
+![P69905 的 HMMER 完成报告，包含结构域坐标和显著性数值](/img/open-science/v0331/hmmer-result.webp)
+
+本次结果为 **Globin · PF00042.28**：纳入的结构域位于查询序列 **27–137** 位（从 1 开始，包含两端），得分 **115.572 bits**，独立结构域 E-value 为 **2.2781 × 10⁻³³**。**10–20** 位的短片段未被纳入且不显著，不能算作第二个结构域。坐标对应提交的规范序列，不是成熟蛋白的编号。E-value 受搜索范围影响，不直接表示某个生物学解释正确的概率。
+
+<ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">HMMER 原始响应</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">结构域解释</ExampleDownload>
+
+HMMER 的输入随程序变化。本例使用蛋白质序列与 **hmmscan**，其他程序见[操作参考](../reference/connector-operations.md#family-26)。**InterProScan** 则用于查询已有任务状态并获取 TSV 结果，不提供提交任务的操作。

@@ -1,7 +1,7 @@
 ---
 title: "控件与键盘参考"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # 控件与键盘参考
@@ -63,3 +63,5 @@ last_update:
 Wiki 的 Search 是另一套搜索，索引当前语言文档的标题、章节和正文。即使应用会话标题没有“Inbox”，该词仍可能命中文档中的一段正文。
 
 技术参考：[应用快捷键](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [输入框键盘处理](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [关闭行为](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [全局搜索](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx).
+
+设置面板或对话框内的局部搜索使用 macOS 的 **⌘⌥K**、Windows/Linux 的 **Ctrl+Alt+K**；**⌘K / Ctrl+K** 仍聚焦 Settings 页头搜索。见[快捷键范围](../guides/shortcuts.md#local-settings-search)。

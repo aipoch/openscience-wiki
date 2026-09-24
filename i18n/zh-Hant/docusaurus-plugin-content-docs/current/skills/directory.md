@@ -1,7 +1,7 @@
 ---
 title: "Skill 目錄"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-24'
 ---
 
 # Skill 目錄 {/* #skill-目录 */}
@@ -58,7 +58,7 @@ Environment 分組的三個應用 Skills 及 Customize 始終啟用，見[啟用
 
 | Skill | 輸入 | 依賴與執行條件 | 應檢查的輸出 |
 | --- | --- | --- | --- |
-| [Literature Review](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/literature-review/SKILL.md) · `literature-review` | 問題、文獻 ID 或論文 | 來源檢索；OpenAlex 操作需要其金鑰 | 可追溯的證據綜合與引用 |
+| [Literature Review](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/literature-review/SKILL.md) · `literature-review` | 問題、文獻 ID 或論文 | 來源檢索；OpenAlex 操作的金鑰可選 | 可追溯的證據綜合與引用 |
 | [Indication Dossier](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/indication-dossier/SKILL.md) · `indication-dossier` | 以患者群體定義的適應證 | 研究工具和來源訪問 | 可繼續的階段檔案及研究報告 |
 
 ### 環境與計算 {/* #环境与计算 */}

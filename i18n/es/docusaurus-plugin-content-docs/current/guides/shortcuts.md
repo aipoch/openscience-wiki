@@ -1,7 +1,7 @@
 ---
 title: "Atajos de teclado"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -77,3 +77,7 @@ Arrastre el separador junto a la vista previa para cambiar su ancho. **Collapse 
 Revise qué campo o diálogo tiene foco, cierre los sobreimpuestos no relacionados, y pruebe el botón visible. En macOS, algunas teclas Home/End requieren la combinación Fn del teclado. Los atajos OS/browser pueden interceptar las teclas antes de que la aplicación las vea. Por lo tanto, la ventana de escritorio y el punto de entrada del navegador no necesitan manejar cada clave de forma idéntica.
 
 Fuentes: [teclado de búsqueda global](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx), [pestañas de vista previa](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/PreviewPanel.tsx), [queue](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx).
+
+## Buscar dentro del panel de configuración actual {/* #local-settings-search */}
+
+En Ajustes, **. . .** (macOS) o **Ctrl+K** (Windows/Linux) centra la búsqueda de encabezados a través de la configuración. **XXXK** o **Ctrl+Alt+K** centra el campo de búsqueda elegible en el panel o diálogo actual. El atajo local necesita un campo de búsqueda local disponible; no abre la búsqueda a nivel de aplicación o búsqueda de texto PDF.

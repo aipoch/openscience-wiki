@@ -1,7 +1,7 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -148,9 +148,19 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 v0.30.2 更正了 PubMed 作者姓名的解析，包括姓氏、名字縮寫和字尾。匯入或補全文獻後設資料後，對照來源檢查作者欄位及生成的引用。不要假定安裝更新會自動重寫文獻庫中已有的後設資料。
 
+## 智慧集合 {/* #smart-collections */}
+
+在 **New collection** 開啟 **Smart collection**，即可按明確規則篩選文獻庫記錄。選擇 **Scope**（全部記錄、某專案或某集合），填寫必需的 **Inclusion criteria** 和可選的 **Exclusion criteria**，再選擇證據與更新選項。與普通集合的說明不同，智慧集合的說明會為模型評估提供上下文。
+
+先配置 **Settings → Model → Classification models → Smart collections**，此功能沒有預設模型。**Included**、**Needs review**、**Excluded**、**Not evaluated** 分別表示匹配、不確定、排除和未評估。開啟 **Evaluation details** 並核對真實來源後，再選 **Include** 或 **Exclude**。更新會保留人工決定，直到恢復模型判斷。
+
+**Trial run (up to 20 references)** 儲存結果，**Live rule preview** 只評估草稿而不儲存。**Update automatically** 適用於所選範圍內新增或變化的記錄，預設需主動開啟，並可能產生分類費用；它不會去文獻庫之外發現新論文。完整操作見[從檢索到複核匯出的篩選工作流](../workflows/screen-literature.md)。
+
+執行時開啟 **Screening process** 檢視進度，使用 **Pause / Resume analysis** 暫停或繼續；規則、文獻或進度變化可能使原執行無法繼續。**Back to results** 返回結果列表。範圍中的 **Project** 和 **Collection** 標記區分來源型別，點選範圍可跳轉到來源；它們不表示多人共享權限。
+
 ## 整理已接受記錄 {/* #整理已接受记录 */}
 
-使用 **New collection**，填寫必填 **Name** 與可選 **Description**，點選 **Create collection**。說明用於整理，不是 Agent Context；Cancel/Close 放棄草稿。在 All references 勾選條目，使用 **Add to collection / Add to project**。完成後勾選清空，增加另一個目標時重新選擇。
+建立普通集合時，使用 **New collection** 並保持 **Smart collection** 關閉，填寫必填 **Name** 與可選 **Description**，點選 **Create collection**。說明用於整理，不是 Agent Context；Cancel/Close 放棄草稿。在 All references 勾選條目，使用 **Add to collection / Add to project**。完成後勾選清空，增加另一個目標時重新選擇。
 
 詳情中的專案/集合核取方塊顯示關聯。**Manage Tags** 分配標籤，表格一至五星是人工標記，不是自動證據質量評估。**Clear selection** 清除選擇而不改變條目。
 

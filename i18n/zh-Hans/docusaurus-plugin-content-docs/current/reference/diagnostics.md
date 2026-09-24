@@ -1,7 +1,7 @@
 ---
 title: "架构与诊断"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-24'
 ---
 
 # 架构与诊断
@@ -73,3 +73,10 @@ flowchart LR
 源码：[日志与保留](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/logger.ts)、[诊断脱敏](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/diagnostic-redaction.ts)、[Notebook 错误长度限制](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/failure-diagnostic.ts)、[产物内容状态](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/artifacts/provenance-content-status.ts)。
 
 排查时，先区分操作失败与提交后的刷新/清理失败，以及后台作业完成与结果送达。重试写入前检查实际保存状态。[恢复提示表](../guides/troubleshooting.md)涵盖队列恢复受阻、PDF 条目保留、集合过期编辑及 Windows 安装错误。[后台任务](../guides/notebook.md)说明执行状态，远程监控错误仍与作业最终结果分别处理。
+
+
+## 会话诊断归档 {/* #session-diagnostic-archive */}
+
+**Export diagnostics…** 将所选会话元数据、数据库记录和可用的应用日志元数据收集到本地归档，并附带清单和导出日志。部分来源缺失不会中止整个导出；过大或损坏的来源可能只生成摘要。当前及历史应用日志可能包含其他会话的活动，应检查所选来源及各自导出结果。
+
+常规元数据来源排除隐私内容字段。研究包触发敏感内容检查后，还可选择脱敏扫描证据与原始文件。原始文件默认不勾选，主动勾选会包含其原始字节。导出不上传，也不调用模型。分享前检查归档，它不替代研究包备份或最小复现步骤。具体操作见[诊断导出图解](../guides/troubleshooting.md#session-diagnostics)。

@@ -1,7 +1,7 @@
 ---
 title: "Anbieter und lokales Modell-Setup"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -218,3 +218,13 @@ Anbieter-Edits werden getestet, bevor sie festgelegt werden. Wählen Sie **Save*
 Wählen Sie **StepFun** im Anbieterkatalog, bestätigen Sie **China** oder **Global**, wählen Sie dann ein Modell aus und geben Sie Anmeldeinformationen für diese Region an. v0.32.0 fügt **Step-5 Preview** hinzu, mit multimodalen und 1M-Kontext-Katalog-Metadaten. Der tatsächliche Modellzugriff, die Kontingent- und Eingabeunterstützung hängen weiterhin vom Anbieterkonto und der Kompatibilität des ausgewählten Agenten ab.
 
 Speichern und überprüfen sie die verbindung, bevor sie sie in einer konversation auswählen. Bestehende Provider-Konfigurationen behalten ihren vorherigen Endpunkt bei; Die Aktualisierung der App ändert nicht ihre Region oder das Main-Modell.
+
+## Aktualisierte Anbieterkataloge {/* #provider-catalog-updates */}
+
+Der v0.33.0-Katalog fügt **Xiaomi MiMo v2.6**-Modelle und **xAI Grok 4.7** hinzu und aktualisiert **OpenCode Zen** und **Go**. Neue MiMo-Konfigurationen standardmäßig auf `mimo-v2.6-pro`; bestehende v2.5-Optionen bleiben verfügbar. Grok 4.7 wird zum neuen Standard von xAI, während frühere Modell-IDs aufgeführt bleiben.
+
+Wählen Sie das genaue Modell aus, das für Ihren aktiven Agenten angeboten wird, überprüfen Sie die Eingabe- und Argumentationsoptionen und führen Sie eine kleine Anfrage aus. Ein Katalogstandard ändert das Modell nicht in jeder bestehenden Sitzung oder garantiert, dass Ihr Konto Zugriff hat. Codex kann Main bleiben, während Sie ein [Klassifikationsdienst](models.md#classification-models) separat konfigurieren.
+
+## Neue Katalogauswahl {/* #catalog-models */}
+
+Die v0.33.1-Anbieterkataloge fügen **GPT-6** und **Claude Opus 5.5** hinzu. Öffnen Sie die Modellliste des Anbieters und wählen Sie einen Eintrag aus, der vom aktiven Framework und Ihrem Konto unterstützt wird. Die Katalogpräsenz gewährt keinen Zugriff auf das gespeicherte Main-Modell oder wechselt es. Validieren Sie den Anbieter und senden Sie eine kleine Anfrage, bevor Sie ein geändertes Modell für die Forschung verwenden.

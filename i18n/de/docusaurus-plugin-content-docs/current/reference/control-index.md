@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Seite und Kontrollindex"
 description: "Finden Sie jede dokumentierte Open-Science-Taste, Eingabe, Switch und Ergebnis nach Seite."
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # Seite und Kontrollindex {/* #page-and-control-index */}
@@ -193,3 +193,14 @@ Start/Stop/Refresh, Copy/Open URL und QR; Remote.It Einrichten/Wiederholen/Abtre
 ### Archiviert {/* #archived */}
 
 Projekt verwalten, Projekt wiederherstellen, Projekt löschen; Session Restore/Delete; Löschbestätigung Abbrechen/Bestätigen.
+
+
+## Literatur-Screening und Ressourcenzugang {/* #screening-and-access */}
+
+| Bereich | Kontrollen | Begleiter |
+| --- | --- | --- |
+| Bibliothek | Smart Collection, Scope, Inclusion criteria, Exclusion criteria, Use available full text, Live rule preview, Automatische Aktualisierung | [Intelligente Sammlungen](../guides/library.md#smart-collections) |
+| Intelligente Sammlung | Testlauf, Entscheidungsansichten, Evaluationsdetails, Include, Excluse, Use model decision, Export included references | [Screen und Review Papers](../workflows/screen-literature.md) |
+| Klassifikationsmodelle | Unabhängige intelligente Sammlungen und automatische Bindungen zur Auswahl der Fähigkeiten; Modell testen | [Modellbindung](../guides/models.md#smart-collection-model) |
+| Skills / Steckverbinder | Zugriff verwalten, Main Agent, Specialist Assoziationen, schreibgeschützte Rollenbindungen | [Zugang zu Ressourcen](../guides/connectors.md#resource-access) |
+| Sitzung | Exportdiagnose, ausgewählte Quellen, Export, Im Ordner anzeigen | [Lokale Diagnoseausfuhren](../guides/troubleshooting.md#session-diagnostics) |

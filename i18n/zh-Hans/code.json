@@ -2628,5 +2628,29 @@
   },
   "docs.outline.reference.v0320.scope": {
     "message": "PDF 笔记、BLAST 序列检索、组学数据发现与无人值守任务。"
+  },
+  "docs.outline.workflows.screen-literature.title": {
+    "message": "用智能集合筛选文献"
+  },
+  "docs.outline.workflows.screen-literature.scope": {
+    "message": "设置纳排标准，试运行筛选、复核决定并导出入选文献。"
+  },
+  "docs.outline.reference.v0330.scope": {
+    "message": "智能文献筛选、资源访问、RO-Crate 研究包与新增数据库操作。"
+  },
+  "docs.outline.reference.v0330.title": {
+    "message": "v0.33.0"
+  },
+  "docs.outline.workflows.multiple-sequence-alignment.title": {
+    "message": "比对多条序列"
+  },
+  "docs.outline.workflows.multiple-sequence-alignment.scope": {
+    "message": "比较三条审阅过的蛋白质序列并检查保守位点。"
+  },
+  "docs.outline.reference.v0331.title": {
+    "message": "v0.33.1"
+  },
+  "docs.outline.reference.v0331.scope": {
+    "message": "实时筛选、序列工具、PDF 上下文与诊断导出。"
   }
 }

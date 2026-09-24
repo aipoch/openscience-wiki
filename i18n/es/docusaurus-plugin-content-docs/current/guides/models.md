@@ -1,7 +1,7 @@
 ---
 title: "Modelos y políticas de tareas"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # Modelos y políticas de tareas {/* #models-and-task-policies */}
@@ -81,9 +81,9 @@ Fuentes: [selección modelo](https://github.com/aipoch/open-science/blob/v0.26.0
 
 ## Modelos de clasificación {/* #classification-models */}
 
-Abre **Settings → Model → Classification models**. Un servicio de clasificación ayuda a seleccionar Skills y Connectors relevantes antes de iniciar una solicitud. No sustituye a Main ni añade un modelo de chat. Puede dejar **Automatic capability selection** en **Use default method**; Skills y Connectors todavía funcionan sin él.
+Abre **Settings → Model → Classification models**. Los servicios de clasificación tienen dos enlaces independientes: **Automatic capability selection** y **Smart collections**. El primero ayuda a seleccionar los Skills y los conectores pertinentes antes de que comience una solicitud. No sustituye a Main ni añade un modelo de chat. Puede dejar **Automatic capability selection** en **Use default method**; Skills y Connectors todavía funcionan sin él.
 
-En v0.31.1, el servicio se utiliza en conversaciones principales con **Codex Chat Completions** o **CodeBuddy**. Esto no implica que funcione con una suscripción a Codex ni con todos los demás frameworks. Solo se envían la solicitud actual y los nombres y descripciones de las capacidades. Si el servicio no está disponible o su resultado es ambiguo, se utiliza el método predeterminado.
+La selección automática de capacidades mediante este servicio se admite en conversaciones principales con **Codex Chat Completions** o **CodeBuddy**. Las sesiones con suscripción a Codex mantienen su método habitual de carga. Esta función solo envía la solicitud actual y los nombres y descripciones de las capacidades. Si el servicio no está disponible o la clasificación no es clara, se usa el método predeterminado.
 
 ![Selección de la capacidad predeterminada y la entrada opcional del servicio de clasificación](/img/open-science/v0311/classification-models.webp)
 
@@ -93,7 +93,7 @@ En v0.31.1, el servicio se utiliza en conversaciones principales con **Codex Cha
 4. Bajo **Automatic capability selection**, seleccione el servicio guardado y un modelo ofrecido en su catálogo. Utilice **Check model** para comprobar la conexión.
 5. Pruebe una solicitud atada en una conversación principal compatible, luego inspeccione las herramientas seleccionadas. Un cheque de modelo exitoso por sí solo no verifica un resultado de investigación.
 
-La eliminación de un servicio devuelve su unión al método predeterminado. Una llave de servicio almacenada separadamente se elimina con ella; eliminar un servicio que comparte una cuenta no elimina esa cuenta o su clave.
+La eliminación de un servicio devuelve la selección automática de la capacidad al método predeterminado y deja que cualquier colección Smart se encuadernen a ese servicio no configurado. Una llave de servicio almacenada separadamente se elimina con ella; eliminar un servicio que comparte una cuenta no elimina esa cuenta o su clave.
 
 Vea [Configuración del proveedor](providers.md) para modelos de conversación. Los recursos locales de persing PDF se gestionan bajo **Local parsing models**, una pestaña separada.
 
@@ -104,6 +104,18 @@ Para Jev, seleccione **TypeSafe AI / Jev Latest** en **Automatic capability sele
 ![TypeSafe AI / Jev Latest seleccionado, con Check passed y la clave API oculta](/img/open-science/v0311/classification-connected.webp)
 
 Por ejemplo, una búsqueda pública de TP53 en una sesión de Codex Chat Completions puede utilizar Jev para seleccionar `mcp-genes`. Inspeccione la capacidad seleccionada en la actividad, luego inspeccione la respuesta de la base de datos para el resultado de la investigación. Las sesiones de suscripción de Codex utilizan su ruta de carga de capacidad existente; a Jev binding salvado no hace que esas sesiones usen Jev.
+
+### Encuad un modelo para colecciones inteligentes {/* #smart-collection-model */}
+
+1. Abra **Settings → Model → Classification models** y guarde un servicio compatible si no se ha añadido uno.
+2. Bajo **Smart collections**, seleccione el servicio y uno de sus modelos ofrecidos, luego elija **Check model**. Esta unión es compartida por todas las colecciones inteligentes; es independiente de **Automatic capability selection**.
+3. Confirme **Check passed**, luego vuelva a la Biblioteca y cree una colección pequeña y claramente de alcance. Las colecciones inteligentes tienen **no modelo predeterminado**: configurar esta unión antes de evaluar las referencias.
+
+Main puede continuar utilizando **Codex subscription**. Su ruta de carga de capacidad no impide que la Biblioteca utilice su propia clasificación vinculante. El ejemplo a continuación selecciona **TypeSafe AI / Jev Latest** para la detección.
+
+![Las colecciones inteligentes y la selección de capacidades tienen enlaces separados, con la llave de servicio enmascarado](/img/open-science/v0330/classification-smart.webp)
+
+Screening envía las reglas de recogida y evidencia de referencia a este servicio. Con **Use available full text** apagado, utiliza el título y el resumen. Enviando el texto PDF disponible; documentos largos utilizan pasajes relevantes, y un PDF indisponible o no legible cae de nuevo al título y abstracto. Compruebe las pruebas que se muestran para cada decisión. Siga el [flujo de trabajo inteligente de detección](../workflows/screen-literature.md) para evaluar y revisar un conjunto real de documentos.
 
 ### Servicios de clasificación personalizada {/* #custom-classification */}
 

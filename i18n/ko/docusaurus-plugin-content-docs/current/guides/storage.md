@@ -1,7 +1,7 @@
 ---
 title: "저장과 아카이브 작업"
 last_update:
-  date: '2026-09-11'
+  date: '2026-09-24'
 ---
 
 # 저장과 아카이브 작업 {/* #storage-and-archived-work */}
@@ -135,4 +135,8 @@ Disk 사용은 파일 및 실행 시간과 함께 변경됩니다. 관리 제어
 
 실패한 다운로드를 위해, 선택된 목적지 및 자유로운 공간을 검사하십시오. 사용 가능한 관리 파일에 대해서는 교체 프로젝트를 만들기 전에 선택한 데이터 위치 및 프로파일을 확인하십시오. 이전 후 누락된 패키지에 대해서는, 연구 데이터가 손실된 것보다 재건축된 런타임을 확인합니다. [문제 해결](troubleshooting.md)을 사용하여 첫 번째 유용한 오류 및 버전 정보를 수집합니다.
 
-출처: [공급 업체](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StoragePanel.tsx), [본문내용 바로가기](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StorageMigrationModal.tsx). [도서관 이전 체크](https://github.com/aipoch/open-science/commit/d00c722d).
+출처: [공급 업체](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StoragePanel.tsx), [의논문](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StorageMigrationModal.tsx). [도서관 이전 체크](https://github.com/aipoch/open-science/commit/d00c722d).
+
+## 업그레이드 후 데이터를 다시 엽니다. {/* #historical-data-location */}
+
+기존의 저장된 데이터 위치는 우선순위입니다. 명시된 저장된 위치없이 완성 된 이전 설치를 위해 Open-Science은 역사적인 위치를 유지하고 그 선택을 저장합니다. 저장된 폴더가 사용되지 않은 경우 재연결하기 전에 다시 연결하십시오. 여러 역사적인 위치가 연구 데이터를 포함한다면, 앱은 선택하거나 침묵적으로 선택 한 대신 원래 폴더를 복구하도록 요청합니다. 프로젝트와 파일을 검사 할 때까지 두 사본을 보관하십시오. 데이터의 명백한 손실을 해결하기 위해 새로운 빈 위치를 만들지 마십시오.

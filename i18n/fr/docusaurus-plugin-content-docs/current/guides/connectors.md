@@ -1,7 +1,7 @@
 ---
 title: "Connecteurs et identifiants"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -27,7 +27,7 @@ Assignez une balise telle que **Transcriptomique** à un Connector, puis trouvez
 | État | Ce qu'il établit | Prochaine vérification |
 | --- | --- | --- |
 | Inscrit dans le répertoire | L'application connaît une définition de Connector | Lire ses descriptions d'outils actuelles |
-| Main seulement / En cours d'utilisation | Disponibilité des agents | Confirmer l'agent visé et l'obligation de capacité |
+| Used by | Disponibilité des agents | Confirmer l'agent visé et l'obligation de capacité |
 | Crédentiel sélectionné | Une liaison nommée existe | Tester l'authentification par rapport au service prévu |
 | Politique en matière d'outils | Indique si les appels sont autorisés, demandés ou bloqués | Inspecter la préséance de l'autorisation |
 | Résultat de l'outil réussi | Cet appel particulier est terminé | Valider les identifiants/données et la source retournés |
@@ -37,18 +37,28 @@ Assignez une balise telle que **Transcriptomique** à un Connector, puis trouvez
 
 Utilisez **Search connectors** pour trouver PubMed sous **Directory**; la liste contient également les groupes **Featured** et **Custom**. Filtrage s'applique par groupe, donc un autre groupe peut dire **Aucun connecteur ne correspond à votre recherche** alors qu'un résultat correspondant reste visible ci-dessous.
 
-Utilisez **Filter connectors by group**, **Filter Connectors by agent** et **Filter by Tag** avec recherche. **Manage credentials** ouvre les paramètres de contact-email/crédentiel partagés. **Used by** montre la disponibilité; **Manage Tags** organise un Connector. Le commutateur de disponibilité permet l'accès à Main Agent; L'accès Spécialiste est configuré sur chaque Spécialiste.
+Utilisez **Filter connectors by group**, **Filter Connectors by agent** et **Filter by Tag** avec recherche. **Manage credentials** ouvre les paramètres de contact-email/crédentiel partagés. **Used by** montre la disponibilité; **Manage Tags** organise un Connector. Utilisez le contrôle **Manage access** de la ressource pour examiner et ajuster l'accès pour Main Agent et Spécialistes en un seul endroit.
+
+#### Gérer l'accès pour chaque agent {/* #resource-access */}
+
+1. Trouvez un Connector sous **Settings → Connectors** et choisissez son contrôle **Manage access**.
+2. Examiner **Agent principal** et les spécialistes énumérés. Recherchez la liste des rôles lorsque disponible. Modifier uniquement l'association prévue; l'éditeur de rôle reste un autre moyen de gérer sa liste de capacités.
+3. Réouvrir le popup et vérifier **Used by**. Une liaison peut rester assignée à un Specialist désactivé; L'attribuer ne permet pas ce rôle.
+
+![Accès Connector pour Main Agent et spécialistes individuels](/img/open-science/v0330/resource-access.webp)
+
+Pour un rôle avec **Full access**, l'exclusion de ce Connector crée une exception par ressource. Un rôle avec un accès sélectionné utilise sa liste explicite. Les liens de rôle sur le marché peuvent être lus uniquement ici. Les titres de compétence, l'état de préparation du serveur et l'approbation de l'exploitation sont distincts de ces associations; l'attribution d'un Connector ne remplit pas ces étapes.
 
 #### Activer ou désactiver plusieurs connecteurs {/* #enable-or-disable-several-connectors */}
 
-Ouvrez **Settings → Connectors → Manage**, filtrez la liste et sélectionnez les connecteurs prévus. Examinez le nombre sélectionné avant de les activer ou de les désactiver, puis vérifiez chaque état retourné. Ne conservez que les services nécessaires à votre travail. Les changements de disponibilité en vrac ne fournissent pas d'identifications, ne modifient pas les politiques d'approbation par outil ou n'accordent pas d'accès Specialist; Configurez-les séparément.
+Ouvrez **Settings → Connectors**, filtrez la liste, choisissez **Select multiple** dans le groupe pertinent et sélectionnez les connecteurs prévus. Examinez le nombre sélectionné avant de les activer ou de les désactiver, puis vérifiez chaque état retourné. Ne conservez que les services nécessaires à votre travail. Les changements de disponibilité en vrac ne fournissent pas d'identifications, ne modifient pas les politiques d'approbation par outil ou n'accordent pas d'accès Specialist; Configurez-les séparément.
 
 #### PubMed: disponibilité, outils et politique d'approbation {/* #pubmed-availability-tools-and-approval-policy */}
 
 1. Rechercher **PubMed** et ouvrir ses détails.
 2. Expand **search_articles** pour lire sa description. Il retourne un nombre et une page de PMIDs et prend en charge les balises de requête PubMed, les opérateurs booléens, les dates et le tri.
 3. Choisissez **Require approval**, **Block** ou **Always allow** pour l'accès que vous comptez autoriser. Exiger des écrans d'approbation **Ask when no Session, Project, or Global permission applies.**
-4. Activer PubMed et inspecter **Used by**. La disponibilité pour Main est indiquée comme **Main only**; disponibilité désactivée montre **Not in use**.
+4. Dans **Manage access**, activez **Main Agent** pour PubMed, puis vérifiez **Used by**. Vérifiez séparément chaque Specialist concerné dans la même fenêtre.
 
 ![Description de l'outil PubMed et contrôles d'approbation](/img/open-science/walkthrough-2026-09-08/64-pubmed-tool-policy.webp)
 

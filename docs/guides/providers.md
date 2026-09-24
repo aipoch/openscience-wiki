@@ -1,7 +1,7 @@
 ---
 title: "Provider and local model setup"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -218,3 +218,13 @@ Provider edits are tested before they are committed. Select **Save**, wait for t
 Choose **StepFun** in the provider catalog, confirm **China** or **Global**, then select a model and supply credentials for that region. v0.32.0 adds **Step-5 Preview**, with multimodal and 1M-context catalog metadata. Actual model access, quota and input support still depend on the provider account and selected Agent's compatibility.
 
 Save and check the connection before choosing it in a conversation. Existing provider configurations retain their previous endpoint; updating the app does not switch their region or Main model.
+
+## Updated provider catalogs {/* #provider-catalog-updates */}
+
+The v0.33.0 catalog adds **Xiaomi MiMo v2.6** models and **xAI Grok 4.7**, and refreshes **OpenCode Zen** and **Go**. New MiMo configurations default to `mimo-v2.6-pro`; existing v2.5 choices remain available. Grok 4.7 becomes xAI’s new default while previous model IDs remain listed.
+
+Select the exact model offered for your active Agent, check its input and reasoning options, and run a small request. A catalog default does not change the model in every existing session or guarantee your account has access. Codex can remain Main while you configure a [classification service](models.md#classification-models) separately.
+
+## New catalog choices {/* #catalog-models */}
+
+The v0.33.1 provider catalogs add **GPT-6** and **Claude Opus 5.5**. Open the provider's model list and choose an entry supported by the active framework and your account. Catalog presence does not grant access or switch the saved Main model. Validate the provider and send a small request before using a changed model for research.

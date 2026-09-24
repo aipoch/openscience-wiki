@@ -1,7 +1,7 @@
 ---
 title: "Assign Skills and Connectors"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-24'
 ---
 
 # Assign Skills and Connectors
@@ -22,7 +22,7 @@ A Specialist's capability list determines which Skills and Connectors it can rea
 
 | Control | Effect |
 | --- | --- |
-| Full access On | Uses Main Agent's Skills and Connectors, including later additions. |
+| Full access On | Uses the inherited capability scope with any explicit per-resource exclusions. Check the resolved list after changing **Manage access**. |
 | Full access Off | Uses the explicit lists; a missing binding cannot be supplied merely by naming a tool in the prompt. |
 | Add a skill / Add a connector | Opens a selector for that capability type. |
 | Capability detail | Inspects the resource; it does not run its scientific workflow. |
@@ -31,13 +31,19 @@ A Specialist's capability list determines which Skills and Connectors it can rea
 
 Application-required Skills stay globally enabled. This does not replace the Specialist capability list or turn Full access on. If Customize is unavailable to this role, inspect its binding and resolved resource. See [Skill activation](../skills/overview.md#why-some-switches-cannot-be-turned-off).
 
+## Adjust access from a resource {/* #resource-access */}
+
+Under **Settings → Skills** or **Connectors**, open a resource’s **Manage access** popup to inspect Main Agent and Specialist associations together. It updates the selected role’s binding, not the role’s enabled state. Full-access roles can have per-resource exclusions; restricted roles use explicit selections. Marketplace bindings can be read-only in this popup. See the [illustrated access controls](../guides/connectors.md#resource-access).
+
+After changing a binding, confirm the role is enabled, its service credentials are ready and its intended operation is permitted. **Used by** shows assignments rather than completed runs.
+
 ## Four separate readiness checks
 
 | Layer | What to verify | Example failure |
 | --- | --- | --- |
 | Role | Installed, enabled, setup complete | An imported role remains disabled until setup is saved. |
 | Capability | The intended resource is assigned and resolved by the runtime | A display name/short name does not resolve to the assigned catalog resource. |
-| Service/runtime | Connected server, required credentials, available kernel/dependencies | Missing OpenAlex key or package. |
+| Service/runtime | Connected server, required credentials, available kernel/dependencies | Missing required service credential or package. |
 | Operation | Current input version and an approved action | An unavailable file handoff fails before child execution. |
 
 The local role retained its Skill and Omics Archives bindings after creation and package import. The first delegated child did not resolve the Skill by the short name it attempted, but completed the explicitly supplied table checks in Python. That verifies delegation and arithmetic, not a successful child Skill load. When this happens, ask the agent to inspect its available catalog and use the exact assigned resource ID; do not broaden Full access just to conceal a naming problem.

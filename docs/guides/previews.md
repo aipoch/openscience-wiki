@@ -161,3 +161,29 @@ Confirm the file saved successfully, then check the exact version and format. Tr
 Open **Notes & Annotations** to manage highlights, area marks, page notes and document notes. **Show notes sidebar** keeps notes beside the original page. The download menu separates **Download original PDF** from **Download PDF with annotations**. Follow [PDF annotations and document notes](pdf-notes.md) for a complete reading, search and export walkthrough.
 
 For **Figures & Tables**, first-time local model installation can try approved download mirrors when the primary source is unreachable. Wait for download and integrity checks before choosing **Analyze PDF**. Mirrors do not remove the need to install these resources; a cached result can reopen without a fresh analysis.
+
+## Read a PDF in the first message {/* #first-message-pdf */}
+
+1. Open a paper with a readable PDF in **Library** and choose **Read with agent**.
+2. Select the target project and **New conversation**. Check that the composer shows the PDF under **Reading** and the preview shows **In session context**.
+3. Ask a question immediately. You do not need to send a separate introductory message before linking the paper.
+
+<p className="example-label"><strong>Worked example</strong> Ask about the mechanism in Lang et al., 2019</p>
+
+The example uses [Non defect-stabilized thermally stable single-atom catalyst](https://doi.org/10.1038/s41467-018-08136-3), an open-access paper under CC BY 4.0, with **Codex subscription**.
+
+![A new conversation with the PDF linked under Reading before its first message](/img/open-science/v0331/pdf-first-message.webp)
+
+```text
+Using the linked PDF, explain how Lang et al. distinguish non-defect
+stabilization from defect trapping. Give the paper title and DOI,
+two specific findings with PDF page or figure locations, and one
+limitation. Keep the answer in English and cite only evidence you
+can actually read.
+```
+
+The response retrieves passages from the linked PDF and identifies the paper, mechanism and locations to check. Open the cited pages alongside the response and verify each claim against the original. A reference to a figure in the text does not mean the figure image has been extracted or visually interpreted; use [Figures & Tables](#pdf-extraction) when image evidence is needed.
+
+![An English response beside the original PDF, with Reading context retained](/img/open-science/v0331/pdf-first-response.webp)
+
+For highlights and document-level notes, continue with [PDF annotations](pdf-notes.md).

@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -22,6 +22,14 @@ Un paquet de recherche **.science** rassemble des branches de conversation, des 
 Un paquet peut contenir du matériel de recherche téléchargé, du texte de conversation et des résultats générés. Examinez son contenu avant de partager. C'est une copie indépendante: supprimer le travail local ne supprime pas les paquets déjà envoyés à d'autres.
 
 Les conversations Side Chat, [lecture de signets](bookmarks.md) privé et leurs notes sont exclues du paquet. Mettre l'information dont le destinataire a besoin dans un rapport enregistré ou la conversation avant d'exporter.
+
+## Vérifier la version du destinataire {/* #package-compatibility */}
+
+Les paquets exportés par **v0.33.0** incluent les métadonnées **RO-Crate 1.1** dans `ro-crate-metadata.json`. Il décrit l'instantané final exporté et les fichiers immuables sélectionnés, y compris les noms de fichiers, les types de médias et leurs relations. Re-exporter reconstitue ces références pour le nouvel instantané.
+
+Utilisez **v0.33.0 ou un lecteur compatible ultérieur** pour ouvrir ces nouvelles exportations : ils déclarent la capacité requise de `ro-crate`. Mettre à jour une ancienne application de réception avant d'importer; le renommage ou la suppression des métadonnées n'est pas une correction de compatibilité. Les anciens paquets existants restent lisibles sans migration.
+
+Ces métadonnées se déplacent à l'intérieur du paquet `.science`. Il ne redirige pas les calculs, n'accorde pas d'accréditation ou ne remplace pas le [contrôle de reproductibilité sur une version d'artefact](reproducibility.md).
 
 ## Exportation d'un dossier de recherche {/* #export-the-session */}
 

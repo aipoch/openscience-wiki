@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "設定中心總覽"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # 設定中心總覽 {/* #设置中心总览 */}
@@ -58,3 +58,5 @@ last_update:
 ## 模型設定中的標籤頁 {/* #model-tabs */}
 
 在 **Model** 內，**Conversation models** 管理提供方與任務模型，**Classification models** 配置可選的 Skill/Connector 選擇服務，**Local parsing models** 管理本地解析資源。分類模型是模型設定中的標籤頁，不是新增的頂層設定面板。詳見[分類模型配置](../guides/models.md#classification-models)。
+
+頁頭搜尋使用 **⌘K / Ctrl+K**。當前面板或對話方塊內有區域性搜尋框時，使用 **⌘⌥K / Ctrl+Alt+K** 聚焦該框，見[搜尋快捷鍵](../guides/shortcuts.md#local-settings-search)。

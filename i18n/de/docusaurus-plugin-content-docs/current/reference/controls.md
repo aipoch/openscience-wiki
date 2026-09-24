@@ -1,7 +1,7 @@
 ---
 title: "Bedienelemente und Tastaturreferenz"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # Bedienelemente und Tastaturreferenz {/* #controls-and-keyboard-reference */}
@@ -63,3 +63,5 @@ Die globale App-Suche umfasst Projekte, Sitzungen, Nachrichtentexte, hochgeladen
 Die Wiki-Suche ist separat: Sie indiziert Dokumentationstitel, Überschriften und Körperstellen in der aktuellen Sprache. Ein Begriff wie "Posteingang" kann hier mit einem Absatz übereinstimmen, auch wenn er im Sitzungstitel einer Anwendung fehlt.
 
 Technische Referenz: [Anwendungsbindungen](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useApplicationEventBindings.ts) · [Composer Keyboard Handling](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/composer/ComposerEditor.tsx) · [enges Verhalten](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/hooks/useCloseActivePaneShortcut.ts) · [Globale Suche](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx).
+
+Einstellungsfeld / Dialogsuche verwendet **&lt;0xE2>&lt;0x8C>&lt;0x98>&lt;0xE2>&lt;0x8C>&lt;0xA5>K** auf macOS und **Strg+Alt+K** auf Windows/Linux. **&lt;0xE2>&lt;0x8C>&lt;0x98>K / Strg + K** konzentriert sich weiterhin auf die Einstellungs-Headersuche. Siehe [Abkürzungsumfang](../guides/shortcuts.md#local-settings-search).

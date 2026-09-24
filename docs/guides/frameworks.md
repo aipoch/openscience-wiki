@@ -1,7 +1,7 @@
 ---
 title: "Installing and switching agents"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-24'
 ---
 
 # Installing and switching agents
@@ -37,6 +37,8 @@ The inspected page offered Codex, Claude Agent, OpenCode and CodeBuddy. Availabl
 For OpenCode, **Install → App-managed download (recommended)** downloads a self-contained runtime. The page showed Resolving, download progress, and then an Installed card with its version and path. Select that card, confirm **Switch to OpenCode?**, and choose a compatible model. The local connection example returned a completed response; see [local provider setup](./providers.md#connect-a-local-model-endpoint) for its API and token limits.
 
 For Codex, the native runtime and ACP adapter must pass detection as a compatible pair. Installing only one component is not equivalent to a ready backend. Provider subscription login is covered in [Provider setup](./providers.md).
+
+In v0.33.0, **Claude Agent** requires Claude CLI **2.1.118 or later**. If detection reports an unsupported version, update the detected installation through its installation method, then use **Re-detect** and check readiness before starting a session. Updating a different CLI on your path does not repair the installation shown on the card.
 
 ## Update an app-managed Codex runtime {/* #update-codex */}
 

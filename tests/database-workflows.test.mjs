@@ -37,7 +37,7 @@ for (const locale of locales) {
       assert.ok(overview.includes(`id="${id}"`), `Lost database bookmark: ${id}`);
     }
     assert.ok(overview.includes('id="connect-database"'));
-    const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.32.0.json', 'utf8'));
+    const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.33.1.json', 'utf8'));
     for (const connector of registry.filter((c) => c.id !== 'molecule')) {
       assert.ok(overview.includes(`<code>${connector.id}</code>`), `Missing data source: ${connector.id}`);
     }
@@ -59,3 +59,42 @@ for (const locale of locales) {
     }
   });
 }
+
+for (const locale of locales) {
+  test(`${locale}: multiple sequence alignment exposes its setup, screenshots and raw evidence`, () => {
+    const prefix = locale === 'en' ? '' : `${locale}/`;
+    const body = article(`${build}/${prefix}workflows/multiple-sequence-alignment/index.html`);
+    for (const id of ['alignment-inputs', 'alignment-job', 'alignment-results', 'alignment-interpretation']) {
+      assert.ok(body.includes(`id="${id}"`), `Missing alignment step: ${id}`);
+    }
+    assert.ok(body.includes(`/docs/${prefix}tools/databases/#connect-database`));
+    const images = [...body.matchAll(/<img\b[^>]*src="([^"]+)"/g)].map((m) => m[1]);
+    assert.ok(images.length >= 2);
+    for (const url of images) assert.ok(existsSync(`${build}/${url.slice('/docs/'.length)}`));
+    for (const name of ['hemoglobin_alpha_human_mouse_bovine.fasta', 'hemoglobin_alpha_clustalo.aln', 'clustalo_submission_receipt.json', 'hemoglobin_alpha_conservation_report.md']) {
+      assert.ok(body.includes(`/examples/v0331/${name}`), `Missing evidence download: ${name}`);
+      assert.ok(existsSync(`static/examples/v0331/${name}`));
+    }
+  });
+}
+
+test('Clustal worked-example counts match the raw alignment and input sequences', () => {
+  const fasta = readFileSync('static/examples/v0331/hemoglobin_alpha_human_mouse_bovine.fasta', 'utf8');
+  const sequences = Object.fromEntries(fasta.trim().split('>').filter(Boolean).map((record) => {
+    const [name, ...lines] = record.trim().split('\n');
+    return [name.split(/\s+/)[0], lines.join('')];
+  }));
+  const alignment = {};
+  for (const line of readFileSync('static/examples/v0331/hemoglobin_alpha_clustalo.aln', 'utf8').split('\n')) {
+    const match = line.match(/^(\S+)\s+([A-Z-]+)\s+\d+\s*$/);
+    if (match) alignment[match[1]] = (alignment[match[1]] || '') + match[2];
+  }
+  assert.deepEqual(Object.keys(alignment).sort(), Object.keys(sequences).sort());
+  for (const [name, seq] of Object.entries(alignment)) assert.equal(seq.replaceAll('-', ''), sequences[name]);
+  const rows = Object.values(alignment);
+  assert.equal(rows.length, 3);
+  assert.ok(rows.every((seq) => seq.length === 142));
+  const conserved = [...rows[0]].filter((residue, column) => residue !== '-' && rows.every((seq) => seq[column] === residue)).length;
+  assert.equal(conserved, 116);
+  assert.ok(rows.every((seq) => !seq.includes('-')));
+});

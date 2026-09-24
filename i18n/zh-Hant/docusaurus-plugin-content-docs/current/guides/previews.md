@@ -163,3 +163,29 @@ PDF 上下文只關聯當前任務需要的論文，後續不應使用時取消�
 開啟 **Notes & Annotations** 管理高亮、區域標記、頁面筆記和文件筆記。**Show notes sidebar** 可以把筆記顯示在原文旁。下載選單區分 **Download original PDF** 與 **Download PDF with annotations**。完整的閱讀、搜尋與匯出步驟見 [PDF 批註與文件筆記](pdf-notes.md)。
 
 首次使用 **Figures & Tables** 安裝本地模型時，如果主下載源無法訪問，應用可以嘗試受認可的備用映象。等待下載和完整性檢查完成後，再選擇 **Analyze PDF**。映象不會省去本地資源安裝；已有快取結果可以直接重新開啟。
+
+## 第一條訊息就讀取 PDF {/* #first-message-pdf */}
+
+1. 在 **Library** 開啟一篇已有可讀 PDF 的論文，選擇 **Read with agent**。
+2. 選擇目標專案和 **New conversation**。確認輸入框的 **Reading** 下出現該 PDF，預覽顯示 **In session context**。
+3. 直接傳送問題，不需要先發一條介紹訊息再關聯論文。
+
+<p className="example-label"><strong>案例演示</strong> 詢問 Lang 等人 2019 年論文中的穩定機制</p>
+
+本例使用 [Non defect-stabilized thermally stable single-atom catalyst](https://doi.org/10.1038/s41467-018-08136-3) 這篇 CC BY 4.0 開放獲取論文，主模型採用 **Codex subscription**。
+
+![首次傳送訊息前，PDF 已在新會話的 Reading 中關聯](/img/open-science/v0331/pdf-first-message.webp)
+
+```text
+Using the linked PDF, explain how Lang et al. distinguish non-defect
+stabilization from defect trapping. Give the paper title and DOI,
+two specific findings with PDF page or figure locations, and one
+limitation. Keep the answer in English and cite only evidence you
+can actually read.
+```
+
+回覆檢索關聯 PDF 中的段落，給出論文身份、機制和可回查的位置。並排開啟原文與回覆，逐條核對引用。正文提到某個圖號，不代表影象已經提取或被模型識別；需要影象證據時，使用 [Figures & Tables](#pdf-extraction)。
+
+![英文回覆與原始 PDF 並排展示，Reading 關聯仍然保留](/img/open-science/v0331/pdf-first-response.webp)
+
+高亮和整篇筆記的用法見 [PDF 批註](pdf-notes.md)。

@@ -146,3 +146,9 @@ Site-level facts and contacts: https://aipoch.com/llms.txt
 ## Documentation home
 
 - [Open-Science Documentation](https://aipoch.com/docs/): Documentation for AIPOCH Open-Science: installation, workspace and model setup, reproducibility, research workflows, skills, tools, CLI and API reference.
+
+- [Smart literature screening](https://aipoch.com/docs/workflows/screen-literature/): Criteria, scope, classification model, trial, manual review and bibliography export.
+- [v0.33.1](https://aipoch.com/docs/changelog/v0-33-1/): Live screening, HMMER, Clustal Omega, PDF context and diagnostics.
+- [v0.33.0](https://aipoch.com/docs/changelog/v0-33-0/): Smart collections, resource access, RO-Crate metadata and new data operations.
+
+- [Multiple sequence alignment](https://aipoch.com/docs/workflows/multiple-sequence-alignment/): Retrieve three reviewed sequences, run Clustal Omega and inspect conservation.

@@ -1,7 +1,7 @@
 ---
 title: "キーボードショートカット"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -77,3 +77,7 @@ Windowsデスクトップアプリでは、**Ctrl+Zの** を undo または **Ct
 どのフィールドやダイアログがフォーカスを所有しているかを確認し、関係のないオーバーレイを閉じ、表示ボタンを試します。 macOSでは、ホーム/エンドキーにはキーボードのFnの組み合わせが必要です。 OS/ブラウザのショートカットは、アプリが参照する前にキーを傍受できます。 デスクトップウィンドウとブラウザのエントリポイントは、すべてのキーを同一に扱う必要はありません。
 
 ソース: [グローバル検索キーボードの取り扱い](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx)、[プレビュータブ](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/PreviewPanel.tsx)、[キュート](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx)。
+
+## 現在の設定パネル内の検索 {/* #local-settings-search */}
+
+設定では、**ディレクター: ⌘K** (macOS) または **Ctrl+Kの使い方** (Windows/Linux) は、設定全体でヘッダ検索に焦点を当てています。 **&lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk>** または **Ctrl+Alt+K の使い方** は、現在のパネルまたはダイアログの対象となる検索フィールドに焦点を当てています。 ローカルショートカットは、利用可能なローカル検索フィールドを必要とします。 アプリケーション全体検索やPDFテキスト検索は開いていません。

@@ -1,7 +1,7 @@
 ---
 title: "Architecture and diagnostics"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-24'
 ---
 
 # Architecture and diagnostics
@@ -73,3 +73,10 @@ The main-process logger writes structured JSON lines. Its defaults rotate files 
 Source: [logger and retention](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/logger.ts), [diagnostic redaction](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/diagnostic-redaction.ts), [bounded Notebook failure detail](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/failure-diagnostic.ts) and [artifact content status](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/artifacts/provenance-content-status.ts).
 
 First distinguish a failed operation from failed refresh/cleanup after a committed change, and distinguish background job completion from result delivery. Inspect saved state before retrying a mutation. The user-facing [recovery table](../guides/troubleshooting.md#recovery-messages) covers blocked queue restoration, retained PDF references, stale collection edits and Windows installer messages. [Background tasks](../guides/notebook.md#background-tasks-and-result-delivery) explains execution status; remote monitoring errors remain separate from final job outcomes.
+
+
+## Session diagnostic archives {/* #session-diagnostic-archive */}
+
+**Export diagnostics…** collects chosen session metadata, database records and available application log metadata into a local archive with a manifest and export log. Missing sources do not stop the whole export; large or damaged sources can produce summaries. The current and historical application logs can cover activity outside the selected session, so review the selected sources and capture outcomes.
+
+Ordinary metadata sources exclude private content fields. After a sensitive-content package-export failure, the dialog can also offer redacted scanner evidence and original flagged files. Original files are unchecked by default; explicitly selecting them includes their original bytes. Export makes no upload or model request. Inspect the resulting archive before sharing. It does not replace a research-package backup or a minimal reproduction. See [the illustrated export procedure](../guides/troubleshooting.md#session-diagnostics).

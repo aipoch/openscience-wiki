@@ -1,7 +1,7 @@
 ---
 title: "Raccourcis clavier"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -77,3 +77,7 @@ Faites glisser le diviseur à côté de l'aperçu pour changer sa largeur. **Col
 Vérifiez quel champ ou boîte de dialogue possède focus, fermez les superpositions non liées et essayez le bouton visible. Sur macOS, certaines touches Home/End nécessitent la combinaison Fn du clavier. Les raccourcis OS/browser peuvent intercepter les clés avant que l'application les voie. La fenêtre de bureau et le point d'entrée du navigateur n'ont donc pas besoin de gérer chaque clé de façon identique.
 
 Sources: [Gestion globale du clavier de recherche](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx), [onglets d'aperçu](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/PreviewPanel.tsx), [file d'attente](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx).
+
+## Recherche dans le panneau des paramètres actuels {/* #local-settings-search */}
+
+Dans les paramètres, **- Oui.** (macOS) ou **Ctrl+K** (Windows/Linux) focalise la recherche d'en-tête sur les paramètres. **K** ou **Ctrl+Alt+K** concentre le champ de recherche admissible dans le panneau ou la boîte de dialogue en cours. Le raccourci local a besoin d'un champ de recherche local disponible; il n'ouvre pas la recherche dans l'ensemble de l'application ou la recherche texte PDF.

@@ -1,7 +1,7 @@
 ---
 title: "Connectors and credentials"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -27,7 +27,7 @@ Assign a tag such as **Transcriptomics** to a Connector, then find it under **Se
 | State | What it establishes | Next check |
 | --- | --- | --- |
 | Listed in Directory | The app knows a Connector definition | Read its actual tool descriptions |
-| Main only / In use | Agent availability | Confirm the intended agent and capability binding |
+| Used by | Agent availability | Confirm the intended agent and capability binding |
 | Credential selected | A named binding exists | Test authentication against the intended service |
 | Tool policy | Whether calls are allowed, requested or blocked | Inspect remembered permission precedence |
 | Successful tool result | That particular call completed | Validate its returned identifiers/data and source |
@@ -37,18 +37,28 @@ Assign a tag such as **Transcriptomics** to a Connector, then find it under **Se
 
 Use **Search connectors** to find PubMed under **Directory**; the list also contains **Featured** and **Custom** groups. Filtering applies per group, so another group can say **No connectors match your search** while a matching result remains visible below.
 
-Use **Filter connectors by group**, **Filter Connectors by agent**, and **Filter by Tag** together with search. **Manage credentials** opens the shared contact-email/credential settings. **Used by** shows availability; **Manage Tags** organizes a Connector. The availability switch enables access for Main Agent; Specialist access is configured on each Specialist.
+Use **Filter connectors by group**, **Filter Connectors by agent**, and **Filter by Tag** together with search. **Manage credentials** opens the shared contact-email/credential settings. **Used by** shows availability; **Manage Tags** organizes a Connector. Use the resource’s **Manage access** control to review and adjust access for Main Agent and Specialists in one place.
+
+#### Manage access for each agent {/* #resource-access */}
+
+1. Find a Connector under **Settings → Connectors** and choose its **Manage access** control.
+2. Review **Main Agent** and the listed Specialists. Search the role list when available. Change only the intended association; the role editor remains another way to manage its capability list.
+3. Reopen the popup and check **Used by**. A binding can remain assigned to a disabled Specialist; assigning it does not enable that role.
+
+![Connector access for Main Agent and individual Specialists](/img/open-science/v0330/resource-access.webp)
+
+For a role with **Full access**, excluding this Connector creates a per-resource exception. A role with selected access uses its explicit list. Marketplace role bindings may be read-only here. Credentials, server readiness and operation approval are separate from these associations; assigning a Connector does not complete those steps.
 
 #### Enable or disable several Connectors
 
-Open **Settings → Connectors → Manage**, filter the list and select the intended Connectors. Review the selected count before enabling or disabling them, then check each returned state. Keep only the services needed for your work enabled. Bulk availability changes do not supply credentials, change per-tool approval policies or grant a Specialist access; configure those separately.
+Open **Settings → Connectors**, filter the list, choose **Select multiple** in the relevant group and select the intended Connectors. Review the selected count before enabling or disabling them, then check each returned state. Keep only the services needed for your work enabled. Bulk availability changes do not supply credentials, change per-tool approval policies or grant a Specialist access; configure those separately.
 
 #### PubMed: availability, tools, and approval policy
 
 1. Search **PubMed** and open its detail.
 2. Expand **search_articles** to read its description. It returns a count and page of PMIDs and supports PubMed query tags, Boolean operators, dates, and sorting.
 3. Choose **Require approval**, **Block** or **Always allow** for the access you intend to permit. Require approval displays **Ask when no Session, Project, or Global permission applies.**
-4. Enable PubMed and inspect **Used by**. Availability for Main is shown as **Main only**; disabled availability shows **Not in use**.
+4. Use **Manage access** to enable **Main Agent** for PubMed, then inspect **Used by**. Check each intended Specialist separately in the same popup.
 
 ![PubMed tool description and approval controls](/img/open-science/walkthrough-2026-09-08/64-pubmed-tool-policy.webp)
 

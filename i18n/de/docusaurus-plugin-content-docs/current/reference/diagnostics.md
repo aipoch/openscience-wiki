@@ -1,7 +1,7 @@
 ---
 title: "Architektur und Diagnostik"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-24'
 ---
 
 # Architektur und Diagnostik {/* #architecture-and-diagnostics */}
@@ -73,3 +73,10 @@ Der Hauptprozesslogger schreibt strukturierte JSON-Zeilen. Seine Standardeinstel
 Quelle: [Logger und Retention](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/logger.ts), [Diagnoseredaktion](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/diagnostic-redaction.ts), [Begrenztes Notebook Fehlerdetail](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/failure-diagnostic.ts) und [Status des Artefaktinhalts](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/artifacts/provenance-content-status.ts).
 
 Unterscheiden Sie zunächst eine fehlgeschlagene Operation von einer fehlgeschlagenen Aktualisierung/Bereinigung nach einer festgelegten Änderung und unterscheiden Sie den Abschluss des Hintergrundauftrags von der Ergebnislieferung. Überprüfen Sie den gespeicherten Zustand, bevor Sie eine Mutation erneut versuchen. Die benutzerseitige [Wiederfindungstabelle](../guides/troubleshooting.md#recovery-messages) deckt blockierte Warteschlangenwiederherstellung, beibehaltene PDF-Referenzen, veraltete Sammlungsbearbeitungen und Windows-Installationsnachrichten ab. [Hintergrundaufgaben](../guides/notebook.md#background-tasks-and-result-delivery) erklärt den Ausführungsstatus; Fernüberwachungsfehler bleiben von den endgültigen Arbeitsergebnissen getrennt.
+
+
+## Sitzungsdiagnostikarchive {/* #session-diagnostic-archive */}
+
+**Export diagnostics…** sammelt ausgewählte Sitzungsmetadaten, Datenbankdatensätze und verfügbare Anwendungsprotokoll-Metadaten in einem lokalen Archiv mit einem Manifest und Exportprotokoll. Fehlende Quellen stoppen nicht den gesamten Export; große oder beschädigte Quellen können Zusammenfassungen erzeugen. Die aktuellen und historischen Anwendungsprotokolle können Aktivitäten außerhalb der ausgewählten Sitzung abdecken, also überprüfen Sie die ausgewählten Quellen und erfassen Sie die Ergebnisse.
+
+Gewöhnliche Metadatenquellen schließen private Inhaltsfelder aus. Nach einem fehlgeschlagenen Paketexport von sensiblen Inhalten kann der Dialog auch redigierte Scannernachweise und markierte Originaldateien anbieten. Originaldateien werden standardmäßig nicht überprüft; Sie explizit auszuwählen, beinhaltet ihre ursprünglichen Bytes. Export macht keine Upload- oder Modellanforderung. Überprüfen Sie das resultierende Archiv vor dem Teilen. Es ersetzt kein Research-Paket-Backup oder eine minimale Reproduktion. Siehe [das dargestellte Ausfuhrverfahren](../guides/troubleshooting.md#session-diagnostics).

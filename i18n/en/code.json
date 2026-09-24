@@ -1761,5 +1761,29 @@
   },
   "docs.outline.reference.v0320.scope": {
     "message": "PDF notes, BLAST sequence search, omics discovery and unattended tasks."
+  },
+  "docs.outline.workflows.screen-literature.title": {
+    "message": "Screen papers with a smart collection"
+  },
+  "docs.outline.workflows.screen-literature.scope": {
+    "message": "Define eligibility, run a bounded screening pass, review decisions and export the selected papers."
+  },
+  "docs.outline.reference.v0330.title": {
+    "message": "v0.33.0"
+  },
+  "docs.outline.reference.v0330.scope": {
+    "message": "Smart literature screening, agent resource access, RO-Crate research packages and database additions."
+  },
+  "docs.outline.workflows.multiple-sequence-alignment.title": {
+    "message": "Align multiple sequences"
+  },
+  "docs.outline.workflows.multiple-sequence-alignment.scope": {
+    "message": "Compare three reviewed protein sequences and inspect conserved positions."
+  },
+  "docs.outline.reference.v0331.title": {
+    "message": "v0.33.1"
+  },
+  "docs.outline.reference.v0331.scope": {
+    "message": "Live screening, sequence tools, PDF context and diagnostic controls."
   }
 }

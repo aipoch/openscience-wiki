@@ -161,3 +161,29 @@ Extraction은 모델 리소스가 다운로드 된 후 로컬로 실행됩니다
 강조 표시, 영역 표, 페이지 노트 및 문서 메모를 관리하기 위해 **Notes & Annotations**을 엽니 다. **Show notes sidebar**은 원래 페이지 옆에 메모를 유지합니다. 다운로드 메뉴는 **Download PDF with annotations**에서 **Download original PDF**을 분리합니다. 완전한 독서, 검색 및 내보내기 연습을 위해 [PDF 주석 및 문서 노트](pdf-notes.md)을 따르십시오.
 
 **그림 및 표**를 위해, 첫번째 현지 모형 임명은 1 차적인 근원이 허용될 때 승인된 다운로드 거울을 시도할 수 있습니다. **Analyze PDF**을 선택하기 전에 다운로드 및 무결성 검사를 기다립니다. Mirrors는 이러한 리소스를 설치 할 필요가 없습니다; 캐시 된 결과는 신선한 분석없이 다시 열 수 있습니다.
+
+## 첫 번째 메시지에서 PDF 읽기 {/* #first-message-pdf */}
+
+1. **Library**에서 읽기 쉬운 PDF과 종이를 열고 **Read with agent**를 선택하십시오.
+2. 대상 프로젝트와 **New conversation**을 선택합니다. 작곡가가가 **읽기** 아래 PDF과 미리보기는 **In session context**를 보여줍니다.
+3. 자주 묻는 질문 종이를 연결하기 전에 별도의 통합 메시지를 보낼 필요가 없습니다.
+
+<p className="example-label"><strong>실습 예제</strong> 랭 et al., 2019의 메커니즘에 대해 문의하십시오.</p>
+
+예제 사용 [비 결함 안정된 열으로 안정되어 있는 단 하나 atom 촉매](https://doi.org/10.1038/s41467-018-08136-3), CC BY의 밑에 열려있는 접근 종이 4.0, 와 **Codex subscription**...
+
+![PDF과의 새로운 대화는 첫 번째 메시지 전에 독서 아래 링크](/img/open-science/v0331/pdf-first-message.webp)
+
+```text
+Using the linked PDF, explain how Lang et al. distinguish non-defect
+stabilization from defect trapping. Give the paper title and DOI,
+two specific findings with PDF page or figure locations, and one
+limitation. Keep the answer in English and cite only evidence you
+can actually read.
+```
+
+연결 된 PDF의 응답 검색은 종이, 메커니즘 및 위치를 확인합니다. 응답을 따라 인용 된 페이지를 열고 원본에 대한 각 청구를 확인합니다. 텍스트의 그림에 대한 참조는 그림 이미지가 추출되거나 시각적으로 해석되지 않습니다. 이미지 증거가 필요하다면 [그림 및 표](#pdf-extraction)을 사용하십시오.
+
+![원본 PDF 외에도 영어 응답, Reading context 유지](/img/open-science/v0331/pdf-first-response.webp)
+
+하이라이트 및 문서 수준 노트를 위해, [PDF 주석](pdf-notes.md)과 함께 계속.

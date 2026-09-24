@@ -2,7 +2,7 @@
 title: "科学数据库"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # 科学数据库
@@ -13,15 +13,15 @@ last_update:
 
 ## 目前支持哪些数据库 {/* #supported-databases */}
 
-Open-Science v0.32.0 内置 **23 个数据源 Connector，提供 251 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 253 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
+Open-Science v0.33.1 内置 **27 个数据源 Connector，提供 269 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 271 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
 
 | Connector | 来源 | 操作数 | 用途  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | 小分子、化学标识符、反应及结合数据  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 文献、作者、引用、DOI 更新及数据集/软件记录 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | PubMed 文献检索与记录  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 10 | 基因及蛋白标识映射、UniProt 序列查找、GO 与 Reactome 注释、g:Profiler 基因集富集 |
-| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST | 17 | 基因组注释、同源及序列信息；NCBI 物种、组装与序列身份；BLAST 提交与报告 |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 13 | 基因及蛋白标识映射、UniProt 序列查找、GO 与 Reactome 注释、g:Profiler 基因集富集 |
+| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | 基因组注释、同源及序列信息；NCBI 物种、组装与序列身份；BLAST 提交与报告 |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | 变异频率与变异记录  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 临床试验登记记录  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | 临床基因组证据资源  |
@@ -40,6 +40,10 @@ Open-Science v0.32.0 内置 **23 个数据源 Connector，提供 251 个操作**
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 研究项目、资助等资源  |
 | BioMart · `biomart` | Ensembl BioMart | 8 | BioMart 数据集与字段查询  |
 | ZINC · `zinc` | ZINC | 5 | ZINC 化合物记录  |
+| GDC · `gdc` | NCI GDC | 5 | 癌症项目、病例与文件元数据，公开／受控访问类别及传输清单；不下载或授予受控访问 |
+| Zenodo · `zenodo` | Zenodo | 2 | 公开数据集、软件和文献记录的检索、版本级元数据与文件清单；不上传或下载文件 |
+| HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | 按程序提交蛋白序列／profile HMM／比对检索，查询状态并获取结果 |
+| InterProScan · `interproscan` | EMBL-EBI InterProScan | 2 | 查询已有注释任务并获取 TSV 报告；不支持提交任务 |
 
 离线 Molecule 工具见[科学查看器](viewers.md)。各数据源实际提供的操作见 [Connector 操作参数参考](../reference/connector-operations.md)。
 
@@ -56,6 +60,10 @@ Open-Science v0.32.0 内置 **23 个数据源 Connector，提供 251 个操作**
 | 核查变异、表达与调控证据 | Variants、Clinical Genomics、Human Genetics、Expression、Regulation | 带物种、组织、参考基因组版本和相关证据字段的来源记录 |
 | 获取化合物、结构或临床研究记录 | Chemistry、ChEMBL、Structures & Interactions、Clinical Trials | 化学标识及性质、结构档案和试验元数据 |
 
+批量转换标识符时，**Genes & Ontologies** 提供 `submit_uniprot_id_mapping`、`get_uniprot_id_mapping_status` 和 `get_uniprot_id_mapping_results`。保存任务 ID，至少间隔三秒查询一次状态，再取完所有结果页。保留一对多映射和明确返回的 `failed_ids`，某页未出现不等于未匹配。最多可提交 100000 个标识符，结果最长保留约七天。见[映射参数](../reference/connector-operations.md#submit_uniprot_id_mapping)。
+
+**Zenodo** 无需认证即可查询公开记录元数据，应保留版本级记录 ID、访问和许可字段。**GDC** 提供公开元数据，生成清单不等于获得下载授权，受控文件仍需 GDC 权限。[GDC 操作](../reference/connector-operations.md#family-24) · [Zenodo 操作](../reference/connector-operations.md#family-25)。
+
 数据库响应可以支持一个科研步骤，但不会自动下载数据、把所有论文加入文献库或完成整套分析。需要保存哪些记录和文件，应在请求中明确说明。
 
 ## 如何连接并开始使用 {/* #connect-database */}
@@ -66,7 +74,7 @@ Open-Science v0.32.0 内置 **23 个数据源 Connector，提供 251 个操作**
 
 1. 打开 **Settings → Connectors**，搜索上表中的名称，例如 **Omics Archives**。
 2. 打开详情并展开 **Tools**，阅读目标操作的输入、结果上限和第三方要求。
-3. 启用 **Main** 的访问权限，检查 **Used by**。Specialist 的访问权限在对应 Specialist 中配置。启用 Connector 与每个工具的审批策略是独立设置。
+3. 启用 **Main** 的访问权限，检查 **Used by**。通过资源的 **Manage access** 调整 Main Agent 和 Specialist 关联。启用 Connector 与每个工具的审批策略是独立设置。
 
 ![Omics Archives 工具详情展示 GEO 输入字段和仅返回元数据的范围](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -78,7 +86,7 @@ Open-Science v0.32.0 内置 **23 个数据源 Connector，提供 251 个操作**
 
 | 服务或使用条件 | 配置位置 |
 | --- | --- |
-| OpenAlex | **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**。输入自己的 API key，点击 **Validate**，验证成功后点击 **Save** |
+| OpenAlex | 密钥可选。需要配置时，打开 **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**，验证后保存 |
 | 要求联系邮箱的 NCBI 直接变异查询 | **Settings → Connectors → Manage credentials → Literature access**。填写 **Contact email** 并点击 **Save**；NCBI API key 为可选项 |
 | 其他需要凭据的操作 | 按工具要求及[凭据指南](../guides/connectors.md)配置，并将凭据绑定到目标服务 |
 
@@ -160,4 +168,12 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作参数参考](../reference/connector-operations.md)列出必填输入、可选值和准确调用方法。本页用于选择和连接数据源，参数参考用于查询某个具体工具的字段。
 
-目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/registry.ts)。
+目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/registry.ts)。
+
+## 序列检索与多序列比对 {/* #sequence-tools */}
+
+**HMMER** 支持按程序选择蛋白序列、profile HMM 或比对输入。将程序与数据库配对，保存任务 ID，等 **SUCCESS** 后获取结果，见 [HMMER 操作](../reference/connector-operations.md#family-26)。
+
+**InterProScan** 获取已通过 EMBL-EBI 服务提交的注释任务。保留任务 ID，至少间隔十秒查询，等 **FINISHED** 后获取 TSV。此 Connector 不能提交新任务，见 [InterProScan 操作](../reference/connector-operations.md#family-27)。
+
+**Genomes → Clustal Omega** 对至少三条名称唯一的蛋白质、DNA 或 RNA FASTA 记录进行比对。配置服务要求的联系邮箱，提交一次并保存任务 ID，再查询状态、保存返回的比对，见[多序列比对工作流](../workflows/multiple-sequence-alignment.md)。

@@ -1,7 +1,7 @@
 ---
 title: "Tastenkürzel"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -76,4 +76,8 @@ Ziehen Sie den Trenner neben die Vorschau, um seine Breite zu ändern. **Collaps
 
 Überprüfen Sie, welches Feld oder Dialogfeld den Fokus besitzt, schließen Sie nicht verwandte Overlays und versuchen Sie den sichtbaren Button. Unter macOS erfordern einige Home/End-Tasten die Fn-Kombination der Tastatur. OS/Browser-Verknüpfungen können Tasten abfangen, bevor die App sie sieht. Das Desktop-Fenster und der Browser-Eingangspunkt müssen daher nicht jeden Schlüssel identisch behandeln.
 
-Quellen: [Global Search Keyboard Handling](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx), [Preview Tabs](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/PreviewPanel.tsx), [Schlange](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx).
+Quellen: [Global Search Keyboard Handling](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx), [Vorschau-Tabs](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/PreviewPanel.tsx), [Warteschlange](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx).
+
+## Suchen Sie innerhalb des aktuellen Einstellungsfensters {/* #local-settings-search */}
+
+In den Einstellungen konzentriert **&lt;0xE2>&lt;0x8C>&lt;0x98>K** (macOS) oder **Strg + K** (Windows/Linux) die Headersuche auf die Einstellungen. **&lt;0xE2>&lt;0x8C>&lt;0x98>&lt;0xE2>&lt;0x8C>&lt;0xA5>K** oder **Strg+Alt+K** fokussiert das berechtigte Suchfeld im aktuellen Panel oder Dialog. Die lokale Verknüpfung benötigt ein verfügbares lokales Suchfeld; Es öffnet keine anwendungsweite Suche oder PDF-Textsuche.

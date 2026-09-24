@@ -1,7 +1,7 @@
 ---
 title: "サービス資格情報"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # サービス資格情報 {/* #service-credentials */}
@@ -14,21 +14,18 @@ last_update:
 | --- | --- | --- |
 | GitHub | Skill 発見/インポートのための個人アクセストークン | Connect/Manage とトークンのコントロールを使用します。 意図したリポジトリの操作をテストします。 |
 | 文献アクセス | 電子メールおよび任意NCBI APIのキーに連絡して下さい | 連絡先情報を保存します。 NCBIキーは、サポートリクエストのオプションです。 |
-| OpenAlex | 文学におけるOpenAlex操作のためのAPIキー | 入力したキーを有効化し、保存し、バインドされたクエリを作成します。 |
+| OpenAlex | OpenAlex 操作用のオプションの API キー | 入力したキーを検証し、保存し、バインドされたクエリを作成します。 |
 | Unpaywall | 完全なテキスト位置検索のための電子メールに連絡する | 構成された文献の電子メールを使用して下さい; 発明されたアドレス無し。 |
 
 **Connect** は、未設定のサービスを開きます。 **Manage** は既存のものを開きます。 **Desktop only**は、クレデンシャル操作がデスクトップのコンテキストを必要とすることを意味します。 保存キーインジケータは秘密値そのものではありません。
 
-## 不足しているOpenAlexキーを追加 {/* #openalexs-actual-missing-key-flow */}
+## オプションのOpenAlexキーの設定 {/* #openalexs-actual-missing-key-flow */}
 
-1. OpenAlex の検索をリクエストし、キーが設定されていないまま検索します。
-2. **API key** フィールドで **Add your OpenAlex API key** を表示します。
-3. **Save key** は入力されたキーを貯え、成功すると待ち受けるコールを再開します。 **Not now** は、クレデンシャルを未設定のままにします。
-4. 最終的なツールのステータスをお読みください。 **Not now** を選択すると、**credential_required** を返すことができます。 再試行の前にキーを構成します。
+v0.33.1 から OpenAlex のクエリは API キーを必要としません。 小さなクエリで始めます。 サービスの料金制限、認証、アクセスポリシーは適用されます。 キーレスリクエストが無制限に使用したり、成功した応答を約束できないようにします。
 
-![OpenAlex は、英語アプリでクレデンシャルリクエストをリクエストします。](/img/open-science/capabilities-walkthrough/25-openalex-credential-request.webp)
+独自のキーを使用するには、**Settings → Credentials → OpenAlex**(Litature Graphから**Manage credentials**まで)を開き、**API key**を入力し、**Validate**を選択し、検証後**Save**を選択します。 鍵は`api.openalex.org`にのみ使用されます。 **Remove key**は既存のキーを取除きます; 置換フィールドは保存された秘密を明らかにしません。
 
-プロンプトは、キーがこのコンピュータ上で暗号化され、`api.openalex.org`にのみ送信される状態を述べます。 設定では、OpenAlex フォームは、**Validate**、**Save**、**Remove key** を 1 つ存在し、**Cancel** も提供しています。 置換フィールドは、保存されたキーを明らかにしません。 セキュアなストレージエラーは、システムキーチェーンの状態を解凍して、秘密を保存する必要があります。
+保存する前にシステム認証のエラーを解決します。 429 応答では、キーを想定する代わりに、サービスのクオータとリトライガイダンスを検査します。
 
 ## カスタムコネクタの認証 {/* #credentials-for-custom-connectors */}
 
@@ -59,7 +56,7 @@ last_update:
 
 クレデンシャルを取り戻すと、Connector の全ての境界線に影響します。 Connector と Specialist は、意図的に使用済みの秘密/トラストを除外します。 受信デバイスで再び設定します。 Skill、プロンプト、スクリーンショット、または問題報告に秘密を貼り付けないでください。
 
-OpenAlex クエリは、有効な OpenAlex キーが必要です。 OAuth コネクタは、名前付きサービスのサインインを補完する必要があります。 同一の小さなクエリを再試行する前に、表示された認証エラーを解決します。
+OpenAlex キーは任意です。 OAuth コネクタは、名前付きサービスのサインインを補完する必要があります。 同一の小さなクエリを再試行する前に、表示された認証エラーを解決します。
 
 実装参照: [クレデンシャルパネル.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/CredentialsPanel.tsx)、[コネクタAddForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/ConnectorAddForm.tsx)。
 
@@ -67,4 +64,4 @@ OpenAlex クエリは、有効な OpenAlex キーが必要です。 OAuth コネ
 
 ## 公式APIキーページを開く {/* #official-api-key-page */}
 
-v0.31.0、OpenAlex、NCBIのクレデンシャルプロンプトから、公式のAPIキーページへのリンクが含まれています。 フォームドラフトを保ち、Connectorコールを待ちます。 サービスのアカウントの手順を完了し、クレデンシャルフォームに戻り、クエリを再試行する前に意図したキーを検証して保存します。 キーページを開くだけで、キーを保存したり、待機クエリを完成したりすることはできません。
+OpenAlex と NCBI の認証フォームは、公式のキーページへのリンクです。 サービスでアカウントの手順を完了し、フォームに戻って、意図したキーを検証して保存します。 リンクを開くと、キーを保存したり、クエリを実行したりしません。 鍵が必要かどうかは、サービスや運用に依存します。

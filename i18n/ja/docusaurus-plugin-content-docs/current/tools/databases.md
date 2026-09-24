@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,15 +13,15 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v0.32.0は**251 操作で 23 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを253に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
+Open-Science v0.33.1は**269 操作で 27 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを271に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | パブケム、チェビ、レア、ビンディングDBによる小分子化学。  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 論文、著者、引用、DOIの更新とデータセット/ソフトウェアレコード。 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI Eユーティリティ、PMC IDコンバーター、ヨーロッパPMCによる生物医学文献 — 検索、メタデータ、関連記事、引用ルックアップ、ID変換、完全なテキストと著作権。  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 10 | 遺伝子/タンパク質識別子、UniProtシーケンス検出、GOとReactomeアノテーション、およびg:Profiler遺伝子セット濃縮。 |
-| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST | 17 | ゲノムのアノテーション、均質学および順序; NCBIタムン/アセンブリ/シーケンスアイデンティティ; BLAST 提出と報告。 |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 13 | 遺伝子/タンパク質識別子、UniProtシーケンス検出、GOとReactomeアノテーション、およびg:Profiler遺伝子セット濃縮。 |
+| ゲノム・ `genomes` | 組み立て、UCSC、NCBI、BLAST、Clustalオメガ | 20 | ゲノムのアノテーション、均質学および順序; NCBIタムン/アセンブリ/シーケンスアイデンティティ; BLAST検索とClustal Omegaの複数のシーケンス配列。 |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | ヒト遺伝的変形 — gnomAD 人口の頻度/対照的、ClinVar レコード/研究(NCBI 間接)、dbSNP、構造的およびミトコンドリア変異体。  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床トライアル.gov — 検索、詳細、スポンサー、投資家、エンドポイント、および適格性。  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | 臨床ゲノムの知識ベース:ClinGenの治癒、CIViC臨床証拠、およびオープンターゲットプラットフォーム。  |
@@ -40,6 +40,10 @@ Open-Science v0.32.0は**251 操作で 23 のデータソース コネクタ**�
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 資金調達機会検索(Grants.gov)と抗体カタログ検索(抗体レジストリ)。  |
 | BioMart · `biomart` | Ensembl BioMart | 8 | BioMart 属性のクエリと識別子の翻訳を統合します。  |
 | ZINC · `zinc` | ZINC | 5 | ZINC22 浄化可能な化学空間(CartBlanche22) — ZINC id、SMILES の完全/類似検索、サプライヤーコードの解像度、ランダムサンプリング、ドックのための 3D 構造の場所による化合物のルックアップ。  |
+| GDC · `gdc` | NCI GDC | 5 | がんプロジェクト、例、ファイルメタデータ、オープン/コントロールラベル、およびマニフェストを転送する。 ダウンロードやアクセスの付与はありません。 |
+| Zenodo · `zenodo` | Zenodo | 2 | 公開データセット、ソフトウェアおよび出版物の発見、バージョン固有のメタデータおよびファイル在庫; アップロードやダウンロードはありません。 |
+| ムマー・ `hmmer` | EMBL-EBI HMMER3(エンブレ・エビ・ムマー3) | 3 | プログラム固有のタンパク質/プロファイル/アライメント検索、ジョブの状態と結果。 |
+| インタープロスキャン・ `interproscan` | EMBL-EBI インタープロスキャン | 2 | 既存のアノテーションジョブのステータスとTSVレポート。 投稿なし |
 
 [科学ビューア](viewers.md)でオフラインのモレキュラーツールがカバーされています。 それぞれのデータソースで露出した正確な操作については、[Connectorの操作の参照](../reference/connector-operations.md) を使用します。
 
@@ -56,6 +60,10 @@ Open-Science v0.32.0は**251 操作で 23 のデータソース コネクタ**�
 | バリアント、式、規制証拠をチェックする | バリアント、臨床ゲノム、ヒト遺伝学、発現、規制 | 生物、組織、参照ビルドおよび関連する証拠フィールドのソースレコード |
 | 化合物、構造、臨床研究記録の取得 | 化学、ChemBL、構造及び相互作用、臨床試験 | 化学識別子/プロパティ、構造レコードおよび試験メタデータ |
 
+バッチ識別子の変換のために、**ジャンルとオノトロジー**は`submit_uniprot_id_mapping`、`get_uniprot_id_mapping_status`および`get_uniprot_id_mapping_results`を追加します。 ジョブ ID を保存し、少なくとも 3 秒離れた場所をポーリングし、各結果ページを取得します。 ワンツーマンのマッピングとエクスプリシット`failed_ids`を保存します。 1ページから欠落しても、一致しないわけではありません。 本サービスは、100,000 の識別子に最大を受け入れ、最大 7 日間経過した後に結果が期限切れになります。 [正確なマッピングフィールド](../reference/connector-operations.md#submit_uniprot_id_mapping) を参照してください。
+
+**ゼノドー** は、認証なしで公開レコードメタデータを公開します。 バージョン固有のレコードIDとアクセス/ライセンスフィールドをファイル在庫で保持します。 **GDCの特長** は公開メタデータを公開します。 マニフェストは、認可をダウンロードせず、管理されたファイルはGDC権限が必要です。 [GDC の操作](../reference/connector-operations.md#family-24) · [Zenodo オペレーション](../reference/connector-operations.md#family-25).
+
 データベースの応答は、研究のステップをサポートすることができます。 自動的にデータをダウンロードし、すべての論文を文献ライブラリに追加するか、完全な分析を実行しません。 保存したいレコードやファイルを指定します。
 
 ## データベースの接続と起動 {/* #connect-database */}
@@ -66,7 +74,7 @@ Open-Science v0.32.0は**251 操作で 23 のデータソース コネクタ**�
 
 1. **Settings → Connectors** を開き、**Omics アーカイブ** などの上記の家族を検索します。
 2. 細部を開け、拡大して下さい **Tools**. . . . 選択した操作の入力、結果の制限、およびサードパーティの要件をお読みください。
-3. **メインエージェント** の可用性を有効にし、**Used by** をチェックします。 Specialistアクセスは、個々のSpecialistで設定されています。 可用性とパーツールの承認ポリシーは、別々の制御です。
+3. **メインエージェント** の可用性を有効にし、**Used by** をチェックします。 Main エージェントと Specialist の関連付けを調整するリソースで **Manage access** を使用します。 可用性とパーツールの承認ポリシーは、別々の制御です。
 
 ![Omics アーカイブツールは、GEOの入力とメタデータのみスコープを示す詳細](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -78,7 +86,7 @@ Open-Science v0.32.0は**251 操作で 23 のデータソース コネクタ**�
 
 | サービスまたは条件 | 設定する場所 |
 | --- | --- |
-| OpenAlex | **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**に進んでください。 APIキーを入力してください。 **Validate**, それから **Save** 検証が成功した後。 |
+| OpenAlex | 任意キー。 1 つを構成するには、開く **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**、それを検証し、保存します。 |
 | コンタクト情報が必要なNCBIのバリアントのクエリを直接送信する | **Settings → Connectors → Manage credentials → Literature access**に進んでください。 お問い合わせ **Contact email** 選択する **Save**に進んでください。 NCBI API キーは任意です。 |
 | 資格要件の別の操作 | ツールの要件と要件に従う [認証ガイド](../guides/connectors.md)に進んでください。 意図したサービスに資格を埋めます。 |
 
@@ -160,4 +168,12 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/registry.ts)。
+カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/registry.ts)。
+
+## シーケンス検索とアライメント {/* #sequence-tools */}
+
+**ムマー**はプログラム固有のタンパク質シーケンス、プロファイルHMMおよびアライメント検索を提供します。 プログラムとデータベースを一緒に選択し、ジョブIDを保持し、**ソリューション**の後にのみ結果を取得します。 [HMMER オペレーション](../reference/connector-operations.md#family-26).
+
+**インタープロスキャン**は、EMBL-EBIサービスを通じて送信された既存のジョブのアノテーションを取得します。 ジョブ ID を保ち、ステータスを 10 秒以上離れた状態を確認し、**フィンランド語** の後の TSV を取得します。 このConnectorは、新しいジョブを送信できません。 [InterProScan オペレーション](../reference/connector-operations.md#family-27).
+
+**Genomes → Clustal Omega** は、タンパク質、DNA、RNA FASTA のレコードを3つ以上一意に名付けます。 サービスで要求される連絡先メールを構成し、一度送信し、ジョブIDを保持し、ステータスを確認し、返されたアライメントを保存します。 [複数のシーケンス・アライメント・ワークフロー](../workflows/multiple-sequence-alignment.md).

@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-14'
+  date: '2026-09-24'
 ---
 
 # Skills {/* #skills */}
@@ -34,7 +34,7 @@ Skill 為 Agent 提供可重複使用的方法，包括適用條件、輸入要�
 | --- | --- |
 | Featured / Imported / Personal 分組標題 | 展開來源分組。分別為應用內建、匯入和本地建立 |
 | Main Agent 開關 / 行開關 | 改變可由使用者控制的 Skill 的可用性；應用必需 Skill 保持啟用，包檔案保留 |
-| Used by | 檢視 Main Agent 與 Specialist 的可用性；Specialist 的分配在其編輯器修改 |
+| Used by | 檢視 Main Agent 與 Specialist 的可用性；使用資源的 **Manage access** 調整 Main Agent 和 Specialist 關聯 |
 | Manage Tags / 移除標籤 | 整理資源，不改變執行權限 |
 | Add skill | 透過對話建立、直接編寫、本地上傳、GitHub 匯入或掃描已安裝目錄 |
 | 對話 **+ → Save as skill** | 從已完成的當前分支提煉可複用方法，見[建立步驟與不可用原因](./create.md) |
@@ -52,6 +52,8 @@ Skill 為 Agent 提供可重複使用的方法，包括適用條件、輸入要�
 下圖展示 **Customize** 的原因提示。關閉其他可選方法時，這些必需 Skill 仍保持啟用。
 
 ![Customize 固定啟用及原因提示](/img/open-science/v0.27.0/08-always-enabled-skill.webp)
+
+逐代理訪問彈窗及其只讀繫結，見[資源訪問](../guides/connectors.md#resource-access)。
 
 ## 在對話中使用 {/* #在对话中使用 */}
 

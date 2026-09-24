@@ -3,7 +3,7 @@ sidebar_position: 1
 title: 完整页面与控件索引
 description: 按页面查找 Open-Science 的按钮、输入、开关和结果。
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 # 完整页面与控件索引
@@ -193,3 +193,14 @@ Start/Stop/Refresh、Copy/Open URL、QR；Remote.It setup/retry/disconnect；Tru
 ### Archived
 
 Project Manage、Restore project、Delete project；Session Restore/Delete；删除确认 Cancel/Confirm。
+
+
+## 文献筛选与资源访问 {/* #screening-and-access */}
+
+| 区域 | 控件 | 指南 |
+| --- | --- | --- |
+| 文献库 | Smart collection、Scope、Inclusion criteria、Exclusion criteria、Use available full text、Live rule preview、Update automatically | [智能集合](../guides/library.md#smart-collections) |
+| 智能集合 | Trial run、判断视图、Evaluation details、Include、Exclude、Use model decision、导出纳入文献 | [筛选与复核文献](../workflows/screen-literature.md) |
+| 分类模型 | 独立的 Smart collections 与 Automatic capability selection 绑定；Check model | [模型绑定](../guides/models.md#smart-collection-model) |
+| Skills / Connectors | Manage access、Main Agent、Specialist associations、只读角色绑定 | [资源访问](../guides/connectors.md#resource-access) |
+| 会话 | Export diagnostics、所选来源、Export、Show in folder | [本地诊断导出](../guides/troubleshooting.md#session-diagnostics) |

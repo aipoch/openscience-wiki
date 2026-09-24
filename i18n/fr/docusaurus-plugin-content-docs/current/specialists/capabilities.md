@@ -1,7 +1,7 @@
 ---
 title: "Attribuer Skills et connecteurs"
 last_update:
-  date: '2026-09-10'
+  date: '2026-09-24'
 ---
 
 # Attribuer Skills et connecteurs {/* #assign-skills-and-connectors */}
@@ -22,7 +22,7 @@ La liste des capacités d'un Specialist détermine les Skills et les connecteurs
 
 | Contrôle | Effet |
 | --- | --- |
-| Accès complet On | Utilise Main Agent Skills et connecteurs, y compris les ajouts ultérieurs. |
+| Accès complet On | Utilise la portée de la capacité héritée avec toute exclusion explicite par ressource. Vérifiez la liste résolue après avoir changé **Manage access**. |
 | Accès complet Off | Utilise les listes explicites; une liaison manquante ne peut pas être fournie simplement en nommant un outil dans l'invite. |
 | Ajouter une compétence / Ajouter un connecteur | Ouvre un sélecteur pour ce type de capacité. |
 | Détails sur les capacités | Inspecte la ressource; il ne gère pas son flux de travail scientifique. |
@@ -31,13 +31,19 @@ La liste des capacités d'un Specialist détermine les Skills et les connecteurs
 
 Application requise Skills rester activé dans le monde entier. Cela ne remplace pas la liste des capacités Specialist ni n'allume l'accès complet. Si Customize n'est pas disponible à ce rôle, inspectez sa ressource contraignante et résolue. Voir [activation Skill](../skills/overview.md#why-some-switches-cannot-be-turned-off).
 
+## Régler l'accès à partir d'une ressource {/* #resource-access */}
+
+Sous **Settings → Skills** ou **Connectors**, ouvrez une ressource **Manage access** popup pour inspecter les associations Main Agent et Specialist. Il met à jour le rôle sélectionné dans la liaison, pas le rôle dans l'état activé. Les rôles d'accès complet peuvent être exclus par ressource; Les rôles restreints utilisent des sélections explicites. Les fixations du marché peuvent être lues uniquement dans cette fenêtre. Voir le [des contrôles d'accès illustrés](../guides/connectors.md#resource-access).
+
+Après avoir modifié une obligation, confirmer que le rôle est activé, que ses justificatifs de service sont prêts et que son fonctionnement prévu est permis. **Used by** montre les affectations plutôt que les exécutions terminées.
+
 ## Quatre vérifications distinctes de l'état de préparation {/* #four-separate-readiness-checks */}
 
 | Calque | Ce qu'il faut vérifier | Exemple de défaillance |
 | --- | --- | --- |
 | Rôle | Installé, activé, configuration terminée | Un rôle importé reste désactivé jusqu'à ce que la configuration soit sauvegardée. |
 | Capacité | La ressource prévue est assignée et résolue par l'exécution | Un nom d'affichage/nom abrégé ne résout pas la ressource de catalogue assignée. |
-| Service/temps de fonctionnement | Serveur connecté, identifiants requis, noyau/dépendances disponibles | Clé ou paquet OpenAlex manquant. |
+| Service/temps de fonctionnement | Serveur connecté, identifiants requis, noyau/dépendances disponibles | Certificat de service manquant requis ou forfait. |
 | Fonctionnement | Version d'entrée actuelle et mesure approuvée | Une remise de fichier non disponible échoue avant l'exécution de l'enfant. |
 
 Le rôle local a conservé ses liens Skill et Omics Archives après la création et l'importation de paquets. Le premier enfant délégué n'a pas résolu le Skill par le nom abrégé qu'il a essayé, mais a effectué les vérifications de table fournies explicitement dans Python. Cela vérifie la délégation et l'arithmétique, pas une charge d'enfant Skill réussie. Lorsque cela se produit, demandez à l'agent d'inspecter son catalogue disponible et d'utiliser l'identifiant exact de la ressource assignée; ne pas élargir le plein accès pour masquer un problème de nommage.

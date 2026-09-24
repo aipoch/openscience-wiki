@@ -86,3 +86,31 @@ For each first HSP, identity is the identical-residue count divided by alignment
 <ExampleDownload path="/examples/v0320/hba1-blast-results.md">Completed report</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-hits.csv">Five-hit table</ExampleDownload> · <ExampleDownload path="/examples/v0320/hba1-blast-raw.json">NCBI JSON2 report</ExampleDownload>
 
 The top hit P69905 is the input sequence itself, so its 100% identity and coverage provide a known-sequence check. The other hits demonstrate similar sequences, not a new functional discovery. Retain the raw report and query with the result table; a later database release can change the hit list.
+
+To compare three or more known sequences, continue with [multiple sequence alignment and conserved positions](multiple-sequence-alignment.md).
+
+## Check a protein domain with HMMER {/* #hmmer-domain */}
+
+<p className="example-label"><strong>Worked example</strong> Scan human P69905 against Pfam</p>
+
+After retrieving the canonical P69905 protein sequence, enable **HMMER** for Main in **Settings → Connectors**. In the same conversation, ask:
+
+```text
+Use the HMMER Connector to scan the same human P69905 sequence against
+Pfam with hmmscan. Keep the job ID, retrieve the completed domain
+annotations, and save the raw result and a concise English interpretation
+with coordinates and significance values. Preserve an unavailable
+result as unavailable.
+```
+
+1. Check the submission's job ID, then follow **status** for that same job.
+2. Request **results** after completion and save the raw response. Check `ready` and the result's status before interpreting its hits.
+3. Inspect each hit's family accession, query coordinates, E-values and inclusion flags. A reported fragment is not necessarily a significant domain.
+
+![The completed HMMER report for P69905, with domain coordinates and significance values](/img/open-science/v0331/hmmer-result.webp)
+
+This run returned **Globin · PF00042.28**, with an included domain at query residues **27–137** (1-based, inclusive), **115.572 bits** and independent domain E-value **2.2781 × 10⁻³³**. The short fragment at **10–20** was not included and was not significant; it is not evidence for a second domain. These coordinates refer to the submitted canonical sequence, not a mature-protein numbering scheme. E-values depend on the search space and do not directly measure the probability that a biological interpretation is correct.
+
+<ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">Raw HMMER response</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">Domain interpretation</ExampleDownload>
+
+HMMER inputs depend on the selected program. The example uses a protein sequence with **hmmscan**; see the [operation reference](../reference/connector-operations.md#family-26) for other programs. **InterProScan** separately retrieves the status and TSV results of an existing job; it does not submit one.

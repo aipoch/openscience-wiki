@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,15 +13,15 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v0.32.0에는 **23 데이터 소스 커넥터 251 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 253에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
+Open-Science v0.33.1에는 **27 데이터 소스 커넥터 269 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 271에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
 
 | 커넥터 | 출처 | 작업 | 사용하기  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | PubChem, ChEBI, Rhea 및 BindingDB를 통해 소형 molecule 화학.  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 용지, 저자, 인용, DOI 업데이트 및 데이터 세트 / 소프트웨어 레코드. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI E-utilities, PMC ID 변환기 및 유럽 PMC를 통해 생물 의학 문학 - 검색, 메타 데이터, 관련 기사, 인용 조회, ID 변환, 전체 텍스트 및 저작권.  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 10 | 유전자/단백 식별자, UniProt sequence discovery, GO 및 Reactome annotations 및 g:Profiler gene-set enrichment |
-| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST | 17 | Genome 주석, 균질 및 순서; NCBI taxon/assembly/sequence 정체성; BLAST 제출 및 보고서. |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 13 | 유전자/단백 식별자, UniProt sequence discovery, GO 및 Reactome annotations 및 g:Profiler gene-set enrichment |
+| 게놈 · `genomes` | 회의, UCSC, NCBI, BLAST, 클러스터 오메가 | 20 | Genome 주석, 균질 및 순서; NCBI taxon/assembly/sequence 정체성; BLAST 검색 및 클러스터 오메가 다중 시퀀스 정렬. |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | 인간 유전 변형 - gnomAD 인구 주파수 / 제약, ClinVar 기록 / 연구 (direct NCBI), dbSNP, 구조 및 mitochondrial 변형.  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | ClinicalTrials.gov의 임상 시험 - 검색, 세부 사항, 스폰서, 조사, endpoints 및 자격.  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | 임상 genomics 지식 기초: ClinGen 치료, CIViC 임상 증거, 그리고 열린 표적 플랫폼.  |
@@ -40,6 +40,10 @@ Open-Science v0.32.0에는 **23 데이터 소스 커넥터 251 작업**가 포�
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Funding-opportunity search (Grants.gov) 및 항체 카탈로그 조회 (Antibody Registry).  |
 | BioMart · `biomart` | Ensembl BioMart | 8 | Ensembl BioMart 속성 쿼리 및 식별자 번역.  |
 | ZINC · `zinc` | ZINC | 5 | ZINC22 purchasable 화학 공간 (CartBlanche22) - ZINC id, SMILES에 의해 합성 보기 정확하고/similarity 수색, 공급자 부호 해결책, 무작위 표본 추출, 선창을 위한 3D 구조 위치.  |
+| GDC · `gdc` | NCI GDC | 5 | 암 프로젝트, 케이스, 파일 메타 데이터, 오픈 / 제어 라벨 및 전송 표시; 다운로드 또는 액세스 권한을 부여하지 않습니다. |
+| Zenodo · `zenodo` | Zenodo | 2 | 공공 데이터 세트, 소프트웨어 및 출판 발견, 버전 별 메타 데이터 및 파일 재고; 업로드 또는 다운로드. |
+| · · `hmmer` | EMBL-EBI 헬멧3 | 3 | 프로그램별 단백질/프로필/분리 검색, 작업 상태 및 결과. |
+| InterProScan · `interproscan` | EMBL-EBI InterProScan에 대한 정보 | 2 | 상태 및 TSV는 기존의 주석 작업을 보고합니다. 제출 없음. |
 
 오프라인 Molecule 도구는 [사이트맵](viewers.md)에 덮여 있습니다. 각 데이터 소스에 노출된 정확한 작업을 위해 [Connector 가동 참고](../reference/connector-operations.md)을 사용합니다.
 
@@ -56,6 +60,10 @@ Open-Science v0.32.0에는 **23 데이터 소스 커넥터 251 작업**가 포�
 | 변형, 표식 및 규제 증거 확인 | Variants, 임상 Genomics, 인간 유전학, 표현, 규정 | 생물, 조직, 참고 구조 및 관련 증거 분야를 가진 근원 기록 |
 | 화합물, 구조 또는 임상 연구 기록 | 화학, ChEMBL, 구조 및 상호 작용, 임상 시험 | 화학 식별자 / properties, 구조 기록 및 재판 metadata |
 
+일괄 식별자 변환의 경우 **유전자 및 종양학**은 `submit_uniprot_id_mapping`, `get_uniprot_id_mapping_status` 및 `get_uniprot_id_mapping_results`을 추가합니다. 작업 ID를 저장, 적어도 세 초 떨어져 설문 조사, 다음 각 결과 페이지를 검색. 1-to-many 매핑 및 명시된 `failed_ids` 보존; 한 페이지의 누락은 일치하지 않습니다. 서비스는 100,000 식별자에게 최대 7 일 후에 결과를 만료합니다. [정확한 매핑 필드](../reference/connector-operations.md#submit_uniprot_id_mapping) 참조.
+
+**젠도**는 인증 없이 공개 레코드 메타데이터를 노출합니다. 파일 재고가있는 버전 별 레코드 ID 및 액세스 / 라이센스 필드를 유지하십시오. **GDC 소개** 공개 메타데이터 노출; 정의는 권한 부여를 다운로드하지 않으며, 제어 된 파일은 GDC 권한이 필요합니다. [GDC 운영](../reference/connector-operations.md#family-24) · [Zenodo 운영](../reference/connector-operations.md#family-25).
+
 데이터베이스 응답은 연구 단계를 지원할 수 있습니다; 그것은 자동으로 데이터를 다운로드하지 않습니다, 문학 라이브러리에 모든 종이를 추가하거나 완전한 분석을 실행. 저장하고 싶은 기록과 파일을 지정합니다.
 
 ## 데이터베이스를 사용하여 연결 및 시작 {/* #connect-database */}
@@ -66,7 +74,7 @@ Open-Science v0.32.0에는 **23 데이터 소스 커넥터 251 작업**가 포�
 
 1. **Settings → Connectors**을 열고 **Omics Archives - 오믹스**과 같은 위에 나열된 가족을 검색합니다.
 2. 자세한 내용을 열고 **Tools**을 확장하십시오. 선택된 작업의 입력, 결과 제한 및 제 3 자 요구 사항을 읽어보십시오.
-3. **메인 에이전트** 및 **Used by**을 위한 사용 가능한 가용성. Specialist 액세스는 개별 Specialist에 구성됩니다. 가용성 및 per-tool 승인 정책은 별도의 통제입니다.
+3. **메인 에이전트** 및 **Used by**을 위한 사용 가능한 가용성. Main 에이전트와 Specialist 협회를 조정하는 자원에 **Manage access**을 사용합니다. 가용성 및 per-tool 승인 정책은 별도의 통제입니다.
 
 ![Omics Archives 도구 세부 사항 GEO 입력 및 메타 데이터 전용 범위를 보여주는](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -78,7 +86,7 @@ Open-Science v0.32.0에는 **23 데이터 소스 커넥터 251 작업**가 포�
 
 | 서비스 또는 조건 | 설정할 곳 |
 | --- | --- |
-| OpenAlex | **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**을 진행하세요. API 키 입력, 선택 **Validate**또는 **Save** 유효성 검사 후. |
+| OpenAlex | 옵션 키. 하나 구성, 열기 **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**, 그것을 유효하게 하고, 그 후에 저장하십시오. |
 | 연락처 정보를 요구하는 NCBI 변형 쿼리 | **Settings → Connectors → Manage credentials → Literature access**을 진행하세요. 제품정보 **Contact email** 을 선택해 주세요 **Save**을 진행하세요. NCBI API 열쇠는 선택적입니다. |
 | credential 필요조건을 가진 또 다른 가동 | 그 도구의 요구 사항 및 [자격 시험](../guides/connectors.md)을 진행하세요. 의도한 서비스에 대한 자격 증명을 브랜딩합니다. |
 
@@ -160,4 +168,12 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.32.0/src/main/connectors/registry.ts).
+카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/registry.ts).
+
+## Sequence 검색 및 정렬 {/* #sequence-tools */}
+
+**HMMER의 장점**은 프로그램별 단백질, 프로파일-HMM 및 정렬 검색을 제공합니다. 함께 프로그램 및 데이터베이스를 선택하고 작업 ID를 유지하고 **회사 소개** 후 결과를 검색하십시오. [HMMER 운영](../reference/connector-operations.md#family-26).
+
+**InterProScan의 장점**은 EMBL-EBI 서비스를 통해 제출된 기존 작업에 대한 주석을 검색합니다. 작업 ID를 유지하고, 상태 적어도 10 초 떨어져 검사하고, **이름 &#42;** 후에 TSV를 태치십시오. 이 Connector은 새로운 일을 제출할 수 없습니다. [InterProScan 운영](../reference/connector-operations.md#family-27).
+
+**Genomes → Clustal Omega**는 단백질, DNA 또는 RNA FASTA 레코드를 고유하게 지명한 적어도 3개의 종류를 맞추습니다. 서비스에 의해 요청된 연락처 이메일 구성, 한 번 제출, 작업 ID를 유지, 다음 상태를 확인하고 반환 정렬을 저장. [다중 상태 정렬 워크플로](../workflows/multiple-sequence-alignment.md).

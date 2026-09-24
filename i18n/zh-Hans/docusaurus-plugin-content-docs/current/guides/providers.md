@@ -1,7 +1,7 @@
 ---
 title: "提供商与本地模型配置"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -218,3 +218,13 @@ print((8664 + 18515) == 27179)
 在提供方目录选择 **StepFun**，先确认 **China** 或 **Global** 区域，再选择模型并填写该区域的凭证。v0.32.0 加入 **Step-5 Preview**，目录标记为支持多模态和 1M 上下文。实际可用模型、额度和输入能力仍以提供方账户及所选 Agent 的兼容性为准。
 
 保存并检查连接后，才在需要使用它的会话中选择该模型。已有提供方保留原先端点；应用升级不会替你切换区域或主模型。
+
+## 更新后的服务商目录 {/* #provider-catalog-updates */}
+
+v0.33.0 目录加入 **Xiaomi MiMo v2.6**、**xAI Grok 4.7**，并更新 **OpenCode Zen** 和 **Go**。新建 MiMo 配置默认使用 `mimo-v2.6-pro`，原有 v2.5 选项仍保留。Grok 4.7 成为 xAI 的新默认模型，旧模型 ID 仍在列表中。
+
+选择当前 Agent 实际提供的模型，检查输入和推理选项，再发送一个小请求。目录默认值不会更改所有已有会话的模型，也不保证账号拥有使用权限。主会话可以保留 Codex，另行配置[分类服务](models.md#classification-models)。
+
+## 新增模型目录选项 {/* #catalog-models */}
+
+v0.33.1 的提供商目录新增 **GPT-6** 和 **Claude Opus 5.5**。打开对应提供商的模型列表，选择当前框架与账户支持的条目。出现在目录中不代表账户已获得权限，也不会自动切换已保存的 Main 模型。更换后先验证连接并发送一个小请求，再用于研究。

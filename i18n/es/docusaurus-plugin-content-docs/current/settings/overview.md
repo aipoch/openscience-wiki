@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Sinopsis de la configuración"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # Sinopsis de la configuración {/* #settings-overview */}
@@ -56,3 +56,5 @@ Esta búsqueda cubre los ajustes representativos en cada panel, no en cada campo
 ## Fichas de configuración modelo {/* #model-tabs */}
 
 Dentro de **Model**, utilice **Conversation models** para proveedores y modelos de tareas, **Classification models** para la selección opcional Skill/Connector y **Local parsing models** para recursos locales de persiana. La clasificación es una pestaña dentro de la configuración del modelo, no un panel adicional de configuración de nivel superior. Ver [Clasificación](../guides/models.md#classification-models).
+
+La búsqueda del encabezado utiliza **XXXK / Ctrl+K**. Para enfocar el panel actual o la propia búsqueda del diálogo, utilice **XXXK / Ctrl+Alt+K** cuando ese campo esté disponible. Ver [búsqueda atajos](../guides/shortcuts.md#local-settings-search).

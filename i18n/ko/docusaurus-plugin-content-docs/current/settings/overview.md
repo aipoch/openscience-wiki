@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "설정 개요"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 # 설정 개요 {/* #settings-overview */}
@@ -56,3 +56,5 @@ last_update:
 ## 모델 설정 탭 {/* #model-tabs */}
 
 **Model** 내에서, 공급자 및 작업 모델에 대한 **Conversation models**을 사용, **Classification models** 옵션 Skill/Connector 선택, 및 **Local parsing models** 로컬 파싱 리소스. Classification는 모델 설정 내에서 탭이며, 추가 최상위 설정 패널이 아닙니다. [분류 설정](../guides/models.md#classification-models) 참조.
+
+헤더 검색은 **⌘K / Ctrl + K**을 사용합니다. 현재 패널 또는 대화 상자의 자신의 검색에 초점을 맞추려면 필드가 사용할 때 **&lt;unk>K/Ctrl+Alt+K**을 사용하십시오. [검색 단축키](../guides/shortcuts.md#local-settings-search) 참조.

@@ -1,7 +1,7 @@
 ---
 title: "鍵盤快捷鍵"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-24'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -79,3 +79,7 @@ import Screenshot from '@site/src/components/Screenshot';
 按當前裝置顯示的按鍵提示操作。若系統攔截了快捷鍵，使用對應按鈕，並記錄系統版本與當時焦點。
 
 原始碼：[全域搜尋](https://github.com/aipoch/open-science/blob/v0.30.0/src/renderer/src/components/global-search/GlobalSearchDialog.tsx)、[預覽標籤](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/PreviewPanel.tsx)、[佇列](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx)。
+
+## 搜尋當前設定面板 {/* #local-settings-search */}
+
+在 Settings 中，**⌘K**（macOS）或 **Ctrl+K**（Windows/Linux）聚焦頁頭的設定搜尋。**⌘⌥K** 或 **Ctrl+Alt+K** 聚焦當前面板或對話方塊內可用的區域性搜尋框。區域性快捷鍵需要當前存在可用搜尋框，不會開啟應用全域搜尋或 PDF 正文搜尋。

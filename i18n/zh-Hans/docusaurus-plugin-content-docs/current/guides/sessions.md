@@ -1,7 +1,7 @@
 ---
 title: "会话与分支"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -162,3 +162,8 @@ Fork 目前在桌面端提供。导入会话仍为只读，应在其副本中继
 ## 查看会话信息卡 {/* #session-information */}
 
 点击会话标题，查看编号、描述、来源、创建与更新时间、当前分支消息数及文件数。使用 **Pin** 固定会话，或通过 **Edit session** 修改标题和描述。**Continued from chat** 分隔条可返回记录的来源消息。
+
+
+## 导出会话诊断 {/* #session-diagnostics */}
+
+使用会话页头 **Export diagnostics…**，或会话菜单 **Export → Export diagnostics…**，将所选诊断来源收集到本地归档。应用日志可能包含所选会话之外的元数据，分享前检查来源列表、完成提示和归档内容，见[诊断导出步骤](troubleshooting.md#session-diagnostics)。

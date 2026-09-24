@@ -1,7 +1,7 @@
 ---
 title: "Lagerung und archivierte Arbeiten"
 last_update:
-  date: '2026-09-11'
+  date: '2026-09-24'
 ---
 
 # Lagerung und archivierte Arbeiten {/* #storage-and-archived-work */}
@@ -136,3 +136,7 @@ Exportieren Sie vor dem dauerhaften Löschen die Eingaben, Ausgaben und Ausführ
 Überprüfen Sie bei einem fehlgeschlagenen Download das gewählte Ziel und den freien Speicherplatz. Bestätigen Sie bei einer nicht verfügbaren verwalteten Datei den ausgewählten Datenspeicherort und das ausgewählte Datenprofil, bevor Sie ein Ersatzprojekt erstellen. Bei fehlenden Paketen nach dem Umzug überprüfen Sie die neu erstellte Laufzeit, anstatt anzunehmen, dass Forschungsdaten verloren gegangen sind. Verwenden Sie [Fehlerbehebung](troubleshooting.md), um die ersten nützlichen Fehler- und Versionsinformationen zu sammeln.
 
 Quellen: [Speicherpaneel](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StoragePanel.tsx), [Migrationsformular](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/StorageMigrationModal.tsx). [Umzugskontrollen in Bibliotheken](https://github.com/aipoch/open-science/commit/d00c722d).
+
+## Daten nach einem Upgrade wieder öffnen {/* #historical-data-location */}
+
+Eine vorhandene gespeicherte Datenposition hat Vorrang. Bei einer abgeschlossenen älteren Installation ohne explizit gespeicherten Speicherort behält Open-Science den historischen Speicherort bei und speichert diese Option. Wenn dieser gespeicherte Ordner nicht verfügbar ist, verbinden Sie ihn erneut, bevor Sie ihn neu starten. Wenn mehrere historische Standorte Forschungsdaten enthalten, werden Sie von der App aufgefordert, den ursprünglichen Ordner auszuwählen oder wiederherzustellen, anstatt ihn stillschweigend auszuwählen. Bewahren Sie beide Kopien auf, bis Sie ihre Projekte und Dateien überprüft haben; Erstellen Sie keinen neuen leeren Speicherort, um einen offensichtlichen Datenverlust zu beheben.

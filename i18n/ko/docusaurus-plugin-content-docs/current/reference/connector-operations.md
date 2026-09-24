@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.32.0** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.32.0.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
+한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.33.1** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.1.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
 
 
 ## 뚱 베어 {/* #family-1 */}
@@ -618,6 +618,47 @@ Fetch UniProtKB는 1 차 또는 2 차 액세스 목록의 레코드를 기록합
 const result = await host.mcp("genes", "get_uniprot_entries", {"accessions": ["P04637", "P38398"], "fields": ["accession", "id", "protein_name", "gene_names", "organism_name", "length"]})
 ```
 
+### `submit_uniprot_id_mapping` {/* #submit_uniprot_id_mapping */}
+
+UniProt 일괄 ID 매핑을위한 100,000 식별자에 제출. from_db/to_db는 정확한 UniProt API 데이타베이스 이름입니다 (예를들면) Gene_Name, GeneID, Ensembl, RefSeq_Protein, UniProtKB_AC-ID -> UniProtKB; UniProtKB_AC-ID -> Ensembl 또는 GeneID). 유효한 쌍은 [https://rest.uniprot.org/configure/idmapping/fields](https://rest.uniprot.org/configure/idmapping/fields)에 의해 정의됩니다; 지원되지 않은 쌍은 업스트림을 실패. taxon_id는 Gene_Name에서만 선택적입니다; 종을 파괴하도록 지정하십시오. ID는 whitespace 또는 분리기 없이 개인적인 끈이어야 합니다; 케이스와 버전은 보존되고, 한 번 제출된 정확한 중복. from_db=UniProtKB_AC-ID로 search_uniprot_entries에서 접속할 수 있습니다. 한 POST를 전송, 자동 retries 또는 polls. job_id을 저장하고 get_uniprot_id_mapping_status과 get_uniprot_id_mapping_results를 사용하십시오. UniProt는 7 일까지 후에 결과를 만료합니다; 취소 또는 앱 종료는 로컬 요청을 중지, 원격 작업이 아닙니다. 로컬 작업 캐시 또는 원격 취소 / 삭제 API이 제공되지 않습니다. 제출이 응답을 잃으면, 작업이 존재 할 수 있습니다; 장님으로 resubmit하지 마십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `from_db` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 100; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_-&#93;&#42;$" |
+| `to_db` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 100; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_-&#93;&#42;$" |
+| `ids` | 문자열 배열 | **필수**; 최소품목: 1; 최대품목: 100000 |
+| `taxon_id` | 정수 | 선택 사항; 최소: 1; 최대: 2147483647 |
+
+```javascript
+const result = await host.mcp("genes", "submit_uniprot_id_mapping", {"from_db":"Gene_Name","to_db":"UniProtKB","ids":["TP53","BRCA1"],"taxon_id":9606})
+```
+
+### `get_uniprot_id_mapping_status` {/* #get_uniprot_id_mapping_status */}
+
+기존 UniProt ID 매핑 작업을 한 번 확인하십시오. NEW/RUNNING은 나중에 이 도구를 오염시킵니다 (최소 3 초 출발); FINISHED는 get_uniprot_id_mapping_results과 모든 페이지를 읽을 수 있습니다. Upstream ERROR는 FAILED, 단말 작업 실패, 일치하지 않는 ID로 정상화됩니다. HTTP 400/500 작업 실패는 자동적인retries 없이 읽습니다; 다른 HTTP 실패 (알 수없는 / 예상 작업 포함) propagate. 새 직업을 제출하지 않거나 자동으로 설문 조사.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `job_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 100; 패턴: "^&#91;A-Za-z0-9_-&#93;+$" |
+
+```javascript
+const result = await host.mcp("genes", "get_uniprot_id_mapping_status", {"job_id":"ecuuh9h0Md"})
+```
+
+### `get_uniprot_id_mapping_results` {/* #get_uniprot_id_mapping_results */}
+
+완성된 직업을 위한 Compact UniProt ID 매핑 쌍의 1개의 페이지를 흠뻑 취하십시오. next_cursor과 동일한 job_id/page_size를 has_more=false까지 반복하십시오; 커서는 opaque, 오프셋 또는 내구성 스냅샷이 아닙니다. 각 행은 1-to-many 매핑을 포함하여 유지됩니다. 멀티플래시를 해석하기 전에 모든 페이지의 맞은편에 의해 묶음 쌍; 소스는 페이지에 걸쳐 할 수 있습니다. failed_ids의 조합을 페이지에 걸쳐보고; 페이지에 부과되지 않는 ID를 절대 사용하지 마십시오. UniProtKB 대상 ID는 주석 또는 순서에 get_uniprot_entries에 전달될 수 있습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `job_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 100; 패턴: "^&#91;A-Za-z0-9_-&#93;+$" |
+| `page_size` | 정수 | 선택 사항; 기본: 100; 최소: 1; 최대: 500 |
+| `cursor` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 4096; 패턴: "^&#91;^\\\\u0000-\u001f\u007f&#93;+$" |
+
+```javascript
+const result = await host.mcp("genes", "get_uniprot_id_mapping_results", {"job_id":"ecuuh9h0Md","page_size":100})
+```
+
 ### `map_reactome_pathways` {/* #map_reactome_pathways */}
 
 Reactome Pathways (AnalysisService Token 워크플로우)에 대한 Map 유전자 기호 또는 UniProt 액세스. Args: 식별자 (id_type="symbol", "uniprot"가 있는 경우 UniProt Accessions ; 중복 없음); id_type ("symbol"/"uniprot"); 종 (과태 "Homo sapiens"); 자원 (AnalysisService 분자 자원 전망 "TOTAL" 기본; "UNIPROT"의 특징 단백질 수준 매핑에 제한); include_disease (서비스 기본 True); 콤팩트 (True → per-identifier 저수준 통로만 &#123;stId의 이름, species&#125; + reactome 릴리스 버전; False → 전체 결정 결과 : 엔터런트 / 반응 통계 (p-value, FDR, Found / 총) 및 일괄 요약 포함의 전체 경로 세트. identifiers_not_found). 반환: 콤팩트 &#123;tool, reactome_version, id_type, 종, n_input, 유전자: &#123;identifier: &#123;found, n_lowlevel_pathways, pathways&#125;&#125;&#125;; 전체는 통로 통계 및 batch_summary을 추가합니다. 지도 식별자는 요청한 종에 통로를 식별하고, 인간에게 투구하지 않고. `Homo sapiens` 또는 `Mus musculus`와 같은 지원되는 과학적인 이름을 사용하십시오; 다운로드 가능한 스키마 목록 모두 지원되는 이름. 빈, 지원되지 않은 또는 잘못 된 종은 오류입니다. `found` 및 `n_found`은 식별자 인식을 나타내며, 경로 회원은 인식 식별자가 0 경로가있을 수 있습니다. 컴팩트 모드는 저수준 통로만 포함합니다.
@@ -886,7 +927,7 @@ const result = await host.mcp("genomes", "ucsc_track_data", {"track": "cpgIsland
 
 ### `ucsc_conservation` {/* #ucsc_conservation */}
 
-UCSC phyloP / phastCons 트랙의 영역에 대한 진화 보수 요약 (다양한 정렬에 기초 현명한 점수). 아르그: 크롬 (chr prefixed); 시작 (0 기반 반 오픈); 끝 (exclusive; 100000 bp에서 캡핑 된 스팬 - 더 큰 분할); genome (과태 hg38); (선택; 다른 genomes를 위한 hg19와 phyloP100way를 위한 phyloP100wayAll에 과태; positive=conserved, 부정적인=fast 진화; 대안 hg38 phastCons100way, phyloP30way, phastCons30way, phyloP447way, phyloP470way; hg19 phastCons100way; include_values (또한 기초 &#123;start, 최후, value&#125;를 돌려보내십시오 max_values, values_truncated 플래그에서 캡핑 된 행 캡; default false = 요약만); max_values (기초 모자 기본 2000). &#123;genome, 트랙, 크롬, 시작, 끝, span_bp, n_bases_covered, coverage_fraction, 의미, 분, max&#125; 반환 (+values, 요청시 values_truncated). 각 행의 기초 경간에 의해 무게를 달아, 창에 자르는; coverage_fraction의 0 득점되지 않는 기초. Non-score 트랙 인상; 업스트림-truncated 행 목록도 인상.
+UCSC phyloP / phastCons 트랙의 지역을위한 진화 보수 요약 (다양한 정렬에 기초 현명한 점수). 아르그: 크롬 (chr prefixed); 시작 (0 기반 반 오픈); 끝 (exclusive; 100000 bp에서 캡핑 된 스팬 - 더 큰 분할); genome (과태 hg38); (선택; 기본: hg19 phyloP100wayAll, hg38 phyloP100way, mm10 phyloP60wayAll, mm39 phyloP35way; 다른 genomes는 phyloP100way fallback을 유지, 존재하지 않을 수 있습니다 - 필요한 경우 ucsc_list_tracks의 점수 트랙을 지정; positive=conserved, 부정적인=fast 진화; 대안 hg38 phastCons100way, phyloP30way, phastCons30way, phyloP447way, phyloP470way; hg19 phastCons100way; include_values (또한 당 기초 반환 &#123;start,end,value&#125; max_values, values_truncated 플래그에서 캡핑 된 행 캡; default false = 요약만); max_values (기초 모자 기본 2000). 의논하기 &#123;genome, track, chrom, start, end, span_bp, n_bases_covered, coverage_fraction, mean, min, max&#125; (+values, 요청시 values_truncated). 각 행의 기초 경간에 의해 무게를 달아, 창에 자르는; coverage_fraction의 0 득점되지 않는 기초. Non-score 트랙 인상; 업스트림-truncated 행 목록도 인상.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -930,6 +971,48 @@ Chromosome/contig 이름과 UCSC 집합의 크기 — 유효한 협조 및 itera
 
 ```javascript
 const result = await host.mcp("genomes", "ucsc_chrom_sizes", {"genome": "hg38", "filter_text": "chr1", "max_chroms": 25})
+```
+
+### `clustalo_submit` {/* #clustalo_submit */}
+
+EMBL-EBI Job Dispatcher Clustal Omega에 3개 이상의 단백질, DNA 또는 RNA 시퀀스를 제출하십시오. 입력은 FASTA 레코드를 고유하게 명명되어야 합니다; 서비스는 대부분의 4000 순서 또는 4 MiB에 받아들입니다. job_id을 반환합니다; clustalo_results 이전에 clustalo_status을 호출하십시오. 커넥터 요청 clustal_num 기본적으로, 위치 번호가있는 클러스터 정렬, 보존 된 사이트 및 다운스트림 진화 분석에 적합. EMBL-EBI는 유효한 접촉 이메일 요구. Settings → Privacy → Share contact email로 연락주십시오. 분실된 제출 응답은 허용된 원격 작업을 나타냅니다; 자동을 재조정하지 마십시오. EMBL-EBI는 제한된 공급자 통제한 기간을 위한 결과 (1 주까지 문서화했습니다); 이것은 앱 소유의 탈렛 보증이 아닙니다. 재시작 후 job_id을 재시작합니다. 이 커넥터는 작업 등록, 결과 캐시 또는 자동 재류 및 취소 / 앱 종료 만 로컬 요청을 중지합니다. 순서는 EMBL-EBI로 보내지고, 주인은 공구 입력을 유지하고 대화 또는 Notebook 지속에 있는 조정 내용을 돌려보낼지도 모릅니다. Respect EMBL-EBI 공정 사용 지침 : 일괄 처리에서 30 작업 이상을 제출하고 더 많은 것을 제출하기 전에 처리 / 이력서에 대한 대기; 이 연결관은 교차 통화 throttling를 강제하지 않습니다. 공식 API 계약에 대한 [https://www.ebi.ac.uk/jdispatcher/docs/webservices/](https://www.ebi.ac.uk/jdispatcher/docs/webservices/) 참조.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `sequence` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 4194304 |
+| `stype` | 문자열 | **필수**; 크기: "protein", "dna", "rna" |
+| `outfmt` | 문자열 | 선택 사항; koum : &#91;"clustal_num"&#93; |
+| `title` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200 |
+| `dealign` | 불리언 | 옵션 정보 |
+| `order` | 문자열 | 선택 사항; koum : &#91;"aligned", "input"&#93; |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_submit", {"sequence": ">human\nMKT\n>mouse\nMRT\n>rat\nMRT\n", "stype": "protein"})
+```
+
+### `clustalo_status` {/* #clustalo_status */}
+
+한 EMBL-EBI 클러스터 오메가 작업을 한 번 확인하십시오. 이것은 단일 상태 요청이며 오염 또는 대기; 적어도 10 초 후에 그것을 FINISHED, ERROR, FAILURE 또는 NOT_FOUND까지 부르십시오. 재시작 후 재시작할 때 job_id 유지
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `job_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 128 |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_status", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m"})
+```
+
+### `clustalo_results` {/* #clustalo_results */}
+
+FINISHED 작업에 대한 하나의 경계 클러스터 오메가 clustal_num 정렬 파일. clustalo_submit에 의해 반환된 동일한 outfmt를 통과하십시오; 이 도구는 하나의 결과 요청을 만들고 정렬 내용과 파일 이름 제안을 반환합니다. 공급자가 여전히 QUEUED 또는 RUNNING을보고 있다면, 그것은 준비를 반환합니다 : retry 힌트와 함께; 공급자 실패는 과실이고 진단을 위한 job_id를 유지합니다. 결과 8 MiB에서 캡핑되며 동사태를 반환하므로 콜러는 컨버스드 사이트 검사 또는 다운스트림 phylogenetic 분석에 대한 정렬 파일로 콘텐츠를 저장할 수 있습니다. 자동적인 retries 없음. EMBL-EBI는 제한된 공급자 통제한 기간을 위한 결과 (1 주까지 문서화했습니다); 이것은 앱 소유의 탈렛 보증이 아닙니다. 재시작 후 job_id을 재시작합니다. 이 커넥터는 작업 등록, 결과 캐시 또는 자동 재류 및 취소 / 앱 종료 만 로컬 요청을 중지합니다. 순서는 EMBL-EBI로 보내지고, 주인은 공구 입력을 유지하고 대화 또는 Notebook 지속에 있는 조정 내용을 돌려보낼지도 모릅니다. Respect EMBL-EBI 공정 사용 지침 : 일괄 처리에서 30 작업 이상을 제출하고 더 많은 것을 제출하기 전에 처리 / 이력서에 대한 대기; 이 연결관은 교차 통화 throttling를 강제하지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `job_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 128 |
+| `outfmt` | 문자열 | **필수**; koum : &#91;"clustal_num"&#93; |
+
+```javascript
+const result = await host.mcp("genomes", "clustalo_results", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m", "outfmt":"clustal_num"})
 ```
 
 </ToolOperationGroup>
@@ -3757,3 +3840,208 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ## 예제 응답 기록 {/* #example-response-records */}
 
 <ExampleDownload path="/examples/capabilities/public-database-query-receipts.json">예 응답 기록</ExampleDownload>은 정확한 입력, 캡핑 응답 발췌 및 작동 결과가 포함되어 있습니다. 반환된 기록, 빈 경기 및 실패한 요청을 Distinguish. 결과는 메타 데이터, 스키마 또는 식별자가 될 수 있습니다. 당신의 연구에서 그들을 사용하기 전에 소스 필드와 완성 플래그를 확인합니다.
+
+## GDC 소개 {/* #family-24 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `gdc_list_projects` {/* #gdc_list_projects */}
+
+GDC 암 프로젝트 및 사례/파일 요약 목록. 필터는 명시 적이고 및 경계; 이것은 메타 데이터 발견, 데이터 다운로드 작업이 아닙니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `project_ids` | 문자열 / 배열 | 옵션 정보 |
+| `disease_type` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200 |
+| `primary_site` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200 |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10000 |
+| `page_size` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-BRCA", "page_size": 5})
+```
+
+### `gdc_list_cases` {/* #gdc_list_cases */}
+
+프로젝트와 질병 메타데이터를 가진 GDC 케이스 (샘플 도우미) 목록. 결과가 표시된 경우를 식별하고 노출하거나 다운로드할 수 없습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `project_ids` | 문자열 / 배열 | 옵션 정보 |
+| `submitter_ids` | 문자열 / 배열 | 옵션 정보 |
+| `case_ids` | 문자열 / 배열 | 옵션 정보 |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10000 |
+| `page_size` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BRCA"], "page_size": 5})
+```
+
+### `gdc_search_files` {/* #gdc_search_files */}
+
+GDC 파일 재고를 검색하고 명시적으로 각 파일을 열거나 제어 된 액세스로 표시합니다. Metadata discovery는 다운로드 권한을 부여하지 않습니다; 제어된 파일은 적절한 GDC 승인이 필요합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `project_ids` | 문자열 / 배열 | 옵션 정보 |
+| `access` | 문자열 | 선택 사항; 기본: "all"; 크기: "all", "open", "controlled" |
+| `data_category` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200 |
+| `data_type` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200 |
+| `data_format` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 50 |
+| `file_name` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 500 |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10000 |
+| `page_size` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+```
+
+### `gdc_get_file` {/* #gdc_get_file */}
+
+오픈/제어된 액세스 분류를 포함한 GDC 파일 UUID에 대한 메타데이터를 검색합니다. 이 파일은 파일 다운로드가 수행되지 않으며 목록 파일이 현재 사용자를위한 다운로드 할 수 없다는 주장하지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `file_id` | 문자열 | **필수**; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;1- - -5₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 3&#125;-&#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89abAB&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89ab&#93; - &#91;89abAB&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89ab&#93; - &#91;89abAB&#93; - &#91;89abAB&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89ab&#93; - &#91;89ab0-9a-fA-F&#93; -9a-fA-F 를&#123; 3&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_get_file", {"file_id": "cb92f61d-041c-4424-a3e9-891b7545f351"})
+```
+
+### `gdc_get_manifest` {/* #gdc_get_manifest */}
+
+최대 100 파일 UUIDs에 대한 GDC 데이터 전송 도구가 나타납니다. 반환된 표시는 재고가 한정된 것입니다; 파일 또는 우회 제어 액세스 권한 부여를 다운로드하지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `file_ids` | 문자열 배열 | **필수**; 최소품목: 1; 최대품목: 100; uniqueItems: 사실 |
+
+```javascript
+const result = await host.mcp("gdc", "gdc_get_manifest", {"file_ids": ["cb92f61d-041c-4424-a3e9-891b7545f351"]})
+```
+
+</ToolOperationGroup>
+
+## 젠도 {/* #family-25 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `search_records` {/* #search_records */}
+
+Zenodo 쿼리 문자열 구문을 사용하여 공공 Zenodo 레코드 (datasets, 소프트웨어 및 출판물)를 검색하십시오. 예. 제목 : "climate"또는 doi : "10.5281 / zenodo.8435696". 인증없이 25 레코드까지 한 페이지에 Fetches. 기본적으로 최신 버전만 나열되어 있습니다. all_versions에는 이전 버전이 포함되어 있습니다. 다음 페이지의 경우 쿼리, page_size, 정렬 및 all_versions 변경되지 않습니다. 검색 창은 10,000 결과에 제한됩니다: (페이지 - 1) &#42; page_size는 10,000 보다는 더 적은이어야 합니다; 마지막 페이지는 부분 일 수 있습니다. pagination_limited이 true인 경우 쿼리를 축소합니다. Public metadata는 파일을 열지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `query` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 1000; 패턴 : " \ S" |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10000 |
+| `page_size` | 정수 | 선택 사항; 기본: 10; 최소: 1; 최대: 25 |
+| `sort` | 문자열 | 선택 사항; 기본: "bestmatch"; koum : &#91;"bestmatch", "mostrecent"&#93; |
+| `all_versions` | 불리언 | 선택 사항; 기본값: false |
+
+```javascript
+const result = await host.mcp("zenodo", "search_records", {"query": "title:climate", "page_size": 5})
+```
+
+### `get_record` {/* #get_record */}
+
+public Zenodo metadata 및 레코드 엔드포인트에 노출 된 파일 재고를 검색합니다. 소수 기록 ID를 전달, DOI 또는 URL이 아닙니다. 개념 ID는 최신 버전으로 해결할 수 있습니다; requested_record_id, record_id 및 concept_record_id는 명백하게 남아 있습니다. 반환된 버전-특정 record_id을 사용하여 reproducible lookup. description_html는 강화되지 않는 상류 HTML입니다. 파일 링크 및 체크섬은 메타데이터 만: 다운로드, 체크섬 검증 또는 액세스 프로브가 수행되지 않습니다. 제한 또는 embargoed 레코드는 접근 가능한 파일없이 공공 메타 데이터를 가질 수 있습니다; 빈 파일 목록은 보증금이 파일이 없다는 것을 설정하지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `record_id` | 문자열 | **필수**; 최대 길이: 20; 패턴: "^&#91;1-9&#93;&#91;0-9&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("zenodo", "get_record", {"record_id": "8435696"})
+```
+
+</ToolOperationGroup>
+
+## HMMER의 장점 {/* #family-26 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `search` {/* #hmmer-search */}
+
+1개의 비동기 EMBL-EBI HMMER3 수색 제출 프로그램 선택 phmmer (순서 데이터베이스에 대한 단백질 순서), hmmscan (Pfam 프로파일에 대한 단백질 시퀀스), hmmsearch (시퀀스 데이터베이스에 대한 HMM / 정렬), 또는 jackhmmer (성능 원격 Homolog 검색). 입력은 FASTA 순서, 단면도 HMM, 또는 그 프로그램에 의해 받아들여지는 정렬 원본입니다. 데이터베이스는 공급자 데이터베이스 이름입니다. 선택적인 문턱은 HMMER 모수 이름 (incE/incdomE, E/domE, incT/incdomT, T/domT);를 이용합니다 iterations는 jackhmmer 둥근을 통제합니다. 제출은 완료되지 않습니다 : 반환된 job_id 및 상태와 오염을 유지합니다. 이 서비스는 응답이 잃어버린 경우에도 작업을 수락 할 수 있습니다. 절대로 자동적으로 불확실한 제출을 재조정합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `program` | 문자열 | **필수**; 모델 번호: &#91;"phmmer", "hmmscan", "hmmsearch", "jackhmmer"&#93; |
+| `database` | 문자열 | **필수**; 한국어 (ko)"관련 제품"· "뚱 베어"· "스카프"· "뚱 베어"· "rp15's 수색"· "rp35'실제 이름입 rp35니다."· "rp55'실제 이름입 rp55니다"· "rp75's 수색"· "뚱 베어"· |
+| `input` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200000 |
+| `incE` | 숫자 | 선택 사항; 독점적인Minimum: 0; 최대: 10 |
+| `incdomE` | 숫자 | 선택 사항; 독점적인Minimum: 0; 최대: 10 |
+| `incT` | 숫자 | 선택 사항; 독점적인Minimum: 0 |
+| `incdomT` | 숫자 | 선택 사항; 독점적인Minimum: 0 |
+| `E` | 숫자 | 선택 사항; 독점적인Minimum: 0; 최대: 10 |
+| `domE` | 숫자 | 선택 사항; 독점적인Minimum: 0; 최대: 10 |
+| `T` | 숫자 | 선택 사항; 독점적인Minimum: 0 |
+| `domT` | 숫자 | 선택 사항; 독점적인Minimum: 0 |
+| `popen` | 숫자 | 선택 사항; 최소: 0 |
+| `pextend` | 숫자 | 선택 사항; 최소: 0 |
+| `mx` | 문자열 | 선택 사항; 줌: &#91;"BLOSUM45", "BLOSUM62", "BLOSUM90", "PAM30", "PAM70"&#93; |
+| `iterations` | 정수 | 선택 사항; 최소: 1; 최대: 9 |
+
+```javascript
+const result = await host.mcp("hmmer", "search", {"program":"hmmscan","database":"pfam","input":">query\nMKTIIALSYIFCLVFADYKDDDDK"})
+```
+
+### `status` {/* #hmmer-status */}
+
+한 번 HMMER 일을 체크, 오염 또는 재조정없이. SUCCESS는 결과를 사용할 수 있음을 의미합니다. PENDING/RUNNING는 다시 검사하기 전에 기다리는 것을 의미합니다; ERROR/FAILURE/NOT_FOUND는 맨끝 결과이고 결코 0개의 안타깝지 않습니다. 정확한 job_id을 지키십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `job_id` | 문자열 | **필수**; 최대 길이: 36; 패턴 : "^&#91;A-Fa-f0-9·&#123; 8&#125;-&#91;A-Fa-f0-&#93;9·&#123; 4&#125;-&#91;A-Fa-f0-&#93;9·&#123; 4&#125;-&#91;A-Fa-f0-&#93;9·&#123; 4&#125;-&#91;A-Fa-f0-&#93;9·&#123; 12&#125;$ 1,900 원" |
+
+```javascript
+const result = await host.mcp("hmmer", "status", {"job_id":"8ebb1d5f-4457-4da8-808c-f811105c3654"})
+```
+
+### `results` {/* #hmmer-results */}
+
+한 번 HMMER 작업 결과를 검색합니다. 공급자 상태를 먼저 확인하고 결과를 반환하지 않는 동안 작업이 종료되거나 실패합니다. SUCCESS, 도메인 주석을 포함한 모든 결과 페이지를 검색; jackhmmer iteration 레코드는 공급자 배열 모양에서 반환됩니다. 공급자 보유가 finite이기 때문에 Notebook artifact에서 결과를 보존하십시오; 빈 경기 목록은 완료된 0-hit 결과, 종료 또는 실패한 작업에서 명백합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `job_id` | 문자열 | **필수**; 최대 길이: 36; 패턴 : "^&#91;A-Fa-f0-9·&#123; 8&#125;-&#91;A-Fa-f0-&#93;9·&#123; 4&#125;-&#91;A-Fa-f0-&#93;9·&#123; 4&#125;-&#91;A-Fa-f0-&#93;9·&#123; 4&#125;-&#91;A-Fa-f0-&#93;9·&#123; 12&#125;$ 1,900 원" |
+
+```javascript
+const result = await host.mcp("hmmer", "results", {"job_id":"8ebb1d5f-4457-4da8-808c-f811105c3654"})
+```
+
+</ToolOperationGroup>
+
+## InterProScan의 장점 {/* #family-27 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `status` {/* #interproscan-status */}
+
+한 번의 InterProScan 작업 확인, 복원 또는 투표하지 않고. 적어도 체크 사이 10 초를 기다리십시오. FINISHED는 결과를 retrieved 할 수 있다는 것을 의미합니다; ERROR/FAILURE는 작업 실패, NOT_FOUND는 알 수 없거나 만료되지 않습니다. 제로치 결과가 없습니다. 정확한 job_id 유지; 이 도구는 결코 재조달하지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `job_id` | 문자열 | **필수**; 최대 길이: 200; 패턴: "^&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9_-&#93;&#123; 0,199&#125;$" |
+
+```javascript
+const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+### `results` {/* #interproscan-results */}
+
+작업을위한 완전한 InterProScan TSV 보고서를 검색, 2 MiB에서 캡핑 (대형 보고서가 실패, 결코 truncate). 먼저 상태 확인, 다음 FINISHED에 TSV를 fetches. retries, polling 또는 resubmission 없음. 공급자 결과가 만료되기 때문에 Notebook artifact에 대한 보고서를 보존합니다. TSV는 서명 일치 당 1개의 줄을 포함합니다; 좌표는 1 기반 포괄적이고 점수는 응용 분야입니다. 선택 열은 InterPro, GO 및 통로 주석을 보유합니다. FINISHED 후에 빈 TSV는 보고한 경기가, 단백질이 기능 부족한 증거를 의미하지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `job_id` | 문자열 | **필수**; 최대 길이: 200; 패턴: "^&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9_-&#93;&#123; 0,199&#125;$" |
+
+```javascript
+const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+</ToolOperationGroup>

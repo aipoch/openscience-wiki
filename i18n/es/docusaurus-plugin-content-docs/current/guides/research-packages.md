@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-24'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -22,6 +22,14 @@ Un paquete de investigación de **.science** trae las ramas de conversación, ar
 Un paquete puede contener materiales de investigación subidos, texto de conversación y resultados generados. Revise su contenido antes de compartir. Es una copia independiente: eliminar el trabajo local no elimina los paquetes ya enviados a otros.
 
 Las conversaciones Side Chat, [marcadores de lectura](bookmarks.md) privado y sus notas están excluidas del paquete. Ponga información que el destinatario necesita en un informe guardado o en la conversación antes de exportar.
+
+## Verifique la versión del destinatario {/* #package-compatibility */}
+
+Los paquetes exportados por **v0.33.0** incluyen metadatos **RO-Crate 1.1** en `ro-crate-metadata.json`. Describe la instantánea final exportada y los archivos inmutables seleccionados, incluyendo nombres de archivo, tipos de medios y sus relaciones. Re-exporta esas referencias para la nueva instantánea.
+
+Utilice **v0.33.0 o un lector compatible más tarde** para abrir estas nuevas exportaciones: declaran la capacidad necesaria de `ro-crate`. Actualizar una aplicación receptora anterior antes de importar; renombrar o eliminar los metadatos no es una solución de compatibilidad. Los paquetes antiguos existentes siguen siendo legibles sin migración.
+
+Este metadato viaja dentro del paquete `.science`. No reequilibra los cálculos, otorga credenciales o reemplaza el [verificación de la reproducibilidad en una versión del artefacto](reproducibility.md).
 
 ## Exportar un paquete de investigación {/* #export-the-session */}
 
