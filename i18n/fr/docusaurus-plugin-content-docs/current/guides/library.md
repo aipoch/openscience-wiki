@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,15 @@ Pour réutiliser une figure ou une table à partir d'un PDF joint, suivez [Extra
 
 ## Choisissez la vue correcte {/* #choose-the-correct-view */}
 
-Ouvrez **Library** depuis la maison ou l'espace de travail. **Back to Home** retourne à la navigation du projet. Le **Settings** de la bibliothèque ouvre les styles de citation, et non les paramètres de modèle global.
+Ouverture de **Library** à partir de Home entre dans la bibliographie complète. Dans un espace de travail projet, le **Library** de la barre latérale ouvre un aperçu compact sur la droite.
+
+1. Choisissez **Projet actuel** ou **All references**, puis utilisez **Search references** pour trouver les enregistrements existants.
+2. Sélectionnez **Résumé** pour lire un résumé et **Show more** pour l'agrandir. **Pas de PDF attaché** signifie que l'enregistrement n'a pas de PDF; un résumé n'est pas un texte complet.
+3. Pour les collections intelligentes, les importations et la gestion des enregistrements, choisissez **Ouvrir dans Littérature** ou **Afficher dans Littérature** sur un enregistrement.
+
+![Lire un résumé de projet actuel à côté de la conversation littérature-recherche](/img/open-science/v0333/library-preview.webp)
+
+Dans la bibliothèque complète, **Retour au projet / Retour à la maison** retourne dans le contexte précédent. Son **Settings** ouvre des styles de citation.
 
 | Voir | Contenu | Utilisez-le pour |
 | --- | --- | --- |
@@ -119,6 +127,8 @@ Dans cet exemple, les trois candidats ont été acceptés individuellement, et l
 
 ## Vérifier et corriger les métadonnées {/* #inspect-and-correct-metadata */}
 
+À partir de v0.33.3, la finalisation des métadonnées Crossref importe également un résumé lorsque la source en fournit une. Inspectez **Résumé** par rapport à l'enregistrement original après l'achèvement. Cela ne génère pas un résumé manquant ou récupérer le texte complet.
+
 Ouvrez une référence, puis **More actions → Edit metadata**. Passez en revue les valeurs actuelles avant d'utiliser **Complete metadata**, qui effectue une recherche plutôt qu'une modification purement locale.
 
 ![Réouverture du champ organisme-auteur sauvegardé](/img/open-science/v0.27.0/04-organization-author.webp)
@@ -157,6 +167,12 @@ Configurez d'abord **Settings → Model → Classification models → Smart coll
 **Trial run (up to 20 references)** enregistre les résultats. **Live rule preview** évalue un brouillon sans les sauvegarder. **Update automatically** s'applique aux enregistrements nouveaux ou modifiés dans la portée sélectionnée; il est opt-in et peut engager des coûts de classification. Il ne découvre pas de nouveaux documents en dehors de la Bibliothèque. Suivez [le flux de travail illustré de la sélection](../workflows/screen-literature.md) de la recherche à l'exportation examinée.
 
 Au cours d'une course, ouvrez **Screening process** pour inspecter la progression et utilisez **Pause / Analyse des résidus** pour faire une pause ou continuer. Les modifications apportées aux règles, aux documents ou aux progrès enregistrés peuvent rendre une opération antérieure non récupérable. **Retour aux résultats** retourne à la liste des décisions. Les marqueurs de champ **Project** et **Collection** distinguent les types de sources et les liens vers la source; ils ne sont pas des permissions de partage multi-utilisateurs.
+
+### Fin d'une opération de dépistage dont vous n'avez plus besoin {/* #abandon-screening */}
+
+Lorsque **Abandonner l’exécution** est offert à côté d'une évaluation interrompue ou interrompue, sélectionnez-la et lisez la confirmation. Confirmer conserve les résultats complétés mais empêche que cette course ne reprenne; il ne supprime pas les papiers ou vide la collection. Utilisez **Pause / Analyse des résidus** lorsque vous n'avez besoin que d'une pause temporaire.
+
+Si les mises à jour automatiques restent activées, des enregistrements nouveaux ou modifiés ultérieurement peuvent encore déclencher une nouvelle évaluation. L'abandon d'une exécution n'éteint pas **Update automatically**. Voir [Mode automatique](approval-modes.md#library-auto) pour le comportement d'approbation de la bibliothèque.
 
 ## Organiser les dossiers acceptés {/* #organize-the-accepted-records */}
 

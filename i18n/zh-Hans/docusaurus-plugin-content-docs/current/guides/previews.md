@@ -1,7 +1,7 @@
 ---
 title: "打开与预览文件"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -64,12 +64,16 @@ Markdown 渲染标题、列表、代码和链接。接受图表前检查校验�
 
 | 格式 | 操作与检查重点 |
 | --- | --- |
-| DOCX | 附加并打开报告，滚动阅读两页，检查首个样本的数值及方法与解释。全屏预览能容纳较长行；这里没有 Word 编辑工具栏 |
+| DOCX | 打开报告，使用 **Previous / Next** 查看两页，或从 **Outline** 跳到标题。使用 ⌘F（macOS）或 Ctrl+F（Windows/Linux）查找 `raw-count`，核对匹配位置和方法说明。可全屏阅读；此处没有 Word 编辑工具栏 |
 | XLSX | 打开工作簿，在底部选择 **Summary** 或 **Samples**。横向滚动查看最后一列。Samples 有 12 行样本，加上表头、间隔和来源说明共 17 个已用行；预览显示 17 行不表示有 17 个生物样本。已保存的单元格数值也不证明重新计算过公式 |
-| PPTX | 从 QC 摘要向下滚动到 Methods and interpretation。两页幻灯片均已在本地渲染；此处是阅读视图，不是编辑器或放映控制台 |
+| PPTX | 打开幻灯片，选择左侧 **Page 2** 缩略图或 **Next**，检查 **2 / 2**。使用 **Find** 搜索 `normalization`，核对方法页的匹配。**Notes** 显示文件自带的讲者备注；此处不是演示文稿编辑器 |
 | TIFF | 用 **Next page / Previous page** 切换。两页分别显示原始文库大小和有计数基因的中位数。**Zoom in / Zoom out / Reset zoom** 只改变视图；解释图像前确认 **Page 1 of 2** 或 **Page 2 of 2** |
 | JSON | 打开<ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">摘要文件</ExampleDownload>检查源码、标识符和数值。它以代码显示，不是可展开的对象树 |
 | HTML | 打开<ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">阅读表格</ExampleDownload>，**Source** 查看 HTML，**Render** 返回排版视图，两者都不会重跑 QC |
+
+![Word 中的分页控件和正文搜索结果](/img/open-science/v0333/word-search.webp)
+
+![PowerPoint 第二页、缩略图和搜索结果](/img/open-science/v0333/powerpoint-pages.webp)
 
 ![实际工作簿中选择 Samples](/img/open-science/local-todo-batch/47-workbook-samples.webp)
 
@@ -189,3 +193,7 @@ can actually read.
 ![英文回复与原始 PDF 并排展示，Reading 关联仍然保留](/img/open-science/v0331/pdf-first-response.webp)
 
 高亮和整篇笔记的用法见 [PDF 批注](pdf-notes.md)。
+
+## 保留来源网页的登录状态 {/* #persistent-source-preview */}
+
+来源网页的内置浏览器预览会在再次访问及应用重启后保留登录会话等站点状态。若页面需要已有账户访问，可在该来源页面完成登录后继续阅读。关闭预览不等于退出站点账户；需要退出时使用站点自己的退出入口。保留登录状态不会自动授予代理全文读取权限，也不会改变网络访问规则。

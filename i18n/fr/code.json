@@ -1719,5 +1719,17 @@
   },
   "docs.outline.reference.v0331.scope": {
     "message": "Criblage en direct, outils de séquences, contexte PDF et diagnostics."
+  },
+  "docs.outline.reference.v0332.title": {
+    "message": "v0.33.2"
+  },
+  "docs.outline.reference.v0332.scope": {
+    "message": "Installateurs Windows signés, prévisualisations de sources persistantes et enrichissement de l'interaction STRING."
+  },
+  "docs.outline.reference.v0333.title": {
+    "message": "v0.33.3"
+  },
+  "docs.outline.reference.v0333.scope": {
+    "message": "Paged Office reading, Enrichr et ClinPGx, prévisualisations de bibliothèque et contrôles de transfert de paquets."
   }
 }

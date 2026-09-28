@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,15 @@ Um eine Abbildung oder Tabelle aus einem angehängten PDF wiederzuverwenden, fol
 
 ## Wählen Sie die richtige Ansicht {/* #choose-the-correct-view */}
 
-Öffnen Sie **Library** von zu Hause oder dem Arbeitsbereich. **Back to Home** kehrt zur Projektnavigation zurück. Das **Settings** der Bibliothek öffnet Zitierstile, nicht globale Modelleinstellungen.
+Das Öffnen von **Library** von Home geht in die vollständige Bibliographie ein. In einem Projektarbeitsbereich öffnet der **Library** der Seitenleiste rechts eine kompakte Vorschau.
+
+1. Wählen Sie **Aktuelles Projekt** oder **All references** und verwenden Sie dann **Search references**, um vorhandene Datensätze zu finden.
+2. Wählen Sie **Zusammenfassung**, um eine Zusammenfassung zu lesen, und **Show more**, um sie zu erweitern. **Nr. PDF beigefügt** bedeutet, dass der Datensatz kein PDF hat; Ein Abstract ist kein Volltext.
+3. Für intelligente Sammlungen, Importe und Datensatzverwaltung wählen Sie **In Literatur öffnen** oder **In Literatur anzeigen** auf einem Datensatz.
+
+![Lesen eines aktuellen Projekt-Abstracts neben dem Literatur-Suchgespräch](/img/open-science/v0333/library-preview.webp)
+
+In der vollständigen Bibliothek kehrt **Zurück zum Projekt / Zurück zu Hause** zum vorherigen Kontext zurück. Sein **Settings** öffnet Zitierstile.
 
 | Anzeigen | Enthält | Verwenden Sie es für |
 | --- | --- | --- |
@@ -119,6 +127,8 @@ In diesem Beispiel wurden die drei Kandidaten einzeln akzeptiert und Inbox wurde
 
 ## Überprüfen und korrekte Metadaten {/* #inspect-and-correct-metadata */}
 
+Von v0.33.3 importiert die Crossref-Metadatenvervollständigung auch ein Abstract, wenn die Quelle eines liefert. Überprüfen Sie **Zusammenfassung** nach Abschluss mit dem Originaldatensatz. Dadurch wird kein fehlendes Abstract generiert oder Volltext abgerufen.
+
 Öffnen Sie eine Referenz, dann **More actions → Edit metadata**. Überprüfen Sie die aktuellen Werte, bevor Sie **Complete metadata** verwenden, das einen Lookup anstelle einer rein lokalen Bearbeitung durchführt.
 
 ![Gespeichertes Organisations-Autor-Feld wieder geöffnet](/img/open-science/v0.27.0/04-organization-author.webp)
@@ -157,6 +167,12 @@ Schalten Sie **Smart collection** in **New collection** ein, um Bibliotheksdaten
 **Trial run (up to 20 references)** speichert Ergebnisse. **Live rule preview** wertet einen Entwurf aus, ohne ihn zu speichern. **Update automatically** gilt für neue oder geänderte Datensätze im ausgewählten Bereich; es ist opt-in und kann Klassifizierungskosten verursachen. Es entdeckt keine neuen Papiere außerhalb der Bibliothek. Folgen Sie [Der illustrierte Screening-Workflow](../workflows/screen-literature.md) von der Suche bis zum überprüften Export.
 
 Öffnen Sie während eines Laufs **Screening process**, um den Fortschritt zu überprüfen, und verwenden Sie **Pause/Resume Analyse**, um anzuhalten oder fortzufahren. Änderungen an Regeln, Papieren oder gespeicherten Fortschritten können dazu führen, dass ein vorheriger Lauf nicht wieder aufgenommen werden kann. **Zurück zu den Ergebnissen** kehrt zur Entscheidungsliste zurück. **Project** und **Sammlung** Scope Marker unterscheiden Quellentypen und verlinken mit der Quelle; Es handelt sich nicht um Mehrbenutzer-Sharing-Berechtigungen.
+
+### Beenden Sie einen Screening-Lauf, den Sie nicht mehr benötigen {/* #abandon-screening */}
+
+Wenn **Lauf aufgeben** neben einer angehaltenen oder unterbrochenen Bewertung angeboten wird, wählen Sie diese aus und lesen Sie die Bestätigung. Das Bestätigen behält die abgeschlossenen Ergebnisse, verhindert jedoch, dass der Lauf wieder aufgenommen wird; Es löscht keine Papiere oder leert die Sammlung. Verwenden Sie **Pause/Resume Analyse**, wenn Sie nur eine vorübergehende Pause benötigen.
+
+Wenn automatische Updates weiterhin aktiviert bleiben, können spätere neue oder geänderte Datensätze dennoch eine neue Auswertung auslösen. Das Verlassen eines Laufs schaltet **Update automatically** nicht aus. Siehe [Auto-Modus](approval-modes.md#library-auto) für das routinemäßige Bibliotheksgenehmigungsverhalten.
 
 ## Organisieren Sie die akzeptierten Aufzeichnungen {/* #organize-the-accepted-records */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,15 @@ Para reutilizar una figura o tabla de un PDF adjunto, siga [Extracción PDF](pre
 
 ## Elija la vista correcta {/* #choose-the-correct-view */}
 
-Abra **Library** desde el hogar o el espacio de trabajo. **Back to Home** vuelve a la navegación de proyecto. El **Settings** de la Biblioteca abre estilos de citación, no ajustes de modelo globales.
+La apertura **Library** de Home entra en la bibliografía completa. En un espacio de trabajo del proyecto, el **Library** de la barra lateral abre una vista previa compacta a la derecha.
+
+1. Elija **Proyecto actual** o **All references**, a continuación, utilice **Search references** para encontrar los registros existentes.
+2. Seleccione **Resumen** para leer un resumen y **Show more** para ampliarlo. **No PDF conectado** significa que el registro no tiene PDF; un resumen no es texto completo.
+3. Para colecciones inteligentes, importaciones y gestión de registros, elija **Abrir en Literatura**, o **Ver en Literatura** en un registro.
+
+![Leyendo un resumen del proyecto actual junto a la conversación de investigación literaria](/img/open-science/v0333/library-preview.webp)
+
+En la biblioteca completa, **Volver al proyecto / Volver a casa** vuelve al contexto anterior. Su **Settings** abre estilos de citación.
 
 | Ver | Contains | Úsalo para |
 | --- | --- | --- |
@@ -119,6 +127,8 @@ En este ejemplo, los tres candidatos fueron aceptados individualmente, y Inbox q
 
 ## Inspeccionar y corregir metadatos {/* #inspect-and-correct-metadata */}
 
+Desde v0.33.3, la terminación de metadatos Crossref también importa un resumen cuando la fuente suministra uno. Inspeccione **Resumen** contra el registro original después de la terminación. Esto no genera un resumen perdido o recupera texto completo.
+
 Abre una referencia, luego **More actions → Edit metadata**. Revise los valores actuales antes de usar **Complete metadata**, que realiza una búsqueda en lugar de una edición puramente local.
 
 ![Reabierto de la organización-autor](/img/open-science/v0.27.0/04-organization-author.webp)
@@ -157,6 +167,12 @@ Configure **Settings → Model → Classification models → Smart collections**
 **Trial run (up to 20 references)** ahorra resultados. **Live rule preview** evalúa un borrador sin guardarlos. **Update automatically** se aplica a los registros nuevos o modificados en el ámbito seleccionado; es opt-in y puede incurrir en costos de clasificación. No descubre nuevos papeles fuera de la Biblioteca. Siga a [el flujo de trabajo de proyección ilustrado](../workflows/screen-literature.md) de la búsqueda a la exportación revisada.
 
 Durante una carrera, abra **Screening process** para inspeccionar el progreso y utilice **Análisis de pausas / Resumen** para pausar o continuar. Los cambios en las reglas, los documentos o el progreso guardado pueden hacer que una ejecución anterior no sea resumible. **Volver a los resultados** vuelve a la lista de decisiones. Los marcadores de alcance **Project** y **Colección** distinguen los tipos de fuente y el vínculo con la fuente; no son permisos multiusuarios para compartir.
+
+### Termina una carrera de detección que ya no necesitas {/* #abandon-screening */}
+
+Cuando **Abandonar ejecución** se ofrece junto a una evaluación pausada o interrumpida, seleccione y lea la confirmación. Confirmación mantiene los resultados completados, pero evita que se produzcan resumidos; no elimina los papeles ni vacía la colección. Utilice **Análisis de pausas / Resumen** cuando sólo necesita un descanso temporal.
+
+Si las actualizaciones automáticas permanecen activadas, los registros nuevos o cambiados posteriores pueden desencadenar una nueva evaluación. Abandonar una carrera no apaga **Update automatically**. Vea [Modo automático](approval-modes.md#library-auto) para el comportamiento de aprobación de la biblioteca de rutina.
 
 ## Organizar los registros aceptados {/* #organize-the-accepted-records */}
 

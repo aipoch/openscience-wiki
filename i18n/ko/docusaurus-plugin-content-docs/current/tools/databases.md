@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,25 +13,25 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v0.33.1에는 **27 데이터 소스 커넥터 269 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 271에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
+Open-Science v0.33.3에는 **27 데이터 소스 커넥터 282 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 284에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
 
 | 커넥터 | 출처 | 작업 | 사용하기  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | PubChem, ChEBI, Rhea 및 BindingDB를 통해 소형 molecule 화학.  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 용지, 저자, 인용, DOI 업데이트 및 데이터 세트 / 소프트웨어 레코드. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI E-utilities, PMC ID 변환기 및 유럽 PMC를 통해 생물 의학 문학 - 검색, 메타 데이터, 관련 기사, 인용 조회, ID 변환, 전체 텍스트 및 저작권.  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 13 | 유전자/단백 식별자, UniProt sequence discovery, GO 및 Reactome annotations 및 g:Profiler gene-set enrichment |
+| 유전자 및 종양학 · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | 유전자/단백 식별자, UniProt 시퀀스 발견, GO 및 Reactome 주석, 그리고 g:Profiler 및 Enrichr 유전자 세트 풍부. |
 | 게놈 · `genomes` | 회의, UCSC, NCBI, BLAST, 클러스터 오메가 | 20 | Genome 주석, 균질 및 순서; NCBI taxon/assembly/sequence 정체성; BLAST 검색 및 클러스터 오메가 다중 시퀀스 정렬. |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | 인간 유전 변형 - gnomAD 인구 주파수 / 제약, ClinVar 기록 / 연구 (direct NCBI), dbSNP, 구조 및 mitochondrial 변형.  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | ClinicalTrials.gov의 임상 시험 - 검색, 세부 사항, 스폰서, 조사, endpoints 및 자격.  |
-| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | 임상 genomics 지식 기초: ClinGen 치료, CIViC 임상 증거, 그리고 열린 표적 플랫폼.  |
+| 임상 Genomics · `clinical-genomics` | ClinGen, CIViC, 열린 대상, ClinPGx | 30 | 임상 genomics 지식 기초: ClinGen 치료, CIViC 임상 증거, 그리고 Open Targets 플랫폼, 플러스 ClinPGx pharmacogenomic 기록. |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 구조 및 분자 상호 작용 — PDB 구조, AlphaFold 예측, EMDB cryo-EM 항목, Complex Portal complexes, IntAct 상호 작용 네트워크.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | 비활성 화합물, 약물, 표적, 생물 활성성, 그리고 메커니즘을 통해 ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — 날짜/category, DOI, 저널-publication 링크, 펀더 목록 및 플랫폼 통계에 의해 검색.  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 7 | Drugs@FDA 신청, 상표 및 openFDA를 통해 corpus 통계.  |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | 인간 유전학 협회 증거 - GWAS 카탈로그, eQTL 카탈로그, PheWeb PheWAS 포털 (FinnGen, BioBank Japan).  |
 | Expression · `expression` | GTEx | 12 | GTEx Portal을 통해 인간의 조직 표현과 eQTLs.  |
-| Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 13 | Protein Domain Architecture, 가족/실란 회원, InterPro/Pfam, Human Protein Atlas 및 STRING을 통해 표식 아틀라스 및 상호 작용 네트워크.  |
+| 단백질 표기 · `protein-annotation` | InterPro, Pfam, 인간 단백질 아틀라스, STRING | 14 | Protein Domain Architecture, 가족/실란 회원, 인터프로/Pfam, Human Protein Atlas 및 STRING을 통한 식각 atlas 및 상호 작용 네트워크. |
 | Cancer Models · `cancer-models` | cBioPortal | 6 | CBioPortal REST API을 통해 암 게놈 연구 기록.  |
 | RNA · `rna` | Rfam | 9 | 비 코딩 RNA 제품군 데이터 (metadata, 정렬, 모델, 구조) Rfam을 통해.  |
 | Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | 표현, 대사학, metagenomics 및 proteomics 아카이브; ENA는 발견과 FASTQ/submission 재고를 실행합니다; PRIDE 파일 목록. |
@@ -168,7 +168,7 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/registry.ts).
+카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/registry.ts).
 
 ## Sequence 검색 및 정렬 {/* #sequence-tools */}
 
@@ -177,3 +177,11 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 **InterProScan의 장점**은 EMBL-EBI 서비스를 통해 제출된 기존 작업에 대한 주석을 검색합니다. 작업 ID를 유지하고, 상태 적어도 10 초 떨어져 검사하고, **이름 &#42;** 후에 TSV를 태치십시오. 이 Connector은 새로운 일을 제출할 수 없습니다. [InterProScan 운영](../reference/connector-operations.md#family-27).
 
 **Genomes → Clustal Omega**는 단백질, DNA 또는 RNA FASTA 레코드를 고유하게 지명한 적어도 3개의 종류를 맞추습니다. 서비스에 의해 요청된 연락처 이메일 구성, 한 번 제출, 작업 ID를 유지, 다음 상태를 확인하고 반환 정렬을 저장. [다중 상태 정렬 워크플로](../workflows/multiple-sequence-alignment.md).
+
+## Enrichr, STRING 및 ClinPGx {/* #enrichment-pharmacogenomics */}
+
+- **Genes & Ontologies → Enrichr**: 현재 도서관 목록, 그 후에 기능, transcription 요인, perturbations, 약, 질병, 조직 또는 세포 유형을 위한 유전자 세트 enrichment를 질문하십시오. 생물과 질문에 적합한 라이브러리를 선택하고 이름을 유지하고 배경과 조정 된 P 값.
+- **Protein Annotation → STRING** : 단백질 네트워크가 배경에서 예상보다 더 많은 상호 작용을 가지고 있는지 테스트합니다. 이것은 통로의 대표로부터 다른 질문을; 네트워크 P 값은 통로 테스트가 아닙니다. [Gen-set enrichment 워크플로우](../workflows/gene-set-enrichment.md#enrichr-string)을 따르십시오.
+- **Clinical Genomics → ClinPGx** : 약물, 유전자 또는 변형 표기, 지침, 규제 라벨 및 인구 주파수. 식별자를 먼저 해결하고, 작업에 의해 필요한 필드를 공급하고 원본 소스와 증거 수준을 유지합니다. 이 연구 기록; 그것은 자동으로 개별 치료 계획을 생산하지 않습니다.
+
+**Settings → Connectors**의 활성 에이전트에 대한 관련 Connector을 활성화합니다. 이 내장 항목은 사용자 정의 MCP 서버가 필요하지 않습니다. 정확한 필드 및 조건 요구 사항에 대한 [및 다운로드 가능한 레지스트리는 이제 v0.31.1 :](../reference/connector-operations.md)을 참조하십시오.

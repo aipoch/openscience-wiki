@@ -1,7 +1,7 @@
 ---
 title: 用智能集合筛选文献
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,8 @@ Keep the output in English.
 点击行内 **Evaluation details**，查看决定、匹配分数、证据和模型历史。分数描述规则匹配程度，不衡量研究质量或效应大小。
 
 ![实际的不确定判断、标题摘要证据及模型分数](/img/open-science/v0330/screening-review.webp)
+
+若不再需要继续当前评估，在可用时选择 **Abandon run** 并确认。已完成结果会保留，但这次运行无法恢复；稍后仍可另开一次评估。需要暂时停下再继续时，使用 **Pause / Resume analysis**。不要把放弃运行理解成删除论文或撤销已完成的人工决定。
 
 ## 5. 复核并确认阅读集 {/* #screening-review */}
 

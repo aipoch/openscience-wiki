@@ -1,7 +1,7 @@
 ---
 title: "Ярлыки клавиатуры"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -81,3 +81,13 @@ import Screenshot from '@site/src/components/Screenshot';
 ## Поиск в пределах текущей панели настроек {/* #local-settings-search */}
 
 В настройках **&lt;unk>K** (macOS) или **Ctrl+K** (Windows/Linux) фокусирует поиск заголовка по настройкам. **&lt;unk>K** или **Ctrl+Alt+K** фокусирует поле поиска в текущей панели или диалоге. Для локального ярлыка необходимо доступное поле локального поиска; Он не открывает общий поиск приложений или текстовый поиск PDF.
+
+## Масштаб интерфейса рабочего стола {/* #interface-scale-shortcuts */}
+
+| Меры | macOS | Windows / Linux |
+| --- | --- | --- |
+| Увеличить один шаг | ⌘+ | Ctrl++ |
+| Уменьшить один шаг | ⌘− | Ctrl+- |
+| Перезагрузка 100% | ⌘0 | Ctrl+0 |
+
+Эти ярлыки разделяют шаги 90%, 100%, 110% и 125% в **Settings → General → Appearance → Interface scale**. Смотрите [размер интерфейса](appearance.md#interface-scale). Масштабирование файлов и масштабирование всего приложения являются отдельными элементами управления.

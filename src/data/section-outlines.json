@@ -1421,6 +1421,28 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v0333",
+            "title": "v0.33.3",
+            "scope": "Paged Office reading, Enrichr and ClinPGx, Library previews and package transfer controls.",
+            "currentDoc": "changelog/v0-33-3",
+            "proposedUrl": "/docs/changelog/v0-33-3/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-33-3"
+            ]
+          },
+          {
+            "id": "v0332",
+            "title": "v0.33.2",
+            "scope": "Signed Windows installers, persistent source previews and STRING interaction enrichment.",
+            "currentDoc": "changelog/v0-33-2",
+            "proposedUrl": "/docs/changelog/v0-33-2/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-33-2"
+            ]
+          },
+          {
             "id": "v0331",
             "title": "v0.33.1",
             "scope": "Live screening, sequence tools, PDF context and diagnostic controls.",

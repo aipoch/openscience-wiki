@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -64,12 +64,16 @@ Les <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-reading.docx">R
 
 | Format | Étapes et que vérifier |
 | --- | --- |
-| DOCX | Joindre et ouvrir le rapport. Faire défiler les deux pages; vérifier la première ligne de l'échantillon et le texte des méthodes/interprétation. Un aperçu plein écran donne plus d'espace aux longues lignes. Il n'y a pas de ruban d'édition Word. |
+| DOCX | Ouvrez le rapport. Utilisation **Précédent / Suivant** pour visiter les deux pages ou **Plan** pour sauter sur un cap. Appuyez sur шF (macOS) ou Ctrl+F (Windows/Linux), recherchez `raw-count` et vérifier ses allumettes et les méthodes. L'aperçu plein écran donne plus de place; il n'y a pas de ruban d'édition de Word. |
 | XLSX | Ouvrir le cahier, puis choisir **Résumé** ou **Échantillons** en bas. Faites défiler horizontalement pour la dernière colonne. Les échantillons contiennent des lignes de données 12 plus ses notes d'en-tête, d'espacement et de source; le spectateur rapporte les lignes utilisées de 17, et non les échantillons biologiques de 17. Les valeurs sont un aperçu du cahier de travail enregistré, pas la preuve d'un nouveau calcul. |
-| PPTX | Ouvrir les diapositives et faire défiler verticalement du résumé du QC vers Méthodes et interprétation. Les deux diapositives ont été rendues dans l'exemple local. Cette surface de lecture n'est pas un éditeur de présentation ou un contrôleur de diaporama. |
+| PPTX | Ouvrez les diapositives, choisissez le **Page 2** vignette ou **Suivant**, et vérifier **2 / 2**. Utilisez **Trouvez** pour rechercher `normalization` sur le glissement des méthodes. **Notes** affiche les notes de haut-parleurs intégrées; c'est une surface de lecture, pas un éditeur de présentation. |
 | TIFF | Ouvrir la figure et utiliser **Page suivante / Page précédente**. Les deux pages montrent les tailles brutes de la bibliothèque et les médianes des gènes détectés. **Zoom vers / Zoom vers / Réinitialiser le zoom** modifie la vue; contrôle **Page 1 de 2** ou **Page 2 de 2** avant d'interpréter le chiffre. |
-| JSON | Ouvert <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">Résumé</ExampleDownload> pour inspecter le texte source, les identifiants et les valeurs. Il s'affiche comme un code plutôt qu'un arbre d'objets extensible. |
-| HTML | Ouvert <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">le tableau de lecture</ExampleDownload>. **Source** indique le HTML; **Render** restaure le document formaté. Aucun des deux modes ne réexécute le QC. |
+| JSON | Ouvrez <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">Résumé</ExampleDownload> pour inspecter le texte source, les identifiants et les valeurs. Il s'affiche comme un code plutôt qu'un arbre d'objets extensible. |
+| HTML | Ouvrez <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">le tableau de lecture</ExampleDownload>. **Source** indique le HTML; **Render** restaure le document formaté. Aucun des deux modes ne réexécute le QC. |
+
+![Contrôles de page et correspondances de texte réelles dans la copie de lecture Word](/img/open-science/v0333/word-search.webp)
+
+![La deuxième page PowerPoint, les vignettes de navigation et la recherche](/img/open-science/v0333/powerpoint-pages.webp)
 
 ![Sélection d'échantillons dans l'aperçu réel du cahier de travail](/img/open-science/local-todo-batch/47-workbook-samples.webp)
 
@@ -187,3 +191,7 @@ La réponse récupère les passages du PDF lié et identifie le papier, le méca
 ![Une réponse anglaise à côté du PDF original, avec le contexte de lecture retenu](/img/open-science/v0331/pdf-first-response.webp)
 
 Pour les faits saillants et les notes de niveau document, continuez avec [Annotations PDF](pdf-notes.md).
+
+## Gardez un site internet source signé {/* #persistent-source-preview */}
+
+L'aperçu intégré du navigateur pour les sites Web source en direct conserve sa session de site à travers les visites et les redémarrages de l'application. Si une source nécessite un compte existant, connectez-vous sur la page de cette source et continuez à lire. La fermeture de l'aperçu ne s'affiche pas sur le site; utiliser la propre action de signature du site Web au besoin. Le maintien d'une connexion ne donne pas automatiquement à l'agent l'accès en texte intégral ou ne modifie pas les règles d'accès au réseau.

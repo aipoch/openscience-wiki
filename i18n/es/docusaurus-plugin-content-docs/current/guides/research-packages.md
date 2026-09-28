@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -95,6 +95,14 @@ Keep everything in English and return links to both new files.
 Los dos archivos nuevos se guardan en el Fork; los archivos de resumen de la sesión original y de la sesión importada permanecen sin cambios. Consulta [Crear un Fork de una sesión existente](sessions.md#fork-session). El uso importado queda excluido de los totales de actividad local.
 
 Un registro de verificación recibido describe los cheques suministrados por el remitente. Esto no significa que este equipo haya vuelto a ejecutar las comprobaciones. Lea la versión del archivo, los criterios de comparación y el resultado; ver [Reproducibilidad](reproducibility.md) para cómo funcionan esos cheques.
+
+## Ajuste la velocidad de transferencia y siga el progreso de los antecedentes {/* #transfer-settings */}
+
+Antes de exportar, elija **Customize contents → Transfer settings**. Durante una exportación o importación, expanda **Detalles de la transferencia**. Establecer **Límite de actividad del disco** a **Auto** para el ajuste automático o elegir un límite fijo. Los límites inferiores reducen la actividad del disco y tardan más. Las lecturas y escritos comparten este límite; no es una velocidad de carga de Internet.
+
+Elija **Run in background** para continuar la operación con el diálogo oculto. Reabrir detalles de la entrada de progreso de fondo en la ventana para inspeccionar el archivo actual, progreso y actividad de disco. Esperar la terminación antes de comprobar el archivo exportado o abrir la sesión importada.
+
+![Limite de actividad de disco en la configuración de transferencia de paquetes de investigación](/img/open-science/v0333/package-transfer.webp)
 
 ## Cancelar o reiniciar una transferencia {/* #cancel-or-retry-a-transfer */}
 

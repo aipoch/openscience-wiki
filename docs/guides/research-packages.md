@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -95,6 +95,14 @@ Keep everything in English and return links to both new files.
 The two new files are saved in the Fork; the source and imported summary remain unchanged. See [Fork an existing session](sessions.md#fork-session) for general usage. Imported usage is excluded from local activity totals.
 
 A received verification record describes checks supplied by the sender. It does not mean this computer has rerun them. Read the file version, comparison criteria and outcome; see [Reproducibility](reproducibility.md) for how those checks work.
+
+## Adjust transfer speed and follow background progress {/* #transfer-settings */}
+
+Before exporting, choose **Customize contents → Transfer settings**. During an export or import, expand **Transfer details**. Set **Disk activity limit** to **Auto** for automatic adjustment or choose a fixed limit. Lower limits reduce disk activity and take longer. Reads and writes share this limit; it is not an Internet upload speed.
+
+Choose **Run in background** to continue the operation with the dialog hidden. Reopen details from the background progress entry in the window to inspect the current file, progress and disk activity. Wait for completion before checking the exported file or opening the imported session.
+
+![Disk activity limit in the research-package transfer settings](/img/open-science/v0333/package-transfer.webp)
 
 ## Cancel or retry a transfer
 

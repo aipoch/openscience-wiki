@@ -1,7 +1,7 @@
 ---
 title: "键盘快捷键"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -83,3 +83,13 @@ import Screenshot from '@site/src/components/Screenshot';
 ## 搜索当前设置面板 {/* #local-settings-search */}
 
 在 Settings 中，**⌘K**（macOS）或 **Ctrl+K**（Windows/Linux）聚焦页头的设置搜索。**⌘⌥K** 或 **Ctrl+Alt+K** 聚焦当前面板或对话框内可用的局部搜索框。局部快捷键需要当前存在可用搜索框，不会打开应用全局搜索或 PDF 正文搜索。
+
+## 桌面界面缩放 {/* #interface-scale-shortcuts */}
+
+| 操作 | macOS | Windows / Linux |
+| --- | --- | --- |
+| 放大一档 | ⌘+ | Ctrl++ |
+| 缩小一档 | ⌘− | Ctrl+− |
+| 恢复 100% | ⌘0 | Ctrl+0 |
+
+快捷键与 **Settings → General → Appearance → Interface scale** 使用同一组 90%、100%、110%、125% 档位。参见[界面大小](appearance.md#interface-scale)。文件预览的缩放与整个应用的缩放分别控制。

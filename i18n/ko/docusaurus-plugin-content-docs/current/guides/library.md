@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,15 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 정확한 보기를 선택하십시오. {/* #choose-the-correct-view */}
 
-홈 또는 작업 공간에서 **Library**을 엽니 다. **Back to Home** 프로젝트 네비게이션에 반환합니다. 라이브러리의 **Settings**은 글로벌 모델 설정이 아닌 인용 스타일을 엽니다.
+홈에서 **Library** 열기는 전체 전기를 입력합니다. 프로젝트 작업 공간에서 sidebar의 **Library**은 오른쪽에 컴팩트한 미리보기를 엽니다.
+
+1. **현재 프로젝트** 또는 **All references**을 선택하면 **Search references**를 사용하여 기존 레코드를 찾을 수 있습니다.
+2. **초록**을 선택하여 요약 및 **Show more**을 읽을 수 있습니다. **PDF 없음**는 기록이 PDF이 없다는 것을 의미합니다; 요약은 전체 텍스트가 아닙니다.
+3. 스마트 컬렉션, 수입 및 기록 관리를 위해 **문헌에서 열기** 또는 **문헌에서 보기**을 기록합니다.
+
+![문학 연구 대화 외에도 현재 프로젝트 요약을 읽으십시오.](/img/open-science/v0333/library-preview.webp)
+
+전체 라이브러리에서 **프로젝트로 돌아가기 / Back to Home**은 이전 컨텍스트로 돌아갑니다. 그것의 **Settings**는 인용 작풍을 엽니다.
 
 | 보기 | 제품정보 | 이용하기 |
 | --- | --- | --- |
@@ -119,6 +127,8 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## Metadata 검사 및 수정 {/* #inspect-and-correct-metadata */}
 
+v0.33.3에서, Crossref 메타데이터 완료는 소스가 공급할 때 요약을 가져올 수도 있습니다. 완료 후 원래 기록에 대한 **초록** 검사. 이것은 누락된 요약을 생성하지 않거나 전체 텍스트를 검색하지 않습니다.
+
 참조를 열고, **More actions → Edit metadata**. **Complete metadata**을 사용하기 전에 현재 값을 검토하고, 순수 로컬 편집보다는 룩업을 수행한다.
 
 ![저장된 조직 저자 필드 reopened](/img/open-science/v0.27.0/04-organization-author.webp)
@@ -157,6 +167,12 @@ v0.30.2는 PubMed 저자 이름 파싱을 수정하여 성, 초기 및 suffixes�
 **Trial run (up to 20 references)** 결과 저장. **Live rule preview**은 저장하지 않고 초안을 평가합니다. **Update automatically**은 선택한 범위의 새로운 또는 변경된 레코드에 적용됩니다. 그것은 opt-in이고 분류 비용을 incur 할 수 있습니다. 도서관 밖에서 새로운 종이를 발견하지 않습니다. 검색에서 [스크린 워크플로우](../workflows/screen-literature.md)을 따르고 수출을 검토했습니다.
 
 실행 중에 **Screening process**을 열고 진행 상황을 검사하고 **Pause / 이력서 분석**을 일시 중지하거나 계속 사용하십시오. 규칙, 종이 또는 저장된 진도에 변경은 이전 실행을 비-재무할 수 있습니다. **결과로 돌아가기**은 결정 목록으로 돌아갑니다. **Project** 및 **컬렉션** 범위 마커는 소스 유형과 링크를 구분합니다. 그들은 다중 사용자 공유 권한이 없습니다.
+
+### 화면을 종료하면 더 이상 필요하지 않습니다. {/* #abandon-screening */}
+
+**실행 포기**이 일시 중지 또는 중단 된 평가 옆에 제공되면 확인을 선택하고 읽습니다. 완료된 결과를 확인하지만, resuming에서 실행을 방지; 그것은 종이를 삭제하지 않거나 컬렉션을 비우지 않습니다. **Pause / 이력서 분석**을 사용하면 임시 휴식이 필요합니다.
+
+자동 업데이트가 활성화되면 새로운 또는 변경된 레코드는 여전히 새로운 평가를 유발할 수 있습니다. 1개의 런닝이 **Update automatically**을 끄지 않습니다. [자동 모드](approval-modes.md#library-auto) for routine 라이브러리 승인 동작을 참조하세요.
 
 ## 허용된 레코드를 구성 {/* #organize-the-accepted-records */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -64,12 +64,16 @@ El <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-reading.docx">In
 
 | Formato | Pasos y qué revisar |
 | --- | --- |
-| DOCX | Adjuntar y abrir el informe. Desplazarse a través de ambas páginas; verifique la primera fila de muestra y los métodos/texto de interpretación. La vista previa de pantalla completa da líneas largas más espacio. No hay cinta de edición de Word. |
+| DOCX | Abre el informe. Uso **Anterior / Siguiente** para visitar ambas páginas o **Índice** para saltar a una partida. Presione solubleF (macOS) o Ctrl+F (Windows/Linux), busque `raw-count` y comprobar sus partidos y los métodos. La vista previa de pantalla completa da más habitación; no hay cinta de edición de Word. |
 | XLSX | Abra el libro de trabajo, luego elija **Resumen** o **Muestras** en el fondo. Desplazarse horizontalmente para la última columna. Las muestras contienen hileras de datos 12 más su cabecera, espaciamiento y notas de origen; el espectador informa que 17 usó filas, no muestras biológicas 17. Los valores son una vista previa del libro de trabajo guardado, no evidencia de un cálculo fresco. |
-| PPTX | Abra los toboganes y deslice verticalmente desde el sumario de QC a Métodos e interpretación. Ambos toboganes en el ejemplo local. Esta superficie de lectura no es un editor de presentación o controlador de diapositivas. |
+| PPTX | Abra las diapositivas, elija las **Página 2** miniatura o **Siguiente**, y comprobar **2 / 2**. Utilice **Encontrar** para buscar `normalization` en los métodos deslizarse. **Notes** muestra notas de altavoz incrustadas; es una superficie de lectura, no un editor de presentación. |
 | TIFF | Abrir la figura y utilizar **Página siguiente / Página anterior**. Las dos páginas muestran tamaños de bibliotecas crudas y medianas de genes detectados. **Zoom / Zoom out / Reset zoom** modificar la opinión; cheque **Página 1 de 2** o **Página 2 de 2** antes de interpretar la figura. |
 | JSON | Abrir <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">el resumen</ExampleDownload> para inspeccionar el texto fuente, identificadores y valores. Se muestra como código en lugar de un árbol de objeto expandible. |
 | HTML | Abrir <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">la tabla de lectura</ExampleDownload>. **Source** muestra el HTML; **Render** restaura el documento formateado. Ninguno de los modos vuelve a funcionar el QC. |
+
+![Controles de página y partidos de texto reales en la copia de lectura de Word](/img/open-science/v0333/word-search.webp)
+
+![La segunda página de PowerPoint, las miniaturas de navegación y el partido de búsqueda](/img/open-science/v0333/powerpoint-pages.webp)
 
 ![Selección de muestras en la vista previa del libro de trabajo real](/img/open-science/local-todo-batch/47-workbook-samples.webp)
 
@@ -187,3 +191,7 @@ La respuesta recupera pasajes del PDF enlazado e identifica el papel, el mecanis
 ![Una respuesta en inglés junto al PDF original, con el contexto de lectura retenido](/img/open-science/v0331/pdf-first-response.webp)
 
 Para los aspectos más destacados y las notas a nivel de documentos, continúe con [Anotaciones de PDF](pdf-notes.md).
+
+## Mantenga un sitio web de origen firmado en {/* #persistent-source-preview */}
+
+La vista previa del navegador incorporado para los sitios web de origen en vivo conserva su sesión del sitio a través de visitas y aplicaciones reinicia. Si una fuente requiere una cuenta existente, ingrese en la página de esa fuente y continúe leyendo. Cerrar la vista previa no se registra en el sitio web; utilizar la acción de registro de la página web cuando sea necesario. Retener un login no da automáticamente al agente acceso a texto completo o cambiar las reglas de acceso a la red.

@@ -1,7 +1,7 @@
 ---
 title: "권한 및 통제"
 last_update:
-  date: '2026-09-08'
+  date: '2026-09-28'
 ---
 
 # 권한 및 통제 {/* #permissions-and-control */}
@@ -27,7 +27,7 @@ last_update:
 | UI 값 | 회사연혁 | 이름 &#42; |
 | --- | --- | --- |
 | **Ask for approval** / **Ask** | `ask` | 승인, 기존의 보조금 및 애플리케이션 소유 예외를 요구하는 작업에 대한 문의 |
-| **Auto-approve edits** / **Auto** | `auto` | 자동으로 지원된 작업 공간 편집을 승인; 보존성 낙하만 인정되는 workspace read/search/edit 작업 및 생각, arbitrary shell 또는 MCP 호출 |
+| **Auto-approve edits** / **Auto** | `auto` | 지원된 작업 공간 편집 및 인식된 앱 소유의 라이브러리 작업은 자동으로 전달할 수 있습니다. arbitrary 포탄 또는 MCP는 일반적으로 허용되지 않습니다. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . [도서관 규칙](../guides/approval-modes.md#library-auto). |
 | **Full access** | `full` | 런타임이 지원되는 수동 프롬프트 없이 에이전트 권한 요청을 허용 |
 | **Once** | `once` | 현재 통화 만; 좋은 교부금 없음 |
 | **이 대화** | `session` | 이 대화에서 일치 통화, 재시작을 포함하여 |

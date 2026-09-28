@@ -2,7 +2,7 @@
 title: ".science 研究包"
 description: "將會話、檔案和證據一起匯出，再匯入專案檢視與交接研究記錄。"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -95,6 +95,14 @@ Keep everything in English and return links to both new files.
 兩個新檔案儲存在 Fork 中，原會話和匯入會話的彙總檔案保持不變。通用操作見[複製已有會話繼續研究](sessions.md#fork-session)。匯入的用量不會計入本機活動總量。
 
 隨包收到的驗證記錄描述傳送方提供的檢查，不代表這臺電腦已經重新執行。閱讀它對應的檔案版本、比較條件和結果；檢查方式見[可復現性](reproducibility.md)。
+
+## 調整傳輸速度並檢視後臺進度 {/* #transfer-settings */}
+
+匯出前，選擇 **Customize contents → Transfer settings**；匯出或匯入執行中，展開 **Transfer details**。透過 **Disk activity limit** 選擇 **Auto** 自動調整，或指定一個固定上限。降低上限會減少磁碟佔用，也會延長傳輸時間；該上限由讀取和寫入共同使用，不是網路上傳速度。
+
+選擇 **Run in background** 後，研究包操作繼續執行。透過視窗中的後臺進度入口重新開啟詳情，檢視當前檔案、進度和磁碟活動。確認操作完成後再檢查匯出的檔案或開啟匯入會話。
+
+![研究包的磁碟活動上限和傳輸設定](/img/open-science/v0333/package-transfer.webp)
 
 ## 取消與重試傳輸 {/* #取消与重试传输 */}
 

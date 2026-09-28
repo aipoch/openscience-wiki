@@ -2,7 +2,7 @@
 title: "Connector 操作引數參考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.33.1** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.1.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
+每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.33.3** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.3.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
 
 
 ## 化學 {/* #family-1 */}
@@ -710,6 +710,35 @@ const result = await host.mcp("genes", "list_enrichment_sources", {"organism": "
 
 ```javascript
 const result = await host.mcp("genes", "enrich_gene_set", {"genes": ["TP53", "EGFR", "BRCA1"], "organism": "hsapiens", "sources": ["GO:BP", "REAC"], "correction_method": "fdr"})
+```
+
+### `list_enrichr_libraries` {/* #list_enrichr_libraries */}
+
+列出指定生物體對應的 Enrichr 庫及覆蓋統計。human 部署同時提供人和小鼠相關庫；其他支援的生物體使用各自部署。先列庫再選擇實際存在且適合物種的名稱。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `organism` | string | 可選; default: &quot;human&quot;; enum: &#91;&quot;human&quot;, &quot;fly&quot;, &quot;yeast&quot;, &quot;worm&quot;, &quot;fish&quot;&#93; |
+
+```javascript
+const result = await host.mcp("genes", "list_enrichr_libraries", {"organism": "human"})
+```
+
+### `enrich_gene_set_enrichr` {/* #enrich_gene_set_enrichr */}
+
+使用選定的 Enrichr 庫對基因符號或識別符號做富集分析。自定義背景透過 Speedrichr，僅適用於 human 部署。Enrichr 不報告未對映識別符號，mapping_status 為 not_reported_by_enrichr。基因列表會提交給外部服務；後續請求失敗不會自動撤銷此前上傳。檢查每個庫的 n_total_results、n_results 與 truncated；max_results 預設 100、最高 500。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `genes` | array of string | **必填**; minItems: 1; maxItems: 5000 |
+| `libraries` | array of string | **必填**; minItems: 1; maxItems: 10 |
+| `background_genes` | array of string | 可選; minItems: 1; maxItems: 20000 |
+| `organism` | string | 可選; default: &quot;human&quot;; enum: &#91;&quot;human&quot;, &quot;fly&quot;, &quot;yeast&quot;, &quot;worm&quot;, &quot;fish&quot;&#93; |
+| `description` | string | 可選; minLength: 1; maxLength: 200 |
+| `max_results` | integer | 可選; default: 100; minimum: 1; maximum: 500 |
+
+```javascript
+const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
 </ToolOperationGroup>
@@ -1625,6 +1654,170 @@ const result = await host.mcp("clinical-genomics", "open_targets_disease_targets
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "open_targets_drug", {"chembl_id": "CHEMBL1201583"})
+```
+
+### `clinpgx_search_chemicals` {/* #clinpgx_search_chemicals */}
+
+按 ClinPGx accession ID 或名稱解析藥物／化學物質，再查詢關聯註釋。
+
+至少提供一組：`accessionId` / `name`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `accessionId` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `name` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | 可選; default: &quot;base&quot;; enum: &#91;&quot;min&quot;, &quot;base&quot;, &quot;max&quot;&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_chemicals", {"name": "warfarin", "view": "max"})
+```
+
+### `clinpgx_search_genes` {/* #clinpgx_search_genes */}
+
+按 ClinPGx accession ID 或 HGNC 符號解析基因記錄。
+
+至少提供一組：`accessionId` / `symbol`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `accessionId` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `symbol` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | 可選; default: &quot;base&quot;; enum: &#91;&quot;min&quot;, &quot;base&quot;, &quot;max&quot;&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_genes", {"symbol": "VKORC1", "view": "max"})
+```
+
+### `clinpgx_search_summary_annotations` {/* #clinpgx_search_summary_annotations */}
+
+查詢藥物、基因和變異關聯的臨床註釋，可按返回的證據等級篩選。保留來源記錄與等級，不能將資料庫匹配直接當作個體用藥建議。
+
+至少提供一組：`relatedChemicals.accessionId` / `relatedChemicals.name` / `location.genes.symbol` / `location.fingerprint` / `id`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `id` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedChemicals.accessionId` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedChemicals.name` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `location.genes.symbol` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `location.fingerprint` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | 可選; default: &quot;base&quot;; enum: &#91;&quot;min&quot;, &quot;base&quot;, &quot;max&quot;&#93; |
+| `levelOfEvidence.term` | string | 可選; enum: &#91;&quot;1A&quot;, &quot;1B&quot;, &quot;2A&quot;, &quot;2B&quot;, &quot;3&quot;, &quot;4&quot;&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_summary_annotations", {"relatedChemicals.name": "warfarin", "location.genes.symbol": "VKORC1", "levelOfEvidence.term": "1A", "view": "max"})
+```
+
+### `clinpgx_get_summary_annotation` {/* #clinpgx_get_summary_annotation */}
+
+用數字記錄 ID 獲取一條 ClinPGx 臨床註釋，包含關聯物件、表型與證據等級。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `id` | number | **必填**; minimum: 1 |
+| `view` | string | 可選; default: &quot;base&quot;; enum: &#91;&quot;min&quot;, &quot;base&quot;, &quot;max&quot;&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_summary_annotation", {"id": 655385012, "view": "max"})
+```
+
+### `clinpgx_search_variant_annotations` {/* #clinpgx_search_variant_annotations */}
+
+按基因符號或變異 fingerprint（常見為 rsID）查詢變異註釋。
+
+至少提供一組：`location.genes.symbol` / `location.fingerprint`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `location.genes.symbol` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `location.fingerprint` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | 可選; default: &quot;base&quot;; enum: &#91;&quot;min&quot;, &quot;base&quot;, &quot;max&quot;&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_variant_annotations", {"location.fingerprint": "rs1799853", "view": "max"})
+```
+
+### `clinpgx_search_guideline_annotations` {/* #clinpgx_search_guideline_annotations */}
+
+檢索 ClinPGx 收錄的 CPIC、DPWG 或 PharmGKB/PRO 藥物基因組學指南註釋。閱讀原始指南的適用條件。
+
+至少提供一組：`source` / `relatedChemicals.accessionId` / `relatedGenes.accessionId`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `source` | string | 按上方條件提供; enum: &#91;&quot;cpic&quot;, &quot;dpwg&quot;, &quot;pro&quot;&#93; |
+| `relatedChemicals.accessionId` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedGenes.accessionId` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | 可選; default: &quot;base&quot;; enum: &#91;&quot;min&quot;, &quot;base&quot;, &quot;max&quot;&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_guideline_annotations", {"source": "cpic", "relatedGenes.accessionId": "PA267", "view": "max"})
+```
+
+### `clinpgx_search_drug_labels` {/* #clinpgx_search_drug_labels */}
+
+檢索 FDA、EMA、PMDA 或 Health Canada 的藥物基因組學藥品標籤記錄。
+
+至少提供一組：`source` / `relatedChemicals.accessionId` / `relatedChemicals.name` / `relatedGenes.accessionId` / `relatedGenes.symbol`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `source` | string | 按上方條件提供; enum: &#91;&quot;fda&quot;, &quot;ema&quot;, &quot;pmda&quot;, &quot;hcsc&quot;&#93; |
+| `relatedChemicals.accessionId` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedChemicals.name` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedGenes.accessionId` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedGenes.symbol` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | 可選; default: &quot;base&quot;; enum: &#91;&quot;min&quot;, &quot;base&quot;, &quot;max&quot;&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_drug_labels", {"source": "fda", "relatedChemicals.name": "clopidogrel", "view": "max"})
+```
+
+### `clinpgx_search_variants` {/* #clinpgx_search_variants */}
+
+按 dbSNP rsID 或其他變異符號解析 ClinPGx 變異。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `symbol` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | 可選; default: &quot;base&quot;; enum: &#91;&quot;min&quot;, &quot;base&quot;, &quot;max&quot;&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_variants", {"symbol": "rs1799853", "view": "max"})
+```
+
+### `clinpgx_get_variant_frequency` {/* #clinpgx_get_variant_frequency */}
+
+查詢指定變異 fingerprint（例如 rsID）的族群頻率；解釋時保留族群與來源範圍。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `fp` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_variant_frequency", {"fp": "rs1799853"})
+```
+
+### `clinpgx_get_drug_gene_variant` {/* #clinpgx_get_drug_gene_variant */}
+
+查詢兩個物件之間的 ClinPGx connection report，例如藥物與基因；兩側分別提供一個標識資訊。藥物—基因—變異的臨床註釋應使用 summary annotation 操作。
+
+本組至少提供一個：`object1Id` / `object1Name` / `object1Type`.
+
+本組至少提供一個：`object2Id` / `object2Name` / `object2Type`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `object1Id` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `object1Name` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `object1Type` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `object2Id` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `object2Name` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `object2Type` | string | 按上方條件提供; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | 可選; default: &quot;base&quot;; enum: &#91;&quot;min&quot;, &quot;base&quot;, &quot;max&quot;&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
 ```
 
 </ToolOperationGroup>
@@ -2744,6 +2937,21 @@ const result = await host.mcp("protein-annotation", "get_string_similarity_score
 
 ```javascript
 const result = await host.mcp("protein-annotation", "get_string_best_similarity_hits", {"symbols": ["TP53"], "target_species": 10090})
+```
+
+### `get_string_ppi_enrichment` {/* #get_string_ppi_enrichment */}
+
+使用 STRING 12.0 檢查對映後的蛋白是否比背景預期具有更多互作。可指定物種、0–1000 的最低互作分數及 STRING ID 背景。result 中的 p_value 是網路互作富集結果，不是 GO／通路富集的校正 P 值；沒有輸入成功對映時 result 為 null。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `symbols` | array of string | **必填** |
+| `species` | integer | 可選; default: 9606 |
+| `required_score` | integer | 可選; default: 400 |
+| `background_string_ids` | array of string | 可選 |
+
+```javascript
+const result = await host.mcp("protein-annotation", "get_string_ppi_enrichment", {"symbols": ["TP53", "BRCA1", "EGFR"], "required_score": 700})
 ```
 
 </ToolOperationGroup>

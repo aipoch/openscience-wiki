@@ -1708,5 +1708,17 @@
   },
   "docs.outline.reference.v0331.scope": {
     "message": "실시간 선별, 서열 도구, PDF 컨텍스트 및 진단."
+  },
+  "docs.outline.reference.v0332.title": {
+    "message": "v0.33.2"
+  },
+  "docs.outline.reference.v0332.scope": {
+    "message": "서명된 Windows 설치자, 지속적인 소스 미리보기 및 STRING 상호 작용 풍부."
+  },
+  "docs.outline.reference.v0333.title": {
+    "message": "v0.33.3"
+  },
+  "docs.outline.reference.v0333.scope": {
+    "message": "Enrichr 및 ClinPGx, 라이브러리 미리보기 및 패키지 전송 제어."
   }
 }

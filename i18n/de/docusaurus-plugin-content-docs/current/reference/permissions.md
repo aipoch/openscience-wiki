@@ -1,7 +1,7 @@
 ---
 title: "Genehmigungen und Kontrolle"
 last_update:
-  date: '2026-09-08'
+  date: '2026-09-28'
 ---
 
 # Genehmigungen und Kontrolle {/* #permissions-and-control */}
@@ -27,7 +27,7 @@ Diese Schichten sind nicht austauschbar. Vollzugriff ändert Agent prompt Verhal
 | UI-Wert | Vertrag | Bedeutung |
 | --- | --- | --- |
 | **Ask for approval** / **Ask** | `ask` | Bitten Sie um genehmigungspflichtige Operationen, vorbehaltlich bestehender Zuschüsse und anwendungseigener Ausnahmen |
-| **Auto-approve edits** / **Auto** | `auto` | Automatische Genehmigung unterstützter Workspace-Bearbeitungen; Der konservative Fallback lässt nur lokalisierte Workspace-Lese- / Such- / Bearbeitungsoperationen und Denken zu, nicht willkürliche Shell- oder MCP-Aufrufe |
+| **Auto-approve edits** / **Auto** | `auto` | Unterstützte Workspace-Bearbeitungen und anerkannte app-eigene Bibliotheksvorgänge können automatisch durchlaufen werden; willkürliche Shell- oder MCP-Aufrufe sind im Allgemeinen nicht erlaubt. Siehe [Bibliotheksregeln](../guides/approval-modes.md#library-auto). |
 | **Full access** | `full` | Erlauben Sie Agent-Berechtigungsanforderungen ohne manuelle Eingabeaufforderungen, wenn die Laufzeit sie unterstützt |
 | **Once** | `once` | Nur der aktuelle Aufruf; Keine dauerhafte Zuwendung |
 | **Dieses Gespräch** | `session` | Matching Anrufe in dieser Konversation, auch über Neustarts hinweg |

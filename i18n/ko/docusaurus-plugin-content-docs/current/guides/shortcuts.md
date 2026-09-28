@@ -1,7 +1,7 @@
 ---
 title: "키보드 단축키"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -81,3 +81,13 @@ A 초점 **Side Chat** 탭에는 destructive-close 확인이 있습니다. 채�
 ## 현재 설정 패널 내에서 검색 {/* #local-settings-search */}
 
 설정에서 **⌘K's 수** (macOS) 또는 **Ctrl+K로** (Windows/Linux)는 설정에서 헤더 검색에 중점을 둡니다. **&lt;unk>** 또는 **Ctrl+Alt+K로**는 현재 패널 또는 대화 상자에서 자격이 된 검색 필드를 초점을 맞추고 있습니다. 로컬 단축키는 사용 가능한 로컬 검색 필드를 필요로합니다. 응용 프로그램 전체 검색 또는 PDF 텍스트 검색을 열지 않습니다.
+
+## 데스크탑 인터페이스 스케일 {/* #interface-scale-shortcuts */}
+
+| .... | macOS | Windows / Linux |
+| --- | --- | --- |
+| 1 단계 증가 | ⌘+ | Ctrl + Ctrl + |
+| 1 단계 결정 | ⌘− | Ctrl + - |
+| 100%로 재설정 | ⌘0 | Ctrl + 0 |
+
+이 단축키는 공유 90%, 100%, 110% 및 125% 단계 **Settings → General → Appearance → Interface scale**... [공용영역 크기](appearance.md#interface-scale) 참조. 파일-preview 급상승 및 전체 앱 스케일링은 별도의 컨트롤입니다.

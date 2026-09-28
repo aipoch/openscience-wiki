@@ -1,7 +1,7 @@
 ---
 title: "鍵盤快捷鍵"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -83,3 +83,13 @@ import Screenshot from '@site/src/components/Screenshot';
 ## 搜尋當前設定面板 {/* #local-settings-search */}
 
 在 Settings 中，**⌘K**（macOS）或 **Ctrl+K**（Windows/Linux）聚焦頁頭的設定搜尋。**⌘⌥K** 或 **Ctrl+Alt+K** 聚焦當前面板或對話方塊內可用的區域性搜尋框。區域性快捷鍵需要當前存在可用搜尋框，不會開啟應用全域搜尋或 PDF 正文搜尋。
+
+## 桌面介面縮放 {/* #interface-scale-shortcuts */}
+
+| 操作 | macOS | Windows / Linux |
+| --- | --- | --- |
+| 放大一檔 | ⌘+ | Ctrl++ |
+| 縮小一檔 | ⌘− | Ctrl+− |
+| 恢復 100% | ⌘0 | Ctrl+0 |
+
+快捷鍵與 **Settings → General → Appearance → Interface scale** 使用同一組 90%、100%、110%、125% 檔位。參見[介面大小](appearance.md#interface-scale)。檔案預覽的縮放與整個應用的縮放分別控制。

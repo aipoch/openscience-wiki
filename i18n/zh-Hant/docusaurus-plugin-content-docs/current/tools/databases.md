@@ -2,7 +2,7 @@
 title: "科學資料庫"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 # 科學資料庫 {/* #科学数据库 */}
@@ -13,25 +13,25 @@ last_update:
 
 ## 目前支援哪些資料庫 {/* #supported-databases */}
 
-Open-Science v0.33.1 內建 **27 個資料來源 Connector，提供 269 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整登錄檔共 271 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示覆蓋其網站的全部功能。
+Open-Science v0.33.3 內建 **27 個資料來源 Connector，提供 282 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整登錄檔共 284 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示覆蓋其網站的全部功能。
 
 | Connector | 來源 | 運算元 | 用途  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | 小分子、化學識別符號、反應及結合資料  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 文獻、作者、引用、DOI 更新及資料集/軟體記錄 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | PubMed 文獻檢索與記錄  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 13 | 基因及蛋白標識對映、UniProt 序列查詢、GO 與 Reactome 註釋、g:Profiler 基因集富集 |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | 基因及蛋白標識對映、UniProt 序列查詢、GO 與 Reactome 註釋、g:Profiler 與 Enrichr 基因集富集 |
 | Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | 基因組註釋、同源及序列資訊；NCBI 物種、組裝與序列身份；BLAST 提交與報告 |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | 變異頻率與變異記錄  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床試驗登記記錄  |
-| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | 臨床基因組證據資源  |
+| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | 臨床基因組證據資源；新增 ClinPGx 藥物基因組學記錄 |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 結構檔案與相關記錄  |
 | ChEMBL · `chembl` | ChEMBL | 6 | 化合物、靶標和活性記錄  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | 預印本後設資料  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 7 | 藥品監管及藥品記錄  |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | 人類遺傳關聯資源  |
 | Expression · `expression` | GTEx | 12 | 組織和基因表達資源  |
-| Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 13 | 蛋白結構域與功能註釋  |
+| Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | 蛋白結構域與功能註釋；新增互作富集檢驗 |
 | Cancer Models · `cancer-models` | cBioPortal | 6 | 癌症研究模型和佇列資源  |
 | RNA · `rna` | Rfam | 9 | RNA 家族與相關資源  |
 | Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | 表達、代謝組、宏基因組與蛋白質組歸檔；ENA 執行發現及 FASTQ/原始提交清單；PRIDE 檔案列表 |
@@ -168,7 +168,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作引數參考](../reference/connector-operations.md)列出必填輸入、可選值和準確呼叫方法。本頁用於選擇和連線資料來源，引數參考用於查詢某個具體工具的欄位。
 
-目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/registry.ts)。
+目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/registry.ts)。
 
 ## 序列檢索與多序列比對 {/* #sequence-tools */}
 
@@ -177,3 +177,11 @@ matched records and any unmatched identifiers. Keep the response in English.
 **InterProScan** 獲取已透過 EMBL-EBI 服務提交的註釋任務。保留任務 ID，至少間隔十秒查詢，等 **FINISHED** 後獲取 TSV。此 Connector 不能提交新任務，見 [InterProScan 操作](../reference/connector-operations.md#family-27)。
 
 **Genomes → Clustal Omega** 對至少三條名稱唯一的蛋白質、DNA 或 RNA FASTA 記錄進行比對。配置服務要求的聯絡郵箱，提交一次並儲存任務 ID，再查詢狀態、儲存返回的比對，見[多序列比對工作流](../workflows/multiple-sequence-alignment.md)。
+
+## Enrichr、STRING 與 ClinPGx {/* #enrichment-pharmacogenomics */}
+
+- **Genes & Ontologies → Enrichr**：先列出當前庫，再用基因列表查詢功能、轉錄因子、擾動、藥物、疾病、組織或細胞型別相關富集。選擇與物種和問題相符的庫；記錄背景、庫名稱及校正 P 值。
+- **Protein Annotation → STRING**：檢查蛋白網路的互作數量是否超過背景預期。它與通路過度代表分析回答不同問題，不能用網路 P 值代替通路檢驗。參見[基因集富集工作流](../workflows/gene-set-enrichment.md#enrichr-string)。
+- **Clinical Genomics → ClinPGx**：按藥物、基因或變異查閱臨床註釋、指南、監管標籤和族群頻率。先解析識別符號，再按操作所需欄位查詢，保留原始來源和證據等級。該入口用於檢索資料，不自動給出個體用藥方案。
+
+在 **Settings → Connectors** 中向當前代理開啟相應 Connector；這些內建入口不需要另建自定義 MCP 伺服器。準確欄位和條件見[操作參考](../reference/connector-operations.md)。

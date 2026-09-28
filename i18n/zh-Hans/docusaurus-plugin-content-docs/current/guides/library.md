@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,15 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 选择正确视图
 
-从 Home 或工作区进入 **Library**，**Back to Home** 返回项目。文献库内 **Settings** 打开引文样式，不是全局模型设置。
+从 Home 打开 **Library** 会进入完整文献库；在项目工作区点击左侧 **Library**，则在右侧打开紧凑预览。
+
+1. 在预览顶部选择 **Current project** 或 **All references**，再用 **Search references** 查找已有记录。
+2. 点击 **Abstract** 阅读摘要，使用 **Show more** 展开。**No PDF attached** 表示该条目还没有 PDF，不能把摘要当作全文。
+3. 需要筛选集合、导入或管理记录时，选择 **Open in Literature**，或条目中的 **View in Literature**。
+
+![在检索会话旁阅读当前项目文献摘要](/img/open-science/v0333/library-preview.webp)
+
+完整文献库的 **Back to Project / Back to Home** 返回之前的位置；其 **Settings** 打开引用样式设置。
 
 | 视图 | 内容 | 用途 |
 | --- | --- | --- |
@@ -119,6 +127,8 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 检查和修正元数据
 
+从 v0.33.3 起，通过 Crossref 补全元数据时会带入来源返回的摘要。补全后检查 **Abstract** 和原始记录；来源未提供摘要时，该更新不会生成摘要或取得全文。
+
 条目 **More actions → Edit metadata** 打开当前字段。**Complete metadata** 会查询来源，与纯本地编辑不同。
 
 ![已保存并重新打开的机构作者字段](/img/open-science/v0.27.0/04-organization-author.webp)
@@ -157,6 +167,12 @@ v0.30.2 更正了 PubMed 作者姓名的解析，包括姓氏、名字缩写和�
 **Trial run (up to 20 references)** 保存结果，**Live rule preview** 只评估草稿而不保存。**Update automatically** 适用于所选范围内新增或变化的记录，默认需主动开启，并可能产生分类费用；它不会去文献库之外发现新论文。完整操作见[从检索到复核导出的筛选工作流](../workflows/screen-literature.md)。
 
 运行时打开 **Screening process** 查看进度，使用 **Pause / Resume analysis** 暂停或继续；规则、文献或进度变化可能使原运行无法继续。**Back to results** 返回结果列表。范围中的 **Project** 和 **Collection** 标记区分来源类型，点击范围可跳转到来源；它们不表示多人共享权限。
+
+### 结束不再需要继续的筛选 {/* #abandon-screening */}
+
+在暂停或中断的评估旁出现 **Abandon run** 时，点击它并阅读确认框。确认放弃后，已完成结果会保留，这次运行不能再恢复；它不会删除论文或清空集合。若只是暂时离开，使用 **Pause / Resume analysis**。
+
+若自动更新仍开启，今后新建或变更的记录仍可触发新评估；放弃一次运行不等于关闭 **Update automatically**。日常文献操作的批准规则见 [Auto 模式](approval-modes.md#library-auto)。
 
 ## 整理已接受记录
 

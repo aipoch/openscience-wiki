@@ -1,7 +1,7 @@
 ---
 title: "Permisos y control"
 last_update:
-  date: '2026-09-08'
+  date: '2026-09-28'
 ---
 
 # Permisos y control {/* #permissions-and-control */}
@@ -27,7 +27,7 @@ Estas capas no son intercambiables. El acceso completo cambia el comportamiento 
 | Valor UI | Contrato | Significado |
 | --- | --- | --- |
 | **Ask for approval** / **Ask** | `ask` | Solicitar operaciones que requieran aprobación, con sujeción a las subvenciones existentes y las excepciones de propiedad de las aplicaciones |
-| **Auto-approve edits** / **Auto** | `auto` | Aprobar automáticamente las ediciones del espacio de trabajo compatible; el retroceso conservador sólo admite operaciones de lectura/búsqueda/edita local y pensamiento, no conchas arbitrarias o llamadas MCP |
+| **Auto-approve edits** / **Auto** | `auto` | Las ediciones del espacio de trabajo y las operaciones reconocidas de la Biblioteca de la aplicación pueden pasar automáticamente; no se admiten generalmente conchas arbitrarias o llamadas MCP. Véase [Reglas de biblioteca](../guides/approval-modes.md#library-auto). |
 | **Full access** | `full` | Permitir las solicitudes de permiso de agente sin avisos manuales donde el tiempo de ejecución lo soporta |
 | **Once** | `once` | Sólo la llamada actual; no concesión duradera |
 | **Esta conversación** | `session` | Llamadas coincidentes en esta conversación, incluso en los reinicios |

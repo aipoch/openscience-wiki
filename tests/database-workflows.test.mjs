@@ -37,7 +37,7 @@ for (const locale of locales) {
       assert.ok(overview.includes(`id="${id}"`), `Lost database bookmark: ${id}`);
     }
     assert.ok(overview.includes('id="connect-database"'));
-    const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.33.1.json', 'utf8'));
+    const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.33.3.json', 'utf8'));
     for (const connector of registry.filter((c) => c.id !== 'molecule')) {
       assert.ok(overview.includes(`<code>${connector.id}</code>`), `Missing data source: ${connector.id}`);
     }

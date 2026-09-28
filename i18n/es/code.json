@@ -1704,5 +1704,17 @@
   },
   "docs.outline.reference.v0331.scope": {
     "message": "Cribado en directo, herramientas de secuencias, contexto PDF y diagnósticos."
+  },
+  "docs.outline.reference.v0332.title": {
+    "message": "v0.33.2"
+  },
+  "docs.outline.reference.v0332.scope": {
+    "message": "Instaladores Windows, previsualizaciones de fuente persistente y enriquecimiento de interacción STRING."
+  },
+  "docs.outline.reference.v0333.title": {
+    "message": "v0.33.3"
+  },
+  "docs.outline.reference.v0333.scope": {
+    "message": "Paged Office reading, Enrichr y ClinPGx, Library preve y controles de transferencia de paquetes."
   }
 }

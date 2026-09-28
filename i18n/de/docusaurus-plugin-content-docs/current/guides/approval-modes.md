@@ -1,7 +1,7 @@
 ---
 title: "Genehmigungen und Genehmigungen"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-28'
 ---
 
 # Genehmigungen und Genehmigungen {/* #permissions-and-approvals */}
@@ -101,3 +101,9 @@ Wenn das Inventar unvollständig ist, warten Sie, bis es die fehlgeschlagene Anf
 | Einige Geltungsbereiche fehlen | Die Karte zeigt nur Geltungsbereiche, die von der aktuellen Anfrage und dem Projekt- oder Sitzungskontext unterstützt werden. Wählen Sie keinen größeren Geltungsbereich allein deshalb, weil eine engere Option fehlt. |
 
 Quelle: [Gesparte Zuschüsse und Rückgängigmachung](https://github.com/aipoch/open-science/commit/469b593b).
+
+## Bibliothek arbeitet im Auto-Modus {/* #library-auto */}
+
+Mit **Auto-approve edits** kann ein definierter Satz integrierter Bibliotheksoperationen die Per-Call-Genehmigung des Agenten automatisch passieren. Dazu gehören das Suchen und Lesen von Referenzen, das Speichern in Inbox, das Erwerben von PDFs, das Formatieren von Referenzen und das Vorbereiten von Zitierdokumenten. Dies reduziert wiederholte Eingabeaufforderungen während der routinemäßigen Bibliotheksarbeit.
+
+Die Regel gilt für anerkannte app-eigene Literatur-Tools, nicht für jeden MCP-Aufruf, Befehl oder Netzwerkbetrieb. Die eigenen datei-, netzwerk- und ressourcenregeln der tools gelten weiterhin, und diese entscheidung schafft keine dauerhafte bewilligung. Wählen Sie **Ask for approval**, wenn Sie Agent-Anfragen einzeln prüfen möchten. Überprüfen Sie Inbox-Kandidaten, bevor Sie sie akzeptieren.

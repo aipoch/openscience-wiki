@@ -2,7 +2,7 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -95,6 +95,14 @@ Keep everything in English and return links to both new files.
 Die beiden neuen Dateien werden im Fork gespeichert. Die Zusammenfassungsdateien der ursprünglichen und der importierten Sitzung bleiben unverändert. Siehe [Fork einer bestehenden Sitzung](sessions.md#fork-session). Importierte Nutzung wird nicht zu den lokalen Aktivitätssummen gezählt.
 
 Ein empfangenes Verifizierungsprotokoll beschreibt die vom Absender gelieferten Schecks. Das bedeutet nicht, dass dieser Computer die Prüfungen erneut ausgeführt hat. Lesen Sie die Dateiversion, die Vergleichskriterien und das Ergebnis; Siehe [Reproduzierbarkeit](reproducibility.md), wie diese Prüfungen funktionieren.
+
+## Passen Sie die Übertragungsgeschwindigkeit an und verfolgen Sie den Hintergrundfortschritt {/* #transfer-settings */}
+
+Wählen Sie vor dem Export **Customize contents → Transfer settings**. Während eines Exports oder Imports erweitern Sie **Übertragungsdetails**. Setzen Sie **Limit für Datenträgeraktivität** auf **Auto** für die automatische Anpassung oder wählen Sie ein festes Limit. Niedrigere Grenzwerte reduzieren die Festplattenaktivität und dauern länger. Lesen und Schreiben teilen dieses Limit; Es ist keine Internet-Upload-Geschwindigkeit.
+
+Wählen Sie **Run in background**, um den Vorgang mit dem versteckten Dialog fortzusetzen. Öffnen Sie Details aus dem Hintergrundfortschritt im Fenster erneut, um die aktuelle Datei, den Fortschritt und die Festplattenaktivität zu überprüfen. Warten Sie auf den Abschluss, bevor Sie die exportierte Datei überprüfen oder die importierte Sitzung öffnen.
+
+![Disk-Aktivitätslimit in den Transfereinstellungen des Forschungspakets](/img/open-science/v0333/package-transfer.webp)
 
 ## Abbrechen oder Wiederholen einer Überweisung {/* #cancel-or-retry-a-transfer */}
 

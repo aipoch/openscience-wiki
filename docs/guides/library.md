@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,15 @@ To reuse a figure or table from an attached PDF, follow [PDF extraction](preview
 
 ## Choose the correct view
 
-Open **Library** from Home or the workspace. **Back to Home** returns to project navigation. The Library's **Settings** opens citation styles, not global Model settings.
+Opening **Library** from Home enters the full bibliography. In a project workspace, the sidebar's **Library** opens a compact preview on the right.
+
+1. Choose **Current project** or **All references**, then use **Search references** to find existing records.
+2. Select **Abstract** to read a summary and **Show more** to expand it. **No PDF attached** means that record has no PDF; an abstract is not full text.
+3. For smart collections, imports and record management, choose **Open in Literature**, or **View in Literature** on a record.
+
+![Reading a current-project abstract beside the literature-search conversation](/img/open-science/v0333/library-preview.webp)
+
+In the full Library, **Back to Project / Back to Home** returns to the previous context. Its **Settings** opens citation styles.
 
 | View | Contains | Use it for |
 | --- | --- | --- |
@@ -119,6 +127,8 @@ In this example, the three candidates were accepted individually, and Inbox beca
 
 ## Inspect and correct metadata
 
+From v0.33.3, Crossref metadata completion also imports an abstract when the source supplies one. Inspect **Abstract** against the original record after completion. This does not generate a missing abstract or retrieve full text.
+
 Open a reference, then **More actions → Edit metadata**. Review the current values before using **Complete metadata**, which performs a lookup rather than a purely local edit.
 
 ![Saved organization-author field reopened](/img/open-science/v0.27.0/04-organization-author.webp)
@@ -157,6 +167,12 @@ Configure **Settings → Model → Classification models → Smart collections**
 **Trial run (up to 20 references)** saves results. **Live rule preview** evaluates a draft without saving them. **Update automatically** applies to new or changed records in the selected scope; it is opt-in and can incur classification costs. It does not discover new papers outside the Library. Follow [the illustrated screening workflow](../workflows/screen-literature.md) from search to reviewed export.
 
 During a run, open **Screening process** to inspect progress and use **Pause / Resume analysis** to pause or continue. Changes to rules, papers or saved progress can make a previous run non-resumable. **Back to results** returns to the decision list. **Project** and **Collection** scope markers distinguish source types and link to the source; they are not multi-user sharing permissions.
+
+### End a screening run you no longer need {/* #abandon-screening */}
+
+When **Abandon run** is offered beside a paused or interrupted evaluation, select it and read the confirmation. Confirming keeps completed results but prevents that run from resuming; it does not delete papers or empty the collection. Use **Pause / Resume analysis** when you only need a temporary break.
+
+If automatic updates remain enabled, later new or changed records can still trigger a new evaluation. Abandoning one run does not turn off **Update automatically**. See [Auto mode](approval-modes.md#library-auto) for routine Library approval behavior.
 
 ## Organize the accepted records
 

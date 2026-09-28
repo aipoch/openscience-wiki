@@ -2575,5 +2575,17 @@
   },
   "docs.outline.reference.v0331.scope": {
     "message": "實時篩選、序列工具、PDF 上下文與診斷匯出。"
+  },
+  "docs.outline.reference.v0332.title": {
+    "message": "v0.33.2"
+  },
+  "docs.outline.reference.v0332.scope": {
+    "message": "Windows 安裝包簽名、保留登入的來源預覽及 STRING 互作富集。"
+  },
+  "docs.outline.reference.v0333.title": {
+    "message": "v0.33.3"
+  },
+  "docs.outline.reference.v0333.scope": {
+    "message": "Office 分頁閱讀、Enrichr 與 ClinPGx、文獻庫預覽及研究包傳輸設定。"
   }
 }

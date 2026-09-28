@@ -1785,5 +1785,17 @@
   },
   "docs.outline.reference.v0331.scope": {
     "message": "Live screening, sequence tools, PDF context and diagnostic controls."
+  },
+  "docs.outline.reference.v0333.title": {
+    "message": "v0.33.3"
+  },
+  "docs.outline.reference.v0333.scope": {
+    "message": "Paged Office reading, Enrichr and ClinPGx, Library previews and package transfer controls."
+  },
+  "docs.outline.reference.v0332.title": {
+    "message": "v0.33.2"
+  },
+  "docs.outline.reference.v0332.scope": {
+    "message": "Signed Windows installers, persistent source previews and STRING interaction enrichment."
   }
 }

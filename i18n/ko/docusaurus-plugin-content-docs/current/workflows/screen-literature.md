@@ -1,7 +1,7 @@
 ---
 title: "스마트 컬렉션으로 논문 선별하기"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,8 @@ Keep the output in English.
 행의 **Evaluation details**을 클릭하여 결정, 일치 점수, 증거 및 모델 기록을 검사합니다. 점수는 규칙 일치를 설명합니다; 그들은 학문 질 또는 효력 크기의 측정하지 않습니다.
 
 ![제목과 직업 증거와 실제 불확실한 결정 및 모델 점수](/img/open-science/v0330/screening-review.webp)
+
+더 이상 현재 평가를 필요로하지 않으면 **실행 포기**을 제공하고 확인 할 수 있습니다. 완료된 결과가 남아 있지만, 실행할 수 없습니다. 나중에 별도의 평가를 시작할 수 있습니다. 임시 일시 정지를 위한 **Pause / 이력서 분석**를 사용하십시오. 실행은 종이를 삭제하지 않거나 수동 결정을 완료하지 않습니다.
 
 ## 5. 리뷰 및 읽기 설정 확인 {/* #screening-review */}
 

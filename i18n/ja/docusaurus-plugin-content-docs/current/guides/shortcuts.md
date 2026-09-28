@@ -1,7 +1,7 @@
 ---
 title: "キーボードショートカット"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -81,3 +81,13 @@ Windowsデスクトップアプリでは、**Ctrl+Zの** を undo または **Ct
 ## 現在の設定パネル内の検索 {/* #local-settings-search */}
 
 設定では、**ディレクター: ⌘K** (macOS) または **Ctrl+Kの使い方** (Windows/Linux) は、設定全体でヘッダ検索に焦点を当てています。 **&lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk> &lt;unk>** または **Ctrl+Alt+K の使い方** は、現在のパネルまたはダイアログの対象となる検索フィールドに焦点を当てています。 ローカルショートカットは、利用可能なローカル検索フィールドを必要とします。 アプリケーション全体検索やPDFテキスト検索は開いていません。
+
+## デスクトップインターフェイススケール {/* #interface-scale-shortcuts */}
+
+| アクション | macOS | Windows / Linux |
+| --- | --- | --- |
+| 1つのステップを増加させる | ⌘+ | Ctrl ++ の |
+| 1つのステップを飾る | ⌘− | Ctrl+− |
+| 100%へのリセット | ⌘0 | Ctrl+0の特長 |
+
+これらのショートカットは、90%、100%、110%、125%のステップを**Settings → General → Appearance → Interface scale**で共有します。 [インターフェイス サイズ](appearance.md#interface-scale) を参照してください。 ファイルプレビューズームとアプリ全体のスケーリングは、別々の制御です。

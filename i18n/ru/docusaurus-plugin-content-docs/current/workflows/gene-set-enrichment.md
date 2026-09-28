@@ -2,7 +2,7 @@
 title: "Функциональное обогащение для набора генов-кандидатов"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 Перед запуском следуйте [Научные базы данных](../tools/databases.md#connect-database), чтобы включить необходимые разъемы. Используйте подключенную модель и доступный [Среда выполнения Notebook](../guides/runtimes.md).
 
-В этом примере v0.31.1 используются публичные символы гена 11 для демонстрации g:Profiler. Они были выбраны для своих известных биологических ролей, поэтому ожидается обогащение. Они не являются результатом дифференциального выражения проекта GSE60450 или свидетельством беспристрастного открытия.
+В первом примере используется g:Profiler; [Enrichr и STRING сравнение](#enrichr-string) использует те же символы общедоступного гена 11 в v0.33.3. Они были выбраны для своих известных биологических ролей, поэтому ожидается обогащение. Они не являются результатом дифференциального выражения проекта GSE60450 или свидетельством беспристрастного открытия.
 
 ## 1. Определите список генов и параметры анализа {/* #gene-set-enrichment */}
 
@@ -54,3 +54,50 @@ This is not differential-expression evidence or evidence of regulation direction
 <ExampleDownload path="/examples/v0311/dna-damage-enrichment-notes.md">Аналитические заметки</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.csv">Все строки результатов 891</ExampleDownload> · <ExampleDownload path="/examples/v0311/dna-damage-enrichment.json">Полный ответ</ExampleDownload>
 
 `background_size: null` означает, что не было представлено ни одного пользовательского справочного списка; Это не означает статистическую вселенную нулевых генов. Используйте временный эффективный размер домена. Обогащение не устанавливает причинно-следственную связь, дифференциальное выражение или регулирование вверх/вниз. Смотрите [Параметры работы](../reference/connector-operations.md#enrich_gene_set).
+
+## 4. Сравните Enrichr с обогащением сети STRING {/* #enrichr-string */}
+
+Enrichr спрашивает, какие наборы аннотаций преувеличены в представленных генах. Обогащение PPI STRING спрашивает, имеют ли белки больше сетевых взаимодействий, чем ожидалось. Это различные тесты; Это не независимая репликация биологического результата.
+
+1. В **Settings → Connectors** включите **Гены и онтологии** и **факультативный; По умолчанию: "gtex_v8"** для агента.
+2. Создайте проект **Генный набор повреждений ДНК** и откройте новую сессию. В данном примере используются Codex и Session Notebook.
+3. Перечислите доступные библиотеки Enrichr, прежде чем выбрать одну. Для этого сравнения используйте фиксированную библиотеку **GO_Biological_Process_2025**, чтобы сохраненные результаты имели идентифицируемую версию аннотации. Новая библиотека может давать разные результаты.
+4. Отправьте эту подсказку и откройте сгенерированные заметки после завершения прогона:
+
+```text
+Compare Enrichr functional enrichment with STRING PPI enrichment for
+TP53, ATM, ATR, CHEK1, CHEK2, BRCA1, BRCA2, RAD51, CDKN1A, GADD45A, MDM2.
+Use the built-in Genes & Ontologies and Protein Annotation connectors
+through Session Notebook. List the current human Enrichr libraries;
+use GO_Biological_Process_2025 with max_results 500 if available.
+Run STRING PPI enrichment with species 9606 and required_score 700.
+Save raw_connector_responses.json, enrichment_comparison_results.csv
+and analysis_notes.md in English. Retain the query, source versions,
+identifier mappings, reported background, n_total_results, n_results
+and truncated flag, plus raw and adjusted P values where provided.
+These genes were deliberately selected for known DNA-damage roles.
+Do not infer unbiased discovery, causal regulation or expression direction.
+Distinguish annotation enrichment from excess network interactions.
+If STRING returns a P value of 0, preserve it as returned without claiming
+an exact zero probability or inventing a numerical precision threshold.
+```
+
+### Проверьте входы и полный ответ {/* #enrichr-inputs */}
+
+Откройте **analysis_notes.md** и сравните его с **raw_connector_responses.json**. В сентябрьском выпуске 28 были перечислены библиотеки **228** и возвращены условия **305/305** для выбранной библиотеки с `truncated: false`. `max_results` по умолчанию 100; Реакция 100 может быть неполной. Проверяйте флаги ответов и запрашивайте больший лимит, вплоть до 500, когда это необходимо.
+
+STRING отображал все гены **11** без неотснятых идентификаторов и записывал версию **12.0**, организм **9606** и порог оценки **700**. Enrichr сообщает о `mapping_status: not_reported_by_enrichr`; Не копируйте результат отображения STRING в запись Enrichr. Не было предоставлено никакого специального фона. Покрытие Enrichr библиотечным геном 14,674 является метаданными, а не точным статистическим фоновым размером.
+
+![Фактические входные данные, версия библиотеки, полный подсчет результатов и проверка идентификатора](/img/open-science/v0333/enrichment-inputs.webp)
+
+### Прочитайте два результата отдельно {/* #enrichr-comparison */}
+
+Откройте раздел результатов заметок и используйте CSV или сырой JSON для полного списка. Первым термином Enrichr был **Клеточный ответ на ионизирующее излучение (GO: 0071479)**, с скорректированным P приблизительно **3.60 × 10⁻¹¹**. STRING вернул **44 Наблюдаемые края** среди **Узлы 11**, против **6 ожидаемые края**. Его зарегистрированное значение P было `0`; Это числовой выход службы, а не доказательство нулевой вероятности.
+
+![Термины Enrichr и отдельный результат сетевого обогащения STRING](/img/open-science/v0333/enrichment-results.webp)
+
+CSV имеет **305 Enrichr строки плюс 6 STRING сводные строки**. Последние представляют собой сетевую статистику, а не дополнительные обогащенные термины. Термины Enrichr GO пересекаются, а STRING объединяет несколько каналов доказательств; a Край STRING не обязательно означает прямое физическое связывание. Преднамеренно выбранный ввод в основном демонстрирует инструменты и их записи.
+
+<ExampleDownload path="/examples/v0333/analysis_notes.md">Примечания к сопоставлению</ExampleDownload> · <ExampleDownload path="/examples/v0333/enrichment_comparison_results.csv">Полная таблица сравнения</ExampleDownload> · <ExampleDownload path="/examples/v0333/raw_connector_responses.json">Оригинальные отклики разъема</ExampleDownload>
+
+Параметры: [Enrichr библиотеки](../reference/connector-operations.md#list_enrichr_libraries), [Обогащение Enrichr](../reference/connector-operations.md#enrich_gene_set_enrichr), [STRING PPI обогащение](../reference/connector-operations.md#get_string_ppi_enrichment). Чтобы сохранить сеанс и доказательства вместе, [Экспорт пакета .science](../guides/research-packages.md#export-the-session).

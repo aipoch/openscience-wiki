@@ -1,7 +1,7 @@
 ---
 title: "Aussehen und Meldungen"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -149,3 +149,13 @@ Die Benachrichtigungszustellung hängt auch von den Berechtigungen des Betriebss
 
 
 Quelle: [Allgemeine Einstellungen](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
+
+## Passen Sie die Benutzeroberfläche der App an {/* #interface-scale */}
+
+1. Öffnen Sie **Settings → General → Appearance → Interface scale**.
+2. Wählen Sie **90%**, **100%**, **110%** oder **125%**. Text und Steuerelemente ändern die Größe sofort, und die Auswahl wird auf diesem Gerät gespeichert.
+3. Wählen Sie **100%** oder drücken Sie &lt;0xE2>&lt;0x8C>&lt;0x98>0 (macOS) / Ctrl + 0 (Windows/Linux) zum Zurücksetzen. Verwenden Sie &lt;0xE2>&lt;0x8C>&lt;0x98>+ / Ctrl++, um die Skala zu erhöhen und &lt;0xE2>&lt;0x8C>&lt;0x98>− / Ctrl+−, um die Skala zu verringern.
+
+![Auswahl der Interface-Skalen in allgemeinen Einstellungen](/img/open-science/v0333/interface-scale.webp)
+
+Dies steuert die Benutzeroberfläche der Desktop-App. Der Bild- oder PDF-Vorschau-Zoom wirkt sich nur auf die Ansicht dieser Datei aus. Beim Zugriff auf Open-Science in einem Browser verwenden Sie den Zoom des Browsers. Die Windows-Display-Skalierung betrifft auch andere Apps; Verwenden Sie das Steuerelement oben, wenn Sie nur die Größe von Open-Science ändern möchten.

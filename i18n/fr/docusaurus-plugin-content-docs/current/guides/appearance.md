@@ -1,7 +1,7 @@
 ---
 title: "Comparution et notifications"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -149,3 +149,13 @@ La livraison des notifications dépend également des permissions du système d'
 
 
 Source: [Paramètres généraux](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
+
+## Ajuster la taille de l'interface de l'application {/* #interface-scale */}
+
+1. Ouvrez **Settings → General → Appearance → Interface scale**.
+2. Choisissez **90%**, **100%**, **110%** ou **125%**. Le texte et les commandes redimensionnent immédiatement, et le choix est rappelé sur cet appareil.
+3. Choisissez **100%** ou appuyez sur ↓0 (macOS) / Ctrl+0 (Windows/Linux) pour réinitialiser. Utilisez --Ctrl++ pour augmenter et -Ctrl+- pour diminuer l'échelle.
+
+![Choix de l'échelle d'interface dans les paramètres généraux](/img/open-science/v0333/interface-scale.webp)
+
+Ceci contrôle l'interface de l'application de bureau. Le zoom d'aperçu image ou PDF n'affecte que la vue du fichier. Lorsque vous accédez à Open-Science dans un navigateur, utilisez le zoom du navigateur. L'échelle d'affichage Windows affecte également d'autres applications; utilisez le contrôle ci-dessus lorsque vous voulez seulement redimensionner Open-Science.
