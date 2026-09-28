@@ -1,7 +1,7 @@
 ---
 title: "Autorisations et agréments"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-28'
 ---
 
 # Autorisations et agréments {/* #permissions-and-approvals */}
@@ -101,3 +101,9 @@ Si l'inventaire est incomplet, attendez qu'il charge ou réessaye la demande éc
 | Certaines portées sont absentes | La carte affiche uniquement les portées prises en charge par la demande et le contexte du projet ou de la session. Ne choisissez pas une portée plus large uniquement pour compenser l’absence d’une option plus restreinte. |
 
 Source: [Subventions sauvegardées et annulation](https://github.com/aipoch/open-science/commit/469b593b).
+
+## Travaux de bibliothèque en mode Auto {/* #library-auto */}
+
+Avec **Auto-approve edits**, un ensemble défini d'opérations de bibliothèque intégrées peut passer automatiquement l'approbation de l'agent par appel. Il s'agit notamment de la recherche et de la lecture de références, de l'enregistrement dans la boîte de réception, de l'acquisition de PDF, de la mise en forme de références et de la préparation de documents de citation. Cela réduit les appels répétés pendant les travaux de routine de la Bibliothèque.
+
+La règle s'applique aux outils de littérature reconnus, et non à tous les appels, commandes ou opérations réseau MCP. Les propres règles relatives aux fichiers, aux réseaux et aux ressources des outils s'appliquent toujours, et cette décision ne crée aucune subvention permanente. Choisissez **Ask for approval** lorsque vous voulez inspecter les demandes d'agents individuellement. Passez en revue les candidats et candidates avant de les accepter.

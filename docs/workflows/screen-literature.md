@@ -1,7 +1,7 @@
 ---
 title: Screen papers with a smart collection
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,8 @@ To interrupt a running pass, choose **Pause** (labelled **Pause analysis**), wai
 Click a row's **Evaluation details** to inspect its decision, match scores, evidence and model history. Scores describe rule matching; they are not measures of study quality or effect size.
 
 ![An actual uncertain decision with title-and-abstract evidence and model scores](/img/open-science/v0330/screening-review.webp)
+
+If you no longer need the current evaluation, choose **Abandon run** when offered and confirm. Completed results remain, but that run cannot resume; you can start a separate evaluation later. Use **Pause / Resume analysis** for a temporary pause. Abandoning a run does not delete papers or undo completed manual decisions.
 
 ## 5. Review and confirm the reading set {/* #screening-review */}
 

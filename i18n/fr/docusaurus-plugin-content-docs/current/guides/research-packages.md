@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -95,6 +95,14 @@ Keep everything in English and return links to both new files.
 Les deux nouveaux fichiers sont enregistrés dans le Fork ; les fichiers récapitulatifs de la session source et de la session importée restent inchangés. Voir [Créer un Fork d’une session existante](sessions.md#fork-session). L’utilisation importée est exclue des totaux d’activité locaux.
 
 Un dossier de vérification reçu décrit les vérifications fournies par l'expéditeur. Cela ne signifie pas que cet ordinateur a réexécuté les vérifications. Lire la version du fichier, les critères de comparaison et le résultat; voir [Reproductibilité](reproducibility.md) pour savoir comment ces contrôles fonctionnent.
+
+## Régler la vitesse de transfert et suivre les progrès de fond {/* #transfer-settings */}
+
+Avant d'exporter, choisissez **Customize contents → Transfer settings**. Au cours d'une exportation ou d'une importation, étendez **Détails du transfert**. Définissez **Limite d’activité du disque** à **Auto** pour un réglage automatique ou choisissez une limite fixe. Des limites plus basses réduisent l'activité du disque et prennent plus de temps. Lis et écrit partagent cette limite; ce n'est pas une vitesse de téléchargement sur Internet.
+
+Choisissez **Run in background** pour continuer l'opération avec la boîte de dialogue cachée. Rouvrir les détails de l'entrée de l'arrière-plan de progression dans la fenêtre pour inspecter le fichier actuel, l'avancement et l'activité disque. Attendez l'achèvement avant de vérifier le fichier exporté ou d'ouvrir la session importée.
+
+![Limite d'activité des disques dans les paramètres de transfert de paquets de recherche](/img/open-science/v0333/package-transfer.webp)
 
 ## Annuler ou réessayer un transfert {/* #cancel-or-retry-a-transfer */}
 

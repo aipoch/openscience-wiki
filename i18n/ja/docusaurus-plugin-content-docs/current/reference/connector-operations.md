@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.33.1**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.1.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
+Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.33.3**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.3.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
 
 
 ## 化学化学品 {/* #family-1 */}
@@ -710,6 +710,35 @@ const result = await host.mcp("genes", "list_enrichment_sources", {"organism": "
 
 ```javascript
 const result = await host.mcp("genes", "enrich_gene_set", {"genes": ["TP53", "EGFR", "BRCA1"], "organism": "hsapiens", "sources": ["GO:BP", "REAC"], "correction_method": "fdr"})
+```
+
+### `list_enrichr_libraries` {/* #list_enrichr_libraries */}
+
+現在の Enrichr 遺伝子セットライブラリと、サポートされている Enrichr デプロイメントのカバレッジ統計をリストします。 人間の展開は人間とマウスのライブラリをカバーしています。 他のサポートされている生物は、専用の展開を使用します。 enrich_gene_set_enrichr の前に、トランスクリプションファクター、パータベーション、薬物、病気、組織、または細胞型分析のためのライブラリを選択します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `organism` | 文字列 | 任意; デフォルト: "human"; エヌム: &#91;"human", "fly", "yeast", "worm", "fish"&#93; |
+
+```javascript
+const result = await host.mcp("genes", "list_enrichr_libraries", {"organism": "human"})
+```
+
+### `enrich_gene_set_enrichr` {/* #enrich_gene_set_enrichr */}
+
+Enrichr は、選択された Enrichr ライブラリによって受け入れられる遺伝子のシンボルまたは識別子のための強化を実行します。 これはgを補完します:転写因子、パータベーション、薬、病気、組織、および細胞型ライブラリとプロファイラー。 カスタムの背景は、Speedrichr API を使用し、現在、人間の展開のみでサポートされています。 Enrichrはマッピングされていない識別子を報告しないので、mapping_statusはnot_reported_by_enrichrは常にあります。 Geneリストは外部Enrichrサービスに提出されます。 アップロードは一時的な外部の副作用であり、後でライブラリリクエストが失敗した場合、自動的にロールバックされません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `genes` | 文字列の配列 | **必須**; minItems: 1; maxItems: 5000の |
+| `libraries` | 文字列の配列 | **必須**; minItems: 1; maxItems: 10の |
+| `background_genes` | 文字列の配列 | 任意; minItems: 1; maxItems: 20000の |
+| `organism` | 文字列 | 任意; デフォルト: "human"; エヌム: &#91;"human", "fly", "yeast", "worm", "fish"&#93; |
+| `description` | 文字列 | 任意; 最長: 1; 最高長さ: 200 |
+| `max_results` | 整数 | 任意; デフォルト: 100; 最小値: 1; 最高: 500 |
+
+```javascript
+const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
 </ToolOperationGroup>
@@ -1623,6 +1652,170 @@ ChEMBL id(Open Targets Platform) — 名前、タイプ、最大臨床段階、�
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "open_targets_drug", {"chembl_id": "CHEMBL1201583"})
+```
+
+### `clinpgx_search_chemicals` {/* #clinpgx_search_chemicals */}
+
+薬理ゲノム注釈を検索する前に、ClinPGx の accession ID または名前で ClinPGx の薬物・化学物質レコードを解決します。
+
+`accessionId`/`name`の1つを少なくとも1つ提供して下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `accessionId` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `name` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `view` | 文字列 | 任意; デフォルト: "base"; enum: &#91;"min"、"base"、"max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_chemicals", {"name": "warfarin", "view": "max"})
+```
+
+### `clinpgx_search_genes` {/* #clinpgx_search_genes */}
+
+薬理ゲノム注釈を検索する前に、ClinPGx の accession ID または HGNC シンボルで ClinPGx の遺伝子レコードを解決します。
+
+`accessionId`/`symbol`の1つを少なくとも1つ提供して下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `accessionId` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `symbol` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `view` | 文字列 | 任意; デフォルト: "base"; enum: &#91;"min"、"base"、"max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_genes", {"symbol": "VKORC1", "view": "max"})
+```
+
+### `clinpgx_search_summary_annotations` {/* #clinpgx_search_summary_annotations */}
+
+薬剤、遺伝子、変異を関連付ける ClinPGx の臨床注釈を検索します。エビデンスレベル 1A、1B、2A、2B、3、4 で絞り込み、元の記録を保存します。
+
+`relatedChemicals.accessionId`/`relatedChemicals.name`/`location.genes.symbol`/`location.fingerprint`/`id`の最低1つを提供して下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `id` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `relatedChemicals.accessionId` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `relatedChemicals.name` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `location.genes.symbol` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `location.fingerprint` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `view` | 文字列 | 任意; デフォルト: "base"; enum: &#91;"min"、"base"、"max"&#93; |
+| `levelOfEvidence.term` | 文字列 | 任意; エヌム: &#91;" 1A", " 1B", " 2A", " 2B", " 3", " 4"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_summary_annotations", {"relatedChemicals.name": "warfarin", "location.genes.symbol": "VKORC1", "levelOfEvidence.term": "1A", "view": "max"})
+```
+
+### `clinpgx_get_summary_annotation` {/* #clinpgx_get_summary_annotation */}
+
+数値の ClinPGx レコード ID で ClinPGx の臨床注釈を 1 件取得します。関連する薬物、遺伝子、バリアント、表現型、エビデンスレベルを含みます。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `id` | 数値 | **必須**; 最小値: 1 |
+| `view` | 文字列 | 任意; デフォルト: "base"; enum: &#91;"min"、"base"、"max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_summary_annotation", {"id": 655385012, "view": "max"})
+```
+
+### `clinpgx_search_variant_annotations` {/* #clinpgx_search_variant_annotations */}
+
+遺伝子シンボルまたはバリアントフィンガープリント（通常は rsID）で ClinPGx のバリアント注釈を検索します。
+
+`location.genes.symbol`/`location.fingerprint`の1つを少なくとも1つ提供して下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `location.genes.symbol` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `location.fingerprint` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `view` | 文字列 | 任意; デフォルト: "base"; enum: &#91;"min"、"base"、"max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_variant_annotations", {"location.fingerprint": "rs1799853", "view": "max"})
+```
+
+### `clinpgx_search_guideline_annotations` {/* #clinpgx_search_guideline_annotations */}
+
+CPIC、DPWG、または PharmGKB/PRO の ClinPGx 薬理ゲノミクス用量ガイドライン注釈を検索します。
+
+`source`/`relatedChemicals.accessionId`/`relatedGenes.accessionId`の1つを少なくとも1つ提供して下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `source` | 文字列 | 上記の条件に従う。 enum: &#91;"cpic"、"dpwg"、"pro"&#93; |
+| `relatedChemicals.accessionId` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `relatedGenes.accessionId` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `view` | 文字列 | 任意; デフォルト: "base"; enum: &#91;"min"、"base"、"max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_guideline_annotations", {"source": "cpic", "relatedGenes.accessionId": "PA267", "view": "max"})
+```
+
+### `clinpgx_search_drug_labels` {/* #clinpgx_search_drug_labels */}
+
+FDA、EMA、PMDA、または Health Canada の ClinPGx 薬理ゲノミクス医薬品ラベルを検索します。
+
+`source`/`relatedChemicals.accessionId`/`relatedChemicals.name`/`relatedGenes.accessionId`/`relatedGenes.symbol`の最低1つを提供して下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `source` | 文字列 | 上記の条件に従う。 エヌム: &#91;"fda", "ema", "pmda", "hcsc"&#93; |
+| `relatedChemicals.accessionId` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `relatedChemicals.name` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `relatedGenes.accessionId` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `relatedGenes.symbol` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `view` | 文字列 | 任意; デフォルト: "base"; enum: &#91;"min"、"base"、"max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_drug_labels", {"source": "fda", "relatedChemicals.name": "clopidogrel", "view": "max"})
+```
+
+### `clinpgx_search_variants` {/* #clinpgx_search_variants */}
+
+dbSNP rsID または別のバリアントシンボルで ClinPGx の薬理ゲノミクスバリアントを解決します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `symbol` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+| `view` | 文字列 | 任意; デフォルト: "base"; enum: &#91;"min"、"base"、"max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_variants", {"symbol": "rs1799853", "view": "max"})
+```
+
+### `clinpgx_get_variant_frequency` {/* #clinpgx_get_variant_frequency */}
+
+rsID などのバリアントフィンガープリントについて、ClinPGx が報告する集団別バリアント頻度を取得します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `fp` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_variant_frequency", {"fp": "rs1799853"})
+```
+
+### `clinpgx_get_drug_gene_variant` {/* #clinpgx_get_drug_gene_variant */}
+
+共有 connection report を使用して、2 つのオブジェクト（例：薬物と遺伝子）間の ClinPGx ペア関係を検索します。各オブジェクトに 1 つの識別子を指定します。薬物・遺伝子・バリアントの臨床注釈には summary annotation を使用します。
+
+このグループでは、`object1Id` / `object1Name` / `object1Type`のいずれかの1つが少なくとも1つあります。
+
+このグループでは、`object2Id` / `object2Name` / `object2Type`のいずれかの1つが少なくとも1つあります。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `object1Id` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `object1Name` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `object1Type` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `object2Id` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `object2Name` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `object2Type` | 文字列 | 上記の条件に従う。 最長: 1; パターン: "\\S" |
+| `view` | 文字列 | 任意; デフォルト: "base"; enum: &#91;"min"、"base"、"max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
 ```
 
 </ToolOperationGroup>
@@ -2742,6 +2935,21 @@ const result = await host.mcp("protein-annotation", "get_string_similarity_score
 
 ```javascript
 const result = await host.mcp("protein-annotation", "get_string_best_similarity_hits", {"symbols": ["TP53"], "target_species": 10090})
+```
+
+### `get_string_ppi_enrichment` {/* #get_string_ppi_enrichment */}
+
+STRINGタンパク質タンパク質相互作用遺伝子リスト(v12.0)のための強化. マッピングされたタンパク質がSTRINGの背景分布から期待よりもより多くの相互作用を持っているかどうかをテストします。, STRINGタンパク質IDのオプションの背景セット.
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `symbols` | 文字列の配列 | **必須** |
+| `species` | 整数 | 任意; デフォルト: 9606 |
+| `required_score` | 整数 | 任意; デフォルト: 400 |
+| `background_string_ids` | 文字列の配列 | オプション |
+
+```javascript
+const result = await host.mcp("protein-annotation", "get_string_ppi_enrichment", {"symbols": ["TP53", "BRCA1", "EGFR"], "required_score": 700})
 ```
 
 </ToolOperationGroup>

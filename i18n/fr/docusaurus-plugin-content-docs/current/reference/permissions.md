@@ -1,7 +1,7 @@
 ---
 title: "Autorisations et contrôle"
 last_update:
-  date: '2026-09-08'
+  date: '2026-09-28'
 ---
 
 # Autorisations et contrôle {/* #permissions-and-control */}
@@ -27,7 +27,7 @@ Ces couches ne sont pas interchangeables. Un accès complet modifie le comportem
 | Valeur de l'assurance-chômage | Contrat | Signification |
 | --- | --- | --- |
 | **Ask for approval** / **Ask** | `ask` | Demander des opérations qui nécessitent une approbation, sous réserve des subventions existantes et des exceptions détenues par la demande |
-| **Auto-approve edits** / **Auto** | `auto` | approuver automatiquement les modifications de l'espace de travail pris en charge; le repli conservateur admet seulement les opérations de lecture/recherche/modification de l'espace de travail et de la pensée, pas les appels de shell arbitraire ou MCP |
+| **Auto-approve edits** / **Auto** | `auto` | Les modifications de l'espace de travail pris en charge et les opérations de bibliothèque reconnues peuvent passer automatiquement; les appels shell ou MCP arbitraires ne sont généralement pas autorisés. Voir [Règles de la bibliothèque](../guides/approval-modes.md#library-auto). |
 | **Full access** | `full` | Autoriser les requêtes d'autorisation d'agent sans invites manuelles où l'exécution le supporte |
 | **Once** | `once` | Seul l'appel courant; pas de subvention durable |
 | **Cette conversation** | `session` | Correspondance des appels dans cette conversation, y compris sur les redémarrages |

@@ -1,7 +1,7 @@
 ---
 title: "Permissions and approvals"
 last_update:
-  date: '2026-09-17'
+  date: '2026-09-28'
 ---
 
 # Permissions and approvals
@@ -101,3 +101,9 @@ If the inventory is incomplete, wait for it to load or retry the failed request 
 | Some scopes are absent | The card exposes only scopes supported by the current request and available project/session context. Do not use a broader scope merely to compensate for an unavailable narrower option. |
 
 Source: [Saved grants and undo](https://github.com/aipoch/open-science/commit/469b593b).
+
+## Library work in Auto mode {/* #library-auto */}
+
+With **Auto-approve edits**, a defined set of built-in Library operations can pass the agent's per-call approval automatically. These include searching and reading references, saving to Inbox, acquiring PDFs, formatting references and preparing citation documents. This reduces repeated prompts during routine Library work.
+
+The rule applies to recognized app-owned literature tools, not every MCP call, command or network operation. The tools' own file, network and resource rules still apply, and this decision creates no permanent grant. Choose **Ask for approval** when you want to inspect agent requests individually. Review Inbox candidates before accepting them.

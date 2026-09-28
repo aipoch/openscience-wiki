@@ -1,7 +1,7 @@
 ---
 title: "Permissions and control"
 last_update:
-  date: '2026-09-08'
+  date: '2026-09-28'
 ---
 
 # Permissions and control
@@ -27,7 +27,7 @@ These layers are not interchangeable. Full access changes agent prompt behavior;
 | UI value | Contract | Meaning |
 | --- | --- | --- |
 | **Ask for approval** / **Ask** | `ask` | Ask for operations that require approval, subject to existing grants and application-owned exceptions |
-| **Auto-approve edits** / **Auto** | `auto` | Automatically approve supported workspace edits; the conservative fallback only admits located workspace read/search/edit operations and thinking, not arbitrary shell or MCP calls |
+| **Auto-approve edits** / **Auto** | `auto` | Supported workspace edits and recognized app-owned Library operations can pass automatically; arbitrary shell or MCP calls are not generally allowed. See [Library rules](../guides/approval-modes.md#library-auto). |
 | **Full access** | `full` | Allow agent permission requests without manual prompts where the runtime supports it |
 | **Once** | `once` | Only the current call; no durable grant |
 | **This conversation** | `session` | Matching calls in this conversation, including across restarts |

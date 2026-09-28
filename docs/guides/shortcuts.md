@@ -1,7 +1,7 @@
 ---
 title: "Keyboard shortcuts"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -81,3 +81,13 @@ Sources: [global search keyboard handling](https://github.com/aipoch/open-scienc
 ## Search within the current settings panel {/* #local-settings-search */}
 
 In Settings, **⌘K** (macOS) or **Ctrl+K** (Windows/Linux) focuses the header search across settings. **⌘⌥K** or **Ctrl+Alt+K** focuses the eligible search field in the current panel or dialog. The local shortcut needs an available local search field; it does not open application-wide search or PDF text search.
+
+## Desktop interface scale {/* #interface-scale-shortcuts */}
+
+| Action | macOS | Windows / Linux |
+| --- | --- | --- |
+| Increase one step | ⌘+ | Ctrl++ |
+| Decrease one step | ⌘− | Ctrl+− |
+| Reset to 100% | ⌘0 | Ctrl+0 |
+
+These shortcuts share the 90%, 100%, 110% and 125% steps in **Settings → General → Appearance → Interface scale**. See [interface size](appearance.md#interface-scale). File-preview zoom and whole-app scaling are separate controls.

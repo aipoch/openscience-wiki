@@ -1,7 +1,7 @@
 ---
 title: "Installation et mises à jour"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -44,6 +44,9 @@ Homebrew sélectionne automatiquement Apple Silicon ou Intel. Après l'installat
 
 <PlatformContent platform="windows">
 
+Les installateurs officiels Windows sont signés par code depuis v0.33.2; v0.33.3 étend la signature aux exécutables groupés. Téléchargez à partir de [page de téléchargement officielle](https://aipoch.com/open-science/download) ou [GitHub libère](https://github.com/aipoch/open-science/releases), et suivez les notes de vérification officielles pour vérifier la source du paquet.
+
+
 | Ordinateur | Identifier l'architecture | Paquet et installation |
 | --- | --- | --- |
 | Windows | Paramètres → Système → A propos → Type de système | Choisissez la correspondance `win-…-setup.exe`; exécutez l'installateur de l'utilisateur actuel et suivez ses instructions d'emplacement |
@@ -70,7 +73,7 @@ Le dossier d’installation contient l’application ; **Data location**, dans l
 
 Vous avez besoin de Git, Node.js 22, npm, et la plate-forme construit les conditions préalables pour Electron. Installer ou sélectionner un cadre d'agent dans l'application. Pendant l'installation, le dépôt génère le client Prisma, applique les correctifs app et prépare les dépendances natives d'Electron.
 
-Pour une installation source reproductible, choisissez la balise de libération prévue à partir de [Changer de journal](../changelog/v0.31.1.md) avant d'installer les dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
+Pour une installation source reproductible, choisissez la balise de libération prévue à partir de [Changer de journal](../changelog/v0.33.3.md) avant d'installer les dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
 
 Remplacer `RELEASE_TAG` ci-dessous par la balise exacte affichée sur la version sélectionnée (y compris sa `v` de tête). Pour suivre le développement en cours, omettre `--branch RELEASE_TAG --depth 1`; que la commande suivra la branche par défaut.
 

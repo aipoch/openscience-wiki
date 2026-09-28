@@ -2,7 +2,7 @@
 title: "Научные базы данных"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 # Научные базы данных {/* #scientific-databases */}
@@ -13,25 +13,25 @@ last_update:
 
 ## Поддерживаемые базы данных {/* #supported-databases */}
 
-Open-Science v0.33.1 включает **27 Data Source Connectors с операциями 269**. Отдельная оффлайн-молекула Connector добавляет две операции, принося полный реестр в 271. Имена Connector ниже соответствия **Settings → Connectors**; Каждая семья может предоставить несколько баз данных. Перечисление источника не означает, что все функции его веб-сайта доступны.
+Open-Science v0.33.3 включает **27 Data Source Connectors с операциями 282**. Отдельная оффлайн-молекула Connector добавляет две операции, принося полный реестр в 284. Имена Connector ниже соответствия **Settings → Connectors**; Каждая семья может предоставить несколько баз данных. Перечисление источника не означает, что все функции его веб-сайта доступны.
 
 | Коннектор | Источники | Операции | Используйте его для  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | Химия малых молекул через PubChem, ChEBI, Rhea и BindingDB.  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Документы, авторы, цитаты, обновления DOI и записи набора данных / программного обеспечения. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Биомедицинская литература через NCBI E-utilities, PMC ID Converter и Europe PMC — поиск, метаданные, связанные статьи, поиск цитирования, преобразование идентификаторов, полный текст и авторское право.  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 13 | Идентификаторы генов/белков, открытие последовательности UniProt, аннотации GO и Reactome и обогащение генома g:Profiler. |
+| Гены и онтологии · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Идентификаторы генов/белков, открытие последовательности UniProt, аннотации GO и Reactome и g:Profiler и обогащение набора генов Enrichr. |
 | Геномы · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | аннотация генома, гомология и последовательность; NCBI taxon/assembly/sequence identity; Поиск BLAST и выравнивание множественных последовательностей Clustal Omega. |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | Генетические варианты человека — частоты/ограничения популяции гномадов, записи/поиск ClinVar (прямой NCBI), dbSNP, структурные и митохондриальные варианты.  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Клинические испытания от ClinicalTrials.gov - поиск, детали, спонсоры, следователи, конечные точки и право.  |
-| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | Базы знаний по клинической геномике: курации ClinGen, клинические данные CIViC и платформа Open Targets.  |
+| Клиническая геномика · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | Базы знаний клинической геномики: курации ClinGen, клинические данные CIViC и платформа Open Targets, а также фармакогеномные записи ClinPGx. |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Структуры и молекулярные взаимодействия — структуры PDB, предсказания AlphaFold, записи крио-EM EMDB, комплексы Complex Portal, сети взаимодействия IntAct.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | Биоактивные соединения, лекарства, мишени, биоактивность и механизмы с помощью ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | BioRxiv/medRxiv препринты — поиск по дате/категории, метаданные по DOI, ссылки на публикации в журналах, списки спонсоров и статистика платформы.  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 7 | Приложения Drugs@FDA, этикетки и статистика корпуса через openFDA.  |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | Доказательства генетической ассоциации человека — каталог GWAS, каталог eQTL и порталы PheWeb PheWAS (FinnGen, BioBank Japan).  |
 | Expression · `expression` | GTEx | 12 | Экспрессия тканей человека и eQTL через портал GTEx.  |
-| Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 13 | Архитектура белковых доменов, членство в семье / клане, экспрессионный атлас и сети взаимодействия через InterPro / Pfam, Атлас белков человека и STRING.  |
+| Белковая аннотация · `protein-annotation` | InterPro, Pfam, Атлас белков человека | 14 | Архитектура белковых доменов, членство в семье / клане, экспрессионный атлас и сети взаимодействия через InterPro / Pfam, Атлас белков человека и STRING, включая обогащение сетевого взаимодействия. |
 | Cancer Models · `cancer-models` | cBioPortal | 6 | Записи исследования геномики рака с помощью cBioPortal REST API.  |
 | RNA · `rna` | Rfam | 9 | Некодирующие данные семейства РНК (метаданные, выравнивания, модели, структуры) через Rfam.  |
 | Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | Экспрессия, метаболомика, метагеномика и протеомические архивы; ENA запускает кадастры обнаружения и FASTQ/представления; Списки файлов PRIDE. |
@@ -168,7 +168,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Операционный справочник Connector](../reference/connector-operations.md) перечисляет необходимые входы, допустимые значения и точные вызовы. Используйте эту страницу, чтобы выбрать источник и подключить его; Используйте ссылку для полей конкретного инструмента.
 
-Источник: [каталог.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/catalog.ts), [Реестр.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/registry.ts).
+Источник: [каталог.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/catalog.ts), [Реестр.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/registry.ts).
 
 ## Поиск последовательности и выравнивание {/* #sequence-tools */}
 
@@ -177,3 +177,11 @@ matched records and any unmatched identifiers. Keep the response in English.
 **InterProScan** извлекает аннотации для существующей работы, представленной через службу EMBL-EBI. Держите свой идентификатор работы, проверьте статус с интервалом не менее десяти секунд и возьмите TSV после **Окончательно**. Connector не может найти новую работу. [Операции InterProScan](../reference/connector-operations.md#family-27).
 
 **Genomes → Clustal Omega** выравнивает, по меньшей мере, три уникальные записи белка, ДНК или РНК FASTA. Настройте контактное электронное письмо, запрошенное службой, отправьте один раз, сохраните идентификатор вакансии, затем проверьте статус и сохраните возвращенное выравнивание. [Многопоследовательность выравнивания рабочего процесса](../workflows/multiple-sequence-alignment.md).
+
+## Enrichr, STRING и ClinPGx {/* #enrichment-pharmacogenomics */}
+
+- **Genes & Ontologies → Enrichr**: перечислите текущие библиотеки, затем запросите обогащение набора генов для функций, факторов транскрипции, возмущений, лекарств, заболеваний, тканей или типов клеток. Выберите библиотеку, соответствующую организму и задайте вопрос, и сохраните ее название, фон и скорректированные значения P.
+- **Protein Annotation → STRING**: проверьте, имеет ли белковая сеть больше взаимодействий, чем ожидалось. Это задает другой вопрос, чем чрезмерное представление; Значение сети P не является тестом пути. Следуйте за [процесс обогащения генома](../workflows/gene-set-enrichment.md#enrichr-string).
+- **Clinical Genomics → ClinPGx**: получить аннотации к лекарственным средствам, генам или вариантам, руководящие принципы, нормативные этикетки и частоты популяции. Сначала разрешите идентификаторы, поставьте поля, необходимые для операции, и сохраните исходные источники и уровни доказательств. Это извлекает исследовательские записи; Он автоматически не составляет индивидуальный план лечения.
+
+Включить соответствующий Connector для активного агента в **Settings → Connectors**. Эти встроенные записи не требуют пользовательского сервера MCP. См. [Справочная информация об операции](../reference/connector-operations.md) для точных полей и условных требований.

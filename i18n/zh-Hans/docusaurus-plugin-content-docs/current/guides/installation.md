@@ -1,7 +1,7 @@
 ---
 title: "安装与更新"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -44,6 +44,9 @@ Homebrew 自动选择 Apple Silicon 或 Intel。安装后在 **Settings → Gene
 
 <PlatformContent platform="windows">
 
+从 v0.33.2 起，官方 Windows 安装程序带代码签名；v0.33.3 将签名覆盖到随应用分发的可执行文件。请通过[官方下载页](https://aipoch.com/open-science/download)或 [GitHub Releases](https://github.com/aipoch/open-science/releases) 获取安装包，并按官方校验说明核对来源。
+
+
 | 电脑 | 确认架构 | 文件选择与安装 |
 | --- | --- | --- |
 | Windows | 设置 → 系统 → 关于 → 系统类型 | 选择匹配的 `win-…-setup.exe`，运行当前用户安装器，按提示选择安装位置 |
@@ -70,7 +73,7 @@ Homebrew 自动选择 Apple Silicon 或 Intel。安装后在 **Settings → Gene
 
 要求：Git、Node.js 22、npm，以及 Electron 在当前平台的构建前提。代理框架可在应用中安装或选择。仓库会在安装阶段生成 Prisma Client、应用补丁并准备 Electron 原生依赖。
 
-需要复现源码安装时，先从 [Changelog](../changelog/v0.31.1.md) 确定目标发布标签，再安装依赖。默认克隆跟随分支，不会固定到某个发布版本。记录所选标签、源码提交及运行时版本，便于他人复现环境。
+需要复现源码安装时，先从 [Changelog](../changelog/v0.33.3.md) 确定目标发布标签，再安装依赖。默认克隆跟随分支，不会固定到某个发布版本。记录所选标签、源码提交及运行时版本，便于他人复现环境。
 
 将下方 `RELEASE_TAG` 替换为所选发行页的完整标签（包括开头的 `v`）。如果需要跟随开发分支，省略 `--branch RELEASE_TAG --depth 1`；这条路线会使用默认分支。
 

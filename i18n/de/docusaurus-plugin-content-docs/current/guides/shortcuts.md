@@ -1,7 +1,7 @@
 ---
 title: "Tastenkürzel"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -81,3 +81,13 @@ Quellen: [Global Search Keyboard Handling](https://github.com/aipoch/open-scienc
 ## Suchen Sie innerhalb des aktuellen Einstellungsfensters {/* #local-settings-search */}
 
 In den Einstellungen konzentriert **&lt;0xE2>&lt;0x8C>&lt;0x98>K** (macOS) oder **Strg + K** (Windows/Linux) die Headersuche auf die Einstellungen. **&lt;0xE2>&lt;0x8C>&lt;0x98>&lt;0xE2>&lt;0x8C>&lt;0xA5>K** oder **Strg+Alt+K** fokussiert das berechtigte Suchfeld im aktuellen Panel oder Dialog. Die lokale Verknüpfung benötigt ein verfügbares lokales Suchfeld; Es öffnet keine anwendungsweite Suche oder PDF-Textsuche.
+
+## Desktop-Schnittstellen-Skala {/* #interface-scale-shortcuts */}
+
+| Aktion | macOS | Windows / Linux |
+| --- | --- | --- |
+| Erhöhen Sie einen Schritt | ⌘+ | Ctrl++ |
+| Verringern Sie einen Schritt | ⌘− | Ctrl+- |
+| Zurücksetzen auf 100% | ⌘0 | Strg+0 |
+
+Diese Abkürzungen teilen sich die Schritte 90%, 100%, 110% und 125% in **Settings → General → Appearance → Interface scale**. Siehe [Schnittstellengröße](appearance.md#interface-scale). File-Preview-Zoom und Whole-App-Skalierung sind separate Steuerelemente.

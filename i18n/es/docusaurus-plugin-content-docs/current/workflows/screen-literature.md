@@ -1,7 +1,7 @@
 ---
 title: "Seleccionar artículos con una colección inteligente"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,8 @@ Para interrumpir un pase de funcionamiento, elija **Pause** (**Pause analysis**)
 Haga clic en el **Evaluation details** de una fila para inspeccionar su decisión, emparejar las puntuaciones, evidencia e historia del modelo. Los resultados describen la regla que coincide; no son medidas de calidad de estudio o tamaño de efecto.
 
 ![Una decisión incierta real con pruebas de título y extracto y puntuaciones modelo](/img/open-science/v0330/screening-review.webp)
+
+Si ya no necesita la evaluación actual, elija **Abandonar ejecución** cuando se le ofrezca y confirme. Quedan los resultados completos, pero esa ejecución no puede reanudarse; puede comenzar una evaluación separada más tarde. Use **Análisis de pausas / Resumen** para una pausa temporal. Abandonar una carrera no elimina los papeles ni deshacer las decisiones manuales completadas.
 
 ## 5. Revisar y confirmar el conjunto de lectura {/* #screening-review */}
 

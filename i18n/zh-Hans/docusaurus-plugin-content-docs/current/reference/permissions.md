@@ -1,7 +1,7 @@
 ---
 title: "权限与控制"
 last_update:
-  date: '2026-09-08'
+  date: '2026-09-28'
 ---
 
 # 权限与控制
@@ -27,7 +27,7 @@ last_update:
 | 界面值 | 接口值 | 含义 |
 | --- | --- | --- |
 | **Ask for approval** / **Ask** | `ask` | 对需要审批的操作询问，同时遵守已有授权及应用自身的特定例外 |
-| **Auto-approve edits** / **Auto** | `auto` | 自动批准支持的工作区编辑；保守回退只允许有明确位置的工作区读取、搜索、编辑和思考，不包括任意 shell 或 MCP 调用 |
+| **Auto-approve edits** / **Auto** | `auto` | 支持的工作区编辑和应用识别的内置文献库操作可自动通过；不代表任意命令或 MCP 请求都被允许，见[文献库规则](../guides/approval-modes.md#library-auto) |
 | **Full access** | `full` | 在运行时支持的范围内，无需手动提示即可允许代理权限请求 |
 | **Once** | `once` | 仅当前调用，不保存长期授权 |
 | **This conversation** | `session` | 当前会话中匹配的调用，重启后仍保留 |

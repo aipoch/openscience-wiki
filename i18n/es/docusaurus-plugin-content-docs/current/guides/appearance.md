@@ -1,7 +1,7 @@
 ---
 title: "Apariencia y notificaciones"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -149,3 +149,13 @@ La entrega de notificaciones también depende de los permisos del sistema operat
 
 
 Fuente: [Ajustes generales](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
+
+## Ajuste el tamaño de la interfaz de la aplicación {/* #interface-scale */}
+
+1. Abre **Settings → General → Appearance → Interface scale**.
+2. Elija **90%**, **100%**, **110%** o **125%**. El texto y los controles redimensionan inmediatamente, y la elección se recuerda en este dispositivo.
+3. Elija **100%** o pulse soluble0 (macOS) / Ctrl+0 (Windows/Linux) para restablecer. Utilice χ+ / Ctrl++ para aumentar y soluble− / Ctrl+ - para disminuir la escala.
+
+![Opciones de escala de la interfaz en los ajustes generales](/img/open-science/v0333/interface-scale.webp)
+
+Esto controla la interfaz de la aplicación de escritorio. Ampliar vista de vista de imagen o PDF afecta sólo la vista de ese archivo. Al acceder a Open-Science en un navegador, utilice el zoom del navegador. El escalado de pantalla Windows también afecta a otras aplicaciones; use el control arriba cuando sólo desea cambiar el tamaño de Open-Science.

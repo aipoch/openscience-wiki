@@ -1,7 +1,7 @@
 ---
 title: "파일 열기 및 미리보기"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -62,14 +62,18 @@ Markdown는 headings, 목록, 코드 및 링크를 렌더링합니다. 보고서
 
 <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-reading.docx">Word 보고서</ExampleDownload>, <ExampleDownload path="/examples/gse60450/office/GSE60450-sample-qc.xlsx">Excel 작업 책</ExampleDownload>, <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-overview.pptx">PowerPoint 슬라이드</ExampleDownload> 및 <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-figures.tiff">2 페이지 TIFF</ExampleDownload>는 동일한 저장된 GSE60450 QC 결과를 선물합니다. 이 글은 새 분석이 아닙니다.
 
-| 형식 | 단계와 확인하는 것 |
+| 단일 페이지 PDF | 첨부 및 보고서를 엽니 다. 두 페이지를 통해 스크롤; 첫 번째 샘플 행과 방법 / 해석 텍스트를 확인합니다. 풀 스크린 미리보기는 긴 줄을 더 공간을 제공합니다. Word 편집 리본이 없습니다. |
 | --- | --- |
-| · DOCX | 첨부 및 보고서를 엽니 다. 두 페이지를 통해 스크롤; 첫 번째 샘플 행과 방법 / 해석 텍스트를 확인합니다. 풀 스크린 미리보기는 긴 줄을 더 공간을 제공합니다. Word 편집 리본이 없습니다. |
-| XLSX의 장점 | workbook을 열고, 다음 선택 **의논하기** 또는 **제품 설명** 하단에. 마지막 열을 위해 수평으로 스크롤하십시오. 샘플은 12 데이터 행과 헤더, 간격 및 소스 노트를 포함합니다. 구경꾼은 17에 의하여 사용된 줄, 17 생물학 표본 보고합니다. 값은 저장된 작업 책의 미리보기이며 신선한 계산의 증거가 아닙니다. |
-| PPTX 파일 | 슬라이드를 열고 QC 요약에서 방법 및 해석에 수직으로 스크롤하십시오. 두 슬라이드는 로컬 예제에서 렌더링. 이 판독 표면은 프리젠 테이션 편집기 또는 슬라이드 쇼 컨트롤러가 아닙니다. |
-| 공지사항 | 그림과 사용 열기 **다음 페이지 / 이전 페이지**. 두 페이지는 원시 라이브러리 크기와 감지 된 생성 된 미디어를 보여줍니다. **/ Zoom 아웃 / 리셋 줌** 전망 변경; .... **의논문 1 의 특징 2** 또는 **의논문 2 의 특징 2** 그림 해석하기 전에. |
-| JSON | 열기 <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">자주 묻는 질문</ExampleDownload> 소스 텍스트, 식별자 및 값을 검사합니다. 확장 가능한 객체 트리보다는 코드로 표시됩니다. |
-| HTML | 열기 <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">독서 테이블</ExampleDownload>. **Source** HTML를 보여줍니다; **Render** 포맷 된 문서를 복원합니다. Neither 형태는 QC를 재회합니다. |
+| XLSX의 장점 | 자주 묻는 질문 제품 정보 **이전 / 다음** 두 페이지 또는 둘 다 방문하기 위하여 **개요** 맨 위로 이동하기. ⌘F (macOS) 또는 Ctrl+F (Windows/Linux)를 눌러 검색 `raw-count` 그리고 그 경기와 방법을 확인. 풀 스크린 미리보기는 더 많은 방을 제공합니다; Word 편집 리본이 없습니다. |
+| 의논하기 | 또는 **제품 설명** 또는 **PPTX 파일** 슬라이드를 열고 QC 요약에서 방법 및 해석에 수직으로 스크롤하십시오. 두 슬라이드는 로컬 예제에서 렌더링. 이 판독 표면은 프리젠 테이션 편집기 또는 슬라이드 쇼 컨트롤러가 아닙니다. |
+| 공지사항 | 슬라이드를 열고, 선택 **페이지 2** 엄지나일 또는 **다음**, 및 체크 **2 / 2**및 **찾기** 관련 기사 `normalization` 방법 슬라이드에. **Notes** 표시 임베디드 스피커 노트; 이것은 판독 표면, 발표 편집기가 아닙니다. |
+| 공지사항 | . 두 페이지는 원시 라이브러리 크기와 감지 된 생성 된 미디어를 보여줍니다. **/ Zoom 아웃 / 리셋 줌**전망 변경; .... **의논문 1 의 특징 2** 또는 **의논문 2 의 특징 2** 또는 **JSON** 열기 |
+| JSON | 말한다. 라인은 측정만 연결한다; 300 K가 눈에 띄는 후에 AZO 전도도에 있는 복각. <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">HTML</ExampleDownload> 열기 |
+| HTML | 말한다. 라인은 측정만 연결한다; 300 K가 눈에 띄는 후에 AZO 전도도에 있는 복각. <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">포맷 된 문서를 복원합니다. Neither 형태는 QC를 재회합니다.</ExampleDownload>. **Source** 실제 작업 책 미리보기에서 샘플 선택 **Render** 실제 TIFF의 두 번째 페이지 |
+
+![페이지 제어 및 실제 텍스트 일치 Word 독서 복사](/img/open-science/v0333/word-search.webp)
+
+![두 번째 파워 포인트 페이지, 네비게이션 썸네일 및 검색 일치](/img/open-science/v0333/powerpoint-pages.webp)
 
 ![실제 작업 책 미리보기에서 샘플 선택](/img/open-science/local-todo-batch/47-workbook-samples.webp)
 
@@ -187,3 +191,7 @@ can actually read.
 ![원본 PDF 외에도 영어 응답, Reading context 유지](/img/open-science/v0331/pdf-first-response.webp)
 
 하이라이트 및 문서 수준 노트를 위해, [PDF 주석](pdf-notes.md)과 함께 계속.
+
+## 웹 사이트가 로그인 유지 {/* #persistent-source-preview */}
+
+Live Source 웹 사이트에 대한 내장 브라우저 미리보기는 방문 및 앱 재시작을 통해 사이트 세션을 유지합니다. 소스가 기존 계정이 필요하면 그 소스 페이지에 로그인하고 계속 읽기. 미리보기를 닫지 않는 웹 사이트; 웹 사이트의 자체 서명 아웃 동작을 사용해야합니다. 로그인 유지는 자동으로 에이전트 전체 텍스트 액세스 또는 네트워크 액세스 규칙을 변경하지 않습니다.

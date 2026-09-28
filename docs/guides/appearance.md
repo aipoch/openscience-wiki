@@ -1,7 +1,7 @@
 ---
 title: "Appearance and notifications"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -149,3 +149,13 @@ Notification delivery also depends on the operating system's permissions, Focus 
 
 
 Source: [General settings](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
+
+## Adjust the app's interface size {/* #interface-scale */}
+
+1. Open **Settings → General → Appearance → Interface scale**.
+2. Choose **90%**, **100%**, **110%** or **125%**. Text and controls resize immediately, and the choice is remembered on this device.
+3. Choose **100%** or press ⌘0 (macOS) / Ctrl+0 (Windows/Linux) to reset. Use ⌘+ / Ctrl++ to increase and ⌘− / Ctrl+− to decrease the scale.
+
+![Interface scale choices in General settings](/img/open-science/v0333/interface-scale.webp)
+
+This controls the desktop app's interface. Image or PDF preview zoom affects only that file's view. When accessing Open-Science in a browser, use the browser's zoom. Windows display scaling also affects other apps; use the control above when you only want to resize Open-Science.

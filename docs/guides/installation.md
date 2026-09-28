@@ -1,7 +1,7 @@
 ---
 title: "Installation and updates"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -44,6 +44,9 @@ Homebrew selects Apple Silicon or Intel automatically. After installation, open 
 
 <PlatformContent platform="windows">
 
+Official Windows installers are code-signed from v0.33.2; v0.33.3 extends signing to bundled executables. Download from the [official download page](https://aipoch.com/open-science/download) or [GitHub Releases](https://github.com/aipoch/open-science/releases), and follow the official verification notes to check the package source.
+
+
 | Computer | Identify the architecture | Package and installation |
 | --- | --- | --- |
 | Windows | Settings → System → About → System type | Choose the matching `win-…-setup.exe`; run the current-user installer and follow its location prompts |
@@ -70,7 +73,7 @@ The installation location stores the application; **Data location** in the setup
 
 You need Git, Node.js 22, npm, and the platform build prerequisites for Electron. Install or select an agent framework in the application. During installation, the repository generates the Prisma Client, applies app patches, and prepares Electron native dependencies.
 
-For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v0.31.1.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
+For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v0.33.3.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
 
 Replace `RELEASE_TAG` below with the exact tag shown on the selected release (including its leading `v`). To follow ongoing development instead, omit `--branch RELEASE_TAG --depth 1`; that checkout will follow the default branch.
 

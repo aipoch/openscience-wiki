@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,25 +13,25 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v0.33.1は**269 操作で 27 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを271に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
+Open-Science v0.33.3は**282 操作で 27 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを284に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | パブケム、チェビ、レア、ビンディングDBによる小分子化学。  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 論文、著者、引用、DOIの更新とデータセット/ソフトウェアレコード。 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI Eユーティリティ、PMC IDコンバーター、ヨーロッパPMCによる生物医学文献 — 検索、メタデータ、関連記事、引用ルックアップ、ID変換、完全なテキストと著作権。  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 13 | 遺伝子/タンパク質識別子、UniProtシーケンス検出、GOとReactomeアノテーション、およびg:Profiler遺伝子セット濃縮。 |
+| 遺伝子・オントロジー・ `genes` | MyGene、UniProt、OLS、QuickGO、Reactome、g:Profiler、Enrichr | 15 | 遺伝子/タンパク質識別子、UniProtシーケンス検出、GOおよびReactomeアノテーション、およびg:ProfilerおよびEnrichr遺伝子セットの濃縮。 |
 | ゲノム・ `genomes` | 組み立て、UCSC、NCBI、BLAST、Clustalオメガ | 20 | ゲノムのアノテーション、均質学および順序; NCBIタムン/アセンブリ/シーケンスアイデンティティ; BLAST検索とClustal Omegaの複数のシーケンス配列。 |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | ヒト遺伝的変形 — gnomAD 人口の頻度/対照的、ClinVar レコード/研究(NCBI 間接)、dbSNP、構造的およびミトコンドリア変異体。  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床トライアル.gov — 検索、詳細、スポンサー、投資家、エンドポイント、および適格性。  |
-| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | 臨床ゲノムの知識ベース:ClinGenの治癒、CIViC臨床証拠、およびオープンターゲットプラットフォーム。  |
+| 臨床ゲノム・ `clinical-genomics` | ClinGen、CIViC、オープンターゲット、ClinPGx | 30 | 臨床ゲノムの知識ベース:ClinGenの治験、CIViCの臨床証拠およびオープン ターゲット プラットフォーム、およびClinPGxの薬学の記録。 |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | CEMBL REST API による生体活性化合物、薬物、標的、生体活性およびメカニズム。  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | BioRxiv/medRxiv のプリプリント — 日付/カテゴリ、DOI によるメタデータ、ジャーナル公開リンク、ファンダリスト、およびプラットフォームの統計による検索。  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 7 | openFDA による FDA アプリケーション、ラベル、およびコルパスの統計。  |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | GWASカタログ、eQTLカタログ、PheWeb PheWASポータル(FinnGen、BioBank Japan)  |
 | Expression · `expression` | GTEx | 12 | GTExポータル経由での人体組織表現とeQTLs。  |
-| Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 13 | タンパク質ドメインアーキテクチャ、家族/クランのメンバーシップ、InterPro/Pfam、ヒトプロテインアトラスおよびストリングによる表現アトラスおよび相互作用ネットワーク。  |
+| タンパク質アノテーション・ `protein-annotation` | InterPro、Pfam、ヒトプロテインアトラス、ストリング | 14 | タンパク質ドメインアーキテクチャ、家族/クランのメンバーシップ、InterPro/Pfam、ヒューマンプロテインアトラス、STRINGによる表現アトラスと相互作用ネットワーク、ネットワークの相互作用の豊かさを含みます。 |
 | Cancer Models · `cancer-models` | cBioPortal | 6 | cBioPortal REST API によるがんゲノミクス研究記録。  |
 | RNA · `rna` | Rfam | 9 | Rfam による RNA の家族データ(メタデータ、アライメント、モデル、構造)を非コーディング。  |
 | Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | 表現、メタボロミクス、メデックス、プロテオミクスのアーカイブ; ENA は発見および FASTQ/submission の在庫を実行します; PRIDEファイルリスト。 |
@@ -168,7 +168,7 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/registry.ts)。
+カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/registry.ts)。
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 
@@ -177,3 +177,11 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 **インタープロスキャン**は、EMBL-EBIサービスを通じて送信された既存のジョブのアノテーションを取得します。 ジョブ ID を保ち、ステータスを 10 秒以上離れた状態を確認し、**フィンランド語** の後の TSV を取得します。 このConnectorは、新しいジョブを送信できません。 [InterProScan オペレーション](../reference/connector-operations.md#family-27).
 
 **Genomes → Clustal Omega** は、タンパク質、DNA、RNA FASTA のレコードを3つ以上一意に名付けます。 サービスで要求される連絡先メールを構成し、一度送信し、ジョブIDを保持し、ステータスを確認し、返されたアライメントを保存します。 [複数のシーケンス・アライメント・ワークフロー](../workflows/multiple-sequence-alignment.md).
+
+## Enrichr、STRING、ClinPGx {/* #enrichment-pharmacogenomics */}
+
+- **Genes & Ontologies → Enrichr**: 現在のライブラリを一覧表示し、関数、転写因子、パーチャブレーション、薬物、病気、組織、または細胞タイプのための遺伝子組換えの強化をクエリします。 生物や質問に適切なライブラリを選択し、名前、背景、および調整されたP値を保持します。
+- **Protein Annotation → STRING**: タンパク質ネットワークが、その背景から期待されるよりも相互作用が多かったかどうかをテストします。 これは、パスウェイの過剰表現から異なる質問を要求します。 パスウェイテストではなく、ネットワークP値がパスウェイテストではありません。 [遺伝子組込み強化ワークフロー](../workflows/gene-set-enrichment.md#enrichr-string) をフォローしてください。
+- **Clinical Genomics → ClinPGx**: 薬物、遺伝子、または異種注釈、ガイドライン、規制ラベル、および人口の頻度を取得します。 識別子を最初に解決し、操作で必要なフィールドを供給し、元のソースと証拠レベルを保持します。 これにより、研究記録が取得されます。 個別治療プランを自動的に生成しません。
+
+**Settings → Connectors**の活性剤に関連したConnectorを有効にします。 これらの組み込みエントリは、カスタムMCPサーバを必要としません。 正確なフィールドと条件の要件については、[操作の参照](../reference/connector-operations.md) を参照してください。

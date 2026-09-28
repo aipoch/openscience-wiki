@@ -1,7 +1,7 @@
 ---
 title: "外観と通知"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -149,3 +149,13 @@ import Screenshot from '@site/src/components/Screenshot';
 
 
 ソース: [一般的な設定](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
+
+## アプリのインターフェイスサイズを調整する {/* #interface-scale */}
+
+1. **Settings → General → Appearance → Interface scale** を開きます。
+2. **90%**、**100%**、**110%**、**125%**のいずれかを選択します。 テキストと制御はすぐにサイズを変更し、このデバイスで選択が記憶されます。
+3. **100%** または ⌘0 (macOS) / Ctrl+0 (Windows/Linux) を押してリセットします。 ⌘ + / Ctrl + を使用して、拡大および ⌘ - / Ctrl + - を使用して、スケールを削減します。
+
+![一般的な設定のインターフェイススケールの選択](/img/open-science/v0333/interface-scale.webp)
+
+デスクトップアプリのインターフェースをコントロールします。 画像または PDF プレビューズームは、そのファイルのビューにのみ影響します。 ブラウザでOpen-Scienceにアクセスする場合は、ブラウザのズームを使用してください。 Windowsディスプレイスケーリングは、他のアプリにも影響します。 Open-Science のサイズを変更したいだけなら、上記の制御を使用してください。

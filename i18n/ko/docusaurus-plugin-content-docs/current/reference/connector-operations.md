@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.33.1** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.1.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
+한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.33.3** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.3.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
 
 
 ## 뚱 베어 {/* #family-1 */}
@@ -710,6 +710,35 @@ G를 실행:Profiler g:GOSt는 GO, Reactome, KEGG, WikiPathways 및 기타 유�
 
 ```javascript
 const result = await host.mcp("genes", "enrich_gene_set", {"genes": ["TP53", "EGFR", "BRCA1"], "organism": "hsapiens", "sources": ["GO:BP", "REAC"], "correction_method": "fdr"})
+```
+
+### `list_enrichr_libraries` {/* #list_enrichr_libraries */}
+
+현재 Enrichr 유전자 세트 라이브러리 및 지원되는 Enrichr 배포에 대한 적용 통계를 나열합니다. 인간적인 배치는 인간과 쥐 도서관을 포함합니다; 다른 지원되는 유기물은 그들의 헌신적인 배포를 사용합니다. enrich_gene_set_enrichr의 앞에 이 사용은 transcription 요인, perturbation, 약, 질병, 조직, 또는 세포 유형 분석을 위한 도서관을 선정하기 위하여.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `organism` | 문자열 | 선택 사항; 기본: "human"; 텀: &#91;"human", "fly", "yeast", "worm", "fish"&#93; |
+
+```javascript
+const result = await host.mcp("genes", "list_enrichr_libraries", {"organism": "human"})
+```
+
+### `enrich_gene_set_enrichr` {/* #enrich_gene_set_enrichr */}
+
+Enrichr은 Enrichr 라이브러리에 의해 허용된 유전자 기호 또는 식별자를 위한 풍부를 실행합니다. 이 보완 g : transcription-factor, perturbation, 약, 질병, 조직 및 세포 유형 라이브러리를 가진 Profiler. 사용자 정의 배경은 Speedrichr API을 사용하고 현재 인간의 배포에만 지원됩니다. Enrichr는 unmapped 식별자를 보고하지 않습니다, 그래서 mapping_status는 항상 not_reported_by_enrichr입니다. 유전자 목록은 외부 Enrichr 서비스에 제출됩니다. 업로드는 임시 외부 부작용이며 나중에 라이브러리 요청이 실패하면 자동으로 다시 압연되지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `genes` | 문자열 배열 | **필수**; 최소품목: 1; 최대품목: 5000 |
+| `libraries` | 문자열 배열 | **필수**; 최소품목: 1; 최대품목: 10 |
+| `background_genes` | 문자열 배열 | 선택 사항; 최소품목: 1; 최대품목: 20000 |
+| `organism` | 문자열 | 선택 사항; 기본: "human"; 텀: &#91;"human", "fly", "yeast", "worm", "fish"&#93; |
+| `description` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200 |
+| `max_results` | 정수 | 선택 사항; 기본: 100; 최소: 1; 최대: 500 |
+
+```javascript
+const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
 </ToolOperationGroup>
@@ -1623,6 +1652,170 @@ ChEMBL id (Open Targets Platform)의 약물 세부 사항 - 이름, 유형, 최�
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "open_targets_drug", {"chembl_id": "CHEMBL1201583"})
+```
+
+### `clinpgx_search_chemicals` {/* #clinpgx_search_chemicals */}
+
+약물유전체 주석을 조회하기 전에 ClinPGx accession ID 또는 이름으로 ClinPGx 약물/화학물질 레코드를 확인합니다.
+
+`accessionId` / `name`의 최소 하나를 제공합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `accessionId` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `name` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `view` | 문자열 | 선택 사항; 기본: "base"; 크기: "min", "base", "max" |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_chemicals", {"name": "warfarin", "view": "max"})
+```
+
+### `clinpgx_search_genes` {/* #clinpgx_search_genes */}
+
+약물유전체 주석을 조회하기 전에 ClinPGx accession ID 또는 HGNC 기호로 ClinPGx 유전자 레코드를 확인합니다.
+
+`accessionId` / `symbol`의 최소 하나를 제공합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `accessionId` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `symbol` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `view` | 문자열 | 선택 사항; 기본: "base"; 크기: "min", "base", "max" |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_genes", {"symbol": "VKORC1", "view": "max"})
+```
+
+### `clinpgx_search_summary_annotations` {/* #clinpgx_search_summary_annotations */}
+
+약물, 유전자 및 변이를 연결하는 ClinPGx 임상 주석을 검색합니다. 근거 수준 1A, 1B, 2A, 2B, 3 또는 4로 필터링하고 원본 기록을 보존합니다.
+
+`relatedChemicals.accessionId`/`relatedChemicals.name`/`location.genes.symbol`/`location.fingerprint`/`id`의 적어도 하나 제공하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `id` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `relatedChemicals.accessionId` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `relatedChemicals.name` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `location.genes.symbol` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `location.fingerprint` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `view` | 문자열 | 선택 사항; 기본: "base"; 크기: "min", "base", "max" |
+| `levelOfEvidence.term` | 문자열 | 선택 사항; 크기: " 1A", " 1B", " 2A", " 2B", " 3", " 4"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_summary_annotations", {"relatedChemicals.name": "warfarin", "location.genes.symbol": "VKORC1", "levelOfEvidence.term": "1A", "view": "max"})
+```
+
+### `clinpgx_get_summary_annotation` {/* #clinpgx_get_summary_annotation */}
+
+숫자 ClinPGx 레코드 ID로 ClinPGx 임상 주석 하나를 가져옵니다. 연결된 약물, 유전자, 변이, 표현형 및 증거 수준을 포함합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `id` | 숫자 | **필수**; 최소: 1 |
+| `view` | 문자열 | 선택 사항; 기본: "base"; 크기: "min", "base", "max" |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_summary_annotation", {"id": 655385012, "view": "max"})
+```
+
+### `clinpgx_search_variant_annotations` {/* #clinpgx_search_variant_annotations */}
+
+유전자 기호 또는 변이 지문(일반적으로 rsID)으로 ClinPGx 변이 주석을 검색합니다.
+
+`location.genes.symbol` / `location.fingerprint`의 최소 하나를 제공합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `location.genes.symbol` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `location.fingerprint` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `view` | 문자열 | 선택 사항; 기본: "base"; 크기: "min", "base", "max" |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_variant_annotations", {"location.fingerprint": "rs1799853", "view": "max"})
+```
+
+### `clinpgx_search_guideline_annotations` {/* #clinpgx_search_guideline_annotations */}
+
+CPIC, DPWG 또는 PharmGKB/PRO의 ClinPGx 약물유전체 용량 지침 주석을 검색합니다.
+
+`source` / `relatedChemicals.accessionId` / `relatedGenes.accessionId`의 최소 1개 제공
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `source` | 문자열 | 위의 조건에 따라; 한국어 (ko)"뚱 베어"· "뚱 베어"· "뚱 베어"· |
+| `relatedChemicals.accessionId` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `relatedGenes.accessionId` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `view` | 문자열 | 선택 사항; 기본: "base"; 크기: "min", "base", "max" |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_guideline_annotations", {"source": "cpic", "relatedGenes.accessionId": "PA267", "view": "max"})
+```
+
+### `clinpgx_search_drug_labels` {/* #clinpgx_search_drug_labels */}
+
+FDA, EMA, PMDA 또는 Health Canada의 ClinPGx 규제 약물유전체 약물 라벨을 검색합니다.
+
+`source`/`relatedChemicals.accessionId`/`relatedChemicals.name`/`relatedGenes.accessionId`/`relatedGenes.symbol`의 적어도 하나 제공하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `source` | 문자열 | 위의 조건에 따라; 모델 번호: &#91;"fda", "ema", "pmda", "hcsc"&#93; |
+| `relatedChemicals.accessionId` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `relatedChemicals.name` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `relatedGenes.accessionId` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `relatedGenes.symbol` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `view` | 문자열 | 선택 사항; 기본: "base"; 크기: "min", "base", "max" |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_drug_labels", {"source": "fda", "relatedChemicals.name": "clopidogrel", "view": "max"})
+```
+
+### `clinpgx_search_variants` {/* #clinpgx_search_variants */}
+
+dbSNP rsID 또는 다른 변이 기호로 ClinPGx 약물유전체 변이를 확인합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `symbol` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+| `view` | 문자열 | 선택 사항; 기본: "base"; 크기: "min", "base", "max" |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_variants", {"symbol": "rs1799853", "view": "max"})
+```
+
+### `clinpgx_get_variant_frequency` {/* #clinpgx_get_variant_frequency */}
+
+rsID와 같은 변이 지문에 대해 ClinPGx가 보고한 집단별 변이 빈도를 가져옵니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `fp` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_variant_frequency", {"fp": "rs1799853"})
+```
+
+### `clinpgx_get_drug_gene_variant` {/* #clinpgx_get_drug_gene_variant */}
+
+공유 connection report를 사용하여 두 객체(예: 약물과 유전자) 사이의 ClinPGx 쌍별 연결을 조회합니다. 각 객체에 하나의 식별자를 제공하세요. 약물-유전자-변이 임상 주석에는 summary annotation을 사용하세요.
+
+이 그룹은 적어도 하나의 제공: `object1Id` / `object1Name` / `object1Type`.
+
+이 그룹은 적어도 하나의 제공: `object2Id` / `object2Name` / `object2Type`.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `object1Id` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `object1Name` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `object1Type` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `object2Id` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `object2Name` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `object2Type` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 패턴 : " \ S" |
+| `view` | 문자열 | 선택 사항; 기본: "base"; 크기: "min", "base", "max" |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
 ```
 
 </ToolOperationGroup>
@@ -2742,6 +2935,21 @@ const result = await host.mcp("protein-annotation", "get_string_similarity_score
 
 ```javascript
 const result = await host.mcp("protein-annotation", "get_string_best_similarity_hits", {"symbols": ["TP53"], "target_species": 10090})
+```
+
+### `get_string_ppi_enrichment` {/* #get_string_ppi_enrichment */}
+
+STRING 단백질 단백질 단백질 상호 작용은 유전자 명부 (v12.0)를 위해 풍부하게 합니다. 맵핑 된 단백질이 STRING 배경 배포에서 예상보다 더 많은 상호 작용을 가지고 있는지 테스트, STRING 단백질 ID의 옵션 배경 세트와.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `symbols` | 문자열 배열 | **필수** |
+| `species` | 정수 | 선택 사항; 기본: 9606 |
+| `required_score` | 정수 | 선택 사항; 기본: 400 |
+| `background_string_ids` | 문자열 배열 | 옵션 정보 |
+
+```javascript
+const result = await host.mcp("protein-annotation", "get_string_ppi_enrichment", {"symbols": ["TP53", "BRCA1", "EGFR"], "required_score": 700})
 ```
 
 </ToolOperationGroup>

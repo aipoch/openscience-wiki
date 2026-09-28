@@ -1,7 +1,7 @@
 ---
 title: "Внешний вид и уведомления"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -149,3 +149,13 @@ import Screenshot from '@site/src/components/Screenshot';
 
 
 Источник: [Общие настройки](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
+
+## Отрегулируйте размер интерфейса приложения {/* #interface-scale */}
+
+1. Открыть **Settings → General → Appearance → Interface scale**.
+2. Выберите **90%**, **100%**, **110%** или **125%**. Текст и элементы управления изменяют размер сразу, и выбор запоминается на этом устройстве.
+3. Выберите **100%** или нажмите &lt;unk>0 (macOS) / Ctrl + 0 (Windows / Linux) для сброса. Используйте &lt;unk>+/Ctrl++ для увеличения и &lt;unk>−/Ctrl+− для уменьшения масштаба.
+
+![Выбор масштаба интерфейса в общих настройках](/img/open-science/v0333/interface-scale.webp)
+
+Это управляет интерфейсом настольного приложения. Изображение или PDF предварительного просмотра влияет только на вид файла. При доступе к Open-Science в браузере используйте зум браузера. Масштабирование дисплея Windows также влияет на другие приложения. Используйте вышеприведенное управление, когда вы хотите изменить размер Open-Science.

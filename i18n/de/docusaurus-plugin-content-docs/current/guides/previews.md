@@ -1,7 +1,7 @@
 ---
 title: "Öffnen und Vorschauen von Dateien"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -64,12 +64,16 @@ Die <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-reading.docx">W
 
 | Format | Schritte und was zu überprüfen ist |
 | --- | --- |
-| DOCX | Befestigen und öffnen Sie den Bericht. Scrollen Sie durch beide Seiten; Prüfen Sie die erste Musterzeile und den Methoden-/Interpretationstext. Vollbild-Vorschau gibt langen Linien mehr Platz. Es gibt kein Word Editing Ribbon. |
+| DOCX | Öffnen Sie den Bericht. Verwendung **Previous / Next** um beide Seiten zu besuchen oder **Gliederung** zu einer Überschrift springen. Drücken Sie &lt;0xE2>&lt;0x8C>&lt;0x98>F (macOS) oder Strg+F (Windows/Linux), suchen Sie nach `raw-count` und überprüfen Sie seine Übereinstimmungen und die Methoden. Full-Screen-Vorschau gibt mehr Platz; Es gibt kein Word Editing Ribbon. |
 | XLSX | Öffnen Sie die Arbeitsmappe und wählen Sie **Zusammenfassung** oder **Proben** unten. Scrollen Sie horizontal für die letzte Spalte. Samples enthält 12-Datenzeilen plus Kopfzeile, Abstand und Quellnotizen; Der Viewer meldet 17 verwendete Zeilen, nicht 17 biologische Proben. Werte sind eine Vorschau der gespeicherten Arbeitsmappe, kein Beweis für eine neue Berechnung. |
-| PPTX | Öffnen Sie die Folien und scrollen Sie vertikal von der QC-Zusammenfassung zu Methoden und Interpretation. Beide Folien sind im lokalen Beispiel dargestellt. Diese Lesefläche ist kein Präsentationseditor oder Diashow-Controller. |
+| PPTX | Öffnen Sie die Folien, wählen Sie die **Seite 2** Thumbnail oder **Weiter**, und Kontrolle **2 / 2**. Verwenden Sie **Finden Sie** um zu suchen nach `normalization` auf dem Methodenträger. **Notes** zeigt eingebettete Lautsprechernotizen an; Dies ist eine Lesefläche, kein Präsentationseditor. |
 | TIFF | Öffnen Sie die Figur und verwenden Sie **Nächste Seite / Vorherige Seite**. Die beiden Seiten zeigen rohe Bibliotheksgrößen und detektierte Genmediane. **Zoom in / Zoom out / Zoom zurücksetzen** die Ansicht ändert; Überprüfung **Seite 1 von 2** oder **Seite 2 von 2** bevor die Figur interpretiert wird. |
-| JSON | Öffnen <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">Zusammenfassung</ExampleDownload> um Quelltext, Identifikatoren und Werte zu überprüfen. Es wird als Code und nicht als erweiterbarer Objektbaum angezeigt. |
-| HTML | Öffnen <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">der Lesetisch</ExampleDownload>. **Source** zeigt die HTML; **Render** stellt das formatierte Dokument wieder her. Kein Modus wiederholt den QC. |
+| JSON | Öffnen Sie <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">Zusammenfassung</ExampleDownload> um Quelltext, Identifikatoren und Werte zu überprüfen. Es wird als Code und nicht als erweiterbarer Objektbaum angezeigt. |
+| HTML | Öffnen Sie <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">der Lesetisch</ExampleDownload>. **Source** zeigt die HTML; **Render** stellt das formatierte Dokument wieder her. Kein Modus wiederholt den QC. |
+
+![Seitensteuerung und tatsächliche Textübereinstimmungen in der Word-Lesekopie](/img/open-science/v0333/word-search.webp)
+
+![Die zweite PowerPoint-Seite, Navigations-Miniaturansichten und Suchabgleich](/img/open-science/v0333/powerpoint-pages.webp)
 
 ![Auswählen von Samples in der Vorschau der eigentlichen Arbeitsmappe](/img/open-science/local-todo-batch/47-workbook-samples.webp)
 
@@ -187,3 +191,7 @@ Die Antwort ruft Passagen aus dem verknüpften PDF ab und identifiziert das Papi
 ![Eine englische Antwort neben dem ursprünglichen PDF, wobei der Lesekontext beibehalten wurde](/img/open-science/v0331/pdf-first-response.webp)
 
 Für Highlights und Notizen auf Dokumentebene fahren Sie mit [PDF-Anmerkungen](pdf-notes.md) fort.
+
+## Halten Sie eine Quell-Website angemeldet {/* #persistent-source-preview */}
+
+Die integrierte Browservorschau für Live-Source-Websites behält ihre Website-Sitzung über Besuche und App-Neustarts hinweg bei. Wenn eine Quelle ein bestehendes Konto benötigt, melden Sie sich auf der Seite dieser Quelle an und lesen Sie weiter. Das Schließen der Vorschau wird nicht von der Website abgemeldet; Verwenden Sie bei Bedarf die eigene Abmeldeaktion der Website. Die Beibehaltung eines Logins gibt dem Agenten nicht automatisch Volltextzugriff oder ändert die Netzwerkzugriffsregeln.

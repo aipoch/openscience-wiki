@@ -1,7 +1,7 @@
 ---
 title: "Artikel mit einer intelligenten Sammlung auswählen"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,8 @@ Um einen laufenden Durchlauf zu unterbrechen, wählen Sie **Pause** (beschriftet
 Klicken Sie auf die **Evaluation details** einer Zeile, um die Entscheidung, die Übereinstimmungsergebnisse, die Beweise und die Modellhistorie zu überprüfen. Scores beschreiben Regel-Matching; Es handelt sich nicht um Messungen der Studienqualität oder der Effektgröße.
 
 ![Eine tatsächliche unsichere Entscheidung mit Titel-und-abstrakten Beweisen und Modellergebnissen](/img/open-science/v0330/screening-review.webp)
+
+Wenn Sie die aktuelle Auswertung nicht mehr benötigen, wählen Sie **Lauf aufgeben**, wenn Sie angeboten werden, und bestätigen Sie. Abgeschlossene Ergebnisse bleiben, aber dieser Lauf kann nicht wieder aufgenommen werden; Sie können später eine separate Auswertung starten. Verwenden Sie **Pause/Resume Analyse** für eine vorübergehende Pause. Durch das Aufgeben eines Laufs werden keine Papiere gelöscht oder abgeschlossene manuelle Entscheidungen rückgängig gemacht.
 
 ## 5. Überprüfen und bestätigen Sie das Leseset {/* #screening-review */}
 

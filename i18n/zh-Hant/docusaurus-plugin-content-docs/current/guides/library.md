@@ -1,7 +1,7 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,15 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 選擇正確檢視 {/* #选择正确视图 */}
 
-從 Home 或工作區進入 **Library**，**Back to Home** 返回專案。文獻庫內 **Settings** 開啟引文樣式，不是全域模型設定。
+從 Home 開啟 **Library** 會進入完整文獻庫；在專案工作區點選左側 **Library**，則在右側開啟緊湊預覽。
+
+1. 在預覽頂部選擇 **Current project** 或 **All references**，再用 **Search references** 查詢已有記錄。
+2. 點選 **Abstract** 閱讀摘要，使用 **Show more** 展開。**No PDF attached** 表示該條目還沒有 PDF，不能把摘要當作全文。
+3. 需要篩選集合、匯入或管理記錄時，選擇 **Open in Literature**，或條目中的 **View in Literature**。
+
+![在檢索會話旁閱讀當前專案文獻摘要](/img/open-science/v0333/library-preview.webp)
+
+完整文獻庫的 **Back to Project / Back to Home** 返回之前的位置；其 **Settings** 開啟引用樣式設定。
 
 | 檢視 | 內容 | 用途 |
 | --- | --- | --- |
@@ -119,6 +127,8 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 檢查和修正後設資料 {/* #检查和修正元数据 */}
 
+從 v0.33.3 起，透過 Crossref 補全後設資料時會帶入來源返回的摘要。補全後檢查 **Abstract** 和原始記錄；來源未提供摘要時，該更新不會生成摘要或取得全文。
+
 條目 **More actions → Edit metadata** 開啟當前欄位。**Complete metadata** 會查詢來源，與純本地編輯不同。
 
 ![已儲存並重新開啟的機構作者欄位](/img/open-science/v0.27.0/04-organization-author.webp)
@@ -157,6 +167,12 @@ v0.30.2 更正了 PubMed 作者姓名的解析，包括姓氏、名字縮寫和�
 **Trial run (up to 20 references)** 儲存結果，**Live rule preview** 只評估草稿而不儲存。**Update automatically** 適用於所選範圍內新增或變化的記錄，預設需主動開啟，並可能產生分類費用；它不會去文獻庫之外發現新論文。完整操作見[從檢索到複核匯出的篩選工作流](../workflows/screen-literature.md)。
 
 執行時開啟 **Screening process** 檢視進度，使用 **Pause / Resume analysis** 暫停或繼續；規則、文獻或進度變化可能使原執行無法繼續。**Back to results** 返回結果列表。範圍中的 **Project** 和 **Collection** 標記區分來源型別，點選範圍可跳轉到來源；它們不表示多人共享權限。
+
+### 結束不再需要繼續的篩選 {/* #abandon-screening */}
+
+在暫停或中斷的評估旁出現 **Abandon run** 時，點選它並閱讀確認框。確認放棄後，已完成結果會保留，這次執行不能再恢復；它不會刪除論文或清空集合。若只是暫時離開，使用 **Pause / Resume analysis**。
+
+若自動更新仍開啟，今後新建或變更的記錄仍可觸發新評估；放棄一次執行不等於關閉 **Update automatically**。日常文獻操作的批准規則見 [Auto 模式](approval-modes.md#library-auto)。
 
 ## 整理已接受記錄 {/* #整理已接受记录 */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Atajos de teclado"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -81,3 +81,13 @@ Fuentes: [teclado de búsqueda global](https://github.com/aipoch/open-science/bl
 ## Buscar dentro del panel de configuración actual {/* #local-settings-search */}
 
 En Ajustes, **. . .** (macOS) o **Ctrl+K** (Windows/Linux) centra la búsqueda de encabezados a través de la configuración. **XXXK** o **Ctrl+Alt+K** centra el campo de búsqueda elegible en el panel o diálogo actual. El atajo local necesita un campo de búsqueda local disponible; no abre la búsqueda a nivel de aplicación o búsqueda de texto PDF.
+
+## Escala de interfaz de escritorio {/* #interface-scale-shortcuts */}
+
+| Medida | macOS | Windows / Linux |
+| --- | --- | --- |
+| Aumentar un paso | ⌘+ | Ctrl++ |
+| Disminuir un paso | ⌘− | Ctrl+− |
+| Reiniciar a 100% | ⌘0 | Ctrl+0 |
+
+Estos atajos comparten los pasos 90%, 100%, 110% y 125% en **Settings → General → Appearance → Interface scale**. Ver [tamaño de la interfaz](appearance.md#interface-scale). Ampliar vista de archivos y escalar de aplicaciones enteras son controles separados.

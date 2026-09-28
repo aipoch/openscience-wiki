@@ -1,7 +1,7 @@
 ---
 title: "Raccourcis clavier"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -81,3 +81,13 @@ Sources: [Gestion globale du clavier de recherche](https://github.com/aipoch/ope
 ## Recherche dans le panneau des paramètres actuels {/* #local-settings-search */}
 
 Dans les paramètres, **- Oui.** (macOS) ou **Ctrl+K** (Windows/Linux) focalise la recherche d'en-tête sur les paramètres. **K** ou **Ctrl+Alt+K** concentre le champ de recherche admissible dans le panneau ou la boîte de dialogue en cours. Le raccourci local a besoin d'un champ de recherche local disponible; il n'ouvre pas la recherche dans l'ensemble de l'application ou la recherche texte PDF.
+
+## Échelle d'interface de bureau {/* #interface-scale-shortcuts */}
+
+| Décision | macOS | Windows / Linux |
+| --- | --- | --- |
+| Augmenter une étape | ⌘+ | Ctrl++ |
+| Diminution d'une étape | ⌘− | Ctrl+− |
+| Réinitialiser à 100% | ⌘0 | Ctrl+0 |
+
+Ces raccourcis partagent les étapes 90%, 100%, 110% et 125% dans **Settings → General → Appearance → Interface scale**. Voir [taille de l'interface](appearance.md#interface-scale). Le zoom avant-fichier et la mise à l'échelle de l'application entière sont des commandes séparées.

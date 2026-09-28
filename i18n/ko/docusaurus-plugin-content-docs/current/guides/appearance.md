@@ -1,7 +1,7 @@
 ---
 title: "외관 및 알림"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -149,3 +149,13 @@ import Screenshot from '@site/src/components/Screenshot';
 
 
 근원: [일반 설정](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
+
+## 앱의 인터페이스 크기를 조정 {/* #interface-scale */}
+
+1. **Settings → General → Appearance → Interface scale**을 엽니다.
+2. **90%**, **100%**, **110%** 또는 **125%**를 선택하십시오. 텍스트와 컨트롤은 즉시 크기를 조정하고, 선택은이 장치에 기억됩니다.
+3. **100%**을 선택하거나 ⌘0 (macOS) / Ctrl + 0 (Windows / Linux)를 눌러 재설정하십시오. ⌘+ / Ctrl++를 사용하여 증가하고 ⌘− / Ctrl+− 스케일을 줄일 수 있습니다.
+
+![일반 설정에서 인터페이스 스케일 선택](/img/open-science/v0333/interface-scale.webp)
+
+데스크톱 앱의 인터페이스를 제어합니다. 이미지 또는 PDF 미리보기 급상승은 파일 보기만 영향을 미칩니다. 브라우저에서 Open-Science에 액세스할 때 브라우저의 줌을 사용하십시오. Windows 전시는 또한 다른 앱에 영향을 미칩니다; Open-Science 크기를 변경하려면 위의 컨트롤을 사용하십시오.

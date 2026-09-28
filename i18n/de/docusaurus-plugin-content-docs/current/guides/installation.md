@@ -1,7 +1,7 @@
 ---
 title: "Installation und Aktualisierungen"
 last_update:
-  date: '2026-09-20'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -44,6 +44,9 @@ Homebrew wählt Apple Silicon oder Intel automatisch aus. Öffnen Sie nach der I
 
 <PlatformContent platform="windows">
 
+Offizielle Windows-Installateure sind von v0.33.2 signiert; v0.33.3 erweitert die Signatur auf gebündelte ausführbare Dateien. Laden Sie von [Offizielle Download-Seite](https://aipoch.com/open-science/download) oder [GitHub Releases](https://github.com/aipoch/open-science/releases) herunter und folgen Sie den offiziellen Verifizierungshinweisen, um die Paketquelle zu überprüfen.
+
+
 | Computer | Identifizieren Sie die Architektur | Paket und Installation |
 | --- | --- | --- |
 | Windows | Einstellungen → System → Über → Systemtyp | Wählen Sie das Matching `win-…-setup.exe`; Führen Sie den aktuellen Benutzer-Installer aus und folgen Sie seinen Standortaufforderungen |
@@ -70,7 +73,7 @@ Der Installationsordner enthält die Anwendung; **Data location** im Einrichtung
 
 Sie benötigen Git, Node.js 22, npm und die Plattformbauvoraussetzungen für Electron. Installieren oder wählen Sie ein Agent-Framework in der Anwendung aus. Während der Installation generiert das Repository den Prisma Client, wendet App-Patches an und bereitet native Electron-Abhängigkeiten vor.
 
-Wählen Sie für eine reproduzierbare Quellinstallation das vorgesehene Release-Tag aus [Changelog](../changelog/v0.31.1.md), bevor Sie Abhängigkeiten installieren. Ein Standardklon folgt dem Branch und nicht einem festen Release. Notieren Sie die ausgewählten Tag-, Source-Commit- und Runtime-Versionen, damit eine andere Person die Umgebung reproduzieren kann.
+Wählen Sie für eine reproduzierbare Quellinstallation das vorgesehene Release-Tag aus [Changelog](../changelog/v0.33.3.md), bevor Sie Abhängigkeiten installieren. Ein Standardklon folgt dem Branch und nicht einem festen Release. Notieren Sie die ausgewählten Tag-, Source-Commit- und Runtime-Versionen, damit eine andere Person die Umgebung reproduzieren kann.
 
 Ersetzen Sie `RELEASE_TAG` unten durch das genaue Tag, das auf dem ausgewählten Release angezeigt wird (einschließlich des führenden `v`). Um der laufenden Entwicklung zu folgen, lassen Sie stattdessen `--branch RELEASE_TAG --depth 1` weg; Dieser Checkout folgt dem Default Branch.
 

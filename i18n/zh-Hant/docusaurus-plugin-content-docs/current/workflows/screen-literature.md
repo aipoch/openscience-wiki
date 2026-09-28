@@ -1,7 +1,7 @@
 ---
 title: "用智慧集合篩選文獻"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,8 @@ Keep the output in English.
 點選行內 **Evaluation details**，檢視決定、匹配分數、證據和模型歷史。分數描述規則匹配程度，不衡量研究質量或效應大小。
 
 ![實際的不確定判斷、標題摘要證據及模型分數](/img/open-science/v0330/screening-review.webp)
+
+若不再需要繼續當前評估，在可用時選擇 **Abandon run** 並確認。已完成結果會保留，但這次執行無法恢復；稍後仍可另開一次評估。需要暫時停下再繼續時，使用 **Pause / Resume analysis**。不要把放棄執行理解成刪除論文或撤銷已完成的人工決定。
 
 ## 5. 複核並確認閱讀集 {/* #screening-review */}
 

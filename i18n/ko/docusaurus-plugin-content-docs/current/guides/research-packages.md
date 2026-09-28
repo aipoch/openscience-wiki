@@ -2,7 +2,7 @@
 title: ".science 연구 패키지"
 description: "파일 및 증거와 함께 세션을 내보내고 다른 프로젝트에 대한 연구 기록을 검사합니다."
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -95,6 +95,14 @@ Keep everything in English and return links to both new files.
 새 파일 두 개는 Fork에 저장되며, 원본 세션과 가져온 세션의 요약 파일은 변경되지 않습니다. 일반적인 사용 방법은 [기존 세션 Fork](sessions.md#fork-session)를 참고하세요. 가져온 사용량은 로컬 활동 합계에 포함되지 않습니다.
 
 수신 확인 기록은 sender에 의해 공급된 검사를 설명합니다. 이 컴퓨터에서 검증을 다시 실행했다는 뜻은 아닙니다. 파일 버젼, 비교 기준 및 결과 읽기; [재현성](reproducibility.md)을 참조하여 확인 작업을 수행하는 방법.
+
+## 전송 속도를 조정하고 배경 진도를 따르십시오 {/* #transfer-settings */}
+
+수출의 앞에, **Customize contents → Transfer settings**를 선택하십시오. 수출 또는 수입 중, **전송 세부 정보** 확장. 자동 조정을 위해 **디스크 활동 제한**에 **Auto**를 놓거나 조정 한계를 선택하십시오. 더 낮은 한계는 디스크 활동을 감소시키고 더 긴 가지고 갑니다. 이 제한을 공유하고 쓰기; 그것은 인터넷 업로드 속도가 아닙니다.
+
+**Run in background**을 선택하여 대화 상자가 숨겨져있는 작업을 계속하십시오. 현재 파일, 진행 상황 및 디스크 활동을 검사하기 위해 창의 배경 진도 항목에서 세부 정보를 엽니다. 수출된 파일을 검사하기 전에 완료를 기다리거나 수입 된 세션을 열어보십시오.
+
+![연구-패키지 전송 설정에서 Disk activity limit](/img/open-science/v0333/package-transfer.webp)
 
 ## 취소 또는 송금 {/* #cancel-or-retry-a-transfer */}
 

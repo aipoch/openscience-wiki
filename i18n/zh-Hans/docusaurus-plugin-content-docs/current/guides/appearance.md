@@ -1,7 +1,7 @@
 ---
 title: "外观与通知"
 last_update:
-  date: '2026-09-16'
+  date: '2026-09-28'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -149,3 +149,13 @@ import Screenshot from '@site/src/components/Screenshot';
 
 
 源码：[General 设置](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx)。
+
+## 调整应用内界面大小 {/* #interface-scale */}
+
+1. 打开 **Settings → General → Appearance → Interface scale**。
+2. 选择 **90%**、**100%**、**110%** 或 **125%**。文字和控件立即缩放，并在这台设备上记住选择。
+3. 需要恢复默认大小时选择 **100%**，或按 ⌘0（macOS）／Ctrl+0（Windows/Linux）。⌘+／Ctrl++ 放大，⌘−／Ctrl+− 缩小。
+
+![General 中的 Interface scale 选项](/img/open-science/v0333/interface-scale.webp)
+
+这是桌面应用的界面大小设置；图像或 PDF 预览里的缩放只影响当前文件。通过浏览器访问时使用浏览器自己的缩放。Windows 系统显示缩放影响其他应用，需要只调整 Open-Science 时优先使用上述入口。

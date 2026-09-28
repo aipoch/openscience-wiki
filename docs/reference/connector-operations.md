@@ -2,7 +2,7 @@
 title: "Connector operation reference"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Return field names differ by operation. The descriptions and downloadable schema
 
 ## Operation inputs
 
-Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.33.1** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.1.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
+Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.33.3** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.3.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
 
 
 ## Chemistry {/* #family-1 */}
@@ -710,6 +710,35 @@ Run g:Profiler g:GOSt enrichment for a gene set across GO, Reactome, KEGG, WikiP
 
 ```javascript
 const result = await host.mcp("genes", "enrich_gene_set", {"genes": ["TP53", "EGFR", "BRCA1"], "organism": "hsapiens", "sources": ["GO:BP", "REAC"], "correction_method": "fdr"})
+```
+
+### `list_enrichr_libraries`
+
+List the current Enrichr gene-set libraries and their coverage statistics for one supported Enrichr deployment. The human deployment covers human and mouse libraries; other supported organisms use their dedicated deployments. Use this before enrich_gene_set_enrichr to select libraries for transcription-factor, perturbation, drug, disease, tissue, or cell-type analysis.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `organism` | string | optional; default: &quot;human&quot;; enum: [&quot;human&quot;, &quot;fly&quot;, &quot;yeast&quot;, &quot;worm&quot;, &quot;fish&quot;] |
+
+```javascript
+const result = await host.mcp("genes", "list_enrichr_libraries", {"organism": "human"})
+```
+
+### `enrich_gene_set_enrichr`
+
+Run Enrichr enrichment for gene symbols or identifiers accepted by selected Enrichr libraries. This complements g:Profiler with transcription-factor, perturbation, drug, disease, tissue, and cell-type libraries. A custom background uses the Speedrichr API and is currently supported only for the human deployment. Enrichr does not report unmapped identifiers, so mapping_status is always not_reported_by_enrichr. Gene lists are submitted to the external Enrichr service; uploads are temporary external side effects and are not automatically rolled back if a later library request fails.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `genes` | array of string | **required**; minItems: 1; maxItems: 5000 |
+| `libraries` | array of string | **required**; minItems: 1; maxItems: 10 |
+| `background_genes` | array of string | optional; minItems: 1; maxItems: 20000 |
+| `organism` | string | optional; default: &quot;human&quot;; enum: [&quot;human&quot;, &quot;fly&quot;, &quot;yeast&quot;, &quot;worm&quot;, &quot;fish&quot;] |
+| `description` | string | optional; minLength: 1; maxLength: 200 |
+| `max_results` | integer | optional; default: 100; minimum: 1; maximum: 500 |
+
+```javascript
+const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
 </ToolOperationGroup>
@@ -1623,6 +1652,170 @@ Drug details by ChEMBL id (Open Targets Platform) — name, type, maximum clinic
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "open_targets_drug", {"chembl_id": "CHEMBL1201583"})
+```
+
+### `clinpgx_search_chemicals`
+
+Resolve ClinPGx drug/chemical records by ClinPGx accession id or name before querying pharmacogenomic annotations.
+
+Provide at least one of: `accessionId` / `name`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accessionId` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `name` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | optional; default: &quot;base&quot;; enum: [&quot;min&quot;, &quot;base&quot;, &quot;max&quot;] |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_chemicals", {"name": "warfarin", "view": "max"})
+```
+
+### `clinpgx_search_genes`
+
+Resolve ClinPGx gene records by ClinPGx accession id or HGNC symbol before querying pharmacogenomic annotations.
+
+Provide at least one of: `accessionId` / `symbol`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accessionId` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `symbol` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | optional; default: &quot;base&quot;; enum: [&quot;min&quot;, &quot;base&quot;, &quot;max&quot;] |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_genes", {"symbol": "VKORC1", "view": "max"})
+```
+
+### `clinpgx_search_summary_annotations`
+
+Search ClinPGx clinical annotations linking a drug, gene, and variant. Filter by evidence level 1A, 1B, 2A, 2B, 3, or 4 and retain the original source record.
+
+Provide at least one of: `relatedChemicals.accessionId` / `relatedChemicals.name` / `location.genes.symbol` / `location.fingerprint` / `id`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedChemicals.accessionId` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedChemicals.name` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `location.genes.symbol` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `location.fingerprint` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | optional; default: &quot;base&quot;; enum: [&quot;min&quot;, &quot;base&quot;, &quot;max&quot;] |
+| `levelOfEvidence.term` | string | optional; enum: [&quot;1A&quot;, &quot;1B&quot;, &quot;2A&quot;, &quot;2B&quot;, &quot;3&quot;, &quot;4&quot;] |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_summary_annotations", {"relatedChemicals.name": "warfarin", "location.genes.symbol": "VKORC1", "levelOfEvidence.term": "1A", "view": "max"})
+```
+
+### `clinpgx_get_summary_annotation`
+
+Retrieve one ClinPGx clinical annotation by its numeric ClinPGx record id, including linked drug, gene, variant, phenotype, and evidence level.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id` | number | **required**; minimum: 1 |
+| `view` | string | optional; default: &quot;base&quot;; enum: [&quot;min&quot;, &quot;base&quot;, &quot;max&quot;] |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_summary_annotation", {"id": 655385012, "view": "max"})
+```
+
+### `clinpgx_search_variant_annotations`
+
+Search ClinPGx variant annotations by gene symbol or variant fingerprint (commonly an rsID).
+
+Provide at least one of: `location.genes.symbol` / `location.fingerprint`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `location.genes.symbol` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `location.fingerprint` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | optional; default: &quot;base&quot;; enum: [&quot;min&quot;, &quot;base&quot;, &quot;max&quot;] |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_variant_annotations", {"location.fingerprint": "rs1799853", "view": "max"})
+```
+
+### `clinpgx_search_guideline_annotations`
+
+Search ClinPGx pharmacogenomic dosing guideline annotations from CPIC, DPWG, or PharmGKB/PRO.
+
+Provide at least one of: `source` / `relatedChemicals.accessionId` / `relatedGenes.accessionId`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `source` | string | subject to the conditions above; enum: [&quot;cpic&quot;, &quot;dpwg&quot;, &quot;pro&quot;] |
+| `relatedChemicals.accessionId` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedGenes.accessionId` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | optional; default: &quot;base&quot;; enum: [&quot;min&quot;, &quot;base&quot;, &quot;max&quot;] |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_guideline_annotations", {"source": "cpic", "relatedGenes.accessionId": "PA267", "view": "max"})
+```
+
+### `clinpgx_search_drug_labels`
+
+Search ClinPGx regulatory pharmacogenomic drug labels from FDA, EMA, PMDA, or Health Canada.
+
+Provide at least one of: `source` / `relatedChemicals.accessionId` / `relatedChemicals.name` / `relatedGenes.accessionId` / `relatedGenes.symbol`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `source` | string | subject to the conditions above; enum: [&quot;fda&quot;, &quot;ema&quot;, &quot;pmda&quot;, &quot;hcsc&quot;] |
+| `relatedChemicals.accessionId` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedChemicals.name` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedGenes.accessionId` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `relatedGenes.symbol` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | optional; default: &quot;base&quot;; enum: [&quot;min&quot;, &quot;base&quot;, &quot;max&quot;] |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_drug_labels", {"source": "fda", "relatedChemicals.name": "clopidogrel", "view": "max"})
+```
+
+### `clinpgx_search_variants`
+
+Resolve ClinPGx pharmacogenomic variants by dbSNP rsID or another variant symbol.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `symbol` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | optional; default: &quot;base&quot;; enum: [&quot;min&quot;, &quot;base&quot;, &quot;max&quot;] |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_variants", {"symbol": "rs1799853", "view": "max"})
+```
+
+### `clinpgx_get_variant_frequency`
+
+Retrieve population variant frequencies reported by ClinPGx for a variant fingerprint such as an rsID.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `fp` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_variant_frequency", {"fp": "rs1799853"})
+```
+
+### `clinpgx_get_drug_gene_variant`
+
+Query a pairwise ClinPGx connection between two objects (for example, a drug and a gene) using the shared connection report; provide one identifier for each object. Use summary annotations for a drug-gene-variant clinical annotation.
+
+For this group provide at least one of: `object1Id` / `object1Name` / `object1Type`.
+
+For this group provide at least one of: `object2Id` / `object2Name` / `object2Type`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `object1Id` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `object1Name` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `object1Type` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `object2Id` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `object2Name` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `object2Type` | string | subject to the conditions above; minLength: 1; pattern: &quot;\\S&quot; |
+| `view` | string | optional; default: &quot;base&quot;; enum: [&quot;min&quot;, &quot;base&quot;, &quot;max&quot;] |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
 ```
 
 </ToolOperationGroup>
@@ -2742,6 +2935,21 @@ Best homology hit per input protein in a target species (STRING /homology_best).
 
 ```javascript
 const result = await host.mcp("protein-annotation", "get_string_best_similarity_hits", {"symbols": ["TP53"], "target_species": 10090})
+```
+
+### `get_string_ppi_enrichment`
+
+STRING protein-protein interaction enrichment for a gene list (v12.0). Tests whether the mapped proteins have more interactions than expected from the STRING background distribution, with an optional background set of STRING protein IDs.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `symbols` | array of string | **required** |
+| `species` | integer | optional; default: 9606 |
+| `required_score` | integer | optional; default: 400 |
+| `background_string_ids` | array of string | optional |
+
+```javascript
+const result = await host.mcp("protein-annotation", "get_string_ppi_enrichment", {"symbols": ["TP53", "BRCA1", "EGFR"], "required_score": 700})
 ```
 
 </ToolOperationGroup>

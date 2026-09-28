@@ -1,7 +1,7 @@
 ---
 title: "開啟與預覽檔案"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -64,12 +64,16 @@ Markdown 渲染標題、列表、程式碼和連結。接受圖表前檢查校�
 
 | 格式 | 操作與檢查重點 |
 | --- | --- |
-| DOCX | 附加並開啟報告，滾動閱讀兩頁，檢查首個樣本的數值及方法與解釋。全屏預覽能容納較長行；這裡沒有 Word 編輯工具欄 |
+| DOCX | 開啟報告，使用 **Previous / Next** 檢視兩頁，或從 **Outline** 跳到標題。使用 ⌘F（macOS）或 Ctrl+F（Windows/Linux）查詢 `raw-count`，核對匹配位置和方法說明。可全屏閱讀；此處沒有 Word 編輯工具欄 |
 | XLSX | 開啟工作簿，在底部選擇 **Summary** 或 **Samples**。橫向滾動檢視最後一列。Samples 有 12 行樣本，加上表頭、間隔和來源說明共 17 個已用行；預覽顯示 17 行不表示有 17 個生物樣本。已儲存的單元格數值也不證明重新計算過公式 |
-| PPTX | 從 QC 摘要向下滾動到 Methods and interpretation。兩頁幻燈片均已在本地渲染；此處是閱讀檢視，不是編輯器或放映控制檯 |
+| PPTX | 開啟幻燈片，選擇左側 **Page 2** 縮圖或 **Next**，檢查 **2 / 2**。使用 **Find** 搜尋 `normalization`，核對方法頁的匹配。**Notes** 顯示檔案自帶的講者備註；此處不是簡報編輯器 |
 | TIFF | 用 **Next page / Previous page** 切換。兩頁分別顯示原始文庫大小和有計數基因的中位數。**Zoom in / Zoom out / Reset zoom** 只改變檢視；解釋影象前確認 **Page 1 of 2** 或 **Page 2 of 2** |
 | JSON | 開啟<ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">摘要檔案</ExampleDownload>檢查原始碼、識別符號和數值。它以程式碼顯示，不是可展開的物件樹 |
 | HTML | 開啟<ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">閱讀表格</ExampleDownload>，**Source** 檢視 HTML，**Render** 返回排版檢視，兩者都不會重跑 QC |
+
+![Word 中的分頁控制元件和正文搜尋結果](/img/open-science/v0333/word-search.webp)
+
+![PowerPoint 第二頁、縮圖和搜尋結果](/img/open-science/v0333/powerpoint-pages.webp)
 
 ![實際工作簿中選擇 Samples](/img/open-science/local-todo-batch/47-workbook-samples.webp)
 
@@ -189,3 +193,7 @@ can actually read.
 ![英文回覆與原始 PDF 並排展示，Reading 關聯仍然保留](/img/open-science/v0331/pdf-first-response.webp)
 
 高亮和整篇筆記的用法見 [PDF 批註](pdf-notes.md)。
+
+## 保留來源網頁的登入狀態 {/* #persistent-source-preview */}
+
+來源網頁的內建瀏覽器預覽會在再次訪問及應用重啟後保留登入會話等站點狀態。若頁面需要已有賬戶訪問，可在該來源頁面完成登入後繼續閱讀。關閉預覽不等於退出站點賬戶；需要退出時使用站點自己的退出入口。保留登入狀態不會自動授予代理全文讀取權限，也不會改變網路訪問規則。

@@ -1,7 +1,7 @@
 ---
 title: "Sélectionner des articles avec une collection intelligente"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,8 @@ Pour interrompre un passage en cours d'exécution, choisissez **Pause** (étique
 Cliquez sur **Evaluation details** d'une ligne pour inspecter sa décision, les scores correspondants, les preuves et l'historique du modèle. Les scores décrivent l'appariement des règles; ils ne sont pas des mesures de la qualité de l'étude ou de la taille des effets.
 
 ![Une véritable décision incertaine avec des preuves titre-abstract et des scores de modèle](/img/open-science/v0330/screening-review.webp)
+
+Si vous n'avez plus besoin de l'évaluation en cours, choisissez **Abandonner l’exécution** lorsque vous l'offrez et confirmez. Les résultats obtenus restent inchangés, mais cette course ne peut pas reprendre; vous pouvez commencer une évaluation séparée plus tard. Utilisez **Pause / Analyse des résidus** pour une pause temporaire. L'abandon d'une course ne supprime pas les documents ni ne annule les décisions manuelles.
 
 ## 5. Examiner et confirmer l'ensemble de lecture {/* #screening-review */}
 

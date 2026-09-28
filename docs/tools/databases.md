@@ -2,7 +2,7 @@
 title: "Scientific databases"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 # Scientific databases
@@ -13,25 +13,25 @@ Use this page to choose a data source, understand what it can return, and make i
 
 ## Supported databases {/* #supported-databases */}
 
-Open-Science v0.33.1 includes **27 data-source Connectors with 269 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 271. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+Open-Science v0.33.3 includes **27 data-source Connectors with 282 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 284. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
 
 | Connector | Sources | Operations | Use it for  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | Small-molecule chemistry via PubChem, ChEBI, Rhea and BindingDB.  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Papers, authors, citations, DOI updates and dataset/software records. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Biomedical literature via NCBI E-utilities, the PMC ID Converter and Europe PMC — search, metadata, related articles, citation lookup, ID conversion, full text and copyright.  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 13 | Gene/protein identifiers, UniProt sequence discovery, GO and Reactome annotations, and g:Profiler gene-set enrichment. |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Gene/protein identifiers, UniProt sequence discovery, GO and Reactome annotations, and g:Profiler and Enrichr gene-set enrichment. |
 | Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | Genome annotation, homology and sequence; NCBI taxon/assembly/sequence identity; BLAST search and Clustal Omega multiple sequence alignment. |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | Human genetic variants — gnomAD population frequencies/constraint, ClinVar records/search (direct NCBI), dbSNP, structural and mitochondrial variants.  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Clinical trials from ClinicalTrials.gov — search, details, sponsors, investigators, endpoints, and eligibility.  |
-| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | Clinical genomics knowledge bases: ClinGen curations, CIViC clinical evidence, and the Open Targets Platform.  |
+| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | Clinical genomics knowledge bases: ClinGen curations, CIViC clinical evidence, and the Open Targets Platform, plus ClinPGx pharmacogenomic records. |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Structures and molecular interactions — PDB structures, AlphaFold predictions, EMDB cryo-EM entries, Complex Portal complexes, IntAct interaction networks.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | Bioactive compounds, drugs, targets, bioactivity, and mechanisms via the ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — search by date/category, metadata by DOI, journal-publication links, funder listings, and platform statistics.  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 7 | Drugs@FDA applications, labels, and corpus statistics via openFDA.  |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | Human genetic association evidence — GWAS Catalog, eQTL Catalogue, and PheWeb PheWAS portals (FinnGen, BioBank Japan).  |
 | Expression · `expression` | GTEx | 12 | Human tissue expression and eQTLs via the GTEx Portal.  |
-| Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 13 | Protein domain architecture, family/clan membership, expression atlas and interaction networks via InterPro/Pfam, the Human Protein Atlas and STRING.  |
+| Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | Protein domain architecture, family/clan membership, expression atlas and interaction networks via InterPro/Pfam, the Human Protein Atlas and STRING, including network interaction enrichment. |
 | Cancer Models · `cancer-models` | cBioPortal | 6 | Cancer genomics study records via the cBioPortal REST API.  |
 | RNA · `rna` | Rfam | 9 | Non-coding RNA family data (metadata, alignments, models, structures) via Rfam.  |
 | Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | Expression, metabolomics, metagenomics and proteomics archives; ENA run discovery and FASTQ/submission inventories; PRIDE file lists. |
@@ -168,7 +168,7 @@ From v0.31.0, `get_string_network.nodes` includes returned neighbors and isolate
 
 The [Connector operation reference](../reference/connector-operations.md) lists required inputs, allowed values and exact calls. Use this page to choose a source and connect it; use the reference for a particular tool's fields.
 
-Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/registry.ts).
+Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/registry.ts).
 
 ## Sequence searches and alignment {/* #sequence-tools */}
 
@@ -177,3 +177,11 @@ Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.33.1
 **InterProScan** retrieves annotations for an existing job submitted through the EMBL-EBI service. Keep its job ID, check status at least ten seconds apart, and fetch the TSV after **FINISHED**. This Connector cannot submit a new job. [InterProScan operations](../reference/connector-operations.md#family-27).
 
 **Genomes → Clustal Omega** aligns at least three uniquely named protein, DNA or RNA FASTA records. Configure the contact email requested by the service, submit once, retain the job ID, then check status and save the returned alignment. [Multiple sequence alignment workflow](../workflows/multiple-sequence-alignment.md).
+
+## Enrichr, STRING and ClinPGx {/* #enrichment-pharmacogenomics */}
+
+- **Genes & Ontologies → Enrichr**: list current libraries, then query gene-set enrichment for functions, transcription factors, perturbations, drugs, diseases, tissues or cell types. Select a library appropriate to the organism and question, and retain its name, background and adjusted P values.
+- **Protein Annotation → STRING**: test whether a protein network has more interactions than expected from its background. This asks a different question from pathway over-representation; its network P value is not a pathway test. Follow the [gene-set enrichment workflow](../workflows/gene-set-enrichment.md#enrichr-string).
+- **Clinical Genomics → ClinPGx**: retrieve drug, gene or variant annotations, guidelines, regulatory labels and population frequencies. Resolve identifiers first, supply the fields required by the operation, and retain original sources and evidence levels. This retrieves research records; it does not automatically produce an individual treatment plan.
+
+Enable the relevant Connector for the active agent in **Settings → Connectors**. These built-in entries do not require a custom MCP server. See the [operation reference](../reference/connector-operations.md) for exact fields and conditional requirements.

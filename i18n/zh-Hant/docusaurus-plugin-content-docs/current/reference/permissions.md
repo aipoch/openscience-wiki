@@ -1,7 +1,7 @@
 ---
 title: "權限與控制"
 last_update:
-  date: '2026-09-08'
+  date: '2026-09-28'
 ---
 
 # 權限與控制 {/* #权限与控制 */}
@@ -27,7 +27,7 @@ last_update:
 | 介面值 | 介面值 | 含義 |
 | --- | --- | --- |
 | **Ask for approval** / **Ask** | `ask` | 對需要審批的操作詢問，同時遵守已有授權及應用自身的特定例外 |
-| **Auto-approve edits** / **Auto** | `auto` | 自動批准支援的工作區編輯；保守回退只允許有明確位置的工作區讀取、搜尋、編輯和思考，不包括任意 shell 或 MCP 呼叫 |
+| **Auto-approve edits** / **Auto** | `auto` | 支援的工作區編輯和應用識別的內建文獻庫操作可自動透過；不代表任意命令或 MCP 請求都被允許，見[文獻庫規則](../guides/approval-modes.md#library-auto) |
 | **Full access** | `full` | 在執行時支援的範圍內，無需手動提示即可允許代理權限請求 |
 | **Once** | `once` | 僅當前呼叫，不儲存長期授權 |
 | **This conversation** | `session` | 當前會話中匹配的呼叫，重啟後仍保留 |

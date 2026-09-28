@@ -1718,5 +1718,17 @@
   },
   "docs.outline.reference.v0331.scope": {
     "message": "Скрининг в реальном времени, инструменты последовательностей, контекст PDF и диагностика."
+  },
+  "docs.outline.reference.v0332.title": {
+    "message": "v0.33.2"
+  },
+  "docs.outline.reference.v0332.scope": {
+    "message": "Подписанные установщики Windows, постоянные предварительные просмотры источников и обогащение взаимодействия STRING."
+  },
+  "docs.outline.reference.v0333.title": {
+    "message": "v0.33.3"
+  },
+  "docs.outline.reference.v0333.scope": {
+    "message": "Paged Office reading, Enrichr и ClinPGx, предварительные просмотры библиотек и средства управления пакетной передачей."
   }
 }

@@ -2,7 +2,7 @@
 title: "Bases de datos científicos"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 # Bases de datos científicos {/* #scientific-databases */}
@@ -13,25 +13,25 @@ Utilice esta página para elegir una fuente de datos, entender lo que puede devo
 
 ## Bases de datos respaldadas {/* #supported-databases */}
 
-Open-Science v0.33.1 incluye **27 data-source Connectors with 269 operations**. El Molecule Connector independiente añade dos operaciones, trayendo el registro completo a 271. Connector nombres a continuación coinciden con **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
+Open-Science v0.33.3 incluye **27 data-source Connectors with 282 operations**. El Molecule Connector independiente añade dos operaciones, trayendo el registro completo a 284. Connector nombres a continuación coinciden con **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
 
 | Conector | Fuentes | Operaciones | Úsalo para  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | Química de moléculas pequeñas a través de PubChem, ChEBI, Rhea y BindingDB.  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Documentos, autores, citas, actualizaciones de DOI y registros de dataset/software. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Bibliografía biomédica a través de NCBI E-utilities, el convertidor de identificación PMC y Europa PMC — búsqueda, metadatos, artículos relacionados, búsqueda de citas, conversión de ID, texto completo y copyright.  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler | 13 | Identificadores genéticos/proteínas, descubrimiento de secuencias UniProt, Anotaciones GO y Reactome, y g:Enriquecimiento de generación genética. |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Identificadores genéticos/proteínas, descubrimiento de secuencia UniProt, Anotaciones GO y Reactome, y g:Enriquecimiento de conjunto de genes y Enrichr. |
 | Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | Anotación genoma, homología y secuencia; NCBI taxon/assembly/sequence identity; BLAST búsqueda y Clustal Omega alineación de secuencia múltiple. |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | Variaciones genéticas humanas — frecuencias de población de gnomAD/constricción, registros de ClinVar/búsqueda (NCBI directa), dbSNP, variantes estructurales y mitocondriales.  |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Ensayos clínicos de ClinicalTrials.gov — búsqueda, detalles, patrocinadores, investigadores, puntos finales y elegibilidad.  |
-| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets | 20 | Bases de conocimiento de la genómica clínica: curaciones de ClinGen, evidencia clínica CIViC y Plataforma de objetivos abiertos.  |
+| Genómica clínica · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | Bases clínicas de conocimiento de la genómica: curaciones ClinGen, evidencia clínica CIViC y Plataforma de objetivos abiertos, además de registros farmacógenos ClinPGx. |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Estructuras e interacciones moleculares — estructuras PDB, predicciones AlphaFold, entradas EMDB cryo-EM, complejos complejos Portales Complejos, redes de interacción IntAct.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | Compuestos bioactivos, fármacos, objetivos, bioactividad y mecanismos a través del ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | preimpresión bioRxiv/medRxiv — búsqueda por fecha/categoría, metadatos por DOI, enlaces de publicación de revistas, listados de fondos y estadísticas de plataforma.  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 7 | Aplicaciones, etiquetas y estadísticas de corpus a través de openFDA.  |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | Pruebas de asociación genética humana — GWAS Catalog, eQTL Catalogue, y portales PheWeb PheWAS (FinnGen, BioBank Japan).  |
 | Expression · `expression` | GTEx | 12 | Expresión de tejido humano y eQTLs a través del Portal GTEx.  |
-| Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 13 | Arquitectura de dominio Protein, membresía familiar/clan, atlas de expresión y redes de interacción a través de InterPro/Pfam, el Atlas de Proteína Humana y STRING.  |
+| Anotación de proteínas · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | Arquitectura de dominio Protein, membresía familiar/clan, atlas de expresión y redes de interacción a través de InterPro/Pfam, el Atlas de Proteína Humana y STRING, incluyendo enriquecimiento de interacción de red. |
 | Cancer Models · `cancer-models` | cBioPortal | 6 | Registros de estudio de genómica del cáncer a través del cBioPortal REST API.  |
 | RNA · `rna` | Rfam | 9 | Datos familiares de ARN no codificación (metadatos, alineamientos, modelos, estructuras) a través de Rfam.  |
 | Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | Expresión, metabolomics, metagenomics and proteomics archives; ENA run discovery and FASTQ/submission inventories; Listas de archivos PRIDE. |
@@ -168,7 +168,7 @@ Desde v0.31.0, `get_string_network.nodes` incluye vecinos devueltos y entradas a
 
 Las listas [Referencia de operación Connector](../reference/connector-operations.md) requieren entradas, valores permitidos y llamadas exactas. Utilice esta página para elegir una fuente y conectarla; utilizar la referencia para los campos de una herramienta en particular.
 
-Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/catalog.ts), [registro.ts](https://github.com/aipoch/open-science/blob/v0.33.1/src/main/connectors/registry.ts).
+Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/catalog.ts), [registro.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/registry.ts).
 
 ## Búsquedas de secuencia y alineación {/* #sequence-tools */}
 
@@ -177,3 +177,11 @@ Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/
 **InterProScan** recupera anotaciones para un trabajo existente presentado a través del servicio EMBL-EBI. Mantenga su ID de trabajo, verifique el estado al menos diez segundos de distancia, y busque el TSV después de **FINISHED**. Este Connector no puede presentar un nuevo trabajo. [Operaciones interproscan](../reference/connector-operations.md#family-27).
 
 **Genomes → Clustal Omega** alinea al menos tres registros de proteínas, ADN o RNA FASTA. Configure el correo electrónico de contacto solicitado por el servicio, envíe una vez, retenga el ID de trabajo, luego revise el estado y ahorre la alineación devuelta. [Flujo de trabajo de alineación de secuencia múltiple](../workflows/multiple-sequence-alignment.md).
+
+## Enrichr, STRING y ClinPGx {/* #enrichment-pharmacogenomics */}
+
+- **Genes & Ontologies → Enrichr**: lista las bibliotecas actuales, luego consulta el enriquecimiento de conjunto de genes para funciones, factores de transcripción, perturbaciones, drogas, enfermedades, tejidos o tipos de células. Seleccione una biblioteca apropiada para el organismo y la pregunta, y retenga su nombre, fondo y valores P ajustados.
+- **Protein Annotation → STRING**: prueba si una red de proteínas tiene más interacciones de lo esperado desde su fondo. Esto hace una pregunta diferente del camino de la sobrerepresentación; su valor de red P no es una prueba de ruta. Siga el [flujo de trabajo de enriquecimiento](../workflows/gene-set-enrichment.md#enrichr-string).
+- **Clinical Genomics → ClinPGx**: recuperar anotaciones de drogas, genes o variantes, pautas, etiquetas regulatorias y frecuencias poblacionales. Resuelva primero los identificadores, provea los campos requeridos por la operación, y conserva fuentes originales y niveles de evidencia. Esto recupera registros de investigación; no produce automáticamente un plan de tratamiento individual.
+
+Habilitar el Connector relevante para el agente activo en **Settings → Connectors**. Estas entradas incorporadas no requieren un servidor MCP personalizado. Vea el [referencia a la operación](../reference/connector-operations.md) para campos exactos y requisitos condicionales.

@@ -2,7 +2,7 @@
 title: "Операционный справочник Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## Эксплуатационные материалы {/* #operation-inputs */}
 
-Расширяйте один Connector за раз. Требуемые поля помечены **обязательно**; Эта ссылка и загрузка используют схему Open-Science **v0.33.1**. Вложенный список `input.required` является авторитетным; Унаследованный список `required` может отсутствовать. Проконсультируйтесь с <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.1.json">Полный загружаемый реестр</ExampleDownload> для вложенных схем JSON, полных описаний возврата и примеров вызова на стороне агента. Не пропустите общий `id`, когда инструмент ожидает `accessions`, `cids`, `rs_id` или другое поле пространства имен.
+Расширяйте один Connector за раз. Требуемые поля помечены **обязательно**; Эта ссылка и загрузка используют схему Open-Science **v0.33.3**. Вложенный список `input.required` является авторитетным; Унаследованный список `required` может отсутствовать. Проконсультируйтесь с <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.3.json">Полный загружаемый реестр</ExampleDownload> для вложенных схем JSON, полных описаний возврата и примеров вызова на стороне агента. Не пропустите общий `id`, когда инструмент ожидает `accessions`, `cids`, `rs_id` или другое поле пространства имен.
 
 
 ## химия {/* #family-1 */}
@@ -710,6 +710,35 @@ const result = await host.mcp("genes", "list_enrichment_sources", {"organism": "
 
 ```javascript
 const result = await host.mcp("genes", "enrich_gene_set", {"genes": ["TP53", "EGFR", "BRCA1"], "organism": "hsapiens", "sources": ["GO:BP", "REAC"], "correction_method": "fdr"})
+```
+
+### `list_enrichr_libraries` {/* #list_enrichr_libraries */}
+
+Перечислите текущие библиотеки набора генов Enrichr и их статистику охвата для одного поддерживаемого развертывания Enrichr. Развертывание человека охватывает библиотеки человека и мыши. Другие поддерживаемые организмы используют свои выделенные развертывания. Используйте это перед enrich_gene_set_enrichr для выбора библиотек для анализа транскрипционного фактора, возмущения, лекарственного средства, болезни, ткани или клеточного типа.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `organism` | строка | факультативный; по умолчанию: "human"; enum: &#91;"human", "fly", "yeast", "worm", "fish"&#93; |
+
+```javascript
+const result = await host.mcp("genes", "list_enrichr_libraries", {"organism": "human"})
+```
+
+### `enrich_gene_set_enrichr` {/* #enrich_gene_set_enrichr */}
+
+Запустите обогащение Enrichr для символов или идентификаторов генов, принятых выбранными библиотеками Enrichr. Это дополняет g:Профилер с транскрипционным фактором, возмущением, лекарственными препаратами, болезнями, тканями и библиотеками клеточного типа. Настраиваемый фон использует Speedrichr API и в настоящее время поддерживается только для развертывания человеком. Enrichr не сообщает о неснятых идентификаторах, поэтому mapping_status всегда является not_reported_by_enrichr. Списки генов подаются на внешний сервис Enrichr; Загрузки являются временными внешними побочными эффектами и не откатываются автоматически, если более поздний запрос библиотеки не выполняется.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `genes` | массив строк | **обязательно**; Мини-элементы: 1; maxItems: 5000 |
+| `libraries` | массив строк | **обязательно**; Мини-элементы: 1; maxItems: 10 |
+| `background_genes` | массив строк | факультативный; Мини-элементы: 1; maxItems: 20000 |
+| `organism` | строка | факультативный; по умолчанию: "human"; enum: &#91;"human", "fly", "yeast", "worm", "fish"&#93; |
+| `description` | строка | ; шаблон: "^GC&#91;AF&#93;_&#91;0-9&#93;&#123; 9&#125;\\.&#91;0-9&#93;+$" |
+| `max_results` | целое число | факультативный; по умолчанию: 100; Минимум: 1; Максимум: 500 |
+
+```javascript
+const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
 </ToolOperationGroup>
@@ -1623,6 +1652,170 @@ const result = await host.mcp("clinical-genomics", "open_targets_disease_targets
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "open_targets_drug", {"chembl_id": "CHEMBL1201583"})
+```
+
+### `clinpgx_search_chemicals` {/* #clinpgx_search_chemicals */}
+
+Разрешите записи лекарств и химических веществ ClinPGx по идентификатору доступа ClinPGx или названию перед поиском фармакогеномных аннотаций.
+
+Предоставьте по крайней мере один из: `accessionId` / `name`.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `accessionId` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `name` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `view` | строка | факультативный; по умолчанию: "base"; enum: &#91;"min", "base", "max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_chemicals", {"name": "warfarin", "view": "max"})
+```
+
+### `clinpgx_search_genes` {/* #clinpgx_search_genes */}
+
+Разрешите записи генов ClinPGx по идентификатору доступа ClinPGx или символу HGNC перед поиском фармакогеномных аннотаций.
+
+Предоставьте по крайней мере один из: `accessionId` / `symbol`.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `accessionId` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `symbol` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `view` | строка | факультативный; по умолчанию: "base"; enum: &#91;"min", "base", "max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_genes", {"symbol": "VKORC1", "view": "max"})
+```
+
+### `clinpgx_search_summary_annotations` {/* #clinpgx_search_summary_annotations */}
+
+Поиск клинических аннотаций ClinPGx, связывающих препарат, ген и вариант. Фильтруйте по уровню доказательности 1A, 1B, 2A, 2B, 3 или 4 и сохраняйте исходную запись.
+
+Предоставьте по крайней мере один из: `relatedChemicals.accessionId` / `relatedChemicals.name` / `location.genes.symbol` / `location.fingerprint` / `id`.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `id` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `relatedChemicals.accessionId` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `relatedChemicals.name` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `location.genes.symbol` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `location.fingerprint` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `view` | строка | факультативный; по умолчанию: "base"; enum: &#91;"min", "base", "max"&#93; |
+| `levelOfEvidence.term` | строка | факультативный; enum: &#91;" 1A", " 1B", " 2A", " 2B", " 3", " 4"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_summary_annotations", {"relatedChemicals.name": "warfarin", "location.genes.symbol": "VKORC1", "levelOfEvidence.term": "1A", "view": "max"})
+```
+
+### `clinpgx_get_summary_annotation` {/* #clinpgx_get_summary_annotation */}
+
+Получите одну клиническую аннотацию ClinPGx по числовому идентификатору записи ClinPGx, включая связанное лекарство, ген, вариант, фенотип и уровень доказательности.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `id` | число | **обязательно**; Минимум: 1 |
+| `view` | строка | факультативный; по умолчанию: "base"; enum: &#91;"min", "base", "max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_summary_annotation", {"id": 655385012, "view": "max"})
+```
+
+### `clinpgx_search_variant_annotations` {/* #clinpgx_search_variant_annotations */}
+
+Ищите аннотации вариантов ClinPGx по символу гена или отпечатку варианта (обычно rsID).
+
+Предоставьте по крайней мере один из: `location.genes.symbol` / `location.fingerprint`.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `location.genes.symbol` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `location.fingerprint` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `view` | строка | факультативный; по умолчанию: "base"; enum: &#91;"min", "base", "max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_variant_annotations", {"location.fingerprint": "rs1799853", "view": "max"})
+```
+
+### `clinpgx_search_guideline_annotations` {/* #clinpgx_search_guideline_annotations */}
+
+Ищите аннотации фармакогеномных рекомендаций по дозированию ClinPGx от CPIC, DPWG или PharmGKB/PRO.
+
+Предоставьте по крайней мере один из: `source` / `relatedChemicals.accessionId` / `relatedGenes.accessionId`.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `source` | строка | с учетом вышеперечисленных условий; enum: &#91;"cpic", "dpwg", "pro"&#93; |
+| `relatedChemicals.accessionId` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `relatedGenes.accessionId` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `view` | строка | факультативный; по умолчанию: "base"; enum: &#91;"min", "base", "max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_guideline_annotations", {"source": "cpic", "relatedGenes.accessionId": "PA267", "view": "max"})
+```
+
+### `clinpgx_search_drug_labels` {/* #clinpgx_search_drug_labels */}
+
+Ищите регуляторные фармакогеномные аннотации лекарств ClinPGx от FDA, EMA, PMDA или Health Canada.
+
+Предоставьте по крайней мере один из: `source` / `relatedChemicals.accessionId` / `relatedChemicals.name` / `relatedGenes.accessionId` / `relatedGenes.symbol`.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `source` | строка | с учетом вышеперечисленных условий; enum: &#91;"fda", "ema", "pmda", "hcsc"&#93; |
+| `relatedChemicals.accessionId` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `relatedChemicals.name` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `relatedGenes.accessionId` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `relatedGenes.symbol` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `view` | строка | факультативный; по умолчанию: "base"; enum: &#91;"min", "base", "max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_drug_labels", {"source": "fda", "relatedChemicals.name": "clopidogrel", "view": "max"})
+```
+
+### `clinpgx_search_variants` {/* #clinpgx_search_variants */}
+
+Разрешите фармакогеномные варианты ClinPGx по rsID dbSNP или другому символу варианта.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `symbol` | строка | **обязательно**; Длина: 1; Модель: "\\S" |
+| `view` | строка | факультативный; по умолчанию: "base"; enum: &#91;"min", "base", "max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_search_variants", {"symbol": "rs1799853", "view": "max"})
+```
+
+### `clinpgx_get_variant_frequency` {/* #clinpgx_get_variant_frequency */}
+
+Получите популяционные частоты вариантов, представленные ClinPGx для отпечатка варианта, например rsID.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `fp` | строка | **обязательно**; Длина: 1; Модель: "\\S" |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_variant_frequency", {"fp": "rs1799853"})
+```
+
+### `clinpgx_get_drug_gene_variant` {/* #clinpgx_get_drug_gene_variant */}
+
+Запросите парную связь ClinPGx между двумя объектами (например, лекарством и геном) с помощью общего отчёта о связях; укажите по одному идентификатору для каждого объекта. Для клинической аннотации лекарство–ген–вариант используйте сводные аннотации.
+
+Для этой группы предоставляют по меньшей мере один из: `object1Id`/`object1Name`/`object1Type`.
+
+Для этой группы предоставляют по меньшей мере один из: `object2Id`/`object2Name`/`object2Type`.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `object1Id` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `object1Name` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `object1Type` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `object2Id` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `object2Name` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `object2Type` | строка | с учетом вышеперечисленных условий; Длина: 1; Модель: "\\S" |
+| `view` | строка | факультативный; по умолчанию: "base"; enum: &#91;"min", "base", "max"&#93; |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
 ```
 
 </ToolOperationGroup>
@@ -2742,6 +2935,21 @@ const result = await host.mcp("protein-annotation", "get_string_similarity_score
 
 ```javascript
 const result = await host.mcp("protein-annotation", "get_string_best_similarity_hits", {"symbols": ["TP53"], "target_species": 10090})
+```
+
+### `get_string_ppi_enrichment` {/* #get_string_ppi_enrichment */}
+
+Обогащение взаимодействия белка и белка STRING для списка генов (v12.0). Тестирует, имеют ли отображаемые белки больше взаимодействий, чем ожидалось от фонового распределения STRING, с дополнительным фоновым набором идентификаторов белка STRING.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `symbols` | массив строк | **обязательно** |
+| `species` | целое число | целое число |
+| `required_score` | целое число | факультативный; По умолчанию: 400 |
+| `background_string_ids` | массив строк | строка |
+
+```javascript
+const result = await host.mcp("protein-annotation", "get_string_ppi_enrichment", {"symbols": ["TP53", "BRCA1", "EGFR"], "required_score": 700})
 ```
 
 </ToolOperationGroup>

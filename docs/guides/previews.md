@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-09-22'
+  date: '2026-09-28'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -64,12 +64,16 @@ The <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-reading.docx">W
 
 | Format | Steps and what to check |
 | --- | --- |
-| DOCX | Attach and open the report. Scroll through both pages; check the first sample row and the methods/interpretation text. Full-screen preview gives long lines more space. There is no Word editing ribbon. |
+| DOCX | Open the report. Use **Previous / Next** to visit both pages or **Outline** to jump to a heading. Press ⌘F (macOS) or Ctrl+F (Windows/Linux), search for `raw-count` and check its matches and the methods. Full-screen preview gives more room; there is no Word editing ribbon. |
 | XLSX | Open the workbook, then choose **Summary** or **Samples** at the bottom. Scroll horizontally for the last column. Samples contains 12 data rows plus its header, spacing and source notes; the viewer reports 17 used rows, not 17 biological samples. Values are a preview of the saved workbook, not evidence of a fresh calculation. |
-| PPTX | Open the slides and scroll vertically from the QC summary to Methods and interpretation. Both slides rendered in the local example. This reading surface is not a presentation editor or slideshow controller. |
+| PPTX | Open the slides, choose the **Page 2** thumbnail or **Next**, and check **2 / 2**. Use **Find** to search for `normalization` on the methods slide. **Notes** displays embedded speaker notes; this is a reading surface, not a presentation editor. |
 | TIFF | Open the figure and use **Next page / Previous page**. The two pages show raw library sizes and detected-gene medians. **Zoom in / Zoom out / Reset zoom** changes the view; check **Page 1 of 2** or **Page 2 of 2** before interpreting the figure. |
 | JSON | Open <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">the summary</ExampleDownload> to inspect source text, identifiers and values. It displays as code rather than an expandable object tree. |
 | HTML | Open <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">the reading table</ExampleDownload>. **Source** shows the HTML; **Render** restores the formatted document. Neither mode reruns the QC. |
+
+![Page controls and actual text matches in the Word reading copy](/img/open-science/v0333/word-search.webp)
+
+![The second PowerPoint page, navigation thumbnails and search match](/img/open-science/v0333/powerpoint-pages.webp)
 
 ![Selecting Samples in the actual workbook preview](/img/open-science/local-todo-batch/47-workbook-samples.webp)
 
@@ -187,3 +191,7 @@ The response retrieves passages from the linked PDF and identifies the paper, me
 ![An English response beside the original PDF, with Reading context retained](/img/open-science/v0331/pdf-first-response.webp)
 
 For highlights and document-level notes, continue with [PDF annotations](pdf-notes.md).
+
+## Keep a source website signed in {/* #persistent-source-preview */}
+
+The built-in browser preview for live source websites retains its site session across visits and app restarts. If a source requires an existing account, sign in on that source's page and continue reading. Closing the preview does not sign out of the website; use the website's own sign-out action when needed. Retaining a login does not automatically give the agent full-text access or change network access rules.

@@ -2652,5 +2652,17 @@
   },
   "docs.outline.reference.v0331.scope": {
     "message": "实时筛选、序列工具、PDF 上下文与诊断导出。"
+  },
+  "docs.outline.reference.v0333.title": {
+    "message": "v0.33.3"
+  },
+  "docs.outline.reference.v0333.scope": {
+    "message": "Office 分页阅读、Enrichr 与 ClinPGx、文献库预览及研究包传输设置。"
+  },
+  "docs.outline.reference.v0332.title": {
+    "message": "v0.33.2"
+  },
+  "docs.outline.reference.v0332.scope": {
+    "message": "Windows 安装包签名、保留登录的来源预览及 STRING 互作富集。"
   }
 }
