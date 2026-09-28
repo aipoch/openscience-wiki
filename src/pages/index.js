@@ -21,9 +21,10 @@ export default function Home() {
     currentLocale === 'en'
       ? 'https://aipoch.com/docs/'
       : `https://aipoch.com/docs/${currentLocale}/`;
+  const docsEntityPrefix = docsHomeUrl;
   const pageTitle = translate({
     id: 'homepage.meta.title',
-    message: 'Open-Science Documentation',
+    message: 'AIPOCH Open-Science Documentation',
   });
   const pageDescription = translate({
     id: 'homepage.meta.description',
@@ -47,28 +48,29 @@ export default function Home() {
       },
       {
         '@type': 'WebSite',
-        '@id': `${docsHomeUrl}#website`,
-        url: docsHomeUrl,
-        name: 'Open-Science Wiki',
+        '@id': docsEntityPrefix + '#website',
+        url: docsEntityPrefix,
+        name: 'AIPOCH Open-Science Documentation',
         inLanguage: currentLocale,
         publisher: {'@id': 'https://aipoch.com/#organization'},
         about: {'@id': 'https://aipoch.com/#open-science'},
       },
       {
         '@type': 'CollectionPage',
-        '@id': `${docsHomeUrl}#webpage`,
+        '@id': docsEntityPrefix + '#webpage',
         url: docsHomeUrl,
         name: pageTitle,
         description: pageDescription,
         inLanguage: currentLocale,
-        isPartOf: {'@id': `${docsHomeUrl}#website`},
+        isPartOf: {'@id': docsEntityPrefix + '#website'},
         about: {'@id': 'https://aipoch.com/#open-science'},
         publisher: {'@id': 'https://aipoch.com/#organization'},
-        breadcrumb: {'@id': `${docsHomeUrl}#breadcrumb`},
+        breadcrumb: {'@id': docsEntityPrefix + '#breadcrumb'},
+        dateModified: '2026-09-28',
       },
       {
         '@type': 'BreadcrumbList',
-        '@id': `${docsHomeUrl}#breadcrumb`,
+        '@id': docsEntityPrefix + '#breadcrumb',
         itemListElement: [
           {
             '@type': 'ListItem',
@@ -175,7 +177,7 @@ export default function Home() {
               <span className={styles.marker} aria-hidden="true" />
               <Translate id="homepage.eyebrow">Documentation</Translate>
             </p>
-            <Heading as="h1" className={styles.title}>Open-Science Documentation</Heading>
+            <Heading as="h1" className={styles.title}><span className={styles.productName}>AIPOCH Open-Science</span>{' '}Documentation</Heading>
             <p className={styles.description}>
               <Translate id="homepage.lead">
                 AIPOCH Open-Science is an open-source, local-first AI research workbench.

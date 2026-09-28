@@ -1,4 +1,4 @@
-# Open-Science Documentation
+# AIPOCH Open-Science Documentation
 
 > AIPOCH Open-Science is an open-source, local-first AI research workbench. This file lists every official documentation page so AI assistants and researchers can link directly to the authoritative source instead of guessing URLs.
 
@@ -130,6 +130,8 @@ Site-level facts and contacts: https://aipoch.com/llms.txt
 
 ## Changelog
 
+- [Changelog · v0.33.3](https://aipoch.com/docs/changelog/v0-33-3/): Office document previews, Enrichr gene-set enrichment, compact workspace previews and signed Windows executables.
+
 - [Changelog · v0.32.0](https://aipoch.com/docs/changelog/v0-32-0/): PDF notes, BLAST sequence search, omics discovery, classification services and unattended tasks.
 
 - [Changelog · v0.25.1](https://aipoch.com/docs/changelog/v0-25-1/): Open-Science v0.25.1 features and compatibility changes.
@@ -145,7 +147,7 @@ Site-level facts and contacts: https://aipoch.com/llms.txt
 
 ## Documentation home
 
-- [Open-Science Documentation](https://aipoch.com/docs/): Documentation for AIPOCH Open-Science: installation, workspace and model setup, reproducibility, research workflows, skills, tools, CLI and API reference.
+- [AIPOCH Open-Science Documentation](https://aipoch.com/docs/): Documentation for AIPOCH Open-Science: installation, workspace and model setup, reproducibility, research workflows, skills, tools, CLI and API reference.
 
 - [Smart literature screening](https://aipoch.com/docs/workflows/screen-literature/): Criteria, scope, classification model, trial, manual review and bibliography export.
 - [v0.33.1](https://aipoch.com/docs/changelog/v0-33-1/): Live screening, HMMER, Clustal Omega, PDF context and diagnostics.

@@ -63,7 +63,7 @@
     "message": "Skill marketplace"
   },
   "homepage.meta.title": {
-    "message": "Open-Science Documentation"
+    "message": "Документация AIPOCH Open-Science"
   },
   "homepage.meta.description": {
     "message": "Documentation for AIPOCH Open-Science: installation, workspace and model setup, reproducibility, research workflows, skills, tools, CLI and API reference."

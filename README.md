@@ -100,6 +100,13 @@ when no explicit source date is available; the sitemap never queries Git.
 
 `/docs/sitemap-index.xml` lists all configured locale sitemaps. The build generates this index from `i18n.config.mjs`; no static list needs to be maintained. The container's `/sitemap-index` endpoint serves it, while `/sitemap` continues to serve `/docs/sitemap.xml`. A main-site sitemap consumer must discover the multilingual index or its child sitemaps to include every language.
 
+Each locale sitemap also carries `xhtml:link` alternate references for every
+document, including the `x-default` English URL. Client-side search routes are
+excluded from the sitemap because they do not represent indexable content.
+
+The Wiki owns only `/docs` routes. The shared site's root `/robots.txt` remains
+owned by the main site and is not emitted by this repository.
+
 After a production build, verify that canonical, hreflang, Open Graph URLs,
 and all locale sitemaps consistently use HTTPS URLs with trailing slashes.
 Check a fresh container build without Git history to verify document `lastmod`
