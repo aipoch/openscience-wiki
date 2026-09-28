@@ -36,6 +36,7 @@
   letter-spacing: -.045em;
   line-height: 1.08;
 }
+.productName {white-space: nowrap;}
 .description {max-width: 460px; margin: 0; color: var(--aip-muted); font-size: 17px; line-height: 1.8;}
 .leadList {max-width: 520px; margin: 20px 0 0; padding: 0; list-style: none;}
 .leadList li {position: relative; padding-left: 18px; color: var(--aip-muted); font-size: 16px; line-height: 1.72;}
@@ -124,6 +125,7 @@
   .hero {padding-top: 36px;}
   .eyebrow {margin-bottom: 18px;}
   .title {font-size: clamp(38px, 10.8vw, 54px);}
+  .productName {white-space: normal;}
   .description {font-size: 16px;}
   .leadList li {font-size: 15px;}
   .actions {gap: 12px 20px; margin-top: 24px;}

@@ -4,7 +4,7 @@ import {join, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import test from 'node:test';
 
-import {defaultLocale, locales} from '../i18n.config.mjs';
+import {defaultLocale, localeConfigs, locales} from '../i18n.config.mjs';
 
 // Run after a complete all-locale build. The override also tests Git-free builds.
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -15,7 +15,13 @@ const read = (file) => readFile(file, 'utf8');
 const tags = (html, name) => [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'g'))].map(([tag]) => tag);
 const attribute = (tag, name) => tag.match(new RegExp(`\\s${name}="([^"]*)"`))?.[1];
 const locations = (xml) => [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
+const xmlAlternates = (xml) => tags(xml, 'xhtml:link').map((tag) => [attribute(tag, 'hreflang'), attribute(tag, 'href')]);
 const localeBase = (locale) => `${base}${locale === defaultLocale ? '' : `${locale}/`}`;
+
+function alternateUrl(url, sourceLocale, targetLocale) {
+  const relative = new URL(url).pathname.slice(localeBase(sourceLocale).length);
+  return `${origin}${localeBase(targetLocale)}${relative}`;
+}
 
 function outputFile(url) {
   const parsed = new URL(url);
@@ -46,6 +52,28 @@ test('sitemap index discovers exactly all configured locale sitemaps', async () 
   assert.equal(new Set(pageUrls).size, pageUrls.length, 'sitemaps must not duplicate page URLs');
 });
 
+test('search results are excluded from every locale sitemap', () => {
+  assert.ok(!pageUrls.some((url) => /\/search\/$/.test(new URL(url).pathname)));
+});
+
+test('each locale sitemap publishes XML alternate references for every page', () => {
+  for (const locale of locales) {
+    const xml = sitemaps.get(`${origin}${localeBase(locale)}sitemap.xml`);
+    for (const entry of xml.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+      const loc = locations(entry[0])[0];
+      const pairs = xmlAlternates(entry[0]);
+      assert.deepEqual(pairs.map(([hreflang]) => hreflang).sort(), [...locales.map((item) => localeConfigs[item].htmlLang), 'x-default'].sort(), loc);
+      assert.equal(new Map(pairs).get(localeConfigs[locale].htmlLang), loc);
+      assert.equal(new Map(pairs).get('x-default'), new Map(pairs).get(localeConfigs[defaultLocale].htmlLang));
+      for (const [, target] of pairs) assert.ok(pageUrls.includes(target), `${loc}: XML alternate ${target} must exist in a sitemap`);
+      for (const targetLocale of locales) {
+        const hreflang = localeConfigs[targetLocale].htmlLang;
+        assert.equal(new Map(pairs).get(hreflang), alternateUrl(loc, locale, targetLocale), `${loc}: XML alternate ${hreflang}`);
+      }
+    }
+  }
+});
+
 test('every sitemap URL has matching canonical, Open Graph URL, and reciprocal hreflang', () => {
   for (const [url, html] of pages) {
     assert.ok(url.endsWith('/'), url);
@@ -71,6 +99,18 @@ test('every sitemap URL has matching canonical, Open Graph URL, and reciprocal h
       const reciprocal = tags(pages.get(target), 'link').filter((tag) => attribute(tag, 'hreflang'));
       assert.deepEqual(reciprocal.map((tag) => [attribute(tag, 'hreflang'), attribute(tag, 'href')]).sort(), [...pairs].sort(), target);
     }
+  }
+});
+
+test('every non-home documentation page exposes TechArticle JSON-LD', () => {
+  for (const [url, html] of pages) {
+    const pathname = new URL(url).pathname;
+    const locale = locales.find((item) => pathname.startsWith(localeBase(item)));
+    assert.ok(locale, url);
+    if (pathname === localeBase(locale) || pathname.includes('/category/')) continue;
+    const structuredData = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+      .map(([, value]) => JSON.parse(value));
+    assert.ok(structuredData.some((entry) => entry['@type'] === 'TechArticle' && entry.url === url), `${url}: TechArticle JSON-LD is missing`);
   }
 });
 

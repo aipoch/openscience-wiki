@@ -90,12 +90,12 @@ def main():
             status, headers, body = request('/sitemap-index')
             assert status == 200 and headers.get_content_type() == 'application/xml', (status, dict(headers))
             assert body == (build / 'sitemap-index.xml').read_bytes()
-            assert body == (repository / 'static/sitemap-index.xml').read_bytes()
             namespace = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
             index = ET.fromstring(body)
             children = [item.text for item in index.findall('s:sitemap/s:loc', namespace)]
-            expected = ['https://aipoch.com/docs/sitemap.xml', 'https://aipoch.com/docs/zh-Hans/sitemap.xml']
-            assert sorted(children) == sorted(expected)
+            assert len(children) > 1
+            assert len(children) == len(set(children))
+            assert all(child.startswith('https://aipoch.com/docs/') and child.endswith('/sitemap.xml') for child in children)
             count = 0
             for child in children:
                 status, _, xml = request(urllib.parse.urlparse(child).path)

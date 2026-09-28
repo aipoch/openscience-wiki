@@ -13,7 +13,7 @@ import screenshotImages from './src/remark/screenshot-images.js';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Open-Science Wiki',
+  title: 'AIPOCH Open-Science Documentation',
   tagline: 'A local-first AI workspace for reproducible scientific research',
   // Same file aipoch.com serves at /favicon.ico — 16/32/48 PNG-in-ICO.
   favicon: 'img/aipoch-favicon.ico',
@@ -23,7 +23,7 @@ const config = {
   // twitter:title/description are page-level and live in src/pages/index.js.
   headTags: [
     {tagName: 'meta', attributes: {property: 'og:type', content: 'website'}},
-    {tagName: 'meta', attributes: {property: 'og:site_name', content: 'Open-Science Wiki'}},
+    {tagName: 'meta', attributes: {property: 'og:site_name', content: 'AIPOCH Open-Science Documentation'}},
     {tagName: 'meta', attributes: {name: 'twitter:site', content: '@AIPOCH_AI'}},
   ],
 
