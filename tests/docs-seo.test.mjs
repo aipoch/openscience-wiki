@@ -105,8 +105,8 @@ test('every sitemap URL has matching canonical, Open Graph URL, and reciprocal h
 test('every non-home documentation page exposes TechArticle JSON-LD', () => {
   for (const [url, html] of pages) {
     const pathname = new URL(url).pathname;
-    const locale = locales.find((item) => pathname.startsWith(localeBase(item)));
-    assert.ok(locale, url);
+    const locale = locales.find((item) => item !== defaultLocale && pathname.startsWith(localeBase(item))) ?? defaultLocale;
+    assert.ok(pathname.startsWith(localeBase(locale)), url);
     if (pathname === localeBase(locale) || pathname.includes('/category/')) continue;
     const structuredData = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
       .map(([, value]) => JSON.parse(value));

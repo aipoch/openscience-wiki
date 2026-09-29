@@ -1,7 +1,7 @@
 ---
 title: "导航与搜索"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-29'
 ---
 
 # 导航与搜索
@@ -63,3 +63,9 @@ last_update:
 ## 找不到结果时
 
 先清除类别及其他筛选，检查所属项目，再搜索有辨识度的短语或已保存的文件名。归档内容可从 Archived 查找。失败的工具响应里打印的路径不等于已保存产物；新修改或重新排序的内容可能需要刷新搜索。文件能打开但无法预览时，按[文件](files.md)和[故障排查](troubleshooting.md)处理。
+
+## 从托盘快速切换会话 {/* #tray-navigation */}
+
+在 macOS 菜单栏或 Windows／支持托盘的 Linux 桌面，打开 **Open-Science** 图标的菜单。通过 **Running sessions** 找到正在运行的任务，通过 **Pinned sessions** 返回固定会话，或从 **Recent items** 打开近期内容；较多条目收在 **More items** 中。选择后检查打开的项目和会话标题。
+
+会话标题旁的 **Pin** 可固定常用会话。菜单里的 **Show / Hide** 控制窗口可见性，**Quit** 退出应用；切换会话不等于停止任务。Linux 图标是否显示取决于桌面的托盘支持。窗口关闭和通知设置见[外观与通知](appearance.md)。

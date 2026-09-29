@@ -1,7 +1,7 @@
 ---
 title: "Installation and updates"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -65,6 +65,8 @@ Official Windows installers are code-signed from v0.33.2; v0.33.3 extends signin
 | Ubuntu / Debian | `uname -m`: `x86_64` means x64, `aarch64` means ARM64 | Choose the matching `.deb`, open it with the system package installer, then launch from the application menu |
 | Other supported Linux distributions | Check `uname -m` | Choose the matching `.AppImage`, allow execution in the file's permissions, then open it; resolve any dependency error reported by the distribution |
 
+v0.34.0 provides Linux **x64 and ARM64** packages. For ARM64, select `aipoch-open-science-0.34.0-linux-arm64.AppImage` or `aipoch-open-science_0.34.0_arm64.deb`. The x64 counterparts are `aipoch-open-science-0.34.0-linux-x86_64.AppImage` and `aipoch-open-science_0.34.0_amd64.deb`. Download from the selected release's official Assets and match the result of `uname -m`.
+
 </PlatformContent>
 
 The installation location stores the application; **Data location** in the setup wizard stores research files and runtimes. Set them separately. After installation, continue with [First-time setup](onboarding.md).
@@ -73,7 +75,7 @@ The installation location stores the application; **Data location** in the setup
 
 You need Git, Node.js 22, npm, and the platform build prerequisites for Electron. Install or select an agent framework in the application. During installation, the repository generates the Prisma Client, applies app patches, and prepares Electron native dependencies.
 
-For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v0.33.3.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
+For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v0.34.0.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
 
 Replace `RELEASE_TAG` below with the exact tag shown on the selected release (including its leading `v`). To follow ongoing development instead, omit `--branch RELEASE_TAG --depth 1`; that checkout will follow the default branch.
 

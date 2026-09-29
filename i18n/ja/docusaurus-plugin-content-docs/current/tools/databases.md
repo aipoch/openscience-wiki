@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v0.33.3は**282 操作で 27 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを284に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
+Open-Science v0.34.0は**298 操作で 28 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを300に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
@@ -28,13 +28,13 @@ Open-Science v0.33.3は**282 操作で 27 のデータソース コネクタ**�
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | CEMBL REST API による生体活性化合物、薬物、標的、生体活性およびメカニズム。  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | BioRxiv/medRxiv のプリプリント — 日付/カテゴリ、DOI によるメタデータ、ジャーナル公開リンク、ファンダリスト、およびプラットフォームの統計による検索。  |
-| Drug Regulatory · `drug-regulatory` | openFDA | 7 | openFDA による FDA アプリケーション、ラベル、およびコルパスの統計。  |
+| 薬物規制・ `drug-regulatory` | オープンFDA | 10 | Drugs@FDA、ラベル、FAERSの副作用報告および薬剤のrecalls。 |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | GWASカタログ、eQTLカタログ、PheWeb PheWASポータル(FinnGen、BioBank Japan)  |
-| Expression · `expression` | GTEx | 12 | GTExポータル経由での人体組織表現とeQTLs。  |
+| エクスプレス・ `expression` | GTEx、Bgeeの特長 | 16 | 人間のGTExのティッシュの表現およびeQTL; Bgee のクロススペックのベースライン式。 |
 | タンパク質アノテーション・ `protein-annotation` | InterPro、Pfam、ヒトプロテインアトラス、ストリング | 14 | タンパク質ドメインアーキテクチャ、家族/クランのメンバーシップ、InterPro/Pfam、ヒューマンプロテインアトラス、STRINGによる表現アトラスと相互作用ネットワーク、ネットワークの相互作用の豊かさを含みます。 |
-| Cancer Models · `cancer-models` | cBioPortal | 6 | cBioPortal REST API によるがんゲノミクス研究記録。  |
+| がんモデル・ `cancer-models` | cBioPortal(バイオポータル) | 10 | 研究、変異、コピー番号、サンプル、患者、臨床属性および分子プロファイル式。 |
 | RNA · `rna` | Rfam | 9 | Rfam による RNA の家族データ(メタデータ、アライメント、モデル、構造)を非コーディング。  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | 表現、メタボロミクス、メデックス、プロテオミクスのアーカイブ; ENA は発見および FASTQ/submission の在庫を実行します; PRIDEファイルリスト。 |
+| Omics アーカイブズ・ `omics-archives` | ArrayExpress、GEO、MetaboLights、MGnify、PRIDE、ENA | 23 | Omicsの研究および操業; ENA FASTQ/submission の在庫、PRIDE および MGnify の結果ファイルメタデータ。 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | セルックスジーン・セルギドによる細胞型アイデンティティ、マーカー遺伝子、ソースデータセット、組織。  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 遺伝子調整機能ゲノム — ENCODE実験/biosamples/files、JASPAR TF結合プロファイル、UniBind ChIP-seq TFBS。  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 資金調達機会検索(Grants.gov)と抗体カタログ検索(抗体レジストリ)。  |
@@ -44,6 +44,7 @@ Open-Science v0.33.3は**282 操作で 27 のデータソース コネクタ**�
 | Zenodo · `zenodo` | Zenodo | 2 | 公開データセット、ソフトウェアおよび出版物の発見、バージョン固有のメタデータおよびファイル在庫; アップロードやダウンロードはありません。 |
 | ムマー・ `hmmer` | EMBL-EBI HMMER3(エンブレ・エビ・ムマー3) | 3 | プログラム固有のタンパク質/プロファイル/アライメント検索、ジョブの状態と結果。 |
 | インタープロスキャン・ `interproscan` | EMBL-EBI インタープロスキャン | 2 | 既存のアノテーションジョブのステータスとTSVレポート。 投稿なし |
+| Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | パスウェイ検索、トップパスウェイ、グラフクエリ、BioPAXサブモデルエクスポート。 |
 
 [科学ビューア](viewers.md)でオフラインのモレキュラーツールがカバーされています。 それぞれのデータソースで露出した正確な操作については、[Connectorの操作の参照](../reference/connector-operations.md) を使用します。
 
@@ -144,6 +145,10 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [種、参照のゲノムおよび染色体識別子をチェックして下さい](../workflows/reference-genome-check.md): レコードに参加する前に、タムン、バージョンアップされたアセンブリ、染色体エイリアスを解決します。
 
+### パスウェイネットワークを調べる {/* #inspect-a-pathway-network */}
+
+[パスウェイとインタラクションネットワークを調べる](../workflows/inspect-pathway.md):Pathway Commonsを介して人間のReactome経路を見つけ、返されたURIを保存し、インタラクションをエクスポートし、パスウェイアクティビティの証拠から選択したネットワークを識別します。
+
 他のタスクについては、[構造化された PubChem レコード](../workflows/database-records.md)、[科学的記録の交差チェック](../workflows/cross-check-records.md)、[グループ会議の文献発見](../workflows/journal-club.md)に従う。
 
 <span id="handle-a-returned-record-empty-match-or-error" />
@@ -168,7 +173,7 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/registry.ts)。
+カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/registry.ts)。
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 
@@ -185,3 +190,17 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 - **Clinical Genomics → ClinPGx**: 薬物、遺伝子、または異種注釈、ガイドライン、規制ラベル、および人口の頻度を取得します。 識別子を最初に解決し、操作で必要なフィールドを供給し、元のソースと証拠レベルを保持します。 これにより、研究記録が取得されます。 個別治療プランを自動的に生成しません。
 
 **Settings → Connectors**の活性剤に関連したConnectorを有効にします。 これらの組み込みエントリは、カスタムMCPサーバを必要としません。 正確なフィールドと条件の要件については、[操作の参照](../reference/connector-operations.md) を参照してください。
+
+## パスウェイ、式、臨床データ {/* #pathway-expression-clinical */}
+
+**Settings → Connectors** で対応する家族を有効にし、エージェントに生物、ソース、識別子、および意図したスコープを指示します。 これらの付加は作り付けのコネクターを使用します; MCP サーバは必須ではありません。
+
+| エントリーフォーム | できること | 接続と解釈 |
+| --- | --- | --- |
+| Pathway Commons | パスウェイを検索し、トップのパスウェイをリストし、遺伝子間のクエリパスやサブモデルをエクスポートします | 公共サービス; 返された URI、生物およびソースを保持します。 グラフのクエリは、濃縮テストとは異なる。 フォロー [パスウェイインタラクションワークフロー](../workflows/inspect-pathway.md). |
+| 式典 → Bgee | クロススペクシーの提示/従順な呼び出し、正規化スコア、バインドSPARQLのクエリとダウンロードリンク | 種を最初に発見し、NCBIの分類IDを保持します。 SPARQLは遺伝子、種、組織を必要とします。 健康なワイルドタイプのベースライン呼び出しは、差異的な表現ではありません。 ダウンロードリンクはダウンロードされていないファイルです。 |
+| がんモデル → cBioPortal | リストサンプル/患者とクエリ臨床属性またはmRNA/タンパク質表現 | 研究を選択し、そのプロファイルを発見し、測定/正規化を選択します。 臨床サンプル/患者レベルに合ったIDを供給します。 分子データは、明示的な遺伝子とsample_idsまたはsample_list_idの1つを必要とします。 行を欠くことはゼロではありません。 |
+| 薬規制 → openFDA | 検索/アカウント FAERS レポートと検索薬のリコール | 傷の日付およびプロダクトおよび保存のtruncation情報。 レポートのカウントは、発生または原因の証拠ではありません。 複数の評価されたバケツは重複するかもしれません; 独自のレポートの合計ではなく、その合計はユニークです。 |
+| Omics アーカイブ → MGnify | MGYA解析アクセスによる結果ファイルを一覧表示 | 報告されたときタイプ、カテゴリ、上流 URL およびサイズを返します。 ファイルバイトはダウンロードされません。 行方不明のサイズや URL が null にとどまります。 |
+
+必要なフィールド、条件、例については、[Connectorの操作の参照](../reference/connector-operations.md) を参照してください。

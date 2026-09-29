@@ -1,7 +1,7 @@
 ---
 title: "Apariencia y notificaciones"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -136,7 +136,7 @@ Con **General → Close button behaviour → Ask every time**, cerrar la ventana
 | Quieres... | ¿Dónde ir? |
 | --- | --- |
 | Compruebe la actualización de la aplicación | **General → About → Check now**; seguir [Instalación y actualizaciones](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Leer cambios de versión o obtener ayuda | **About → Release notes / Help Center** abre la página externa correspondiente. Este wiki también tiene un [Cambio](../changelog/v0.31.1.md). |
+| Leer cambios de versión o obtener ayuda | **About → Release notes / Help Center** abre la página externa correspondiente. Este wiki también tiene un [Cambio](../changelog/v0.34.0.md). |
 | Localizar o abrir el registro de diagnóstico | **General → Diagnostics → Reveal / Open**; ver [Solución de problemas](troubleshooting.md). Los registros permanecen locales hasta que los compartan. |
 | Instalar la entrada de línea de comandos | **General → Install command**; ver [Referencia CLI](../reference/cli.md). El uso de escritorio no requiere este comando. |
 | Gestionar la ubicación de datos o el trabajo archivado | [Almacenamiento y trabajos archivados](storage.md). |
@@ -159,3 +159,5 @@ Fuente: [Ajustes generales](https://github.com/aipoch/open-science/blob/v0.26.0/
 ![Opciones de escala de la interfaz en los ajustes generales](/img/open-science/v0333/interface-scale.webp)
 
 Esto controla la interfaz de la aplicación de escritorio. Ampliar vista de vista de imagen o PDF afecta sólo la vista de ese archivo. Al acceder a Open-Science en un navegador, utilice el zoom del navegador. El escalado de pantalla Windows también afecta a otras aplicaciones; use el control arriba cuando sólo desea cambiar el tamaño de Open-Science.
+
+El menú de bandejas también abre sesiones de funcionamiento, pinned y recientes directamente; ver [navegación por bandeja](navigation.md#tray-navigation).

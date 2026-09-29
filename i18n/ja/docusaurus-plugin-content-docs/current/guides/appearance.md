@@ -1,7 +1,7 @@
 ---
 title: "外観と通知"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -136,7 +136,7 @@ import Screenshot from '@site/src/components/Screenshot';
 | あなたは... | どこへ行くか |
 | --- | --- |
 | アプリの更新をチェックする | **General → About → Check now**; フォロー [インストールとアップデート](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| バージョンの変更を読むか、ヘルプを入手する | **About → Release notes / Help Center** 対応する外部ページを開きます。 このwikiには、 [変更履歴](../changelog/v0.31.1.md). |
+| バージョン変更を読んで、ヘルプを入手 | **About → Release notes / Help Center** 対応する外部ページを開きます。 このwikiには、 [変更履歴](../changelog/v0.34.0.md). |
 | 診断ログの検索または開く | **General → Diagnostics → Reveal / Open**; 詳しくはこちら [トラブルシューティング](troubleshooting.md). ログは共有するまでローカルに滞在します。 |
 | コマンドラインエントリをインストールします。 | **General → Install command**; 詳しくはこちら [CLI リファレンス](../reference/cli.md). デスクトップの使用は、このコマンドを必要としません。 |
 | データの場所を管理するか、またはアーカイブされた仕事 | [貯蔵およびアーカイブされた仕事](storage.md). |
@@ -159,3 +159,5 @@ import Screenshot from '@site/src/components/Screenshot';
 ![一般的な設定のインターフェイススケールの選択](/img/open-science/v0333/interface-scale.webp)
 
 デスクトップアプリのインターフェースをコントロールします。 画像または PDF プレビューズームは、そのファイルのビューにのみ影響します。 ブラウザでOpen-Scienceにアクセスする場合は、ブラウザのズームを使用してください。 Windowsディスプレイスケーリングは、他のアプリにも影響します。 Open-Science のサイズを変更したいだけなら、上記の制御を使用してください。
+
+トレイメニューは、ランニング、ピン留め、最近のセッションを直接開いています。 [トレイナビゲーション](navigation.md#tray-navigation) を参照してください。

@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting and common questions"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 # Troubleshooting and common questions
@@ -229,3 +229,7 @@ Sources: [HTTP semantics](https://www.rfc-editor.org/rfc/rfc9110.html#section-15
 Sources: [queue recovery notice](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/components/SessionCatalogRecoveryAlert.tsx), [PDF batch handling](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx), [collection conflict](https://github.com/aipoch/open-science/commit/dbb9560a), [Windows installer](https://github.com/aipoch/open-science/blob/v0.27.0/build/installer.nsh).
 
 Source: [bug report fields](https://github.com/aipoch/open-science/blob/v0.26.0/.github/ISSUE_TEMPLATE/bug_report.yml), [startup report dialog](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/components/startup-issue-dialog.tsx).
+
+## Codex reports an incompatible version after an upgrade {/* #codex-version */}
+
+If you see **The installed Codex CLI is incompatible or its version could not be verified**, open **Settings → Agent** and inspect the detected path and Codex CLI version. v0.34.0 requires CLI 0.157.1 or later. Update that managed or external installation, then **Re-detect**. Signing in to the model again does not replace a runtime update. Follow [Update Codex](frameworks.md#update-codex).

@@ -1720,5 +1720,23 @@
   },
   "docs.outline.reference.v0333.scope": {
     "message": "Enrichr 및 ClinPGx, 라이브러리 미리보기 및 패키지 전송 제어."
+  },
+  "docs.guides.outline.journal-datasets.scope": {
+    "message": "수입 저널 데이터 세트,지도 열, 소스를 선택하고, 일치 참조에 속성을 검사합니다."
+  },
+  "docs.guides.outline.journal-datasets.title": {
+    "message": "Journal datasets 및 참고 속성"
+  },
+  "docs.outline.reference.v0340.scope": {
+    "message": "저널 데이터셋, Pathway Commons 및 확장 데이터베이스, Linux ARM64, Codex 런타임 업데이트 및 트레이 탐색."
+  },
+  "docs.outline.reference.v0340.title": {
+    "message": "v0.34.0"
+  },
+  "docs.outline.workflows.inspect-pathway.scope": {
+    "message": "Pathway Commons 검색, Reactome URI 유지, 수출 상호 작용 및 저장된 소스 레코드를 검사."
+  },
+  "docs.outline.workflows.inspect-pathway.title": {
+    "message": "경로 및 상호 작용 네트워크 검사"
   }
 }

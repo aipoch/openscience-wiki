@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.33.3**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.3.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
+Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.34.0**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.0.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
 
 
 ## 化学化学品 {/* #family-1 */}
@@ -2385,6 +2385,83 @@ const result = await host.mcp("drug-regulatory", "get_generic_equivalents", {"br
 const result = await host.mcp("drug-regulatory", "search_drug_labels", {"brand_name": "Tylenol", "max_records": 5})
 ```
 
+### `search_drug_adverse_events` {/* #search_drug_adverse_events */}
+
+drug_name(医薬品)、調和したブランド/ジェネリック/ingredient、反応、重篤性(1=深刻な、2=非深刻な)、国または初期/レートレシート日付でFAERSレポートを検索します。 日付は常に他のフィルタを制約します。 raw_search は、マップされたフィルタを交換しますが、日付を保持します。 レポートは、複数の薬や反応をリストし、原因や発生性を確立することはできません。 結果は26000でおおわれます; より大きいコホーツのための狭いフィルター。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `drug_name` | 文字列 | オプション |
+| `brand_name` | 文字列 | オプション |
+| `generic_name` | 文字列 | オプション |
+| `ingredient` | 文字列 | オプション |
+| `reaction` | 文字列 | オプション |
+| `country` | 文字列 | オプション |
+| `serious` | 文字列 | オプション |
+| `received_date_from` | 文字列 | オプション |
+| `received_date_to` | 文字列 | オプション |
+| `receipt_date_from` | 文字列 | オプション |
+| `receipt_date_to` | 文字列 | オプション |
+| `search_type` | 文字列 | 任意; デフォルト: "and"; enum: &#91;"and", "or"&#93; |
+| `raw_search` | 文字列 | オプション |
+| `sort` | 文字列 | オプション |
+| `max_records` | 整数 | 任意; デフォルト: 25; 最小値: 1; 最高: 26000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "search_drug_adverse_events", {"drug_name": "LIPITOR", "reaction": "headache", "max_records": 10})
+```
+
+### `count_drug_adverse_events` {/* #count_drug_adverse_events */}
+
+反応、薬物、結果、国または受取日によるマッチングFAERSレポートを集計します。 カウントは、発生や注意ではなく、レポートを反映します。 多重評価のバケットオーバーラップとその合計は、ユニークなレポートの合計ではありません。 日付フィールドは、単語/カウントの代わりに時間/カウントを返します。 raw_searchは日付制約を保持します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `count_field` | 文字列 | **必須** |
+| `drug_name` | 文字列 | オプション |
+| `brand_name` | 文字列 | オプション |
+| `generic_name` | 文字列 | オプション |
+| `ingredient` | 文字列 | オプション |
+| `reaction` | 文字列 | オプション |
+| `country` | 文字列 | オプション |
+| `serious` | 文字列 | オプション |
+| `received_date_from` | 文字列 | オプション |
+| `received_date_to` | 文字列 | オプション |
+| `receipt_date_from` | 文字列 | オプション |
+| `receipt_date_to` | 文字列 | オプション |
+| `search_type` | 文字列 | 任意; デフォルト: "and"; enum: &#91;"and", "or"&#93; |
+| `raw_search` | 文字列 | オプション |
+| `max_buckets` | 整数 | 任意; デフォルト: 100; 最小値: 1; 最高: 1000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "count_drug_adverse_events", {"count_field": "reaction", "drug_name": "LIPITOR"})
+```
+
+### `search_drug_recalls` {/* #search_drug_recalls */}
+
+openFDAからFDAの薬物執行報告書(製品再コール)を、製品、リコール理由、分類、ステータス、場所、またはレポート日付で検索します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `recalling_firm` | 文字列 | オプション |
+| `product_description` | 文字列 | オプション |
+| `reason_for_recall` | 文字列 | オプション |
+| `status` | 文字列 | オプション |
+| `classification` | 文字列 | オプション |
+| `city` | 文字列 | オプション |
+| `state` | 文字列 | オプション |
+| `country` | 文字列 | オプション |
+| `report_date_from` | 文字列 | オプション |
+| `report_date_to` | 文字列 | オプション |
+| `search_type` | 文字列 | 任意; デフォルト: "and"; enum: &#91;"and", "or"&#93; |
+| `raw_search` | 文字列 | オプション |
+| `sort` | 文字列 | オプション |
+| `max_records` | 整数 | 任意; デフォルト: 25; 最小値: 1; 最高: 26000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "search_drug_recalls", {"reason_for_recall": "contamination", "max_records": 10})
+```
+
 </ToolOperationGroup>
 
 ## ヒト遺伝学 {/* #family-13 */}
@@ -2759,6 +2836,62 @@ eQTL を 1 つの組織の任意の遺伝子-variant ペアのためのフライ
 const result = await host.mcp("expression", "gtex_calculate_eqtl", {"gencode_id": "ENSG00000111640.14", "variant_id": "chr12_6452899_G_A_b38", "tissue_site_detail_id": "Whole_Blood"})
 ```
 
+### `bgee_species` {/* #bgee_species */}
+
+Bgee の健康な野生型表現のアトラスで利用可能な種を一覧表示するか、NCBI の分類 ID で 1 つの種を抽出します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `species_id` | 整数 | 任意; 最小値: 1; 最高: 2147483647 |
+
+```javascript
+const result = await host.mcp("expression", "bgee_species", {})
+```
+
+### `bgee_expression_calls` {/* #bgee_expression_calls */}
+
+Bgee を 1 つの種で 1 つの遺伝子に対して呼び出し、正規表現のスコアを取得する。 結果は、健康な野生型ベースラインコールであり、max_callsでキャップすることができます。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `gene_id` | 文字列 | **必須** |
+| `species_id` | 整数 | **必須**; 最小値: 1; 最高: 2147483647 |
+| `max_calls` | 整数 | 任意; デフォルト: 100; 最小値: 1; 最高: 500 |
+| `expression_type` | 文字列 | 任意; デフォルト: "EXPRESSED"; enum: &#91;"EXPRESSED", "NOT_EXPRESSED"&#93; |
+
+```javascript
+const result = await host.mcp("expression", "bgee_expression_calls", {"gene_id": "ENSG00000130208", "species_id": 9606, "max_calls": 50})
+```
+
+### `bgee_sparql_expression` {/* #bgee_sparql_expression */}
+
+1つの遺伝子、1つのNCBIの種および1つの組織/解剖学的組織のための結合されたBgee SPARQLのクエリを実行します。 3つのフィルタがすべて必要です。 生成されたクエリには、ハードリミットが含まれており、コールには独自のタイムアウトがあります。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `gene` | 文字列 | **必須**; 最長: 1; 最高長さ: 128 |
+| `species_id` | 整数 | **必須**; 最小値: 1; 最高: 2147483647 |
+| `tissue` | 文字列 | **必須**; 最長: 1; 最高長さ: 128 |
+| `limit` | 整数 | 任意; デフォルト: 25; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("expression", "bgee_sparql_expression", {"gene": "APOC1", "species_id": 9606, "tissue": "liver", "limit": 25})
+```
+
+### `bgee_download_links` {/* #bgee_download_links */}
+
+Bgee公式ダウンロードリンクを1つの種に作成します。: 要約されたプレゼント/エージェントコールまたは処理された式値ディレクトリ。 大きいファイルのみURLを返し、ダウンロードしないようにします。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `species` | 文字列 | **必須**; 最長: 1; 最高長さ: 128 |
+| `file_kind` | 文字列 | 任意; デフォルト: "calls_simple"; エヌム: &#91;"calls_simple", "calls_advanced", "processed_rna_seq", "processed_affymetrix", "processed_sc_full_length", "processed_sc_droplet_based"&#93; |
+| `all_conditions` | 真偽値 | 任意; デフォルト: false |
+
+```javascript
+const result = await host.mcp("expression", "bgee_download_links", {"species": "Homo_sapiens", "file_kind": "calls_simple"})
+```
+
 </ToolOperationGroup>
 
 ## 蛋白質のアノテーション {/* #family-15 */}
@@ -3038,6 +3171,69 @@ cBioPortal スタディ(パテントとサンプルレベルのフィールド)�
 
 ```javascript
 const result = await host.mcp("cancer-models", "cbioportal_clinical_attributes", {"study_id": "brca_tcga_pan_can_atlas_2018"})
+```
+
+### `cbioportal_get_samples` {/* #cbioportal_get_samples */}
+
+詳細なサンプルと患者の識別子を使用して研究で cBioPortal サンプルをリストします。 任意 sample_ids は返された行を制限します; max_records は、真の学習数を維持しながら、応答をキャップします。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `study_id` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+| `sample_ids` | 文字列の配列 | 任意; minItems: 1; maxItems: 1000の |
+| `max_records` | 整数 | 任意; デフォルト: 500; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_samples", {"study_id": "brca_tcga_pan_can_atlas_2018", "max_records": 100})
+```
+
+### `cbioportal_get_patients` {/* #cbioportal_get_patients */}
+
+詳細な識別子で研究中のcBioPortal患者をリストします。 任意 patient_ids は返された行を制限します; max_records は、真の学習数を維持しながら、応答をキャップします。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `study_id` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+| `patient_ids` | 文字列の配列 | 任意; minItems: 1; maxItems: 1000の |
+| `max_records` | 整数 | 任意; デフォルト: 500; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_patients", {"study_id": "brca_tcga_pan_can_atlas_2018", "max_records": 100})
+```
+
+### `cbioportal_get_clinical_data` {/* #cbioportal_get_clinical_data */}
+
+patient_ids または sample_ids マッチング レベルを明示するための cBioPortal 臨床データ値を取得する場合、attribute_ids に制限されます。 臨床値は、欠落値マーカーを含む文字列のままです。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `study_id` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+| `level` | 文字列 | 任意; デフォルト: "SAMPLE"; enum: &#91;"SAMPLE", "PATIENT"&#93; |
+| `attribute_ids` | 文字列の配列 | 任意; maxItems: 1000の |
+| `sample_ids` | 文字列の配列 | 任意; minItems: 1; maxItems: 1000の |
+| `patient_ids` | 文字列の配列 | 任意; minItems: 1; maxItems: 1000の |
+| `max_records` | 整数 | 任意; デフォルト: 1000; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_clinical_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "level": "PATIENT", "attribute_ids": ["AGE"], "patient_ids": ["TCGA-A1-A0SB"]})
+```
+
+### `cbioportal_get_molecular_data` {/* #cbioportal_get_molecular_data */}
+
+明示的な研究分子プロファイルから数値mRNAまたはタンパク質発現値を取得します。 cbioportal_get_studyでプロファイルを発見する。 測定/正規化を意図的に選択します。 gene_symbol または entrez_gene_ids および sample_ids または sample_list_id の 1 つを正確に供給して下さい。 行を欠くことはゼロ表現ではありません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `study_id` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+| `molecular_profile_id` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+| `gene_symbol` | 文字列 | オプション |
+| `entrez_gene_ids` | 整数の配列 | 任意; maxItems: 1000の |
+| `sample_ids` | 文字列の配列 | 任意; minItems: 1; maxItems: 1000の |
+| `sample_list_id` | 文字列 | 任意; 最長: 1; パターン: "\\S" |
+| `max_records` | 整数 | 任意; デフォルト: 1000; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_molecular_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "molecular_profile_id": "brca_tcga_pan_can_atlas_2018_rna_seq_v2_mrna", "gene_symbol": "ESR1", "sample_list_id": "brca_tcga_pan_can_atlas_2018_all"})
 ```
 
 </ToolOperationGroup>
@@ -3458,6 +3654,18 @@ const result = await host.mcp("omics-archives", "pride_search_project_proteins",
 
 ```javascript
 const result = await host.mcp("omics-archives", "pride_find_projects_for_protein", {"protein_accession": "P04637"})
+```
+
+### `mgnify_get_analysis_files` {/* #mgnify_get_analysis_files */}
+
+API v2 を使用した 1 つの MGnify 解析の result-file メタデータ: ファイルの種類、カテゴリ、バイト サイズが報告されると、上流のダウンロード URL が出力されます。 ファイルのバイトはダウンロードされません。 サイズや URL の欠損は、null のままです。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `accession` | 文字列 | **必須**; 最高長さ: 32; パターン: "^MGYA&#91;0-9&#93;&#123; 8、&#125;$" |
+
+```javascript
+const result = await host.mcp("omics-archives", "mgnify_get_analysis_files", {"accession": "MGYA00639970"})
 ```
 
 </ToolOperationGroup>
@@ -4250,6 +4458,80 @@ const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R202
 
 ```javascript
 const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+</ToolOperationGroup>
+
+## Pathway Commons {/* #family-28 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `pathway_commons_search` {/* #pathway_commons_search */}
+
+遺伝子/タンパク質/パスウェイキーワードまたはLuceneクエリでPathway Commons BioPAXモデルを検索します。 結果は、BioPAXクラス、URI、ソースデータベース、生物、パスウェイメタデータが含まれます。 返された URI をグラフまたはエクスポートのクエリに入力として使用してください。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `q` | 文字列 | **必須**; 最長: 1; 最高長さ: 512 |
+| `type` | 文字列 | 任意; 最長: 1; 最高長さ: 64 |
+| `organism` | 文字列の配列 | 任意; maxItems: 20の |
+| `datasource` | 文字列の配列 | 任意; maxItems: 20の |
+| `page` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_search", {"q": "TP53", "type": "ProteinReference", "organism": ["9606"]})
+```
+
+### `pathway_commons_top_pathways` {/* #pathway_commons_top_pathways */}
+
+Pathway Commons のトップレベルの経路を検索し、キーワードやルーセンクエリをマッチングし、Reactome などの種やソースに制限されています。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `q` | 文字列 | **必須**; 最長: 1; 最高長さ: 512 |
+| `organism` | 文字列の配列 | 任意; maxItems: 20の |
+| `datasource` | 文字列の配列 | 任意; maxItems: 20の |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_top_pathways", {"q": "insulin", "datasource": ["reactome"], "organism": ["9606"]})
+```
+
+### `pathway_commons_graph` {/* #pathway_commons_graph */}
+
+Pathway Commons BioPAX のグラフクエリを実行して、遺伝子セット間のパス、ソースからターゲットへのパス、または一般的な上流/下流ストリームを処理します。 SIF結果は、インタラクションレコードとして正規化され、TXT結果にはエッジとノードレコード、およびGSEA/BioPAX/SBGNエクスポートはテキストとして使用可能です。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `source` | 文字列の配列 | **必須**; minItems: 1; maxItems: 100の |
+| `target` | 文字列の配列 | 任意; minItems: 1; maxItems: 100の |
+| `kind` | 文字列 | 任意; デフォルト: "NEIGHBORHOOD"; エヌム: &#91;"NEIGHBORHOOD", "PATHSBETWEEN", "PATHSFROMTO", "COMMONSTREAM"&#93; |
+| `format` | 文字列 | 任意; デフォルト: "SIF"; エヌム: &#91;"BIOPAX"、"SIF"、"TXT"、"GSEA"、"SBGN"、"JSONLD"&#93; |
+| `limit` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10 |
+| `direction` | 文字列 | 任意; enum: &#91;"UPSTREAM"、"DOWNSTREAM"、"BOTHSTREAM"、"UNDIRECTED"&#93; |
+| `limit_type` | 文字列 | 任意; デフォルト: "NORMAL"; enum: &#91;"NORMAL", "SHORTEST_PLUS_K"&#93; |
+| `pattern` | 文字列の配列 | 任意; maxItems: 14の |
+| `organism` | 文字列の配列 | 任意; maxItems: 20の |
+| `datasource` | 文字列の配列 | 任意; maxItems: 20の |
+| `subpathways` | 真偽値 | 任意; デフォルト: false |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_graph", {"kind": "NEIGHBORHOOD", "source": ["TP53"], "format": "SIF", "pattern": ["INTERACTS_WITH"]})
+```
+
+### `pathway_commons_export` {/* #pathway_commons_export */}
+
+1 つ以上の Pathway Commons ID/URI の BioPAX サブモデルを取得し、BIOPAX、GSEA GMT、JSON-LD、SIF、TXT、または SBGN としてエクスポートします。 検索/top_pathways で返された URI を使用して、正確なパスウェイエクスポートを行います。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `uri` | 文字列の配列 | **必須**; minItems: 1; maxItems: 100の |
+| `format` | 文字列 | 任意; デフォルト: "BIOPAX"; エヌム: &#91;"BIOPAX"、"SIF"、"TXT"、"GSEA"、"SBGN"、"JSONLD"&#93; |
+| `pattern` | 文字列の配列 | 任意; maxItems: 14の |
+| `subpathways` | 真偽値 | 任意; デフォルト: false |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_export", {"uri": ["R-HSA-201451"], "format": "GSEA"})
 ```
 
 </ToolOperationGroup>

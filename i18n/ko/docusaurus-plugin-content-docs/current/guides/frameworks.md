@@ -1,7 +1,7 @@
 ---
 title: "설치 및 전환 에이전트"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 # 설치 및 전환 에이전트 {/* #installing-and-switching-agents */}
@@ -45,6 +45,12 @@ v0.33.0에서 **Claude Agent**은 Claude CLI **2.1.118 이상**를 요구합니�
 **Settings → Agent**을 열고 Codex 카드의 **Codex CLI** 및 **ACP를** 버전을 별도로 읽으십시오. 테스트 쌍에 업데이트가 제공되면, 종료 또는 종료 세션을 사용하여 실행 시간, 업데이트 작업을 선택하고 완전한 탐지를 기다립니다. 새 버전과 읽음을 확인한 다음 세션에서 작은 요청을 보냅니다.
 
 앱 관리 업데이트는 app-owned runtime을 대체합니다. 외부 CLI은 원래 설치 방법을 통해 업데이트되어야하며 **Re-detect**에 따라 다릅니다. 앱은 Codex 프로세스를 실행하는 동안 교체를 거부합니다. 이 작업은 Open-Science 자체를 업데이트하지 않거나 in-flight 작업을 마이그레이션하지 않습니다.
+
+**v0.34.0**에서, Codex CLI는 적어도 **0.157.1**이어야 하고, 적어도 **1.6.2** ACP 접합기. Open-Science을 단독으로 업데이트하면 이전 Codex을 설치할 수 있습니다. **Update required** 또는 버전이 확인 될 수없는 메시지를 볼 경우, 그 실행 시간을 사용하여 세션을 중지 한 다음 관리 카드에서 **Update Codex**을 선택하십시오. 원래 방법을 통해 외부 설치를 업데이트하고 **Re-detect**을 선택합니다. 요청을 실행하기 전에 감지 된 버전과 **Active**을 확인합니다.
+
+![Codex CLI 0.157.1 및 ACP 1.6.2는 관리된 갱신 후에 검출했습니다](/img/open-science/v0340/codex-updated.webp)
+
+이것은 Open-Science의 런타임 호환성 기준선, 모든 모형을 위한 보편적인 최소한 아닙니다입니다. 앱을 업데이트하고, 런타임을 업데이트하고 모델 공급자에 서명하는 것은 별도의 단계입니다.
 
 ## 살아있는 국가를 가진 옹호된 역사 없이 전환 {/* #switch-without-confusing-retained-history-with-live-state */}
 

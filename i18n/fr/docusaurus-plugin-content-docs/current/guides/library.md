@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ Pour réutiliser une figure ou une table à partir d'un PDF joint, suivez [Extra
 
 Ouverture de **Library** à partir de Home entre dans la bibliographie complète. Dans un espace de travail projet, le **Library** de la barre latérale ouvre un aperçu compact sur la droite.
 
-1. Choisissez **Projet actuel** ou **All references**, puis utilisez **Search references** pour trouver les enregistrements existants.
+1. Choisissez **Projet actuel**, **All references**, ou un **Collection** ouvert, puis utilisez **Search references** pour trouver les enregistrements existants.
 2. Sélectionnez **Résumé** pour lire un résumé et **Show more** pour l'agrandir. **Pas de PDF attaché** signifie que l'enregistrement n'a pas de PDF; un résumé n'est pas un texte complet.
 3. Pour les collections intelligentes, les importations et la gestion des enregistrements, choisissez **Ouvrir dans Littérature** ou **Afficher dans Littérature** sur un enregistrement.
 
@@ -36,6 +36,20 @@ Dans la bibliothèque complète, **Retour au projet / Retour à la maison** reto
 | Collection | Un groupe thématique, comprenant des collections imbriquées | Réutiliser un ensemble de lectures à travers les projets |
 
 ![Trois papiers acceptés dans la vraie collection PRISMA](/img/open-science/guides-walkthrough/51-library-collection.webp)
+
+### Ajouter une référence à un projet de conversation {/* #add-reference-to-chat */}
+
+Dans l'aperçu **Library** de l'espace de travail, sélectionnez **Add to chat** d'un enregistrement pour mettre sa référence dans le Compositeur actuel. Utilisez **Choisissez une autre conversation** à côté pour rechercher d'autres conversations par titre ou par numéro, ou commencer une nouvelle conversation. Vérifiez le projet de destination et la conversation, ajoutez votre question, puis envoyez-le vous-même. **Ajouter au chat n'envoie pas de message automatiquement.**
+
+Pour plusieurs papiers, activez d'abord **Batch actions**, sélectionnez les enregistrements, vérifiez le nombre sélectionné et utilisez l'action lot **Add to chat**. **Clear selection** efface cette sélection; **Done** sort du mode batch. Ce mode opt-in appartient à l'aperçu de l'espace de travail compact; la bibliothèque complète conserve ses propres contrôles de sélection de table.
+
+![Une référence papier existante ajoutée au projet de conversation, prête pour une question et un manuel d'envoi](/img/open-science/v0340/library-add-to-draft.webp)
+
+**Détails de référence** ouvre les métadonnées et les pièces jointes; **Afficher dans Littérature** ouvre l'enregistrement complet de la bibliothèque. L'ajout d'une référence ne télécharge pas son texte complet. Un enregistrement marqué **Pas de PDF attaché** n'a encore que ses métadonnées disponibles, ses résumés et autres contenus existants.
+
+### Afficher les données du journal {/* #journal-attributes */}
+
+**Library → Journals** importe des ensembles de données de journaux avec une source et une année et affiche des attributs correspondants dans les détails de référence et les tableaux. Suivez [Ensembles de données et attributs de référence](journal-datasets.md) pour les étapes complètes, échantillon CSV et captures d'écran.
 
 ## Ajouter ou importer un enregistrement {/* #add-or-import-a-record */}
 

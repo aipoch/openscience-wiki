@@ -262,6 +262,17 @@
           "contentStatus": "written"
         },
         {
+          "id": "journal-datasets",
+          "title": "Journal datasets and reference attributes",
+          "scope": "Import journal datasets, map columns, choose source and year, and inspect attributes on matching references.",
+          "currentDoc": "guides/journal-datasets",
+          "proposedUrl": "/docs/guides/journal-datasets/",
+          "relatedDocs": [
+            "guides/journal-datasets"
+          ],
+          "contentStatus": "written"
+        },
+        {
           "id": "notebook",
           "title": "Notebook and execution evidence",
           "scope": "Review the included topics and their planned scope below.",

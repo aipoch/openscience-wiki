@@ -1730,5 +1730,23 @@
   },
   "docs.outline.reference.v0333.scope": {
     "message": "Paged Office reading, Enrichr и ClinPGx, предварительные просмотры библиотек и средства управления пакетной передачей."
+  },
+  "docs.guides.outline.journal-datasets.scope": {
+    "message": "Импорт журнальных наборов данных, столбцов карт, выбор источника и года и проверка атрибутов на соответствующих ссылках."
+  },
+  "docs.guides.outline.journal-datasets.title": {
+    "message": "Наборы данных журнала и атрибуты ссылок"
+  },
+  "docs.outline.reference.v0340.scope": {
+    "message": "Наборы данных журналов, Pathway Commons и расширенные базы данных, обновления среды выполнения Linux ARM64, Codex и навигация лоток."
+  },
+  "docs.outline.reference.v0340.title": {
+    "message": "v0.34.0"
+  },
+  "docs.outline.workflows.inspect-pathway.scope": {
+    "message": "Поиск Pathway Commons, сохранение URI Reactome, экспорт взаимодействия и проверка сохраненных записей источника."
+  },
+  "docs.outline.workflows.inspect-pathway.title": {
+    "message": "Проверить путь и его сеть взаимодействия"
   }
 }

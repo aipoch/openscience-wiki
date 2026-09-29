@@ -2587,5 +2587,23 @@
   },
   "docs.outline.reference.v0333.scope": {
     "message": "Office 分頁閱讀、Enrichr 與 ClinPGx、文獻庫預覽及研究包傳輸設定。"
+  },
+  "docs.guides.outline.journal-datasets.scope": {
+    "message": "匯入期刊資料集、對映列、選擇來源與年份，並檢視匹配文獻的屬性。"
+  },
+  "docs.guides.outline.journal-datasets.title": {
+    "message": "期刊資料集與文獻屬性"
+  },
+  "docs.outline.reference.v0340.scope": {
+    "message": "期刊資料集、Pathway Commons 與資料庫擴充套件、Linux ARM64、Codex 執行時更新和托盤導航。"
+  },
+  "docs.outline.reference.v0340.title": {
+    "message": "v0.34.0"
+  },
+  "docs.outline.workflows.inspect-pathway.scope": {
+    "message": "檢索 Pathway Commons，保留 Reactome URI，匯出互作並檢查儲存的來源記錄。"
+  },
+  "docs.outline.workflows.inspect-pathway.title": {
+    "message": "檢查通路及其互作網路"
   }
 }

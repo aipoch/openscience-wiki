@@ -1,0 +1,10 @@
+source	interaction	target	interpretive_note
+TP53	controls-expression-of	MDM2	Direct SIF edge; supports the transcriptional arm of the TP53-MDM2 feedback motif.
+MDM2	controls-state-change-of	TP53	Direct SIF edge; direction indicates control but not whether the net effect is activating or inhibitory.
+MDM2	in-complex-with	TP53	Direct SIF edge; association/complex membership does not establish stoichiometry or binding kinetics.
+PCBP4	controls-expression-of	CDKN1A	CDKN1A is present, but its direct TP53 transcriptional link is not explicit in this flattened export.
+CDK2	in-complex-with	CDKN1A	Shows CDKN1A in cell-cycle complex context.
+CCNE1	in-complex-with	CDKN1A	Representative cyclin-CDKN1A complex context.
+CCNE2	in-complex-with	CDKN1A	Representative cyclin-CDKN1A complex context.
+CCNA1	in-complex-with	CDKN1A	Representative cyclin-CDKN1A complex context.
+CCNA2	in-complex-with	CDKN1A	Representative cyclin-CDKN1A complex context.

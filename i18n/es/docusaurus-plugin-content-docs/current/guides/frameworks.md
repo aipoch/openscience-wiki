@@ -1,7 +1,7 @@
 ---
 title: "Instalación y conmutación de agentes"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 # Instalación y conmutación de agentes {/* #installing-and-switching-agents */}
@@ -45,6 +45,12 @@ En v0.33.0, **Claude Agent** requiere Claude CLI **2.1.118 o más tarde**. Si la
 Abrir **Settings → Agent** y leer las versiones **Codex CLI** y **ACP** de la tarjeta Codex por separado. Si se ofrece una actualización al par probado, termine o cierre las sesiones usando ese tiempo de ejecución, elija la acción de actualización y espere a que la detección se complete. Confirme las nuevas versiones y la preparación, luego envíe una pequeña solicitud en una sesión.
 
 Una actualización administrada por aplicaciones sustituye el tiempo de ejecución de propiedad de la aplicación; un CLI externo debe ser actualizado a través de su método de instalación original, seguido por **Re-detect**. La aplicación se niega a reemplazar mientras que un proceso Codex de la aplicación está utilizando el objetivo. Esta operación no actualiza el Open-Science en sí o migra una tarea en vuelo.
+
+En **v0.34.0**, Codex CLI debe ser por lo menos **0.157.1**, y el adaptador ACP al menos **1.6.2**. Actualizar Open-Science solo puede dejar un Codex antiguo instalado. Si ve **Update required** o un mensaje que la versión no puede ser verificada, detenga las sesiones utilizando ese tiempo de ejecución, seleccione **Update Codex** en la tarjeta administrada. Actualice una instalación externa a través de su método original y seleccione **Re-detect**. Compruebe las versiones detectadas y **Active** antes de ejecutar una solicitud.
+
+![Codex CLI 0.157.1 y ACP 1.6.2 detectados después de la actualización gestionada](/img/open-science/v0340/codex-updated.webp)
+
+Esta es la base de compatibilidad de tiempo de ejecución de Open-Science, no un mínimo universal para cada modelo. Actualizar la aplicación, actualizar su tiempo de ejecución y registrarse en un proveedor de modelos son pasos separados.
 
 ## Interruptor sin confundir la historia retenida con el estado vivo {/* #switch-without-confusing-retained-history-with-live-state */}
 

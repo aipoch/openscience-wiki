@@ -1,7 +1,7 @@
 ---
 title: "Anbieter und lokales Modell-Setup"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -228,3 +228,5 @@ Wählen Sie das genaue Modell aus, das für Ihren aktiven Agenten angeboten wird
 ## Neue Katalogauswahl {/* #catalog-models */}
 
 Die v0.33.1-Anbieterkataloge fügen **GPT-6** und **Claude Opus 5.5** hinzu. Öffnen Sie die Modellliste des Anbieters und wählen Sie einen Eintrag aus, der vom aktiven Framework und Ihrem Konto unterstützt wird. Die Katalogpräsenz gewährt keinen Zugriff auf das gespeicherte Main-Modell oder wechselt es. Validieren Sie den Anbieter und senden Sie eine kleine Anfrage, bevor Sie ein geändertes Modell für die Forschung verwenden.
+
+v0.34.0 fügt **MiniMax M3.1 Flash-Vorschau** und **Claude Sonnet 5.5** hinzu. Wählen Sie sie aus der Modellliste des jeweiligen Anbieters aus und prüfen Sie den Zugriff auf das Konto und die Kompatibilität mit dem aktiven Agenten. Dies ersetzt nicht automatisch das gespeicherte Main-Modell.

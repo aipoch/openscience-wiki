@@ -1797,5 +1797,23 @@
   },
   "docs.outline.reference.v0332.scope": {
     "message": "Signed Windows installers, persistent source previews and STRING interaction enrichment."
+  },
+  "docs.guides.outline.journal-datasets.title": {
+    "message": "Journal datasets and reference attributes"
+  },
+  "docs.guides.outline.journal-datasets.scope": {
+    "message": "Import journal datasets, map columns, choose source and year, and inspect attributes on matching references."
+  },
+  "docs.outline.workflows.inspect-pathway.title": {
+    "message": "Inspect a pathway and its interaction network"
+  },
+  "docs.outline.workflows.inspect-pathway.scope": {
+    "message": "Search Pathway Commons, retain a Reactome URI, export interactions and inspect the saved source records."
+  },
+  "docs.outline.reference.v0340.title": {
+    "message": "v0.34.0"
+  },
+  "docs.outline.reference.v0340.scope": {
+    "message": "Journal datasets, Pathway Commons and expanded databases, Linux ARM64, Codex runtime updates and tray navigation."
   }
 }

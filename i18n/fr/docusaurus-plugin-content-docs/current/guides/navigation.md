@@ -1,7 +1,7 @@
 ---
 title: "Navigation et recherche"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-29'
 ---
 
 # Navigation et recherche {/* #navigation-and-search */}
@@ -61,3 +61,9 @@ Le nombre à côté de **Advanced filters** montre des conditions actives. Colla
 ## Quand un résultat semble manquant {/* #when-a-result-seems-missing */}
 
 Effacer la catégorie et les autres filtres, vérifier le projet propriétaire et rechercher une phrase distinctive ou le nom de fichier enregistré. Utiliser Archivé lorsque vous recherchez des travaux archivés. Un chemin imprimé dans une réponse d'outil échouée n'est pas un artefact sauvegardé. Les contenus nouvellement modifiés ou réordonnés peuvent nécessiter un rafraîchissement de la recherche. Si un fichier s'ouvre mais ne peut pas être prévisualisé, suivez [Fichiers](files.md) et [Dépannage](troubleshooting.md).
+
+## Couper les sessions à partir du plateau {/* #tray-navigation */}
+
+Ouvrez le menu de l'icône **Open-Science** dans la barre de menu macOS, le plateau Windows ou un bureau Linux avec support de plateau. Utilisez **Running sessions** pour trouver du travail actif, **Pinned sessions** pour les conversations épinglées, ou **Recent items** pour le contenu récent. Les listes plus longues continuent sous **Autres éléments**. Après avoir choisi une entrée, vérifiez le titre du projet et de la conversation qui s'ouvre.
+
+Utilisez **Pin** à côté d'un titre de conversation pour le garder à portée de main. **Afficher / masquer** modifie la visibilité de la fenêtre; **Quit** sort de l'application. Changer de conversation n'arrête pas une tâche. La disponibilité de l'icône Linux dépend du support du plateau du bureau. Voir [apparence et notifications](appearance.md) pour le comportement et les alertes de fermeture de fenêtre.

@@ -1,7 +1,7 @@
 ---
 title: "外觀與通知"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -136,7 +136,7 @@ import Screenshot from '@site/src/components/Screenshot';
 | 你想要… | 對應入口 |
 | --- | --- |
 | 檢查應用更新 | **General → About → Check now**；後續步驟見[安裝與更新](installation.md) |
-| 閱讀版本變化或獲取幫助 | **About → Release notes / Help Center** 開啟相應外部頁面；本 Wiki 另有 [Changelog](../changelog/v0.31.1.md) |
+| 閱讀版本變化或獲取幫助 | **About → Release notes / Help Center** 開啟相應外部頁面；本 Wiki 另有 [Changelog](../changelog/v0.34.0.md) |
 | 定位或開啟診斷日誌 | **General → Diagnostics → Reveal / Open**；見[故障排查](troubleshooting.md)。日誌在主動分享前保留於本地 |
 | 安裝命令列入口 | **General → Install command**；見 [CLI 參考](../reference/cli.md)。使用桌面介面不需要安裝此命令 |
 | 管理資料位置或歸檔工作 | [儲存與歸檔](storage.md) |
@@ -159,3 +159,5 @@ import Screenshot from '@site/src/components/Screenshot';
 ![General 中的 Interface scale 選項](/img/open-science/v0333/interface-scale.webp)
 
 這是桌面應用的介面大小設定；影象或 PDF 預覽裡的縮放隻影響當前檔案。透過瀏覽器訪問時使用瀏覽器自己的縮放。Windows 系統顯示縮放影響其他應用，需要只調整 Open-Science 時優先使用上述入口。
+
+托盤選單也能直接切換執行中、固定和近期會話，見[托盤導航](navigation.md#tray-navigation)。

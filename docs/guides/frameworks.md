@@ -1,7 +1,7 @@
 ---
 title: "Installing and switching agents"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 # Installing and switching agents
@@ -45,6 +45,12 @@ In v0.33.0, **Claude Agent** requires Claude CLI **2.1.118 or later**. If detect
 Open **Settings → Agent** and read the Codex card’s **Codex CLI** and **ACP** versions separately. If an update to the tested pair is offered, finish or close sessions using that runtime, choose the update action and wait for detection to complete. Confirm the new versions and readiness, then send a small request in a session.
 
 An app-managed update replaces the app-owned runtime; an external CLI must be updated through its original installation method, followed by **Re-detect**. The app refuses replacement while an app-launched Codex process is using the target. This operation does not update Open-Science itself or migrate an in-flight task.
+
+In **v0.34.0**, Codex CLI must be at least **0.157.1**, and the ACP adapter at least **1.6.2**. Updating Open-Science alone may leave an older Codex installed. If you see **Update required** or a message that the version cannot be verified, stop sessions using that runtime, then select **Update Codex** on the managed card. Update an external installation through its original method and select **Re-detect**. Check the detected versions and **Active** before running a request.
+
+![Codex CLI 0.157.1 and ACP 1.6.2 detected after the managed update](/img/open-science/v0340/codex-updated.webp)
+
+This is Open-Science's runtime compatibility baseline, not a universal minimum for every model. Updating the app, updating its runtime and signing in to a model provider are separate steps.
 
 ## Switch without confusing retained history with live state
 
