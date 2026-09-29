@@ -1,7 +1,7 @@
 ---
 title: "Navegación y búsqueda"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-29'
 ---
 
 # Navegación y búsqueda {/* #navigation-and-search */}
@@ -61,3 +61,9 @@ El número junto a **Advanced filters** muestra las condiciones activas. Collaps
 ## Cuando un resultado parece faltar {/* #when-a-result-seems-missing */}
 
 Categoría clara y otros filtros, compruebe el proyecto de propiedad y busque una frase distintiva o el nombre de archivo guardado. Use Archivado cuando busque trabajo archivado. Un camino impreso en una respuesta fallida de la herramienta no es un artefacto salvado. El contenido recién cambiado o reordenado puede requerir refrescar la búsqueda. Si un archivo se abre pero no se puede previsualizar, siga [Archivos](files.md) y [Solución de problemas](troubleshooting.md).
+
+## Cambiar las sesiones de la bandeja {/* #tray-navigation */}
+
+Abra el menú del icono **Open-Science** en la barra de menú macOS, bandeja Windows o un escritorio Linux con soporte de bandeja. Utilice **Running sessions** para encontrar trabajo activo, **Pinned sessions** para conversaciones confinadas, o **Recent items** para contenido reciente. Las listas más largas continúan bajo **Más artículos**. Después de elegir una entrada, compruebe el proyecto y el título de conversación que abre.
+
+Use **Pin** junto a un título de conversación para mantenerlo útil. **Mostrar / Ocultar** cambia la visibilidad de la ventana; **Quit** sale de la aplicación. Cambiar las conversaciones no detiene una tarea. La disponibilidad de iconos Linux depende del soporte de bandeja del escritorio. Vea [comparecencia y notificaciones](appearance.md) para el comportamiento de ventana y alertas.

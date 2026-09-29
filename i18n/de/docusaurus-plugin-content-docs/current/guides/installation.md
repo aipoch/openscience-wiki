@@ -1,7 +1,7 @@
 ---
 title: "Installation und Aktualisierungen"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -65,6 +65,8 @@ Offizielle Windows-Installateure sind von v0.33.2 signiert; v0.33.3 erweitert di
 | Ubuntu / Debian | `uname -m`: `x86_64` bedeutet x64, `aarch64` bedeutet ARM64 | Wählen Sie das Matching `.deb`, öffnen Sie es mit dem Systempaket-Installer und starten Sie dann aus dem Anwendungsmenü |
 | Andere unterstützte Linux-Distributionen | Überprüfung `uname -m` | Wählen Sie das Matching `.AppImage`Erlauben Sie die Ausführung in den Berechtigungen der Datei und öffnen Sie sie dann; Beheben Sie alle Abhängigkeitsfehler, die von der Verteilung gemeldet wurden |
 
+v0.34.0 bietet Linux **x64 und ARM64** Pakete. Wählen Sie für ARM64 `aipoch-open-science-0.34.0-linux-arm64.AppImage` oder `aipoch-open-science_0.34.0_arm64.deb`. Die x64 Gegenstücke sind `aipoch-open-science-0.34.0-linux-x86_64.AppImage` und `aipoch-open-science_0.34.0_amd64.deb`. Laden Sie von den offiziellen Assets des ausgewählten Releases herunter und passen Sie das Ergebnis von `uname -m` an.
+
 </PlatformContent>
 
 Der Installationsordner enthält die Anwendung; **Data location** im Einrichtungsassistenten enthält Forschungsdateien und Laufzeitumgebungen. Beide Speicherorte werden getrennt festgelegt. Fahren Sie nach der Installation mit der [Ersteinrichtung](onboarding.md) fort.
@@ -73,7 +75,7 @@ Der Installationsordner enthält die Anwendung; **Data location** im Einrichtung
 
 Sie benötigen Git, Node.js 22, npm und die Plattformbauvoraussetzungen für Electron. Installieren oder wählen Sie ein Agent-Framework in der Anwendung aus. Während der Installation generiert das Repository den Prisma Client, wendet App-Patches an und bereitet native Electron-Abhängigkeiten vor.
 
-Wählen Sie für eine reproduzierbare Quellinstallation das vorgesehene Release-Tag aus [Changelog](../changelog/v0.33.3.md), bevor Sie Abhängigkeiten installieren. Ein Standardklon folgt dem Branch und nicht einem festen Release. Notieren Sie die ausgewählten Tag-, Source-Commit- und Runtime-Versionen, damit eine andere Person die Umgebung reproduzieren kann.
+Wählen Sie für eine reproduzierbare Quellinstallation das vorgesehene Release-Tag aus [Changelog](../changelog/v0.34.0.md), bevor Sie Abhängigkeiten installieren. Ein Standardklon folgt dem Branch und nicht einem festen Release. Notieren Sie die ausgewählten Tag-, Source-Commit- und Runtime-Versionen, damit eine andere Person die Umgebung reproduzieren kann.
 
 Ersetzen Sie `RELEASE_TAG` unten durch das genaue Tag, das auf dem ausgewählten Release angezeigt wird (einschließlich des führenden `v`). Um der laufenden Entwicklung zu folgen, lassen Sie stattdessen `--branch RELEASE_TAG --depth 1` weg; Dieser Checkout folgt dem Default Branch.
 

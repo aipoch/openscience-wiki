@@ -2,6 +2,7 @@ import React from 'react';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {useDoc} from '@docusaurus/plugin-content-docs/client';
+import {applyTrailingSlash} from '@docusaurus/utils-common';
 import {localeConfigs} from '../../../i18n.config.mjs';
 
 const organizationId = 'https://aipoch.com/#organization';
@@ -15,7 +16,10 @@ export default function DocArticleStructuredData() {
   const {i18n, siteConfig} = useDocusaurusContext();
   const {metadata, frontMatter} = useDoc();
   const localeConfig = localeConfigs[i18n.currentLocale];
-  const canonical = absoluteUrl(siteConfig.url, metadata.permalink);
+  const canonical = absoluteUrl(siteConfig.url, applyTrailingSlash(metadata.permalink, {
+    trailingSlash: siteConfig.trailingSlash,
+    baseUrl: siteConfig.baseUrl,
+  }));
   const docsHome = absoluteUrl(siteConfig.url, localeConfig.baseUrl);
   const dateModified = frontMatter.last_update?.date;
   const schema = {

@@ -2,7 +2,7 @@
 title: "Connector 操作引數參考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.33.3** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.3.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
+每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.34.0** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.0.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
 
 
 ## 化學 {/* #family-1 */}
@@ -2387,6 +2387,83 @@ const result = await host.mcp("drug-regulatory", "get_generic_equivalents", {"br
 const result = await host.mcp("drug-regulatory", "search_drug_labels", {"brand_name": "Tylenol", "max_records": 5})
 ```
 
+### `search_drug_adverse_events` {/* #search_drug_adverse_events */}
+
+按報告藥品、品牌／通用名／成分、反應、嚴重程度（1 為嚴重、2 為非嚴重）、國家或收件日期查詢 FAERS 報告。raw_search 替換對映過濾條件，但仍保留日期限制。每條報告可包含多種藥品和反應，不能據此計算發生率或推斷因果；最多返回 26000 條，較大查詢應縮小範圍。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `drug_name` | string | 可選 |
+| `brand_name` | string | 可選 |
+| `generic_name` | string | 可選 |
+| `ingredient` | string | 可選 |
+| `reaction` | string | 可選 |
+| `country` | string | 可選 |
+| `serious` | string | 可選 |
+| `received_date_from` | string | 可選 |
+| `received_date_to` | string | 可選 |
+| `receipt_date_from` | string | 可選 |
+| `receipt_date_to` | string | 可選 |
+| `search_type` | string | 可選; default: &quot;and&quot;; enum: &#91;&quot;and&quot;, &quot;or&quot;&#93; |
+| `raw_search` | string | 可選 |
+| `sort` | string | 可選 |
+| `max_records` | integer | 可選; default: 25; minimum: 1; maximum: 26000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "search_drug_adverse_events", {"drug_name": "LIPITOR", "reaction": "headache", "max_records": 10})
+```
+
+### `count_drug_adverse_events` {/* #count_drug_adverse_events */}
+
+按反應、藥品、結局、國家或收件日期彙總 FAERS 報告。計數是報告數，不是發生率或因果證據；多值分組可能重疊，不能相加作為去重報告總數。日期欄位返回 time/count，其餘通常為 term/count；raw_search 保留日期限制。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `count_field` | string | **必填** |
+| `drug_name` | string | 可選 |
+| `brand_name` | string | 可選 |
+| `generic_name` | string | 可選 |
+| `ingredient` | string | 可選 |
+| `reaction` | string | 可選 |
+| `country` | string | 可選 |
+| `serious` | string | 可選 |
+| `received_date_from` | string | 可選 |
+| `received_date_to` | string | 可選 |
+| `receipt_date_from` | string | 可選 |
+| `receipt_date_to` | string | 可選 |
+| `search_type` | string | 可選; default: &quot;and&quot;; enum: &#91;&quot;and&quot;, &quot;or&quot;&#93; |
+| `raw_search` | string | 可選 |
+| `max_buckets` | integer | 可選; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "count_drug_adverse_events", {"count_field": "reaction", "drug_name": "LIPITOR"})
+```
+
+### `search_drug_recalls` {/* #search_drug_recalls */}
+
+按召回企業、產品、原因、分類、狀態、位置或報告日期查詢 openFDA 藥品執法／召回記錄。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `recalling_firm` | string | 可選 |
+| `product_description` | string | 可選 |
+| `reason_for_recall` | string | 可選 |
+| `status` | string | 可選 |
+| `classification` | string | 可選 |
+| `city` | string | 可選 |
+| `state` | string | 可選 |
+| `country` | string | 可選 |
+| `report_date_from` | string | 可選 |
+| `report_date_to` | string | 可選 |
+| `search_type` | string | 可選; default: &quot;and&quot;; enum: &#91;&quot;and&quot;, &quot;or&quot;&#93; |
+| `raw_search` | string | 可選 |
+| `sort` | string | 可選 |
+| `max_records` | integer | 可選; default: 25; minimum: 1; maximum: 26000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "search_drug_recalls", {"reason_for_recall": "contamination", "max_records": 10})
+```
+
 </ToolOperationGroup>
 
 ## 人類遺傳學 {/* #family-13 */}
@@ -2761,6 +2838,62 @@ const result = await host.mcp("expression", "gtex_multi_tissue_eqtls", {"gencode
 const result = await host.mcp("expression", "gtex_calculate_eqtl", {"gencode_id": "ENSG00000111640.14", "variant_id": "chr12_6452899_G_A_b38", "tissue_site_detail_id": "Whole_Blood"})
 ```
 
+### `bgee_species` {/* #bgee_species */}
+
+列出 Bgee 健康野生型表達圖譜中的物種，或用 NCBI taxonomy ID 查詢一個物種。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `species_id` | integer | 可選; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("expression", "bgee_species", {})
+```
+
+### `bgee_expression_calls` {/* #bgee_expression_calls */}
+
+查詢單個物種中一個基因的表達存在／缺失判斷及標準化表達分數。這是健康野生型基線結果，不是差異表達檢驗；max_calls 限制返回數量。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填** |
+| `species_id` | integer | **必填**; minimum: 1; maximum: 2147483647 |
+| `max_calls` | integer | 可選; default: 100; minimum: 1; maximum: 500 |
+| `expression_type` | string | 可選; default: &quot;EXPRESSED&quot;; enum: &#91;&quot;EXPRESSED&quot;, &quot;NOT_EXPRESSED&quot;&#93; |
+
+```javascript
+const result = await host.mcp("expression", "bgee_expression_calls", {"gene_id": "ENSG00000130208", "species_id": 9606, "max_calls": 50})
+```
+
+### `bgee_sparql_expression` {/* #bgee_sparql_expression */}
+
+針對一個基因、一個 NCBI 物種和一個組織／解剖實體執行有界 SPARQL 查詢。三個過濾欄位均必填，查詢包含硬性 LIMIT，並有獨立超時。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `gene` | string | **必填**; minLength: 1; maxLength: 128 |
+| `species_id` | integer | **必填**; minimum: 1; maximum: 2147483647 |
+| `tissue` | string | **必填**; minLength: 1; maxLength: 128 |
+| `limit` | integer | 可選; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("expression", "bgee_sparql_expression", {"gene": "APOC1", "species_id": 9606, "tissue": "liver", "limit": 25})
+```
+
+### `bgee_download_links` {/* #bgee_download_links */}
+
+生成指定物種的官方表達判斷或處理後表達值下載連結。僅返回 URL，不下載大型檔案。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `species` | string | **必填**; minLength: 1; maxLength: 128 |
+| `file_kind` | string | 可選; default: &quot;calls_simple&quot;; enum: &#91;&quot;calls_simple&quot;, &quot;calls_advanced&quot;, &quot;processed_rna_seq&quot;, &quot;processed_affymetrix&quot;, &quot;processed_sc_full_length&quot;, &quot;processed_sc_droplet_based&quot;&#93; |
+| `all_conditions` | boolean | 可選; default: false |
+
+```javascript
+const result = await host.mcp("expression", "bgee_download_links", {"species": "Homo_sapiens", "file_kind": "calls_simple"})
+```
+
 </ToolOperationGroup>
 
 ## 蛋白註釋 {/* #family-15 */}
@@ -3040,6 +3173,69 @@ const result = await host.mcp("cancer-models", "cbioportal_cna_in_gene", {"gene_
 
 ```javascript
 const result = await host.mcp("cancer-models", "cbioportal_clinical_attributes", {"study_id": "brca_tcga_pan_can_atlas_2018"})
+```
+
+### `cbioportal_get_samples` {/* #cbioportal_get_samples */}
+
+列出研究中的樣本及患者識別符號。sample_ids 可限定樣本；max_records 截斷返回行，同時保留真實研究計數。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `study_id` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+| `sample_ids` | array of string | 可選; minItems: 1; maxItems: 1000 |
+| `max_records` | integer | 可選; default: 500; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_samples", {"study_id": "brca_tcga_pan_can_atlas_2018", "max_records": 100})
+```
+
+### `cbioportal_get_patients` {/* #cbioportal_get_patients */}
+
+列出研究中的患者識別符號。patient_ids 可限定患者；max_records 截斷返回行，同時保留真實研究計數。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `study_id` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+| `patient_ids` | array of string | 可選; minItems: 1; maxItems: 1000 |
+| `max_records` | integer | 可選; default: 500; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_patients", {"study_id": "brca_tcga_pan_can_atlas_2018", "max_records": 100})
+```
+
+### `cbioportal_get_clinical_data` {/* #cbioportal_get_clinical_data */}
+
+查詢明確指定的樣本或患者臨床值：level 為 SAMPLE 時提供 sample_ids，為 PATIENT 時提供 patient_ids。attribute_ids 可限定屬性；值保留字串形式，包括缺失標記。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `study_id` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+| `level` | string | 可選; default: &quot;SAMPLE&quot;; enum: &#91;&quot;SAMPLE&quot;, &quot;PATIENT&quot;&#93; |
+| `attribute_ids` | array of string | 可選; maxItems: 1000 |
+| `sample_ids` | array of string | 可選; minItems: 1; maxItems: 1000 |
+| `patient_ids` | array of string | 可選; minItems: 1; maxItems: 1000 |
+| `max_records` | integer | 可選; default: 1000; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_clinical_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "level": "PATIENT", "attribute_ids": ["AGE"], "patient_ids": ["TCGA-A1-A0SB"]})
+```
+
+### `cbioportal_get_molecular_data` {/* #cbioportal_get_molecular_data */}
+
+從明確的 molecular profile 查詢 mRNA 或蛋白表達數值。先用 cbioportal_get_study 查詢 profile 並確認測量方式與歸一化。提供 gene_symbol 或 entrez_gene_ids，並在 sample_ids 與 sample_list_id 中恰好選一個；缺失行不代表零表達。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `study_id` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+| `molecular_profile_id` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+| `gene_symbol` | string | 可選 |
+| `entrez_gene_ids` | array of integer | 可選; maxItems: 1000 |
+| `sample_ids` | array of string | 可選; minItems: 1; maxItems: 1000 |
+| `sample_list_id` | string | 可選; minLength: 1; pattern: &quot;\\S&quot; |
+| `max_records` | integer | 可選; default: 1000; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_molecular_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "molecular_profile_id": "brca_tcga_pan_can_atlas_2018_rna_seq_v2_mrna", "gene_symbol": "ESR1", "sample_list_id": "brca_tcga_pan_can_atlas_2018_all"})
 ```
 
 </ToolOperationGroup>
@@ -3460,6 +3656,18 @@ const result = await host.mcp("omics-archives", "pride_search_project_proteins",
 
 ```javascript
 const result = await host.mcp("omics-archives", "pride_find_projects_for_protein", {"protein_accession": "P04637"})
+```
+
+### `mgnify_get_analysis_files` {/* #mgnify_get_analysis_files */}
+
+透過 MGnify API v2 列出一個分析的結果檔案後設資料，包括檔案型別、類別、已報告的位元組數和上游下載 URL。不下載檔案內容；缺少的大小和 URL 保留 null。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `accession` | string | **必填**; maxLength: 32; pattern: &quot;^MGYA&#91;0-9&#93;&#123;8,&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("omics-archives", "mgnify_get_analysis_files", {"accession": "MGYA00639970"})
 ```
 
 </ToolOperationGroup>
@@ -4252,6 +4460,80 @@ const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R202
 
 ```javascript
 const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+</ToolOperationGroup>
+
+## Pathway Commons {/* #family-28 */}
+
+<ToolOperationGroup>
+<summary>展開操作與引數</summary>
+
+### `pathway_commons_search` {/* #pathway_commons_search */}
+
+按基因、蛋白、通路關鍵詞或 Lucene 查詢搜尋 Pathway Commons BioPAX 模型。結果包含 BioPAX 型別、URI、來源資料庫、物種和通路後設資料；後續圖查詢或匯出使用實際返回的 URI。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `q` | string | **必填**; minLength: 1; maxLength: 512 |
+| `type` | string | 可選; minLength: 1; maxLength: 64 |
+| `organism` | array of string | 可選; maxItems: 20 |
+| `datasource` | array of string | 可選; maxItems: 20 |
+| `page` | integer | 可選; default: 0; minimum: 0; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_search", {"q": "TP53", "type": "ProteinReference", "organism": ["9606"]})
+```
+
+### `pathway_commons_top_pathways` {/* #pathway_commons_top_pathways */}
+
+按關鍵詞或 Lucene 查詢查詢頂層通路，可限定物種及 Reactome 等來源。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `q` | string | **必填**; minLength: 1; maxLength: 512 |
+| `organism` | array of string | 可選; maxItems: 20 |
+| `datasource` | array of string | 可選; maxItems: 20 |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_top_pathways", {"q": "insulin", "datasource": ["reactome"], "organism": ["9606"]})
+```
+
+### `pathway_commons_graph` {/* #pathway_commons_graph */}
+
+查詢基因鄰域、基因集合間路徑、來源到目標的有向路徑，或共同上游／下游。SIF 返回標準化互作記錄；TXT 包含邊和節點；GSEA、BioPAX、SBGN 等保留文字匯出。PATHSFROMTO 還需要 target；選擇與問題相符的方向和步數限制。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `source` | array of string | **必填**; minItems: 1; maxItems: 100 |
+| `target` | array of string | 可選; minItems: 1; maxItems: 100 |
+| `kind` | string | 可選; default: &quot;NEIGHBORHOOD&quot;; enum: &#91;&quot;NEIGHBORHOOD&quot;, &quot;PATHSBETWEEN&quot;, &quot;PATHSFROMTO&quot;, &quot;COMMONSTREAM&quot;&#93; |
+| `format` | string | 可選; default: &quot;SIF&quot;; enum: &#91;&quot;BIOPAX&quot;, &quot;SIF&quot;, &quot;TXT&quot;, &quot;GSEA&quot;, &quot;SBGN&quot;, &quot;JSONLD&quot;&#93; |
+| `limit` | integer | 可選; default: 1; minimum: 1; maximum: 10 |
+| `direction` | string | 可選; enum: &#91;&quot;UPSTREAM&quot;, &quot;DOWNSTREAM&quot;, &quot;BOTHSTREAM&quot;, &quot;UNDIRECTED&quot;&#93; |
+| `limit_type` | string | 可選; default: &quot;NORMAL&quot;; enum: &#91;&quot;NORMAL&quot;, &quot;SHORTEST_PLUS_K&quot;&#93; |
+| `pattern` | array of string | 可選; maxItems: 14 |
+| `organism` | array of string | 可選; maxItems: 20 |
+| `datasource` | array of string | 可選; maxItems: 20 |
+| `subpathways` | boolean | 可選; default: false |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_graph", {"kind": "NEIGHBORHOOD", "source": ["TP53"], "format": "SIF", "pattern": ["INTERACTS_WITH"]})
+```
+
+### `pathway_commons_export` {/* #pathway_commons_export */}
+
+用一個或多個實際返回的 Pathway Commons ID／URI 匯出 BioPAX 子模型。支援 BioPAX、GSEA GMT、JSON-LD、SIF、TXT 和 SBGN；精確通路匯出應使用 search／top_pathways 返回的 URI。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `uri` | array of string | **必填**; minItems: 1; maxItems: 100 |
+| `format` | string | 可選; default: &quot;BIOPAX&quot;; enum: &#91;&quot;BIOPAX&quot;, &quot;SIF&quot;, &quot;TXT&quot;, &quot;GSEA&quot;, &quot;SBGN&quot;, &quot;JSONLD&quot;&#93; |
+| `pattern` | array of string | 可選; maxItems: 14 |
+| `subpathways` | boolean | 可選; default: false |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_export", {"uri": ["R-HSA-201451"], "format": "GSEA"})
 ```
 
 </ToolOperationGroup>

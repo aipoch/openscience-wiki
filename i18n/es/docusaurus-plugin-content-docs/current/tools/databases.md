@@ -2,7 +2,7 @@
 title: "Bases de datos científicos"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 # Bases de datos científicos {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Utilice esta página para elegir una fuente de datos, entender lo que puede devo
 
 ## Bases de datos respaldadas {/* #supported-databases */}
 
-Open-Science v0.33.3 incluye **27 data-source Connectors with 282 operations**. El Molecule Connector independiente añade dos operaciones, trayendo el registro completo a 284. Connector nombres a continuación coinciden con **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
+Open-Science v0.34.0 incluye **28 data-source Connectors with 298 operations**. El Molecule Connector independiente añade dos operaciones, trayendo el registro completo a 300. Connector nombres a continuación coinciden con **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
 
 | Conector | Fuentes | Operaciones | Úsalo para  |
 | --- | --- | --- | ---  |
@@ -28,13 +28,13 @@ Open-Science v0.33.3 incluye **27 data-source Connectors with 282 operations**. 
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Estructuras e interacciones moleculares — estructuras PDB, predicciones AlphaFold, entradas EMDB cryo-EM, complejos complejos Portales Complejos, redes de interacción IntAct.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | Compuestos bioactivos, fármacos, objetivos, bioactividad y mecanismos a través del ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | preimpresión bioRxiv/medRxiv — búsqueda por fecha/categoría, metadatos por DOI, enlaces de publicación de revistas, listados de fondos y estadísticas de plataforma.  |
-| Drug Regulatory · `drug-regulatory` | openFDA | 7 | Aplicaciones, etiquetas y estadísticas de corpus a través de openFDA.  |
+| Regulación de drogas · `drug-regulatory` | openFDA | 10 | Drug@FDA, etiquetas, informes de eventos adversos de FAERS y memorias de drogas. |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | Pruebas de asociación genética humana — GWAS Catalog, eQTL Catalogue, y portales PheWeb PheWAS (FinnGen, BioBank Japan).  |
-| Expression · `expression` | GTEx | 12 | Expresión de tejido humano y eQTLs a través del Portal GTEx.  |
+| Expresión · `expression` | GTEx, Bgee | 16 | Expresión de tejido GTEx humano y eQTLs; Bgee expresión de referencia de especies cruzadas. |
 | Anotación de proteínas · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | Arquitectura de dominio Protein, membresía familiar/clan, atlas de expresión y redes de interacción a través de InterPro/Pfam, el Atlas de Proteína Humana y STRING, incluyendo enriquecimiento de interacción de red. |
-| Cancer Models · `cancer-models` | cBioPortal | 6 | Registros de estudio de genómica del cáncer a través del cBioPortal REST API.  |
+| Modelos de cáncer · `cancer-models` | cBioPortal | 10 | Estudios, mutaciones, número de copia, muestras, pacientes, atributos clínicos y expresión de perfil molecular. |
 | RNA · `rna` | Rfam | 9 | Datos familiares de ARN no codificación (metadatos, alineamientos, modelos, estructuras) a través de Rfam.  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | Expresión, metabolomics, metagenomics and proteomics archives; ENA run discovery and FASTQ/submission inventories; Listas de archivos PRIDE. |
+| Archivos de Omics · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 23 | Estudios y carreras de Omics; ENA FASTQ/submission inventories, PRIDE and MGnify result-file metadata. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Identidad de tipo celular, genes marcadores, conjuntos de datos fuente y tejidos a través de CELLxGENE CellGuide.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | Genética-regulación de la genómica funcional — experimentos ENCODE/biosamples/files, perfiles de unión JASPAR TF y TFBS UniBind ChIP-seq.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Búsqueda de financiación-oportunidad (Grants.gov) y búsquedas de catálogo de anticuerpos (Registro Anticuerpo).  |
@@ -44,6 +44,7 @@ Open-Science v0.33.3 incluye **27 data-source Connectors with 282 operations**. 
 | Zenodo · `zenodo` | Zenodo | 2 | Conjunto de datos públicos, software y descubrimiento de publicaciones, metadatos e inventarios de archivos específicos de la versión; no subir ni descargar. |
 | HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | Búsqueda de proteínas/profile/alineación específica del programa, estado de trabajo y resultados. |
 | InterProScan · `interproscan` | EMBL-EBI InterProScan | 2 | Informes sobre el estado y el TSV para los puestos de anotación existentes; No hay presentación. |
+| Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Caminos de búsqueda, rutas de arriba, consultas gráficas y exportaciones de submodelo BioPAX. |
 
 Las herramientas Molecule offline están cubiertas en [Visores científicos](viewers.md). Para las operaciones exactas expuestas por cada fuente de datos, utilice el [Referencia de operación Connector](../reference/connector-operations.md).
 
@@ -144,6 +145,10 @@ Cada artículo a continuación incluye las entradas, pasos, capturas de pantalla
 
 [Especies de verificación, genoma de referencia e identificadores cromosomas](../workflows/reference-genome-check.md): resolver el taxón, el montaje versionado y los alias cromosomas antes de unirse a los registros.
 
+### Inspeccione una red de vías {/* #inspect-a-pathway-network */}
+
+[Inspeccione una vía y su red de interacción](../workflows/inspect-pathway.md): encontrar una vía Reactome humana a través de Pathway Commons, preservar su URI devuelto, exportar las interacciones y distinguir una red seleccionada de evidencia de actividad de la vía.
+
 Para otras tareas, siga [registros de PubChem estructurados](../workflows/database-records.md), [comprobando los registros científicos](../workflows/cross-check-records.md) o [descubrimiento de literatura para una reunión de grupo](../workflows/journal-club.md).
 
 <span id="handle-a-returned-record-empty-match-or-error" />
@@ -168,7 +173,7 @@ Desde v0.31.0, `get_string_network.nodes` incluye vecinos devueltos y entradas a
 
 Las listas [Referencia de operación Connector](../reference/connector-operations.md) requieren entradas, valores permitidos y llamadas exactas. Utilice esta página para elegir una fuente y conectarla; utilizar la referencia para los campos de una herramienta en particular.
 
-Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/catalog.ts), [registro.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/registry.ts).
+Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/catalog.ts), [registro.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/registry.ts).
 
 ## Búsquedas de secuencia y alineación {/* #sequence-tools */}
 
@@ -185,3 +190,17 @@ Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/
 - **Clinical Genomics → ClinPGx**: recuperar anotaciones de drogas, genes o variantes, pautas, etiquetas regulatorias y frecuencias poblacionales. Resuelva primero los identificadores, provea los campos requeridos por la operación, y conserva fuentes originales y niveles de evidencia. Esto recupera registros de investigación; no produce automáticamente un plan de tratamiento individual.
 
 Habilitar el Connector relevante para el agente activo en **Settings → Connectors**. Estas entradas incorporadas no requieren un servidor MCP personalizado. Vea el [referencia a la operación](../reference/connector-operations.md) para campos exactos y requisitos condicionales.
+
+## Caminos, expresión y datos clínicos {/* #pathway-expression-clinical */}
+
+Permite a la familia correspondiente en **Settings → Connectors**, luego dígale al agente el organismo, fuente, identificadores y alcance previsto. Estas adiciones utilizan conectores incorporados; no se requiere un servidor MCP personalizado.
+
+| Entrada | ¿Qué puede hacer? | Conexión e interpretación |
+| --- | --- | --- |
+| Pathway Commons | Caminos de búsqueda, lista de caminos superiores, rutas de consulta entre genes o exportar un submodel | - Servicio público; retener la URI devuelta, organismo y fuente. Las consultas de Gráficos difieren de las pruebas de enriquecimiento. Sigue a la [flujo de trabajo de interacción de caminos](../workflows/inspect-pathway.md). |
+| Expresión → Bgee | Transspecies presentes/absente llamadas, puntajes normalizados, consultas SPARQL atada y enlaces de descarga | Descubre primero las especies y conserva el ID de taxonomía NCBI. SPARQL requiere gen, especies y tejido. Las llamadas de base saludables de tipo salvaje no son expresiones diferenciales; Los enlaces de descarga no se descargan archivos. |
+| Modelos de cáncer → cBioPortal | Lista muestras/pacientes y atributos clínicos de consulta o expresión mRNA/proteína | Seleccione un estudio, descubra sus perfiles y elija la medición/normalización. Identificación de suministro que coincida con el nivel de muestra/paciente clínico; Los datos moleculares necesitan genes explícitos y exactamente uno de sample_ids o sample_list_id. Las filas perdidas no son ceros. |
+| Regulador de drogas → openFDA | Informes de búsqueda/cuenta de los FAERS y memorias de los medicamentos de búsqueda | Fechas y productos de labranza y conservar la información de la truncación. Los recuentos de los informes no son incidencia o evidencia causal. Los cubos multivalorados pueden superponerse; su suma no es un informe único total. |
+| Archivos de Omics → MGnify | Lista de resultados de la adhesión al análisis MGYA | Devoluciones tipo, categoría, URL y tamaño de arriba cuando se reporta. No se descargan bytes de archivos; tamaños o URLs perdidos permanecen nulos. |
+
+Vea el [Referencia de operación Connector](../reference/connector-operations.md) para campos, condiciones y ejemplos requeridos.

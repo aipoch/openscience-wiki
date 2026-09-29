@@ -2,7 +2,7 @@
 title: "Scientific databases"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 # Scientific databases
@@ -13,7 +13,7 @@ Use this page to choose a data source, understand what it can return, and make i
 
 ## Supported databases {/* #supported-databases */}
 
-Open-Science v0.33.3 includes **27 data-source Connectors with 282 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 284. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+Open-Science v0.34.0 includes **28 data-source Connectors with 298 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 300. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
 
 | Connector | Sources | Operations | Use it for  |
 | --- | --- | --- | ---  |
@@ -28,13 +28,13 @@ Open-Science v0.33.3 includes **27 data-source Connectors with 282 operations**.
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Structures and molecular interactions — PDB structures, AlphaFold predictions, EMDB cryo-EM entries, Complex Portal complexes, IntAct interaction networks.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | Bioactive compounds, drugs, targets, bioactivity, and mechanisms via the ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — search by date/category, metadata by DOI, journal-publication links, funder listings, and platform statistics.  |
-| Drug Regulatory · `drug-regulatory` | openFDA | 7 | Drugs@FDA applications, labels, and corpus statistics via openFDA.  |
+| Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA, labels, FAERS adverse-event reports and drug recalls. |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | Human genetic association evidence — GWAS Catalog, eQTL Catalogue, and PheWeb PheWAS portals (FinnGen, BioBank Japan).  |
-| Expression · `expression` | GTEx | 12 | Human tissue expression and eQTLs via the GTEx Portal.  |
+| Expression · `expression` | GTEx, Bgee | 16 | Human GTEx tissue expression and eQTLs; Bgee cross-species baseline expression. |
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | Protein domain architecture, family/clan membership, expression atlas and interaction networks via InterPro/Pfam, the Human Protein Atlas and STRING, including network interaction enrichment. |
-| Cancer Models · `cancer-models` | cBioPortal | 6 | Cancer genomics study records via the cBioPortal REST API.  |
+| Cancer Models · `cancer-models` | cBioPortal | 10 | Studies, mutations, copy number, samples, patients, clinical attributes and molecular-profile expression. |
 | RNA · `rna` | Rfam | 9 | Non-coding RNA family data (metadata, alignments, models, structures) via Rfam.  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | Expression, metabolomics, metagenomics and proteomics archives; ENA run discovery and FASTQ/submission inventories; PRIDE file lists. |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 23 | Omics studies and runs; ENA FASTQ/submission inventories, PRIDE and MGnify result-file metadata. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Cell-type identity, marker genes, source datasets, and tissues via CELLxGENE CellGuide.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | Gene-regulation functional genomics — ENCODE experiments/biosamples/files, JASPAR TF binding profiles, and UniBind ChIP-seq TFBS.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Funding-opportunity search (Grants.gov) and antibody catalog lookups (Antibody Registry).  |
@@ -44,6 +44,7 @@ Open-Science v0.33.3 includes **27 data-source Connectors with 282 operations**.
 | Zenodo · `zenodo` | Zenodo | 2 | Public dataset, software and publication discovery, version-specific metadata and file inventories; no upload or download. |
 | HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | Program-specific protein/profile/alignment search, job status and results. |
 | InterProScan · `interproscan` | EMBL-EBI InterProScan | 2 | Status and TSV reports for existing annotation jobs; no submission. |
+| Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Pathway search, top pathways, graph queries and BioPAX submodel exports. |
 
 The offline Molecule tools are covered in [Scientific viewers](viewers.md). For the exact operations exposed by each data source, use the [Connector operation reference](../reference/connector-operations.md).
 
@@ -144,6 +145,10 @@ Each article below includes the inputs, steps, actual English-interface screensh
 
 [Check species, reference genome and chromosome identifiers](../workflows/reference-genome-check.md): resolve the taxon, versioned assembly and chromosome aliases before joining records.
 
+### Inspect a pathway network
+
+[Inspect a pathway and its interaction network](../workflows/inspect-pathway.md): find a human Reactome pathway through Pathway Commons, preserve its returned URI, export the interactions and distinguish a selected network from evidence of pathway activity.
+
 For other tasks, follow [structured PubChem records](../workflows/database-records.md), [cross-checking scientific records](../workflows/cross-check-records.md) or [literature discovery for a group meeting](../workflows/journal-club.md).
 
 <span id="handle-a-returned-record-empty-match-or-error" />
@@ -168,7 +173,7 @@ From v0.31.0, `get_string_network.nodes` includes returned neighbors and isolate
 
 The [Connector operation reference](../reference/connector-operations.md) lists required inputs, allowed values and exact calls. Use this page to choose a source and connect it; use the reference for a particular tool's fields.
 
-Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/registry.ts).
+Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/registry.ts).
 
 ## Sequence searches and alignment {/* #sequence-tools */}
 
@@ -185,3 +190,17 @@ Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.33.3
 - **Clinical Genomics → ClinPGx**: retrieve drug, gene or variant annotations, guidelines, regulatory labels and population frequencies. Resolve identifiers first, supply the fields required by the operation, and retain original sources and evidence levels. This retrieves research records; it does not automatically produce an individual treatment plan.
 
 Enable the relevant Connector for the active agent in **Settings → Connectors**. These built-in entries do not require a custom MCP server. See the [operation reference](../reference/connector-operations.md) for exact fields and conditional requirements.
+
+## Pathways, expression and clinical data {/* #pathway-expression-clinical */}
+
+Enable the corresponding family in **Settings → Connectors**, then tell the agent the organism, source, identifiers and intended scope. These additions use built-in Connectors; no custom MCP server is required.
+
+| Entry | What it can do | Connection and interpretation |
+| --- | --- | --- |
+| Pathway Commons | Search pathways, list top pathways, query paths between genes or export a submodel | Public service; retain the returned URI, organism and source. Graph queries differ from enrichment tests. Follow the [pathway interaction workflow](../workflows/inspect-pathway.md). |
+| Expression → Bgee | Cross-species present/absent calls, normalized scores, bounded SPARQL queries and download links | Discover species first and retain the NCBI taxonomy ID. SPARQL requires gene, species and tissue. Healthy wild-type baseline calls are not differential expression; download links are not downloaded files. |
+| Cancer Models → cBioPortal | List samples/patients and query clinical attributes or mRNA/protein expression | Select a study, discover its profiles and choose measurement/normalization. Supply IDs matching the clinical sample/patient level; molecular data needs explicit genes and exactly one of sample_ids or sample_list_id. Missing rows are not zeros. |
+| Drug Regulatory → openFDA | Search/count FAERS reports and search drug recalls | Bound dates and products and retain truncation information. Report counts are not incidence or causal evidence. Multi-valued buckets may overlap; their sum is not a unique report total. |
+| Omics Archives → MGnify | List result files by MGYA analysis accession | Returns type, category, upstream URL and size when reported. No file bytes are downloaded; missing sizes or URLs stay null. |
+
+See the [Connector operation reference](../reference/connector-operations.md) for exact required fields, conditions and examples.

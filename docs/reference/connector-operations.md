@@ -2,7 +2,7 @@
 title: "Connector operation reference"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Return field names differ by operation. The descriptions and downloadable schema
 
 ## Operation inputs
 
-Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.33.3** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.3.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
+Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.34.0** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.0.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
 
 
 ## Chemistry {/* #family-1 */}
@@ -2385,6 +2385,83 @@ Retrieve FDA drug product labels (SPL) by ingredient/name/route with targeted se
 const result = await host.mcp("drug-regulatory", "search_drug_labels", {"brand_name": "Tylenol", "max_records": 5})
 ```
 
+### `search_drug_adverse_events`
+
+Search FAERS reports by reported drug_name (medicinalproduct), harmonized brand/generic/ingredient, reaction, seriousness (1=serious, 2=non-serious), country or initial/latest receipt date. Dates always constrain other filters; raw_search replaces mapped filters but retains dates. Reports can list multiple drugs and reactions and do not establish causation or incidence. Results are capped at 26000; narrow filters for larger cohorts.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `drug_name` | string | optional |
+| `brand_name` | string | optional |
+| `generic_name` | string | optional |
+| `ingredient` | string | optional |
+| `reaction` | string | optional |
+| `country` | string | optional |
+| `serious` | string | optional |
+| `received_date_from` | string | optional |
+| `received_date_to` | string | optional |
+| `receipt_date_from` | string | optional |
+| `receipt_date_to` | string | optional |
+| `search_type` | string | optional; default: &quot;and&quot;; enum: [&quot;and&quot;, &quot;or&quot;] |
+| `raw_search` | string | optional |
+| `sort` | string | optional |
+| `max_records` | integer | optional; default: 25; minimum: 1; maximum: 26000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "search_drug_adverse_events", {"drug_name": "LIPITOR", "reaction": "headache", "max_records": 10})
+```
+
+### `count_drug_adverse_events`
+
+Aggregate matching FAERS reports by reaction, drug, outcome, country or receipt date. Counts reflect reports, not incidence or causation; multi-valued buckets overlap and their sum is not a unique report total. Date fields return time/count instead of term/count. raw_search retains date constraints.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `count_field` | string | **required** |
+| `drug_name` | string | optional |
+| `brand_name` | string | optional |
+| `generic_name` | string | optional |
+| `ingredient` | string | optional |
+| `reaction` | string | optional |
+| `country` | string | optional |
+| `serious` | string | optional |
+| `received_date_from` | string | optional |
+| `received_date_to` | string | optional |
+| `receipt_date_from` | string | optional |
+| `receipt_date_to` | string | optional |
+| `search_type` | string | optional; default: &quot;and&quot;; enum: [&quot;and&quot;, &quot;or&quot;] |
+| `raw_search` | string | optional |
+| `max_buckets` | integer | optional; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "count_drug_adverse_events", {"count_field": "reaction", "drug_name": "LIPITOR"})
+```
+
+### `search_drug_recalls`
+
+Search FDA drug enforcement reports (product recalls) from openFDA by firm, product, recall reason, classification, status, location, or report date.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `recalling_firm` | string | optional |
+| `product_description` | string | optional |
+| `reason_for_recall` | string | optional |
+| `status` | string | optional |
+| `classification` | string | optional |
+| `city` | string | optional |
+| `state` | string | optional |
+| `country` | string | optional |
+| `report_date_from` | string | optional |
+| `report_date_to` | string | optional |
+| `search_type` | string | optional; default: &quot;and&quot;; enum: [&quot;and&quot;, &quot;or&quot;] |
+| `raw_search` | string | optional |
+| `sort` | string | optional |
+| `max_records` | integer | optional; default: 25; minimum: 1; maximum: 26000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "search_drug_recalls", {"reason_for_recall": "contamination", "max_records": 10})
+```
+
 </ToolOperationGroup>
 
 ## Human Genetics {/* #family-13 */}
@@ -2759,6 +2836,62 @@ Calculate an eQTL on the fly for any gene-variant pair in one tissue, including 
 const result = await host.mcp("expression", "gtex_calculate_eqtl", {"gencode_id": "ENSG00000111640.14", "variant_id": "chr12_6452899_G_A_b38", "tissue_site_detail_id": "Whole_Blood"})
 ```
 
+### `bgee_species`
+
+List species available in the Bgee healthy wild-type expression atlas, or retrieve one species by its NCBI taxonomy id.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `species_id` | integer | optional; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("expression", "bgee_species", {})
+```
+
+### `bgee_expression_calls`
+
+Retrieve Bgee present/absent expression calls and normalized expression scores for one gene in one species. Results are healthy wild-type baseline calls and can be capped with max_calls.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene_id` | string | **required** |
+| `species_id` | integer | **required**; minimum: 1; maximum: 2147483647 |
+| `max_calls` | integer | optional; default: 100; minimum: 1; maximum: 500 |
+| `expression_type` | string | optional; default: &quot;EXPRESSED&quot;; enum: [&quot;EXPRESSED&quot;, &quot;NOT_EXPRESSED&quot;] |
+
+```javascript
+const result = await host.mcp("expression", "bgee_expression_calls", {"gene_id": "ENSG00000130208", "species_id": 9606, "max_calls": 50})
+```
+
+### `bgee_sparql_expression`
+
+Run a bounded Bgee SPARQL query for one gene, one NCBI species and one tissue/anatomical entity. All three filters are required; the generated query includes a hard LIMIT and the call has its own timeout.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; minLength: 1; maxLength: 128 |
+| `species_id` | integer | **required**; minimum: 1; maximum: 2147483647 |
+| `tissue` | string | **required**; minLength: 1; maxLength: 128 |
+| `limit` | integer | optional; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("expression", "bgee_sparql_expression", {"gene": "APOC1", "species_id": 9606, "tissue": "liver", "limit": 25})
+```
+
+### `bgee_download_links`
+
+Build official Bgee download links for one species: summarized present/absent calls or processed expression-value directories. This returns URLs only and never downloads the large files.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `species` | string | **required**; minLength: 1; maxLength: 128 |
+| `file_kind` | string | optional; default: &quot;calls_simple&quot;; enum: [&quot;calls_simple&quot;, &quot;calls_advanced&quot;, &quot;processed_rna_seq&quot;, &quot;processed_affymetrix&quot;, &quot;processed_sc_full_length&quot;, &quot;processed_sc_droplet_based&quot;] |
+| `all_conditions` | boolean | optional; default: false |
+
+```javascript
+const result = await host.mcp("expression", "bgee_download_links", {"species": "Homo_sapiens", "file_kind": "calls_simple"})
+```
+
 </ToolOperationGroup>
 
 ## Protein Annotation {/* #family-15 */}
@@ -3038,6 +3171,69 @@ Clinical attributes defined in a cBioPortal study (patient- and sample-level fie
 
 ```javascript
 const result = await host.mcp("cancer-models", "cbioportal_clinical_attributes", {"study_id": "brca_tcga_pan_can_atlas_2018"})
+```
+
+### `cbioportal_get_samples`
+
+List cBioPortal samples in a study with detailed sample and patient identifiers. Optional sample_ids restrict the returned rows; max_records caps the response while preserving the true study count.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `study_id` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+| `sample_ids` | array of string | optional; minItems: 1; maxItems: 1000 |
+| `max_records` | integer | optional; default: 500; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_samples", {"study_id": "brca_tcga_pan_can_atlas_2018", "max_records": 100})
+```
+
+### `cbioportal_get_patients`
+
+List cBioPortal patients in a study with detailed identifiers. Optional patient_ids restrict the returned rows; max_records caps the response while preserving the true study count.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `study_id` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+| `patient_ids` | array of string | optional; minItems: 1; maxItems: 1000 |
+| `max_records` | integer | optional; default: 500; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_patients", {"study_id": "brca_tcga_pan_can_atlas_2018", "max_records": 100})
+```
+
+### `cbioportal_get_clinical_data`
+
+Fetch cBioPortal clinical data values for explicit patient_ids or sample_ids matching level, optionally restricted to attribute_ids. Clinical values remain strings, including missing-value markers.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `study_id` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+| `level` | string | optional; default: &quot;SAMPLE&quot;; enum: [&quot;SAMPLE&quot;, &quot;PATIENT&quot;] |
+| `attribute_ids` | array of string | optional; maxItems: 1000 |
+| `sample_ids` | array of string | optional; minItems: 1; maxItems: 1000 |
+| `patient_ids` | array of string | optional; minItems: 1; maxItems: 1000 |
+| `max_records` | integer | optional; default: 1000; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_clinical_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "level": "PATIENT", "attribute_ids": ["AGE"], "patient_ids": ["TCGA-A1-A0SB"]})
+```
+
+### `cbioportal_get_molecular_data`
+
+Fetch numeric mRNA or protein expression values from an explicit study molecular profile. Discover profiles with cbioportal_get_study; choose the measurement/normalization deliberately. Supply gene_symbol or entrez_gene_ids and exactly one of sample_ids or sample_list_id. Missing rows are not zero expression.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `study_id` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+| `molecular_profile_id` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+| `gene_symbol` | string | optional |
+| `entrez_gene_ids` | array of integer | optional; maxItems: 1000 |
+| `sample_ids` | array of string | optional; minItems: 1; maxItems: 1000 |
+| `sample_list_id` | string | optional; minLength: 1; pattern: &quot;\\S&quot; |
+| `max_records` | integer | optional; default: 1000; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_molecular_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "molecular_profile_id": "brca_tcga_pan_can_atlas_2018_rna_seq_v2_mrna", "gene_symbol": "ESR1", "sample_list_id": "brca_tcga_pan_can_atlas_2018_all"})
 ```
 
 </ToolOperationGroup>
@@ -3458,6 +3654,18 @@ Find PRIDE projects containing a protein (MS-archive direction). `protein_access
 
 ```javascript
 const result = await host.mcp("omics-archives", "pride_find_projects_for_protein", {"protein_accession": "P04637"})
+```
+
+### `mgnify_get_analysis_files`
+
+List result-file metadata for one MGnify analysis using API v2: file type, category, byte size when reported, and upstream download URL. No file bytes are downloaded. Missing sizes or URLs remain null.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accession` | string | **required**; maxLength: 32; pattern: &quot;^MGYA[0-9]&#123;8,&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("omics-archives", "mgnify_get_analysis_files", {"accession": "MGYA00639970"})
 ```
 
 </ToolOperationGroup>
@@ -4250,6 +4458,80 @@ Retrieve the complete InterProScan TSV report for a job, capped at 2 MiB (oversi
 
 ```javascript
 const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+</ToolOperationGroup>
+
+## Pathway Commons {/* #family-28 */}
+
+<ToolOperationGroup>
+<summary>Show operations and parameters</summary>
+
+### `pathway_commons_search`
+
+Search the Pathway Commons BioPAX model by gene/protein/pathway keyword or Lucene query. Results include BioPAX class, URI, source databases, organism, and pathway metadata. Use the returned URI as input to graph or export queries.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `q` | string | **required**; minLength: 1; maxLength: 512 |
+| `type` | string | optional; minLength: 1; maxLength: 64 |
+| `organism` | array of string | optional; maxItems: 20 |
+| `datasource` | array of string | optional; maxItems: 20 |
+| `page` | integer | optional; default: 0; minimum: 0; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_search", {"q": "TP53", "type": "ProteinReference", "organism": ["9606"]})
+```
+
+### `pathway_commons_top_pathways`
+
+Find top-level pathways in Pathway Commons matching a keyword or Lucene query, optionally restricted to a species or source such as Reactome.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `q` | string | **required**; minLength: 1; maxLength: 512 |
+| `organism` | array of string | optional; maxItems: 20 |
+| `datasource` | array of string | optional; maxItems: 20 |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_top_pathways", {"q": "insulin", "datasource": ["reactome"], "organism": ["9606"]})
+```
+
+### `pathway_commons_graph`
+
+Run a Pathway Commons BioPAX graph query for a gene neighborhood, paths between gene sets, directed paths from sources to targets, or a common upstream/downstream stream. SIF results are normalized as interaction records, TXT results include edge and node records, and GSEA/BioPAX/SBGN exports remain available as text.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `source` | array of string | **required**; minItems: 1; maxItems: 100 |
+| `target` | array of string | optional; minItems: 1; maxItems: 100 |
+| `kind` | string | optional; default: &quot;NEIGHBORHOOD&quot;; enum: [&quot;NEIGHBORHOOD&quot;, &quot;PATHSBETWEEN&quot;, &quot;PATHSFROMTO&quot;, &quot;COMMONSTREAM&quot;] |
+| `format` | string | optional; default: &quot;SIF&quot;; enum: [&quot;BIOPAX&quot;, &quot;SIF&quot;, &quot;TXT&quot;, &quot;GSEA&quot;, &quot;SBGN&quot;, &quot;JSONLD&quot;] |
+| `limit` | integer | optional; default: 1; minimum: 1; maximum: 10 |
+| `direction` | string | optional; enum: [&quot;UPSTREAM&quot;, &quot;DOWNSTREAM&quot;, &quot;BOTHSTREAM&quot;, &quot;UNDIRECTED&quot;] |
+| `limit_type` | string | optional; default: &quot;NORMAL&quot;; enum: [&quot;NORMAL&quot;, &quot;SHORTEST_PLUS_K&quot;] |
+| `pattern` | array of string | optional; maxItems: 14 |
+| `organism` | array of string | optional; maxItems: 20 |
+| `datasource` | array of string | optional; maxItems: 20 |
+| `subpathways` | boolean | optional; default: false |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_graph", {"kind": "NEIGHBORHOOD", "source": ["TP53"], "format": "SIF", "pattern": ["INTERACTS_WITH"]})
+```
+
+### `pathway_commons_export`
+
+Fetch a BioPAX sub-model for one or more Pathway Commons IDs/URIs and export it as BioPAX, GSEA GMT, JSON-LD, SIF, TXT, or SBGN. Use a URI returned by search/top_pathways for precise pathway export.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `uri` | array of string | **required**; minItems: 1; maxItems: 100 |
+| `format` | string | optional; default: &quot;BIOPAX&quot;; enum: [&quot;BIOPAX&quot;, &quot;SIF&quot;, &quot;TXT&quot;, &quot;GSEA&quot;, &quot;SBGN&quot;, &quot;JSONLD&quot;] |
+| `pattern` | array of string | optional; maxItems: 14 |
+| `subpathways` | boolean | optional; default: false |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_export", {"uri": ["R-HSA-201451"], "format": "GSEA"})
 ```
 
 </ToolOperationGroup>

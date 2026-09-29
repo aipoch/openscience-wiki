@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ To reuse a figure or table from an attached PDF, follow [PDF extraction](preview
 
 Opening **Library** from Home enters the full bibliography. In a project workspace, the sidebar's **Library** opens a compact preview on the right.
 
-1. Choose **Current project** or **All references**, then use **Search references** to find existing records.
+1. Choose **Current project**, **All references**, or an opened **Collection**, then use **Search references** to find existing records.
 2. Select **Abstract** to read a summary and **Show more** to expand it. **No PDF attached** means that record has no PDF; an abstract is not full text.
 3. For smart collections, imports and record management, choose **Open in Literature**, or **View in Literature** on a record.
 
@@ -36,6 +36,20 @@ In the full Library, **Back to Project / Back to Home** returns to the previous 
 | Collection | A thematic group, including nested collections | Reuse a reading set across projects |
 
 ![Three accepted papers in the real PRISMA collection](/img/open-science/guides-walkthrough/51-library-collection.webp)
+
+### Add a reference to a conversation draft {/* #add-reference-to-chat */}
+
+In the workspace **Library** preview, select a record's **Add to chat** to put its reference in the current Composer. Use **Choose another conversation** beside it to search other conversations by title or number, or start a new conversation. Check the destination project and conversation, add your question, then send it yourself. **Add to chat does not send a message automatically.**
+
+For several papers, first enable **Batch actions**, select the records, check the Selected count and use the batch **Add to chat** action. **Clear selection** clears that selection; **Done** exits batch mode. This opt-in mode belongs to the compact workspace preview; the full Library retains its own table-selection controls.
+
+![An existing paper reference added to the conversation draft, ready for a question and manual sending](/img/open-science/v0340/library-add-to-draft.webp)
+
+**Reference details** opens metadata and attachments; **View in Literature** opens the full Library record. Adding a reference does not download its full text. A record marked **No PDF attached** still has only its available metadata, abstract and other existing content.
+
+### Display journal data {/* #journal-attributes */}
+
+**Library → Journals** imports journal datasets with a source and year and displays matching attributes in reference details and tables. Follow [Journal datasets and reference attributes](journal-datasets.md) for the complete steps, sample CSV and screenshots.
 
 ## Add or import a record
 

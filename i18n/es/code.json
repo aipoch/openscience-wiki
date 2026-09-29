@@ -1716,5 +1716,23 @@
   },
   "docs.outline.reference.v0333.scope": {
     "message": "Paged Office reading, Enrichr y ClinPGx, Library preve y controles de transferencia de paquetes."
+  },
+  "docs.guides.outline.journal-datasets.scope": {
+    "message": "Importar conjuntos de datos de revistas, columnas de mapa, elegir fuente y año, e inspeccionar atributos en referencias coincidentes."
+  },
+  "docs.guides.outline.journal-datasets.title": {
+    "message": "Conjuntos de datos de revistas y atributos de referencia"
+  },
+  "docs.outline.reference.v0340.scope": {
+    "message": "Datasets de revistas, Pathway Commons y bases de datos ampliadas, Linux ARM64, actualizaciones de tiempo de ejecución Codex y navegación de bandejas."
+  },
+  "docs.outline.reference.v0340.title": {
+    "message": "v0.34.0"
+  },
+  "docs.outline.workflows.inspect-pathway.scope": {
+    "message": "Buscar Pathway Commons, conservar un Reactome URI, las interacciones de exportación e inspeccionar los registros de fuentes guardados."
+  },
+  "docs.outline.workflows.inspect-pathway.title": {
+    "message": "Inspeccione una vía y su red de interacción"
   }
 }

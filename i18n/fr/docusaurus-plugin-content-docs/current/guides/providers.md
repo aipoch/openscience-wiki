@@ -1,7 +1,7 @@
 ---
 title: "Configuration du fournisseur et du modèle local"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -228,3 +228,5 @@ Sélectionnez le modèle exact proposé pour votre Agent actif, vérifiez ses op
 ## Nouveaux choix de catalogue {/* #catalog-models */}
 
 Les catalogues des fournisseurs v0.33.1 ajoutent **GPT-6** et **Claude Opus 5.5**. Ouvrez la liste de modèles du fournisseur et choisissez une entrée prise en charge par le cadre actif et votre compte. La présence du catalogue ne permet pas d'accéder au modèle Main enregistré ou de le changer. Valider le fournisseur et envoyer une petite demande avant d'utiliser un modèle modifié pour la recherche.
+
+v0.34.0 ajoute **MiniMax M3.1 Aperçu flash** et **Claude Sonnet 5.5**. Sélectionnez-les dans la liste de modèles de leur fournisseur respectif et vérifiez l'accès au compte et la compatibilité active-Agent. Cela ne remplace pas automatiquement le modèle Main enregistré.

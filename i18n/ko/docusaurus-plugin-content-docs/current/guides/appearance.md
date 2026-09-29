@@ -1,7 +1,7 @@
 ---
 title: "외관 및 알림"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -136,7 +136,7 @@ import Screenshot from '@site/src/components/Screenshot';
 | 당신은... | 오시는 길 |
 | --- | --- |
 | 앱 업데이트 확인 | **General → About → Check now**; 이름 &#42; [설치 및 업데이트](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| 버전 변경을 읽거나 도움 받기 | **About → Release notes / Help Center** 해당 외부 페이지를 엽니다. 이 위키는 또한 [관련 링크](../changelog/v0.31.1.md). |
+| 버전 변경을 읽거나 도움을 받으십시오 | **About → Release notes / Help Center** 해당 외부 페이지를 엽니다. 이 위키는 또한 [관련 링크](../changelog/v0.34.0.md). |
 | 진단 로그를 찾아내거나 엽니다 | **General → Diagnostics → Reveal / Open**; 은 은 [문제 해결](troubleshooting.md). 공유 할 때까지 로컬로 이동하십시오. |
 | 명령줄 입력 설치 | **General → Install command**; 은 은 [CLI 참조](../reference/cli.md). 데스크톱 사용은이 명령을 요구하지 않습니다. |
 | 데이터 위치 또는 아카이브 작업 관리 | [저장과 아카이브 작업](storage.md). |
@@ -159,3 +159,5 @@ import Screenshot from '@site/src/components/Screenshot';
 ![일반 설정에서 인터페이스 스케일 선택](/img/open-science/v0333/interface-scale.webp)
 
 데스크톱 앱의 인터페이스를 제어합니다. 이미지 또는 PDF 미리보기 급상승은 파일 보기만 영향을 미칩니다. 브라우저에서 Open-Science에 액세스할 때 브라우저의 줌을 사용하십시오. Windows 전시는 또한 다른 앱에 영향을 미칩니다; Open-Science 크기를 변경하려면 위의 컨트롤을 사용하십시오.
+
+트레이 메뉴도 실행, 핀 및 최근 세션을 직접 엽니다; [트레이 탐색](navigation.md#tray-navigation) 참조.

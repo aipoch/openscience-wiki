@@ -2664,5 +2664,23 @@
   },
   "docs.outline.reference.v0332.scope": {
     "message": "Windows 安装包签名、保留登录的来源预览及 STRING 互作富集。"
+  },
+  "docs.guides.outline.journal-datasets.title": {
+    "message": "期刊数据集与文献属性"
+  },
+  "docs.guides.outline.journal-datasets.scope": {
+    "message": "导入期刊数据集、映射列、选择来源与年份，并查看匹配文献的属性。"
+  },
+  "docs.outline.workflows.inspect-pathway.title": {
+    "message": "检查通路及其互作网络"
+  },
+  "docs.outline.workflows.inspect-pathway.scope": {
+    "message": "检索 Pathway Commons，保留 Reactome URI，导出互作并检查保存的来源记录。"
+  },
+  "docs.outline.reference.v0340.title": {
+    "message": "v0.34.0"
+  },
+  "docs.outline.reference.v0340.scope": {
+    "message": "期刊数据集、Pathway Commons 与数据库扩展、Linux ARM64、Codex 运行时更新和托盘导航。"
   }
 }

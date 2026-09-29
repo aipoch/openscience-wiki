@@ -1,7 +1,7 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 從 Home 開啟 **Library** 會進入完整文獻庫；在專案工作區點選左側 **Library**，則在右側開啟緊湊預覽。
 
-1. 在預覽頂部選擇 **Current project** 或 **All references**，再用 **Search references** 查詢已有記錄。
+1. 在預覽頂部選擇 **Current project**、**All references** 或已開啟的 **Collection**，再用 **Search references** 查詢已有記錄。
 2. 點選 **Abstract** 閱讀摘要，使用 **Show more** 展開。**No PDF attached** 表示該條目還沒有 PDF，不能把摘要當作全文。
 3. 需要篩選集合、匯入或管理記錄時，選擇 **Open in Literature**，或條目中的 **View in Literature**。
 
@@ -36,6 +36,20 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | Collection | 主題分組，可巢狀 | 跨專案複用閱讀集合 |
 
 ![真實 PRISMA 集合中的三篇論文](/img/open-science/guides-walkthrough/51-library-collection.webp)
+
+### 將文獻加入會話草稿 {/* #add-reference-to-chat */}
+
+在工作區 **Library** 預覽中點選文獻的 **Add to chat**，將引用放入當前會話的輸入框。透過旁邊的 **Choose another conversation** 可按標題或編號搜尋其他會話，或選擇新建會話。檢查目標專案和會話後，再補充問題並自行傳送；**Add to chat 不會自動傳送訊息**。
+
+需要一次選擇多篇時，先開啟 **Batch actions**，勾選所需記錄，核對 Selected 數量後使用批次 **Add to chat**。**Clear selection** 清空本次選擇，**Done** 退出批次模式。批次開關屬於工作區緊湊預覽；完整文獻庫仍使用自己的表格選擇控制元件。
+
+![把已有論文引用放入會話草稿，等待使用者輸入問題併傳送](/img/open-science/v0340/library-add-to-draft.webp)
+
+**Reference details** 檢視後設資料和附件；**View in Literature** 開啟完整文獻庫記錄。加入引用不會自動下載全文；**No PDF attached** 的記錄仍只有現有後設資料和摘要等內容。
+
+### 顯示期刊資料 {/* #journal-attributes */}
+
+**Library → Journals** 可匯入帶來源及年份的期刊資料集，並在文獻詳情和列表中顯示匹配屬性。完整操作、示例 CSV 和截圖見[期刊資料集與文獻屬性](journal-datasets.md)。
 
 ## 新增或匯入條目 {/* #添加或导入条目 */}
 

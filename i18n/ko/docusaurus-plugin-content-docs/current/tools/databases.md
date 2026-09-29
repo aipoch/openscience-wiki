@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v0.33.3에는 **27 데이터 소스 커넥터 282 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 284에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
+Open-Science v0.34.0에는 **28 데이터 소스 커넥터 298 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 300에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
 
 | 커넥터 | 출처 | 작업 | 사용하기  |
 | --- | --- | --- | ---  |
@@ -28,13 +28,13 @@ Open-Science v0.33.3에는 **27 데이터 소스 커넥터 282 작업**가 포�
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 구조 및 분자 상호 작용 — PDB 구조, AlphaFold 예측, EMDB cryo-EM 항목, Complex Portal complexes, IntAct 상호 작용 네트워크.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | 비활성 화합물, 약물, 표적, 생물 활성성, 그리고 메커니즘을 통해 ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — 날짜/category, DOI, 저널-publication 링크, 펀더 목록 및 플랫폼 통계에 의해 검색.  |
-| Drug Regulatory · `drug-regulatory` | openFDA | 7 | Drugs@FDA 신청, 상표 및 openFDA를 통해 corpus 통계.  |
+| 의약품 규제 · `drug-regulatory` | 오픈FDA | 10 | Drugs@FDA, 상표, FAERS 불리 배출 보고와 약은 회귀합니다. |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | 인간 유전학 협회 증거 - GWAS 카탈로그, eQTL 카탈로그, PheWeb PheWAS 포털 (FinnGen, BioBank Japan).  |
-| Expression · `expression` | GTEx | 12 | GTEx Portal을 통해 인간의 조직 표현과 eQTLs.  |
+| · · `expression` | GTEx, Bgee | 16 | 인간적인 GTEx 조직 표식 및 eQTLs; Bgee 크로스 사양 기본 표현. |
 | 단백질 표기 · `protein-annotation` | InterPro, Pfam, 인간 단백질 아틀라스, STRING | 14 | Protein Domain Architecture, 가족/실란 회원, 인터프로/Pfam, Human Protein Atlas 및 STRING을 통한 식각 atlas 및 상호 작용 네트워크. |
-| Cancer Models · `cancer-models` | cBioPortal | 6 | CBioPortal REST API을 통해 암 게놈 연구 기록.  |
+| 암 모델 · `cancer-models` | cBioPortal의 특징 | 10 | 연구, mutations, 복사 번호, 샘플, 환자, 임상 특성 및 분자 프로파일 표현. |
 | RNA · `rna` | Rfam | 9 | 비 코딩 RNA 제품군 데이터 (metadata, 정렬, 모델, 구조) Rfam을 통해.  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | 표현, 대사학, metagenomics 및 proteomics 아카이브; ENA는 발견과 FASTQ/submission 재고를 실행합니다; PRIDE 파일 목록. |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, 메타보라이트, MGnify, PRIDE, ENA | 23 | Omics 연구 및 실행; ENA FASTQ/submission 재고, PRIDE 및 MGnify 결과 파일 메타데이터. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Cell-type identity, 마커 유전자, 소스 데이터 세트, 그리고 CELLxGENEGuide Cell을 통해 조직.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 유전자 조절 기능 genomics - ENCODE 실험 / 생물 샘플 / 파일, JASPAR TF 바인딩 프로파일 및 UniBind ChIP-seq TFBS.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Funding-opportunity search (Grants.gov) 및 항체 카탈로그 조회 (Antibody Registry).  |
@@ -44,6 +44,7 @@ Open-Science v0.33.3에는 **27 데이터 소스 커넥터 282 작업**가 포�
 | Zenodo · `zenodo` | Zenodo | 2 | 공공 데이터 세트, 소프트웨어 및 출판 발견, 버전 별 메타 데이터 및 파일 재고; 업로드 또는 다운로드. |
 | · · `hmmer` | EMBL-EBI 헬멧3 | 3 | 프로그램별 단백질/프로필/분리 검색, 작업 상태 및 결과. |
 | InterProScan · `interproscan` | EMBL-EBI InterProScan에 대한 정보 | 2 | 상태 및 TSV는 기존의 주석 작업을 보고합니다. 제출 없음. |
+| Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Pathway 검색, 최고 통로, 그래프 쿼리 및 BioPAX 서브모델 수출. |
 
 오프라인 Molecule 도구는 [사이트맵](viewers.md)에 덮여 있습니다. 각 데이터 소스에 노출된 정확한 작업을 위해 [Connector 가동 참고](../reference/connector-operations.md)을 사용합니다.
 
@@ -144,6 +145,10 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [종, 참조 genome 및 크롬 식별자 확인](../workflows/reference-genome-check.md): 부과, 버전 조립 및 크로노섬 별명을 수정합니다.
 
+### 경로 네트워크 검사 {/* #inspect-a-pathway-network */}
+
+[경로 및 상호 작용 네트워크 검사](../workflows/inspect-pathway.md): Pathway Commons를 통해 인간의 Reactome 통로를 찾아, 반환 URI를 보존하고, 상호 작용을 수출하고 경로 활동의 증거로부터 선택한 네트워크를 구별합니다.
+
 다른 작업을 위해 [Structured PubChem 레코드](../workflows/database-records.md), [Cross-checking 과학 기록](../workflows/cross-check-records.md) 또는 [그룹 회의에 대한 문학 발견](../workflows/journal-club.md)를 따르십시오.
 
 <span id="handle-a-returned-record-empty-match-or-error" />
@@ -168,7 +173,7 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/registry.ts).
+카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/registry.ts).
 
 ## Sequence 검색 및 정렬 {/* #sequence-tools */}
 
@@ -185,3 +190,17 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 - **Clinical Genomics → ClinPGx** : 약물, 유전자 또는 변형 표기, 지침, 규제 라벨 및 인구 주파수. 식별자를 먼저 해결하고, 작업에 의해 필요한 필드를 공급하고 원본 소스와 증거 수준을 유지합니다. 이 연구 기록; 그것은 자동으로 개별 치료 계획을 생산하지 않습니다.
 
 **Settings → Connectors**의 활성 에이전트에 대한 관련 Connector을 활성화합니다. 이 내장 항목은 사용자 정의 MCP 서버가 필요하지 않습니다. 정확한 필드 및 조건 요구 사항에 대한 [및 다운로드 가능한 레지스트리는 이제 v0.31.1 :](../reference/connector-operations.md)을 참조하십시오.
+
+## Pathways, 표현 및 임상 데이터 {/* #pathway-expression-clinical */}
+
+**Settings → Connectors**의 대응 가족을 활성화하고, 그 다음 유기체, 소스, 식별자 및 대상 범위를 알려줍니다. 이 추가 사용 내장 커넥터; MCP 서버가 필요하지 않습니다.
+
+| 이름 &#42; | 할 수 있는 것 | 연결 및 해석 |
+| --- | --- | --- |
+| Pathway Commons | pathways, list top pathways, Genes 간 쿼리 경로 또는 submodel을 내보내기 | 공공 서비스; 반환된 URI, 생물 및 근원을 유지합니다. 그래프 쿼리는 enrichment 테스트와 다릅니다. 자주 묻는 질문 [pathway 상호 작용 워크플로우](../workflows/inspect-pathway.md). |
+| 표현 → Bgee | Cross-species 선물/부정 통화, 정상화 된 점수, 경계 SPARQL 쿼리 및 다운로드 링크 | NCBI 세법 ID를 처음 발견하고 유지하십시오. SPARQL는 유전자, 종 및 조직을 요구합니다. 건강한 야생 유형 기본 전화는 차별 표식이 아닙니다; 다운로드 링크가 다운로드되지 않았습니다. |
+| 암 모델 → cBioPortal | 샘플/패드 및 쿼리 임상 속성 또는 mRNA/단백 표현 | 연구 선택, 프로필을 발견하고 측정/정상화를 선택하십시오. 공급 IDs 일치 임상 샘플 / 일시적 수준; 분자 데이터는 명시된 유전자와 sample_ids 또는 sample_list_id의 정확히 하나가 필요합니다. 미스링 행은 제로가 아닙니다. |
+| 약물 규제 → openFDA | Search/count FAERS 보고서 및 검색 약물 회신 | 경계 날짜 및 제품 및 유지 truncation 정보. 보고서 조사는 비공식적 또는 카우스알 증거가 아닙니다. 다 가치있는 물통은 overlap 할지도 모릅니다; 그들의 합계는 유일한 보고 아닙니다. |
+| Omics Archives → MGnify | MGYA 분석 액세스에 의한 결과 파일 목록 | 반환 유형, 카테고리, 업스트림 URL 및 크기 때 보고. 파일 바이트가 다운로드되지 않습니다; 누락된 크기 또는 URL은 null을 유지합니다. |
+
+정확한 필수 필드, 조건 및 예에 대한 [Connector 가동 참고](../reference/connector-operations.md) 참조.

@@ -1,7 +1,7 @@
 ---
 title: "Aussehen und Meldungen"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -136,7 +136,7 @@ Mit **General → Close button behaviour → Ask every time** öffnet das Schlie
 | Sie wollen... | Wohin zu gehen |
 | --- | --- |
 | Suchen Sie nach einem App Update | **General → About → Check now**; Folge [Installation und Aktualisierungen](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Versionsänderungen lesen oder Hilfe erhalten | **About → Release notes / Help Center** öffnet die entsprechende externe Seite. Dieses Wiki hat auch eine [Changelog](../changelog/v0.31.1.md). |
+| Versionsänderungen lesen oder Hilfe erhalten | **About → Release notes / Help Center** öffnet die entsprechende externe Seite. Dieses Wiki hat auch eine [Changelog](../changelog/v0.34.0.md). |
 | Suchen oder öffnen Sie das Diagnoseprotokoll | **General → Diagnostics → Reveal / Open**; siehe [Fehlerbehebung](troubleshooting.md). Logs bleiben lokal, bis Sie sie teilen. |
 | Installieren Sie den Befehlszeileneintrag | **General → Install command**; siehe [CLI Referenz](../reference/cli.md). Die Desktop-Nutzung erfordert diesen Befehl nicht. |
 | Verwalten des Datenstandorts oder der archivierten Arbeit | [Lagerung und archivierte Arbeiten](storage.md). |
@@ -159,3 +159,5 @@ Quelle: [Allgemeine Einstellungen](https://github.com/aipoch/open-science/blob/v
 ![Auswahl der Interface-Skalen in allgemeinen Einstellungen](/img/open-science/v0333/interface-scale.webp)
 
 Dies steuert die Benutzeroberfläche der Desktop-App. Der Bild- oder PDF-Vorschau-Zoom wirkt sich nur auf die Ansicht dieser Datei aus. Beim Zugriff auf Open-Science in einem Browser verwenden Sie den Zoom des Browsers. Die Windows-Display-Skalierung betrifft auch andere Apps; Verwenden Sie das Steuerelement oben, wenn Sie nur die Größe von Open-Science ändern möchten.
+
+Das Tablett-Menü öffnet auch direkt laufende, angeheftete und aktuelle Sitzungen; siehe [Schifffahrt auf der Tray](navigation.md#tray-navigation).

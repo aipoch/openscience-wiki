@@ -1,7 +1,7 @@
 ---
 title: "故障排查與常見問題"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 # 故障排查與常見問題 {/* #故障排查与常见问题 */}
@@ -229,3 +229,7 @@ Agent 框架 / Provider / 模型（如相关）：
 原始碼：[佇列恢復提示](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/components/SessionCatalogRecoveryAlert.tsx)、[PDF 批次處理](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx)、[集合衝突](https://github.com/aipoch/open-science/commit/dbb9560a)、[Windows 安裝程式](https://github.com/aipoch/open-science/blob/v0.27.0/build/installer.nsh)。
 
 原始碼：[缺陷表單欄位](https://github.com/aipoch/open-science/blob/v0.26.0/.github/ISSUE_TEMPLATE/bug_report.yml)、[啟動反饋彈窗](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/components/startup-issue-dialog.tsx)。
+
+## 升級後 Codex 提示版本不相容 {/* #codex-version */}
+
+如果出現 **The installed Codex CLI is incompatible or its version could not be verified**，開啟 **Settings → Agent** 檢視實際檢測到的路徑和 Codex CLI 版本。v0.34.0 要求 CLI 至少 0.157.1；更新該託管或外部安裝，再 **Re-detect**。模型重新登入不能代替執行時更新。完整步驟見[更新 Codex](frameworks.md#update-codex)。

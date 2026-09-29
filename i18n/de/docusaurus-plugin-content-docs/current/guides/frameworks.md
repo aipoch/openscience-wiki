@@ -1,7 +1,7 @@
 ---
 title: "Installations- und Vermittlungsstellen"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 # Installations- und Vermittlungsstellen {/* #installing-and-switching-agents */}
@@ -45,6 +45,12 @@ In v0.33.0 benötigt **Claude Agent** Claude CLI **2.1.118 oder höher**. Wenn d
 Öffnen Sie **Settings → Agent** und lesen Sie die **Codex CLI**- und **AKP**-Versionen der Codex-Karte separat. Wenn ein Update für das getestete Paar angeboten wird, beenden oder schließen Sie die Sitzungen mit dieser Laufzeit, wählen Sie die Aktualisierungsaktion und warten Sie auf den Abschluss der Erkennung. Bestätigen Sie die neuen Versionen und die Bereitschaft und senden Sie dann eine kleine Anfrage in einer Sitzung.
 
 Ein App-verwaltetes Update ersetzt die App-eigene Laufzeit; ein externes CLI muss durch die ursprüngliche Installationsmethode aktualisiert werden, gefolgt von **Re-detect**. Die App verweigert den Ersatz, während ein von der App gestarteter Codex-Prozess das Ziel verwendet. Dieser Vorgang aktualisiert Open-Science nicht selbst oder migriert eine Aufgabe während des Fluges.
+
+In **v0.34.0** muss Codex CLI mindestens **0.157.1** und der ACP-Adapter mindestens **1.6.2** sein. Das Aktualisieren von Open-Science allein kann dazu führen, dass ein älteres Codex installiert bleibt. Wenn Sie **Update required** oder eine Meldung sehen, dass die Version nicht verifiziert werden kann, beenden Sie die Sitzungen mit dieser Laufzeit und wählen Sie dann **Update Codex** auf der verwalteten Karte aus. Aktualisieren Sie eine externe Installation mit der ursprünglichen Methode und wählen Sie **Re-detect**. Überprüfen Sie die erkannten Versionen und **Active**, bevor Sie eine Anforderung ausführen.
+
+![Codex CLI 0.157.1 und ACP 1.6.2 nach dem verwalteten Update erkannt](/img/open-science/v0340/codex-updated.webp)
+
+Dies ist die Basislinie für die Laufzeitkompatibilität von Open-Science, nicht ein universelles Minimum für jedes Modell. Die Aktualisierung der App, die Aktualisierung ihrer Laufzeit und die Anmeldung bei einem Modellanbieter sind separate Schritte.
 
 ## Switch ohne Verwechslung von Retained History mit Live State {/* #switch-without-confusing-retained-history-with-live-state */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Installation et commutation d'agents"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 # Installation et commutation d'agents {/* #installing-and-switching-agents */}
@@ -45,6 +45,12 @@ Dans v0.33.0, **Claude Agent** nécessite Claude CLI **2.1.118 ou supérieur**. 
 Ouvrez **Settings → Agent** et lisez séparément les versions Codex **Codex CLI** et **ACP**. Si une mise à jour de la paire testée est offerte, terminer ou fermer les sessions en utilisant ce runtime, choisissez l'action de mise à jour et attendez que la détection soit terminée. Confirmez les nouvelles versions et l'état de préparation, puis envoyez une petite demande dans une session.
 
 Une mise à jour gérée par l'application remplace l'exécution de l'application; un CLI externe doit être mis à jour par sa méthode d'installation originale, suivie de **Re-detect**. L'application refuse le remplacement alors qu'un processus Codex lancé par l'application utilise la cible. Cette opération ne met pas à jour Open-Science elle-même ou migre une tâche en vol.
+
+En **v0.34.0**, Codex CLI doit être au moins **0.157.1** et l'adaptateur ACP au moins **1.6.2**. Mettre à jour Open-Science seul peut laisser un Codex plus ancien installé. Si vous voyez **Update required** ou un message que la version ne peut pas être vérifiée, arrêtez les sessions en utilisant ce runtime, puis sélectionnez **Update Codex** sur la carte gérée. Mettre à jour une installation externe grâce à sa méthode originale et sélectionner **Re-detect**. Vérifiez les versions détectées et **Active** avant d'exécuter une requête.
+
+![Codex CLI 0.157.1 et ACP 1.6.2 détectés après la mise à jour gérée](/img/open-science/v0340/codex-updated.webp)
+
+C'est la base de référence de compatibilité d'exécution de Open-Science, pas un minimum universel pour chaque modèle. Mise à jour de l'application, mise à jour de son temps d'exécution et connexion à un fournisseur modèle sont des étapes distinctes.
 
 ## Commuter sans confondre l'histoire conservée avec l'état en direct {/* #switch-without-confusing-retained-history-with-live-state */}
 

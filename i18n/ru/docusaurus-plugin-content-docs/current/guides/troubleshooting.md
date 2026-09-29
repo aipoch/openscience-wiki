@@ -1,7 +1,7 @@
 ---
 title: "Устранение неполадок и общие вопросы"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 # Устранение неполадок и общие вопросы {/* #troubleshooting-and-common-questions */}
@@ -228,4 +228,8 @@ Relevant log excerpt or screenshot:
 
 Источники: [Уведомление о восстановлении очереди](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/components/SessionCatalogRecoveryAlert.tsx), [PDF пакетная обработка](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx), [Коллекционный конфликт](https://github.com/aipoch/open-science/commit/dbb9560a), [Установщик Windows](https://github.com/aipoch/open-science/blob/v0.27.0/build/installer.nsh).
 
-Источник: [Поля отчетов об ошибках](https://github.com/aipoch/open-science/blob/v0.26.0/.github/ISSUE_TEMPLATE/bug_report.yml), [Запуск отчета диалог](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/components/startup-issue-dialog.tsx).
+Источник: [Поля отчетов об ошибках](https://github.com/aipoch/open-science/blob/v0.26.0/.github/ISSUE_TEMPLATE/bug_report.yml), [Отчет о запуске диалог](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/components/startup-issue-dialog.tsx).
+
+## Codex сообщает о несовместимой версии после обновления {/* #codex-version */}
+
+Если вы видите **Установка Codex CLI несовместима или ее версия не может быть проверена.**, откройте **Settings → Agent** и проверьте обнаруженный путь и версию Codex CLI. v0.34.0 требует CLI 0.157.1 или более позднюю версию. Обновление, которое управляло или внешней установкой, затем **Re-detect**. Подписка на модель снова не заменяет обновление среды выполнения. Следуйте за [Обновление Codex](frameworks.md#update-codex).

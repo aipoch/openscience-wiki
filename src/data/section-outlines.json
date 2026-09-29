@@ -401,6 +401,18 @@
               "reference/connector-operations"
             ],
             "contentStatus": "written"
+          },
+          {
+            "id": "inspect-pathway",
+            "title": "Inspect a pathway and its interaction network",
+            "scope": "Search Pathway Commons, retain a Reactome URI, export interactions and inspect the saved source records.",
+            "currentDoc": "workflows/inspect-pathway",
+            "proposedUrl": "/docs/workflows/inspect-pathway/",
+            "relatedDocs": [
+              "workflows/inspect-pathway"
+            ],
+            "contentStatus": "written",
+            "kind": "existing"
           }
         ]
       },
@@ -1420,6 +1432,17 @@
         "id": "changelog",
         "title": "Changelog",
         "chapters": [
+          {
+            "id": "v0340",
+            "title": "v0.34.0",
+            "scope": "Journal datasets, Pathway Commons and expanded databases, Linux ARM64, Codex runtime updates and tray navigation.",
+            "currentDoc": "changelog/v0-34-0",
+            "proposedUrl": "/docs/changelog/v0-34-0/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-34-0"
+            ]
+          },
           {
             "id": "v0333",
             "title": "v0.33.3",
