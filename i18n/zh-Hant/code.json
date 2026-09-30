@@ -87,7 +87,7 @@
     "message": "AIPOCH Open-Science 文檔"
   },
   "homepage.meta.description": {
-    "message": "AIPOCH Open-Science 文档：安装、工作区与模型配置、可复现性、科研工作流、技能、工具、CLI 与 API 参考。"
+    "message": "AIPOCH Open-Science 文件：安裝、工作區與模型設定、可重現性、科研工作流程、Skills、工具、CLI 與 API 參考。"
   },
   "homepage.lead": {
     "message": "AIPOCH Open-Science 是一款开源、本地优先的 AI 科研工作台。"

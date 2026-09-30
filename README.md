@@ -1,4 +1,4 @@
-# Open-Science Wiki
+# AIPOCH Open-Science Documentation
 
 This repository contains the official operating and reproducibility documentation for [AIPOCH Open-Science](https://github.com/aipoch/open-science), built with [Docusaurus](https://docusaurus.io/).
 
