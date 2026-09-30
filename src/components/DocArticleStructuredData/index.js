@@ -11,11 +11,16 @@ function absoluteUrl(siteUrl, pathname) {
   return new URL(pathname, siteUrl).href;
 }
 
+function canonicalPath(pathname, trailingSlash) {
+  if (trailingSlash) return pathname.endsWith('/') ? pathname : `${pathname}/`;
+  return pathname === '/' ? pathname : pathname.replace(/\/$/, '');
+}
+
 export default function DocArticleStructuredData() {
   const {i18n, siteConfig} = useDocusaurusContext();
   const {metadata, frontMatter} = useDoc();
   const localeConfig = localeConfigs[i18n.currentLocale];
-  const canonical = absoluteUrl(siteConfig.url, metadata.permalink);
+  const canonical = absoluteUrl(siteConfig.url, canonicalPath(metadata.permalink, siteConfig.trailingSlash));
   const docsHome = absoluteUrl(siteConfig.url, localeConfig.baseUrl);
   const dateModified = frontMatter.last_update?.date;
   const schema = {

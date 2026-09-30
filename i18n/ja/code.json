@@ -66,7 +66,7 @@
     "message": "AIPOCH Open-Science ドキュメント"
   },
   "homepage.meta.description": {
-    "message": "Documentation for AIPOCH Open-Science: installation, workspace and model setup, reproducibility, research workflows, skills, tools, CLI and API reference."
+    "message": "AIPOCH Open-Science のドキュメント：インストール、ワークスペースとモデルの設定、再現可能な研究ワークフロー、Skills、ツール、CLI、API リファレンス。"
   },
   "homepage.lead": {
     "message": "AIPOCH Open-Science is an open-source, local-first AI research workbench."
