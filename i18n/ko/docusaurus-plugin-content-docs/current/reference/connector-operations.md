@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.33.3** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.3.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
+한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.34.0** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.0.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
 
 
 ## 뚱 베어 {/* #family-1 */}
@@ -2385,6 +2385,83 @@ const result = await host.mcp("drug-regulatory", "get_generic_equivalents", {"br
 const result = await host.mcp("drug-regulatory", "search_drug_labels", {"brand_name": "Tylenol", "max_records": 5})
 ```
 
+### `search_drug_adverse_events` {/* #search_drug_adverse_events */}
+
+검색 FAERS는 drug_name (medicinalproduct), 조화 된 브랜드 / 일반 / 과도, 반응, 심각성 (1=serious, 2=non-serious), 국가 또는 초기 영수증 날짜보고. 날짜 항상 다른 필터를 제약; raw_search은 맵핑 필터를 교체하지만 날짜를 유지합니다. 보고서는 여러 약물과 반응을 나열 할 수 있으며 카우스레이션 또는 불균형을 설정하지 않습니다. 결과는 26000에서 모자를 씌우고 있습니다; 더 큰 cohorts를 위한 좁은 여과기.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `drug_name` | 문자열 | 옵션 정보 |
+| `brand_name` | 문자열 | 옵션 정보 |
+| `generic_name` | 문자열 | 옵션 정보 |
+| `ingredient` | 문자열 | 옵션 정보 |
+| `reaction` | 문자열 | 옵션 정보 |
+| `country` | 문자열 | 옵션 정보 |
+| `serious` | 문자열 | 옵션 정보 |
+| `received_date_from` | 문자열 | 옵션 정보 |
+| `received_date_to` | 문자열 | 옵션 정보 |
+| `receipt_date_from` | 문자열 | 옵션 정보 |
+| `receipt_date_to` | 문자열 | 옵션 정보 |
+| `search_type` | 문자열 | 선택 사항; 기본: "and"; koum : &#91;"and", "or"&#93; |
+| `raw_search` | 문자열 | 옵션 정보 |
+| `sort` | 문자열 | 옵션 정보 |
+| `max_records` | 정수 | 선택 사항; 기본: 25; 최소: 1; 최대: 26000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "search_drug_adverse_events", {"drug_name": "LIPITOR", "reaction": "headache", "max_records": 10})
+```
+
+### `count_drug_adverse_events` {/* #count_drug_adverse_events */}
+
+반응, 약, 결과, 국가 또는 영수증 날짜에 의해 일치하는 FAERS 보고를 집계하십시오. 조사는 보고를, incidence 또는 causation 아닙니다 반영합니다; 멀티 값 버킷 오버랩과 그들의 합계는 독특한 보고서가 아닙니다. 날짜 필드 반환 시간/계절 대신에/계절. raw_search는 날짜 제약을 유지합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `count_field` | 문자열 | **필수** |
+| `drug_name` | 문자열 | 옵션 정보 |
+| `brand_name` | 문자열 | 옵션 정보 |
+| `generic_name` | 문자열 | 옵션 정보 |
+| `ingredient` | 문자열 | 옵션 정보 |
+| `reaction` | 문자열 | 옵션 정보 |
+| `country` | 문자열 | 옵션 정보 |
+| `serious` | 문자열 | 옵션 정보 |
+| `received_date_from` | 문자열 | 옵션 정보 |
+| `received_date_to` | 문자열 | 옵션 정보 |
+| `receipt_date_from` | 문자열 | 옵션 정보 |
+| `receipt_date_to` | 문자열 | 옵션 정보 |
+| `search_type` | 문자열 | 선택 사항; 기본: "and"; koum : &#91;"and", "or"&#93; |
+| `raw_search` | 문자열 | 옵션 정보 |
+| `max_buckets` | 정수 | 선택 사항; 기본: 100; 최소: 1; 최대: 1000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "count_drug_adverse_events", {"count_field": "reaction", "drug_name": "LIPITOR"})
+```
+
+### `search_drug_recalls` {/* #search_drug_recalls */}
+
+회사, 제품, 리콜 이유, 분류, 상태, 위치, 또는 보고서 날짜에 의해 openFDA에서 FDA 약물 시행 보고서 (제품 리콜)를 검색하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `recalling_firm` | 문자열 | 옵션 정보 |
+| `product_description` | 문자열 | 옵션 정보 |
+| `reason_for_recall` | 문자열 | 옵션 정보 |
+| `status` | 문자열 | 옵션 정보 |
+| `classification` | 문자열 | 옵션 정보 |
+| `city` | 문자열 | 옵션 정보 |
+| `state` | 문자열 | 옵션 정보 |
+| `country` | 문자열 | 옵션 정보 |
+| `report_date_from` | 문자열 | 옵션 정보 |
+| `report_date_to` | 문자열 | 옵션 정보 |
+| `search_type` | 문자열 | 선택 사항; 기본: "and"; koum : &#91;"and", "or"&#93; |
+| `raw_search` | 문자열 | 옵션 정보 |
+| `sort` | 문자열 | 옵션 정보 |
+| `max_records` | 정수 | 선택 사항; 기본: 25; 최소: 1; 최대: 26000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "search_drug_recalls", {"reason_for_recall": "contamination", "max_records": 10})
+```
+
 </ToolOperationGroup>
 
 ## 인간 유전학 {/* #family-13 */}
@@ -2759,6 +2836,62 @@ const result = await host.mcp("expression", "gtex_multi_tissue_eqtls", {"gencode
 const result = await host.mcp("expression", "gtex_calculate_eqtl", {"gencode_id": "ENSG00000111640.14", "variant_id": "chr12_6452899_G_A_b38", "tissue_site_detail_id": "Whole_Blood"})
 ```
 
+### `bgee_species` {/* #bgee_species */}
+
+Bgee 건강한 야생 유형 표식 아틀라스에서 사용 가능한 종 목록, 또는 NCBI 세토니티 ID로 한 종을 검색하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `species_id` | 정수 | 선택 사항; 최소: 1; 최대: 2147483647 |
+
+```javascript
+const result = await host.mcp("expression", "bgee_species", {})
+```
+
+### `bgee_expression_calls` {/* #bgee_expression_calls */}
+
+Bgee 현재/absent expression 호출 및 1 종에서 한 유전자에 대한 정상화 된 표현 점수를 검색합니다. 결과는 건강한 야생 유형 기본 전화이고 max_calls로 모자를 씌워질 수 있습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `gene_id` | 문자열 | **필수** |
+| `species_id` | 정수 | **필수**; 최소: 1; 최대: 2147483647 |
+| `max_calls` | 정수 | 선택 사항; 기본: 100; 최소: 1; 최대: 500 |
+| `expression_type` | 문자열 | 선택 사항; 기본: "EXPRESSED"; 한국어 (ko)"구매하기"· "공지사항"· |
+
+```javascript
+const result = await host.mcp("expression", "bgee_expression_calls", {"gene_id": "ENSG00000130208", "species_id": 9606, "max_calls": 50})
+```
+
+### `bgee_sparql_expression` {/* #bgee_sparql_expression */}
+
+한 유전자에 대한 경계 Bgee SPARQL 쿼리를 실행, 하나의 NCBI 종과 하나의 조직 / 원자성. 모든 3개의 여과기는 요구됩니다; 생성 된 쿼리는 단단한 LIMIT를 포함 하 고 호출은 자신의 타임 아웃을 있다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `gene` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 128 |
+| `species_id` | 정수 | **필수**; 최소: 1; 최대: 2147483647 |
+| `tissue` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 128 |
+| `limit` | 정수 | 선택 사항; 기본: 25; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("expression", "bgee_sparql_expression", {"gene": "APOC1", "species_id": 9606, "tissue": "liver", "limit": 25})
+```
+
+### `bgee_download_links` {/* #bgee_download_links */}
+
+한 종에 대한 공식 Bgee 다운로드 링크 구축 : 요약 된 현재 / 긴급 통화 또는 처리 된 표현 가치 감독. 이 URL을 반환하고 큰 파일을 다운로드하지 마십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `species` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 128 |
+| `file_kind` | 문자열 | 선택 사항; 기본: "calls_simple"; 모델 번호: &#91;"calls_simple", "calls_advanced", "processed_rna_seq", "processed_affymetrix", "processed_sc_full_length", "processed_sc_droplet_based"&#93; |
+| `all_conditions` | 불리언 | 선택 사항; 기본값: false |
+
+```javascript
+const result = await host.mcp("expression", "bgee_download_links", {"species": "Homo_sapiens", "file_kind": "calls_simple"})
+```
+
 </ToolOperationGroup>
 
 ## 단백질 Annotation {/* #family-15 */}
@@ -3038,6 +3171,69 @@ cBioPortal 연구 (특허 및 샘플 수준 필드)에서 정의 된 임상 속�
 
 ```javascript
 const result = await host.mcp("cancer-models", "cbioportal_clinical_attributes", {"study_id": "brca_tcga_pan_can_atlas_2018"})
+```
+
+### `cbioportal_get_samples` {/* #cbioportal_get_samples */}
+
+상세한 샘플과 환자 식별자를 가진 학문에 있는 cBioPortal 표본을 목록으로 만드십시오. 선택적인 sample_ids는 반환 줄을 제한합니다; max_records는 진정한 연구 조사를 보존하면서 응답을 캡으로합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `study_id` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+| `sample_ids` | 문자열 배열 | 선택 사항; 최소품목: 1; 최대품목: 1000 |
+| `max_records` | 정수 | 선택 사항; 기본: 500; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_samples", {"study_id": "brca_tcga_pan_can_atlas_2018", "max_records": 100})
+```
+
+### `cbioportal_get_patients` {/* #cbioportal_get_patients */}
+
+cBioPortal 환자를 상세 식별자와 연구합니다. 선택적인 patient_ids는 반환 줄을 제한합니다; max_records는 진정한 연구 조사를 보존하면서 응답을 캡으로합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `study_id` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+| `patient_ids` | 문자열 배열 | 선택 사항; 최소품목: 1; 최대품목: 1000 |
+| `max_records` | 정수 | 선택 사항; 기본: 500; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_patients", {"study_id": "brca_tcga_pan_can_atlas_2018", "max_records": 100})
+```
+
+### `cbioportal_get_clinical_data` {/* #cbioportal_get_clinical_data */}
+
+명시된 patient_ids 또는 sample_ids 일치 수준에 대한 Fetch cBioPortal 임상 데이터 값은 attribute_ids에 따라 선택적으로 제한됩니다. 임상 값은 누락값 마커를 포함한 문자열을 유지한다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `study_id` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+| `level` | 문자열 | 선택 사항; 기본: "SAMPLE"; koum : &#91;"SAMPLE", "PATIENT"&#93; |
+| `attribute_ids` | 문자열 배열 | 선택 사항; 최대품목: 1000 |
+| `sample_ids` | 문자열 배열 | 선택 사항; 최소품목: 1; 최대품목: 1000 |
+| `patient_ids` | 문자열 배열 | 선택 사항; 최소품목: 1; 최대품목: 1000 |
+| `max_records` | 정수 | 선택 사항; 기본: 1000; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_clinical_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "level": "PATIENT", "attribute_ids": ["AGE"], "patient_ids": ["TCGA-A1-A0SB"]})
+```
+
+### `cbioportal_get_molecular_data` {/* #cbioportal_get_molecular_data */}
+
+Fetch numeric mRNA 또는 명시된 연구 분자 프로파일에서 단백질 표현 값. cbioportal_get_study과 프로필을 발견; 측정/정상화 deliberately를 선택하십시오. gene_symbol 또는 entrez_gene_ids을 공급하고 sample_ids 또는 sample_list_id의 정확히 하나. 미스링 행은 0개의 표현이 아닙니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `study_id` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+| `molecular_profile_id` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+| `gene_symbol` | 문자열 | 옵션 정보 |
+| `entrez_gene_ids` | 정수 배열 | 선택 사항; 최대품목: 1000 |
+| `sample_ids` | 문자열 배열 | 선택 사항; 최소품목: 1; 최대품목: 1000 |
+| `sample_list_id` | 문자열 | 선택 사항; 최소 길이: 1; 패턴 : " \ S" |
+| `max_records` | 정수 | 선택 사항; 기본: 1000; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_molecular_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "molecular_profile_id": "brca_tcga_pan_can_atlas_2018_rna_seq_v2_mrna", "gene_symbol": "ESR1", "sample_list_id": "brca_tcga_pan_can_atlas_2018_all"})
 ```
 
 </ToolOperationGroup>
@@ -3458,6 +3654,18 @@ const result = await host.mcp("omics-archives", "pride_search_project_proteins",
 
 ```javascript
 const result = await host.mcp("omics-archives", "pride_find_projects_for_protein", {"protein_accession": "P04637"})
+```
+
+### `mgnify_get_analysis_files` {/* #mgnify_get_analysis_files */}
+
+API v2를 사용하여 하나의 MGnify 분석을위한 결과 파일 메타데이터 : 파일 유형, 카테고리,보고 할 때 바이트 크기, 업스트림 다운로드 URL. 파일 바이트가 다운로드되지 않습니다. 크기 또는 URL이 null을 남깁니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `accession` | 문자열 | **필수**; 최대 길이: 32; 본: "^MGYA&#91;0-9&#93;&#123; 8, &#125;$" |
+
+```javascript
+const result = await host.mcp("omics-archives", "mgnify_get_analysis_files", {"accession": "MGYA00639970"})
 ```
 
 </ToolOperationGroup>
@@ -4250,6 +4458,80 @@ const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R202
 
 ```javascript
 const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+</ToolOperationGroup>
+
+## Pathway Commons {/* #family-28 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `pathway_commons_search` {/* #pathway_commons_search */}
+
+Gen/protein/pathway 키워드 또는 Lucene 쿼리에 의해 Pathway Commons BioPAX 모델을 검색합니다. 결과는 BioPAX 클래스, URI, 소스 데이터베이스, 생물, 경로 메타 데이터를 포함합니다. 그래프 또는 수출 쿼리에 입력하여 반환 URI를 사용합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `q` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 512 |
+| `type` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 64 |
+| `organism` | 문자열 배열 | 선택 사항; 최대품목: 20 |
+| `datasource` | 문자열 배열 | 선택 사항; 최대품목: 20 |
+| `page` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_search", {"q": "TP53", "type": "ProteinReference", "organism": ["9606"]})
+```
+
+### `pathway_commons_top_pathways` {/* #pathway_commons_top_pathways */}
+
+Reactome과 같은 종이나 소스에 선택적으로 제한되는 키워드 또는 Lucene 쿼리와 일치하는 Pathway Commons의 최고 수준의 통로를 찾으십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `q` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 512 |
+| `organism` | 문자열 배열 | 선택 사항; 최대품목: 20 |
+| `datasource` | 문자열 배열 | 선택 사항; 최대품목: 20 |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_top_pathways", {"q": "insulin", "datasource": ["reactome"], "organism": ["9606"]})
+```
+
+### `pathway_commons_graph` {/* #pathway_commons_graph */}
+
+Pathway Commons BioPAX 그래프 쿼리를 유전자 영역으로 실행, 유전자 세트 사이의 경로, 대상에 소스에서 경로, 또는 일반적인 업스트림 / 다운 스트림 스트림. SIF 결과는 상호 작용 기록으로 정상화됩니다, TXT 결과는 가장자리와 노드 기록, 및 GSEA/BioPAX/SBGN 수출은 원본으로 유효합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `source` | 문자열 배열 | **필수**; 최소품목: 1; 최대품목: 100 |
+| `target` | 문자열 배열 | 선택 사항; 최소품목: 1; 최대품목: 100 |
+| `kind` | 문자열 | 선택 사항; 기본: "NEIGHBORHOOD"; 줌: &#91;"NEIGHBORHOOD", "PATHSBETWEEN", "PATHSFROMTO", "COMMONSTREAM"&#93; |
+| `format` | 문자열 | 선택 사항; 기본: "SIF"; 모델 번호: "BIOPAX", "SIF", "TXT", "GSEA", "SBGN", "JSONLD"&#93; |
+| `limit` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10 |
+| `direction` | 문자열 | 선택 사항; 모델 번호: &#91;"UPSTREAM", "DOWNSTREAM", "BOTHSTREAM", "UNDIRECTED"&#93; |
+| `limit_type` | 문자열 | 선택 사항; 기본: "NORMAL"; 한국어 (ko)"제품 정보"· "SHORTEST_PLUS_K를 만나보세요"· |
+| `pattern` | 문자열 배열 | 선택 사항; 최대품목: 14 |
+| `organism` | 문자열 배열 | 선택 사항; 최대품목: 20 |
+| `datasource` | 문자열 배열 | 선택 사항; 최대품목: 20 |
+| `subpathways` | 불리언 | 선택 사항; 기본값: false |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_graph", {"kind": "NEIGHBORHOOD", "source": ["TP53"], "format": "SIF", "pattern": ["INTERACTS_WITH"]})
+```
+
+### `pathway_commons_export` {/* #pathway_commons_export */}
+
+BioPAX 하위 모델 하나 이상의 Pathway Commons ID / URI를 가져 와서 BioPAX, GSEA GMT, JSON-LD, SIF, TXT 또는 SBGN로 내보내십시오. URI를 사용하여 검색 / top_pathways에 의해 반환 정확한 경로 수출.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `uri` | 문자열 배열 | **필수**; 최소품목: 1; 최대품목: 100 |
+| `format` | 문자열 | 선택 사항; 기본: "BIOPAX"; 모델 번호: "BIOPAX", "SIF", "TXT", "GSEA", "SBGN", "JSONLD"&#93; |
+| `pattern` | 문자열 배열 | 선택 사항; 최대품목: 14 |
+| `subpathways` | 불리언 | 선택 사항; 기본값: false |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_export", {"uri": ["R-HSA-201451"], "format": "GSEA"})
 ```
 
 </ToolOperationGroup>

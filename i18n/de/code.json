@@ -1730,5 +1730,23 @@
   },
   "docs.outline.reference.v0333.scope": {
     "message": "Paged Office Reading, Enrichr und ClinPGx, Bibliotheksvorschau und Paketübertragungssteuerung."
+  },
+  "docs.guides.outline.journal-datasets.scope": {
+    "message": "Importieren Sie Journal-Datensätze, Kartenspalten, wählen Sie Quelle und Jahr aus und prüfen Sie Attribute auf übereinstimmende Referenzen."
+  },
+  "docs.guides.outline.journal-datasets.title": {
+    "message": "Journal-Datensätze und Referenzattribute"
+  },
+  "docs.outline.reference.v0340.scope": {
+    "message": "Journal-Datasets, Pathway Commons und erweiterte Datenbanken, Linux ARM64, Codex Laufzeit-Updates und Tray-Navigation."
+  },
+  "docs.outline.reference.v0340.title": {
+    "message": "v0.34.0"
+  },
+  "docs.outline.workflows.inspect-pathway.scope": {
+    "message": "Durchsuchen Sie Pathway Commons, behalten Sie einen Reactome-URI bei, exportieren Sie Interaktionen und prüfen Sie die gespeicherten Quelldatensätze."
+  },
+  "docs.outline.workflows.inspect-pathway.title": {
+    "message": "Untersuchen Sie einen Pfad und sein Interaktionsnetzwerk"
   }
 }

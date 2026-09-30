@@ -1,7 +1,7 @@
 ---
 title: "トラブルシューティングと一般的な質問"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 # トラブルシューティングと一般的な質問 {/* #troubleshooting-and-common-questions */}
@@ -229,3 +229,7 @@ Relevant log excerpt or screenshot:
 ソース: [キュー回復通知](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/components/SessionCatalogRecoveryAlert.tsx)、[PDF バッチ処理](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx)、[コレクションの競合](https://github.com/aipoch/open-science/commit/dbb9560a)、[Windowsインストーラ](https://github.com/aipoch/open-science/blob/v0.27.0/build/installer.nsh)。
 
 ソース: [バグ報告フィールド](https://github.com/aipoch/open-science/blob/v0.26.0/.github/ISSUE_TEMPLATE/bug_report.yml)、[スタートアップレポートダイアログ](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/components/startup-issue-dialog.tsx)。
+
+## Codex は、アップグレード後の非互換バージョンを報告します。 {/* #codex-version */}
+
+**インストールされたCodex CLIは互換性がないか、そのバージョンは検証できません** が表示された場合、**Settings → Agent** を開き、検出されたパスと Codex CLI バージョンを検査します。 v0.34.0 は CLI 0.157.1 以降が必要です。 管理されたか、または外的な取付け、それから**Re-detect**を更新して下さい。 再びモデルにサインインすると、ランタイムの更新は置換されません。 [Codexの更新](frameworks.md#update-codex) をフォローします。

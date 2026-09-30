@@ -1,7 +1,7 @@
 ---
 title: "Proveedor y configuración del modelo local"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -228,3 +228,5 @@ Seleccione el modelo exacto ofrecido para su agente activo, revise sus opciones 
 ## Nuevas opciones de catálogo {/* #catalog-models */}
 
 Los catálogos de proveedores v0.33.1 añaden **GPT-6** y **Claude Opus 5.5**. Abra la lista de modelos del proveedor y elija una entrada apoyada por el marco activo y su cuenta. La presencia del catálogo no otorga acceso o cambia el modelo Main guardado. Validar al proveedor y enviar una pequeña solicitud antes de utilizar un modelo cambiado para la investigación.
+
+v0.34.0 añade **MiniMax M3.1 Flash Preview** y **Claude Sonnet 5.5**. Seleccione de la lista de modelos de su proveedor respectivo y el acceso a la cuenta de verificación y la compatibilidad de agente activo. Esto no reemplaza automáticamente el modelo Main guardado.

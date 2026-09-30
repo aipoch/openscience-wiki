@@ -2,6 +2,7 @@ import React from 'react';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {useDoc} from '@docusaurus/plugin-content-docs/client';
+import {applyTrailingSlash} from '@docusaurus/utils-common';
 import {localeConfigs} from '../../../i18n.config.mjs';
 
 const organizationId = 'https://aipoch.com/#organization';
@@ -11,16 +12,14 @@ function absoluteUrl(siteUrl, pathname) {
   return new URL(pathname, siteUrl).href;
 }
 
-function canonicalPath(pathname, trailingSlash) {
-  if (trailingSlash) return pathname.endsWith('/') ? pathname : `${pathname}/`;
-  return pathname === '/' ? pathname : pathname.replace(/\/$/, '');
-}
-
 export default function DocArticleStructuredData() {
   const {i18n, siteConfig} = useDocusaurusContext();
   const {metadata, frontMatter} = useDoc();
   const localeConfig = localeConfigs[i18n.currentLocale];
-  const canonical = absoluteUrl(siteConfig.url, canonicalPath(metadata.permalink, siteConfig.trailingSlash));
+  const canonical = absoluteUrl(siteConfig.url, applyTrailingSlash(metadata.permalink, {
+    trailingSlash: siteConfig.trailingSlash,
+    baseUrl: siteConfig.baseUrl,
+  }));
   const docsHome = absoluteUrl(siteConfig.url, localeConfig.baseUrl);
   const dateModified = frontMatter.last_update?.date;
   const schema = {

@@ -1,7 +1,7 @@
 ---
 title: "문제 해결 및 일반적인 질문"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 # 문제 해결 및 일반적인 질문 {/* #troubleshooting-and-common-questions */}
@@ -228,4 +228,8 @@ Relevant log excerpt or screenshot:
 
 소스: [queue 복구 통지](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/components/SessionCatalogRecoveryAlert.tsx), [PDF 일괄 처리](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx), [수집 분쟁](https://github.com/aipoch/open-science/commit/dbb9560a), [Windows 설치](https://github.com/aipoch/open-science/blob/v0.27.0/build/installer.nsh).
 
-출처: [버그 보고서 필드](https://github.com/aipoch/open-science/blob/v0.26.0/.github/ISSUE_TEMPLATE/bug_report.yml), [시작 보고 대화 상자](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/components/startup-issue-dialog.tsx).
+출처: [버그 보고서 필드](https://github.com/aipoch/open-science/blob/v0.26.0/.github/ISSUE_TEMPLATE/bug_report.yml), [스타트업 리포트](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/components/startup-issue-dialog.tsx).
+
+## Codex은 업그레이드 후 호환되는 버전을 보여줍니다. {/* #codex-version */}
+
+**설치된 Codex CLI는 호환이 되는 또는 그것의 버전은 확인될 수 없습니다**을 볼 경우 **Settings → Agent**을 열고 검출된 경로와 Codex CLI 버전을 검사합니다. v0.34.0은 CLI 0.157.1 이상을 요구합니다. 관리 또는 외부 설치를 업데이트 한 다음 **Re-detect**. 모델에 로그인하여 다시 실행 업데이트를 대체하지 않습니다. [Codex 업데이트](frameworks.md#update-codex)을 따르십시오.

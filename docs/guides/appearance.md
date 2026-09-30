@@ -1,7 +1,7 @@
 ---
 title: "Appearance and notifications"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -136,7 +136,7 @@ With **General → Close button behaviour → Ask every time**, closing the wind
 | You want to… | Where to go |
 | --- | --- |
 | Check for an app update | **General → About → Check now**; follow [Installation and updates](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Read version changes or get help | **About → Release notes / Help Center** opens the corresponding external page. This wiki also has a [Changelog](../changelog/v0.31.1.md). |
+| Read version changes or get help | **About → Release notes / Help Center** opens the corresponding external page. This wiki also has a [Changelog](../changelog/v0.34.0.md). |
 | Locate or open the diagnostic log | **General → Diagnostics → Reveal / Open**; see [Troubleshooting](troubleshooting.md). Logs stay local until you share them. |
 | Install the command-line entry | **General → Install command**; see [CLI reference](../reference/cli.md). Desktop use does not require this command. |
 | Manage data location or archived work | [Storage and archived work](storage.md). |
@@ -159,3 +159,5 @@ Source: [General settings](https://github.com/aipoch/open-science/blob/v0.26.0/s
 ![Interface scale choices in General settings](/img/open-science/v0333/interface-scale.webp)
 
 This controls the desktop app's interface. Image or PDF preview zoom affects only that file's view. When accessing Open-Science in a browser, use the browser's zoom. Windows display scaling also affects other apps; use the control above when you only want to resize Open-Science.
+
+The tray menu also opens running, pinned and recent sessions directly; see [tray navigation](navigation.md#tray-navigation).

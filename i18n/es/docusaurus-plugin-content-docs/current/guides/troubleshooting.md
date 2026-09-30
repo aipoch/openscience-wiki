@@ -1,7 +1,7 @@
 ---
 title: "Solución de problemas y preguntas comunes"
 last_update:
-  date: '2026-09-24'
+  date: '2026-09-29'
 ---
 
 # Solución de problemas y preguntas comunes {/* #troubleshooting-and-common-questions */}
@@ -228,4 +228,8 @@ Fuentes: [Semántica HTTP](https://www.rfc-editor.org/rfc/rfc9110.html#section-1
 
 Fuentes: [aviso de recuperación de la cola](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/components/SessionCatalogRecoveryAlert.tsx), [Manejo de lotes PDF](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/literature/LiteraturePdfBatchImportDialog.tsx), [reunión de conflictos](https://github.com/aipoch/open-science/commit/dbb9560a), [Windows installer](https://github.com/aipoch/open-science/blob/v0.27.0/build/installer.nsh).
 
-Fuente: [reportes de errores](https://github.com/aipoch/open-science/blob/v0.26.0/.github/ISSUE_TEMPLATE/bug_report.yml), [diálogo de informe de inicio](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/components/startup-issue-dialog.tsx).
+Fuente: [informe de fallos](https://github.com/aipoch/open-science/blob/v0.26.0/.github/ISSUE_TEMPLATE/bug_report.yml), [diálogo de informe de inicio](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/components/startup-issue-dialog.tsx).
+
+## Codex reporta una versión incompatible después de una actualización {/* #codex-version */}
+
+Si ve **El Codex CLI instalado es incompatible o su versión no puede ser verificada**, abra **Settings → Agent** e inspeccione la ruta detectada y la versión Codex CLI. v0.34.0 requiere CLI 0.157.1 o posterior. Actualizar esa instalación gestionada o externa, luego **Re-detect**. La inscripción en el modelo de nuevo no reemplaza una actualización de tiempo de ejecución. Sigue a [Actualización Codex](frameworks.md#update-codex).

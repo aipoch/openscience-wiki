@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ Para reutilizar una figura o tabla de un PDF adjunto, siga [Extracción PDF](pre
 
 La apertura **Library** de Home entra en la bibliografía completa. En un espacio de trabajo del proyecto, el **Library** de la barra lateral abre una vista previa compacta a la derecha.
 
-1. Elija **Proyecto actual** o **All references**, a continuación, utilice **Search references** para encontrar los registros existentes.
+1. Elija **Proyecto actual**, **All references**, o un **Colección** abierto, luego utilice **Search references** para encontrar los registros existentes.
 2. Seleccione **Resumen** para leer un resumen y **Show more** para ampliarlo. **No PDF conectado** significa que el registro no tiene PDF; un resumen no es texto completo.
 3. Para colecciones inteligentes, importaciones y gestión de registros, elija **Abrir en Literatura**, o **Ver en Literatura** en un registro.
 
@@ -36,6 +36,20 @@ En la biblioteca completa, **Volver al proyecto / Volver a casa** vuelve al cont
 | Colección | Un grupo temático, incluyendo colecciones anidadas | Reutilizar un conjunto de lectura en proyectos |
 
 ![Tres documentos aceptados en la colección PRISMA real](/img/open-science/guides-walkthrough/51-library-collection.webp)
+
+### Añádase una referencia a un proyecto de conversación {/* #add-reference-to-chat */}
+
+En el espacio de trabajo **Library** vista previa, seleccione el **Add to chat** de un registro para poner su referencia en el Compositor actual. Utilice **Elija otra conversación** a su lado para buscar otras conversaciones por título o número, o iniciar una nueva conversación. Compruebe el proyecto de destino y la conversación, agregue su pregunta, y luego envíelo usted mismo. **Añadir al chat no envía un mensaje automáticamente.**
+
+Para varios documentos, primero active **Batch actions**, seleccione los registros, compruebe el recuento seleccionado y utilice la acción de lote **Add to chat**. **Clear selection** aclara esa selección; **Done** sale del modo de lote. Este modo opt-in pertenece a la vista previa compacta del espacio de trabajo; la Biblioteca completa mantiene sus propios controles de mesa-selección.
+
+![Una referencia de papel existente agregada al borrador de conversación, listo para una pregunta y manual de envío](/img/open-science/v0340/library-add-to-draft.webp)
+
+**Datos de referencia** abre metadatos y apegos; **Ver en Literatura** abre el registro completo de la Biblioteca. Agregar una referencia no descarga su texto completo. Un registro marcado **No PDF conectado** todavía tiene sólo sus metadatos disponibles, abstracto y otro contenido existente.
+
+### Ver datos de revistas {/* #journal-attributes */}
+
+**Library → Journals** importa conjuntos de datos de revistas con una fuente y año y muestra atributos coincidentes en detalles de referencia y tablas. Siga [Conjuntos de datos de revistas y atributos de referencia](journal-datasets.md) para los pasos completos, muestre CSV y capturas de pantalla.
 
 ## Agregar o importar un registro {/* #add-or-import-a-record */}
 

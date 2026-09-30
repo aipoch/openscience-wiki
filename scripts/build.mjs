@@ -50,6 +50,7 @@ function patchLocaleMetadata(locale) {
   };
   if (statSync(outputDirectory, {throwIfNoEntry: false})) visit(outputDirectory);
 }
+
 // Search-local caches its first language pipeline at module scope. Separate
 // processes prevent one edition's tokenizer leaking into the next build.
 // Explicit locale base URLs preserve subdirectories for single-locale builds.

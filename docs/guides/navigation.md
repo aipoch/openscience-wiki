@@ -1,7 +1,7 @@
 ---
 title: "Navigation and search"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-29'
 ---
 
 # Navigation and search
@@ -61,3 +61,9 @@ The number beside **Advanced filters** shows active conditions. Collapsing the f
 ## When a result seems missing
 
 Clear category and other filters, check the owning project and search a distinctive phrase or the saved filename. Use Archived when looking for archived work. A path printed in a failed tool response is not a saved artifact. Newly changed or reordered content may require refreshing the search. If a file opens but cannot be previewed, follow [Files](files.md) and [Troubleshooting](troubleshooting.md).
+
+## Switch sessions from the tray {/* #tray-navigation */}
+
+Open the **Open-Science** icon's menu in the macOS menu bar, Windows tray or a Linux desktop with tray support. Use **Running sessions** to find active work, **Pinned sessions** for pinned conversations, or **Recent items** for recent content. Longer lists continue under **More items**. After choosing an entry, check the project and conversation title that opens.
+
+Use **Pin** beside a conversation title to keep it handy. **Show / Hide** changes window visibility; **Quit** exits the app. Switching conversations does not stop a task. Linux icon availability depends on the desktop's tray support. See [appearance and notifications](appearance.md) for window-close behavior and alerts.

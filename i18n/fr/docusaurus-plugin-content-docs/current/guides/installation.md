@@ -1,7 +1,7 @@
 ---
 title: "Installation et mises à jour"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -65,6 +65,8 @@ Les installateurs officiels Windows sont signés par code depuis v0.33.2; v0.33.
 | Ubuntu / Debian | `uname -m`: `x86_64` signifie x64, `aarch64` signifie ARM64 | Choisissez la correspondance `.deb`, l'ouvrir avec l'installateur du paquet système, puis lancer à partir du menu d'application |
 | Autres distributions prises en charge par Linux | Vérifier `uname -m` | Choisissez la correspondance `.AppImage`, permettre l'exécution dans les permissions du fichier, puis l'ouvrir; résoudre toute erreur de dépendance signalée par la distribution |
 
+v0.34.0 fournit des paquets Linux **x64 et ARM64**. Pour ARM64, sélectionnez `aipoch-open-science-0.34.0-linux-arm64.AppImage` ou `aipoch-open-science_0.34.0_arm64.deb`. Les homologues x64 sont `aipoch-open-science-0.34.0-linux-x86_64.AppImage` et `aipoch-open-science_0.34.0_amd64.deb`. Télécharger à partir des actifs officiels de la version sélectionnée et correspondre au résultat de `uname -m`.
+
 </PlatformContent>
 
 Le dossier d’installation contient l’application ; **Data location**, dans l’assistant de configuration, contient les fichiers de recherche et les environnements d’exécution. Ces emplacements se règlent séparément. Après l’installation, passez à la [configuration initiale](onboarding.md).
@@ -73,7 +75,7 @@ Le dossier d’installation contient l’application ; **Data location**, dans l
 
 Vous avez besoin de Git, Node.js 22, npm, et la plate-forme construit les conditions préalables pour Electron. Installer ou sélectionner un cadre d'agent dans l'application. Pendant l'installation, le dépôt génère le client Prisma, applique les correctifs app et prépare les dépendances natives d'Electron.
 
-Pour une installation source reproductible, choisissez la balise de libération prévue à partir de [Changer de journal](../changelog/v0.33.3.md) avant d'installer les dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
+Pour une installation source reproductible, choisissez la balise de libération prévue à partir de [Changer de journal](../changelog/v0.34.0.md) avant d'installer les dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
 
 Remplacer `RELEASE_TAG` ci-dessous par la balise exacte affichée sur la version sélectionnée (y compris sa `v` de tête). Pour suivre le développement en cours, omettre `--branch RELEASE_TAG --depth 1`; que la commande suivra la branche par défaut.
 

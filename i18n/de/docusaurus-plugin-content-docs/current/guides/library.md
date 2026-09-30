@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ Um eine Abbildung oder Tabelle aus einem angehängten PDF wiederzuverwenden, fol
 
 Das Öffnen von **Library** von Home geht in die vollständige Bibliographie ein. In einem Projektarbeitsbereich öffnet der **Library** der Seitenleiste rechts eine kompakte Vorschau.
 
-1. Wählen Sie **Aktuelles Projekt** oder **All references** und verwenden Sie dann **Search references**, um vorhandene Datensätze zu finden.
+1. Wählen Sie **Aktuelles Projekt**, **All references** oder ein geöffnetes **Sammlung** und verwenden Sie dann **Search references**, um vorhandene Datensätze zu finden.
 2. Wählen Sie **Zusammenfassung**, um eine Zusammenfassung zu lesen, und **Show more**, um sie zu erweitern. **Nr. PDF beigefügt** bedeutet, dass der Datensatz kein PDF hat; Ein Abstract ist kein Volltext.
 3. Für intelligente Sammlungen, Importe und Datensatzverwaltung wählen Sie **In Literatur öffnen** oder **In Literatur anzeigen** auf einem Datensatz.
 
@@ -36,6 +36,20 @@ In der vollständigen Bibliothek kehrt **Zurück zum Projekt / Zurück zu Hause*
 | Sammlung | Eine thematische Gruppe, einschließlich verschachtelter Sammlungen | Wiederverwenden eines Lesesatzes über Projekte hinweg |
 
 ![Drei akzeptierte Papiere in der echten PRISMA-Sammlung](/img/open-science/guides-walkthrough/51-library-collection.webp)
+
+### Fügen Sie einen Verweis auf einen Konversationsentwurf hinzu {/* #add-reference-to-chat */}
+
+Wählen Sie im Arbeitsbereich **Library**-Vorschau die **Add to chat** eines Datensatzes aus, um seine Referenz im aktuellen Composer zu platzieren. Verwenden Sie **Wählen Sie ein anderes Gespräch** daneben, um andere Gespräche nach Titel oder Nummer zu durchsuchen oder eine neue Konversation zu beginnen. Überprüfen Sie das Zielprojekt und die Konversation, fügen Sie Ihre Frage hinzu und senden Sie sie dann selbst. **Add to chat sendet keine nachricht automatisch.**
+
+Aktivieren Sie für mehrere Papiere zuerst **Batch actions**, wählen Sie die Datensätze aus, überprüfen Sie die ausgewählte Anzahl und verwenden Sie die Batch-Aktion **Add to chat**. **Clear selection** löscht diese Auswahl; **Done** verlässt den Batch-Modus. Dieser Opt-in-Modus gehört zur Compact Workspace Preview; Die vollständige Bibliothek behält ihre eigenen Tabellenauswahlkontrollen bei.
+
+![Eine vorhandene papierreferenz, die dem konversationsentwurf hinzugefügt wurde, bereit für eine frage und manuelles senden.](/img/open-science/v0340/library-add-to-draft.webp)
+
+**Referenzangaben** öffnet Metadaten und Anhänge; **In Literatur anzeigen** öffnet den vollständigen Bibliotheks-Record. Das Hinzufügen einer Referenz lädt nicht den vollständigen Text herunter. Ein Datensatz, der mit **Nr. PDF beigefügt** gekennzeichnet ist, hat immer noch nur seine verfügbaren Metadaten, abstrakten und anderen vorhandenen Inhalte.
+
+### Anzeigejournaldaten {/* #journal-attributes */}
+
+**Library → Journals** importiert Journaldatensätze mit einer Quelle und einem Jahr und zeigt übereinstimmende Attribute in Referenzdetails und Tabellen an. Folgen Sie [Journal-Datensätze und Referenzattribute](journal-datasets.md) für die vollständigen Schritte, Beispiel CSV und Screenshots.
 
 ## Hinzufügen oder Importieren eines Datensatzes {/* #add-or-import-a-record */}
 

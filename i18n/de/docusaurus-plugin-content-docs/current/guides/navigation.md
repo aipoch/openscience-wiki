@@ -1,7 +1,7 @@
 ---
 title: "Navigation und Suche"
 last_update:
-  date: '2026-09-15'
+  date: '2026-09-29'
 ---
 
 # Navigation und Suche {/* #navigation-and-search */}
@@ -61,3 +61,9 @@ Die Zahl neben **Advanced filters** zeigt aktive Bedingungen an. Durch Zusammenf
 ## Wenn ein Ergebnis fehlt {/* #when-a-result-seems-missing */}
 
 Deaktivieren Sie Kategorie und andere Filter, überprüfen Sie das Besitzprojekt und suchen Sie nach einer unverwechselbaren Phrase oder dem gespeicherten Dateinamen. Verwenden Sie Archiviert, wenn Sie nach archivierten Arbeiten suchen. Ein Pfad, der in einer fehlgeschlagenen Werkzeugantwort gedruckt wird, ist kein gespeichertes Artefakt. Neu geänderte oder neu geordnete Inhalte erfordern möglicherweise eine Aktualisierung der Suche. Wenn eine Datei geöffnet wird, aber nicht in der Vorschau angezeigt werden kann, folgen Sie [Dateien](files.md) und [Fehlerbehebung](troubleshooting.md).
+
+## Wechselsitzungen aus dem Tray {/* #tray-navigation */}
+
+Öffnen Sie das Menü des **Open-Science**-Symbols in der macOS-Menüleiste, dem Windows-Tray oder einem Linux-Desktop mit Tablett-Unterstützung. Verwenden Sie **Running sessions**, um aktive Arbeit zu finden, **Pinned sessions** für angeheftete Gespräche oder **Recent items** für aktuelle Inhalte. Längere Listen werden unter **Weitere Posten** fortgesetzt. Nachdem Sie einen Eintrag ausgewählt haben, überprüfen Sie den Projekt- und Konversationstitel, der geöffnet wird.
+
+Verwenden Sie **Pin** neben einem Gesprächstitel, um es handlich zu halten. **Show / Hide** verändert die Sichtbarkeit des Fensters; **Quit** verlässt die App. Das Wechseln von Gesprächen stoppt eine Aufgabe nicht. Die Verfügbarkeit des Linux-Symbols hängt von der Unterstützung des Tabletts ab. Siehe [Aussehen und Mitteilungen](appearance.md) für das Verhalten und die Warnungen bei Fensterschließungen.

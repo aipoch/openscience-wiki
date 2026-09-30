@@ -2,7 +2,7 @@
 title: "科学数据库"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 # 科学数据库
@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支持哪些数据库 {/* #supported-databases */}
 
-Open-Science v0.33.3 内置 **27 个数据源 Connector，提供 282 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 284 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
+Open-Science v0.34.0 内置 **28 个数据源 Connector，提供 298 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 300 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
 
 | Connector | 来源 | 操作数 | 用途  |
 | --- | --- | --- | ---  |
@@ -28,13 +28,13 @@ Open-Science v0.33.3 内置 **27 个数据源 Connector，提供 282 个操作**
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 结构档案与相关记录  |
 | ChEMBL · `chembl` | ChEMBL | 6 | 化合物、靶标和活性记录  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | 预印本元数据  |
-| Drug Regulatory · `drug-regulatory` | openFDA | 7 | 药品监管及药品记录  |
+| Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA、药品标签、FAERS 不良事件报告和药品召回 |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | 人类遗传关联资源  |
-| Expression · `expression` | GTEx | 12 | 组织和基因表达资源  |
+| Expression · `expression` | GTEx, Bgee | 16 | GTEx 人类组织表达和 eQTL；Bgee 跨物种基线表达 |
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | 蛋白结构域与功能注释；新增互作富集检验 |
-| Cancer Models · `cancer-models` | cBioPortal | 6 | 癌症研究模型和队列资源  |
+| Cancer Models · `cancer-models` | cBioPortal | 10 | 研究、突变、拷贝数、样本、患者、临床属性及分子 profile 表达 |
 | RNA · `rna` | Rfam | 9 | RNA 家族与相关资源  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 22 | 表达、代谢组、宏基因组与蛋白质组归档；ENA 运行发现及 FASTQ/原始提交清单；PRIDE 文件列表 |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 23 | 组学研究与运行记录；ENA FASTQ／提交文件清单，PRIDE 和 MGnify 结果文件元数据 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | 细胞类型参考信息  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 调控与功能组学记录  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 研究项目、资助等资源  |
@@ -44,6 +44,7 @@ Open-Science v0.33.3 内置 **27 个数据源 Connector，提供 282 个操作**
 | Zenodo · `zenodo` | Zenodo | 2 | 公开数据集、软件和文献记录的检索、版本级元数据与文件清单；不上传或下载文件 |
 | HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | 按程序提交蛋白序列／profile HMM／比对检索，查询状态并获取结果 |
 | InterProScan · `interproscan` | EMBL-EBI InterProScan | 2 | 查询已有注释任务并获取 TSV 报告；不支持提交任务 |
+| Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | 通路检索、顶层通路、图查询及 BioPAX 子模型导出 |
 
 离线 Molecule 工具见[科学查看器](viewers.md)。各数据源实际提供的操作见 [Connector 操作参数参考](../reference/connector-operations.md)。
 
@@ -144,6 +145,10 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [分析前核对物种、参考基因组与染色体编号](../workflows/reference-genome-check.md)：关联记录前，先核对物种、带版本的组装和染色体别名。
 
+### 检查通路网络
+
+[检查通路及其互作网络](../workflows/inspect-pathway.md)：通过 Pathway Commons 查找人类 Reactome 通路，保留返回的 URI、导出互作，并区分选定的网络与通路活性证据。
+
 其他任务可参阅 [PubChem 结构化记录获取](../workflows/database-records.md)、[科学记录交叉核对](../workflows/cross-check-records.md)及[组会文献发现](../workflows/journal-club.md)。
 
 <span id="查询结果与报错怎么处理" />
@@ -168,7 +173,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作参数参考](../reference/connector-operations.md)列出必填输入、可选值和准确调用方法。本页用于选择和连接数据源，参数参考用于查询某个具体工具的字段。
 
-目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.33.3/src/main/connectors/registry.ts)。
+目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/registry.ts)。
 
 ## 序列检索与多序列比对 {/* #sequence-tools */}
 
@@ -185,3 +190,17 @@ matched records and any unmatched identifiers. Keep the response in English.
 - **Clinical Genomics → ClinPGx**：按药物、基因或变异查阅临床注释、指南、监管标签和族群频率。先解析标识符，再按操作所需字段查询，保留原始来源和证据等级。该入口用于检索资料，不自动给出个体用药方案。
 
 在 **Settings → Connectors** 中向当前代理开启相应 Connector；这些内置入口不需要另建自定义 MCP 服务器。准确字段和条件见[操作参考](../reference/connector-operations.md)。
+
+## 通路、表达及临床数据 {/* #pathway-expression-clinical */}
+
+在 **Settings → Connectors** 中开启对应家族，再向代理说明物种、来源、标识符和所需范围。这些扩展沿用内置 Connector，无需另建自定义 MCP 服务器。
+
+| 入口 | 可以做什么 | 连接和解释要点 |
+| --- | --- | --- |
+| Pathway Commons | 搜索通路、查顶层通路、查询基因间路径或导出子模型 | 公共服务；保留实际返回的 URI、物种和来源。图查询与富集检验不同，见[通路互作工作流](../workflows/inspect-pathway.md) |
+| Expression → Bgee | 跨物种表达存在／缺失判断、标准化分数、有界 SPARQL 查询及下载链接 | 先查物种，保留 NCBI taxonomy ID；SPARQL 的基因、物种、组织均必填。健康野生型基线不是差异表达结果，下载链接不等于已下载文件 |
+| Cancer Models → cBioPortal | 列出样本与患者、查询临床属性和 mRNA／蛋白表达 | 先定 study，再查 profile，明确测量与归一化。临床值按样本／患者层级提供相应 ID；表达查询提供明确基因，并在 sample_ids 与 sample_list_id 中恰好选一个。缺失行不是零 |
+| Drug Regulatory → openFDA | 搜索／统计 FAERS 报告及药品召回 | 限定日期和产品，保留截断信息。报告计数不是发生率或因果证据；多值分组可能重叠，不能相加当作去重报告总数 |
+| Omics Archives → MGnify | 按 MGYA 分析编号列出结果文件 | 返回类型、类别、来源 URL 和可用大小；没有下载文件内容，缺少大小或 URL 时保留 null |
+
+准确必填字段、条件和示例见[Connector 操作参考](../reference/connector-operations.md)。

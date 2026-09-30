@@ -1,7 +1,7 @@
 ---
 title: "安装与更新"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -65,6 +65,8 @@ Homebrew 自动选择 Apple Silicon 或 Intel。安装后在 **Settings → Gene
 | Ubuntu / Debian | `uname -m`：`x86_64` 对应 x64，`aarch64` 对应 ARM64 | 选择匹配的 `.deb`，用系统软件安装器打开，再从应用菜单启动 |
 | 其他受支持的 Linux 发行版 | 查看 `uname -m` | 选择匹配的 `.AppImage`，在文件权限中允许执行，再打开；若系统提示缺少依赖，按报错补齐 |
 
+v0.34.0 提供 Linux **x64 和 ARM64** 安装包。ARM64 选择 `aipoch-open-science-0.34.0-linux-arm64.AppImage` 或 `aipoch-open-science_0.34.0_arm64.deb`；x64 对应 `aipoch-open-science-0.34.0-linux-x86_64.AppImage` 或 `aipoch-open-science_0.34.0_amd64.deb`。从所选版本的官方 Assets 下载，与 `uname -m` 的结果对应。
+
 </PlatformContent>
 
 安装位置用于存放应用程序；向导中的 **Data location** 用于科研文件和运行环境，两者分别设置。安装后继续[首次设置](onboarding.md)。
@@ -73,7 +75,7 @@ Homebrew 自动选择 Apple Silicon 或 Intel。安装后在 **Settings → Gene
 
 要求：Git、Node.js 22、npm，以及 Electron 在当前平台的构建前提。代理框架可在应用中安装或选择。仓库会在安装阶段生成 Prisma Client、应用补丁并准备 Electron 原生依赖。
 
-需要复现源码安装时，先从 [Changelog](../changelog/v0.33.3.md) 确定目标发布标签，再安装依赖。默认克隆跟随分支，不会固定到某个发布版本。记录所选标签、源码提交及运行时版本，便于他人复现环境。
+需要复现源码安装时，先从 [Changelog](../changelog/v0.34.0.md) 确定目标发布标签，再安装依赖。默认克隆跟随分支，不会固定到某个发布版本。记录所选标签、源码提交及运行时版本，便于他人复现环境。
 
 将下方 `RELEASE_TAG` 替换为所选发行页的完整标签（包括开头的 `v`）。如果需要跟随开发分支，省略 `--branch RELEASE_TAG --depth 1`；这条路线会使用默认分支。
 

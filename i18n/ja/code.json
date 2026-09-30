@@ -1715,5 +1715,23 @@
   },
   "docs.outline.reference.v0333.scope": {
     "message": "EnrichrとClinPGx、ライブラリプレビュー、パッケージ転送制御。"
+  },
+  "docs.guides.outline.journal-datasets.scope": {
+    "message": "ジャーナルデータセット、マップの列をインポートし、ソースと年を選択し、一致する参照の属性を調べます。"
+  },
+  "docs.guides.outline.journal-datasets.title": {
+    "message": "ジャーナルデータセットと参照属性"
+  },
+  "docs.outline.reference.v0340.scope": {
+    "message": "ジャーナルデータセット、Pathway Commonsおよび拡張されたデータベース、Linux ARM64、Codex のランタイムの更新および皿の運行。"
+  },
+  "docs.outline.reference.v0340.title": {
+    "message": "v0.34.0"
+  },
+  "docs.outline.workflows.inspect-pathway.scope": {
+    "message": "Pathway Commonsを検索し、Reactome URIを保持し、インタラクションをエクスポートし、保存されたソースレコードを検査します。"
+  },
+  "docs.outline.workflows.inspect-pathway.title": {
+    "message": "パスウェイとインタラクションネットワークを調べる"
   }
 }

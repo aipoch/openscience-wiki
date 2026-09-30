@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 홈에서 **Library** 열기는 전체 전기를 입력합니다. 프로젝트 작업 공간에서 sidebar의 **Library**은 오른쪽에 컴팩트한 미리보기를 엽니다.
 
-1. **현재 프로젝트** 또는 **All references**을 선택하면 **Search references**를 사용하여 기존 레코드를 찾을 수 있습니다.
+1. **현재 프로젝트**, **All references** 또는 오픈 **컬렉션**를 선택하고 기존 레코드를 찾을 **Search references**를 사용하십시오.
 2. **초록**을 선택하여 요약 및 **Show more**을 읽을 수 있습니다. **PDF 없음**는 기록이 PDF이 없다는 것을 의미합니다; 요약은 전체 텍스트가 아닙니다.
 3. 스마트 컬렉션, 수입 및 기록 관리를 위해 **문헌에서 열기** 또는 **문헌에서 보기**을 기록합니다.
 
@@ -36,6 +36,20 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | 컬렉션 | 배열된 컬렉션을 포함한 주제 그룹 | 프로젝트 전반에 걸쳐 읽기 설정 사용 |
 
 ![실제 PRISMA 컬렉션에서 3 개의 허용 용지](/img/open-science/guides-walkthrough/51-library-collection.webp)
+
+### 대화 초안에 대한 참조 추가 {/* #add-reference-to-chat */}
+
+workspace **Library** 미리보기에서, 현재의 Composer에 대한 참조를 넣어 레코드의 **Add to chat**을 선택합니다. **또 다른 대화** 을 사용하여 제목이나 숫자로 다른 대화를 검색하거나 새로운 대화를 시작합니다. 대상 프로젝트와 대화를 확인하고, 질문을 추가하고, 그 후 직접 보내주세요. **채팅에 추가 메시지가 자동으로 전송되지 않습니다.**
+
+몇몇 종이를 위해, 첫번째는 **Batch actions**를 가능하게 하고, 기록을 선정하고, 선정한 조사를 확인하고 배치 **Add to chat** 활동을 이용합니다. **Clear selection**는 그 선택을 명확합니다; **Done** 출구 배치 형태. 이 옵트 인 모드는 컴팩트 한 작업 공간 미리보기에 속합니다. 전체 라이브러리는 자체 테이블 선택 컨트롤을 유지합니다.
+
+![대화 초안에 추가 된 기존 용지 참조, 질문 및 수동 전송 준비](/img/open-science/v0340/library-add-to-draft.webp)
+
+**견적 요청**는 메타데이터와 첨부 파일을 엽니다. **문헌에서 보기**은 전체 라이브러리 레코드를 엽니다. 참고 추가는 전체 텍스트를 다운로드하지 않습니다. 기록 표시된 **PDF 없음**는 여전히 유효한 메타데이터, 추상 및 다른 기존 콘텐츠만 가지고 있습니다.
+
+### 표시 학술 자료 {/* #journal-attributes */}
+
+**Library → Journals**는 원본과 년을 가진 저널 datasets를 수입하고 참조 세부 사항 및 테이블에 일치하는 속성을 표시합니다. 완전한 단계, 샘플 CSV 및 스크린 샷을위한 [Journal datasets 및 참고 속성](journal-datasets.md)을 따르십시오.
 
 ## 기록 추가 또는 가져 오기 {/* #add-or-import-a-record */}
 

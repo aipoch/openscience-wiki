@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 从 Home 打开 **Library** 会进入完整文献库；在项目工作区点击左侧 **Library**，则在右侧打开紧凑预览。
 
-1. 在预览顶部选择 **Current project** 或 **All references**，再用 **Search references** 查找已有记录。
+1. 在预览顶部选择 **Current project**、**All references** 或已打开的 **Collection**，再用 **Search references** 查找已有记录。
 2. 点击 **Abstract** 阅读摘要，使用 **Show more** 展开。**No PDF attached** 表示该条目还没有 PDF，不能把摘要当作全文。
 3. 需要筛选集合、导入或管理记录时，选择 **Open in Literature**，或条目中的 **View in Literature**。
 
@@ -36,6 +36,20 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | Collection | 主题分组，可嵌套 | 跨项目复用阅读集合 |
 
 ![真实 PRISMA 集合中的三篇论文](/img/open-science/guides-walkthrough/51-library-collection.webp)
+
+### 将文献加入会话草稿 {/* #add-reference-to-chat */}
+
+在工作区 **Library** 预览中点击文献的 **Add to chat**，将引用放入当前会话的输入框。通过旁边的 **Choose another conversation** 可按标题或编号搜索其他会话，或选择新建会话。检查目标项目和会话后，再补充问题并自行发送；**Add to chat 不会自动发送消息**。
+
+需要一次选择多篇时，先开启 **Batch actions**，勾选所需记录，核对 Selected 数量后使用批量 **Add to chat**。**Clear selection** 清空本次选择，**Done** 退出批量模式。批量开关属于工作区紧凑预览；完整文献库仍使用自己的表格选择控件。
+
+![把已有论文引用放入会话草稿，等待用户输入问题并发送](/img/open-science/v0340/library-add-to-draft.webp)
+
+**Reference details** 查看元数据和附件；**View in Literature** 打开完整文献库记录。加入引用不会自动下载全文；**No PDF attached** 的记录仍只有现有元数据和摘要等内容。
+
+### 显示期刊数据 {/* #journal-attributes */}
+
+**Library → Journals** 可导入带来源及年份的期刊数据集，并在文献详情和列表中显示匹配属性。完整操作、示例 CSV 和截图见[期刊数据集与文献属性](journal-datasets.md)。
 
 ## 添加或导入条目
 

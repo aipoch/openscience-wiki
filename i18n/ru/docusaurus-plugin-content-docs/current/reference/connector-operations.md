@@ -2,7 +2,7 @@
 title: "Операционный справочник Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-09-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## Эксплуатационные материалы {/* #operation-inputs */}
 
-Расширяйте один Connector за раз. Требуемые поля помечены **обязательно**; Эта ссылка и загрузка используют схему Open-Science **v0.33.3**. Вложенный список `input.required` является авторитетным; Унаследованный список `required` может отсутствовать. Проконсультируйтесь с <ExampleDownload path="/examples/capabilities/connector-catalog-v0.33.3.json">Полный загружаемый реестр</ExampleDownload> для вложенных схем JSON, полных описаний возврата и примеров вызова на стороне агента. Не пропустите общий `id`, когда инструмент ожидает `accessions`, `cids`, `rs_id` или другое поле пространства имен.
+Расширяйте один Connector за раз. Требуемые поля помечены **обязательно**; Эта ссылка и загрузка используют схему Open-Science **v0.34.0**. Вложенный список `input.required` является авторитетным; Унаследованный список `required` может отсутствовать. Проконсультируйтесь с <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.0.json">Полный загружаемый реестр</ExampleDownload> для вложенных схем JSON, полных описаний возврата и примеров вызова на стороне агента. Не пропустите общий `id`, когда инструмент ожидает `accessions`, `cids`, `rs_id` или другое поле пространства имен.
 
 
 ## химия {/* #family-1 */}
@@ -2385,6 +2385,83 @@ const result = await host.mcp("drug-regulatory", "get_generic_equivalents", {"br
 const result = await host.mcp("drug-regulatory", "search_drug_labels", {"brand_name": "Tylenol", "max_records": 5})
 ```
 
+### `search_drug_adverse_events` {/* #search_drug_adverse_events */}
+
+Поисковые отчеты FAERS по сообщенным drug_name (лекарственное средство), гармонизированным брендом / общим / ингредиентом, реакцией, серьезностью (1 = серьезно, 2 = несерьезно), страной или начальной / последней датой получения. Даты всегда ограничивают другие фильтры. raw_search заменяет картографические фильтры, но сохраняет даты. Отчеты могут перечислять несколько лекарств и реакций и не устанавливают причинно-следственную связь или заболеваемость. Результаты ограничены 26000; Узкие фильтры для больших когорт.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `drug_name` | строка | строка |
+| `brand_name` | строка | строка |
+| `generic_name` | строка | строка |
+| `ingredient` | строка | строка |
+| `reaction` | строка | строка |
+| `country` | строка | строка |
+| `serious` | строка | строка |
+| `received_date_from` | строка | строка |
+| `received_date_to` | строка | строка |
+| `receipt_date_from` | строка | строка |
+| `receipt_date_to` | строка | строка |
+| `search_type` | строка | строка |
+| `raw_search` | строка | строка |
+| `sort` | строка | строка |
+| `max_records` | целое число | факультативный; по умолчанию: 25; Минимум: 1; Максимум: 26000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "search_drug_adverse_events", {"drug_name": "LIPITOR", "reaction": "headache", "max_records": 10})
+```
+
+### `count_drug_adverse_events` {/* #count_drug_adverse_events */}
+
+Совокупные соответствующие отчеты FAERS по реакции, препарату, результату, стране или дате получения. Счета отражают отчеты, а не заболеваемость или причинно-следственные связи; Многозначные ведра перекрываются, и их сумма не является уникальной суммой отчета. Поля дат возвращают время/счет вместо термина/счета. raw_search сохраняет ограничения по дате.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `count_field` | строка | **обязательно** |
+| `drug_name` | строка | строка |
+| `brand_name` | строка | строка |
+| `generic_name` | строка | строка |
+| `ingredient` | строка | строка |
+| `reaction` | строка | строка |
+| `country` | строка | строка |
+| `serious` | строка | строка |
+| `received_date_from` | строка | строка |
+| `received_date_to` | строка | строка |
+| `receipt_date_from` | строка | строка |
+| `receipt_date_to` | строка | строка |
+| `search_type` | строка | строка |
+| `raw_search` | строка | строка |
+| `max_buckets` | целое число | целое число |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "count_drug_adverse_events", {"count_field": "reaction", "drug_name": "LIPITOR"})
+```
+
+### `search_drug_recalls` {/* #search_drug_recalls */}
+
+Поиск отчетов FDA о применении лекарственных средств (отзывы продуктов) от openFDA по фирме, продукту, причине отзыва, классификации, статусу, местоположению или дате отчета.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `recalling_firm` | строка | строка |
+| `product_description` | строка | строка |
+| `reason_for_recall` | строка | строка |
+| `status` | строка | строка |
+| `classification` | строка | строка |
+| `city` | строка | строка |
+| `state` | строка | строка |
+| `country` | строка | строка |
+| `report_date_from` | строка | строка |
+| `report_date_to` | строка | строка |
+| `search_type` | строка | строка |
+| `raw_search` | строка | строка |
+| `sort` | строка | строка |
+| `max_records` | целое число | факультативный; по умолчанию: 25; Минимум: 1; Максимум: 26000 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "search_drug_recalls", {"reason_for_recall": "contamination", "max_records": 10})
+```
+
 </ToolOperationGroup>
 
 ## Генетика человека {/* #family-13 */}
@@ -2759,6 +2836,62 @@ const result = await host.mcp("expression", "gtex_multi_tissue_eqtls", {"gencode
 const result = await host.mcp("expression", "gtex_calculate_eqtl", {"gencode_id": "ENSG00000111640.14", "variant_id": "chr12_6452899_G_A_b38", "tissue_site_detail_id": "Whole_Blood"})
 ```
 
+### `bgee_species` {/* #bgee_species */}
+
+Перечислите виды, доступные в атласе экспрессии здорового дикого типа Bgee, или извлеките один вид по его идентификатору таксономии NCBI.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `species_id` | целое число | факультативный; Минимум: 1; Максимум: 2147483647 |
+
+```javascript
+const result = await host.mcp("expression", "bgee_species", {})
+```
+
+### `bgee_expression_calls` {/* #bgee_expression_calls */}
+
+Ретрив Bgee присутствующая/отсутствующая экспрессия вызывает и нормализует показатели экспрессии для одного гена у одного вида. Результаты являются здоровыми исходными вызовами дикого типа и могут быть ограничены max_calls.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `gene_id` | строка | **обязательно** |
+| `species_id` | целое число | **обязательно**; Минимум: 1; Максимум: 2147483647 |
+| `max_calls` | целое число | факультативный; по умолчанию: 100; Минимум: 1; Максимум: 500 |
+| `expression_type` | строка | факультативный; по умолчанию: "EXPRESSED"; &#91;"EXPRESSED", "NOT_EXPRESSED"&#93; |
+
+```javascript
+const result = await host.mcp("expression", "bgee_expression_calls", {"gene_id": "ENSG00000130208", "species_id": 9606, "max_calls": 50})
+```
+
+### `bgee_sparql_expression` {/* #bgee_sparql_expression */}
+
+Запустите ограниченный запрос Bgee SPARQL для одного гена, одного вида NCBI и одной ткани / анатомической сущности. Требуются все три фильтра. генерируемый запрос включает жесткий лимит и вызов имеет свой тайм-аут.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `gene` | строка | **обязательно**; Длина: 1; Длина: 128 |
+| `species_id` | целое число | **обязательно**; Минимум: 1; Максимум: 2147483647 |
+| `tissue` | строка | **обязательно**; Длина: 1; Длина: 128 |
+| `limit` | целое число | факультативный; по умолчанию: 25; Минимум: 1; Максимум: 100 |
+
+```javascript
+const result = await host.mcp("expression", "bgee_sparql_expression", {"gene": "APOC1", "species_id": 9606, "tissue": "liver", "limit": 25})
+```
+
+### `bgee_download_links` {/* #bgee_download_links */}
+
+Создайте официальные ссылки для загрузки Bgee для одного вида: обобщенные текущие / отсутствующие вызовы или обработанные каталоги значений выражения. Это возвращает только URL-адреса и никогда не загружает большие файлы.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `species` | строка | **обязательно**; Длина: 1; Длина: 128 |
+| `file_kind` | строка | факультативный; по умолчанию: "calls_simple"; enum: &#91;"calls_simple", "calls_advanced", "processed_rna_seq", "processed_affymetrix", "processed_sc_full_length", "processed_sc_droplet_based"&#93; |
+| `all_conditions` | логическое значение | логическое значение |
+
+```javascript
+const result = await host.mcp("expression", "bgee_download_links", {"species": "Homo_sapiens", "file_kind": "calls_simple"})
+```
+
 </ToolOperationGroup>
 
 ## Белковая аннотация {/* #family-15 */}
@@ -3038,6 +3171,69 @@ const result = await host.mcp("cancer-models", "cbioportal_cna_in_gene", {"gene_
 
 ```javascript
 const result = await host.mcp("cancer-models", "cbioportal_clinical_attributes", {"study_id": "brca_tcga_pan_can_atlas_2018"})
+```
+
+### `cbioportal_get_samples` {/* #cbioportal_get_samples */}
+
+Перечислите образцы cBioPortal в исследовании с подробным образцом и идентификаторами пациентов. Опциональный sample_ids ограничивает возвращаемые строки; max_records ограничивает ответ, сохраняя при этом истинное количество исследований.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `study_id` | строка | **обязательно**; Длина: 1; Модель: "\\S" |
+| `sample_ids` | массив строк | факультативный; Мини-элементы: 1; maxItems: 1000 |
+| `max_records` | целое число | факультативный; по умолчанию: 500; Минимум: 1; Максимум: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_samples", {"study_id": "brca_tcga_pan_can_atlas_2018", "max_records": 100})
+```
+
+### `cbioportal_get_patients` {/* #cbioportal_get_patients */}
+
+Список пациентов cBioPortal в исследовании с подробными идентификаторами. Опциональный patient_ids ограничивает возвращаемые строки; max_records ограничивает ответ, сохраняя при этом истинное количество исследований.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `study_id` | строка | **обязательно**; Длина: 1; Модель: "\\S" |
+| `patient_ids` | массив строк | факультативный; Мини-элементы: 1; maxItems: 1000 |
+| `max_records` | целое число | факультативный; по умолчанию: 500; Минимум: 1; Максимум: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_patients", {"study_id": "brca_tcga_pan_can_atlas_2018", "max_records": 100})
+```
+
+### `cbioportal_get_clinical_data` {/* #cbioportal_get_clinical_data */}
+
+Приведите значения клинических данных cBioPortal для явного уровня соответствия patient_ids или sample_ids, необязательно ограниченного attribute_ids. Клинические значения остаются струнами, включая маркеры отсутствующего значения.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `study_id` | строка | **обязательно**; Длина: 1; Модель: "\\S" |
+| `level` | строка | факультативный; по умолчанию: "SAMPLE"; enum: &#91;"SAMPLE", "PATIENT"&#93; |
+| `attribute_ids` | массив строк | факультативный; maxItems: 1000 |
+| `sample_ids` | массив строк | факультативный; Мини-элементы: 1; maxItems: 1000 |
+| `patient_ids` | массив строк | факультативный; Мини-элементы: 1; maxItems: 1000 |
+| `max_records` | целое число | факультативный; по умолчанию: 1000; Минимум: 1; Максимум: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_clinical_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "level": "PATIENT", "attribute_ids": ["AGE"], "patient_ids": ["TCGA-A1-A0SB"]})
+```
+
+### `cbioportal_get_molecular_data` {/* #cbioportal_get_molecular_data */}
+
+Получите числовые значения мРНК или экспрессии белка из явного молекулярного профиля. Откройте профили с помощью cbioportal_get_study; Выберите измерение/нормализацию намеренно. Поставляйте gene_symbol или entrez_gene_ids и один из sample_ids или sample_list_id. Пропущенные строки не являются нулевым выражением.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `study_id` | строка | **обязательно**; Длина: 1; Модель: "\\S" |
+| `molecular_profile_id` | строка | **обязательно**; Длина: 1; Модель: "\\S" |
+| `gene_symbol` | строка | строка |
+| `entrez_gene_ids` | массив целых чисел | факультативный; maxItems: 1000 |
+| `sample_ids` | массив строк | факультативный; Мини-элементы: 1; maxItems: 1000 |
+| `sample_list_id` | строка | факультативный; Длина: 1; Модель: "\\S" |
+| `max_records` | целое число | факультативный; по умолчанию: 1000; Минимум: 1; Максимум: 10000 |
+
+```javascript
+const result = await host.mcp("cancer-models", "cbioportal_get_molecular_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "molecular_profile_id": "brca_tcga_pan_can_atlas_2018_rna_seq_v2_mrna", "gene_symbol": "ESR1", "sample_list_id": "brca_tcga_pan_can_atlas_2018_all"})
 ```
 
 </ToolOperationGroup>
@@ -3458,6 +3654,18 @@ const result = await host.mcp("omics-archives", "pride_search_project_proteins",
 
 ```javascript
 const result = await host.mcp("omics-archives", "pride_find_projects_for_protein", {"protein_accession": "P04637"})
+```
+
+### `mgnify_get_analysis_files` {/* #mgnify_get_analysis_files */}
+
+Перечислите метаданные файла результата для одного анализа MGnify с использованием API v2: тип файла, категория, размер байта при сообщении и URL загрузки вверх по течению. Байты файлов не загружаются. Недостающие размеры или URL-адреса остаются недействительными.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `accession` | строка | **обязательно**; Максимальная длина: 32; шаблон: "^MGYA&#91;0-9&#93;&#123; 8,&#125;$" |
+
+```javascript
+const result = await host.mcp("omics-archives", "mgnify_get_analysis_files", {"accession": "MGYA00639970"})
 ```
 
 </ToolOperationGroup>
@@ -4250,6 +4458,80 @@ const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R202
 
 ```javascript
 const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+</ToolOperationGroup>
+
+## Pathway Commons {/* #family-28 */}
+
+<ToolOperationGroup>
+<summary>Цинк</summary>
+
+### `pathway_commons_search` {/* #pathway_commons_search */}
+
+Ищите модель Pathway Commons BioPAX по ключевому слову ген / белок / путь или запросу Lucene. Результаты включают класс BioPAX, URI, исходные базы данных, метаданные организма и пути. Используйте возвращенный URI в качестве входа для графа или экспортных запросов.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `q` | строка | **обязательно**; Длина: 1; Длина: 512 |
+| `type` | строка | факультативный; Длина: 1; Длина: 64 |
+| `organism` | массив строк | факультативный; maxItems: 20 |
+| `datasource` | массив строк | факультативный; maxItems: 20 |
+| `page` | целое число | факультативный; по умолчанию: 0; Минимум: 0; Максимум: 10000 |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_search", {"q": "TP53", "type": "ProteinReference", "organism": ["9606"]})
+```
+
+### `pathway_commons_top_pathways` {/* #pathway_commons_top_pathways */}
+
+Найдите пути верхнего уровня в Pathway Commons, соответствующие ключевому слову или запросу Lucene, необязательно ограниченному видом или источником, таким как Reactome.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `q` | строка | **обязательно**; Длина: 1; Длина: 512 |
+| `organism` | массив строк | факультативный; maxItems: 20 |
+| `datasource` | массив строк | факультативный; maxItems: 20 |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_top_pathways", {"q": "insulin", "datasource": ["reactome"], "organism": ["9606"]})
+```
+
+### `pathway_commons_graph` {/* #pathway_commons_graph */}
+
+Запустите запрос на график Pathway Commons BioPAX для соседства генов, путей между наборами генов, направленных путей от источников к целям или общего потока вверх / вниз по течению. Результаты SIF нормализуются как записи взаимодействия, результаты TXT включают в себя краевые и узловые записи, а экспорт GSEA/BioPAX/SBGN остается доступным в виде текста.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `source` | массив строк | **обязательно**; Мини-элементы: 1; maxItems: 100 |
+| `target` | массив строк | факультативный; Мини-элементы: 1; maxItems: 100 |
+| `kind` | строка | факультативный; по умолчанию: "NEIGHBORHOOD"; enum: &#91;"NEIGHBORHOOD", "PATHSBETWEEN", "PATHSFROMTO", "COMMONSTREAM"&#93; |
+| `format` | строка | факультативный; по умолчанию: "SIF"; enum: &#91;"BIOPAX", "SIF", "TXT", "GSEA", "SBGN", "JSONLD"&#93; |
+| `limit` | целое число | факультативный; по умолчанию: 1; Минимум: 1; Максимум: 10 |
+| `direction` | строка | факультативный; &#91;"UPSTREAM", "DOWNSTREAM", "BOTHSTREAM", "UNDIRECTED"&#93; |
+| `limit_type` | строка | факультативный; по умолчанию: "NORMAL"; &#91;"NORMAL", "SHORTEST_PLUS_K"&#93; |
+| `pattern` | массив строк | факультативный; maxItems: 14 |
+| `organism` | массив строк | факультативный; maxItems: 20 |
+| `datasource` | массив строк | факультативный; maxItems: 20 |
+| `subpathways` | логическое значение | логическое значение |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_graph", {"kind": "NEIGHBORHOOD", "source": ["TP53"], "format": "SIF", "pattern": ["INTERACTS_WITH"]})
+```
+
+### `pathway_commons_export` {/* #pathway_commons_export */}
+
+Возьмите подмодель BioPAX для одного или нескольких идентификаторов Pathway Commons / URL и экспортируйте ее как BioPAX, GSEA GMT, JSON-LD, SIF, TXT или SBGN. Используйте URI, возвращенный поиском / top_pathways, для точного экспорта пути.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `uri` | массив строк | **обязательно**; Мини-элементы: 1; maxItems: 100 |
+| `format` | строка | факультативный; по умолчанию: "BIOPAX"; enum: &#91;"BIOPAX", "SIF", "TXT", "GSEA", "SBGN", "JSONLD"&#93; |
+| `pattern` | массив строк | факультативный; maxItems: 14 |
+| `subpathways` | логическое значение | логическое значение |
+
+```javascript
+const result = await host.mcp("pathway-commons", "pathway_commons_export", {"uri": ["R-HSA-201451"], "format": "GSEA"})
 ```
 
 </ToolOperationGroup>
