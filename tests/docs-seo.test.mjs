@@ -11,12 +11,17 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const build = resolve(process.env.DOCS_SEO_BUILD_DIR || join(root, 'build'));
 const origin = 'https://aipoch.com';
 const base = '/docs/';
+const defaultDescription = 'Documentation for AIPOCH Open-Science: installation, workspace and model setup, reproducibility, research workflows, skills, tools, CLI and API reference.';
 const read = (file) => readFile(file, 'utf8');
 const tags = (html, name) => [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'g'))].map(([tag]) => tag);
 const attribute = (tag, name) => tag.match(new RegExp(`\\s${name}="([^"]*)"`))?.[1];
 const locations = (xml) => [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
 const xmlAlternates = (xml) => tags(xml, 'xhtml:link').map((tag) => [attribute(tag, 'hreflang'), attribute(tag, 'href')]);
 const localeBase = (locale) => `${base}${locale === defaultLocale ? '' : `${locale}/`}`;
+const localeFromPath = (pathname) => locales
+  .slice()
+  .sort((a, b) => localeBase(b).length - localeBase(a).length)
+  .find((locale) => pathname.startsWith(localeBase(locale)));
 
 function alternateUrl(url, sourceLocale, targetLocale) {
   const relative = new URL(url).pathname.slice(localeBase(sourceLocale).length);
@@ -102,11 +107,26 @@ test('every sitemap URL has matching canonical, Open Graph URL, and reciprocal h
   }
 });
 
+test('every indexed page has a clean description in its own language', () => {
+  for (const [url, html] of pages) {
+    const metas = tags(html, 'meta');
+    const description = attribute(metas.find((tag) => attribute(tag, 'name') === 'description') || '', 'content');
+    assert.ok(description, `${url}: missing meta description`);
+    assert.doesNotMatch(description, /\*\/|\{\s*#|\{\s*\/\*/u, `${url}: metadata template residue`);
+    const locale = localeFromPath(new URL(url).pathname);
+    if (locale && locale !== defaultLocale && new URL(url).pathname === localeBase(locale)) {
+      assert.notEqual(description, defaultDescription, `${url}: localized homepage fell back to English`);
+    }
+    const ogDescription = attribute(metas.find((tag) => attribute(tag, 'property') === 'og:description') || '', 'content');
+    assert.equal(ogDescription, description, `${url}: Open Graph description must match page description`);
+  }
+});
+
 test('every non-home documentation page exposes TechArticle JSON-LD', () => {
   for (const [url, html] of pages) {
     const pathname = new URL(url).pathname;
-    const locale = locales.find((item) => item !== defaultLocale && pathname.startsWith(localeBase(item))) ?? defaultLocale;
-    assert.ok(pathname.startsWith(localeBase(locale)), url);
+    const locale = localeFromPath(pathname);
+    assert.ok(locale, url);
     if (pathname === localeBase(locale) || pathname.includes('/category/')) continue;
     const structuredData = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
       .map(([, value]) => JSON.parse(value));
@@ -134,7 +154,7 @@ for (const locale of locales) {
       assert.ok(date, `${locale}/${file}: provide an explicit content date for Git-free builds`);
       assert.equal(new Date(`${date}T00:00:00Z`).toISOString().slice(0, 10), date);
       assert.ok(date <= new Date().toISOString().slice(0, 10), file);
-      const slug = frontMatter.match(/^slug:\s*\/?([^\s]+)\s*$/m)?.[1] || file.replace(/\.mdx?$/, '');
+      const slug = frontMatter.match(/^slug:\s*\/?([^\s]+)\s*$/m)?.[1] || file.replace(/\.mdx?$/, '').replaceAll('\\', '/');
       const url = `${origin}${localeBase(locale)}${slug.replace(/\/$/, '')}/`;
       assert.ok(entries.has(url), `${file}: document is missing from the sitemap`);
       assert.equal(entries.get(url).match(/<lastmod>([^<]+)<\/lastmod>/)?.[1], date, url);
