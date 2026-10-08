@@ -1,7 +1,7 @@
 ---
 title: "提供商与本地模型配置"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -230,3 +230,5 @@ v0.33.0 目录加入 **Xiaomi MiMo v2.6**、**xAI Grok 4.7**，并更新 **OpenC
 v0.33.1 的提供商目录新增 **GPT-6** 和 **Claude Opus 5.5**。打开对应提供商的模型列表，选择当前框架与账户支持的条目。出现在目录中不代表账户已获得权限，也不会自动切换已保存的 Main 模型。更换后先验证连接并发送一个小请求，再用于研究。
 
 v0.34.0 新增 **MiniMax M3.1 Flash Preview** 和 **Claude Sonnet 5.5**。在各自 Provider 的模型列表中选择，并确认账号访问权限及当前 Agent 的兼容性；这不会自动改变已保存的 Main 模型。
+
+v0.34.1 在 Codex 模型目录中增加 **gpt-6.1-sol**。在模型选择器中主动选择后，先发送一个小请求确认账号可用；升级不会自动替换已保存的主模型。

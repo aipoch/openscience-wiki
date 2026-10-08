@@ -1815,5 +1815,11 @@
   },
   "docs.outline.reference.v0340.scope": {
     "message": "Journal datasets, Pathway Commons and expanded databases, Linux ARM64, Codex runtime updates and tray navigation."
+  },
+  "docs.outline.reference.v0341.title": {
+    "message": "v0.34.1"
+  },
+  "docs.outline.reference.v0341.scope": {
+    "message": "CELLxGENE Discover, Alliance, MaveDB and Workbench, workspace Inbox, research-package import and export, and diagnostic improvements."
   }
 }

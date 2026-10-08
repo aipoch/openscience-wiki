@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.34.0** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.0.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
+한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.34.1** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.1.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
 
 
 ## 뚱 베어 {/* #family-1 */}
@@ -1255,6 +1255,82 @@ genomic window의 dbSNP rsID 목록 (esearch db=snp positional index — NCBI Va
 
 ```javascript
 const result = await host.mcp("variants", "dbsnp_search_by_region", {"chrom": "19", "start": 44905000, "stop": 44910000, "assembly": "GRCh38"})
+```
+
+### `mavedb_search_score_sets` {/* #mavedb_search_score_sets */}
+
+일반 MaveDB 다중화 분석 (MAVE) 텍스트로 설정, 유전자 기호, 단백질 또는 분석실험. API 키 또는 연락처 이메일이 필요하지 않습니다. 알려진 업스트림 총으로 한 페이지를 반환; 기능 점수는 assay-specific이며 임상 분류 또는 인구 빈도가 아닙니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `text` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 1000; 패턴 : " \ S" |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000000 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_search_score_sets", {"text":"BRCA1","limit":20})
+```
+
+### `mavedb_get_score_set` {/* #mavedb_get_score_set */}
+
+URN에 의해 설정된 게시된 MaveDB 점수를 검색, 대상, assay metadata, 라이센스, 출판물 및 실험 관계. 공식 전체 CSV 및 mapped-variant 다운로드 URLs for 수동 다운로드 사용자; 이 URL을 불러일으키지 마십시오. raw HTTP to bypass host.mcp. 기능적인 효과를 해석하기 전에 assay 방법 및 점수 교정을 읽으십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `urn` | 문자열 | **필수**; 모델 번호: "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)-&#91;1-9&#93; &#91;0-9&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_score_set", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_download_scores` {/* #mavedb_download_scores */}
+
+MaveDB 변종 점수의 CSV 페이지를 다운로드 (기본 1000 행, 최대 10000). 시작/제한을, 상쇄하지 않습니다 사용하십시오. Notebook 파일 API를 저장하기위한 모든 점수 열과 NA 값을 포함하여 원래 CSV 텍스트를 반환; 이 도구는 로컬 파일을 작성하지 않습니다. 또한 사용자가 수동 다운로드에 대한 unpaginated 공식 다운로드 URL을 반환; 이 URL을 불러일으키지 마십시오. raw HTTP to bypass host.mcp. mavedb_get_score_set에서 페이지를 계획; 페이지는 전체 dataset이 아닙니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `urn` | 문자열 | **필수**; 모델 번호: "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)-&#91;1-9&#93; &#91;0-9&#93;&#42;$" |
+| `start` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000000 |
+| `limit` | 정수 | 선택 사항; 기본: 1000; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_download_scores", {"urn":"urn:mavedb:00000003-a-1","start":0,"limit":1000})
+```
+
+### `mavedb_get_mapped_variants` {/* #mavedb_get_mapped_variants */}
+
+GA4GH VRS preMapped/postMapped 개체, 참조 시퀀스 식별자, VRS 버전 및 매핑 오류를 포함하여 발행 된 점수 세트에 대한 기존 MaveDB 변형 매핑을 검색합니다. 이 이미 MaveDB에 의해 계산 된 매핑을 읽는다; 변형을 제출하거나 liftover를 수행하지 않습니다. 업스트림 엔드포인트는 질이 없으며 공유된 64 MiB 응답 제한이 적용됩니다. 더 큰 데이터셋을 위해 mavedb_get_score_set의 공식 URL을 사용자별 매뉴얼 다운로드에 제공합니다. 이 URL을 불러일으키지 마십시오. raw HTTP to bypass host.mcp. HTTP 404은 맵핑 레코드가 존재하지 않는 것을 의미 할 수 있으며, 점수 세트 URN는 사용할 수 없습니다. 반환된 기록은 실패한 매핑을 포함할 수 있습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `urn` | 문자열 | **필수**; 모델 번호: "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)-&#91;1-9&#93; &#91;0-9&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_mapped_variants", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_get_experiment` {/* #mavedb_get_experiment */}
+
+실험 URN (점수 세트 suffix 없이) 실험하여 공개 MaveDB 실험을 검색하고, 방법, 출판물, 실험 세트 및 scoreSetUrns를 포함. 특수 -0 메타 분석 실험뿐만 아니라 문자 색인 실험을 지원합니다. 인증은 없습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `urn` | 문자열 | **필수**; 패턴 : "^urn : mavedb : &#91;0-9&#93; &#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0) $" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment", {"urn":"urn:mavedb:00000003-a"})
+```
+
+### `mavedb_get_experiment_score_sets` {/* #mavedb_get_experiment_score_sets */}
+
+MaveDB 실험의 공개 리더에 볼 수있는 점수 세트를 나열합니다. 가시성 및 과감한 체인에 의한 상류 엔드 포인트 필터, 그래서 이것은 전체 버전의 역사가 아닙니다. pagination없이 선택한 목록을 반환합니다. HTTP 404는 관련 점수 세트가 유효하지 않다는 것을 의미 할 수 있습니다, 실험 URN는 사용할 수 없습니다. 반환된 점수 세트 URNs를 사용하여 기능 점수 또는 매핑을 검색합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `urn` | 문자열 | **필수**; 패턴 : "^urn : mavedb : &#91;0-9&#93; &#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0) $" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment_score_sets", {"urn":"urn:mavedb:00000003-a"})
 ```
 
 </ToolOperationGroup>
@@ -3668,6 +3744,48 @@ API v2를 사용하여 하나의 MGnify 분석을위한 결과 파일 메타데�
 const result = await host.mcp("omics-archives", "mgnify_get_analysis_files", {"accession": "MGYA00639970"})
 ```
 
+### `workbench_search_compounds` {/* #workbench_search_compounds */}
+
+레지스트리 번호, 공식, InChIKey, 또는 PubChem, HMDB, KEGG, ChEBI, LIPID MAPS 또는 MetaCyc 크로스 참조로 Metabolomics Workbench 화합물을 찾습니다. 유효한 SMILES, 구조 식별자, 공식, 정확한 질량 및 교차점 반환. 합성 이름은 지원된 입력이 아닙니다; PubChem의 이름을 먼저 해결하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `field` | 문자열 | **필수**; 한국어 (ko)"토토사이트"· "...."· "inchi_key"· "lm_id"· "pubchem_cid"· "hmdb_id"· "kegg_id"· "chebi_id"· "metacyc_id"· |
+| `query` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200 |
+| `limit` | 정수 | 선택 사항; 기본: 100; 최소: 1; 최대: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_compounds", {"field": "pubchem_cid", "query": "5793"})
+```
+
+### `workbench_search_studies` {/* #workbench_search_studies */}
+
+검색 Public Metabolomics Workbench 제목 하위 문자열 또는 기관에 의해 요약. 연구 ID 및 사용 가능한 종, 샘플 수, 분석 유형 및 라이센스 메타 데이터. 선택된 연구의 샘플, 실험적인 요인, 분석 또는 대사 산물에 대한 workbench_get_study을 사용하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `field` | 문자열 | 선택 사항; 기본: "study_title"; koum: &#91;"study_title", "institute"&#93; |
+| `query` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200 |
+| `limit` | 정수 | 선택 사항; 기본: 100; 최소: 1; 최대: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_studies", {"query": "Diabetes", "limit": 20})
+```
+
+### `workbench_get_study` {/* #workbench_get_study */}
+
+1개의 공개 Metabolomics Workbench 연구 (ST는 6개의 손가락에 의해 뒤로 잽니다). 연구 기록에 대한 요약 선택; 샘플, 샘플 소스 및 실험 변수에 대한 요인; 계기와 실험적인 metadata를 위한 분석; 측정된 대사 산물 annotations 및 교차점에 대 한 대사 산물. 업스트림 필드 및 인자 텍스트를 보존합니다. 원시 파일 또는 측정 매트릭스를 다운로드하지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `study_id` | 문자열 | **필수**; 패턴: "^ST&#91;0-9&#93;&#123; 6&#125;$" |
+| `section` | 문자열 | 선택 사항; 기본: "summary"; 줌: &#91;"summary", "factors", "analysis", "metabolites"&#93; |
+| `limit` | 정수 | 선택 사항; 기본: 100; 최소: 1; 최대: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_get_study", {"study_id": "ST000001", "section": "factors"})
+```
+
 </ToolOperationGroup>
 
 ## 사업소개 {/* #family-19 */}
@@ -4532,6 +4650,263 @@ BioPAX 하위 모델 하나 이상의 Pathway Commons ID / URI를 가져 와서 
 
 ```javascript
 const result = await host.mcp("pathway-commons", "pathway_commons_export", {"uri": ["R-HSA-201451"], "format": "GSEA"})
+```
+
+</ToolOperationGroup>
+
+## Alliance Genome Resources {/* #family-29 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `alliance_get_gene` {/* #alliance_get_gene */}
+
+상징, 종, synopsis, genomic 위치 및 상호 참조를 포함하여 게놈 자원의 동맹에서 모델 조직 또는 인간 유전자 요약을 검색합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `gene_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_search_genes` {/* #alliance_search_genes */}
+
+Human and model-organism 데이터베이스를 통해 Alliance 생성물 검색, 이름 또는 식별자.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `query` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_search_genes", {"query": "pax6", "limit": 10})
+```
+
+### `alliance_get_gene_orthologs` {/* #alliance_get_gene_orthologs */}
+
+사형 유전자에 대한 Cross-species orthologs를 검색하고, 정형성 문자열과 예측 방법.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `gene_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200 |
+| `stringency` | 문자열 | 선택 사항; 기본: "stringent"; 줌: &#91;"stringent", "moderate", "all"&#93; |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_orthologs", {"gene_id": "HGNC:8620", "stringency": "stringent"})
+```
+
+### `alliance_get_gene_disease_models` {/* #alliance_get_gene_disease_models */}
+
+질병 협회 및 모델 조직 질병 모델을 검색 Alliance gene.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `gene_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_disease_models", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_phenotypes` {/* #alliance_get_gene_phenotypes */}
+
+Alliance model 유기체의 유전자에 대한 현상을 검색합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `gene_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_phenotypes", {"gene_id": "HGNC:6081", "limit": 20})
+```
+
+### `alliance_get_gene_alleles` {/* #alliance_get_gene_alleles */}
+
+질병과 페형 깃발을 포함한 동맹 유전자와 관련된 모든 종류의 변형을 검색합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `gene_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_alleles", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_expression` {/* #alliance_get_gene_expression */}
+
+개발 단계, 원자 위치, 공급자 및 증거를 포함하여 동맹 유전자에 대한 표현 주석을 검색합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `gene_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_expression", {"gene_id": "ZFIN:ZDB-GENE-990415-8"})
+```
+
+### `alliance_get_disease_genes` {/* #alliance_get_disease_genes */}
+
+Alliance Human and model-organism data를 통해 질병 Ontology 용어와 관련된 유전자를 검색합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `disease_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_disease_genes", {"disease_id": "DOID:162", "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## CELLxGENE Discover {/* #family-30 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `list_collections` {/* #list_collections */}
+
+공개 CELLxGENE Discover 컬렉션 목록; 이름, 묘사 및 DOI에 선택적인 case-insensitive substring 조회. 필터링과 질은 완전한 API 응답에 클라이언트 측, 각 전화에 fetched; 결과가 호출 사이에 변경 될 수 있습니다. reproducibility를 위한 버전 ID를 저장하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `query` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 500; 패턴 : " \ S" |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 1000000 |
+| `page_size` | 정수 | 선택 사항; 기본: 25; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collections", {"query":"liver","page_size":10})
+```
+
+### `get_collection` {/* #get_collection */}
+
+dataset summaries의 페이지와 함께 canonical collection_id에 의해 최신 공공 컬렉션 메타 데이터를 검색합니다. 필터링과 질은 완전한 API 응답에 클라이언트 측, 각 전화에 fetched; 결과가 호출 사이에 변경 될 수 있습니다. reproducibility를 위한 버전 ID를 저장하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `collection_id` | 문자열 | **필수**; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 1000000 |
+| `page_size` | 정수 | 선택 사항; 기본: 25; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `list_datasets` {/* #list_datasets-1 */}
+
+공공 데이터셋 목록. 쿼리 일치 제목, 수집 이름 또는 DOI case-insensitive substring. 생물, 조직, 질병, 분석실험 및 cell_type는 정확한 투과율 ID 또는 상표 (case-insensitive); 필터는 ANDed입니다. schema_version은 주요/minor/patch schema와 일치하는 최신 간행물 수집 버전을 선정하고 역사적인 datasets를 돌려보낼 수 있습니다. get_dataset_version 또는 list_dataset_files로 각 결과의 dataset_version_id을 사용하여 출판물을 유지하십시오. canonical IDs는 현재 버전에 해결합니다. 필터링과 질은 완전한 API 응답에 클라이언트 측, 각 전화에 fetched; 결과가 호출 사이에 변경 될 수 있습니다. reproducibility를 위한 버전 ID를 저장하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `query` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 500; 패턴 : " \ S" |
+| `collection_id` | 문자열 | 선택 사항; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+| `organism` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 500; 패턴 : " \ S" |
+| `tissue` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 500; 패턴 : " \ S" |
+| `disease` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 500; 패턴 : " \ S" |
+| `assay` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 500; 패턴 : " \ S" |
+| `cell_type` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 500; 패턴 : " \ S" |
+| `schema_version` | 문자열 | 선택 사항; 패턴: "^\d+(\\\\\d+)&#123; 0,2&#125;$" |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 1000000 |
+| `page_size` | 정수 | 선택 사항; 기본: 25; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_datasets", {"organism":"NCBITaxon:9606","tissue":"liver","page_size":10})
+```
+
+### `get_dataset` {/* #get_dataset */}
+
+canonical collection_id 및 dataset_id을 사용하여 전체 현재 공공 데이터셋 메타데이터, 투과성, 인용, 자산 및 버전 ID를 검색합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `collection_id` | 문자열 | **필수**; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+| `dataset_id` | 문자열 | **필수**; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6","dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `list_collection_versions` {/* #list_collection_versions */}
+
+canonical 컬렉션의 발표 된 버전, 최신 첫 번째, 유지 버전 ID 및 데이터 세트 수. 필터링과 질은 완전한 API 응답에 클라이언트 측, 각 전화에 fetched; 결과가 호출 사이에 변경 될 수 있습니다. reproducibility를 위한 버전 ID를 저장하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `collection_id` | 문자열 | **필수**; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 1000000 |
+| `page_size` | 정수 | 선택 사항; 기본: 25; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collection_versions", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `get_collection_version` {/* #get_collection_version */}
+
+특정 게시 된 collection_version_id 및 데이터 세트 버전의 페이지를 검색; 최신 컬렉션에 대해 해결하지 않습니다. 필터링과 질은 완전한 API 응답에 클라이언트 측, 각 전화에 fetched; 결과가 호출 사이에 변경 될 수 있습니다. reproducibility를 위한 버전 ID를 저장하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `collection_version_id` | 문자열 | **필수**; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 1000000 |
+| `page_size` | 정수 | 선택 사항; 기본: 25; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection_version", {"collection_version_id":"46ac9732-ff1c-4f87-86d7-0488d15aecd3"})
+```
+
+### `list_dataset_versions` {/* #list_dataset_versions */}
+
+목록은 canonical dataset_id, 최신 버전, schema 버전 및 간행 날짜와 함께 발표. 필터링과 질은 완전한 API 응답에 클라이언트 측, 각 전화에 fetched; 결과가 호출 사이에 변경 될 수 있습니다. reproducibility를 위한 버전 ID를 저장하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `dataset_id` | 문자열 | **필수**; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+| `page` | 정수 | 선택 사항; 기본: 1; 최소: 1; 최대: 1000000 |
+| `page_size` | 정수 | 선택 사항; 기본: 25; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_versions", {"dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `get_dataset_version` {/* #get_dataset_version */}
+
+특정 게시 된 dataset_version_id에 대한 전체 메타 데이터 및 파일 자산을 검색합니다. 이 ID는 canonical dataset_id에서 구별됩니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `dataset_version_id` | 문자열 | **필수**; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset_version", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
+```
+
+### `list_dataset_files` {/* #list_dataset_files */}
+
+Public Dataset 자산에서 다운로드 재고를 반환합니다. 고정된 간행물에 대한 dataset_version_id, 또는 collection_id 및 dataset_id를 제공합니다. list_datasets이 schema_version 필터를 사용하여 선택한 출판물을 보존하기 위해 반환된 dataset_version_id를 통과합니다. API-provided H5AD/RDS/ATAC 자산을 사용할 수 있습니다. 바이너리 다운로드, 업로드 나 Census 표현 쿼리.
+
+정확하게 1개의 입력 그룹을 제공하십시오: `dataset_version_id`/`collection_id` + `dataset_id`.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `collection_id` | 문자열 | 위의 조건에 따라; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+| `dataset_id` | 문자열 | 위의 조건에 따라; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+| `dataset_version_id` | 문자열 | 위의 조건에 따라; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_files", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
 ```
 
 </ToolOperationGroup>

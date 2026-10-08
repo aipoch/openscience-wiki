@@ -2,7 +2,7 @@
 title: ".science 研究包"
 description: "將會話、檔案和證據一起匯出，再匯入專案檢視與交接研究記錄。"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -56,6 +56,10 @@ Side Chat 對話、私人[閱讀書籤](bookmarks.md)及備註不會包含在研
 
 ## 匯入到專案 {/* #import-and-inspect-a-package */}
 
+在專案的 **New conversation** 空白頁，點選 **Import previous research** 選擇 `.science` 檔案，或把檔案拖到該頁面。選擇已有會話中的附件入口不會替代研究包匯入。開啟匯入預覽後，檢查目標專案和內容，再確認匯入；等待完成後開啟只讀記錄。
+
+![新會話中的 Import previous research 入口](/img/open-science/v0341/package-entry.webp)
+
 1. 開啟目標 Project 選單，選擇 **Import Session package…**，或將一個 `.science` 檔案拖入該專案。直接開啟關聯檔案時，需要另選目標專案。
 2. 檢查包預覽、目標位置以及包含或省略的內容，再確認匯入。
 3. 等待完成，選擇 **Open imported Session**。
@@ -103,6 +107,12 @@ Keep everything in English and return links to both new files.
 選擇 **Run in background** 後，研究包操作繼續執行。透過視窗中的後臺進度入口重新開啟詳情，檢視當前檔案、進度和磁碟活動。確認操作完成後再檢查匯出的檔案或開啟匯入會話。
 
 ![研究包的磁碟活動上限和傳輸設定](/img/open-science/v0333/package-transfer.webp)
+
+## 匯出提示敏感內容時 {/* #sensitive-export */}
+
+如果匯出停在敏感內容檢查，展開 **Sensitive-content evidence**，檢查觸發提示的檔案。不應交接的憑據或私密資料應先從來源中移除，再發起新的匯出。
+
+若這些內容確實屬於獲准交接的資料，可在失敗的匯出中勾選 **I understand the risk and want to export anyway**，再點選 **Export anyway**。這會**原樣包含已標記內容，不做脫敏**，不是隱私過濾功能。確認僅適用於這次匯出嘗試，失敗後需重新勾選；分享前仍應檢查生成的研究包。只需排查問題時，使用[診斷匯出](troubleshooting.md#session-diagnostics)。
 
 ## 取消與重試傳輸 {/* #取消与重试传输 */}
 

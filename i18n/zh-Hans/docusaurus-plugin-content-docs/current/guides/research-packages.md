@@ -2,7 +2,7 @@
 title: .science 研究包
 description: 将会话、文件和证据一起导出，再导入项目查看与交接研究记录。
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -56,6 +56,10 @@ Side Chat 对话、私人[阅读书签](bookmarks.md)及备注不会包含在研
 
 ## 导入到项目 {/* #import-and-inspect-a-package */}
 
+在项目的 **New conversation** 空白页，点击 **Import previous research** 选择 `.science` 文件，或把文件拖到该页面。选择已有会话中的附件入口不会替代研究包导入。打开导入预览后，检查目标项目和内容，再确认导入；等待完成后打开只读记录。
+
+![新会话中的 Import previous research 入口](/img/open-science/v0341/package-entry.webp)
+
 1. 打开目标 Project 菜单，选择 **Import Session package…**，或将一个 `.science` 文件拖入该项目。直接打开关联文件时，需要另选目标项目。
 2. 检查包预览、目标位置以及包含或省略的内容，再确认导入。
 3. 等待完成，选择 **Open imported Session**。
@@ -103,6 +107,12 @@ Keep everything in English and return links to both new files.
 选择 **Run in background** 后，研究包操作继续执行。通过窗口中的后台进度入口重新打开详情，查看当前文件、进度和磁盘活动。确认操作完成后再检查导出的文件或打开导入会话。
 
 ![研究包的磁盘活动上限和传输设置](/img/open-science/v0333/package-transfer.webp)
+
+## 导出提示敏感内容时 {/* #sensitive-export */}
+
+如果导出停在敏感内容检查，展开 **Sensitive-content evidence**，检查触发提示的文件。不应交接的凭据或私密资料应先从来源中移除，再发起新的导出。
+
+若这些内容确实属于获准交接的资料，可在失败的导出中勾选 **I understand the risk and want to export anyway**，再点击 **Export anyway**。这会**原样包含已标记内容，不做脱敏**，不是隐私过滤功能。确认仅适用于这次导出尝试，失败后需重新勾选；分享前仍应检查生成的研究包。只需排查问题时，使用[诊断导出](troubleshooting.md#session-diagnostics)。
 
 ## 取消与重试传输
 

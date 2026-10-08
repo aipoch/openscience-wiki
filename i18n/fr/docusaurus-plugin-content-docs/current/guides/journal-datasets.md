@@ -1,7 +1,7 @@
 ---
 title: "Ensembles de données et attributs de référence"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -36,6 +36,8 @@ Les paquets CSV, TSV, XLSX et journal sont pris en charge, jusqu'à **32 MB**. *
 | Site Web du Journal | attribut journal | Texte |
 
 ![Cartographie de l'identité de la revue et des attributs de l'éditeur avec une source et une année explicites](/img/open-science/v0340/journal-column-mapping.webp)
+
+Choisissez d'abord le rôle de chaque colonne : un champ d'identité utilisé pour correspondre aux journaux (nom, ISSN, abréviation ou ID externe), un **Journal attribute** à afficher ou **Skip**. Lire les conseils de cartographie avant de confirmer; une suggestion automatique n'établit pas la signification du champ.
 
 **Abbreviation** et **External journal ID** sont des options d'identité supplémentaires. Un ID externe a besoin de son espace de noms; les identifiants de différents catalogues ne sont pas interchangeables. Les types d'attributs comprennent **Texte**, **Numéro**, **Single choice** et **Multiple choices**. Utiliser le numéro pour les mesures numériques, non pour les ISSN ou les quartiles catégoriques.
 

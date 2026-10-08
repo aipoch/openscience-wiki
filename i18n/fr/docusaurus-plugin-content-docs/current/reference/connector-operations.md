@@ -2,7 +2,7 @@
 title: "Référence de fonctionnement Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Les noms de champs de retour diffèrent selon l'opération. Les descriptions et 
 
 ## Entrées d'exploitation {/* #operation-inputs */}
 
-Expandez un Connector à la fois. Les champs obligatoires sont marqués **requis**; cette référence et téléchargement utilisent le schéma Open-Science **v0.34.0**. Une liste de `input.required` imbriquée fait autorité; une liste de haut niveau de `required` peut être absente. Consultez le <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.0.json">Registre téléchargeable complet</ExampleDownload> pour les schémas JSON imbriqués, les descriptions complètes des retours et les exemples d'appels côté agent. Ne passez pas un `id` générique lorsqu'un outil s'attend à `accessions`, `cids`, `rs_id` ou à un autre champ spécifique à l'espace de noms.
+Expandez un Connector à la fois. Les champs obligatoires sont marqués **requis**; cette référence et téléchargement utilisent le schéma Open-Science **v0.34.1**. Une liste de `input.required` imbriquée fait autorité; une liste de haut niveau de `required` peut être absente. Consultez le <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.1.json">Registre téléchargeable complet</ExampleDownload> pour les schémas JSON imbriqués, les descriptions complètes des retours et les exemples d'appels côté agent. Ne passez pas un `id` générique lorsqu'un outil s'attend à `accessions`, `cids`, `rs_id` ou à un autre champ spécifique à l'espace de noms.
 
 
 ## Chimie {/* #family-1 */}
@@ -1255,6 +1255,82 @@ List dbSNP rsIDs in a genomic window (esearch db=snp positional index — NCBI V
 
 ```javascript
 const result = await host.mcp("variants", "dbsnp_search_by_region", {"chrom": "19", "start": 44905000, "stop": 44910000, "assembly": "GRCh38"})
+```
+
+### `mavedb_search_score_sets` {/* #mavedb_search_score_sets */}
+
+Recherche publique Essais multiplexés MaveDB d'effet de variante (MAVE) par texte, tels qu'un symbole de gène, une protéine ou un test. Aucune clé API ou courriel de contact n'est requis. Renvoie une page avec le total en amont quand elle est connue; Les scores fonctionnels sont propres à chaque essai et ne sont pas des classifications cliniques ou des fréquences de population.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `text` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 1000; modèle: "\\S" |
+| `offset` | entier | facultatif; par défaut : 0; minimum: 0; maximum: 1000000000 |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_search_score_sets", {"text":"BRCA1","limit":20})
+```
+
+### `mavedb_get_score_set` {/* #mavedb_get_score_set */}
+
+Récupérer un score MaveDB publié défini par URN, y compris des cibles, des métadonnées de test, une licence, des publications et des relations d'expérience. Inclut les URLs de téléchargement officielles complètes de CSV et des variables cartographiques pour téléchargement manuel par l'utilisateur; ne pas récupérer ces URLs avec HTTP brut pour contourner host.mcp. Lire les méthodes d'essai et l'étalonnage des scores avant d'interpréter les effets fonctionnels.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `urn` | chaîne de caractères | **requis**; modèle : "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)-&#91;1-9&#93;&#91;0-9&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_score_set", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_download_scores` {/* #mavedb_download_scores */}
+
+Télécharger une page CSV des scores de la variante MaveDB (lignes 1000 par défaut, maximum 10000). Utilise start/limit, pas offset. Renvoie le texte original de CSV, y compris toutes les colonnes de partition et les valeurs NA, pour enregistrer avec les API de fichiers Notebook; cet outil n'écrit pas de fichier local. retourne également l'URL de téléchargement officielle non-paginé pour téléchargement manuel par l'utilisateur; ne pas récupérer ces URLs avec HTTP brut pour contourner host.mcp. Utiliser numVariants de mavedb_get_score_set pour planifier les pages; une page n'est pas l'ensemble de données complet.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `urn` | chaîne de caractères | **requis**; modèle : "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)-&#91;1-9&#93;&#91;0-9&#93;&#42;$" |
+| `start` | entier | facultatif; par défaut : 0; minimum: 0; maximum: 1000000000 |
+| `limit` | entier | facultatif; par défaut : 1000; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_download_scores", {"urn":"urn:mavedb:00000003-a-1","start":0,"limit":1000})
+```
+
+### `mavedb_get_mapped_variants` {/* #mavedb_get_mapped_variants */}
+
+Récupérer les données existantes MaveDB des cartes de variante pour un ensemble de scores publié, y compris GA4GH VRS objets prémapés/postMapés, identifiants de séquence de référence, VRS les erreurs de version et de mapping. Ceci lit les mappages déjà calculés par MaveDB; il ne soumet pas de variantes ou ne procède pas à un soulèvement. Le paramètre en amont n'est pas pagé et la limite de réponse partagée 64 MiB s'applique. Pour les ensembles de données plus grands, offrez l'URL officielle de mavedb_get_score_set pour téléchargement manuel par l'utilisateur; ne pas récupérer ces URLs avec HTTP brut pour contourner host.mcp. HTTP 404 peut signifier qu'il n'y a pas d'enregistrements de mappage, et non seulement que le jeu de scores URN n'est pas disponible. Les enregistrements retournés peuvent comprendre des cartes erronées.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `urn` | chaîne de caractères | **requis**; modèle : "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)-&#91;1-9&#93;&#91;0-9&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_mapped_variants", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_get_experiment` {/* #mavedb_get_experiment */}
+
+Récupérer une expérience publique MaveDB par expérience URN (sans suffixe de score), y compris les méthodes, publications, jeu d'expériences et scoreSetUrns. Supporte l'expérience spéciale de méta-analyse -0 ainsi que les expériences indexées par lettres. Aucune authentification n'est requise.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `urn` | chaîne de caractères | **requis**; modèle: "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)$" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment", {"urn":"urn:mavedb:00000003-a"})
+```
+
+### `mavedb_get_experiment_score_sets` {/* #mavedb_get_experiment_score_sets */}
+
+Énumérez les ensembles de scores visibles pour un lecteur public d'une expérience MaveDB. Les filtres en amont par visibilité et chaînes de sursession, donc ce n'est pas un historique complet de la version. Il retourne la liste sélectionnée sans pagination. HTTP 404 peut signifier qu'aucun ensemble de scores associé n'est disponible, non seulement que l'expérience URN n'est pas disponible. Utilisez le jeu de scores retournés URNs pour récupérer des scores ou des mappages fonctionnels.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `urn` | chaîne de caractères | **requis**; modèle: "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)$" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment_score_sets", {"urn":"urn:mavedb:00000003-a"})
 ```
 
 </ToolOperationGroup>
@@ -3668,6 +3744,48 @@ const result = await host.mcp("omics-archives", "pride_find_projects_for_protein
 const result = await host.mcp("omics-archives", "mgnify_get_analysis_files", {"accession": "MGYA00639970"})
 ```
 
+### `workbench_search_compounds` {/* #workbench_search_compounds */}
+
+Rechercher les composés Metabolomics Workbench par numéro de registre, formule, InChICey, ou un PubChem, HMDB, KEGG, ChEBI, LIPID MAPS ou MetaCyc renvoi. Retours disponibles SMILS, identifiants de structure, formule, masse exacte et références croisées. Les noms composés ne sont pas une entrée prise en charge; résoudre les noms avec PubChem d'abord.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `field` | chaîne de caractères | **requis**; enum: &#91;"regno", "formula", "inchi_key", "lm_id", "pubchem_cid", "hmdb_id", "kegg_id", "chebi_id", "metacyc_id"&#93; |
+| `query` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 200 |
+| `limit` | entier | facultatif; par défaut : 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_compounds", {"field": "pubchem_cid", "query": "5793"})
+```
+
+### `workbench_search_studies` {/* #workbench_search_studies */}
+
+Recherche publique de résumés d'études Metabolomics Workbench par une sous-chaîne de titres ou un institut. Retourne les ID de l'étude et les espèces disponibles, le dénombrement des échantillons, les types d'analyse et les métadonnées de licence. Utilisez workbench_get_study pour une étude sélectionnée, des échantillons, des facteurs expérimentaux, des analyses ou des annotations de métabolites.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `field` | chaîne de caractères | facultatif; par défaut: "study_title"; enum: &#91;"study_title", "institut"&#93; |
+| `query` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 200 |
+| `limit` | entier | facultatif; par défaut : 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_studies", {"query": "Diabetes", "limit": 20})
+```
+
+### `workbench_get_study` {/* #workbench_get_study */}
+
+Récupérer une étude publique Metabolomics Workbench (ST suivie de six chiffres). Choisir un résumé pour le dossier d'étude; les facteurs pour les échantillons, les sources d'échantillons et les variables expérimentales; l'analyse des instruments et des métadonnées expérimentales; métabolites pour les annotations et les références croisées de métabolites mesurées. Préserve les champs en amont et le texte des facteurs. Ne télécharge pas les fichiers bruts ou les matrices de mesure.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `study_id` | chaîne de caractères | **requis**; modèle: "^ST&#91;0-9&#93;&#123; 6&#125;$" |
+| `section` | chaîne de caractères | facultatif; par défaut: "summary"; enum: &#91;"résumé", "facteurs", "analyse", "métabolites"&#93; |
+| `limit` | entier | facultatif; par défaut : 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_get_study", {"study_id": "ST000001", "section": "factors"})
+```
+
 </ToolOperationGroup>
 
 ## Guide des cellules {/* #family-19 */}
@@ -4532,6 +4650,263 @@ Obtenez un sous-modèle BioPAX pour un ou plusieurs ID/URI Pathway Commons et ex
 
 ```javascript
 const result = await host.mcp("pathway-commons", "pathway_commons_export", {"uri": ["R-HSA-201451"], "format": "GSEA"})
+```
+
+</ToolOperationGroup>
+
+## Alliance Genome Resources {/* #family-29 */}
+
+<ToolOperationGroup>
+<summary>Afficher les opérations et les paramètres</summary>
+
+### `alliance_get_gene` {/* #alliance_get_gene */}
+
+Récupérer un modèle-organisme ou un résumé des gènes humains de l'Alliance des ressources génomiques, y compris les symboles, les espèces, les synopsis, l'emplacement génomique et les références croisées.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `gene_id` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 200 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_search_genes` {/* #alliance_search_genes */}
+
+Rechercher les gènes de l'Alliance dans les bases de données humaines et modèles-organismes par symbole, nom ou identificateur.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `query` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 200 |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_search_genes", {"query": "pax6", "limit": 10})
+```
+
+### `alliance_get_gene_orthologs` {/* #alliance_get_gene_orthologs */}
+
+Récupérer des orthologues transspécifiques pour un gène Alliance, avec des méthodes de rigueur orthologique et de prédiction.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `gene_id` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 200 |
+| `stringency` | chaîne de caractères | facultatif; par défaut: "stringent"; enum: &#91;"stringent", "moderate", "all"&#93; |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_orthologs", {"gene_id": "HGNC:8620", "stringency": "stringent"})
+```
+
+### `alliance_get_gene_disease_models` {/* #alliance_get_gene_disease_models */}
+
+Récupérer les associations de maladies et les modèles de maladies modèles-organismes impliquant un gène de l'Alliance.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `gene_id` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 200 |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_disease_models", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_phenotypes` {/* #alliance_get_gene_phenotypes */}
+
+Récupérer les annotations de phénotype pour un gène à travers les organismes modèles de l'Alliance.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `gene_id` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 200 |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_phenotypes", {"gene_id": "HGNC:6081", "limit": 20})
+```
+
+### `alliance_get_gene_alleles` {/* #alliance_get_gene_alleles */}
+
+Récupérer les allèles et les variantes associés à un gène de l'Alliance, y compris les drapeaux de la maladie et du phénotype.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `gene_id` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 200 |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_alleles", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_expression` {/* #alliance_get_gene_expression */}
+
+Récupérer les annotations d'expression pour un gène de l'Alliance, y compris le stade de développement, l'emplacement anatomique, le fournisseur et les preuves.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `gene_id` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 200 |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_expression", {"gene_id": "ZFIN:ZDB-GENE-990415-8"})
+```
+
+### `alliance_get_disease_genes` {/* #alliance_get_disease_genes */}
+
+Récupérer les gènes associés à un terme de maladie en ontologie dans les données de l'Alliance sur les organismes humains et modèles.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `disease_id` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 200 |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_disease_genes", {"disease_id": "DOID:162", "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## CELLxGENE Discover {/* #family-30 */}
+
+<ToolOperationGroup>
+<summary>Afficher les opérations et les paramètres</summary>
+
+### `list_collections` {/* #list_collections */}
+
+Liste des collections publiques CELLxGENE Discover; requête optionnelle de sous-chaîne insensible à la casse sur nom, description et DOI. Filtrage et pagination sont côté client sur la réponse complète API, récupérée sur chaque appel; les résultats peuvent changer entre les appels. Enregistrer les identifiants de version pour la reproductibilité.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `query` | chaîne de caractères | facultatif; Longueur min: 1; Longueur max: 500; modèle: "\\S" |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 1000000 |
+| `page_size` | entier | facultatif; par défaut : 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collections", {"query":"liver","page_size":10})
+```
+
+### `get_collection` {/* #get_collection */}
+
+Récupérer les dernières métadonnées de la collection publique par le canonique collection_id, avec une page de résumés des ensembles de données. Filtrage et pagination sont côté client sur la réponse complète API, récupérée sur chaque appel; les résultats peuvent changer entre les appels. Enregistrer les identifiants de version pour la reproductibilité.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `collection_id` | chaîne de caractères | **requis**; modèle: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 1000000 |
+| `page_size` | entier | facultatif; par défaut : 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `list_datasets` {/* #list_datasets-1 */}
+
+Énumérer les ensembles de données publics. requête correspond au titre, au nom de la collection ou au DOI par sous-chaîne insensible à la casse. organisme, tissu, maladie, dosage et cell_type correspondent à une identification ou une étiquette d'ontologie exacte (insensible au cas d'espèce); les filtres sont ETD. schema_version sélectionne les dernières versions de collection publiées correspondant à un schéma majeur/mineur/patch et peut retourner des ensembles de données historiques. Utiliser dataset_version_id de chaque résultat avec get_dataset_version ou list_dataset_files pour conserver cette publication; les ID canoniques se résolvent dans la version actuelle. Filtrage et pagination sont côté client sur la réponse complète API, récupérée sur chaque appel; les résultats peuvent changer entre les appels. Enregistrer les identifiants de version pour la reproductibilité.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `query` | chaîne de caractères | facultatif; Longueur min: 1; Longueur max: 500; modèle: "\\S" |
+| `collection_id` | chaîne de caractères | facultatif; modèle: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `organism` | chaîne de caractères | facultatif; Longueur min: 1; Longueur max: 500; modèle: "\\S" |
+| `tissue` | chaîne de caractères | facultatif; Longueur min: 1; Longueur max: 500; modèle: "\\S" |
+| `disease` | chaîne de caractères | facultatif; Longueur min: 1; Longueur max: 500; modèle: "\\S" |
+| `assay` | chaîne de caractères | facultatif; Longueur min: 1; Longueur max: 500; modèle: "\\S" |
+| `cell_type` | chaîne de caractères | facultatif; Longueur min: 1; Longueur max: 500; modèle: "\\S" |
+| `schema_version` | chaîne de caractères | facultatif; modèle: "^\\d+(\\.\d+)&#123; 0,2&#125;$" |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 1000000 |
+| `page_size` | entier | facultatif; par défaut : 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_datasets", {"organism":"NCBITaxon:9606","tissue":"liver","page_size":10})
+```
+
+### `get_dataset` {/* #get_dataset */}
+
+Récupérer toutes les métadonnées publiques actuelles des ensembles de données, les annotations d'ontologie, les citations, les actifs et l'ID de version en utilisant les canoniques collection_id et dataset_id.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `collection_id` | chaîne de caractères | **requis**; modèle: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `dataset_id` | chaîne de caractères | **requis**; modèle: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6","dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `list_collection_versions` {/* #list_collection_versions */}
+
+Lister les versions publiées d'une collection canonique, les plus récentes d'abord, en conservant les ID de version et le nombre de séries de données. Filtrage et pagination sont côté client sur la réponse complète API, récupérée sur chaque appel; les résultats peuvent changer entre les appels. Enregistrer les identifiants de version pour la reproductibilité.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `collection_id` | chaîne de caractères | **requis**; modèle: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 1000000 |
+| `page_size` | entier | facultatif; par défaut : 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collection_versions", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `get_collection_version` {/* #get_collection_version */}
+
+Récupérer un collection_version_id spécifique publié et une page de ses versions dataset; ne se résout pas à la dernière collection. Filtrage et pagination sont côté client sur la réponse complète API, récupérée sur chaque appel; les résultats peuvent changer entre les appels. Enregistrer les identifiants de version pour la reproductibilité.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `collection_version_id` | chaîne de caractères | **requis**; modèle: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 1000000 |
+| `page_size` | entier | facultatif; par défaut : 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection_version", {"collection_version_id":"46ac9732-ff1c-4f87-86d7-0488d15aecd3"})
+```
+
+### `list_dataset_versions` {/* #list_dataset_versions */}
+
+Lister les versions publiées d'un dataset_id canonique, les plus récents, avec la version schéma et les dates de publication. Filtrage et pagination sont côté client sur la réponse complète API, récupérée sur chaque appel; les résultats peuvent changer entre les appels. Enregistrer les identifiants de version pour la reproductibilité.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `dataset_id` | chaîne de caractères | **requis**; modèle: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `page` | entier | facultatif; par défaut : 1; minimum: 1; maximum: 1000000 |
+| `page_size` | entier | facultatif; par défaut : 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_versions", {"dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `get_dataset_version` {/* #get_dataset_version */}
+
+Récupérer les métadonnées complètes et les actifs de fichiers pour un dataset_version_id spécifique publié. Cet ID est distinct du canonique dataset_id.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `dataset_version_id` | chaîne de caractères | **requis**; modèle: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset_version", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
+```
+
+### `list_dataset_files` {/* #list_dataset_files */}
+
+Retourner un inventaire de téléchargement à partir des données publiques. Fournissez soit dataset_version_id pour une publication fixe, soit collection_id et dataset_id pour la version actuelle. Après list_datasets avec un filtre schema_version, passez le dataset_version_id retourné pour préserver la publication sélectionnée. Rend les actifs H5AD/RDS/ATAC fournis par API lorsqu'ils sont disponibles; pas de téléchargement binaire, de téléchargement de manifeste ou de requête d'expression du recensement.
+
+Fournissez exactement un groupe d'entrée : `dataset_version_id` / `collection_id` + `dataset_id`.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `collection_id` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `dataset_id` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `dataset_version_id` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_files", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
 ```
 
 </ToolOperationGroup>

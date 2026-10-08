@@ -1,7 +1,7 @@
 ---
 title: "Journal-Datensätze und Referenzattribute"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -36,6 +36,8 @@ CSV, TSV, XLSX und Journal-Bundles werden bis **32 MB** unterstützt. **Download
 | Website des Journals | Journalattribut | Text |
 
 ![Mapping Journal Identität und Publisher Attribute mit einer expliziten Quelle und Jahr](/img/open-science/v0340/journal-column-mapping.webp)
+
+Wählen Sie zuerst die Rolle jeder Spalte aus: ein Identitätsfeld, das verwendet wird, um Zeitschriften (Name, ISSN, Abkürzung oder externe ID) abzugleichen, ein **Journal attribute**, das angezeigt werden soll, oder **Skip**. Lesen Sie die Mapping-Hinweise vor der Bestätigung; eine automatische Suggestion die Bedeutung des Feldes nicht festlegt.
 
 **Abbreviation** und **External journal ID** sind zusätzliche Identitätsoptionen. Eine externe ID benötigt ihren Namensraum; Kennungen aus verschiedenen Katalogen sind nicht austauschbar. Zu den Attributtypen gehören **Text**, **Nummer**, **Single choice** und **Multiple choices**. Verwenden Sie die Nummer für numerische Metriken, nicht für ISSNs oder kategorische Quartile.
 

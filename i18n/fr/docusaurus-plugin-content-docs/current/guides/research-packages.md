@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -56,6 +56,10 @@ Choisissez **Essential export**, vérifiez le contenu et la taille estimée, pui
 
 ## Importation dans un projet {/* #import-and-inspect-a-package */}
 
+Sur la page **New conversation** vide d'un projet, choisissez **Importer une recherche précédente** et sélectionnez un fichier `.science` ou faites glisser le fichier sur cette page. L'attachement d'un fichier à une conversation existante n'est pas le flux d'importation de paquets de recherche. Examiner le projet cible et le contenu dans l'aperçu d'importation, confirmer et attendre l'achèvement avant d'ouvrir l'enregistrement en lecture seule.
+
+![Importer des recherches antérieures sur la page de conversation vide](/img/open-science/v0341/package-entry.webp)
+
 1. Ouvrez le menu de destination Projet et choisissez **Import Session package…**, ou déposez un fichier `.science` dans ce projet. Ouverture d'un fichier associé vous demande directement de choisir le projet de destination.
 2. Consultez l'aperçu du colis, la destination et le contenu inclus ou omis, puis confirmez l'importation.
 3. Attendez l'achèvement et choisissez **Open imported Session**.
@@ -103,6 +107,12 @@ Avant d'exporter, choisissez **Customize contents → Transfer settings**. Au co
 Choisissez **Run in background** pour continuer l'opération avec la boîte de dialogue cachée. Rouvrir les détails de l'entrée de l'arrière-plan de progression dans la fenêtre pour inspecter le fichier actuel, l'avancement et l'activité disque. Attendez l'achèvement avant de vérifier le fichier exporté ou d'ouvrir la session importée.
 
 ![Limite d'activité des disques dans les paramètres de transfert de paquets de recherche](/img/open-science/v0333/package-transfer.webp)
+
+## Lorsque le contenu sensible des drapeaux d'exportation {/* #sensitive-export */}
+
+Si l'exportation s'arrête à la vérification du contenu sensible, étendez **Preuve de contenu sensible** et inspectez les fichiers marqués. Enlevez les identifiants ou les documents privés de la source, puis commencez une nouvelle exportation quand ils ne devraient pas être partagés.
+
+Si le matériel signalétique fait intentionnellement partie d'un transfert autorisé, l'exportation ratée offre **Je comprends le risque et souhaite exporter quand même**, suivie de **Exporter quand même**. Cela inclut le contenu marqué **sans reformulation**; Ce n'est pas un filtre de confidentialité. La reconnaissance appartient à cette tentative d'exportation et doit être sélectionnée à nouveau après un échec. Examiner le paquet résultant avant de le partager. Pour le dépannage des preuves, utilisez [Exporter les diagnostics](troubleshooting.md#session-diagnostics).
 
 ## Annuler ou réessayer un transfert {/* #cancel-or-retry-a-transfer */}
 

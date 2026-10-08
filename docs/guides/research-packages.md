@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -56,6 +56,10 @@ Choose **Essential export**, check the contents and estimated size, then **Expor
 
 ## Import into a project {/* #import-and-inspect-a-package */}
 
+On a project's empty **New conversation** page, choose **Import previous research** and select a `.science` file, or drag the file onto that page. Attaching a file to an existing conversation is not the research-package import flow. Review the target project and contents in the import preview, confirm, and wait for completion before opening the read-only record.
+
+![Import previous research on the empty conversation page](/img/open-science/v0341/package-entry.webp)
+
 1. Open the destination Project menu and choose **Import Session package…**, or drop one `.science` file into that project. Opening an associated file directly asks you to choose the destination project.
 2. Review the package preview, destination and included or omitted contents, then confirm import.
 3. Wait for completion and choose **Open imported Session**.
@@ -103,6 +107,12 @@ Before exporting, choose **Customize contents → Transfer settings**. During an
 Choose **Run in background** to continue the operation with the dialog hidden. Reopen details from the background progress entry in the window to inspect the current file, progress and disk activity. Wait for completion before checking the exported file or opening the imported session.
 
 ![Disk activity limit in the research-package transfer settings](/img/open-science/v0333/package-transfer.webp)
+
+## When the export flags sensitive content {/* #sensitive-export */}
+
+If export stops at the sensitive-content check, expand **Sensitive-content evidence** and inspect the flagged files. Remove credentials or private material from the source, then start a new export when they should not be shared.
+
+If the flagged material is intentionally part of an authorized handover, the failed export offers **I understand the risk and want to export anyway**, followed by **Export anyway**. This includes flagged content **without redaction**; it is not a privacy filter. The acknowledgment belongs to that export attempt and must be selected again after a failure. Review the resulting package before sharing it. For troubleshooting evidence instead, use [Export diagnostics](troubleshooting.md#session-diagnostics).
 
 ## Cancel or retry a transfer
 

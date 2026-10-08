@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -56,6 +56,10 @@ Elija **Essential export**, compruebe el contenido y el tamaño estimado, luego 
 
 ## Importar en un proyecto {/* #import-and-inspect-a-package */}
 
+En la página **New conversation** vacía de un proyecto, elija **Importar investigación anterior** y seleccione un archivo `.science`, o arrastre el archivo en esa página. Adjuntar un archivo a una conversación existente no es el flujo de importación de paquetes de investigación. Revise el proyecto objetivo y el contenido en la vista previa de importación, confirme y espere a que se complete antes de abrir el registro de sólo lectura.
+
+![Importar investigación previa en la página de conversación vacía](/img/open-science/v0341/package-entry.webp)
+
 1. Abra el menú de destino y seleccione **Import Session package…**, o suelte un archivo `.science` en ese proyecto. Abrir un archivo asociado le pide directamente que elija el proyecto de destino.
 2. Revise la vista previa del paquete, el destino y el contenido incluido o omitido, a continuación, confirme la importación.
 3. Espera a completar y elegir **Open imported Session**.
@@ -103,6 +107,12 @@ Antes de exportar, elija **Customize contents → Transfer settings**. Durante u
 Elija **Run in background** para continuar la operación con el diálogo oculto. Reabrir detalles de la entrada de progreso de fondo en la ventana para inspeccionar el archivo actual, progreso y actividad de disco. Esperar la terminación antes de comprobar el archivo exportado o abrir la sesión importada.
 
 ![Limite de actividad de disco en la configuración de transferencia de paquetes de investigación](/img/open-science/v0333/package-transfer.webp)
+
+## Cuando la exportación marca contenido sensible {/* #sensitive-export */}
+
+Si la exportación se detiene en el control de contenido sensible, amplíe **Evidencia de contenido sensible** e inspeccione los archivos marcados. Eliminar las credenciales o el material privado de la fuente, y luego comenzar una nueva exportación cuando no deben ser compartidos.
+
+Si el material marcado es parte intencionalmente de una entrega autorizada, la exportación fallida ofrece **Comprendo el riesgo y quiero exportar de todos modos**, seguido por **Exportar de todos modos**. Esto incluye el contenido marcado **sin la redacción**; no es un filtro de privacidad. El reconocimiento pertenece a ese intento de exportación y debe ser seleccionado de nuevo después de un fracaso. Revise el paquete resultante antes de compartirlo. Para resolver problemas en su lugar, use [Exportar diagnósticos](troubleshooting.md#session-diagnostics).
 
 ## Cancelar o reiniciar una transferencia {/* #cancel-or-retry-a-transfer */}
 

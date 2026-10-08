@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v0.34.0에는 **28 데이터 소스 커넥터 298 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 300에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
+Open-Science v0.34.1에는 **30 데이터 소스 커넥터 324 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 326에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
 
 | 커넥터 | 출처 | 작업 | 사용하기  |
 | --- | --- | --- | ---  |
@@ -22,7 +22,7 @@ Open-Science v0.34.0에는 **28 데이터 소스 커넥터 298 작업**가 포�
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI E-utilities, PMC ID 변환기 및 유럽 PMC를 통해 생물 의학 문학 - 검색, 메타 데이터, 관련 기사, 인용 조회, ID 변환, 전체 텍스트 및 저작권.  |
 | 유전자 및 종양학 · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | 유전자/단백 식별자, UniProt 시퀀스 발견, GO 및 Reactome 주석, 그리고 g:Profiler 및 Enrichr 유전자 세트 풍부. |
 | 게놈 · `genomes` | 회의, UCSC, NCBI, BLAST, 클러스터 오메가 | 20 | Genome 주석, 균질 및 순서; NCBI taxon/assembly/sequence 정체성; BLAST 검색 및 클러스터 오메가 다중 시퀀스 정렬. |
-| Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | 인간 유전 변형 - gnomAD 인구 주파수 / 제약, ClinVar 기록 / 연구 (direct NCBI), dbSNP, 구조 및 mitochondrial 변형.  |
+| Variants · `variants` | gnomAD, 크린바르, dbSNP, MaveDB | 21 | 인구 빈도, 임상 기록 및 분석실험 특정한 기능적인 점수, 매핑 및 실험. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | ClinicalTrials.gov의 임상 시험 - 검색, 세부 사항, 스폰서, 조사, endpoints 및 자격.  |
 | 임상 Genomics · `clinical-genomics` | ClinGen, CIViC, 열린 대상, ClinPGx | 30 | 임상 genomics 지식 기초: ClinGen 치료, CIViC 임상 증거, 그리고 Open Targets 플랫폼, 플러스 ClinPGx pharmacogenomic 기록. |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 구조 및 분자 상호 작용 — PDB 구조, AlphaFold 예측, EMDB cryo-EM 항목, Complex Portal complexes, IntAct 상호 작용 네트워크.  |
@@ -34,7 +34,7 @@ Open-Science v0.34.0에는 **28 데이터 소스 커넥터 298 작업**가 포�
 | 단백질 표기 · `protein-annotation` | InterPro, Pfam, 인간 단백질 아틀라스, STRING | 14 | Protein Domain Architecture, 가족/실란 회원, 인터프로/Pfam, Human Protein Atlas 및 STRING을 통한 식각 atlas 및 상호 작용 네트워크. |
 | 암 모델 · `cancer-models` | cBioPortal의 특징 | 10 | 연구, mutations, 복사 번호, 샘플, 환자, 임상 특성 및 분자 프로파일 표현. |
 | RNA · `rna` | Rfam | 9 | 비 코딩 RNA 제품군 데이터 (metadata, 정렬, 모델, 구조) Rfam을 통해.  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, 메타보라이트, MGnify, PRIDE, ENA | 23 | Omics 연구 및 실행; ENA FASTQ/submission 재고, PRIDE 및 MGnify 결과 파일 메타데이터. |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, 메타보라이트, Metabolomics Workbench, MGnify, PRIDE, ENA | 26 | Omics 연구 / 실행 메타 데이터 및 파일 재고; metabolomics 표본, 요인, 분석 및 화합물 기록. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Cell-type identity, 마커 유전자, 소스 데이터 세트, 그리고 CELLxGENEGuide Cell을 통해 조직.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 유전자 조절 기능 genomics - ENCODE 실험 / 생물 샘플 / 파일, JASPAR TF 바인딩 프로파일 및 UniBind ChIP-seq TFBS.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Funding-opportunity search (Grants.gov) 및 항체 카탈로그 조회 (Antibody Registry).  |
@@ -45,6 +45,8 @@ Open-Science v0.34.0에는 **28 데이터 소스 커넥터 298 작업**가 포�
 | · · `hmmer` | EMBL-EBI 헬멧3 | 3 | 프로그램별 단백질/프로필/분리 검색, 작업 상태 및 결과. |
 | InterProScan · `interproscan` | EMBL-EBI InterProScan에 대한 정보 | 2 | 상태 및 TSV는 기존의 주석 작업을 보고합니다. 제출 없음. |
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Pathway 검색, 최고 통로, 그래프 쿼리 및 BioPAX 서브모델 수출. |
+| Alliance Genome Resources · `alliance` | Genome 자원의 동맹 | 8 | 인간 및 모델 조직 유전자, 정형화, 질병 모델, 페형화, 알레르기 및 표현. |
+| CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Single-cell 컬렉션 및 데이터 세트, 출판된 버전, 파일 형식, 크기 및 다운로드 URL. |
 
 오프라인 Molecule 도구는 [사이트맵](viewers.md)에 덮여 있습니다. 각 데이터 소스에 노출된 정확한 작업을 위해 [Connector 가동 참고](../reference/connector-operations.md)을 사용합니다.
 
@@ -66,6 +68,21 @@ Open-Science v0.34.0에는 **28 데이터 소스 커넥터 298 작업**가 포�
 **젠도**는 인증 없이 공개 레코드 메타데이터를 노출합니다. 파일 재고가있는 버전 별 레코드 ID 및 액세스 / 라이센스 필드를 유지하십시오. **GDC 소개** 공개 메타데이터 노출; 정의는 권한 부여를 다운로드하지 않으며, 제어 된 파일은 GDC 권한이 필요합니다. [GDC 운영](../reference/connector-operations.md#family-24) · [Zenodo 운영](../reference/connector-operations.md#family-25).
 
 데이터베이스 응답은 연구 단계를 지원할 수 있습니다; 그것은 자동으로 데이터를 다운로드하지 않습니다, 문학 라이브러리에 모든 종이를 추가하거나 완전한 분석을 실행. 저장하고 싶은 기록과 파일을 지정합니다.
+
+## 단일 셀, 모델 조직 및 변형 효과 데이터 {/* #single-cell-model-organisms */}
+
+아래 항목 검색 **Settings → Connectors**, **메인 에이전트**에 대한 가용성을 활성화, 다음 생물을 설명, 연구 질문 및 기록 당신의 대화에 유지. 이 새로운 작업은 사용자 정의 MCP 서버, API 키 또는 NCBI 연락처 이메일없이 공공 데이터를 읽습니다. 동일한 Connector에 있는 다른 서비스는 다른 필요조건이 있을 수 있습니다.
+
+| 이름 &#42; | 할 수 있는 것 | 결과를 사용하는 방법 |
+| --- | --- | --- |
+| CELLxGENE Discover | 생물, 조직, 질병, 분석실험 또는 세포 유형에 의하여 단세포 datasets를 찾아내십시오; 버전 및 파일 inventories 검사 | Ontology 필터는 정확한 라벨 또는 ID를 사용하며 AND와 결합됩니다. 고정 된 출판물에 대한 dataset_version_id 유지; dataset_id는 현재 버전에 해결합니다. 파일 다운로드 또는 Census expression matrices를 쿼리하지 않고 가능한 다운로드 URL을 반환합니다. 셀 타입 설명 및 마커에 대한 별도의 CellGuide을 사용하십시오. |
+| Alliance Genome Resources | Query 인간, 마우스, 쥐, 플라이, 웜, zebrafish, 효모 및 서리 유전자, 정형화, 질병 모델, 페인 유형 및 표현 | 검색 및 다음 반환된 유전자 ID 전에 유기체를 확인합니다. 증거와 정형성 끈전류를 포함합니다; 모델-편리 현상은 인간의 질병 결론이 아닙니다. |
+| 잔류물 → MaveDB | 변형 효과 점수 세트, 분석실험 방법, CSV 점수 페이지 및 기존 VRS 매핑 찾기 | URN, 라이센스, 분석실험 방법 및 점수 교정을 유지하십시오. 기능적인 점수는 임상 적인 경로를 분류하지 않습니다. CSV은 start/limit pagination을 사용하고 텍스트가 여전히 파일에 저장해야합니다. Mapping retrieval은 liftover를 수행하지 않습니다. |
+| Omics Archives → Metabolomics Workbench | 검색 연구; 샘플, 요소, 분석 및 ST 액세스에 의해 대사를 검사; 화합물 구조와 교차 환경 보기 | 요약, 요소, 분석 또는 metabolites를 선택하여 섹션으로 선택하십시오. PubChem을 통한 화합물의 이름을 지원되는 식별자로 먼저 해결합니다. 이 작업은 원시 측정 매트릭스를 다운로드하지 않습니다. |
+
+CELLxGENE 필터링 및 pagination은 각 요청에 대한 업스트림 카탈로그에 로컬로 실행됩니다. 카탈로그는 요청을 변경할 수 있습니다. 출판물을 보관하는 버전 ID를 사용합니다. 허용되지 않은 파일 크기는 -1, 0 바이트입니다. MaveDB 및 Workbench 결과의 누락된 값과 assay 정의를 보존합니다.
+
+[CELLxGENE Discover](../reference/connector-operations.md#family-30), [(주)](../reference/connector-operations.md#family-29), [MaveDB](../reference/connector-operations.md#mavedb_search_score_sets) 및 [Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies)에 대한 정확한 입력을 참조하십시오.
 
 ## 데이터베이스를 사용하여 연결 및 시작 {/* #connect-database */}
 
@@ -173,7 +190,7 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/registry.ts).
+카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts).
 
 ## Sequence 검색 및 정렬 {/* #sequence-tools */}
 

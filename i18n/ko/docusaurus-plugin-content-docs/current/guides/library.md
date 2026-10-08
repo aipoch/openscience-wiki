@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 홈에서 **Library** 열기는 전체 전기를 입력합니다. 프로젝트 작업 공간에서 sidebar의 **Library**은 오른쪽에 컴팩트한 미리보기를 엽니다.
 
-1. **현재 프로젝트**, **All references** 또는 오픈 **컬렉션**를 선택하고 기존 레코드를 찾을 **Search references**를 사용하십시오.
+1. **받은 편지함**, **현재 프로젝트**, **All references** 또는 오픈 **컬렉션**를 선택하고 기존 레코드를 찾을 **Search references**를 사용하십시오.
 2. **초록**을 선택하여 요약 및 **Show more**을 읽을 수 있습니다. **PDF 없음**는 기록이 PDF이 없다는 것을 의미합니다; 요약은 전체 텍스트가 아닙니다.
 3. 스마트 컬렉션, 수입 및 기록 관리를 위해 **문헌에서 열기** 또는 **문헌에서 보기**을 기록합니다.
 
@@ -46,6 +46,28 @@ workspace **Library** 미리보기에서, 현재의 Composer에 대한 참조를
 ![대화 초안에 추가 된 기존 용지 참조, 질문 및 수동 전송 준비](/img/open-science/v0340/library-add-to-draft.webp)
 
 **견적 요청**는 메타데이터와 첨부 파일을 엽니다. **문헌에서 보기**은 전체 라이브러리 레코드를 엽니다. 참고 추가는 전체 텍스트를 다운로드하지 않습니다. 기록 표시된 **PDF 없음**는 여전히 유효한 메타데이터, 추상 및 다른 기존 콘텐츠만 가지고 있습니다.
+
+### 대화 외에도 {/* #workspace-inbox */}
+
+1. workspace **Library → Inbox**을 열고, 에이전트의 저장 설정 카드에서 **받은 편지함 열기**을 선택합니다. 대화는 검토 큐 옆에 열려 있습니다.
+2. **All projects** 및 **Pending 검토** 확인: 이 큐는 프로젝트 전반에 걸쳐 후보를 공개합니다. **Search references**을 사용하여 기존 후보자에게 축소하고 각 제목, DOI, 소스 및 제안 대상을 검사합니다.
+3. **Accept**을 검사한 후보자 또는 **Dismiss**을 선택하여 큐에서 제거하십시오. **Undo**는 검토를 종료 할 수 있도록 해체 된 후보를 복원; 그것은 합격을하지 않습니다.
+4. 몇몇 후보자를 위해, **Batch actions**에, 명시적으로 현재 페이지에 줄을 선정하고, **선택됨**를 확인하고, **Accept**를 선택합니다. 선택은 현재 페이지에 한정됩니다; 쿼리 또는 페이지를 변경하면 삭제됩니다. 다른 세트를 선택하기 전에 **Clear selection** 또는 **Done**을 사용하십시오.
+5. **현재 프로젝트** 또는 **All references**에서 허용된 레코드를 확인하십시오. 수락은 bibliographic 기록을 저장합니다; PDF를 읽지 못합니다. 전체 관리보기 또는 이전 오류 레코드가 필요하면 **문헌에서 열기**을 선택하십시오.
+
+<p className="example-label"><strong>실습 예제</strong> 2 PRISMA 후보자 검토</p>
+
+아래 대화는 Codex을 사용하여 PRISMA 2020 및 2009 문헌을 확인하고 메타데이터를 Inbox로 저장합니다. 자신의 DOIs를 검사 한 후, 하나의 후보를 해소 한 다음 **Undo**을 사용하여 복원하십시오. queue는 두 후보자에서 하나로 돌아갑니다.
+
+![두 명의 후보자는 수락 및 장애 조치와 대화 외에도](/img/open-science/v0341/inbox-review.webp)
+
+활성화 **Batch actions**, 두 레코드를 선택, **선택: 2**을 확인, 다음 **Accept**를 선택합니다.
+
+![2 명시적으로 선택된 후보자: 2](/img/open-science/v0341/inbox-batch.webp)
+
+Inbox는 **Inbox is clear**을 보여줍니다. **현재 프로젝트**로 전환하여 **2 참조**을 볼 수 있으며 여전히 **PDF 없음**를 표시했습니다. PRISMA 2020 문의 실제 출판 연도는 **2021**입니다.
+
+![프로젝트의 허용된 기록 모두, 첨부된 PDF 없음](/img/open-science/v0341/inbox-accepted.webp)
 
 ### 표시 학술 자료 {/* #journal-attributes */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting and common questions"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 # Troubleshooting and common questions
@@ -159,7 +159,7 @@ Technical message meanings are collected in [Diagnostics reference](../reference
 
 ![Selecting session-specific diagnostic sources before a local export](/img/open-science/v0330/session-diagnostics.webp)
 
-Ordinary metadata export excludes private content fields. If a .science export triggers the sensitive-content check, the source list can also contain redacted scanner evidence and the original flagged files. **Original sensitive files are unchecked by default; selecting one includes its original bytes in the archive.** Select only the sources needed and inspect the archive and screenshots before sharing. Export stays local and makes no upload or model request. This is diagnostic evidence, not a research backup; use a [.science package](research-packages.md) for a research handover.
+Ordinary metadata export excludes private content fields. v0.34.1 retains more bounded error context and run/Notebook diagnostic evidence. This does not mean every selected file is fully redacted. If a .science export triggers the sensitive-content check, the source list can also contain redacted scanner evidence and the original flagged files. **Original sensitive files are unchecked by default; selecting one includes its original bytes in the archive.** Select only the sources needed and inspect the archive and screenshots before sharing. Export stays local and makes no upload or model request. This is diagnostic evidence, not a research backup; use a [.science package](research-packages.md) for a research handover.
 
 ## Report a bug or ask the community
 

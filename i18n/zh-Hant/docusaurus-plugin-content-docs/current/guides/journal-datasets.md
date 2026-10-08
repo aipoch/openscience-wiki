@@ -1,7 +1,7 @@
 ---
 title: "期刊資料集與文獻屬性"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -37,7 +37,9 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ![設定期刊標識、出版方屬性及明確的來源和年份](/img/open-science/v0340/journal-column-mapping.webp)
 
-還可使用 **Abbreviation** 和 **External journal ID** 作為標識。外部 ID 需要填寫所屬名稱空間，不同目錄的 ID 不能混用。屬性型別包括 **Text**、**Number**、**Single choice** 和 **Multiple choices**。數值指標可選 Number，ISSN 和分割槽類別不應作為數值處理。
+還可使用 先區分列的角色：用於匹配期刊的身份欄位（名稱、ISSN、縮寫或外部 ID）、需要顯示的 **Journal attribute**，以及不匯入的 **Skip**。檢視對映提示後再確認；自動猜測不代表欄位含義正確。
+
+**Abbreviation** 和 **External journal ID** 作為標識。外部 ID 需要填寫所屬名稱空間，不同目錄的 ID 不能混用。屬性型別包括 **Text**、**Number**、**Single choice** 和 **Multiple choices**。數值指標可選 Number，ISSN 和分割槽類別不應作為數值處理。
 
 行狀態可能為 **Matched**、**New**、**Ambiguous match**、**Invalid** 或 **Duplicate**。匯入前檢查衝突標識和重複行。可返回 **Edit mapping** 修改列角色；提供相應入口時，匯出問題行或明確跳過需要處理的行。New 建立的是期刊條目，不是在文獻庫中新增論文。
 

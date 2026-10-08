@@ -1,7 +1,7 @@
 ---
 title: "Journal datasets and reference attributes"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -36,6 +36,8 @@ CSV, TSV, XLSX and journal bundles are supported, up to **32 MB**. **Download te
 | Journal website | Journal attribute | Text |
 
 ![Mapping journal identity and publisher attributes with an explicit source and year](/img/open-science/v0340/journal-column-mapping.webp)
+
+Choose each column's role first: an identity field used to match journals (name, ISSN, abbreviation or external ID), a **Journal attribute** to display, or **Skip**. Read the mapping hints before confirming; an automatic suggestion does not establish the field's meaning.
 
 **Abbreviation** and **External journal ID** are additional identity options. An external ID needs its namespace; identifiers from different catalogs are not interchangeable. Attribute types include **Text**, **Number**, **Single choice** and **Multiple choices**. Use Number for numeric metrics, not for ISSNs or categorical quartiles.
 

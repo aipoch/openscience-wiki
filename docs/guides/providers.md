@@ -1,7 +1,7 @@
 ---
 title: "Provider and local model setup"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -230,3 +230,5 @@ Select the exact model offered for your active Agent, check its input and reason
 The v0.33.1 provider catalogs add **GPT-6** and **Claude Opus 5.5**. Open the provider's model list and choose an entry supported by the active framework and your account. Catalog presence does not grant access or switch the saved Main model. Validate the provider and send a small request before using a changed model for research.
 
 v0.34.0 adds **MiniMax M3.1 Flash Preview** and **Claude Sonnet 5.5**. Select them from their respective provider's model list and check account access and active-Agent compatibility. This does not automatically replace the saved Main model.
+
+v0.34.1 adds **gpt-6.1-sol** to the Codex model catalog. Select it explicitly in the model picker, then send a small request to confirm account access. Updating the app does not automatically replace the saved Main model.

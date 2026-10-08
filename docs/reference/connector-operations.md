@@ -2,7 +2,7 @@
 title: "Connector operation reference"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Return field names differ by operation. The descriptions and downloadable schema
 
 ## Operation inputs
 
-Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.34.0** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.0.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
+Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.34.1** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.1.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
 
 
 ## Chemistry {/* #family-1 */}
@@ -1255,6 +1255,82 @@ List dbSNP rsIDs in a genomic window (esearch db=snp positional index — NCBI V
 
 ```javascript
 const result = await host.mcp("variants", "dbsnp_search_by_region", {"chrom": "19", "start": 44905000, "stop": 44910000, "assembly": "GRCh38"})
+```
+
+### `mavedb_search_score_sets`
+
+Search public MaveDB multiplexed assays of variant effect (MAVE) score sets by text, such as a gene symbol, protein or assay. No API key or contact email is required. Returns one page with the upstream total when known; functional scores are assay-specific and are not clinical classifications or population frequencies.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `text` | string | **required**; minLength: 1; maxLength: 1000; pattern: &quot;\\S&quot; |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 1000000000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_search_score_sets", {"text":"BRCA1","limit":20})
+```
+
+### `mavedb_get_score_set`
+
+Retrieve a published MaveDB score set by URN, including targets, assay metadata, license, publications and experiment relationships. Includes official full CSV and mapped-variant download URLs for manual download by the user; do not fetch these URLs with raw HTTP to bypass host.mcp. Read the assay methods and score calibration before interpreting functional effects.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `urn` | string | **required**; pattern: &quot;^urn:mavedb:[0-9]&#123;8&#125;-(?:[a-z]+&#124;0)-[1-9][0-9]*$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_score_set", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_download_scores`
+
+Download a CSV page of MaveDB variant scores (default 1000 rows, maximum 10000). Uses start/limit, not offset. Returns original CSV text, including all score columns and NA values, for saving with Notebook file APIs; this tool does not write a local file. Also returns the unpaginated official download URL for manual download by the user; do not fetch these URLs with raw HTTP to bypass host.mcp. Use numVariants from mavedb_get_score_set to plan pages; a page is not the full dataset.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `urn` | string | **required**; pattern: &quot;^urn:mavedb:[0-9]&#123;8&#125;-(?:[a-z]+&#124;0)-[1-9][0-9]*$&quot; |
+| `start` | integer | optional; default: 0; minimum: 0; maximum: 1000000000 |
+| `limit` | integer | optional; default: 1000; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_download_scores", {"urn":"urn:mavedb:00000003-a-1","start":0,"limit":1000})
+```
+
+### `mavedb_get_mapped_variants`
+
+Retrieve existing MaveDB variant mappings for a published score set, including GA4GH VRS preMapped/postMapped objects, reference sequence identifiers, VRS version and mapping errors. This reads mappings already computed by MaveDB; it does not submit variants or perform liftover. The upstream endpoint is unpaginated and the shared 64 MiB response limit applies. For larger datasets, offer the official URL from mavedb_get_score_set for manual download by the user; do not fetch these URLs with raw HTTP to bypass host.mcp. HTTP 404 can mean no mapping records exist, not only that the score set URN is unavailable. Returned records may include failed mappings.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `urn` | string | **required**; pattern: &quot;^urn:mavedb:[0-9]&#123;8&#125;-(?:[a-z]+&#124;0)-[1-9][0-9]*$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_mapped_variants", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_get_experiment`
+
+Retrieve a public MaveDB experiment by experiment URN (without the score set suffix), including methods, publications, experiment set and scoreSetUrns. Supports the special -0 meta-analysis experiment as well as letter-indexed experiments. No authentication is required.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `urn` | string | **required**; pattern: &quot;^urn:mavedb:[0-9]&#123;8&#125;-(?:[a-z]+&#124;0)$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment", {"urn":"urn:mavedb:00000003-a"})
+```
+
+### `mavedb_get_experiment_score_sets`
+
+List the score sets visible to a public reader of a MaveDB experiment. The upstream endpoint filters by visibility and supersession chains, so this is not a complete version history. It returns the selected list without pagination. HTTP 404 can mean no associated score sets are available, not only that the experiment URN is unavailable. Use the returned score set URNs to retrieve functional scores or mappings.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `urn` | string | **required**; pattern: &quot;^urn:mavedb:[0-9]&#123;8&#125;-(?:[a-z]+&#124;0)$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment_score_sets", {"urn":"urn:mavedb:00000003-a"})
 ```
 
 </ToolOperationGroup>
@@ -3668,6 +3744,48 @@ List result-file metadata for one MGnify analysis using API v2: file type, categ
 const result = await host.mcp("omics-archives", "mgnify_get_analysis_files", {"accession": "MGYA00639970"})
 ```
 
+### `workbench_search_compounds`
+
+Look up Metabolomics Workbench compounds by registry number, formula, InChIKey, or a PubChem, HMDB, KEGG, ChEBI, LIPID MAPS or MetaCyc cross-reference. Returns available SMILES, structure identifiers, formula, exact mass and cross-references. Compound names are not a supported input; resolve names with PubChem first.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `field` | string | **required**; enum: [&quot;regno&quot;, &quot;formula&quot;, &quot;inchi_key&quot;, &quot;lm_id&quot;, &quot;pubchem_cid&quot;, &quot;hmdb_id&quot;, &quot;kegg_id&quot;, &quot;chebi_id&quot;, &quot;metacyc_id&quot;] |
+| `query` | string | **required**; minLength: 1; maxLength: 200 |
+| `limit` | integer | optional; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_compounds", {"field": "pubchem_cid", "query": "5793"})
+```
+
+### `workbench_search_studies`
+
+Search public Metabolomics Workbench study summaries by a title substring or institute. Returns study IDs and available species, sample counts, analysis types and license metadata. Use workbench_get_study for a selected study’s samples, experimental factors, analyses or metabolite annotations.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `field` | string | optional; default: &quot;study_title&quot;; enum: [&quot;study_title&quot;, &quot;institute&quot;] |
+| `query` | string | **required**; minLength: 1; maxLength: 200 |
+| `limit` | integer | optional; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_studies", {"query": "Diabetes", "limit": 20})
+```
+
+### `workbench_get_study`
+
+Retrieve one public Metabolomics Workbench study (ST followed by six digits). Select summary for the study record; factors for samples, sample sources and experimental variables; analysis for instrument and experimental metadata; metabolites for measured metabolite annotations and cross-references. Preserves upstream fields and factor text. Does not download raw files or measurement matrices.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `study_id` | string | **required**; pattern: &quot;^ST[0-9]&#123;6&#125;$&quot; |
+| `section` | string | optional; default: &quot;summary&quot;; enum: [&quot;summary&quot;, &quot;factors&quot;, &quot;analysis&quot;, &quot;metabolites&quot;] |
+| `limit` | integer | optional; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_get_study", {"study_id": "ST000001", "section": "factors"})
+```
+
 </ToolOperationGroup>
 
 ## CellGuide {/* #family-19 */}
@@ -4532,6 +4650,263 @@ Fetch a BioPAX sub-model for one or more Pathway Commons IDs/URIs and export it 
 
 ```javascript
 const result = await host.mcp("pathway-commons", "pathway_commons_export", {"uri": ["R-HSA-201451"], "format": "GSEA"})
+```
+
+</ToolOperationGroup>
+
+## Alliance Genome Resources {/* #family-29 */}
+
+<ToolOperationGroup>
+<summary>Show operations and parameters</summary>
+
+### `alliance_get_gene`
+
+Retrieve a model-organism or human gene summary from the Alliance of Genome Resources, including symbol, species, synopsis, genomic location and cross-references.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene_id` | string | **required**; minLength: 1; maxLength: 200 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_search_genes`
+
+Search Alliance genes across human and model-organism databases by symbol, name or identifier.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 200 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_search_genes", {"query": "pax6", "limit": 10})
+```
+
+### `alliance_get_gene_orthologs`
+
+Retrieve cross-species orthologs for an Alliance gene, with orthology stringency and prediction methods.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene_id` | string | **required**; minLength: 1; maxLength: 200 |
+| `stringency` | string | optional; default: &quot;stringent&quot;; enum: [&quot;stringent&quot;, &quot;moderate&quot;, &quot;all&quot;] |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_orthologs", {"gene_id": "HGNC:8620", "stringency": "stringent"})
+```
+
+### `alliance_get_gene_disease_models`
+
+Retrieve disease associations and model-organism disease models involving an Alliance gene.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene_id` | string | **required**; minLength: 1; maxLength: 200 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_disease_models", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_phenotypes`
+
+Retrieve phenotype annotations for a gene across Alliance model organisms.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene_id` | string | **required**; minLength: 1; maxLength: 200 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_phenotypes", {"gene_id": "HGNC:6081", "limit": 20})
+```
+
+### `alliance_get_gene_alleles`
+
+Retrieve alleles and variants associated with an Alliance gene, including disease and phenotype flags.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene_id` | string | **required**; minLength: 1; maxLength: 200 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_alleles", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_expression`
+
+Retrieve expression annotations for an Alliance gene, including developmental stage, anatomical location, provider and evidence.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene_id` | string | **required**; minLength: 1; maxLength: 200 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_expression", {"gene_id": "ZFIN:ZDB-GENE-990415-8"})
+```
+
+### `alliance_get_disease_genes`
+
+Retrieve genes associated with a Disease Ontology term across Alliance human and model-organism data.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `disease_id` | string | **required**; minLength: 1; maxLength: 200 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_disease_genes", {"disease_id": "DOID:162", "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## CELLxGENE Discover {/* #family-30 */}
+
+<ToolOperationGroup>
+<summary>Show operations and parameters</summary>
+
+### `list_collections`
+
+List public CELLxGENE Discover collections; optional case-insensitive substring query over name, description and DOI. Filtering and pagination are client-side over the complete API response, fetched on each call; results may change between calls. Save version IDs for reproducibility.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | optional; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | optional; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collections", {"query":"liver","page_size":10})
+```
+
+### `get_collection`
+
+Retrieve the latest public collection metadata by canonical collection_id, with a page of dataset summaries. Filtering and pagination are client-side over the complete API response, fetched on each call; results may change between calls. Save version IDs for reproducibility.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `collection_id` | string | **required**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | optional; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `list_datasets`
+
+List public datasets. query matches title, collection name or DOI by case-insensitive substring. organism, tissue, disease, assay and cell_type match an exact ontology ID or label (case-insensitive); filters are ANDed. schema_version selects the latest published collection versions matching a major/minor/patch schema and can return historical datasets. Use each result's dataset_version_id with get_dataset_version or list_dataset_files to retain that publication; canonical IDs resolve to the current version. Filtering and pagination are client-side over the complete API response, fetched on each call; results may change between calls. Save version IDs for reproducibility.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | optional; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `collection_id` | string | optional; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `organism` | string | optional; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `tissue` | string | optional; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `disease` | string | optional; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `assay` | string | optional; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `cell_type` | string | optional; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `schema_version` | string | optional; pattern: &quot;^\\d+(\\.\\d+)&#123;0,2&#125;$&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | optional; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_datasets", {"organism":"NCBITaxon:9606","tissue":"liver","page_size":10})
+```
+
+### `get_dataset`
+
+Retrieve full current public dataset metadata, ontology annotations, citation, assets and version ID using canonical collection_id and dataset_id.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `collection_id` | string | **required**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `dataset_id` | string | **required**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6","dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `list_collection_versions`
+
+List published versions of a canonical collection, newest first, retaining version IDs and dataset counts. Filtering and pagination are client-side over the complete API response, fetched on each call; results may change between calls. Save version IDs for reproducibility.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `collection_id` | string | **required**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | optional; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collection_versions", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `get_collection_version`
+
+Retrieve a specific published collection_version_id and a page of its dataset versions; does not resolve to the latest collection. Filtering and pagination are client-side over the complete API response, fetched on each call; results may change between calls. Save version IDs for reproducibility.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `collection_version_id` | string | **required**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | optional; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection_version", {"collection_version_id":"46ac9732-ff1c-4f87-86d7-0488d15aecd3"})
+```
+
+### `list_dataset_versions`
+
+List published versions of a canonical dataset_id, newest first, with schema version and publication dates. Filtering and pagination are client-side over the complete API response, fetched on each call; results may change between calls. Save version IDs for reproducibility.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `dataset_id` | string | **required**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | optional; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_versions", {"dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `get_dataset_version`
+
+Retrieve full metadata and file assets for a specific published dataset_version_id. This ID is distinct from the canonical dataset_id.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `dataset_version_id` | string | **required**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset_version", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
+```
+
+### `list_dataset_files`
+
+Return a download inventory from public dataset assets. Provide either dataset_version_id for a fixed publication, or both collection_id and dataset_id for the current version. After list_datasets with a schema_version filter, pass the returned dataset_version_id to preserve the selected publication. Returns API-provided H5AD/RDS/ATAC assets when available; no binary download, upload manifest or Census expression query.
+
+Provide exactly one input group: `dataset_version_id` / `collection_id` + `dataset_id`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `collection_id` | string | subject to the conditions above; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `dataset_id` | string | subject to the conditions above; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `dataset_version_id` | string | subject to the conditions above; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_files", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
 ```
 
 </ToolOperationGroup>

@@ -2682,5 +2682,11 @@
   },
   "docs.outline.reference.v0340.scope": {
     "message": "期刊数据集、Pathway Commons 与数据库扩展、Linux ARM64、Codex 运行时更新和托盘导航。"
+  },
+  "docs.outline.reference.v0341.title": {
+    "message": "v0.34.1"
+  },
+  "docs.outline.reference.v0341.scope": {
+    "message": "CELLxGENE Discover、Alliance、MaveDB 与 Workbench，工作区 Inbox、研究包导入导出及诊断改进。"
   }
 }

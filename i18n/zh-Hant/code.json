@@ -2605,5 +2605,11 @@
   },
   "docs.outline.workflows.inspect-pathway.title": {
     "message": "檢查通路及其互作網路"
+  },
+  "docs.outline.reference.v0341.scope": {
+    "message": "CELLxGENE Discover、Alliance、MaveDB 與 Workbench，工作區 Inbox、研究包匯入匯出及診斷改進。"
+  },
+  "docs.outline.reference.v0341.title": {
+    "message": "v0.34.1"
   }
 }

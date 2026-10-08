@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v0.34.0は**298 操作で 28 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを300に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
+Open-Science v0.34.1は**324 操作で 30 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを326に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
@@ -22,7 +22,7 @@ Open-Science v0.34.0は**298 操作で 28 のデータソース コネクタ**�
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI Eユーティリティ、PMC IDコンバーター、ヨーロッパPMCによる生物医学文献 — 検索、メタデータ、関連記事、引用ルックアップ、ID変換、完全なテキストと著作権。  |
 | 遺伝子・オントロジー・ `genes` | MyGene、UniProt、OLS、QuickGO、Reactome、g:Profiler、Enrichr | 15 | 遺伝子/タンパク質識別子、UniProtシーケンス検出、GOおよびReactomeアノテーション、およびg:ProfilerおよびEnrichr遺伝子セットの濃縮。 |
 | ゲノム・ `genomes` | 組み立て、UCSC、NCBI、BLAST、Clustalオメガ | 20 | ゲノムのアノテーション、均質学および順序; NCBIタムン/アセンブリ/シーケンスアイデンティティ; BLAST検索とClustal Omegaの複数のシーケンス配列。 |
-| Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | ヒト遺伝的変形 — gnomAD 人口の頻度/対照的、ClinVar レコード/研究(NCBI 間接)、dbSNP、構造的およびミトコンドリア変異体。  |
+| バリアント・ `variants` | gnomAD、ClinVar、dbSNP、MaveDB | 21 | 人口の頻度、臨床記録および試金固有の機能スコア、マッピングおよび実験。 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床トライアル.gov — 検索、詳細、スポンサー、投資家、エンドポイント、および適格性。  |
 | 臨床ゲノム・ `clinical-genomics` | ClinGen、CIViC、オープンターゲット、ClinPGx | 30 | 臨床ゲノムの知識ベース:ClinGenの治験、CIViCの臨床証拠およびオープン ターゲット プラットフォーム、およびClinPGxの薬学の記録。 |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
@@ -34,7 +34,7 @@ Open-Science v0.34.0は**298 操作で 28 のデータソース コネクタ**�
 | タンパク質アノテーション・ `protein-annotation` | InterPro、Pfam、ヒトプロテインアトラス、ストリング | 14 | タンパク質ドメインアーキテクチャ、家族/クランのメンバーシップ、InterPro/Pfam、ヒューマンプロテインアトラス、STRINGによる表現アトラスと相互作用ネットワーク、ネットワークの相互作用の豊かさを含みます。 |
 | がんモデル・ `cancer-models` | cBioPortal(バイオポータル) | 10 | 研究、変異、コピー番号、サンプル、患者、臨床属性および分子プロファイル式。 |
 | RNA · `rna` | Rfam | 9 | Rfam による RNA の家族データ(メタデータ、アライメント、モデル、構造)を非コーディング。  |
-| Omics アーカイブズ・ `omics-archives` | ArrayExpress、GEO、MetaboLights、MGnify、PRIDE、ENA | 23 | Omicsの研究および操業; ENA FASTQ/submission の在庫、PRIDE および MGnify の結果ファイルメタデータ。 |
+| Omics アーカイブズ・ `omics-archives` | ArrayExpress、GEO、MetaboLights、Metabolomics Workbench、MGnify、PRIDE、ENA | 26 | Omics はメタデータとファイルインベントリを学習/実行します。 メタボロミクスのサンプル、要因、分析および化合物レコード。 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | セルックスジーン・セルギドによる細胞型アイデンティティ、マーカー遺伝子、ソースデータセット、組織。  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 遺伝子調整機能ゲノム — ENCODE実験/biosamples/files、JASPAR TF結合プロファイル、UniBind ChIP-seq TFBS。  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 資金調達機会検索(Grants.gov)と抗体カタログ検索(抗体レジストリ)。  |
@@ -45,6 +45,8 @@ Open-Science v0.34.0は**298 操作で 28 のデータソース コネクタ**�
 | ムマー・ `hmmer` | EMBL-EBI HMMER3(エンブレ・エビ・ムマー3) | 3 | プログラム固有のタンパク質/プロファイル/アライメント検索、ジョブの状態と結果。 |
 | インタープロスキャン・ `interproscan` | EMBL-EBI インタープロスキャン | 2 | 既存のアノテーションジョブのステータスとTSVレポート。 投稿なし |
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | パスウェイ検索、トップパスウェイ、グラフクエリ、BioPAXサブモデルエクスポート。 |
+| Alliance Genome Resources · `alliance` | ゲノムリソースのアライアンス | 8 | 人間とモデル組織遺伝子、オルトログ、病気モデル、フェノタイプ、アレルと表現。 |
+| CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 単一セルコレクションとデータセット、公開バージョン、ファイル形式、サイズ、ダウンロードURL。 |
 
 [科学ビューア](viewers.md)でオフラインのモレキュラーツールがカバーされています。 それぞれのデータソースで露出した正確な操作については、[Connectorの操作の参照](../reference/connector-operations.md) を使用します。
 
@@ -66,6 +68,21 @@ Open-Science v0.34.0は**298 操作で 28 のデータソース コネクタ**�
 **ゼノドー** は、認証なしで公開レコードメタデータを公開します。 バージョン固有のレコードIDとアクセス/ライセンスフィールドをファイル在庫で保持します。 **GDCの特長** は公開メタデータを公開します。 マニフェストは、認可をダウンロードせず、管理されたファイルはGDC権限が必要です。 [GDC の操作](../reference/connector-operations.md#family-24) · [Zenodo オペレーション](../reference/connector-operations.md#family-25).
 
 データベースの応答は、研究のステップをサポートすることができます。 自動的にデータをダウンロードし、すべての論文を文献ライブラリに追加するか、完全な分析を実行しません。 保存したいレコードやファイルを指定します。
+
+## 単一セル、モデルオーナリズムおよび変形欠陥データ {/* #single-cell-model-organisms */}
+
+**Settings → Connectors** のエントリを検索し、**メインエージェント** の可用性を有効にします。その後、生物、研究の質問と記録を記述して、会話を維持します。 これらの新しい操作は、カスタムMCPサーバー、APIキーまたはNCBIの連絡先メールなしで公開データを読み取ります。 同じConnectorの他のサービスに異なった条件があります。
+
+| エントリーフォーム | できること | 結果の使い方 |
+| --- | --- | --- |
+| CELLxGENE Discover | 生物、組織、病気、アッセイまたは細胞のタイプによって単一セルのデータセットを見つけて下さい; バージョンとファイルの在庫を調べる | オントロジーフィルタは、正確なラベルまたはIDを使用しており、 AND と組み合わせています。 dataset_version_idを固定出版物に保持する。 dataset_idは、現在のバージョンに解決します。 ファイルのダウンロードやCensus式をクエリせずに、利用可能なダウンロードURLを返します。 セルタイプの記述およびマーカーのための別のCellGuideを使用して下さい。 |
+| Alliance Genome Resources | 人間、マウス、ラット、フライ、ワーム、ゼブラフィッシュ、イースト、カエル遺伝子、オルソログ、疾患モデル、フェノタイプ、および式を問い合わせる | 返された遺伝子IDの後に生物を検索し、確認します。 証拠と整形外科の連鎖を保持する。 人体疾患の結論ではなく、モデル・オーガニズムの現象です。 |
+| バリアント → MaveDB | バリアント効果のスコアセット、アッセイメソッド、CSVスコアページ、既存のVRSマッピングを見つける | URN、ライセンス、アッセイメソッド、スコアキャリブレーションをキープします。 機能的なスコアは臨床病原性分類ではないです。 CSVは、開始/制限のペジネーションと返されたテキストをファイルに保存する必要があります。 マッピングの検索は、リフトオーバーを実行しません。 |
+| Omics アーカイブ → Metabolomics Workbench | 調査研究; STアクセスによるサンプル、要因、分析、代謝検査 化合物構造とクロス環境を調べる | セクションで要約、要因、分析、または代謝を選択します。 サポートされている識別子に PubChem を介して化合物名を解決します。 これらの操作は生の測定のマトリックスをダウンロードしません。 |
+
+CELLxGENE フィルタリングとパジネーションは、各リクエストに対して取得された上流カタログの上にローカルで実行されます。 カタログはリクエスト間で変更する場合があります。 バージョン ID を使用して、出版物を保持します。 報告されていないファイルサイズは -1 で、ゼロバイトではありません。 MaveDB と Workbench の結果の欠落した値とアッセイの定義を保存します。
+
+[CELLxGENE Discover](../reference/connector-operations.md#family-30)、[パートナー](../reference/connector-operations.md#family-29)、[MaveDB](../reference/connector-operations.md#mavedb_search_score_sets)、[Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies)の入力を正確に参照してください。
 
 ## データベースの接続と起動 {/* #connect-database */}
 
@@ -173,7 +190,7 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/registry.ts)。
+カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts)。
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 

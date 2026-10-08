@@ -1,7 +1,7 @@
 ---
 title: "Dépannage et questions communes"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 # Dépannage et questions communes {/* #troubleshooting-and-common-questions */}
@@ -159,7 +159,7 @@ Les significations des messages techniques sont collectées dans [Référence de
 
 ![Sélection de sources de diagnostic spécifiques à une session avant une exportation locale](/img/open-science/v0330/session-diagnostics.webp)
 
-L'exportation de métadonnées ordinaires exclut les champs de contenu privé. Si une exportation de .science déclenche la vérification du contenu sensible, la liste des sources peut également contenir des preuves du scanner expurgé et les fichiers marqués d'origine. **Les fichiers sensibles originaux sont décochés par défaut; sélection d'un octets dans l'archive.** Sélectionnez uniquement les sources nécessaires et inspectez l'archive et les captures d'écran avant de partager. Exporter reste local et ne fait aucune demande de téléchargement ou de modèle. Il s'agit de données diagnostiques, et non d'un soutien de recherche; utiliser un [Paquet .science](research-packages.md) pour un transfert de recherche.
+L'exportation de métadonnées ordinaires exclut les champs de contenu privé. v0.34.1 conserve un contexte d'erreur plus limité et des preuves diagnostiques d'exécution/Notebook. Cela ne signifie pas que chaque fichier sélectionné est entièrement expurgé. Si une exportation de .science déclenche la vérification du contenu sensible, la liste des sources peut également contenir des preuves du scanner expurgé et les fichiers marqués d'origine. **Les fichiers sensibles originaux sont décochés par défaut; sélection d'un octets dans l'archive.** Sélectionnez uniquement les sources nécessaires et inspectez l'archive et les captures d'écran avant de partager. Exporter reste local et ne fait aucune demande de téléchargement ou de modèle. Il s'agit de données diagnostiques, et non d'un soutien de recherche; utiliser un [Paquet .science](research-packages.md) pour un transfert de recherche.
 
 ## Signaler un bug ou demander à la communauté {/* #report-a-bug-or-ask-the-community */}
 

@@ -2,7 +2,7 @@
 title: ".science 연구 패키지"
 description: "파일 및 증거와 함께 세션을 내보내고 다른 프로젝트에 대한 연구 기록을 검사합니다."
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -56,6 +56,10 @@ Open-Science v0.31.1의 이 예는 [GSE60450 샘플 QC 테이블](../reference/e
 
 ## 프로젝트로 가져 오기 {/* #import-and-inspect-a-package */}
 
+프로젝트의 빈 **New conversation** 페이지에 **이전 연구 가져오기**을 선택하고 `.science` 파일을 선택하고 해당 페이지에 파일을 드래그하십시오. 기존 대화에 파일을 첨부하는 것은 연구 패키지 수입 흐름이 아닙니다. 가져오기 미리보기에서 대상 프로젝트와 내용을 검토하고, 확인, 그리고 읽기 전용 기록을 열기 전에 완료 기다립니다.
+
+![빈 대화 페이지에 이전 연구 가져 오기](/img/open-science/v0341/package-entry.webp)
+
 1. 대상 프로젝트 메뉴를 열고 **Import Session package…**을 선택하거나 그 프로젝트에 하나의 `.science` 파일을 드롭합니다. 관련 파일을 직접 방문하면 대상 프로젝트를 선택할 수 있습니다.
 2. 패키지 미리보기, 목적지 및 포함 또는 omitted 내용을 검토 한 다음 수입을 확인합니다.
 3. 완료 및 **Open imported Session**을 선택하십시오.
@@ -103,6 +107,12 @@ Keep everything in English and return links to both new files.
 **Run in background**을 선택하여 대화 상자가 숨겨져있는 작업을 계속하십시오. 현재 파일, 진행 상황 및 디스크 활동을 검사하기 위해 창의 배경 진도 항목에서 세부 정보를 엽니다. 수출된 파일을 검사하기 전에 완료를 기다리거나 수입 된 세션을 열어보십시오.
 
 ![연구-패키지 전송 설정에서 Disk activity limit](/img/open-science/v0333/package-transfer.webp)
+
+## 수출 플래그가 민감한 콘텐츠 {/* #sensitive-export */}
+
+민감한 콘텐츠 검사에서 내보내기 중지하면 **민감한 콘텐츠 증거**을 확장하고 파일들을 검사합니다. 소스에서 credentials 또는 개인 자료를 제거하고 공유하지 않을 때 새로운 수출을 시작합니다.
+
+파열 재료가 의도적으로 허가 된 복부의 일부인 경우, 실패한 수출은 **위험을 이해했으며 내보내기를 계속합니다**, **위험을 감수하고 내보내기**에 의해 따랐습니다. 이것은 조각된 내용 **적색 없이**를 포함합니다; 그것은 개인 정보 보호 필터가 아닙니다. acknowledgment는 그 수출 시도에 속하고 실패 후에 다시 선정되어야 합니다. 공유하기 전에 결과 패키지를 검토하십시오. 문제 해결 증거 대신 [진단 정보 내보내기](troubleshooting.md#session-diagnostics)을 사용하십시오.
 
 ## 취소 또는 송금 {/* #cancel-or-retry-a-transfer */}
 

@@ -1,7 +1,7 @@
 ---
 title: "문제 해결 및 일반적인 질문"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 # 문제 해결 및 일반적인 질문 {/* #troubleshooting-and-common-questions */}
@@ -159,7 +159,7 @@ Windows 오류는 HTTP 상태 코드의 운영 체제 코드입니다. 복구가
 
 ![지역 수출 전에 세션별 진단 소스 선택](/img/open-science/v0330/session-diagnostics.webp)
 
-Ordinary metadata 수출은 개인적인 내용 분야를 제외합니다. .science 수출이 민감한 콘텐츠 검사를 트리거하면 소스 목록은 redacted 스캐너 증거와 원본 조각 파일이 포함될 수 있습니다. **Original 민감한 파일은 기본적으로 검사되지 않습니다. 선택은 아카이브에서 원래 바이트를 포함합니다.** 필요한 소스만 선택하고 공유하기 전에 아카이브 및 스크린 샷을 검사합니다. 수출은 지역 주민을 유지하고 업로드 또는 모델 요청을하지 않습니다. 이것은 진단 증거, 연구 백업이 아닙니다; 연구 handover를 위한 [.science 패키지](research-packages.md)를 사용하십시오.
+Ordinary metadata 수출은 개인적인 내용 분야를 제외합니다. v0.34.1은 더 경계된 오류 컨텍스트 및 run/Notebook 진단 증거를 유지합니다. 이 모든 선택된 파일이 완전히 적습니다. .science 수출이 민감한 콘텐츠 검사를 트리거하면 소스 목록은 redacted 스캐너 증거와 원본 조각 파일이 포함될 수 있습니다. **Original 민감한 파일은 기본적으로 검사되지 않습니다. 선택은 아카이브에서 원래 바이트를 포함합니다.** 필요한 소스만 선택하고 공유하기 전에 아카이브 및 스크린 샷을 검사합니다. 수출은 지역 주민을 유지하고 업로드 또는 모델 요청을하지 않습니다. 이것은 진단 증거, 연구 백업이 아닙니다; 연구 handover를 위한 [.science 패키지](research-packages.md)를 사용하십시오.
 
 ## 버그를보고 또는 커뮤니티에 요청 {/* #report-a-bug-or-ask-the-community */}
 

@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.34.0**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.0.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
+Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.34.1**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.1.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
 
 
 ## 化学化学品 {/* #family-1 */}
@@ -1255,6 +1255,82 @@ const result = await host.mcp("variants", "dbsnp_get_rsids", {"rsids": ["rs7412"
 
 ```javascript
 const result = await host.mcp("variants", "dbsnp_search_by_region", {"chrom": "19", "start": 44905000, "stop": 44910000, "assembly": "GRCh38"})
+```
+
+### `mavedb_search_score_sets` {/* #mavedb_search_score_sets */}
+
+遺伝子記号、タンパク質、アッセイなど、テキストによる多様効果(MAVE)スコアセットの公開MaveDBの多重化アッセイを検索します。 APIキーまたは連絡先メールは必要ありません。 既知のとき、上流合計で1ページを返します。 機能的なスコアは、アッセイ固有のものであり、臨床的分類や人口の頻度ではありません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `text` | 文字列 | **必須**; 最長: 1; 最高長さ: 1000; パターン: "\\S" |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000000 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_search_score_sets", {"text":"BRCA1","limit":20})
+```
+
+### `mavedb_get_score_set` {/* #mavedb_get_score_set */}
+
+URNが作成したMaveDBのスコアを、ターゲット、アッセイメタデータ、ライセンス、出版物、実験関係など取得します。 公式フルCSVと、ユーザによる手動ダウンロード用のマップ付きvariantダウンロードURLが含まれています。 これらの URL を 生の HTTP で取得して host.mcp をバイパスしません。 機能効果を解釈する前に、アッセイメソッドとスコアキャリブレーションを読みます。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `urn` | 文字列 | **必須**; パターン: "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)-&#91;1-9&#93;&#91;0-9&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_score_set", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_download_scores` {/* #mavedb_download_scores */}
+
+MaveDBのバリエーションスコアのCSVページ(デフォルト1000行、最大10000)をダウンロードします。 オフセットではなく、スタート/リミットを使用します。 NotebookファイルAPIで保存するために、すべてのスコア列とNA値を含む元のCSVテキストを返します。 このツールはローカルファイルを書きません。 また、ユーザによる手動ダウンロード用の非公式のダウンロードURLを返します。 これらの URL を 生の HTTP で取得して host.mcp をバイパスしません。 mavedb_get_score_set から numVariants を使用してページを計画します。 ページはフルデータセットではありません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `urn` | 文字列 | **必須**; パターン: "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)-&#91;1-9&#93;&#91;0-9&#93;&#42;$" |
+| `start` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000000 |
+| `limit` | 整数 | 任意; デフォルト: 1000; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_download_scores", {"urn":"urn:mavedb:00000003-a-1","start":0,"limit":1000})
+```
+
+### `mavedb_get_mapped_variants` {/* #mavedb_get_mapped_variants */}
+
+GA4GH VRS プレマッピング/ポストマッピングオブジェクト、参照シーケンス識別子、VRS バージョン、マッピングエラーを含む、公開されたスコアセット用の既存の MaveDB バリアントマッピングを取得します。 これは、既にMaveDBによって計算されたマッピングを読みます。 バリアントを提出したり、リフターを実行したりしません。 上流エンドポイントは未発で、共有された64 MiB応答の制限が適用されます。 より大きなデータセットの場合、mavedb_get_score_setから公式のURLをユーザーに手動でダウンロードできます。 これらの URL を 生の HTTP で取得して host.mcp をバイパスしません。 HTTP 404 は、URN のスコアセットが利用できなくなっただけでなく、マッピングレコードが存在しません。 返されたレコードには、失敗したマッピングが含まれる場合があります。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `urn` | 文字列 | **必須**; パターン: "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)-&#91;1-9&#93;&#91;0-9&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_mapped_variants", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_get_experiment` {/* #mavedb_get_experiment */}
+
+URN(スコアセットサフィックスなし)を実験で公開するMaveDB実験を、メソッド、出版物、実験セット、およびスコアセットUrnsを含む。 特殊な-0メタ解析実験やレターインデックス実験にも対応しています。 認証は必要ありません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `urn` | 文字列 | **必須**; パターン: "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)$" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment", {"urn":"urn:mavedb:00000003-a"})
+```
+
+### `mavedb_get_experiment_score_sets` {/* #mavedb_get_experiment_score_sets */}
+
+MaveDB実験の公開リーダーに表示されるスコアセットをリストします。 視認性と監視チェーンによる上流エンドポイントフィルタなので、完全なバージョン履歴ではありません。 選択されたリストをペジネーションなしで返します。 HTTP 404は、実験URNが利用できなくなるだけでなく、関連するスコアセットは使用できません。 返されたスコアセットURNを使用して、機能的なスコアまたはマッピングを取得します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `urn` | 文字列 | **必須**; パターン: "^urn:mavedb:&#91;0-9&#93;&#123; 8&#125;-(?:&#91;a-z&#93;+&#124; 0)$" |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment_score_sets", {"urn":"urn:mavedb:00000003-a"})
 ```
 
 </ToolOperationGroup>
@@ -3668,6 +3744,48 @@ API v2 を使用した 1 つの MGnify 解析の result-file メタデータ: �
 const result = await host.mcp("omics-archives", "mgnify_get_analysis_files", {"accession": "MGYA00639970"})
 ```
 
+### `workbench_search_compounds` {/* #workbench_search_compounds */}
+
+レジストリ番号、式、InChIKey、または PubChem、HMDB、KEGG、ChEBI、LIPID MAPSまたはMetaCycのクロスリファレンスでMetabolomics Workbench化合物を調べます。 利用可能なSMILES、構造識別子、式、正確な質量とクロス環境を返します。 コンパウンド名はサポートされていない入力です。 PubChem で名前を解決します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `field` | 文字列 | **必須**; enum: &#91; &#93;"レグノ", , "仕様書", , "inchi_key", , "lm_id", , "pubchem_cid", , "hmdb_id", , "kegg_id", , "chebi_id", , "metacyc_id". . . |
+| `query` | 文字列 | **必須**; 最長: 1; 最高長さ: 200 |
+| `limit` | 整数 | 任意; デフォルト: 100; 最小値: 1; 最高: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_compounds", {"field": "pubchem_cid", "query": "5793"})
+```
+
+### `workbench_search_studies` {/* #workbench_search_studies */}
+
+タイトルのサブストリングまたは研究所で公開Metabolomics Workbenchの勉強要約を検索します。 学習 ID と利用可能な種、サンプル数、分析タイプ、ライセンスメタデータを返します。 選択した研究のサンプル、実験的要因、分析、または代謝のアノテーションに workbench_get_study を使用します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `field` | 文字列 | 任意; デフォルト: "study_title"; enum: &#91;"study_title", "研究所"&#93; |
+| `query` | 文字列 | **必須**; 最長: 1; 最高長さ: 200 |
+| `limit` | 整数 | 任意; デフォルト: 100; 最小値: 1; 最高: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_studies", {"query": "Diabetes", "limit": 20})
+```
+
+### `workbench_get_study` {/* #workbench_get_study */}
+
+Metabolomics Workbench のパブリックスタディを 1 回取得します。 (ST は 6 桁続きます。) 研究記録の要約を選択します。 サンプル、サンプルソースおよび実験変数の要因; 計測器や実験用メタデータ解析 測定された代謝物のアノテーションおよび交差参照のための新陳代謝物。 上流フィールドと要素テキストを保存します。 生のファイルや測定のマトリックスをダウンロードしません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `study_id` | 文字列 | **必須**; パターン: "^ST&#91;0-9&#93;&#123; 6&#125;$" |
+| `section` | 文字列 | 任意; デフォルト: "summary"; enum: &#91;"summary"、"factors"、"analysis"、"metabolites"&#93; |
+| `limit` | 整数 | 任意; デフォルト: 100; 最小値: 1; 最高: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_get_study", {"study_id": "ST000001", "section": "factors"})
+```
+
 </ToolOperationGroup>
 
 ## セルガイド {/* #family-19 */}
@@ -4532,6 +4650,263 @@ const result = await host.mcp("pathway-commons", "pathway_commons_graph", {"kind
 
 ```javascript
 const result = await host.mcp("pathway-commons", "pathway_commons_export", {"uri": ["R-HSA-201451"], "format": "GSEA"})
+```
+
+</ToolOperationGroup>
+
+## Alliance Genome Resources {/* #family-29 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `alliance_get_gene` {/* #alliance_get_gene */}
+
+シンボル、種、相乗症、ゲノム位置、クロス環境など、ゲノム資源の同盟からモデル組織やヒト遺伝子の要約を取得します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `gene_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 200 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_search_genes` {/* #alliance_search_genes */}
+
+シンボル、名前、または識別子によって人間とモデル組織のデータベース全体でアライアンス遺伝子を検索します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `query` | 文字列 | **必須**; 最長: 1; 最高長さ: 200 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_search_genes", {"query": "pax6", "limit": 10})
+```
+
+### `alliance_get_gene_orthologs` {/* #alliance_get_gene_orthologs */}
+
+同盟遺伝子のクロス・スペクシー・オルドログを、整形外科的連鎖と予測方法で取得します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `gene_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 200 |
+| `stringency` | 文字列 | 任意; デフォルト: "stringent"; enum: &#91;"stringent"、"moderate"、"all"&#93; |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_orthologs", {"gene_id": "HGNC:8620", "stringency": "stringent"})
+```
+
+### `alliance_get_gene_disease_models` {/* #alliance_get_gene_disease_models */}
+
+同盟遺伝子を巻き起こす疾患の関連付けやモデル組織病モデルの取得。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `gene_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 200 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_disease_models", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_phenotypes` {/* #alliance_get_gene_phenotypes */}
+
+アライアンスモデルの生物を横断する遺伝子に対するフェノ型アノテーションを取得します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `gene_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 200 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_phenotypes", {"gene_id": "HGNC:6081", "limit": 20})
+```
+
+### `alliance_get_gene_alleles` {/* #alliance_get_gene_alleles */}
+
+病気やフェノタイプのフラグを含むアライアンス遺伝子に関連するアレルや異体を取得します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `gene_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 200 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_alleles", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_expression` {/* #alliance_get_gene_expression */}
+
+開発段階、解剖学的位置、提供者および証拠を含むアライアンス遺伝子の発現アノテーションを取得します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `gene_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 200 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_expression", {"gene_id": "ZFIN:ZDB-GENE-990415-8"})
+```
+
+### `alliance_get_disease_genes` {/* #alliance_get_disease_genes */}
+
+同盟の人間とモデル組織のデータを横断する疾患腫瘍学用語に関連する遺伝子を取得します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `disease_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 200 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_disease_genes", {"disease_id": "DOID:162", "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## CELLxGENE Discover {/* #family-30 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `list_collections` {/* #list_collections */}
+
+公開CELLxGENE Discoverコレクションを一覧表示する。 任意場合無感覚の副ひもは名前、記述およびDOI上の照会を尋ねます。 フィルタリングとペジネーションは、クライアント側で完全なAPI応答を経由して、各呼び出しで取得します。 結果は、呼び出し間で変更される可能性があります。 バージョン ID を再現性保存します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `query` | 文字列 | 任意; 最長: 1; 最高長さ: 500; パターン: "\\S" |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 1000000 |
+| `page_size` | 整数 | 任意; デフォルト: 25; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collections", {"query":"liver","page_size":10})
+```
+
+### `get_collection` {/* #get_collection */}
+
+データセットの要約のページで、canonical collection_id による最新の公開コレクションメタデータを取得します。 フィルタリングとペジネーションは、クライアント側で完全なAPI応答を経由して、各呼び出しで取得します。 結果は、呼び出し間で変更される可能性があります。 バージョン ID を再現性保存します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `collection_id` | 文字列 | **必須**; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 1000000 |
+| `page_size` | 整数 | 任意; デフォルト: 25; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `list_datasets` {/* #list_datasets-1 */}
+
+パブリックデータセットをリストします。 クエリは、ケース・インセンティブ・サブストリングにより、タイトル、コレクション名、またはDOIにマッチします。 生物、組織、病気、アッセイおよびcell_typeは厳密な腫瘍学IDかラベル(場合の無感覚);に一致します; フィルターは ANDED です。 schema_versionは、主要な/マイナー/パッチスキーマと一致する最新の公開されたコレクションバージョンを選択し、歴史的なデータセットを返すことができます。 get_dataset_version または list_dataset_files で各結果の dataset_version_id を使用して、その出版物を保持します。 canonical ID は、現在のバージョンに解決します。 フィルタリングとペジネーションは、クライアント側で完全なAPI応答を経由して、各呼び出しで取得します。 結果は、呼び出し間で変更される可能性があります。 バージョン ID を再現性保存します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `query` | 文字列 | 任意; 最長: 1; 最高長さ: 500; パターン: "\\S" |
+| `collection_id` | 文字列 | 任意; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+| `organism` | 文字列 | 任意; 最長: 1; 最高長さ: 500; パターン: "\\S" |
+| `tissue` | 文字列 | 任意; 最長: 1; 最高長さ: 500; パターン: "\\S" |
+| `disease` | 文字列 | 任意; 最長: 1; 最高長さ: 500; パターン: "\\S" |
+| `assay` | 文字列 | 任意; 最長: 1; 最高長さ: 500; パターン: "\\S" |
+| `cell_type` | 文字列 | 任意; 最長: 1; 最高長さ: 500; パターン: "\\S" |
+| `schema_version` | 文字列 | 任意; パターン: "^\d+(\\.\d+)&#123; 0,2&#125;$" |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 1000000 |
+| `page_size` | 整数 | 任意; デフォルト: 25; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_datasets", {"organism":"NCBITaxon:9606","tissue":"liver","page_size":10})
+```
+
+### `get_dataset` {/* #get_dataset */}
+
+正式なcollection_idとdataset_idを使用して、現在のパブリックデータセットメタデータ、オントロジーアノテーション、シテーション、アセット、バージョンIDをすべて取得します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `collection_id` | 文字列 | **必須**; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+| `dataset_id` | 文字列 | **必須**; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6","dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `list_collection_versions` {/* #list_collection_versions */}
+
+公開されたバージョンの正式なコレクション、最初に最新で、バージョン ID とデータセット数を保持します。 フィルタリングとペジネーションは、クライアント側で完全なAPI応答を経由して、各呼び出しで取得します。 結果は、呼び出し間で変更される可能性があります。 バージョン ID を再現性保存します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `collection_id` | 文字列 | **必須**; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 1000000 |
+| `page_size` | 整数 | 任意; デフォルト: 25; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collection_versions", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `get_collection_version` {/* #get_collection_version */}
+
+特定の公開された collection_version_id およびデータセットのバージョンのページを取得します。 最新のコレクションには解決しません。 フィルタリングとペジネーションは、クライアント側で完全なAPI応答を経由して、各呼び出しで取得します。 結果は、呼び出し間で変更される可能性があります。 バージョン ID を再現性保存します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `collection_version_id` | 文字列 | **必須**; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 1000000 |
+| `page_size` | 整数 | 任意; デフォルト: 25; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection_version", {"collection_version_id":"46ac9732-ff1c-4f87-86d7-0488d15aecd3"})
+```
+
+### `list_dataset_versions` {/* #list_dataset_versions */}
+
+公開されたバージョンの正式な dataset_id をリストします。, 最初に最新, スキーマバージョンと出版物の日付. フィルタリングとペジネーションは、クライアント側で完全なAPI応答を経由して、各呼び出しで取得します。 結果は、呼び出し間で変更される可能性があります。 バージョン ID を再現性保存します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `dataset_id` | 文字列 | **必須**; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+| `page` | 整数 | 任意; デフォルト: 1; 最小値: 1; 最高: 1000000 |
+| `page_size` | 整数 | 任意; デフォルト: 25; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_versions", {"dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `get_dataset_version` {/* #get_dataset_version */}
+
+特定の公開されたdataset_version_idのメタデータとファイルアセットをフル取得します。 このIDは、正式なdataset_idと区別します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `dataset_version_id` | 文字列 | **必須**; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset_version", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
+```
+
+### `list_dataset_files` {/* #list_dataset_files */}
+
+パブリックデータセットアセットからダウンロード在庫を返します。 dataset_version_id は固定出版物、または collection_id と dataset_id の両方を現在のバージョンに提供する。 list_datasets を schema_version フィルターで終えたら、返された dataset_version_id をパスして、選択した出版物を保存します。 API-provided H5AD/RDS/ATAC アセットを使用可能に返却します。 バイナリダウンロード、マニフェストまたはCensus式クエリをアップロードしません。
+
+正確に1つの入力グループを提供して下さい:`dataset_version_id`/`collection_id` + `dataset_id`。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `collection_id` | 文字列 | 上記の条件に従う。 パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+| `dataset_id` | 文字列 | 上記の条件に従う。 パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+| `dataset_version_id` | 文字列 | 上記の条件に従う。 パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_files", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
 ```
 
 </ToolOperationGroup>

@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ To reuse a figure or table from an attached PDF, follow [PDF extraction](preview
 
 Opening **Library** from Home enters the full bibliography. In a project workspace, the sidebar's **Library** opens a compact preview on the right.
 
-1. Choose **Current project**, **All references**, or an opened **Collection**, then use **Search references** to find existing records.
+1. Choose **Inbox**, **Current project**, **All references**, or an opened **Collection**, then use **Search references** to find existing records.
 2. Select **Abstract** to read a summary and **Show more** to expand it. **No PDF attached** means that record has no PDF; an abstract is not full text.
 3. For smart collections, imports and record management, choose **Open in Literature**, or **View in Literature** on a record.
 
@@ -46,6 +46,28 @@ For several papers, first enable **Batch actions**, select the records, check th
 ![An existing paper reference added to the conversation draft, ready for a question and manual sending](/img/open-science/v0340/library-add-to-draft.webp)
 
 **Reference details** opens metadata and attachments; **View in Literature** opens the full Library record. Adding a reference does not download its full text. A record marked **No PDF attached** still has only its available metadata, abstract and other existing content.
+
+### Review candidates beside the conversation {/* #workspace-inbox */}
+
+1. Open the workspace **Library → Inbox**, or choose **Open Inbox** on the agent's saved-reference card. The conversation remains open beside the review queue.
+2. Check **All projects** and **Pending review**: this queue contains pending candidates across projects. Use **Search references** to narrow existing candidates, and inspect each title, DOI, source and proposed destination before accepting it.
+3. Choose **Accept** for a checked candidate, or **Dismiss** to remove it from the queue. **Undo** restores a dismissed candidate to pending review; it does not undo an acceptance.
+4. For several candidates, turn on **Batch actions**, explicitly select rows on the current page, verify **Selected**, then choose **Accept**. Selection is limited to the current page; changing the query or page clears it. Use **Clear selection** or **Done** before choosing a different set.
+5. Confirm accepted records in **Current project** or **All references**. Acceptance saves bibliographic records; it does not retrieve missing PDFs. If you need the full management view or previously dismissed records, choose **Open in Literature**.
+
+<p className="example-label"><strong>Worked example</strong> Review two PRISMA candidates</p>
+
+The conversation below uses Codex to look up the PRISMA 2020 and 2009 statements and save their metadata to Inbox. After checking their DOIs, dismiss one candidate, then use **Undo** to restore it; the queue goes from two candidates to one and back to two.
+
+![Two pending candidates beside the conversation with Accept and Dismiss actions](/img/open-science/v0341/inbox-review.webp)
+
+Enable **Batch actions**, select both records, check **Selected: 2**, then choose **Accept**.
+
+![Two explicitly selected candidates with Selected: 2](/img/open-science/v0341/inbox-batch.webp)
+
+Inbox then shows **Inbox is clear**. Switch to **Current project** to see **2 references**, both still marked **No PDF attached**. The PRISMA 2020 statement's actual publication year is **2021**.
+
+![Both accepted records in the project, with no PDFs attached](/img/open-science/v0341/inbox-accepted.webp)
 
 ### Display journal data {/* #journal-attributes */}
 

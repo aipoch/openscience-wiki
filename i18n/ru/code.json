@@ -1748,5 +1748,11 @@
   },
   "docs.outline.workflows.inspect-pathway.title": {
     "message": "Проверить путь и его сеть взаимодействия"
+  },
+  "docs.outline.reference.v0341.scope": {
+    "message": "CELLxGENE Discover, Alliance, MaveDB и Workbench, рабочая область Inbox, импорт и экспорт и диагностические улучшения."
+  },
+  "docs.outline.reference.v0341.title": {
+    "message": "v0.34.1"
   }
 }
