@@ -119,3 +119,7 @@ Keep everything in English and return links to both new files.
 **Run in background** 隐藏进度窗口并继续传输；需要停止时使用 **Cancel**。关闭进度窗口不等于取消操作。
 
 清理未完成时，先处理 **Retry cleanup** 再重试。失败后的 **Try again** 重试原文件和目标位置；需要换包时另行选择。再次导入前先检查已有操作，完成后回读导入的会话与文件。
+
+## 回放收到的研究记录 {/* #replay-import */}
+
+导入完成后，选择 **View replay** 查看记录步骤，或用 **Discuss** 在可写会话中提问。导入的源会话仍保持只读，讨论引用不会恢复原运行环境；需要工作副本时使用 **Fork to continue**。详见[会话回放](session-replay.md)。

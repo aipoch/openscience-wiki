@@ -2,7 +2,7 @@
 title: "Reproduzierbarkeit"
 description: "Führen Sie die erfassten Forschungsschritte erneut aus, vergleichen Sie ein gespeichertes Ergebnis und behalten Sie den Verifizierungsprotokoll."
 last_update:
-  date: '2026-09-17'
+  date: '2026-10-08'
 ---
 
 # Reproduzierbarkeit {/* #reproducibility */}
@@ -88,3 +88,7 @@ v0.30.2 behebt die Wiedergabe von Eingaben, die zuvor in derselben Runde erstell
 Wenn die Vorbereitung von einem früheren Notebook-Zustand abhängt, inspizieren Sie den [Ausführungsnachweis](notebook.md) und führen Sie die erforderliche Vorbereitung erneut aus, bevor Sie ein neues Ergebnis generieren. Halten Sie angehaltene oder unvollständige Prüfungen getrennt von abgeschlossenen Vergleichen.
 
 Wenn Sie bereits ein unterstütztes Lock-Bundle haben und Pakete außerhalb der Anwendung wiederherstellen müssen, folgen Sie dem [Laufzeitwiederherstellungsbedingungen](runtimes.md#conditional-restore). Dieses Verfahren schafft keine fehlende Sperre oder ersetzt die obige Zubereitung. Das Wiederherstellen von Abhängigkeiten allein stellt nicht fest, dass sich Outputs reproduzieren.
+
+## Überprüfen Sie die Geschichte vor dem Wiederholen {/* #replay-vs-verification */}
+
+Verwenden Sie [Session Replay](session-replay.md), um die aufgezeichnete Reihenfolge der Nachrichten, die Tool-Aktivität und die Dateiversionen zu überprüfen. Replay zeigt gespeicherte Beweise mit rekonstruiertem Präsentations-Timing; es führt keinen Code erneut aus, fragt Datenbanken erneut ab oder stellt fest, dass ein Ergebnis reproduziert wird. Verwenden Sie **Reproducibility** oben, wenn Sie einen neuen Ausführungs- und Ausgabevergleich benötigen.

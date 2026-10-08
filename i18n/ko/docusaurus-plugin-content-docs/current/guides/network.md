@@ -1,7 +1,7 @@
 ---
 title: "네트워크, 프록시 및 패키지 미러"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-08'
 ---
 
 # 네트워크, 프록시 및 패키지 미러 {/* #network-proxies-and-package-mirrors */}
@@ -19,25 +19,31 @@ last_update:
 | 실패하다 | 다음 검사 | 이 실수로 결론을 피하십시오 |
 | --- | --- | --- |
 | 공급자 로그인 실패 | 공급자 인증 및 모델 연결 확인 | Notebook 도메인 설정은 모델 자격 증명을 공급합니다. |
-| 1개의 연구 hostname는 denied입니다 | **Configure domains** 그리고 요청에 있는 정확한 hostname | 광범위한 관련 도메인을 추가하면 수정할 수 있습니다. |
+| 하나의 연구 hostname은 denied입니다. | **Manage access** 그리고 요청에 있는 정확한 hostname | 광범위한 관련 도메인을 추가하면 수정할 수 있습니다. |
 | 패키지 호스트는 이미 허용되지만 CONNECT가 실패합니다. | 설치 로그, 프록시 및 DNS 해상도 | 다른 동일한 허용 클릭은 모든 네트워크 실패를 해결합니다. |
-| 인증서 검증 실패 | 구성 된 CA 번들 및 조직의 신뢰 요구 사항 | 인증서 검증이 필요한 경우 |
-| 패키지 인덱스는 연결 오류 후 일치하는 배포를 반환하지 않습니다. | Earlier 네트워크 메시지 및 선택 Python/platform | 패키지는 존재하지 않아야합니다. |
+| 인증서 검증 실패 | 구성 된 CA 번들 및 조직의 신뢰 요구 사항 | 인증서 검증을 해제해야 합니다. |
+| Package Index는 연결 오류 후 일치하는 배포를 반환합니다. | Earlier 네트워크 메시지 및 선택 Python/platform | 패키지는 존재하지 않아야 합니다 |
 
-## Notebook 도메인 구성 {/* #configure-notebook-domains */}
+<span id="configure-notebook-domains" />
 
-1. **Configure domains**을 선택합니다.
-2. Notebook 네트워크 보호가이 장치에 능동적 인지 여부를 읽어보십시오.
-3. 과학 서비스 그룹을 확장하여 호스트명을 검사합니다. 그룹 스위치 제어 포함 된 목적지. Package-registry/source-code 그룹이 활성화되어 이 빌드에서 잠겨 있습니다.
-4. 추가 소스의 경우 **Domain hostname**의 정확한 호스트 이름을 입력한 다음 **Add**을 선택합니다.
-5. 새로운 초안 행을 검토합니다. **&#91;hostname&#93; 제거**을 사용하지 않도록 사용하십시오.
-6. **Save changes**을 선택하여 의도된 리스트를 지속합니다.
+## 공공 네트워크 규칙 구성 {/* #public-network-rules */}
 
-![Exact-hostname 검증은 와일드카드를 거부합니다.](/img/open-science/walkthrough-2026-09-08/54-network-domain-validation.webp)
+1. **Settings → Network → Manage access**을 엽니다. **Public internet access** 을 읽으려면 공개 HTTPS 읽음이 진행되고 요청이 승인되어야합니다.
+2. **Built-in services** 검사. 그룹은 **Required**이 활성화되어 있음을 나타냅니다. 다른 그룹은 작업을 선택 할 수 있습니다.
+3. **Custom public domains**의 밑에, 정확한 **Domain hostname**를 입력하고, 그 후에 **Add to list**를 선택합니다. **Save changes** 이전의 초안 항목을 검토합니다.
 
-`data.example.org`과 같은 호스트명을 입력하고, 계획, 경로, 포트, 와일드 카드 또는 IP 주소가 없습니다. **Enter a hostname only, without a scheme, path, port, or wildcard.**의 경우, 그 부분을 제거하고 hostname을 저장합니다.
+public-domain 규칙은 그 호스트 이름에 데이터를 보낼 수 있습니다; 그것은 하위 도메인을 커버하지 않거나 개인 주소에 액세스 권한을 부여하지 않습니다. 계획, 경로, 포트, 와일드 카드 또는 IP 주소없이 호스트 이름을 입력하십시오. 비공개 주소에 대한 호스트 이름은 여전히 적절한 개인 서비스 리뷰를 필요로한다. 이 규칙은 보호된 코드가 링크 또는 검색 아이콘을 따르는 경우도 적용됩니다.
 
-이름에 의해 허용되는 도메인은 여전히 다른 연결 확인을 실패 할 수 있습니다. 예를 들어, `pypi.org`은 허용되지만 `198.18.*`에 해결하면 비공개 목적지로 거부 할 수 있습니다. 이것은 unapproved 도메인에서 구별됩니다.
+## 개인 서비스 신뢰 {/* #trusted-private-services */}
+
+연구 코드가 접근해야 하는 알려진 내부 서비스에만 사용하십시오. 이 컨트롤은 데스크톱 앱에서 사용할 수 있습니다. 전용 서비스 주소만 지원됩니다. localhost, 이 컴퓨터 및 예약 주소는 차단됩니다. 이 필드는 원료 IP 주소 또는 와일드카드를 허용하지 않습니다.
+
+1. **Trusted private services**에서 **Add service**을 선택하고 **Hostname** 및 **Port**를 입력하십시오. 정확한 서비스를 확인; 기본 포트는 443입니다.
+2. **Review service**을 선택합니다. **Add to trusted services**을 선택하기 전에 해결 된 **Approved addresses**을 검사합니다.
+3. 목록을 검토하고 **Save changes**을 선택합니다. DNS는 저장하기 전에 다시 검사됩니다; 주소 변경은 또 다른 검토가 필요합니다.
+4. 특정 서비스에 대한 작은 요청을 복원하고 응답을 검사합니다. 주소 검토는 혼자 인증 또는 서비스 가용성을 테스트하지 않습니다.
+
+보조금은 정확한 hostname, 포트 및 검토 된 주소를 포함합니다. 그것은 보호된 Notebook 및 포탄 부호는 모든 프로젝트의 맞은편에 그 서비스에 자료를 보냅니다. 작업에 대한 접근 권한을 추가합니다. 네트워크 규칙은 보호된 연결을 재설정하고 활동적인 이동을 중단할 수 있습니다; 변경하기 전에 전송을 완료합니다.
 
 ## 프록시 모드 선택 {/* #choose-a-proxy-mode */}
 

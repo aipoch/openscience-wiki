@@ -13,7 +13,7 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v0.34.1에는 **30 데이터 소스 커넥터 324 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 326에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
+Open-Science v0.35.0에는 **33 데이터 소스 커넥터 337 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 339에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
 
 | 커넥터 | 출처 | 작업 | 사용하기  |
 | --- | --- | --- | ---  |
@@ -25,7 +25,7 @@ Open-Science v0.34.1에는 **30 데이터 소스 커넥터 324 작업**가 포�
 | Variants · `variants` | gnomAD, 크린바르, dbSNP, MaveDB | 21 | 인구 빈도, 임상 기록 및 분석실험 특정한 기능적인 점수, 매핑 및 실험. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | ClinicalTrials.gov의 임상 시험 - 검색, 세부 사항, 스폰서, 조사, endpoints 및 자격.  |
 | 임상 Genomics · `clinical-genomics` | ClinGen, CIViC, 열린 대상, ClinPGx | 30 | 임상 genomics 지식 기초: ClinGen 치료, CIViC 임상 증거, 그리고 Open Targets 플랫폼, 플러스 ClinPGx pharmacogenomic 기록. |
-| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 구조 및 분자 상호 작용 — PDB 구조, AlphaFold 예측, EMDB cryo-EM 항목, Complex Portal complexes, IntAct 상호 작용 네트워크.  |
+| 구조 및 상호 작용 · `structures` | PDB, AlphaFold, EMDB, 복합 포털, IntAct | 17 | 구조 및 분자 상호 작용 — PDB 구조, AlphaFold 예측, EMDB cryo-EM 항목, Complex Portal complexes, IntAct 상호 작용 네트워크.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | 비활성 화합물, 약물, 표적, 생물 활성성, 그리고 메커니즘을 통해 ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — 날짜/category, DOI, 저널-publication 링크, 펀더 목록 및 플랫폼 통계에 의해 검색.  |
 | 의약품 규제 · `drug-regulatory` | 오픈FDA | 10 | Drugs@FDA, 상표, FAERS 불리 배출 보고와 약은 회귀합니다. |
@@ -34,7 +34,7 @@ Open-Science v0.34.1에는 **30 데이터 소스 커넥터 324 작업**가 포�
 | 단백질 표기 · `protein-annotation` | InterPro, Pfam, 인간 단백질 아틀라스, STRING | 14 | Protein Domain Architecture, 가족/실란 회원, 인터프로/Pfam, Human Protein Atlas 및 STRING을 통한 식각 atlas 및 상호 작용 네트워크. |
 | 암 모델 · `cancer-models` | cBioPortal의 특징 | 10 | 연구, mutations, 복사 번호, 샘플, 환자, 임상 특성 및 분자 프로파일 표현. |
 | RNA · `rna` | Rfam | 9 | 비 코딩 RNA 제품군 데이터 (metadata, 정렬, 모델, 구조) Rfam을 통해.  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, 메타보라이트, Metabolomics Workbench, MGnify, PRIDE, ENA | 26 | Omics 연구 / 실행 메타 데이터 및 파일 재고; metabolomics 표본, 요인, 분석 및 화합물 기록. |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, 메타보라이트, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | Omics 연구 / 실행 메타 데이터 및 파일 재고; metabolomics 표본, 요인, 분석 및 화합물 기록. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Cell-type identity, 마커 유전자, 소스 데이터 세트, 그리고 CELLxGENEGuide Cell을 통해 조직.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 유전자 조절 기능 genomics - ENCODE 실험 / 생물 샘플 / 파일, JASPAR TF 바인딩 프로파일 및 UniBind ChIP-seq TFBS.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Funding-opportunity search (Grants.gov) 및 항체 카탈로그 조회 (Antibody Registry).  |
@@ -47,6 +47,9 @@ Open-Science v0.34.1에는 **30 데이터 소스 커넥터 324 작업**가 포�
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Pathway 검색, 최고 통로, 그래프 쿼리 및 BioPAX 서브모델 수출. |
 | Alliance Genome Resources · `alliance` | Genome 자원의 동맹 | 8 | 인간 및 모델 조직 유전자, 정형화, 질병 모델, 페형화, 알레르기 및 표현. |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Single-cell 컬렉션 및 데이터 세트, 출판된 버전, 파일 형식, 크기 및 다운로드 URL. |
+| Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 셀 라인 이름과 동의를 찾기, 다음 액세스 정체성 및 품질 annotations를 검사. |
+| Monarch Initiative · `monarch` | Monarch Initiative | 2 | 질병/진-to-phenotype 협회는 생물과 지원 증거를 가진다. |
+| IEDB · `iedb` | Immune Epitope 데이터베이스 | 6 | Epitopes, 항원, T 세포, B 세포 및 MHC 분석실험 및 근원 간행물. |
 
 오프라인 Molecule 도구는 [사이트맵](viewers.md)에 덮여 있습니다. 각 데이터 소스에 노출된 정확한 작업을 위해 [Connector 가동 참고](../reference/connector-operations.md)을 사용합니다.
 
@@ -83,6 +86,26 @@ Open-Science v0.34.1에는 **30 데이터 소스 커넥터 324 작업**가 포�
 CELLxGENE 필터링 및 pagination은 각 요청에 대한 업스트림 카탈로그에 로컬로 실행됩니다. 카탈로그는 요청을 변경할 수 있습니다. 출판물을 보관하는 버전 ID를 사용합니다. 허용되지 않은 파일 크기는 -1, 0 바이트입니다. MaveDB 및 Workbench 결과의 누락된 값과 assay 정의를 보존합니다.
 
 [CELLxGENE Discover](../reference/connector-operations.md#family-30), [(주)](../reference/connector-operations.md#family-29), [MaveDB](../reference/connector-operations.md#mavedb_search_score_sets) 및 [Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies)에 대한 정확한 입력을 참조하십시오.
+
+## 세포 선, 페인팅 및 면역 증거 {/* #cell-lines-phenotypes-immunity */}
+
+지원하다 **Cellosaurus**· **Monarch Initiative** 또는 **IEDB** 으로 **Settings → Connectors** 그리고 그것을 사용할 수 있습니다 **메인 에이전트**... 이 작업 쿼리는 사용자 정의 서버 또는 API 키없이 공개 레코드.
+
+| 이름 &#42; | 자주 묻는 질문 | 관광 명소 |
+| --- | --- | --- |
+| Cellosaurus | 셀 라인 이름 / 합성을 검색 한 다음 반환된 CVCL 액세스 또는 RRID를 검색 | Species, 정체성, 동의 및 오염/misidentification annotations. 검색은 문학 구문, 아니 raw Solr 쿼리. 품질 표기는 셀 라인의 certify하지 않습니다. |
+| Monarch Initiative | Canonical CURIEs를 사용하는 질병 또는 유전자 페형 협회는 MONDO와 같은: 0007254 또는 HGNC: 11998 | 기관, 페니 타입, 소스 및 증거. Aliases는 자동으로 변환되지 않습니다; 식별자를 먼저 해결합니다. 직접적인 일치 관심사 식별자 일치, 실험적인 확인. |
+| IEDB | Epitopes 또는 항원, 또는 특정 T 세포, B 세포 또는 MHC 분석실험 | 적어도 1개의 생물학/유효한 여과기는 요구됩니다; 혼자 질은 충분합니다. antigen_iri 또는 uniprot_accession을 모두 사용하세요. 보존 assay 방법, 결과, 단위 및 출판; MHC 유출 관측은 비례적인 측정이 아닙니다. |
+
+집계된 epitope/antigen 기록은 다른 실험에서 관측을 결합할 수 있습니다. 필터는 동일한 실험에 의해 만족해야 할 때, 대응 assay 가동을 쿼리합니다. Zero match는 부정적인 생물학적 발견을 수립하지 않습니다. [Cellosaurus 모수](../reference/connector-operations.md#family-31) · [Monarch 매개 변수](../reference/connector-operations.md#family-32) · [IEDB 모수](../reference/connector-operations.md#family-33).
+
+## GEO 매트릭스 및 시퀀스 일치 구조 찾기 {/* #geo-matrices-pdb-sequences */}
+
+**Omics Archives → geo_get_matrix_files**는 공식 GEO 시리즈 모체와 NCBI 생성된 count/FPKM/TPM/annotation 파일을 발견합니다. 그것은 파일 위치를 반환; 그것은 자신의 바이트를 다운로드하지 않습니다. **geo_get_series**은 메타데이터 조회를 유지한다.
+
+matrix를 얻기 후에, **geo_preflight_matrix**는 이미 읽고, 8 MiB까지 압축한 원본을 검사합니다. 그것은 네트워크 또는 파일 시스템 액세스가 없습니다. GSM 식별자 및 플랫폼 메타데이터를 유지하므로 샘플은 컬럼 포지션보다 ID로 매핑될 수 있습니다. 미리보기에 **완료: 거짓** 설정; 전체 파일에 **완료: 진실**만 전달합니다. 미리보기는 전체 파일 크기를 설정할 수 없습니다. 압축된 아카이브, sparse matrix 또는 HDF5 파일을 텍스트 검사기에 공급하지 마십시오. [matrix 발견](../reference/connector-operations.md#geo_get_matrix_files) 및 [텍스트 preflight](../reference/connector-operations.md#geo_preflight_matrix)을 참조하십시오.
+
+**Structures & Interactions → pdb_search_sequence**는 원시 시퀀스 또는 원시 FASTA 기록으로 25-10,000 잔류물의 한 단백질 시퀀스를 허용합니다. 식별 및 쿼리 처리 임계 값은 0에서 1에 분수입니다. 반환된 쿼리 적용은 쿼리에 정렬을 설명합니다; 그것은 실험적인 구조 적용이 아닙니다. 업스트림 총은 지역 적용 필터링을 전진하고, 경계 스캔은 나중에 일치 할 수 있습니다. 작업은 좌표를 다운로드하지 않고 구조 레코드를 찾습니다. [정확한 입력 및 스캔 제한](../reference/connector-operations.md#pdb_search_sequence) 참조.
 
 ## 데이터베이스를 사용하여 연결 및 시작 {/* #connect-database */}
 
@@ -190,7 +213,7 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts).
+카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/registry.ts).
 
 ## Sequence 검색 및 정렬 {/* #sequence-tools */}
 

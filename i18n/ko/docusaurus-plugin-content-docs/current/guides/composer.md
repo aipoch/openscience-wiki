@@ -1,7 +1,7 @@
 ---
 title: "대화와 대기 중인 요청"
 last_update:
-  date: '2026-09-16'
+  date: '2026-10-08'
 ---
 
 # 대화와 대기 중인 요청 {/* #conversations-and-queued-requests */}
@@ -117,3 +117,7 @@ Hover 또는 **복사 테이블** (Markdown, CSV 또는 TSV), **다운로드 테
 긴 실행 작업을 위해 [백그라운드 작업](notebook.md#background-tasks-and-result-delivery)을 열고 특정 실행을 취소합니다. 누적된 후속은 구속 명령입니다. 배경 작업은 이미 인정 된 작품입니다. 작업 목록은 실행을 중지하지 않습니다.
 
 출처: [queue 통제](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx), [납품 관제사](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/workspace-message-queue-controller.ts).
+
+## 드롭 파일로 대화 {/* #conversation-drop */}
+
+대화 영역에서 로컬 파일을 드래그 할 수 있습니다. Composer는 없습니다. 첨부 파일 칩 및 마무리에 업로드를 기다리면 파일 이름을 검사하고 요청을 보내주십시오. 삭제 파일은 메시지를 보낼 수 없습니다. `.science` 연구 패키지를 가져 오기 위해 빈 대화 페이지에 **이전 연구 가져오기**을 사용하십시오. [연구 패키지](research-packages.md) 참조.

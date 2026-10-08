@@ -1,7 +1,7 @@
 ---
 title: "Token 用量與活動"
 last_update:
-  date: '2026-09-09'
+  date: '2026-10-08'
 ---
 
 # Token 用量與活動 {/* #token-用量与活动 */}
@@ -50,3 +50,7 @@ last_update:
 缺失用量不會被自動補算。上下文組成和壓縮見[記憶與上下文](./memory.md)。
 
 原始碼：[Usage 頁面](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/TokenUsagePanel.tsx)。
+
+## 連續檢視相鄰日期 {/* #inspect-daily-usage */}
+
+在 **Daily token usage** 圖表上移動指標，連續檢視不同日期的輸入、快取和輸出用量。鍵盤操作時，用 **Tab / Shift+Tab** 聚焦不同日期，用 **Escape** 關閉詳情。核對顯示的日期和分項；此圖仍覆蓋最近 30 天，不會補出提供商未報告的用量。

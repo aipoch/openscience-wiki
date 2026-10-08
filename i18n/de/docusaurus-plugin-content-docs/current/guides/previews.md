@@ -1,7 +1,7 @@
 ---
 title: "Öffnen und Vorschauen von Dateien"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -121,10 +121,10 @@ Referenzen für die Implementierung: [Meerjungfrauenkontrollen](https://github.c
 
 ## Extrahieren PDF Zahlen und Tabellen {/* #pdf-extraction */}
 
-Verwenden Sie dies, wenn Sie eine Figur oder eine wiederverwendbare Tabelle aus einer Literatur PDF benötigen. Fügen Sie hinzu und prüfen Sie zuerst das PDF in [Bibliothek](library.md); Bibliografische Metadaten allein sind kein Extraktionseingang.
+Verwenden Sie dies, wenn Sie eine Figur oder eine wiederverwendbare Tabelle aus einem PDF benötigen. Öffnen Sie ein PDF, das an eine Konversation angehängt ist, ein generiertes PDF oder ein lesbares PDF in [Bibliothek](library.md). Bibliographische Metadaten allein sind kein Extraktionseingang. Hochgeladene PDFs unterstützen die gleiche **Figures & Tables**-Analyse; Sie müssen nicht zuerst einen Bibliotheksdatensatz hinzufügen.
 
-1. Öffnen Sie die PDF-Vorschau und wählen Sie **Figures and tables** neben **Original PDF**.
-2. Wählen Sie bei der ersten Verwendung **Download and continue**, um die erforderlichen Modellressourcen zu installieren. Warten Sie auf Installations- und Integritätsprüfungen. Wenn Ressourcen bereit sind, verwenden Sie **Analyze PDF**.
+1. Öffnen Sie die PDF-Vorschau und wählen Sie **Figures & Tables** neben **Original PDF**.
+2. Wählen Sie beim ersten Mal **Download and continue**. Nach dem Download des Modells und der Integritätsprüfung beginnt die Analyse automatisch. Sind die Ressourcen bereits installiert und wird **Analyze PDF** angeboten, wählen Sie diese Schaltfläche.
 3. Folgen Sie dem Seitenfortschritt. Wählen Sie nach Abschluss einen Kandidaten aus und verwenden Sie **Show in PDF**, um ihn mit der Quellseite, der Beschriftung und dem umgebenden Text zu vergleichen.
 4. Öffnen Sie für eine Figur die Bildvorschau und verwenden Sie **Copy image** oder **Download image**. Wählen Sie für eine Tabelle **Table**, wählen Sie **TSV**, **HTML** oder **Markdown** und verwenden Sie dann die Aktion Kopieren/Download. Wählen Sie **Image**, wenn Sie die Ausgangspflanze inspizieren müssen.
 5. Öffnen Sie die exportierte Datei erneut. Überprüfen Sie die Zeilen-/Spaltenausrichtung, zusammengeführte Header, Einheiten, Fußnoten und übergreifenden Inhalt, bevor Sie sie in einer Analyse oder einem Bericht verwenden.
@@ -133,9 +133,25 @@ Die Extraktion läuft lokal, nachdem die Modellressourcen heruntergeladen wurden
 
 **Unplaced table text** und **Table notes** bewahren Inhalte, die überprüft werden müssen. Wenn strukturierte Zellen nicht verfügbar sind, ist die Ausgangskultur und das ursprüngliche PDF zu verwenden; keine fehlenden Zellen ableiten. Gescannte und gedrehte Seiten werden von diesem Extraktions-Workflow nicht unterstützt. Ein PDF kann auch dann lesbar bleiben, wenn die Extraktion nicht verfügbar ist.
 
+### Extrahieren Sie eine Figur aus einem hochgeladenen Papier {/* #uploaded-pdf-extraction */}
+
+<p className="example-label"><strong>Praxisbeispiel</strong> Inspizieren Sie Abbildung 1 von Lang et al., 2019</p>
+
+Verwenden Sie den Publisher PDF für [Nicht defektstabilisierter thermisch stabilisierter Einatomkatalysator](https://doi.org/10.1038/s41467-018-08136-3), von Lang et al., unter [CC VON 4.0](https://creativecommons.org/licenses/by/4.0/). Die Screenshots zeigen die Papierfigur, wie sie von Open-Science angezeigt wird.
+
+1. Fügen Sie PDF bis **+ → Attach files** in einer Konversation hinzu. Nach dem Senden der Nachricht öffnen Sie die hochgeladene Anlagekarte.
+2. Wählen Sie **Figures & Tables**. Bei der ersten Verwendung vollständige **Download and continue**; Warten Sie, bis die Seite **Analysis complete** meldet.
+3. Wählen Sie **Fig. 1** im Index. Diese hochgeladene Kopie platziert die Figur auf **PDF Seite 3**. Vergleichen Sie seine Bildfelder und Bildunterschrift; Das extrahierte Bild ist ein Beweis für die Untersuchung, kein neuer Befund.
+
+![Abgeschlossene lokale Figur Extraktion aus dem hochgeladenen Lang Papier](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+
+4. Wählen Sie **Show in PDF**. Bestätigen Sie **3 / 10** in der Originalvorschau und vergleichen Sie Panel-Etiketten, Skalenbalken und Kurven. Verwenden Sie die Originalseite, um eine Seitenzahl- oder Beschriftungsfehlanpassung zu beheben, bevor Sie die Figur zitieren.
+
+![Zeigen in PDF kehrt zur ursprünglichen Figur auf Seite 3 von 10 zurück](/img/open-science/v0350/uploaded-pdf-source.webp)
+
 ### Fragen Sie den Agenten nach einer extrahierten Figur oder Tabelle {/* #pdf-agent-evidence */}
 
-1. Öffnen Sie das beabsichtigte PDF, verwenden Sie **Read with agent**, um es mit der aktuellen Sitzung zu verknüpfen, und führen Sie die **Figures and tables**-Analyse für die entsprechenden Seiten aus. Bevor Sie Ihre Frage senden, bestätigen Sie, dass das PDF im Lesekontext des Komponisten verbleibt. Ein Bibliotheksdatensatz an sich ist kein verknüpftes PDF, und die Verknüpfung allein führt diese Analyse nicht aus.
+1. Öffnen Sie das beabsichtigte PDF, verwenden Sie **Read with agent**, um es mit der aktuellen Sitzung zu verknüpfen, und führen Sie die **Figures & Tables**-Analyse für die entsprechenden Seiten aus. Bevor Sie Ihre Frage senden, bestätigen Sie, dass das PDF im Lesekontext des Komponisten verbleibt. Ein Bibliotheksdatensatz an sich ist kein verknüpftes PDF, und die Verknüpfung allein führt diese Analyse nicht aus.
 2. Fragen Sie nach einer bestimmten Zahl, Tabelle oder einem Algorithmus. Fügen Sie das Etikett oder die Seite und die Frage hinzu, die Sie beantworten müssen.
 3. Überprüfen Sie die Werkzeugaktivität: **list_pdf_elements** findet die verfügbaren extrahierten Elemente; **read_pdf_element** liest die ausgewählten Beweise. Fragen Sie nach der Quellseite und fehlenden oder unsicheren Inhalten in der Antwort.
 4. Vergleichen Sie die Antwort mit der ursprünglichen Abbildung oder Tabelle, einschließlich Kopfzeilen, Einheiten und Notizen. Wenn die Extraktion fehlt oder unvollständig ist, analysieren Sie die fehlenden Seiten und versuchen Sie es erneut; Eine Beschriftung allein kann keinen Trend oder einen genauen Tabellenwert festlegen.

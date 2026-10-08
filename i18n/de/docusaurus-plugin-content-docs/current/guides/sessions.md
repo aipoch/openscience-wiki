@@ -1,7 +1,7 @@
 ---
 title: "Sitzungen und Verzweigungen"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -167,3 +167,7 @@ Wählen Sie den Sitzungstitel aus, um die Anzahl, Beschreibung, Quelle, Erstellu
 ## Exportsitzungsdiagnosen {/* #session-diagnostics */}
 
 Verwenden Sie das **Export diagnostics…**-Steuerelement des Session-Headers oder das **Export → Export diagnostics…** des Session-Menüs, um ausgewählte Diagnosequellen in einem lokalen Archiv zu sammeln. Anwendungsprotokolle können Metadaten außerhalb der ausgewählten Sitzung enthalten. Überprüfen Sie die Quellliste, die Vervollständigungsnachricht und den Archivinhalt vor dem Teilen; siehe [Diagnoseausfuhrschritte](troubleshooting.md#session-diagnostics).
+
+## Wiedergabe oder Diskutieren aufgezeichneter Arbeiten {/* #replay-session */}
+
+Wählen Sie **View replay** aus dem Sitzungszeilenmenü, um die aufgezeichnete Konversation, die Notebook-Aktivität und die gespeicherten Dateiversionen zu durchlaufen. **Discuss** beginnt eine separate Konversation, die mit dieser Forschung verbunden ist. Importierte sitzungen zeigen auch beide aktionen neben ihrer schreibgeschützten nachricht. Folgen Sie [Session Replay](session-replay.md) für die Wiedergabe, Quelleninspektion und eine bearbeitete Diskussion.

@@ -119,3 +119,7 @@ Si le matériel signalétique fait intentionnellement partie d'un transfert auto
 **Run in background** cache la fenêtre de progression pendant que le transfert se poursuit. Utiliser **Cancel** pour arrêter; cacher la fenêtre n'annule pas l'opération.
 
 Si le nettoyage est incomplet, utilisez **Retry cleanup** avant d'essayer à nouveau. Après un échec, **Try again** récupère le même fichier et la même destination. Choisissez un autre paquet séparément si c'est votre intention. Vérifiez l'opération existante avant de commencer une deuxième importation, puis inspectez la session importée et les fichiers quand elle se termine.
+
+## Rejouer un dossier de recherche reçu {/* #replay-import */}
+
+Une fois l'importation terminée, choisissez **View replay** pour inspecter les étapes enregistrées ou **Discuss** pour demander à leur sujet dans une conversation en écriture. La source importée reste en lecture seule. Une référence de discussion ne recrée pas son temps d'exécution original; Utilisez **Fork to continue** pour une copie de travail. Voir [Rejouer la session](session-replay.md).

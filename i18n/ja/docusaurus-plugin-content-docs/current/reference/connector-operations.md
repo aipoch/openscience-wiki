@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.34.1**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.1.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
+Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.35.0**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.0.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
 
 
 ## 化学化学品 {/* #family-1 */}
@@ -2117,6 +2117,23 @@ const result = await host.mcp("structures", "alphafold_get_prediction", {"unipro
 const result = await host.mcp("structures", "alphafold_check_coverage", {"uniprot_accessions": ["P04637", "P38398", "Q9Y6K9"]})
 ```
 
+### `pdb_search_sequence` {/* #pdb_search_sequence */}
+
+1つのungapped蛋白質の順序(25..10000アミノ酸、未加工または単記録FASTAからの実験的なPDB蛋白質の企業を見つけて下さい; ホワイトスペースと小文字が受け入れられます。 シーケンス同等性はRCSB MMseqs2シーケンスアイデンティティを使用します:identity_cutoffは、率ではありません0..1。 evalue_cutoffは、E値の最大値です。 min_query_coverage (0..1) は、各アライメントをローカルで使用(query_end - query_beg + 1)/入力シーケンスの長さでフィルタリングします。 ヒットは、カットオフ会議の1つのアライメントを必要とし、唯一の修飾アライメントが返されます。 これはシーケンスカバレッジで、実験的に残留カバレッジを解決しない。 ほとんどの max_candidates (デフォルト 100, 最大 1000) のアップストリームヒットは、関連する順番で、ほとんどの max_rows (デフォルト 10, 最大 25) チェーン ID とマッチメトリックで戻ります。 total_count は、フィルタリングされた上流の合計 BEFORE のカバレッジです。 n_matched は、スキャンされた候補のみに分類するエンティティティティをカウントします。 トランセンドは、上流の候補または修飾されたレコードが残っていることを意味します。 max_candidates を上げて、低ランクのヒットを調べます。 チェーン ID は、一致する組織のすべての入金されたコピーをリストします。 asym_ids はラベル ID です。 auth_asym_ids は著者 ID です。 Metadata 404s は、metadata_error=not_found と null チェーン ID の一致を保持します。 関連するスコアは、シーケンスアイデンティティではありません。 実験構造のみ; エントリーメタデータ用のpdb_get_structuresにチェーンします。 座標ファイルのダウンロードは行いません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `sequence` | 文字列 | **必須**; 最長: 25; 最高長さ: 50000 |
+| `identity_cutoff` | 数値 | 任意; デフォルト: 0.3; 最小値: 0; 最高: 1 |
+| `evalue_cutoff` | 数値 | 任意; デフォルト: 0.1; 排他的な最小限: 0 |
+| `min_query_coverage` | 数値 | 任意; デフォルト: 0; 最小値: 0; 最高: 1 |
+| `max_candidates` | 整数 | 任意; デフォルト: 100; 最小値: 1; 最高: 1000 |
+| `max_rows` | 整数 | 任意; デフォルト: 10; 最小値: 1; 最高: 25 |
+
+```javascript
+const result = await host.mcp("structures", "pdb_search_sequence", {"sequence": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQV", "identity_cutoff": 0.9, "min_query_coverage": 0.8, "max_rows": 10})
+```
+
 </ToolOperationGroup>
 
 ## チャムBL {/* #family-10 */}
@@ -3564,7 +3581,7 @@ const result = await host.mcp("omics-archives", "geo_search_series", {"term": "a
 
 ### `geo_get_series` {/* #geo_get_series */}
 
-GEOシリーズ(GSEアクセス)用のメタデータ(GSEアクセス)が含まれている—シリーズのタイトル/概要/デザイン、プラットフォーム、特性とライブラリ情報を含むサンプル、および補足ファイルURL。 データテーブルはダウンロードされません。
+GEOシリーズ(GSEアクセス)用のフェッチ構造メタデータが含まれている — シリーズのタイトル/概要/デザイン、プラットフォーム、特性とライブラリ情報のサンプル、および補足ファイルのURL。 データテーブルはダウンロードされません。 次のgeo_get_matrix_filesを使用して、シリーズのマトリックスとNCBI生成RNA-seqカウントファイルを発見し、geo_preflight_matrixはこれらのサンプルに対して非圧縮されたデータをチェックします。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -3784,6 +3801,33 @@ Metabolomics Workbench のパブリックスタディを 1 回取得します。
 
 ```javascript
 const result = await host.mcp("omics-archives", "workbench_get_study", {"study_id": "ST000001", "section": "factors"})
+```
+
+### `geo_get_matrix_files` {/* #geo_get_matrix_files */}
+
+シリーズ マトリックス ファイルと NCBI 生成 RNA-seq の生数、 FPKM/TPM と、ライブ NCBI リストから 1 つの GSE 用の遺伝子アノテーション ファイルを発見します。 広告したURLを返し、ダウンロードされた行列や検証されたファイルコンテンツではない。 サンプルメタデータでは、geo_get_series で起動します。 ユーザーによる手動ダウンロード用の公式 URL を提供し、ローカルで読まれた非圧縮テキストで geo_preflight_matrix を使用します。 host.mcp を 生の HTTP にバイパスしないでください。 ミスや失敗したリストは、データの欠如を証明しません。 また、シリーズの補足ファイルをチェックします。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `accession` | 文字列 | **必須**; パターン: "^GSE&#91;1-9&#93;&#91;0-9&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("omics-archives", "geo_get_matrix_files", {"accession":"GSE164073"})
+```
+
+### `geo_preflight_matrix` {/* #geo_preflight_matrix */}
+
+ネットワークまたはファイルシステムアクセスなしで、Prepelight は、TSV または Series Matrix のテキスト (8 MiB まで) を分解しました。 geo_get_series (アクセス、タイトル、platform_id) から GSM の列をマップするサンプルを、決して位置によって供給して下さい。 TSV は、ユニークなタイトルマッチングをサポートしています。 GSM字型の列はタイトルに戻りません。 シリーズ マトリックスは、サンプル カラムのカウントと順序に合った有効な GSM アクセスを含む !Sample_geo_accession ヘッダーを正確に1つ必要とし、タイトルの一致に戻ってはいけない。 より大きいファイルでは、完全な:false を使用し、解析環境で完全な検証を実行します。 TSV のプレビューをクリアするには、テーブルヘッダーと完全なプレビュー行をパスします。 シリーズ マトリックスのプレビューでは、前回のメタデータも保存します。!Sample_geo_accession と任意の !Sample_platform_id ヘッダー、および !series_matrix_table_begin; テーブルだけを提出したり、 !series_matrix_table_end を製作したりしないでください。 テキストがファイル全体を含む場合にのみ、 complete:true を設定します。 TSVを平らにするために、完全性は、独立して検証されていない、呼び出し主が決定されます。 プレビューは、合計寸法を確立できません。 スパース・マトリックス・マーケット、アーカイブ、HDF5、マルチラインTSVフィールドは処理しません。 解析行列の準備時に sample_mapping 列の注文を保存します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `text` | 文字列 | **必須**; 最長: 1; 最高長さ: 8388608 |
+| `complete` | 真偽値 | 任意; デフォルト: false |
+| `matrix_kind` | 文字列 | 任意; デフォルト: "unknown"; エヌム: &#91;"series_matrix", "raw_counts", "normalized_counts", "unknown"&#93; |
+| `samples` | オブジェクトの配列 | 任意; maxItems: 10000の |
+
+```javascript
+const result = await host.mcp("omics-archives", "geo_preflight_matrix", {"text":"GeneID\tGSM5000001\n1\t12\n","complete":false,"matrix_kind":"raw_counts","samples":[{"accession":"GSM5000001"}]})
 ```
 
 </ToolOperationGroup>
@@ -4907,6 +4951,252 @@ const result = await host.mcp("cellxgene-discover", "get_dataset_version", {"dat
 
 ```javascript
 const result = await host.mcp("cellxgene-discover", "list_dataset_files", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
+```
+
+</ToolOperationGroup>
+
+## IEDB {/* #family-33 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `search_epitopes` {/* #search_epitopes */}
+
+表皮、ホスト、抗原源、MHCおよび証拠フィルターが付いているIEDBの表皮を捜して下さい。 集計されたフィルタは、同じレコードで異なる実験と一致させることができます。 アッセイ検索を使用して、1つの実験でコ・オクチュアレンスを強制します。 少なくとも1つの生物学的または証拠フィルターが必要です。 制限とオフセットだけではフィルタリングではありません。 データベースの観察、予測ではなく。 ネガティブな結果と欠落した結果は明確に保ちましょう。 MHCのligandの溶出は結合の類縁の測定ではないです; response_measured、方法および単位を一緒に解釈して下さい。 両親の抗原は代表的な蛋白質であり、丁度カールされた抗原か上式の順序に一致しないかもしれません。 cross_references.parent_uniprot_accessionsかcurated_uniprot_accessionsを`host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`と使用して下さい; `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})` で cross_references.pdb_ids を使用します。 これらは、シーケンス由来のマッピングではなく、明示的な上流のクロスリファレンスです。 呼び出し前に、各マッチングコネクタのスキルをロードします。 antigen_iri か uniprot_accession を両方使用して下さい。
+
+`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence`。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `epitope_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `reference_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `host_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `source_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `antigen_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `uniprot_accession` | 文字列 | 上記の条件に従う。 パターン: "^&#91;A-Z0-&#93;9. . .&#123; 6&#125;(?:&#91;A-Z0-&#93;)9. . .&#123; 4&#125;)?(?:-&#91;1- - - -9&lt;unk> &lt;unk>0- - - -9&#93;&#42;?(?!&#91;\\\\\\S&#93;)" |
+| `mhc_allele` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `mhc_class` | 文字列 | 上記の条件に従う。 enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `assay_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `pdb_id` | 文字列 | 上記の条件に従う。 パターン: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\S&#93;)" |
+| `sequence` | 文字列 | 上記の条件に従う。 最高長さ: 1000; パターン: "^&#91;A-Za-z&#93;+(?!&#91;\\s\S&#93;)" |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_epitopes", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_antigens` {/* #search_antigens */}
+
+エピトープ、ホスト、抗原源、MHCおよび証拠フィルターが付いているIEDBの抗原を捜して下さい。 集計されたフィルタは、同じレコードで異なる実験と一致させることができます。 アッセイ検索を使用して、1つの実験でコ・オクチュアレンスを強制します。 少なくとも1つの生物学的または証拠フィルターが必要です。 制限とオフセットだけではフィルタリングではありません。 データベースの観察、予測ではなく。 ネガティブな結果と欠落した結果は明確に保ちましょう。 MHCのligandの溶出は結合の類縁の測定ではないです; response_measured、方法および単位を一緒に解釈して下さい。 両親の抗原は代表的な蛋白質であり、丁度カールされた抗原か上式の順序に一致しないかもしれません。 cross_references.parent_uniprot_accessionsかcurated_uniprot_accessionsを`host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`と使用して下さい; `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})` で cross_references.pdb_ids を使用します。 これらは、シーケンス由来のマッピングではなく、明示的な上流のクロスリファレンスです。 呼び出し前に、各マッチングコネクタのスキルをロードします。 antigen_iri か uniprot_accession を両方使用して下さい。
+
+`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `antigen_name`。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `epitope_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `reference_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `host_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `source_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `antigen_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `uniprot_accession` | 文字列 | 上記の条件に従う。 パターン: "^&#91;A-Z0-&#93;9. . .&#123; 6&#125;(?:&#91;A-Z0-&#93;)9. . .&#123; 4&#125;)?(?:-&#91;1- - - -9&lt;unk> &lt;unk>0- - - -9&#93;&#42;?(?!&#91;\\\\\\S&#93;)" |
+| `mhc_allele` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `mhc_class` | 文字列 | 上記の条件に従う。 enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `assay_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `pdb_id` | 文字列 | 上記の条件に従う。 パターン: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\S&#93;)" |
+| `antigen_name` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_antigens", {"uniprot_accession": "P01012", "limit": 20})
+```
+
+### `search_tcell_assays` {/* #search_tcell_assays */}
+
+ホスト、ソース抗原、MHC、および結果フィルタでIEDB T細胞実験を検索します。 tcell_export測定、単位、不等性、方法、主題数および出版物の場所を含んでいます。 少なくとも1つの生物学的または証拠フィルターが必要です。 制限とオフセットだけではフィルタリングではありません。 データベースの観察、予測ではなく。 ネガティブな結果と欠落した結果は明確に保ちましょう。 MHCのligandの溶出は結合の類縁の測定ではないです; response_measured、方法および単位を一緒に解釈して下さい。 両親の抗原は代表的な蛋白質であり、丁度カールされた抗原か上式の順序に一致しないかもしれません。 cross_references.parent_uniprot_accessionsかcurated_uniprot_accessionsを`host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`と使用して下さい; `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})` で cross_references.pdb_ids を使用します。 これらは、シーケンス由来のマッピングではなく、明示的な上流のクロスリファレンスです。 呼び出し前に、各マッチングコネクタのスキルをロードします。 antigen_iri か uniprot_accession を両方使用して下さい。
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`sequence`/`assay_id`。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `epitope_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `reference_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `host_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `source_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `antigen_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `uniprot_accession` | 文字列 | 上記の条件に従う。 パターン: "^&#91;A-Z0-&#93;9. . .&#123; 6&#125;(?:&#91;A-Z0-&#93;)9. . .&#123; 4&#125;)?(?:-&#91;1- - - -9&lt;unk> &lt;unk>0- - - -9&#93;&#42;?(?!&#91;\\\\\\S&#93;)" |
+| `mhc_allele` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `mhc_class` | 文字列 | 上記の条件に従う。 enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `assay_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `pdb_id` | 文字列 | 上記の条件に従う。 パターン: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\S&#93;)" |
+| `sequence` | 文字列 | 上記の条件に従う。 最高長さ: 1000; パターン: "^&#91;A-Za-z&#93;+(?!&#91;\\s\S&#93;)" |
+| `assay_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_tcell_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_bcell_assays` {/* #search_bcell_assays */}
+
+ホスト、ソース抗原、MHC、および結果フィルタでIEDB B細胞実験を検索します。 bcell_export測定、単位、不等性、方法、主題数および出版物の場所を含んでいます。 少なくとも1つの生物学的または証拠フィルターが必要です。 制限とオフセットだけではフィルタリングではありません。 データベースの観察、予測ではなく。 ネガティブな結果と欠落した結果は明確に保ちましょう。 MHCのligandの溶出は結合の類縁の測定ではないです; response_measured、方法および単位を一緒に解釈して下さい。 両親の抗原は代表的な蛋白質であり、丁度カールされた抗原か上式の順序に一致しないかもしれません。 cross_references.parent_uniprot_accessionsかcurated_uniprot_accessionsを`host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`と使用して下さい; `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})` で cross_references.pdb_ids を使用します。 これらは、シーケンス由来のマッピングではなく、明示的な上流のクロスリファレンスです。 呼び出し前に、各マッチングコネクタのスキルをロードします。 antigen_iri か uniprot_accession を両方使用して下さい。
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`sequence`/`assay_id`。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `epitope_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `reference_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `host_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `source_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `antigen_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `uniprot_accession` | 文字列 | 上記の条件に従う。 パターン: "^&#91;A-Z0-&#93;9. . .&#123; 6&#125;(?:&#91;A-Z0-&#93;)9. . .&#123; 4&#125;)?(?:-&#91;1- - - -9&lt;unk> &lt;unk>0- - - -9&#93;&#42;?(?!&#91;\\\\\\S&#93;)" |
+| `mhc_allele` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `mhc_class` | 文字列 | 上記の条件に従う。 enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `assay_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `pdb_id` | 文字列 | 上記の条件に従う。 パターン: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\S&#93;)" |
+| `sequence` | 文字列 | 上記の条件に従う。 最高長さ: 1000; パターン: "^&#91;A-Za-z&#93;+(?!&#91;\\s\S&#93;)" |
+| `assay_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_bcell_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_mhc_assays` {/* #search_mhc_assays */}
+
+ホスト、ソース抗原、MHC、および結果フィルタでIEDB MHC結合およびリガンドの希釈実験を検索します。 mhc_export測定、単位、不等性、方法、主題数および出版物の場所を含んでいます。 少なくとも1つの生物学的または証拠フィルターが必要です。 制限とオフセットだけではフィルタリングではありません。 データベースの観察、予測ではなく。 ネガティブな結果と欠落した結果は明確に保ちましょう。 MHCのligandの溶出は結合の類縁の測定ではないです; response_measured、方法および単位を一緒に解釈して下さい。 両親の抗原は代表的な蛋白質であり、丁度カールされた抗原か上式の順序に一致しないかもしれません。 cross_references.parent_uniprot_accessionsかcurated_uniprot_accessionsを`host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`と使用して下さい; `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})` で cross_references.pdb_ids を使用します。 これらは、シーケンス由来のマッピングではなく、明示的な上流のクロスリファレンスです。 呼び出し前に、各マッチングコネクタのスキルをロードします。 antigen_iri か uniprot_accession を両方使用して下さい。
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`sequence`/`assay_id`。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `epitope_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `reference_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `host_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `source_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `antigen_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `uniprot_accession` | 文字列 | 上記の条件に従う。 パターン: "^&#91;A-Z0-&#93;9. . .&#123; 6&#125;(?:&#91;A-Z0-&#93;)9. . .&#123; 4&#125;)?(?:-&#91;1- - - -9&lt;unk> &lt;unk>0- - - -9&#93;&#42;?(?!&#91;\\\\\\S&#93;)" |
+| `mhc_allele` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `mhc_class` | 文字列 | 上記の条件に従う。 enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `assay_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `pdb_id` | 文字列 | 上記の条件に従う。 パターン: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\S&#93;)" |
+| `sequence` | 文字列 | 上記の条件に従う。 最高長さ: 1000; パターン: "^&#91;A-Za-z&#93;+(?!&#91;\\s\S&#93;)" |
+| `assay_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_mhc_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_references` {/* #search_references */}
+
+IEDB 参照を Epitope、ホスト、抗原源、MHC および証拠フィルターで検索します。 集計されたフィルタは、同じレコードで異なる実験と一致させることができます。 アッセイ検索を使用して、1つの実験でコ・オクチュアレンスを強制します。 少なくとも1つの生物学的または証拠フィルターが必要です。 制限とオフセットだけではフィルタリングではありません。 データベースの観察、予測ではなく。 ネガティブな結果と欠落した結果は明確に保ちましょう。 MHCのligandの溶出は結合の類縁の測定ではないです; response_measured、方法および単位を一緒に解釈して下さい。 両親の抗原は代表的な蛋白質であり、丁度カールされた抗原か上式の順序に一致しないかもしれません。 cross_references.parent_uniprot_accessionsかcurated_uniprot_accessionsを`host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`と使用して下さい; `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})` で cross_references.pdb_ids を使用します。 これらは、シーケンス由来のマッピングではなく、明示的な上流のクロスリファレンスです。 呼び出し前に、各マッチングコネクタのスキルをロードします。 antigen_iri か uniprot_accession を両方使用して下さい。
+
+`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `pubmed_id`。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `epitope_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `reference_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `host_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `source_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `antigen_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `uniprot_accession` | 文字列 | 上記の条件に従う。 パターン: "^&#91;A-Z0-&#93;9. . .&#123; 6&#125;(?:&#91;A-Z0-&#93;)9. . .&#123; 4&#125;)?(?:-&#91;1- - - -9&lt;unk> &lt;unk>0- - - -9&#93;&#42;?(?!&#91;\\\\\\S&#93;)" |
+| `mhc_allele` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `mhc_class` | 文字列 | 上記の条件に従う。 enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `assay_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `pdb_id` | 文字列 | 上記の条件に従う。 パターン: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\S&#93;)" |
+| `pubmed_id` | 文字列 | 上記の条件に従う。 最高長さ: 12; パターン: "^&#91;1-9&#93;&#91;0-9&#93;&#42;(?!&#91;\\s\S&#93;))" |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_references", {"reference_id": 1023094, "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## Monarch Initiative {/* #family-32 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `monarch_get_disease_phenotypes` {/* #monarch_get_disease_phenotypes */}
+
+Monarchの正当CURIEsを使用して、病気のフェノタイプ協会の証拠を、関連/カテゴリ、第一次および集計者源、出版物、証拠コード、交渉、頻度、オンセットおよび病気のコンテキストを供給するときに取得します。 ソースデータベース ID とエイリアスが自動的に Monarch のキャニカル ID に変換されず、マッチを返すことはできません。 ゼロの合計は、供給された識別子とフィルタの一致を意味し、フェノタイプの証拠がないわけではありません。 直接識別子マッチングはデフォルトです。 直接は実験的に証明されるという意味ではありません。 knowledge_level と agent_type を推論して、推論した団体を対象としています。 証拠を見逃すことは否定的な証拠ではありません。 遺伝子・オントロジーをORS用語検索やモデルオーガニズムレコードのアライアンスに利用します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `disease_id` | 文字列 | **必須**; 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-)&#42;(?!&#91;\\\\\\S&#93;)" |
+| `phenotype_id` | 文字列 | 任意; 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-)&#42;(?!&#91;\\\\\\S&#93;)" |
+| `primary_knowledge_source` | 文字列 | 任意; 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-)&#42;(?!&#91;\\\\\\S&#93;)" |
+| `direct` | 真偽値 | 任意; デフォルト: true |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+
+```javascript
+const result = await host.mcp("monarch", "monarch_get_disease_phenotypes", {"disease_id": "MONDO:0007947", "limit": 20})
+```
+
+### `monarch_get_gene_phenotypes` {/* #monarch_get_gene_phenotypes */}
+
+Monarchのcanonical CURIEsを使用した遺伝子型協会の証拠を、関連/カテゴリ、プライマリおよびアグリゲーターのソース、出版物、証拠コード、交渉、頻度、オンセットおよび供給される場合の病気のコンテキストで取得して下さい。 ソースデータベース ID とエイリアスが自動的に Monarch のキャニカル ID に変換されず、マッチを返すことはできません。 ゼロの合計は、供給された識別子とフィルタの一致を意味し、フェノタイプの証拠がないわけではありません。 直接識別子マッチングはデフォルトです。 直接は実験的に証明されるという意味ではありません。 knowledge_level と agent_type を推論して、推論した団体を対象としています。 証拠を見逃すことは否定的な証拠ではありません。 遺伝子・オントロジーをORS用語検索やモデルオーガニズムレコードのアライアンスに利用します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `gene_id` | 文字列 | **必須**; 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-)&#42;(?!&#91;\\\\\\S&#93;)" |
+| `phenotype_id` | 文字列 | 任意; 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-)&#42;(?!&#91;\\\\\\S&#93;)" |
+| `primary_knowledge_source` | 文字列 | 任意; 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-)&#42;(?!&#91;\\\\\\S&#93;)" |
+| `direct` | 真偽値 | 任意; デフォルト: true |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+
+```javascript
+const result = await host.mcp("monarch", "monarch_get_gene_phenotypes", {"gene_id": "HGNC:3603", "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## Cellosaurus {/* #family-31 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `search_cell_lines` {/* #search_cell_lines */}
+
+Cellosaurus 推奨名と同義語をリテラルフレーズ(生の Solr 構文ではなく)で検索します。 候補者を返し、非曖昧なアイデンティティマッチではありません。 起源、病気および外的なマッピングのための選択されたCVCLのアクセスを用いるget_cell_lineを使用して下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `query` | 文字列 | **必須**; 最長: 1; 最高長さ: 200; パターン: "\\S" |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+
+```javascript
+const result = await host.mcp("cellosaurus", "search_cell_lines", {"query": "HeLa", "limit": 20})
+```
+
+### `get_cell_line` {/* #get_cell_line */}
+
+Cellosaurus CVCLアクセスまたはRRID:CVCL識別子を解決します。 アイデンティティ、種、組織/細胞型起源の取得、実験室、ドナー病/年齢/性別、親細胞線、硬化汚染/見当り値および注意記録、ICLAC登録、外部データベースマッピングの確立。 アノテーションを見逃すことはサンプル品質を確立しません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `accession` | 文字列 | **必須**; 最長: 9; 最高長さ: 40; パターン: "^\s&#42;(?:&#91;Rr&#93;&#91;Rr&#93;&#91;I&#93;&#91;Dd&#93;:)?&#91;Cc&#93;&#91;Vv&#93;&#91;Cc&#93;&#91;Ll&#93;_&#91;A-Za-z0-9&#93;&#123; 4&#125;\\s&#42;$" |
+
+```javascript
+const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
 ```
 
 </ToolOperationGroup>

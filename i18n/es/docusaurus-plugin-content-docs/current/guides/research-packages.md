@@ -119,3 +119,7 @@ Si el material marcado es parte intencionalmente de una entrega autorizada, la e
 **Run in background** esconde la ventana de progreso mientras la transferencia continúa. Use **Cancel** para detenerse; ocultar la ventana no cancela la operación.
 
 Si la limpieza es incompleta, use **Retry cleanup** antes de intentarlo de nuevo. Después de un fallo, **Try again** vuelve a registrar el mismo archivo y destino. Elige otro paquete por separado si esa es tu intención. Compruebe la operación existente antes de comenzar una segunda importación, a continuación, inspeccione la sesión importada y los archivos cuando se complete.
+
+## Replay a received research record {/* #replay-import */}
+
+Después de que la importación termine, elija **View replay** para inspeccionar los pasos registrados o **Discuss** para preguntar sobre ellos en una conversación ridícula. La fuente importada sigue siendo de sólo lectura. Una referencia de discusión no recrea su tiempo de ejecución original; use **Fork to continue** para una copia de trabajo. Ver [Repetición de sesión](session-replay.md).

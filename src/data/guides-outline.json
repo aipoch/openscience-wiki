@@ -140,6 +140,18 @@
           "contentStatus": "written"
         },
         {
+          "id": "session-replay",
+          "title": "Replay and discuss a session",
+          "scope": "Play recorded steps, inspect retained evidence and ask questions in a writable conversation.",
+          "currentDoc": "guides/session-replay",
+          "proposedUrl": "/docs/guides/session-replay/",
+          "relatedDocs": [
+            "guides/sessions",
+            "guides/reproducibility"
+          ],
+          "contentStatus": "written"
+        },
+        {
           "id": "bookmarks",
           "title": "Private reading bookmarks",
           "scope": "Save personal reading passages and PDF regions, manage notes and return to their source.",

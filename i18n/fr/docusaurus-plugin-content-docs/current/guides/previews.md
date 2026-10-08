@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -121,10 +121,10 @@ Références de mise en œuvre: [Contrôles de sirène](https://github.com/aipoc
 
 ## Extraire les chiffres et les tableaux PDF {/* #pdf-extraction */}
 
-Utilisez ceci lorsque vous avez besoin d'une figure ou d'une table réutilisable d'une littérature PDF. Ajouter et inspecter d'abord le PDF dans [Bibliothèque](library.md); Les métadonnées bibliographiques ne constituent pas à elles seules une entrée d'extraction.
+Utilisez ceci lorsque vous avez besoin d'une figure ou d'une table réutilisable à partir d'un PDF. Ouvrez un PDF attaché à une conversation, un PDF généré ou un PDF lisible dans [Bibliothèque](library.md). Les métadonnées bibliographiques ne sont pas à elles seules une entrée d'extraction. Les PDF téléchargés supportent la même analyse **Figures & Tables**; vous n'avez pas besoin d'ajouter un enregistrement de bibliothèque d'abord.
 
-1. Ouvrez l'aperçu PDF et sélectionnez **Figures and tables** à côté de **Original PDF**.
-2. Lors de la première utilisation, choisissez **Download and continue** pour installer les ressources de modèle requises. Attendez l'installation et les contrôles d'intégrité. Lorsque les ressources sont prêtes, utilisez **Analyze PDF**.
+1. Ouvrez l'aperçu PDF et sélectionnez **Figures & Tables** à côté de **Original PDF**.
+2. Lors de la première utilisation, choisissez **Download and continue**. Attendez le téléchargement du modèle et les contrôles d’intégrité ; l’analyse démarre ensuite automatiquement. Si les ressources sont déjà installées et que **Analyze PDF** est proposé, sélectionnez ce bouton.
 3. Suivez l'évolution de la page. Une fois terminé, sélectionnez un candidat et utilisez **Show in PDF** pour le comparer avec la page source, la légende et le texte environnant.
 4. Pour une figure, ouvrez l'aperçu de l'image et utilisez **Copy image** ou **Download image**. Pour une table, sélectionnez **Table**, choisissez **TSV**, **HTML** ou **Markdown**, puis utilisez l'action copier/télécharger. Choisissez **Image** lorsque vous avez besoin d'inspecter la culture source.
 5. Réouvrir le fichier exporté. Vérifiez l'alignement ligne/colonne, les en-têtes fusionnés, les unités, les notes de bas de page et le contenu de la page transversale avant de l'utiliser dans une analyse ou un rapport.
@@ -133,9 +133,25 @@ L'extraction se déroule localement après le téléchargement des ressources du
 
 **Unplaced table text** et **Table notes** conservent le contenu qui doit être revu. Si les cellules structurées ne sont pas disponibles, utiliser la culture source et PDF originale; ne pas déduire les cellules manquantes. Les pages numérisées et tournées ne sont pas prises en charge par ce workflow d'extraction. Un PDF peut rester lisible même lorsque l'extraction n'est pas disponible.
 
+### Extraire une figure d'un papier téléchargé {/* #uploaded-pdf-extraction */}
+
+<p className="example-label"><strong>Exemple pratique</strong> Inspecter la figure 1 de Lang et al., 2019</p>
+
+Utilisez l'éditeur PDF pour [Catalyseur monoatome thermiquement stable non stabilisé par défaut](https://doi.org/10.1038/s41467-018-08136-3), par Lang et al., sous [CC PAR 4.0](https://creativecommons.org/licenses/by/4.0/). Les captures d'écran montrent la figure de papier telle qu'elle est affichée par Open-Science.
+
+1. Ajoutez le PDF à **+ → Attach files** dans une conversation. Après avoir envoyé le message, ouvrez la carte jointe téléchargée.
+2. Sélectionnez **Figures & Tables**. Lors de la première utilisation, compléter **Download and continue**; attendre que la page rapporte **Analysis complete**.
+3. Sélectionnez **Fig. 1** dans l'index. Cette copie téléchargée place la figure sur **PDF page 3**. Comparer ses panneaux d'images et sa légende; l'image extraite est une preuve à inspecter, et non une nouvelle constatation.
+
+![Extraction locale terminée du papier Lang téléchargé](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+
+4. Choisissez **Show in PDF**. Confirmez **3 / 10** dans l'aperçu original et comparez les étiquettes de panneaux, les barres d'échelle et les courbes. Utilisez la page d'origine pour résoudre une erreur de numéro de page ou de légende avant de citer la figure.
+
+![Afficher dans PDF retourne à la figure originale de la page 3 de 10](/img/open-science/v0350/uploaded-pdf-source.webp)
+
 ### Demandez à l'agent au sujet d'une figure ou d'une table extraite {/* #pdf-agent-evidence */}
 
-1. Ouvrez le PDF prévu, utilisez le **Read with agent** pour le lier à la session en cours et remplissez l'analyse **Figures and tables** pour les pages pertinentes. Avant d'envoyer votre question, confirmez que le PDF reste dans le contexte de lecture Compositeur. Un enregistrement de bibliothèque en soi n'est pas un PDF lié, et le lien seul n'exécute pas cette analyse.
+1. Ouvrez le PDF prévu, utilisez le **Read with agent** pour le lier à la session en cours et remplissez l'analyse **Figures & Tables** pour les pages pertinentes. Avant d'envoyer votre question, confirmez que le PDF reste dans le contexte de lecture Compositeur. Un enregistrement de bibliothèque en soi n'est pas un PDF lié, et le lien seul n'exécute pas cette analyse.
 2. Demandez un chiffre, une table ou un algorithme précis. Inclure son étiquette ou sa page et la question que vous devez répondre.
 3. Inspectez l'activité de l'outil : **list_pdf_elements** trouve les éléments extraits disponibles; **read_pdf_element** lit la preuve sélectionnée. Demandez la page source et tout contenu manquant ou incertain dans la réponse.
 4. Comparez la réponse avec la figure ou la table d'origine, y compris les en-têtes, les unités et les notes. Si l'extraction est absente ou incomplète, analyser les pages manquantes et réessayer; une légende ne peut à elle seule établir une tendance ou une valeur de tableau exacte.

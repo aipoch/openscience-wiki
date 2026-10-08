@@ -1,7 +1,7 @@
 ---
 title: "Token 用量与活动"
 last_update:
-  date: '2026-09-09'
+  date: '2026-10-08'
 ---
 
 # Token 用量与活动
@@ -50,3 +50,7 @@ last_update:
 缺失用量不会被自动补算。上下文组成和压缩见[记忆与上下文](./memory.md)。
 
 源码：[Usage 页面](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/TokenUsagePanel.tsx)。
+
+## 连续查看相邻日期 {/* #inspect-daily-usage */}
+
+在 **Daily token usage** 图表上移动指针，连续查看不同日期的输入、缓存和输出用量。键盘操作时，用 **Tab / Shift+Tab** 聚焦不同日期，用 **Escape** 关闭详情。核对显示的日期和分项；此图仍覆盖最近 30 天，不会补出提供商未报告的用量。

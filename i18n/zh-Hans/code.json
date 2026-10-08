@@ -2688,5 +2688,17 @@
   },
   "docs.outline.reference.v0341.scope": {
     "message": "CELLxGENE Discover、Alliance、MaveDB 与 Workbench，工作区 Inbox、研究包导入导出及诊断改进。"
+  },
+  "docs.outline.reference.v0350.title": {
+    "message": "v0.35.0"
+  },
+  "docs.outline.reference.v0350.scope": {
+    "message": "会话回放、上传 PDF 提取、新增科学数据库、公网与私有网络规则及工作区改进。"
+  },
+  "docs.guides.outline.session-replay.title": {
+    "message": "回放与讨论会话"
+  },
+  "docs.guides.outline.session-replay.scope": {
+    "message": "播放历史步骤、查看保留证据，并在可写会话中提问。"
   }
 }

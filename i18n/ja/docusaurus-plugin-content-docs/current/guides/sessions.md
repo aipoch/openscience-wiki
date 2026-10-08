@@ -1,7 +1,7 @@
 ---
 title: "セッションとブランチ"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -167,3 +167,7 @@ GSE60450プロジェクトでは、既存のQCセッションをフォークし�
 ## 輸出セッション診断 {/* #session-diagnostics */}
 
 セッションヘッダの**Export diagnostics…**制御、セッションメニューの**Export → Export diagnostics…**を使用して、ローカルアーカイブで選択した診断ソースを収集します。 アプリケーションログは、選択したセッションの外部にメタデータを含めることができます。 共有前にソースリスト、完了メッセージ、およびアーカイブの内容を確認します。 [診断輸出ステップ](troubleshooting.md#session-diagnostics) を参照してください。
+
+## 記録された作品の再生または議論 {/* #replay-session */}
+
+セッション行メニューから**View replay**を選択し、録画した会話、Notebookアクティビティ、保存したファイルバージョンをステップアップします。 **Discuss**は、その研究にリンクされた別の会話を開始します。 インポートされたセッションは、読み取り専用の通知の横にある両方のアクションを公開します。 [セッションリプレイ](session-replay.md) をフォローして、再生、ソースの検査、作業したディスカッションを行います。

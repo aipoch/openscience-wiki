@@ -13,7 +13,7 @@ Use this page to choose a data source, understand what it can return, and make i
 
 ## Supported databases {/* #supported-databases */}
 
-Open-Science v0.34.1 includes **30 data-source Connectors with 324 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 326. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+Open-Science v0.35.0 includes **33 data-source Connectors with 337 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 339. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
 
 | Connector | Sources | Operations | Use it for  |
 | --- | --- | --- | ---  |
@@ -25,7 +25,7 @@ Open-Science v0.34.1 includes **30 data-source Connectors with 324 operations**.
 | Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | Population frequencies, clinical records and assay-specific functional scores, mappings and experiments. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Clinical trials from ClinicalTrials.gov — search, details, sponsors, investigators, endpoints, and eligibility.  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | Clinical genomics knowledge bases: ClinGen curations, CIViC clinical evidence, and the Open Targets Platform, plus ClinPGx pharmacogenomic records. |
-| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Structures and molecular interactions — PDB structures, AlphaFold predictions, EMDB cryo-EM entries, Complex Portal complexes, IntAct interaction networks.  |
+| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 17 | Structures and molecular interactions — PDB structures, AlphaFold predictions, EMDB cryo-EM entries, Complex Portal complexes, IntAct interaction networks.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | Bioactive compounds, drugs, targets, bioactivity, and mechanisms via the ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — search by date/category, metadata by DOI, journal-publication links, funder listings, and platform statistics.  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA, labels, FAERS adverse-event reports and drug recalls. |
@@ -34,7 +34,7 @@ Open-Science v0.34.1 includes **30 data-source Connectors with 324 operations**.
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | Protein domain architecture, family/clan membership, expression atlas and interaction networks via InterPro/Pfam, the Human Protein Atlas and STRING, including network interaction enrichment. |
 | Cancer Models · `cancer-models` | cBioPortal | 10 | Studies, mutations, copy number, samples, patients, clinical attributes and molecular-profile expression. |
 | RNA · `rna` | Rfam | 9 | Non-coding RNA family data (metadata, alignments, models, structures) via Rfam.  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 26 | Omics study/run metadata and file inventories; metabolomics samples, factors, analyses and compound records. |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | Omics study/run metadata and file inventories; metabolomics samples, factors, analyses and compound records. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Cell-type identity, marker genes, source datasets, and tissues via CELLxGENE CellGuide.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | Gene-regulation functional genomics — ENCODE experiments/biosamples/files, JASPAR TF binding profiles, and UniBind ChIP-seq TFBS.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Funding-opportunity search (Grants.gov) and antibody catalog lookups (Antibody Registry).  |
@@ -47,6 +47,9 @@ Open-Science v0.34.1 includes **30 data-source Connectors with 324 operations**.
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Pathway search, top pathways, graph queries and BioPAX submodel exports. |
 | Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | Human and model-organism genes, orthologs, disease models, phenotypes, alleles and expression. |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Single-cell collections and datasets, published versions, file formats, sizes and download URLs. |
+| Cellosaurus · `cellosaurus` | Cellosaurus | 2 | Find cell-line names and synonyms, then inspect accession identity and quality annotations. |
+| Monarch Initiative · `monarch` | Monarch Initiative | 2 | Disease/gene-to-phenotype associations with organism and supporting evidence. |
+| IEDB · `iedb` | Immune Epitope Database | 6 | Epitopes, antigens, T-cell, B-cell and MHC assays, and source publications. |
 
 The offline Molecule tools are covered in [Scientific viewers](viewers.md). For the exact operations exposed by each data source, use the [Connector operation reference](../reference/connector-operations.md).
 
@@ -83,6 +86,26 @@ Search for the entries below in **Settings → Connectors**, enable availability
 CELLxGENE filtering and pagination run locally over the upstream catalog fetched for each request; the catalog may change between requests. Use version IDs to retain a publication. An unreported file size is -1, not zero bytes. Preserve missing values and assay definitions in MaveDB and Workbench results as well.
 
 See exact inputs for [CELLxGENE Discover](../reference/connector-operations.md#family-30), [Alliance](../reference/connector-operations.md#family-29), [MaveDB](../reference/connector-operations.md#mavedb_search_score_sets) and [Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies).
+
+## Cell lines, phenotypes and immune evidence {/* #cell-lines-phenotypes-immunity */}
+
+Enable **Cellosaurus**, **Monarch Initiative** or **IEDB** in **Settings → Connectors** and make it available to **Main**. These operations query public records without a custom server or API key.
+
+| Entry | What to request | What to preserve |
+| --- | --- | --- |
+| Cellosaurus | Search a cell-line name/synonym, then retrieve the returned CVCL accession or RRID | Species, identity, synonyms and contamination/misidentification annotations. Search takes a literal phrase, not a raw Solr query. Missing quality annotations do not certify the cell line. |
+| Monarch Initiative | Disease or gene phenotype associations using canonical CURIEs, such as MONDO:0007254 or HGNC:11998 | Organism, phenotype, source and evidence. Aliases are not automatically converted; resolve identifiers first. A direct match concerns identifier matching, not experimental confirmation. |
+| IEDB | Epitopes or antigens, or a specific T-cell, B-cell or MHC assay | At least one biological/evidence filter is required; pagination alone is insufficient. Use either antigen_iri or uniprot_accession, not both. Preserve assay method, outcome, units and publication; an MHC elution observation is not an affinity measurement. |
+
+An aggregated epitope/antigen record can combine observations from different experiments. When filters must be satisfied by the same experiment, query the corresponding assay operation. Zero matches do not establish a negative biological finding. [Cellosaurus parameters](../reference/connector-operations.md#family-31) · [Monarch parameters](../reference/connector-operations.md#family-32) · [IEDB parameters](../reference/connector-operations.md#family-33).
+
+## Find GEO matrices and sequence-matched structures {/* #geo-matrices-pdb-sequences */}
+
+**Omics Archives → geo_get_matrix_files** discovers official GEO Series Matrix and NCBI-generated count/FPKM/TPM/annotation files. It returns file locations; it does not download their bytes. **geo_get_series** remains a metadata lookup.
+
+After obtaining a matrix, **geo_preflight_matrix** checks already-read, decompressed text up to 8 MiB. It has no network or filesystem access. Keep GSM identifiers and platform metadata so samples can be mapped by ID rather than column position. Set **complete: false** for a preview; only pass **complete: true** for the entire file. A preview cannot establish whole-file dimensions. Do not feed a compressed archive, sparse matrix or HDF5 file into the text checker. See [matrix discovery](../reference/connector-operations.md#geo_get_matrix_files) and [text preflight](../reference/connector-operations.md#geo_preflight_matrix).
+
+**Structures & Interactions → pdb_search_sequence** accepts one protein sequence of 25–10,000 residues, as raw sequence or one FASTA record. Identity and query-coverage thresholds are fractions from 0 to 1. Returned query coverage describes alignment to the query; it is not experimental structure coverage. The upstream total precedes local coverage filtering, and a bounded scan can omit later matches. The operation finds structure records without downloading coordinates. See [exact inputs and scan limits](../reference/connector-operations.md#pdb_search_sequence).
 
 ## Connect and start using a database {/* #connect-database */}
 
@@ -190,7 +213,7 @@ From v0.31.0, `get_string_network.nodes` includes returned neighbors and isolate
 
 The [Connector operation reference](../reference/connector-operations.md) lists required inputs, allowed values and exact calls. Use this page to choose a source and connect it; use the reference for a particular tool's fields.
 
-Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts).
+Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/registry.ts).
 
 ## Sequence searches and alignment {/* #sequence-tools */}
 

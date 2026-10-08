@@ -19,9 +19,9 @@ const operations = (text) => [...text.matchAll(/^### `([^`]+)`(?: \{\/\* #[^ ]+ 
 
 test('translated operation explanations preserve all callable names and example arguments', () => {
   const original = operations(en), translated = operations(zh);
-  const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.34.1.json', 'utf8'));
+  const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.35.0.json', 'utf8'));
   const dataTools = registry.filter((c) => c.id !== 'molecule').flatMap((c) => c.tools);
-  assert.equal(original.length, 324);
+  assert.equal(original.length, 337);
   assert.deepEqual(original.map((t) => t.name).sort(), dataTools.map((t) => t.id).sort());
   assert.deepEqual(translated.map((x) => x.name), original.map((x) => x.name));
   for (let i = 0; i < original.length; i++) {
@@ -51,13 +51,13 @@ for (const prefix of locales.map((locale) => locale === 'en' ? '' : `${locale}/`
   });
 }
 
-const currentRegistry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.34.1.json', 'utf8'));
+const currentRegistry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.35.0.json', 'utf8'));
 for (const prefix of ['', 'zh-Hans/']) {
   test(`${prefix || 'en/'} latest release belongs to the documentation sidebar`, () => {
-    const html = readFileSync(`${buildDir}/${prefix}changelog/v0-34-1/index.html`, 'utf8');
+    const html = readFileSync(`${buildDir}/${prefix}changelog/v0-35-0/index.html`, 'utf8');
     const aside = html.match(/<aside\b[\s\S]*?<\/aside>/)?.[0];
     assert.ok(aside, 'the new release must not become a standalone page without chapter navigation');
-    assert.ok(aside.includes(`/docs/${prefix}changelog/v0-34-1/`));
+    assert.ok(aside.includes(`/docs/${prefix}changelog/v0-35-0/`));
   });
 }
 const currentTools = currentRegistry.filter((c) => c.id !== 'molecule').flatMap((c) => c.tools);

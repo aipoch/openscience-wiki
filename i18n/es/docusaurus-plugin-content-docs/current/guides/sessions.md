@@ -1,7 +1,7 @@
 ---
 title: "Períodos de sesiones y ramas"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -167,3 +167,7 @@ Seleccione el título de sesión para ver su número, descripción, fuente, tiem
 ## Diagnóstico de la sesión de exportación {/* #session-diagnostics */}
 
 Utilice el control **Export diagnostics…** del encabezado de sesión, o el **Export → Export diagnostics…** del menú de sesión para recoger fuentes de diagnóstico seleccionadas en un archivo local. Los registros de aplicaciones pueden incluir metadatos fuera de la sesión seleccionada. Revise la lista de fuentes, el mensaje de terminación y el contenido de archivo antes de compartir; ver [Medidas de exportación de diagnóstico](troubleshooting.md#session-diagnostics).
+
+## Replay o discuta el trabajo grabado {/* #replay-session */}
+
+Elija **View replay** del menú de filas de sesión para pasar por la conversación grabada, la actividad Notebook y las versiones de archivos guardadas. **Discuss** inicia una conversación separada vinculada a esa investigación. Las sesiones importadas también exponen ambas acciones al lado de su solo aviso de lectura. Siga [Repetición de sesión](session-replay.md) para la reproducción, inspección de fuentes y una discusión trabajada.

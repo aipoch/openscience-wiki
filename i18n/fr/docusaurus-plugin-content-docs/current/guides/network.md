@@ -1,7 +1,7 @@
 ---
 title: "Rétroviseurs de réseau, de proxies et de paquets"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-08'
 ---
 
 # Rétroviseurs de réseau, de proxies et de paquets {/* #network-proxies-and-package-mirrors */}
@@ -16,28 +16,34 @@ L'état combine l'information liée au réseau et une sonde d'enregistrement de 
 
 Si Network signale **Ready** mais qu'un outil échoue, élargissez l'erreur de cet outil. La sonde d'état vérifie sa propre destination; utiliser le nom d'hôte et le message de la requête échouée pour diagnostiquer la route affectée.
 
-| Défaut | Inspecter suivant | Éviter cette conclusion erronée |
+| Défaut | Inspecter suivant | Évitez cette conclusion erronée |
 | --- | --- | --- |
 | La connexion du fournisseur échoue | Authentification du fournisseur et vérification de la connexion du modèle | Les paramètres de domaine Notebook fourniront des identifiants de modèle |
-| Un nom d'hôte de recherche est refusé | **Configure domains** et le nom exact de l'hôte dans la requête | L'ajout d'un large domaine non lié le corrigera |
+| Un nom d'hôte de recherche est refusé | **Manage access** et le nom exact de l'hôte dans la requête | L'ajout d'un large domaine non lié le corrigera |
 | Un hôte de paquet est déjà autorisé mais CONNECT échoue | Résolution du journal d'installation, du proxy et du DNS | Un autre clic Autoriser identique résoudra toutes les défaillances du réseau |
-| Défaut de vérification du certificat | Le groupe CA configuré et les exigences de confiance de l'organisation | La désactivation de la vérification du certificat est nécessaire |
-| Index de paquets ne retourne aucune distribution correspondante après des erreurs de connexion | Messages réseau antérieurs et Python/platform sélectionnés | Le paquet ne doit pas exister |
+| La vérification du certificat échoue | Le groupe CA configuré et les exigences de confiance de l'organisation | La désactivation de la vérification du certificat est nécessaire |
+| Index du paquet ne retourne aucune distribution correspondante après les erreurs de connexion | Messages réseau antérieurs et Python/platform sélectionnés | Le paquet ne doit pas exister |
 
-## Configurer les domaines Notebook {/* #configure-notebook-domains */}
+<span id="configure-notebook-domains" />
 
-1. Sélectionnez **Configure domains**.
-2. Lisez si la protection réseau Notebook est active sur ce périphérique.
-3. Élargir les groupes de services scientifiques pour inspecter leurs noms d'hôtes. Le contrôle des commutateurs de groupe inclut les destinations. Le groupe package-registry/source-code est activé et verrouillé dans cette compilation.
-4. Pour une source supplémentaire, saisissez son nom d'hôte exact dans **Domain hostname**, puis sélectionnez **Add**.
-5. Revoir la nouvelle ligne d'ébauche. Utilisez **Supprimer &#91;nom d'hôte&#93;** pour le défaire.
-6. Sélectionnez **Save changes** pour maintenir la liste prévue.
+## Configurer les règles du réseau public {/* #public-network-rules */}
 
-![La validation du nom d'hôte exact rejette une carte joker](/img/open-science/walkthrough-2026-09-08/54-network-domain-validation.webp)
+1. Ouvrez **Settings → Network → Manage access**. Lisez **Public internet access** pour voir quel public HTTPS lit peut procéder et quelles demandes doivent être approuvées.
+2. Inspectez **Built-in services**. Un groupe marqué **Required** reste activé; d'autres groupes peuvent être sélectionnés pour la tâche.
+3. Sous **Custom public domains**, saisissez la **Domain hostname** exacte, puis choisissez **Add to list**. Examiner le projet d'entrée avant **Save changes**.
 
-Saisissez un nom d'hôte tel que `data.example.org`, sans schéma, chemin, port, wildcard ou adresse IP. Pour **Enter a hostname only, without a scheme, path, port, or wildcard.**, supprimez ces pièces et enregistrez le nom d'hôte.
+Une règle du domaine public permet d'envoyer des données à ce nom d'hôte; elle ne couvre pas les sous-domaines ni n'accorde l'accès à une adresse privée. Saisissez un nom d'hôte sans schéma, chemin, port, wildcard ou adresse IP. Un nom d'hôte qui se résout à une adresse non publique doit encore faire l'objet d'un examen de service privé approprié. Ces règles s'appliquent également lorsque le code protégé suit des liens ou récupère des icônes.
 
-Un domaine autorisé par nom peut encore échouer une autre vérification de connexion. Par exemple, `pypi.org` peut être autorisé mais rejeté comme destination non publique s'il résout à `198.18.*`. Ceci est distinct d'un domaine non approuvé.
+## Faire confiance à un service privé {/* #trusted-private-services */}
+
+Utilisez-le seulement pour un service interne connu auquel votre code de recherche devrait accéder. Ce contrôle est disponible dans l'application de bureau. Seules les adresses de service privé sont prises en charge; localhost, cet ordinateur et les adresses réservées restent bloqués. Le champ n'accepte pas les adresses IP brutes ni les wildcards.
+
+1. Dans **Trusted private services**, choisissez **Add service** et entrez **Hostname** et **Port**. Confirmer le service exact; le port par défaut est 443.
+2. Sélectionnez **Review service**. Inspectez le **Approved addresses** résolu avant de choisir **Add to trusted services**.
+3. Consultez la liste et sélectionnez **Save changes**. DNS est à nouveau vérifié avant d'enregistrer; un changement d'adresse nécessite un autre examen.
+4. Réessayez une petite demande à ce service spécifique et consultez sa réponse. L'examen de l'adresse ne permet pas à lui seul de tester l'authentification ou la disponibilité du service.
+
+Une subvention couvre le nom exact de l'hôte, le port et les adresses examinées. Il permet aux codes Notebook et Shell protégés d'envoyer des données à ce service pour tous les projets. Ajouter seulement l'accès aux besoins de la tâche. Enregistrer les règles réseau réinitialise les connexions protégées et peut interrompre un transfert actif; terminer ce transfert avant d'appliquer les changements.
 
 ## Choisir un mode proxy {/* #choose-a-proxy-mode */}
 

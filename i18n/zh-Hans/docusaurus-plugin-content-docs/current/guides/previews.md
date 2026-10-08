@@ -1,7 +1,7 @@
 ---
 title: "打开与预览文件"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -119,10 +119,10 @@ PDF 上下文只关联当前任务需要的论文，后续不应使用时取消�
 
 ## 提取 PDF 图片与表格 {/* #pdf-extraction */}
 
-需要从文献 PDF 取得图片或可复用表格时，使用此功能。先在[文献库](library.md)添加并检查 PDF；只有文献元数据不能作为提取输入。
+需要从 PDF 取得图片或可复用表格时，打开会话中上传的 PDF、生成的 PDF，或[文献库](library.md)中可读取的 PDF。只有文献元数据不能作为提取输入。上传的 PDF 同样支持 **Figures & Tables** 分析，无需先建立文献库记录。
 
-1. 打开 PDF 预览，选择 **Original PDF** 旁的 **Figures and tables**。
-2. 首次使用时选择 **Download and continue**，安装所需模型资源，并等待安装和完整性检查。资源就绪后使用 **Analyze PDF**。
+1. 打开 PDF 预览，选择 **Original PDF** 旁的 **Figures & Tables**。
+2. 首次使用时选择 **Download and continue**，等待模型下载和完整性检查，随后会自动开始分析。资源已安装且页面提供 **Analyze PDF** 时，选择该按钮。
 3. 查看逐页进度。完成后选择候选图表，用 **Show in PDF** 对照原文页面、图注及周围文字。
 4. 图片可在图像预览中使用 **Copy image** 或 **Download image**。表格选择 **Table**，再选择 **TSV**、**HTML** 或 **Markdown**，使用对应复制/下载操作；需要检查原始裁图时选择 **Image**。
 5. 重新打开导出文件，检查行列对应、合并表头、单位、脚注和跨页内容，再用于分析或报告。
@@ -131,9 +131,25 @@ PDF 上下文只关联当前任务需要的论文，后续不应使用时取消�
 
 **Unplaced table text** 和 **Table notes** 保留需要人工核对的内容。结构化单元格不可用时，对照原始裁图和 PDF，不要推测缺失单元格。此提取流程暂不支持扫描页和旋转页；提取不可用不等于 PDF 本身不能阅读。
 
+### 从上传的论文中提取图片 {/* #uploaded-pdf-extraction */}
+
+<p className="example-label"><strong>案例演示</strong> 检查 Lang 等人 2019 年论文的图 1</p>
+
+使用 [Non defect-stabilized thermally stable single-atom catalyst](https://doi.org/10.1038/s41467-018-08136-3) 的出版方 PDF，作者为 Lang 等人，采用 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 许可。截图展示该论文图片在 Open-Science 中的实际显示。
+
+1. 在会话中通过 **+ → Attach files** 添加 PDF，发送消息后打开上传的附件卡片。
+2. 选择 **Figures & Tables**。首次使用时完成 **Download and continue**，等待页面显示 **Analysis complete**。
+3. 在索引中选择 **Fig. 1**。本例上传副本的图片位于 **PDF 第 3 页**。对照图像分面与图注；提取出的图片是供检查的证据，不是新的研究发现。
+
+![上传的 Lang 论文已完成本地图表提取](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+
+4. 选择 **Show in PDF**，确认原文预览显示 **3 / 10**，对照分面标签、比例尺和曲线。引用前，用原文解决页码或图注不一致的问题。
+
+![Show in PDF 返回原文第 3 页的图 1](/img/open-science/v0350/uploaded-pdf-source.webp)
+
 ### 让 Agent 读取已提取的图表 {/* #pdf-agent-evidence */}
 
-1. 打开目标 PDF，使用 **Read with agent** 将它链接到当前会话，并在 **Figures and tables** 完成相关页面的分析。发送问题前，确认输入框中仍有该 PDF 的阅读上下文。只有文献库记录不等于已链接 PDF，链接本身也不会启动这项分析。
+1. 打开目标 PDF，使用 **Read with agent** 将它链接到当前会话，并在 **Figures & Tables** 完成相关页面的分析。发送问题前，确认输入框中仍有该 PDF 的阅读上下文。只有文献库记录不等于已链接 PDF，链接本身也不会启动这项分析。
 2. 提问时指明具体的图、表或算法，提供编号或页码，以及要回答的问题。
 3. 查看工具活动：**list_pdf_elements** 列出可用的提取元素，**read_pdf_element** 读取所选证据。要求回答标明来源页码，以及缺失或不确定的内容。
 4. 对照原图或原表，核对表头、单位和注释。若尚未提取或结果不完整，先分析缺失页面再重试；只有图注不能证明趋势或精确表值。

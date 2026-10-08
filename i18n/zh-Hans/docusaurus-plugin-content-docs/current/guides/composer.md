@@ -1,7 +1,7 @@
 ---
 title: "对话与排队请求"
 last_update:
-  date: '2026-09-16'
+  date: '2026-10-08'
 ---
 
 # 对话与排队请求
@@ -117,3 +117,7 @@ original column-name mapping in the CSV/report.
 长时间运行的工作可通过[后台任务](notebook.md)打开或取消指定运行。队列中的追问是待送达指令，后台任务则是已接收执行的工作。收起任务列表不会停止执行。
 
 源码：[队列控件](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx)、[送达逻辑](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/workspace-message-queue-controller.ts)。
+
+## 拖入会话附件 {/* #conversation-drop */}
+
+可把本地文件拖到整个会话区域，无需只对准输入框。等待附件标签出现、上传完成，核对文件名后再发送请求；拖入文件不会自动发送消息。导入 `.science` 研究包时，使用空白会话页的 **Import previous research**，详见[研究包](research-packages.md)。

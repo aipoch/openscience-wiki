@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作输入
 
-每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.34.1** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.1.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
+每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.35.0** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.0.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
 
 
 ## 化学 {/* #family-1 */}
@@ -2119,6 +2119,23 @@ const result = await host.mcp("structures", "alphafold_get_prediction", {"unipro
 const result = await host.mcp("structures", "alphafold_check_coverage", {"uniprot_accessions": ["P04637", "P38398", "Q9Y6K9"]})
 ```
 
+### `pdb_search_sequence`
+
+用蛋白质氨基酸序列检索 PDB 实验结构。identity_cutoff 与 min_query_coverage 均为 0–1 的比例，按 E-value 和查询序列覆盖率筛选；覆盖率不是结构中实际解析残基的覆盖率，保留聚合物实体及比对信息；相似序列命中不证明结构或功能相同。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `sequence` | string | **必填**; minLength: 25; maxLength: 50000 |
+| `identity_cutoff` | number | 可选; default: 0.3; minimum: 0; maximum: 1 |
+| `evalue_cutoff` | number | 可选; default: 0.1; exclusiveMinimum: 0 |
+| `min_query_coverage` | number | 可选; default: 0; minimum: 0; maximum: 1 |
+| `max_candidates` | integer | 可选; default: 100; minimum: 1; maximum: 1000 |
+| `max_rows` | integer | 可选; default: 10; minimum: 1; maximum: 25 |
+
+```javascript
+const result = await host.mcp("structures", "pdb_search_sequence", {"sequence": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQV", "identity_cutoff": 0.9, "min_query_coverage": 0.8, "max_rows": 10})
+```
+
 </ToolOperationGroup>
 
 ## ChEMBL {/* #family-10 */}
@@ -3566,11 +3583,11 @@ const result = await host.mcp("omics-archives", "geo_search_series", {"term": "a
 
 ### `geo_get_series`
 
-按 GSE 登录号获取 GEO 系列结构化元数据，包括设计、平台、样本特征、建库信息和补充文件 URL。此操作不会下载数据表。
+按 GEO Series 编号获取研究元数据和样本摘要。需要表达矩阵清单与预检时，继续使用 geo_get_matrix_files 和 geo_preflight_matrix；不要把元数据响应当作已下载的表达矩阵。
 
-| 字段 | 类型 | 要求与约束 |
+| 字段 | 类型 | 必填与约束 |
 | --- | --- | --- |
-| `accessions` | 字符串数组 | **必填** |
+| `accessions` | array of string | **必填** |
 
 ```javascript
 const result = await host.mcp("omics-archives", "geo_get_series", {"accessions": ["GSE131907"]})
@@ -3786,6 +3803,33 @@ const result = await host.mcp("omics-archives", "workbench_search_studies", {"qu
 
 ```javascript
 const result = await host.mcp("omics-archives", "workbench_get_study", {"study_id": "ST000001", "section": "factors"})
+```
+
+### `geo_get_matrix_files`
+
+发现 GEO Series Matrix 及 NCBI 生成的 RNA-seq 原始计数、FPKM/TPM 和基因注释文件，返回官方 URL 供手动下载。保留 GSE/GPL、文件名和来源；文件发现不等于下载或表达量分析。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `accession` | string | **必填**; pattern: &quot;^GSE[1-9][0-9]*$&quot; |
+
+```javascript
+const result = await host.mcp("omics-archives", "geo_get_matrix_files", {"accession":"GSE164073"})
+```
+
+### `geo_preflight_matrix`
+
+对已经读取并解压的密集 TSV 或 Series Matrix 文本做预检，最多 8 MiB；此操作不访问网络或文件系统。用 geo_get_series 返回的 GSM 标识符映射样本列，不按列位置推测。预览设置 complete=false，并保留完整表头和预览行；Series Matrix 还必须保留 !Sample_geo_accession、平台元数据及表格起始标记。仅完整文件可设 complete=true，预览不能确定总行列数，不支持稀疏矩阵、HDF5 或压缩包。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `text` | string | **必填**; minLength: 1; maxLength: 8388608 |
+| `complete` | boolean | 可选; default: false |
+| `matrix_kind` | string | 可选; default: &quot;unknown&quot;; enum: [&quot;series_matrix&quot;, &quot;raw_counts&quot;, &quot;normalized_counts&quot;, &quot;unknown&quot;] |
+| `samples` | array of object | 可选; maxItems: 10000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "geo_preflight_matrix", {"text":"GeneID\tGSM5000001\n1\t12\n","complete":false,"matrix_kind":"raw_counts","samples":[{"accession":"GSM5000001"}]})
 ```
 
 </ToolOperationGroup>
@@ -4909,6 +4953,252 @@ const result = await host.mcp("cellxgene-discover", "get_dataset_version", {"dat
 
 ```javascript
 const result = await host.mcp("cellxgene-discover", "list_dataset_files", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
+```
+
+</ToolOperationGroup>
+
+## IEDB {/* #family-33 */}
+
+<ToolOperationGroup>
+<summary>展开操作与参数</summary>
+
+### `search_epitopes`
+
+查询 IEDB 表位证据，至少提供一个生物学或证据过滤条件。antigen_iri 与 uniprot_accession 不能同时提供。保留负结果、测量单位、不等号、方法和来源；记录是数据库观测，不是预测。聚合字段可来自不同实验，需要同一实验共同满足条件时查询 assay。MHC 配体洗脱不等于结合亲和力。
+
+至少提供一组：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence`.
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `uniprot_accession` | string | 按上方条件提供; pattern: &quot;^[A-Z0-9]&#123;6&#125;(?:[A-Z0-9]&#123;4&#125;)?(?:-[1-9][0-9]*)?(?![\\s\\S])&quot; |
+| `mhc_allele` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方条件提供; enum: [&quot;I&quot;, &quot;II&quot;] |
+| `qualitative_measure` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `pdb_id` | string | 按上方条件提供; pattern: &quot;^[0-9][A-Za-z0-9]&#123;3&#125;(?![\\s\\S])&quot; |
+| `sequence` | string | 按上方条件提供; maxLength: 1000; pattern: &quot;^[A-Za-z]+(?![\\s\\S])&quot; |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_epitopes", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_antigens`
+
+查询 IEDB 抗原证据，至少提供一个生物学或证据过滤条件。antigen_iri 与 uniprot_accession 不能同时提供。保留负结果、测量单位、不等号、方法和来源；记录是数据库观测，不是预测。聚合字段可来自不同实验，需要同一实验共同满足条件时查询 assay。MHC 配体洗脱不等于结合亲和力。
+
+至少提供一组：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `antigen_name`.
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `uniprot_accession` | string | 按上方条件提供; pattern: &quot;^[A-Z0-9]&#123;6&#125;(?:[A-Z0-9]&#123;4&#125;)?(?:-[1-9][0-9]*)?(?![\\s\\S])&quot; |
+| `mhc_allele` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方条件提供; enum: [&quot;I&quot;, &quot;II&quot;] |
+| `qualitative_measure` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `pdb_id` | string | 按上方条件提供; pattern: &quot;^[0-9][A-Za-z0-9]&#123;3&#125;(?![\\s\\S])&quot; |
+| `antigen_name` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_antigens", {"uniprot_accession": "P01012", "limit": 20})
+```
+
+### `search_tcell_assays`
+
+查询 IEDB T 细胞实验证据，至少提供一个生物学或证据过滤条件。antigen_iri 与 uniprot_accession 不能同时提供。保留负结果、测量单位、不等号、方法和来源；记录是数据库观测，不是预测。聚合字段可来自不同实验，需要同一实验共同满足条件时查询 assay。MHC 配体洗脱不等于结合亲和力。
+
+至少提供一组：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `assay_id`.
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `uniprot_accession` | string | 按上方条件提供; pattern: &quot;^[A-Z0-9]&#123;6&#125;(?:[A-Z0-9]&#123;4&#125;)?(?:-[1-9][0-9]*)?(?![\\s\\S])&quot; |
+| `mhc_allele` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方条件提供; enum: [&quot;I&quot;, &quot;II&quot;] |
+| `qualitative_measure` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `pdb_id` | string | 按上方条件提供; pattern: &quot;^[0-9][A-Za-z0-9]&#123;3&#125;(?![\\s\\S])&quot; |
+| `sequence` | string | 按上方条件提供; maxLength: 1000; pattern: &quot;^[A-Za-z]+(?![\\s\\S])&quot; |
+| `assay_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_tcell_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_bcell_assays`
+
+查询 IEDB B 细胞实验证据，至少提供一个生物学或证据过滤条件。antigen_iri 与 uniprot_accession 不能同时提供。保留负结果、测量单位、不等号、方法和来源；记录是数据库观测，不是预测。聚合字段可来自不同实验，需要同一实验共同满足条件时查询 assay。MHC 配体洗脱不等于结合亲和力。
+
+至少提供一组：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `assay_id`.
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `uniprot_accession` | string | 按上方条件提供; pattern: &quot;^[A-Z0-9]&#123;6&#125;(?:[A-Z0-9]&#123;4&#125;)?(?:-[1-9][0-9]*)?(?![\\s\\S])&quot; |
+| `mhc_allele` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方条件提供; enum: [&quot;I&quot;, &quot;II&quot;] |
+| `qualitative_measure` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `pdb_id` | string | 按上方条件提供; pattern: &quot;^[0-9][A-Za-z0-9]&#123;3&#125;(?![\\s\\S])&quot; |
+| `sequence` | string | 按上方条件提供; maxLength: 1000; pattern: &quot;^[A-Za-z]+(?![\\s\\S])&quot; |
+| `assay_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_bcell_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_mhc_assays`
+
+查询 IEDB MHC 结合与配体洗脱实验证据，至少提供一个生物学或证据过滤条件。antigen_iri 与 uniprot_accession 不能同时提供。保留负结果、测量单位、不等号、方法和来源；记录是数据库观测，不是预测。聚合字段可来自不同实验，需要同一实验共同满足条件时查询 assay。MHC 配体洗脱不等于结合亲和力。
+
+至少提供一组：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `assay_id`.
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `uniprot_accession` | string | 按上方条件提供; pattern: &quot;^[A-Z0-9]&#123;6&#125;(?:[A-Z0-9]&#123;4&#125;)?(?:-[1-9][0-9]*)?(?![\\s\\S])&quot; |
+| `mhc_allele` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方条件提供; enum: [&quot;I&quot;, &quot;II&quot;] |
+| `qualitative_measure` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `pdb_id` | string | 按上方条件提供; pattern: &quot;^[0-9][A-Za-z0-9]&#123;3&#125;(?![\\s\\S])&quot; |
+| `sequence` | string | 按上方条件提供; maxLength: 1000; pattern: &quot;^[A-Za-z]+(?![\\s\\S])&quot; |
+| `assay_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_mhc_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_references`
+
+查询 IEDB 来源文献证据，至少提供一个生物学或证据过滤条件。antigen_iri 与 uniprot_accession 不能同时提供。保留负结果、测量单位、不等号、方法和来源；记录是数据库观测，不是预测。聚合字段可来自不同实验，需要同一实验共同满足条件时查询 assay。MHC 配体洗脱不等于结合亲和力。
+
+至少提供一组：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `pubmed_id`.
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方条件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `uniprot_accession` | string | 按上方条件提供; pattern: &quot;^[A-Z0-9]&#123;6&#125;(?:[A-Z0-9]&#123;4&#125;)?(?:-[1-9][0-9]*)?(?![\\s\\S])&quot; |
+| `mhc_allele` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方条件提供; enum: [&quot;I&quot;, &quot;II&quot;] |
+| `qualitative_measure` | string | 按上方条件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方条件提供; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `pdb_id` | string | 按上方条件提供; pattern: &quot;^[0-9][A-Za-z0-9]&#123;3&#125;(?![\\s\\S])&quot; |
+| `pubmed_id` | string | 按上方条件提供; maxLength: 12; pattern: &quot;^[1-9][0-9]*(?![\\s\\S])&quot; |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_references", {"reference_id": 1023094, "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## Monarch Initiative {/* #family-32 */}
+
+<ToolOperationGroup>
+<summary>展开操作与参数</summary>
+
+### `monarch_get_disease_phenotypes`
+
+用 Monarch 索引中的规范疾病 CURIE 查询疾病—表型关联，保留来源、文献、证据、否定标记及频率等限定。来源别名不会自动转换；零条匹配不表示不存在证据。direct 指标识符匹配，不等于实验已证实。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `disease_id` | string | **必填**; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9._-]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `phenotype_id` | string | 可选; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9._-]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `primary_knowledge_source` | string | 可选; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9._-]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `direct` | boolean | 可选; default: true |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("monarch", "monarch_get_disease_phenotypes", {"disease_id": "MONDO:0007947", "limit": 20})
+```
+
+### `monarch_get_gene_phenotypes`
+
+用 Monarch 索引中的规范基因 CURIE 查询基因—表型关联，保留来源、文献、证据及上下文。direct=false 扩展本体后代；检查返回实体和 knowledge_level、agent_type，区分推断关联。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9._-]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `phenotype_id` | string | 可选; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9._-]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `primary_knowledge_source` | string | 可选; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9._-]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `direct` | boolean | 可选; default: true |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("monarch", "monarch_get_gene_phenotypes", {"gene_id": "HGNC:3603", "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## Cellosaurus {/* #family-31 */}
+
+<ToolOperationGroup>
+<summary>展开操作与参数</summary>
+
+### `search_cell_lines`
+
+按推荐名称或同义词中的字面短语查找细胞系，不接受原始 Solr 查询语法。保存 CVCL accession，再读取身份和质量注释；名称相似不证明是同一细胞系。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("cellosaurus", "search_cell_lines", {"query": "HeLa", "limit": 20})
+```
+
+### `get_cell_line`
+
+按 CVCL accession 读取细胞系身份、物种、来源、疾病和质量警告。交叉污染或误鉴定注释需结合来源核查；数据库条目不替代本地培养物的鉴定。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `accession` | string | **必填**; minLength: 9; maxLength: 40; pattern: &quot;^\\s*(?:[Rr][Rr][Ii][Dd]:)?[Cc][Vv][Cc][Ll]_[A-Za-z0-9]&#123;4&#125;\\s*$&quot; |
+
+```javascript
+const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
 ```
 
 </ToolOperationGroup>

@@ -1,7 +1,7 @@
 ---
 title: "Redes, proxies y espejos de paquete"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-08'
 ---
 
 # Redes, proxies y espejos de paquete {/* #network-proxies-and-package-mirrors */}
@@ -19,25 +19,31 @@ Si Network informa **Ready** pero una herramienta falla, expanda el error de esa
 | Fallo | Inspección siguiente | Evite esta conclusión equivocada |
 | --- | --- | --- |
 | El acceso del proveedor falla | autenticación del proveedor y la verificación de conexión modelo | Los ajustes de dominio Notebook proporcionarán credenciales modelo |
-| Se niega un nombre de host de investigación | **Configure domains** y el nombre de host exacto en la solicitud | Añadiendo un amplio dominio no relacionado lo arreglará |
+| Se niega un nombre de host de investigación | **Manage access** y el nombre de host exacto en la solicitud | Añadiendo un amplio dominio no relacionado lo arreglará |
 | Un paquete host ya está permitido pero CONNECT falla | Registro de instalación, resolución proxy y DNS | Otro clic de Permitir idéntico resolverá todas las fallas de la red |
 | La verificación de certificados falla | El paquete CA configurado y los requisitos de confianza de la organización | Es necesario verificar el certificado de desactivación |
 | El índice del paquete no devuelve la distribución después de errores de conexión | Mensajes de red anteriores y seleccionados Python/platform | El paquete no debe existir |
 
-## Configurar los dominios Notebook {/* #configure-notebook-domains */}
+<span id="configure-notebook-domains" />
 
-1. Seleccione **Configure domains**.
-2. Lea si la protección de la red Notebook está activa en este dispositivo.
-3. Ampliar los grupos de servicios científicos para inspeccionar sus nombres de anfitriones. Control de conmutadores de grupo incluye destinos. El grupo de registro de paquetes/código de fuente está habilitado y bloqueado en esta construcción.
-4. Para una fuente adicional, introduzca su nombre de host exacto en **Domain hostname**, a continuación, seleccione **Add**.
-5. Revise el nuevo borrador de fila. Usa **Retire &#91;nombre del anfitrión&#93;** para deshacerlo.
-6. Seleccione **Save changes** para persistir la lista prevista.
+## Configurar reglas de red pública {/* #public-network-rules */}
 
-![La validación del nombre exacto rechaza un comodín](/img/open-science/walkthrough-2026-09-08/54-network-domain-validation.webp)
+1. Abre **Settings → Network → Manage access**. Lea **Public internet access** para ver qué lectura pública HTTPS puede proceder y qué solicitudes requieren aprobación.
+2. Inspeccione **Built-in services**. Un grupo marcado **Required** se mantiene habilitado; otros grupos pueden ser seleccionados para la tarea.
+3. Bajo **Custom public domains**, introduzca el **Domain hostname** exacto y luego elija **Add to list**. Revise el proyecto de entrada antes de **Save changes**.
 
-Introduzca un nombre de host como `data.example.org`, sin esquema, ruta, puerto, comodín o dirección IP. Para **Enter a hostname only, without a scheme, path, port, or wildcard.**, retire esas partes y guarde el nombre de host.
+Una regla de dominio público permite enviar datos a ese nombre de host; no cubre subdominios ni otorga acceso a una dirección privada. Introduzca un nombre de host sin un esquema, ruta, puerto, comodín o dirección IP. Un nombre de host que se resuelva a una dirección no pública todavía necesita el examen adecuado del servicio privado. Estas reglas también se aplican cuando el código protegido sigue enlaces o recupera iconos.
 
-Un dominio permitido por nombre todavía puede fallar otro control de conexión. Por ejemplo, `pypi.org` puede ser permitido pero rechazado como un destino no público si se resuelve a `198.18.*`. Esto es distinto de un dominio no aprobado.
+## Confía en un servicio privado {/* #trusted-private-services */}
+
+Utilice esto sólo para un servicio interno conocido que su código de investigación debe acceder. Este control está disponible en la aplicación de escritorio. Sólo se admiten direcciones de servicio privado; localhost, esta computadora y las direcciones reservadas permanecen bloqueadas. El campo no acepta direcciones IP crudas o comodines.
+
+1. En **Trusted private services**, elija **Add service** e ingrese **Hostname** y **Port**. Confirme el servicio exacto; el puerto predeterminado es 443.
+2. Seleccione **Review service**. Inspeccione el **Approved addresses** resuelto antes de elegir **Add to trusted services**.
+3. Revise la lista y seleccione **Save changes**. El DNS se revisa de nuevo antes de ahorrar; un cambio de dirección requiere otro examen.
+4. Retira una pequeña solicitud a ese servicio específico e inspecciona su respuesta. La revisión de direcciones por sí sola no prueba la autenticación o disponibilidad de servicio.
+
+Una subvención cubre el nombre de host exacto, el puerto y las direcciones revisadas. Permite que el código Notebook y Shell protegido envíen datos a ese servicio en todos los proyectos. Agregue sólo el acceso a las necesidades de la tarea. Las reglas de la red de ahorro restablecen las conexiones protegidas y pueden interrumpir una transferencia activa; terminar esa transferencia antes de aplicar cambios.
 
 ## Elija un modo proxy {/* #choose-a-proxy-mode */}
 

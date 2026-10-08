@@ -119,3 +119,7 @@ Keep everything in English and return links to both new files.
 **Run in background** 隱藏進度視窗並繼續傳輸；需要停止時使用 **Cancel**。關閉進度視窗不等於取消操作。
 
 清理未完成時，先處理 **Retry cleanup** 再重試。失敗後的 **Try again** 重試原檔案和目標位置；需要換包時另行選擇。再次匯入前先檢查已有操作，完成後回讀匯入的會話與檔案。
+
+## 回放收到的研究記錄 {/* #replay-import */}
+
+匯入完成後，選擇 **View replay** 檢視記錄步驟，或用 **Discuss** 在可寫會話中提問。匯入的源會話仍保持只讀，討論引用不會恢復原執行環境；需要工作副本時使用 **Fork to continue**。詳見[會話回放](session-replay.md)。

@@ -2,7 +2,7 @@
 title: "Reproductibilité"
 description: "Relancer les étapes de recherche capturées, comparer un résultat enregistré et conserver le dossier de vérification."
 last_update:
-  date: '2026-09-17'
+  date: '2026-10-08'
 ---
 
 # Reproductibilité {/* #reproducibility */}
@@ -87,4 +87,8 @@ v0.30.2 corrige le replay des entrées créées plus tôt dans le même tour et 
 
 Si la préparation dépend d'un état Notebook antérieur, inspecter le [preuve de l'exécution](notebook.md) et réexécuter la préparation nécessaire avant de générer un nouveau résultat. Garder les contrôles arrêtés ou incomplets distincts des comparaisons terminées.
 
-Si vous avez déjà un paquet de verrouillage supporté et avez besoin de restaurer les paquets en dehors de l'application, suivez le [conditions de restauration de l'exécution](runtimes.md#conditional-restore). Cette procédure ne crée pas de serrure manquante ni ne remplace la préparation ci-dessus. Restaurer les dépendances à elles seules n'établit pas que les sorties se reproduisent.
+Si vous avez déjà un paquet de verrouillage supporté et avez besoin de restaurer les paquets en dehors de l'application, suivez le [conditions de restauration de l'exécution](runtimes.md#conditional-restore). Cette procédure ne crée pas de verrouillage manquant ou remplace la préparation ci-dessus. Restaurer les dépendances à elles seules n'établit pas que les sorties se reproduisent.
+
+## Inspectez l'histoire avant de reprendre {/* #replay-vs-verification */}
+
+Utilisez [Rejouer la session](session-replay.md) pour inspecter l'ordre enregistré des messages, l'activité de l'outil et les versions de fichiers. Rejouer les affichages des preuves enregistrées avec le calendrier de présentation reconstruit; il ne réexécute pas le code, ne redemande pas les bases de données ou n'établit pas qu'un résultat se reproduit. Utilisez **Reproducibility** ci-dessus lorsque vous avez besoin d'une nouvelle comparaison d'exécution et de sortie.

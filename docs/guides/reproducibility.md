@@ -2,7 +2,7 @@
 title: Reproducibility
 description: Rerun captured research steps, compare a saved result and retain the verification record.
 last_update:
-  date: '2026-09-17'
+  date: '2026-10-08'
 ---
 
 # Reproducibility
@@ -88,3 +88,7 @@ v0.30.2 fixes replay of inputs created earlier in the same turn and supported Py
 If preparation depends on an earlier Notebook state, inspect the [execution evidence](notebook.md) and rerun the necessary preparation before generating a new result. Keep stopped or incomplete checks distinct from completed comparisons.
 
 If you already have a supported lock bundle and need to restore packages outside the application, follow the [runtime restoration conditions](runtimes.md#conditional-restore). That procedure does not create a missing lock or replace the preparation above. Restoring dependencies alone does not establish that outputs reproduce.
+
+## Inspect the history before rerunning {/* #replay-vs-verification */}
+
+Use [Session replay](session-replay.md) to inspect the recorded order of messages, tool activity and file versions. Replay displays saved evidence with reconstructed presentation timing; it does not rerun code, query databases again or establish that a result reproduces. Use **Reproducibility** above when you need a new execution and output comparison.

@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.34.1** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.1.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
+한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.35.0** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.0.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
 
 
 ## 뚱 베어 {/* #family-1 */}
@@ -2117,6 +2117,23 @@ const result = await host.mcp("structures", "alphafold_get_prediction", {"unipro
 const result = await host.mcp("structures", "alphafold_check_coverage", {"uniprot_accessions": ["P04637", "P38398", "Q9Y6K9"]})
 ```
 
+### `pdb_search_sequence` {/* #pdb_search_sequence */}
+
+실험적인 PDB 단백질 엔티티티를 한 번 ungapped 단백질 시퀀스 (25..10000 아미노산, 원시 또는 단일 기록 FASTA에서 찾아보세요. 흰색 공간 및 낮은 케이스 허용). Sequence 유사성은 RCSB MMseqs2 순서 ID를 이용합니다: identity_cutoff는 비율이 아닌 분수 0..1입니다; evalue_cutoff은 최대 E-value입니다. min_query_coverage (0..1) 필터를 사용하여 로컬로 정렬 (query_end - query_beg + 1) / 입력 시퀀스 길이; 히트는 컷오프를 만나는 하나의 정렬을 필요로하며, 자격을 갖춘 정렬은 반환됩니다. 이것은 순서 적용, 실험적으로 잔류물 적용을 해결하지 않습니다. 대부분의 max_candidates (과태 100, 최대 1000) 상류에서 반사 순서에 있는 검사, 그 후에 사슬 ID와 일치 미터를 가진 대부분의 max_rows (과태 10, 최대 25) 상류에 돌려보냅니다. total_count는 업스트림 총 BEFORE 적용 필터링; n_ matching은 스캔된 후보자 중에만 자격을 갖는다. truncated는 더 많은 상류 후보자 또는 자격 기록이 남아 있음을 의미합니다. max_candidates을 증가하여 저랭크된 히트를 검사합니다. Chain IDs는 일치하는 사람의 모든 입금 사본을 나열합니다. asym_ids은 라벨 ID, auth_asym_ids은 저자 ID입니다. Metadata 404s는 metadata_error=not_found 및 null 사슬 ID와 일치를 유지합니다. 관련 점수는 순서 정체성이 아닙니다. 실험 구조만; 입력 메타데이터를 위한 pdb_get_structures에 체인. 조정 파일이 다운로드되지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `sequence` | 문자열 | **필수**; 최소 길이: 25; 최대 길이: 50000 |
+| `identity_cutoff` | 숫자 | 선택 사항; 기본: 0.3; 최소: 0; 최대: 1 |
+| `evalue_cutoff` | 숫자 | 선택 사항; 기본: 0.1; 독점적인Minimum: 0 |
+| `min_query_coverage` | 숫자 | 선택 사항; 기본: 0; 최소: 0; 최대: 1 |
+| `max_candidates` | 정수 | 선택 사항; 기본: 100; 최소: 1; 최대: 1000 |
+| `max_rows` | 정수 | 선택 사항; 기본: 10; 최소: 1; 최대: 25 |
+
+```javascript
+const result = await host.mcp("structures", "pdb_search_sequence", {"sequence": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQV", "identity_cutoff": 0.9, "min_query_coverage": 0.8, "max_rows": 10})
+```
+
 </ToolOperationGroup>
 
 ## 주 메뉴 {/* #family-10 */}
@@ -3564,7 +3581,7 @@ const result = await host.mcp("omics-archives", "geo_search_series", {"term": "a
 
 ### `geo_get_series` {/* #geo_get_series */}
 
-샘플 포함 된 샘플이있는 GEO 시리즈 (GSE 액세스)에 대한 Fetch 구조화 된 메타 데이터 - 시리즈 제목 / 요약 / 디자인, 플랫폼, 특성 및 라이브러리 정보가있는 샘플 및 보조 파일 URL. 데이터 테이블은 결코 다운로드되지 않습니다.
+샘플 포함 된 GEO 시리즈 (GSE 액세스)에 대한 Fetch 구조화된 메타 데이터 - 시리즈 제목 / 요약 / 디자인, 플랫폼, 특성 및 라이브러리 정보 샘플 및 보조 파일 URL. 데이터 테이블을 다운로드하지 않습니다. geo_get_matrix_files을 사용하여 시리즈 매트릭스와 NCBI 생성 된 RNA-seq 카운트 파일을 발견 한 다음 geo_preflight_matrix는 이러한 샘플에 대한 압축 된 데이터를 확인합니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -3784,6 +3801,33 @@ const result = await host.mcp("omics-archives", "workbench_search_studies", {"qu
 
 ```javascript
 const result = await host.mcp("omics-archives", "workbench_get_study", {"study_id": "ST000001", "section": "factors"})
+```
+
+### `geo_get_matrix_files` {/* #geo_get_matrix_files */}
+
+시리즈 매트릭스 파일 및 NCBI 생성 된 RNA-seq 원시 카운트, FPKM/TPM 및 라이브 NCBI 목록에서 하나의 GSE에 대한 유전자 주석 파일. 광고 된 URL을 반환, 매트릭스 또는 확인 된 파일 내용을 다운로드하지. 샘플 메타데이터를 위한 geo_get_series로 시작. 사용자에 의해 수동 다운로드에 대한 공식 URL을 제공, 다음 로컬에서 geo_preflight_matrix을 사용하여 텍스트를 해독. host.mcp를 원시 HTTP로 우회하지 마십시오. 미스링 또는 실패 목록은 데이터의 부재를 증명하지 않습니다; 또한 일련의 보충 파일을 검사합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `accession` | 문자열 | **필수**; 패턴: "^GSE&#91;1-9&#93;&#91;0-9&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("omics-archives", "geo_get_matrix_files", {"accession":"GSE164073"})
+```
+
+### `geo_preflight_matrix` {/* #geo_preflight_matrix */}
+
+Preflight decompressed dense TSV 또는 시리즈 모체 텍스트 (최대 8 MiB) 네트워크 또는 파일 시스템 액세스없이. geo_get_series (accession, title, platform_id)의 공급 샘플은 GSM의지도 열에, 위치에 의해 결코. 일반 TSV는 고유한 정확한 제목 일치를 지원합니다; GSM 모양 란은 제목으로 결코 뒤떨어지지 않습니다. 시리즈 매트릭스는 정확히 하나의 !Sample_geo_accession 헤더를 사용하여 유효한 GSM 액세스는 샘플 열 카운트와 주문에 일치하고, 일치하는 제목으로 다시 떨어지지 않습니다. 더 큰 파일 사용은 완료:false 및 분석 환경에서 전체 검증을 수행합니다. 일반 TSV 미리보기의 경우 테이블 헤더를 완전히 미리보기 행을 전달합니다. 시리즈 매트릭스 미리보기를 위해, 또한 !Sample_geo_accession 및 !Sample_platform_id 헤더 및 !series_matrix_table_begin을 포함한 전신 메타 데이터를 보존합니다. 테이블 또는 fabricate만 제출하지 마십시오!series_matrix_table_end. 완전한 설정:true 만 텍스트가 전체 파일을 포함 할 때. 일반 TSV의 경우, 완전성은 독립적으로 검증되지 않는 콜러 선언됩니다. 미리보기는 총 크기를 설정할 수 없습니다. 비소 매트릭스 시장, 아카이브, HDF5 또는 멀티 라인 TSV 필드를 처리하지 않습니다. 분석 매트릭스를 준비할 때 보존 sample_mapping 열 순서.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `text` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 8388608 |
+| `complete` | 불리언 | 선택 사항; 기본값: false |
+| `matrix_kind` | 문자열 | 선택 사항; 기본: "unknown"; 크기: "series_matrix", "raw_counts", "normalized_counts", "unknown" |
+| `samples` | 객체 배열 | 선택 사항; 최대품목: 10000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "geo_preflight_matrix", {"text":"GeneID\tGSM5000001\n1\t12\n","complete":false,"matrix_kind":"raw_counts","samples":[{"accession":"GSM5000001"}]})
 ```
 
 </ToolOperationGroup>
@@ -4907,6 +4951,252 @@ Public Dataset 자산에서 다운로드 재고를 반환합니다. 고정된 �
 
 ```javascript
 const result = await host.mcp("cellxgene-discover", "list_dataset_files", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
+```
+
+</ToolOperationGroup>
+
+## IEDB {/* #family-33 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `search_epitopes` {/* #search_epitopes */}
+
+epitope, 호스트, 항원 소스, MHC 및 증거 필터가있는 IEDB epitopes 검색. Aggregated 필터는 동일한 기록에서 다른 실험과 일치 할 수 있습니다; assay 검색을 사용하여 한 실험에서 co-occurrence를 시행합니다. 적어도 1개의 생물학 또는 증거 여과기는 요구됩니다; 제한 및 오프셋은 필터가 아닙니다. 데이터베이스 관측, 예측하지. 부정적인 결과를 밝히고 누락된 결과가 나타낸다. MHC ligand elution는 의무적인 친화성 측정이 아닙니다; response_measured, 방법 및 단위를 함께 해석하십시오. 부모 항원은 대표 단백질이며, 정확히 curated 항원 또는 epitope 순서와 일치하지 않을 수 있습니다. `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`를 가진 cross_references.parent_uniprot_accessions 또는 curated_uniprot_accessions를 사용하십시오; cross_references.pdb_ids을 `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`로 사용합니다. 이 명시된 업스트림 크로스 환경, 순서 파생 된 매핑 하지. 불러 오기 전에 각 매치 커넥터 기술을로드하십시오. antigen_iri 또는 uniprot_accession을 모두 사용하세요.
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`sequence`의 적어도 하나 제공하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `epitope_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `reference_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `host_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `source_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `antigen_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `uniprot_accession` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;A-Z0-9·&#123; 6&#125;(?:&#91;A-Z0-)9·&#123; 4&#125;)?(?:-&#91;1- - -9₢ 킹0- - -9&#93;&#42;)?(?!&#91;\\\\\S&#93;)" |
+| `mhc_allele` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `mhc_class` | 문자열 | 위의 조건에 따라; ENum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `assay_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `pdb_id` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\\\S&#93;)" |
+| `sequence` | 문자열 | 위의 조건에 따라; 최대 길이: 1000; 패턴: "^&#91;A-Za-z&#93;+(?!&#91;\\\\\\\\S&#93;)" |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_epitopes", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_antigens` {/* #search_antigens */}
+
+epitope, 호스트, 항원 소스, MHC 및 증거 필터와 IEDB 항원 검색. Aggregated 필터는 동일한 기록에서 다른 실험과 일치 할 수 있습니다; assay 검색을 사용하여 한 실험에서 co-occurrence를 시행합니다. 적어도 1개의 생물학 또는 증거 여과기는 요구됩니다; 제한 및 오프셋은 필터가 아닙니다. 데이터베이스 관측, 예측하지. 부정적인 결과를 밝히고 누락된 결과가 나타낸다. MHC ligand elution는 의무적인 친화성 측정이 아닙니다; response_measured, 방법 및 단위를 함께 해석하십시오. 부모 항원은 대표 단백질이며, 정확히 curated 항원 또는 epitope 순서와 일치하지 않을 수 있습니다. `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`를 가진 cross_references.parent_uniprot_accessions 또는 curated_uniprot_accessions를 사용하십시오; cross_references.pdb_ids을 `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`로 사용합니다. 이 명시된 업스트림 크로스 환경, 순서 파생 된 매핑 하지. 불러 오기 전에 각 매치 커넥터 기술을로드하십시오. antigen_iri 또는 uniprot_accession을 모두 사용하세요.
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`antigen_name`의 적어도 하나 제공하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `epitope_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `reference_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `host_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `source_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `antigen_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `uniprot_accession` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;A-Z0-9·&#123; 6&#125;(?:&#91;A-Z0-)9·&#123; 4&#125;)?(?:-&#91;1- - -9₢ 킹0- - -9&#93;&#42;)?(?!&#91;\\\\\S&#93;)" |
+| `mhc_allele` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `mhc_class` | 문자열 | 위의 조건에 따라; ENum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `assay_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `pdb_id` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\\\S&#93;)" |
+| `antigen_name` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_antigens", {"uniprot_accession": "P01012", "limit": 20})
+```
+
+### `search_tcell_assays` {/* #search_tcell_assays */}
+
+호스트, 소스 항원, MHC 및 결과 필터로 IEDB T 셀 실험을 검색합니다. tcell_export 측정, 단위, Inequalities, 방법, 주제 수 및 간행물을 포함합니다. 적어도 1개의 생물학 또는 증거 여과기는 요구됩니다; 제한 및 오프셋은 필터가 아닙니다. 데이터베이스 관측, 예측하지. 부정적인 결과를 밝히고 누락된 결과가 나타낸다. MHC ligand elution는 의무적인 친화성 측정이 아닙니다; response_measured, 방법 및 단위를 함께 해석하십시오. 부모 항원은 대표 단백질이며, 정확히 curated 항원 또는 epitope 순서와 일치하지 않을 수 있습니다. `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`를 가진 cross_references.parent_uniprot_accessions 또는 curated_uniprot_accessions를 사용하십시오; cross_references.pdb_ids을 `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`로 사용합니다. 이 명시된 업스트림 크로스 환경, 순서 파생 된 매핑 하지. 불러 오기 전에 각 매치 커넥터 기술을로드하십시오. antigen_iri 또는 uniprot_accession을 모두 사용하세요.
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`sequence`/`assay_id`의 적어도 하나 제공하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `epitope_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `reference_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `host_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `source_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `antigen_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `uniprot_accession` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;A-Z0-9·&#123; 6&#125;(?:&#91;A-Z0-)9·&#123; 4&#125;)?(?:-&#91;1- - -9₢ 킹0- - -9&#93;&#42;)?(?!&#91;\\\\\S&#93;)" |
+| `mhc_allele` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `mhc_class` | 문자열 | 위의 조건에 따라; ENum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `assay_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `pdb_id` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\\\S&#93;)" |
+| `sequence` | 문자열 | 위의 조건에 따라; 최대 길이: 1000; 패턴: "^&#91;A-Za-z&#93;+(?!&#91;\\\\\\\\S&#93;)" |
+| `assay_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_tcell_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_bcell_assays` {/* #search_bcell_assays */}
+
+호스트, 소스 항원, MHC 및 결과 필터로 IEDB B 셀 실험을 검색합니다. bcell_export 측정, 단위, Inequalities, 방법, 주제 수 및 간행물을 포함합니다. 적어도 1개의 생물학 또는 증거 여과기는 요구됩니다; 제한 및 오프셋은 필터가 아닙니다. 데이터베이스 관측, 예측하지. 부정적인 결과를 밝히고 누락된 결과가 나타낸다. MHC ligand elution는 의무적인 친화성 측정이 아닙니다; response_measured, 방법 및 단위를 함께 해석하십시오. 부모 항원은 대표 단백질이며, 정확히 curated 항원 또는 epitope 순서와 일치하지 않을 수 있습니다. `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`를 가진 cross_references.parent_uniprot_accessions 또는 curated_uniprot_accessions를 사용하십시오; cross_references.pdb_ids을 `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`로 사용합니다. 이 명시된 업스트림 크로스 환경, 순서 파생 된 매핑 하지. 불러 오기 전에 각 매치 커넥터 기술을로드하십시오. antigen_iri 또는 uniprot_accession을 모두 사용하세요.
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`sequence`/`assay_id`의 적어도 하나 제공하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `epitope_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `reference_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `host_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `source_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `antigen_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `uniprot_accession` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;A-Z0-9·&#123; 6&#125;(?:&#91;A-Z0-)9·&#123; 4&#125;)?(?:-&#91;1- - -9₢ 킹0- - -9&#93;&#42;)?(?!&#91;\\\\\S&#93;)" |
+| `mhc_allele` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `mhc_class` | 문자열 | 위의 조건에 따라; ENum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `assay_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `pdb_id` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\\\S&#93;)" |
+| `sequence` | 문자열 | 위의 조건에 따라; 최대 길이: 1000; 패턴: "^&#91;A-Za-z&#93;+(?!&#91;\\\\\\\\S&#93;)" |
+| `assay_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_bcell_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_mhc_assays` {/* #search_mhc_assays */}
+
+IEDB MHC 바인딩 및 ligand elution 실험을 호스트, 소스 antigen, MHC 및 outcome 필터로 검색하십시오. mhc_export 측정, 단위, Inequalities, 방법, 주제 수 및 간행물을 포함합니다. 적어도 1개의 생물학 또는 증거 여과기는 요구됩니다; 제한 및 오프셋은 필터가 아닙니다. 데이터베이스 관측, 예측하지. 부정적인 결과를 밝히고 누락된 결과가 나타낸다. MHC ligand elution는 의무적인 친화성 측정이 아닙니다; response_measured, 방법 및 단위를 함께 해석하십시오. 부모 항원은 대표 단백질이며, 정확히 curated 항원 또는 epitope 순서와 일치하지 않을 수 있습니다. `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`를 가진 cross_references.parent_uniprot_accessions 또는 curated_uniprot_accessions를 사용하십시오; cross_references.pdb_ids을 `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`로 사용합니다. 이 명시된 업스트림 크로스 환경, 순서 파생 된 매핑 하지. 불러 오기 전에 각 매치 커넥터 기술을로드하십시오. antigen_iri 또는 uniprot_accession을 모두 사용하세요.
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`sequence`/`assay_id`의 적어도 하나 제공하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `epitope_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `reference_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `host_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `source_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `antigen_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `uniprot_accession` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;A-Z0-9·&#123; 6&#125;(?:&#91;A-Z0-)9·&#123; 4&#125;)?(?:-&#91;1- - -9₢ 킹0- - -9&#93;&#42;)?(?!&#91;\\\\\S&#93;)" |
+| `mhc_allele` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `mhc_class` | 문자열 | 위의 조건에 따라; ENum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `assay_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `pdb_id` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\\\S&#93;)" |
+| `sequence` | 문자열 | 위의 조건에 따라; 최대 길이: 1000; 패턴: "^&#91;A-Za-z&#93;+(?!&#91;\\\\\\\\S&#93;)" |
+| `assay_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_mhc_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_references` {/* #search_references */}
+
+epitope, 호스트, 항원 소스, MHC 및 증거 필터와 IEDB 참조를 검색하십시오. Aggregated 필터는 동일한 기록에서 다른 실험과 일치 할 수 있습니다; assay 검색을 사용하여 한 실험에서 co-occurrence를 시행합니다. 적어도 1개의 생물학 또는 증거 여과기는 요구됩니다; 제한 및 오프셋은 필터가 아닙니다. 데이터베이스 관측, 예측하지. 부정적인 결과를 밝히고 누락된 결과가 나타낸다. MHC ligand elution는 의무적인 친화성 측정이 아닙니다; response_measured, 방법 및 단위를 함께 해석하십시오. 부모 항원은 대표 단백질이며, 정확히 curated 항원 또는 epitope 순서와 일치하지 않을 수 있습니다. `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`를 가진 cross_references.parent_uniprot_accessions 또는 curated_uniprot_accessions를 사용하십시오; cross_references.pdb_ids을 `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`로 사용합니다. 이 명시된 업스트림 크로스 환경, 순서 파생 된 매핑 하지. 불러 오기 전에 각 매치 커넥터 기술을로드하십시오. antigen_iri 또는 uniprot_accession을 모두 사용하세요.
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`pubmed_id`의 적어도 하나 제공하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `epitope_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `reference_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `host_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `source_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `antigen_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `uniprot_accession` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;A-Z0-9·&#123; 6&#125;(?:&#91;A-Z0-)9·&#123; 4&#125;)?(?:-&#91;1- - -9₢ 킹0- - -9&#93;&#42;)?(?!&#91;\\\\\S&#93;)" |
+| `mhc_allele` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `mhc_class` | 문자열 | 위의 조건에 따라; ENum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `assay_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `pdb_id` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\\\S&#93;)" |
+| `pubmed_id` | 문자열 | 위의 조건에 따라; 최대 길이: 12; 패턴: "^&#91;1-9&#93;&#91;0-9&#93;&#42;(?!&#91;\\\\\S&#93;)" |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_references", {"reference_id": 1023094, "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## Monarch Initiative {/* #family-32 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `monarch_get_disease_phenotypes` {/* #monarch_get_disease_phenotypes */}
+
+Monarch Canonical CURIEs를 사용하여 질병을 검색하고, 관계 / 범주, 일차 및 집계 소스, 출판물, 증거 코드, 양도, 주파수, 온 세트 및 컨텍스트 질병을 공급할 때. 소스 데이터베이스 ID 및 별명이 Monarch canonical ID로 자동 변환되지 않으며 일치하지 않을 수 있습니다. 제로 합계는 공급한 식별자 및 필터에 대한 일치가 없으며, 페형 증거가 부과되지 않습니다. 직접 식별자는 기본값입니다; 직접 실험적으로 입증되지 않습니다. knowledge_level 및 agent_type를 인페로 학회에 검사합니다. 증거를 미끄러운 것은 부정적인 증거가 아닙니다. OLS term search and Alliance for model-organism record를 위한 Genes & Ontologies를 사용하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `disease_id` | 문자열 | **필수**; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\\\\\S&#93;)" |
+| `phenotype_id` | 문자열 | 선택 사항; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\\\\\S&#93;)" |
+| `primary_knowledge_source` | 문자열 | 선택 사항; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\\\\\S&#93;)" |
+| `direct` | 불리언 | 선택 사항; 기본값: true |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+
+```javascript
+const result = await host.mcp("monarch", "monarch_get_disease_phenotypes", {"disease_id": "MONDO:0007947", "limit": 20})
+```
+
+### `monarch_get_gene_phenotypes` {/* #monarch_get_gene_phenotypes */}
+
+Monarch canonical CURIEs를 사용하여 유전자 형 협회 증거를 검색, 관계 / 범주, 일차 및 집계 소스, 출판물, 증거 코드, 양도, 주파수, 온 세트 및 컨텍스트 질병을 공급할 때. 소스 데이터베이스 ID 및 별명이 Monarch canonical ID로 자동 변환되지 않으며 일치하지 않을 수 있습니다. 제로 합계는 공급한 식별자 및 필터에 대한 일치가 없으며, 페형 증거가 부과되지 않습니다. 직접 식별자는 기본값입니다; 직접 실험적으로 입증되지 않습니다. knowledge_level 및 agent_type를 인페로 학회에 검사합니다. 증거를 미끄러운 것은 부정적인 증거가 아닙니다. OLS term search and Alliance for model-organism record를 위한 Genes & Ontologies를 사용하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `gene_id` | 문자열 | **필수**; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\\\\\S&#93;)" |
+| `phenotype_id` | 문자열 | 선택 사항; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\\\\\S&#93;)" |
+| `primary_knowledge_source` | 문자열 | 선택 사항; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\\\\\S&#93;)" |
+| `direct` | 불리언 | 선택 사항; 기본값: true |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+
+```javascript
+const result = await host.mcp("monarch", "monarch_get_gene_phenotypes", {"gene_id": "HGNC:3603", "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## Cellosaurus {/* #family-31 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `search_cell_lines` {/* #search_cell_lines */}
+
+검색 Cellosaurus 권장 이름과 문법을 사용하여 리터의 구문 (not raw Solr syntax). 후보를 반환, unambiguous 정체성 일치하지. get_cell_line을 사용해서 원본, 질병 및 외부 매핑을 위한 선택된 CVCL 접근.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `query` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 200; 패턴 : " \ S" |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+
+```javascript
+const result = await host.mcp("cellosaurus", "search_cell_lines", {"query": "HeLa", "limit": 20})
+```
+
+### `get_cell_line` {/* #get_cell_line */}
+
+Cellosaurus CVCL 접속 또는 RRID:CVCL 식별자를 해결합니다. ID, 종, 조직/셀 유형 기원, 실험실, 기증기 질병/age/sex, 부모 세포 선, curated contamination/misidentification 및 주의 기록, ICLAC 등록 및 외부 데이터베이스 매핑을 만회하십시오. 미끄러운 annotations는 표본 질을 설치하지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `accession` | 문자열 | **필수**; 최소 길이: 9; 최대 길이: 40; "^\\\&#42;(?:&#91;Rr&#93;&#91;Rr&#93;&#91;Ii&#93;&#91;Dd&#93;:)?&#91;Cc&#93;&#91;Vv&#93;&#91;Cc&#93;&#91;L&#93;_&#91;A-Za-z0-9&#93;&#123; 4&#125;\\\" |
+
+```javascript
+const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
 ```
 
 </ToolOperationGroup>

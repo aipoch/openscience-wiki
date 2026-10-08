@@ -1,7 +1,7 @@
 ---
 title: "網路、代理與包映象"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-08'
 ---
 
 # 網路、代理與包映象 {/* #网络代理与包镜像 */}
@@ -19,25 +19,31 @@ Network 顯示 **Ready** 但工具失敗時，展開該工具的錯誤。狀態�
 | 現象 | 下一項檢查 | 不應據此得出的結論 |
 | --- | --- | --- |
 | 模型登入失敗 | 提供方認證和模型連線檢查 | Notebook 域名設定會提供模型憑據 |
-| 單個研究域名被拒絕 | **Configure domains** 中的精確域名 | 新增無關的大範圍域名就能修復 |
+| 單個研究域名被拒絕 | **Manage access** 中的精確域名 | 新增無關的大範圍域名就能修復 |
 | 軟體源已允許但 CONNECT 失敗 | 安裝日誌、代理和 DNS 解析 | 再點一次相同授權就能解決所有連線問題 |
 | 證書校驗失敗 | CA bundle 和組織信任要求 | 必須關閉證書校驗 |
 | 連線報錯後顯示找不到包版本 | 更早的網路錯誤、Python 與平臺 | 該軟體包一定不存在 |
 
-## 配置 Notebook 域名 {/* #配置-notebook-域名 */}
+<span id="配置-notebook-域名" />
 
-1. 選擇 **Configure domains**。
-2. 檢視當前裝置是否啟用 Notebook 網路保護。
-3. 展開科學服務分組，檢查域名。分組開關控制對應目的地；本版本軟體源/原始碼分組已開啟且鎖定。
-4. 在 **Domain hostname** 輸入額外來源的精確主機名，選擇 **Add**。
-5. 檢查新增草稿行，使用 **Remove &#91;hostname&#93;** 撤銷。
-6. 選擇 **Save changes** 儲存預期清單。
+## 配置公網訪問規則 {/* #public-network-rules */}
 
-![萬用字元被域名校驗拒絕](/img/open-science/walkthrough-2026-09-08/54-network-domain-validation.webp)
+1. 開啟 **Settings → Network → Manage access**。閱讀 **Public internet access**，區分哪些公網 HTTPS 讀取可以直接進行、哪些請求需要批准。
+2. 檢查 **Built-in services**。標為 **Required** 的分組保持啟用；其他分組按任務需要選擇。
+3. 在 **Custom public domains** 下填寫完整的 **Domain hostname**，選擇 **Add to list**。檢查草稿條目後再點 **Save changes**。
 
-填寫 `data.example.org` 這樣的主機名，不帶協議、路徑、埠、萬用字元或 IP 地址。若顯示 **Enter a hostname only, without a scheme, path, port, or wildcard.**，去掉這些部分後再儲存。
+公網域名規則允許向該主機傳送資料，不包含其子域名，也不會授權訪問私有地址。填寫主機名，不要帶協議、路徑、埠、萬用字元或 IP 地址。主機名若解析到非公網地址，仍需按私有服務流程稽核。受保護程式碼跟隨連結或獲取圖示時也適用這些規則。
 
-按名稱允許的域名仍可能在其他連線檢查中失敗。例如，`pypi.org` 即使已在允許範圍內，解析為 `198.18.*` 時仍會被判定為非公網目的地。這與“域名未授權”是不同問題。
+## 信任私有服務 {/* #trusted-private-services */}
+
+僅在研究程式碼確實需要訪問已知內網服務時使用此項。該控制元件位於桌面應用中。僅支援私有服務地址；localhost、本機和保留地址仍會被阻止。輸入框不接受原始 IP 地址或萬用字元。
+
+1. 在 **Trusted private services** 中選擇 **Add service**，填寫 **Hostname** 和 **Port**。核對具體服務，預設埠為 443。
+2. 選擇 **Review service**，檢查解析得到的 **Approved addresses**，確認後選擇 **Add to trusted services**。
+3. 檢查列表並選擇 **Save changes**。儲存前會再次檢查 DNS；地址變化後需要重新稽核。
+4. 向該服務發起一個小請求並檢查實際響應。地址稽核本身不驗證登入憑據或服務是否可用。
+
+授權繫結完整的主機名、埠和已稽核地址，允許所有專案中的受保護 Notebook 和 Shell 程式碼向該服務傳送資料。只新增任務需要的權限。儲存網路規則會重置受保護連線，可能中斷正在進行的傳輸，請在傳輸結束後應用變更。
 
 ## 選擇代理模式 {/* #选择代理模式 */}
 

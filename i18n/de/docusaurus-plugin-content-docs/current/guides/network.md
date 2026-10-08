@@ -1,7 +1,7 @@
 ---
 title: "Netzwerk, Proxies und Paketspiegel"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-08'
 ---
 
 # Netzwerk, Proxies und Paketspiegel {/* #network-proxies-and-package-mirrors */}
@@ -16,28 +16,34 @@ Der Status kombiniert Netzwerk-Link-Informationen und eine Paket-Registry-Sonde.
 
 Wenn Network **Ready** meldet, aber ein Tool ausfällt, erweitern Sie den Fehler dieses Tools. Die Statussonde überprüft ihren eigenen Zielort; Verwenden Sie den Hostnamen und die Nachricht der fehlgeschlagenen Anfrage, um die betroffene Route zu diagnostizieren.
 
-| Fehlschlag | Inspizieren als nächstes | Vermeiden Sie diese falsche Schlussfolgerung |
+| Fehlschlag | Nächster Blick ins Auge | Vermeiden Sie diese falsche Schlussfolgerung |
 | --- | --- | --- |
-| Provider Login ist fehlgeschlagen | Provider-Authentifizierung und Modellverbindungsprüfung | Notebook-Domäneneinstellungen liefern Modellanmeldeinformationen |
-| Ein Forschungshostname wird abgelehnt | **Configure domains** und den genauen Hostnamen in der Anfrage | Hinzufügen einer breiten nicht verwandten Domain wird es beheben |
+| Provider-Login fehlschlägt | Provider-Authentifizierung und Modellverbindungsprüfung | Notebook-Domäneneinstellungen liefern Modellanmeldeinformationen |
+| Ein Forschungshostname wird abgelehnt | **Manage access** und den genauen Hostnamen in der Anfrage | Hinzufügen einer breiten nicht verwandten Domain wird es beheben |
 | Ein Paket-Host ist bereits erlaubt, aber CONNECT schlägt fehl | Installer Log, Proxy und DNS-Auflösung | Ein anderer identischer Klick erlauben wird alle Netzwerkfehler beheben |
 | Prüfung der Bescheinigung fehlschlägt | Das konfigurierte CA-Bundle und die Vertrauensanforderungen der Organisation | Deaktivierung der Zertifikatsüberprüfung ist erforderlich |
 | Paketindex gibt keine übereinstimmende Verteilung nach Verbindungsfehlern zurück | Frühere Netzwerknachrichten und ausgewählte Python/Plattform | Das Paket darf nicht vorhanden sein |
 
-## Notebook-Domänen konfigurieren {/* #configure-notebook-domains */}
+<span id="configure-notebook-domains" />
 
-1. Wählen Sie **Configure domains**.
-2. Lesen Sie, ob der Notebook-Netzwerkschutz auf diesem Gerät aktiv ist.
-3. Erweitern Sie die wissenschaftlichen Servicegruppen, um ihre Hostnamen zu überprüfen. Die Steuerung für Gruppenwechsel beinhaltete Ziele. Die Paket-Registrierungs-/Quellcode-Gruppe ist in diesem Build aktiviert und gesperrt.
-4. Geben Sie für eine zusätzliche Quelle den genauen Hostnamen in **Domain hostname** ein und wählen Sie dann **Add** aus.
-5. Überprüfen Sie den neuen Entwurf der Zeile. Verwenden Sie **&#91;Hostname&#93; entfernen**, um es rückgängig zu machen.
-6. Wählen Sie **Save changes**, um die beabsichtigte Liste fortzusetzen.
+## Konfigurieren von Regeln für öffentliche Netzwerke {/* #public-network-rules */}
 
-![Exact-Hostname-Validierung lehnt eine Wildcard ab](/img/open-science/walkthrough-2026-09-08/54-network-domain-validation.webp)
+1. Öffnen Sie **Settings → Network → Manage access**. Lesen Sie **Public internet access**, um zu sehen, welche öffentlichen HTTPS-Lesevorgänge fortgesetzt werden können und welche Anfragen eine Genehmigung erfordern.
+2. **Built-in services** prüfen. Eine Gruppe mit der Markierung **Required** bleibt aktiviert; andere Gruppen für die Aufgabe ausgewählt werden können.
+3. Geben Sie unter **Custom public domains** den genauen **Domain hostname** ein und wählen Sie dann **Add to list**. Überprüfen Sie den Entwurf Eintrag vor **Save changes**.
 
-Geben Sie einen Hostnamen wie `data.example.org` ein, ohne Schema, Pfad, Port, Platzhalter oder IP-Adresse. Entfernen Sie für **Enter a hostname only, without a scheme, path, port, or wildcard.** diese Teile und speichern Sie den Hostnamen.
+Eine Public-Domain-Regel ermöglicht das Senden von Daten an diesen Hostnamen; Es umfasst keine Subdomains oder gewährt Zugang zu einer privaten Adresse. Geben Sie einen Hostnamen ohne Schema, Pfad, Port, Platzhalter oder IP-Adresse ein. Ein Hostname, der auf eine nicht öffentliche Adresse auflöst, benötigt immer noch die entsprechende Überprüfung des privaten Dienstes. Diese Regeln gelten auch, wenn geschützter Code Links folgt oder Icons abruft.
 
-Eine Domain, die mit Namen erlaubt ist, kann immer noch eine weitere Verbindungsüberprüfung fehlschlagen. `pypi.org` kann z. B. erlaubt, aber als nicht-öffentliches Ziel abgelehnt werden, wenn es in `198.18.*` aufgelöst wird. Dies unterscheidet sich von einer nicht genehmigten Domain.
+## Vertrauen Sie einem privaten Service {/* #trusted-private-services */}
+
+Verwenden Sie dies nur für einen bekannten internen Dienst, auf den Ihr Forschungscode zugreifen sollte. Dieses Steuerelement ist in der Desktop-App verfügbar. Es werden nur private Serviceadressen unterstützt; localhost, dieser Computer und reservierte Adressen bleiben blockiert. Das Feld akzeptiert keine rohen IP-Adressen oder Platzhalter.
+
+1. Wählen Sie in **Trusted private services** **Add service** und geben Sie **Hostname** und **Port** ein. Bestätigen Sie den genauen Service; Der Standard-Port ist 443.
+2. Wählen Sie **Review service**. Überprüfen Sie das aufgelöste **Approved addresses**, bevor Sie **Add to trusted services** auswählen.
+3. Überprüfen Sie die Liste und wählen Sie **Save changes**. DNS wird vor dem Speichern erneut überprüft; Eine Adressänderung erfordert eine weitere Überprüfung.
+4. Reproduzieren Sie eine kleine Anfrage an diesen bestimmten Dienst und überprüfen Sie seine Antwort. Die Adressüberprüfung allein testet nicht die Authentifizierung oder die Verfügbarkeit des Dienstes.
+
+Ein Zuschuss deckt den genauen Hostnamen, Port und überprüfte Adressen ab. Es ermöglicht geschützten Notebook und Shell-Code, Daten über alle Projekte hinweg an diesen Dienst zu senden. Fügen Sie nur den Zugriff hinzu, den die Aufgabe benötigt. Das Speichern von Netzwerkregeln setzt geschützte Verbindungen zurück und kann eine aktive Übertragung unterbrechen; Beenden Sie diese Übertragung, bevor Sie Änderungen vornehmen.
 
 ## Wählen Sie einen Proxy-Modus {/* #choose-a-proxy-mode */}
 

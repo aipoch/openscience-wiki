@@ -2,7 +2,7 @@
 title: "재현성"
 description: "Rerun 캡처 된 연구 단계, 저장된 결과를 비교하고 검증 기록을 유지합니다."
 last_update:
-  date: '2026-09-17'
+  date: '2026-10-08'
 ---
 
 # 재현성 {/* #reproducibility */}
@@ -87,4 +87,8 @@ v0.30.2는 동일한 회전과 지원된 Python 표준 리브 가져 오기, Win
 
 준비가 이전 Notebook 상태에 따라 [실행 증거](notebook.md)을 검사하고 새로운 결과를 생성하기 전에 필요한 준비를 다시 실행하십시오. 완료된 비교에서 멈출 수 없거나 불완전한 검사.
 
-이미 지원된 자물쇠 번들을 가지고 있고 신청 외부 패키지를 복원해야 하는 경우, [runtime restoration 상태](runtimes.md#conditional-restore)을 따르십시오. 그 절차는 누락된 자물쇠를 창조하지 않거나 위에 준비를 대체하지 않습니다. 복원 의존성 혼자는 출력 재현을 설정하지 않습니다.
+이미 지원된 자물쇠 번들을 가지고 있고 신청 외부 패키지를 복원해야 하는 경우, [runtime 복원 조건](runtimes.md#conditional-restore)을 따르십시오. 그 절차는 누락된 자물쇠를 창조하지 않거나 위에 준비를 대체하지 않습니다. 나머지 종족은 단독으로 출력을 설정하지 않습니다.
+
+## rerunning의 앞에 역사 검열 {/* #replay-vs-verification */}
+
+[세션 재생](session-replay.md)을 사용하여 메시지, 도구 활동 및 파일 버전의 기록 된 순서를 검사합니다. Replay는 재건축된 발표 타이밍을 가진 저장된 증거를 표시합니다; rerun 부호, 쿼리 데이터베이스는 다시 또는 그 결과 reproduces를 설치하지 않습니다. 새로운 실행 및 출력 비교를 필요로 할 때 위의 **Reproducibility**을 사용하십시오.

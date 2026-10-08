@@ -119,3 +119,7 @@ Wenn das gekennzeichnete Material absichtlich Teil einer autorisierten Übergabe
 **Run in background** verbirgt das Fortschrittsfenster, während die Übertragung fortgesetzt wird. Verwenden Sie **Cancel**, um zu stoppen; Das Ausblenden des Fensters storniert die Operation nicht.
 
 Wenn die Bereinigung unvollständig ist, verwenden Sie **Retry cleanup**, bevor Sie es erneut versuchen. Nach einem Fehler ruft **Try again** die gleiche Datei und das gleiche Ziel erneut ab. Wählen Sie ein anderes Paket separat, wenn dies Ihre Absicht ist. Überprüfen Sie den vorhandenen Vorgang, bevor Sie einen zweiten Import starten, und prüfen Sie dann die importierte Sitzung und die Dateien, wenn sie abgeschlossen ist.
+
+## Wiedergabe eines erhaltenen Forschungsprotokolls {/* #replay-import */}
+
+Nachdem der Import abgeschlossen ist, wählen Sie **View replay**, um die aufgezeichneten Schritte zu überprüfen, oder **Discuss**, um in einer beschreibbaren Konversation nach ihnen zu fragen. Die importierte Quelle bleibt schreibgeschützt. Eine Diskussionsreferenz erstellt nicht die ursprüngliche Laufzeit; Verwenden Sie **Fork to continue** für eine Arbeitskopie. Siehe [Session Replay](session-replay.md).

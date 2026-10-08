@@ -232,3 +232,5 @@ v0.33.1 的提供商目錄新增 **GPT-6** 和 **Claude Opus 5.5**。開啟對�
 v0.34.0 新增 **MiniMax M3.1 Flash Preview** 和 **Claude Sonnet 5.5**。在各自 Provider 的模型列表中選擇，並確認賬號訪問權限及當前 Agent 的相容性；這不會自動改變已儲存的 Main 模型。
 
 v0.34.1 在 Codex 模型目錄中增加 **gpt-6.1-sol**。在模型選擇器中主動選擇後，先傳送一個小請求確認賬號可用；升級不會自動替換已儲存的主模型。
+
+v0.35.0 擴充套件 **OpenCode Zen** 模型目錄，並補充 Jev 分類支援。按所需用途檢查對應選擇器：可用於分類的模型不會自動成為 Main model。除非主動修改，否則保留原主模型；分類設定見[模型配置](models.md#classification-models)。

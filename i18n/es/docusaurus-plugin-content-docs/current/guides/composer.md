@@ -1,7 +1,7 @@
 ---
 title: "Conversaciones y solicitudes en cola"
 last_update:
-  date: '2026-09-16'
+  date: '2026-10-08'
 ---
 
 # Conversaciones y solicitudes en cola {/* #conversations-and-queued-requests */}
@@ -117,3 +117,7 @@ Agitar o enfocar la tabla de respuesta para revelar **Copiar la mesa** (Markdown
 Para trabajos de larga duración, utilice [Tareas en segundo plano](notebook.md#background-tasks-and-result-delivery) para abrir o cancelar la ejecución específica. Un seguimiento frustrado es una instrucción pendiente; una tarea de antecedentes ya se admite trabajo. Cerrar la lista de tareas no detiene la ejecución.
 
 Fuentes: [Controles de las colas](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx), [Controlador de entrega](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/workspace-message-queue-controller.ts).
+
+## Suelta archivos en una conversación {/* #conversation-drop */}
+
+Puede arrastrar archivos locales en el área de conversación, no sólo el Compositor. Espere a que los chips adjuntos y cualquier subida a terminar, inspeccione los nombres de archivo, luego envíe la solicitud. Los archivos de desplegables no envían el mensaje. Para importar un paquete de investigación `.science`, utilice **Importar investigación anterior** en la página de conversación vacía; ver [Paquetes de investigación](research-packages.md).

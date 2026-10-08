@@ -1,7 +1,7 @@
 ---
 title: "파일 열기 및 미리보기"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -121,10 +121,10 @@ PDF 컨텍스트의 경우 현재 작업과 관련된 종이만 연결하여 다
 
 ## PDF 수치 및 테이블 추출 {/* #pdf-extraction */}
 
-그림 또는 문학 PDF에서 재사용 가능한 테이블이 필요할 때 이것을 사용하십시오. [라이브러리](library.md)에서 PDF을 먼저 추가하고 검사; bibliographic metadata는 혼자서 적출 입력이 아닙니다.
+PDF에서 그림 또는 재사용 가능한 테이블을 필요로 할 때 이것을 사용하십시오. PDF을 대화에 첨부하거나 생성된 PDF 또는 [라이브러리](library.md)의 읽기 가능한 PDF로 엽니다. Bibliographic metadata는 혼자서 적출 입력이 아닙니다. 업로드된 PDF는 동일한 **Figures & Tables** 분석을 지원합니다; 먼저 라이브러리 레코드를 추가 할 필요가 없습니다.
 
-1. PDF 미리보기를 열고 **Figures and tables**을 **Original PDF** 옆에 선택합니다.
-2. 첫 번째 사용에서 필요한 모델 리소스를 설치하려면 **Download and continue**을 선택하십시오. 설치 및 무결성 검사를 기다리고 있습니다. 리소스가 준비되면 **Analyze PDF**을 사용하십시오.
+1. PDF 미리보기를 열고 **Figures & Tables**을 **Original PDF** 옆에 선택합니다.
+2. 처음에는 **Download and continue**을 선택합니다. 모델 다운로드와 무결성 검사가 끝나면 분석이 자동으로 시작됩니다. 리소스가 이미 설치되어 있고 **Analyze PDF** 버튼이 표시되면 해당 버튼을 선택합니다.
 3. 페이지 진행을 따르십시오. 완료 후, 후보자를 선택하고 **Show in PDF**을 사용하여 소스 페이지, 캡션 및 주변 텍스트와 비교하십시오.
 4. 그림의 경우 이미지 미리보기를 열고 **Copy image** 또는 **Download image**을 사용하십시오. 테이블의 경우 **Table**을 선택하면 **TSV**, **HTML** 또는 **Markdown**를 선택하고 복사 / 다운로드 작업을 사용하십시오. 소스 작물을 검사할 필요가 있을 때 **Image**를 선택하십시오.
 5. 수출된 파일을 엽니다. 분석 또는 보고서에서 사용하기 전에 행 / 열 정렬, 병합 헤더, 단위, 발주 및 크로스 페이지 콘텐츠를 확인하십시오.
@@ -133,9 +133,25 @@ Extraction은 모델 리소스가 다운로드 된 후 로컬로 실행됩니다
 
 **Unplaced table text** 및 **Table notes** 리뷰가 필요한 콘텐츠를 보존합니다. 구조 세포가 사용할 수없는 경우 소스 작물과 원래 PDF을 사용하십시오. 누락된 세포를 사용하지 마십시오. 스캔 및 회전된 페이지는 이 추출 작업 흐름에 의해 지원되지 않습니다. PDF은 추출이 불가능할 때도 읽을 수 있습니다.
 
+### 업로드 된 종이에서 그림을 추출 {/* #uploaded-pdf-extraction */}
+
+<p className="example-label"><strong>실습 예제</strong> Inspect 그림 1 from Lang et al., 2019</p>
+
+[비 결함 안정된 열으로 안정되어 있는 단 하나 atom 촉매](https://doi.org/10.1038/s41467-018-08136-3)에 대한 출판사 PDF을 사용하여, Lang et al., [4.0에 의하여 CC](https://creativecommons.org/licenses/by/4.0/) 아래. 스크린 샷은 Open-Science에 의해 표시된 종이 수치를 보여줍니다.
+
+1. PDF 을 **+ → Attach files** 을 대화에서 추가합니다. 메시지를 보낸 후, 업로드 된 첨부 파일을 엽니 다.
+2. **Figures & Tables**을 선택합니다. 첫 번째 사용에서 **Download and continue**을 완료하십시오. 페이지가 **Analysis complete**을 보고할 때까지 기다리십시오.
+3. 인덱스에서 **Fig. 1**을 선택합니다. 이 업로드된 복사본은 **PDF 페이지 3**의 그림입니다. 그것의 이미지 패널 및 caption를 비교하십시오; 추출된 이미지는 검사하는 증거, 새로운 발견 아닙니다입니다.
+
+![업로드 된 Lang Paper에서 로컬 그림 추출 완료](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+
+4. **Show in PDF**을 선택하십시오. 원래 미리보기에서 **3 / 10**을 확인하고 패널 라벨, 스케일 바 및 곡선을 비교하십시오. 그림 인용하기 전에 페이지 번호 또는 캡션 잡기를 해결하기 위해 원래 페이지를 사용합니다.
+
+![에 의해 표시 PDF 페이지의 원본 그림에 반환 3 의 특징 10](/img/open-science/v0350/uploaded-pdf-source.webp)
+
 ### 추출된 그림이나 테이블에 대한 대리인에게 문의하십시오. {/* #pdf-agent-evidence */}
 
-1. PDF을 열고 **Read with agent**을 사용하여 현재 세션에 연결하고 관련 페이지에 **Figures and tables** 분석을 완료하십시오. 귀하의 질문에 보내기 전에 PDF이 Composer의 읽기 컨텍스트에 남아 있음을 확인하십시오. 자체의 라이브러리 레코드는 링크 된 PDF이 아니며 혼자 링크는이 분석을 실행하지 않습니다.
+1. PDF을 열고 **Read with agent**을 사용하여 현재 세션에 연결하고 관련 페이지에 **Figures & Tables** 분석을 완료하십시오. 귀하의 질문을 보내기 전에, PDF이 Composer의 읽기 컨텍스트에 남아 있음을 확인합니다. 자체에 의해 라이브러리 레코드는 링크 된 PDF이 아니며 혼자 링크는이 분석을 실행하지 않습니다.
 2. 특정 인물, 테이블 또는 알고리즘에 대해 문의하십시오. 라벨이나 페이지 및 질문에 답해야 합니다.
 3. 도구 활동 검사: **list_pdf_elements**는 유효한 추출한 성분을 찾아냅니다; **read_pdf_element**은 선택한 증거를 읽습니다. 소스 페이지에 대한 질문과 답변에 누락 또는 불확실한 내용.
 4. 헤더, 단위 및 노트를 포함하여 원본 그림 또는 테이블과의 응답을 비교합니다. 적출이 부유하거나 불완전한 경우, 누락된 페이지를 분석하고 재발합니다; 캡션은 트렌드 또는 정확한 테이블 값을 설정할 수 없습니다.
