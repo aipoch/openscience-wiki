@@ -13,7 +13,7 @@ Utilisez cette page pour choisir une source de données, comprendre ce qu'elle p
 
 ## Bases de données prises en charge {/* #supported-databases */}
 
-Open-Science v0.34.1 comprend **Connecteurs source de données 30 avec opérations 324**. Le Molecule Connector séparé hors ligne ajoute deux opérations, apportant le registre complet à 326. Noms Connector ci-dessous correspondent à **Settings → Connectors**; Chaque famille peut exposer plusieurs bases de données. L'inscription d'une source ne signifie pas que toutes les fonctionnalités de son site Web sont disponibles.
+Open-Science v0.35.0 comprend **Connecteurs source de données 33 avec opérations 337**. Le Molecule Connector séparé hors ligne ajoute deux opérations, apportant le registre complet à 339. Noms Connector ci-dessous correspondent à **Settings → Connectors**; Chaque famille peut exposer plusieurs bases de données. L'inscription d'une source ne signifie pas que toutes les fonctionnalités de son site Web sont disponibles.
 
 | Connecteur | Sources | Opérations | Utilisez-le pour  |
 | --- | --- | --- | ---  |
@@ -25,7 +25,7 @@ Open-Science v0.34.1 comprend **Connecteurs source de données 30 avec opératio
 | Variantes · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | Fréquences des populations, dossiers cliniques et scores fonctionnels, cartes et expériences propres à chaque essai. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Essais cliniques de ClinicalTrials.gov — recherche, détails, commanditaires, chercheurs, critères et admissibilité.  |
 | Génomique clinique · `clinical-genomics` | ClinGen, CIViC, cibles ouvertes, ClinPGx | 30 | Bases de connaissances en génomique clinique : ClinGenations, preuves cliniques du CIVIC et plateforme Open Targets, plus dossiers pharmacogénomiques ClinPGx. |
-| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Structures et interactions moléculaires — Structures PDB, prédictions AlphaFold, entrées EMDB cryo-EM, complexes de portails complexes, réseaux d'interactions IntAct.  |
+| Structures et interactions · `structures` | PDB, AlphaFold, EMDB, Portail complexe, IntAct | 17 | Structures et interactions moléculaires — Structures PDB, prédictions AlphaFold, entrées EMDB cryo-EM, complexes de portails complexes, réseaux d'interactions IntAct.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | Composés bioactifs, médicaments, cibles, bioactivité et mécanismes via le ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | préimpressions bioRxiv/medRxiv — recherche par date/catégorie, métadonnées par DOI, liens de publication de revues, listes de bailleurs de fonds et statistiques des plates-formes.  |
 | Réglementation des médicaments · `drug-regulatory` | ouvertFDA | 10 | Médicaments@FDA, étiquettes, rapports d'événements indésirables FAERS et rappels de médicaments. |
@@ -34,7 +34,7 @@ Open-Science v0.34.1 comprend **Connecteurs source de données 30 avec opératio
 | Annotation protéique · `protein-annotation` | InterPro, Pfam, Atlas des protéines humaines, STRING | 14 | Architecture du domaine protéique, appartenance à la famille/clan, atlas d'expression et réseaux d'interactions via InterPro/Pfam, l'Atlas des protéines humaines et STRING, y compris l'enrichissement des interactions réseau. |
 | Modèles de cancer · `cancer-models` | cBioPortal | 10 | Études, mutations, nombre de copies, échantillons, patients, attributs cliniques et expression du profil moléculaire. |
 | RNA · `rna` | Rfam | 9 | Données sur les familles d'ARN non codantes (métadonnées, alignements, modèles, structures) via Rfam.  |
-| Archives Omics · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 26 | Étude et gestion des métadonnées et des répertoires de fichiers Omics; des échantillons, des facteurs, des analyses et des enregistrements composés. |
+| Archives Omics · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | Étude et gestion des métadonnées et des répertoires de fichiers Omics; des échantillons, des facteurs, des analyses et des enregistrements composés. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Identité de type cellulaire, gènes marqueurs, ensembles de données source et tissus via CELLxGENE CellGuide.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | Génomique fonctionnelle de régulation génétique — expériences ENCODE/biosamples/files, profils de liaison JASPAR TF et UniBind ChIP-seq TFBS.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Recherche de financement-opportunité (Grants.gov) et recherche de catalogue d'anticorps (Registre des anticorps).  |
@@ -47,6 +47,9 @@ Open-Science v0.34.1 comprend **Connecteurs source de données 30 avec opératio
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Recherche de trajectoires, voies supérieures, requêtes de graphiques et exportations de sous-modèles BioPAX. |
 | Alliance Genome Resources · `alliance` | Alliance des ressources génomiques | 8 | Les gènes humains et modèles-organismes, orthologues, modèles de maladies, phénotypes, allèles et expression. |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Collections et ensembles de données monocellulaires, versions publiées, formats de fichiers, tailles et URLs de téléchargement. |
+| Cellosaurus · `cellosaurus` | Cellosaurus | 2 | Trouvez les noms de lignes cellulaires et les synonymes, puis inspectez l'identité d'adhésion et les annotations de qualité. |
+| Monarch Initiative · `monarch` | Monarch Initiative | 2 | Les associations entre la maladie et le gène et le phénotype avec l'organisme et les preuves à l'appui. |
+| IEDB · `iedb` | Base de données Imune Epitope | 6 | Epitopes, antigènes, cellules T, cellules B et HCM, et publications sources. |
 
 Les outils Molecule hors ligne sont couverts par [Vérificateurs scientifiques](viewers.md). Pour les opérations exactes exposées par chaque source de données, utilisez le [Référence de fonctionnement Connector](../reference/connector-operations.md).
 
@@ -83,6 +86,26 @@ Rechercher les entrées ci-dessous dans **Settings → Connectors**, activer la 
 Le filtrage et la pagination CELLxGENE fonctionnent localement sur le catalogue en amont récupéré pour chaque requête; le catalogue peut changer entre les requêtes. Utilisez les ID de version pour conserver une publication. Une taille de fichier non déclarée est -1, pas zéro octets. Préserver les valeurs manquantes et les définitions des essais dans les résultats MaveDB et Workbench.
 
 Voir les entrées exactes pour [CELLxGENE Discover](../reference/connector-operations.md#family-30), [Alliance](../reference/connector-operations.md#family-29), [MaveDB](../reference/connector-operations.md#mavedb_search_score_sets) et [Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies).
+
+## Lignes cellulaires, phénotypes et preuves immunitaires {/* #cell-lines-phenotypes-immunity */}
+
+Activer **Cellosaurus**, **Monarch Initiative** ou **IEDB** dans **Settings → Connectors** et le rendre disponible sur **Agent principal**. Ces opérations interrogent les enregistrements publics sans serveur personnalisé ou clé API.
+
+| Entrée | Que demander | Que préserver |
+| --- | --- | --- |
+| Cellosaurus | Recherche d'un nom/synonyme de ligne cellulaire, puis récupérer l'adhésion CVCL retournée ou RRID | Espèces, identités, synonymes et annotations de contamination/d'identification erronée. La recherche prend une phrase littérale, pas une requête brute Solr. Les annotations de qualité manquantes ne certifient pas la lignée cellulaire. |
+| Monarch Initiative | Associations de phénotypes de maladies ou de gènes utilisant des CURIES canoniques, telles que MONDO:0007254 ou HGNC:11998 | Organisme, phénotype, source et preuve. Les alias ne sont pas automatiquement convertis; résoudre les identifiants d'abord. Une correspondance directe concerne une correspondance d'identificateur, et non une confirmation expérimentale. |
+| IEDB | Epitopes ou antigènes, ou un dosage spécifique de cellules T, B ou MHC | Au moins un filtre biologique/de preuve est requis; La pagination seule est insuffisante. Utilisez soit antigen_iri ou uniprot_accession, pas les deux. Préserver la méthode d'essai, le résultat, les unités et la publication; une observation d'élution du MHC n'est pas une mesure d'affinité. |
+
+Un enregistrement d'épitope/antigène agrégé peut combiner des observations issues de différentes expériences. Lorsque les filtres doivent être satisfaits par la même expérience, interrogez l'opération d'essai correspondante. Les allumettes zéro n'établissent pas de résultat biologique négatif. [Paramètres Cellosaurus](../reference/connector-operations.md#family-31) · [Paramètres du monarque](../reference/connector-operations.md#family-32) · [Paramètres IEDB](../reference/connector-operations.md#family-33).
+
+## Trouver des matrices GEO et des structures assorties de séquences {/* #geo-matrices-pdb-sequences */}
+
+**Omics Archives → geo_get_matrix_files** découvre les fichiers officiels de la série GEO Matrix et les fichiers de count/FPKM/TPM/annotation générés par NCI. Il retourne les emplacements des fichiers; il ne télécharge pas leurs octets. **geo_get_series** reste une recherche de métadonnées.
+
+Après avoir obtenu une matrice, **geo_preflight_matrix** vérifie le texte déjà lu et décompressé jusqu'à 8 MiB. Il n'a pas d'accès au réseau ou au système de fichiers. Conservez les identifiants GSM et les métadonnées de la plate-forme afin que les échantillons puissent être mapés par ID plutôt que par colonne. Définir **Complète : faux** pour un aperçu; ne passez que **Complètement : true** pour l'ensemble du fichier. Un aperçu ne peut pas établir les dimensions du fichier entier. Ne pas alimenter une archive compressée, une matrice clairsemée ou un fichier HDF5 dans le vérificateur de texte. Voir [découverte de matrices](../reference/connector-operations.md#geo_get_matrix_files) et [texte avant vol](../reference/connector-operations.md#geo_preflight_matrix).
+
+**Structures & Interactions → pdb_search_sequence** accepte une séquence protéique de résidus de 25–10,000, comme séquence brute ou un enregistrement FASTA. Les seuils d'identité et de couverture des requêtes sont des fractions de 0 à 1. La couverture de requête retournée décrit l'alignement à la requête; Ce n'est pas une couverture de structure expérimentale. Le total en amont précède le filtrage de la couverture locale, et un balayage limité peut omettre des correspondances ultérieures. L'opération trouve des enregistrements de structure sans télécharger les coordonnées. Voir [des entrées exactes et des limites de balayage](../reference/connector-operations.md#pdb_search_sequence).
 
 ## Connectez et commencez à utiliser une base de données {/* #connect-database */}
 
@@ -190,7 +213,7 @@ Pour `get_variant`, définissez `include_populations: true` uniquement lorsque l
 
 Les listes [Référence de fonctionnement Connector](../reference/connector-operations.md) contiennent les entrées requises, les valeurs autorisées et les appels exacts. Utilisez cette page pour choisir une source et la connecter; utiliser la référence pour les champs d'un outil particulier.
 
-Source du catalogue: [catalogue.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts), [registre.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts).
+Source du catalogue: [catalogue.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/catalog.ts), [registre.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/registry.ts).
 
 ## Recherches de séquences et alignement {/* #sequence-tools */}
 

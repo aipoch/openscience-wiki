@@ -1,7 +1,7 @@
 ---
 title: "토큰 사용 및 활동"
 last_update:
-  date: '2026-09-09'
+  date: '2026-10-08'
 ---
 
 # 토큰 사용 및 활동 {/* #token-usage-and-activity */}
@@ -50,3 +50,7 @@ last_update:
 페이지는 단지 보고된 사용법만 포함합니다. 누락된 역사를 재구성하지 않습니다. 컨텍스트 구성 및 압축을 위해 [기억과 대화 맥락](./memory.md)을 참조하십시오.
 
 근원: [사용법 패널과 도표 통제](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/TokenUsagePanel.tsx).
+
+## 인접 일 검사 {/* #inspect-daily-usage */}
+
+**Daily token usage** 차트를 통해 성공 날짜와 입력, 캐시 및 출력 내역을 검사합니다. 키보드 액세스의 경우 **탭 / Shift+Tab**을 사용하여 하루에 초점을 맞추고 **뚱 베어**은 세부 사항을 닫습니다. 표시된 날짜와 성분을 비교하십시오; 이 차트는 여전히 마지막 30 일 커버하고 누락 된 공급자 telemetry를 재구성하지 않습니다.

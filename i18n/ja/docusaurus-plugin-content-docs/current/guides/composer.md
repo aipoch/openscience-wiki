@@ -1,7 +1,7 @@
 ---
 title: "会話と送信待ちのリクエスト"
 last_update:
-  date: '2026-09-16'
+  date: '2026-10-08'
 ---
 
 # 会話と送信待ちのリクエスト {/* #conversations-and-queued-requests */}
@@ -117,3 +117,7 @@ original column-name mapping in the CSV/report.
 長時間の作業には、[バックグラウンドタスク](notebook.md#background-tasks-and-result-delivery) を使用して、特定の実行を開か中止します。 キュードフォローアップは、保留中の指示です。 背景タスクは既に作業を認めています。 タスクリストを閉じると、実行を停止しません。
 
 ソース: [キューコントロール](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx)、[配達コントローラー](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/workspace-message-queue-controller.ts)。
+
+## ファイルを会話にドロップする {/* #conversation-drop */}
+
+コンポーザーだけでなく、ローカルファイルを会話エリアにドラッグすることができます。 添付ファイルチップとアップロードが完了するまで待ってから、ファイル名を調べて、リクエストを送信します。 ファイルをドロップすると、メッセージが送信されません。 `.science` リサーチパッケージをインポートするには、空の会話ページで **以前の研究をインポート** を使用します。 [研究パッケージ](research-packages.md) を参照してください。

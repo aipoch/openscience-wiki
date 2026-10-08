@@ -1,7 +1,7 @@
 ---
 title: "開啟與預覽檔案"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -119,10 +119,10 @@ PDF 上下文只關聯當前任務需要的論文，後續不應使用時取消�
 
 ## 提取 PDF 圖片與表格 {/* #pdf-extraction */}
 
-需要從文獻 PDF 取得圖片或可複用表格時，使用此功能。先在[文獻庫](library.md)新增並檢查 PDF；只有文獻後設資料不能作為提取輸入。
+需要從 PDF 取得圖片或可複用表格時，開啟會話中上傳的 PDF、生成的 PDF，或[文獻庫](library.md)中可讀取的 PDF。只有文獻後設資料不能作為提取輸入。上傳的 PDF 同樣支援 **Figures & Tables** 分析，無需先建立文獻庫記錄。
 
-1. 開啟 PDF 預覽，選擇 **Original PDF** 旁的 **Figures and tables**。
-2. 首次使用時選擇 **Download and continue**，安裝所需模型資源，並等待安裝和完整性檢查。資源就緒後使用 **Analyze PDF**。
+1. 開啟 PDF 預覽，選擇 **Original PDF** 旁的 **Figures & Tables**。
+2. 首次使用時選擇 **Download and continue**，等待模型下載和完整性檢查，隨後會自動開始分析。資源已安裝且頁面提供 **Analyze PDF** 時，選擇該按鈕。
 3. 檢視逐頁進度。完成後選擇候選圖表，用 **Show in PDF** 對照原文頁面、圖注及周圍文字。
 4. 圖片可在影象預覽中使用 **Copy image** 或 **Download image**。表格選擇 **Table**，再選擇 **TSV**、**HTML** 或 **Markdown**，使用對應複製/下載操作；需要檢查原始裁圖時選擇 **Image**。
 5. 重新開啟匯出檔案，檢查行列對應、合併表頭、單位、腳註和跨頁內容，再用於分析或報告。
@@ -131,9 +131,25 @@ PDF 上下文只關聯當前任務需要的論文，後續不應使用時取消�
 
 **Unplaced table text** 和 **Table notes** 保留需要人工核對的內容。結構化單元格不可用時，對照原始裁圖和 PDF，不要推測缺失單元格。此提取流程暫不支援掃描頁和旋轉頁；提取不可用不等於 PDF 本身不能閱讀。
 
+### 從上傳的論文中提取圖片 {/* #uploaded-pdf-extraction */}
+
+<p className="example-label"><strong>案例演示</strong> 檢查 Lang 等人 2019 年論文的圖 1</p>
+
+使用 [Non defect-stabilized thermally stable single-atom catalyst](https://doi.org/10.1038/s41467-018-08136-3) 的出版方 PDF，作者為 Lang 等人，採用 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 許可。截圖展示該論文圖片在 Open-Science 中的實際顯示。
+
+1. 在會話中透過 **+ → Attach files** 新增 PDF，傳送訊息後開啟上傳的附件卡片。
+2. 選擇 **Figures & Tables**。首次使用時完成 **Download and continue**，等待頁面顯示 **Analysis complete**。
+3. 在索引中選擇 **Fig. 1**。本例上傳副本的圖片位於 **PDF 第 3 頁**。對照影象分面與圖注；提取出的圖片是供檢查的證據，不是新的研究發現。
+
+![上傳的 Lang 論文已完成本地圖表提取](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+
+4. 選擇 **Show in PDF**，確認原文預覽顯示 **3 / 10**，對照分面標籤、比例尺和曲線。引用前，用原文解決頁碼或圖注不一致的問題。
+
+![Show in PDF 返回原文第 3 頁的圖 1](/img/open-science/v0350/uploaded-pdf-source.webp)
+
 ### 讓 Agent 讀取已提取的圖表 {/* #pdf-agent-evidence */}
 
-1. 開啟目標 PDF，使用 **Read with agent** 將它連結到當前會話，並在 **Figures and tables** 完成相關頁面的分析。傳送問題前，確認輸入框中仍有該 PDF 的閱讀上下文。只有文獻庫記錄不等於已連結 PDF，連結本身也不會啟動這項分析。
+1. 開啟目標 PDF，使用 **Read with agent** 將它連結到當前會話，並在 **Figures & Tables** 完成相關頁面的分析。傳送問題前，確認輸入框中仍有該 PDF 的閱讀上下文。只有文獻庫記錄不等於已連結 PDF，連結本身也不會啟動這項分析。
 2. 提問時指明具體的圖、表或演算法，提供編號或頁碼，以及要回答的問題。
 3. 檢視工具活動：**list_pdf_elements** 列出可用的提取元素，**read_pdf_element** 讀取所選證據。要求回答標明來源頁碼，以及缺失或不確定的內容。
 4. 對照原圖或原表，核對表頭、單位和註釋。若尚未提取或結果不完整，先分析缺失頁面再重試；只有圖注不能證明趨勢或精確表值。

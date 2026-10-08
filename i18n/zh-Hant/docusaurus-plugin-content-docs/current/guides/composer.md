@@ -1,7 +1,7 @@
 ---
 title: "對話與排隊請求"
 last_update:
-  date: '2026-09-16'
+  date: '2026-10-08'
 ---
 
 # 對話與排隊請求 {/* #对话与排队请求 */}
@@ -117,3 +117,7 @@ original column-name mapping in the CSV/report.
 長時間執行的工作可透過[後臺任務](notebook.md)開啟或取消指定執行。佇列中的追問是待送達指令，後臺任務則是已接收執行的工作。收起任務列表不會停止執行。
 
 原始碼：[佇列控制元件](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx)、[送達邏輯](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/workspace-message-queue-controller.ts)。
+
+## 拖入會話附件 {/* #conversation-drop */}
+
+可把本地檔案拖到整個會話區域，無需只對準輸入框。等待附件標籤出現、上傳完成，核對檔名後再傳送請求；拖入檔案不會自動傳送訊息。匯入 `.science` 研究包時，使用空白會話頁的 **Import previous research**，詳見[研究包](research-packages.md)。

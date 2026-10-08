@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支持哪些数据库 {/* #supported-databases */}
 
-Open-Science v0.34.1 内置 **30 个数据源 Connector，提供 324 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 326 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
+Open-Science v0.35.0 内置 **33 个数据源 Connector，提供 337 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 339 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
 
 | Connector | 来源 | 操作数 | 用途  |
 | --- | --- | --- | ---  |
@@ -25,7 +25,7 @@ Open-Science v0.34.1 内置 **30 个数据源 Connector，提供 324 个操作**
 | Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | 群体频率、临床记录，以及实验特定的功能分数、变异映射和实验信息 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 临床试验登记记录  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | 临床基因组证据资源；新增 ClinPGx 药物基因组学记录 |
-| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 结构档案与相关记录  |
+| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 17 | 结构档案与相关记录  |
 | ChEMBL · `chembl` | ChEMBL | 6 | 化合物、靶标和活性记录  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | 预印本元数据  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA、药品标签、FAERS 不良事件报告和药品召回 |
@@ -34,7 +34,7 @@ Open-Science v0.34.1 内置 **30 个数据源 Connector，提供 324 个操作**
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | 蛋白结构域与功能注释；新增互作富集检验 |
 | Cancer Models · `cancer-models` | cBioPortal | 10 | 研究、突变、拷贝数、样本、患者、临床属性及分子 profile 表达 |
 | RNA · `rna` | Rfam | 9 | RNA 家族与相关资源  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 26 | 组学研究／运行元数据与文件清单；代谢组样本、实验因素、分析及化合物记录 |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | 组学研究／运行元数据与文件清单；代谢组样本、实验因素、分析及化合物记录 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | 细胞类型参考信息  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 调控与功能组学记录  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 研究项目、资助等资源  |
@@ -47,6 +47,9 @@ Open-Science v0.34.1 内置 **30 个数据源 Connector，提供 324 个操作**
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | 通路检索、顶层通路、图查询及 BioPAX 子模型导出 |
 | Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | 人类与模式生物基因、直系同源、疾病模型、表型、等位基因及表达 |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 单细胞集合与数据集发现、发布版本、文件格式／大小／下载 URL |
+| Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 查找细胞系名称和别名，再检查编号身份及质量注释 |
+| Monarch Initiative · `monarch` | Monarch Initiative | 2 | 查询疾病或基因与表型的关联，保留物种和支持证据 |
+| IEDB · `iedb` | Immune Epitope Database | 6 | 检索表位、抗原、T 细胞、B 细胞和 MHC 实验及来源文献 |
 
 离线 Molecule 工具见[科学查看器](viewers.md)。各数据源实际提供的操作见 [Connector 操作参数参考](../reference/connector-operations.md)。
 
@@ -83,6 +86,26 @@ Open-Science v0.34.1 内置 **30 个数据源 Connector，提供 324 个操作**
 CELLxGENE 的筛选与分页在本地对当次取得的上游目录执行，跨请求目录可能更新。固定发布版本时使用版本 ID；上游没有报告的文件大小为 -1，不能当成零字节。MaveDB、Workbench 的缺失值和实验定义也应随结果保留。
 
 具体输入见 [CELLxGENE Discover](../reference/connector-operations.md#family-30)、[Alliance](../reference/connector-operations.md#family-29)、[MaveDB](../reference/connector-operations.md#mavedb_search_score_sets) 和 [Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies)。
+
+## 细胞系、表型与免疫实验证据 {/* #cell-lines-phenotypes-immunity */}
+
+在 **Settings → Connectors** 启用 **Cellosaurus**、**Monarch Initiative** 或 **IEDB**，并将其提供给 **Main**。这些操作读取公共记录，无需自建服务器或 API key。
+
+| 入口 | 可以查询什么 | 应保留和核对什么 |
+| --- | --- | --- |
+| Cellosaurus | 按细胞系名称或别名搜索，再读取返回的 CVCL 编号或 RRID | 物种、身份、别名，以及污染或错误鉴定注释。搜索接受普通短语，不接受原始 Solr 查询。缺少质量注释不代表细胞系已通过认证 |
+| Monarch Initiative | 使用 MONDO:0007254、HGNC:11998 等规范 CURIE 查询疾病或基因的表型关联 | 物种、表型、来源与证据。别名不会自动转换，先解析标识符。直接匹配描述的是标识符匹配方式，不代表实验确认 |
+| IEDB | 检索表位、抗原，或具体的 T 细胞、B 细胞、MHC 实验 | 至少提供一个生物学或证据筛选条件，仅分页不够。antigen_iri 与 uniprot_accession 二选一。保留实验方法、结果、单位和文献；MHC 洗脱观察不等于亲和力测量 |
+
+聚合的表位或抗原记录可能合并多个实验的观察。如果多个筛选条件必须在同一实验中成立，应查询相应的实验操作。零匹配不代表生物学上的阴性结论。[Cellosaurus 参数](../reference/connector-operations.md#family-31) · [Monarch 参数](../reference/connector-operations.md#family-32) · [IEDB 参数](../reference/connector-operations.md#family-33)。
+
+## 查找 GEO 矩阵和序列匹配结构 {/* #geo-matrices-pdb-sequences */}
+
+**Omics Archives → geo_get_matrix_files** 查找官方 GEO Series Matrix 和 NCBI 生成的计数、FPKM、TPM、注释文件。它返回文件位置，不会下载文件内容。**geo_get_series** 仍用于元数据查询。
+
+取得矩阵后，**geo_preflight_matrix** 检查已经读取、解压的文本，大小上限为 8 MiB。该操作不访问网络或文件系统。保留 GSM 标识符与平台元数据，按样本 ID 映射，而不是依赖列的位置。预览片段必须设置 **complete: false**；只有传入完整文件时才能使用 **complete: true**。片段不能证明整个文件的维度。压缩包、稀疏矩阵和 HDF5 文件不能直接交给此文本检查器。见[矩阵发现](../reference/connector-operations.md#geo_get_matrix_files)和[文本预检查](../reference/connector-operations.md#geo_preflight_matrix)。
+
+**Structures & Interactions → pdb_search_sequence** 接受一条 25–10,000 个残基的蛋白质序列，可用原始序列或单条 FASTA。序列一致性和查询覆盖度阈值均为 0 到 1 的比例。返回的查询覆盖度描述与输入序列的比对范围，不等于实验解析的结构覆盖度。上游总数是在本地覆盖度筛选前计算的，有上限的扫描也可能未读到后续匹配。该操作查询结构记录，不下载坐标文件。见[精确输入与扫描上限](../reference/connector-operations.md#pdb_search_sequence)。
 
 ## 如何连接并开始使用 {/* #connect-database */}
 
@@ -190,7 +213,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作参数参考](../reference/connector-operations.md)列出必填输入、可选值和准确调用方法。本页用于选择和连接数据源，参数参考用于查询某个具体工具的字段。
 
-目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts)。
+目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/registry.ts)。
 
 ## 序列检索与多序列比对 {/* #sequence-tools */}
 

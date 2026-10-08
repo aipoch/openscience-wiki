@@ -232,3 +232,5 @@ Los catálogos de proveedores v0.33.1 añaden **GPT-6** y **Claude Opus 5.5**. A
 v0.34.0 añade **MiniMax M3.1 Flash Preview** y **Claude Sonnet 5.5**. Seleccione de la lista de modelos de su proveedor respectivo y el acceso a la cuenta de verificación y la compatibilidad de agente activo. Esto no reemplaza automáticamente el modelo Main guardado.
 
 v0.34.1 añade **gpt-6.1-sol** al catálogo modelo Codex. Seleccione explícitamente en el selector modelo, luego envíe una pequeña solicitud para confirmar el acceso a la cuenta. Actualizar la aplicación no reemplaza automáticamente el modelo Main guardado.
+
+v0.35.0 amplía el catálogo **OpenCode Zen** y añade soporte de clasificación Jev. Revise el selector de función específica: un modelo disponible para una tarea de clasificación no es automáticamente el modelo Main. Mantenga su proveedor Main configurado a menos que cambie deliberadamente; La configuración de clasificación está cubierta en [Modelos](models.md#classification-models).

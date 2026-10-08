@@ -232,3 +232,5 @@ Die v0.33.1-Anbieterkataloge fügen **GPT-6** und **Claude Opus 5.5** hinzu. Öf
 v0.34.0 fügt **MiniMax M3.1 Flash-Vorschau** und **Claude Sonnet 5.5** hinzu. Wählen Sie sie aus der Modellliste des jeweiligen Anbieters aus und prüfen Sie den Zugriff auf das Konto und die Kompatibilität mit dem aktiven Agenten. Dies ersetzt nicht automatisch das gespeicherte Main-Modell.
 
 v0.34.1 fügt **gpt-6.1-sol** dem Codex-Modellkatalog hinzu. Wählen Sie es explizit in der Modellauswahl aus und senden Sie dann eine kleine Anforderung, um den Kontozugriff zu bestätigen. Die Aktualisierung der App ersetzt nicht automatisch das gespeicherte Main-Modell.
+
+v0.35.0 erweitert den **OpenCode Zen**-Katalog und fügt Jev-Klassifizierungsunterstützung hinzu. Überprüfen Sie den rollenspezifischen Picker: Ein für eine Klassifizierungsaufgabe verfügbares Modell ist nicht automatisch das Main-Modell. Behalten Sie Ihren konfigurierten Main-Anbieter bei, es sei denn, Sie ändern ihn absichtlich; Der Klassifizierungsaufbau ist in [Modelle](models.md#classification-models) abgedeckt.

@@ -1,7 +1,7 @@
 ---
 title: "网络、代理与包镜像"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-08'
 ---
 
 # 网络、代理与包镜像
@@ -19,25 +19,31 @@ Network 显示 **Ready** 但工具失败时，展开该工具的错误。状态�
 | 现象 | 下一项检查 | 不应据此得出的结论 |
 | --- | --- | --- |
 | 模型登录失败 | 提供方认证和模型连接检查 | Notebook 域名设置会提供模型凭据 |
-| 单个研究域名被拒绝 | **Configure domains** 中的精确域名 | 添加无关的大范围域名就能修复 |
+| 单个研究域名被拒绝 | **Manage access** 中的精确域名 | 添加无关的大范围域名就能修复 |
 | 软件源已允许但 CONNECT 失败 | 安装日志、代理和 DNS 解析 | 再点一次相同授权就能解决所有连接问题 |
 | 证书校验失败 | CA bundle 和组织信任要求 | 必须关闭证书校验 |
 | 连接报错后显示找不到包版本 | 更早的网络错误、Python 与平台 | 该软件包一定不存在 |
 
-## 配置 Notebook 域名
+<span id="配置-notebook-域名" />
 
-1. 选择 **Configure domains**。
-2. 查看当前设备是否启用 Notebook 网络保护。
-3. 展开科学服务分组，检查域名。分组开关控制对应目的地；本版本软件源/源码分组已开启且锁定。
-4. 在 **Domain hostname** 输入额外来源的精确主机名，选择 **Add**。
-5. 检查新增草稿行，使用 **Remove [hostname]** 撤销。
-6. 选择 **Save changes** 保存预期清单。
+## 配置公网访问规则 {/* #public-network-rules */}
 
-![通配符被域名校验拒绝](/img/open-science/walkthrough-2026-09-08/54-network-domain-validation.webp)
+1. 打开 **Settings → Network → Manage access**。阅读 **Public internet access**，区分哪些公网 HTTPS 读取可以直接进行、哪些请求需要批准。
+2. 检查 **Built-in services**。标为 **Required** 的分组保持启用；其他分组按任务需要选择。
+3. 在 **Custom public domains** 下填写完整的 **Domain hostname**，选择 **Add to list**。检查草稿条目后再点 **Save changes**。
 
-填写 `data.example.org` 这样的主机名，不带协议、路径、端口、通配符或 IP 地址。若显示 **Enter a hostname only, without a scheme, path, port, or wildcard.**，去掉这些部分后再保存。
+公网域名规则允许向该主机发送数据，不包含其子域名，也不会授权访问私有地址。填写主机名，不要带协议、路径、端口、通配符或 IP 地址。主机名若解析到非公网地址，仍需按私有服务流程审核。受保护代码跟随链接或获取图标时也适用这些规则。
 
-按名称允许的域名仍可能在其他连接检查中失败。例如，`pypi.org` 即使已在允许范围内，解析为 `198.18.*` 时仍会被判定为非公网目的地。这与“域名未授权”是不同问题。
+## 信任私有服务 {/* #trusted-private-services */}
+
+仅在研究代码确实需要访问已知内网服务时使用此项。该控件位于桌面应用中。仅支持私有服务地址；localhost、本机和保留地址仍会被阻止。输入框不接受原始 IP 地址或通配符。
+
+1. 在 **Trusted private services** 中选择 **Add service**，填写 **Hostname** 和 **Port**。核对具体服务，默认端口为 443。
+2. 选择 **Review service**，检查解析得到的 **Approved addresses**，确认后选择 **Add to trusted services**。
+3. 检查列表并选择 **Save changes**。保存前会再次检查 DNS；地址变化后需要重新审核。
+4. 向该服务发起一个小请求并检查实际响应。地址审核本身不验证登录凭据或服务是否可用。
+
+授权绑定完整的主机名、端口和已审核地址，允许所有项目中的受保护 Notebook 和 Shell 代码向该服务发送数据。只添加任务需要的权限。保存网络规则会重置受保护连接，可能中断正在进行的传输，请在传输结束后应用变更。
 
 ## 选择代理模式
 

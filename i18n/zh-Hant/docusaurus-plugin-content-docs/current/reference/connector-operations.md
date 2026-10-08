@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.34.1** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.1.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
+每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.35.0** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.0.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
 
 
 ## 化學 {/* #family-1 */}
@@ -2119,6 +2119,23 @@ const result = await host.mcp("structures", "alphafold_get_prediction", {"unipro
 const result = await host.mcp("structures", "alphafold_check_coverage", {"uniprot_accessions": ["P04637", "P38398", "Q9Y6K9"]})
 ```
 
+### `pdb_search_sequence` {/* #pdb_search_sequence */}
+
+用蛋白質氨基酸序列檢索 PDB 實驗結構。identity_cutoff 與 min_query_coverage 均為 0–1 的比例，按 E-value 和查詢序列覆蓋率篩選；覆蓋率不是結構中實際解析殘基的覆蓋率，保留聚合物實體及比對資訊；相似序列命中不證明結構或功能相同。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `sequence` | string | **必填**; minLength: 25; maxLength: 50000 |
+| `identity_cutoff` | number | 可選; default: 0.3; minimum: 0; maximum: 1 |
+| `evalue_cutoff` | number | 可選; default: 0.1; exclusiveMinimum: 0 |
+| `min_query_coverage` | number | 可選; default: 0; minimum: 0; maximum: 1 |
+| `max_candidates` | integer | 可選; default: 100; minimum: 1; maximum: 1000 |
+| `max_rows` | integer | 可選; default: 10; minimum: 1; maximum: 25 |
+
+```javascript
+const result = await host.mcp("structures", "pdb_search_sequence", {"sequence": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQV", "identity_cutoff": 0.9, "min_query_coverage": 0.8, "max_rows": 10})
+```
+
 </ToolOperationGroup>
 
 ## ChEMBL {/* #family-10 */}
@@ -3566,11 +3583,11 @@ const result = await host.mcp("omics-archives", "geo_search_series", {"term": "a
 
 ### `geo_get_series` {/* #geo_get_series */}
 
-按 GSE 登入號獲取 GEO 系列結構化後設資料，包括設計、平臺、樣本特徵、建庫資訊和補充檔案 URL。此操作不會下載資料表。
+按 GEO Series 編號獲取研究後設資料和樣本摘要。需要表達矩陣清單與預檢時，繼續使用 geo_get_matrix_files 和 geo_preflight_matrix；不要把後設資料響應當作已下載的表達矩陣。
 
-| 欄位 | 型別 | 要求與約束 |
+| 欄位 | 型別 | 必填與約束 |
 | --- | --- | --- |
-| `accessions` | 字串陣列 | **必填** |
+| `accessions` | array of string | **必填** |
 
 ```javascript
 const result = await host.mcp("omics-archives", "geo_get_series", {"accessions": ["GSE131907"]})
@@ -3786,6 +3803,33 @@ const result = await host.mcp("omics-archives", "workbench_search_studies", {"qu
 
 ```javascript
 const result = await host.mcp("omics-archives", "workbench_get_study", {"study_id": "ST000001", "section": "factors"})
+```
+
+### `geo_get_matrix_files` {/* #geo_get_matrix_files */}
+
+發現 GEO Series Matrix 及 NCBI 生成的 RNA-seq 原始計數、FPKM/TPM 和基因註釋檔案，返回官方 URL 供手動下載。保留 GSE/GPL、檔名和來源；檔案發現不等於下載或表達量分析。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `accession` | string | **必填**; pattern: &quot;^GSE&#91;1-9&#93;&#91;0-9&#93;&#42;$&quot; |
+
+```javascript
+const result = await host.mcp("omics-archives", "geo_get_matrix_files", {"accession":"GSE164073"})
+```
+
+### `geo_preflight_matrix` {/* #geo_preflight_matrix */}
+
+對已經讀取並解壓的密集 TSV 或 Series Matrix 文字做預檢，最多 8 MiB；此操作不訪問網路或檔案系統。用 geo_get_series 返回的 GSM 識別符號對映樣本列，不按列位置推測。預覽設定 complete=false，並保留完整表頭和預覽行；Series Matrix 還必須保留 !Sample_geo_accession、平臺後設資料及表格起始標記。僅完整檔案可設 complete=true，預覽不能確定總行列數，不支援稀疏矩陣、HDF5 或壓縮包。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `text` | string | **必填**; minLength: 1; maxLength: 8388608 |
+| `complete` | boolean | 可選; default: false |
+| `matrix_kind` | string | 可選; default: &quot;unknown&quot;; enum: &#91;&quot;series_matrix&quot;, &quot;raw_counts&quot;, &quot;normalized_counts&quot;, &quot;unknown&quot;&#93; |
+| `samples` | array of object | 可選; maxItems: 10000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "geo_preflight_matrix", {"text":"GeneID\tGSM5000001\n1\t12\n","complete":false,"matrix_kind":"raw_counts","samples":[{"accession":"GSM5000001"}]})
 ```
 
 </ToolOperationGroup>
@@ -4909,6 +4953,252 @@ const result = await host.mcp("cellxgene-discover", "get_dataset_version", {"dat
 
 ```javascript
 const result = await host.mcp("cellxgene-discover", "list_dataset_files", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
+```
+
+</ToolOperationGroup>
+
+## IEDB {/* #family-33 */}
+
+<ToolOperationGroup>
+<summary>展開操作與引數</summary>
+
+### `search_epitopes` {/* #search_epitopes */}
+
+查詢 IEDB 表位證據，至少提供一個生物學或證據過濾條件。antigen_iri 與 uniprot_accession 不能同時提供。保留負結果、測量單位、不等號、方法和來源；記錄是資料庫觀測，不是預測。聚合欄位可來自不同實驗，需要同一實驗共同滿足條件時查詢 assay。MHC 配體洗脫不等於結合親和力。
+
+至少提供一組：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `uniprot_accession` | string | 按上方條件提供; pattern: &quot;^&#91;A-Z0-9&#93;&#123;6&#125;(?:&#91;A-Z0-9&#93;&#123;4&#125;)?(?:-&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\\s\\S&#93;)&quot; |
+| `mhc_allele` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方條件提供; enum: &#91;&quot;I&quot;, &quot;II&quot;&#93; |
+| `qualitative_measure` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `pdb_id` | string | 按上方條件提供; pattern: &quot;^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123;3&#125;(?!&#91;\\s\\S&#93;)&quot; |
+| `sequence` | string | 按上方條件提供; maxLength: 1000; pattern: &quot;^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)&quot; |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_epitopes", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_antigens` {/* #search_antigens */}
+
+查詢 IEDB 抗原證據，至少提供一個生物學或證據過濾條件。antigen_iri 與 uniprot_accession 不能同時提供。保留負結果、測量單位、不等號、方法和來源；記錄是資料庫觀測，不是預測。聚合欄位可來自不同實驗，需要同一實驗共同滿足條件時查詢 assay。MHC 配體洗脫不等於結合親和力。
+
+至少提供一組：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `antigen_name`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `uniprot_accession` | string | 按上方條件提供; pattern: &quot;^&#91;A-Z0-9&#93;&#123;6&#125;(?:&#91;A-Z0-9&#93;&#123;4&#125;)?(?:-&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\\s\\S&#93;)&quot; |
+| `mhc_allele` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方條件提供; enum: &#91;&quot;I&quot;, &quot;II&quot;&#93; |
+| `qualitative_measure` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `pdb_id` | string | 按上方條件提供; pattern: &quot;^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123;3&#125;(?!&#91;\\s\\S&#93;)&quot; |
+| `antigen_name` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_antigens", {"uniprot_accession": "P01012", "limit": 20})
+```
+
+### `search_tcell_assays` {/* #search_tcell_assays */}
+
+查詢 IEDB T 細胞實驗證據，至少提供一個生物學或證據過濾條件。antigen_iri 與 uniprot_accession 不能同時提供。保留負結果、測量單位、不等號、方法和來源；記錄是資料庫觀測，不是預測。聚合欄位可來自不同實驗，需要同一實驗共同滿足條件時查詢 assay。MHC 配體洗脫不等於結合親和力。
+
+至少提供一組：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `assay_id`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `uniprot_accession` | string | 按上方條件提供; pattern: &quot;^&#91;A-Z0-9&#93;&#123;6&#125;(?:&#91;A-Z0-9&#93;&#123;4&#125;)?(?:-&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\\s\\S&#93;)&quot; |
+| `mhc_allele` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方條件提供; enum: &#91;&quot;I&quot;, &quot;II&quot;&#93; |
+| `qualitative_measure` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `pdb_id` | string | 按上方條件提供; pattern: &quot;^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123;3&#125;(?!&#91;\\s\\S&#93;)&quot; |
+| `sequence` | string | 按上方條件提供; maxLength: 1000; pattern: &quot;^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)&quot; |
+| `assay_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_tcell_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_bcell_assays` {/* #search_bcell_assays */}
+
+查詢 IEDB B 細胞實驗證據，至少提供一個生物學或證據過濾條件。antigen_iri 與 uniprot_accession 不能同時提供。保留負結果、測量單位、不等號、方法和來源；記錄是資料庫觀測，不是預測。聚合欄位可來自不同實驗，需要同一實驗共同滿足條件時查詢 assay。MHC 配體洗脫不等於結合親和力。
+
+至少提供一組：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `assay_id`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `uniprot_accession` | string | 按上方條件提供; pattern: &quot;^&#91;A-Z0-9&#93;&#123;6&#125;(?:&#91;A-Z0-9&#93;&#123;4&#125;)?(?:-&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\\s\\S&#93;)&quot; |
+| `mhc_allele` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方條件提供; enum: &#91;&quot;I&quot;, &quot;II&quot;&#93; |
+| `qualitative_measure` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `pdb_id` | string | 按上方條件提供; pattern: &quot;^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123;3&#125;(?!&#91;\\s\\S&#93;)&quot; |
+| `sequence` | string | 按上方條件提供; maxLength: 1000; pattern: &quot;^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)&quot; |
+| `assay_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_bcell_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_mhc_assays` {/* #search_mhc_assays */}
+
+查詢 IEDB MHC 結合與配體洗脫實驗證據，至少提供一個生物學或證據過濾條件。antigen_iri 與 uniprot_accession 不能同時提供。保留負結果、測量單位、不等號、方法和來源；記錄是資料庫觀測，不是預測。聚合欄位可來自不同實驗，需要同一實驗共同滿足條件時查詢 assay。MHC 配體洗脫不等於結合親和力。
+
+至少提供一組：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `assay_id`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `uniprot_accession` | string | 按上方條件提供; pattern: &quot;^&#91;A-Z0-9&#93;&#123;6&#125;(?:&#91;A-Z0-9&#93;&#123;4&#125;)?(?:-&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\\s\\S&#93;)&quot; |
+| `mhc_allele` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方條件提供; enum: &#91;&quot;I&quot;, &quot;II&quot;&#93; |
+| `qualitative_measure` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `pdb_id` | string | 按上方條件提供; pattern: &quot;^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123;3&#125;(?!&#91;\\s\\S&#93;)&quot; |
+| `sequence` | string | 按上方條件提供; maxLength: 1000; pattern: &quot;^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)&quot; |
+| `assay_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_mhc_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_references` {/* #search_references */}
+
+查詢 IEDB 來源文獻證據，至少提供一個生物學或證據過濾條件。antigen_iri 與 uniprot_accession 不能同時提供。保留負結果、測量單位、不等號、方法和來源；記錄是資料庫觀測，不是預測。聚合欄位可來自不同實驗，需要同一實驗共同滿足條件時查詢 assay。MHC 配體洗脫不等於結合親和力。
+
+至少提供一組：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `pubmed_id`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `uniprot_accession` | string | 按上方條件提供; pattern: &quot;^&#91;A-Z0-9&#93;&#123;6&#125;(?:&#91;A-Z0-9&#93;&#123;4&#125;)?(?:-&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\\s\\S&#93;)&quot; |
+| `mhc_allele` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方條件提供; enum: &#91;&quot;I&quot;, &quot;II&quot;&#93; |
+| `qualitative_measure` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `pdb_id` | string | 按上方條件提供; pattern: &quot;^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123;3&#125;(?!&#91;\\s\\S&#93;)&quot; |
+| `pubmed_id` | string | 按上方條件提供; maxLength: 12; pattern: &quot;^&#91;1-9&#93;&#91;0-9&#93;&#42;(?!&#91;\\s\\S&#93;)&quot; |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_references", {"reference_id": 1023094, "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## Monarch Initiative {/* #family-32 */}
+
+<ToolOperationGroup>
+<summary>展開操作與引數</summary>
+
+### `monarch_get_disease_phenotypes` {/* #monarch_get_disease_phenotypes */}
+
+用 Monarch 索引中的規範疾病 CURIE 查詢疾病—表型關聯，保留來源、文獻、證據、否定標記及頻率等限定。來源別名不會自動轉換；零條匹配不表示不存在證據。direct 指識別符號匹配，不等於實驗已證實。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `disease_id` | string | **必填**; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)&quot; |
+| `phenotype_id` | string | 可選; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)&quot; |
+| `primary_knowledge_source` | string | 可選; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)&quot; |
+| `direct` | boolean | 可選; default: true |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("monarch", "monarch_get_disease_phenotypes", {"disease_id": "MONDO:0007947", "limit": 20})
+```
+
+### `monarch_get_gene_phenotypes` {/* #monarch_get_gene_phenotypes */}
+
+用 Monarch 索引中的規範基因 CURIE 查詢基因—表型關聯，保留來源、文獻、證據及上下文。direct=false 擴充套件本體後代；檢查返回實體和 knowledge_level、agent_type，區分推斷關聯。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)&quot; |
+| `phenotype_id` | string | 可選; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)&quot; |
+| `primary_knowledge_source` | string | 可選; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)&quot; |
+| `direct` | boolean | 可選; default: true |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("monarch", "monarch_get_gene_phenotypes", {"gene_id": "HGNC:3603", "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## Cellosaurus {/* #family-31 */}
+
+<ToolOperationGroup>
+<summary>展開操作與引數</summary>
+
+### `search_cell_lines` {/* #search_cell_lines */}
+
+按推薦名稱或同義詞中的字面短語查詢細胞系，不接受原始 Solr 查詢語法。儲存 CVCL accession，再讀取身份和質量註釋；名稱相似不證明是同一細胞系。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("cellosaurus", "search_cell_lines", {"query": "HeLa", "limit": 20})
+```
+
+### `get_cell_line` {/* #get_cell_line */}
+
+按 CVCL accession 讀取細胞系身份、物種、來源、疾病和質量警告。交叉汙染或誤鑑定註釋需結合來源核查；資料庫條目不替代本地培養物的鑑定。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `accession` | string | **必填**; minLength: 9; maxLength: 40; pattern: &quot;^\\s&#42;(?:&#91;Rr&#93;&#91;Rr&#93;&#91;Ii&#93;&#91;Dd&#93;:)?&#91;Cc&#93;&#91;Vv&#93;&#91;Cc&#93;&#91;Ll&#93;_&#91;A-Za-z0-9&#93;&#123;4&#125;\\s&#42;$&quot; |
+
+```javascript
+const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
 ```
 
 </ToolOperationGroup>

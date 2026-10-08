@@ -119,3 +119,7 @@ If the flagged material is intentionally part of an authorized handover, the fai
 **Run in background** hides the progress window while the transfer continues. Use **Cancel** to stop; hiding the window does not cancel the operation.
 
 If cleanup is incomplete, use **Retry cleanup** before trying again. After a failure, **Try again** retries the same file and destination. Choose another package separately if that is your intent. Check the existing operation before starting a second import, then inspect the imported session and files when it completes.
+
+## Replay a received research record {/* #replay-import */}
+
+After import completes, choose **View replay** to inspect the recorded steps or **Discuss** to ask about them in a writable conversation. The imported source remains read-only. A discussion reference does not recreate its original runtime; use **Fork to continue** for a working copy. See [Session replay](session-replay.md).

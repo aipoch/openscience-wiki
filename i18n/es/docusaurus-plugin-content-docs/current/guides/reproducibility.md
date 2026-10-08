@@ -2,7 +2,7 @@
 title: "Reproducibilidad"
 description: "Realizar los pasos de investigación capturados, comparar un resultado ahorrado y conservar el registro de verificación."
 last_update:
-  date: '2026-09-17'
+  date: '2026-10-08'
 ---
 
 # Reproducibilidad {/* #reproducibility */}
@@ -88,3 +88,7 @@ v0.30.2 fija la reproducción de los insumos creados anteriormente en el mismo t
 Si la preparación depende de un estado Notebook anterior, inspeccione el [prueba de ejecución](notebook.md) y vuelva a ejecutar la preparación necesaria antes de generar un nuevo resultado. Mantenga controles parados o incompletos distintos de las comparaciones completadas.
 
 Si ya tiene un paquete de bloqueo compatible y necesita restaurar paquetes fuera de la aplicación, siga el [tiempo de restauración condiciones](runtimes.md#conditional-restore). Ese procedimiento no crea una cerradura perdida o reemplaza la preparación anterior. Restablecer las dependencias por sí solas no establece que los productos se reproducen.
+
+## Inspecciona la historia antes de rehacer {/* #replay-vs-verification */}
+
+Utilice [Repetición de sesión](session-replay.md) para inspeccionar el orden grabado de mensajes, la actividad de la herramienta y las versiones de archivos. Replay muestra evidencia guardada con tiempo de presentación reconstruido; no reimprime código, consulta bases de datos de nuevo o establece que un resultado se reproduce. Utilice **Reproducibility** arriba cuando necesite una nueva comparación de ejecución y salida.

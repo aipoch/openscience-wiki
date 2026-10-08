@@ -1,7 +1,7 @@
 ---
 title: "會話與分支"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -167,3 +167,7 @@ Fork 目前在桌面端提供。匯入會話仍為只讀，應在其副本中繼
 ## 匯出會話診斷 {/* #session-diagnostics */}
 
 使用會話頁頭 **Export diagnostics…**，或會話選單 **Export → Export diagnostics…**，將所選診斷來源收集到本地歸檔。應用日誌可能包含所選會話之外的後設資料，分享前檢查來源列表、完成提示和歸檔內容，見[診斷匯出步驟](troubleshooting.md#session-diagnostics)。
+
+## 回放或討論已有研究 {/* #replay-session */}
+
+在會話行選單選擇 **View replay**，逐步檢視已有對話、Notebook 活動和儲存的檔案版本。**Discuss** 在另一會話中引用這項研究。匯入會話的只讀提示旁也有這兩個入口。播放、來源檢查和討論案例見[會話回放](session-replay.md)。

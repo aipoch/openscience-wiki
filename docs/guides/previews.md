@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -121,10 +121,10 @@ Implementation references: [Mermaid controls](https://github.com/aipoch/open-sci
 
 ## Extract PDF figures and tables {/* #pdf-extraction */}
 
-Use this when you need a figure or a reusable table from a literature PDF. Add and inspect the PDF in [Library](library.md) first; bibliographic metadata alone is not an extraction input.
+Use this when you need a figure or a reusable table from a PDF. Open a PDF attached to a conversation, a generated PDF, or a readable PDF in [Library](library.md). Bibliographic metadata alone is not an extraction input. Uploaded PDFs support the same **Figures & Tables** analysis; you do not have to add a Library record first.
 
-1. Open the PDF preview and select **Figures and tables** beside **Original PDF**.
-2. On first use, choose **Download and continue** to install the required model resources. Wait for installation and integrity checks. When resources are ready, use **Analyze PDF**.
+1. Open the PDF preview and select **Figures & Tables** beside **Original PDF**.
+2. On first use, choose **Download and continue**. Wait for the model download and integrity checks; analysis then starts automatically. If the resources are already installed and the page offers **Analyze PDF**, select it.
 3. Follow the page progress. After completion, select a candidate and use **Show in PDF** to compare it with the source page, caption and surrounding text.
 4. For a figure, open its image preview and use **Copy image** or **Download image**. For a table, select **Table**, choose **TSV**, **HTML** or **Markdown**, then use the copy/download action. Choose **Image** when you need to inspect the source crop.
 5. Reopen the exported file. Check row/column alignment, merged headers, units, footnotes and cross-page content before using it in an analysis or report.
@@ -133,9 +133,25 @@ Extraction runs locally after the model resources are downloaded. Reopening the 
 
 **Unplaced table text** and **Table notes** preserve content that needs review. If structured cells are unavailable, use the source crop and original PDF; do not infer missing cells. Scanned and rotated pages are not supported by this extraction workflow. A PDF can remain readable even when extraction is unavailable.
 
+### Extract a figure from an uploaded paper {/* #uploaded-pdf-extraction */}
+
+<p className="example-label"><strong>Worked example</strong> Inspect Figure 1 from Lang et al., 2019</p>
+
+Use the publisher PDF for [Non defect-stabilized thermally stable single-atom catalyst](https://doi.org/10.1038/s41467-018-08136-3), by Lang et al., under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The screenshots show the paper figure as displayed by Open-Science.
+
+1. Add the PDF through **+ → Attach files** in a conversation. After sending the message, open the uploaded attachment card.
+2. Select **Figures & Tables**. On first use, complete **Download and continue**; wait until the page reports **Analysis complete**.
+3. Select **Fig. 1** in the index. This uploaded copy places the figure on **PDF page 3**. Compare its image panels and caption; the extracted image is evidence to inspect, not a new finding.
+
+![Completed local figure extraction from the uploaded Lang paper](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+
+4. Choose **Show in PDF**. Confirm **3 / 10** in the original preview and compare panel labels, scale bars and curves. Use the original page to resolve a page-number or caption mismatch before citing the figure.
+
+![Show in PDF returns to the original figure on page 3 of 10](/img/open-science/v0350/uploaded-pdf-source.webp)
+
 ### Ask the agent about an extracted figure or table {/* #pdf-agent-evidence */}
 
-1. Open the intended PDF, use **Read with agent** to link it to the current session, and complete **Figures and tables** analysis for the relevant pages. Before sending your question, confirm that the PDF remains in the Composer’s reading context. A Library record by itself is not a linked PDF, and linking alone does not run this analysis.
+1. Open the intended PDF, use **Read with agent** to link it to the current session, and complete **Figures & Tables** analysis for the relevant pages. Before sending your question, confirm that the PDF remains in the Composer’s reading context. A Library record by itself is not a linked PDF, and linking alone does not run this analysis.
 2. Ask about a specific figure, table or algorithm. Include its label or page and the question you need answered.
 3. Inspect the tool activity: **list_pdf_elements** finds the available extracted elements; **read_pdf_element** reads the selected evidence. Ask for the source page and any missing or uncertain content in the answer.
 4. Compare the answer with the original figure or table, including headers, units and notes. If extraction is absent or incomplete, analyze the missing pages and retry; a caption alone cannot establish a trend or an exact table value.

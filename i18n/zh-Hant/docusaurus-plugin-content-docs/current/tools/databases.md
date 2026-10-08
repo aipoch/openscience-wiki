@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支援哪些資料庫 {/* #supported-databases */}
 
-Open-Science v0.34.1 內建 **30 個資料來源 Connector，提供 324 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整登錄檔共 326 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示覆蓋其網站的全部功能。
+Open-Science v0.35.0 內建 **33 個資料來源 Connector，提供 337 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整登錄檔共 339 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示覆蓋其網站的全部功能。
 
 | Connector | 來源 | 運算元 | 用途  |
 | --- | --- | --- | ---  |
@@ -25,7 +25,7 @@ Open-Science v0.34.1 內建 **30 個資料來源 Connector，提供 324 個操�
 | Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | 群體頻率、臨床記錄，以及實驗特定的功能分數、變異對映和實驗資訊 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床試驗登記記錄  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | 臨床基因組證據資源；新增 ClinPGx 藥物基因組學記錄 |
-| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 結構檔案與相關記錄  |
+| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 17 | 結構檔案與相關記錄  |
 | ChEMBL · `chembl` | ChEMBL | 6 | 化合物、靶標和活性記錄  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | 預印本後設資料  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA、藥品標籤、FAERS 不良事件報告和藥品召回 |
@@ -34,7 +34,7 @@ Open-Science v0.34.1 內建 **30 個資料來源 Connector，提供 324 個操�
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | 蛋白結構域與功能註釋；新增互作富集檢驗 |
 | Cancer Models · `cancer-models` | cBioPortal | 10 | 研究、突變、複製數、樣本、患者、臨床屬性及分子 profile 表達 |
 | RNA · `rna` | Rfam | 9 | RNA 家族與相關資源  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 26 | 組學研究／執行後設資料與檔案清單；代謝組樣本、實驗因素、分析及化合物記錄 |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | 組學研究／執行後設資料與檔案清單；代謝組樣本、實驗因素、分析及化合物記錄 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | 細胞型別參考資訊  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 調控與功能組學記錄  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 研究專案、資助等資源  |
@@ -47,6 +47,9 @@ Open-Science v0.34.1 內建 **30 個資料來源 Connector，提供 324 個操�
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | 通路檢索、頂層通路、圖查詢及 BioPAX 子模型匯出 |
 | Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | 人類與模式生物基因、直系同源、疾病模型、表型、等位基因及表達 |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 單細胞集合與資料集發現、釋出版本、檔案格式／大小／下載 URL |
+| Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 查詢細胞系名稱和別名，再檢查編號身份及質量註釋 |
+| Monarch Initiative · `monarch` | Monarch Initiative | 2 | 查詢疾病或基因與表型的關聯，保留物種和支援證據 |
+| IEDB · `iedb` | Immune Epitope Database | 6 | 檢索表位、抗原、T 細胞、B 細胞和 MHC 實驗及來源文獻 |
 
 離線 Molecule 工具見[科學檢視器](viewers.md)。各資料來源實際提供的操作見 [Connector 操作引數參考](../reference/connector-operations.md)。
 
@@ -83,6 +86,26 @@ Open-Science v0.34.1 內建 **30 個資料來源 Connector，提供 324 個操�
 CELLxGENE 的篩選與分頁在本地對當次取得的上游目錄執行，跨請求目錄可能更新。固定釋出版本時使用版本 ID；上游沒有報告的檔案大小為 -1，不能當成零位元組。MaveDB、Workbench 的缺失值和實驗定義也應隨結果保留。
 
 具體輸入見 [CELLxGENE Discover](../reference/connector-operations.md#family-30)、[Alliance](../reference/connector-operations.md#family-29)、[MaveDB](../reference/connector-operations.md#mavedb_search_score_sets) 和 [Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies)。
+
+## 細胞系、表型與免疫實驗證據 {/* #cell-lines-phenotypes-immunity */}
+
+在 **Settings → Connectors** 啟用 **Cellosaurus**、**Monarch Initiative** 或 **IEDB**，並將其提供給 **Main**。這些操作讀取公共記錄，無需自建伺服器或 API key。
+
+| 入口 | 可以查詢什麼 | 應保留和核對什麼 |
+| --- | --- | --- |
+| Cellosaurus | 按細胞系名稱或別名搜尋，再讀取返回的 CVCL 編號或 RRID | 物種、身份、別名，以及汙染或錯誤鑑定註釋。搜尋接受普通短語，不接受原始 Solr 查詢。缺少質量註釋不代表細胞系已透過認證 |
+| Monarch Initiative | 使用 MONDO:0007254、HGNC:11998 等規範 CURIE 查詢疾病或基因的表型關聯 | 物種、表型、來源與證據。別名不會自動轉換，先解析識別符號。直接匹配描述的是識別符號匹配方式，不代表實驗確認 |
+| IEDB | 檢索表位、抗原，或具體的 T 細胞、B 細胞、MHC 實驗 | 至少提供一個生物學或證據篩選條件，僅分頁不夠。antigen_iri 與 uniprot_accession 二選一。保留實驗方法、結果、單位和文獻；MHC 洗脫觀察不等於親和力測量 |
+
+聚合的表位或抗原記錄可能合併多個實驗的觀察。如果多個篩選條件必須在同一實驗中成立，應查詢相應的實驗操作。零匹配不代表生物學上的陰性結論。[Cellosaurus 引數](../reference/connector-operations.md#family-31) · [Monarch 引數](../reference/connector-operations.md#family-32) · [IEDB 引數](../reference/connector-operations.md#family-33)。
+
+## 查詢 GEO 矩陣和序列匹配結構 {/* #geo-matrices-pdb-sequences */}
+
+**Omics Archives → geo_get_matrix_files** 查詢官方 GEO Series Matrix 和 NCBI 生成的計數、FPKM、TPM、註釋檔案。它返回檔案位置，不會下載檔案內容。**geo_get_series** 仍用於後設資料查詢。
+
+取得矩陣後，**geo_preflight_matrix** 檢查已經讀取、解壓的文字，大小上限為 8 MiB。該操作不訪問網路或檔案系統。保留 GSM 識別符號與平臺後設資料，按樣本 ID 對映，而不是依賴列的位置。預覽片段必須設定 **complete: false**；只有傳入完整檔案時才能使用 **complete: true**。片段不能證明整個檔案的維度。壓縮包、稀疏矩陣和 HDF5 檔案不能直接交給此文字檢查器。見[矩陣發現](../reference/connector-operations.md#geo_get_matrix_files)和[文字預檢查](../reference/connector-operations.md#geo_preflight_matrix)。
+
+**Structures & Interactions → pdb_search_sequence** 接受一條 25–10,000 個殘基的蛋白質序列，可用原始序列或單條 FASTA。序列一致性和查詢覆蓋度閾值均為 0 到 1 的比例。返回的查詢覆蓋度描述與輸入序列的比對範圍，不等於實驗解析的結構覆蓋度。上游總數是在本地覆蓋度篩選前計算的，有上限的掃描也可能未讀到後續匹配。該操作查詢結構記錄，不下載座標檔案。見[精確輸入與掃描上限](../reference/connector-operations.md#pdb_search_sequence)。
 
 ## 如何連線並開始使用 {/* #connect-database */}
 
@@ -190,7 +213,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作引數參考](../reference/connector-operations.md)列出必填輸入、可選值和準確呼叫方法。本頁用於選擇和連線資料來源，引數參考用於查詢某個具體工具的欄位。
 
-目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts)。
+目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/registry.ts)。
 
 ## 序列檢索與多序列比對 {/* #sequence-tools */}
 

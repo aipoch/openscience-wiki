@@ -1,7 +1,7 @@
 ---
 title: "Token usage and activity"
 last_update:
-  date: '2026-09-09'
+  date: '2026-10-08'
 ---
 
 # Token usage and activity
@@ -50,3 +50,7 @@ In the operated Today view, token totals were zero before the current run had re
 The page includes only reported usage. It does not reconstruct missing history. For context composition and compaction, see [Memory and conversation context](./memory.md).
 
 Source: [Usage panel and chart controls](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/TokenUsagePanel.tsx).
+
+## Inspect adjacent days {/* #inspect-daily-usage */}
+
+Move across the **Daily token usage** chart to inspect successive dates and their input, cache and output breakdown. For keyboard access, use **Tab / Shift+Tab** to focus a day, and **Escape** to close the detail. Compare the displayed date and components; this chart still covers the last 30 days and does not reconstruct missing provider telemetry.

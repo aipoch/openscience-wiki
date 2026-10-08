@@ -1,7 +1,7 @@
 ---
 title: "Conversations and queued requests"
 last_update:
-  date: '2026-09-16'
+  date: '2026-10-08'
 ---
 
 # Conversations and queued requests
@@ -117,3 +117,7 @@ Hover or focus the response table to reveal **Copy table** (Markdown, CSV or TSV
 For long-running work, use [Background tasks](notebook.md#background-tasks-and-result-delivery) to open or cancel the specific run. A queued follow-up is a pending instruction; a background task is already admitted work. Closing the task list does not stop execution.
 
 Sources: [queue controls](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx), [delivery controller](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/workspace-message-queue-controller.ts).
+
+## Drop files into a conversation {/* #conversation-drop */}
+
+You can drag local files onto the conversation area, not only the Composer. Wait for the attachment chips and any upload to finish, inspect the filenames, then send the request. Dropping files does not send the message. To import a `.science` research package, use **Import previous research** on the empty conversation page; see [Research packages](research-packages.md).

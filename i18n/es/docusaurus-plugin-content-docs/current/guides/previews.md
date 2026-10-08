@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -121,10 +121,10 @@ Referencias de implementación: [Controles de sirenas](https://github.com/aipoch
 
 ## Extraer las figuras y tablas PDF {/* #pdf-extraction */}
 
-Use esto cuando necesite una figura o una tabla reutilizable de una literatura PDF. Agregar e inspeccionar el PDF en [Biblioteca](library.md) primero; metadatos bibliográficos por sí solos no es una entrada de extracción.
+Use esto cuando necesite una figura o una tabla reutilizable de un PDF. Abra un PDF conectado a una conversación, un PDF, generado o un PDF legible en [Biblioteca](library.md). Los metadatos bibliográficos por sí solos no son una entrada de extracción. Los PDF cargados soportan el mismo análisis **Figures & Tables**; no tiene que añadir un registro de la Biblioteca primero.
 
-1. Abra la vista previa PDF y seleccione **Figures and tables** al lado de **Original PDF**.
-2. En primer lugar, elija **Download and continue** para instalar los recursos de modelo necesarios. Esperar a la instalación y cheques de integridad. Cuando los recursos estén listos, use **Analyze PDF**.
+1. Abra la vista previa PDF y seleccione **Figures & Tables** al lado de **Original PDF**.
+2. La primera vez, elija **Download and continue**. Espere la descarga del modelo y la comprobación de integridad; el análisis comenzará automáticamente. Si los recursos ya están instalados y aparece **Analyze PDF**, seleccione ese botón.
 3. Siga el progreso de la página. Después de la finalización, seleccione un candidato y utilice **Show in PDF** para compararlo con la página de origen, la capción y el texto circundante.
 4. Para una figura, abra su vista previa de imagen y use **Copy image** o **Download image**. Para una tabla, seleccione **Table**, seleccione **TSV**, **HTML** o **Markdown**, luego utilice la acción de copia/descarga. Elige **Image** cuando necesite inspeccionar el cultivo de origen.
 5. Abra el archivo exportado. Verifique la alineación de filas/columnas, encabezados fusionados, unidades, notas de pie y contenido de página cruzada antes de utilizarlo en un análisis o informe.
@@ -133,9 +133,25 @@ La extracción se ejecuta localmente después de que los recursos modelo se desc
 
 **Unplaced table text** y **Table notes** conservan contenido que necesita revisión. Si las células estructuradas no están disponibles, utilice el cultivo fuente y el PDF original; no inferir las células perdidas. Las páginas escaneadas y rotadas no son compatibles con este flujo de trabajo de extracción. Un PDF puede permanecer legible incluso cuando la extracción no está disponible.
 
+### Extraiga una figura de un papel subido {/* #uploaded-pdf-extraction */}
+
+<p className="example-label"><strong>Ejemplo práctico</strong> Inspect Figure 1 from Lang et al., 2019</p>
+
+Utilice el editor PDF para [catalizador de un solo átomo térmicamente estable para defectos](https://doi.org/10.1038/s41467-018-08136-3), por Lang et al., bajo [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Las capturas de pantalla muestran la figura de papel como muestra Open-Science.
+
+1. Añadir el PDF a través de **+ → Attach files** en una conversación. Después de enviar el mensaje, abra la tarjeta de acceso subida.
+2. Seleccione **Figures & Tables**. En primer lugar, **Download and continue** completo; espera hasta que la página reporte **Analysis complete**.
+3. Seleccione **Fig. 1** en el índice. Esta copia subida coloca la figura en **PDF página 3**. Compare sus paneles de imagen y capción; la imagen extraída es evidencia para inspeccionar, no un nuevo hallazgo.
+
+![Extracción de figuras locales completadas del papel de Lang cargado](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+
+4. Elige **Show in PDF**. Confirme **3 / 10** en la vista previa original y compare etiquetas de panel, barras de escala y curvas. Utilice la página original para resolver un desajuste de número de página o capción antes de citar la figura.
+
+![Mostrar en PDF vuelve a la figura original en la página 3 de 10](/img/open-science/v0350/uploaded-pdf-source.webp)
+
 ### Pregúntele al agente sobre una figura o tabla extraída {/* #pdf-agent-evidence */}
 
-1. Abra el PDF previsto, utilice **Read with agent** para vincularlo a la sesión actual, y complete el análisis **Figures and tables** para las páginas pertinentes. Antes de enviar su pregunta, confirme que el PDF permanece en el contexto de lectura del Compositor. Un registro de la Biblioteca por sí mismo no es un PDF vinculado, y vincularse solo no funciona este análisis.
+1. Abra el PDF previsto, utilice **Read with agent** para vincularlo a la sesión actual, y complete el análisis **Figures & Tables** para las páginas pertinentes. Antes de enviar su pregunta, confirme que el PDF permanece en el contexto de lectura del Compositor. Un registro de la Biblioteca por sí mismo no es un PDF vinculado, y vincularse solo no funciona este análisis.
 2. Pregunte sobre una figura específica, tabla o algoritmo. Incluya su etiqueta o página y la pregunta que necesita respuesta.
 3. Inspeccione la actividad de la herramienta: **list_pdf_elements** encuentra los elementos extraídos disponibles; **read_pdf_element** lee las pruebas seleccionadas. Pida la página de origen y cualquier contenido perdido o incierto en la respuesta.
 4. Compare la respuesta con la figura o tabla original, incluyendo encabezados, unidades y notas. Si la extracción está ausente o incompleta, analice las páginas desaparecidas y vuelva a entrar; a caption alone cannot establish a trend or an exact table value.

@@ -1739,5 +1739,17 @@
   },
   "docs.outline.reference.v0341.title": {
     "message": "v0.34.1"
+  },
+  "docs.guides.outline.session-replay.title": {
+    "message": "セッションの再生と議論"
+  },
+  "docs.guides.outline.session-replay.scope": {
+    "message": "記録されたステップを再生し、残された証拠を調べ、書き込み可能な会話で質問をしてください。"
+  },
+  "docs.outline.reference.v0350.title": {
+    "message": "v0.35.0"
+  },
+  "docs.outline.reference.v0350.scope": {
+    "message": "セッション再生、PDF抽出、新しい科学データベース、パブリックおよびプライベートネットワークのルール、およびワークスペースの改善をアップロードしました。"
   }
 }

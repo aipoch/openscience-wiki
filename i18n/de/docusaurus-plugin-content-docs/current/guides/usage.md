@@ -1,7 +1,7 @@
 ---
 title: "Token Nutzung und Aktivität"
 last_update:
-  date: '2026-09-09'
+  date: '2026-10-08'
 ---
 
 # Token Nutzung und Aktivität {/* #token-usage-and-activity */}
@@ -50,3 +50,7 @@ In der betriebenen Heute-Ansicht waren die Token-Gesamtwerte Null, bevor der akt
 Die Seite enthält nur die gemeldete Nutzung. Es rekonstruiert keine fehlende Geschichte. Zur Kontextzusammensetzung und -verdichtung siehe [Gedächtnis und Konversationskontext](./memory.md).
 
 Quelle: [Bedienelemente des Nutzungspanels und der Karten](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/TokenUsagePanel.tsx).
+
+## Angrenzende Tage inspizieren {/* #inspect-daily-usage */}
+
+Bewegen Sie sich durch das **Daily token usage**-Diagramm, um aufeinanderfolgende Daten und deren Input-, Cache- und Output-Aufgliederung zu überprüfen. Für den Tastaturzugriff verwenden Sie **Tab / Shift + Tab**, um einen Tag zu fokussieren, und **Flucht**, um das Detail zu schließen. Vergleichen Sie das angezeigte Datum und die angezeigten Komponenten; Dieses Diagramm deckt noch die letzten 30-Tage ab und rekonstruiert die fehlende Anbieter-Telemetrie nicht.

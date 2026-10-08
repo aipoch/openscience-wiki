@@ -1,7 +1,7 @@
 ---
 title: "Network, proxies, and package mirrors"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-08'
 ---
 
 # Network, proxies, and package mirrors
@@ -19,25 +19,31 @@ If Network reports **Ready** but a tool fails, expand that tool's error. The sta
 | Failure | Inspect next | Avoid this mistaken conclusion |
 | --- | --- | --- |
 | Provider login fails | Provider authentication and the model connection check | Notebook domain settings will supply model credentials |
-| One research hostname is denied | **Configure domains** and the exact hostname in the request | Adding a broad unrelated domain will fix it |
+| One research hostname is denied | **Manage access** and the exact hostname in the request | Adding a broad unrelated domain will fix it |
 | A package host is already allowed but CONNECT fails | Installer log, proxy and DNS resolution | Another identical Allow click will resolve all network failures |
 | Certificate verification fails | The configured CA bundle and the organization's trust requirements | Disabling certificate verification is necessary |
 | Package index returns no matching distribution after connection errors | Earlier network messages and selected Python/platform | The package must not exist |
 
-## Configure Notebook domains
+<span id="configure-notebook-domains" />
 
-1. Select **Configure domains**.
-2. Read whether Notebook network protection is active on this device.
-3. Expand the scientific-service groups to inspect their hostnames. Group switches control included destinations. The package-registry/source-code group is enabled and locked in this build.
-4. For an additional source, enter its exact hostname in **Domain hostname**, then select **Add**.
-5. Review the new draft row. Use **Remove [hostname]** to undo it.
-6. Select **Save changes** to persist the intended list.
+## Configure public network rules {/* #public-network-rules */}
 
-![Exact-hostname validation rejects a wildcard](/img/open-science/walkthrough-2026-09-08/54-network-domain-validation.webp)
+1. Open **Settings → Network → Manage access**. Read **Public internet access** to see which public HTTPS reads can proceed and which requests require approval.
+2. Inspect **Built-in services**. A group marked **Required** stays enabled; other groups can be selected for the task.
+3. Under **Custom public domains**, enter the exact **Domain hostname**, then choose **Add to list**. Review the draft entry before **Save changes**.
 
-Enter a hostname such as `data.example.org`, with no scheme, path, port, wildcard or IP address. For **Enter a hostname only, without a scheme, path, port, or wildcard.**, remove those parts and save the hostname.
+A public-domain rule allows sending data to that hostname; it does not cover subdomains or grant access to a private address. Enter a hostname without a scheme, path, port, wildcard or IP address. A hostname resolving to a non-public address still needs the appropriate private-service review. These rules also apply when protected code follows links or retrieves icons.
 
-A domain allowed by name can still fail another connection check. For example, `pypi.org` can be allowed but rejected as a non-public destination if it resolves to `198.18.*`. This is distinct from an unapproved domain.
+## Trust a private service {/* #trusted-private-services */}
+
+Use this only for a known internal service that your research code should access. This control is available in the desktop app. Only private service addresses are supported; localhost, this computer and reserved addresses remain blocked. The field does not accept raw IP addresses or wildcards.
+
+1. In **Trusted private services**, choose **Add service** and enter **Hostname** and **Port**. Confirm the exact service; the default port is 443.
+2. Select **Review service**. Inspect the resolved **Approved addresses** before choosing **Add to trusted services**.
+3. Review the list and select **Save changes**. DNS is checked again before saving; an address change requires another review.
+4. Retry a small request to that specific service and inspect its response. Address review alone does not test authentication or service availability.
+
+A grant covers the exact hostname, port and reviewed addresses. It lets protected Notebook and Shell code send data to that service across all projects. Add only the access the task needs. Saving network rules resets protected connections and can interrupt an active transfer; finish that transfer before applying changes.
 
 ## Choose a proxy mode
 

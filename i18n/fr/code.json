@@ -1755,5 +1755,17 @@
   },
   "docs.outline.reference.v0341.title": {
     "message": "v0.34.1"
+  },
+  "docs.guides.outline.session-replay.title": {
+    "message": "Rejouer et discuter d'une session"
+  },
+  "docs.guides.outline.session-replay.scope": {
+    "message": "Jouer les étapes enregistrées, inspecter les preuves conservées et poser des questions dans une conversation en écriture."
+  },
+  "docs.outline.reference.v0350.title": {
+    "message": "v0.35.0"
+  },
+  "docs.outline.reference.v0350.scope": {
+    "message": "Rejouer la session, télécharger l'extraction PDF, de nouvelles bases de données scientifiques, des règles de réseau public et privé, et des améliorations de l'espace de travail."
   }
 }

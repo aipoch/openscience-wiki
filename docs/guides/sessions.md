@@ -1,7 +1,7 @@
 ---
 title: "Sessions and branches"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -167,3 +167,7 @@ Select the session title to see its number, description, source, creation/update
 ## Export session diagnostics {/* #session-diagnostics */}
 
 Use the session header's **Export diagnostics…** control, or the session menu's **Export → Export diagnostics…**, to collect selected diagnostic sources in a local archive. Application logs can include metadata outside the selected session. Review the source list, completion message and archive contents before sharing; see [diagnostic export steps](troubleshooting.md#session-diagnostics).
+
+## Replay or discuss recorded work {/* #replay-session */}
+
+Choose **View replay** from the session row menu to step through the recorded conversation, Notebook activity and saved file versions. **Discuss** starts a separate conversation linked to that research. Imported sessions also expose both actions beside their read-only notice. Follow [Session replay](session-replay.md) for playback, source inspection and a worked discussion.

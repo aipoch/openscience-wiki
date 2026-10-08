@@ -1,7 +1,7 @@
 ---
 title: "Uso y actividad de fichas"
 last_update:
-  date: '2026-09-09'
+  date: '2026-10-08'
 ---
 
 # Uso y actividad de fichas {/* #token-usage-and-activity */}
@@ -50,3 +50,7 @@ En la vista operada de hoy, los totales de token eran cero antes de que la carre
 La página incluye sólo el uso reportado. No reconstruye la historia perdida. Para la composición del contexto y la compactación, véase [Contexto de memoria y conversación](./memory.md).
 
 Fuente: [Controles de panel de uso y gráficos](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/TokenUsagePanel.tsx).
+
+## Inspección de días adyacentes {/* #inspect-daily-usage */}
+
+Muévete a través de la gráfica **Daily token usage** para inspeccionar fechas sucesivas y su desglose de entrada, caché y salida. Para el acceso al teclado, utilice **Tab / Shift+Tab** para enfocar un día, y **Escape** para cerrar el detalle. Compare la fecha y los componentes mostrados; este gráfico todavía cubre los últimos días 30 y no reconstruye la telemetría del proveedor desaparecido.

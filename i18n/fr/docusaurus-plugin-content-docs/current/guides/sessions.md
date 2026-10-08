@@ -1,7 +1,7 @@
 ---
 title: "Sessions et sections"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -167,3 +167,7 @@ Sélectionnez le titre de la session pour voir son nombre, sa description, sa so
 ## Diagnostic des sessions d'exportation {/* #session-diagnostics */}
 
 Utilisez le contrôle **Export diagnostics…** de l'en-tête de session ou **Export → Export diagnostics…** du menu de session pour collecter des sources de diagnostic sélectionnées dans une archive locale. Les journaux d'application peuvent inclure des métadonnées en dehors de la session sélectionnée. Examiner la liste des sources, le message d'achèvement et le contenu des archives avant de partager; Voir [étapes diagnostiques de l'exportation](troubleshooting.md#session-diagnostics).
+
+## Rejouer ou discuter de travail enregistré {/* #replay-session */}
+
+Choisissez **View replay** dans le menu de la ligne de session pour passer à travers la conversation enregistrée, l'activité Notebook et les versions de fichiers sauvegardés. **Discuss** commence une conversation séparée liée à cette recherche. Les sessions importées exposent également les deux actions à côté de leur avis en lecture seule. Suivez [Rejouer la session](session-replay.md) pour la lecture, l'inspection des sources et une discussion.

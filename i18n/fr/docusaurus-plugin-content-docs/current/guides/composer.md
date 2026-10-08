@@ -1,7 +1,7 @@
 ---
 title: "Conversations et demandes en attente"
 last_update:
-  date: '2026-09-16'
+  date: '2026-10-08'
 ---
 
 # Conversations et demandes en attente {/* #conversations-and-queued-requests */}
@@ -117,3 +117,7 @@ Déplacez ou concentrez la table de réponse pour révéler **Copier le tableau*
 Pour les travaux à long terme, utilisez [Tâches en arrière-plan](notebook.md#background-tasks-and-result-delivery) pour ouvrir ou annuler la course spécifique. Un suivi en attente est une instruction en attente; un travail de base est déjà admis. La fermeture de la liste des tâches n'arrête pas l'exécution.
 
 Sources: [contrôle de la file d'attente](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx), [contrôleur de livraison](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/workspace-message-queue-controller.ts).
+
+## Déposez les fichiers dans une conversation {/* #conversation-drop */}
+
+Vous pouvez faire glisser des fichiers locaux sur la zone de conversation, pas seulement le Compositeur. Attendez que les puces de pièce jointe et tout téléchargement finissent, inspectez les noms de fichiers, puis envoyez la demande. La dépose de fichiers n'envoie pas le message. Pour importer un paquet de recherche `.science`, utilisez **Importer une recherche précédente** sur la page de conversation vide; Voir [Dossiers de recherche](research-packages.md).

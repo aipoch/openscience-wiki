@@ -1,7 +1,7 @@
 ---
 title: "Utilisation et activité des jetons"
 last_update:
-  date: '2026-09-09'
+  date: '2026-10-08'
 ---
 
 # Utilisation et activité des jetons {/* #token-usage-and-activity */}
@@ -50,3 +50,7 @@ Dans la vue d'aujourd'hui exploitée, les totaux de jetons étaient nuls avant q
 La page ne comprend que l'utilisation signalée. Il ne reconstruit pas l'histoire manquante. Pour la composition du contexte et le compactage, voir [Contexte de mémoire et de conversation](./memory.md).
 
 Source: [Contrôles des panneaux d'utilisation et des cartes](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/TokenUsagePanel.tsx).
+
+## Inspecter les jours adjacents {/* #inspect-daily-usage */}
+
+Passez à travers le graphique **Daily token usage** pour inspecter les dates successives et la ventilation de leur entrée, cache et sortie. Pour l'accès au clavier, utilisez **Tab / Maj + Tab** pour vous concentrer une journée, et **Échappement** pour fermer le détail. Comparer la date et les composants affichés; Ce graphique couvre toujours les derniers jours de 30 et ne reconstitue pas la télémétrie manquante du fournisseur.

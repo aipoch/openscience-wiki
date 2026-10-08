@@ -38,7 +38,7 @@ Les noms de champs de retour diffèrent selon l'opération. Les descriptions et 
 
 ## Entrées d'exploitation {/* #operation-inputs */}
 
-Expandez un Connector à la fois. Les champs obligatoires sont marqués **requis**; cette référence et téléchargement utilisent le schéma Open-Science **v0.34.1**. Une liste de `input.required` imbriquée fait autorité; une liste de haut niveau de `required` peut être absente. Consultez le <ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.1.json">Registre téléchargeable complet</ExampleDownload> pour les schémas JSON imbriqués, les descriptions complètes des retours et les exemples d'appels côté agent. Ne passez pas un `id` générique lorsqu'un outil s'attend à `accessions`, `cids`, `rs_id` ou à un autre champ spécifique à l'espace de noms.
+Expandez un Connector à la fois. Les champs obligatoires sont marqués **requis**; cette référence et téléchargement utilisent le schéma Open-Science **v0.35.0**. Une liste de `input.required` imbriquée fait autorité; une liste de haut niveau de `required` peut être absente. Consultez le <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.0.json">Registre téléchargeable complet</ExampleDownload> pour les schémas JSON imbriqués, les descriptions complètes des retours et les exemples d'appels côté agent. Ne passez pas un `id` générique lorsqu'un outil s'attend à `accessions`, `cids`, `rs_id` ou à un autre champ spécifique à l'espace de noms.
 
 
 ## Chimie {/* #family-1 */}
@@ -2117,6 +2117,23 @@ Contrôle de couverture AlphaFold DB par lots (max. 40 adhésions UniProt unique
 const result = await host.mcp("structures", "alphafold_check_coverage", {"uniprot_accessions": ["P04637", "P38398", "Q9Y6K9"]})
 ```
 
+### `pdb_search_sequence` {/* #pdb_search_sequence */}
+
+Trouver des entités protéiques expérimentales de PDB à partir d'une séquence protéique non tamponnée (25..10000 acides aminés, FASTA crus ou mono-enregistrement; espace blanc et minuscule accepté). La similarité des séquences utilise l'identité de la séquence RCSB MMseqs2 : identity_cutoff est une fraction 0..1, pas un pourcentage; evalue_cutoff est la valeur E maximale. min_query_coverage (0..1) filtre chaque alignement localement en utilisant (query_end - query_beg + 1) / longueur de la séquence d'entrée; un hit nécessite un alignement satisfaisant à la limite, et seuls les alignements admissibles sont retournés. Il s'agit d'une couverture séquentielle, non d'une couverture de résidus résolue expérimentalement. Scanne au plus max_candidates (par défaut 100, max 1000) en amont dans l'ordre de pertinence, puis retourne au plus max_rows (par défaut 10, max 25) entités avec des identifiants de chaîne et des métriques de correspondance. total_count est le filtrage total en amont de la couverture AVANT; n_matched compte les entités admissibles seulement parmi les candidats scannés. tronqué signifie qu'il reste plus de candidats ou de dossiers de qualification en amont. Augmenter max_candidates pour examiner les résultats moins bien classés. Les identifiants chaîne listent toutes les copies déposées de l'entité correspondante : asym_ids sont des identifiants d'étiquette, auth_asym_ids sont des identifiants d'auteur. Les métadonnées 404 conservent la correspondance avec metadata_error=not_found et les ID de chaîne nulle. La note de pertinence n'est pas l'identité de la séquence. Structures expérimentales seulement; chaîne à pdb_get_structures pour les métadonnées d'entrée. Aucun fichier de coordonnées n'est téléchargé.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `sequence` | chaîne de caractères | **requis**; Longueur min: 25; Longueur max: 50000 |
+| `identity_cutoff` | nombre | facultatif; par défaut : 0.3; minimum: 0; maximum: 1 |
+| `evalue_cutoff` | nombre | facultatif; par défaut : 0.1; Exclusivité Minimum: 0 |
+| `min_query_coverage` | nombre | facultatif; par défaut : 0; minimum: 0; maximum: 1 |
+| `max_candidates` | entier | facultatif; par défaut : 100; minimum: 1; maximum: 1000 |
+| `max_rows` | entier | facultatif; par défaut : 10; minimum: 1; maximum: 25 |
+
+```javascript
+const result = await host.mcp("structures", "pdb_search_sequence", {"sequence": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQV", "identity_cutoff": 0.9, "min_query_coverage": 0.8, "max_rows": 10})
+```
+
 </ToolOperationGroup>
 
 ## CEMBL {/* #family-10 */}
@@ -3564,7 +3581,7 @@ const result = await host.mcp("omics-archives", "geo_search_series", {"term": "a
 
 ### `geo_get_series` {/* #geo_get_series */}
 
-Chercher des métadonnées structurées pour les séries GEO (adhésions GSE) avec des échantillons inclus — titre/résumé/design de la série, plates-formes, échantillons avec des caractéristiques et des informations de bibliothèque, et URL de fichier supplémentaire. Les tables de données ne sont jamais téléchargées.
+Obtenez des métadonnées structurées pour la série GEO (adhésions GSE) avec des échantillons inclus — titre de la série/résumé/design, plates-formes, échantillons avec des caractéristiques et des informations de bibliothèque, et URL de fichiers supplémentaires. Les tables de données ne sont jamais téléchargées. Utilisez geo_get_matrix_files à côté pour découvrir les fichiers de comptage RNA-seq générés par Série Matrix et NPCI, puis geo_preflight_matrix pour vérifier les données décompressées sur ces échantillons.
 
 | Champ | Type | Besoins et contraintes |
 | --- | --- | --- |
@@ -3784,6 +3801,33 @@ Récupérer une étude publique Metabolomics Workbench (ST suivie de six chiffre
 
 ```javascript
 const result = await host.mcp("omics-archives", "workbench_get_study", {"study_id": "ST000001", "section": "factors"})
+```
+
+### `geo_get_matrix_files` {/* #geo_get_matrix_files */}
+
+Découvrez les fichiers de série Matrix et les comptes bruts RNA-seq générés par NCBI, FPKM/TPM et les fichiers d'annotation de gènes pour un GSE à partir de listes NCBI en direct. Retourne les URL annoncées, pas les matrices téléchargées ou le contenu du fichier vérifié. Commencez par geo_get_series pour les métadonnées de l'échantillon. Offrez l'URL officielle pour le téléchargement manuel par l'utilisateur, puis utilisez geo_preflight_matrix sur le texte décompressé lu localement. Ne pas contourner host.mcp avec HTTP brut. Les listes manquantes ou en échec ne prouvent pas l'absence de données; Inspectez également les fichiers supplémentaires de la série.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `accession` | chaîne de caractères | **requis**; modèle: "^GSE&#91;1-9&#93;&#91;0-9&#93;&#42;$" |
+
+```javascript
+const result = await host.mcp("omics-archives", "geo_get_matrix_files", {"accession":"GSE164073"})
+```
+
+### `geo_preflight_matrix` {/* #geo_preflight_matrix */}
+
+Prévol décompressé TSV dense ou série Matrice texte (jusqu'à 8 MiB) sans accès réseau ou système de fichiers. Fournir des échantillons de geo_get_series (adhésion, titre, platform_id) pour cartographier les colonnes par GSM, jamais par position. Seul TSV simple prend en charge l'appariement de titre exact unique; Les colonnes en forme de GSM ne reviennent jamais aux titres. Série Matrix nécessite exactement un en-tête !Sample_geo_accession contenant des adhésions GSM valides correspondant au nombre et à l'ordre de colonnes de l'échantillon, et ne revient jamais à la correspondance de titres. Pour les fichiers plus grands, utilisez complet:false et effectuez la validation complète dans l'environnement d'analyse. Pour les prévisualisations TSV simples, passez l'en-tête de la table plus les lignes complètes d'aperçu. Pour les prévisualisations de la série Matrix, conservez également les métadonnées précédentes, y compris !Sample_geo_accession et n'importe quel en-tête !Sample_platform_id, et !series_matrix_table_begin; ne soumettez pas seulement le tableau ou la fabrication !series_matrix_table_end. Définir complet:true seulement lorsque le texte contient le fichier entier. Pour le TSV simple, l'exhaustivité est déclarée par l'appelant, et non vérifiée de façon indépendante. Un aperçu ne peut pas établir les dimensions totales. Ne gère pas les champs Matrix Market, archives, HDF5 ou multilignes TSV. Préserver l'ordre de colonne sample_mapping lors de la préparation de la matrice d'analyse.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `text` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 8388608 |
+| `complete` | booléen | facultatif; par défaut : false |
+| `matrix_kind` | chaîne de caractères | facultatif; par défaut: "unknown"; enum: &#91;"series_matrix", "raw_counts", "normalized_counts", "unknown"&#93; |
+| `samples` | tableau d’objets | facultatif; maxItems: 10000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "geo_preflight_matrix", {"text":"GeneID\tGSM5000001\n1\t12\n","complete":false,"matrix_kind":"raw_counts","samples":[{"accession":"GSM5000001"}]})
 ```
 
 </ToolOperationGroup>
@@ -4907,6 +4951,252 @@ Fournissez exactement un groupe d'entrée : `dataset_version_id` / `collection_i
 
 ```javascript
 const result = await host.mcp("cellxgene-discover", "list_dataset_files", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
+```
+
+</ToolOperationGroup>
+
+## IEDB {/* #family-33 */}
+
+<ToolOperationGroup>
+<summary>Afficher les opérations et les paramètres</summary>
+
+### `search_epitopes` {/* #search_epitopes */}
+
+Rechercher les épitopes IEDB avec les filtres épitopes, hôtes, sources d'antigènes, MHC et preuves. Les filtres agrégés peuvent correspondre à différentes expériences dans le même enregistrement; utiliser des recherches d'analyse pour imposer la co-occurrence dans une expérience. Au moins un filtre biologique ou de preuve est nécessaire; limite et offset ne sont pas des filtres. Observations de la base de données, pas prédictions. Garder les résultats négatifs et manquants distincts. L ' élution de ligand par le MHC n ' est pas une mesure de l ' affinité de liaison; interpréter response_measured, méthode et unités ensemble. Les antigènes parent sont des protéines représentatives et peuvent ne pas correspondre exactement à la séquence d'antigène ou d'épitope curés. Utiliser cross_references.parent_uniprot_accessions ou curated_uniprot_accessions avec `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`; utiliser cross_references.pdb_ids avec `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`. Il s'agit de renvois en amont explicites, et non de mappages dérivés de séquences. Chargez chaque compétence de connecteur correspondant avant de l'appeler. Utilisez soit antigen_iri ou uniprot_accession, pas les deux.
+
+Fournissez au moins l'un des produits suivants : `epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence`.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `epitope_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `uniprot_accession` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle : "^&#91;A-Z0-9&#93;&#123; 6&#125;(?:&#91;A-Z0-9&#93;&#123; 4&#125;)?(?:&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\s\\S&#93;)" |
+| `mhc_allele` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `mhc_class` | chaîne de caractères | sous réserve des conditions ci-dessus; enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `assay_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `pdb_id` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\s\\S&#93;)" |
+| `sequence` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 1000; modèle: "^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)" |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `offset` | entier | facultatif; par défaut : 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_epitopes", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_antigens` {/* #search_antigens */}
+
+Rechercher les antigènes IEDB avec les filtres épitope, hôte, source d'antigène, MHC et preuves. Les filtres agrégés peuvent correspondre à différentes expériences dans le même enregistrement; utiliser des recherches d'analyse pour imposer la co-occurrence dans une expérience. Au moins un filtre biologique ou de preuve est nécessaire; limite et offset ne sont pas des filtres. Observations de la base de données, pas prédictions. Garder les résultats négatifs et manquants distincts. L ' élution de ligand par le MHC n ' est pas une mesure de l ' affinité de liaison; interpréter response_measured, méthode et unités ensemble. Les antigènes parent sont des protéines représentatives et peuvent ne pas correspondre exactement à la séquence d'antigène ou d'épitope curés. Utiliser cross_references.parent_uniprot_accessions ou curated_uniprot_accessions avec `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`; utiliser cross_references.pdb_ids avec `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`. Il s'agit de renvois en amont explicites, et non de mappages dérivés de séquences. Chargez chaque compétence de connecteur correspondant avant de l'appeler. Utilisez soit antigen_iri ou uniprot_accession, pas les deux.
+
+Fournissez au moins l'un des produits suivants : `epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `antigen_name`.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `epitope_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `uniprot_accession` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle : "^&#91;A-Z0-9&#93;&#123; 6&#125;(?:&#91;A-Z0-9&#93;&#123; 4&#125;)?(?:&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\s\\S&#93;)" |
+| `mhc_allele` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `mhc_class` | chaîne de caractères | sous réserve des conditions ci-dessus; enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `assay_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `pdb_id` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\s\\S&#93;)" |
+| `antigen_name` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `offset` | entier | facultatif; par défaut : 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_antigens", {"uniprot_accession": "P01012", "limit": 20})
+```
+
+### `search_tcell_assays` {/* #search_tcell_assays */}
+
+Rechercher des expériences de cellules T IEDB avec des filtres hôte, antigène source, MHC et résultats. Comprend les mesures tcell_export, les unités, les inégalités, les méthodes, le dénombrement des sujets et les lieux de publication. Au moins un filtre biologique ou de preuve est nécessaire; limite et offset ne sont pas des filtres. Observations de la base de données, pas prédictions. Garder les résultats négatifs et manquants distincts. L ' élution de ligand par le MHC n ' est pas une mesure de l ' affinité de liaison; interpréter response_measured, méthode et unités ensemble. Les antigènes parent sont des protéines représentatives et peuvent ne pas correspondre exactement à la séquence d'antigène ou d'épitope curés. Utiliser cross_references.parent_uniprot_accessions ou curated_uniprot_accessions avec `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`; utiliser cross_references.pdb_ids avec `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`. Il s'agit de renvois en amont explicites, et non de mappages dérivés de séquences. Chargez chaque compétence de connecteur correspondant avant de l'appeler. Utilisez soit antigen_iri ou uniprot_accession, pas les deux.
+
+Fournir au moins l'un des produits suivants: `epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `assay_id`.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `epitope_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `uniprot_accession` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle : "^&#91;A-Z0-9&#93;&#123; 6&#125;(?:&#91;A-Z0-9&#93;&#123; 4&#125;)?(?:&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\s\\S&#93;)" |
+| `mhc_allele` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `mhc_class` | chaîne de caractères | sous réserve des conditions ci-dessus; enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `assay_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `pdb_id` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\s\\S&#93;)" |
+| `sequence` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 1000; modèle: "^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)" |
+| `assay_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `offset` | entier | facultatif; par défaut : 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_tcell_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_bcell_assays` {/* #search_bcell_assays */}
+
+Rechercher des expériences de cellules IEDB B avec des filtres hôte, antigène source, MHC et résultats. Comprend les mesures bcell_export, les unités, les inégalités, les méthodes, le dénombrement des sujets et les lieux de publication. Au moins un filtre biologique ou de preuve est nécessaire; limite et offset ne sont pas des filtres. Observations de la base de données, pas prédictions. Garder les résultats négatifs et manquants distincts. L ' élution de ligand par le MHC n ' est pas une mesure de l ' affinité de liaison; interpréter response_measured, méthode et unités ensemble. Les antigènes parent sont des protéines représentatives et peuvent ne pas correspondre exactement à la séquence d'antigène ou d'épitope curés. Utiliser cross_references.parent_uniprot_accessions ou curated_uniprot_accessions avec `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`; utiliser cross_references.pdb_ids avec `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`. Il s'agit de renvois en amont explicites, et non de mappages dérivés de séquences. Chargez chaque compétence de connecteur correspondant avant de l'appeler. Utilisez soit antigen_iri ou uniprot_accession, pas les deux.
+
+Fournir au moins l'un des produits suivants: `epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `assay_id`.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `epitope_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `uniprot_accession` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle : "^&#91;A-Z0-9&#93;&#123; 6&#125;(?:&#91;A-Z0-9&#93;&#123; 4&#125;)?(?:&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\s\\S&#93;)" |
+| `mhc_allele` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `mhc_class` | chaîne de caractères | sous réserve des conditions ci-dessus; enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `assay_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `pdb_id` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\s\\S&#93;)" |
+| `sequence` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 1000; modèle: "^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)" |
+| `assay_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `offset` | entier | facultatif; par défaut : 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_bcell_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_mhc_assays` {/* #search_mhc_assays */}
+
+Recherche IEDB MHC liaison et ligand élution expériences avec hôte, antigène source, MHC et filtres de résultat. Comprend les mesures mhc_export, les unités, les inégalités, les méthodes, le dénombrement des sujets et les lieux de publication. Au moins un filtre biologique ou de preuve est nécessaire; limite et offset ne sont pas des filtres. Observations de la base de données, pas prédictions. Garder les résultats négatifs et manquants distincts. L ' élution de ligand par le MHC n ' est pas une mesure de l ' affinité de liaison; interpréter response_measured, méthode et unités ensemble. Les antigènes parent sont des protéines représentatives et peuvent ne pas correspondre exactement à la séquence d'antigène ou d'épitope curés. Utiliser cross_references.parent_uniprot_accessions ou curated_uniprot_accessions avec `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`; utiliser cross_references.pdb_ids avec `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`. Il s'agit de renvois en amont explicites, et non de mappages dérivés de séquences. Chargez chaque compétence de connecteur correspondant avant de l'appeler. Utilisez soit antigen_iri ou uniprot_accession, pas les deux.
+
+Fournir au moins l'un des produits suivants: `epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `assay_id`.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `epitope_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `uniprot_accession` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle : "^&#91;A-Z0-9&#93;&#123; 6&#125;(?:&#91;A-Z0-9&#93;&#123; 4&#125;)?(?:&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\s\\S&#93;)" |
+| `mhc_allele` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `mhc_class` | chaîne de caractères | sous réserve des conditions ci-dessus; enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `assay_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `pdb_id` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\s\\S&#93;)" |
+| `sequence` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 1000; modèle: "^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)" |
+| `assay_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `offset` | entier | facultatif; par défaut : 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_mhc_assays", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_references` {/* #search_references */}
+
+Rechercher les références IEDB avec les filtres épitope, hôte, source d'antigène, MHC et preuves. Les filtres agrégés peuvent correspondre à différentes expériences dans le même enregistrement; utiliser des recherches d'analyse pour imposer la co-occurrence dans une expérience. Au moins un filtre biologique ou de preuve est nécessaire; limite et offset ne sont pas des filtres. Observations de la base de données, pas prédictions. Garder les résultats négatifs et manquants distincts. L ' élution de ligand par le MHC n ' est pas une mesure de l ' affinité de liaison; interpréter response_measured, méthode et unités ensemble. Les antigènes parent sont des protéines représentatives et peuvent ne pas correspondre exactement à la séquence d'antigène ou d'épitope curés. Utiliser cross_references.parent_uniprot_accessions ou curated_uniprot_accessions avec `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`; utiliser cross_references.pdb_ids avec `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`. Il s'agit de renvois en amont explicites, et non de mappages dérivés de séquences. Chargez chaque compétence de connecteur correspondant avant de l'appeler. Utilisez soit antigen_iri ou uniprot_accession, pas les deux.
+
+Fournissez au moins l'un des produits suivants : `epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `pubmed_id`.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `epitope_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | entier | sous réserve des conditions ci-dessus; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `uniprot_accession` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle : "^&#91;A-Z0-9&#93;&#123; 6&#125;(?:&#91;A-Z0-9&#93;&#123; 4&#125;)?(?:&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\s\\S&#93;)" |
+| `mhc_allele` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `mhc_class` | chaîne de caractères | sous réserve des conditions ci-dessus; enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur min: 1; Longueur max: 300; modèle: "\\S" |
+| `assay_iri` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)" |
+| `pdb_id` | chaîne de caractères | sous réserve des conditions ci-dessus; modèle: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\s\\S&#93;)" |
+| `pubmed_id` | chaîne de caractères | sous réserve des conditions ci-dessus; Longueur max: 12; modèle: "^&#91;1-9&#93;&#91;0-9&#93;&#42;(?!&#91;\s\\S&#93;)" |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `offset` | entier | facultatif; par défaut : 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_references", {"reference_id": 1023094, "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## Monarch Initiative {/* #family-32 */}
+
+<ToolOperationGroup>
+<summary>Afficher les opérations et les paramètres</summary>
+
+### `monarch_get_disease_phenotypes` {/* #monarch_get_disease_phenotypes */}
+
+Récupérer les données probantes d'associations entre la maladie et le phénotype à l'aide de CURIES canoniques monarques, avec les sources de relation/catégorie, les sources primaires et agrégées, les publications, les codes de preuve, la négation, la fréquence, l'apparition et le contexte de la maladie lorsqu'elles sont fournies. Les identifiants de base de données source et les alias ne sont pas automatiquement convertis en identifiants canoniques Monarch et peuvent ne pas renvoyer de correspondances. Un total zéro signifie qu'il n'y a pas de correspondance entre l'identificateur et les filtres fournis et non pas l'absence de preuves phénotypiques. L'identification directe correspond à la valeur par défaut; direct ne signifie pas expérimentalement prouvé. Inspecter knowledge_level et agent_type pour les associations inférées. Les preuves manquantes ne sont pas des preuves négatives. Utilisez Genes & Ontologies pour la recherche de termes OLS et Alliance pour les enregistrements d'organismes modèles.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `disease_id` | chaîne de caractères | **requis**; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)" |
+| `phenotype_id` | chaîne de caractères | facultatif; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)" |
+| `primary_knowledge_source` | chaîne de caractères | facultatif; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)" |
+| `direct` | booléen | facultatif; par défaut : true |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `offset` | entier | facultatif; par défaut : 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("monarch", "monarch_get_disease_phenotypes", {"disease_id": "MONDO:0007947", "limit": 20})
+```
+
+### `monarch_get_gene_phenotypes` {/* #monarch_get_gene_phenotypes */}
+
+Récupérer les preuves d'association gènes-phénotypes en utilisant les CURIES canoniques monarques, avec relation/catégorie, sources primaires et agrégées, publications, codes de preuves, négation, fréquence, apparition et contexte de maladie lorsqu'elles sont fournies. Les identifiants de base de données source et les alias ne sont pas automatiquement convertis en identifiants canoniques Monarch et peuvent ne pas renvoyer de correspondances. Un total zéro signifie qu'il n'y a pas de correspondance entre l'identificateur et les filtres fournis et non pas l'absence de preuves phénotypiques. L'identification directe correspond à la valeur par défaut; direct ne signifie pas expérimentalement prouvé. Inspecter knowledge_level et agent_type pour les associations inférées. Les preuves manquantes ne sont pas des preuves négatives. Utilisez Genes & Ontologies pour la recherche de termes OLS et Alliance pour les enregistrements d'organismes modèles.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `gene_id` | chaîne de caractères | **requis**; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)" |
+| `phenotype_id` | chaîne de caractères | facultatif; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)" |
+| `primary_knowledge_source` | chaîne de caractères | facultatif; Longueur max: 200; modèle: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9._-&#93;&#42;:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;&#42;(?!&#91;\\s\\S&#93;)" |
+| `direct` | booléen | facultatif; par défaut : true |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `offset` | entier | facultatif; par défaut : 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("monarch", "monarch_get_gene_phenotypes", {"gene_id": "HGNC:3603", "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## Cellosaurus {/* #family-31 */}
+
+<ToolOperationGroup>
+<summary>Afficher les opérations et les paramètres</summary>
+
+### `search_cell_lines` {/* #search_cell_lines */}
+
+Rechercher les noms et synonymes recommandés par Cellosaurus en utilisant une phrase littérale (pas la syntaxe Solr brute). Retourne les candidats, pas une correspondance d'identité sans ambiguïté. Utilisez get_cell_line avec l'adhésion de CVCL sélectionnée pour l'origine, les maladies et les cartes externes.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `query` | chaîne de caractères | **requis**; Longueur min: 1; Longueur max: 200; modèle: "\\S" |
+| `limit` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
+| `offset` | entier | facultatif; par défaut : 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("cellosaurus", "search_cell_lines", {"query": "HeLa", "limit": 20})
+```
+
+### `get_cell_line` {/* #get_cell_line */}
+
+Résoudre une adhésion à la CLCV Cellosaurus ou un identifiant RID:CVCL. Récupérer l'identité, l'espèce, l'origine tissulaire/cellulaire, établir le laboratoire, la maladie/âge/sexe du donneur, les lignées cellulaires parentales, les dossiers de contamination/d'identification erronée et de mise en garde curés, les enregistrements de l'ICLAC et les cartes de bases de données externes. Les annotations manquantes n'établissent pas la qualité de l'échantillon.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `accession` | chaîne de caractères | **requis**; Longueur min: 9; Longueur max: 40; modèle: "^\\s&#42;(?:&#91;Rr&#93;&#91;Rr&#93;&#91;Ii&#93;&#91;Dd&#93;:)?&#91;Cc&#93;&#91;Vv&#93;&#91;Cc&#93;&#91;Ll&#93;_&#91;A-Za-z0-9&#93;&#123; 4&#125;\\s&#42;$" |
+
+```javascript
+const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
 ```
 
 </ToolOperationGroup>

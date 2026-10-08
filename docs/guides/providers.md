@@ -232,3 +232,5 @@ The v0.33.1 provider catalogs add **GPT-6** and **Claude Opus 5.5**. Open the pr
 v0.34.0 adds **MiniMax M3.1 Flash Preview** and **Claude Sonnet 5.5**. Select them from their respective provider's model list and check account access and active-Agent compatibility. This does not automatically replace the saved Main model.
 
 v0.34.1 adds **gpt-6.1-sol** to the Codex model catalog. Select it explicitly in the model picker, then send a small request to confirm account access. Updating the app does not automatically replace the saved Main model.
+
+v0.35.0 expands the **OpenCode Zen** catalog and adds Jev classification support. Check the role-specific picker: a model available for a classification task is not automatically the Main model. Keep your configured Main provider unless you deliberately change it; classification setup is covered in [Models](models.md#classification-models).

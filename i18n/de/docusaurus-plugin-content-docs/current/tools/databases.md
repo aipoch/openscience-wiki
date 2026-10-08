@@ -13,7 +13,7 @@ Verwenden Sie diese Seite, um eine Datenquelle auszuwählen, zu verstehen, was s
 
 ## Unterstützte Datenbanken {/* #supported-databases */}
 
-Open-Science v0.34.1 beinhaltet **30-Datenquellenstecker mit 324-Operationen**. Das separate Offline-Molekül Connector fügt zwei Operationen hinzu, wodurch die vollständige Registrierung auf 326 gebracht wird. Connector-Namen unter **Settings → Connectors** übereinstimmen; Jede Familie kann mehrere Datenbanken freilegen. Das Auflisten einer Quelle bedeutet nicht, dass jedes Feature seiner Website verfügbar ist.
+Open-Science v0.35.0 beinhaltet **33-Datenquellenstecker mit 337-Operationen**. Das separate Offline-Molekül Connector fügt zwei Operationen hinzu, wodurch die vollständige Registrierung auf 339 gebracht wird. Connector-Namen unter **Settings → Connectors** übereinstimmen; Jede Familie kann mehrere Datenbanken freilegen. Das Auflisten einer Quelle bedeutet nicht, dass jedes Feature seiner Website verfügbar ist.
 
 | Konnektor | Quellen | Vorgänge | Verwenden Sie es für  |
 | --- | --- | --- | ---  |
@@ -25,7 +25,7 @@ Open-Science v0.34.1 beinhaltet **30-Datenquellenstecker mit 324-Operationen**. 
 | Varianten · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | Populationshäufigkeit, klinische Aufzeichnungen und assayspezifische Funktionswerte, Zuordnungen und Experimente. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Klinische Studien von ClinicalTrials.gov - Suche, Details, Sponsoren, Ermittler, Endpunkte und Förderfähigkeit.  |
 | Klinische Genomik `clinical-genomics` | ClinGen, CIViC, Offene Ziele, ClinPGx | 30 | Klinische Genomik-Wissensdatenbanken: ClinGen-Kurationen, klinische CIViC-Evidenz und die Open-Targets-Plattform sowie ClinPGx-Pharmakogenomik-Aufzeichnungen. |
-| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Strukturen und molekulare Wechselwirkungen — PDB-Strukturen, AlphaFold-Vorhersagen, EMDB-Kryo-EM-Einträge, komplexe Portalkomplexe, IntAct-Interaktionsnetzwerke.  |
+| Strukturen und Interaktionen · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 17 | Strukturen und molekulare Wechselwirkungen — PDB-Strukturen, AlphaFold-Vorhersagen, EMDB-Kryo-EM-Einträge, komplexe Portalkomplexe, IntAct-Interaktionsnetzwerke.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | Bioaktive Verbindungen, Medikamente, Targets, Bioaktivität und Mechanismen über das ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv Preprints — Suche nach Datum/Kategorie, Metadaten nach DOI, Links zu Zeitschriftenveröffentlichungen, Funder-Listen und Plattformstatistiken.  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA, Etiketten, FAERS-Nebenwirkungsberichte und Drogenrückrufe. |
@@ -34,7 +34,7 @@ Open-Science v0.34.1 beinhaltet **30-Datenquellenstecker mit 324-Operationen**. 
 | Proteinannotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | Proteindomänenarchitektur, Familien-/Clan-Mitgliedschaft, Expressionsatlas und Interaktionsnetzwerke über InterPro/Pfam, Human Protein Atlas und STRING, einschließlich Netzwerkinteraktionsanreicherung. |
 | Krebsmodelle · `cancer-models` | cBioPortal | 10 | Studien, Mutationen, Kopienzahl, Proben, Patienten, klinische Eigenschaften und Expression des molekularen Profils. |
 | RNA · `rna` | Rfam | 9 | Nicht-kodierende RNA-Familiendaten (Metadaten, Ausrichtungen, Modelle, Strukturen) über Rfam.  |
-| Omics-Archive `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 26 | Omics-Studie/-Ausführung von Metadaten und Dateiinventaren; Metabolomische Proben, Faktoren, Analysen und Aufzeichnungen über Verbindungen. |
+| Omics-Archive `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | Omics-Studie/-Ausführung von Metadaten und Dateiinventaren; Metabolomische Proben, Faktoren, Analysen und Aufzeichnungen über Verbindungen. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Zelltypidentität, Markergene, Quelldatensätze und Gewebe über CELLxGENE CellGuide.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | Funktionale Genomik der Genregulation — ENCODE-Experimente/Bioproben/Dateien, JASPAR-TF-Bindungsprofile und UniBind-ChIP-seq-TFBS.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Funding-Opportunity-Suche (Grants.gov) und Antikörperkatalog-Lookups (Antibody Registry).  |
@@ -47,6 +47,9 @@ Open-Science v0.34.1 beinhaltet **30-Datenquellenstecker mit 324-Operationen**. 
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Pathway-Suche, Top-Pfade, Graph-Abfragen und BioPAX-Submodellexporte. |
 | Alliance Genome Resources · `alliance` | Allianz der Genomressourcen | 8 | Gene, Orthologe, Krankheitsmodelle, Phänotypen, Allele und Expression von Menschen und Modellorganismen. |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Einzelzellensammlungen und Datensätze, veröffentlichte Versionen, Dateiformate, Größen und Download-URLs. |
+| Cellosaurus · `cellosaurus` | Cellosaurus | 2 | Finden Sie Zellliniennamen und Synonyme, dann prüfen Sie die Beitrittsidentität und Qualitätsanmerkungen. |
+| Monarch Initiative · `monarch` | Monarch Initiative | 2 | Krankheit / Gen-zu-Phänotyp-Assoziationen mit dem Organismus und unterstützende Beweise. |
+| IEDB · `iedb` | Immune Epitope Datenbank | 6 | Epitope, Antigene, T-Zell-, B-Zell- und MHC-Assays sowie Quellenpublikationen. |
 
 Die Offline-Molekül-Tools sind in [Wissenschaftliche Zuschauer](viewers.md) abgedeckt. Für die genauen Operationen, die von jeder Datenquelle ausgesetzt sind, verwenden Sie den [Connector Betriebsnummer](../reference/connector-operations.md).
 
@@ -83,6 +86,26 @@ Suchen Sie nach den Einträgen unten in **Settings → Connectors**, aktivieren 
 CELLxGENE-Filterung und Paginierung laufen lokal über den vorgelagerten Katalog, der für jede Anforderung abgerufen wurde; Der Katalog kann zwischen den Anfragen wechseln. Verwenden Sie Versions-IDs, um eine Publikation beizubehalten. Eine nicht gemeldete Dateigröße ist -1, nicht Null Bytes. Fehlende Werte und Assay-Definitionen in den Ergebnissen von MaveDB und Workbench ebenfalls beibehalten.
 
 Siehe genaue Eingaben für [CELLxGENE Discover](../reference/connector-operations.md#family-30), [Allianz](../reference/connector-operations.md#family-29), [MaveDB](../reference/connector-operations.md#mavedb_search_score_sets) und [Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies).
+
+## Zelllinien, Phänotypen und Immunnachweise {/* #cell-lines-phenotypes-immunity */}
+
+Aktivieren Sie **Cellosaurus**, **Monarch Initiative** oder **IEDB** in **Settings → Connectors** und stellen Sie es **Hauptagent** zur Verfügung. Diese Operationen stellen öffentliche Datensätze ohne einen benutzerdefinierten Server oder API-Schlüssel ab.
+
+| Eingang | Was zu verlangen ist | Was zu bewahren ist |
+| --- | --- | --- |
+| Cellosaurus | Suchen Sie einen Zellliniennamen / Synonym und rufen Sie dann den zurückgegebenen CVCL-Zugriff oder RRID ab | Art, Identität, Synonyme und Anmerkungen zur Kontamination/Fehlidentifikation. Die Suche nimmt eine wörtliche Phrase, keine rohe Solr-Abfrage. Fehlende Qualitätsanmerkungen zertifizieren die Zelllinie nicht. |
+| Monarch Initiative | Krankheit oder Gen-Phänotyp-Assoziationen mit kanonischen CURIEs, wie MONDO:0007254 oder HGNC:11998 | Organismus, Phänotyp, Quelle und Nachweis. Aliasnamen werden nicht automatisch konvertiert; Bezeichner zuerst auflösen. Eine direkte Übereinstimmung betrifft den Identifikator-Matching, nicht die experimentelle Bestätigung. |
+| IEDB | Epitope oder Antigene oder ein spezifischer T-Zell-, B-Zell- oder MHC-Test | Mindestens ein biologischer/evidence Filter ist erforderlich; Die Paginierung allein reicht nicht aus. Verwenden Sie entweder antigen_iri oder uniprot_accession, nicht beides. Konservierungstestmethode, Ergebnis, Einheiten und Veröffentlichung; eine MHC-Elutionsbeobachtung ist keine Affinitätsmessung. |
+
+Ein aggregierter Epitop/Antigen-Rekord kann Beobachtungen aus verschiedenen Experimenten kombinieren. Wenn die Filter durch dasselbe Experiment erfüllt werden müssen, ist der entsprechende Testvorgang abzufragen. Null Übereinstimmungen stellen keinen negativen biologischen Befund dar. [Cellosaurus-Parameter](../reference/connector-operations.md#family-31) · [Monarchparameter](../reference/connector-operations.md#family-32) · [IEDB-Parameter](../reference/connector-operations.md#family-33).
+
+## Finden Sie GEO-Matrizen und Sequenz-matched Strukturen {/* #geo-matrices-pdb-sequences */}
+
+**Omics Archives → geo_get_matrix_files** Entdeckt offiziell GEO Reihe Matrix und NCBI-generierte Anzahl/FPKM/TPM/Annotationsdateien. Es gibt Dateistandorte zurück; Ihre Bytes werden nicht heruntergeladen. **geo_get_series** bleibt ein Metadaten-Lookup.
+
+Nach Erhalt einer Matrix überprüft **geo_preflight_matrix** bereits gelesenen, dekomprimierten Text bis 8 MiB. Es hat keinen Netzwerk- oder Dateisystemzugriff. Behalten Sie GSM-Identifikatoren und Plattformmetadaten, damit Samples nach ID und nicht nach Spaltenposition abgebildet werden können. Setz **vollständig: falsch** für eine Vorschau; **vollständig: wahr** nur für die gesamte Datei übergeben. Eine Vorschau kann keine Volldateidimensionen festlegen. Geben Sie kein komprimiertes Archiv, eine spärliche Matrix oder eine HDF5-Datei in den Textchecker ein. Siehe [Matrixentdeckung](../reference/connector-operations.md#geo_get_matrix_files) und [Textvorflug](../reference/connector-operations.md#geo_preflight_matrix).
+
+**Structures & Interactions → pdb_search_sequence** akzeptiert eine Proteinsequenz von 25-10,000-Resten als Rohsequenz oder einen FASTA-Datensatz. Identitäts- und Abfrageabdeckungsschwellenwerte sind Brüche von 0 bis 1. Die zurückgegebene Abfrageabdeckung beschreibt die Ausrichtung auf die Abfrage; Es ist keine experimentelle Strukturabdeckung. Die Upstream-Gesamtmenge geht der lokalen Abdeckungsfilterung voraus, und ein begrenzter Scan kann spätere Übereinstimmungen auslassen. Die Operation findet Strukturdatensätze, ohne Koordinaten herunterzuladen. Siehe [Genaue Eingaben und Scan-Grenzen](../reference/connector-operations.md#pdb_search_sequence).
 
 ## Verbinden und Starten der Verwendung einer Datenbank {/* #connect-database */}
 
@@ -190,7 +213,7 @@ Von v0.31.0 enthält `get_string_network.nodes` zurückgegebene Nachbarn und iso
 
 Der [Connector Betriebsnummer](../reference/connector-operations.md) listet die erforderlichen Eingaben, erlaubten Werte und genauen Aufrufe auf. Verwenden Sie diese Seite, um eine Quelle auszuwählen und sie zu verbinden; Verwenden Sie die Referenz für die Felder eines bestimmten Werkzeugs.
 
-Katalogquelle: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts).
+Katalogquelle: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/registry.ts).
 
 ## Sequenzsuche und Ausrichtung {/* #sequence-tools */}
 

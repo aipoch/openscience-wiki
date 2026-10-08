@@ -1,7 +1,7 @@
 ---
 title: "Unterhaltungen und wartende Anfragen"
 last_update:
-  date: '2026-09-16'
+  date: '2026-10-08'
 ---
 
 # Unterhaltungen und wartende Anfragen {/* #conversations-and-queued-requests */}
@@ -117,3 +117,7 @@ Bewegen oder fokussieren Sie die Antworttabelle, um **Kopiertabelle** (Markdown,
 Verwenden Sie [Hintergrundaufgaben](notebook.md#background-tasks-and-result-delivery) für lang laufende Arbeiten, um den spezifischen Lauf zu öffnen oder abzubrechen. Ein Warteschlangen-Follow-up ist eine ausstehende Anweisung; eine Hintergrundaufgabe ist bereits zugelassene Arbeit. Durch das Schließen der Aufgabenliste wird die Ausführung nicht gestoppt.
 
 Quellen: [Warteschlangenkontrollen](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ComposerMessageQueue.tsx), [Zustellungskontrolle](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/workspace-message-queue-controller.ts).
+
+## Dateien in ein Gespräch ablegen {/* #conversation-drop */}
+
+Sie können lokale Dateien in den Konversationsbereich ziehen, nicht nur den Composer. Warten Sie, bis die Anhängechips und der Upload abgeschlossen sind, prüfen Sie die Dateinamen und senden Sie dann die Anfrage. Dropping-Dateien senden die Nachricht nicht. Um ein `.science`-Forschungspaket zu importieren, verwenden Sie **Vorherige Forschung importieren** auf der leeren Gesprächsseite; siehe [Forschungspakete](research-packages.md).

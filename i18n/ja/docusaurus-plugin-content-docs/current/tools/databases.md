@@ -13,7 +13,7 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v0.34.1は**324 操作で 30 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを326に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
+Open-Science v0.35.0は**337 操作で 33 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを339に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
@@ -25,7 +25,7 @@ Open-Science v0.34.1は**324 操作で 30 のデータソース コネクタ**�
 | バリアント・ `variants` | gnomAD、ClinVar、dbSNP、MaveDB | 21 | 人口の頻度、臨床記録および試金固有の機能スコア、マッピングおよび実験。 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床トライアル.gov — 検索、詳細、スポンサー、投資家、エンドポイント、および適格性。  |
 | 臨床ゲノム・ `clinical-genomics` | ClinGen、CIViC、オープンターゲット、ClinPGx | 30 | 臨床ゲノムの知識ベース:ClinGenの治験、CIViCの臨床証拠およびオープン ターゲット プラットフォーム、およびClinPGxの薬学の記録。 |
-| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
+| 構造と相互作用 · `structures` | PDB、AlphaFold、EMDB、複雑なポータル、IntAct | 17 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
 | ChEMBL · `chembl` | ChEMBL | 6 | CEMBL REST API による生体活性化合物、薬物、標的、生体活性およびメカニズム。  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | BioRxiv/medRxiv のプリプリント — 日付/カテゴリ、DOI によるメタデータ、ジャーナル公開リンク、ファンダリスト、およびプラットフォームの統計による検索。  |
 | 薬物規制・ `drug-regulatory` | オープンFDA | 10 | Drugs@FDA、ラベル、FAERSの副作用報告および薬剤のrecalls。 |
@@ -34,7 +34,7 @@ Open-Science v0.34.1は**324 操作で 30 のデータソース コネクタ**�
 | タンパク質アノテーション・ `protein-annotation` | InterPro、Pfam、ヒトプロテインアトラス、ストリング | 14 | タンパク質ドメインアーキテクチャ、家族/クランのメンバーシップ、InterPro/Pfam、ヒューマンプロテインアトラス、STRINGによる表現アトラスと相互作用ネットワーク、ネットワークの相互作用の豊かさを含みます。 |
 | がんモデル・ `cancer-models` | cBioPortal(バイオポータル) | 10 | 研究、変異、コピー番号、サンプル、患者、臨床属性および分子プロファイル式。 |
 | RNA · `rna` | Rfam | 9 | Rfam による RNA の家族データ(メタデータ、アライメント、モデル、構造)を非コーディング。  |
-| Omics アーカイブズ・ `omics-archives` | ArrayExpress、GEO、MetaboLights、Metabolomics Workbench、MGnify、PRIDE、ENA | 26 | Omics はメタデータとファイルインベントリを学習/実行します。 メタボロミクスのサンプル、要因、分析および化合物レコード。 |
+| Omics アーカイブズ・ `omics-archives` | ArrayExpress、GEO、MetaboLights、Metabolomics Workbench、MGnify、PRIDE、ENA | 28 | Omics はメタデータとファイルインベントリを学習/実行します。 メタボロミクスのサンプル、要因、分析および化合物レコード。 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | セルックスジーン・セルギドによる細胞型アイデンティティ、マーカー遺伝子、ソースデータセット、組織。  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 遺伝子調整機能ゲノム — ENCODE実験/biosamples/files、JASPAR TF結合プロファイル、UniBind ChIP-seq TFBS。  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 資金調達機会検索(Grants.gov)と抗体カタログ検索(抗体レジストリ)。  |
@@ -47,6 +47,9 @@ Open-Science v0.34.1は**324 操作で 30 のデータソース コネクタ**�
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | パスウェイ検索、トップパスウェイ、グラフクエリ、BioPAXサブモデルエクスポート。 |
 | Alliance Genome Resources · `alliance` | ゲノムリソースのアライアンス | 8 | 人間とモデル組織遺伝子、オルトログ、病気モデル、フェノタイプ、アレルと表現。 |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 単一セルコレクションとデータセット、公開バージョン、ファイル形式、サイズ、ダウンロードURL。 |
+| Cellosaurus · `cellosaurus` | Cellosaurus | 2 | セル・ラインの名前と同義語を見つけ、アクセスアイデンティティと品質アノテーションを検査します。 |
+| Monarch Initiative · `monarch` | Monarch Initiative | 2 | 生物と遺伝子対フェノタイプと遺伝子の関連と、証拠を支持する。 |
+| IEDB · `iedb` | 免疫エピトープデータベース | 6 | エピトープ、抗原、T-cell、B-cell、MHCアッセイ、およびソース出版物。 |
 
 [科学ビューア](viewers.md)でオフラインのモレキュラーツールがカバーされています。 それぞれのデータソースで露出した正確な操作については、[Connectorの操作の参照](../reference/connector-operations.md) を使用します。
 
@@ -83,6 +86,26 @@ Open-Science v0.34.1は**324 操作で 30 のデータソース コネクタ**�
 CELLxGENE フィルタリングとパジネーションは、各リクエストに対して取得された上流カタログの上にローカルで実行されます。 カタログはリクエスト間で変更する場合があります。 バージョン ID を使用して、出版物を保持します。 報告されていないファイルサイズは -1 で、ゼロバイトではありません。 MaveDB と Workbench の結果の欠落した値とアッセイの定義を保存します。
 
 [CELLxGENE Discover](../reference/connector-operations.md#family-30)、[パートナー](../reference/connector-operations.md#family-29)、[MaveDB](../reference/connector-operations.md#mavedb_search_score_sets)、[Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies)の入力を正確に参照してください。
+
+## 細胞ライン、フェノタイプおよび免疫の証拠 {/* #cell-lines-phenotypes-immunity */}
+
+**Cellosaurus**、**Monarch Initiative**、**IEDB** を **Settings → Connectors** で有効化し、**メインエージェント** に使用可能にします。 これらの操作は、カスタムサーバーまたはAPIキーなしで公開レコードを問い合わせます。
+
+| エントリーフォーム | 要求の何 | 保存するべきこと |
+| --- | --- | --- |
+| Cellosaurus | セル・ライン名/匿名名を検索し、返されたCVCLアクセスまたはRRIDを取得 | 標本、アイデンティティ、同義語および汚染/誤認の注釈。 検索は、生のSolrのクエリではなく、リテラルフレーズを取ります。 品質のアノテーションを欠くと、セルラインを認証しません。 |
+| Monarch Initiative | モノドー:0007254 や HGNC:11998 | 組織、フェノタイプ、ソースおよび証拠。 アリアーゼは自動的に変換されません。 識別子を最初に解決します。 直接一致の懸念識別子マッチング、実験的な確認はありません。 |
+| IEDB | エピトップスまたは抗原、または特定のT細胞、B細胞またはMHCアッセイ | 少なくとも1つの生物的/証拠フィルターが要求されます; パジネーションだけでは不十分です。 antigen_iri か uniprot_accession を両方使用して下さい。 アッセイ方法、結果、単位および出版物を保存します。 MHCの溶出観察は、親和性測定ではありません。 |
+
+集計されたエピトープ/抗原レコードは、異なる実験から観察を組み合わせることができます。 フィルターが同じ実験で満足する必要がある場合は、対応するアッセイ操作をクエリします。 ゼロマッチは、負の生物学的発見を確立しません。 [Cellosaurusパラメータ](../reference/connector-operations.md#family-31) · [Monarch パラメータ](../reference/connector-operations.md#family-32) · [IEDBパラメータ](../reference/connector-operations.md#family-33).
+
+## GEOのマトリックスとシーケンスマッチ構造を見つける {/* #geo-matrices-pdb-sequences */}
+
+**Omics Archives → geo_get_matrix_files** は、公式の GEO シリーズ マトリックスと NCBI 生成カウント/FPKM/TPM/annotation ファイルを発見します。 ファイルの場所を返します。 バイトをダウンロードしません。 **geo_get_series** はメタデータルックアップのままです。
+
+行列を取得すると、**geo_preflight_matrix** は既に読み込まれているチェックを行い、8 MiB までのテキストを解凍します。 ネットワークやファイルシステムアクセスがない場合。 GSM の識別子とプラットフォームのメタデータを保存しておくと、カラムの位置ではなく ID でサンプルをマッピングできます。 **完了: 偽** をプレビューに設定します。 ファイル全体に **完了: true** を渡します。 プレビューは、ファイル全体の寸法を確立できません。 圧縮されたアーカイブ、スパース行列、HDF5ファイルをテキストチェッカーに送りません。 [行列の発見](../reference/connector-operations.md#geo_get_matrix_files)と[テキスト preflight](../reference/connector-operations.md#geo_preflight_matrix)を参照してください。
+
+**Structures & Interactions → pdb_search_sequence**は、生のシーケンスまたは1 FASTAレコードとして、25–10,000残余の1つのタンパク質シーケンスを受け入れます。 アイデンティティとクエリー カバーのしきい値は、0 から 1 への亜辞です。 返されたクエリカバレッジは、クエリへのアライメントを記述します。 実験的な構造のカバレッジではありません。 上流の合計はろ過するローカル カバーを指示し、分岐させたスキャンは後で一致を省略できます。 操作は、座標をダウンロードせずに構造レコードを見つけます。 [正確な入力とスキャンの制限](../reference/connector-operations.md#pdb_search_sequence) を参照してください。
 
 ## データベースの接続と起動 {/* #connect-database */}
 
@@ -190,7 +213,7 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts)。
+カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/registry.ts)。
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 
