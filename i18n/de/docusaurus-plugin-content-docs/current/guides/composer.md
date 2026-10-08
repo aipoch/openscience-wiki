@@ -8,6 +8,19 @@ last_update:
 
 Der Composer sendet Anweisungen und Eingabereferenzen zur aktuellen Sitzung und lässt Sie Follow-ups während der Ausführung vorbereiten. **Warteschlange · Nicht gespeichert** bedeutet, dass eine in der Warteschlange stehende Anforderung noch nicht zu einer gespeicherten Transkriptanweisung geworden ist.
 
+## Beginnen Sie mit einer Forschungsidee {/* #research-starters */}
+
+Die leere Gesprächsseite bietet **Analyze data**, **Compare papers**, **Find literature**, **Create charts** und andere Forschungsstarter neben dem Komponisten. Verwenden Sie die Pfeile, um mehr Auswahlmöglichkeiten zu sehen.
+
+1. Öffnen Sie **New** im beabsichtigten Projekt.
+2. Wählen Sie einen Starter wie **Explain a paper**. Es füllt den Composer mit einer editierbaren Anfrage; Auswählen sendet keine Nachricht.
+3. Fügen Sie das aktuelle Papier oder die Daten an, warten Sie auf den Upload und ersetzen Sie die allgemeine Anfrage durch Ihre Frage und die erwartete Ausgabe.
+4. Überprüfen Sie das Modell, die Anhänge und die Anforderung und senden Sie dann. Öffnen Sie die zurückgegebenen Quellen und Dateien, bevor Sie das Ergebnis akzeptieren.
+
+![Forschungsstarter und das kompakte Forschungspaket importieren Eintrag in ein neues Gespräch](/img/open-science/v0351/new-conversation.webp)
+
+**Import previous research** ist der separate Eintrag für ein `.science`-Paket. Durch die Auswahl eines Forschungsstarters wird kein Paket importiert oder Beispieldaten bereitgestellt.
+
 ## Bereiten Sie eine Anfrage mit einem überprüfbaren Ergebnis vor {/* #prepare-a-request-with-a-checkable-outcome */}
 
 Wählen Sie **New** im geplanten Projekt und geben Sie eine Anforderung in **Ask anything** ein. Benennen Sie den Input, den gewünschten Output und etwaige Methodeneinschränkungen. Für ein vollständiges Startbeispiel folgen Sie [Dein erstes Projekt](first-project.md).
@@ -120,4 +133,4 @@ Quellen: [Warteschlangenkontrollen](https://github.com/aipoch/open-science/blob/
 
 ## Dateien in ein Gespräch ablegen {/* #conversation-drop */}
 
-Sie können lokale Dateien in den Konversationsbereich ziehen, nicht nur den Composer. Warten Sie, bis die Anhängechips und der Upload abgeschlossen sind, prüfen Sie die Dateinamen und senden Sie dann die Anfrage. Dropping-Dateien senden die Nachricht nicht. Um ein `.science`-Forschungspaket zu importieren, verwenden Sie **Vorherige Forschung importieren** auf der leeren Gesprächsseite; siehe [Forschungspakete](research-packages.md).
+Sie können lokale Dateien in den Konversationsbereich ziehen, nicht nur den Composer. Warten Sie, bis die Anhängechips und der Upload abgeschlossen sind, prüfen Sie die Dateinamen und senden Sie dann die Anfrage. Dropping-Dateien senden die Nachricht nicht. Um ein `.science`-Forschungspaket zu importieren, verwenden Sie **Import previous research** auf der leeren Gesprächsseite; siehe [Forschungspakete](research-packages.md).

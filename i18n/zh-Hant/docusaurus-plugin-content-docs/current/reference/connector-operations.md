@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.35.0** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.0.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
+每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.35.1** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.1.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
 
 
 ## 化學 {/* #family-1 */}
@@ -2755,6 +2755,19 @@ const result = await host.mcp("human-genetics", "phewas_list_phenotypes", {"inst
 const result = await host.mcp("human-genetics", "phewas_search_phenotypes", {"query": "diabetes", "instance": "finngen"})
 ```
 
+### `gwas_get_summary_statistics` {/* #gwas_get_summary_statistics */}
+
+按 GCST 編號查詢 GWAS Catalog 完整彙總統計包的位置，不下載可能很大的資料檔案。返回 original／harmonised 檔案清單、解析後的 -meta.yaml、其中宣告的參考基因組和協調化參考，以及 GWAS-SSF 標準列定義。標準定義不是壓縮檔案的實際表頭。metadata_file 只限制解析哪份 YAML 及其參考資訊，檔案清單仍完整。found=false 僅表示沒有對應 FTP 目錄；既有目錄不可讀或 YAML 損壞屬於錯誤。下載前核對檔案版本、基因組與座標，不能用顯著關聯列表替代完整彙總統計。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `accession_id` | string | **必填** |
+| `metadata_file` | string | 可選; minLength: 1 |
+
+```javascript
+const result = await host.mcp("human-genetics", "gwas_get_summary_statistics", {"accession_id": "GCST90000123"})
+```
+
 </ToolOperationGroup>
 
 ## 表達 {/* #family-14 */}
@@ -4602,7 +4615,7 @@ const result = await host.mcp("hmmer", "results", {"job_id":"8ebb1d5f-4457-4da8-
 
 ### `status` {/* #interproscan-status */}
 
-透過已有 job_id 查詢一次 InterProScan 註釋任務，至少間隔 10 秒再查。FINISHED 後可獲取結果；ERROR／FAILURE 表示失敗，NOT_FOUND 表示未知或過期，不是零命中。此聯結器不提交或重提任務。
+透過已有 job_id 查詢一次 InterProScan 註釋任務，至少間隔 10 秒再查。FINISHED 後可獲取結果；ERROR／FAILURE 表示失敗，NOT_FOUND 表示未知或過期，不是零命中。此 status 操作不提交或重提任務。
 
 | 欄位 | 型別 | 必填與約束 |
 | --- | --- | --- |
@@ -4622,6 +4635,19 @@ const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R202
 
 ```javascript
 const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
+```
+
+### `submit` {/* #submit */}
+
+向 EMBL-EBI InterProScan 提交蛋白質序列或 FASTA，最多 1,000 條記錄，每條最多 10,000 個殘基，編碼請求體不超過 4 MiB。在 Settings → Credentials → Literature access 配置有效聯絡郵箱；序列和郵箱會傳送給 EMBL-EBI。返回 job_id 和 SUBMITTED 不代表完成。儲存任務 ID，至少間隔 10 秒呼叫 status，FINISHED 後呼叫 results。沒有後臺輪詢、任務登錄檔或結果快取。響應丟失時任務可能已經受理，不要自動重複提交。退出應用或取消本地請求不能取消、刪除遠端任務。單批最多 30 個任務，完成處理後再提交下一批；應用不強制跨呼叫限流。TSV 報告上限為 2 MiB，超出時失敗而非截斷，結果過期前應儲存。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `sequence` | string | **必填**; minLength: 1; maxLength: 4194304 |
+| `title` | string | 可選; minLength: 1; maxLength: 200 |
+
+```javascript
+const result = await host.mcp("interproscan", "submit", {"sequence":">query\nMKTIIALSYIFCLVFADYKDDDDK"})
 ```
 
 </ToolOperationGroup>
@@ -5125,6 +5151,66 @@ const result = await host.mcp("iedb", "search_mhc_assays", {"epitope_id": 25750,
 
 ```javascript
 const result = await host.mcp("iedb", "search_references", {"reference_id": 1023094, "limit": 20})
+```
+
+### `search_tcrs` {/* #search_tcrs */}
+
+檢索 IEDB TCR 受體組及鏈、人工整理／計算的基因註釋、關聯實驗和文獻。sequence 是表位序列，chain1_cdr3／chain2_cdr3 才是受體鏈 CDR3。至少提供一個生物學或證據篩選條件，limit／offset 不算。篩選作用於受體組，不逐項過濾嵌入的匯出記錄；宿主和實驗結果可來自組內不同實驗。要確認同一實驗同時滿足條件，沿 assay__iedb_ids 查詢對應 assay 操作及實驗條件。分頁只描述受體組，has_more=false 不證明嵌入證據匯出完整。保留陰性與缺失值的區別，不能把資料庫觀測解釋為結合預測；交叉引用是來源提供的對映，不是序列推導的身份。
+
+至少提供一組：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `receptor_group_id` / `chain1_cdr3` / `chain2_cdr3`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `uniprot_accession` | string | 按上方條件提供; pattern: &quot;^&#91;A-Z0-9&#93;&#123;6&#125;(?:&#91;A-Z0-9&#93;&#123;4&#125;)?(?:-&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\\s\\S&#93;)&quot; |
+| `mhc_allele` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方條件提供; enum: &#91;&quot;I&quot;, &quot;II&quot;&#93; |
+| `qualitative_measure` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `pdb_id` | string | 按上方條件提供; pattern: &quot;^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123;3&#125;(?!&#91;\\s\\S&#93;)&quot; |
+| `sequence` | string | 按上方條件提供; maxLength: 1000; pattern: &quot;^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)&quot; |
+| `receptor_group_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `chain1_cdr3` | string | 按上方條件提供; maxLength: 1000; pattern: &quot;^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)&quot; |
+| `chain2_cdr3` | string | 按上方條件提供; maxLength: 1000; pattern: &quot;^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)&quot; |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_tcrs", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_bcrs` {/* #search_bcrs */}
+
+檢索 IEDB BCR 受體組及鏈、人工整理／計算的基因註釋、關聯實驗和文獻。sequence 是表位序列，chain1_cdr3／chain2_cdr3 才是受體鏈 CDR3。至少提供一個生物學或證據篩選條件，limit／offset 不算。篩選作用於受體組，不逐項過濾嵌入的匯出記錄；宿主和實驗結果可來自組內不同實驗。要確認同一實驗同時滿足條件，沿 assay__iedb_ids 查詢對應 assay 操作及實驗條件。分頁只描述受體組，has_more=false 不證明嵌入證據匯出完整。保留陰性與缺失值的區別，不能把資料庫觀測解釋為結合預測；交叉引用是來源提供的對映，不是序列推導的身份。
+
+至少提供一組：`epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `receptor_group_id` / `chain1_cdr3` / `chain2_cdr3`.
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `epitope_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `uniprot_accession` | string | 按上方條件提供; pattern: &quot;^&#91;A-Z0-9&#93;&#123;6&#125;(?:&#91;A-Z0-9&#93;&#123;4&#125;)?(?:-&#91;1-9&#93;&#91;0-9&#93;&#42;)?(?!&#91;\\s\\S&#93;)&quot; |
+| `mhc_allele` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | 按上方條件提供; enum: &#91;&quot;I&quot;, &quot;II&quot;&#93; |
+| `qualitative_measure` | string | 按上方條件提供; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | 按上方條件提供; maxLength: 200; pattern: &quot;^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:-&#93;*(?!&#91;\\s\\S&#93;)&quot; |
+| `pdb_id` | string | 按上方條件提供; pattern: &quot;^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123;3&#125;(?!&#91;\\s\\S&#93;)&quot; |
+| `sequence` | string | 按上方條件提供; maxLength: 1000; pattern: &quot;^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)&quot; |
+| `receptor_group_id` | integer | 按上方條件提供; minimum: 1; maximum: 9007199254740991 |
+| `chain1_cdr3` | string | 按上方條件提供; maxLength: 1000; pattern: &quot;^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)&quot; |
+| `chain2_cdr3` | string | 按上方條件提供; maxLength: 1000; pattern: &quot;^&#91;A-Za-z&#93;+(?!&#91;\\s\\S&#93;)&quot; |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_bcrs", {"epitope_id": 25750, "limit": 20})
 ```
 
 </ToolOperationGroup>

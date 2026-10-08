@@ -234,3 +234,15 @@ v0.34.0 ajoute **MiniMax M3.1 Aperçu flash** et **Claude Sonnet 5.5**. Sélecti
 v0.34.1 ajoute **gpt-6.1-sol** au catalogue du modèle Codex. Sélectionnez-le explicitement dans le sélecteur de modèle, puis envoyez une petite requête pour confirmer l'accès au compte. La mise à jour de l'application ne remplace pas automatiquement le modèle Main enregistré.
 
 v0.35.0 élargit le catalogue **OpenCode Zen** et ajoute le support de classification de Jev. Vérifiez le sélecteur spécifique au rôle : un modèle disponible pour une tâche de classification n'est pas automatiquement le modèle Main. Gardez votre fournisseur Main configuré à moins que vous ne le changez délibérément; La configuration de la classification est couverte par [Modèles](models.md#classification-models).
+
+## Ajouter Requesty {/* #requesty */}
+
+1. Ouvrez **Settings → Model → Add provider**.
+2. Dans **Provider type**, choisissez **Requesty** sous **Official API**. Cette entrée intégrée fournit son point d'arrivée; une URL de passerelle personnalisée n'est pas requise.
+3. Vérifiez **Name** et entrez votre clé Requesty dans **API key**. **Obtenez une clé API** ouvre la page de gestion des clés de Requesty. Gardez la clé cachée.
+4. Vérifiez **Supported models**, puis sélectionnez **Test connection** ou **Save** et attendez la validation. Une clé manquante laisse ces commandes indisponibles.
+5. Une fois que le fournisseur est sauvegardé avec succès, sélectionnez un modèle offert dans le model de sélection prévu et envoyez une petite demande. Vérifiez la réponse réelle avant de commencer la recherche.
+
+![Requesty sélectionné dans le formulaire du fournisseur officiel, montrant la clé API requise et les modèles pris en charge](/img/open-science/v0351/requesty-form.webp)
+
+Requesty utilise `https://router.requesty.ai`; l'Agent actif détermine quel protocole et quels modèles compatibles sont proposés. L'accès et le quota dépendent du compte Requesty. L'ajout de ce fournisseur ne remplace pas automatiquement le modèle Main enregistré. v0.35.1 rafraîchit également le catalogue OpenRouter ; utiliser le sélecteur actuel plutôt que de copier un modèle ID à partir d'une vieille capture d'écran.

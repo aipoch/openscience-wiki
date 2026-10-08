@@ -211,3 +211,26 @@ Für Highlights und Notizen auf Dokumentebene fahren Sie mit [PDF-Anmerkungen](p
 ## Halten Sie eine Quell-Website angemeldet {/* #persistent-source-preview */}
 
 Die integrierte Browservorschau für Live-Source-Websites behält ihre Website-Sitzung über Besuche und App-Neustarts hinweg bei. Wenn eine Quelle ein bestehendes Konto benötigt, melden Sie sich auf der Seite dieser Quelle an und lesen Sie weiter. Das Schließen der Vorschau wird nicht von der Website abgemeldet; Verwenden Sie bei Bedarf die eigene Abmeldeaktion der Website. Die Beibehaltung eines Logins gibt dem Agenten nicht automatisch Volltextzugriff oder ändert die Netzwerkzugriffsregeln.
+
+## Fragen Sie nach einem neu hochgeladenen PDF {/* #uploaded-first-message */}
+
+<p className="example-label"><strong>Praxisbeispiel</strong> Finden Sie den Nachweis der thermischen Stabilität in einem hochgeladenen Papier</p>
+
+Dieses Beispiel verwendet den gleichen Open-Access Lang et al. Papier oben, als lokales PDF in eine neue Konversation mit **Codex subscription** hochgeladen.
+
+1. Wählen Sie **New**, dann **+ → Attach files** und wählen Sie PDF. Warten Sie, bis der Upload abgeschlossen ist.
+2. Öffnen Sie den angehängten PDF und überprüfen Sie den **Lesen**-Kontext, bevor Sie die erste Anfrage senden.
+3. Stellen Sie die folgende Frage, erweitern Sie dann die Ergebnisse des Lesewerkzeugs und prüfen Sie die Seitenreferenzen der Antwort.
+
+```text
+Read the attached paper. Identify its title and DOI, and tell me which
+figure shows the experimental evidence for thermal stability. Give the
+PDF page and distinguish the paper text from any figure image you can
+inspect. Keep the response in English.
+```
+
+![Der hochgeladene PDF und Lesekontext vor der ersten Anfrage](/img/open-science/v0351/first-pdf-draft.webp)
+
+Die Antwort identifizierte **Abbildung 1 auf PDF Seite 3** aus dem Papiertext und der Beschriftung neben DOI `10.1038/s41467-018-08136-3`. Öffnen Sie die Seite 3 und vergleichen Sie die zitierten Panels mit der Quelle. Die Textsuche allein lieferte keine extrahierten Figurenbilder: Die Antwort unterschied explizit lesbaren Text von Bildern, die sie nicht inspizieren konnte. Zur visuellen Interpretation verwenden Sie zuerst [Abbildungen und Tabellen](#pdf-extraction) und inspizieren die extrahierte Region.
+
+![Die abgeschlossene Antwort der ersten Nachricht mit dem ursprünglichen PDF und die angegebenen Grenzen des Bildzugriffs](/img/open-science/v0351/first-pdf-answer.webp)

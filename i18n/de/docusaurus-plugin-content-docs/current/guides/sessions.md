@@ -37,6 +37,14 @@ Verwenden Sie [Privatlesebuchzeichen](bookmarks.md), um eine Passage oder PDF-Re
 
 ## Lesen Sie das Sitzungsmenü richtig {/* #read-the-session-menu-correctly */}
 
+### Gemeinsame Aktionen im Session Header {/* #session-header-menu */}
+
+Öffnen Sie **Session actions** neben dem aktuellen Sitzungstitel für **Edit…**, **Pin/Unpin**, **New side chat**, **Fork**, **Export** und **Archive**. Bestätigen Sie den angezeigten Sitzungsnamen und die angezeigte Sitzungsnummer, bevor Sie eine Aktion auswählen.
+
+Das **Export**-Untermenü trennt Konversation, `.science`-Forschungspaket und diagnostische Exporte. Eine Konversation ist eine Lesekopie, ein Paket übergibt gespeicherte Forschungsaufzeichnungen, und die Diagnose unterstützt die Fehlersuche. Sensible diagnostische Nachweise erfordern eine separate Bestätigung; Der Export bleibt lokal, bis Sie ihn teilen. Überprüfen Sie zuerst den Inhalt.
+
+Nicht verfügbare Aktionen sind für den aktuellen Zustand deaktiviert. Eine schreibgeschützt importierte Sitzung benötigt **Fork**, bevor die Ausführung fortgesetzt werden kann. siehe [Side Chat](delegation.md) für den Umfang der separaten Diskussion. Das Sidebar-Session-Zeilenmenü bietet auch **View replay**, **View notebook** und Datei-Downloads. Der Screenshot unten zeigt das Sidebar-Menü.
+
 ![Aktionen, die zur RNA-seq-Sitzung gehören](/img/open-science/guides-walkthrough/41-session-actions.webp)
 
 | Aktion | Ergebnis | Überprüfung |
@@ -166,7 +174,7 @@ Wählen Sie den Sitzungstitel aus, um die Anzahl, Beschreibung, Quelle, Erstellu
 
 ## Exportsitzungsdiagnosen {/* #session-diagnostics */}
 
-Verwenden Sie das **Export diagnostics…**-Steuerelement des Session-Headers oder das **Export → Export diagnostics…** des Session-Menüs, um ausgewählte Diagnosequellen in einem lokalen Archiv zu sammeln. Anwendungsprotokolle können Metadaten außerhalb der ausgewählten Sitzung enthalten. Überprüfen Sie die Quellliste, die Vervollständigungsnachricht und den Archivinhalt vor dem Teilen; siehe [Diagnoseausfuhrschritte](troubleshooting.md#session-diagnostics).
+Verwenden Sie **Session actions → Export → Export diagnostics…** im Header oder das entsprechende **Export**-Untermenü in der Sitzungszeile, um ausgewählte Diagnosequellen in einem lokalen Archiv zu sammeln. Anwendungsprotokolle können Metadaten außerhalb der ausgewählten Sitzung enthalten. Überprüfen Sie die Quellliste, die Vervollständigungsnachricht und den Archivinhalt vor dem Teilen; siehe [Diagnoseausfuhrschritte](troubleshooting.md#session-diagnostics).
 
 ## Wiedergabe oder Diskutieren aufgezeichneter Arbeiten {/* #replay-session */}
 

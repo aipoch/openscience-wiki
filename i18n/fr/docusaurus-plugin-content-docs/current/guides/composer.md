@@ -8,6 +8,19 @@ last_update:
 
 Le Compositeur envoie des instructions et des références d'entrée à la session en cours et vous permet de préparer des suivis pendant l'exécution. **Queue · Non enregistré** signifie qu'une requête en attente n'est pas encore une instruction de transcription enregistrée.
 
+## Commencez par une idée de recherche {/* #research-starters */}
+
+La page de conversation vide offre **Analyze data**, **Compare papers**, **Find literature**, **Create charts** et d'autres démarreurs de recherche à côté du Compositeur. Utilisez les flèches pour voir plus de choix.
+
+1. Ouvrez **New** dans le projet prévu.
+2. Choisissez un démarreur tel que **Explain a paper**. Il remplit le Compositeur d'une requête modifiable; le choix ne fait pas d'envoi de message.
+3. Joindre le papier ou les données, attendre le téléchargement, et remplacer la requête générale par votre question et la sortie attendue.
+4. Vérifiez le modèle, les pièces jointes et la requête, puis envoyez. Ouvrez les sources et les fichiers retournés avant d'accepter le résultat.
+
+![Lancement de la recherche et entrée compacte de recherche-emballage dans une nouvelle conversation](/img/open-science/v0351/new-conversation.webp)
+
+**Import previous research** est l'entrée séparée pour un paquet `.science`. Le choix d'un démarreur de recherche n'importe pas un paquet ou fournit des données d'exemple.
+
 ## Préparer une demande avec un résultat vérifiable {/* #prepare-a-request-with-a-checkable-outcome */}
 
 Sélectionnez **New** dans le projet prévu et entrez une requête dans **Ask anything**. Nommez l'entrée, la sortie souhaitée et toutes les contraintes de méthode. Pour un exemple de démarrage complet, suivez [Votre premier projet](first-project.md).
@@ -120,4 +133,4 @@ Sources: [contrôle de la file d'attente](https://github.com/aipoch/open-science
 
 ## Déposez les fichiers dans une conversation {/* #conversation-drop */}
 
-Vous pouvez faire glisser des fichiers locaux sur la zone de conversation, pas seulement le Compositeur. Attendez que les puces de pièce jointe et tout téléchargement finissent, inspectez les noms de fichiers, puis envoyez la demande. La dépose de fichiers n'envoie pas le message. Pour importer un paquet de recherche `.science`, utilisez **Importer une recherche précédente** sur la page de conversation vide; Voir [Dossiers de recherche](research-packages.md).
+Vous pouvez faire glisser des fichiers locaux sur la zone de conversation, pas seulement le Compositeur. Attendez que les puces de pièce jointe et tout téléchargement finissent, inspectez les noms de fichiers, puis envoyez la demande. La dépose de fichiers n'envoie pas le message. Pour importer un paquet de recherche `.science`, utilisez **Import previous research** sur la page de conversation vide; Voir [Dossiers de recherche](research-packages.md).

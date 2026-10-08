@@ -234,3 +234,15 @@ v0.34.0 fügt **MiniMax M3.1 Flash-Vorschau** und **Claude Sonnet 5.5** hinzu. W
 v0.34.1 fügt **gpt-6.1-sol** dem Codex-Modellkatalog hinzu. Wählen Sie es explizit in der Modellauswahl aus und senden Sie dann eine kleine Anforderung, um den Kontozugriff zu bestätigen. Die Aktualisierung der App ersetzt nicht automatisch das gespeicherte Main-Modell.
 
 v0.35.0 erweitert den **OpenCode Zen**-Katalog und fügt Jev-Klassifizierungsunterstützung hinzu. Überprüfen Sie den rollenspezifischen Picker: Ein für eine Klassifizierungsaufgabe verfügbares Modell ist nicht automatisch das Main-Modell. Behalten Sie Ihren konfigurierten Main-Anbieter bei, es sei denn, Sie ändern ihn absichtlich; Der Klassifizierungsaufbau ist in [Modelle](models.md#classification-models) abgedeckt.
+
+## Requesty hinzufügen {/* #requesty */}
+
+1. Öffnen Sie **Settings → Model → Add provider**.
+2. Wählen Sie in **Provider type** **Requesty** unter **Official API**. Dieser eingebaute Eintrag liefert seinen Endpunkt; Eine Custom Gateway URL ist nicht erforderlich.
+3. Überprüfen Sie **Name** und geben Sie Ihren Requesty-Schlüssel in **API key** ein. **API-Schlüssel abrufen** öffnet die Schlüsselverwaltungsseite von Requesty. Halten Sie den Schlüssel verborgen.
+4. Überprüfen Sie **Supported models**, wählen Sie dann **Test connection** oder **Save** aus und warten Sie auf die Validierung. Ein fehlender Schlüssel lässt diese Steuerelemente nicht verfügbar.
+5. Nachdem der Anbieter erfolgreich gespeichert ist, wählen Sie ein angebotenes Modell im vorgesehenen Modellwähler aus und senden eine kleine Anfrage. Überprüfen Sie die tatsächliche Antwort, bevor Sie mit der Forschung beginnen.
+
+![Requesty im offiziellen Anbieterformular ausgewählt, zeigt den erforderlichen API-Schlüssel und unterstützte Modelle](/img/open-science/v0351/requesty-form.webp)
+
+Requesty verwendet `https://router.requesty.ai`; der aktive Agent bestimmt, welche kompatiblen Protokolle und Modelle angeboten werden. Zugriff und Kontingent hängen vom Requesty-Konto ab. Das Hinzufügen dieses Anbieters ersetzt nicht automatisch das gespeicherte Main-Modell. v0.35.1 aktualisiert auch den OpenRouter-Katalog; Verwenden sie den aktuellen picker, anstatt eine modell-id von einem alten screenshot zu kopieren.

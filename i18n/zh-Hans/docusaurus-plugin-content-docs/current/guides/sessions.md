@@ -37,6 +37,14 @@ GSE60450 实际运行完成后，通过 **Edit…** 保存了以下内容：
 
 ## 区分会话菜单操作
 
+### 会话顶部的常用操作 {/* #session-header-menu */}
+
+点击当前会话标题旁的 **Session actions** 菜单，可以使用 **Edit…**、**Pin / Unpin**、**New side chat**、**Fork**、**Export** 和 **Archive**。先确认顶部显示的会话名称与编号，再选择操作。
+
+**Export** 子菜单分别提供对话、`.science` 研究包和诊断导出。对话适合阅读，研究包用于交接保存的研究记录，诊断用于排查问题；三者不能互相替代。敏感诊断材料需要单独确认，导出后仍保存在本机，分享前检查内容。
+
+菜单会按当前状态禁用不适用的操作。只读导入会话需要 **Fork** 才能继续执行；**New side chat** 的范围见 [Side Chat](delegation.md)。侧栏会话行菜单还提供 **View replay**、**View notebook** 和文件下载等入口，下面的截图展示的是侧栏菜单。
+
 ![RNA-seq 会话操作菜单](/img/open-science/guides-walkthrough/41-session-actions.webp)
 
 | 操作 | 结果 | 检查 |
@@ -166,7 +174,7 @@ Fork 目前在桌面端提供。导入会话仍为只读，应在其副本中继
 
 ## 导出会话诊断 {/* #session-diagnostics */}
 
-使用会话页头 **Export diagnostics…**，或会话菜单 **Export → Export diagnostics…**，将所选诊断来源收集到本地归档。应用日志可能包含所选会话之外的元数据，分享前检查来源列表、完成提示和归档内容，见[诊断导出步骤](troubleshooting.md#session-diagnostics)。
+使用会话顶部的 **Session actions → Export → Export diagnostics…**，或侧栏会话行的对应 **Export** 子菜单，将所选诊断来源收集到本地归档。应用日志可能包含所选会话之外的元数据，分享前检查来源列表、完成提示和归档内容，见[诊断导出步骤](troubleshooting.md#session-diagnostics)。
 
 ## 回放或讨论已有研究 {/* #replay-session */}
 

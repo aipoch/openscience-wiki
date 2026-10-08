@@ -211,3 +211,26 @@ can actually read.
 ## ソースのウェブサイトをサインインして保存する {/* #persistent-source-preview */}
 
 ライブソースのウェブサイト用の組み込みブラウザのプレビューは、訪問とアプリの再起動を通じてサイトセッションを保持します。 ソースが既存のアカウントを必要とする場合は、そのソースのページにサインインし、読み続けてください。 プレビューを閉じると、ウェブサイトから表示されません。 必要に応じてウェブサイトのサインアウトアクションを使用します。 ログインの保持は、エージェントのフルテキストアクセスやネットワークアクセスルールの変更を自動的にしません。
+
+## 新しくアップロードされたPDFについての質問 {/* #uploaded-first-message */}
+
+<p className="example-label"><strong>実践例</strong> アップロードされた紙に熱安定性の証拠を割り当てて下さい</p>
+
+この例では、同じオープンアクセスLang et alを使用します。 **Codex subscription**で新しい会話にローカルPDFとしてアップロードされた紙。
+
+1. **New**を選択し、**+ → Attach files**を選択し、PDFを選択します。 アップロードが完了するまで待ちます。
+2. 添付したPDFを開き、最初のリクエストを送信する前に**閲覧**のコンテキストを確認します。
+3. 下記の質問に答えて、読み書きの結果を拡張し、回答のページの参照を調べます。
+
+```text
+Read the attached paper. Identify its title and DOI, and tell me which
+figure shows the experimental evidence for thermal stability. Give the
+PDF page and distinguish the paper text from any figure image you can
+inspect. Keep the response in English.
+```
+
+![アップロードされたPDFと最初のリクエストの前にコンテキストを読み込む](/img/open-science/v0351/first-pdf-draft.webp)
+
+DOI `10.1038/s41467-018-08136-3` と共に、紙のテキストとキャプションから **図PDFページ3の1** を識別しました。 3のページを開き、引用したパネルをソースと比較します。 テキスト検索だけで抽出された図の画像を提供していませんでした。画像から明示的に識別できるテキストの答えは、検査できませんでした。 視覚的解釈のために、最初に[図表](#pdf-extraction)を使用し、抽出された領域を点検して下さい。
+
+![元のPDFと記載された画像アクセスの制限による完全メッセージ応答](/img/open-science/v0351/first-pdf-answer.webp)

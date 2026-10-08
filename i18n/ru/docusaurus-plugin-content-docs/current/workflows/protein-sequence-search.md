@@ -2,7 +2,7 @@
 title: "Найдите последовательность белка и заполните поиск BLAST"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -113,4 +113,4 @@ result as unavailable.
 
 <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">Реакция HMMER</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">Интерпретация домена</ExampleDownload>
 
-Входные данные HMMER зависят от выбранной программы. В примере используется белковая последовательность с **hmmscan**; [Справочная информация об операции](../reference/connector-operations.md#family-26) для других программ. **InterProScan** отдельно извлекает статус и результаты TSV существующей работы. Он не подчиняется ни одному.
+Входные данные HMMER зависят от выбранной программы. В примере используется белковая последовательность с **hmmscan**; [Справочная информация об операции](../reference/connector-operations.md#family-26) для других программ. **InterProScan** может представить последовательность белка, проверить работу и получить аннотации TSV. Настройте свою контактную электронную почту и следуйте [этапы представления](../tools/databases.md#interproscan-submit); Результаты базы данных участников отдельно от этого примера HMMER.

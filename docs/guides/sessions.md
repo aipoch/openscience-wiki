@@ -37,6 +37,14 @@ Use [private reading bookmarks](bookmarks.md) to save a passage or PDF region wi
 
 ## Read the session menu correctly
 
+### Common actions in the session header {/* #session-header-menu */}
+
+Open **Session actions** beside the current session title for **Edit…**, **Pin / Unpin**, **New side chat**, **Fork**, **Export** and **Archive**. Confirm the displayed session name and number before choosing an action.
+
+The **Export** submenu separates conversation, `.science` research-package and diagnostic exports. A conversation is a reading copy, a package hands over saved research records, and diagnostics support troubleshooting. Sensitive diagnostic evidence requires separate confirmation; the export remains local until you share it. Inspect its contents first.
+
+Unavailable actions are disabled for the current state. A read-only imported session needs **Fork** before execution can continue; see [Side Chat](delegation.md) for the separate discussion's scope. The sidebar session-row menu also provides **View replay**, **View notebook** and file downloads. The screenshot below shows that sidebar menu.
+
 ![Actions belonging to the RNA-seq session](/img/open-science/guides-walkthrough/41-session-actions.webp)
 
 | Action | Result | Check |
@@ -166,7 +174,7 @@ Select the session title to see its number, description, source, creation/update
 
 ## Export session diagnostics {/* #session-diagnostics */}
 
-Use the session header's **Export diagnostics…** control, or the session menu's **Export → Export diagnostics…**, to collect selected diagnostic sources in a local archive. Application logs can include metadata outside the selected session. Review the source list, completion message and archive contents before sharing; see [diagnostic export steps](troubleshooting.md#session-diagnostics).
+Use **Session actions → Export → Export diagnostics…** in the header, or the corresponding **Export** submenu on the session row, to collect selected diagnostic sources in a local archive. Application logs can include metadata outside the selected session. Review the source list, completion message and archive contents before sharing; see [diagnostic export steps](troubleshooting.md#session-diagnostics).
 
 ## Replay or discuss recorded work {/* #replay-session */}
 

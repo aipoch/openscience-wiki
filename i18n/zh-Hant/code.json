@@ -2623,5 +2623,11 @@
   },
   "docs.outline.reference.v0350.scope": {
     "message": "會話回放、上傳 PDF 提取、新增科學資料庫、公網與私有網路規則及工作區改進。"
+  },
+  "docs.outline.reference.v0351.title": {
+    "message": "v0.35.1"
+  },
+  "docs.outline.reference.v0351.scope": {
+    "message": "研究任務建議、會話操作、Requesty、GWAS 彙總檔案、InterProScan 提交、受體證據與 PDF 筆記共享。"
   }
 }

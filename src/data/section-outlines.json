@@ -1433,6 +1433,17 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v0351",
+            "title": "v0.35.1",
+            "scope": "Research starters, session actions, Requesty, GWAS summary files, InterProScan submission, receptor evidence and shared PDF notes.",
+            "currentDoc": "changelog/v0-35-1",
+            "proposedUrl": "/docs/changelog/v0-35-1/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-35-1"
+            ]
+          },
+          {
             "id": "v0350",
             "title": "v0.35.0",
             "scope": "Session replay, uploaded PDF extraction, new scientific databases, public and private network rules, and workspace improvements.",

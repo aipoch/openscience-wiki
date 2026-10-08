@@ -8,6 +8,19 @@ last_update:
 
 Composer 向当前会话发送指令与输入引用，并允许在执行期间准备后续请求。**Queue · Not saved** 表示排队请求尚未成为已保存的对话指令。
 
+## 从研究任务建议开始 {/* #research-starters */}
+
+空白会话页在输入区旁提供 **Analyze data**、**Compare papers**、**Find literature**、**Create charts** 等任务建议。使用箭头可以查看更多选项。
+
+1. 在目标项目中点击 **New**。
+2. 选择 **Explain a paper** 等建议。它会把可编辑的请求填入输入区，不会直接发送。
+3. 附上实际论文或数据，等待上传完成，再把通用请求改成自己的问题和预期输出。
+4. 检查模型、附件及请求后发送。收到回答后，打开来源和结果文件核对。
+
+![新会话中的研究任务建议与紧凑的研究包导入入口](/img/open-science/v0351/new-conversation.webp)
+
+**Import previous research** 是独立的 `.science` 研究包导入入口。选择任务建议不会导入研究包，也不会自动提供示例数据。
+
 ## 准备可验收的请求
 
 在目标项目中选择 **New**，于 **Ask anything** 输入请求，说明输入、希望得到的文件及方法约束。完整起步示例见[第一个项目](first-project.md)。

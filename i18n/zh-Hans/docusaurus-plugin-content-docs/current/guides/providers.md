@@ -234,3 +234,15 @@ v0.34.0 新增 **MiniMax M3.1 Flash Preview** 和 **Claude Sonnet 5.5**。在各
 v0.34.1 在 Codex 模型目录中增加 **gpt-6.1-sol**。在模型选择器中主动选择后，先发送一个小请求确认账号可用；升级不会自动替换已保存的主模型。
 
 v0.35.0 扩展 **OpenCode Zen** 模型目录，并补充 Jev 分类支持。按所需用途检查对应选择器：可用于分类的模型不会自动成为 Main model。除非主动修改，否则保留原主模型；分类设置见[模型配置](models.md#classification-models)。
+
+## 添加 Requesty {/* #requesty */}
+
+1. 打开 **Settings → Model → Add provider**。
+2. 在 **Provider type → Official API** 下选择 **Requesty**。内置条目已经提供服务地址，不需要另填 Custom Gateway URL。
+3. 检查 **Name**，在 **API key** 中填写自己的 Requesty 密钥。**Get an API key** 会打开 Requesty 的密钥管理页，填写后保持密钥隐藏。
+4. 查看 **Supported models**，点击 **Test connection** 或 **Save** 并等待验证。未填写密钥时，这些按钮不可用。
+5. 提供商成功保存后，在目标模型选择器中选择可用模型，发送一个小请求。确认实际收到回答，再开始研究。
+
+![官方提供商表单中的 Requesty、必填密钥及支持的模型](/img/open-science/v0351/requesty-form.webp)
+
+Requesty 使用 `https://router.requesty.ai`；实际可用的协议和模型取决于当前 Agent。访问权限和额度由 Requesty 账号决定。添加提供商不会自动替换已保存的 Main 模型。v0.35.1 同时更新了 OpenRouter 目录，应以当前选择器为准，不要照抄旧截图中的模型 ID。

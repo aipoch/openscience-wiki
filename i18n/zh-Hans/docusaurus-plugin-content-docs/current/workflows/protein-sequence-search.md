@@ -2,7 +2,7 @@
 title: "从基因名称获取蛋白序列并完成 BLAST 比对"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -113,4 +113,4 @@ result as unavailable.
 
 <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">HMMER 原始响应</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">结构域解释</ExampleDownload>
 
-HMMER 的输入随程序变化。本例使用蛋白质序列与 **hmmscan**，其他程序见[操作参考](../reference/connector-operations.md#family-26)。**InterProScan** 则用于查询已有任务状态并获取 TSV 结果，不提供提交任务的操作。
+HMMER 的输入随程序变化。本例使用蛋白质序列与 **hmmscan**，其他程序见[操作参考](../reference/connector-operations.md#family-26)。**InterProScan** 可以提交蛋白序列、查询任务状态并获取 TSV 注释。配置联系邮箱后，按[提交步骤](../tools/databases.md#interproscan-submit)操作；其成员数据库结果与本例的 HMMER 结果分开解释。

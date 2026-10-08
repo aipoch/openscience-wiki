@@ -37,6 +37,14 @@ Utilisez [signets de lecture privés](bookmarks.md) pour enregistrer un passage 
 
 ## Lire correctement le menu de session {/* #read-the-session-menu-correctly */}
 
+### Actions communes dans l'en-tête de la session {/* #session-header-menu */}
+
+Ouvrez **Session actions** à côté du titre de la session en cours pour **Edit…**, **Épingle / Découpe**, **New side chat**, **Fork**, **Export** et **Archive**. Confirmez le nom et le numéro de session affichés avant de choisir une action.
+
+Le sous-menu **Export** sépare la conversation, le paquet-recherche `.science` et les exportations diagnostiques. Une conversation est une copie de lecture, un paquet passe sur les dossiers de recherche enregistrés, et le diagnostic supporte le dépannage. Les preuves diagnostiques sensibles doivent être confirmées séparément; l'exportation reste locale jusqu'à ce que vous la partagez. Inspectez d'abord son contenu.
+
+Les actions non disponibles sont désactivées pour l'état actuel. Une session importée en lecture seule a besoin de **Fork** avant que l'exécution puisse se poursuivre; Voir [Side Chat](delegation.md) pour la portée de la discussion séparée. Le menu sidebar session-row fournit également **View replay**, **View notebook** et téléchargements de fichiers. La capture d'écran ci-dessous montre ce menu sidebar.
+
 ![Actions appartenant à la session RNA-seq](/img/open-science/guides-walkthrough/41-session-actions.webp)
 
 | Décision | Résultat | Vérifier |
@@ -166,7 +174,7 @@ Sélectionnez le titre de la session pour voir son nombre, sa description, sa so
 
 ## Diagnostic des sessions d'exportation {/* #session-diagnostics */}
 
-Utilisez le contrôle **Export diagnostics…** de l'en-tête de session ou **Export → Export diagnostics…** du menu de session pour collecter des sources de diagnostic sélectionnées dans une archive locale. Les journaux d'application peuvent inclure des métadonnées en dehors de la session sélectionnée. Examiner la liste des sources, le message d'achèvement et le contenu des archives avant de partager; Voir [étapes diagnostiques de l'exportation](troubleshooting.md#session-diagnostics).
+Utilisez **Session actions → Export → Export diagnostics…** dans l'en-tête, ou le sous-menu correspondant de **Export** dans la ligne de session, pour collecter les sources de diagnostic sélectionnées dans une archive locale. Les journaux d'application peuvent inclure des métadonnées en dehors de la session sélectionnée. Examiner la liste des sources, le message d'achèvement et le contenu des archives avant de partager; Voir [étapes diagnostiques de l'exportation](troubleshooting.md#session-diagnostics).
 
 ## Rejouer ou discuter de travail enregistré {/* #replay-session */}
 

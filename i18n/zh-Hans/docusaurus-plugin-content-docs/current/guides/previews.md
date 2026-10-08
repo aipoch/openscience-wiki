@@ -213,3 +213,26 @@ can actually read.
 ## 保留来源网页的登录状态 {/* #persistent-source-preview */}
 
 来源网页的内置浏览器预览会在再次访问及应用重启后保留登录会话等站点状态。若页面需要已有账户访问，可在该来源页面完成登录后继续阅读。关闭预览不等于退出站点账户；需要退出时使用站点自己的退出入口。保留登录状态不会自动授予代理全文读取权限，也不会改变网络访问规则。
+
+## 直接提问刚上传的 PDF {/* #uploaded-first-message */}
+
+<p className="example-label"><strong>案例演示</strong> 在上传论文中定位热稳定性的证据</p>
+
+本例使用上文同一篇开放获取的 Lang 等人论文，将本地 PDF 上传到使用 **Codex subscription** 的新会话。
+
+1. 点击 **New → + → Attach files**，选择 PDF，等待上传完成。
+2. 打开附件，确认首条请求发送前已经显示 **Reading** 上下文。
+3. 发送以下问题，再展开阅读工具结果，检查回答中的页码。
+
+```text
+Read the attached paper. Identify its title and DOI, and tell me which
+figure shows the experimental evidence for thermal stability. Give the
+PDF page and distinguish the paper text from any figure image you can
+inspect. Keep the response in English.
+```
+
+![首次请求前已上传的 PDF 及 Reading 上下文](/img/open-science/v0351/first-pdf-draft.webp)
+
+回答根据论文正文及图注定位到 **PDF 第 3 页的图 1**，并给出 DOI `10.1038/s41467-018-08136-3`。打开第 3 页，逐一核对引用的面板。文字检索本身没有提供提取后的图像：回答明确区分了可读文字与无法查看的图片。需要图像解读时，先使用 [Figures & Tables](#pdf-extraction)，并检查提取区域。
+
+![首次请求完成后的回答、原始 PDF 及明确的图像读取范围](/img/open-science/v0351/first-pdf-answer.webp)

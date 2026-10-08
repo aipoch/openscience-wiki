@@ -37,6 +37,14 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 세션 메뉴를 올바르게 읽으십시오. {/* #read-the-session-menu-correctly */}
 
+### 세션 헤더의 일반적인 작업 {/* #session-header-menu */}
+
+**Edit…**, **핀/Unpin**, **New side chat**, **Fork**, **Export** 및 **Archive**에 대한 현재 세션 타이틀 옆에 **Session actions**을 엽니 다. 표시된 세션 이름과 번호를 확인하기 전에 행동을 선택.
+
+**Export** submenu는 대화, `.science` 연구 포장 및 진단 수출을 분리합니다. 대화는 독서 사본, 저장된 연구 기록에 포장 손, 및 진단 지원 문제 해결입니다. 과민한 진단 증거는 분리된 확인을 요구합니다; 수출은 당신이 그것을 공유할 때까지 지방 남아 있습니다. 그 내용을 먼저 검사합니다.
+
+사용 가능한 작업은 현재 상태에 사용할 수 없습니다. 읽기 전용 수입 세션은 실행하기 전에 **Fork**을 필요로합니다. 별도의 토론 범위에 [Side Chat](delegation.md)을 참조하십시오. 사이드바 세션로우 메뉴는 **View replay**, **View notebook** 및 파일 다운로드를 제공합니다. 아래 스크린 샷은 사이드 바 메뉴를 보여줍니다.
+
 ![RNA-seq 세션에 속하는 작업](/img/open-science/guides-walkthrough/41-session-actions.webp)
 
 | (주) | 결과 | 【특전】 |
@@ -166,7 +174,7 @@ GSE60450 프로젝트에서 기존의 QC 세션을 포크하고 `gse60450-qc-sum
 
 ## 수출 회의 진단 {/* #session-diagnostics */}
 
-세션 헤더의 **Export diagnostics…** 제어 또는 세션 메뉴의 **Export → Export diagnostics…**을 사용하여 로컬 아카이브에서 선택한 진단 소스를 수집합니다. Application logs는 선택한 세션 밖에 메타데이터를 포함할 수 있습니다. 공유하기 전에 소스 목록, 완료 메시지 및 아카이브 내용을 검토; [진단 수출 단계](troubleshooting.md#session-diagnostics) 참조.
+Header에서 **Session actions → Export → Export diagnostics…**을 사용하거나 세션 행에 해당 **Export** 하위 메누를 사용하여 로컬 아카이브에서 선택한 진단 소스를 수집합니다. Application logs는 선택한 세션 밖에 메타데이터를 포함할 수 있습니다. 공유하기 전에 소스 목록, 완료 메시지 및 아카이브 내용을 검토; [진단 수출 단계](troubleshooting.md#session-diagnostics) 참조.
 
 ## Replay 또는 토론 기록 작업 {/* #replay-session */}
 

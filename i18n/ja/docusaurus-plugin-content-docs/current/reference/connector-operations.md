@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.35.0**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.0.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
+Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.35.1**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.1.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
 
 
 ## 化学化学品 {/* #family-1 */}
@@ -2753,6 +2753,19 @@ const result = await host.mcp("human-genetics", "phewas_list_phenotypes", {"inst
 const result = await host.mcp("human-genetics", "phewas_search_phenotypes", {"query": "diabetes", "instance": "finngen"})
 ```
 
+### `gwas_get_summary_statistics` {/* #gwas_get_summary_statistics */}
+
+GWASカタログのまとめ統計パッケージを1つのGCSTアクセスを調べて、潜在的に膨大なデータファイルをダウンロードすることなくダウンロードできます。 アクセスがFTPディレクトリを持たないときのfind=falseを返します。 それ以外の場合は、HTTPS FTP ディレクトリ、元のファイルおよび調和したファイルリスト、parsed -meta.yaml レコード、ゲノムアセンブリ、およびそれらのレコードによって宣言された調和のリファレンス、および現在の GWAS-SSF 標準カラムの定義を返します。 列定義は標準を記述します。, 圧縮されたデータファイルから観察されたヘッダーではありません. 返されたファイル URL を使用して、選択したフルデータセットをダウンロードします。 引数: accession_id (GCST アクセシビリティ、例えば。 GCST90000123); metadata_file (オプションの正確なYAMLファイル名でメタデータ解析と参照要約を制限します。) ファイルが残っている状態です。 FTP ディレクトリは、アクセシオンの千人乗りの Bucket から派生しています。 malformed YAML または未読の既存のディレクトリは、上流エラーのままです。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `accession_id` | 文字列 | **必須** |
+| `metadata_file` | 文字列 | 任意; 最長: 1 |
+
+```javascript
+const result = await host.mcp("human-genetics", "gwas_get_summary_statistics", {"accession_id": "GCST90000123"})
+```
+
 </ToolOperationGroup>
 
 ## エクスプレス {/* #family-14 */}
@@ -4622,6 +4635,19 @@ const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R202
 const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
 ```
 
+### `submit` {/* #submit */}
+
+非同期ドメインと家族アノテーション用のEMBL-EBI InterProScanに1つ以上のタンパク質シーケンスを提出してください。 ほとんどの1,000レコードで生タンパク質シーケンスまたはFASTA入力、10,000残渣のローカル制限、および4 MiBエンコードリクエストボディ制限を受け付けます。 すぐにjob_idを返し、決して世話をしません。 job_id を保ち、ステータスを呼び出し、ステータスチェックの秒数を少なくとも 10 秒数で待機した後に自分自身を結果させます。 失った応答は、受け入れられたジョブを表す可能性があります。 自動的に再送信しないでください。 有効な連絡先メールが必要です。 &#91;設定&#93; → &#91;認証&#93; → &#91;文献&#93; → &#91;文献アクセス&#93; で連絡先メールを設定します。 応募時にEMBL-EBIにメールが届きます。 job_idを再起動してから再開してください。 このコネクタは、ジョブレジストリ、結果のキャッシュ、または背景のポーリングを追加しません。 キャンセル、アプリの終了およびアンインストールは、ローカルリクエストのみを停止します。 このコネクタは、リモートジョブをキャンセルまたは削除することはできません。 EMBL-EBIで結果の有効期限が制御されます。 EMBL-EBI に順次、連絡先メールが送信されます。 ツールの入力と出力は、会話やNotebookの永続性で保持される場合があります。 30 ジョブを一括で送信し、処理/結果の送信を待ちます。 クロスコールの回転は強制されません。 TSVのほとんどの2 MiBで既存の結果のツールが返り、より大きなレポートを却下します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `sequence` | 文字列 | **必須**; 最長: 1; 最高長さ: 4194304 |
+| `title` | 文字列 | 任意; 最長: 1; 最高長さ: 200 |
+
+```javascript
+const result = await host.mcp("interproscan", "submit", {"sequence":">query\nMKTIIALSYIFCLVFADYKDDDDK"})
+```
+
 </ToolOperationGroup>
 
 ## Pathway Commons {/* #family-28 */}
@@ -5123,6 +5149,66 @@ IEDB 参照を Epitope、ホスト、抗原源、MHC および証拠フィルタ
 
 ```javascript
 const result = await host.mcp("iedb", "search_references", {"reference_id": 1023094, "limit": 20})
+```
+
+### `search_tcrs` {/* #search_tcrs */}
+
+表皮、受容器CDR3、ホスト、抗原、MHCおよび文献の証拠によるIEDB TCR受容器のグループを検索して下さい。 シーケンスフィルタは、Epitope linear_sequencesにマッチします。 chain1_cdr3 および chain2_cdr3 は受容器の鎖 CDR3 の順序に一致させます。 tcr_exportレコードはチェーン、キュレーション/カルキュレートされた遺伝子アノテーションとリンクされたアッセイと参照を含む。 フィルターは受容器のグループを選びます; 埋め込まれた輸出記録は、これらの基準によって個別にフィルタリングされません。 集計されたホストと結果フィルタは、同じグループで異なる実験と一致させることができます。 受容体エクスポートは、ホストまたは定性的な結果フィールドを含んでいません。 実験レベルの共存のために、リンクされたassay__iedb_idsおよびクエリーsearch_tcell_assays、search_bcell_assaysまたはsearch_mhc_assaysに、対応するassay_idおよび実験的なフィルターを従って下さい。 少なくとも1つの生物学的または証拠フィルターが必要です。 制限とオフセットだけではフィルタリングではありません。 データベースの観察、予測ではなく。 ネガティブな結果と欠落した結果は明確に保ちましょう。 MHCのligandの溶出は結合の類縁の測定ではないです; response_measured、方法および単位を一緒に解釈して下さい。 両親の抗原は代表的な蛋白質であり、丁度カールされた抗原か上式の順序に一致しないかもしれません。 cross_references.parent_uniprot_accessionsかcurated_uniprot_accessionsを`host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`と使用して下さい; `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})` で cross_references.pdb_ids を使用します。 これらは、シーケンス由来のマッピングではなく、明示的な上流のクロスリファレンスです。 呼び出し前に、各マッチングコネクタのスキルをロードします。
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`sequence`/`receptor_group_id`/`chain1_cdr3`/`chain2_cdr3`。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `epitope_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `reference_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `host_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `source_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `antigen_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `uniprot_accession` | 文字列 | 上記の条件に従う。 パターン: "^&#91;A-Z0-&#93;9. . .&#123; 6&#125;(?:&#91;A-Z0-&#93;)9. . .&#123; 4&#125;)?(?:-&#91;1- - - -9&lt;unk> &lt;unk>0- - - -9&#93;&#42;?(?!&#91;\\\\\\S&#93;)" |
+| `mhc_allele` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `mhc_class` | 文字列 | 上記の条件に従う。 enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `assay_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `pdb_id` | 文字列 | 上記の条件に従う。 パターン: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\S&#93;)" |
+| `sequence` | 文字列 | 上記の条件に従う。 最高長さ: 1000; パターン: "^&#91;A-Za-z&#93;+(?!&#91;\\s\S&#93;)" |
+| `receptor_group_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `chain1_cdr3` | 文字列 | 上記の条件に従う。 最高長さ: 1000; パターン: "^&#91;A-Za-z&#93;+(?!&#91;\\s\S&#93;)" |
+| `chain2_cdr3` | 文字列 | 上記の条件に従う。 最高長さ: 1000; パターン: "^&#91;A-Za-z&#93;+(?!&#91;\\s\S&#93;)" |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_tcrs", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_bcrs` {/* #search_bcrs */}
+
+表皮、受容器CDR3、ホスト、抗原、MHCおよび文献の証拠によるIEDB BCR受容器のグループを検索して下さい。 シーケンスフィルタは、Epitope linear_sequencesにマッチします。 chain1_cdr3 および chain2_cdr3 は受容器の鎖 CDR3 の順序に一致させます。 bcr_exportレコードはチェーン、キュレーション/カルキュレートされた遺伝子アノテーションとリンクされたアッセイと参照を含む。 フィルターは受容器のグループを選びます; 埋め込まれた輸出記録は、これらの基準によって個別にフィルタリングされません。 集計されたホストと結果フィルタは、同じグループで異なる実験と一致させることができます。 受容体エクスポートは、ホストまたは定性的な結果フィールドを含んでいません。 実験レベルの共存のために、リンクされたassay__iedb_idsおよびクエリーsearch_tcell_assays、search_bcell_assaysまたはsearch_mhc_assaysに、対応するassay_idおよび実験的なフィルターを従って下さい。 少なくとも1つの生物学的または証拠フィルターが必要です。 制限とオフセットだけではフィルタリングではありません。 データベースの観察、予測ではなく。 ネガティブな結果と欠落した結果は明確に保ちましょう。 MHCのligandの溶出は結合の類縁の測定ではないです; response_measured、方法および単位を一緒に解釈して下さい。 両親の抗原は代表的な蛋白質であり、丁度カールされた抗原か上式の順序に一致しないかもしれません。 cross_references.parent_uniprot_accessionsかcurated_uniprot_accessionsを`host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`と使用して下さい; `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})` で cross_references.pdb_ids を使用します。 これらは、シーケンス由来のマッピングではなく、明示的な上流のクロスリファレンスです。 呼び出し前に、各マッチングコネクタのスキルをロードします。
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`sequence`/`receptor_group_id`/`chain1_cdr3`/`chain2_cdr3`。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `epitope_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `reference_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `host_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `source_taxonomy_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `antigen_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `uniprot_accession` | 文字列 | 上記の条件に従う。 パターン: "^&#91;A-Z0-&#93;9. . .&#123; 6&#125;(?:&#91;A-Z0-&#93;)9. . .&#123; 4&#125;)?(?:-&#91;1- - - -9&lt;unk> &lt;unk>0- - - -9&#93;&#42;?(?!&#91;\\\\\\S&#93;)" |
+| `mhc_allele` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `mhc_class` | 文字列 | 上記の条件に従う。 enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 文字列 | 上記の条件に従う。 最長: 1; 最高長さ: 300; パターン: "\\S" |
+| `assay_iri` | 文字列 | 上記の条件に従う。 最高長さ: 200; パターン: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93;&#91;A-Za-z0-9._:&#93;*(?!&#91;\\s\S&#93;)" |
+| `pdb_id` | 文字列 | 上記の条件に従う。 パターン: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\S&#93;)" |
+| `sequence` | 文字列 | 上記の条件に従う。 最高長さ: 1000; パターン: "^&#91;A-Za-z&#93;+(?!&#91;\\s\S&#93;)" |
+| `receptor_group_id` | 整数 | 上記の条件に従う。 最小値: 1; 最高: 9007199254740991 |
+| `chain1_cdr3` | 文字列 | 上記の条件に従う。 最高長さ: 1000; パターン: "^&#91;A-Za-z&#93;+(?!&#91;\\s\S&#93;)" |
+| `chain2_cdr3` | 文字列 | 上記の条件に従う。 最高長さ: 1000; パターン: "^&#91;A-Za-z&#93;+(?!&#91;\\s\S&#93;)" |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_bcrs", {"epitope_id": 25750, "limit": 20})
 ```
 
 </ToolOperationGroup>

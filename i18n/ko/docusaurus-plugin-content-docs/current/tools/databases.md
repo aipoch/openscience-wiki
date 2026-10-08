@@ -13,7 +13,7 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v0.35.0에는 **33 데이터 소스 커넥터 337 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 339에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
+Open-Science v0.35.1에는 **33 데이터 소스 커넥터 341 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 343에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
 
 | 커넥터 | 출처 | 작업 | 사용하기  |
 | --- | --- | --- | ---  |
@@ -29,7 +29,7 @@ Open-Science v0.35.0에는 **33 데이터 소스 커넥터 337 작업**가 포�
 | ChEMBL · `chembl` | ChEMBL | 6 | 비활성 화합물, 약물, 표적, 생물 활성성, 그리고 메커니즘을 통해 ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — 날짜/category, DOI, 저널-publication 링크, 펀더 목록 및 플랫폼 통계에 의해 검색.  |
 | 의약품 규제 · `drug-regulatory` | 오픈FDA | 10 | Drugs@FDA, 상표, FAERS 불리 배출 보고와 약은 회귀합니다. |
-| Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | 인간 유전학 협회 증거 - GWAS 카탈로그, eQTL 카탈로그, PheWeb PheWAS 포털 (FinnGen, BioBank Japan).  |
+| 인간 유전학 · `human-genetics` | GWAS 카탈로그, eQTL 카탈로그, PheWeb | 15 | 인간 유전학 협회 증거 - GWAS 카탈로그, eQTL 카탈로그, PheWeb PheWAS 포털 (FinnGen, BioBank Japan).  |
 | · · `expression` | GTEx, Bgee | 16 | 인간적인 GTEx 조직 표식 및 eQTLs; Bgee 크로스 사양 기본 표현. |
 | 단백질 표기 · `protein-annotation` | InterPro, Pfam, 인간 단백질 아틀라스, STRING | 14 | Protein Domain Architecture, 가족/실란 회원, 인터프로/Pfam, Human Protein Atlas 및 STRING을 통한 식각 atlas 및 상호 작용 네트워크. |
 | 암 모델 · `cancer-models` | cBioPortal의 특징 | 10 | 연구, mutations, 복사 번호, 샘플, 환자, 임상 특성 및 분자 프로파일 표현. |
@@ -43,13 +43,13 @@ Open-Science v0.35.0에는 **33 데이터 소스 커넥터 337 작업**가 포�
 | GDC · `gdc` | NCI GDC | 5 | 암 프로젝트, 케이스, 파일 메타 데이터, 오픈 / 제어 라벨 및 전송 표시; 다운로드 또는 액세스 권한을 부여하지 않습니다. |
 | Zenodo · `zenodo` | Zenodo | 2 | 공공 데이터 세트, 소프트웨어 및 출판 발견, 버전 별 메타 데이터 및 파일 재고; 업로드 또는 다운로드. |
 | · · `hmmer` | EMBL-EBI 헬멧3 | 3 | 프로그램별 단백질/프로필/분리 검색, 작업 상태 및 결과. |
-| InterProScan · `interproscan` | EMBL-EBI InterProScan에 대한 정보 | 2 | 상태 및 TSV는 기존의 주석 작업을 보고합니다. 제출 없음. |
+| InterProScan · `interproscan` | EMBL-EBI InterProScan에 대한 정보 | 3 | 단백질 시퀀스 제출, annotation-job 상태를 확인하고 TSV 보고서를 검색하십시오. |
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Pathway 검색, 최고 통로, 그래프 쿼리 및 BioPAX 서브모델 수출. |
 | Alliance Genome Resources · `alliance` | Genome 자원의 동맹 | 8 | 인간 및 모델 조직 유전자, 정형화, 질병 모델, 페형화, 알레르기 및 표현. |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Single-cell 컬렉션 및 데이터 세트, 출판된 버전, 파일 형식, 크기 및 다운로드 URL. |
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 셀 라인 이름과 동의를 찾기, 다음 액세스 정체성 및 품질 annotations를 검사. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 질병/진-to-phenotype 협회는 생물과 지원 증거를 가진다. |
-| IEDB · `iedb` | Immune Epitope 데이터베이스 | 6 | Epitopes, 항원, T 세포, B 세포 및 MHC 분석실험 및 근원 간행물. |
+| IEDB · `iedb` | Immune Epitope 데이터베이스 | 8 | Epitopes, 항원, T 세포, B 세포 및 MHC 분석실험, TCR/BCR 증거 및 근원 간행물. |
 
 오프라인 Molecule 도구는 [사이트맵](viewers.md)에 덮여 있습니다. 각 데이터 소스에 노출된 정확한 작업을 위해 [Connector 가동 참고](../reference/connector-operations.md)을 사용합니다.
 
@@ -213,13 +213,13 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/registry.ts).
+카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/registry.ts).
 
 ## Sequence 검색 및 정렬 {/* #sequence-tools */}
 
 **HMMER의 장점**은 프로그램별 단백질, 프로파일-HMM 및 정렬 검색을 제공합니다. 함께 프로그램 및 데이터베이스를 선택하고 작업 ID를 유지하고 **회사 소개** 후 결과를 검색하십시오. [HMMER 운영](../reference/connector-operations.md#family-26).
 
-**InterProScan의 장점**은 EMBL-EBI 서비스를 통해 제출된 기존 작업에 대한 주석을 검색합니다. 작업 ID를 유지하고, 상태 적어도 10 초 떨어져 검사하고, **이름 &#42;** 후에 TSV를 태치십시오. 이 Connector은 새로운 일을 제출할 수 없습니다. [InterProScan 운영](../reference/connector-operations.md#family-27).
+**InterProScan의 장점**은 v0.35.1에서 단백질-sequence 제출, 작업 상태 및 TSV annotation retrieval을 지원합니다. 설정 및 단계에 대한 [InterProScan 제출](#interproscan-submit)을 따르십시오.
 
 **Genomes → Clustal Omega**는 단백질, DNA 또는 RNA FASTA 레코드를 고유하게 지명한 적어도 3개의 종류를 맞추습니다. 서비스에 의해 요청된 연락처 이메일 구성, 한 번 제출, 작업 ID를 유지, 다음 상태를 확인하고 반환 정렬을 저장. [다중 상태 정렬 워크플로](../workflows/multiple-sequence-alignment.md).
 
@@ -244,3 +244,25 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 | Omics Archives → MGnify | MGYA 분석 액세스에 의한 결과 파일 목록 | 반환 유형, 카테고리, 업스트림 URL 및 크기 때 보고. 파일 바이트가 다운로드되지 않습니다; 누락된 크기 또는 URL은 null을 유지합니다. |
 
 정확한 필수 필드, 조건 및 예에 대한 [Connector 가동 참고](../reference/connector-operations.md) 참조.
+
+## GWAS 요약 통계 파일 찾기 {/* #gwas-summary-statistics */}
+
+**Settings → Connectors**에서 Main에 대한 **인간 유전학** 활성화. 연구의 **GCST 액세스**에 대한 요약 통계 조사에 대한 질문, 그리고 반환된 원본/출시된 파일 URL, 메타데이터 및 선언된 참조 게놈을 유지. 공개 조회는 API 키가 필요하지 않습니다.
+
+`gwas_get_summary_statistics` 목록 연구 파일 및 사용 가능한 YAML 메타 데이터 읽기; 그것은 큰 협회 테이블을 다운로드하지 않습니다. 그것의 GWAS-SSF 란 정의는 검열된 파일 우두머리가 아닌 표준을 설명합니다. genome build, effect allele and units를 별도로 지정하고 실제 열을 확인하여 분석하기 전에 대상 파일을 다운로드하십시오. Significant 협회는 완전한 요약 통계에 대 한 대체 되지 않습니다.. [모수와 산출](../reference/connector-operations.md#gwas_get_summary_statistics).
+
+## InterProScan에 단백질 시퀀스 제출 {/* #interproscan-submit */}
+
+1. **Settings → Connectors**에서 Main에 대한 **InterProScan의 장점** 활성화. **Settings → Credentials → Literature access**에서 EMBL-EBI 작업에 사용되는 유효한 연락처 이메일을 저장하십시오; API 키가 필요하지 않습니다.
+2. 단백질 순서 또는 독특하게 지명된 단백질 FASTA 기록 및 요구 제출을 한 번 공급하십시오. 순서와 접촉 이메일은 EMBL-EBI에 보내집니다. 1개의 요청은 순서 당 1,000 기록, 10,000 잔류물 및 4 MiB에 의하여 인코딩된 요구 몸까지 받아들입니다.
+3. 반환된 **job_id**을 유지합니다. **SUBMITTED** 와 **ready: false** 은 영수증, 아니 annotation 결과입니다. **(주)** 적어도 10 초 떨어져 검사하십시오; 오염은 자동이 아닙니다.
+4. **FINISHED** 후, **제품정보**을 요청하고 원격 결과가 만료되기 전에 완전한 TSV를 절약하십시오. 2 MiB 리트리발 한계에 대한 응답은 truncated 보고서를 침묵적으로 돌려보다는 실패합니다.
+5. 단백질 식별자, 소스 응용 프로그램 및 1 기반 포괄적 인 좌표를 확인하십시오. 다른 회원 응용 프로그램에서 점수는 교환할 수 없습니다; hit은 단백질이 기능 부족한다는 것을 증명하지 않습니다.
+
+timeout 후 중복 제출을 피하십시오. 알려진 작업 ID를 먼저 복구하십시오. 현지 요청에 대한 취소는 제출 된 원격 작업을 취소하지 않습니다. [제출, 상태 및 결과 매개 변수](../reference/connector-operations.md#family-27) 참조.
+
+## TCR 및 BCR 증거 찾기 IEDB {/* #iedb-receptors */}
+
+Main에 대한 **IEDB** 및 **search_tcrs** 또는 **search_bcrs**를 적어도 하나의 생물학적 또는 증거 필터를 요청할 수 있습니다. 혼자서 질은 충분합니다. **팟캐스트** 순서;에 대 한 `sequence` 사용 `chain1_cdr3`와 `chain2_cdr3` 필터 수용체 CDR3 순서. 이 공개 검색은 API 키가 필요하지 않습니다.
+
+receptor-group ID, 체인을 유지, assay ID 및 소스 출판보고. 호스트 및 outcome 필터는 집단 그룹에 적용되며 다른 실험에 의해 만족할 수 있습니다. 해당 조건은 동일한 분석실험에서 발생하기 위하여, 해당 분석실험 가동으로 보고된 assay ID를 따르고 필요한 필터를 적용하십시오. Pagination 덮개 수용체 그룹은, 각 끼워넣어진 수출의 완전성 아닙니다. 이 기록은 수용체 바인딩의 예측이 아닌, 증거 retrieval입니다. [IEDB 모수](../reference/connector-operations.md#family-33).

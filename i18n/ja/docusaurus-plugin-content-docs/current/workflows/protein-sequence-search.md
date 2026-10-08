@@ -2,7 +2,7 @@
 title: "タンパク質シーケンスを見つけてBLAST検索を完了"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -113,4 +113,4 @@ result as unavailable.
 
 <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">未加工 HMMER 応答</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">ドメインの解釈</ExampleDownload>
 
-HMMER の入力は選択したプログラムによって異なります。 たとえば、**hmmscanの** でタンパク質シーケンスを使用します。 他のプログラムの[操作の参照](../reference/connector-operations.md#family-26)を参照してください。 **インタープロスキャン**は、既存のジョブのステータスとTSV結果を別々に取得します。 提出しない。
+HMMER の入力は選択したプログラムによって異なります。 たとえば、**hmmscanの** でタンパク質シーケンスを使用します。 他のプログラムの[操作の参照](../reference/connector-operations.md#family-26)を参照してください。 **インタープロスキャン**は、タンパク質のシーケンスを提出し、ジョブを確認し、TSVのアノテーションを取得できます。 連絡先メールの設定と、[投稿手順](../tools/databases.md#interproscan-submit)に従う。 会員データベースの結果は、この HMMER の例とは別々です。

@@ -38,7 +38,7 @@ Los nombres de campo de retorno difieren por operación. Las descripciones y esq
 
 ## Contribuciones de las operaciones {/* #operation-inputs */}
 
-Ampliar un Connector a la vez. Los campos obligatorios están marcados con **obligatorio**; esta referencia y descarga utilizar el esquema Open-Science **v0.35.0** Una lista `input.required` anidada es autorizada; una lista de `required` de alto nivel puede estar ausente. Consulte el <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.0.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas de agentes. No pase un `id` genérico cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
+Ampliar un Connector a la vez. Los campos obligatorios están marcados con **obligatorio**; esta referencia y descarga utilizar el esquema Open-Science **v0.35.1** Una lista `input.required` anidada es autorizada; una lista de `required` de alto nivel puede estar ausente. Consulte el <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.1.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas de agentes. No pase un `id` genérico cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
 
 
 ## Química {/* #family-1 */}
@@ -2753,6 +2753,19 @@ Busque un ejemplo PheWeb's fenotipos (y entidades) por nombre, el punto de entra
 const result = await host.mcp("human-genetics", "phewas_search_phenotypes", {"query": "diabetes", "instance": "finngen"})
 ```
 
+### `gwas_get_summary_statistics` {/* #gwas_get_summary_statistics */}
+
+Inspeccione el paquete completo GWAS Catalog summary-statistics para una adhesión GCST sin descargar los archivos de datos potencialmente enormes. Devoluciones encontradas=falsas cuando la adhesión no tiene directorio FTP; de lo contrario devuelve el directorio HTTPS FTP, los listados de archivos originales y armonizados, los registros parsed -meta.yaml, las asambleas genomas y las referencias de armonización declaradas por esos registros, y las actuales definiciones de columna estándar GWAS-SSF. Las definiciones de columna describen el estándar, no un encabezado observado de un archivo de datos comprimido. Utilice las URLs de archivo devueltos para descargar un conjunto de datos completo seleccionado. Args: accession_id (GCST Adhesión, por ejemplo. GCST90000123); metadata_file (optional exact YAML filename to limit metadata parsing and both reference summaries; el listado del archivo sigue completo). El directorio FTP se deriva del cubo de la adhesión de mil estudios; malformado YAML o un directorio existente inalcanzable sigue siendo un error de corriente.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `accession_id` | cadena de texto | **obligatorio** |
+| `metadata_file` | cadena de texto | facultativa; MinLength: 1 |
+
+```javascript
+const result = await host.mcp("human-genetics", "gwas_get_summary_statistics", {"accession_id": "GCST90000123"})
+```
+
 </ToolOperationGroup>
 
 ## Expresión {/* #family-14 */}
@@ -4622,6 +4635,19 @@ Recuperar el informe completo de InterProScan TSV para un trabajo, encajeado en 
 const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
 ```
 
+### `submit` {/* #submit */}
+
+Presentar una o más secuencias de proteínas a EMBL-EBI InterProScan para dominio asincrónico y anotación familiar. Acepta secuencia de proteínas crudas o entrada FASTA con la mayoría de los registros 1,000, un límite local de residuos 10,000 por registro y un límite de pedido codificado 4 MiB. Devuelve un job_id inmediatamente y nunca encuestas. Mantenga el job_id, luego llame al estado y se obtiene después de esperar al menos 10 segundos entre los cheques de estado. Una respuesta perdida puede representar un trabajo aceptado; no vuelvas a presentar automáticamente. Se requiere un email de contacto válido. Establecer un correo electrónico de contacto en Ajustes → Credenciales → Acceso a la literatura. Este correo electrónico se envía a EMBL-EBI cuando se envía un trabajo. Mantenga el job_id exacto para reanudar después de reiniciar. Este conector no añade registro de empleo, caché de resultados o encuesta de fondo. Cancelación, salida de la aplicación y desinstalación sólo paran las solicitudes locales; este conector no puede cancelar o eliminar trabajos remotos. La caducidad del resultado es controlada por EMBL-EBI. Las secuencias y el correo electrónico de contacto se envían a EMBL-EBI; Las entradas y salidas de las herramientas pueden ser retenidas en conversación o persistencia Notebook. Presentar no más que los trabajos de 30 en un lote y esperar a procesar/resultar antes de presentar más; no se aplica el agitamiento cruzado. La herramienta de resultados existente devuelve a la mayoría de 2 MiB de TSV y rechaza informes más amplios.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `sequence` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 4194304 |
+| `title` | cadena de texto | facultativa; minLength: 1; maxLength: 200 |
+
+```javascript
+const result = await host.mcp("interproscan", "submit", {"sequence":">query\nMKTIIALSYIFCLVFADYKDDDDK"})
+```
+
 </ToolOperationGroup>
 
 ## Pathway Commons {/* #family-28 */}
@@ -5123,6 +5149,66 @@ Proporcionar al menos uno de: `epitope_id` / `reference_id` / `host_taxonomy_id`
 
 ```javascript
 const result = await host.mcp("iedb", "search_references", {"reference_id": 1023094, "limit": 20})
+```
+
+### `search_tcrs` {/* #search_tcrs */}
+
+Buscar grupos de receptores IEDB TCR por epitope, receptor CDR3, host, antígeno, MHC y evidencia de literatura. El filtro de secuencia coincide con el epitope linear_sequences; chain1_cdr3 y chain2_cdr3 coinciden con las secuencias del receptor CDR3. Incluye registros tcr_export con cadenas, anotaciones de genes curadas/calculadas y ensayos y referencias ligadas. Los filtros seleccionan grupos de receptores; Los registros de exportación incrustados no se filtran individualmente por estos criterios. Los filtros agregados de host y de resultado pueden coincidir con diferentes experimentos en el mismo grupo. Las exportaciones de receptores no contienen campos de resultados anfitriones o cualitativos. Para la co-occurrencia de nivel de experimento, siga el assay__iedb_ids vinculado y consulta search_tcell_assays, search_bcell_assays o search_mhc_assays con los filtros assay_id correspondientes y experimentales. Se requiere al menos un filtro biológico o de evidencia; El límite y el offset por sí solo no son filtros. Observaciones de base, no predicciones. Mantenga los resultados negativos y faltantes distintos. La elución de ligando MHC no es una medición de afinidad vinculante; interpretar response_measured, método y unidades juntos. Los antígenos parientes son proteínas representativas y pueden no coincidir exactamente con el antígeno curado o la secuencia de epitopo. Use cross_references.parent_uniprot_accessions o curated_uniprot_accessions con `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`; use cross_references.pdb_ids con `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`. Estas son referencias transversales explícitas, no cartografías secuenciadas. Cargue cada conexión de habilidad antes de llamarlo.
+
+Proporcionar al menos uno de: `epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `receptor_group_id` / `chain1_cdr3` / `chain2_cdr3`.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `epitope_id` | entero | sujeto a las condiciones anteriores; mínimo: 1; máximo: 9007199254740991 |
+| `reference_id` | entero | sujeto a las condiciones anteriores; mínimo: 1; máximo: 9007199254740991 |
+| `host_taxonomy_id` | entero | sujeto a las condiciones anteriores; mínimo: 1; máximo: 9007199254740991 |
+| `source_taxonomy_id` | entero | sujeto a las condiciones anteriores; mínimo: 1; máximo: 9007199254740991 |
+| `antigen_iri` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 200; patrón: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!" |
+| `uniprot_accession` | cadena de texto | sujeto a las condiciones anteriores; patrón: "^&#91;A-Z0-9&#93;&#123; 6&#125;(?: &#91;A-Z0-9&#93;&#123; 4&#125;¿Qué?1-9&#91; &#93;0-9¿Por qué?" |
+| `mhc_allele` | cadena de texto | sujeto a las condiciones anteriores; minLength: 1; maxLength: 300; patrón: "\\S" |
+| `mhc_class` | cadena de texto | sujeto a las condiciones anteriores; enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | cadena de texto | sujeto a las condiciones anteriores; minLength: 1; maxLength: 300; patrón: "\\S" |
+| `assay_iri` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 200; patrón: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!" |
+| `pdb_id` | cadena de texto | sujeto a las condiciones anteriores; patrón: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\s\s\S&#93;)" |
+| `sequence` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 1000; patrón: "^&#91;A-Za-z&#93;+(?!&#91;\s\s\s\s\s&#93;)" |
+| `receptor_group_id` | entero | sujeto a las condiciones anteriores; mínimo: 1; máximo: 9007199254740991 |
+| `chain1_cdr3` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 1000; patrón: "^&#91;A-Za-z&#93;+(?!&#91;\s\s\s\s\s&#93;)" |
+| `chain2_cdr3` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 1000; patrón: "^&#91;A-Za-z&#93;+(?!&#91;\s\s\s\s\s&#93;)" |
+| `limit` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 100 |
+| `offset` | entero | facultativa; predeterminado: 0; mínimo: 0; máximo: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_tcrs", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_bcrs` {/* #search_bcrs */}
+
+Buscar grupos de receptores IEDB BCR por epitope, receptor CDR3, host, antígeno, MHC y evidencia de literatura. El filtro de secuencia coincide con el epitope linear_sequences; chain1_cdr3 y chain2_cdr3 coinciden con las secuencias del receptor CDR3. Incluye registros bcr_export con cadenas, anotaciones de genes curadas/calculadas y ensayos y referencias ligadas. Los filtros seleccionan grupos de receptores; Los registros de exportación incrustados no se filtran individualmente por estos criterios. Los filtros agregados de host y de resultado pueden coincidir con diferentes experimentos en el mismo grupo. Las exportaciones de receptores no contienen campos de resultados anfitriones o cualitativos. Para la co-occurrencia de nivel de experimento, siga el assay__iedb_ids vinculado y consulta search_tcell_assays, search_bcell_assays o search_mhc_assays con los filtros assay_id correspondientes y experimentales. Se requiere al menos un filtro biológico o de evidencia; El límite y el offset por sí solo no son filtros. Observaciones de base, no predicciones. Mantenga los resultados negativos y faltantes distintos. La elución de ligando MHC no es una medición de afinidad vinculante; interpretar response_measured, método y unidades juntos. Los antígenos parientes son proteínas representativas y pueden no coincidir exactamente con el antígeno curado o la secuencia de epitopo. Use cross_references.parent_uniprot_accessions o curated_uniprot_accessions con `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`; use cross_references.pdb_ids con `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`. Estas son referencias transversales explícitas, no cartografías secuenciadas. Cargue cada conexión de habilidad antes de llamarlo.
+
+Proporcionar al menos uno de: `epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `receptor_group_id` / `chain1_cdr3` / `chain2_cdr3`.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `epitope_id` | entero | sujeto a las condiciones anteriores; mínimo: 1; máximo: 9007199254740991 |
+| `reference_id` | entero | sujeto a las condiciones anteriores; mínimo: 1; máximo: 9007199254740991 |
+| `host_taxonomy_id` | entero | sujeto a las condiciones anteriores; mínimo: 1; máximo: 9007199254740991 |
+| `source_taxonomy_id` | entero | sujeto a las condiciones anteriores; mínimo: 1; máximo: 9007199254740991 |
+| `antigen_iri` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 200; patrón: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!" |
+| `uniprot_accession` | cadena de texto | sujeto a las condiciones anteriores; patrón: "^&#91;A-Z0-9&#93;&#123; 6&#125;(?: &#91;A-Z0-9&#93;&#123; 4&#125;¿Qué?1-9&#91; &#93;0-9¿Por qué?" |
+| `mhc_allele` | cadena de texto | sujeto a las condiciones anteriores; minLength: 1; maxLength: 300; patrón: "\\S" |
+| `mhc_class` | cadena de texto | sujeto a las condiciones anteriores; enum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | cadena de texto | sujeto a las condiciones anteriores; minLength: 1; maxLength: 300; patrón: "\\S" |
+| `assay_iri` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 200; patrón: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!" |
+| `pdb_id` | cadena de texto | sujeto a las condiciones anteriores; patrón: "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\s\s\S&#93;)" |
+| `sequence` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 1000; patrón: "^&#91;A-Za-z&#93;+(?!&#91;\s\s\s\s\s&#93;)" |
+| `receptor_group_id` | entero | sujeto a las condiciones anteriores; mínimo: 1; máximo: 9007199254740991 |
+| `chain1_cdr3` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 1000; patrón: "^&#91;A-Za-z&#93;+(?!&#91;\s\s\s\s\s&#93;)" |
+| `chain2_cdr3` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 1000; patrón: "^&#91;A-Za-z&#93;+(?!&#91;\s\s\s\s\s&#93;)" |
+| `limit` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 100 |
+| `offset` | entero | facultativa; predeterminado: 0; mínimo: 0; máximo: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_bcrs", {"epitope_id": 25750, "limit": 20})
 ```
 
 </ToolOperationGroup>

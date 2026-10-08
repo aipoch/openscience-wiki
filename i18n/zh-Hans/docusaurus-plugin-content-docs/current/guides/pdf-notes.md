@@ -2,7 +2,7 @@
 title: PDF 批注与文档笔记
 description: 标记文献段落，整理阅读笔记，搜索返回原文，并导出带批注的阅读副本。
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -67,6 +67,8 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 笔记的共享范围
 
-**文献库附件**在使用同一受管理文件版本的文献记录、项目和会话之间共享笔记。**项目上传文件和产物**在所属项目的会话之间共享笔记。新文件版本是不同的批注对象；阅读修订稿前，应先确认标记对应哪个版本。
+从 v0.35.1 起，应用核验为相同 PDF 内容的受管理文件版本可以跨项目、跨会话共享同一份文档笔记，包括文献库附件、上传文件和产物。核验依据是文件内容的校验值与大小，不是文件名或 DOI；同名文件不一定共享笔记。修订稿的内容改变后，不应假定旧标记自动适用。
+
+在另一项目打开同一份 PDF 后，进入 **Notes & Annotations** 检查原有笔记，再使用 **Show annotation source** 核对所在页及原文。如果笔记没有出现，先确认是否打开了相同内容的版本，以及文件是否仍可读取。
 
 这些笔记保存在本机，不会跨设备同步。交接时导出笔记或带批注 PDF，并检查接收者实际拿到的内容。这不会改变私人会话书签的规则，也不代表所有阅读笔记都会包含在 [.science 研究包](research-packages.md)中。

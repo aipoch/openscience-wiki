@@ -2,7 +2,7 @@
 title: "PDF Anmerkungen und Dokumentnotizen"
 description: "Markieren Sie Passagen, sammeln Sie Dokumentnotizen, finden Sie sie wieder und exportieren Sie eine Lesekopie."
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -67,6 +67,8 @@ Das Beispiel speichert zwei Notizen: ein Highlight mit einem Kommentar und eine 
 
 ## Wo Notizen geteilt werden {/* #where-notes-are-shared */}
 
-Ein **Bibliotheksbefestigung** teilt sein Notizbuch über Referenzen, Projekte und Sitzungen, die die gleiche verwaltete Dateiversion verwenden. **Projekt-Uploads und Artefakte** teilt sein Notebook über Sitzungen innerhalb des Besitzprojekts. Eine neuere Dateiversion ist ein anderes Annotationsziel: Überprüfen Sie die Version, bevor Sie annehmen, dass eine Markierung zu einem überarbeiteten Dokument gehört.
+Von v0.35.1 aus können verwaltete Dateiversionen, die als derselbe PDF-Inhalt verifiziert wurden, ein Dokument-Notebook für Projekte und Sitzungen freigeben, einschließlich Bibliotheksanhängen, Uploads und Artefakten. Verifizierung verwendet die Datei Prüfsumme und Größe, nicht seinen Namen oder DOI. Identische Dateinamen allein schaffen keine gemeinsamen Notizen; Es sollte nicht davon ausgegangen werden, dass geänderte Bytes in einem überarbeiteten Papier die alten Markierungen erben.
+
+Öffnen Sie dasselbe PDF in einem anderen Projekt, inspizieren Sie **Notes & Annotations**, und verwenden Sie dann **Show annotation source**, um die gespeicherte Seite und Passage zu überprüfen. Wenn keine Notizen vorhanden sind, bestätigen Sie, dass Sie die gleiche Inhaltsversion geöffnet haben und dass die verwaltete Datei noch lesbar ist.
 
 Diese Notizen werden lokal gespeichert und synchronisieren sich nicht über Maschinen hinweg. Exportieren Sie für eine Übergabe die Notizen oder ein kommentiertes PDF und prüfen Sie, was der Empfänger erhalten wird. Dies ändert keine privaten Session-Lesezeichen oder macht jede Lesenotiz Teil eines [.science Forschungspaket](research-packages.md).

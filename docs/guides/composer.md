@@ -8,6 +8,19 @@ last_update:
 
 The Composer sends instructions and input references to the current session and lets you prepare follow-ups during execution. **Queue · Not saved** means a queued request has not yet become a saved transcript instruction.
 
+## Start from a research idea {/* #research-starters */}
+
+The empty conversation page offers **Analyze data**, **Compare papers**, **Find literature**, **Create charts** and other research starters beside the Composer. Use the arrows to see more choices.
+
+1. Open **New** in the intended project.
+2. Choose a starter such as **Explain a paper**. It fills the Composer with an editable request; choosing it does not send a message.
+3. Attach the actual paper or data, wait for the upload, and replace the general request with your question and expected output.
+4. Check the model, attachments and request, then send. Open the returned sources and files before accepting the result.
+
+![Research starters and the compact research-package import entry in a new conversation](/img/open-science/v0351/new-conversation.webp)
+
+**Import previous research** is the separate entry for a `.science` package. Choosing a research starter does not import a package or supply example data.
+
 ## Prepare a request with a checkable outcome
 
 Select **New** in the intended project and enter a request in **Ask anything**. Name the input, desired output and any method constraints. For a complete starting example, follow [Your first project](first-project.md).

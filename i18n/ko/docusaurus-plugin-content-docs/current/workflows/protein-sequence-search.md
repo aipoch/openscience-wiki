@@ -2,7 +2,7 @@
 title: "단백질 시퀀스를 찾아 BLAST 검색 완료"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -113,4 +113,4 @@ result as unavailable.
 
 <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">익지않는 HMMER 응답</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">도메인 해석</ExampleDownload>
 
-HMMER 입력은 선택한 프로그램에 따라 달라집니다. 예를 들어 **hmmscan의**과 단백질 시퀀스를 사용합니다. 다른 프로그램에 대한 [및 다운로드 가능한 레지스트리는 이제 v0.31.1 :](../reference/connector-operations.md#family-26)을 참조하십시오. **InterProScan의 장점**는 별도로 기존 작업의 상태와 TSV 결과를 검색합니다. 제출하지 않습니다.
+HMMER 입력은 선택한 프로그램에 따라 달라집니다. 예를 들어 **hmmscan의**과 단백질 시퀀스를 사용합니다. 다른 프로그램에 대한 [및 다운로드 가능한 레지스트리는 이제 v0.31.1 :](../reference/connector-operations.md#family-26)을 참조하십시오. **InterProScan의 장점**은 단백질 시퀀스를 제출할 수 있으며, TSV의 주석을 검색하고 검색할 수 있습니다. 연락처 이메일을 구성하고 [제출 단계](../tools/databases.md#interproscan-submit)을 따르십시오; 이 HMMER 예제에서 회원 데이터베이스 결과가 분리됩니다.

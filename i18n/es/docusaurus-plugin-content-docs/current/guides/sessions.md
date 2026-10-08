@@ -37,6 +37,14 @@ Utilice [marcadores privados de lectura](bookmarks.md) para guardar un pasaje o 
 
 ## Lea el menú de sesión correctamente {/* #read-the-session-menu-correctly */}
 
+### Medidas comunes en el encabezado del período de sesiones {/* #session-header-menu */}
+
+Abierto **Session actions** junto al título de sesión actual para **Edit…**, **Pin / Unpin**, **New side chat**, **Fork**, **Export** y **Archive**. Confirme el nombre y número de sesión mostrados antes de elegir una acción.
+
+El submenú **Export** separa la conversación, el paquete de investigación `.science` y las exportaciones de diagnóstico. Una conversación es una copia de lectura, un paquete entrega registros de investigación guardados, y el diagnóstico admite la solución de problemas. La evidencia diagnóstica sensible requiere confirmación separada; la exportación sigue siendo local hasta que la compartan. Inspeccione su contenido primero.
+
+Las acciones indisponibles son deshabilitadas para el estado actual. Una sesión de importación de sólo lectura necesita **Fork** antes de que pueda continuar la ejecución; ver [Side Chat](delegation.md) para el alcance de la discusión separada. El menú de inicio de sesión de la barra lateral también proporciona **View replay**, **View notebook** y descargas de archivos. La imagen de abajo muestra ese menú de la barra lateral.
+
 ![Medidas que pertenecen al período de sesiones de RNA-seq](/img/open-science/guides-walkthrough/41-session-actions.webp)
 
 | Medida | Resultado | Check |
@@ -166,7 +174,7 @@ Seleccione el título de sesión para ver su número, descripción, fuente, tiem
 
 ## Diagnóstico de la sesión de exportación {/* #session-diagnostics */}
 
-Utilice el control **Export diagnostics…** del encabezado de sesión, o el **Export → Export diagnostics…** del menú de sesión para recoger fuentes de diagnóstico seleccionadas en un archivo local. Los registros de aplicaciones pueden incluir metadatos fuera de la sesión seleccionada. Revise la lista de fuentes, el mensaje de terminación y el contenido de archivo antes de compartir; ver [Medidas de exportación de diagnóstico](troubleshooting.md#session-diagnostics).
+Utilice **Session actions → Export → Export diagnostics…** en el encabezado, o el submenú **Export** correspondiente en la fila de sesión, para recoger fuentes de diagnóstico seleccionadas en un archivo local. Los registros de aplicaciones pueden incluir metadatos fuera de la sesión seleccionada. Revise la lista de fuentes, el mensaje de terminación y el contenido de archivo antes de compartir; ver [Medidas de exportación de diagnóstico](troubleshooting.md#session-diagnostics).
 
 ## Replay o discuta el trabajo grabado {/* #replay-session */}
 

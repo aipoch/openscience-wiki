@@ -38,7 +38,7 @@ Return field names differ by operation. The descriptions and downloadable schema
 
 ## Operation inputs
 
-Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.35.0** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.0.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
+Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.35.1** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.1.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
 
 
 ## Chemistry {/* #family-1 */}
@@ -2753,6 +2753,19 @@ Search a PheWeb instance&#x27;s phenotypes (and entities) by name — the entry 
 const result = await host.mcp("human-genetics", "phewas_search_phenotypes", {"query": "diabetes", "instance": "finngen"})
 ```
 
+### `gwas_get_summary_statistics`
+
+Inspect the complete GWAS Catalog summary-statistics package for one GCST accession without downloading the potentially huge data files. Returns found=false when the accession has no FTP directory; otherwise returns the HTTPS FTP directory, original and harmonised file listings, parsed -meta.yaml records, the genome assemblies and harmonisation references declared by those records, and the current GWAS-SSF standard column definitions. The column definitions describe the standard, not an observed header from a compressed data file. Use the returned file URLs to download a selected full dataset. Args: accession_id (GCST accession, e.g. GCST90000123); metadata_file (optional exact YAML filename to limit metadata parsing and both reference summaries; the file listing remains complete). The FTP directory is derived from the accession’s thousand-study bucket; malformed YAML or an unreadable existing directory remains an upstream error.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accession_id` | string | **required** |
+| `metadata_file` | string | optional; minLength: 1 |
+
+```javascript
+const result = await host.mcp("human-genetics", "gwas_get_summary_statistics", {"accession_id": "GCST90000123"})
+```
+
 </ToolOperationGroup>
 
 ## Expression {/* #family-14 */}
@@ -4622,6 +4635,19 @@ Retrieve the complete InterProScan TSV report for a job, capped at 2 MiB (oversi
 const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
 ```
 
+### `submit`
+
+Submit one or more protein sequences to EMBL-EBI InterProScan for asynchronous domain and family annotation. Accepts raw protein sequence or FASTA input with at most 1,000 records, a local limit of 10,000 residues per record and a 4 MiB encoded request body limit. Returns a job_id immediately and never polls. Keep the job_id, then call status and results yourself after waiting at least 10 seconds between status checks. A lost response may represent an accepted job; do not resubmit automatically. A valid contact email is required. Set a contact email in Settings → Credentials → Literature access. This email is sent to EMBL-EBI when submitting a job. Keep the exact job_id to resume after restart. This connector adds no job registry, result cache or background polling. Cancellation, app exit and uninstall stop local requests only; this connector cannot cancel or delete remote jobs. Result expiry is controlled by EMBL-EBI. Sequences and contact email are sent to EMBL-EBI; tool inputs and outputs may be retained in conversation or Notebook persistence. Submit no more than 30 jobs in a batch and wait for processing/results before submitting more; cross-call throttling is not enforced. The existing results tool returns at most 2 MiB of TSV and rejects larger reports.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `sequence` | string | **required**; minLength: 1; maxLength: 4194304 |
+| `title` | string | optional; minLength: 1; maxLength: 200 |
+
+```javascript
+const result = await host.mcp("interproscan", "submit", {"sequence":">query\nMKTIIALSYIFCLVFADYKDDDDK"})
+```
+
 </ToolOperationGroup>
 
 ## Pathway Commons {/* #family-28 */}
@@ -5123,6 +5149,66 @@ Provide at least one of: `epitope_id` / `reference_id` / `host_taxonomy_id` / `s
 
 ```javascript
 const result = await host.mcp("iedb", "search_references", {"reference_id": 1023094, "limit": 20})
+```
+
+### `search_tcrs`
+
+Search IEDB TCR receptor groups by epitope, receptor CDR3, host, antigen, MHC and literature evidence. The sequence filter matches epitope linear_sequences; chain1_cdr3 and chain2_cdr3 match receptor chain CDR3 sequences. Includes tcr_export records with chains, curated/calculated gene annotations and linked assays and references. Filters select receptor groups; embedded export records are not individually filtered by these criteria. Aggregated host and outcome filters can match different experiments in the same group. Receptor exports do not contain host or qualitative outcome fields. For experiment-level co-occurrence, follow the linked assay__iedb_ids and query search_tcell_assays, search_bcell_assays or search_mhc_assays with the corresponding assay_id and experimental filters. At least one biological or evidence filter is required; limit and offset alone are not filters. Database observations, not predictions. Keep negative and missing results distinct. MHC ligand elution is not a binding affinity measurement; interpret response_measured, method and units together. Parent antigens are representative proteins and may not exactly match the curated antigen or epitope sequence. Use cross_references.parent_uniprot_accessions or curated_uniprot_accessions with `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`; use cross_references.pdb_ids with `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`. These are explicit upstream cross-references, not sequence-derived mappings. Load each matching connector skill before calling it.
+
+Provide at least one of: `epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `receptor_group_id` / `chain1_cdr3` / `chain2_cdr3`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `epitope_id` | integer | subject to the conditions above; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | subject to the conditions above; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | subject to the conditions above; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | subject to the conditions above; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | subject to the conditions above; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `uniprot_accession` | string | subject to the conditions above; pattern: &quot;^[A-Z0-9]&#123;6&#125;(?:[A-Z0-9]&#123;4&#125;)?(?:-[1-9][0-9]*)?(?![\\s\\S])&quot; |
+| `mhc_allele` | string | subject to the conditions above; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | subject to the conditions above; enum: [&quot;I&quot;, &quot;II&quot;] |
+| `qualitative_measure` | string | subject to the conditions above; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | subject to the conditions above; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `pdb_id` | string | subject to the conditions above; pattern: &quot;^[0-9][A-Za-z0-9]&#123;3&#125;(?![\\s\\S])&quot; |
+| `sequence` | string | subject to the conditions above; maxLength: 1000; pattern: &quot;^[A-Za-z]+(?![\\s\\S])&quot; |
+| `receptor_group_id` | integer | subject to the conditions above; minimum: 1; maximum: 9007199254740991 |
+| `chain1_cdr3` | string | subject to the conditions above; maxLength: 1000; pattern: &quot;^[A-Za-z]+(?![\\s\\S])&quot; |
+| `chain2_cdr3` | string | subject to the conditions above; maxLength: 1000; pattern: &quot;^[A-Za-z]+(?![\\s\\S])&quot; |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_tcrs", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_bcrs`
+
+Search IEDB BCR receptor groups by epitope, receptor CDR3, host, antigen, MHC and literature evidence. The sequence filter matches epitope linear_sequences; chain1_cdr3 and chain2_cdr3 match receptor chain CDR3 sequences. Includes bcr_export records with chains, curated/calculated gene annotations and linked assays and references. Filters select receptor groups; embedded export records are not individually filtered by these criteria. Aggregated host and outcome filters can match different experiments in the same group. Receptor exports do not contain host or qualitative outcome fields. For experiment-level co-occurrence, follow the linked assay__iedb_ids and query search_tcell_assays, search_bcell_assays or search_mhc_assays with the corresponding assay_id and experimental filters. At least one biological or evidence filter is required; limit and offset alone are not filters. Database observations, not predictions. Keep negative and missing results distinct. MHC ligand elution is not a binding affinity measurement; interpret response_measured, method and units together. Parent antigens are representative proteins and may not exactly match the curated antigen or epitope sequence. Use cross_references.parent_uniprot_accessions or curated_uniprot_accessions with `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`; use cross_references.pdb_ids with `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`. These are explicit upstream cross-references, not sequence-derived mappings. Load each matching connector skill before calling it.
+
+Provide at least one of: `epitope_id` / `reference_id` / `host_taxonomy_id` / `source_taxonomy_id` / `antigen_iri` / `uniprot_accession` / `mhc_allele` / `mhc_class` / `qualitative_measure` / `assay_iri` / `pdb_id` / `sequence` / `receptor_group_id` / `chain1_cdr3` / `chain2_cdr3`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `epitope_id` | integer | subject to the conditions above; minimum: 1; maximum: 9007199254740991 |
+| `reference_id` | integer | subject to the conditions above; minimum: 1; maximum: 9007199254740991 |
+| `host_taxonomy_id` | integer | subject to the conditions above; minimum: 1; maximum: 9007199254740991 |
+| `source_taxonomy_id` | integer | subject to the conditions above; minimum: 1; maximum: 9007199254740991 |
+| `antigen_iri` | string | subject to the conditions above; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `uniprot_accession` | string | subject to the conditions above; pattern: &quot;^[A-Z0-9]&#123;6&#125;(?:[A-Z0-9]&#123;4&#125;)?(?:-[1-9][0-9]*)?(?![\\s\\S])&quot; |
+| `mhc_allele` | string | subject to the conditions above; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `mhc_class` | string | subject to the conditions above; enum: [&quot;I&quot;, &quot;II&quot;] |
+| `qualitative_measure` | string | subject to the conditions above; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `assay_iri` | string | subject to the conditions above; maxLength: 200; pattern: &quot;^[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9][A-Za-z0-9._:-]*(?![\\s\\S])&quot; |
+| `pdb_id` | string | subject to the conditions above; pattern: &quot;^[0-9][A-Za-z0-9]&#123;3&#125;(?![\\s\\S])&quot; |
+| `sequence` | string | subject to the conditions above; maxLength: 1000; pattern: &quot;^[A-Za-z]+(?![\\s\\S])&quot; |
+| `receptor_group_id` | integer | subject to the conditions above; minimum: 1; maximum: 9007199254740991 |
+| `chain1_cdr3` | string | subject to the conditions above; maxLength: 1000; pattern: &quot;^[A-Za-z]+(?![\\s\\S])&quot; |
+| `chain2_cdr3` | string | subject to the conditions above; maxLength: 1000; pattern: &quot;^[A-Za-z]+(?![\\s\\S])&quot; |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_bcrs", {"epitope_id": 25750, "limit": 20})
 ```
 
 </ToolOperationGroup>

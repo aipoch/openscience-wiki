@@ -2,7 +2,7 @@
 title: "Annotations et notes de document PDF"
 description: "Marquer les passages, recueillir les notes de documents, les retrouver et exporter une copie de lecture."
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -67,6 +67,8 @@ L'exemple enregistre deux notes : une surligne avec un commentaire et une note d
 
 ## Où les notes sont partagées {/* #where-notes-are-shared */}
 
-Un **Pièce jointe à la bibliothèque** partage son carnet de notes sur des références, des projets et des sessions qui utilisent la même version de fichier gérée. **Transferts de projets et artefacts** partage son carnet de notes entre les sessions du projet propriétaire. Une version de fichier plus récente est une cible d'annotation différente : vérifier la version avant de supposer qu'une marque appartient à un document révisé.
+À partir de v0.35.1, les versions de fichiers gérées vérifiées comme le même contenu PDF peuvent partager un cahier de documents à travers les projets et les sessions, y compris les pièces jointes de la bibliothèque, les téléchargements et les artefacts. La vérification utilise le volume et la taille du fichier, et non son nom ou DOI. Les noms de fichiers identiques à eux seuls n'établissent pas de notes partagées; les octets modifiés dans un document révisé ne devraient pas être supposés hériter des anciennes marques.
+
+Ouvrez le même PDF dans un autre projet, inspectez **Notes & Annotations**, puis utilisez **Show annotation source** pour vérifier la page et le passage sauvegardés. Si les notes sont absentes, confirmez que vous avez ouvert la même version de contenu et que son fichier géré est toujours lisible.
 
 Ces notes sont stockées localement et ne se synchronisent pas entre les machines. Pour un transfert, exportez les billets ou un PDF annoté et vérifiez ce que le destinataire recevra. Cela ne change pas les signets privés de session ou fait chaque note de lecture d'un [Paquet de recherche .science](research-packages.md).
