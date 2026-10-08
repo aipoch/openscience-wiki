@@ -2,7 +2,7 @@
 title: "科学数据库"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 # 科学数据库
@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支持哪些数据库 {/* #supported-databases */}
 
-Open-Science v0.34.0 内置 **28 个数据源 Connector，提供 298 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 300 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
+Open-Science v0.34.1 内置 **30 个数据源 Connector，提供 324 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 326 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
 
 | Connector | 来源 | 操作数 | 用途  |
 | --- | --- | --- | ---  |
@@ -22,7 +22,7 @@ Open-Science v0.34.0 内置 **28 个数据源 Connector，提供 298 个操作**
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | PubMed 文献检索与记录  |
 | Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | 基因及蛋白标识映射、UniProt 序列查找、GO 与 Reactome 注释、g:Profiler 与 Enrichr 基因集富集 |
 | Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | 基因组注释、同源及序列信息；NCBI 物种、组装与序列身份；BLAST 提交与报告 |
-| Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | 变异频率与变异记录  |
+| Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | 群体频率、临床记录，以及实验特定的功能分数、变异映射和实验信息 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 临床试验登记记录  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | 临床基因组证据资源；新增 ClinPGx 药物基因组学记录 |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | 结构档案与相关记录  |
@@ -34,7 +34,7 @@ Open-Science v0.34.0 内置 **28 个数据源 Connector，提供 298 个操作**
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | 蛋白结构域与功能注释；新增互作富集检验 |
 | Cancer Models · `cancer-models` | cBioPortal | 10 | 研究、突变、拷贝数、样本、患者、临床属性及分子 profile 表达 |
 | RNA · `rna` | Rfam | 9 | RNA 家族与相关资源  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 23 | 组学研究与运行记录；ENA FASTQ／提交文件清单，PRIDE 和 MGnify 结果文件元数据 |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 26 | 组学研究／运行元数据与文件清单；代谢组样本、实验因素、分析及化合物记录 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | 细胞类型参考信息  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 调控与功能组学记录  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 研究项目、资助等资源  |
@@ -45,6 +45,8 @@ Open-Science v0.34.0 内置 **28 个数据源 Connector，提供 298 个操作**
 | HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | 按程序提交蛋白序列／profile HMM／比对检索，查询状态并获取结果 |
 | InterProScan · `interproscan` | EMBL-EBI InterProScan | 2 | 查询已有注释任务并获取 TSV 报告；不支持提交任务 |
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | 通路检索、顶层通路、图查询及 BioPAX 子模型导出 |
+| Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | 人类与模式生物基因、直系同源、疾病模型、表型、等位基因及表达 |
+| CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 单细胞集合与数据集发现、发布版本、文件格式／大小／下载 URL |
 
 离线 Molecule 工具见[科学查看器](viewers.md)。各数据源实际提供的操作见 [Connector 操作参数参考](../reference/connector-operations.md)。
 
@@ -66,6 +68,21 @@ Open-Science v0.34.0 内置 **28 个数据源 Connector，提供 298 个操作**
 **Zenodo** 无需认证即可查询公开记录元数据，应保留版本级记录 ID、访问和许可字段。**GDC** 提供公开元数据，生成清单不等于获得下载授权，受控文件仍需 GDC 权限。[GDC 操作](../reference/connector-operations.md#family-24) · [Zenodo 操作](../reference/connector-operations.md#family-25)。
 
 数据库响应可以支持一个科研步骤，但不会自动下载数据、把所有论文加入文献库或完成整套分析。需要保存哪些记录和文件，应在请求中明确说明。
+
+## 单细胞、模式生物及变异功能数据 {/* #single-cell-model-organisms */}
+
+在 **Settings → Connectors** 搜索下表中的入口，开启 **Main** 的可用性，再向会话说明研究对象、物种及需要保存的记录。这四类新增操作读取公开数据，无需另外添加自定义 MCP 服务器、API key 或 NCBI 联系邮箱；同一 Connector 的其他服务可能有不同要求。
+
+| 入口 | 可以做什么 | 使用要点 |
+| --- | --- | --- |
+| CELLxGENE Discover | 按物种、组织、疾病、实验方法或细胞类型发现单细胞数据集；查询版本及文件清单 | 本体过滤使用精确标签或 ID，多个条件同时满足。保留 dataset_version_id，按发布快照读取文件清单；普通 dataset_id 指向当前版本。只返回可用下载 URL，不下载文件或查询 Census 表达矩阵。细胞类型说明和标记基因仍使用独立的 CellGuide |
+| Alliance Genome Resources | 查询人类、小鼠、大鼠、果蝇、线虫、斑马鱼、酵母和蛙的基因、同源关系、疾病模型、表型及表达 | 先搜索并核对物种，再沿返回的基因 ID 查询。保留证据及同源严格程度；模型生物的表型不等于人类疾病结论 |
+| Variants → MaveDB | 查找变异效应实验分数集、实验方法、CSV 分数页及已有 VRS 映射 | 保留 URN、许可、实验方法与分数校准。功能分数不是临床致病分类；CSV 按 start/limit 分页，返回文本仍需保存成文件。映射查询不会执行 liftover |
+| Omics Archives → Metabolomics Workbench | 搜索研究，查看 ST 编号对应的样本、因素、分析及代谢物；查化合物结构和交叉引用 | section 区分 summary、factors、analysis、metabolites。化合物名称先用 PubChem 解析为支持的标识符；这些操作不下载原始测量矩阵 |
+
+CELLxGENE 的筛选与分页在本地对当次取得的上游目录执行，跨请求目录可能更新。固定发布版本时使用版本 ID；上游没有报告的文件大小为 -1，不能当成零字节。MaveDB、Workbench 的缺失值和实验定义也应随结果保留。
+
+具体输入见 [CELLxGENE Discover](../reference/connector-operations.md#family-30)、[Alliance](../reference/connector-operations.md#family-29)、[MaveDB](../reference/connector-operations.md#mavedb_search_score_sets) 和 [Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies)。
 
 ## 如何连接并开始使用 {/* #connect-database */}
 
@@ -173,7 +190,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作参数参考](../reference/connector-operations.md)列出必填输入、可选值和准确调用方法。本页用于选择和连接数据源，参数参考用于查询某个具体工具的字段。
 
-目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/registry.ts)。
+目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts)。
 
 ## 序列检索与多序列比对 {/* #sequence-tools */}
 

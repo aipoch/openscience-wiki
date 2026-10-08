@@ -2,7 +2,7 @@
 title: "Connector 操作参数参考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作输入
 
-每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.34.0** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.0.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
+每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.34.1** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.1.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
 
 
 ## 化学 {/* #family-1 */}
@@ -1257,6 +1257,82 @@ const result = await host.mcp("variants", "dbsnp_get_rsids", {"rsids": ["rs7412"
 
 ```javascript
 const result = await host.mcp("variants", "dbsnp_search_by_region", {"chrom": "19", "start": 44905000, "stop": 44910000, "assembly": "GRCh38"})
+```
+
+### `mavedb_search_score_sets`
+
+按基因、蛋白或实验关键词搜索公开 MaveDB 变异效应实验分数集。无需 API key 或联系邮箱。返回一页及可用的上游总数；功能分数依赖实验，不是临床分类或群体频率。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `text` | string | **必填**; minLength: 1; maxLength: 1000; pattern: &quot;\\S&quot; |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000000 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_search_score_sets", {"text":"BRCA1","limit":20})
+```
+
+### `mavedb_get_score_set`
+
+按 URN 获取公开分数集的靶标、实验、许可、论文和关联实验信息，并提供完整 CSV 及变异映射的官方手动下载 URL。解释分数前阅读实验方法和校准信息。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `urn` | string | **必填**; pattern: &quot;^urn:mavedb:[0-9]&#123;8&#125;-(?:[a-z]+&#124;0)-[1-9][0-9]*$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_score_set", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_download_scores`
+
+获取一页原始 CSV 分数文本（默认 1000 行，最多 10000 行），使用 start/limit，不使用 offset。保留全部分数列和 NA；需要另外保存成文件。按 numVariants 规划分页，一页不等于完整数据；也可使用返回的官方 URL 手动下载完整文件。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `urn` | string | **必填**; pattern: &quot;^urn:mavedb:[0-9]&#123;8&#125;-(?:[a-z]+&#124;0)-[1-9][0-9]*$&quot; |
+| `start` | integer | 可选; default: 0; minimum: 0; maximum: 1000000000 |
+| `limit` | integer | 可选; default: 1000; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_download_scores", {"urn":"urn:mavedb:00000003-a-1","start":0,"limit":1000})
+```
+
+### `mavedb_get_mapped_variants`
+
+读取 MaveDB 已有的 GA4GH VRS 变异映射，包括参考序列、VRS 版本和失败记录；不会提交变异或执行 liftover。接口不分页，受共享的 64 MiB 响应限制；大型数据可从分数集详情取得官方 URL 手动下载。404 也可能表示没有映射记录。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `urn` | string | **必填**; pattern: &quot;^urn:mavedb:[0-9]&#123;8&#125;-(?:[a-z]+&#124;0)-[1-9][0-9]*$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_mapped_variants", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_get_experiment`
+
+按不带分数集后缀的实验 URN 获取公开实验方法、论文、实验集合及 scoreSetUrns，支持 -0 元分析实验，无需认证。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `urn` | string | **必填**; pattern: &quot;^urn:mavedb:[0-9]&#123;8&#125;-(?:[a-z]+&#124;0)$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment", {"urn":"urn:mavedb:00000003-a"})
+```
+
+### `mavedb_get_experiment_score_sets`
+
+列出公开实验中可见的分数集。上游会按可见性和替代关系筛选，这不是完整版本历史；结果不分页。404 也可能表示没有可用的关联分数集。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `urn` | string | **必填**; pattern: &quot;^urn:mavedb:[0-9]&#123;8&#125;-(?:[a-z]+&#124;0)$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment_score_sets", {"urn":"urn:mavedb:00000003-a"})
 ```
 
 </ToolOperationGroup>
@@ -3670,6 +3746,48 @@ const result = await host.mcp("omics-archives", "pride_find_projects_for_protein
 const result = await host.mcp("omics-archives", "mgnify_get_analysis_files", {"accession": "MGYA00639970"})
 ```
 
+### `workbench_search_compounds`
+
+按登记号、分子式、InChIKey 或 PubChem、HMDB、KEGG、ChEBI、LIPID MAPS、MetaCyc 交叉引用查询 Metabolomics Workbench 化合物。返回可用结构、分子式、精确质量及交叉引用；不支持名称输入，先用 PubChem 解析名称。limit 在取得有界响应后本地截断，接口不分页。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `field` | string | **必填**; enum: [&quot;regno&quot;, &quot;formula&quot;, &quot;inchi_key&quot;, &quot;lm_id&quot;, &quot;pubchem_cid&quot;, &quot;hmdb_id&quot;, &quot;kegg_id&quot;, &quot;chebi_id&quot;, &quot;metacyc_id&quot;] |
+| `query` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可选; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_compounds", {"field": "pubchem_cid", "query": "5793"})
+```
+
+### `workbench_search_studies`
+
+按标题子串或研究机构搜索公开 Metabolomics Workbench 研究，返回 ST 编号及可用物种、样本数量、分析类型和许可信息。limit 在本地截断，接口不分页。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `field` | string | 可选; default: &quot;study_title&quot;; enum: [&quot;study_title&quot;, &quot;institute&quot;] |
+| `query` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可选; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_studies", {"query": "Diabetes", "limit": 20})
+```
+
+### `workbench_get_study`
+
+按 ST 加六位数字的编号读取研究摘要、样本及实验因素、分析仪器信息或代谢物注释。section 选择对应部分；保留上游字段与因素文本。不会下载原始文件或测量矩阵，limit 在本地截断。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `study_id` | string | **必填**; pattern: &quot;^ST[0-9]&#123;6&#125;$&quot; |
+| `section` | string | 可选; default: &quot;summary&quot;; enum: [&quot;summary&quot;, &quot;factors&quot;, &quot;analysis&quot;, &quot;metabolites&quot;] |
+| `limit` | integer | 可选; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_get_study", {"study_id": "ST000001", "section": "factors"})
+```
+
 </ToolOperationGroup>
 
 ## CellGuide {/* #family-19 */}
@@ -4534,6 +4652,263 @@ const result = await host.mcp("pathway-commons", "pathway_commons_graph", {"kind
 
 ```javascript
 const result = await host.mcp("pathway-commons", "pathway_commons_export", {"uri": ["R-HSA-201451"], "format": "GSEA"})
+```
+
+</ToolOperationGroup>
+
+## Alliance Genome Resources {/* #family-29 */}
+
+<ToolOperationGroup>
+<summary>展开操作与参数</summary>
+
+### `alliance_get_gene`
+
+按 Alliance 基因 ID 查询人类或模式生物基因摘要，包括符号、物种、基因组位置、简介和交叉引用。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_search_genes`
+
+按符号、名称或标识符搜索 Alliance 的人类及模式生物基因。检查返回的物种和数据库命名空间，再使用基因 ID。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_search_genes", {"query": "pax6", "limit": 10})
+```
+
+### `alliance_get_gene_orthologs`
+
+查询 Alliance 基因的跨物种直系同源关系，保留严格程度和预测方法；同源关系不等于功能或疾病表型完全相同。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `stringency` | string | 可选; default: &quot;stringent&quot;; enum: [&quot;stringent&quot;, &quot;moderate&quot;, &quot;all&quot;] |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_orthologs", {"gene_id": "HGNC:8620", "stringency": "stringent"})
+```
+
+### `alliance_get_gene_disease_models`
+
+查询一个 Alliance 基因的疾病关联和模式生物疾病模型，保留证据来源与物种。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_disease_models", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_phenotypes`
+
+查询 Alliance 基因的表型注释。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_phenotypes", {"gene_id": "HGNC:6081", "limit": 20})
+```
+
+### `alliance_get_gene_alleles`
+
+查询 Alliance 基因关联的等位基因及变异，包括疾病和表型标记。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_alleles", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_expression`
+
+查询 Alliance 基因的表达注释，保留发育阶段、解剖部位、数据提供方和证据。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_expression", {"gene_id": "ZFIN:ZDB-GENE-990415-8"})
+```
+
+### `alliance_get_disease_genes`
+
+按 Disease Ontology 标识符查询 Alliance 中相关的人类及模式生物基因。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `disease_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_disease_genes", {"disease_id": "DOID:162", "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## CELLxGENE Discover {/* #family-30 */}
+
+<ToolOperationGroup>
+<summary>展开操作与参数</summary>
+
+### `list_collections`
+
+列出公开 CELLxGENE Discover 集合，可按名称、描述或 DOI 子串筛选（不区分大小写）。每次请求获取完整上游目录后在本地筛选分页，跨请求结果可能变化；保存版本 ID 以固定数据快照。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `query` | string | 可选; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可选; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collections", {"query":"liver","page_size":10})
+```
+
+### `get_collection`
+
+按 collection_id 读取最新公开集合元数据及一页数据集摘要。本地分页，每次重新读取上游；保存版本 ID。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `collection_id` | string | **必填**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可选; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `list_datasets`
+
+列出公开数据集。query 匹配标题、集合名称或 DOI 子串；organism、tissue、disease、assay、cell_type 精确匹配本体 ID 或标签（不区分大小写），多个过滤条件同时满足。schema_version 可返回匹配模式版本的历史数据集；继续读取时使用返回的 dataset_version_id。每次请求重新读取上游后本地筛选分页。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `query` | string | 可选; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `collection_id` | string | 可选; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `organism` | string | 可选; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `tissue` | string | 可选; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `disease` | string | 可选; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `assay` | string | 可选; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `cell_type` | string | 可选; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `schema_version` | string | 可选; pattern: &quot;^\\d+(\\.\\d+)&#123;0,2&#125;$&quot; |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可选; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_datasets", {"organism":"NCBITaxon:9606","tissue":"liver","page_size":10})
+```
+
+### `get_dataset`
+
+用 collection_id 和 dataset_id 读取当前公开数据集的元数据、本体注释、引用、文件及版本 ID。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `collection_id` | string | **必填**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `dataset_id` | string | **必填**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6","dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `list_collection_versions`
+
+按集合 ID 列出已发布版本，最新在前，保留版本 ID 和数据集数量。本地分页，每次重新读取上游。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `collection_id` | string | **必填**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可选; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collection_versions", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `get_collection_version`
+
+读取指定 collection_version_id 的已发布快照及一页数据集版本，不会自动改为最新集合。本地分页。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `collection_version_id` | string | **必填**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可选; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection_version", {"collection_version_id":"46ac9732-ff1c-4f87-86d7-0488d15aecd3"})
+```
+
+### `list_dataset_versions`
+
+按 dataset_id 列出已发布版本，最新在前，保留模式版本与发布日期。本地分页。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `dataset_id` | string | **必填**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可选; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_versions", {"dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `get_dataset_version`
+
+读取指定 dataset_version_id 的完整元数据和文件信息。此 ID 与 dataset_id 不同。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `dataset_version_id` | string | **必填**; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset_version", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
+```
+
+### `list_dataset_files`
+
+提供 dataset_version_id 固定发布版本，或同时提供 collection_id 与 dataset_id 读取当前版本，两种方式恰好选择一种。使用 schema_version 筛选后应传入结果的 dataset_version_id。返回可用 H5AD、RDS 或 ATAC 文件清单，不下载二进制文件，也不查询 Census 表达矩阵。
+
+恰好选择一组输入：`dataset_version_id` / `collection_id` + `dataset_id`。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `collection_id` | string | 按上方条件提供; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `dataset_id` | string | 按上方条件提供; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `dataset_version_id` | string | 按上方条件提供; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_files", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
 ```
 
 </ToolOperationGroup>

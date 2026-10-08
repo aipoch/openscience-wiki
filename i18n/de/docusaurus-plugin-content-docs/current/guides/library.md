@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ Um eine Abbildung oder Tabelle aus einem angehängten PDF wiederzuverwenden, fol
 
 Das Öffnen von **Library** von Home geht in die vollständige Bibliographie ein. In einem Projektarbeitsbereich öffnet der **Library** der Seitenleiste rechts eine kompakte Vorschau.
 
-1. Wählen Sie **Aktuelles Projekt**, **All references** oder ein geöffnetes **Sammlung** und verwenden Sie dann **Search references**, um vorhandene Datensätze zu finden.
+1. Wählen Sie **Posteingang**, **Aktuelles Projekt**, **All references** oder ein geöffnetes **Sammlung** und verwenden Sie dann **Search references**, um vorhandene Datensätze zu finden.
 2. Wählen Sie **Zusammenfassung**, um eine Zusammenfassung zu lesen, und **Show more**, um sie zu erweitern. **Nr. PDF beigefügt** bedeutet, dass der Datensatz kein PDF hat; Ein Abstract ist kein Volltext.
 3. Für intelligente Sammlungen, Importe und Datensatzverwaltung wählen Sie **In Literatur öffnen** oder **In Literatur anzeigen** auf einem Datensatz.
 
@@ -46,6 +46,28 @@ Aktivieren Sie für mehrere Papiere zuerst **Batch actions**, wählen Sie die Da
 ![Eine vorhandene papierreferenz, die dem konversationsentwurf hinzugefügt wurde, bereit für eine frage und manuelles senden.](/img/open-science/v0340/library-add-to-draft.webp)
 
 **Referenzangaben** öffnet Metadaten und Anhänge; **In Literatur anzeigen** öffnet den vollständigen Bibliotheks-Record. Das Hinzufügen einer Referenz lädt nicht den vollständigen Text herunter. Ein Datensatz, der mit **Nr. PDF beigefügt** gekennzeichnet ist, hat immer noch nur seine verfügbaren Metadaten, abstrakten und anderen vorhandenen Inhalte.
+
+### Review-Kandidaten neben dem Gespräch {/* #workspace-inbox */}
+
+1. Öffnen Sie den Arbeitsbereich **Library → Inbox** oder wählen Sie **Posteingang öffnen** auf der Speicherreferenzkarte des Agenten aus. Das Gespräch bleibt neben der Review-Warteschlange offen.
+2. Überprüfen Sie **All projects** und **Ausstehende Überprüfung**: Diese Warteschlange enthält ausstehende Kandidaten für Projekte. Verwenden Sie **Search references**, um vorhandene Kandidaten einzugrenzen, und prüfen Sie jeden Titel, DOI, Quelle und vorgeschlagenes Ziel, bevor Sie ihn akzeptieren.
+3. Wählen Sie **Accept** für einen geprüften Kandidaten oder **Dismiss**, um ihn aus der Warteschlange zu entfernen. **Undo** stellt einen entlassenen Kandidaten für eine ausstehende Überprüfung wieder her; Es wird keine Akzeptanz rückgängig gemacht.
+4. Schalten Sie für mehrere Kandidaten **Batch actions** ein, wählen Sie explizit Zeilen auf der aktuellen Seite aus, überprüfen Sie **Ausgewählt** und wählen Sie dann **Accept**. Die Auswahl ist auf die aktuelle Seite beschränkt; Ändern der Abfrage oder der Seite löscht sie. Verwenden Sie **Clear selection** oder **Done**, bevor Sie einen anderen Satz auswählen.
+5. Bestätigen Sie akzeptierte Datensätze in **Aktuelles Projekt** oder **All references**. Akzeptanz speichert bibliographische Aufzeichnungen; Sie ruft keine fehlenden PDFs ab. Wenn Sie die vollständige Verwaltungsansicht oder zuvor abgewiesene Datensätze benötigen, wählen Sie **In Literatur öffnen**.
+
+<p className="example-label"><strong>Praxisbeispiel</strong> Zwei PRISMA Kandidaten</p>
+
+Die folgende Konversation verwendet Codex, um die PRISMA-2020- und 2009-Anweisungen nachzuschlagen und ihre Metadaten im Posteingang zu speichern. Nachdem Sie ihre DOIs überprüft haben, entlassen Sie einen Kandidaten und verwenden Sie dann **Undo**, um ihn wiederherzustellen; Die Warteschlange geht von zwei Kandidaten zu einem und zurück zu zwei.
+
+![Zwei ausstehende Kandidaten neben dem Gespräch mit Accept and Dismiss Aktionen](/img/open-science/v0341/inbox-review.webp)
+
+Aktivieren Sie **Batch actions**, wählen Sie beide Datensätze aus, überprüfen Sie **Ausgewählt: 2** und wählen Sie dann **Accept**.
+
+![Zwei explizit ausgewählte Kandidaten mit Selected: 2](/img/open-science/v0341/inbox-batch.webp)
+
+Der Posteingang zeigt dann **Inbox is clear** an. Wechseln Sie zu **Aktuelles Projekt**, um **2 Referenzen** zu sehen, beide noch mit **Nr. PDF beigefügt** gekennzeichnet. Das tatsächliche Veröffentlichungsjahr der PRISMA 2020-Erklärung ist **2021**.
+
+![Beide akzeptierten Datensätze im Projekt, ohne PDFs beigefügt](/img/open-science/v0341/inbox-accepted.webp)
 
 ### Anzeigejournaldaten {/* #journal-attributes */}
 

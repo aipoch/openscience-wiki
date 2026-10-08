@@ -1748,5 +1748,11 @@
   },
   "docs.outline.workflows.inspect-pathway.title": {
     "message": "Untersuchen Sie einen Pfad und sein Interaktionsnetzwerk"
+  },
+  "docs.outline.reference.v0341.scope": {
+    "message": "CELLxGENE Discover, Alliance, MaveDB und Workbench, Workspace Inbox, Forschungspaket Import und Export sowie diagnostische Verbesserungen."
+  },
+  "docs.outline.reference.v0341.title": {
+    "message": "v0.34.1"
   }
 }

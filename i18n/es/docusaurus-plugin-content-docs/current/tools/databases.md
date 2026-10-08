@@ -2,7 +2,7 @@
 title: "Bases de datos científicos"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 # Bases de datos científicos {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Utilice esta página para elegir una fuente de datos, entender lo que puede devo
 
 ## Bases de datos respaldadas {/* #supported-databases */}
 
-Open-Science v0.34.0 incluye **28 data-source Connectors with 298 operations**. El Molecule Connector independiente añade dos operaciones, trayendo el registro completo a 300. Connector nombres a continuación coinciden con **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
+Open-Science v0.34.1 incluye **30 data-source Connectors with 324 operations**. El Molecule Connector independiente añade dos operaciones, trayendo el registro completo a 326. Connector nombres a continuación coinciden con **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
 
 | Conector | Fuentes | Operaciones | Úsalo para  |
 | --- | --- | --- | ---  |
@@ -22,7 +22,7 @@ Open-Science v0.34.0 incluye **28 data-source Connectors with 298 operations**. 
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Bibliografía biomédica a través de NCBI E-utilities, el convertidor de identificación PMC y Europa PMC — búsqueda, metadatos, artículos relacionados, búsqueda de citas, conversión de ID, texto completo y copyright.  |
 | Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Identificadores genéticos/proteínas, descubrimiento de secuencia UniProt, Anotaciones GO y Reactome, y g:Enriquecimiento de conjunto de genes y Enrichr. |
 | Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | Anotación genoma, homología y secuencia; NCBI taxon/assembly/sequence identity; BLAST búsqueda y Clustal Omega alineación de secuencia múltiple. |
-| Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | Variaciones genéticas humanas — frecuencias de población de gnomAD/constricción, registros de ClinVar/búsqueda (NCBI directa), dbSNP, variantes estructurales y mitocondriales.  |
+| Variantes · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | Frecuencias demográficas, registros clínicos y puntajes funcionales específicos para ensayos, cartografías y experimentos. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Ensayos clínicos de ClinicalTrials.gov — búsqueda, detalles, patrocinadores, investigadores, puntos finales y elegibilidad.  |
 | Genómica clínica · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | Bases clínicas de conocimiento de la genómica: curaciones ClinGen, evidencia clínica CIViC y Plataforma de objetivos abiertos, además de registros farmacógenos ClinPGx. |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Estructuras e interacciones moleculares — estructuras PDB, predicciones AlphaFold, entradas EMDB cryo-EM, complejos complejos Portales Complejos, redes de interacción IntAct.  |
@@ -34,7 +34,7 @@ Open-Science v0.34.0 incluye **28 data-source Connectors with 298 operations**. 
 | Anotación de proteínas · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | Arquitectura de dominio Protein, membresía familiar/clan, atlas de expresión y redes de interacción a través de InterPro/Pfam, el Atlas de Proteína Humana y STRING, incluyendo enriquecimiento de interacción de red. |
 | Modelos de cáncer · `cancer-models` | cBioPortal | 10 | Estudios, mutaciones, número de copia, muestras, pacientes, atributos clínicos y expresión de perfil molecular. |
 | RNA · `rna` | Rfam | 9 | Datos familiares de ARN no codificación (metadatos, alineamientos, modelos, estructuras) a través de Rfam.  |
-| Archivos de Omics · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 23 | Estudios y carreras de Omics; ENA FASTQ/submission inventories, PRIDE and MGnify result-file metadata. |
+| Archivos de Omics · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 26 | Omics study/run metadata and file inventories; muestras metabolomicas, factores, análisis y registros compuestos. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Identidad de tipo celular, genes marcadores, conjuntos de datos fuente y tejidos a través de CELLxGENE CellGuide.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | Genética-regulación de la genómica funcional — experimentos ENCODE/biosamples/files, perfiles de unión JASPAR TF y TFBS UniBind ChIP-seq.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Búsqueda de financiación-oportunidad (Grants.gov) y búsquedas de catálogo de anticuerpos (Registro Anticuerpo).  |
@@ -45,6 +45,8 @@ Open-Science v0.34.0 incluye **28 data-source Connectors with 298 operations**. 
 | HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | Búsqueda de proteínas/profile/alineación específica del programa, estado de trabajo y resultados. |
 | InterProScan · `interproscan` | EMBL-EBI InterProScan | 2 | Informes sobre el estado y el TSV para los puestos de anotación existentes; No hay presentación. |
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Caminos de búsqueda, rutas de arriba, consultas gráficas y exportaciones de submodelo BioPAX. |
+| Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | genes humanos y modelo-organismo, ortologs, modelos de enfermedades, fenotipos, alelos y expresión. |
+| CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Colecciones de células individuales y conjuntos de datos, versiones publicadas, formatos de archivo, tamaños y URLs de descarga. |
 
 Las herramientas Molecule offline están cubiertas en [Visores científicos](viewers.md). Para las operaciones exactas expuestas por cada fuente de datos, utilice el [Referencia de operación Connector](../reference/connector-operations.md).
 
@@ -66,6 +68,21 @@ Para la conversión de identificador de lotes, **Genes & Ontologies** añade `su
 **Zenodo** expone metadatos de registro público sin autenticación. Mantenga el ID de registro específico de la versión y campos de acceso/license con el inventario de archivos. **GDC** expone metadatos públicos; a manifiesto no es autorización de descarga, y los archivos controlados requieren permiso GDC. [Operaciones de los PMA](../reference/connector-operations.md#family-24) · [Operaciones de Zenodo](../reference/connector-operations.md#family-25).
 
 Una respuesta de una base de datos puede apoyar un paso de investigación; no descarga automáticamente los datos, agrega cada papel a la biblioteca de literatura o ejecuta un análisis completo. Especifique qué registros y archivos desea guardar.
+
+## Datos monocelulares, modelo-organismo y efectos de variante {/* #single-cell-model-organisms */}
+
+Busque las entradas de abajo en **Settings → Connectors**, active la disponibilidad para **Agente principal**, luego describa el organismo, la pregunta de investigación y los registros para retener en su conversación. Estas nuevas operaciones leen datos públicos sin un servidor MCP personalizado, tecla API o correo electrónico de contacto NCBI. Otros servicios en el mismo Connector pueden tener diferentes requisitos.
+
+| Entrada | ¿Qué puede hacer? | Cómo utilizar los resultados |
+| --- | --- | --- |
+| CELLxGENE Discover | Encontrar conjuntos de datos de células individuales por organismo, tejido, enfermedad, ensayo o tipo celular; inspeccionar versiones e inventarios de archivos | Los filtros de ontología usan etiquetas exactas o IDs y se combinan con AND. Retener dataset_version_id para una publicación fija; dataset_id se resuelve a la versión actual. Devoluciones disponibles descarga URLs, sin descargar archivos o consultar matrices de expresión Census. Utilice el CellGuide separado para descripciones y marcadores de tipo celular. |
+| Alliance Genome Resources | Query human, mouse, rat, fly, gusano, cebrafish, levadura y genes de rana, ortologs, modelos de enfermedades, fenotipos y expresión | Busque y confirme el organismo antes de seguir los identificadores de genes devueltos. Retener evidencia y rigor ortológico; un fenotipo de organización modelo no es una conclusión de la enfermedad humana. |
+| Variantes → MaveDB | Encontrar conjuntos de puntuación de efectos de la variante, métodos de ensayo, páginas de puntuación CSV y mapas VRS existentes | Mantenga el URN, licencia, métodos de ensayo y calibración de puntuación. Las puntuaciones funcionales no son clasificaciones de patogenicidad clínica. CSV utiliza la paginación de inicio/limit y el texto devuelto todavía necesita guardar a un archivo. Mapping retrieval no realiza el levantamiento. |
+| Archivos de Omics → Metabolomics Workbench | Estudios de búsqueda; inspeccionar muestras, factores, análisis y metabolitos mediante la adhesión al ST; buscar estructuras compuestas y referencias cruzadas | Seleccione resumen, factores, análisis o metabolitos con sección. Resolver nombres compuestos a través de PubChem en identificadores compatibles primero. Estas operaciones no descargan matrices de medición crudas. |
+
+Filtro CELLxGENE y paginación se ejecutan localmente sobre el catálogo aguas arriba trazado para cada solicitud; el catálogo puede cambiar entre solicitudes. Use IDs de la versión para retener una publicación. Un tamaño de archivo no reportado es -1, no cero bytes. Preserve valores perdidos y definiciones de ensayo en MaveDB y resultados Workbench también.
+
+Vea las entradas exactas para [CELLxGENE Discover](../reference/connector-operations.md#family-30), [Alliance](../reference/connector-operations.md#family-29), [MaveDB](../reference/connector-operations.md#mavedb_search_score_sets) y [Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies).
 
 ## Conectar y comenzar a usar una base de datos {/* #connect-database */}
 
@@ -173,7 +190,7 @@ Desde v0.31.0, `get_string_network.nodes` incluye vecinos devueltos y entradas a
 
 Las listas [Referencia de operación Connector](../reference/connector-operations.md) requieren entradas, valores permitidos y llamadas exactas. Utilice esta página para elegir una fuente y conectarla; utilizar la referencia para los campos de una herramienta en particular.
 
-Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/catalog.ts), [registro.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/registry.ts).
+Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts), [registro.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts).
 
 ## Búsquedas de secuencia y alineación {/* #sequence-tools */}
 

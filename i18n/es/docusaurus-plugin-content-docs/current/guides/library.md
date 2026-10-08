@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ Para reutilizar una figura o tabla de un PDF adjunto, siga [Extracción PDF](pre
 
 La apertura **Library** de Home entra en la bibliografía completa. En un espacio de trabajo del proyecto, el **Library** de la barra lateral abre una vista previa compacta a la derecha.
 
-1. Elija **Proyecto actual**, **All references**, o un **Colección** abierto, luego utilice **Search references** para encontrar los registros existentes.
+1. Elija **Bandeja de entrada**, **Proyecto actual**, **All references**, o un **Colección**, luego utilice **Search references** para encontrar los registros existentes.
 2. Seleccione **Resumen** para leer un resumen y **Show more** para ampliarlo. **No PDF conectado** significa que el registro no tiene PDF; un resumen no es texto completo.
 3. Para colecciones inteligentes, importaciones y gestión de registros, elija **Abrir en Literatura**, o **Ver en Literatura** en un registro.
 
@@ -46,6 +46,28 @@ Para varios documentos, primero active **Batch actions**, seleccione los registr
 ![Una referencia de papel existente agregada al borrador de conversación, listo para una pregunta y manual de envío](/img/open-science/v0340/library-add-to-draft.webp)
 
 **Datos de referencia** abre metadatos y apegos; **Ver en Literatura** abre el registro completo de la Biblioteca. Agregar una referencia no descarga su texto completo. Un registro marcado **No PDF conectado** todavía tiene sólo sus metadatos disponibles, abstracto y otro contenido existente.
+
+### Repasar candidatos junto a la conversación {/* #workspace-inbox */}
+
+1. Abra el espacio de trabajo **Library → Inbox**, o elija **Abrir bandeja de entrada** en la tarjeta de referencia guardada del agente. La conversación sigue abierta al lado de la cola de revisión.
+2. Chequee **All projects** y **Examen pendiente**: esta cola contiene candidatos pendientes en todos los proyectos. Utilice **Search references** para reducir los candidatos existentes, e inspeccione cada título, DOI, fuente y destino propuesto antes de aceptarlo.
+3. Elija **Accept** para un candidato comprobado, o **Dismiss** para eliminarlo de la cola. **Undo** restablece a un candidato despedido a revisión pendiente; no deshacer una aceptación.
+4. Para varios candidatos, gire en **Batch actions**, seleccione explícitamente filas en la página actual, verifique **Seleccionado**, y luego elija **Accept**. La selección se limita a la página actual; cambiar la consulta o la página lo aclara. Utilice **Clear selection** o **Done** antes de elegir un conjunto diferente.
+5. Confirmación de los registros aceptados en **Proyecto actual** o **All references**. La aceptación salva los registros bibliográficos; no recupera archivos PDF perdidos. Si necesita la vista de gestión completa o los registros previamente desestimados, elija **Abrir en Literatura**.
+
+<p className="example-label"><strong>Ejemplo práctico</strong> Revisar dos candidatos PRISMA</p>
+
+La conversación a continuación utiliza Codex para buscar las declaraciones PRISMA 2020 y 2009 y guardar sus metadatos en Inbox. Después de comprobar sus DOIs, desestime a un candidato, luego utilice **Undo** para restaurarlo; la cola va de dos candidatos a uno y de vuelta a dos.
+
+![Dos candidatos pendientes al lado de la conversación con Aceptar y desestimar acciones](/img/open-science/v0341/inbox-review.webp)
+
+Activar **Batch actions**, seleccione ambos registros, verifique **Seleccionado: 2**, y luego elija **Accept**.
+
+![Dos candidatos seleccionados explícitamente con seleccionados: 2](/img/open-science/v0341/inbox-batch.webp)
+
+La caja muestra **Inbox is clear**. Cambia a **Proyecto actual** para ver **Referencias 2**, ambos marcados con **No PDF conectado**. El año de publicación real de la declaración PRISMA 2020 es **2021**.
+
+![Ambos registros aceptados en el proyecto, sin PDF adjuntos](/img/open-science/v0341/inbox-accepted.webp)
 
 ### Ver datos de revistas {/* #journal-attributes */}
 

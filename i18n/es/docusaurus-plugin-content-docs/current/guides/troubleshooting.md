@@ -1,7 +1,7 @@
 ---
 title: "Solución de problemas y preguntas comunes"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 # Solución de problemas y preguntas comunes {/* #troubleshooting-and-common-questions */}
@@ -159,7 +159,7 @@ Los significados del mensaje técnico se recogen en [Referencia de diagnóstico]
 
 ![Seleccionar las fuentes de diagnóstico específicas de sesión antes de una exportación local](/img/open-science/v0330/session-diagnostics.webp)
 
-La exportación de metadatos ordinarios excluye los campos de contenido privado. Si una exportación .science activa el control de contenido sensible, la lista de fuentes también puede contener evidencia de escáner redacted y los archivos marcados original. **Los archivos sensibles originales se descontrolan por defecto; seleccionar uno incluye sus bytes originales en el archivo.** Seleccione sólo las fuentes necesarias e inspeccione el archivo y capturas de pantalla antes de compartir. Exportar se mantiene local y no hace ninguna solicitud de subida o modelo. Esto es evidencia diagnóstica, no una copia de seguridad de investigación; use un [Paquete .science](research-packages.md) para una entrega de investigación.
+La exportación de metadatos ordinarios excluye los campos de contenido privado. v0.34.1 mantiene un contexto de error más ligado y prueba de diagnóstico de ejecución/Notebook. Esto no significa que cada archivo seleccionado esté completamente redactado. Si una exportación .science activa el control de contenido sensible, la lista de fuentes también puede contener evidencia de escáner redacted y los archivos marcados original. **Los archivos sensibles originales se descontrolan por defecto; seleccionar uno incluye sus bytes originales en el archivo.** Seleccione sólo las fuentes necesarias e inspeccione el archivo y capturas de pantalla antes de compartir. Exportar se mantiene local y no hace ninguna solicitud de subida o modelo. Esto es evidencia diagnóstica, no una copia de seguridad de investigación; use un [Paquete .science](research-packages.md) para una entrega de investigación.
 
 ## Informar un error o preguntar a la comunidad {/* #report-a-bug-or-ask-the-community */}
 

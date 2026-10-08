@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 从 Home 打开 **Library** 会进入完整文献库；在项目工作区点击左侧 **Library**，则在右侧打开紧凑预览。
 
-1. 在预览顶部选择 **Current project**、**All references** 或已打开的 **Collection**，再用 **Search references** 查找已有记录。
+1. 在预览顶部选择 **Inbox**、**Current project**、**All references** 或已打开的 **Collection**，再用 **Search references** 查找已有记录。
 2. 点击 **Abstract** 阅读摘要，使用 **Show more** 展开。**No PDF attached** 表示该条目还没有 PDF，不能把摘要当作全文。
 3. 需要筛选集合、导入或管理记录时，选择 **Open in Literature**，或条目中的 **View in Literature**。
 
@@ -46,6 +46,28 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 ![把已有论文引用放入会话草稿，等待用户输入问题并发送](/img/open-science/v0340/library-add-to-draft.webp)
 
 **Reference details** 查看元数据和附件；**View in Literature** 打开完整文献库记录。加入引用不会自动下载全文；**No PDF attached** 的记录仍只有现有元数据和摘要等内容。
+
+### 在会话旁审核候选文献 {/* #workspace-inbox */}
+
+1. 打开工作区 **Library → Inbox**，或点击代理保存文献卡片上的 **Open Inbox**。审核队列会在会话旁打开，无需离开对话。
+2. 先查看 **All projects** 和 **Pending review**：此队列包含所有项目的待审候选。用 **Search references** 缩小已有候选范围，接受前检查标题、DOI、来源和建议归属。
+3. 核对后选择 **Accept**；不需要的候选选择 **Dismiss**。**Undo** 可把刚忽略的候选恢复到待审队列，不会撤销已接受的记录。
+4. 多篇一起处理时，开启 **Batch actions**，明确勾选当前页的记录，核对 **Selected** 数量后点击 **Accept**。选择只针对当前页；更换查询或页码会清空选择。更换一组记录前可用 **Clear selection** 或 **Done**。
+5. 在 **Current project** 或 **All references** 检查已接受记录。接受只保存书目信息，不会取得缺失的 PDF。需要完整管理视图或先前忽略的记录时，选择 **Open in Literature**。
+
+<p className="example-label"><strong>案例演示</strong> 审核两篇 PRISMA 候选文献</p>
+
+下面的会话通过 Codex 查询 PRISMA 2020 和 2009 声明，将两篇元数据保存到 Inbox。核对 DOI 后，先忽略一篇，再用 **Undo** 恢复；队列从两篇变为一篇后重新回到两篇。
+
+![在会话旁查看两篇待审候选及 Accept、Dismiss 操作](/img/open-science/v0341/inbox-review.webp)
+
+开启 **Batch actions** 并勾选两篇，确认 **Selected: 2** 后点击 **Accept**。
+
+![明确勾选两篇候选后显示 Selected: 2](/img/open-science/v0341/inbox-batch.webp)
+
+Inbox 随后显示 **Inbox is clear**；切换到 **Current project** 可见 **2 references**，两篇均为 **No PDF attached**。PRISMA 2020 声明的实际发表年为 **2021**。
+
+![接受后的两篇项目文献，仍未附加 PDF](/img/open-science/v0341/inbox-accepted.webp)
 
 ### 显示期刊数据 {/* #journal-attributes */}
 

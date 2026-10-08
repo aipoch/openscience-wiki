@@ -2,7 +2,7 @@
 title: "Scientific databases"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 # Scientific databases
@@ -13,7 +13,7 @@ Use this page to choose a data source, understand what it can return, and make i
 
 ## Supported databases {/* #supported-databases */}
 
-Open-Science v0.34.0 includes **28 data-source Connectors with 298 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 300. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+Open-Science v0.34.1 includes **30 data-source Connectors with 324 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 326. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
 
 | Connector | Sources | Operations | Use it for  |
 | --- | --- | --- | ---  |
@@ -22,7 +22,7 @@ Open-Science v0.34.0 includes **28 data-source Connectors with 298 operations**.
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Biomedical literature via NCBI E-utilities, the PMC ID Converter and Europe PMC — search, metadata, related articles, citation lookup, ID conversion, full text and copyright.  |
 | Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Gene/protein identifiers, UniProt sequence discovery, GO and Reactome annotations, and g:Profiler and Enrichr gene-set enrichment. |
 | Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | Genome annotation, homology and sequence; NCBI taxon/assembly/sequence identity; BLAST search and Clustal Omega multiple sequence alignment. |
-| Variants · `variants` | gnomAD, ClinVar, dbSNP | 15 | Human genetic variants — gnomAD population frequencies/constraint, ClinVar records/search (direct NCBI), dbSNP, structural and mitochondrial variants.  |
+| Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | Population frequencies, clinical records and assay-specific functional scores, mappings and experiments. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Clinical trials from ClinicalTrials.gov — search, details, sponsors, investigators, endpoints, and eligibility.  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | Clinical genomics knowledge bases: ClinGen curations, CIViC clinical evidence, and the Open Targets Platform, plus ClinPGx pharmacogenomic records. |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 16 | Structures and molecular interactions — PDB structures, AlphaFold predictions, EMDB cryo-EM entries, Complex Portal complexes, IntAct interaction networks.  |
@@ -34,7 +34,7 @@ Open-Science v0.34.0 includes **28 data-source Connectors with 298 operations**.
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | Protein domain architecture, family/clan membership, expression atlas and interaction networks via InterPro/Pfam, the Human Protein Atlas and STRING, including network interaction enrichment. |
 | Cancer Models · `cancer-models` | cBioPortal | 10 | Studies, mutations, copy number, samples, patients, clinical attributes and molecular-profile expression. |
 | RNA · `rna` | Rfam | 9 | Non-coding RNA family data (metadata, alignments, models, structures) via Rfam.  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, MGnify, PRIDE, ENA | 23 | Omics studies and runs; ENA FASTQ/submission inventories, PRIDE and MGnify result-file metadata. |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 26 | Omics study/run metadata and file inventories; metabolomics samples, factors, analyses and compound records. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Cell-type identity, marker genes, source datasets, and tissues via CELLxGENE CellGuide.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | Gene-regulation functional genomics — ENCODE experiments/biosamples/files, JASPAR TF binding profiles, and UniBind ChIP-seq TFBS.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Funding-opportunity search (Grants.gov) and antibody catalog lookups (Antibody Registry).  |
@@ -45,6 +45,8 @@ Open-Science v0.34.0 includes **28 data-source Connectors with 298 operations**.
 | HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | Program-specific protein/profile/alignment search, job status and results. |
 | InterProScan · `interproscan` | EMBL-EBI InterProScan | 2 | Status and TSV reports for existing annotation jobs; no submission. |
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Pathway search, top pathways, graph queries and BioPAX submodel exports. |
+| Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | Human and model-organism genes, orthologs, disease models, phenotypes, alleles and expression. |
+| CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Single-cell collections and datasets, published versions, file formats, sizes and download URLs. |
 
 The offline Molecule tools are covered in [Scientific viewers](viewers.md). For the exact operations exposed by each data source, use the [Connector operation reference](../reference/connector-operations.md).
 
@@ -66,6 +68,21 @@ For batch identifier conversion, **Genes & Ontologies** adds `submit_uniprot_id_
 **Zenodo** exposes public record metadata without authentication. Keep the version-specific record ID and access/license fields with the file inventory. **GDC** exposes public metadata; a manifest is not download authorization, and controlled files require GDC permission. [GDC operations](../reference/connector-operations.md#family-24) · [Zenodo operations](../reference/connector-operations.md#family-25).
 
 A database response can support a research step; it does not automatically download data, add every paper to the literature library or run a complete analysis. Specify which records and files you want to save.
+
+## Single-cell, model-organism and variant-effect data {/* #single-cell-model-organisms */}
+
+Search for the entries below in **Settings → Connectors**, enable availability for **Main**, then describe the organism, research question and records to retain in your conversation. These new operations read public data without a custom MCP server, API key or NCBI contact email. Other services in the same Connector can have different requirements.
+
+| Entry | What it can do | How to use the results |
+| --- | --- | --- |
+| CELLxGENE Discover | Find single-cell datasets by organism, tissue, disease, assay or cell type; inspect versions and file inventories | Ontology filters use exact labels or IDs and are combined with AND. Retain dataset_version_id for a fixed publication; dataset_id resolves to the current version. Returns available download URLs, without downloading files or querying Census expression matrices. Use the separate CellGuide for cell-type descriptions and markers. |
+| Alliance Genome Resources | Query human, mouse, rat, fly, worm, zebrafish, yeast and frog genes, orthologs, disease models, phenotypes and expression | Search and confirm the organism before following returned gene IDs. Retain evidence and orthology stringency; a model-organism phenotype is not a human disease conclusion. |
+| Variants → MaveDB | Find variant-effect score sets, assay methods, CSV score pages and existing VRS mappings | Keep the URN, license, assay methods and score calibration. Functional scores are not clinical pathogenicity classifications. CSV uses start/limit pagination and returned text still needs saving to a file. Mapping retrieval does not perform liftover. |
+| Omics Archives → Metabolomics Workbench | Search studies; inspect samples, factors, analyses and metabolites by ST accession; look up compound structures and cross-references | Select summary, factors, analysis or metabolites with section. Resolve compound names through PubChem into supported identifiers first. These operations do not download raw measurement matrices. |
+
+CELLxGENE filtering and pagination run locally over the upstream catalog fetched for each request; the catalog may change between requests. Use version IDs to retain a publication. An unreported file size is -1, not zero bytes. Preserve missing values and assay definitions in MaveDB and Workbench results as well.
+
+See exact inputs for [CELLxGENE Discover](../reference/connector-operations.md#family-30), [Alliance](../reference/connector-operations.md#family-29), [MaveDB](../reference/connector-operations.md#mavedb_search_score_sets) and [Metabolomics Workbench](../reference/connector-operations.md#workbench_search_studies).
 
 ## Connect and start using a database {/* #connect-database */}
 
@@ -173,7 +190,7 @@ From v0.31.0, `get_string_network.nodes` includes returned neighbors and isolate
 
 The [Connector operation reference](../reference/connector-operations.md) lists required inputs, allowed values and exact calls. Use this page to choose a source and connect it; use the reference for a particular tool's fields.
 
-Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.34.0/src/main/connectors/registry.ts).
+Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.34.1/src/main/connectors/registry.ts).
 
 ## Sequence searches and alignment {/* #sequence-tools */}
 

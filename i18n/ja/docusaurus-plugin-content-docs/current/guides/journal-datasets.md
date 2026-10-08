@@ -1,7 +1,7 @@
 ---
 title: "ジャーナルデータセットと参照属性"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -36,6 +36,8 @@ CSV、TSV、XLSX、ジャーナルバンドルは**32 の MB**まで対応して
 | 学会ホームページ | ジャーナル属性 | テキスト |
 
 ![ジャーナルのアイデンティティとパブリッシャーの属性を明示的なソースと年でマッピングする](/img/open-science/v0340/journal-column-mapping.webp)
+
+各列のロールを最初に選択します: ジャーナル(名前、ISSN、略称または外部ID)、**Journal attribute**を表示、または**Skip**に一致するように使用されるアイデンティティフィールド。 確認する前にマッピングのヒントを読んでください。 自動提案は、フィールドの意味を確立しません。
 
 **Abbreviation** と **External journal ID** は、追加のアイデンティティオプションです。 外部 ID は、その名前空間を必要とします。 異なるカタログの識別子は変更できません。 属性型には、 **テキスト**, , **番号 番号**, , **Single choice** そして、 **Multiple choices**. . . . 数値メトリックの数値は、ISSNや分類基準の対象ではありません。
 

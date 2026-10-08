@@ -2,7 +2,7 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -56,6 +56,10 @@ Wählen Sie **Essential export**, überprüfen Sie den Inhalt und die geschätzt
 
 ## Import in ein Projekt {/* #import-and-inspect-a-package */}
 
+Wählen Sie auf der leeren **New conversation**-Seite eines Projekts **Vorherige Forschung importieren** und wählen Sie eine `.science`-Datei aus, oder ziehen Sie die Datei auf diese Seite. Das Anfügen einer Datei an eine bestehende Konversation ist nicht der Importfluss des Forschungspakets. Überprüfen Sie das Zielprojekt und die Inhalte in der Importvorschau, bestätigen Sie und warten Sie auf den Abschluss, bevor Sie den schreibgeschützten Datensatz öffnen.
+
+![Importieren Sie frühere Recherchen auf der leeren Konversationsseite](/img/open-science/v0341/package-entry.webp)
+
 1. Öffnen Sie das Ziel-Projektmenü und wählen Sie **Import Session package…** oder lassen Sie eine `.science`-Datei in dieses Projekt fallen. Durch Öffnen einer zugehörigen Datei werden Sie direkt aufgefordert, das Zielprojekt auszuwählen.
 2. Überprüfen Sie die Paketvorschau, den Zielort und den enthaltenen oder weggelassenen Inhalt und bestätigen Sie dann den Import.
 3. Warten Sie auf die Fertigstellung und wählen Sie **Open imported Session**.
@@ -103,6 +107,12 @@ Wählen Sie vor dem Export **Customize contents → Transfer settings**. Währen
 Wählen Sie **Run in background**, um den Vorgang mit dem versteckten Dialog fortzusetzen. Öffnen Sie Details aus dem Hintergrundfortschritt im Fenster erneut, um die aktuelle Datei, den Fortschritt und die Festplattenaktivität zu überprüfen. Warten Sie auf den Abschluss, bevor Sie die exportierte Datei überprüfen oder die importierte Sitzung öffnen.
 
 ![Disk-Aktivitätslimit in den Transfereinstellungen des Forschungspakets](/img/open-science/v0333/package-transfer.webp)
+
+## Wenn der Export sensiblen Inhalt kennzeichnet {/* #sensitive-export */}
+
+Wenn der Export bei der Prüfung des sensiblen Inhalts aufhört, erweitern Sie **Nachweis sensibler Inhalte** und prüfen Sie die markierten Dateien. Entfernen Sie Anmeldeinformationen oder privates Material aus der Quelle und starten Sie dann einen neuen Export, wenn sie nicht geteilt werden sollen.
+
+Wenn das gekennzeichnete Material absichtlich Teil einer autorisierten Übergabe ist, bietet der fehlgeschlagene Export **Ich verstehe das Risiko und möchte trotzdem exportieren**, gefolgt von **Trotzdem exportieren**. Dies beinhaltet gekennzeichnete Inhalte **ohne Redaktion**; Es ist kein Datenschutzfilter. Die Bestätigung gehört zu diesem Exportversuch und muss nach einem Fehlschlag erneut ausgewählt werden. Überprüfen Sie das resultierende Paket, bevor Sie es teilen. Verwenden Sie stattdessen [Diagnoseinformationen exportieren](troubleshooting.md#session-diagnostics) zur Fehlerbehebung.
 
 ## Abbrechen oder Wiederholen einer Überweisung {/* #cancel-or-retry-a-transfer */}
 

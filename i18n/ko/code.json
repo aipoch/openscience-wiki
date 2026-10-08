@@ -1738,5 +1738,11 @@
   },
   "docs.outline.workflows.inspect-pathway.title": {
     "message": "경로 및 상호 작용 네트워크 검사"
+  },
+  "docs.outline.reference.v0341.scope": {
+    "message": "CELLxGENE Discover, Alliance, MaveDB 및 Workbench, 워크스페이스 인박스, 연구 패키지 수입 및 수출, 진단 개선."
+  },
+  "docs.outline.reference.v0341.title": {
+    "message": "v0.34.1"
   }
 }

@@ -1,7 +1,7 @@
 ---
 title: "Journal datasets 및 참고 속성"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -36,6 +36,8 @@ CSV, TSV, XLSX 및 저널 번들은 **32 메가바이트**까지 지원됩니다
 | 홈페이지 | Journal 속성 | 텍스트 |
 
 ![저널 정체성 및 출판사 속성을 명시된 소스 및 년](/img/open-science/v0340/journal-column-mapping.webp)
+
+각 열의 역할을 먼저 선택하십시오 : 저널 (이름, ISSN, 약어 또는 외부 ID), **Journal attribute**, 디스플레이 또는 **Skip**과 일치하는 데 사용되는 정체성 필드. 확인하기 전에 맵핑 힌트를 읽으십시오; 자동 제안은 필드의 의미를 설정하지 않습니다.
 
 **Abbreviation** 및 **External journal ID**은 추가 정체성 옵션입니다. 외부 ID는 네임스페이스를 필요로 합니다; 다른 카탈로그에서 식별자는 교환 할 수 없습니다. 속성 유형에는 **텍스트**, **이름 &#42;**, **Single choice** 및 **Multiple choices**가 포함됩니다. ISSNs 또는 categorical quartiles에 대한 수치를 사용할 수 있습니다.
 

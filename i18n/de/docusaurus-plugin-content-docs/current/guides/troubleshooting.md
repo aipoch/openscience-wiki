@@ -1,7 +1,7 @@
 ---
 title: "Fehlerbehebung und häufige Fragen"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 # Fehlerbehebung und häufige Fragen {/* #troubleshooting-and-common-questions */}
@@ -159,7 +159,7 @@ Technische Nachrichtenbedeutungen werden in [Diagnosereferenz](../reference/diag
 
 ![Auswahl von sitzungsspezifischen Diagnosequellen vor einem lokalen Export](/img/open-science/v0330/session-diagnostics.webp)
 
-Der gewöhnliche Metadatenexport schließt private Inhaltsfelder aus. Wenn ein .science-Export die Prüfung des sensiblen Inhalts auslöst, kann die Quellliste auch redigierte Scannernachweise und die markierten Originaldateien enthalten. **Sensible Originaldateien werden standardmäßig nicht überprüft; Auswählen eines enthält seine ursprünglichen Bytes im Archiv.** Wählen Sie nur die benötigten Quellen aus und prüfen Sie das Archiv und die Screenshots, bevor Sie es teilen. Export bleibt lokal und macht keinen Upload oder Model Request. Dies ist ein diagnostischer Beweis, kein Forschungs-Backup; Verwenden Sie ein [.science Paket](research-packages.md) für eine Forschungsübergabe.
+Der gewöhnliche Metadatenexport schließt private Inhaltsfelder aus. v0.34.1 behält mehr begrenzten Fehlerkontext und laufen / Notebook Diagnosenachweis. Dies bedeutet nicht, dass jede ausgewählte Datei vollständig überarbeitet ist. Wenn ein .science-Export die Prüfung des sensiblen Inhalts auslöst, kann die Quellliste auch redigierte Scannernachweise und die markierten Originaldateien enthalten. **Sensible Originaldateien werden standardmäßig nicht überprüft; Auswählen eines enthält seine ursprünglichen Bytes im Archiv.** Wählen Sie nur die benötigten Quellen aus und prüfen Sie das Archiv und die Screenshots, bevor Sie es teilen. Export bleibt lokal und macht keinen Upload oder Model Request. Dies ist ein diagnostischer Beweis, kein Forschungs-Backup; Verwenden Sie ein [.science Paket](research-packages.md) für eine Forschungsübergabe.
 
 ## Melden Sie einen Bug oder fragen Sie die Community {/* #report-a-bug-or-ask-the-community */}
 

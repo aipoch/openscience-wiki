@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -18,7 +18,7 @@ Pour réutiliser une figure ou une table à partir d'un PDF joint, suivez [Extra
 
 Ouverture de **Library** à partir de Home entre dans la bibliographie complète. Dans un espace de travail projet, le **Library** de la barre latérale ouvre un aperçu compact sur la droite.
 
-1. Choisissez **Projet actuel**, **All references**, ou un **Collection** ouvert, puis utilisez **Search references** pour trouver les enregistrements existants.
+1. Choisissez **Boîte de réception**, **Projet actuel**, **All references**, ou un **Collection** ouvert, puis utilisez **Search references** pour trouver les enregistrements existants.
 2. Sélectionnez **Résumé** pour lire un résumé et **Show more** pour l'agrandir. **Pas de PDF attaché** signifie que l'enregistrement n'a pas de PDF; un résumé n'est pas un texte complet.
 3. Pour les collections intelligentes, les importations et la gestion des enregistrements, choisissez **Ouvrir dans Littérature** ou **Afficher dans Littérature** sur un enregistrement.
 
@@ -46,6 +46,28 @@ Pour plusieurs papiers, activez d'abord **Batch actions**, sélectionnez les enr
 ![Une référence papier existante ajoutée au projet de conversation, prête pour une question et un manuel d'envoi](/img/open-science/v0340/library-add-to-draft.webp)
 
 **Détails de référence** ouvre les métadonnées et les pièces jointes; **Afficher dans Littérature** ouvre l'enregistrement complet de la bibliothèque. L'ajout d'une référence ne télécharge pas son texte complet. Un enregistrement marqué **Pas de PDF attaché** n'a encore que ses métadonnées disponibles, ses résumés et autres contenus existants.
+
+### Examiner les candidats à côté de la conversation {/* #workspace-inbox */}
+
+1. Ouvrez l'espace de travail **Library → Inbox** ou choisissez **Ouvrir la boîte de réception** sur la carte de référence sauvegardée de l'agent. La conversation reste ouverte à côté de la file d'attente.
+2. Vérifiez **All projects** et **Examen en attente** : cette file d'attente contient des candidats en attente pour tous les projets. Utilisez **Search references** pour restreindre les candidats existants et inspectez chaque titre, DOI, source et destination proposée avant de l'accepter.
+3. Choisissez **Accept** pour un candidat coché, ou **Dismiss** pour le supprimer de la file d'attente. **Undo** rétablit un candidat renvoyé à l'examen en attente; il n'annule pas une acceptation.
+4. Pour plusieurs candidats, activez **Batch actions**, sélectionnez explicitement des lignes sur la page actuelle, vérifiez **Sélectionné**, puis choisissez **Accept**. La sélection est limitée à la page actuelle; modifier la requête ou la page la supprime. Utilisez **Clear selection** ou **Done** avant de choisir un jeu différent.
+5. Confirmer les enregistrements acceptés en **Projet actuel** ou **All references**. L'acceptation enregistre les notices bibliographiques; il ne récupère pas les PDF manquants. Si vous avez besoin de la vue de gestion complète ou des enregistrements précédemment rejetés, choisissez **Ouvrir dans Littérature**.
+
+<p className="example-label"><strong>Exemple pratique</strong> Examiner deux candidats PRISMA</p>
+
+La conversation ci-dessous utilise Codex pour rechercher les instructions PRISMA 2020 et 2009 et enregistrer leurs métadonnées dans la boîte de réception. Après avoir vérifié leur DOI, licencier un candidat, puis utiliser **Undo** pour le restaurer; la file d'attente va de deux candidats à un et retour à deux.
+
+![Deux candidats en attente à côté de la conversation avec Accepter et rejeter les actions](/img/open-science/v0341/inbox-review.webp)
+
+Activez **Batch actions**, sélectionnez les deux enregistrements, cochez **Sélectionné : 2**, puis choisissez **Accept**.
+
+![Deux candidats explicitement sélectionnés avec Sélectionné : 2](/img/open-science/v0341/inbox-batch.webp)
+
+La boîte de réception affiche ensuite **Inbox is clear**. Passez à **Projet actuel** pour voir **Références 2**, tous deux marqués **Pas de PDF attaché**. L'année de publication de l'état PRISMA 2020 est **2021**.
+
+![Les deux dossiers acceptés dans le projet, sans PDFs joints](/img/open-science/v0341/inbox-accepted.webp)
 
 ### Afficher les données du journal {/* #journal-attributes */}
 

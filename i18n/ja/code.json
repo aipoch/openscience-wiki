@@ -1733,5 +1733,11 @@
   },
   "docs.outline.workflows.inspect-pathway.title": {
     "message": "パスウェイとインタラクションネットワークを調べる"
+  },
+  "docs.outline.reference.v0341.scope": {
+    "message": "CELLxGENE Discover、アライアンス、MaveDBおよびワークベンチ、ワークスペースの受信箱、研究パッケージの輸入および輸出および診断の改善。"
+  },
+  "docs.outline.reference.v0341.title": {
+    "message": "v0.34.1"
   }
 }

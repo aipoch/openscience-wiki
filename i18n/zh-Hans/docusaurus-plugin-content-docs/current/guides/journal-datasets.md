@@ -1,7 +1,7 @@
 ---
 title: "期刊数据集与文献属性"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -37,7 +37,9 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ![设置期刊标识、出版方属性及明确的来源和年份](/img/open-science/v0340/journal-column-mapping.webp)
 
-还可使用 **Abbreviation** 和 **External journal ID** 作为标识。外部 ID 需要填写所属命名空间，不同目录的 ID 不能混用。属性类型包括 **Text**、**Number**、**Single choice** 和 **Multiple choices**。数值指标可选 Number，ISSN 和分区类别不应作为数值处理。
+还可使用 先区分列的角色：用于匹配期刊的身份字段（名称、ISSN、缩写或外部 ID）、需要显示的 **Journal attribute**，以及不导入的 **Skip**。查看映射提示后再确认；自动猜测不代表字段含义正确。
+
+**Abbreviation** 和 **External journal ID** 作为标识。外部 ID 需要填写所属命名空间，不同目录的 ID 不能混用。属性类型包括 **Text**、**Number**、**Single choice** 和 **Multiple choices**。数值指标可选 Number，ISSN 和分区类别不应作为数值处理。
 
 行状态可能为 **Matched**、**New**、**Ambiguous match**、**Invalid** 或 **Duplicate**。导入前检查冲突标识和重复行。可返回 **Edit mapping** 修改列角色；提供相应入口时，导出问题行或明确跳过需要处理的行。New 创建的是期刊条目，不是在文献库中新增论文。
 

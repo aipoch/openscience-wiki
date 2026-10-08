@@ -1,7 +1,7 @@
 ---
 title: "Conjuntos de datos de revistas y atributos de referencia"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -36,6 +36,8 @@ CSV, TSV, XLSX y paquetes de revistas son compatibles, hasta **32 MB**. **Downlo
 | Sitio web del Diario | Atributo de revistas | Texto |
 
 ![Mapping journal identity and publisher attributes with an explicit source and year](/img/open-science/v0340/journal-column-mapping.webp)
+
+Elige el papel de cada columna primero: un campo de identidad utilizado para combinar revistas (nombre, ISSN, abreviatura o ID externo), un **Journal attribute** para mostrar, o **Skip**. Lea las sugerencias de mapeo antes de confirmar; una sugerencia automática no establece el significado del campo.
 
 **Abbreviation** y **External journal ID** son opciones de identidad adicionales. Un ID externo necesita su espacio de nombres; Los identificadores de diferentes catálogos no son intercambiables. Los tipos de atributos incluyen **Texto**, **Número**, **Single choice** y **Multiple choices**. Número de uso para métricas numéricas, no para ISSNs o cuartiles categóricos.
 

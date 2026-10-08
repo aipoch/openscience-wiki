@@ -1433,6 +1433,17 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v0341",
+            "title": "v0.34.1",
+            "scope": "CELLxGENE Discover, Alliance, MaveDB and Workbench, workspace Inbox, research-package import and export, and diagnostic improvements.",
+            "currentDoc": "changelog/v0-34-1",
+            "proposedUrl": "/docs/changelog/v0-34-1/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-34-1"
+            ]
+          },
+          {
             "id": "v0340",
             "title": "v0.34.0",
             "scope": "Journal datasets, Pathway Commons and expanded databases, Linux ARM64, Codex runtime updates and tray navigation.",

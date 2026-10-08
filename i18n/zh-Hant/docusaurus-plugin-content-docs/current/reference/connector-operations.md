@@ -2,7 +2,7 @@
 title: "Connector 操作引數參考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.34.0** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.0.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
+每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.34.1** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.34.1.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
 
 
 ## 化學 {/* #family-1 */}
@@ -1257,6 +1257,82 @@ const result = await host.mcp("variants", "dbsnp_get_rsids", {"rsids": ["rs7412"
 
 ```javascript
 const result = await host.mcp("variants", "dbsnp_search_by_region", {"chrom": "19", "start": 44905000, "stop": 44910000, "assembly": "GRCh38"})
+```
+
+### `mavedb_search_score_sets` {/* #mavedb_search_score_sets */}
+
+按基因、蛋白或實驗關鍵詞搜尋公開 MaveDB 變異效應實驗分數集。無需 API key 或聯絡郵箱。返回一頁及可用的上游總數；功能分數依賴實驗，不是臨床分類或群體頻率。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `text` | string | **必填**; minLength: 1; maxLength: 1000; pattern: &quot;\\S&quot; |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 1000000000 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_search_score_sets", {"text":"BRCA1","limit":20})
+```
+
+### `mavedb_get_score_set` {/* #mavedb_get_score_set */}
+
+按 URN 獲取公開分數集的靶標、實驗、許可、論文和關聯實驗資訊，並提供完整 CSV 及變異對映的官方手動下載 URL。解釋分數前閱讀實驗方法和校準資訊。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `urn` | string | **必填**; pattern: &quot;^urn:mavedb:&#91;0-9&#93;&#123;8&#125;-(?:&#91;a-z&#93;+&#124;0)-&#91;1-9&#93;&#91;0-9&#93;&#42;$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_score_set", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_download_scores` {/* #mavedb_download_scores */}
+
+獲取一頁原始 CSV 分數文字（預設 1000 行，最多 10000 行），使用 start/limit，不使用 offset。保留全部分數列和 NA；需要另外儲存成檔案。按 numVariants 規劃分頁，一頁不等於完整資料；也可使用返回的官方 URL 手動下載完整檔案。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `urn` | string | **必填**; pattern: &quot;^urn:mavedb:&#91;0-9&#93;&#123;8&#125;-(?:&#91;a-z&#93;+&#124;0)-&#91;1-9&#93;&#91;0-9&#93;&#42;$&quot; |
+| `start` | integer | 可選; default: 0; minimum: 0; maximum: 1000000000 |
+| `limit` | integer | 可選; default: 1000; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_download_scores", {"urn":"urn:mavedb:00000003-a-1","start":0,"limit":1000})
+```
+
+### `mavedb_get_mapped_variants` {/* #mavedb_get_mapped_variants */}
+
+讀取 MaveDB 已有的 GA4GH VRS 變異對映，包括參考序列、VRS 版本和失敗記錄；不會提交變異或執行 liftover。介面不分頁，受共享的 64 MiB 響應限制；大型資料可從分數集詳情取得官方 URL 手動下載。404 也可能表示沒有對映記錄。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `urn` | string | **必填**; pattern: &quot;^urn:mavedb:&#91;0-9&#93;&#123;8&#125;-(?:&#91;a-z&#93;+&#124;0)-&#91;1-9&#93;&#91;0-9&#93;&#42;$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_mapped_variants", {"urn":"urn:mavedb:00000003-a-1"})
+```
+
+### `mavedb_get_experiment` {/* #mavedb_get_experiment */}
+
+按不帶分數集字尾的實驗 URN 獲取公開實驗方法、論文、實驗集合及 scoreSetUrns，支援 -0 元分析實驗，無需認證。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `urn` | string | **必填**; pattern: &quot;^urn:mavedb:&#91;0-9&#93;&#123;8&#125;-(?:&#91;a-z&#93;+&#124;0)$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment", {"urn":"urn:mavedb:00000003-a"})
+```
+
+### `mavedb_get_experiment_score_sets` {/* #mavedb_get_experiment_score_sets */}
+
+列出公開實驗中可見的分數集。上游會按可見性和替代關係篩選，這不是完整版本歷史；結果不分頁。404 也可能表示沒有可用的關聯分數集。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `urn` | string | **必填**; pattern: &quot;^urn:mavedb:&#91;0-9&#93;&#123;8&#125;-(?:&#91;a-z&#93;+&#124;0)$&quot; |
+
+```javascript
+const result = await host.mcp("variants", "mavedb_get_experiment_score_sets", {"urn":"urn:mavedb:00000003-a"})
 ```
 
 </ToolOperationGroup>
@@ -3670,6 +3746,48 @@ const result = await host.mcp("omics-archives", "pride_find_projects_for_protein
 const result = await host.mcp("omics-archives", "mgnify_get_analysis_files", {"accession": "MGYA00639970"})
 ```
 
+### `workbench_search_compounds` {/* #workbench_search_compounds */}
+
+按登記號、分子式、InChIKey 或 PubChem、HMDB、KEGG、ChEBI、LIPID MAPS、MetaCyc 交叉引用查詢 Metabolomics Workbench 化合物。返回可用結構、分子式、精確質量及交叉引用；不支援名稱輸入，先用 PubChem 解析名稱。limit 在取得有界響應後本地截斷，介面不分頁。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `field` | string | **必填**; enum: &#91;&quot;regno&quot;, &quot;formula&quot;, &quot;inchi_key&quot;, &quot;lm_id&quot;, &quot;pubchem_cid&quot;, &quot;hmdb_id&quot;, &quot;kegg_id&quot;, &quot;chebi_id&quot;, &quot;metacyc_id&quot;&#93; |
+| `query` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可選; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_compounds", {"field": "pubchem_cid", "query": "5793"})
+```
+
+### `workbench_search_studies` {/* #workbench_search_studies */}
+
+按標題子串或研究機構搜尋公開 Metabolomics Workbench 研究，返回 ST 編號及可用物種、樣本數量、分析型別和許可資訊。limit 在本地截斷，介面不分頁。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `field` | string | 可選; default: &quot;study_title&quot;; enum: &#91;&quot;study_title&quot;, &quot;institute&quot;&#93; |
+| `query` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可選; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_search_studies", {"query": "Diabetes", "limit": 20})
+```
+
+### `workbench_get_study` {/* #workbench_get_study */}
+
+按 ST 加六位數字的編號讀取研究摘要、樣本及實驗因素、分析儀器資訊或代謝物註釋。section 選擇對應部分；保留上游欄位與因素文字。不會下載原始檔案或測量矩陣，limit 在本地截斷。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `study_id` | string | **必填**; pattern: &quot;^ST&#91;0-9&#93;&#123;6&#125;$&quot; |
+| `section` | string | 可選; default: &quot;summary&quot;; enum: &#91;&quot;summary&quot;, &quot;factors&quot;, &quot;analysis&quot;, &quot;metabolites&quot;&#93; |
+| `limit` | integer | 可選; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("omics-archives", "workbench_get_study", {"study_id": "ST000001", "section": "factors"})
+```
+
 </ToolOperationGroup>
 
 ## CellGuide {/* #family-19 */}
@@ -4534,6 +4652,263 @@ const result = await host.mcp("pathway-commons", "pathway_commons_graph", {"kind
 
 ```javascript
 const result = await host.mcp("pathway-commons", "pathway_commons_export", {"uri": ["R-HSA-201451"], "format": "GSEA"})
+```
+
+</ToolOperationGroup>
+
+## Alliance Genome Resources {/* #family-29 */}
+
+<ToolOperationGroup>
+<summary>展開操作與引數</summary>
+
+### `alliance_get_gene` {/* #alliance_get_gene */}
+
+按 Alliance 基因 ID 查詢人類或模式生物基因摘要，包括符號、物種、基因組位置、簡介和交叉引用。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_search_genes` {/* #alliance_search_genes */}
+
+按符號、名稱或識別符號搜尋 Alliance 的人類及模式生物基因。檢查返回的物種和資料庫名稱空間，再使用基因 ID。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_search_genes", {"query": "pax6", "limit": 10})
+```
+
+### `alliance_get_gene_orthologs` {/* #alliance_get_gene_orthologs */}
+
+查詢 Alliance 基因的跨物種直系同源關係，保留嚴格程度和預測方法；同源關係不等於功能或疾病表型完全相同。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `stringency` | string | 可選; default: &quot;stringent&quot;; enum: &#91;&quot;stringent&quot;, &quot;moderate&quot;, &quot;all&quot;&#93; |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_orthologs", {"gene_id": "HGNC:8620", "stringency": "stringent"})
+```
+
+### `alliance_get_gene_disease_models` {/* #alliance_get_gene_disease_models */}
+
+查詢一個 Alliance 基因的疾病關聯和模式生物疾病模型，保留證據來源與物種。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_disease_models", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_phenotypes` {/* #alliance_get_gene_phenotypes */}
+
+查詢 Alliance 基因的表型註釋。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_phenotypes", {"gene_id": "HGNC:6081", "limit": 20})
+```
+
+### `alliance_get_gene_alleles` {/* #alliance_get_gene_alleles */}
+
+查詢 Alliance 基因關聯的等位基因及變異，包括疾病和表型標記。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_alleles", {"gene_id": "MGI:97490"})
+```
+
+### `alliance_get_gene_expression` {/* #alliance_get_gene_expression */}
+
+查詢 Alliance 基因的表達註釋，保留髮育階段、解剖部位、資料提供方和證據。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `gene_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_gene_expression", {"gene_id": "ZFIN:ZDB-GENE-990415-8"})
+```
+
+### `alliance_get_disease_genes` {/* #alliance_get_disease_genes */}
+
+按 Disease Ontology 識別符號查詢 Alliance 中相關的人類及模式生物基因。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `disease_id` | string | **必填**; minLength: 1; maxLength: 200 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("alliance", "alliance_get_disease_genes", {"disease_id": "DOID:162", "limit": 20})
+```
+
+</ToolOperationGroup>
+
+## CELLxGENE Discover {/* #family-30 */}
+
+<ToolOperationGroup>
+<summary>展開操作與引數</summary>
+
+### `list_collections` {/* #list_collections */}
+
+列出公開 CELLxGENE Discover 集合，可按名稱、描述或 DOI 子串篩選（不區分大小寫）。每次請求獲取完整上游目錄後在本地篩選分頁，跨請求結果可能變化；儲存版本 ID 以固定資料快照。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `query` | string | 可選; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可選; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collections", {"query":"liver","page_size":10})
+```
+
+### `get_collection` {/* #get_collection */}
+
+按 collection_id 讀取最新公開集合後設資料及一頁資料集摘要。本地分頁，每次重新讀取上游；儲存版本 ID。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `collection_id` | string | **必填**; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可選; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `list_datasets` {/* #list_datasets-1 */}
+
+列出公開資料集。query 匹配標題、集合名稱或 DOI 子串；organism、tissue、disease、assay、cell_type 精確匹配本體 ID 或標籤（不區分大小寫），多個過濾條件同時滿足。schema_version 可返回匹配模式版本的歷史資料集；繼續讀取時使用返回的 dataset_version_id。每次請求重新讀取上游後本地篩選分頁。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `query` | string | 可選; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `collection_id` | string | 可選; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+| `organism` | string | 可選; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `tissue` | string | 可選; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `disease` | string | 可選; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `assay` | string | 可選; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `cell_type` | string | 可選; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `schema_version` | string | 可選; pattern: &quot;^\\d+(\\.\\d+)&#123;0,2&#125;$&quot; |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可選; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_datasets", {"organism":"NCBITaxon:9606","tissue":"liver","page_size":10})
+```
+
+### `get_dataset` {/* #get_dataset */}
+
+用 collection_id 和 dataset_id 讀取當前公開資料集的後設資料、本體註釋、引用、檔案及版本 ID。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `collection_id` | string | **必填**; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+| `dataset_id` | string | **必填**; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6","dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `list_collection_versions` {/* #list_collection_versions */}
+
+按集合 ID 列出已釋出版本，最新在前，保留版本 ID 和資料集數量。本地分頁，每次重新讀取上游。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `collection_id` | string | **必填**; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可選; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_collection_versions", {"collection_id":"9a71db9e-687f-41f0-b88e-544eb1314ef6"})
+```
+
+### `get_collection_version` {/* #get_collection_version */}
+
+讀取指定 collection_version_id 的已釋出快照及一頁資料集版本，不會自動改為最新集合。本地分頁。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `collection_version_id` | string | **必填**; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可選; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_collection_version", {"collection_version_id":"46ac9732-ff1c-4f87-86d7-0488d15aecd3"})
+```
+
+### `list_dataset_versions` {/* #list_dataset_versions */}
+
+按 dataset_id 列出已釋出版本，最新在前，保留模式版本與釋出日期。本地分頁。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `dataset_id` | string | **必填**; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+| `page` | integer | 可選; default: 1; minimum: 1; maximum: 1000000 |
+| `page_size` | integer | 可選; default: 25; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_versions", {"dataset_id":"0bbf93aa-2d3a-420f-95a1-26fe384024cb"})
+```
+
+### `get_dataset_version` {/* #get_dataset_version */}
+
+讀取指定 dataset_version_id 的完整後設資料和檔案資訊。此 ID 與 dataset_id 不同。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `dataset_version_id` | string | **必填**; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "get_dataset_version", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
+```
+
+### `list_dataset_files` {/* #list_dataset_files */}
+
+提供 dataset_version_id 固定釋出版本，或同時提供 collection_id 與 dataset_id 讀取當前版本，兩種方式恰好選擇一種。使用 schema_version 篩選後應傳入結果的 dataset_version_id。返回可用 H5AD、RDS 或 ATAC 檔案清單，不下載二進位制檔案，也不查詢 Census 表達矩陣。
+
+恰好選擇一組輸入：`dataset_version_id` / `collection_id` + `dataset_id`。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `collection_id` | string | 按上方條件提供; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+| `dataset_id` | string | 按上方條件提供; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+| `dataset_version_id` | string | 按上方條件提供; pattern: &quot;^&#91;0-9a-fA-F&#93;&#123;8&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;4&#125;-&#91;0-9a-fA-F&#93;&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("cellxgene-discover", "list_dataset_files", {"dataset_version_id":"8e0fcb64-735c-4fcb-a74b-12a3518683d1"})
 ```
 
 </ToolOperationGroup>
