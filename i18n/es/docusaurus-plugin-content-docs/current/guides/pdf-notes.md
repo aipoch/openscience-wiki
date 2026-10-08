@@ -2,7 +2,7 @@
 title: "Anotaciones PDF y notas de documentos"
 description: "Marcar pasajes, recoger notas de documentos, encontrarlas de nuevo y exportar una copia de lectura."
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -67,6 +67,8 @@ El ejemplo guarda dos notas: una destaca con un comentario y una nota de documen
 
 ## Donde se comparten las notas {/* #where-notes-are-shared */}
 
-Un **Acoplamiento de la biblioteca** comparte su cuaderno de notas a través de referencias, proyectos y sesiones que utilizan la misma versión de archivo gestionado. **Carga de proyectos y artefactos** comparte su cuaderno entre sesiones dentro del proyecto de propiedad. Una versión de archivo más nueva es un objetivo de anotación diferente: verifique la versión antes de asumir que una marca pertenece a un documento revisado.
+Desde v0.35.1, las versiones de archivos gestionadas verificadas como el mismo contenido PDF pueden compartir un cuaderno de documentos en proyectos y sesiones, incluyendo archivos adjuntos, cargas y artefactos de la Biblioteca. La verificación utiliza la suma de comprobación de archivos y el tamaño, no su nombre o DOI. Los nombres de archivo idénticos por sí solos no establecen notas compartidas; los bytes cambiados en un documento revisado no se debe suponer que heredan las viejas marcas.
+
+Abra el mismo PDF en otro proyecto, inspeccione **Notes & Annotations**, luego utilice **Show annotation source** para comprobar la página y el pasaje guardados. Si las notas están ausentes, confirme que abrió la misma versión de contenido y que su archivo gestionado sigue siendo legible.
 
 Estas notas se almacenan localmente y no sincronizan a través de máquinas. Para una entrega, exporte las notas o un PDF anotado y compruebe lo que recibirá el receptor. Esto no cambia los marcadores de sesión privada o hace que cada nota de lectura sea parte de un [Paquete de investigación .science](research-packages.md).

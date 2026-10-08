@@ -234,3 +234,15 @@ v0.34.0 adds **MiniMax M3.1 Flash Preview** and **Claude Sonnet 5.5**. Select th
 v0.34.1 adds **gpt-6.1-sol** to the Codex model catalog. Select it explicitly in the model picker, then send a small request to confirm account access. Updating the app does not automatically replace the saved Main model.
 
 v0.35.0 expands the **OpenCode Zen** catalog and adds Jev classification support. Check the role-specific picker: a model available for a classification task is not automatically the Main model. Keep your configured Main provider unless you deliberately change it; classification setup is covered in [Models](models.md#classification-models).
+
+## Add Requesty {/* #requesty */}
+
+1. Open **Settings → Model → Add provider**.
+2. In **Provider type**, choose **Requesty** under **Official API**. This built-in entry supplies its endpoint; a Custom Gateway URL is not required.
+3. Check **Name** and enter your Requesty key in **API key**. **Get an API key** opens Requesty's key-management page. Keep the key hidden.
+4. Review **Supported models**, then select **Test connection** or **Save** and wait for validation. A missing key leaves these controls unavailable.
+5. After the provider is saved successfully, select an offered model in the intended model picker and send a small request. Check the actual response before starting research.
+
+![Requesty selected in the official provider form, showing the required API key and supported models](/img/open-science/v0351/requesty-form.webp)
+
+Requesty uses `https://router.requesty.ai`; the active Agent determines which compatible protocol and models are offered. Access and quota depend on the Requesty account. Adding this provider does not automatically replace the saved Main model. v0.35.1 also refreshes the OpenRouter catalog; use the current picker rather than copying a model ID from an old screenshot.

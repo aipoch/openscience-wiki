@@ -13,7 +13,7 @@ Utilisez cette page pour choisir une source de données, comprendre ce qu'elle p
 
 ## Bases de données prises en charge {/* #supported-databases */}
 
-Open-Science v0.35.0 comprend **Connecteurs source de données 33 avec opérations 337**. Le Molecule Connector séparé hors ligne ajoute deux opérations, apportant le registre complet à 339. Noms Connector ci-dessous correspondent à **Settings → Connectors**; Chaque famille peut exposer plusieurs bases de données. L'inscription d'une source ne signifie pas que toutes les fonctionnalités de son site Web sont disponibles.
+Open-Science v0.35.1 comprend **Connecteurs source de données 33 avec opérations 341**. Le Molecule Connector séparé hors ligne ajoute deux opérations, apportant le registre complet à 343. Noms Connector ci-dessous correspondent à **Settings → Connectors**; Chaque famille peut exposer plusieurs bases de données. L'inscription d'une source ne signifie pas que toutes les fonctionnalités de son site Web sont disponibles.
 
 | Connecteur | Sources | Opérations | Utilisez-le pour  |
 | --- | --- | --- | ---  |
@@ -29,7 +29,7 @@ Open-Science v0.35.0 comprend **Connecteurs source de données 33 avec opératio
 | ChEMBL · `chembl` | ChEMBL | 6 | Composés bioactifs, médicaments, cibles, bioactivité et mécanismes via le ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | préimpressions bioRxiv/medRxiv — recherche par date/catégorie, métadonnées par DOI, liens de publication de revues, listes de bailleurs de fonds et statistiques des plates-formes.  |
 | Réglementation des médicaments · `drug-regulatory` | ouvertFDA | 10 | Médicaments@FDA, étiquettes, rapports d'événements indésirables FAERS et rappels de médicaments. |
-| Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | Données probantes sur les associations génétiques humaines — Catalogue GWAS, catalogue eQTL et portails PheWeb PheWAS (FinnGen, BioBank Japan).  |
+| Génétique humaine · `human-genetics` | Catalogue GWAS, Catalogue eQTL, PheWeb | 15 | Données probantes sur les associations génétiques humaines — Catalogue GWAS, catalogue eQTL et portails PheWeb PheWAS (FinnGen, BioBank Japan).  |
 | Expression · `expression` | GTEx, Bgee | 16 | expression des tissus humains GTEx et eQTL; Expression de base de Bgee pour les espèces croisées. |
 | Annotation protéique · `protein-annotation` | InterPro, Pfam, Atlas des protéines humaines, STRING | 14 | Architecture du domaine protéique, appartenance à la famille/clan, atlas d'expression et réseaux d'interactions via InterPro/Pfam, l'Atlas des protéines humaines et STRING, y compris l'enrichissement des interactions réseau. |
 | Modèles de cancer · `cancer-models` | cBioPortal | 10 | Études, mutations, nombre de copies, échantillons, patients, attributs cliniques et expression du profil moléculaire. |
@@ -43,13 +43,13 @@ Open-Science v0.35.0 comprend **Connecteurs source de données 33 avec opératio
 | GDC · `gdc` | NCI GDC | 5 | Projets, cas, métadonnées de fichiers, étiquettes ouvertes/contrôlées et manifestes de transfert pour le cancer; pas de subvention pour télécharger ou accéder. |
 | Zenodo · `zenodo` | Zenodo | 2 | Ensemble de données, logiciels et découvertes de publications publics, métadonnées et inventaires de fichiers spécifiques à une version; pas de téléchargement. |
 | HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | Recherche de protéines, de profils et d'alignements spécifiques au programme, état d'avancement et résultats. |
-| InterProScan · `interproscan` | EMBL-EBI InterProScan | 2 | Rapports sur l'état et le TSV pour les emplois d'annotation existants; Aucune soumission. |
+| InterProScan · `interproscan` | EMBL-EBI InterProScan | 3 | Soumettre des séquences de protéines, vérifier l'état d'emploi annotation et récupérer les rapports TSV. |
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Recherche de trajectoires, voies supérieures, requêtes de graphiques et exportations de sous-modèles BioPAX. |
 | Alliance Genome Resources · `alliance` | Alliance des ressources génomiques | 8 | Les gènes humains et modèles-organismes, orthologues, modèles de maladies, phénotypes, allèles et expression. |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Collections et ensembles de données monocellulaires, versions publiées, formats de fichiers, tailles et URLs de téléchargement. |
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | Trouvez les noms de lignes cellulaires et les synonymes, puis inspectez l'identité d'adhésion et les annotations de qualité. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | Les associations entre la maladie et le gène et le phénotype avec l'organisme et les preuves à l'appui. |
-| IEDB · `iedb` | Base de données Imune Epitope | 6 | Epitopes, antigènes, cellules T, cellules B et HCM, et publications sources. |
+| IEDB · `iedb` | Base de données Imune Epitope | 8 | Epitopes, antigènes, tests sur cellules T, cellules B et MHC, preuves TCR/BCR et publications sources. |
 
 Les outils Molecule hors ligne sont couverts par [Vérificateurs scientifiques](viewers.md). Pour les opérations exactes exposées par chaque source de données, utilisez le [Référence de fonctionnement Connector](../reference/connector-operations.md).
 
@@ -213,13 +213,13 @@ Pour `get_variant`, définissez `include_populations: true` uniquement lorsque l
 
 Les listes [Référence de fonctionnement Connector](../reference/connector-operations.md) contiennent les entrées requises, les valeurs autorisées et les appels exacts. Utilisez cette page pour choisir une source et la connecter; utiliser la référence pour les champs d'un outil particulier.
 
-Source du catalogue: [catalogue.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/catalog.ts), [registre.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/registry.ts).
+Source du catalogue: [catalogue.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/catalog.ts), [registre.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/registry.ts).
 
 ## Recherches de séquences et alignement {/* #sequence-tools */}
 
 **HMMER** fournit des recherches de séquence protéique, de profil HMM et d'alignement spécifiques au programme. Choisissez le programme et la base de données ensemble, conservez l'ID de travail, et récupérer les résultats seulement après **SUCCÈS**. [Opérations HMMER](../reference/connector-operations.md#family-26).
 
-**InterProScan** récupère les annotations pour un emploi existant soumis par le service EMBL-EBI. Gardez son ID de travail, vérifiez l'état au moins dix secondes d'écart, et récupérer le TSV après **FINIS**. Ce Connector ne peut pas soumettre un nouvel emploi. [Opérations InterProScan](../reference/connector-operations.md#family-27).
+**InterProScan** supporte la soumission de séquences protéiques, l'état de travail et la recherche d'annotation TSV de v0.35.1. Suivez [Présentation de InterProScan](#interproscan-submit) pour la configuration et les étapes.
 
 Le **Genomes → Clustal Omega** aligne au moins trois enregistrements uniques de protéines, d'ADN ou d'ARN FASTA. Configurez l'e-mail de contact demandé par le service, soumettez une fois, conservez l'ID de travail, puis vérifiez l'état et enregistrez l'alignement retourné. [Déroulement de l'alignement de plusieurs séquences](../workflows/multiple-sequence-alignment.md).
 
@@ -244,3 +244,25 @@ Activer la famille correspondante dans **Settings → Connectors**, puis indique
 | Archives Omics → MGnify | Lister les fichiers de résultats par l'adhésion à l'analyse MGYA | Retourne le type, la catégorie, l'URL en amont et la taille lorsque signalé. Aucun octet de fichier n'est téléchargé; Les tailles manquantes ou les URL restent nulles. |
 
 Consultez le [Référence de fonctionnement Connector](../reference/connector-operations.md) pour connaître les champs, les conditions et les exemples requis.
+
+## Trouver des fichiers de statistiques sommaires GWAS {/* #gwas-summary-statistics */}
+
+Activer **Génétique humaine** pour Main dans **Settings → Connectors**. Demandez la découverte de statistiques sommaires avec le **Adhésion à GCST** de l'étude, et conservez les URLs de fichiers originales/harmonisées retournées, les métadonnées et le génome de référence déclaré. La recherche publique ne nécessite pas de clé API.
+
+`gwas_get_summary_statistics` liste les fichiers d'étude et lit les métadonnées disponibles YAML; il ne télécharge pas les grandes tables d'association. Ses définitions de colonnes GWAS-SSF décrivent la norme, et non un en-tête de fichier inspecté. Téléchargez le fichier prévu séparément et vérifiez ses colonnes réelles, la construction du génome, l'effet allèle et les unités avant l'analyse. Les résultats significatifs des associations ne remplacent pas les statistiques sommaires complètes. [Paramètres et sortie](../reference/connector-operations.md#gwas_get_summary_statistics).
+
+## Soumettre une séquence protéique à InterProScan {/* #interproscan-submit */}
+
+1. Activer **InterProScan** pour Main dans **Settings → Connectors**. Dans **Settings → Credentials → Literature access**, enregistrez l'e-mail de contact valide utilisé pour les emplois EMBL-EBI; aucune clé API n'est requise.
+2. Fournir une séquence protéique ou une protéine unique nommée FASTA enregistre et demande de soumission une fois. La séquence et le courriel de contact sont envoyés à EMBL-EBI. Une demande accepte jusqu'à 1,000 enregistrements, 10,000 résidus par séquence et un corps de requête encodé 4 MiB.
+3. Conserver le **job_id** retourné. **SUBMITTED** avec **ready: false** est un reçu, pas un résultat d'annotation. Vérifier que **État** est séparé d'au moins dix secondes; le scrutin n'est pas automatique.
+4. Après **FINISHED**, demandez **résultats** et enregistrez le TSV complet avant l'expiration du résultat distant. Une réponse sur la limite de récupération de 2 MiB échoue plutôt que de renvoyer silencieusement un rapport tronqué.
+5. Vérifiez les identificateurs de protéines, les applications sources et les coordonnées inclusives basées sur 1. Les notes provenant de différentes applications membres ne sont pas interchangeables; aucun résultat ne prouve qu'une protéine manque de fonction.
+
+Évitez la soumission de duplicata après un délai : récupérez d'abord un ID d'emploi connu. L'annulation d'une demande locale n'annule pas un emploi à distance soumis. Voir [paramètres de soumission, d'état et de résultats](../reference/connector-operations.md#family-27).
+
+## Trouver des preuves TCR et BCR dans IEDB {/* #iedb-receptors */}
+
+Activez **IEDB** pour Main et demandez **search_tcrs** ou **search_bcrs** avec au moins un filtre biologique ou de preuve. La pagination seule est insuffisante. Utiliser `sequence` pour la séquence **épitope**; Les séquences `chain1_cdr3` et `chain2_cdr3` du récepteur de filtre CDR3. Ces recherches publiques n'ont pas besoin de clé API.
+
+Conservez l'ID du groupe récepteur, les chaînes, les ID d'essai déclarés et les publications sources. Les filtres d'hôte et de résultat s'appliquent aux groupes agrégés et peuvent être satisfaits par différentes expériences. Pour établir que les conditions se produisent dans le même essai, suivez les ID de l'essai rapportés dans l'opération d'essai correspondante et appliquez les filtres requis là-bas. La pagination couvre les groupes récepteurs, pas l'intégralité de chaque exportation intégrée. Ces dossiers sont des données probantes, et non une prédiction de la liaison des récepteurs. [Paramètres IEDB](../reference/connector-operations.md#family-33).

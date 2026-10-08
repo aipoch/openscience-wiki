@@ -211,3 +211,26 @@ can actually read.
 ## 웹 사이트가 로그인 유지 {/* #persistent-source-preview */}
 
 Live Source 웹 사이트에 대한 내장 브라우저 미리보기는 방문 및 앱 재시작을 통해 사이트 세션을 유지합니다. 소스가 기존 계정이 필요하면 그 소스 페이지에 로그인하고 계속 읽기. 미리보기를 닫지 않는 웹 사이트; 웹 사이트의 자체 서명 아웃 동작을 사용해야합니다. 로그인 유지는 자동으로 에이전트 전체 텍스트 액세스 또는 네트워크 액세스 규칙을 변경하지 않습니다.
+
+## 새로 업로드된 PDF에 대해 {/* #uploaded-first-message */}
+
+<p className="example-label"><strong>실습 예제</strong> 업로드 된 종이에 열 안정성 증거를 찾습니다.</p>
+
+이 예제는 동일한 오픈 액세스 Lang 외를 사용합니다. 위의 종이, 로컬 PDF로 업로드 **Codex subscription**과 새로운 대화.
+
+1. **New**을 선택하고 **+ → Attach files**을 선택하고 PDF를 선택하십시오. 완료 할 업로드를 기다립니다.
+2. 첨부된 PDF을 열고 첫 번째 요청을 보내기 전에 **읽기** 컨텍스트를 확인하십시오.
+3. 다음 질문을, 다음 읽기 - 도구 결과를 확장하고 답변의 페이지 참조를 검사합니다.
+
+```text
+Read the attached paper. Identify its title and DOI, and tell me which
+figure shows the experimental evidence for thermal stability. Give the
+PDF page and distinguish the paper text from any figure image you can
+inspect. Keep the response in English.
+```
+
+![업로드 PDF 및 첫 번째 요청 전에 문헌을 읽으십시오.](/img/open-science/v0351/first-pdf-draft.webp)
+
+응답은 종이 텍스트와 캡션에서 **PDF 페이지 3에서 그림 1**을 확인, DOI `10.1038/s41467-018-08136-3`와 함께. 페이지를 여십시오 3 및 소스와 인용 된 패널을 비교합니다. 텍스트 검색은 혼자 추출 된 그림 이미지를 제공하지 않았다 : 이미지에서 명시적으로 구별 된 읽기 쉬운 텍스트는 검사 할 수 없습니다. 시각 해석을 위해, 첫번째 사용 [그림 및 표](#pdf-extraction)는 추출한 지역을 검열합니다.
+
+![원본 PDF과 이미지 액세스의 제한으로 완료된 첫 번째 메시지 응답](/img/open-science/v0351/first-pdf-answer.webp)

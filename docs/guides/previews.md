@@ -211,3 +211,26 @@ For highlights and document-level notes, continue with [PDF annotations](pdf-not
 ## Keep a source website signed in {/* #persistent-source-preview */}
 
 The built-in browser preview for live source websites retains its site session across visits and app restarts. If a source requires an existing account, sign in on that source's page and continue reading. Closing the preview does not sign out of the website; use the website's own sign-out action when needed. Retaining a login does not automatically give the agent full-text access or change network access rules.
+
+## Ask about a newly uploaded PDF {/* #uploaded-first-message */}
+
+<p className="example-label"><strong>Worked example</strong> Locate thermal-stability evidence in an uploaded paper</p>
+
+This example uses the same open-access Lang et al. paper above, uploaded as a local PDF into a new conversation with **Codex subscription**.
+
+1. Select **New**, then **+ → Attach files** and choose the PDF. Wait for the upload to finish.
+2. Open the attached PDF and check the **Reading** context before sending the first request.
+3. Ask the following question, then expand the reading-tool results and inspect the answer's page references.
+
+```text
+Read the attached paper. Identify its title and DOI, and tell me which
+figure shows the experimental evidence for thermal stability. Give the
+PDF page and distinguish the paper text from any figure image you can
+inspect. Keep the response in English.
+```
+
+![The uploaded PDF and Reading context before the first request](/img/open-science/v0351/first-pdf-draft.webp)
+
+The response identified **Figure 1 on PDF page 3** from the paper text and caption, alongside DOI `10.1038/s41467-018-08136-3`. Open page 3 and compare the cited panels with the source. Text search alone did not provide extracted figure images: the answer explicitly distinguished readable text from images it could not inspect. For visual interpretation, first use [Figures & Tables](#pdf-extraction) and inspect the extracted region.
+
+![The completed first-message response with the original PDF and the limits of image access stated](/img/open-science/v0351/first-pdf-answer.webp)

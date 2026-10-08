@@ -2,7 +2,7 @@
 title: "從基因名稱獲取蛋白序列並完成 BLAST 比對"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -113,4 +113,4 @@ result as unavailable.
 
 <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">HMMER 原始響應</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">結構域解釋</ExampleDownload>
 
-HMMER 的輸入隨程式變化。本例使用蛋白質序列與 **hmmscan**，其他程式見[操作參考](../reference/connector-operations.md#family-26)。**InterProScan** 則用於查詢已有任務狀態並獲取 TSV 結果，不提供提交任務的操作。
+HMMER 的輸入隨程式變化。本例使用蛋白質序列與 **hmmscan**，其他程式見[操作參考](../reference/connector-operations.md#family-26)。**InterProScan** 可以提交蛋白序列、查詢任務狀態並獲取 TSV 註釋。配置聯絡郵箱後，按[提交步驟](../tools/databases.md#interproscan-submit)操作；其成員資料庫結果與本例的 HMMER 結果分開解釋。

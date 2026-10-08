@@ -211,3 +211,26 @@ Para los aspectos más destacados y las notas a nivel de documentos, continúe c
 ## Mantenga un sitio web de origen firmado en {/* #persistent-source-preview */}
 
 La vista previa del navegador incorporado para los sitios web de origen en vivo conserva su sesión del sitio a través de visitas y aplicaciones reinicia. Si una fuente requiere una cuenta existente, ingrese en la página de esa fuente y continúe leyendo. Cerrar la vista previa no se registra en el sitio web; utilizar la acción de registro de la página web cuando sea necesario. Retener un login no da automáticamente al agente acceso a texto completo o cambiar las reglas de acceso a la red.
+
+## Pregunte por un PDF recién subido {/* #uploaded-first-message */}
+
+<p className="example-label"><strong>Ejemplo práctico</strong> Localizar evidencia de estabilidad térmica en un papel subido</p>
+
+Este ejemplo utiliza el mismo acceso abierto Lang et al. papel arriba, subido como un PDF local en una nueva conversación con **Codex subscription**.
+
+1. Seleccione **New**, luego **+ → Attach files** y elija el PDF. Espera a que termine la carga.
+2. Abra el PDF adjunto y compruebe el contexto **Lectura** antes de enviar la primera solicitud.
+3. Haga la siguiente pregunta, luego amplíe los resultados de lectura-herramienta e inspeccione las referencias de la página de la respuesta.
+
+```text
+Read the attached paper. Identify its title and DOI, and tell me which
+figure shows the experimental evidence for thermal stability. Give the
+PDF page and distinguish the paper text from any figure image you can
+inspect. Keep the response in English.
+```
+
+![El contexto de PDF y Reading subido antes de la primera solicitud](/img/open-science/v0351/first-pdf-draft.webp)
+
+La respuesta identificó **Figura 1 en la página PDF 3** del texto y la capción del papel, junto con DOI `10.1038/s41467-018-08136-3`. Abra la página 3 y compare los paneles citados con la fuente. La búsqueda de texto por sí sola no proporcionó imágenes de figuras extraídas: la respuesta distinguió explícitamente texto legible de imágenes que no podía inspeccionar. Para la interpretación visual, use primero [Figuras y tablas](#pdf-extraction) e inspeccione la región extraída.
+
+![La respuesta completa del primer mensaje con el PDF original y los límites del acceso a la imagen declarados](/img/open-science/v0351/first-pdf-answer.webp)

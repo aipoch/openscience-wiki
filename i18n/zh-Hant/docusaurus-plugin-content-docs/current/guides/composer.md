@@ -8,6 +8,19 @@ last_update:
 
 Composer 向當前會話傳送指令與輸入引用，並允許在執行期間準備後續請求。**Queue · Not saved** 表示排隊請求尚未成為已儲存的對話指令。
 
+## 從研究任務建議開始 {/* #research-starters */}
+
+空白會話頁在輸入區旁提供 **Analyze data**、**Compare papers**、**Find literature**、**Create charts** 等任務建議。使用箭頭可以檢視更多選項。
+
+1. 在目標專案中點選 **New**。
+2. 選擇 **Explain a paper** 等建議。它會把可編輯的請求填入輸入區，不會直接傳送。
+3. 附上實際論文或資料，等待上傳完成，再把通用請求改成自己的問題和預期輸出。
+4. 檢查模型、附件及請求後傳送。收到回答後，開啟來源和結果檔案核對。
+
+![新會話中的研究任務建議與緊湊的研究包匯入入口](/img/open-science/v0351/new-conversation.webp)
+
+**Import previous research** 是獨立的 `.science` 研究包匯入入口。選擇任務建議不會匯入研究包，也不會自動提供示例資料。
+
 ## 準備可驗收的請求 {/* #准备可验收的请求 */}
 
 在目標專案中選擇 **New**，於 **Ask anything** 輸入請求，說明輸入、希望得到的檔案及方法約束。完整起步示例見[第一個專案](first-project.md)。

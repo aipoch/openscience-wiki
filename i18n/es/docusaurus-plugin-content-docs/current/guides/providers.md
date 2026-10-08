@@ -234,3 +234,15 @@ v0.34.0 añade **MiniMax M3.1 Flash Preview** y **Claude Sonnet 5.5**. Seleccion
 v0.34.1 añade **gpt-6.1-sol** al catálogo modelo Codex. Seleccione explícitamente en el selector modelo, luego envíe una pequeña solicitud para confirmar el acceso a la cuenta. Actualizar la aplicación no reemplaza automáticamente el modelo Main guardado.
 
 v0.35.0 amplía el catálogo **OpenCode Zen** y añade soporte de clasificación Jev. Revise el selector de función específica: un modelo disponible para una tarea de clasificación no es automáticamente el modelo Main. Mantenga su proveedor Main configurado a menos que cambie deliberadamente; La configuración de clasificación está cubierta en [Modelos](models.md#classification-models).
+
+## Añadir Requesty {/* #requesty */}
+
+1. Abre **Settings → Model → Add provider**.
+2. En **Provider type**, elija **Requesty** bajo **Official API**. Esta entrada incorporada proporciona su punto final; a No se requiere una URL de gateway personalizado.
+3. Comprueba **Name** e introduce tu tecla Requesty en **API key**. **Obtener una clave API** abre la página de gestión clave de Requesty. Mantén la llave oculta.
+4. Revise **Supported models**, luego seleccione **Test connection** o **Save** y espere la validación. Una llave perdida deja estos controles indisponibles.
+5. Después de que el proveedor se guarda con éxito, seleccione un modelo ofrecido en el selector de modelo previsto y envíe una pequeña solicitud. Revise la respuesta real antes de iniciar la investigación.
+
+![Requesty seleccionado en el formulario oficial del proveedor, mostrando la llave API necesaria y los modelos compatibles](/img/open-science/v0351/requesty-form.webp)
+
+Requesty utiliza `https://router.requesty.ai`; el agente activo determina qué protocolo y modelos compatibles se ofrecen. El acceso y la cuota dependen de la cuenta Requesty. Añadiendo a este proveedor no reemplaza automáticamente el modelo Main guardado. v0.35.1 también actualiza el catálogo OpenRouter; use el picker actual en lugar de copiar un ID modelo de una vieja captura de pantalla.

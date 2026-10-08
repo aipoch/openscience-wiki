@@ -2,7 +2,7 @@
 title: "Find a protein sequence and complete a BLAST search"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -113,4 +113,4 @@ This run returned **Globin · PF00042.28**, with an included domain at query res
 
 <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">Raw HMMER response</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">Domain interpretation</ExampleDownload>
 
-HMMER inputs depend on the selected program. The example uses a protein sequence with **hmmscan**; see the [operation reference](../reference/connector-operations.md#family-26) for other programs. **InterProScan** separately retrieves the status and TSV results of an existing job; it does not submit one.
+HMMER inputs depend on the selected program. The example uses a protein sequence with **hmmscan**; see the [operation reference](../reference/connector-operations.md#family-26) for other programs. **InterProScan** can submit a protein sequence, check the job and retrieve TSV annotations. Configure its contact email and follow the [submission steps](../tools/databases.md#interproscan-submit); its member-database results are separate from this HMMER example.

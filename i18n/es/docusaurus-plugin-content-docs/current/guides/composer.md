@@ -8,6 +8,19 @@ last_update:
 
 El Compositor envía instrucciones y referencias de entrada a la sesión actual y le permite preparar seguimiento durante la ejecución. **Queue · No guardada** significa que una solicitud solicitada aún no se ha convertido en una instrucción de transcripción guardada.
 
+## Empieza por una idea de investigación {/* #research-starters */}
+
+La página de conversación vacía ofrece **Analyze data**, **Compare papers**, **Find literature**, **Create charts** y otros inicios de investigación junto al Composer. Utilice las flechas para ver más opciones.
+
+1. Abrir **New** en el proyecto previsto.
+2. Elige un starter como **Explain a paper**. Llena al Compositor con una solicitud editable; elegir no envía un mensaje.
+3. Adjunte el papel o los datos reales, espere la carga y reemplace la solicitud general con su pregunta y la salida esperada.
+4. Compruebe el modelo, los adjuntos y la solicitud, luego enviar. Abra las fuentes y archivos devueltos antes de aceptar el resultado.
+
+![Inicio de investigación y la entrada compacta de importación de paquetes de investigación en una nueva conversación](/img/open-science/v0351/new-conversation.webp)
+
+**Import previous research** es la entrada separada para un paquete `.science`. Elegir un starter de investigación no importa un paquete ni proporciona datos de ejemplo.
+
 ## Prepare una solicitud con un resultado verificable {/* #prepare-a-request-with-a-checkable-outcome */}
 
 Seleccione **New** en el proyecto previsto e ingrese una solicitud en **Ask anything**. Nombra la entrada, la salida deseada y cualquier limitación de método. Para un ejemplo de inicio completo, siga [Su primer proyecto](first-project.md).
@@ -120,4 +133,4 @@ Fuentes: [Controles de las colas](https://github.com/aipoch/open-science/blob/v0
 
 ## Suelta archivos en una conversación {/* #conversation-drop */}
 
-Puede arrastrar archivos locales en el área de conversación, no sólo el Compositor. Espere a que los chips adjuntos y cualquier subida a terminar, inspeccione los nombres de archivo, luego envíe la solicitud. Los archivos de desplegables no envían el mensaje. Para importar un paquete de investigación `.science`, utilice **Importar investigación anterior** en la página de conversación vacía; ver [Paquetes de investigación](research-packages.md).
+Puede arrastrar archivos locales en el área de conversación, no sólo el Compositor. Espere a que los chips adjuntos y cualquier subida a terminar, inspeccione los nombres de archivo, luego envíe la solicitud. Los archivos de desplegables no envían el mensaje. Para importar un paquete de investigación `.science`, utilice **Import previous research** en la página de conversación vacía; ver [Paquetes de investigación](research-packages.md).

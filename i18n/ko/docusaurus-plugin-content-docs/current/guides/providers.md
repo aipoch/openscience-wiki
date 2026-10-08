@@ -234,3 +234,15 @@ v0.34.0는 **MiniMax M3.1 플래시 미리보기**과 **클로드 Sonnet 5.5**�
 v0.34.1은 **gpt-6.1 솔**을 Codex 모델 카탈로그에 추가합니다. 모델 선택기에서 명시적으로 선택한 다음 계정 액세스를 확인하기 위해 작은 요청을 보냅니다. 앱을 업데이트하면 저장된 Main 모델을 자동 교체하지 않습니다.
 
 v0.35.0은 **OpenCode 젠** 카탈로그를 확장하고 Jev 분류 지원을 추가합니다. 역할별 선택기 확인: 분류 작업에 사용할 수있는 모델은 Main 모델이 자동으로 없습니다. 설정된 Main 공급자를 유지하십시오. 분류 설정은 [모델](models.md#classification-models)에 덮여있다.
+
+## Requesty 추가 {/* #requesty */}
+
+1. **Settings → Model → Add provider**을 엽니다.
+2. **Provider type**에서 **Requesty**을 **Official API**에서 선택합니다. 이 내장 항목 공급 그것의 endpoint; Custom Gateway URL은 필요하지 않습니다.
+3. **Name**을 확인하고 Requesty 키를 **API key**로 입력하세요. **API 키 받기**는 Requesty의 키 관리 페이지를 엽니다. 숨겨지는 열쇠를 유지하십시오.
+4. **Supported models**을 검토하고 **Test connection** 또는 **Save**를 선택하고 유효성을 기다리십시오. 누락 된 키는 이러한 컨트롤을 사용할 수 없습니다.
+5. 공급자가 성공적으로 저장된 후에, 예정된 모형 피커에 있는 제안한 모형을 선정하고 작은 요구를 보냅니다. 연구 시작 전에 실제적인 응답을 검사하십시오.
+
+![Requesty 공식 공급자 형태로 선정, 필요한 API 키와 지원 모델 표시](/img/open-science/v0351/requesty-form.webp)
+
+Requesty는 `https://router.requesty.ai`를 사용합니다; Active Agent는 호환되는 프로토콜과 모델이 제공된 것을 결정합니다. 액세스 및 할당량은 Requesty 계정에 따라 다릅니다. 이 공급자를 추가하면 자동으로 저장된 Main 모델을 대체하지 않습니다. v0.35.1 또한 OpenRouter 카탈로그를 새로 고침; 이전 스크린 샷에서 모델 ID를 복사하는 것보다 현재 피커를 사용합니다.

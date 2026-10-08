@@ -2,7 +2,7 @@
 title: "PDF 주석 및 문서 노트"
 description: "마크 패스, 문서 노트를 수집, 다시 찾아 읽고 읽기 사본을 수출."
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -67,6 +67,8 @@ filename, file version, 페이지는 참고를 수정할 때. PDF 참고는 Main
 
 ## 메모가 공유되는 곳 {/* #where-notes-are-shared */}
 
-**도서관 첨부**은 동일한 관리 파일 버전을 사용하는 참조, 프로젝트 및 세션에 걸쳐 노트북을 공유합니다. **프로젝트 업로드 및 artifact**은 자체 프로젝트 내에서 세션을 통해 노트북을 공유합니다. 새로운 파일 버전은 다른 주석 대상입니다: 마크가 개정된 문서에 속하기 전에 버전을 확인 합니다.
+v0.35.1에서 동일한 PDF 콘텐츠로 확인된 관리 파일 버전은 라이브러리 첨부 파일, 업로드 및 artifacts를 포함한 프로젝트 및 세션 전반에 걸쳐 하나의 문서 노트북을 공유할 수 있습니다. Verification는 파일 체크섬과 크기, 그 이름 또는 DOI을 사용합니다. Identical filenames 혼자서 공유 노트를 설정하지 마십시오; 개정된 종이에 있는 바이트는 오래된 표를 상속하기 위하여 가정되어야 합니다.
+
+다른 프로젝트에서 동일한 PDF을 열고 **Notes & Annotations**을 검사하고 **Show annotation source**를 사용하여 저장된 페이지와 통행을 검사합니다. 메모가 복부되면 동일한 콘텐츠 버전을 열 수 있으며 관리 된 파일이 여전히 읽기 쉽습니다.
 
 이 노트는 로컬에 저장하고 기계 전체에 동기화하지 않습니다. 손전등의 경우, 노트 또는 annotated PDF을 내보내고 수신자가 수신되는 것을 확인합니다. 이 개인 세션 북마크를 변경하지 않거나 [.science 연구 패키지](research-packages.md)의 모든 읽기 메모 부분을 만들 수 없습니다.

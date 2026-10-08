@@ -8,6 +8,19 @@ last_update:
 
 Composer는 현재 세션에 대한 지침 및 입력 참조를 보내고 실행 중 후속을 준비 할 수 있습니다. **Queue · 저장되지 않음**은 누락된 요청이 아직 저장되지 않았습니다.
 
+## 연구 아이디어에서 시작 {/* #research-starters */}
+
+빈 대화 페이지는 Composer 옆에 **Analyze data**, **Compare papers**, **Find literature**, **Create charts** 및 다른 연구 시작자를 제공합니다. 더 많은 선택을 볼 수 화살표를 사용합니다.
+
+1. 예정된 프로젝트에서 **New**을 엽니다.
+2. **Explain a paper**과 같은 시동기를 선택하십시오. 편집 가능한 요청을 가진 Composer를 채웁니다; 메시지를 보낼 수 없습니다.
+3. 실제 용지 또는 데이터를 첨부하고 업로드를 기다리며 일반적인 요청을 질문 및 예상 출력으로 대체하십시오.
+4. 모델, 첨부 파일 및 요청을 확인한 다음 보내주세요. 결과를 받아들일 전에 반환된 소스 및 파일을 엽니다.
+
+![연구 시작자와 새로운 대화에서 컴팩트 한 연구 패키지 수입 항목](/img/open-science/v0351/new-conversation.webp)
+
+**Import previous research**은 `.science` 패키지에 별도의 항목입니다. 연구 시작자를 선택하면 패키지 또는 공급 예제 데이터를 가져올 수 없습니다.
+
 ## checkable outcome와 요청을 준비하십시오. {/* #prepare-a-request-with-a-checkable-outcome */}
 
 **New**을 선택한 후 **Ask anything**의 요청을 입력합니다. 입력, 원한 산출 및 어떤 방법 constraints를 이름. 완전한 시작 예시, [첫 번째 프로젝트](first-project.md)을 따르십시오.
@@ -120,4 +133,4 @@ Hover 또는 **복사 테이블** (Markdown, CSV 또는 TSV), **다운로드 테
 
 ## 드롭 파일로 대화 {/* #conversation-drop */}
 
-대화 영역에서 로컬 파일을 드래그 할 수 있습니다. Composer는 없습니다. 첨부 파일 칩 및 마무리에 업로드를 기다리면 파일 이름을 검사하고 요청을 보내주십시오. 삭제 파일은 메시지를 보낼 수 없습니다. `.science` 연구 패키지를 가져 오기 위해 빈 대화 페이지에 **이전 연구 가져오기**을 사용하십시오. [연구 패키지](research-packages.md) 참조.
+대화 영역에서 로컬 파일을 드래그 할 수 있습니다. Composer는 없습니다. 첨부 파일 칩 및 마무리에 업로드를 기다리면 파일 이름을 검사하고 요청을 보내주십시오. 삭제 파일은 메시지를 보낼 수 없습니다. `.science` 연구 패키지를 가져 오기 위해 빈 대화 페이지에 **Import previous research**을 사용하십시오. [연구 패키지](research-packages.md) 참조.

@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.35.0** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.0.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
+한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.35.1** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.1.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
 
 
 ## 뚱 베어 {/* #family-1 */}
@@ -2753,6 +2753,19 @@ PheWeb 인스턴스를 검색's 페형 (및 엔티티티티티) 이름 - 페니�
 const result = await host.mcp("human-genetics", "phewas_search_phenotypes", {"query": "diabetes", "instance": "finngen"})
 ```
 
+### `gwas_get_summary_statistics` {/* #gwas_get_summary_statistics */}
+
+잠재적으로 거대한 데이터 파일을 다운로드하지 않고 하나의 GCST 액세스를위한 완벽한 GWAS 카탈로그 요약 통계 패키지를 검사합니다. accession이 FTP 디렉토리가없는 경우 find=false를 반환합니다. 그렇지 않으면 HTTPS FTP 디렉토리, 원래 및 조화 된 파일 목록, 파싱 -meta.yaml 레코드, genome 어셈블리 및 조화 참조는 그 레코드에 의해 선언, 그리고 현재 GWAS-SSF 표준 열 정의. 열 정의는 압축 된 데이터 파일에서 관찰 된 헤더가 아닌 표준을 설명합니다. 선택한 전체 데이터셋을 다운로드하려면 반환된 파일 URL을 사용하십시오. Args: accession_id (GCST 액세스, 예. GCST90000123); metadata_file (선택적인 정확한 YAML 파일명은 메타데이터 파싱을 제한하고 둘 다 참고 summaries; 파일 목록은 완료 남아 있습니다). FTP 디렉토리는 액세스의 수천 건의 버킷에서 파생됩니다. YAML 또는 읽을 수없는 기존 디렉토리는 업스트림 오류가 남아 있습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `accession_id` | 문자열 | **필수** |
+| `metadata_file` | 문자열 | 선택 사항; 최소 길이: 1 |
+
+```javascript
+const result = await host.mcp("human-genetics", "gwas_get_summary_statistics", {"accession_id": "GCST90000123"})
+```
+
 </ToolOperationGroup>
 
 ## 패스워드 {/* #family-14 */}
@@ -4622,6 +4635,19 @@ const result = await host.mcp("interproscan", "status", {"job_id":"iprscan5-R202
 const result = await host.mcp("interproscan", "results", {"job_id":"iprscan5-R20260922-123456-0123-12345678-p1m"})
 ```
 
+### `submit` {/* #submit */}
+
+EMBL-EBI InterProScan에 한 개 이상의 단백질 시퀀스를 동시 도메인 및 가족 할당에 제출하십시오. 대부분의 1,000 레코드에서 원시 단백질 시퀀스 또는 FASTA 입력을 수락하고 기록 당 10,000 잔류물의 지역 제한 및 4 MiB 인코딩 요청 신체 제한. 즉시 job_id을 반환하고 결코 오염되지 않습니다. job_id을 유지하고 상태 체크 사이 최소 10 초를 기다리는 후에 상태를 호출하고 결과를 직접 호출하십시오. 분실된 응답은 받아들일 일을 대표할 수 있습니다; 자동을 재조정하지 마십시오. 유효한 접촉 이메일은 요구됩니다. Settings → Credentials → 문학 액세스에서 연락처 이메일을 설정합니다. 이 이메일은 EMBL-EBI로 전송됩니다. 재시작 후 정확한 job_id을 유지하십시오. 이 연결관은 아무 일 등록도, 결과 캐시 또는 배경 polling를 추가합니다. 취소, 앱 종료 및 로컬 요청을 제거; 이 커넥터는 원격 작업을 취소하거나 삭제할 수 없습니다. 결과 expiry는 EMBL-EBI에 의해 통제됩니다. Sequences와 접촉 이메일은 EMBL-EBI에 보내집니다; 도구 입력 및 출력은 대화 또는 Notebook 지속에 유지될 수 있습니다. 일괄 처리에 30 이상의 일자리를 제출하고 더 많은 제출하기 전에 처리 / 이력서를 기다립니다; 크로스 콜 스로틀링은 시행되지 않습니다. TSV의 대부분의 2 MiB에서 기존 결과 도구가 반환되며 더 큰 보고서를 거부합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `sequence` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 4194304 |
+| `title` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200 |
+
+```javascript
+const result = await host.mcp("interproscan", "submit", {"sequence":">query\nMKTIIALSYIFCLVFADYKDDDDK"})
+```
+
 </ToolOperationGroup>
 
 ## Pathway Commons {/* #family-28 */}
@@ -5123,6 +5149,66 @@ epitope, 호스트, 항원 소스, MHC 및 증거 필터와 IEDB 참조를 검�
 
 ```javascript
 const result = await host.mcp("iedb", "search_references", {"reference_id": 1023094, "limit": 20})
+```
+
+### `search_tcrs` {/* #search_tcrs */}
+
+epitope, 수용체 CDR3, 주인, 항원, MHC 및 문학 증거에 의하여 IEDB TCR 수용체 그룹을 찾아보십시오. 순서 필터 일치 epitope linear_sequences; chain1_cdr3와 chain2_cdr3 경기 수용체 사슬 CDR3 순서. 체인, curated/calculated 유전자 주석 및 연결 된 분석실험 및 참조와 tcr_export 레코드를 포함합니다. 필터 선택 수용체 그룹; 임베디드 수출 기록은 이러한 기준에 의해 개별적으로 필터링되지 않습니다. 집계된 주인 및 outcome 필터는 동일한 그룹에서 다른 실험과 일치할 수 있습니다. 저장소 수출은 주인 또는 qualitative outcome 분야를 포함하지 않습니다. 실험 수준의 공동 작업에 대해서는 assay__iedb_ids 및 쿼리 search_tcell_assays, search_bcell_assays 또는 search_mhc_assays와 같은 assay_id 및 실험 필터를 따르십시오. 적어도 1개의 생물학 또는 증거 여과기는 요구됩니다; 제한 및 오프셋은 필터가 아닙니다. 데이터베이스 관측, 예측하지. 부정적인 결과를 밝히고 누락된 결과가 나타낸다. MHC ligand elution는 의무적인 친화성 측정이 아닙니다; response_measured, 방법 및 단위를 함께 해석하십시오. 부모 항원은 대표 단백질이며, 정확히 curated 항원 또는 epitope 순서와 일치하지 않을 수 있습니다. `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`를 가진 cross_references.parent_uniprot_accessions 또는 curated_uniprot_accessions를 사용하십시오; cross_references.pdb_ids을 `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`로 사용합니다. 이 명시된 업스트림 크로스 환경, 순서 파생 된 매핑 하지. 불러 오기 전에 각 매치 커넥터 기술을로드하십시오.
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`sequence`/`receptor_group_id`/`chain1_cdr3`/`chain2_cdr3`의 적어도 하나 제공하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `epitope_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `reference_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `host_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `source_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `antigen_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `uniprot_accession` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;A-Z0-9·&#123; 6&#125;(?:&#91;A-Z0-)9·&#123; 4&#125;)?(?:-&#91;1- - -9₢ 킹0- - -9&#93;&#42;)?(?!&#91;\\\\\S&#93;)" |
+| `mhc_allele` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `mhc_class` | 문자열 | 위의 조건에 따라; ENum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `assay_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `pdb_id` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\\\S&#93;)" |
+| `sequence` | 문자열 | 위의 조건에 따라; 최대 길이: 1000; 패턴: "^&#91;A-Za-z&#93;+(?!&#91;\\\\\\\\S&#93;)" |
+| `receptor_group_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `chain1_cdr3` | 문자열 | 위의 조건에 따라; 최대 길이: 1000; 패턴: "^&#91;A-Za-z&#93;+(?!&#91;\\\\\\\\S&#93;)" |
+| `chain2_cdr3` | 문자열 | 위의 조건에 따라; 최대 길이: 1000; 패턴: "^&#91;A-Za-z&#93;+(?!&#91;\\\\\\\\S&#93;)" |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_tcrs", {"epitope_id": 25750, "limit": 20})
+```
+
+### `search_bcrs` {/* #search_bcrs */}
+
+epitope, 수용체 CDR3, 주인, 항원, MHC 및 문학 증거에 의하여 IEDB BCR 수용체 그룹을 찾아보십시오. 순서 필터 일치 epitope linear_sequences; chain1_cdr3와 chain2_cdr3 경기 수용체 사슬 CDR3 순서. 체인, curated/calculated 유전자 주석 및 연결 된 분석실험 및 참조와 bcr_export 레코드를 포함합니다. 필터 선택 수용체 그룹; 임베디드 수출 기록은 이러한 기준에 의해 개별적으로 필터링되지 않습니다. 집계된 주인 및 outcome 필터는 동일한 그룹에서 다른 실험과 일치할 수 있습니다. 저장소 수출은 주인 또는 qualitative outcome 분야를 포함하지 않습니다. 실험 수준의 공동 작업에 대해서는 assay__iedb_ids 및 쿼리 search_tcell_assays, search_bcell_assays 또는 search_mhc_assays와 같은 assay_id 및 실험 필터를 따르십시오. 적어도 1개의 생물학 또는 증거 여과기는 요구됩니다; 제한 및 오프셋은 필터가 아닙니다. 데이터베이스 관측, 예측하지. 부정적인 결과를 밝히고 누락된 결과가 나타낸다. MHC ligand elution는 의무적인 친화성 측정이 아닙니다; response_measured, 방법 및 단위를 함께 해석하십시오. 부모 항원은 대표 단백질이며, 정확히 curated 항원 또는 epitope 순서와 일치하지 않을 수 있습니다. `host.mcp("genes", "get_uniprot_entries", {accessions:[...]})`를 가진 cross_references.parent_uniprot_accessions 또는 curated_uniprot_accessions를 사용하십시오; cross_references.pdb_ids을 `host.mcp("structures", "pdb_get_structures", {pdb_ids:[...]})`로 사용합니다. 이 명시된 업스트림 크로스 환경, 순서 파생 된 매핑 하지. 불러 오기 전에 각 매치 커넥터 기술을로드하십시오.
+
+`epitope_id`/`reference_id`/`host_taxonomy_id`/`source_taxonomy_id`/`antigen_iri`/`uniprot_accession`/`mhc_allele`/`mhc_class`/`qualitative_measure`/`assay_iri`/`pdb_id`/`sequence`/`receptor_group_id`/`chain1_cdr3`/`chain2_cdr3`의 적어도 하나 제공하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `epitope_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `reference_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `host_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `source_taxonomy_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `antigen_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `uniprot_accession` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;A-Z0-9·&#123; 6&#125;(?:&#91;A-Z0-)9·&#123; 4&#125;)?(?:-&#91;1- - -9₢ 킹0- - -9&#93;&#42;)?(?!&#91;\\\\\S&#93;)" |
+| `mhc_allele` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `mhc_class` | 문자열 | 위의 조건에 따라; ENum: &#91;"I", "II"&#93; |
+| `qualitative_measure` | 문자열 | 위의 조건에 따라; 최소 길이: 1; 최대 길이: 300; 패턴 : " \ S" |
+| `assay_iri` | 문자열 | 위의 조건에 따라; 최대 길이: 200; 패턴: "^&#91;A-Za-z&#93;&#91;A-Za-z0-9_&#93;*:&#91;A-Za-z0-9&#93; &#91;A-Za-z0-9._:-&#93;*(?!&#91;\\\\\S&#93;)" |
+| `pdb_id` | 문자열 | 위의 조건에 따라; 패턴 : "^&#91;0-9&#93;&#91;A-Za-z0-9&#93;&#123; 3&#125;(?!&#91;\\\\\S&#93;)" |
+| `sequence` | 문자열 | 위의 조건에 따라; 최대 길이: 1000; 패턴: "^&#91;A-Za-z&#93;+(?!&#91;\\\\\\\\S&#93;)" |
+| `receptor_group_id` | 정수 | 위의 조건에 따라; 최소: 1; 최대: 9007199254740991 |
+| `chain1_cdr3` | 문자열 | 위의 조건에 따라; 최대 길이: 1000; 패턴: "^&#91;A-Za-z&#93;+(?!&#91;\\\\\\\\S&#93;)" |
+| `chain2_cdr3` | 문자열 | 위의 조건에 따라; 최대 길이: 1000; 패턴: "^&#91;A-Za-z&#93;+(?!&#91;\\\\\\\\S&#93;)" |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+
+```javascript
+const result = await host.mcp("iedb", "search_bcrs", {"epitope_id": 25750, "limit": 20})
 ```
 
 </ToolOperationGroup>

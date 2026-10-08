@@ -2,7 +2,7 @@
 title: "Trouvez une séquence protéique et effectuez une recherche BLAST"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -113,4 +113,4 @@ Cette exécution a retourné **Globine · PF00042.28**, avec un domaine inclus a
 
 <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_raw.json">Réponse du HMMER brut</ExampleDownload> · <ExampleDownload path="/examples/v0331/p69905_pfam_hmmscan_interpretation.md">Interprétation du domaine</ExampleDownload>
 
-Les entrées HMMER dépendent du programme sélectionné. L'exemple utilise une séquence protéique avec **C'est bon.**; voir le [Référence de l'opération](../reference/connector-operations.md#family-26) pour d'autres programmes. **InterProScan** récupère séparément l'état et les résultats TSV d'un emploi existant; il ne le soumet pas.
+Les entrées HMMER dépendent du programme sélectionné. L'exemple utilise une séquence protéique avec **C'est bon.**; voir le [Référence de l'opération](../reference/connector-operations.md#family-26) pour d'autres programmes. **InterProScan** peut soumettre une séquence de protéines, vérifier le travail et récupérer les annotations TSV. Configurez son courriel de contact et suivez le [étapes de soumission](../tools/databases.md#interproscan-submit); les résultats de sa base de données membres sont distincts de cet exemple HMMER.

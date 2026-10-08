@@ -2,7 +2,7 @@
 title: PDF annotations and document notes
 description: Mark passages, collect document notes, find them again and export a reading copy.
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-08'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -67,6 +67,8 @@ The example saves two notes: one highlight with a comment and one document note.
 
 ## Where notes are shared
 
-A **Library attachment** shares its notebook across references, projects and sessions that use the same managed file version. **Project uploads and artifacts** share their notebook across sessions within the owning project. A newer file version is a different annotation target: check the version before assuming a mark belongs to a revised document.
+From v0.35.1, managed file versions verified as the same PDF content can share one document notebook across projects and sessions, including Library attachments, uploads and artifacts. Verification uses the file checksum and size, not its name or DOI. Identical filenames alone do not establish shared notes; changed bytes in a revised paper should not be assumed to inherit the old marks.
+
+Open the same PDF in another project, inspect **Notes & Annotations**, then use **Show annotation source** to check the saved page and passage. If notes are absent, confirm that you opened the same content version and that its managed file is still readable.
 
 These notes are stored locally and do not synchronize across machines. For a handover, export the notes or an annotated PDF and check what the recipient will receive. This does not change private session bookmarks or make every reading note part of a [.science research package](research-packages.md).

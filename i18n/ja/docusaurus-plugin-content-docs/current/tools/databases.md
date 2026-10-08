@@ -13,7 +13,7 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v0.35.0は**337 操作で 33 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを339に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
+Open-Science v0.35.1は**341 操作で 33 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを343に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
@@ -29,7 +29,7 @@ Open-Science v0.35.0は**337 操作で 33 のデータソース コネクタ**�
 | ChEMBL · `chembl` | ChEMBL | 6 | CEMBL REST API による生体活性化合物、薬物、標的、生体活性およびメカニズム。  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | BioRxiv/medRxiv のプリプリント — 日付/カテゴリ、DOI によるメタデータ、ジャーナル公開リンク、ファンダリスト、およびプラットフォームの統計による検索。  |
 | 薬物規制・ `drug-regulatory` | オープンFDA | 10 | Drugs@FDA、ラベル、FAERSの副作用報告および薬剤のrecalls。 |
-| Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | GWASカタログ、eQTLカタログ、PheWeb PheWASポータル(FinnGen、BioBank Japan)  |
+| ヒト遺伝学・ `human-genetics` | GWASカタログ、eQTLカタログ、PheWeb | 15 | GWASカタログ、eQTLカタログ、PheWeb PheWASポータル(FinnGen、BioBank Japan)  |
 | エクスプレス・ `expression` | GTEx、Bgeeの特長 | 16 | 人間のGTExのティッシュの表現およびeQTL; Bgee のクロススペックのベースライン式。 |
 | タンパク質アノテーション・ `protein-annotation` | InterPro、Pfam、ヒトプロテインアトラス、ストリング | 14 | タンパク質ドメインアーキテクチャ、家族/クランのメンバーシップ、InterPro/Pfam、ヒューマンプロテインアトラス、STRINGによる表現アトラスと相互作用ネットワーク、ネットワークの相互作用の豊かさを含みます。 |
 | がんモデル・ `cancer-models` | cBioPortal(バイオポータル) | 10 | 研究、変異、コピー番号、サンプル、患者、臨床属性および分子プロファイル式。 |
@@ -43,13 +43,13 @@ Open-Science v0.35.0は**337 操作で 33 のデータソース コネクタ**�
 | GDC · `gdc` | NCI GDC | 5 | がんプロジェクト、例、ファイルメタデータ、オープン/コントロールラベル、およびマニフェストを転送する。 ダウンロードやアクセスの付与はありません。 |
 | Zenodo · `zenodo` | Zenodo | 2 | 公開データセット、ソフトウェアおよび出版物の発見、バージョン固有のメタデータおよびファイル在庫; アップロードやダウンロードはありません。 |
 | ムマー・ `hmmer` | EMBL-EBI HMMER3(エンブレ・エビ・ムマー3) | 3 | プログラム固有のタンパク質/プロファイル/アライメント検索、ジョブの状態と結果。 |
-| インタープロスキャン・ `interproscan` | EMBL-EBI インタープロスキャン | 2 | 既存のアノテーションジョブのステータスとTSVレポート。 投稿なし |
+| インタープロスキャン・ `interproscan` | EMBL-EBI インタープロスキャン | 3 | タンパク質シーケンスを提出し、アノテーションジョブの状態を確認し、TSVレポートを取得します。 |
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | パスウェイ検索、トップパスウェイ、グラフクエリ、BioPAXサブモデルエクスポート。 |
 | Alliance Genome Resources · `alliance` | ゲノムリソースのアライアンス | 8 | 人間とモデル組織遺伝子、オルトログ、病気モデル、フェノタイプ、アレルと表現。 |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 単一セルコレクションとデータセット、公開バージョン、ファイル形式、サイズ、ダウンロードURL。 |
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | セル・ラインの名前と同義語を見つけ、アクセスアイデンティティと品質アノテーションを検査します。 |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 生物と遺伝子対フェノタイプと遺伝子の関連と、証拠を支持する。 |
-| IEDB · `iedb` | 免疫エピトープデータベース | 6 | エピトープ、抗原、T-cell、B-cell、MHCアッセイ、およびソース出版物。 |
+| IEDB · `iedb` | 免疫エピトープデータベース | 8 | エピトープ、抗原、Tセル、B細胞、MHCアッセイ、TCR/BCRの証拠、およびソース出版物。 |
 
 [科学ビューア](viewers.md)でオフラインのモレキュラーツールがカバーされています。 それぞれのデータソースで露出した正確な操作については、[Connectorの操作の参照](../reference/connector-operations.md) を使用します。
 
@@ -213,13 +213,13 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/registry.ts)。
+カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/registry.ts)。
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 
 **ムマー**はプログラム固有のタンパク質シーケンス、プロファイルHMMおよびアライメント検索を提供します。 プログラムとデータベースを一緒に選択し、ジョブIDを保持し、**ソリューション**の後にのみ結果を取得します。 [HMMER オペレーション](../reference/connector-operations.md#family-26).
 
-**インタープロスキャン**は、EMBL-EBIサービスを通じて送信された既存のジョブのアノテーションを取得します。 ジョブ ID を保ち、ステータスを 10 秒以上離れた状態を確認し、**フィンランド語** の後の TSV を取得します。 このConnectorは、新しいジョブを送信できません。 [InterProScan オペレーション](../reference/connector-operations.md#family-27).
+**インタープロスキャン**は、v0.35.1からタンパク質シーケンス送信、ジョブステータス、TSVアノテーション検索をサポートしています。 [InterProScan 投稿](#interproscan-submit) に従ってセットアップと手順を実行します。
 
 **Genomes → Clustal Omega** は、タンパク質、DNA、RNA FASTA のレコードを3つ以上一意に名付けます。 サービスで要求される連絡先メールを構成し、一度送信し、ジョブIDを保持し、ステータスを確認し、返されたアライメントを保存します。 [複数のシーケンス・アライメント・ワークフロー](../workflows/multiple-sequence-alignment.md).
 
@@ -244,3 +244,25 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 | Omics アーカイブ → MGnify | MGYA解析アクセスによる結果ファイルを一覧表示 | 報告されたときタイプ、カテゴリ、上流 URL およびサイズを返します。 ファイルバイトはダウンロードされません。 行方不明のサイズや URL が null にとどまります。 |
 
 必要なフィールド、条件、例については、[Connectorの操作の参照](../reference/connector-operations.md) を参照してください。
+
+## GWASサマリー統計ファイルを探す {/* #gwas-summary-statistics */}
+
+**Settings → Connectors**でMainで**ヒト遺伝学**を有効にします。 研究の**GCSTアクセス**で概要統計の発見を依頼し、返された元の/調和したファイルURL、メタデータ、および参照のゲノムを保持します。 パブリックルックアップはAPIキーを必要としません。
+
+`gwas_get_summary_statistics` は、学習ファイルをリストし、利用可能な YAML メタデータを読み込みます。 大規模な関連付け表をダウンロードしません。 そのGWAS-SSFカラム定義は、検査されたファイルヘッダではなく、標準を記述します。 意図したファイルを個別にダウンロードし、実際の列、ゲノムビルド、効果アレルと単位を分析する前に確認します。 著名な協会のヒットは、完全な要約統計のための代替ではありません。 [変数および出力](../reference/connector-operations.md#gwas_get_summary_statistics).
+
+## InterProScanにタンパク質シーケンスを提出する {/* #interproscan-submit */}
+
+1. **Settings → Connectors**でMainで**インタープロスキャン**を有効にします。 **Settings → Credentials → Literature access**では、EMBL-EBIジョブに使用される有効な連絡先メールを保存します。 APIキーは必須ではありません。
+2. タンパク質のシーケンスまたは一意に名前を付けたタンパク質FASTAレコードとリクエストの投稿を一度供給します。 EMBL-EBI へメールが送られてきます。 1,000 レコード、10,000 レジス/シーケンスと 4 MiB のエンコードされたリクエストボディまでのリクエストを受け付けます。
+3. 返された**job_id**を保持します。 **ready: false**と**SUBMITTED**は、アノテーションの結果ではなく、レシートです。 **ステータス** を 10 秒以上離れた状態にチェックします。 ポーリングは自動ではありません。
+4. **FINISHED** の後、**結果発表** を要求し、リモート結果が切れる前に完全な TSV を保存します。 2 MiB の検索制限に対する応答は、未読の報告を返すのではなく、失敗します。
+5. タンパク質識別子、ソースアプリケーション、1ベースの包括的な座標をチェックします。 異なるメンバーアプリケーションからのスコアは変更できません。 タンパク質が機能に欠けていることを証明しません。
+
+タイムアウト後の重複投稿を避ける: 既知のジョブ ID を最初に復元します。 ローカルリクエストのキャンセルは、送信されたリモートジョブをキャンセルしません。 [投稿、ステータス、結果のパラメータ](../reference/connector-operations.md#family-27) を参照してください。
+
+## TCR と BCR の証拠を IEDB で見つける {/* #iedb-receptors */}
+
+Mainで**IEDB**を有効にし、少なくとも1つの生物学的または証拠フィルタで**search_tcrs**または**search_bcrs**を要求します。 パジネーションだけでは不十分です。 **エピトープ** のシーケンスに `sequence` を使用します。 `chain1_cdr3`および`chain2_cdr3`フィルター受容器CDR3の順序。 これらの公開検索では、API キーは必要ありません。
+
+受容体グループ ID、チェーン、報告されたアッセイ ID およびソース出版物を保って下さい。 ホストと結果フィルタは、集約されたグループに適用され、異なる実験で満足することができます。 同じアッセイでその条件が起こることを確立するために、報告されたアッセイIDを対応するアッセイ操作に従い、そこに必要なフィルタを適用します。 パジネーションは、すべての埋め込まれた輸出の完全性ではなく、受容体グループをカバーします。 これらのレコードは、受容体結合の予測ではなく、証拠検索です。 [IEDBパラメータ](../reference/connector-operations.md#family-33).

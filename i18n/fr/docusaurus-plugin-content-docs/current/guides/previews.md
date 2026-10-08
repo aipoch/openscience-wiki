@@ -211,3 +211,26 @@ Pour les faits saillants et les notes de niveau document, continuez avec [Annota
 ## Gardez un site internet source signé {/* #persistent-source-preview */}
 
 L'aperçu intégré du navigateur pour les sites Web source en direct conserve sa session de site à travers les visites et les redémarrages de l'application. Si une source nécessite un compte existant, connectez-vous sur la page de cette source et continuez à lire. La fermeture de l'aperçu ne s'affiche pas sur le site; utiliser la propre action de signature du site Web au besoin. Le maintien d'une connexion ne donne pas automatiquement à l'agent l'accès en texte intégral ou ne modifie pas les règles d'accès au réseau.
+
+## Demandez un nouveau PDF téléchargé {/* #uploaded-first-message */}
+
+<p className="example-label"><strong>Exemple pratique</strong> Localiser les preuves de stabilité thermique dans un papier téléchargé</p>
+
+Cet exemple utilise le même Lang et al. papier ci-dessus, téléchargé en PDF local dans une nouvelle conversation avec **Codex subscription**.
+
+1. Sélectionnez **New**, puis **+ → Attach files** et choisissez PDF. Attendez que le téléchargement soit terminé.
+2. Ouvrez le PDF joint et vérifiez le contexte **Lecture** avant d'envoyer la première demande.
+3. Posez la question suivante, puis élargissez les résultats de l'outil de lecture et consultez les références de la page de la réponse.
+
+```text
+Read the attached paper. Identify its title and DOI, and tell me which
+figure shows the experimental evidence for thermal stability. Give the
+PDF page and distinguish the paper text from any figure image you can
+inspect. Keep the response in English.
+```
+
+![Le contexte de lecture et de PDF téléchargé avant la première demande](/img/open-science/v0351/first-pdf-draft.webp)
+
+La réponse a identifié **Figure 1 sur PDF page 3** à partir du texte papier et de la légende, ainsi que DOI `10.1038/s41467-018-08136-3`. Ouvrir la page 3 et comparer les panneaux cités avec la source. La recherche de texte à elle seule n'a pas permis d'extraire des images chiffrées : la réponse distinguait explicitement le texte lisible des images qu'elle ne pouvait pas inspecter. Pour l'interprétation visuelle, d'abord utiliser [Figures et tableaux](#pdf-extraction) et inspecter la région extraite.
+
+![La réponse de premier message complétée avec le PDF original et les limites d'accès à l'image indiqué](/img/open-science/v0351/first-pdf-answer.webp)

@@ -213,3 +213,26 @@ can actually read.
 ## 保留來源網頁的登入狀態 {/* #persistent-source-preview */}
 
 來源網頁的內建瀏覽器預覽會在再次訪問及應用重啟後保留登入會話等站點狀態。若頁面需要已有賬戶訪問，可在該來源頁面完成登入後繼續閱讀。關閉預覽不等於退出站點賬戶；需要退出時使用站點自己的退出入口。保留登入狀態不會自動授予代理全文讀取權限，也不會改變網路訪問規則。
+
+## 直接提問剛上傳的 PDF {/* #uploaded-first-message */}
+
+<p className="example-label"><strong>案例演示</strong> 在上傳論文中定位熱穩定性的證據</p>
+
+本例使用上文同一篇開放獲取的 Lang 等人論文，將本地 PDF 上傳到使用 **Codex subscription** 的新會話。
+
+1. 點選 **New → + → Attach files**，選擇 PDF，等待上傳完成。
+2. 開啟附件，確認首條請求傳送前已經顯示 **Reading** 上下文。
+3. 傳送以下問題，再展開閱讀工具結果，檢查回答中的頁碼。
+
+```text
+Read the attached paper. Identify its title and DOI, and tell me which
+figure shows the experimental evidence for thermal stability. Give the
+PDF page and distinguish the paper text from any figure image you can
+inspect. Keep the response in English.
+```
+
+![首次請求前已上傳的 PDF 及 Reading 上下文](/img/open-science/v0351/first-pdf-draft.webp)
+
+回答根據論文正文及圖註定位到 **PDF 第 3 頁的圖 1**，並給出 DOI `10.1038/s41467-018-08136-3`。開啟第 3 頁，逐一核對引用的面板。文字檢索本身沒有提供提取後的影象：回答明確區分了可讀文字與無法檢視的圖片。需要影象解讀時，先使用 [Figures & Tables](#pdf-extraction)，並檢查提取區域。
+
+![首次請求完成後的回答、原始 PDF 及明確的影象讀取範圍](/img/open-science/v0351/first-pdf-answer.webp)

@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支援哪些資料庫 {/* #supported-databases */}
 
-Open-Science v0.35.0 內建 **33 個資料來源 Connector，提供 337 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整登錄檔共 339 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示覆蓋其網站的全部功能。
+Open-Science v0.35.1 內建 **33 個資料來源 Connector，提供 341 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整登錄檔共 343 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示覆蓋其網站的全部功能。
 
 | Connector | 來源 | 運算元 | 用途  |
 | --- | --- | --- | ---  |
@@ -29,7 +29,7 @@ Open-Science v0.35.0 內建 **33 個資料來源 Connector，提供 337 個操�
 | ChEMBL · `chembl` | ChEMBL | 6 | 化合物、靶標和活性記錄  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | 預印本後設資料  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA、藥品標籤、FAERS 不良事件報告和藥品召回 |
-| Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 14 | 人類遺傳關聯資源  |
+| Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | 人類遺傳關聯資源  |
 | Expression · `expression` | GTEx, Bgee | 16 | GTEx 人類組織表達和 eQTL；Bgee 跨物種基線表達 |
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | 蛋白結構域與功能註釋；新增互作富集檢驗 |
 | Cancer Models · `cancer-models` | cBioPortal | 10 | 研究、突變、複製數、樣本、患者、臨床屬性及分子 profile 表達 |
@@ -43,13 +43,13 @@ Open-Science v0.35.0 內建 **33 個資料來源 Connector，提供 337 個操�
 | GDC · `gdc` | NCI GDC | 5 | 癌症專案、病例與檔案後設資料，公開／受控訪問類別及傳輸清單；不下載或授予受控訪問 |
 | Zenodo · `zenodo` | Zenodo | 2 | 公開資料集、軟體和文獻記錄的檢索、版本級後設資料與檔案清單；不上傳或下載檔案 |
 | HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | 按程式提交蛋白序列／profile HMM／比對檢索，查詢狀態並獲取結果 |
-| InterProScan · `interproscan` | EMBL-EBI InterProScan | 2 | 查詢已有註釋任務並獲取 TSV 報告；不支援提交任務 |
+| InterProScan · `interproscan` | EMBL-EBI InterProScan | 3 | 提交蛋白序列、查詢註釋任務狀態並獲取 TSV 報告 |
 | Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | 通路檢索、頂層通路、圖查詢及 BioPAX 子模型匯出 |
 | Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | 人類與模式生物基因、直系同源、疾病模型、表型、等位基因及表達 |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 單細胞集合與資料集發現、釋出版本、檔案格式／大小／下載 URL |
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 查詢細胞系名稱和別名，再檢查編號身份及質量註釋 |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 查詢疾病或基因與表型的關聯，保留物種和支援證據 |
-| IEDB · `iedb` | Immune Epitope Database | 6 | 檢索表位、抗原、T 細胞、B 細胞和 MHC 實驗及來源文獻 |
+| IEDB · `iedb` | Immune Epitope Database | 8 | 檢索表位、抗原、T 細胞、B 細胞和 MHC 實驗、TCR/BCR 證據及來源文獻 |
 
 離線 Molecule 工具見[科學檢視器](viewers.md)。各資料來源實際提供的操作見 [Connector 操作引數參考](../reference/connector-operations.md)。
 
@@ -213,13 +213,13 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作引數參考](../reference/connector-operations.md)列出必填輸入、可選值和準確呼叫方法。本頁用於選擇和連線資料來源，引數參考用於查詢某個具體工具的欄位。
 
-目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.35.0/src/main/connectors/registry.ts)。
+目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/registry.ts)。
 
 ## 序列檢索與多序列比對 {/* #sequence-tools */}
 
 **HMMER** 支援按程式選擇蛋白序列、profile HMM 或比對輸入。將程式與資料庫配對，儲存任務 ID，等 **SUCCESS** 後獲取結果，見 [HMMER 操作](../reference/connector-operations.md#family-26)。
 
-**InterProScan** 獲取已透過 EMBL-EBI 服務提交的註釋任務。保留任務 ID，至少間隔十秒查詢，等 **FINISHED** 後獲取 TSV。此 Connector 不能提交新任務，見 [InterProScan 操作](../reference/connector-operations.md#family-27)。
+**InterProScan** 從 v0.35.1 起支援提交蛋白序列，再查詢任務狀態並獲取 TSV 註釋。具體連線與步驟見[提交 InterProScan](#interproscan-submit)。
 
 **Genomes → Clustal Omega** 對至少三條名稱唯一的蛋白質、DNA 或 RNA FASTA 記錄進行比對。配置服務要求的聯絡郵箱，提交一次並儲存任務 ID，再查詢狀態、儲存返回的比對，見[多序列比對工作流](../workflows/multiple-sequence-alignment.md)。
 
@@ -244,3 +244,25 @@ matched records and any unmatched identifiers. Keep the response in English.
 | Omics Archives → MGnify | 按 MGYA 分析編號列出結果檔案 | 返回型別、類別、來源 URL 和可用大小；沒有下載檔案內容，缺少大小或 URL 時保留 null |
 
 準確必填欄位、條件和示例見[Connector 操作參考](../reference/connector-operations.md)。
+
+## 查詢 GWAS 彙總統計檔案 {/* #gwas-summary-statistics */}
+
+在 **Settings → Connectors** 將 **Human Genetics** 提供給 Main。用研究的 **GCST 編號**請求發現彙總統計檔案，保留返回的原始／標準化檔案 URL、後設資料和宣告的參考基因組。公開查詢不需要 API key。
+
+`gwas_get_summary_statistics` 列出研究檔案並讀取可用的 YAML 後設資料，不下載大型關聯結果表。返回的 GWAS-SSF 列定義描述的是標準，不是已檢查的實際檔案表頭。另行下載目標檔案後，核對實際列名、基因組版本、效應等位基因和單位，再進行分析。顯著關聯位點不能代替完整彙總統計。[引數與輸出](../reference/connector-operations.md#gwas_get_summary_statistics)。
+
+## 向 InterProScan 提交蛋白序列 {/* #interproscan-submit */}
+
+1. 在 **Settings → Connectors** 將 **InterProScan** 提供給 Main。在 **Settings → Credentials → Literature access** 儲存用於 EMBL-EBI 任務的有效聯絡郵箱，不需要 API key。
+2. 提供蛋白序列或名稱唯一的蛋白 FASTA 記錄，請求提交一次。序列和聯絡郵箱會傳送到 EMBL-EBI。單次最多 1,000 條記錄，每條最多 10,000 個殘基，編碼後的請求體不超過 4 MiB。
+3. 儲存返回的 **job_id**。**SUBMITTED** 且 **ready: false** 是提交回執，不是註釋結果。至少間隔十秒查詢一次 **status**，系統不會自動輪詢。
+4. 狀態為 **FINISHED** 後獲取 **results**，在遠端結果過期前儲存完整 TSV。超過 2 MiB 獲取限制時會報錯，不會靜默返回截斷報告。
+5. 核對蛋白標識、來源程式及從 1 開始且包含兩端的座標。不同成員程式的得分不能直接比較；沒有命中不代表蛋白沒有功能。
+
+超時後避免重複提交，先找回已有任務 ID。取消本地請求不會取消已提交的遠端任務。見[提交、狀態和結果引數](../reference/connector-operations.md#family-27)。
+
+## 查詢 IEDB 的 TCR 與 BCR 證據 {/* #iedb-receptors */}
+
+將 **IEDB** 提供給 Main，使用 **search_tcrs** 或 **search_bcrs**，至少給出一個生物學或證據篩選條件，僅分頁不夠。`sequence` 指**表位序列**，`chain1_cdr3` 與 `chain2_cdr3` 才篩選受體的 CDR3 序列。這些公開查詢不需要 API key。
+
+保留受體組 ID、鏈資訊、返回的實驗 ID 和來源文獻。宿主及結果條件作用於聚合後的組，可能分別由不同實驗滿足。若要確認條件在同一實驗中成立，應按返回的實驗 ID 查詢對應的實驗操作，並在那裡應用所需篩選。分頁針對受體組，不保證每條內嵌匯出記錄都完整。這是在檢索已有證據，不是在預測受體結合。[IEDB 引數](../reference/connector-operations.md#family-33)。
