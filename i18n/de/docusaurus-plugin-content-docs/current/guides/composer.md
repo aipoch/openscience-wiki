@@ -1,7 +1,7 @@
 ---
 title: "Unterhaltungen und wartende Anfragen"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # Unterhaltungen und wartende Anfragen {/* #conversations-and-queued-requests */}
@@ -134,3 +134,7 @@ Quellen: [Warteschlangenkontrollen](https://github.com/aipoch/open-science/blob/
 ## Dateien in ein Gespräch ablegen {/* #conversation-drop */}
 
 Sie können lokale Dateien in den Konversationsbereich ziehen, nicht nur den Composer. Warten Sie, bis die Anhängechips und der Upload abgeschlossen sind, prüfen Sie die Dateinamen und senden Sie dann die Anfrage. Dropping-Dateien senden die Nachricht nicht. Um ein `.science`-Forschungspaket zu importieren, verwenden Sie **Import previous research** auf der leeren Gesprächsseite; siehe [Forschungspakete](research-packages.md).
+
+## Erwähnen Sie eine Datei, indem Sie sie ziehen {/* #drag-file-mention */}
+
+Ziehen Sie eine Dateikarte aus **Files** oder den Dateikopf des offenen Artefakts in den Composer. Bestätigen Sie, dass der Entwurf eine Erwähnung für die beabsichtigte Datei enthält, fügen Sie Ihre Frage hinzu und senden Sie dann. Dropping fügt Kontext in den Entwurf ein; Es wird keine Anfrage gestartet. In einem neuen Gespräch kann das Dateifeld auch eine Erwähnung liefern. Überprüfen Sie das ausgewählte Projekt und die Datei vor dem Senden.

@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -384,3 +384,9 @@ Citation 的四个复制按钮写入不同格式。粘贴到目标编辑器，�
 ## 保存 PDF 阅读笔记
 
 在文献附件中打开 PDF，使用 **Notes & Annotations** 保存批注、页级问题和整篇笔记。同一文献库文件版本在不同项目和会话中共享这些笔记。通过全局搜索的 **Library** 结果找到笔记，再选择 **Show annotation source** 返回原文。步骤和导出方法见 [PDF 批注与文档笔记](pdf-notes.md)。
+
+## 选择已加载页面进行批量操作 {/* #loaded-page-selection */}
+
+使用 Library 或 Inbox 的全选复选框，选中该视图已加载的记录。选择批量操作前，核对已选数量与可见记录。勾选此框会用已加载行替换选择范围，取消勾选会清除选择。
+
+Library 中还有更多匹配记录时，独立的 **Select all matching references** 操作可以把范围扩展到已加载页面之外。使用前先核对总数与当前筛选条件；仅勾选页面复选框不会执行这一扩展。需要重新选择时，使用 **Clear selection**。选中记录不会直接接受 Inbox 候选或导出文件，还需要选择对应操作。

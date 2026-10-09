@@ -1,7 +1,7 @@
 ---
 title: "對話與排隊請求"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # 對話與排隊請求 {/* #对话与排队请求 */}
@@ -134,3 +134,7 @@ original column-name mapping in the CSV/report.
 ## 拖入會話附件 {/* #conversation-drop */}
 
 可把本地檔案拖到整個會話區域，無需只對準輸入框。等待附件標籤出現、上傳完成，核對檔名後再傳送請求；拖入檔案不會自動傳送訊息。匯入 `.science` 研究包時，使用空白會話頁的 **Import previous research**，詳見[研究包](research-packages.md)。
+
+## 拖拽檔案建立引用 {/* #drag-file-mention */}
+
+從 **Files** 拖動檔案卡片，或把已開啟產物的檔案標題拖入 Composer。確認草稿中出現了正確檔案的引用，補充問題後再傳送。拖入只會新增草稿上下文，不會直接發起請求；新會話也可從 Files 面板引用檔案。傳送前核對專案與檔案。

@@ -176,6 +176,18 @@
           "contentStatus": "written"
         },
         {
+          "id": "pdf-translation",
+          "title": "Translate a full PDF",
+          "scope": "Prepare a PDF, choose a translation model, resume saved work, compare with the original and export.",
+          "currentDoc": "guides/pdf-translation",
+          "proposedUrl": "/docs/guides/pdf-translation/",
+          "relatedDocs": [
+            "guides/pdf-notes",
+            "guides/models"
+          ],
+          "contentStatus": "written"
+        },
+        {
           "id": "composer",
           "title": "Conversations and queued requests",
           "scope": "Review the included topics and their planned scope below.",

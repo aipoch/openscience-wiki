@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -384,3 +384,9 @@ Quellen: [Chargeneinfuhr](https://github.com/aipoch/open-science/blob/v0.27.0/sr
 ## Halten Sie PDF Lesenotizen {/* #keep-pdf-reading-notes */}
 
 Öffnen Sie den PDF-Anhang einer Referenz und verwenden Sie **Notes & Annotations** für Anmerkungen, Seitenfragen und Dokumentnotizen. Die gleiche Version der Bibliotheksdatei teilt diese Notizen über Projekte und Sitzungen hinweg. Suchen Sie in der globalen Suche eine Notiz unter **Library** und wählen Sie dann **Show annotation source**, um zum PDF zurückzukehren. Siehe [PDF Anmerkungen und Dokumentnotizen](pdf-notes.md) für Schritte und Exporte.
+
+## Wählen Sie eine geladene Seite für eine Batch-Aktion aus {/* #loaded-page-selection */}
+
+Verwenden Sie das Kontrollkästchen "Alle auswählen" in Bibliothek oder Posteingang, um die in dieser Ansicht bereits geladenen Datensätze auszuwählen. Überprüfen Sie die ausgewählte Anzahl und die sichtbaren Zeilen, bevor Sie eine Batch-Aktion auswählen. Durch Auswählen dieses Kontrollkästchens wird die Auswahl durch die geladenen Zeilen ersetzt; Wenn Sie es löschen, wird die Auswahl gelöscht.
+
+Wenn zusätzliche übereinstimmende Bibliotheksdatensätze vorhanden sind, kann eine separate **Select all matching references**-Aktion die Auswahl über die geladene Seite hinaus erweitern. Überprüfen Sie die gesamten und aktiven Filter, bevor Sie sie verwenden. Die Checkbox der Seite allein tut dies nicht. Verwenden Sie **Clear selection**, um erneut zu starten. Das Auswählen von Datensätzen akzeptiert keine Posteingangskandidaten oder Exportdateien, bis Sie diese Aktion ausgewählt haben.

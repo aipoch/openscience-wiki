@@ -1772,5 +1772,17 @@
   },
   "docs.outline.reference.v0351.scope": {
     "message": "Forschungsstarter, Session-Aktionen, Requesty, GWAS-Zusammenfassungsdateien, InterProScan-Einreichung, Rezeptornachweise und geteilte PDF-Notizen."
+  },
+  "docs.guides.outline.pdf-translation.title": {
+    "message": "Übersetzen eines vollständigen PDF"
+  },
+  "docs.guides.outline.pdf-translation.scope": {
+    "message": "Bereiten Sie ein PDF vor, wählen Sie ein Übersetzungsmodell, nehmen Sie die gespeicherte Arbeit wieder auf, vergleichen Sie sie mit dem Original und exportieren Sie sie."
+  },
+  "docs.outline.reference.v0360.title": {
+    "message": "v0.36.0"
+  },
+  "docs.outline.reference.v0360.scope": {
+    "message": "PDF Übersetzung, Notebook Ausführungsüberprüfung, PDC, Ensembl LD und geladene Seitenauswahl."
   }
 }

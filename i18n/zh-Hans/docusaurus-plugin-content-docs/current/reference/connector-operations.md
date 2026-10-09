@@ -2,7 +2,7 @@
 title: "Connector 操作参数参考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作输入
 
-每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.35.1** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.1.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
+每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.36.0** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.36.0.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
 
 
 ## 化学 {/* #family-1 */}
@@ -1042,6 +1042,39 @@ const result = await host.mcp("genomes", "clustalo_status", {"job_id":"clustalo-
 
 ```javascript
 const result = await host.mcp("genomes", "clustalo_results", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m", "outfmt":"clustal_num"})
+```
+
+### `ensembl_ld_pairwise`
+
+在明确指定的人群中查询两个变异的连锁不平衡 r² 与 D′。必须提供完整 population_name，不会自动识别人群或祖源；species 默认 homo_sapiens。保留返回的变异标识符、人群、参考面板、查询 URL 和时间。该接口不报告参考基因组或 Ensembl 版本，对应字段为 null。空结果表示未返回数据，不能解释为零 LD；高 LD 不等于因果关系。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `variant_id1` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+| `variant_id2` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+| `population_name` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+| `species` | string | 可选; default: &quot;homo_sapiens&quot;; minLength: 1; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_pairwise", {"variant_id1": "rs6792369", "variant_id2": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV"})
+```
+
+### `ensembl_ld_proxies`
+
+查询指定变异在人群中的邻近 LD 代理变异。population_name 必填；min_r2 默认 0.8，min_d_prime 默认 0，阈值均包含边界。window_size 是以变异为中心的窗口总宽度，单位 kb，默认 500，即两侧各约 250 kb。先按 r²、D′ 降序和变异 ID 排序，再按 max_records 限制输出；它不限制上游计算或下载量。n_proxies 为截断前满足条件的非自身记录数，坐标为 1-based inclusive。空结果不代表零 LD，高 LD 也不代表功能等价或因果。参考基因组及 Ensembl 版本未由接口提供，保留 null。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `variant_id` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+| `population_name` | string | **必填**; minLength: 1; pattern: &quot;\\S&quot; |
+| `species` | string | 可选; default: &quot;homo_sapiens&quot;; minLength: 1; pattern: &quot;\\S&quot; |
+| `min_r2` | number | 可选; default: 0.8; minimum: 0; maximum: 1 |
+| `min_d_prime` | number | 可选; default: 0; minimum: 0; maximum: 1 |
+| `window_size` | integer | 可选; default: 500; minimum: 1; maximum: 500 |
+| `max_records` | integer | 可选; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_proxies", {"variant_id": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV", "min_r2": 0.8, "window_size": 500, "max_records": 100})
 ```
 
 </ToolOperationGroup>
@@ -5285,6 +5318,81 @@ const result = await host.mcp("cellosaurus", "search_cell_lines", {"query": "HeL
 
 ```javascript
 const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
+```
+
+</ToolOperationGroup>
+
+## PDC {/* #family-34 */}
+
+<ToolOperationGroup>
+<summary>展开操作与参数</summary>
+
+### `pdc_search_studies`
+
+检索 NCI PDC 研究目录的标识符和版本名称。query 为本地、不区分大小写的子串匹配，不是疾病或临床条件筛选；省略时浏览目录。保留全部版本，total 统计研究而非版本。目录在 8 MiB 响应限制内读取后排序和分页，每次最多返回 100 项。只发现元数据，不下载文件、不请求签名 URL，也不代替用户接受使用协议。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `query` | string | 可选; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_search_studies", {"query":"CCRCC", "limit":5})
+```
+
+### `pdc_get_study`
+
+查询 PDC 研究的实验类型、病例／aliquot 计数、文件类别和版本。pdc_study_id 与 study_id 必须且只能提供一个；前者选择最新版本，后者是特定版本 UUID，后续查询应固定使用实际返回的 study_id。无匹配时返回空数组。计数属于所选版本，catalog 同时列出其他版本；PDC 与 GDC 标识符不可互换。
+
+必须且只能提供一个：`pdc_study_id` / `study_id`。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `pdc_study_id` | string | 按上方条件提供; maxLength: 9; pattern: &quot;^PDC[0-9]&#123;6&#125;$&quot; |
+| `study_id` | string | 按上方条件提供; maxLength: 36; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_get_study", {"pdc_study_id":"PDC000127"})
+```
+
+### `pdc_list_biospecimens`
+
+查询 PDC 的 aliquot—sample—case 关联及外部引用；每行是关联，不是独立患者。pdc_study_id 与 study_id 恰好提供一个。默认 local 模式在收到的关联行上分页，上游最多给出 1000 行；达到上限时 total 为 null，upstream_limit_reached 与 truncated 为 true，即使 next_offset 为 null 也不能认定完整。upstream 模式按病例分页，offset／limit／next_offset 的单位为 case，展开后的 returned 关联数可能超过 limit；此模式不提供 case_status、project_name、taxon，保留 null。固定 study_id 只固定版本，不能保证跨页快照一致或无重复；保留外部引用的资源名称，不把 GDC 外部引用当作 PDC case_id。接口不返回治疗或结局数据。
+
+必须且只能提供一个：`pdc_study_id` / `study_id`。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `pdc_study_id` | string | 按上方条件提供; maxLength: 9; pattern: &quot;^PDC[0-9]&#123;6&#125;$&quot; |
+| `study_id` | string | 按上方条件提供; maxLength: 36; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `pagination_mode` | string | 可选; default: &quot;local&quot;; enum: [&quot;local&quot;, &quot;upstream&quot;] |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"PDC000127", "pagination_mode":"upstream", "limit":5})
+```
+
+### `pdc_list_files`
+
+发现 PDC 研究的文件元数据，包括 Protein Assembly 定量报告及出版补充资料。pdc_study_id 与 study_id 恰好提供一个，过滤条件传给官方 API。返回文件名、大小、MD5 和存储路径，不返回文件内容或授权下载 URL；file_size 保留上游字节数字符串。total 为 null，通过额外读取一条判断 has_more；沿 next_offset 分页，不保证跨页快照或去重。列出文件不代表取得下载权限。
+
+必须且只能提供一个：`pdc_study_id` / `study_id`。
+
+| 字段 | 类型 | 必填与约束 |
+| --- | --- | --- |
+| `pdc_study_id` | string | 按上方条件提供; maxLength: 9; pattern: &quot;^PDC[0-9]&#123;6&#125;$&quot; |
+| `study_id` | string | 按上方条件提供; maxLength: 36; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 1000000 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `data_category` | string | 可选; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `file_type` | string | 可选; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `file_format` | string | 可选; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `file_name` | string | 可选; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
 </ToolOperationGroup>

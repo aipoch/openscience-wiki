@@ -2706,5 +2706,17 @@
   },
   "docs.outline.reference.v0351.scope": {
     "message": "研究任务建议、会话操作、Requesty、GWAS 汇总文件、InterProScan 提交、受体证据与 PDF 笔记共享。"
+  },
+  "docs.outline.reference.v0360.title": {
+    "message": "v0.36.0"
+  },
+  "docs.outline.reference.v0360.scope": {
+    "message": "PDF 全文翻译、Notebook 执行前审查、PDC、Ensembl LD 与已加载页面全选。"
+  },
+  "docs.guides.outline.pdf-translation.title": {
+    "message": "PDF 全文翻译"
+  },
+  "docs.guides.outline.pdf-translation.scope": {
+    "message": "准备 PDF、选择翻译模型、继续已保存进度、对照原文并导出。"
   }
 }

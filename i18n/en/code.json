@@ -1839,5 +1839,17 @@
   },
   "docs.outline.reference.v0351.scope": {
     "message": "Research starters, session actions, Requesty, GWAS summary files, InterProScan submission, receptor evidence and shared PDF notes."
+  },
+  "docs.guides.outline.pdf-translation.title": {
+    "message": "Translate a full PDF"
+  },
+  "docs.guides.outline.pdf-translation.scope": {
+    "message": "Prepare a PDF, choose a translation model, resume saved work, compare with the original and export."
+  },
+  "docs.outline.reference.v0360.title": {
+    "message": "v0.36.0"
+  },
+  "docs.outline.reference.v0360.scope": {
+    "message": "PDF translation, Notebook execution review, PDC, Ensembl LD and loaded-page selection."
   }
 }

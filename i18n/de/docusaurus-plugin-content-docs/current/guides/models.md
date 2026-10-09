@@ -1,7 +1,7 @@
 ---
 title: "Modelle und Aufgabenrichtlinien"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-09'
 ---
 
 # Modelle und Aufgabenrichtlinien {/* #models-and-task-policies */}
@@ -126,3 +126,9 @@ Wählen Sie nach dem Speichern den Dienst unter **Automatic capability selection
 Das Formular unten veranschaulicht die Felder. Ersetzen Sie den Beispiel-Endpunkt und `your-model-id` durch Ihre tatsächlichen Servicedetails, bevor Sie die Verbindung überprüfen.
 
 ![Benutzerdefinierte Klassifikations-Endpunkt-, Modell- und leere Schlüsselfelder](/img/open-science/v0320/classification-custom.webp)
+
+## Wählen Sie ein PDF Übersetzungsmodell {/* #pdf-translation-model */}
+
+PDF Übersetzung hat seine eigenen **Translation method** und **Model** Steuerelemente im Leser. **Agent** kann ein verfügbares kompatibles Modell verwenden; **Direct API** erfordert einen API-Anbieter. Codex Subskriptionsmodelle sind für diesen Vorgang in v0.36.0 nicht verfügbar. Die Auswahl eines Übersetzungsmodells erfordert kein Ersetzen von Main. Siehe [PDF Übersetzung](pdf-translation.md#prepare-translation).
+
+Der offizielle Anthropic-Katalog enthält **Haiku 5.5**. Die Modellsichtbarkeit und der Zugriff hängen vom ausgewählten Agenten und Konto ab. Wählen Sie den aktuellen Katalogeintrag, anstatt ein Kontextgrößen-Suffix an eine alte Modell-ID anzuhängen.

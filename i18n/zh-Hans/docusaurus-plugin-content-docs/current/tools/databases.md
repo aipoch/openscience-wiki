@@ -2,7 +2,7 @@
 title: "科学数据库"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # 科学数据库
@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支持哪些数据库 {/* #supported-databases */}
 
-Open-Science v0.35.1 内置 **33 个数据源 Connector，提供 341 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 343 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
+Open-Science v0.36.0 内置 **34 个数据源 Connector，提供 347 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 349 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
 
 | Connector | 来源 | 操作数 | 用途  |
 | --- | --- | --- | ---  |
@@ -21,7 +21,7 @@ Open-Science v0.35.1 内置 **33 个数据源 Connector，提供 341 个操作**
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 文献、作者、引用、DOI 更新及数据集/软件记录 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | PubMed 文献检索与记录  |
 | Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | 基因及蛋白标识映射、UniProt 序列查找、GO 与 Reactome 注释、g:Profiler 与 Enrichr 基因集富集 |
-| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | 基因组注释、同源及序列信息；NCBI 物种、组装与序列身份；BLAST 提交与报告 |
+| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 22 | 基因组注释、同源及序列信息；NCBI 物种、组装与序列身份；BLAST 检索、Clustal Omega 多序列比对；指定人群的 LD 与代理变异 |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | 群体频率、临床记录，以及实验特定的功能分数、变异映射和实验信息 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 临床试验登记记录  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | 临床基因组证据资源；新增 ClinPGx 药物基因组学记录 |
@@ -50,6 +50,7 @@ Open-Science v0.35.1 内置 **33 个数据源 Connector，提供 341 个操作**
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 查找细胞系名称和别名，再检查编号身份及质量注释 |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 查询疾病或基因与表型的关联，保留物种和支持证据 |
 | IEDB · `iedb` | Immune Epitope Database | 8 | 检索表位、抗原、T 细胞、B 细胞和 MHC 实验、TCR/BCR 证据及来源文献 |
+| PDC · `pdc` | NCI Proteomic Data Commons | 4 | 癌症蛋白组研究版本、样本关联和定量文件元数据；不下载文件 |
 
 离线 Molecule 工具见[科学查看器](viewers.md)。各数据源实际提供的操作见 [Connector 操作参数参考](../reference/connector-operations.md)。
 
@@ -266,3 +267,19 @@ matched records and any unmatched identifiers. Keep the response in English.
 将 **IEDB** 提供给 Main，使用 **search_tcrs** 或 **search_bcrs**，至少给出一个生物学或证据筛选条件，仅分页不够。`sequence` 指**表位序列**，`chain1_cdr3` 与 `chain2_cdr3` 才筛选受体的 CDR3 序列。这些公开查询不需要 API key。
 
 保留受体组 ID、链信息、返回的实验 ID 和来源文献。宿主及结果条件作用于聚合后的组，可能分别由不同实验满足。若要确认条件在同一实验中成立，应按返回的实验 ID 查询对应的实验操作，并在那里应用所需筛选。分页针对受体组，不保证每条内嵌导出记录都完整。这是在检索已有证据，不是在预测受体结合。[IEDB 参数](../reference/connector-operations.md#family-33)。
+
+## 用 PDC 查找癌症蛋白组资料 {/* #pdc */}
+
+在 **Settings → Connectors** 启用 **PDC**。公开元数据 API 不需要 API key。它可查找研究及版本、查看实验类型与样本计数、关联 case—sample—aliquot，并列出 **Protein Assembly** 等定量文件。它不返回治疗／结局数据，也不下载文件。
+
+可从 `PDC000127` 等研究编号开始，或搜索研究标识符和版本名称。PDC 的关键词匹配不是临床疾病筛选。取得研究记录后，使用实际返回的 `study_id` UUID 固定后续查询版本；`pdc_study_id` 选择最新版本。这两个选择字段必须且只能提供一个。
+
+生物样本列表的 **upstream** 分页按 case 计数，展开 sample 与 aliquot 后的关联行数可以超过病例上限。默认 **local** 模式在已收到的关联中分页，上游最多返回 1,000 条关联；达到此上限时，即使到了本地最后一页，也不能证明研究数据完整。分别保留 PDC 标识符和注明来源的 GDC 外部引用。文件列表包含名称、字节数、MD5 和存储路径；列出的路径不是授权下载 URL。
+
+具体参数见 [PDC 操作与分页](../reference/connector-operations.md#family-34)。合并来源前，核对研究版本、实验类型、样本身份，以及各来源的访问与引用要求。
+
+## 查询指定人群的连锁不平衡 {/* #ensembl-ld */}
+
+在 **Settings → Connectors** 启用 **Genomes**。Ensembl LD 工具使用公开 API，不需要密钥。`ensembl_ld_pairwise` 需要两个变异 ID，`ensembl_ld_proxies` 需要一个；两者都必须提供完整人群名，例如 `1000GENOMES:phase_3:KHV`。工具不会自动发现人群或推断祖源，应选择适合研究的参考人群。
+
+两变异查询报告 r² 和 D′。代理变异查询默认 r² ≥ 0.8，窗口为 **总宽 500 kb**，即两侧各约 250 kb。`max_records` 限制排序后的返回列表，不限制上游工作量。结果应保留人群与检索元数据；该接口不报告参考基因组或 Ensembl 版本。空结果表示未返回符合条件的数据，不是零 LD；高 LD 既不证明因果，也不证明功能等价。见[两变异参数](../reference/connector-operations.md#ensembl_ld_pairwise)与[代理变异参数](../reference/connector-operations.md#ensembl_ld_proxies)。

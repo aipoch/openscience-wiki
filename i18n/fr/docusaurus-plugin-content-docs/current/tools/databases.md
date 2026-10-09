@@ -2,7 +2,7 @@
 title: "Bases de données scientifiques"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # Bases de données scientifiques {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Utilisez cette page pour choisir une source de données, comprendre ce qu'elle p
 
 ## Bases de données prises en charge {/* #supported-databases */}
 
-Open-Science v0.35.1 comprend **Connecteurs source de données 33 avec opérations 341**. Le Molecule Connector séparé hors ligne ajoute deux opérations, apportant le registre complet à 343. Noms Connector ci-dessous correspondent à **Settings → Connectors**; Chaque famille peut exposer plusieurs bases de données. L'inscription d'une source ne signifie pas que toutes les fonctionnalités de son site Web sont disponibles.
+Open-Science v0.36.0 comprend **Connecteurs source de données 34 avec opérations 347**. Le Molecule Connector séparé hors ligne ajoute deux opérations, apportant le registre complet à 349. Noms Connector ci-dessous correspondent à **Settings → Connectors**; Chaque famille peut exposer plusieurs bases de données. L'inscription d'une source ne signifie pas que toutes les fonctionnalités de son site Web sont disponibles.
 
 | Connecteur | Sources | Opérations | Utilisez-le pour  |
 | --- | --- | --- | ---  |
@@ -21,7 +21,7 @@ Open-Science v0.35.1 comprend **Connecteurs source de données 33 avec opératio
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Papiers, auteurs, citations, mises à jour DOI et enregistrements dataset/software. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Littérature biomédicale par l'intermédiaire de l'E-utilities NCBI, du PMC ID Converter et d'Europe PMC — recherche, métadonnées, articles connexes, recherche de citation, conversion d'ID, texte intégral et copyright.  |
 | Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Identificateurs de gènes/protéines, découverte de séquences UniProt, annotations GO et Réactome, et g:Profiler et enrichissement de la série de gènes Enrichr. |
-| Génomes · `genomes` | Ensembl, UCSC, NCI, BLAST, Omega clustal | 20 | annotation du génome, homologie et séquence; l'identification des taxons/ensembles/séquences de la BCNI; Recherche BLAST et alignement de plusieurs séquences de Clustal Omega. |
+| Génomes · `genomes` | Ensembl, UCSC, NCI, BLAST, Omega clustal | 22 | annotation du génome, homologie et séquence; l'identification des taxons/ensembles/séquences de la BCNI; Recherche BLAST et alignement de plusieurs séquences de Clustal Omega; Variantes LD et proxy propres à la population. |
 | Variantes · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | Fréquences des populations, dossiers cliniques et scores fonctionnels, cartes et expériences propres à chaque essai. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Essais cliniques de ClinicalTrials.gov — recherche, détails, commanditaires, chercheurs, critères et admissibilité.  |
 | Génomique clinique · `clinical-genomics` | ClinGen, CIViC, cibles ouvertes, ClinPGx | 30 | Bases de connaissances en génomique clinique : ClinGenations, preuves cliniques du CIVIC et plateforme Open Targets, plus dossiers pharmacogénomiques ClinPGx. |
@@ -50,6 +50,7 @@ Open-Science v0.35.1 comprend **Connecteurs source de données 33 avec opératio
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | Trouvez les noms de lignes cellulaires et les synonymes, puis inspectez l'identité d'adhésion et les annotations de qualité. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | Les associations entre la maladie et le gène et le phénotype avec l'organisme et les preuves à l'appui. |
 | IEDB · `iedb` | Base de données Imune Epitope | 8 | Epitopes, antigènes, tests sur cellules T, cellules B et MHC, preuves TCR/BCR et publications sources. |
+| PDC · `pdc` | NCI Proteomic Data Commons | 4 | Les versions d'études sur le cancer-protéomique, les associations de spécimens et les métadonnées de fichiers quantitatifs; Aucun téléchargement. |
 
 Les outils Molecule hors ligne sont couverts par [Vérificateurs scientifiques](viewers.md). Pour les opérations exactes exposées par chaque source de données, utilisez le [Référence de fonctionnement Connector](../reference/connector-operations.md).
 
@@ -266,3 +267,19 @@ Activer **Génétique humaine** pour Main dans **Settings → Connectors**. Dema
 Activez **IEDB** pour Main et demandez **search_tcrs** ou **search_bcrs** avec au moins un filtre biologique ou de preuve. La pagination seule est insuffisante. Utiliser `sequence` pour la séquence **épitope**; Les séquences `chain1_cdr3` et `chain2_cdr3` du récepteur de filtre CDR3. Ces recherches publiques n'ont pas besoin de clé API.
 
 Conservez l'ID du groupe récepteur, les chaînes, les ID d'essai déclarés et les publications sources. Les filtres d'hôte et de résultat s'appliquent aux groupes agrégés et peuvent être satisfaits par différentes expériences. Pour établir que les conditions se produisent dans le même essai, suivez les ID de l'essai rapportés dans l'opération d'essai correspondante et appliquez les filtres requis là-bas. La pagination couvre les groupes récepteurs, pas l'intégralité de chaque exportation intégrée. Ces dossiers sont des données probantes, et non une prédiction de la liaison des récepteurs. [Paramètres IEDB](../reference/connector-operations.md#family-33).
+
+## Découvrez la protéomique du cancer avec PDC {/* #pdc */}
+
+Activer **PDC** dans **Settings → Connectors**. Ses métadonnées publiques API n'ont pas besoin de clé API. Utilisez-le pour trouver des études et des versions, inspecter les dosages et les dénombrements des spécimens, cartographier les associations cas–échantillon–aliquotes et lister les fichiers quantitatifs tels que les rapports **Assemblage des protéines**. Il ne renvoie pas les données de traitement/de résultat ou de téléchargement des fichiers.
+
+Commencez par une adhésion à l'étude comme `PDC000127`, ou des identifiants d'étude de recherche et des noms de version. La correspondance des mots clés PDC n'est pas un filtre clinique. Récupérer l'étude, puis utiliser son retour `study_id` UUID pour épingler les appels suivants; `pdc_study_id` sélectionne la dernière version. Fournir exactement un de ces sélecteurs.
+
+Pour les listes de spécimens, les cas de dénombrements de pagination **en amont**; l'expansion des échantillons et des aliquotes peut produire plus de lignes que la limite de cas. Les pages par défaut du mode **locaux** ont reçu des associations et ont un plafond en amont de l'association 1,000. Une page locale finale ne s'avère pas complète lorsque ce plafond est atteint. Gardez séparément les ID PDC et les références externes GDC. Les listes de fichiers comprennent les noms, les tailles d'octets, les valeurs MD5 et les chemins de stockage; un chemin listé n'est pas une URL de téléchargement autorisée.
+
+Voir [Opérations et pagination PDC](../reference/connector-operations.md#family-34). Avant de combiner les sources, vérifiez la version de l'étude, l'analyse, l'identité du spécimen et les exigences d'accès et de citation de chaque source.
+
+## Vérifier LD spécifique à la population {/* #ensembl-ld */}
+
+Activer **Genomes** dans **Settings → Connectors**. Ses outils Ensembl LD utilisent le public API sans clé. Fournir deux ID de variante pour `ensembl_ld_pairwise`, ou un pour `ensembl_ld_proxies`, ainsi que le nom complet de la population, comme `1000GENOMES:phase_3:KHV`. Les outils ne découvrent ni la population ni l'ascendance; choisir une population de référence appropriée à l'étude.
+
+Rapport de résultats par paire r2 et D′. Les requêtes proxy par défaut à r2 ≥ 0.8 et un **500 kb fenêtre totale**, environ 250 kb de chaque côté. `max_records` capte la liste retournée après le tri, et non le travail en amont. Garder les métadonnées de la population et les récupérer avec le résultat; ce paramètre ne signale pas l'ensemble de référence ou la libération de Ensembl. Les résultats vides signifient qu'aucune donnée admissible n'a été retournée, et non pas LD. Le niveau élevé de LD n'établit ni causalité ni équivalence fonctionnelle. Voir [champs appariés](../reference/connector-operations.md#ensembl_ld_pairwise) et [champs proxy](../reference/connector-operations.md#ensembl_ld_proxies).

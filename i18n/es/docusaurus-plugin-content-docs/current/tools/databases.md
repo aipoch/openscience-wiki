@@ -2,7 +2,7 @@
 title: "Bases de datos científicos"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # Bases de datos científicos {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Utilice esta página para elegir una fuente de datos, entender lo que puede devo
 
 ## Bases de datos respaldadas {/* #supported-databases */}
 
-Open-Science v0.35.1 incluye **33 data-source Connectors with 341 operations**. El Molecule Connector independiente añade dos operaciones, trayendo el registro completo a 343. Connector nombres a continuación coinciden con **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
+Open-Science v0.36.0 incluye **34 data-source Connectors with 347 operations**. El Molecule Connector independiente añade dos operaciones, trayendo el registro completo a 349. Connector nombres a continuación coinciden con **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
 
 | Conector | Fuentes | Operaciones | Úsalo para  |
 | --- | --- | --- | ---  |
@@ -21,7 +21,7 @@ Open-Science v0.35.1 incluye **33 data-source Connectors with 341 operations**. 
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Documentos, autores, citas, actualizaciones de DOI y registros de dataset/software. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Bibliografía biomédica a través de NCBI E-utilities, el convertidor de identificación PMC y Europa PMC — búsqueda, metadatos, artículos relacionados, búsqueda de citas, conversión de ID, texto completo y copyright.  |
 | Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Identificadores genéticos/proteínas, descubrimiento de secuencia UniProt, Anotaciones GO y Reactome, y g:Enriquecimiento de conjunto de genes y Enrichr. |
-| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | Anotación genoma, homología y secuencia; NCBI taxon/assembly/sequence identity; BLAST búsqueda y Clustal Omega alineación de secuencia múltiple. |
+| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 22 | Anotación genoma, homología y secuencia; NCBI taxon/assembly/sequence identity; BLAST búsqueda y alineación de secuencia múltiple de Clustal Omega; LD específico de la población y variantes proxy. |
 | Variantes · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | Frecuencias demográficas, registros clínicos y puntajes funcionales específicos para ensayos, cartografías y experimentos. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Ensayos clínicos de ClinicalTrials.gov — búsqueda, detalles, patrocinadores, investigadores, puntos finales y elegibilidad.  |
 | Genómica clínica · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | Bases clínicas de conocimiento de la genómica: curaciones ClinGen, evidencia clínica CIViC y Plataforma de objetivos abiertos, además de registros farmacógenos ClinPGx. |
@@ -50,6 +50,7 @@ Open-Science v0.35.1 incluye **33 data-source Connectors with 341 operations**. 
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | Encontrar nombres de línea celular y sinónimos, luego inspeccionar identidad de adhesión y anotaciones de calidad. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | Asociaciones de enfermedad/gene a fenotipo con organismo y evidencia de apoyo. |
 | IEDB · `iedb` | Immune Epitope Database | 8 | Epitopes, antígenos, T-cell, B-cell y MHC, evidencia TCR/BCR y publicaciones de origen. |
+| PDC · `pdc` | NCI Proteomic Data Commons | 4 | Versiones de estudio proteomics del cáncer, asociaciones de especímenes y metadatos cuantitativos; no descarga. |
 
 Las herramientas Molecule offline están cubiertas en [Visores científicos](viewers.md). Para las operaciones exactas expuestas por cada fuente de datos, utilice el [Referencia de operación Connector](../reference/connector-operations.md).
 
@@ -266,3 +267,19 @@ Evite la presentación duplicada después de un tiempo: recuperar un ID de traba
 Habilitar **IEDB** para Main y solicitar **search_tcrs** o **search_bcrs** con al menos un filtro biológico o de evidencia. La pagación por sí sola es insuficiente. Use `sequence` para la secuencia **epitope**; Secuencias `chain1_cdr3` y `chain2_cdr3` del receptor del filtro CDR3. Estas búsquedas públicas no necesitan llave API.
 
 Mantenga el ID del grupo receptor, cadenas, identificados de ensayo y publicaciones de origen. Los filtros de host y de resultado se aplican a grupos agregados y pueden ser satisfechos por diferentes experimentos. Para establecer que las condiciones ocurren en el mismo ensayo, siga los identificados de ensayo reportados en la operación de ensayo correspondiente y aplique los filtros necesarios allí. La paginación cubre los grupos de receptores, no la integridad de cada exportación incrustada. Estos registros son la recuperación de evidencias, no una predicción de la unión del receptor. [Parámetros IEDB](../reference/connector-operations.md#family-33).
+
+## Descubre proteómica del cáncer con PDC {/* #pdc */}
+
+Activar **PDC** en **Settings → Connectors**. Su metadata pública API no necesita llave API. Utilízalo para encontrar estudios y versiones, inspeccionar los recuentos de ensayo y especímenes, map case–sample–aliquot asociaciones, y lista de archivos cuantitativos como los informes de **Asamblea de Protein**. No devuelve los datos de tratamiento / salida o descarga archivos.
+
+Comience con una adhesión de estudio como `PDC000127`, o identificadores de estudio de búsqueda y nombres de versiones. La combinación de palabras clave PDC no es un filtro de enfermedad clínica. Retrieve the study, then use its returned `study_id` UUID to pin subsequent calls; `pdc_study_id` selecciona la última versión. Proporcione exactamente uno de estos selectores.
+
+Para listas de especímenes, la paginación **aguas arriba** cuenta casos; La expansión de muestras y coartadas puede producir más filas que el límite de caso. Las páginas de modo **local** predeterminadas recibieron asociaciones y tiene una tapa de asociación 1,000-. Una página local final no prueba la integridad cuando se llega a esa tapa. Mantenga IDs PDC y las referencias GDC externas nombradas separadas. Los listados de archivos incluyen nombres, tamaños de byte, valores de MD5 y rutas de almacenamiento; una ruta listada no es una URL de descarga autorizada.
+
+Ver [Operaciones PDC y paginación](../reference/connector-operations.md#family-34). Antes de combinar fuentes, compruebe la versión de estudio, ensayo, identidad de especímenes y los requisitos de acceso y cita de cada fuente.
+
+## Chequee LD específico de la población {/* #ensembl-ld */}
+
+Activar **Genomes** en **Settings → Connectors**. Sus herramientas Ensembl LD utilizan el API público sin una llave. Proveer dos IDs variantes para `ensembl_ld_pairwise`, o uno para `ensembl_ld_proxies`, junto con el nombre completo de la población, como `1000GENOMES:phase_3:KHV`. Las herramientas no descubren la población o la ascendencia infernal; elegir una población de referencia apropiada para el estudio.
+
+Informe de resultados pares r2 y D′. Consultas indirectas predeterminadas a r2 ≥ 0.8 y **500 kb ventana total**, aproximadamente 250 kb en ambos lados. `max_records` capta la lista devuelta después de ordenar, no el trabajo de arriba. Mantener la población y los metadatos de recuperación con el resultado; este punto final no reporta la asamblea de referencia o la liberación Ensembl. Los resultados vacíos significan que no se devuelven los datos de calificación, no cero LD. El LD alto no establece ninguna causalidad ni equivalencia funcional. Ver [campos pares](../reference/connector-operations.md#ensembl_ld_pairwise) y [campos proxy](../reference/connector-operations.md#ensembl_ld_proxies).

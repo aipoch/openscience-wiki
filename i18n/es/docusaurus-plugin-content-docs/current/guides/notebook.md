@@ -1,7 +1,7 @@
 ---
 title: "Notebook y pruebas de ejecución"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -45,6 +45,23 @@ Antes de ejecutar Python o R, [habilitar un tiempo de ejecución compatible](run
 | Cerrar / colapsar vista previa | Volver a la conversación | Mantiene historia de ejecución registrada |
 
 Comprueba **Datos de entrada / Entradas** cuando esté presente. Coincide con el archivo y la versión mostrada a su solicitud. Si una referencia no está disponible, reabrir o adjuntar la entrada prevista a través de la aplicación antes de reintentar.
+
+## Código de revisión antes de que funcione {/* #execution-review */}
+
+Desde v0.36.0, el código Notebook presentado por el agente se revisa antes del envío. Las lecturas y análisis ordinarios apoyados proceden sin un aviso de riesgo adicional. Las operaciones que pueden hacer cambios irreversibles, o que no pueden ser analizadas por completo, requieren una decisión única. El código escrito directamente en la consola manual no está cubierto por este paso de aprobación del Agente; inspeccionarlo usted mismo antes de someterlo.
+
+1. Cuando aparezca **Review risky code**, compruebe el medio ambiente y la operación que se solicita. El cálculo está esperando su decisión.
+2. Seleccione **Line** junto a un hallazgo para inspeccionar su ubicación en el código completo. Compruebe los caminos, los archivos y comandos afectados, incluyendo cualquier operación que el análisis no podría resolver.
+3. Si la acción es innecesaria o su objetivo es incorrecto, declive y pida al agente una revisión más segura. Aprobar una sola vez cuando se proponga la operación mostrada; la solicitud no otorga permiso permanente para el futuro código de riesgo.
+4. Después de decidir, inspeccione la decisión registrada y el estado de ejecución Notebook. La aprobación por sí sola no es prueba de la terminación. Una solicitud rechazada no ejecuta ese código.
+
+<p className="example-label"><strong>Ejemplo práctico</strong> Inspeccione una solicitud de proceso Python externa</p>
+
+El cálculo ilustrado sólo agrega números, pero comienza otro intérprete a través de `subprocess.run`. Esa ejecución anidada no puede ser revisada por completo, por lo que la solicitud se detiene para su revisión. El aviso no significa que el código sea malicioso. Este ejemplo escoge **Deny**; la carrera se registra como interrumpida sin ejecutar el proceso del niño.
+
+![Tarjeta de revisión Notebook con el medio ambiente, línea de fuente, Permitir una vez y Deny](/img/open-science/v0360/notebook-risk-review.webp)
+
+Esta pantalla verifica el riesgo de ejecución; no valida el método o resultado estadístico. **Auto-review** y [Revisor](../specialists/reviewer.md) evalúan los trabajos completados por separado. v0.36.0 también mejora la captura de dependencia Python/R; use [Provenance y verificación de repetición](reproducibility.md) para comprobar las entradas y salidas reales de un resultado.
 
 ## Trabajar en el kernel en vivo {/* #work-in-the-live-kernel */}
 

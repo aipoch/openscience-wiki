@@ -1772,5 +1772,17 @@
   },
   "docs.outline.reference.v0351.scope": {
     "message": "Стартеры исследований, действия сеанса, Requesty, сводные файлы GWAS, представление InterProScan, доказательства рецепторов и общие заметки PDF."
+  },
+  "docs.guides.outline.pdf-translation.title": {
+    "message": "Перевод полной версии PDF"
+  },
+  "docs.guides.outline.pdf-translation.scope": {
+    "message": "Подготовьте PDF, выберите модель перевода, возобновите сохраненную работу, сравните с оригиналом и экспортируйте."
+  },
+  "docs.outline.reference.v0360.title": {
+    "message": "v0.36.0"
+  },
+  "docs.outline.reference.v0360.scope": {
+    "message": "Перевод PDF, обзор исполнения Notebook, PDC, Ensembl LD и выбор загруженной страницы."
   }
 }

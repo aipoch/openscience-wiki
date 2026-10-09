@@ -1,7 +1,7 @@
 ---
 title: "Conversations and queued requests"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # Conversations and queued requests
@@ -134,3 +134,7 @@ Sources: [queue controls](https://github.com/aipoch/open-science/blob/v0.26.0/sr
 ## Drop files into a conversation {/* #conversation-drop */}
 
 You can drag local files onto the conversation area, not only the Composer. Wait for the attachment chips and any upload to finish, inspect the filenames, then send the request. Dropping files does not send the message. To import a `.science` research package, use **Import previous research** on the empty conversation page; see [Research packages](research-packages.md).
+
+## Mention a file by dragging it {/* #drag-file-mention */}
+
+Drag a file card from **Files**, or the open artifact's file header, into the Composer. Confirm that the draft contains a mention for the intended file, add your question, then send. Dropping inserts context into the draft; it does not start a request. In a new conversation, the Files panel can also supply a mention. Check the selected project and file before sending.

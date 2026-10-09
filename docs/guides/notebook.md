@@ -1,7 +1,7 @@
 ---
 title: "Notebook and execution evidence"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -45,6 +45,23 @@ Before running Python or R, [enable a compatible runtime](runtimes.md). For a co
 | Close / collapse preview | Return to the conversation | Keeps recorded execution history |
 
 Check **Input data / Inputs** when present. Match the displayed file and version to your request. If a reference is unavailable, reopen or attach the intended input through the application before retrying.
+
+## Review code before it runs {/* #execution-review */}
+
+From v0.36.0, Agent-submitted Notebook code is checked before dispatch. Supported ordinary reads and analysis proceed without an extra risk prompt. Operations that could make irreversible changes, or that cannot be fully analyzed, require a one-time decision. Code typed directly into the manual console is not covered by this Agent approval step; inspect it yourself before submitting.
+
+1. When **Review risky code** appears, check the environment and the operation being requested. The calculation is waiting for your decision.
+2. Select **Line** beside a finding to inspect its location in the complete code. Check paths, affected files and commands, including any operation the analysis could not resolve.
+3. If the action is unnecessary or its target is wrong, decline it and ask the agent for a safer revision. Approve once only when you intend the displayed operation; the request does not grant permanent permission for future risky code.
+4. After deciding, inspect the recorded decision and the Notebook run status. Approval alone is not evidence of completion. A declined request does not execute that code.
+
+<p className="example-label"><strong>Worked example</strong> Inspect an external Python process request</p>
+
+The pictured calculation only adds numbers, but it starts another interpreter through `subprocess.run`. That nested execution cannot be fully checked, so the request pauses for review. The notice does not mean the code is malicious. This example chooses **Deny**; the run is then recorded as interrupted without executing the child process.
+
+![Notebook review card with the environment, source line, Allow once and Deny](/img/open-science/v0360/notebook-risk-review.webp)
+
+This screen checks execution risk; it does not validate the statistical method or result. **Auto-review** and [Reviewer](../specialists/reviewer.md) assess completed work separately. v0.36.0 also improves Python/R dependency capture; use [Provenance and rerun verification](reproducibility.md) to check a result's actual inputs and outputs.
 
 ## Work in the live kernel
 

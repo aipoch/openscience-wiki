@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -384,3 +384,9 @@ A PDF는 제목의 장소에 추출 된 파일 이름을 중복 그룹에 입력
 ## PDF 읽기 노트 유지 {/* #keep-pdf-reading-notes */}
 
 참고 PDF 첨부 파일을 열고 주석, 페이지 질문 및 문서 메모에 **Notes & Annotations**을 사용하십시오. 동일한 라이브러리 파일 버전은 프로젝트와 세션에 걸쳐 이러한 노트를 공유합니다. 글로벌 검색에서 **Library** 아래 메모를 찾으면 **Show annotation source**을 선택하여 PDF로 돌아가십시오. 단계와 수출을 위해 [PDF 주석 및 문서 노트](pdf-notes.md)를 보십시오.
+
+## 일괄 작업에 대한 로드 된 페이지를 선택 {/* #loaded-page-selection */}
+
+Library 또는 Inbox의 선택 모든 체크 박스를 사용하여 이미 그보기에로드 된 레코드를 선택하십시오. 일괄 작업을 선택하기 전에 선택한 카운트 및 눈에 보이는 행을 확인합니다. 이 체크박스 선택은 로드된 행으로 선택을 대체합니다. 선택을 취소합니다.
+
+별도의 매칭 라이브러리 레코드가 존재할 때 별도의 **Select all matching references** 동작은 로드된 페이지를 넘어 선택을 확장할 수 있습니다. 그것을 사용하기 전에 총 활성 필터를 검사합니다. 페이지 체크 박스는 혼자하지 않습니다. **Clear selection**을 사용하여 다시 시작하십시오. 레코드를 선택하면 Inbox 후보자 또는 수출 파일을 사용할 수 없습니다.

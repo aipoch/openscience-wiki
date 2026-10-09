@@ -1,7 +1,7 @@
 ---
 title: "ファイルの開きとプレビュー"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -234,3 +234,7 @@ inspect. Keep the response in English.
 DOI `10.1038/s41467-018-08136-3` と共に、紙のテキストとキャプションから **図PDFページ3の1** を識別しました。 3のページを開き、引用したパネルをソースと比較します。 テキスト検索だけで抽出された図の画像を提供していませんでした。画像から明示的に識別できるテキストの答えは、検査できませんでした。 視覚的解釈のために、最初に[図表](#pdf-extraction)を使用し、抽出された領域を点検して下さい。
 
 ![元のPDFと記載された画像アクセスの制限による完全メッセージ応答](/img/open-science/v0351/first-pdf-answer.webp)
+
+## ドキュメントの翻訳 {/* #full-text-translation */}
+
+PDF ツールバーの **Full-text translation** を開き、テキストを準備し、サポートされているモデルを選択し、再開可能な翻訳を保存します。 モデル要件、元の/翻訳比較、PDFエクスポート用の[完全なPDFを翻訳する](pdf-translation.md)に従ってください。 数字、表、引用語句を確かめるために元を保って下さい。

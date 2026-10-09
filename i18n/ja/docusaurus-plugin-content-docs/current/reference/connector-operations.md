@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.35.1**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.1.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
+Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.36.0**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.36.0.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
 
 
 ## 化学化学品 {/* #family-1 */}
@@ -1042,6 +1042,39 @@ FINISHEDジョブのClustal Omega clustal_numアライメントファイルを1�
 
 ```javascript
 const result = await host.mcp("genomes", "clustalo_results", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m", "outfmt":"clustal_num"})
+```
+
+### `ensembl_ld_pairwise` {/* #ensembl_ld_pairwise */}
+
+GWASカタログrsIDなどの2つのバリアントID間の2つのバリアントID(r2とD′)を、明示的に選択された人口でリンク解除します。 発信者には、全人口の名を記入しなければなりません。 population_name (例) 1000GENOMES:phase_3:KHV; このツールは、人口や推論を発見しません。 homo_sapiens にデフォルトで種を分類します。 重要性や因果性を損なうことなく、上流の異様体識別と数値 r2/d_prime を返します。 高いLDは因性を確立しません。 空の結果は、LDデータが返されず、LDをゼロにしないことを意味します。 無効なID/人口およびサービスの失敗は間違いを残します。 参照メタデータは、人口、既知のパネル、クエリURL、検索時間を含みます。 LDエンドポイントが報告されていないため、アセンブリ/リリースはnullです。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `variant_id1` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+| `variant_id2` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+| `population_name` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+| `species` | 文字列 | 任意; デフォルト: "homo_sapiens"; 最長: 1; パターン: "\\S" |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_pairwise", {"variant_id1": "rs6792369", "variant_id2": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV"})
+```
+
+### `ensembl_ld_proxies` {/* #ensembl_ld_proxies */}
+
+LD の周辺 variant を、 バリアント ID で見つける (例: ) 1000GENOMES:phase_3:KHVのような必須population_nameのGWAS rsID。 homo_sapiens にデフォルトで種を分類します。 min_r2 デフォルトは 0.8 です。 min_d_prime デフォルトは 0 です。 &#91;0,1&#93; のどちらも包括的なしきい値です。 window_sizeは、kb(整数1–500、デフォルト500、各辺の250kbの合計幅です)の中央のEnsemblウィンドウの合計幅です。 max_records キャップ出力(整数 1–1000、デフォルト 100) は、上流計算やダウンロードサイズを制限しません。 結果は r2 の降下、 d_prime の降下と varid ID によって分類されます。 座標/注釈は上流属性です。 結果とともに人口とreference_dataを報告する。 高いLDは、因果性または機能的な等価性を確立しません。 空の結果は、LD をゼロにしない、返されたデータの修飾を意味しません。 エラーはエラーのままです。 アセンブリ/リリースは、このエンドポイントで報告されず、nullのままです。 発信者は、全人口の名前を供給しなければなりません。 このツールは、人口や推論を発見しません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `variant_id` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+| `population_name` | 文字列 | **必須**; 最長: 1; パターン: "\\S" |
+| `species` | 文字列 | 任意; デフォルト: "homo_sapiens"; 最長: 1; パターン: "\\S" |
+| `min_r2` | 数値 | 任意; デフォルト: 0.8; 最小値: 0; 最高: 1 |
+| `min_d_prime` | 数値 | 任意; デフォルト: 0; 最小値: 0; 最高: 1 |
+| `window_size` | 整数 | 任意; デフォルト: 500; 最小値: 1; 最高: 500 |
+| `max_records` | 整数 | 任意; デフォルト: 100; 最小値: 1; 最高: 1000 |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_proxies", {"variant_id": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV", "min_r2": 0.8, "window_size": 500, "max_records": 100})
 ```
 
 </ToolOperationGroup>
@@ -5283,6 +5316,81 @@ Cellosaurus CVCLアクセスまたはRRID:CVCL識別子を解決します。 ア
 
 ```javascript
 const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
+```
+
+</ToolOperationGroup>
+
+## PDC {/* #family-34 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `pdc_search_studies` {/* #pdc_search_studies */}
+
+パブリック・スタディ・カタログでPDCのスタディ・識別子とバージョン名を検索します。 キーワードマッチングは、病気/臨床的フィルタリングではなく、ケース・インセンティブなローカル・サブストリングマッチングです。 キーワードがなければ、カタログを参照して下さい。 すべてのバージョンが保持されます。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `query` | 文字列 | 任意; 最長: 1; 最高長さ: 200; パターン: "\\S" |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_search_studies", {"query":"CCRCC", "limit":5})
+```
+
+### `pdc_get_study` {/* #pdc_get_study */}
+
+PDCのメタデータ、試金タイプ、ケース/アリコカウント、ファイルカテゴリ、利用可能なバージョンを取得します。 pdc_study_idは最新バージョンを選択します。 study_idは、特定のバージョンのUIDです。 返されたstudy_idを使用して、その後の呼び出しをピン留めします。 外部参照IDは、名前付きリソースに属しています。 PDCとGDC UUIDは変更できません。
+
+`pdc_study_id`/`study_id`の1つを丁度提供して下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `pdc_study_id` | 文字列 | 上記の条件に従う。 最高長さ: 9; パターン: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | 文字列 | 上記の条件に従う。 最高長さ: 36; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_get_study", {"pdc_study_id":"PDC000127"})
+```
+
+### `pdc_list_biospecimens` {/* #pdc_list_biospecimens */}
+
+地図 PDC は、CPTAC のマルチオミクス研究のための提出者 ID、プールの旗および外的な参照を予約し、サンプルおよび場合にアリコテーションを調査します。 各行は、一意の患者ではなく、アリコ協会です。 pagination_mode: ローカルモードの1000-associationの上流の帽子を渡るtraverseに上流を使用して下さい; オーバーストリームオフセットとカウントケースを制限します。 pdc_study_idは最新バージョンを選択します。 study_idは、特定のバージョンのUIDです。 返されたstudy_idを使用して、その後の呼び出しをピン留めします。 外部参照IDは、名前付きリソースに属しています。 PDCとGDC UUIDは変更できません。
+
+`pdc_study_id`/`study_id`の1つを丁度提供して下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `pdc_study_id` | 文字列 | 上記の条件に従う。 最高長さ: 9; パターン: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | 文字列 | 上記の条件に従う。 最高長さ: 36; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `pagination_mode` | 文字列 | 任意; デフォルト: "local"; enum: &#91;"local", "upstream"&#93; |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"PDC000127", "pagination_mode":"upstream", "limit":5})
+```
+
+### `pdc_list_files` {/* #pdc_list_files */}
+
+定量的なレポート(data_category:タンパク質アセンブリ)および出版物の補足を含むPDCの調査ファイルを発見して下さい。 フィルタは公式APIに渡されます。 メタデータとストレージパスを返します。ファイルの内容ではなく、URLをダウンロードします。 pdc_study_idは最新バージョンを選択します。 study_idは、特定のバージョンのUIDです。 返されたstudy_idを使用して、その後の呼び出しをピン留めします。 外部参照IDは、名前付きリソースに属しています。 PDCとGDC UUIDは変更できません。
+
+`pdc_study_id`/`study_id`の1つを丁度提供して下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `pdc_study_id` | 文字列 | 上記の条件に従う。 最高長さ: 9; パターン: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | 文字列 | 上記の条件に従う。 最高長さ: 36; パターン: "&lt;unk> &lt;unk> &lt;unk>0-9a-fA-F&#123; 8&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 4&#125;-&#91;&#91;&#91;&#93;0-9a-fA-F&#123; 12&#125;$ ドル" |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 1000000 |
+| `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
+| `data_category` | 文字列 | 任意; 最長: 1; 最高長さ: 200; パターン: "\\S" |
+| `file_type` | 文字列 | 任意; 最長: 1; 最高長さ: 200; パターン: "\\S" |
+| `file_format` | 文字列 | 任意; 最長: 1; 最高長さ: 200; パターン: "\\S" |
+| `file_name` | 文字列 | 任意; 最長: 1; 最高長さ: 500; パターン: "\\S" |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
 </ToolOperationGroup>

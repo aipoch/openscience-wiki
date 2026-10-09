@@ -1757,5 +1757,17 @@
   },
   "docs.outline.reference.v0351.scope": {
     "message": "研究スターター、セッションアクション、Requesty、GWASサマリーファイル、InterProScan投稿、受容体証拠、共有PDFノート。"
+  },
+  "docs.guides.outline.pdf-translation.title": {
+    "message": "完全なPDFを翻訳する"
+  },
+  "docs.guides.outline.pdf-translation.scope": {
+    "message": "PDFを準備し、翻訳モデルを選択し、保存した作業を再開し、オリジナルとエクスポートと比較します。"
+  },
+  "docs.outline.reference.v0360.title": {
+    "message": "v0.36.0"
+  },
+  "docs.outline.reference.v0360.scope": {
+    "message": "PDF 翻訳、Notebook 実行レビュー、PDC、Ensembl LD および読み込みページ選択。"
   }
 }

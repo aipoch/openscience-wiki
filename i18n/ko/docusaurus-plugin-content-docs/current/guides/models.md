@@ -1,7 +1,7 @@
 ---
 title: "모델 및 작업 정책"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-09'
 ---
 
 # 모델 및 작업 정책 {/* #models-and-task-policies */}
@@ -126,3 +126,9 @@ Screening은 수집 규칙과 참조 증거를이 서비스에 보냅니다. **U
 아래 양식은 필드를 설명합니다. 연결 확인하기 전에 실제 서비스 세부 사항과 샘플 엔드 포인트 및 `your-model-id`을 대체하십시오.
 
 ![주문 분류 엔드포인트, 모델 및 빈 키 필드](/img/open-science/v0320/classification-custom.webp)
+
+## PDF 번역 모델을 선택하십시오. {/* #pdf-translation-model */}
+
+PDF 번역은 독자에서 자체 **Translation method** 및 **Model** 제어를 가지고 있습니다. **Agent**는 유효한 호환성 모형을 사용할 수 있습니다; **Direct API**는 API 공급자를 요구합니다. Codex 구독 모델은 v0.36.0에서이 작업을 사용할 수 없습니다. 번역 모델을 선택하면 Main을 대체할 필요가 없습니다. [PDF 번역](pdf-translation.md#prepare-translation) 참조.
+
+공식 Anthropic 카탈로그에는 **조잡한 Haiku 5.5**이 포함되어 있습니다. Model 가시성 및 접근은 선택한 에이전트 및 계정에 따라 달라집니다. 현재 카탈로그 항목을 선택하여 context-size suffix를 이전 모델 ID로 승인하십시오.

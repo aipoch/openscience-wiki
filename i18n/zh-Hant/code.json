@@ -2629,5 +2629,17 @@
   },
   "docs.outline.reference.v0351.scope": {
     "message": "研究任務建議、會話操作、Requesty、GWAS 彙總檔案、InterProScan 提交、受體證據與 PDF 筆記共享。"
+  },
+  "docs.outline.reference.v0360.title": {
+    "message": "v0.36.0"
+  },
+  "docs.outline.reference.v0360.scope": {
+    "message": "PDF 全文翻譯、Notebook 執行前審查、PDC、Ensembl LD 與已載入頁面全選。"
+  },
+  "docs.guides.outline.pdf-translation.title": {
+    "message": "PDF 全文翻譯"
+  },
+  "docs.guides.outline.pdf-translation.scope": {
+    "message": "準備 PDF、選擇翻譯模型、繼續已儲存進度、對照原文並匯出。"
   }
 }

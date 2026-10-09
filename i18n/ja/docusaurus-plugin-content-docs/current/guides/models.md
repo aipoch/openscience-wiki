@@ -1,7 +1,7 @@
 ---
 title: "モデルとタスクポリシー"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-09'
 ---
 
 # モデルとタスクポリシー {/* #models-and-task-policies */}
@@ -126,3 +126,9 @@ Main は **Codex subscription** を引き続き使用できます。 機能読�
 下のフォームはフィールドを記述します。 サンプルエンドポイントと`your-model-id`を実際のサービスの詳細に置き換えて、接続をチェックします。
 
 ![カスタム分類エンドポイント、モデル、および空のキーフィールド](/img/open-science/v0320/classification-custom.webp)
+
+## PDFの翻訳モデルを選択 {/* #pdf-translation-model */}
+
+PDF 翻訳は、**Translation method** と **Model** をリーダーに制御しています。 **Agent**は利用できる多用性があるモデルを使用できます; **Direct API**はAPIプロバイダが必要です。 Codex サブスクリプションモデルは、v0.36.0 でのこの操作では利用できません。 Mainを交換する必要はありません。 [PDF 翻訳](pdf-translation.md#prepare-translation) を参照してください。
+
+公式のAnthropicカタログには、**クロードHaiku 5.5**が含まれています。 選択したエージェントとアカウントに依存して、モデルの可視性とアクセス。 コンテキストサイズのサフィックスを古いモデルIDに追加するのではなく、現在のカタログエントリを選択します。

@@ -1,7 +1,7 @@
 ---
 title: "파일 열기 및 미리보기"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -234,3 +234,7 @@ inspect. Keep the response in English.
 응답은 종이 텍스트와 캡션에서 **PDF 페이지 3에서 그림 1**을 확인, DOI `10.1038/s41467-018-08136-3`와 함께. 페이지를 여십시오 3 및 소스와 인용 된 패널을 비교합니다. 텍스트 검색은 혼자 추출 된 그림 이미지를 제공하지 않았다 : 이미지에서 명시적으로 구별 된 읽기 쉬운 텍스트는 검사 할 수 없습니다. 시각 해석을 위해, 첫번째 사용 [그림 및 표](#pdf-extraction)는 추출한 지역을 검열합니다.
 
 ![원본 PDF과 이미지 액세스의 제한으로 완료된 첫 번째 메시지 응답](/img/open-science/v0351/first-pdf-answer.webp)
+
+## 문서 번역 {/* #full-text-translation */}
+
+PDF 도구 모음에서 **Full-text translation**을 열고 텍스트를 준비하고 지원 된 모델을 선택하고 재작용 가능한 번역을 저장하십시오. 모형 필요조건, 본래/번역된 비교 및 PDF 수출을 위한 [전체 PDF 번역](pdf-translation.md)를 따르십시오. 그림, 테이블 및 인용 검사를 위한 본래 유지하십시오.

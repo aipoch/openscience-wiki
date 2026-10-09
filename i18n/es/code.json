@@ -1758,5 +1758,17 @@
   },
   "docs.outline.reference.v0351.scope": {
     "message": "Inicio de investigación, acciones de sesión, Requesty, archivos sumarios GWAS, presentación InterProScan, evidencia de receptores y notas PDF compartidas."
+  },
+  "docs.guides.outline.pdf-translation.title": {
+    "message": "Traducir un PDF completo"
+  },
+  "docs.guides.outline.pdf-translation.scope": {
+    "message": "Preparar un PDF, elegir un modelo de traducción, reanudar el trabajo guardado, comparar con el original y la exportación."
+  },
+  "docs.outline.reference.v0360.title": {
+    "message": "v0.36.0"
+  },
+  "docs.outline.reference.v0360.scope": {
+    "message": "PDF traducción, Notebook examen de la ejecución, PDC, Ensembl LD y selección de páginas cargadas."
   }
 }

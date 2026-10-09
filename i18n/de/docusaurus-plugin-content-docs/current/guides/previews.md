@@ -1,7 +1,7 @@
 ---
 title: "Öffnen und Vorschauen von Dateien"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -234,3 +234,7 @@ inspect. Keep the response in English.
 Die Antwort identifizierte **Abbildung 1 auf PDF Seite 3** aus dem Papiertext und der Beschriftung neben DOI `10.1038/s41467-018-08136-3`. Öffnen Sie die Seite 3 und vergleichen Sie die zitierten Panels mit der Quelle. Die Textsuche allein lieferte keine extrahierten Figurenbilder: Die Antwort unterschied explizit lesbaren Text von Bildern, die sie nicht inspizieren konnte. Zur visuellen Interpretation verwenden Sie zuerst [Abbildungen und Tabellen](#pdf-extraction) und inspizieren die extrahierte Region.
 
 ![Die abgeschlossene Antwort der ersten Nachricht mit dem ursprünglichen PDF und die angegebenen Grenzen des Bildzugriffs](/img/open-science/v0351/first-pdf-answer.webp)
+
+## Übersetzen des Dokuments {/* #full-text-translation */}
+
+Öffnen Sie **Full-text translation** in der PDF-Symbolleiste, um Text vorzubereiten, ein unterstütztes Modell auszuwählen und eine wiederholbare Übersetzung zu speichern. Folgen Sie [Übersetzen eines vollständigen PDF](pdf-translation.md) für Modellanforderungen, Original / übersetzten Vergleich und PDF Export. Bewahren Sie das Original zur Überprüfung von Zahlen, Tabellen und Zitaten auf.

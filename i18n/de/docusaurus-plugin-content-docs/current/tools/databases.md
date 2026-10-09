@@ -2,7 +2,7 @@
 title: "Wissenschaftliche Datenbanken"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # Wissenschaftliche Datenbanken {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Verwenden Sie diese Seite, um eine Datenquelle auszuwählen, zu verstehen, was s
 
 ## Unterstützte Datenbanken {/* #supported-databases */}
 
-Open-Science v0.35.1 beinhaltet **33-Datenquellenstecker mit 341-Operationen**. Das separate Offline-Molekül Connector fügt zwei Operationen hinzu, wodurch die vollständige Registrierung auf 343 gebracht wird. Connector-Namen unter **Settings → Connectors** übereinstimmen; Jede Familie kann mehrere Datenbanken freilegen. Das Auflisten einer Quelle bedeutet nicht, dass jedes Feature seiner Website verfügbar ist.
+Open-Science v0.36.0 beinhaltet **34-Datenquellenstecker mit 347-Operationen**. Das separate Offline-Molekül Connector fügt zwei Operationen hinzu, wodurch die vollständige Registrierung auf 349 gebracht wird. Connector-Namen unter **Settings → Connectors** übereinstimmen; Jede Familie kann mehrere Datenbanken freilegen. Das Auflisten einer Quelle bedeutet nicht, dass jedes Feature seiner Website verfügbar ist.
 
 | Konnektor | Quellen | Vorgänge | Verwenden Sie es für  |
 | --- | --- | --- | ---  |
@@ -21,7 +21,7 @@ Open-Science v0.35.1 beinhaltet **33-Datenquellenstecker mit 341-Operationen**. 
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Papiere, Autoren, Zitate, DOI-Updates und Datensatz / Software-Datensätze. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Biomedizinische Literatur über NCBI E-utilities, den PMC ID Converter und Europe PMC — Suche, Metadaten, verwandte Artikel, Zitat-Lookup, ID-Konvertierung, Volltext und Copyright.  |
 | Gene & Ontologien · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Gen/Protein-Identifikatoren, UniProt-Sequenzentdeckung, GO- und Reactome-Anmerkungen sowie g:Profiler und Enrichr-Gen-Set-Anreicherung. |
-| Genome · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | Genomannotation, Homologie und Sequenz; NCBI-Taxon/-assembly/-sequence-Identität; BLAST-Suche und Clustal Omega Multiple Sequence Alignment |
+| Genome · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 22 | Genomannotation, Homologie und Sequenz; NCBI-Taxon/-assembly/-sequence-Identität; BLAST-Suche und Clustal Omega Multiple Sequence Alignment Populationsspezifische LD und Proxy-Varianten. |
 | Varianten · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | Populationshäufigkeit, klinische Aufzeichnungen und assayspezifische Funktionswerte, Zuordnungen und Experimente. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Klinische Studien von ClinicalTrials.gov - Suche, Details, Sponsoren, Ermittler, Endpunkte und Förderfähigkeit.  |
 | Klinische Genomik `clinical-genomics` | ClinGen, CIViC, Offene Ziele, ClinPGx | 30 | Klinische Genomik-Wissensdatenbanken: ClinGen-Kurationen, klinische CIViC-Evidenz und die Open-Targets-Plattform sowie ClinPGx-Pharmakogenomik-Aufzeichnungen. |
@@ -50,6 +50,7 @@ Open-Science v0.35.1 beinhaltet **33-Datenquellenstecker mit 341-Operationen**. 
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | Finden Sie Zellliniennamen und Synonyme, dann prüfen Sie die Beitrittsidentität und Qualitätsanmerkungen. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | Krankheit / Gen-zu-Phänotyp-Assoziationen mit dem Organismus und unterstützende Beweise. |
 | IEDB · `iedb` | Immune Epitope Datenbank | 8 | Epitope, Antigene, T-Zell-, B-Zell- und MHC-Assays, TCR/BCR-Beweise und Quellenpublikationen. |
+| PDC · `pdc` | NCI Proteomic Data Commons | 4 | Versionen von Krebs-Proteomik-Studien, Probenassoziationen und Metadaten quantitativer Dateien; Kein Download. |
 
 Die Offline-Molekül-Tools sind in [Wissenschaftliche Zuschauer](viewers.md) abgedeckt. Für die genauen Operationen, die von jeder Datenquelle ausgesetzt sind, verwenden Sie den [Connector Betriebsnummer](../reference/connector-operations.md).
 
@@ -266,3 +267,19 @@ Vermeiden Sie eine doppelte Einreichung nach einem Timeout: Stellen Sie zuerst e
 Aktivieren Sie **IEDB** für Main und fordern Sie **search_tcrs** oder **search_bcrs** mit mindestens einem biologischen oder Beweisfilter an. Pagination allein reicht nicht aus. Verwenden Sie `sequence` für die **Epitop**-Sequenz; `chain1_cdr3`- und `chain2_cdr3`-Filterrezeptor-CDR3-Sequenzen. Diese öffentlichen Suchanfragen benötigen keinen API-Schlüssel.
 
 Bewahren Sie die Rezeptorgruppen-ID, Ketten, gemeldete Assay-IDs und Quellenpublikationen auf. Host- und Outcome-Filter gelten für aggregierte Gruppen und können durch verschiedene Experimente befriedigt werden. Um festzustellen, dass im selben Assay Bedingungen auftreten, folgen Sie den gemeldeten Assay-IDs in den entsprechenden Assay-Vorgang und wenden Sie dort die erforderlichen Filter an. Pagination umfasst Rezeptorgruppen, nicht die Vollständigkeit jedes eingebetteten Exports. Diese Aufzeichnungen sind Evidenzabruf, keine Vorhersage der Rezeptorbindung. [IEDB-Parameter](../reference/connector-operations.md#family-33).
+
+## Entdecken Sie Krebsproteomik mit PDC {/* #pdc */}
+
+**PDC** in **Settings → Connectors** aktivieren. Seine öffentlichen Metadaten API benötigen keinen API-Schlüssel. Verwenden Sie es, um Studien und Versionen zu finden, Assays und Probenzahlen zu untersuchen, Fall-Probe-Aliquot-Assoziationen zu kartieren und quantitative Dateien wie **Proteinanordnung**-Berichte aufzulisten. Es gibt keine Behandlungs- / Ergebnisdaten zurück oder lädt Dateien herunter.
+
+Beginnen Sie mit einem Studienzugang wie `PDC000127` oder suchen Sie Studienbezeichner und Versionsnamen. PDC Keyword Matching ist kein klinischer Krankheitsfilter. Holen Sie die Studie ab und verwenden Sie dann die zurückgegebene `study_id`-UUID, um nachfolgende Aufrufe anzuheften; `pdc_study_id` wählt die neueste Version aus. Geben Sie genau einen dieser Selektoren an.
+
+Für Probenlisten zählt die **Vorwärts**-Paginierung Fälle; expandierende Proben und Aliquots können mehr Zeilen als die Fallgrenze produzieren. Die Standardseiten des **lokal**-Modus erhielten Assoziationen und haben eine vorgelagerte 1,000-Assoziation. Eine endgültige lokale Seite beweist keine Vollständigkeit, wenn diese Obergrenze erreicht wird. Halten Sie PDC-IDs und benannte externe GDC-Referenzen getrennt. Dateilisten umfassen Namen, Bytegrößen, MD5-Werte und Speicherpfade; Ein aufgelisteter Pfad ist keine autorisierte Download-URL.
+
+Siehe [PDC-Operationen und Paginierung](../reference/connector-operations.md#family-34). Bevor Sie Quellen kombinieren, überprüfen Sie die Studienversion, den Assay, die Probenidentität und die Zugriffs- und Zitieranforderungen jeder Quelle.
+
+## Bevölkerungsspezifisches LD überprüfen {/* #ensembl-ld */}
+
+**Genome** in **Settings → Connectors** aktivieren. Seine Ensembl LD-Tools verwenden das öffentliche API ohne Schlüssel. Geben Sie zwei Varianten-IDs für `ensembl_ld_pairwise` oder eine für `ensembl_ld_proxies` zusammen mit dem vollständigen Populationsnamen wie `1000GENOMES:phase_3:KHV` an. Die Werkzeuge entdecken nicht die Bevölkerung oder schließen Abstammung; eine für die Studie geeignete Referenzpopulation auswählen.
+
+Paarweise Ergebnisse berichten r2 und D′. Proxy-Abfragen standardmäßig zu r2 ≥ 0.8 und einem **500 kb Gesamtfenster**, ungefähr 250 kb auf beiden Seiten. `max_records` begrenzt die zurückgegebene Liste nach dem Sortieren, nicht die vorgelagerte Arbeit. Behalten Sie die Population und Abrufen von Metadaten mit dem Ergebnis; Dieser Endpunkt meldet die Referenzbaugruppe oder Ensembl-Freigabe nicht. Leere Ergebnisse bedeuten, dass keine qualifizierenden Daten zurückgegeben werden, nicht Null LD. Hohes LD stellt weder Kausalität noch funktionale Äquivalenz fest. Siehe [paarweise Felder](../reference/connector-operations.md#ensembl_ld_pairwise) und [Proxyfelder](../reference/connector-operations.md#ensembl_ld_proxies).

@@ -1,7 +1,7 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -384,3 +384,9 @@ Citation 的四個複製按鈕寫入不同格式。貼上到目標編輯器，�
 ## 儲存 PDF 閱讀筆記 {/* #保存-pdf-阅读笔记 */}
 
 在文獻附件中開啟 PDF，使用 **Notes & Annotations** 儲存批註、頁級問題和整篇筆記。同一文獻庫檔案版本在不同專案和會話中共享這些筆記。透過全域搜尋的 **Library** 結果找到筆記，再選擇 **Show annotation source** 返回原文。步驟和匯出方法見 [PDF 批註與文件筆記](pdf-notes.md)。
+
+## 選擇已載入頁面進行批次操作 {/* #loaded-page-selection */}
+
+使用 Library 或 Inbox 的全選核取方塊，選中該檢視已載入的記錄。選擇批次操作前，核對已選數量與可見記錄。勾選此框會用已載入行替換選擇範圍，取消勾選會清除選擇。
+
+Library 中還有更多匹配記錄時，獨立的 **Select all matching references** 操作可以把範圍擴充套件到已載入頁面之外。使用前先核對總數與當前篩選條件；僅勾選頁面核取方塊不會執行這一擴充套件。需要重新選擇時，使用 **Clear selection**。選中記錄不會直接接受 Inbox 候選或匯出檔案，還需要選擇對應操作。

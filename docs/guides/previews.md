@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -234,3 +234,7 @@ inspect. Keep the response in English.
 The response identified **Figure 1 on PDF page 3** from the paper text and caption, alongside DOI `10.1038/s41467-018-08136-3`. Open page 3 and compare the cited panels with the source. Text search alone did not provide extracted figure images: the answer explicitly distinguished readable text from images it could not inspect. For visual interpretation, first use [Figures & Tables](#pdf-extraction) and inspect the extracted region.
 
 ![The completed first-message response with the original PDF and the limits of image access stated](/img/open-science/v0351/first-pdf-answer.webp)
+
+## Translate the document {/* #full-text-translation */}
+
+Open **Full-text translation** in the PDF toolbar to prepare text, choose a supported model and save a resumable translation. Follow [Translate a full PDF](pdf-translation.md) for model requirements, original/translated comparison and PDF export. Keep the original for checking figures, tables and quotations.
