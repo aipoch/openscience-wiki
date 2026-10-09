@@ -1762,5 +1762,17 @@
   },
   "docs.outline.reference.v0351.scope": {
     "message": "연구 시동기, 회의 활동, Requesty, GWAS 요약 파일, InterProScan 제출, 수용체 증거 및 공유된 PDF 주."
+  },
+  "docs.guides.outline.pdf-translation.title": {
+    "message": "전체 PDF 번역"
+  },
+  "docs.guides.outline.pdf-translation.scope": {
+    "message": "PDF 준비, 번역 모델을 선택, 저장 된 작업을 재개, 원본과 수출과 비교."
+  },
+  "docs.outline.reference.v0360.title": {
+    "message": "v0.36.0"
+  },
+  "docs.outline.reference.v0360.scope": {
+    "message": "PDF 번역, Notebook 실행 검토, PDC, Ensembl LD 및 로드 페이지 선택."
   }
 }

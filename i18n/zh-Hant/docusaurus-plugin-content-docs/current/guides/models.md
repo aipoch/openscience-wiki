@@ -1,7 +1,7 @@
 ---
 title: "模型與任務策略"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-09'
 ---
 
 # 模型與任務策略 {/* #模型与任务策略 */}
@@ -127,3 +127,9 @@ Session details 選擇器不接受 Codex 訂閱模型；Main 或 Vision 中能�
 下圖僅展示填寫方式：請把示例地址與 `your-model-id` 換成實際服務資訊，再檢查連線。
 
 ![自定義分類服務的端點、模型和空白金鑰欄位](/img/open-science/v0320/classification-custom.webp)
+
+## 選擇 PDF 翻譯模型 {/* #pdf-translation-model */}
+
+PDF 閱讀器提供獨立的 **Translation method** 和 **Model** 控制元件。**Agent** 可使用可用的相容模型；**Direct API** 需要 API 提供商。v0.36.0 的這項操作不支援 Codex 訂閱模型。選擇翻譯模型無需替換 Main，見 [PDF 翻譯](pdf-translation.md#prepare-translation)。
+
+官方 Anthropic 目錄包含 **Claude Haiku 5.5**。模型是否可見、能否呼叫取決於選定的 Agent 和賬號。應使用當前目錄條目，不要自行在舊模型 ID 後附加上下文大小字尾。

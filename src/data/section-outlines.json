@@ -1433,6 +1433,17 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v0360",
+            "title": "v0.36.0",
+            "scope": "PDF translation, Notebook execution review, PDC, Ensembl LD and loaded-page selection.",
+            "currentDoc": "changelog/v0-36-0",
+            "proposedUrl": "/docs/changelog/v0-36-0/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-36-0"
+            ]
+          },
+          {
             "id": "v0351",
             "title": "v0.35.1",
             "scope": "Research starters, session actions, Requesty, GWAS summary files, InterProScan submission, receptor evidence and shared PDF notes.",

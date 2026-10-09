@@ -1,7 +1,7 @@
 ---
 title: "Notebook 與執行證據"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -43,6 +43,23 @@ import Screenshot from '@site/src/components/Screenshot';
 | 關閉/收起預覽 | 返回對話 | 保留執行歷史 |
 
 有 **Input data / Inputs** 時，核對檔案及版本是否與請求一致。引用不可用時，透過應用重新開啟或附加目標輸入，再重試。
+
+## 執行前檢查程式碼 {/* #execution-review */}
+
+從 v0.36.0 起，Agent 提交的 Notebook 程式碼會在執行前檢查。受支援的普通讀取與分析無需額外風險提示；可能造成不可逆變化，或無法充分分析的操作，需要一次性決定。直接在手動控制檯輸入的程式碼不經過這項 Agent 批准步驟，提交前應自行檢查。
+
+1. 出現 **Review risky code** 時，核對執行環境和請求的操作；計算正在等待決定。
+2. 點選風險項旁的 **Line**，在完整程式碼中定位相關行。檢查路徑、受影響檔案和命令，也要檢查分析無法判斷的操作。
+3. 若操作沒有必要或目標不對，拒絕並要求 Agent 修改為更安全的方案。只有確實需要顯示的操作時才批准一次；這不會為以後的風險程式碼授予永久權限。
+4. 決定後，檢視保留的決策記錄與 Notebook 執行狀態。批准不代表完成；被拒絕的請求不會執行該程式碼。
+
+<p className="example-label"><strong>案例演示</strong> 檢查外部 Python 子程序請求</p>
+
+下圖的計算只是求和，但它透過 `subprocess.run` 啟動另一個直譯器，因巢狀執行無法被充分檢查而停在審查卡片。提示不等於認定程式碼有惡意。本例選擇 **Deny**，執行記錄隨後顯示中斷，沒有執行該子程序。
+
+![Notebook 審查卡片中的執行環境、程式碼行、Allow once 和 Deny](/img/open-science/v0360/notebook-risk-review.webp)
+
+這項檢查針對執行風險，不驗證統計方法或結果。**Auto-review** 和 [Reviewer](../specialists/reviewer.md) 分別檢查已完成工作。v0.36.0 還改進了 Python／R 依賴記錄；核對結果的實際輸入輸出應使用[來源記錄與重新執行驗證](reproducibility.md)。
 
 ## 使用當前核心 {/* #使用当前内核 */}
 

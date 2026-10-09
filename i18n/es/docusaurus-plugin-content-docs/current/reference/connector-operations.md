@@ -2,7 +2,7 @@
 title: "Referencia de operación Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Los nombres de campo de retorno difieren por operación. Las descripciones y esq
 
 ## Contribuciones de las operaciones {/* #operation-inputs */}
 
-Ampliar un Connector a la vez. Los campos obligatorios están marcados con **obligatorio**; esta referencia y descarga utilizar el esquema Open-Science **v0.35.1** Una lista `input.required` anidada es autorizada; una lista de `required` de alto nivel puede estar ausente. Consulte el <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.1.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas de agentes. No pase un `id` genérico cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
+Ampliar un Connector a la vez. Los campos obligatorios están marcados con **obligatorio**; esta referencia y descarga utilizar el esquema Open-Science **v0.36.0** Una lista `input.required` anidada es autorizada; una lista de `required` de alto nivel puede estar ausente. Consulte el <ExampleDownload path="/examples/capabilities/connector-catalog-v0.36.0.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas de agentes. No pase un `id` genérico cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
 
 
 ## Química {/* #family-1 */}
@@ -1042,6 +1042,39 @@ Traiga un archivo de alineación de Clustal Omega clustal_num con destino a un t
 
 ```javascript
 const result = await host.mcp("genomes", "clustalo_results", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m", "outfmt":"clustal_num"})
+```
+
+### `ensembl_ld_pairwise` {/* #ensembl_ld_pairwise */}
+
+Enlaces de consulta de desquilibrio (r2 y D′) entre dos IDs variantes, como el catálogo GWAS rsIDs, en una población explícitamente seleccionada. La persona que llama debe suministrar el nombre de la población total en population_name (por ejemplo. 1000GENOMES:phase_3:KHV); esta herramienta no descubre poblaciones ni inferir ancestro. especie predeterminada a homo_sapiens. Retorna las identidades variantes y numeric r2/d_prime sin importancia o inferencia de causalidad. El LD alto no establece la causalidad. Los resultados vacíos significan que no se devuelven datos LD, no LD cero; IDs/poblaciones inválidas y fallos de servicio siguen siendo errores. Los metadatos de referencia incluyen la población, panel conocido, URL de consulta y tiempo de recuperación; ensamblaje / liberación son nulas porque el punto final LD no los informa.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `variant_id1` | cadena de texto | **obligatorio**; minLength: 1; patrón: "\\S" |
+| `variant_id2` | cadena de texto | **obligatorio**; minLength: 1; patrón: "\\S" |
+| `population_name` | cadena de texto | **obligatorio**; minLength: 1; patrón: "\\S" |
+| `species` | cadena de texto | facultativa; predeterminado: "homo_sapiens"; minLength: 1; patrón: "\\S" |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_pairwise", {"variant_id1": "rs6792369", "variant_id2": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV"})
+```
+
+### `ensembl_ld_proxies` {/* #ensembl_ld_proxies */}
+
+Encontrar variantes cercanas en LD con una variante ID (por ejemplo. a GWAS rsID) en un population_name requerido, como 1000GENOMES:phase_3:KHV. especie predeterminada a homo_sapiens. min_r2 predeterminado a 0.8; min_d_prime predeterminado a 0; ambos son umbrales inclusivos en &#91;0,1&#93;. window_size es la anchura total de la ventana Ensembl centrada en kb (integer 1–500, 500, aproximadamente 250 kb en cada lado por defecto); max_records caps de salida (integer 1–1000, predeterminado 100) y no limita el tamaño de la computación o descarga de arriba. Los resultados se clasifican por r2 descendiendo, luego d_prime descendiendo y variante ID, antes de capping. Las coordenadas/anotaciones son atributos de arriba. Informar a la población y reference_data con resultados. El LD alto no establece la causalidad o equivalencia funcional. Los resultados vacíos significan que no se devuelven los datos de calificación, no cero LD. Los errores siguen siendo errores; ensamblaje/liberación no se reportan por este punto final y permanecen nulos. La persona que llama debe suministrar el nombre de la población total; esta herramienta no descubre poblaciones ni inferir ancestro.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `variant_id` | cadena de texto | **obligatorio**; minLength: 1; patrón: "\\S" |
+| `population_name` | cadena de texto | **obligatorio**; minLength: 1; patrón: "\\S" |
+| `species` | cadena de texto | facultativa; predeterminado: "homo_sapiens"; minLength: 1; patrón: "\\S" |
+| `min_r2` | número | facultativa; predeterminado: 0.8; mínimo: 0; máximo: 1 |
+| `min_d_prime` | número | facultativa; predeterminado: 0; mínimo: 0; máximo: 1 |
+| `window_size` | entero | facultativa; predeterminado: 500; mínimo: 1; máximo: 500 |
+| `max_records` | entero | facultativa; predeterminado: 100; mínimo: 1; máximo: 1000 |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_proxies", {"variant_id": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV", "min_r2": 0.8, "window_size": 500, "max_records": 100})
 ```
 
 </ToolOperationGroup>
@@ -5283,6 +5316,81 @@ Resolver una adhesión de CVCL Cellosaurus o identificador RRID:CVCL. Recuperar 
 
 ```javascript
 const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
+```
+
+</ToolOperationGroup>
+
+## PDC {/* #family-34 */}
+
+<ToolOperationGroup>
+<summary>Mostrar operaciones y parámetros</summary>
+
+### `pdc_search_studies` {/* #pdc_search_studies */}
+
+Buscar identificadores de estudio PDC y nombres de versiones en el catálogo de estudio público. La combinación de palabras clave es la combinación de subestring local insensible en caso, no la enfermedad / filtración clínica. Sin una palabra clave, navega por el catálogo. Todas las versiones se conservan.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `query` | cadena de texto | facultativa; minLength: 1; maxLength: 200; patrón: "\\S" |
+| `offset` | entero | facultativa; predeterminado: 0; mínimo: 0; máximo: 1000000 |
+| `limit` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_search_studies", {"query":"CCRCC", "limit":5})
+```
+
+### `pdc_get_study` {/* #pdc_get_study */}
+
+Recuperar metadatos de estudio PDC, tipo de ensayo, casos/aliciones, categorías de archivos y versiones disponibles. pdc_study_id selecciona la última versión; study_id es el UUID de una versión específica. Utilice un study_id devuelto para pinchar llamadas posteriores. Los ID de referencia externa pertenecen al recurso mencionado; no asumen PDC y GDC UUIDs son intercambiables.
+
+Proporcionar exactamente uno de `pdc_study_id` / `study_id`.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `pdc_study_id` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 9; patrón: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 36; patrón: "^0-9a-fA-F&#93;&#123; 8&#125;- &#91;0-9a-fA-F&#93;&#123; 4&#125;- &#91;0-9a-fA-F&#93;&#123; 4&#125;- &#91;0-9a-fA-F&#93;&#123; 4&#125;- &#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_get_study", {"pdc_study_id":"PDC000127"})
+```
+
+### `pdc_list_biospecimens` {/* #pdc_list_biospecimens */}
+
+Mapa PDC estudia aliquots a muestras y casos, preservando IDs de remitente, banderas de piscina y referencias externas para la investigación multiomics CPTAC. Cada hilera es una asociación aliquot, no un paciente único. Use pagination_mode: río arriba para atravesar más allá de la tapa de la asociación 1000 del modo local; Incorporación de los offsets y límites. pdc_study_id selecciona la última versión; study_id es el UUID de una versión específica. Utilice un study_id devuelto para pinchar llamadas posteriores. Los ID de referencia externa pertenecen al recurso mencionado; no asumen PDC y GDC UUIDs son intercambiables.
+
+Proporcionar exactamente uno de `pdc_study_id` / `study_id`.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `pdc_study_id` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 9; patrón: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 36; patrón: "^0-9a-fA-F&#93;&#123; 8&#125;- &#91;0-9a-fA-F&#93;&#123; 4&#125;- &#91;0-9a-fA-F&#93;&#123; 4&#125;- &#91;0-9a-fA-F&#93;&#123; 4&#125;- &#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `offset` | entero | facultativa; predeterminado: 0; mínimo: 0; máximo: 1000000 |
+| `limit` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 100 |
+| `pagination_mode` | cadena de texto | facultativa; predeterminado: "local"; enum: &#91;"local", "upstream"&#93; |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"PDC000127", "pagination_mode":"upstream", "limit":5})
+```
+
+### `pdc_list_files` {/* #pdc_list_files */}
+
+Descubra archivos de estudio PDC, incluyendo informes cuantitativos (data_category: Protein Assembly) y suplementos de publicación. Los filtros se transmiten al API oficial. Devuelve las rutas de metadatos y almacenamiento, no archiva contenidos o descarga URLs. pdc_study_id selecciona la última versión; study_id es el UUID de una versión específica. Utilice un study_id devuelto para pinchar llamadas posteriores. Los ID de referencia externa pertenecen al recurso mencionado; no asumen PDC y GDC UUIDs son intercambiables.
+
+Proporcionar exactamente uno de `pdc_study_id` / `study_id`.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `pdc_study_id` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 9; patrón: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | cadena de texto | sujeto a las condiciones anteriores; maxLength: 36; patrón: "^0-9a-fA-F&#93;&#123; 8&#125;- &#91;0-9a-fA-F&#93;&#123; 4&#125;- &#91;0-9a-fA-F&#93;&#123; 4&#125;- &#91;0-9a-fA-F&#93;&#123; 4&#125;- &#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `offset` | entero | facultativa; predeterminado: 0; mínimo: 0; máximo: 1000000 |
+| `limit` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 100 |
+| `data_category` | cadena de texto | facultativa; minLength: 1; maxLength: 200; patrón: "\\S" |
+| `file_type` | cadena de texto | facultativa; minLength: 1; maxLength: 200; patrón: "\\S" |
+| `file_format` | cadena de texto | facultativa; minLength: 1; maxLength: 200; patrón: "\\S" |
+| `file_name` | cadena de texto | facultativa; minLength: 1; maxLength: 500; patrón: "\\S" |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
 </ToolOperationGroup>

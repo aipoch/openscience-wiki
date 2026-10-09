@@ -1,7 +1,7 @@
 ---
 title: "Models and task policies"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-09'
 ---
 
 # Models and task policies
@@ -126,3 +126,9 @@ After saving, select the service under **Automatic capability selection** and ru
 The form below illustrates the fields. Replace the sample endpoint and `your-model-id` with your actual service details before checking the connection.
 
 ![Custom classification endpoint, model and empty key fields](/img/open-science/v0320/classification-custom.webp)
+
+## Choose a PDF translation model {/* #pdf-translation-model */}
+
+PDF translation has its own **Translation method** and **Model** controls in the reader. **Agent** can use an available compatible model; **Direct API** requires an API provider. Codex subscription models are unavailable for this operation in v0.36.0. Selecting a translation model does not require replacing Main. See [PDF translation](pdf-translation.md#prepare-translation).
+
+The official Anthropic catalog includes **Claude Haiku 5.5**. Model visibility and access depend on the selected Agent and account. Pick the current catalog entry rather than appending a context-size suffix to an old model ID.

@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v0.35.1에는 **33 데이터 소스 커넥터 341 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 343에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
+Open-Science v0.36.0에는 **34 데이터 소스 커넥터 347 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 349에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
 
 | 커넥터 | 출처 | 작업 | 사용하기  |
 | --- | --- | --- | ---  |
@@ -21,7 +21,7 @@ Open-Science v0.35.1에는 **33 데이터 소스 커넥터 341 작업**가 포�
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 용지, 저자, 인용, DOI 업데이트 및 데이터 세트 / 소프트웨어 레코드. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI E-utilities, PMC ID 변환기 및 유럽 PMC를 통해 생물 의학 문학 - 검색, 메타 데이터, 관련 기사, 인용 조회, ID 변환, 전체 텍스트 및 저작권.  |
 | 유전자 및 종양학 · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | 유전자/단백 식별자, UniProt 시퀀스 발견, GO 및 Reactome 주석, 그리고 g:Profiler 및 Enrichr 유전자 세트 풍부. |
-| 게놈 · `genomes` | 회의, UCSC, NCBI, BLAST, 클러스터 오메가 | 20 | Genome 주석, 균질 및 순서; NCBI taxon/assembly/sequence 정체성; BLAST 검색 및 클러스터 오메가 다중 시퀀스 정렬. |
+| 게놈 · `genomes` | 회의, UCSC, NCBI, BLAST, 클러스터 오메가 | 22 | Genome 주석, 균질 및 순서; NCBI taxon/assembly/sequence 정체성; BLAST 검색 및 클러스터 오메가 다중 시퀀스 정렬; 인구 별 LD 및 프록시 변형. |
 | Variants · `variants` | gnomAD, 크린바르, dbSNP, MaveDB | 21 | 인구 빈도, 임상 기록 및 분석실험 특정한 기능적인 점수, 매핑 및 실험. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | ClinicalTrials.gov의 임상 시험 - 검색, 세부 사항, 스폰서, 조사, endpoints 및 자격.  |
 | 임상 Genomics · `clinical-genomics` | ClinGen, CIViC, 열린 대상, ClinPGx | 30 | 임상 genomics 지식 기초: ClinGen 치료, CIViC 임상 증거, 그리고 Open Targets 플랫폼, 플러스 ClinPGx pharmacogenomic 기록. |
@@ -50,6 +50,7 @@ Open-Science v0.35.1에는 **33 데이터 소스 커넥터 341 작업**가 포�
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 셀 라인 이름과 동의를 찾기, 다음 액세스 정체성 및 품질 annotations를 검사. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 질병/진-to-phenotype 협회는 생물과 지원 증거를 가진다. |
 | IEDB · `iedb` | Immune Epitope 데이터베이스 | 8 | Epitopes, 항원, T 세포, B 세포 및 MHC 분석실험, TCR/BCR 증거 및 근원 간행물. |
+| PDC · `pdc` | NCI Proteomic 데이터 커먼즈 | 4 | 암-proteomics 연구 버전, 견본 협회 및 양적 파일 metadata; 다운로드 없음. |
 
 오프라인 Molecule 도구는 [사이트맵](viewers.md)에 덮여 있습니다. 각 데이터 소스에 노출된 정확한 작업을 위해 [Connector 가동 참고](../reference/connector-operations.md)을 사용합니다.
 
@@ -266,3 +267,19 @@ timeout 후 중복 제출을 피하십시오. 알려진 작업 ID를 먼저 복�
 Main에 대한 **IEDB** 및 **search_tcrs** 또는 **search_bcrs**를 적어도 하나의 생물학적 또는 증거 필터를 요청할 수 있습니다. 혼자서 질은 충분합니다. **팟캐스트** 순서;에 대 한 `sequence` 사용 `chain1_cdr3`와 `chain2_cdr3` 필터 수용체 CDR3 순서. 이 공개 검색은 API 키가 필요하지 않습니다.
 
 receptor-group ID, 체인을 유지, assay ID 및 소스 출판보고. 호스트 및 outcome 필터는 집단 그룹에 적용되며 다른 실험에 의해 만족할 수 있습니다. 해당 조건은 동일한 분석실험에서 발생하기 위하여, 해당 분석실험 가동으로 보고된 assay ID를 따르고 필요한 필터를 적용하십시오. Pagination 덮개 수용체 그룹은, 각 끼워넣어진 수출의 완전성 아닙니다. 이 기록은 수용체 바인딩의 예측이 아닌, 증거 retrieval입니다. [IEDB 모수](../reference/connector-operations.md#family-33).
+
+## PDC과 함께 암 유전체학 발견 {/* #pdc */}
+
+**Settings → Connectors**에서 **PDC**을 활성화하십시오. 대중적인 메타데이터 API는 API 열쇠를 필요로 합니다. 연구 및 버전을 찾기 위해 사용, assay와 견본 조사, 지도 상자 표본 aliquot 협회를 검사하고 **단백질 회의** 보고서와 같은 quantitative 파일을 목록으로 만드십시오. 처리/outcome 자료 또는 다운로드 파일을 반환하지 않습니다.
+
+`PDC000127`과 같은 연구 접근을 시작하거나 연구 식별자 및 버전 이름을 검색하십시오. PDC 키워드 매칭은 임상 질병 필터가 아닙니다. 연구를 검색한 다음 `study_id` UUID를 사용하여 후속 통화를 핀으로 변환하십시오. `pdc_study_id` 최신 버전을 선택합니다. 이러한 선택자 중 하나를 정확히 제공합니다.
+
+견본 명부를 위해, **업스트림** pagination는 케이스를 조사합니다; 표본과 aliquots를 확장하는 것은 케이스 한계 보다는 더 줄을 생성할 수 있습니다. 기본 **- 한국어** 모드 페이지는 협회를 받고 1,000-association 업스트림 캡을 가지고 있습니다. 마지막 로컬 페이지는 해당 캡이 도달했을 때 완성도를 증명하지 않습니다. PDC ID를 유지하고 외부 GDC 참조를 별도로 지명하십시오. 파일 목록에는 이름, 바이트 크기, MD5 값 및 저장 경로가 포함됩니다. 등록된 경로는 공인된 다운로드 URL이 아닙니다.
+
+[PDC 작업 및 질](../reference/connector-operations.md#family-34) 참조. 소스를 결합하기 전에, 연구 버전, 분석실험, 견본 정체성 및 각 근원의 접근 및 인용 필요조건을 검사하십시오.
+
+## 인구 별 LD 확인 {/* #ensembl-ld */}
+
+**Settings → Connectors**에서 **한국어 (Korean)**을 활성화하십시오. Ensembl LD 도구는 키가없는 공공 API를 사용합니다. `ensembl_ld_pairwise`에 대한 두 가지 변형 ID를 공급, 또는 `ensembl_ld_proxies`에 대한 하나, `1000GENOMES:phase_3:KHV`와 같은 전체 인구 이름과 함께. 도구는 인구 또는 인퍼 ancestry를 발견하지 않습니다; 연구에 적합한 참조 인구를 선택하십시오.
+
+쌍방향 결과 보고서 r2 및 D′. r2 ≥ 0.8 및 **500 kb 총 창**에 프록시 쿼리 기본, 어느 쪽에 250 kb. `max_records`는 정렬 후 반환된 목록을 캡, 업스트림 작업이 아닙니다. 결과를 가진 인구와 retrieval metadata 유지; 이 엔드포인트는 참고 집합 또는 Ensembl 방출을 보고하지 않습니다. 빈 결과가 반환되지 않는 자격이 없는 데이터, 제로 LD. 높은 LD는 카시니즘과 기능적인 평등도 설치하지 않습니다. [쌍방향 필드](../reference/connector-operations.md#ensembl_ld_pairwise) 및 [프록시 필드](../reference/connector-operations.md#ensembl_ld_proxies)을 참조하십시오.

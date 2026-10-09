@@ -1773,5 +1773,17 @@
   },
   "docs.outline.reference.v0351.scope": {
     "message": "Démarreurs de recherche, actions de session, fichiers sommaires Requesty, GWAS, soumission InterProScan, preuves de récepteurs et notes PDF partagées."
+  },
+  "docs.guides.outline.pdf-translation.title": {
+    "message": "Traduire un PDF complet"
+  },
+  "docs.guides.outline.pdf-translation.scope": {
+    "message": "Préparer un PDF, choisir un modèle de traduction, reprendre le travail sauvegardé, comparer avec l'original et l'exportation."
+  },
+  "docs.outline.reference.v0360.title": {
+    "message": "v0.36.0"
+  },
+  "docs.outline.reference.v0360.scope": {
+    "message": "Traduction PDF, examen d'exécution Notebook, PDC, Ensembl LD et sélection des pages chargées."
   }
 }

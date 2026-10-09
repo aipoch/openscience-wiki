@@ -1,7 +1,7 @@
 ---
 title: "Notebook 与执行证据"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -43,6 +43,23 @@ import Screenshot from '@site/src/components/Screenshot';
 | 关闭/收起预览 | 返回对话 | 保留执行历史 |
 
 有 **Input data / Inputs** 时，核对文件及版本是否与请求一致。引用不可用时，通过应用重新打开或附加目标输入，再重试。
+
+## 运行前检查代码 {/* #execution-review */}
+
+从 v0.36.0 起，Agent 提交的 Notebook 代码会在执行前检查。受支持的普通读取与分析无需额外风险提示；可能造成不可逆变化，或无法充分分析的操作，需要一次性决定。直接在手动控制台输入的代码不经过这项 Agent 批准步骤，提交前应自行检查。
+
+1. 出现 **Review risky code** 时，核对运行环境和请求的操作；计算正在等待决定。
+2. 点击风险项旁的 **Line**，在完整代码中定位相关行。检查路径、受影响文件和命令，也要检查分析无法判断的操作。
+3. 若操作没有必要或目标不对，拒绝并要求 Agent 修改为更安全的方案。只有确实需要显示的操作时才批准一次；这不会为以后的风险代码授予永久权限。
+4. 决定后，查看保留的决策记录与 Notebook 运行状态。批准不代表完成；被拒绝的请求不会执行该代码。
+
+<p className="example-label"><strong>案例演示</strong> 检查外部 Python 子进程请求</p>
+
+下图的计算只是求和，但它通过 `subprocess.run` 启动另一个解释器，因嵌套执行无法被充分检查而停在审查卡片。提示不等于认定代码有恶意。本例选择 **Deny**，运行记录随后显示中断，没有执行该子进程。
+
+![Notebook 审查卡片中的运行环境、代码行、Allow once 和 Deny](/img/open-science/v0360/notebook-risk-review.webp)
+
+这项检查针对执行风险，不验证统计方法或结果。**Auto-review** 和 [Reviewer](../specialists/reviewer.md) 分别检查已完成工作。v0.36.0 还改进了 Python／R 依赖记录；核对结果的实际输入输出应使用[来源记录与重新运行验证](reproducibility.md)。
 
 ## 使用当前内核
 

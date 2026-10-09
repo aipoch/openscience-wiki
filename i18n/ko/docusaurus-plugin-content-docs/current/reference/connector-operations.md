@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.35.1** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.1.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
+한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.36.0** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.36.0.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
 
 
 ## 뚱 베어 {/* #family-1 */}
@@ -1042,6 +1042,39 @@ FINISHED 작업에 대한 하나의 경계 클러스터 오메가 clustal_num �
 
 ```javascript
 const result = await host.mcp("genomes", "clustalo_results", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m", "outfmt":"clustal_num"})
+```
+
+### `ensembl_ld_pairwise` {/* #ensembl_ld_pairwise */}
+
+Query linkage disequilibrium (r2 및 D′)는 GWAS 카탈로그 rsID와 같은 두 가지 변형 ID 사이, 명시적으로 선택한 인구. 콜러는 population_name (e.g.)의 전체 인구명을 공급해야 합니다. 1000GENOMES:phase_3:KHV); 이 도구는 인구 또는 infer ancestry를 발견하지 않습니다. 종은 homo_sapiens에 기본으로 합니다. 상류 변형 식별 및 숫자 r2 / d_prime를 significance 또는 카시니언 주입없이 반환합니다. 높은 LD는 카시니즘을 설치하지 않습니다. 빈 결과가 LD 데이터가 반환되지 않습니다. LD; 잘못된 ID/populations 및 서비스 실패는 오류가 남아 있습니다. 참조 메타데이터는 인구, 알려진 패널, 쿼리 URL 및 검색 시간 포함; 어셈블리/출판은 LD 엔드포인트가 보고되지 않기 때문에 null입니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `variant_id1` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+| `variant_id2` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+| `population_name` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+| `species` | 문자열 | 선택 사항; 기본: "homo_sapiens"; 최소 길이: 1; 패턴 : " \ S" |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_pairwise", {"variant_id1": "rs6792369", "variant_id2": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV"})
+```
+
+### `ensembl_ld_proxies` {/* #ensembl_ld_proxies */}
+
+LD에 가까운 변형을 찾아 변형 ID(예: 1000GENOMES:phase_3:KHV와 같은 필수 population_name에 있는 GWAS rsID). 종은 homo_sapiens에 기본으로 합니다. min_r2는 0.8에 기본으로 합니다; min_d_prime는 0에 기본으로 합니다; 둘 다 &#91;0,1&#93;에 있는 포함한 문턱입니다. window_size은 kb (integer 1–500, 기본 500, 기본 250 kb)의 중심 Ensembl 창의 총 폭입니다. max_records 모자 출력 (integer 1–1000, 기본 100) 및 상류 계산 또는 다운로드 크기를 제한하지 않습니다. 결과가 r2 후손으로 분류되며 d_prime 후손과 변종 ID, 캡핑하기 전에. 좌표/문은 업스트림 속성입니다. 결과와 함께 인구와 reference_data을 보고하십시오. 높은 LD는 카시니즘 또는 기능적인 equivalence를 설치하지 않습니다. 빈 결과가 반환되지 않는 자격이 없는 데이터, 제로 LD. 오류가 발생했습니다. 집합/출판은 이 endpoint에 의해 보고되지 않으며 null을 남아 있지 않습니다. 콜러는 전체 인구 이름을 공급해야합니다; 이 도구는 인구 또는 infer ancestry를 발견하지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `variant_id` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+| `population_name` | 문자열 | **필수**; 최소 길이: 1; 패턴 : " \ S" |
+| `species` | 문자열 | 선택 사항; 기본: "homo_sapiens"; 최소 길이: 1; 패턴 : " \ S" |
+| `min_r2` | 숫자 | 선택 사항; 기본: 0.8; 최소: 0; 최대: 1 |
+| `min_d_prime` | 숫자 | 선택 사항; 기본: 0; 최소: 0; 최대: 1 |
+| `window_size` | 정수 | 선택 사항; 기본: 500; 최소: 1; 최대: 500 |
+| `max_records` | 정수 | 선택 사항; 기본: 100; 최소: 1; 최대: 1000 |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_proxies", {"variant_id": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV", "min_r2": 0.8, "window_size": 500, "max_records": 100})
 ```
 
 </ToolOperationGroup>
@@ -5283,6 +5316,81 @@ Cellosaurus CVCL 접속 또는 RRID:CVCL 식별자를 해결합니다. ID, 종, 
 
 ```javascript
 const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
+```
+
+</ToolOperationGroup>
+
+## PDC {/* #family-34 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `pdc_search_studies` {/* #pdc_search_studies */}
+
+검색 PDC 연구 식별자 및 공공 연구 카탈로그의 버전 이름. 키워드 일치는 case-insensitive 지역 substring 일치, 질병 / 클리닉 필터링하지 않습니다. 키워드가 없다면 카탈로그를 검색하십시오. 모든 버전은 유지됩니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `query` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200; 패턴 : " \ S" |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_search_studies", {"query":"CCRCC", "limit":5})
+```
+
+### `pdc_get_study` {/* #pdc_get_study */}
+
+PDC 연구 메타데이터, 분석실험 유형, 케이스/aliquot 수, 파일 카테고리 및 유효한 버전을 검색하십시오. pdc_study_id 최신 버전을 선택; study_id은 특정 버전의 UUID입니다. 반환된 study_id을 핀 후속 통화로 사용합니다. 외부 참조 ID는 이름 된 자원에 속합니다. PDC과 GDC UUID가 교환되지 않습니다.
+
+`pdc_study_id` / `study_id`의 정확히 하나를 제공합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `pdc_study_id` | 문자열 | 위의 조건에 따라; 최대 길이: 9; 패턴: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | 문자열 | 위의 조건에 따라; 최대 길이: 36; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_get_study", {"pdc_study_id":"PDC000127"})
+```
+
+### `pdc_list_biospecimens` {/* #pdc_list_biospecimens */}
+
+지도 PDC는 샘플과 케이스에 aliquots를 연구하고, 제출자 ID, 수영장 깃발 및 CPTAC 멀티 omics 연구를 위한 외부 참고를 보존합니다. 각 행은 aliquot 협회이며, 독특한 환자가 아닙니다. pagination_mode: 로컬 모드의 1000-association 업스트림 캡을 넘어 트스트림; 상류 상쇄 및 제한 카운트 케이스. pdc_study_id 최신 버전을 선택; study_id은 특정 버전의 UUID입니다. 반환된 study_id을 핀 후속 통화로 사용합니다. 외부 참조 ID는 이름 된 자원에 속합니다. PDC과 GDC UUID가 교환되지 않습니다.
+
+`pdc_study_id` / `study_id`의 정확히 하나를 제공합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `pdc_study_id` | 문자열 | 위의 조건에 따라; 최대 길이: 9; 패턴: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | 문자열 | 위의 조건에 따라; 최대 길이: 36; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `pagination_mode` | 문자열 | 선택 사항; 기본: "local"; koum : &#91;"local", "upstream"&#93; |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"PDC000127", "pagination_mode":"upstream", "limit":5})
+```
+
+### `pdc_list_files` {/* #pdc_list_files */}
+
+quantitative 보고서 (data_category : Protein Assembly) 및 출판 보충제를 포함한 PDC 연구 파일을 발견하십시오. 필터는 공식 API에 전달됩니다. metadata 및 storage paths를 반환하고, 내용이나 URL을 다운로드하지 않습니다. pdc_study_id 최신 버전을 선택; study_id은 특정 버전의 UUID입니다. 반환된 study_id을 핀 후속 통화로 사용합니다. 외부 참조 ID는 이름 된 자원에 속합니다. PDC과 GDC UUID가 교환되지 않습니다.
+
+`pdc_study_id` / `study_id`의 정확히 하나를 제공합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `pdc_study_id` | 문자열 | 위의 조건에 따라; 최대 길이: 9; 패턴: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | 문자열 | 위의 조건에 따라; 최대 길이: 36; 패턴 : "₢ 킹0-9a-fA-F&#93; -9a-fA-F 를&#123; 8&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 4&#125;-&#91;&#93;0-9a-fA-F&#93; -9a-fA-F 를&#123; 12&#125;$ 1,900 원" |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 1000000 |
+| `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
+| `data_category` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200; 패턴 : " \ S" |
+| `file_type` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200; 패턴 : " \ S" |
+| `file_format` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200; 패턴 : " \ S" |
+| `file_name` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 500; 패턴 : " \ S" |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
 </ToolOperationGroup>

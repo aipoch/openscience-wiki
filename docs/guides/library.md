@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -384,3 +384,9 @@ Sources: [batch import](https://github.com/aipoch/open-science/blob/v0.27.0/src/
 ## Keep PDF reading notes
 
 Open a reference's PDF attachment and use **Notes & Annotations** for annotations, page questions and document notes. The same library file version shares these notes across projects and sessions. Find a note under **Library** in global search, then choose **Show annotation source** to return to the PDF. See [PDF annotations and document notes](pdf-notes.md) for steps and exports.
+
+## Select a loaded page for a batch action {/* #loaded-page-selection */}
+
+Use the select-all checkbox in Library or Inbox to select the records already loaded in that view. Check the selected count and visible rows before choosing a batch action. Selecting this checkbox replaces the selection with the loaded rows; clearing it clears the selection.
+
+When additional matching Library records exist, a separate **Select all matching references** action can extend the selection beyond the loaded page. Inspect its total and active filters before using it. The page checkbox alone does not do this. Use **Clear selection** to start again. Selecting records does not accept Inbox candidates or export files until you choose that action.

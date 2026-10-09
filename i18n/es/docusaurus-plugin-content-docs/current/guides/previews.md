@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -234,3 +234,7 @@ inspect. Keep the response in English.
 La respuesta identificó **Figura 1 en la página PDF 3** del texto y la capción del papel, junto con DOI `10.1038/s41467-018-08136-3`. Abra la página 3 y compare los paneles citados con la fuente. La búsqueda de texto por sí sola no proporcionó imágenes de figuras extraídas: la respuesta distinguió explícitamente texto legible de imágenes que no podía inspeccionar. Para la interpretación visual, use primero [Figuras y tablas](#pdf-extraction) e inspeccione la región extraída.
 
 ![La respuesta completa del primer mensaje con el PDF original y los límites del acceso a la imagen declarados](/img/open-science/v0351/first-pdf-answer.webp)
+
+## Traducir el documento {/* #full-text-translation */}
+
+Abrir **Full-text translation** en la barra de herramientas PDF para preparar texto, elegir un modelo compatible y guardar una traducción resumible. Siga [Traducir un PDF completo](pdf-translation.md) para requisitos modelo, comparación original/traducida y exportación PDF. Mantenga el original para comprobar las cifras, tablas y citas.

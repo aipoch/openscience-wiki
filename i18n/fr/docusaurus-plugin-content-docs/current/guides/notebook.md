@@ -1,7 +1,7 @@
 ---
 title: "Notebook et preuves d'exécution"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -45,6 +45,23 @@ Avant d'exécuter Python ou R, [activer un temps d'exécution compatible](runtim
 | Fermer / effondrement de l'aperçu | Retour à la conversation | Conserve l'historique des exécutions enregistrées |
 
 Vérifiez **Données/Inputs** quand vous êtes présent. Correspondez au fichier et à la version affichés à votre demande. Si une référence n'est pas disponible, rouvrez ou joignez l'entrée prévue à travers l'application avant de réessayer.
+
+## Consulter le code avant qu'il ne soit lancé {/* #execution-review */}
+
+À partir de v0.36.0, le code Notebook soumis par l'agent est vérifié avant l'expédition. Les lectures et l'analyse ordinaires sont appuyées sans qu'il y ait un risque supplémentaire. Les opérations susceptibles d'apporter des changements irréversibles ou qui ne peuvent pas être entièrement analysées nécessitent une décision ponctuelle. Le code tapé directement dans la console manuelle n'est pas couvert par cette étape d'approbation de l'agent; Inspectez-le vous-même avant de vous soumettre.
+
+1. Lorsque **Review risky code** apparaît, vérifiez l'environnement et l'opération demandée. Le calcul attend votre décision.
+2. Sélectionnez **Line** à côté d'une découverte pour inspecter son emplacement dans le code complet. Vérifiez les chemins, les fichiers et les commandes affectés, y compris toute opération que l'analyse ne pouvait pas résoudre.
+3. Si l'action n'est pas nécessaire ou si sa cible est erronée, déclinez-la et demandez à l'agent une révision plus sûre. Approuver une seule fois lorsque vous comptez utiliser l'opération affichée; la demande n'accorde pas l'autorisation permanente pour un futur code risqué.
+4. Après avoir décidé, inspecter la décision enregistrée et l'état d'exécution de Notebook. L'approbation à elle seule n'est pas une preuve d'achèvement. Une requête refusée n'exécute pas ce code.
+
+<p className="example-label"><strong>Exemple pratique</strong> Inspecter une requête de processus externe Python</p>
+
+Le calcul illustré ajoute seulement des nombres, mais il démarre un autre interprète par `subprocess.run`. Cette exécution imbriquée ne peut pas être entièrement vérifiée, donc la demande s'arrête pour examen. L'avis ne signifie pas que le code est malveillant. Cet exemple choisit **Deny**; l'exécution est alors enregistrée comme interrompue sans exécuter le processus enfant.
+
+![Carte de révision Notebook avec l'environnement, ligne source, Autoriser une fois et Deny](/img/open-science/v0360/notebook-risk-review.webp)
+
+Cet écran vérifie le risque d'exécution; il ne valide pas la méthode ou le résultat statistique. **Auto-review** et [Réviseur](../specialists/reviewer.md) évaluent les travaux terminés séparément. v0.36.0 améliore également la capture de la dépendance Python/R ; Utilisez [Provenance et la vérification de rediffusion](reproducibility.md) pour vérifier les entrées et sorties réelles d'un résultat.
 
 ## Travailler dans le noyau en direct {/* #work-in-the-live-kernel */}
 

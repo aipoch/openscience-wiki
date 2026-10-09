@@ -2,7 +2,7 @@
 title: "Connector Betriebsnummer"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Die Namen der Rückgabefelder unterscheiden sich je nach Operation. Die folgende
 
 ## Betriebsinputs {/* #operation-inputs */}
 
-Erweitern Sie einen Connector auf einmal. Erforderliche Felder sind mit **erforderlich** gekennzeichnet; Diese Referenz und Download verwenden Sie das Open-Science **v0.35.1** Schema. Eine verschachtelte `input.required`-Liste ist maßgebend; eine ältere `required`-Liste der obersten Ebene möglicherweise fehlt. Konsultieren Sie den <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.1.json">vollständiges herunterladbares Register</ExampleDownload> für verschachtelte JSON-Schemata, vollständige Rückgabebeschreibungen und agentenseitige Anrufbeispiele. Übergeben Sie kein generisches `id`, wenn ein Tool `accessions`, `cids`, `rs_id` oder ein anderes Namespace-spezifisches Feld erwartet.
+Erweitern Sie einen Connector auf einmal. Erforderliche Felder sind mit **erforderlich** gekennzeichnet; Diese Referenz und Download verwenden Sie das Open-Science **v0.36.0** Schema. Eine verschachtelte `input.required`-Liste ist maßgebend; eine ältere `required`-Liste der obersten Ebene möglicherweise fehlt. Konsultieren Sie den <ExampleDownload path="/examples/capabilities/connector-catalog-v0.36.0.json">vollständiges herunterladbares Register</ExampleDownload> für verschachtelte JSON-Schemata, vollständige Rückgabebeschreibungen und agentenseitige Anrufbeispiele. Übergeben Sie kein generisches `id`, wenn ein Tool `accessions`, `cids`, `rs_id` oder ein anderes Namespace-spezifisches Feld erwartet.
 
 
 ## Chemie {/* #family-1 */}
@@ -1042,6 +1042,39 @@ Holen Sie sich eine begrenzte Clustal Omega clustal_num-Alignment-Datei für ein
 
 ```javascript
 const result = await host.mcp("genomes", "clustalo_results", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m", "outfmt":"clustal_num"})
+```
+
+### `ensembl_ld_pairwise` {/* #ensembl_ld_pairwise */}
+
+Query Linkage Disequilibrium (r2 und D') zwischen zwei Varianten-IDs, wie z.B. GWAS Catalog rsIDs, in einer explizit ausgewählten Population. Der Anrufer muss den vollständigen Bevölkerungsnamen in population_name angeben (z.B. 1000GENOME:phase_3:KHV; Dieses Tool entdeckt keine Populationen oder schließt Abstammung ab. Artenstandards zu homo_sapiens. Gibt Upstream-Variantenidentitäten und numerische r2/d_prime ohne Signifikanz- oder Kausalitätsschluss zurück. Hohes LD stellt keine Kausalität dar. Leere Ergebnisse bedeuten keine LD-Daten zurückgegeben, nicht null LD; ungültige IDs / Populationen und Serviceausfälle bleiben Fehler. Referenz-Metadaten umfassen die Population, das bekannte Panel, die Abfrage-URL und die Abrufzeit; Assembly/Release sind null, weil der LD-Endpunkt sie nicht meldet.
+
+| Feld | Typ | Anforderungen und Beschränkungen |
+| --- | --- | --- |
+| `variant_id1` | Zeichenfolge | **erforderlich**; minLänge: 1; Muster: "\\S" |
+| `variant_id2` | Zeichenfolge | **erforderlich**; minLänge: 1; Muster: "\\S" |
+| `population_name` | Zeichenfolge | **erforderlich**; minLänge: 1; Muster: "\\S" |
+| `species` | Zeichenfolge | fakultativ; Standard: "homo_sapiens"; minLänge: 1; Muster: "\\S" |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_pairwise", {"variant_id1": "rs6792369", "variant_id2": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV"})
+```
+
+### `ensembl_ld_proxies` {/* #ensembl_ld_proxies */}
+
+Finden Sie in der Nähe befindliche Varianten in LD mit einer Varianten-ID (z.B.) eine GWAS rsID) in einem erforderlichen population_name wie 1000GENOMES:phase_3:KHV. Artenstandards zu homo_sapiens. min_r2-Standards auf 0.8; min_d_prime-Standards auf 0; Beide sind inklusive Schwellenwerte in &#91;0,1&#93;. window_size ist die Gesamtbreite des zentrierten Ensembl-Fensters in kb (ganzzahlige 1-500, Standard 500, ungefähr 250 kb auf jeder Seite beim Standard); max_records begrenzt die Ausgabe (ganzzahlig 1–1000, standardmäßig 100) und beschränkt nicht die Upstream-Berechnung oder die Download-Größe. Die Ergebnisse werden nach r2 absteigend, dann d_prime absteigend und Variante ID sortiert, bevor sie gedeckelt werden. Koordinaten/Annotationen sind Upstream-Attribute. Melden Sie die Population und reference_data mit Ergebnissen. Hohes LD stellt keine Kausalität oder funktionale Äquivalenz dar. Leere Ergebnisse bedeuten, dass keine qualifizierenden Daten zurückgegeben werden, nicht Null LD. Fehler bleiben Fehler; Assembly/Release werden von diesem Endpunkt nicht gemeldet und bleiben null. Der anrufer muss den vollständigen bevölkerungsnamen angeben. Dieses Tool entdeckt keine Populationen oder schließt Abstammung ab.
+
+| Feld | Typ | Anforderungen und Beschränkungen |
+| --- | --- | --- |
+| `variant_id` | Zeichenfolge | **erforderlich**; minLänge: 1; Muster: "\\S" |
+| `population_name` | Zeichenfolge | **erforderlich**; minLänge: 1; Muster: "\\S" |
+| `species` | Zeichenfolge | fakultativ; Standard: "homo_sapiens"; minLänge: 1; Muster: "\\S" |
+| `min_r2` | Zahl | fakultativ; Standard: 0.8; mindestens: 0; höchstens: 1 |
+| `min_d_prime` | Zahl | fakultativ; Standard: 0; mindestens: 0; höchstens: 1 |
+| `window_size` | Ganzzahl | fakultativ; Standard: 500; mindestens: 1; höchstens: 500 |
+| `max_records` | Ganzzahl | fakultativ; Standard: 100; mindestens: 1; höchstens: 1000 |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_proxies", {"variant_id": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV", "min_r2": 0.8, "window_size": 500, "max_records": 100})
 ```
 
 </ToolOperationGroup>
@@ -5283,6 +5316,81 @@ Lösen Sie einen Cellosaurus CVCL-Zugang oder eine RRID:CVCL-Kennung. Abrufen vo
 
 ```javascript
 const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
+```
+
+</ToolOperationGroup>
+
+## PDC {/* #family-34 */}
+
+<ToolOperationGroup>
+<summary>Operationen und Parameter anzeigen</summary>
+
+### `pdc_search_studies` {/* #pdc_search_studies */}
+
+Durchsuchen Sie PDC-Studienbezeichner und Versionsnamen im öffentlichen Studienkatalog. Keyword matching ist ein fallunempfindliches lokales substring-matching, nicht krankheits-klinische filterung. Ohne Keyword durchsuchen Sie den Katalog. Alle Versionen bleiben erhalten.
+
+| Feld | Typ | Anforderungen und Beschränkungen |
+| --- | --- | --- |
+| `query` | Zeichenfolge | fakultativ; minLänge: 1; max.Länge: 200; Muster: "\\S" |
+| `offset` | Ganzzahl | fakultativ; Standard: 0; mindestens: 0; höchstens: 1000000 |
+| `limit` | Ganzzahl | Ganzzahl |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_search_studies", {"query":"CCRCC", "limit":5})
+```
+
+### `pdc_get_study` {/* #pdc_get_study */}
+
+Abrufen von PDC-Studienmetadaten, Testtyp, Fall-/Aliquotenzahl, Dateikategorien und verfügbare Versionen. pdc_study_id wählt die neueste Version aus; study_id ist die UUID einer bestimmten Version. Verwenden Sie ein zurückgegebenes study_id, um nachfolgende Aufrufe anzuheften. Externe Referenz-IDs gehören zur benannten Ressource; Gehen Sie nicht davon aus, dass PDC und GDC UUIDs austauschbar sind.
+
+Geben Sie genau eine von `pdc_study_id` / `study_id`.
+
+| Feld | Typ | Anforderungen und Beschränkungen |
+| --- | --- | --- |
+| `pdc_study_id` | Zeichenfolge | vorbehaltlich der vorstehenden Bedingungen; max.Länge: 9; Muster: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | Zeichenfolge | vorbehaltlich der vorstehenden Bedingungen; max.Länge: 36; Muster: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_get_study", {"pdc_study_id":"PDC000127"})
+```
+
+### `pdc_list_biospecimens` {/* #pdc_list_biospecimens */}
+
+Karte PDC Studie Aliquots zu Proben und Fällen, Erhaltung Einreicher IDs, Pool-Flags und externe Referenzen für CPTAC Multi-Omics-Forschung. Jede Zeile ist eine aliquote Assoziation, kein einzigartiger Patient. Verwenden Sie pagination_mode: upstream, um über die Upstream-Cap der 1000-Zuordnung des lokalen Modus hinauszugehen; Upstream-Offsets und Limits zählen Fälle. pdc_study_id wählt die neueste Version aus; study_id ist die UUID einer bestimmten Version. Verwenden Sie ein zurückgegebenes study_id, um nachfolgende Aufrufe anzuheften. Externe Referenz-IDs gehören zur benannten Ressource; Gehen Sie nicht davon aus, dass PDC und GDC UUIDs austauschbar sind.
+
+Geben Sie genau eine von `pdc_study_id` / `study_id`.
+
+| Feld | Typ | Anforderungen und Beschränkungen |
+| --- | --- | --- |
+| `pdc_study_id` | Zeichenfolge | vorbehaltlich der vorstehenden Bedingungen; max.Länge: 9; Muster: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | Zeichenfolge | vorbehaltlich der vorstehenden Bedingungen; max.Länge: 36; Muster: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `offset` | Ganzzahl | fakultativ; Standard: 0; mindestens: 0; höchstens: 1000000 |
+| `limit` | Ganzzahl | Ganzzahl |
+| `pagination_mode` | Zeichenfolge | fakultativ; Standard: "local"; enum: &#91;"local", "upstream"&#93; |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"PDC000127", "pagination_mode":"upstream", "limit":5})
+```
+
+### `pdc_list_files` {/* #pdc_list_files */}
+
+Entdecken Sie PDC Studiendateien, einschließlich quantitativer Berichte (data_category: Protein Assembly) und Publikationsergänzungen. Filter werden an das offizielle API übergeben. Gibt Metadaten und Speicherpfade zurück, nicht Dateiinhalte oder Download-URLs. pdc_study_id wählt die neueste Version aus; study_id ist die UUID einer bestimmten Version. Verwenden Sie ein zurückgegebenes study_id, um nachfolgende Aufrufe anzuheften. Externe Referenz-IDs gehören zur benannten Ressource; Gehen Sie nicht davon aus, dass PDC und GDC UUIDs austauschbar sind.
+
+Geben Sie genau eine von `pdc_study_id` / `study_id`.
+
+| Feld | Typ | Anforderungen und Beschränkungen |
+| --- | --- | --- |
+| `pdc_study_id` | Zeichenfolge | vorbehaltlich der vorstehenden Bedingungen; max.Länge: 9; Muster: "^PDC&#91;0-9&#93;&#123; 6&#125;$" |
+| `study_id` | Zeichenfolge | vorbehaltlich der vorstehenden Bedingungen; max.Länge: 36; Muster: "^&#91;0-9a-fA-F&#93;&#123; 8&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 4&#125;-&#91;0-9a-fA-F&#93;&#123; 12&#125;$" |
+| `offset` | Ganzzahl | fakultativ; Standard: 0; mindestens: 0; höchstens: 1000000 |
+| `limit` | Ganzzahl | Ganzzahl |
+| `data_category` | Zeichenfolge | fakultativ; minLänge: 1; max.Länge: 200; Muster: "\\S" |
+| `file_type` | Zeichenfolge | fakultativ; minLänge: 1; max.Länge: 200; Muster: "\\S" |
+| `file_format` | Zeichenfolge | fakultativ; minLänge: 1; max.Länge: 200; Muster: "\\S" |
+| `file_name` | Zeichenfolge | fakultativ; minLänge: 1; max.Länge: 500; Muster: "\\S" |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
 </ToolOperationGroup>

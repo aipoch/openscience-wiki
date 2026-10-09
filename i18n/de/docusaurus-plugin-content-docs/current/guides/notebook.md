@@ -1,7 +1,7 @@
 ---
 title: "Notebook und Ausführungsnachweise"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -45,6 +45,23 @@ Vor dem Ausführen von Python oder R, [eine kompatible Laufzeit ermöglichen](ru
 | Schließen / Zusammenbruch Preview | Zurück zum Gespräch | Hält aufgezeichnete Ausführung Geschichte |
 
 Überprüfen Sie **Inputdaten/Inputs**, wenn vorhanden. Passen Sie die angezeigte Datei und Version Ihrer Anfrage an. Wenn eine Referenz nicht verfügbar ist, öffnen oder fügen Sie die beabsichtigte Eingabe über die Anwendung erneut an, bevor Sie erneut versuchen.
+
+## Code überprüfen, bevor er ausgeführt wird {/* #execution-review */}
+
+Von v0.36.0 wird der vom Agenten eingereichte Notebook-Code vor dem Versand überprüft. Unterstützte gewöhnliche Lesungen und Analysen gehen ohne zusätzliche Risikoaufforderung vor. Operationen, die irreversible Änderungen vornehmen könnten oder die nicht vollständig analysiert werden können, erfordern eine einmalige Entscheidung. Code, der direkt in die manuelle Konsole eingegeben wird, wird von diesem Schritt zur Genehmigung durch den Agenten nicht abgedeckt; Überprüfen Sie es selbst, bevor Sie es einreichen.
+
+1. Wenn **Review risky code** angezeigt wird, überprüfen Sie die Umgebung und die angeforderte Operation. Die Berechnung wartet auf Ihre Entscheidung.
+2. Wählen Sie **Line** neben einem Befund aus, um seinen Standort im vollständigen Code zu überprüfen. Prüfen Sie Pfade, betroffene Dateien und Befehle, einschließlich aller Operationen, die die Analyse nicht lösen konnte.
+3. Wenn die Aktion unnötig ist oder ihr Ziel falsch ist, lehnen Sie sie ab und bitten Sie den Agenten um eine sicherere Überarbeitung. Nur einmal genehmigen, wenn Sie den angezeigten Vorgang beabsichtigen; die Anforderung gewährt keine dauerhafte Erlaubnis für zukünftigen Risikocode.
+4. Überprüfen Sie nach der Entscheidung die aufgezeichnete Entscheidung und den Notebook-Laufstatus. Die Genehmigung allein ist kein Beweis für die Vollendung. Eine abgelehnte Anforderung führt diesen Code nicht aus.
+
+<p className="example-label"><strong>Praxisbeispiel</strong> Überprüfen Sie eine externe Python-Prozessanforderung</p>
+
+Die abgebildete Berechnung fügt nur Zahlen hinzu, aber sie startet einen anderen Interpreter durch `subprocess.run`. Diese verschachtelte Ausführung kann nicht vollständig überprüft werden, so dass die Anforderung für die Überprüfung anhält. Der Hinweis bedeutet nicht, dass der Code bösartig ist. Dieses Beispiel wählt **Deny**; der Lauf wird dann als unterbrochen aufgezeichnet, ohne den Child-Prozess auszuführen.
+
+![Notebook Bewertungskarte mit Umgebung, Quellzeile, Einmal zulassen und Deny](/img/open-science/v0360/notebook-risk-review.webp)
+
+Dieser Bildschirm überprüft das Ausführungsrisiko; sie validiert weder die statistische Methode noch das Ergebnis. **Auto-review** und [Reviewer](../specialists/reviewer.md) bewerten abgeschlossene Arbeiten separat. v0.36.0 verbessert auch Python/R Abhängigkeitserfassung; Verwenden Sie [Provenance und Rerun Verifikation](reproducibility.md), um die tatsächlichen Ein- und Ausgänge eines Ergebnisses zu überprüfen.
 
 ## Arbeiten im Live-Kernel {/* #work-in-the-live-kernel */}
 

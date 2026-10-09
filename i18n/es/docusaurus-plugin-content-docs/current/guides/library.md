@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -384,3 +384,9 @@ Fuentes: [importación por lotes](https://github.com/aipoch/open-science/blob/v0
 ## Mantenga notas de lectura PDF {/* #keep-pdf-reading-notes */}
 
 Abra el accesorio PDF de referencia y utilice **Notes & Annotations** para anotaciones, preguntas de página y notas de documentos. La misma versión de archivo de biblioteca comparte estas notas en proyectos y sesiones. Busque una nota bajo **Library** en la búsqueda global, y luego elija **Show annotation source** para volver al PDF. Vea [Anotaciones PDF y notas de documentos](pdf-notes.md) para pasos y exportaciones.
+
+## Seleccione una página cargada para una acción por lotes {/* #loaded-page-selection */}
+
+Utilice la casilla de verificación selecta en la biblioteca o la bandeja de entrada para seleccionar los registros ya cargados en esa vista. Compruebe el recuento seleccionado y las filas visibles antes de elegir una acción de lote. Seleccionar esta casilla reemplaza la selección con las filas cargadas; despejar la selección.
+
+Cuando existen registros adicionales de la Biblioteca, una acción **Select all matching references** separada puede extender la selección más allá de la página cargada. Inspeccione sus filtros totales y activos antes de utilizarlo. La casilla de verificación de página por sí sola no hace esto. Utilice **Clear selection** para empezar de nuevo. La selección de registros no acepta candidatos de Inbox o archivos de exportación hasta que elija esa acción.

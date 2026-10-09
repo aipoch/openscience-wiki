@@ -2,7 +2,7 @@
 title: "Scientific databases"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # Scientific databases
@@ -13,7 +13,7 @@ Use this page to choose a data source, understand what it can return, and make i
 
 ## Supported databases {/* #supported-databases */}
 
-Open-Science v0.35.1 includes **33 data-source Connectors with 341 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 343. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+Open-Science v0.36.0 includes **34 data-source Connectors with 347 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 349. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
 
 | Connector | Sources | Operations | Use it for  |
 | --- | --- | --- | ---  |
@@ -21,7 +21,7 @@ Open-Science v0.35.1 includes **33 data-source Connectors with 341 operations**.
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Papers, authors, citations, DOI updates and dataset/software records. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Biomedical literature via NCBI E-utilities, the PMC ID Converter and Europe PMC — search, metadata, related articles, citation lookup, ID conversion, full text and copyright.  |
 | Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Gene/protein identifiers, UniProt sequence discovery, GO and Reactome annotations, and g:Profiler and Enrichr gene-set enrichment. |
-| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 20 | Genome annotation, homology and sequence; NCBI taxon/assembly/sequence identity; BLAST search and Clustal Omega multiple sequence alignment. |
+| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 22 | Genome annotation, homology and sequence; NCBI taxon/assembly/sequence identity; BLAST search and Clustal Omega multiple sequence alignment; population-specific LD and proxy variants. |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | Population frequencies, clinical records and assay-specific functional scores, mappings and experiments. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Clinical trials from ClinicalTrials.gov — search, details, sponsors, investigators, endpoints, and eligibility.  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | Clinical genomics knowledge bases: ClinGen curations, CIViC clinical evidence, and the Open Targets Platform, plus ClinPGx pharmacogenomic records. |
@@ -50,6 +50,7 @@ Open-Science v0.35.1 includes **33 data-source Connectors with 341 operations**.
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | Find cell-line names and synonyms, then inspect accession identity and quality annotations. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | Disease/gene-to-phenotype associations with organism and supporting evidence. |
 | IEDB · `iedb` | Immune Epitope Database | 8 | Epitopes, antigens, T-cell, B-cell and MHC assays, TCR/BCR evidence, and source publications. |
+| PDC · `pdc` | NCI Proteomic Data Commons | 4 | Cancer-proteomics study versions, specimen associations and quantitative-file metadata; no download. |
 
 The offline Molecule tools are covered in [Scientific viewers](viewers.md). For the exact operations exposed by each data source, use the [Connector operation reference](../reference/connector-operations.md).
 
@@ -266,3 +267,19 @@ Avoid duplicate submission after a timeout: recover a known job ID first. Cancel
 Enable **IEDB** for Main and request **search_tcrs** or **search_bcrs** with at least one biological or evidence filter. Pagination alone is insufficient. Use `sequence` for the **epitope** sequence; `chain1_cdr3` and `chain2_cdr3` filter receptor CDR3 sequences. These public searches need no API key.
 
 Keep the receptor-group ID, chains, reported assay IDs and source publications. Host and outcome filters apply to aggregated groups and can be satisfied by different experiments. To establish that conditions occur in the same assay, follow the reported assay IDs into the corresponding assay operation and apply the required filters there. Pagination covers receptor groups, not completeness of every embedded export. These records are evidence retrieval, not a prediction of receptor binding. [IEDB parameters](../reference/connector-operations.md#family-33).
+
+## Discover cancer proteomics with PDC {/* #pdc */}
+
+Enable **PDC** in **Settings → Connectors**. Its public metadata API needs no API key. Use it to find studies and versions, inspect assay and specimen counts, map case–sample–aliquot associations, and list quantitative files such as **Protein Assembly** reports. It does not return treatment/outcome data or download files.
+
+Start with a study accession such as `PDC000127`, or search study identifiers and version names. PDC keyword matching is not a clinical disease filter. Retrieve the study, then use its returned `study_id` UUID to pin subsequent calls; `pdc_study_id` selects the latest version. Provide exactly one of these selectors.
+
+For specimen lists, **upstream** pagination counts cases; expanding samples and aliquots can produce more rows than the case limit. The default **local** mode pages received associations and has a 1,000-association upstream cap. A final local page does not prove completeness when that cap is reached. Keep PDC IDs and named external GDC references separate. File listings include names, byte sizes, MD5 values and storage paths; a listed path is not an authorized download URL.
+
+See [PDC operations and pagination](../reference/connector-operations.md#family-34). Before combining sources, check the study version, assay, specimen identity and each source's access and citation requirements.
+
+## Check population-specific LD {/* #ensembl-ld */}
+
+Enable **Genomes** in **Settings → Connectors**. Its Ensembl LD tools use the public API without a key. Supply two variant IDs for `ensembl_ld_pairwise`, or one for `ensembl_ld_proxies`, together with the complete population name, such as `1000GENOMES:phase_3:KHV`. The tools do not discover the population or infer ancestry; choose a reference population appropriate to the study.
+
+Pairwise results report r² and D′. Proxy queries default to r² ≥ 0.8 and a **500 kb total window**, approximately 250 kb on either side. `max_records` caps the returned list after sorting, not the upstream work. Keep the population and retrieval metadata with the result; this endpoint does not report the reference assembly or Ensembl release. Empty results mean no qualifying data returned, not zero LD. High LD establishes neither causality nor functional equivalence. See [pairwise fields](../reference/connector-operations.md#ensembl_ld_pairwise) and [proxy fields](../reference/connector-operations.md#ensembl_ld_proxies).

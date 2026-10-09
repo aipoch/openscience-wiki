@@ -1,7 +1,7 @@
 ---
 title: "대화와 대기 중인 요청"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # 대화와 대기 중인 요청 {/* #conversations-and-queued-requests */}
@@ -134,3 +134,7 @@ Hover 또는 **복사 테이블** (Markdown, CSV 또는 TSV), **다운로드 테
 ## 드롭 파일로 대화 {/* #conversation-drop */}
 
 대화 영역에서 로컬 파일을 드래그 할 수 있습니다. Composer는 없습니다. 첨부 파일 칩 및 마무리에 업로드를 기다리면 파일 이름을 검사하고 요청을 보내주십시오. 삭제 파일은 메시지를 보낼 수 없습니다. `.science` 연구 패키지를 가져 오기 위해 빈 대화 페이지에 **Import previous research**을 사용하십시오. [연구 패키지](research-packages.md) 참조.
+
+## 파일 삭제 {/* #drag-file-mention */}
+
+**Files**, 또는 열린 artifact의 파일 헤더에서 파일 카드를 드래그하여 Composer로 이동합니다. 초안이 의도한 파일에 대한 언급을 포함, 귀하의 질문을 추가, 다음 보내. Dropping 인서트는 초안으로 바꾸어줍니다. 요청을 시작하지 않습니다. 새로운 대화에서, 파일 패널은 또한 언급을 공급할 수 있습니다. 제출하기 전에 선택한 프로젝트 및 파일을 확인합니다.

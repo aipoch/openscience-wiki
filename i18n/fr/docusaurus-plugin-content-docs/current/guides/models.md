@@ -1,7 +1,7 @@
 ---
 title: "Modèles et politiques de travail"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-09'
 ---
 
 # Modèles et politiques de travail {/* #models-and-task-policies */}
@@ -126,3 +126,9 @@ Après l'enregistrement, sélectionnez le service sous **Automatic capability se
 Le formulaire ci-dessous illustre les champs. Remplacez l'échantillon d'extrémité et `your-model-id` par vos détails de service réels avant de vérifier la connexion.
 
 ![Paramètres de classification personnalisés, champs de touches modèles et vides](/img/open-science/v0320/classification-custom.webp)
+
+## Choisir un modèle de traduction PDF {/* #pdf-translation-model */}
+
+La traduction PDF possède ses propres contrôles **Translation method** et **Model** dans le lecteur. **Agent** peut utiliser un modèle compatible disponible; **Direct API** nécessite un fournisseur API. Les modèles d'abonnement Codex ne sont pas disponibles pour cette opération dans v0.36.0. Choisir un modèle de traduction ne nécessite pas de remplacer Main. Voir [Traduction de PDF](pdf-translation.md#prepare-translation).
+
+Le catalogue anthropique officiel comprend **Claude Haiku 5.5**. La visibilité et l'accès du modèle dépendent de l'Agent et du compte sélectionnés. Choisissez l'entrée de catalogue actuelle plutôt que d'ajouter un suffixe de taille de contexte à un ancien ID de modèle.

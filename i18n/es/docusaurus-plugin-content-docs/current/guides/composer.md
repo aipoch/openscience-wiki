@@ -1,7 +1,7 @@
 ---
 title: "Conversaciones y solicitudes en cola"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # Conversaciones y solicitudes en cola {/* #conversations-and-queued-requests */}
@@ -134,3 +134,7 @@ Fuentes: [Controles de las colas](https://github.com/aipoch/open-science/blob/v0
 ## Suelta archivos en una conversación {/* #conversation-drop */}
 
 Puede arrastrar archivos locales en el área de conversación, no sólo el Compositor. Espere a que los chips adjuntos y cualquier subida a terminar, inspeccione los nombres de archivo, luego envíe la solicitud. Los archivos de desplegables no envían el mensaje. Para importar un paquete de investigación `.science`, utilice **Import previous research** en la página de conversación vacía; ver [Paquetes de investigación](research-packages.md).
+
+## Mención de un archivo arrastrandolo {/* #drag-file-mention */}
+
+Arrastre una tarjeta de archivo de **Files**, o el encabezado de archivo del artefacto abierto, en el Compositor. Confirme que el borrador contiene una mención para el archivo deseado, agregue su pregunta, luego envíe. b) El contexto de la supresión de los insertos en el proyecto; no inicia una solicitud. En una nueva conversación, el panel Archivos también puede proporcionar una mención. Compruebe el proyecto y el archivo seleccionados antes de enviar.

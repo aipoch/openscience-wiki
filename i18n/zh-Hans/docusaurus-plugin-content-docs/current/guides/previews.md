@@ -1,7 +1,7 @@
 ---
 title: "打开与预览文件"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -236,3 +236,7 @@ inspect. Keep the response in English.
 回答根据论文正文及图注定位到 **PDF 第 3 页的图 1**，并给出 DOI `10.1038/s41467-018-08136-3`。打开第 3 页，逐一核对引用的面板。文字检索本身没有提供提取后的图像：回答明确区分了可读文字与无法查看的图片。需要图像解读时，先使用 [Figures & Tables](#pdf-extraction)，并检查提取区域。
 
 ![首次请求完成后的回答、原始 PDF 及明确的图像读取范围](/img/open-science/v0351/first-pdf-answer.webp)
+
+## 翻译整篇文档 {/* #full-text-translation */}
+
+在 PDF 工具栏打开 **Full-text translation**，准备全文、选择受支持的模型并保存可继续的译本。模型要求、原文／译文对照和 PDF 导出见 [PDF 全文翻译](pdf-translation.md)。核对图表与引文时应保留原文。

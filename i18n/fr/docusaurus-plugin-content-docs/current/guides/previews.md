@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -234,3 +234,7 @@ inspect. Keep the response in English.
 La réponse a identifié **Figure 1 sur PDF page 3** à partir du texte papier et de la légende, ainsi que DOI `10.1038/s41467-018-08136-3`. Ouvrir la page 3 et comparer les panneaux cités avec la source. La recherche de texte à elle seule n'a pas permis d'extraire des images chiffrées : la réponse distinguait explicitement le texte lisible des images qu'elle ne pouvait pas inspecter. Pour l'interprétation visuelle, d'abord utiliser [Figures et tableaux](#pdf-extraction) et inspecter la région extraite.
 
 ![La réponse de premier message complétée avec le PDF original et les limites d'accès à l'image indiqué](/img/open-science/v0351/first-pdf-answer.webp)
+
+## Traduire le document {/* #full-text-translation */}
+
+Ouvrez **Full-text translation** dans la barre d'outils PDF pour préparer le texte, choisissez un modèle pris en charge et enregistrez une traduction recommençable. Suivez [Traduire un PDF complet](pdf-translation.md) pour les exigences du modèle, la comparaison originale/translationnelle et l'exportation de PDF. Gardez l'original pour vérifier les chiffres, tableaux et citations.

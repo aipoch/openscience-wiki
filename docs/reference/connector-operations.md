@@ -2,7 +2,7 @@
 title: "Connector operation reference"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Return field names differ by operation. The descriptions and downloadable schema
 
 ## Operation inputs
 
-Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.35.1** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.35.1.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
+Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.36.0** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.36.0.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
 
 
 ## Chemistry {/* #family-1 */}
@@ -1042,6 +1042,39 @@ Fetch one bounded Clustal Omega clustal_num alignment file for a FINISHED job. P
 
 ```javascript
 const result = await host.mcp("genomes", "clustalo_results", {"job_id":"clustalo-I20240923-000000-0000-0000000-p1m", "outfmt":"clustal_num"})
+```
+
+### `ensembl_ld_pairwise`
+
+Query linkage disequilibrium (r² and D′) between two variant IDs, such as GWAS Catalog rsIDs, in an explicitly selected population. The caller must supply the full population name in population_name (e.g. 1000GENOMES:phase_3:KHV); this tool does not discover populations or infer ancestry. species defaults to homo_sapiens. Returns upstream variant identities and numeric r2/d_prime without significance or causality inference. High LD does not establish causality. Empty results mean no LD data returned, not zero LD; invalid IDs/populations and service failures remain errors. Reference metadata includes the population, known panel, query URL and retrieval time; assembly/release are null because the LD endpoint does not report them.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `variant_id1` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+| `variant_id2` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+| `population_name` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+| `species` | string | optional; default: &quot;homo_sapiens&quot;; minLength: 1; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_pairwise", {"variant_id1": "rs6792369", "variant_id2": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV"})
+```
+
+### `ensembl_ld_proxies`
+
+Find nearby variants in LD with a variant ID (e.g. a GWAS rsID) in a required population_name such as 1000GENOMES:phase_3:KHV. species defaults to homo_sapiens. min_r2 defaults to 0.8; min_d_prime defaults to 0; both are inclusive thresholds in [0,1]. window_size is the total width of the centered Ensembl window in kb (integer 1–500, default 500, approximately 250 kb on each side at the default); max_records caps output (integer 1–1000, default 100) and does not limit upstream computation or download size. Results are sorted by r2 descending, then d_prime descending and variant ID, before capping. Coordinates/annotations are upstream attributes. Report the population and reference_data with results. High LD does not establish causality or functional equivalence. Empty results mean no qualifying data returned, not zero LD. Errors remain errors; assembly/release are not reported by this endpoint and remain null. The caller must supply the full population name; this tool does not discover populations or infer ancestry.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `variant_id` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+| `population_name` | string | **required**; minLength: 1; pattern: &quot;\\S&quot; |
+| `species` | string | optional; default: &quot;homo_sapiens&quot;; minLength: 1; pattern: &quot;\\S&quot; |
+| `min_r2` | number | optional; default: 0.8; minimum: 0; maximum: 1 |
+| `min_d_prime` | number | optional; default: 0; minimum: 0; maximum: 1 |
+| `window_size` | integer | optional; default: 500; minimum: 1; maximum: 500 |
+| `max_records` | integer | optional; default: 100; minimum: 1; maximum: 1000 |
+
+```javascript
+const result = await host.mcp("genomes", "ensembl_ld_proxies", {"variant_id": "rs1042779", "population_name": "1000GENOMES:phase_3:KHV", "min_r2": 0.8, "window_size": 500, "max_records": 100})
 ```
 
 </ToolOperationGroup>
@@ -5283,6 +5316,81 @@ Resolve a Cellosaurus CVCL accession or RRID:CVCL identifier. Retrieve identity,
 
 ```javascript
 const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
+```
+
+</ToolOperationGroup>
+
+## PDC {/* #family-34 */}
+
+<ToolOperationGroup>
+<summary>Show operations and parameters</summary>
+
+### `pdc_search_studies`
+
+Search PDC study identifiers and version names in the public study catalog. Keyword matching is case-insensitive local substring matching, not disease/clinical filtering. Without a keyword, browse the catalog. All versions are retained.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | optional; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 1000000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_search_studies", {"query":"CCRCC", "limit":5})
+```
+
+### `pdc_get_study`
+
+Retrieve PDC study metadata, assay type, case/aliquot counts, file categories and available versions. pdc_study_id selects the latest version; study_id is the UUID of a specific version. Use a returned study_id to pin subsequent calls. External reference IDs belong to the named resource; do not assume PDC and GDC UUIDs are interchangeable.
+
+Provide exactly one of `pdc_study_id` / `study_id`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `pdc_study_id` | string | subject to the conditions above; maxLength: 9; pattern: &quot;^PDC[0-9]&#123;6&#125;$&quot; |
+| `study_id` | string | subject to the conditions above; maxLength: 36; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_get_study", {"pdc_study_id":"PDC000127"})
+```
+
+### `pdc_list_biospecimens`
+
+Map PDC study aliquots to samples and cases, preserving submitter IDs, pool flags and external references for CPTAC multi-omics research. Each row is an aliquot association, not a unique patient. Use pagination_mode: upstream to traverse beyond the local mode's 1000-association upstream cap; upstream offsets and limits count cases. pdc_study_id selects the latest version; study_id is the UUID of a specific version. Use a returned study_id to pin subsequent calls. External reference IDs belong to the named resource; do not assume PDC and GDC UUIDs are interchangeable.
+
+Provide exactly one of `pdc_study_id` / `study_id`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `pdc_study_id` | string | subject to the conditions above; maxLength: 9; pattern: &quot;^PDC[0-9]&#123;6&#125;$&quot; |
+| `study_id` | string | subject to the conditions above; maxLength: 36; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 1000000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `pagination_mode` | string | optional; default: &quot;local&quot;; enum: [&quot;local&quot;, &quot;upstream&quot;] |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"PDC000127", "pagination_mode":"upstream", "limit":5})
+```
+
+### `pdc_list_files`
+
+Discover PDC study files, including quantitative reports (data_category: Protein Assembly) and publication supplements. Filters are passed to the official API. Returns metadata and storage paths, not file contents or download URLs. pdc_study_id selects the latest version; study_id is the UUID of a specific version. Use a returned study_id to pin subsequent calls. External reference IDs belong to the named resource; do not assume PDC and GDC UUIDs are interchangeable.
+
+Provide exactly one of `pdc_study_id` / `study_id`.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `pdc_study_id` | string | subject to the conditions above; maxLength: 9; pattern: &quot;^PDC[0-9]&#123;6&#125;$&quot; |
+| `study_id` | string | subject to the conditions above; maxLength: 36; pattern: &quot;^[0-9a-fA-F]&#123;8&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;4&#125;-[0-9a-fA-F]&#123;12&#125;$&quot; |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 1000000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `data_category` | string | optional; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `file_type` | string | optional; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `file_format` | string | optional; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `file_name` | string | optional; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
 </ToolOperationGroup>

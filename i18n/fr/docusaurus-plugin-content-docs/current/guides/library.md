@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -384,3 +384,9 @@ Sources: [importation par lots](https://github.com/aipoch/open-science/blob/v0.2
 ## Gardez les notes de lecture PDF {/* #keep-pdf-reading-notes */}
 
 Ouvrez la pièce jointe PDF d'une référence et utilisez **Notes & Annotations** pour les annotations, les questions de page et les notes de document. La même version de fichier de bibliothèque partage ces notes entre les projets et les sessions. Trouvez une note sous **Library** dans la recherche globale, puis choisissez **Show annotation source** pour revenir à PDF. Voir [Annotations et notes de document PDF](pdf-notes.md) pour les étapes et les exportations.
+
+## Sélectionnez une page chargée pour une action par lots {/* #loaded-page-selection */}
+
+Utilisez la case à cocher sélectionner dans la bibliothèque ou la boîte de réception pour sélectionner les enregistrements déjà chargés dans cette vue. Vérifiez le nombre sélectionné et les lignes visibles avant de choisir une action par lots. Sélectionner cette case remplace la sélection par les lignes chargées; l'effacement de la sélection.
+
+Lorsqu'il existe des enregistrements de bibliothèque supplémentaires, une action séparée de **Select all matching references** peut étendre la sélection au-delà de la page chargée. Inspectez ses filtres complets et actifs avant de l'utiliser. La case à cocher seule ne le fait pas. Utilisez **Clear selection** pour recommencer. La sélection des dossiers n'accepte pas les candidats de la boîte de réception ou les fichiers d'exportation tant que vous n'avez pas choisi cette action.

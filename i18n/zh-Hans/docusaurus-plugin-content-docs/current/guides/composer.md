@@ -1,7 +1,7 @@
 ---
 title: "对话与排队请求"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # 对话与排队请求
@@ -134,3 +134,7 @@ original column-name mapping in the CSV/report.
 ## 拖入会话附件 {/* #conversation-drop */}
 
 可把本地文件拖到整个会话区域，无需只对准输入框。等待附件标签出现、上传完成，核对文件名后再发送请求；拖入文件不会自动发送消息。导入 `.science` 研究包时，使用空白会话页的 **Import previous research**，详见[研究包](research-packages.md)。
+
+## 拖拽文件建立引用 {/* #drag-file-mention */}
+
+从 **Files** 拖动文件卡片，或把已打开产物的文件标题拖入 Composer。确认草稿中出现了正确文件的引用，补充问题后再发送。拖入只会添加草稿上下文，不会直接发起请求；新会话也可从 Files 面板引用文件。发送前核对项目与文件。

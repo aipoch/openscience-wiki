@@ -1,7 +1,7 @@
 ---
 title: "Conversations et demandes en attente"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-09'
 ---
 
 # Conversations et demandes en attente {/* #conversations-and-queued-requests */}
@@ -134,3 +134,7 @@ Sources: [contrôle de la file d'attente](https://github.com/aipoch/open-science
 ## Déposez les fichiers dans une conversation {/* #conversation-drop */}
 
 Vous pouvez faire glisser des fichiers locaux sur la zone de conversation, pas seulement le Compositeur. Attendez que les puces de pièce jointe et tout téléchargement finissent, inspectez les noms de fichiers, puis envoyez la demande. La dépose de fichiers n'envoie pas le message. Pour importer un paquet de recherche `.science`, utilisez **Import previous research** sur la page de conversation vide; Voir [Dossiers de recherche](research-packages.md).
+
+## Mentionnez un fichier en le faisant glisser {/* #drag-file-mention */}
+
+Faites glisser une carte de fichier de **Files**, ou l'en-tête de fichier de l'artefact ouvert, dans le Compositeur. Confirmez que l'ébauche contient une mention pour le fichier prévu, ajoutez votre question, puis envoyez. La chute insère le contexte dans le projet; il ne commence pas une demande. Dans une nouvelle conversation, le panneau Fichiers peut également fournir une mention. Vérifiez le projet et le fichier sélectionnés avant d'envoyer.
