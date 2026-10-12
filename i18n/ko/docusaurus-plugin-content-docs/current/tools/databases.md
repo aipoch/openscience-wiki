@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v0.36.0에는 **34 데이터 소스 커넥터 347 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 349에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
+Open-Science v0.37.1에는 **35 데이터 소스 커넥터 359 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 361에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
 
 | 커넥터 | 출처 | 작업 | 사용하기  |
 | --- | --- | --- | ---  |
@@ -22,11 +22,11 @@ Open-Science v0.36.0에는 **34 데이터 소스 커넥터 347 작업**가 포�
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI E-utilities, PMC ID 변환기 및 유럽 PMC를 통해 생물 의학 문학 - 검색, 메타 데이터, 관련 기사, 인용 조회, ID 변환, 전체 텍스트 및 저작권.  |
 | 유전자 및 종양학 · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | 유전자/단백 식별자, UniProt 시퀀스 발견, GO 및 Reactome 주석, 그리고 g:Profiler 및 Enrichr 유전자 세트 풍부. |
 | 게놈 · `genomes` | 회의, UCSC, NCBI, BLAST, 클러스터 오메가 | 22 | Genome 주석, 균질 및 순서; NCBI taxon/assembly/sequence 정체성; BLAST 검색 및 클러스터 오메가 다중 시퀀스 정렬; 인구 별 LD 및 프록시 변형. |
-| Variants · `variants` | gnomAD, 크린바르, dbSNP, MaveDB | 21 | 인구 빈도, 임상 기록 및 분석실험 특정한 기능적인 점수, 매핑 및 실험. |
+| Variants · `variants` | gnomAD, 크린바르, dbSNP, MaveDB | 22 | 인구 빈도, 임상 기록 및 분석실험 특정한 기능적인 점수, 매핑 및 실험. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | ClinicalTrials.gov의 임상 시험 - 검색, 세부 사항, 스폰서, 조사, endpoints 및 자격.  |
 | 임상 Genomics · `clinical-genomics` | ClinGen, CIViC, 열린 대상, ClinPGx | 30 | 임상 genomics 지식 기초: ClinGen 치료, CIViC 임상 증거, 그리고 Open Targets 플랫폼, 플러스 ClinPGx pharmacogenomic 기록. |
 | 구조 및 상호 작용 · `structures` | PDB, AlphaFold, EMDB, 복합 포털, IntAct | 17 | 구조 및 분자 상호 작용 — PDB 구조, AlphaFold 예측, EMDB cryo-EM 항목, Complex Portal complexes, IntAct 상호 작용 네트워크.  |
-| ChEMBL · `chembl` | ChEMBL | 6 | 비활성 화합물, 약물, 표적, 생물 활성성, 그리고 메커니즘을 통해 ChEMBL REST API.  |
+| · · `chembl` | 담당자: Mr. wang | 7 | 비활성 화합물, 약물, 표적, 생물 활성성, 그리고 메커니즘을 통해 ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — 날짜/category, DOI, 저널-publication 링크, 펀더 목록 및 플랫폼 통계에 의해 검색.  |
 | 의약품 규제 · `drug-regulatory` | 오픈FDA | 10 | Drugs@FDA, 상표, FAERS 불리 배출 보고와 약은 회귀합니다. |
 | 인간 유전학 · `human-genetics` | GWAS 카탈로그, eQTL 카탈로그, PheWeb | 15 | 인간 유전학 협회 증거 - GWAS 카탈로그, eQTL 카탈로그, PheWeb PheWAS 포털 (FinnGen, BioBank Japan).  |
@@ -51,6 +51,7 @@ Open-Science v0.36.0에는 **34 데이터 소스 커넥터 347 작업**가 포�
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 질병/진-to-phenotype 협회는 생물과 지원 증거를 가진다. |
 | IEDB · `iedb` | Immune Epitope 데이터베이스 | 8 | Epitopes, 항원, T 세포, B 세포 및 MHC 분석실험, TCR/BCR 증거 및 근원 간행물. |
 | PDC · `pdc` | NCI Proteomic 데이터 커먼즈 | 4 | 암-proteomics 연구 버전, 견본 협회 및 양적 파일 metadata; 다운로드 없음. |
+| ENCORI · `encori` | ENCORI | 10 | miRNA/RBP 표적, RNA 상호 작용, ceRNA, motifs, 바인딩 위치, 참고 테이블 및 대량 파일. |
 
 오프라인 Molecule 도구는 [사이트맵](viewers.md)에 덮여 있습니다. 각 데이터 소스에 노출된 정확한 작업을 위해 [Connector 가동 참고](../reference/connector-operations.md)을 사용합니다.
 
@@ -72,6 +73,45 @@ Open-Science v0.36.0에는 **34 데이터 소스 커넥터 347 작업**가 포�
 **젠도**는 인증 없이 공개 레코드 메타데이터를 노출합니다. 파일 재고가있는 버전 별 레코드 ID 및 액세스 / 라이센스 필드를 유지하십시오. **GDC 소개** 공개 메타데이터 노출; 정의는 권한 부여를 다운로드하지 않으며, 제어 된 파일은 GDC 권한이 필요합니다. [GDC 운영](../reference/connector-operations.md#family-24) · [Zenodo 운영](../reference/connector-operations.md#family-25).
 
 데이터베이스 응답은 연구 단계를 지원할 수 있습니다; 그것은 자동으로 데이터를 다운로드하지 않습니다, 문학 라이브러리에 모든 종이를 추가하거나 완전한 분석을 실행. 저장하고 싶은 기록과 파일을 지정합니다.
+
+## ENCORI과 RNA 규제 증거 {/* #encori */}
+
+**Settings → Connectors**에서 **ENCORI** 찾기, 활성화하고 **메인 에이전트**를 사용할 수 있습니다. 이 내장 소스는 사용자 정의 MCP URL 또는 API 키를 필요로하지 않습니다. 선택된 Main 모델과 함께, 유기체/조립, RNA 또는 대상 유전자, 세포 유형 및 증거 임계 값을 대화에 지정합니다.
+
+| 작업 | 결과 및 경계 |
+| --- | --- |
+| miRNA, RNA–RNA, RBP-target 및 ceRNA 쿼리 | 적용 가능한 CLIP, degradome, 예측 프로그램, p-value 및 FDR 증거를 포함합니다; 바인딩 또는 협회는 카우편 규정을 수립하지 않습니다. |
+| RBP 질병 증거, motifs 및 의무적인 위치 | 보존 집합, 티슈/셀 컨텍스트, 업스트림 순서 및 원래 좌표; 종 또는 협조 체계를 섞지 마십시오. |
+| 참조표 및 대량 데이터 | 정확한 테이블 경로 또는 filenames를 먼저 나열합니다. 대량 다운로드는 별도입니다: 요청하기 전에 파일, 목적지 및 필요한 저장을 지정합니다. |
+
+<p className="example-label"><strong>실습 예제</strong> HeLa의 PDCD4에 대한 쿼리 miRNA 증거</p>
+
+```text
+Use ENCORI to find human miRNA interactions targeting PDCD4 in HeLa cells,
+using hg38, mRNA targets, at least one CLIP experiment and TargetScan support.
+Show at most two rows. Preserve the exact filters, total count and full raw
+response in the session data folder. Explain the evidence limits in English.
+Do not download bulk datasets.
+```
+
+이 쿼리는 19 레코드를 반환; 첫 번째 두는 hsa-miR-23a-3p 및 hsa-miR-181a-5p이었다. 스크린 샷은 저장된 완전한 원시 응답과 증거 제한을 보여줍니다. 이 예제 별 결과이며 데이터베이스 업데이트로 변경할 수 있습니다.
+
+![ENCORI 저장된 완전한 익지않는 응답의 옆에 질문 요약](/img/open-science/v0371/encori-response.webp)
+
+`returned_records`에서 `total_records`을 분산시키고 `is_complete`, `result_scope` 및 `completeness_note`를 검사합니다. 미리보기는 완전한 대상 배포가 아닙니다. 전체 응답의 `raw_response_path`은 로컬 파일 경로이며, 자동으로 다운로드 세션 아트팩트입니다. 이를 공유하려면 해당 세션 데이터 디렉토리에 저장하고 파일을 첨부하는 에이전트를 요청하십시오. 첨부파일을 열고 내용을 확인한다.
+
+쿼리는 정품 빈 결과 또는 `ok:false`을 반환 할 수 있습니다; 히어로즈를 얻으려면 조용히 넓은 필터가 없습니다. 대량 다운로드 후 실제 경로, 크기 및 `verified_gzip`을 확인하십시오. 참고 표 또는 listing datasets는 대량 파일을 다운로드하지 않습니다. 정확한 매개 변수에 대한 [ENCORI 운영](../reference/connector-operations.md#family-35)을 참조하십시오.
+
+## 분석 컨텍스트 및 개별 제출 {/* #assay-submission-evidence */}
+
+| 이름 &#42; | - 연혁 | 인턴십 |
+| --- | --- | --- |
+| **담당자: Mr. wang** | Connector를 활성화; API 키가 필요하지 않습니다. 뚱 베어 `assay_chembl_id` 생물성 기록에서, 방법, 생물, 세포/조직 및 표적을 검열하십시오 `get_assay`, 다음 검색 `get_bioactivity` 동일한 assay ID를 위해. | Target-assignment 신뢰는 측정 품질이 아닙니다. IC50/Ki 값을 결합하기 전에 조건, 단위 및 관계 통신수를 비교하십시오. |
+| **Variants → ClinVar** | Connector의 실제 NCBI 접촉 이메일 구성; API 열쇠는 선택적입니다. . . .. `clinvar_get_submissions` VCV 접근 또는 긍정적인 변리법 ID로, 그 후에 버전 핀으로 꼿습니다 `next_page` 인수. | 보존 SCV, 제출자, 조건, 평가일, 방법 및 인용. germline, somatic 임상 충격 및 oncogenicity를 별도로 비교하십시오. |
+
+ChEMBL 페이지는 `activity_id`에 의해 주문됩니다. `has_more:false`까지 다음 `offset`로 `next_offset` 필터를 변경하고 전달하십시오. 이것은 1,000 레코드보다 더 많은 것을 검색 할 수 있습니다. `summary`는 현재 페이지만 다루고 있으므로 가장 강한 활동은 반드시 전체 쿼리에서 가장 강한 것 입니다. ClinVar이 최신 버전의 첫 번째 페이지를 해결 한 후, 지속적인 VCV을 반환 버전으로 유지; RCV, SCV 또는 rsID 입력을 대체하지 마십시오.
+
+[ChEMBL 분석실험 분야](../reference/connector-operations.md#get_assay) · [Bioactivity 질화](../reference/connector-operations.md#get_bioactivity) · [ClinVar 제출 필드](../reference/connector-operations.md#clinvar_get_submissions).
 
 ## 단일 셀, 모델 조직 및 변형 효과 데이터 {/* #single-cell-model-organisms */}
 
@@ -214,7 +254,7 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/registry.ts).
+카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts).
 
 ## Sequence 검색 및 정렬 {/* #sequence-tools */}
 

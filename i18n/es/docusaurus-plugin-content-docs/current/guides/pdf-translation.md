@@ -1,7 +1,7 @@
 ---
 title: "Traducir un PDF completo"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # Traducir un PDF completo {/* #translate-a-full-pdf */}
@@ -17,7 +17,7 @@ Lea un papel en otro idioma mientras retiene el original para la comparación. *
 
 | Método | Qué configurar |
 | --- | --- |
-| **Agent** | Un modelo de agente disponible, o **Main model** cuando se apoya. En v0.36.0, los modelos de suscripción Codex no pueden ejecutar esta operación de traducción PDF. Seleccione un modelo de traducción compatible sin reemplazar el modelo Main de la conversación. |
+| **Agent** | Un modelo de agente disponible, o **Main model** cuando se apoya. En v0.37.1, los modelos de suscripción Codex no pueden ejecutar esta operación de traducción PDF. Seleccione un modelo de traducción compatible sin reemplazar el modelo Main de la conversación. |
 | **Direct API** | Un modelo API configurado. El registro de suscripción no se puede utilizar como una credencial directa API. Véase [Configuración del proveedor](providers.md). |
 | **Local model**, cuando se ofrece | Instale el modelo a través de los controles mostrados y espere hasta que esté listo. La traducción local lleva un párrafo a la vez. |
 
@@ -51,3 +51,7 @@ Elija **Export translated PDF**, guardar una copia separada, luego volver a abri
 | No se puede salvar el progreso | Reabrir el PDF para cargar el último resultado guardado antes de continuar. |
 
 Utilice [Anotaciones PDF y notas de documentos](pdf-notes.md) para grabar preguntas de lectura. Traducción y anotación son herramientas separadas.
+
+## Comprobar el diseño científico {/* #scientific-layout */}
+
+Antes de utilizar una traducción exportada, compare una figura multipanel y una tabla con el original. Mantener leyendas con sus paneles, verificar cabeceras agrupadas y etiquetas de fila, y comprobar fórmulas, superscripts, símbolos y unidades. v0.37.1 mejora estas relaciones de origen y acepta diferencias válidas de nombre de glifo incrustado durante la regeneración, pero el original sigue siendo la evidencia de una cita o reclamación científica. Si una exportación anterior perdió contenido, actualice la aplicación y exporte de nuevo de la traducción guardada; conservar el original y comparar el nuevo archivo.

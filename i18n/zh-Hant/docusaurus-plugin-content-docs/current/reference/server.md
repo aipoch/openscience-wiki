@@ -1,7 +1,7 @@
 ---
 title: "無介面服務與瀏覽器訪問"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-12'
 ---
 
 # 無介面服務與瀏覽器訪問 {/* #无界面服务与浏览器访问 */}
@@ -10,21 +10,22 @@ last_update:
 
 ## 目標和發現規則 {/* #目标和发现规则 */}
 
+v0.37.0 起，共享後端在普通 Node 程序執行，桌面應用作為原生客戶端連線；CLI 啟動不再依賴隱藏的 Electron 主機。
+
 | 選擇器 | 範圍 |
 | --- | --- |
-| `--port PORT` | localhost 埠，整數 1–65535 |
-| `--app-path PATH` | 已安裝應用的可執行檔案路徑，不是任意專案目錄 |
-| `--config-root PATH` | 開發構建配置覆蓋；打包應用啟動拒絕此引數 |
-| `OPEN_SCIENCE_CONFIG_ROOT` / `OPEN_SCIENCE_STORAGE_ROOT` | 受支援的顯式配置發現目錄 |
-| 自動發現 | 先開發配置再生產配置，跳過已結束/不健康候選 |
+| `--port PORT` | localhost 埠，整數 1–65535；指定埠被佔用時會報錯 |
+| `--config-root PATH` / `--profile PATH` | CLI 的獨立配置目錄；整個流程使用同一絕對路徑 |
+| `OPEN_SCIENCE_CONFIG_ROOT` | 以環境變數明確指定配置目錄；命令引數優先 |
+| 自動發現 | 查詢本地服務狀態，確認連線的配置、埠與版本 |
 
-指定配置目錄會限制發現範圍。啟停前先檢查目標配置的狀態。返回 `running:false` 時，按下方生命週期命令處理；已開啟的桌面視窗可能使用其他服務或配置。
+桌面後端未指定埠時會選擇空閒埠，CLI 啟動預設使用 44100。不要根據視窗是否開啟來猜埠；先執行 `status --json`。同一配置已有相容服務時可連線它，版本不相容時應先結束工作並按提示更新。舊的 `--app-path` 選項不能將 Electron 可執行檔案當成新版後端啟動。
 
-狀態檔案為 `web-service.json`。認證失敗不意味著可以終止檔案記錄的程序。停止邏輯保留活動但不健康的狀態供診斷，避免誤操作被其他程序複用的 PID。
+狀態檔案為 `web-service.json`。認證失敗不意味著可以刪除狀態檔案或終止其中的 PID；先檢查實際服務與診斷資訊，避免誤操作其他程序。
 
 ## 初始化與檢查就緒狀態 {/* #readiness */}
 
-使用 `open-science init` 準備預設配置目錄，不會啟動應用。`--profile` 只在支援開發配置覆蓋時作為 `--config-root` 的別名，不能繞過打包應用的限制。Debian 安裝包隨應用安裝 CLI。Codex 準備和登入見[終端設定](cli.md#terminal-setup)。
+使用 `open-science init` 準備預設配置目錄，不會啟動應用。需要隔離配置時，init、start 和後續命令均指定同一 `--profile` 絕對路徑。Debian 安裝包隨應用安裝 CLI。Codex 準備和登入見[終端設定](cli.md#terminal-setup)。
 
 明確需要啟動服務時執行 `start --no-open`，之後執行 `open-science doctor --json`。檢視整體 `ready`、逐項檢查和建議操作，不能只憑退出碼判斷就緒。繼續使用已有的本地認證介面；啟動無介面服務不會配置 Remote.It，也不會發布公網入口。
 
@@ -46,8 +47,8 @@ last_update:
 | JSON `result` | 含義 |
 | --- | --- |
 | `already-stopped` | 未找到活動服務記錄 |
-| `daemon-stopped` | 經過認證的獨立 daemon 已退出 |
-| `web-service-stopped` | 附屬 Web 服務停止，桌面應用仍在執行 |
+| `daemon-stopped` | 經過認證的 Node 後端已退出；連線它的客戶端失去後端連線 |
+| `web-service-stopped` | 舊版 Electron Web 服務結果，不適用於新版獨立 Node 後端 |
 
 停止請求被拒絕或超過截止時間時返回失敗。應檢查錯誤和實際狀態，不能僅憑命令返回就聲稱服務已停止。
 
@@ -85,17 +86,25 @@ open-science start --credential-store=file --no-open
 
 配置需要在更換容器後保留時，使用持久儲存。關閉應用會保留配置，但替換臨時容器檔案系統可能移除配置。參見[憑據儲存約定](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md)。
 
+## 服務歸屬與關閉 {/* #backend-ownership */}
+
+| 操作 | 對後端的影響 |
+| --- | --- |
+| 僅關閉瀏覽器標籤頁 | 後端繼續執行 |
+| 退出啟動了後端的桌面應用 | 該桌面應用擁有的後端隨之停止 |
+| 退出連線到已有 CLI 後端的桌面應用 | 只斷開該客戶端，CLI 後端繼續執行 |
+| `open-science stop` | 停止目標配置的後端，所有連線它的客戶端都會受影響 |
+
+關閉視窗與退出應用可能不同，特別是在應用仍駐留托盤時。停止共享後端前先結束活動研究，再檢查 `status --json` 的實際狀態。
+
 ## 應用更新 {/* #应用更新 */}
 
-`open-science update` 更新已安裝應用；npm 客戶端需單獨更新。該命令可能按需啟動本地服務，並在完成後保留服務。
+桌面應用的原生更新入口與獨立 CLI 包的更新方式不同。普通 Node 後端不能執行桌面安裝器替換；其 `update --json` 會報告需要手動更新及 `package-manager` 模式，應按返回說明處理。
 
-| `update --json` outcome | 含義 |
-| --- | --- |
-| `up-to-date` | 沒有適用的新版本 |
-| `install-started` | 更新器接收了安裝交接，此次呼叫不能驗證最終版本 |
-| `manual-action-required` | 按返回的安裝檔案路徑和後續步驟操作 |
-| `blocked` | 活動研究阻止原地更新，檢查 `blockedBy` |
+- **桌面應用**：使用應用內更新。若連線的是先前由 CLI 啟動的後端，先結束任務並停止該後端，再更新桌面應用。
+- **獨立 CLI 壓縮包**：結束工作、停止目標後端，將新版本解壓到新目錄，保留原配置資料，更新所用啟動器或 PATH；不要覆蓋執行中的包。
+- **npm 安裝**：按包管理器流程更新對應包，並確認客戶端與後端相容。
 
-該流程需要服務支援 `update-cli-v1`。舊安裝可能需要手動更新，不能猜測遠端過程。保留結果，安裝後再次確認應用版本。
+更新後重新啟動，執行 `status --json` 與 `doctor --json`，確認版本、配置目錄與就緒狀態。保留原有憑據儲存方式；不要為了更新刪除憑據或配置目錄。
 
-[服務實現](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs)、[配置發現](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/config-root.mjs)。任務引數和退出碼見 [CLI](./cli.md)，程式設計介面見 [Task SDK](./api.md)。
+參見[官方獨立執行說明](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md)、[CLI](cli.md)與 [Task SDK](api.md)。

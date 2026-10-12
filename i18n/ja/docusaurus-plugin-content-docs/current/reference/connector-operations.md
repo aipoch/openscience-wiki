@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.36.0**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.36.0.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
+Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.37.1**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.1.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
 
 
 ## 化学化学品 {/* #family-1 */}
@@ -1366,6 +1366,20 @@ MaveDB実験の公開リーダーに表示されるスコアセットをリス�
 const result = await host.mcp("variants", "mavedb_get_experiment_score_sets", {"urn":"urn:mavedb:00000003-a"})
 ```
 
+### `clinvar_get_submissions` {/* #clinvar_get_submissions */}
+
+公式のClinVar VCV XMLから個々のSCV投稿証拠をフェッチします。 clinvar_searchと同じ連絡先メールが必要です。 パスアクセス:VCVアクセス(オプション.バージョンが評価されます)または正のバリエーションID。 未バージョンの入力では、最新のVCVが取得されます。 RCV、SCV、RSIDは受け付けていません。 提出された分類は、細菌、非性臨床的影響および発腫瘍性、条件、提出者、評価日、アサーション方法、公的な分類コメント、提供された証拠および引用のために別々に返されます。 ソースフィールドがnull/emptyにとどまるのを欠く。 同じ分類タイプと条件内の投稿を比較します。 このツールは、競合を侵害しません。 max_submissionsセットページサイズ(1-200、デフォルト200); 0 にデフォルトをオフセットします。 後ページでは、返されたnext_page引数を渡します。これはVCVバージョンをピントします。 オフセット > 0 はバージョンアップされた VCV が必要です。 各ページは、完全なXMLを再フェッチします。 結果キャッシュはありません。 含まれたレコードは、直接SCVの証拠ではなく、間接的な参照を含みます。 SCV を複製することで、要求されたスナップショットで最高のバージョンが保持されます。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `accession` | 文字列 | **必須** |
+| `max_submissions` | 整数 | 任意; デフォルト: 200; 最小値: 1; 最高: 200 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0 |
+
+```javascript
+const result = await host.mcp("variants", "clinvar_get_submissions", {"accession":"VCV000045122"})
+```
+
 </ToolOperationGroup>
 
 ## 臨床試験 {/* #family-7 */}
@@ -2222,21 +2236,23 @@ const result = await host.mcp("chembl", "get_admet", {"molecule_chembl_id": "CHE
 
 ### `get_bioactivity` {/* #get_bioactivity */}
 
-化合物ターゲット相互作用のためのChEMBLの生体活性測定(IC50、KI、Kd、EC50、...)を取得します。 molecule_chembl_idおよび/またはtarget_chembl_id、activity_type(standard_type)、pChEMBLの床(min_pchembl)、standard_valueの範囲(min_value/max_value)、および単位(standard_units)によるフィルター。 activity_idで注文した1ページを、最も有効な要約で返します。
+化合物ターゲット相互作用のためのChEMBLの生体活性測定(IC50、KI、Kd、EC50、...)を取得します。 molecule_chembl_id、target_chembl_id、および/またはassay_chembl_id、activity_type(standard_type)、pChEMBL床(min_pchembl)、standard_value範囲(min_value/max_value)、および単位(standard_units)によるフィルター。 activity_idで注文した1ページを、ページローカルの最もポテンシャルの要約で返します。 next_offset を同じフィルタでオフセットして 1,000 レコードを超えて続行します。 has_more が false の場合、停止します。 get_assay を使用して、測定を比較する前に実験的なコンテキストを検査します。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
 | `molecule_chembl_id` | 文字列 | オプション |
 | `target_chembl_id` | 文字列 | オプション |
+| `assay_chembl_id` | 文字列 | 任意; 最長: 1; パターン: "^CHEMBL&#91;0-9&#93;+$" |
 | `activity_type` | 文字列 | 任意; エヌム: &#91;"IC50"、"EC50"、"Ki"、"Kd"、"AC50"、"GI50"、"ED50"、"Potency"&#93; |
 | `min_pchembl` | 数値 | 任意; 最小値: 0; 最高: 14 |
 | `min_value` | 数値 | オプション |
 | `max_value` | 数値 | オプション |
 | `unit` | 文字列 | 任意; エヌム: &#91;"nM", "uM", "mM", "pM", "M"&#93; |
 | `limit` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 1000 |
+| `offset` | 整数 | 任意; デフォルト: 0; 最小値: 0; 最高: 9007199254740991 |
 
 ```javascript
-const result = await host.mcp("chembl", "get_bioactivity", {"molecule_chembl_id": "CHEMBL25", "activity_type": "IC50", "limit": 10})
+const result = await host.mcp("chembl", "get_bioactivity", {"molecule_chembl_id":"CHEMBL25","activity_type":"IC50","limit":10})
 ```
 
 ### `get_mechanism` {/* #get_mechanism */}
@@ -2269,6 +2285,18 @@ ChEMBLの生物学的目標(タンパク質、複合体、家族、生物)を検
 
 ```javascript
 const result = await host.mcp("chembl", "target_search", {"gene_symbol": "EGFR", "organism": "Homo sapiens", "limit": 5})
+```
+
+### `get_assay` {/* #get_assay */}
+
+assay_chembl_idによる1つのChEMBLアッセイをバイオアクティブレコードから取得します。 実験的な説明、試行型とフォーマット、生物、細胞/チスス コンテキスト、試行パラメータ、割り当てられたターゲットおよびターゲット割り当ての自信を返します。 機密性は、測定品質ではなく、ターゲットの割り当てを記述します。 IC50/Ki の値を組み合わせる前にアッセイ条件を比較します。 get_bioactivity を同じ assay_chembl_id で使用して、測定値を取得します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `assay_chembl_id` | 文字列 | **必須**; 最長: 1; パターン: "^CHEMBL&#91;0-9&#93;+$" |
+
+```javascript
+const result = await host.mcp("chembl", "get_assay", {"assay_chembl_id":"CHEMBL1217643"})
 ```
 
 </ToolOperationGroup>
@@ -5391,6 +5419,187 @@ const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"P
 
 ```javascript
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
+```
+
+</ToolOperationGroup>
+
+## ENCORI {/* #family-35 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメータを表示</summary>
+
+### `query_mirna_targets` {/* #query_mirna_targets */}
+
+公式の miRNA ターゲットのエビデンスをクエリします。 mirna=all を使用して、制限されていない miRNA を使用します。 cell_typeを正確に保存します。 プログラムは、PITA、RNA22、Mirmap、DIANA-microT、Miranda、PicTar、TargetScanのコンマ区切りリストです。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `assembly` | 文字列 | **必須**; enum: &#91;"hg38"、"mm10"&#93; |
+| `gene_type` | 文字列 | **必須**; エヌム: &#91;"mRNA"、"lncRNA"、"pseudogene"、"circRNA"、"sncRNA"&#93; |
+| `mirna` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `clip_exp_num` | 整数 | **必須**; 最小値: 0; 最高: 999 |
+| `degra_exp_num` | 整数 | **必須**; 最小値: 0; 最高: 999 |
+| `pancancer_num` | 整数 | **必須**; 最小値: 0; 最高: 32 |
+| `program_num` | 整数 | **必須**; 最小値: 1; 最高: 7 |
+| `program` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `target` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `cell_type` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `max_records` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 200 |
+| `output_dir` | &#91;'string', 'null' &#93; は、 | 任意; 最長: 1; 最高長さ: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_mirna_targets", {"assembly":"hg38","gene_type":"mRNA","mirna":"all","clip_exp_num":1,"degra_exp_num":0,"pancancer_num":0,"program_num":1,"program":"TargetScan","target":"PDCD4","cell_type":"HeLa","max_records":2})
+```
+
+### `query_rna_rna_interactions` {/* #query_rna_rna_interactions */}
+
+RNA-RNAの公式インタラクションをクエリする。 cell_type=all は、制限されていない場合にのみ使用します。 別のデータベースを置換しません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `assembly` | 文字列 | **必須**; enum: &#91;"hg38"、"mm10"&#93; |
+| `gene_type` | 文字列 | **必須**; エヌム: &#91;"mRNA", "lncRNA", "pseudogene", "sncRNA", "miRNA"&#93; |
+| `rna` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `inter_num` | 整数 | **必須**; 最小値: 1; 最高: 999 |
+| `exp_num` | 整数 | **必須**; 最小値: 1; 最高: 999 |
+| `cell_type` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `max_records` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 200 |
+| `output_dir` | &#91;'string', 'null' &#93; は、 | 任意; 最長: 1; 最高長さ: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rna_rna_interactions", {"assembly":"hg38","gene_type":"mRNA","rna":"TP53","inter_num":1,"exp_num":1,"cell_type":"all","max_records":2})
+```
+
+### `query_rbp_targets` {/* #query_rbp_targets */}
+
+公式 RBP ターゲットの証拠を問い合わせます。 すべてのRBPにrbp=allを使用する。 cell_type を保存し、リクエストの失敗からゼロ行を区別します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `assembly` | 文字列 | **必須**; エヌム: &#91;"hg38"、"mm10"、"dm6"、"ce10"、"sacCer3"&#93; |
+| `gene_type` | 文字列 | **必須**; エヌム: &#91;"mRNA"、"lncRNA"、"pseudogene"、"circRNA"、"sncRNA"&#93; |
+| `rbp` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `clip_exp_num` | 整数 | **必須**; 最小値: 1; 最高: 999 |
+| `pancancer_num` | 整数 | **必須**; 最小値: 0; 最高: 32 |
+| `target` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `cell_type` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `max_records` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 200 |
+| `output_dir` | &#91;'string', 'null' &#93; は、 | 任意; 最長: 1; 最高長さ: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rbp_targets", {"assembly":"hg38","gene_type":"mRNA","rbp":"all","clip_exp_num":1,"pancancer_num":0,"target":"TP53","cell_type":"HeLa","max_records":2})
+```
+
+### `query_cerna_network` {/* #query_cerna_network */}
+
+公式のceRNAネットワークを問い合わせる。 制限がない場合、 family=all を使用します。 オフィシャルP値とFDR値を保存します。 数から家族の名前が不足しているわけではありません。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `assembly` | 文字列 | **必須**; enum: &#91;"hg38"、"mm10"&#93; |
+| `gene_type` | 文字列 | **必須**; エヌム: &#91;"mRNA", "lncRNA", "pseudogene"&#93; |
+| `cerna` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `mirna_num` | 整数 | **必須**; 最小値: 1; 最高: 999 |
+| `family` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `pval` | 数値 | **必須**; 最小値: 0; 最高: 0.01 |
+| `fdr` | 数値 | **必須**; 最小値: 0; 最高: 0.01 |
+| `pancancer_num` | 整数 | **必須**; 最小値: 0; 最高: 32 |
+| `max_records` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 200 |
+| `output_dir` | &#91;'string', 'null' &#93; は、 | 任意; 最長: 1; 最高長さ: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_cerna_network", {"assembly":"hg38","gene_type":"mRNA","cerna":"MYC","mirna_num":1,"family":"all","pval":0.01,"fdr":0.01,"pancancer_num":0,"max_records":2})
+```
+
+### `query_rbp_disease` {/* #query_rbp_disease */}
+
+正式なRBP疾患証拠を問い合わせる。 組織、病気およびターゲット フィルターをゼロ結果の質問を広範囲にすることなく保存します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `assembly` | 文字列 | **必須**; enum: &#91;"hg38"&#93; |
+| `rbp` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `tissue` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `disease` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `target` | 文字列 | **必須**; 最長: 1; 最高長さ: 256; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `max_records` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 200 |
+| `output_dir` | &#91;'string', 'null' &#93; は、 | 任意; 最長: 1; 最高長さ: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rbp_disease", {"assembly":"hg38","rbp":"all","tissue":"breast","disease":"carcinoma","target":"MYC","max_records":2})
+```
+
+### `scan_rbp_motifs` {/* #scan_rbp_motifs */}
+
+RBPの公式ランキングを検索します。 注文とスコアを保存します。 QueryMotif と IdentifiedMotif は独立したフィールドです。 逆補完が実行されるか、または推論しない。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `assembly` | 文字列 | **必須**; エヌム: &#91;"hg38"、"mm10"、"dm6"、"ce10"、"sacCer3"&#93; |
+| `length` | 文字列 | **必須**; enum: &#91;"short"、"long"&#93; |
+| `motif` | 文字列 | **必須**; 最長: 1; 最高長さ: 64; パターン: "^&#91;ACGTUNRYKMSWBDHVacgtunrykmswbdhv&#93;+ $ " |
+| `rank_limit` | 整数 | **必須**; 最小値: 1; 最高: 100 |
+| `max_records` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 200 |
+| `output_dir` | &#91;'string', 'null' &#93; は、 | 任意; 最長: 1; 最高長さ: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "scan_rbp_motifs", {"assembly":"hg38","length":"short","motif":"UGCAUG","rank_limit":10,"max_records":2})
+```
+
+### `get_binding_sites` {/* #get_binding_sites */}
+
+dataset_idによる公式BED結合サイトを取得。 既知の SQL プレフィックスのみをパースされたレコードから削除します。 厳密な未加工バイトを保って下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `assembly` | 文字列 | **必須**; エヌム: &#91;"hg38"、"mm10"、"dm6"、"ce10"、"sacCer3"&#93; |
+| `dataset_id` | 文字列 | **必須**; 最長: 1; 最高長さ: 64; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `max_records` | 整数 | 任意; デフォルト: 100; 最小値: 1; 最高: 1000 |
+| `output_dir` | &#91;'string', 'null' &#93; は、 | 任意; 最長: 1; 最高長さ: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "get_binding_sites", {"assembly":"hg38","dataset_id":"SBDH2131","max_records":2})
+```
+
+### `get_reference_tables` {/* #get_reference_tables */}
+
+オンライン公式参照ZIPから正確なテーブル名を一覧表示するか、reference_data/degradome_ref.txtなどの1つの正確なtable_nameをお読みください。 ZIPを呼び出して、それぞれの呼び出しで更新します。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `table_name` | &#91;'string', 'null' &#93; は、 | 任意; 最長: 1; 最高長さ: 512; パターン: "^&#91;^\r\\n\u0000&#93;*&#91;^\\\\\u0000&#93;&#91;^\\\\n\u0000&#93;*$" |
+| `max_records` | 整数 | 任意; デフォルト: 50; 最小値: 1; 最高: 500 |
+| `output_dir` | &#91;'string', 'null' &#93; は、 | 任意; 最長: 1; 最高長さ: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "get_reference_tables", {"table_name":"reference_data/degradome_ref.txt","max_records":2})
+```
+
+### `list_bulk_datasets` {/* #list_bulk_datasets */}
+
+24 の文書化された公式のバルク データセットのファイル名をリストします。 デフォルトでは、HEAD は、データをダウンロードすることなく、可用性とバイトサイズをプローブします。 空室状況のチェックを外すと、サイズが null です。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `assembly` | &#91;'string', 'null' &#93; は、 | 任意; enum: &#91;"hg38"、"mm10"、null&#93; |
+| `data_type` | &#91;'string', 'null' &#93; は、 | 任意; enum: &#91; &#93;"miRNA_mRNAの使い方", , "miRNA_lncRNAの特長", , "miRNA_pseudogene(ミルナ)", , "miRNA_sncRNAの特長", , "miRNA_circRNAの特長", , "RNA_RNAの特長", , "RBP_mRNAの特長", , "RBP_lncRNAの特長", , "RBP_pseudogeneの特長", , "RBP_sncRNAの特長", , "RBP_circRNAの特長", , "RBP_caRNAの特長", null , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , |
+| `check_availability` | 真偽値 | 任意; デフォルト: true |
+
+```javascript
+const result = await host.mcp("encori", "list_bulk_datasets", {"assembly":"hg38","data_type":"miRNA_mRNA"})
+```
+
+### `download_bulk_dataset` {/* #download_bulk_dataset */}
+
+ユーザーがダウンロードを要求する場合だけ, 発信者を実行しているコンピュータ上でdestination_dirに1つの公式バルクファイルをストリーミング. 既存のファイルを上書きしないでください。 .part ファイルの中断は、同一のファイル名/ディレクトリに、同一のファイルの名前と HTTP 範囲のバリデーションのみで再開します。 出版物の前にサイズおよびgzipの完全性を検証して下さい。
+
+| 受け入れられた値 | 型 | 要件と制約 |
+| --- | --- | --- |
+| `filename` | 文字列 | **必須**; enum: &#91; &#93;"hg38.miRNA_mRNA.tar.gz の使い方", , "hg38.miRNA_lncRNA.tar.gz は、", , "hg38.miRNA_pseudogene.tar.gz の一覧", , "hg38.miRNA_sncRNA.tar.gz は、", , "hg38.miRNA_circRNA.tar.gz は、", , "hg38.RNA_RNA.tar.gz は、", , "hg38.RBP_mRNA.tar.gz は、", , "hg38.RBP_lncRNA.tar.gz の仕様", , "hg38.RBP_pseudogene.tar.gz の一覧", , "hg38.RBP_sncRNA.tar.gz は、", , "hg38.RBP_circRNA.tar.gz は、", , "hg38.RBP_caRNA.tar.gz の仕様", , "mm10.miRNA_mRNA.tar.gzの", , "mm10.miRNA_lncRNA.tar.gzの", , "mm10.miRNA_pseudogene.tar.gzの", , "mm10.miRNA_sncRNA.tar.gzの", , "mm10.miRNA_circRNA.tar.gz の", , "mm10.RNA_RNA.tar.gz の", , "mm10.RBP_mRNA.tar.gz の", , "mm10.RBP_lncRNA.tar.gz の", , "mm10.RBP_pseudogene.tar.gz の", , "mm10.RBP_sncRNA.tar.gz の", , "mm10.RBP_circRNA.tar.gz の", , "mm10.RBP_caRNA.tar.gz の". . . |
+| `destination_dir` | &#91;'string', 'null' &#93; は、 | 任意; 最長: 1; 最高長さ: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
 ```
 
 </ToolOperationGroup>

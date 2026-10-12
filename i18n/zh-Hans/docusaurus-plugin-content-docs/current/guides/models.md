@@ -1,7 +1,7 @@
 ---
 title: "模型与任务策略"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # 模型与任务策略
@@ -130,6 +130,6 @@ Session details 选择器不接受 Codex 订阅模型；Main 或 Vision 中能�
 
 ## 选择 PDF 翻译模型 {/* #pdf-translation-model */}
 
-PDF 阅读器提供独立的 **Translation method** 和 **Model** 控件。**Agent** 可使用可用的兼容模型；**Direct API** 需要 API 提供商。v0.36.0 的这项操作不支持 Codex 订阅模型。选择翻译模型无需替换 Main，见 [PDF 翻译](pdf-translation.md#prepare-translation)。
+PDF 阅读器提供独立的 **Translation method** 和 **Model** 控件。**Agent** 可使用可用的兼容模型；**Direct API** 需要 API 提供商。v0.37.1 的这项操作不支持 Codex 订阅模型。选择翻译模型无需替换 Main，见 [PDF 翻译](pdf-translation.md#prepare-translation)。
 
 官方 Anthropic 目录包含 **Claude Haiku 5.5**。模型是否可见、能否调用取决于选定的 Agent 和账号。应使用当前目录条目，不要自行在旧模型 ID 后附加上下文大小后缀。

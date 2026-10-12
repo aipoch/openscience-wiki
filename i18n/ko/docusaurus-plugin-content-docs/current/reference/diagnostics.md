@@ -1,7 +1,7 @@
 ---
 title: "건축과 진단"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-12'
 ---
 
 # 건축과 진단 {/* #architecture-and-diagnostics */}
@@ -12,7 +12,7 @@ last_update:
 
 ```mermaid
 flowchart LR
-  UI[Desktop or browser interface] --> MAIN[Application main process]
+  UI[Desktop or browser interface] --> MAIN[Shared Node backend]
   MAIN --> STORE[Settings, database and managed files]
   MAIN --> AGENT[Agent framework and model provider]
   MAIN --> NB[Notebook runtime]
@@ -28,7 +28,7 @@ flowchart LR
 | 회사연혁 | 이름 &#42; | 검사에 대한 증거 |
 | --- | --- | --- |
 | Renderer 및 미리보기 | 표시 상태, 제어, 렌더링 된 파일 내용 | 페이지, 선택한 project/session, filename, 미리보기 오류 |
-| Main 과정 | Persistent 운영, 응용 서비스 및 액세스 경계 | 가동 과 관련 진단 |
+| Node 백업 | Persistent 운영, 응용 서비스 및 액세스 경계 | 가동 과 관련 진단 |
 | 에이전트 프레임 워크/provider | 모델 연결, 작업 실행 프로토콜 및 응답 스트림 | Framework/provider/model, 연결 테스트, 실패 도구 또는 회전 |
 | Notebook | Interpreter, 코드 실행, 출력 및 실시간 변수 | Runtime ID/version, 실패 셀, stdout/stderr 및 실행 기록 |
 | 커넥터 | 외부 서비스 요청 | Connector/tool 이름, sanitized 입력, 서비스에서 상태/error |
@@ -80,3 +80,7 @@ flowchart LR
 **Export diagnostics…**은 선택한 세션 메타데이터, 데이터베이스 레코드 및 사용 가능한 애플리케이션 로그 메타데이터를 현명하고 수출 로그와 현지 아카이브로 수집합니다. 근원은 전체적인 수출을 멈추지 않습니다; 큰 손상된 근원은 summaries를 일으킬 수 있습니다. 현재와 과거의 애플리케이션 로그는 선택한 세션 밖에 활동들을 커버할 수 있으므로 선택한 소스를 검토하고 결과를 캡처할 수 있습니다.
 
 Ordinary metadata 소스는 개인 콘텐츠 필드를 제외합니다. 민감한 콘텐츠 패키지 수출 실패 후, 대화 상자는 또한 적층 스캐너 증거와 원본 조각 파일을 제공 할 수 있습니다. 원본 파일은 기본적으로 체크되지 않습니다. 명시적으로 선택하면 원래 바이트가 포함되어 있습니다. 수출은 업로드 또는 모델 요청을하지 않습니다. 공유하기 전에 결과 아카이브를 검사합니다. 연구 패키지 백업 또는 최소 재생산을 대체하지 않습니다. [illustrated 수출 절차](../guides/troubleshooting.md#session-diagnostics) 참조.
+
+## 데스크톱 및 백엔드는 별도의 프로세스입니다. {/* #node-backend */}
+
+v0.37.0에서 Electron은 일반 Node 백엔드가 공유 서비스를 소유하면서 기본 데스크탑 쉘을 소유합니다. 데스크탑, 웹 UI, CLI 및 SDK은 동일한 백엔드에 연결할 수 있습니다. 구성 디렉토리, 버전 및 실제 포트 식별 `status --json` 클라이언트가 연결할 수 없을 때. 눈에 보이는 데스크탑 창은 혼자는 backend를 증명하지 않습니다 건강합니다. 그것을 멈추기 전에 [백엔드 소유권](server.md#backend-ownership)를 따르십시오.

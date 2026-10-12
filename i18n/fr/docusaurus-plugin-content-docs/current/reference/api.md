@@ -1,7 +1,7 @@
 ---
 title: "Tâche SDK et locale API"
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-12'
 ---
 
 # Tâche SDK et locale API {/* #task-sdk-and-local-api */}
@@ -14,13 +14,13 @@ Le client `@aipoch/open-science` Node.js se connecte à un service d'application
 
 <p className="example-label"><strong>Exemple</strong> Enregistrer et télécharger une note de vérification de connexion</p>
 
-Utilisez Node.js 22.5 ou une version ultérieure. Ouvrez l'application de bureau installée sur la même machine, terminez la configuration du modèle et continuez à fonctionner. Le SDK utilise la découverte du service local et son jeton stocké localement. Pour un démon séparé, suivez d'abord [Service sans tête](server.md).
+Utilisez Node.js compatible avec le paquet sélectionné : le paquet de sauvegarde v0.37.1 nécessite Node.js 22.13 ou une version ultérieure, alors que les archives CLI autonomes regroupent Node. Démarrez un moteur à travers le bureau ou [CLI](server.md), terminez la configuration du modèle et continuez à fonctionner. Le SDK utilise la découverte du service local et son jeton stocké localement.
 
-Dans un dossier de travail vide, installez le client :
+Dans un dossier de travail vide, installez le paquet local correspondant. Remplacer `BACKEND_DIRECTORY` par le chemin absolu vers le dossier `backend` dans l'archive complète CLI, et conserver ce répertoire :
 
 ```bash
 npm init -y
-npm install @aipoch/open-science
+npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
 ```
 
 Enregistrer ce qui suit sous `connection-check.mjs`. Exécutez `node connection-check.mjs` pour lister les ID de projet, puis `node connection-check.mjs PROJECT_ID` avec un ID retourné. La première invocation s'arrête délibérément après l'inscription des projets; la seconde crée une petite tâche.
@@ -58,9 +58,9 @@ await writeFile('project-note.download.md', new Uint8Array(await response.arrayB
 console.log('Saved project-note.download.md; open and check its contents.');
 ```
 
-Gardez la session de bureau ouverte. Répondez-y si **Ask for approval** arrête la tâche. Un délai d'attente arrête le sondage auprès des clients; il n'annule pas la course. Inspectez l'ID imprimé avec `getRun`, continuez à attendre après avoir résolu la requête, ou appelez `cancelRun` lorsque vous avez l'intention de l'arrêter. Le téléchargement ne réussit que lorsqu'il existe un artefact enregistré correspondant; ouvrir le Markdown téléchargé pour terminer la vérification.
+Gardez le bureau correspondant ou la session du navigateur authentifié accessible. Répondez-y si **Ask for approval** arrête la tâche. Un délai d'attente arrête le sondage auprès des clients; il n'annule pas la course. Inspectez l'ID imprimé avec `getRun`, continuez à attendre après avoir résolu la requête, ou appelez `cancelRun` lorsque vous avez l'intention de l'arrêter. Le téléchargement ne réussit que lorsqu'il existe un artefact enregistré correspondant; ouvrir le Markdown téléchargé pour terminer le contrôle.
 
-Ce programme démontre le contrat public API. Il ne suppose pas qu'un modèle enregistrera toujours le fichier demandé. Si le paquet npm ne peut pas être installé, utilisez le dossier SDK expédié avec la commande source correspondante comme paquet local; confirmer ses métadonnées de paquet avant l'installation.
+Ce programme démontre le contrat public API. Il ne suppose pas qu'un modèle enregistrera toujours le fichier demandé. Utiliser le SDK d'un paquet source ou d'une version correspondante; confirmer ses exigences de plate-forme et Node avant l'installation.
 
 ### Une tâche terminée dont le fichier ne sera pas téléchargé {/* #a-completed-task-whose-file-will-not-download */}
 
@@ -78,7 +78,7 @@ Ouvrez l'artefact dans l'application et vérifiez si son contenu est disponible.
 | `listRuntimes()` | `GET /api/v1/runtimes` | Lister le cadre, l'état, la version optionnelle et la source gérée/externe. |
 | `bootstrap({action: "status"})` | `POST /api/v1/bootstrap` | Inspectez l'état de configuration de la première sortie. |
 | `bootstrap({action: "runtime"})` | `POST /api/v1/bootstrap` | Préparer ou réparer le temps d'exécution de Codex géré par le flux de bootstrap pris en charge. |
-| `installCli()` | `POST /api/v1/cli/install` | Installez le lanceur local PATH. |
+| `installCli()` | `POST /api/v1/cli/install` | Installation de lanceur de bureau natif; non supporté par un moteur autonome Node. Utilisez le bureau Général ou le lanceur d'archives. |
 
 Les mutations d'installation nécessitent le service local authentifié. Vérifiez le code d'erreur et `ok` retourné; les conflits de configuration doivent être résolus avant de réessayer. Un délai imparti par le client n'établit pas qu'une installation acceptée a été annulée. Revérifier l'état de préparation avant de démarrer une autre installation. Pour l'accès à l'abonnement ou l'entrée nominative-environnement-variable, utilisez le [débit de configuration du terminal](cli.md#terminal-setup).
 

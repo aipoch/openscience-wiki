@@ -1,7 +1,7 @@
 ---
 title: "CLI and structured output"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,12 @@ Use `open-science` to inspect application status, run tasks, manage Connectors a
 
 ## Set up from a terminal {/* #terminal-setup */}
 
-Install the desktop application first and make its `open-science` command available. The CLI uses the application’s backend; it is not a separate npm daemon. Debian packages include the command. Where the launcher is missing, follow the platform launcher setup or use the installed CLI entry, then `open-science cli install`.
+Choose either the desktop launcher or a standalone CLI archive from the [official release](https://github.com/aipoch/open-science/releases/tag/v0.37.1). The standalone archive contains the CLI, Node runtime, backend and Web UI; it does not require Electron or a separately installed Node/npm toolchain.
+
+1. Choose macOS or Linux arm64/x64, or Windows x64, matching the host.
+2. Extract the complete archive into a writable location. Keep the launcher, `backend` and `node-runtime` together; copying only the launcher will break startup.
+3. From that directory, run `./open-science --help` on macOS/Linux, or `./open-science.cmd --help` in PowerShell. After adding that directory to PATH, open a new terminal and use `open-science` as below.
+4. Start the local backend and check readiness. Starting it alone does not configure a model.
 
 ```bash
 open-science init
@@ -24,7 +29,7 @@ open-science runtime list --json
 open-science doctor --json
 ```
 
-`init` creates the configuration directory without starting the application. `--profile` is an alias for `--config-root` for supported development profiles; packaged startup rejects these overrides. Use one intended profile consistently. `runtime list` shows detected framework readiness, version and managed/external source without exposing executable paths.
+`init` creates the configuration directory without starting the application. `--profile` aliases `--config-root` for a portable CLI profile. Use the same absolute configuration directory for init, start and subsequent commands; a separate profile has its own setup. `runtime list` shows detected framework readiness, version and managed/external source without exposing executable paths.
 
 For an unconfigured Codex setup:
 
@@ -46,7 +51,8 @@ Read **ready**, the individual **checks** and suggested **next** actions from `d
 | --- | --- | --- |
 | Installed application launcher | **Settings → General → Command line tool → Install command** | `open-science --help` |
 | Source checkout | Built application and repository dependencies | `node packages/open-science/cli.mjs --help` |
-| npm client | Node.js 22.5+ and an installed application; confirm package availability before installation | Package identifier `@aipoch/open-science` |
+| Standalone CLI archive | Matching OS/architecture; preserve the complete extracted directory | `./open-science --help` or `./open-science.cmd --help` |
+| npm client / SDK | Node.js 22.13+ and a running compatible backend; check package requirements before installation | Package identifier `@aipoch/open-science` |
 
 The installed launcher uses the application's bundled runtime. If its directory is absent from PATH, follow the General panel's displayed instruction and open a new terminal. Do not rename the executable to match display branding.
 
@@ -68,11 +74,11 @@ Check that **Source** points to the launcher displayed in General, usually an `o
 
 <p className="example-label"><strong>Example</strong> Save a note from the command line</p>
 
-1. Install the command using the entry above. Keep the desktop app running with a working model.
+1. Install the command using the entry above. Keep a backend running with a working model, either through the desktop or `start --no-open`.
 2. Run `open-science status --json`, then `open-science project list --json`. Check the intended instance and copy a returned project ID.
 3. Save `task.md` with: **Save project-note.md containing a brief connection-check note. Do not read other files or use the network.**
 4. Run the commands under [Run input and control flags](#run-input-and-control-flags). Replace each placeholder only after obtaining its ID from the preceding result.
-5. If the run pauses for permission, respond in its desktop conversation. `--wait` can time out while the task continues; inspect `run status RUN_ID --json` before submitting again.
+5. If the run pauses for permission, respond in the corresponding desktop or authenticated browser conversation. `--wait` can time out while the task continues; inspect `run status RUN_ID --json` before submitting again.
 6. Select the returned Markdown artifact ID, download it to a new local filename, and open it. A completed run without the requested artifact requires a follow-up in that session. If the artifact exists but download fails, follow [artifact download recovery](./api.md#a-completed-task-whose-file-will-not-download).
 
 For plan-first tasks, use `--return-on-attention`, inspect the returned plan and respond through the application or the plan commands below. For JSON integrations, distinguish running, completed, failed and cancelled instead of treating every successful HTTP response as a finished task.
@@ -222,3 +228,7 @@ open-science run --project "Sequence and PDF Research" \
 ```
 
 The option applies only to this invocation and is not saved as a session preference. It cannot be combined with `--plan-first`. Inspect the final status and error: avoiding a human wait does not guarantee task completion. The client checks for host capability `permission-prompts-none`; update the matching client and app if an older host returns `unsupported_capability`.
+
+## Windows launcher paths {/* #windows-launcher-paths */}
+
+v0.37.1 fixes desktop launcher paths containing non-ASCII characters. After updating, open a new terminal and check `Get-Command open-science` and `open-science --help`. If the command still resolves to an older installation, use the path shown in **Settings → General**. Keep the whole standalone archive directory intact. A successful help command does not establish model readiness; check `doctor --json` next.

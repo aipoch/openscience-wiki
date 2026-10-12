@@ -2718,5 +2718,17 @@
   },
   "docs.guides.outline.pdf-translation.scope": {
     "message": "准备 PDF、选择翻译模型、继续已保存进度、对照原文并导出。"
+  },
+  "docs.outline.reference.v0371.title": {
+    "message": "v0.37.1"
+  },
+  "docs.outline.reference.v0371.scope": {
+    "message": "科学 PDF 保真、Windows 路径、Notebook 控制台及安装包体积改进。"
+  },
+  "docs.outline.reference.v0370.title": {
+    "message": "v0.37.0"
+  },
+  "docs.outline.reference.v0370.scope": {
+    "message": "独立 Node 后端与 CLI、ENCORI、ChEMBL 实验、ClinVar 提交证据及 Notebook 记录。"
   }
 }

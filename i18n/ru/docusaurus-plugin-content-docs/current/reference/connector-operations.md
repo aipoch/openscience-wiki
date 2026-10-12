@@ -2,7 +2,7 @@
 title: "Операционный справочник Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## Эксплуатационные материалы {/* #operation-inputs */}
 
-Расширяйте один Connector за раз. Требуемые поля помечены **обязательно**; Эта ссылка и загрузка используют схему Open-Science **v0.36.0**. Вложенный список `input.required` является авторитетным; Унаследованный список `required` может отсутствовать. Проконсультируйтесь с <ExampleDownload path="/examples/capabilities/connector-catalog-v0.36.0.json">Полный загружаемый реестр</ExampleDownload> для вложенных схем JSON, полных описаний возврата и примеров вызова на стороне агента. Не пропустите общий `id`, когда инструмент ожидает `accessions`, `cids`, `rs_id` или другое поле пространства имен.
+Расширяйте один Connector за раз. Требуемые поля помечены **обязательно**; Эта ссылка и загрузка используют схему Open-Science **v0.37.1**. Вложенный список `input.required` является авторитетным; Унаследованный список `required` может отсутствовать. Проконсультируйтесь с <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.1.json">Полный загружаемый реестр</ExampleDownload> для вложенных схем JSON, полных описаний возврата и примеров вызова на стороне агента. Не пропустите общий `id`, когда инструмент ожидает `accessions`, `cids`, `rs_id` или другое поле пространства имен.
 
 
 ## химия {/* #family-1 */}
@@ -1366,6 +1366,20 @@ const result = await host.mcp("variants", "mavedb_get_experiment", {"urn":"urn:m
 const result = await host.mcp("variants", "mavedb_get_experiment_score_sets", {"urn":"urn:mavedb:00000003-a"})
 ```
 
+### `clinvar_get_submissions` {/* #clinvar_get_submissions */}
+
+Получите индивидуальные доказательства SCV от официального ClinVar VCV XML. Требуется такая же контактная электронная почта, как и clinvar_search. Присоединение к пропуску: присоединение VCV (факультативная .версия почетна) или идентификатор положительной вариации. Неверный ввод извлекает последний VCV. RCV, SCV и rsID не принимаются. Возврат представленных классификаций отдельно для зародышевой линии, соматического клинического воздействия и онкогенности, условий, отправителя, даты оценки, методов утверждения, замечаний публичной классификации, наблюдаемых доказательств и цитат, где предусмотрено. Исчезнувшие поля остаются пустыми. Сравнение представлений в рамках одного и того же типа классификации и условия; Этот инструмент не выявляет конфликтов. max_submissions устанавливает размер страницы (1-200, 200); Компенсация по умолчанию 0. Для более поздних страниц передайте возвращенные аргументы next_page, которые закрепляют версию VCV; Для смещения > 0 требуется версия VCV. Каждая страница перезаписывает полный XML; Нет никакого кэша результата. Включенные записи содержат косвенные ссылки, а не прямые доказательства SCV. Дублирующие SCV сохраняют самую высокую версию, присутствующую в запрашиваемом снимке.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `accession` | строка | **обязательно** |
+| `max_submissions` | целое число | факультативный; по умолчанию: 200; Минимум: 1; Максимум: 200 |
+| `offset` | целое число | целое число |
+
+```javascript
+const result = await host.mcp("variants", "clinvar_get_submissions", {"accession":"VCV000045122"})
+```
+
 </ToolOperationGroup>
 
 ## Клинические испытания {/* #family-7 */}
@@ -2222,21 +2236,23 @@ const result = await host.mcp("chembl", "get_admet", {"molecule_chembl_id": "CHE
 
 ### `get_bioactivity` {/* #get_bioactivity */}
 
-Измерения биоактивности Retrieve ChEMBL (IC50, Ki, Kd, EC50, ...) для взаимодействий соединения-мишени. Фильтр molecule_chembl_id и/или target_chembl_id, activity_type (standard_type), пол pChEMBL (min_pchembl), диапазон standard_value (min_value/max_value) и блок (standard_units). Возвращает одну страницу, заказанную activity_id, с наиболее мощным резюме.
+Измерения биоактивности Retrieve ChEMBL (IC50, Ki, Kd, EC50, ...) для взаимодействий соединения-мишени. Фильтр molecule_chembl_id, target_chembl_id и/или assay_chembl_id, activity_type (standard_type), пол pChEMBL (min_pchembl), диапазон standard_value (min_value/max_value) и блок (standard_units). Возвращает одну страницу, заказанную activity_id, с наиболее мощным резюме. Перейдите next_offset в качестве смещения с теми же фильтрами, чтобы продолжить работу за пределами записей 1,000; Остановитесь, когда has_more ложный. Используйте get_assay для проверки экспериментального контекста перед сравнением измерений.
 
 | Полное поле | Тип | Требования и ограничения |
 | --- | --- | --- |
 | `molecule_chembl_id` | строка | необязательный |
 | `target_chembl_id` | строка | необязательный |
+| `assay_chembl_id` | строка | факультативный; Длина: 1; шаблон: "^CHEMBL&#91;0-9&#93;+$" |
 | `activity_type` | строка | факультативный; enum: &#91;"IC50", "EC50", "Ki", "Kd", "AC50", "GI50", "ED50", "Potency"&#93; |
 | `min_pchembl` | число | факультативный; Минимум: 0; Максимум: 14 |
 | `min_value` | число | необязательный |
 | `max_value` | число | необязательный |
 | `unit` | строка | факультативный; enum: &#91;"nM", "uM", "mM", "pM", "M"&#93; |
 | `limit` | целое число | факультативный; по умолчанию: 20; Минимум: 1; Максимум: 1000 |
+| `offset` | целое число | факультативный; по умолчанию: 0; Минимум: 0; Максимум: 9007199254740991 |
 
 ```javascript
-const result = await host.mcp("chembl", "get_bioactivity", {"molecule_chembl_id": "CHEMBL25", "activity_type": "IC50", "limit": 10})
+const result = await host.mcp("chembl", "get_bioactivity", {"molecule_chembl_id":"CHEMBL25","activity_type":"IC50","limit":10})
 ```
 
 ### `get_mechanism` {/* #get_mechanism */}
@@ -2269,6 +2285,18 @@ const result = await host.mcp("chembl", "get_mechanism", {"molecule_chembl_id": 
 
 ```javascript
 const result = await host.mcp("chembl", "target_search", {"gene_symbol": "EGFR", "organism": "Homo sapiens", "limit": 5})
+```
+
+### `get_assay` {/* #get_assay */}
+
+Проанализируйте ChEMBL по assay_chembl_id из отчета о биоактивности. Возвращает экспериментальное описание, тип и формат анализа, организм, контекст клетки / ткани, параметры анализа, назначенную цель и уверенность в назначении цели. Доверие описывает целевое назначение, а не качество измерений; Сравните условия анализа перед объединением значений IC50/Ki. Используйте get_bioactivity с тем же assay_chembl_id, чтобы получить результаты измерений.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `assay_chembl_id` | строка | **обязательно**; Длина: 1; шаблон: "^CHEMBL&#91;0-9&#93;+$" |
+
+```javascript
+const result = await host.mcp("chembl", "get_assay", {"assay_chembl_id":"CHEMBL1217643"})
 ```
 
 </ToolOperationGroup>
@@ -5391,6 +5419,187 @@ const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"P
 
 ```javascript
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
+```
+
+</ToolOperationGroup>
+
+## ENCORI {/* #family-35 */}
+
+<ToolOperationGroup>
+<summary>Цинк</summary>
+
+### `query_mirna_targets` {/* #query_mirna_targets */}
+
+Запросить официальные доказательства миРНК-мишени. Используйте mirna = все для неограниченной миРНК; Храните cell_type точно. Программа представляет собой разделенный запятой список PITA, RNA22, miRmap, DIANA-microT, miRanda, PicTar или TargetScan, но не всех.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `assembly` | строка | **обязательно**; enum: &#91;"hg38", "mm10"&#93; |
+| `gene_type` | строка | **обязательно**; enum: &#91;"mRNA", "lncRNA", "pseudogene", "circRNA", "sncRNA"&#93; |
+| `mirna` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `clip_exp_num` | целое число | **обязательно**; Минимум: 0; Максимум: 999 |
+| `degra_exp_num` | целое число | **обязательно**; Минимум: 0; Максимум: 999 |
+| `pancancer_num` | целое число | **обязательно**; Минимум: 0; Максимум: 32 |
+| `program_num` | целое число | **обязательно**; Минимум: 1; Максимум: 7 |
+| `program` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `target` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `cell_type` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `max_records` | целое число | факультативный; по умолчанию: 20; Минимум: 1; Максимум: 200 |
+| `output_dir` | &#91;'струна', 'нуль'&#93; | факультативный; Длина: 1; Длина: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_mirna_targets", {"assembly":"hg38","gene_type":"mRNA","mirna":"all","clip_exp_num":1,"degra_exp_num":0,"pancancer_num":0,"program_num":1,"program":"TargetScan","target":"PDCD4","cell_type":"HeLa","max_records":2})
+```
+
+### `query_rna_rna_interactions` {/* #query_rna_rna_interactions */}
+
+Запросить официальные взаимодействия РНК-РНК. Использовать cell_type только в неограниченном количестве; Не заменяйте другую базу данных.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `assembly` | строка | **обязательно**; enum: &#91;"hg38", "mm10"&#93; |
+| `gene_type` | строка | **обязательно**; enum: &#91;"mRNA", "lncRNA", "pseudogene", "sncRNA", "miRNA"&#93; |
+| `rna` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `inter_num` | целое число | **обязательно**; Минимум: 1; Максимум: 999 |
+| `exp_num` | целое число | **обязательно**; Минимум: 1; Максимум: 999 |
+| `cell_type` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `max_records` | целое число | факультативный; по умолчанию: 20; Минимум: 1; Максимум: 200 |
+| `output_dir` | &#91;'струна', 'нуль'&#93; | факультативный; Длина: 1; Длина: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rna_rna_interactions", {"assembly":"hg38","gene_type":"mRNA","rna":"TP53","inter_num":1,"exp_num":1,"cell_type":"all","max_records":2})
+```
+
+### `query_rbp_targets` {/* #query_rbp_targets */}
+
+Запросить официальные улики RBP. Используйте rbp = все для всех RBP. Сохранить cell_type и отличить нулевые строки от отказа запроса.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `assembly` | строка | **обязательно**; enum: &#91;"hg38", "mm10", "dm6", "ce10", "sacCer3"&#93; |
+| `gene_type` | строка | **обязательно**; enum: &#91;"mRNA", "lncRNA", "pseudogene", "circRNA", "sncRNA"&#93; |
+| `rbp` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `clip_exp_num` | целое число | **обязательно**; Минимум: 1; Максимум: 999 |
+| `pancancer_num` | целое число | **обязательно**; Минимум: 0; Максимум: 32 |
+| `target` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `cell_type` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `max_records` | целое число | факультативный; по умолчанию: 20; Минимум: 1; Максимум: 200 |
+| `output_dir` | &#91;'струна', 'нуль'&#93; | факультативный; Длина: 1; Длина: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rbp_targets", {"assembly":"hg38","gene_type":"mRNA","rbp":"all","clip_exp_num":1,"pancancer_num":0,"target":"TP53","cell_type":"HeLa","max_records":2})
+```
+
+### `query_cerna_network` {/* #query_cerna_network */}
+
+Запросить официальные сети ЦРНК. Используйте семейные отношения, когда они не ограничены. Сохранение официальных значений P и FDR; Никогда не вычисляйте отсутствующие фамилии из графов.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `assembly` | строка | **обязательно**; enum: &#91;"hg38", "mm10"&#93; |
+| `gene_type` | строка | **обязательно**; enum: &#91;"mRNA", "lncRNA", "pseudogene"&#93; |
+| `cerna` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `mirna_num` | целое число | **обязательно**; Минимум: 1; Максимум: 999 |
+| `family` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `pval` | число | **обязательно**; Минимум: 0; Максимум: 0.01 |
+| `fdr` | число | **обязательно**; Минимум: 0; Максимум: 0.01 |
+| `pancancer_num` | целое число | **обязательно**; Минимум: 0; Максимум: 32 |
+| `max_records` | целое число | факультативный; по умолчанию: 20; Минимум: 1; Максимум: 200 |
+| `output_dir` | &#91;'струна', 'нуль'&#93; | факультативный; Длина: 1; Длина: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_cerna_network", {"assembly":"hg38","gene_type":"mRNA","cerna":"MYC","mirna_num":1,"family":"all","pval":0.01,"fdr":0.01,"pancancer_num":0,"max_records":2})
+```
+
+### `query_rbp_disease` {/* #query_rbp_disease */}
+
+Запросить официальные данные о болезни RBP. Сохранить ткани, болезни и целевые фильтры без расширения запросов с нулевым результатом.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `assembly` | строка | **обязательно**; &#91;"hg38"&#93; |
+| `rbp` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `tissue` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `disease` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `target` | строка | **обязательно**; Длина: 1; Максимальная длина: 256; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `max_records` | целое число | факультативный; по умолчанию: 20; Минимум: 1; Максимум: 200 |
+| `output_dir` | &#91;'струна', 'нуль'&#93; | факультативный; Длина: 1; Длина: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rbp_disease", {"assembly":"hg38","rbp":"all","tissue":"breast","disease":"carcinoma","target":"MYC","max_records":2})
+```
+
+### `scan_rbp_motifs` {/* #scan_rbp_motifs */}
+
+Поиск по официальному RBP-мотиву. Сохраняйте порядок и баллы. QueryMotif и IdentifiedMotif являются независимыми областями; Обратное дополнение не выполняется и не выводится.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `assembly` | строка | **обязательно**; enum: &#91;"hg38", "mm10", "dm6", "ce10", "sacCer3"&#93; |
+| `length` | строка | **обязательно**; enum: &#91;"short", "long"&#93; |
+| `motif` | строка | **обязательно**; Длина: 1; Максимальная длина: 64; шаблон: "^&#91;ACGTUNRYKMSWBDHVacgtunrykmswbdhv&#93;+$" |
+| `rank_limit` | целое число | **обязательно**; Минимум: 1; Максимум: 100 |
+| `max_records` | целое число | факультативный; по умолчанию: 20; Минимум: 1; Максимум: 200 |
+| `output_dir` | &#91;'струна', 'нуль'&#93; | факультативный; Длина: 1; Длина: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "scan_rbp_motifs", {"assembly":"hg38","length":"short","motif":"UGCAUG","rank_limit":10,"max_records":2})
+```
+
+### `get_binding_sites` {/* #get_binding_sites */}
+
+Восстановите официальные сайты связывания BED от dataset_id. Удалить только известные префиксы SQL из парсированных записей; Сохраните точные сырые байты.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `assembly` | строка | **обязательно**; enum: &#91;"hg38", "mm10", "dm6", "ce10", "sacCer3"&#93; |
+| `dataset_id` | строка | **обязательно**; Длина: 1; Максимальная длина: 64; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `max_records` | целое число | целое число |
+| `output_dir` | &#91;'струна', 'нуль'&#93; | факультативный; Длина: 1; Длина: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "get_binding_sites", {"assembly":"hg38","dataset_id":"SBDH2131","max_records":2})
+```
+
+### `get_reference_tables` {/* #get_reference_tables */}
+
+Перечислите точные названия таблиц из официального онлайн-ссылки ZIP или прочитайте один точный table_name, такой как reference_data / degradome_ref.txt. Повторяйте ZIP каждый звонок.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `table_name` | &#91;'струна', 'нуль'&#93; | факультативный; Длина: 1; Максимальная длина: 512; шаблон: "^&#91;^\r\n\u0000&#93;*&#91;^\\\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$" |
+| `max_records` | целое число | факультативный; по умолчанию: 50; Минимум: 1; Максимум: 500 |
+| `output_dir` | &#91;'струна', 'нуль'&#93; | факультативный; Длина: 1; Длина: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "get_reference_tables", {"table_name":"reference_data/degradome_ref.txt","max_records":2})
+```
+
+### `list_bulk_datasets` {/* #list_bulk_datasets */}
+
+Перечислите задокументированные 24 официальные имена наборов данных. По умолчанию HEAD проверяет доступность и размеры байтов, не скачивая данные. Неконтролируемая доступность и размер не имеют значения.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `assembly` | &#91;'струна', 'нуль'&#93; | факультативный; enum: &#91;"hg38", "mm10", нуль&#93; |
+| `data_type` | &#91;'струна', 'нуль'&#93; | факультативный; enum: &#91;"miRNA_mRNA", "miRNA_lncRNA", "miRNA_pseudogene", "miRNA_sncRNA", "miRNA_circRNA", "RNA_RNA", "RBP_mRNA", "RBP_lncRNA", "RBP_pseudogene", "RBP_sncRNA", "RBP_circRNA", "RBP_caRNA", нуль&#93; |
+| `check_availability` | логическое значение | логическое значение |
+
+```javascript
+const result = await host.mcp("encori", "list_bulk_datasets", {"assembly":"hg38","data_type":"miRNA_mRNA"})
+```
+
+### `download_bulk_dataset` {/* #download_bulk_dataset */}
+
+Только когда пользователь запрашивает загрузку, переведите один официальный объемный файл в destination_dir на компьютере, на котором работает абонент. Никогда не перезаписывайте существующий файл. Прерванные файлы .part возобновляются на одном и том же имени файла / каталоге только после идентификации и проверки диапазона HTTP. Проверяйте размер и целостность gzip перед публикацией.
+
+| Полное поле | Тип | Тип |
+| --- | --- | --- |
+| `filename` | строка | **обязательно**; Перечислим: &#91;"hg38.miRNA_mRNA.tar.gz", "hg38.miRNA_lncRNA.tar.gz", "hg38.miRNA_pseudogene.tar.gz", "hg38.miRNA_sncRNA.tar.gz", "hg38.miRNA_circRNA.tar.gz", "hg38.RNA_RNA.tar.gz", "hg38.RBP_mRNA.tar.gz", "hg38.RBP_lncRNA.tar.gz", "hg38.RBP_pseudogene.tar.gz", "hg38.RBP_sncRNA.tar.gz", "hg38.RBP_circRNA.tar.gz", "hg38.RBP_caRNA.tar.gz", "mm10.miRNA_mRNA.tar.gz", "mm10.miRNA_lncRNA.tar.gz", "mm10.miRNA_pseudogene.tar.gz", "mm10.miRNA_sncRNA.tar.gz", "mm10.miRNA_circRNA.tar.gz", "mm10.RNA_RNA.tar.gz", "mm10.RBP_mRNA.tar.gz", "mm10.RBP_lncRNA.tar.gz", "mm10.RBP_pseudogene.tar.gz", "mm10.RBP_sncRNA.tar.gz", "mm10.RBP_circRNA.tar.gz", "mm10.RBP_caRNA.tar.gz"&#93; |
+| `destination_dir` | &#91;'струна', 'нуль'&#93; | факультативный; Длина: 1; Длина: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
 ```
 
 </ToolOperationGroup>

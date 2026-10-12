@@ -1,7 +1,7 @@
 ---
 title: "Öffnen und Vorschauen von Dateien"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -143,7 +143,7 @@ Verwenden Sie den Publisher PDF für [Nicht defektstabilisierter thermisch stabi
 2. Wählen Sie **Figures & Tables**. Bei der ersten Verwendung vollständige **Download and continue**; Warten Sie, bis die Seite **Analysis complete** meldet.
 3. Wählen Sie **Fig. 1** im Index. Diese hochgeladene Kopie platziert die Figur auf **PDF Seite 3**. Vergleichen Sie seine Bildfelder und Bildunterschrift; Das extrahierte Bild ist ein Beweis für die Untersuchung, kein neuer Befund.
 
-![Abgeschlossene lokale Figur Extraktion aus dem hochgeladenen Lang Papier](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+![Abgeschlossene lokale Figur Extraktion aus dem hochgeladenen Lang Papier](/img/open-science/v0371/pdf-extraction.webp)
 
 4. Wählen Sie **Show in PDF**. Bestätigen Sie **3 / 10** in der Originalvorschau und vergleichen Sie Panel-Etiketten, Skalenbalken und Kurven. Verwenden Sie die Originalseite, um eine Seitenzahl- oder Beschriftungsfehlanpassung zu beheben, bevor Sie die Figur zitieren.
 
@@ -238,3 +238,7 @@ Die Antwort identifizierte **Abbildung 1 auf PDF Seite 3** aus dem Papiertext un
 ## Übersetzen des Dokuments {/* #full-text-translation */}
 
 Öffnen Sie **Full-text translation** in der PDF-Symbolleiste, um Text vorzubereiten, ein unterstütztes Modell auszuwählen und eine wiederholbare Übersetzung zu speichern. Folgen Sie [Übersetzen eines vollständigen PDF](pdf-translation.md) für Modellanforderungen, Original / übersetzten Vergleich und PDF Export. Bewahren Sie das Original zur Überprüfung von Zahlen, Tabellen und Zitaten auf.
+
+## Ausgesuchte wissenschaftliche Kontrolle {/* #scientific-structure-check */}
+
+Öffnen Sie nach **Analyze PDF** eine Figur und Tabelle neben der Originalseite. Bestätigen Sie, dass alle Figurenfelder und ihre Beschriftungen/Legenden enthalten sind und dass die Tabellen gruppierte Kopfzeilen, Zeilengruppen, Einheiten und Fußnoten enthalten. Eine nahegelegene Formel oder ein Absatz darf nicht zu einer Tabellenzelle oder Abbildungsunterschrift werden. v0.37.1 verbessert diese Grenzen und Source-Cell-Referenzen; Die Extraktion bleibt etwas zu überprüfen, bevor die Werte wiederverwendet werden. Wenn eine ältere gespeicherte Extraktion unvollständig ist, verwenden Sie eine erneute Analyse, wenn der Leser sie anbietet, und vergleichen Sie dann die resultierenden Elemente, bevor Sie eine nachgelagerte Tabelle ersetzen.

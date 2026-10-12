@@ -1,7 +1,7 @@
 ---
 title: "파일 열기 및 미리보기"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -143,7 +143,7 @@ Extraction은 모델 리소스가 다운로드 된 후 로컬로 실행됩니다
 2. **Figures & Tables**을 선택합니다. 첫 번째 사용에서 **Download and continue**을 완료하십시오. 페이지가 **Analysis complete**을 보고할 때까지 기다리십시오.
 3. 인덱스에서 **Fig. 1**을 선택합니다. 이 업로드된 복사본은 **PDF 페이지 3**의 그림입니다. 그것의 이미지 패널 및 caption를 비교하십시오; 추출된 이미지는 검사하는 증거, 새로운 발견 아닙니다입니다.
 
-![업로드 된 Lang Paper에서 로컬 그림 추출 완료](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+![업로드 된 Lang Paper에서 로컬 그림 추출 완료](/img/open-science/v0371/pdf-extraction.webp)
 
 4. **Show in PDF**을 선택하십시오. 원래 미리보기에서 **3 / 10**을 확인하고 패널 라벨, 스케일 바 및 곡선을 비교하십시오. 그림 인용하기 전에 페이지 번호 또는 캡션 잡기를 해결하기 위해 원래 페이지를 사용합니다.
 
@@ -238,3 +238,7 @@ inspect. Keep the response in English.
 ## 문서 번역 {/* #full-text-translation */}
 
 PDF 도구 모음에서 **Full-text translation**을 열고 텍스트를 준비하고 지원 된 모델을 선택하고 재작용 가능한 번역을 저장하십시오. 모형 필요조건, 본래/번역된 비교 및 PDF 수출을 위한 [전체 PDF 번역](pdf-translation.md)를 따르십시오. 그림, 테이블 및 인용 검사를 위한 본래 유지하십시오.
+
+## 추출 된 과학적 구조 {/* #scientific-structure-check */}
+
+**Analyze PDF** 후 원본 페이지 옆에 그림과 테이블을 엽니다. 그림 작물은 각 패널과 그들의 캡션 / 다리를 포함, 그 테이블은 그룹화 된 헤더를 유지, 행 그룹, 단위 및 발주. 주변 공식 또는 단락은 테이블 세포 또는 숫자 캡션이되지 않아야합니다. v0.37.1은 이러한 경계와 소스 셀 참조를 향상시킵니다. 추출은 값 재사용하기 전에 확인해야 합니다. 오래된 저장된 추출이 불완전한 경우, 독자가 그것을 제안할 때 reanalysis를 이용하고, 그 후에 downstream 테이블을 대체하기 전에 유래 성분을 비교하십시오.

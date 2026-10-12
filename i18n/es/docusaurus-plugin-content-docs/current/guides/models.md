@@ -1,7 +1,7 @@
 ---
 title: "Modelos y políticas de tareas"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # Modelos y políticas de tareas {/* #models-and-task-policies */}
@@ -129,6 +129,6 @@ El siguiente formulario ilustra los campos. Reemplaza el punto final de la muest
 
 ## Elija un modelo de traducción PDF {/* #pdf-translation-model */}
 
-La traducción PDF tiene sus propios controles **Translation method** y **Model** en el lector. **Agent** puede utilizar un modelo compatible disponible; **Direct API** requiere un proveedor de API. Los modelos de suscripción Codex no están disponibles para esta operación en v0.36.0. La selección de un modelo de traducción no requiere reemplazar Main. Ver [PDF traducción](pdf-translation.md#prepare-translation).
+La traducción PDF tiene sus propios controles **Translation method** y **Model** en el lector. **Agent** puede utilizar un modelo compatible disponible; **Direct API** requiere un proveedor de API. Los modelos de suscripción Codex no están disponibles para esta operación en v0.37.1. La selección de un modelo de traducción no requiere reemplazar Main. Ver [PDF traducción](pdf-translation.md#prepare-translation).
 
 El catálogo Antrópico oficial incluye **Claude Haiku 5.5**. La visibilidad del modelo y el acceso dependen del agente y cuenta seleccionados. Elija la entrada actual del catálogo en lugar de gastar un sufijo de tamaño de contexto a un viejo modelo de identificación.

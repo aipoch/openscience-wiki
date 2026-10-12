@@ -2,7 +2,7 @@
 title: "Scientific databases"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # Scientific databases
@@ -13,7 +13,7 @@ Use this page to choose a data source, understand what it can return, and make i
 
 ## Supported databases {/* #supported-databases */}
 
-Open-Science v0.36.0 includes **34 data-source Connectors with 347 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 349. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+Open-Science v0.37.1 includes **35 data-source Connectors with 359 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 361. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
 
 | Connector | Sources | Operations | Use it for  |
 | --- | --- | --- | ---  |
@@ -22,11 +22,11 @@ Open-Science v0.36.0 includes **34 data-source Connectors with 347 operations**.
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Biomedical literature via NCBI E-utilities, the PMC ID Converter and Europe PMC — search, metadata, related articles, citation lookup, ID conversion, full text and copyright.  |
 | Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Gene/protein identifiers, UniProt sequence discovery, GO and Reactome annotations, and g:Profiler and Enrichr gene-set enrichment. |
 | Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 22 | Genome annotation, homology and sequence; NCBI taxon/assembly/sequence identity; BLAST search and Clustal Omega multiple sequence alignment; population-specific LD and proxy variants. |
-| Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | Population frequencies, clinical records and assay-specific functional scores, mappings and experiments. |
+| Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | Population frequencies, clinical records and assay-specific functional scores, mappings and experiments. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Clinical trials from ClinicalTrials.gov — search, details, sponsors, investigators, endpoints, and eligibility.  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | Clinical genomics knowledge bases: ClinGen curations, CIViC clinical evidence, and the Open Targets Platform, plus ClinPGx pharmacogenomic records. |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 17 | Structures and molecular interactions — PDB structures, AlphaFold predictions, EMDB cryo-EM entries, Complex Portal complexes, IntAct interaction networks.  |
-| ChEMBL · `chembl` | ChEMBL | 6 | Bioactive compounds, drugs, targets, bioactivity, and mechanisms via the ChEMBL REST API.  |
+| ChEMBL · `chembl` | ChEMBL | 7 | Bioactive compounds, drugs, targets, bioactivity, and mechanisms via the ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — search by date/category, metadata by DOI, journal-publication links, funder listings, and platform statistics.  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA, labels, FAERS adverse-event reports and drug recalls. |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | Human genetic association evidence — GWAS Catalog, eQTL Catalogue, and PheWeb PheWAS portals (FinnGen, BioBank Japan).  |
@@ -51,6 +51,7 @@ Open-Science v0.36.0 includes **34 data-source Connectors with 347 operations**.
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | Disease/gene-to-phenotype associations with organism and supporting evidence. |
 | IEDB · `iedb` | Immune Epitope Database | 8 | Epitopes, antigens, T-cell, B-cell and MHC assays, TCR/BCR evidence, and source publications. |
 | PDC · `pdc` | NCI Proteomic Data Commons | 4 | Cancer-proteomics study versions, specimen associations and quantitative-file metadata; no download. |
+| ENCORI · `encori` | ENCORI | 10 | miRNA/RBP targets, RNA interactions, ceRNA, motifs, binding sites, reference tables and bulk files. |
 
 The offline Molecule tools are covered in [Scientific viewers](viewers.md). For the exact operations exposed by each data source, use the [Connector operation reference](../reference/connector-operations.md).
 
@@ -72,6 +73,45 @@ For batch identifier conversion, **Genes & Ontologies** adds `submit_uniprot_id_
 **Zenodo** exposes public record metadata without authentication. Keep the version-specific record ID and access/license fields with the file inventory. **GDC** exposes public metadata; a manifest is not download authorization, and controlled files require GDC permission. [GDC operations](../reference/connector-operations.md#family-24) · [Zenodo operations](../reference/connector-operations.md#family-25).
 
 A database response can support a research step; it does not automatically download data, add every paper to the literature library or run a complete analysis. Specify which records and files you want to save.
+
+## RNA regulatory evidence with ENCORI {/* #encori */}
+
+Find **ENCORI** in **Settings → Connectors**, enable it and make it available to **Main**. This built-in source needs no custom MCP URL or API key. With a working Main model selected, specify the organism/assembly, RNA or target gene, cell type and evidence thresholds in the conversation.
+
+| Task | Result and boundary |
+| --- | --- |
+| miRNA, RNA–RNA, RBP-target and ceRNA queries | Retain applicable CLIP, degradome, prediction-program, p-value and FDR evidence; binding or association does not establish causal regulation. |
+| RBP disease evidence, motifs and binding sites | Preserve assembly, tissue/cell context, upstream order and original coordinates; do not mix species or coordinate systems. |
+| Reference tables and bulk data | List exact table paths or filenames first. Bulk download is separate: specify the file, destination and required storage before requesting it. |
+
+<p className="example-label"><strong>Worked example</strong> Query miRNA evidence for PDCD4 in HeLa</p>
+
+```text
+Use ENCORI to find human miRNA interactions targeting PDCD4 in HeLa cells,
+using hg38, mRNA targets, at least one CLIP experiment and TargetScan support.
+Show at most two rows. Preserve the exact filters, total count and full raw
+response in the session data folder. Explain the evidence limits in English.
+Do not download bulk datasets.
+```
+
+This query returned 19 records; the first two were hsa-miR-23a-3p and hsa-miR-181a-5p. The screenshot shows the saved complete raw response and the evidence limits. These are example-specific results and can change as the database updates.
+
+![ENCORI query summary beside the saved complete raw response](/img/open-science/v0371/encori-response.webp)
+
+Distinguish `total_records` from `returned_records`, and inspect `is_complete`, `result_scope` and `completeness_note`. A preview is not a complete target distribution. The full response's `raw_response_path` is a local file path, not automatically a downloadable session artifact. To share it, ask the agent to save it in an accessible session data directory and attach the file; open the attachment to check its contents.
+
+A query can return a genuine empty result or `ok:false`; do not silently broaden filters to obtain a hit. After a bulk download, check the actual path, size and `verified_gzip`. Reading reference tables or listing datasets does not download the bulk files. See [ENCORI operations](../reference/connector-operations.md#family-35) for exact parameters.
+
+## Assay context and individual submissions {/* #assay-submission-evidence */}
+
+| Entry | Procedure | Interpretation boundary |
+| --- | --- | --- |
+| **ChEMBL** | Enable the Connector; no API key is needed. Take `assay_chembl_id` from a bioactivity record, inspect method, organism, cell/tissue and target with `get_assay`, then retrieve `get_bioactivity` for the same assay ID. | Target-assignment confidence is not measurement quality. Compare conditions, units and relation operators before combining IC50/Ki values. |
+| **Variants → ClinVar** | Configure a real NCBI contact email in the Connector; the API key is optional. Call `clinvar_get_submissions` with a VCV accession or positive Variation ID, then follow the version-pinned `next_page` arguments. | Preserve SCV, submitter, condition, evaluation date, method and citations. Compare germline, somatic clinical impact and oncogenicity separately. |
+
+ChEMBL pages are ordered by `activity_id`. Keep filters unchanged and pass `next_offset` as the next `offset` until `has_more:false`; this can retrieve more than 1,000 records. The `summary` covers only the current page, so its strongest activity is not necessarily the strongest in the full query. After ClinVar resolves a latest-version first page, retain the returned versioned VCV for continuation; do not substitute an RCV, SCV or rsID input.
+
+[ChEMBL assay fields](../reference/connector-operations.md#get_assay) · [Bioactivity pagination](../reference/connector-operations.md#get_bioactivity) · [ClinVar submission fields](../reference/connector-operations.md#clinvar_get_submissions).
 
 ## Single-cell, model-organism and variant-effect data {/* #single-cell-model-organisms */}
 
@@ -214,7 +254,7 @@ From v0.31.0, `get_string_network.nodes` includes returned neighbors and isolate
 
 The [Connector operation reference](../reference/connector-operations.md) lists required inputs, allowed values and exact calls. Use this page to choose a source and connect it; use the reference for a particular tool's fields.
 
-Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/registry.ts).
+Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts).
 
 ## Sequence searches and alignment {/* #sequence-tools */}
 

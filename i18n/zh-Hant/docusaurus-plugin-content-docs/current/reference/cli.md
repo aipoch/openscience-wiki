@@ -1,7 +1,7 @@
 ---
 title: "CLI 與結構化輸出"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,12 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 從終端完成首次設定 {/* #terminal-setup */}
 
-先安裝桌面應用，並讓 `open-science` 命令可用。CLI 使用應用後端，不是獨立的 npm 服務。Debian 安裝包包含該命令；缺少命令入口時，按平臺說明準備啟動器，或使用已安裝的 CLI 入口，再執行 `open-science cli install`。
+選擇桌面應用的命令入口，或[官方發行版](https://github.com/aipoch/open-science/releases/tag/v0.37.1)中的獨立 CLI 壓縮包。獨立包包含 CLI、Node 執行時、後端與 Web UI，不需要 Electron，也無需另裝 Node/npm。
+
+1. 選擇與主機匹配的 macOS／Linux arm64 或 x64 包，或 Windows x64 包。
+2. 完整解壓到可寫目錄，保留啟動器、`backend` 與 `node-runtime` 的相對位置；只複製啟動器會導致無法啟動。
+3. 在該目錄中，macOS/Linux 執行 `./open-science --help`，PowerShell 執行 `./open-science.cmd --help`。將該目錄加入 PATH 後，重新開啟終端，即可使用下方的 `open-science` 命令。
+4. 啟動本地後端並檢查就緒狀態。服務啟動本身不會完成模型配置。
 
 ```bash
 open-science init
@@ -24,7 +29,7 @@ open-science runtime list --json
 open-science doctor --json
 ```
 
-`init` 只建立配置目錄，不啟動應用。`--profile` 是 `--config-root` 的別名，用於支援該覆蓋選項的開發配置；打包應用啟動時拒絕這些覆蓋引數。整個流程應使用同一目標配置。`runtime list` 顯示檢測到的框架就緒狀態、版本和應用管理/外部來源，不暴露可執行檔案路徑。
+`init` 只建立配置目錄，不啟動應用。`--profile` 是 `--config-root` 的別名，可為 CLI 指定獨立配置。init、start 與後續命令應始終使用同一絕對配置目錄；獨立配置需要各自完成設定。`runtime list` 顯示檢測到的框架就緒狀態、版本和應用管理/外部來源，不暴露可執行檔案路徑。
 
 尚未配置 Codex 時：
 
@@ -46,7 +51,8 @@ open-science doctor --json
 | --- | --- | --- |
 | 應用安裝的啟動器 | **Settings → General → Command line tool → Install command** | `open-science --help` |
 | 原始碼倉庫 | 已構建應用並準備倉庫依賴 | `node packages/open-science/cli.mjs --help` |
-| npm 客戶端 | Node.js 22.5+ 和已安裝應用；安裝前確認包可用 | 包名 `@aipoch/open-science` |
+| 獨立 CLI 壓縮包 | 匹配系統與架構，保留完整解壓目錄 | `./open-science --help` 或 `./open-science.cmd --help` |
+| npm 客戶端／SDK | Node.js 22.13+ 與相容的執行中後端；安裝前確認包要求 | 包名 `@aipoch/open-science` |
 
 應用啟動器使用隨應用附帶的執行時。目錄不在 PATH 時，按 General 頁面顯示的指令配置並開啟新終端。不要為了展示名稱而修改命令名。
 
@@ -68,11 +74,11 @@ open-science status --json
 
 <p className="example-label"><strong>示例</strong> 透過命令列儲存說明檔案</p>
 
-1. 按上方入口安裝命令。保持桌面應用執行，並確認模型可用。
+1. 按上方入口安裝命令。透過桌面應用或 `start --no-open` 保持後端執行，並確認模型可用。
 2. 執行 `open-science status --json`，再執行 `open-science project list --json`。確認目標例項並複製返回的專案 ID。
 3. 建立 `task.md`，內容為：**儲存 project-note.md，寫一段簡短的連線檢查說明。不要讀取其他檔案或訪問網路。**
 4. 按下方“執行輸入與控制引數”的命令依次操作；每次先取得返回 ID，再替換下一條命令的佔位符。
-5. 若任務等待權限，在桌面會話中回應。`--wait` 超時時任務可能仍在繼續，重新提交前先用 `run status RUN_ID --json` 檢查。
+5. 若任務等待權限，在對應的桌面或已認證瀏覽器會話中回應。`--wait` 超時時任務可能仍在繼續，重新提交前先用 `run status RUN_ID --json` 檢查。
 6. 選擇返回的 Markdown 產物 ID，下載到一個新的本地檔名並開啟。若任務完成但沒有指定檔案，應在同一會話繼續請求儲存。產物已存在但下載失敗時，按[產物下載恢復步驟](./api.md#任务已完成但文件下载失败)處理。
 
 Plan first 任務可使用 `--return-on-attention`，閱讀返回計劃，再透過應用或下方計劃命令回應。JSON 整合應區分 running、completed、failed 和 cancelled，不能將 HTTP 請求成功直接當作任務完成。
@@ -220,3 +226,7 @@ open-science run --project "Sequence and PDF Research" \
 ```
 
 選項只針對本次呼叫，不儲存為會話偏好。不能與 `--plan-first` 同用。檢查最終狀態和錯誤；任務不等待人工，不等於任務必然完成。客戶端會檢查主機是否支援 `permission-prompts-none`，舊主機返回 `unsupported_capability` 時應先更新配套客戶端與應用。
+
+## Windows 啟動器路徑 {/* #windows-launcher-paths */}
+
+v0.37.1 修復含非 ASCII 字元的桌面啟動器路徑。更新後開啟新終端，檢查 `Get-Command open-science` 與 `open-science --help`。若仍指向舊安裝，使用 **Settings → General** 顯示的入口。獨立壓縮包應保留完整目錄。幫助命令成功不代表模型已就緒，之後執行 `doctor --json` 檢查。

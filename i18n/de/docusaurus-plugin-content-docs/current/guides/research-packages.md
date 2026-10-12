@@ -2,7 +2,7 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -123,3 +123,7 @@ Wenn die Bereinigung unvollständig ist, verwenden Sie **Retry cleanup**, bevor 
 ## Wiedergabe eines erhaltenen Forschungsprotokolls {/* #replay-import */}
 
 Nachdem der Import abgeschlossen ist, wählen Sie **View replay**, um die aufgezeichneten Schritte zu überprüfen, oder **Discuss**, um in einer beschreibbaren Konversation nach ihnen zu fragen. Die importierte Quelle bleibt schreibgeschützt. Eine Diskussionsreferenz erstellt nicht die ursprüngliche Laufzeit; Verwenden Sie **Fork to continue** für eine Arbeitskopie. Siehe [Session Replay](session-replay.md).
+
+## Import in ein neues Projekt {/* #new-project-import-recovery */}
+
+Wenn eine ältere Version beim Annehmen eines Pakets in den Katalog eines neuen Projekts fehlschlägt, aktualisieren Sie auf v0.37.0 oder höher, prüfen Sie, ob das Ziel bereits vorhanden ist, und verwenden Sie die Wiederherstellungsaktion des Importdialogs, bevor Sie einen anderen Import starten. Überprüfen Sie die resultierende Sitzung und Dateien. Der Fix macht importierte Sitzungen nicht beschreibbar: Verwenden Sie **Fork**, um die Analyse fortzusetzen.

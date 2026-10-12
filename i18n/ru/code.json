@@ -1784,5 +1784,17 @@
   },
   "docs.outline.reference.v0360.scope": {
     "message": "Перевод PDF, обзор исполнения Notebook, PDC, Ensembl LD и выбор загруженной страницы."
+  },
+  "docs.outline.reference.v0371.title": {
+    "message": "v0.37.1"
+  },
+  "docs.outline.reference.v0371.scope": {
+    "message": "Научная точность PDF, пути Windows, тихое выполнение Notebook и небольшие установщики."
+  },
+  "docs.outline.reference.v0370.title": {
+    "message": "v0.37.0"
+  },
+  "docs.outline.reference.v0370.scope": {
+    "message": "Автономный бэкэнд Node и CLI, ENCORI, ChEMBL анализы, ClinVar представления и Notebook захват."
   }
 }

@@ -1,7 +1,7 @@
 ---
 title: "Notebook y pruebas de ejecución"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -285,3 +285,9 @@ Si una exportación Windows Notebook no tiene extensión, primero abra una copia
 | Advertencia con una carrera completa | Lea lo que afecta la advertencia, entonces inspeccione la salida guardada antes de decidir si se repetir |
 
 Al informar de un problema, mantenga la primera línea de falla, tiempo de ejecución seleccionado, identidad de archivo y estado de tarea. Enlace salvó la salida a su ejecución de producción real.
+
+## Tiempos de ejecución listos y paquetes capturados {/* #runtime-capture */}
+
+Un tiempo de ejecución predeterminado listo ya no requiere una segunda aprobación de configuración para una operación soportada ordinaria. Una decisión de código de riesgo o una solicitud de acceso adicional sigue siendo separada: inspeccionar su acción y alcance antes de responder.
+
+En el resultado de **Provenance → Environment**, conservar los orígenes Conda y pip y las versiones de paquetes reportadas / cadenas de compilación cuando el medio ambiente utiliza ambos administradores. v0.37.0 mejora la captura de ambiente mixto y metadatos de micromamba. Compare el entorno capturado con el tiempo de ejecución previsto, y luego use [verificación de repeticiones](reproducibility.md) cuando necesite pruebas de ejecución. Un inventario de paquetes por sí solo no prueba resultados numéricos idénticos.

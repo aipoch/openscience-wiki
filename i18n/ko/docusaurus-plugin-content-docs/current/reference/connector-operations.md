@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.36.0** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.36.0.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
+한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.37.1** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.1.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
 
 
 ## 뚱 베어 {/* #family-1 */}
@@ -1366,6 +1366,20 @@ MaveDB 실험의 공개 리더에 볼 수있는 점수 세트를 나열합니다
 const result = await host.mcp("variants", "mavedb_get_experiment_score_sets", {"urn":"urn:mavedb:00000003-a"})
 ```
 
+### `clinvar_get_submissions` {/* #clinvar_get_submissions */}
+
+공식 ClinVar VCV XML에서 개별 SCV 제출 증거를 묶으십시오. clinvar_search과 같은 연락처 이메일을 요구합니다. 액세스 권한을 전달: VCV 액세스 (선택적인 .version는 명예를 줬습니다) 또는 긍정적인 변화 ID. Unversioned 입력은 최신 VCV을 검색합니다. RCV, SCV 및 rsIDs는 허용되지 않습니다. germline, somatic 임상 충격 및 oncogenicity, 조건, 제출자, 평가 날짜, assertion 방법, 공개 분류 코멘트, 제공 된 증거 및 인용에 대해 별도로 제출 된 분류를 반환합니다. 미스링 소스 필드는 null/empty를 유지합니다. 동일한 분류 유형과 조건 내의 제출 비교; 이 도구는 충돌하지 않습니다. max_submissions 세트 페이지 크기 (1-200, 기본 200); 0에 오프셋 디폴트. 나중에 페이지의 경우 next_page 인수를 반환합니다. 이는 VCV 버전을 핀; 오프셋 > 0은 버전 VCV을 요구합니다. 각 페이지 re-fetches 완전한 XML; 결과가 없습니다. 포함 된 레코드는 직접 SCV 증거보다 간접 참조를 포함합니다. 중복 SCVs는 요청된 스냅샷에서 가장 높은 버전을 유지합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `accession` | 문자열 | **필수** |
+| `max_submissions` | 정수 | 선택 사항; 기본: 200; 최소: 1; 최대: 200 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0 |
+
+```javascript
+const result = await host.mcp("variants", "clinvar_get_submissions", {"accession":"VCV000045122"})
+```
+
 </ToolOperationGroup>
 
 ## 임상시험 {/* #family-7 */}
@@ -2222,21 +2236,23 @@ const result = await host.mcp("chembl", "get_admet", {"molecule_chembl_id": "CHE
 
 ### `get_bioactivity` {/* #get_bioactivity */}
 
-화합물 표적 상호 작용을 위한 ChEMBL bioactivity 측정 (IC50, Ki, Kd, EC50, ...)를 만회하십시오. molecule_chembl_id 및 / 또는 target_chembl_id, activity_type (standard_type), pChEMBL 바닥 (min_pchembl), standard_value 범위 (min_value / max_value) 및 단위 (standard_units) 필터. activity_id에 의해 주문 한 페이지를 가장 많은 요약으로 반환합니다.
+합성 표적 상호 작용을 위한 ChEMBL 생물성 측정 (IC50, Ki, Kd, EC50, ...)를 만회하십시오. molecule_chembl_id, target_chembl_id 및 / 또는 assay_chembl_id, activity_type (standard_type), pChEMBL 바닥 (min_pchembl), standard_value 범위 (min_value / max_value) 및 단위 (standard_units) 필터. activity_id에 의해 주문 한 페이지가 페이지의 가장 중요한 요약을 반환합니다. 1,000 레코드를 계속하려면 동일한 필터로 오프셋으로 next_offset을 통과하십시오. has_more이 false일 때 중지합니다. 측정을 비교하기 전에 실험적인 상황을 검사하는 get_assay를 사용하십시오.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
 | `molecule_chembl_id` | 문자열 | 옵션 정보 |
 | `target_chembl_id` | 문자열 | 옵션 정보 |
+| `assay_chembl_id` | 문자열 | 선택 사항; 최소 길이: 1; 패턴: "^CHEMBL&#91;0-9&#93;+$" |
 | `activity_type` | 문자열 | 선택 사항; 모델 번호: "IC50", "EC50", "Ki", "Kd", "AC50", "GI50", "ED50", "Potency" |
 | `min_pchembl` | 숫자 | 선택 사항; 최소: 0; 최대: 14 |
 | `min_value` | 숫자 | 옵션 정보 |
 | `max_value` | 숫자 | 옵션 정보 |
 | `unit` | 문자열 | 선택 사항; 크기: "nM", "uM", "mM", "pM", "M" |
 | `limit` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 1000 |
+| `offset` | 정수 | 선택 사항; 기본: 0; 최소: 0; 최대: 9007199254740991 |
 
 ```javascript
-const result = await host.mcp("chembl", "get_bioactivity", {"molecule_chembl_id": "CHEMBL25", "activity_type": "IC50", "limit": 10})
+const result = await host.mcp("chembl", "get_bioactivity", {"molecule_chembl_id":"CHEMBL25","activity_type":"IC50","limit":10})
 ```
 
 ### `get_mechanism` {/* #get_mechanism */}
@@ -2269,6 +2285,18 @@ const result = await host.mcp("chembl", "get_mechanism", {"molecule_chembl_id": 
 
 ```javascript
 const result = await host.mcp("chembl", "target_search", {"gene_symbol": "EGFR", "organism": "Homo sapiens", "limit": 5})
+```
+
+### `get_assay` {/* #get_assay */}
+
+생물성 기록에서 assay_chembl_id에 의해 ChEMBL 분석실험을 만회하십시오. 실험적인 설명, 분석실험 유형 및 체재, 생물, 세포/조직 상황, 분석실험 모수, 할당된 표적 및 표적 할당 신뢰를 돌려보내십시오. Confidence는 표적 할당, 측정 질 아닙니다 묘사합니다; IC50/Ki 값을 결합하기 전에 assay 조건을 비교하십시오. get_bioactivity과 같은 assay_chembl_id을 사용하여 측정을 검색합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `assay_chembl_id` | 문자열 | **필수**; 최소 길이: 1; 패턴: "^CHEMBL&#91;0-9&#93;+$" |
+
+```javascript
+const result = await host.mcp("chembl", "get_assay", {"assay_chembl_id":"CHEMBL1217643"})
 ```
 
 </ToolOperationGroup>
@@ -5391,6 +5419,187 @@ quantitative 보고서 (data_category : Protein Assembly) 및 출판 보충제�
 
 ```javascript
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
+```
+
+</ToolOperationGroup>
+
+## ENCORI {/* #family-35 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개 변수 표시</summary>
+
+### `query_mirna_targets` {/* #query_mirna_targets */}
+
+Query 공식 miRNA 목표 증거. miRNA를 제한하지 않는 경우 mirna=all을 사용하십시오; cell_type을 정확히 보존합니다. 프로그램은 PITA, RNA22, miRmap, DIANA-microT, miRanda, PicTar 또는 TargetScan의 기념 목록입니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `assembly` | 문자열 | **필수**; 크기: "hg38", "mm10" |
+| `gene_type` | 문자열 | **필수**; 줌: &#91;"mRNA", "lncRNA", "pseudogene", "circRNA", "sncRNA"&#93; |
+| `mirna` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `clip_exp_num` | 정수 | **필수**; 최소: 0; 최대: 999 |
+| `degra_exp_num` | 정수 | **필수**; 최소: 0; 최대: 999 |
+| `pancancer_num` | 정수 | **필수**; 최소: 0; 최대: 32 |
+| `program_num` | 정수 | **필수**; 최소: 1; 최대: 7 |
+| `program` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `target` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `cell_type` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `max_records` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 선택 사항; 최소 길이: 1; 최대 길이: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_mirna_targets", {"assembly":"hg38","gene_type":"mRNA","mirna":"all","clip_exp_num":1,"degra_exp_num":0,"pancancer_num":0,"program_num":1,"program":"TargetScan","target":"PDCD4","cell_type":"HeLa","max_records":2})
+```
+
+### `query_rna_rna_interactions` {/* #query_rna_rna_interactions */}
+
+Query 공식 RNA–RNA 상호 작용. 제한될 때 cell_type=all를 사용하십시오; 다른 데이터베이스를 대체하지 마십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `assembly` | 문자열 | **필수**; 크기: "hg38", "mm10" |
+| `gene_type` | 문자열 | **필수**; 한국어 (ko)"뚱 베어"· "뚱 베어"· "뚱뚱 베어"· "ღ♥ღ"· "뚱 베어"· |
+| `rna` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `inter_num` | 정수 | **필수**; 최소: 1; 최대: 999 |
+| `exp_num` | 정수 | **필수**; 최소: 1; 최대: 999 |
+| `cell_type` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `max_records` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 선택 사항; 최소 길이: 1; 최대 길이: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rna_rna_interactions", {"assembly":"hg38","gene_type":"mRNA","rna":"TP53","inter_num":1,"exp_num":1,"cell_type":"all","max_records":2})
+```
+
+### `query_rbp_targets` {/* #query_rbp_targets */}
+
+Query 공식 RBP 대상 증거. 모든 RBPs를 위해 rbp=all를 사용하십시오; cell_type을 보존하고 요청 실패에서 0 행을 구분합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `assembly` | 문자열 | **필수**; 크기: "hg38", "mm10", "dm6", "ce10", "sacCer3"&#93; |
+| `gene_type` | 문자열 | **필수**; 줌: &#91;"mRNA", "lncRNA", "pseudogene", "circRNA", "sncRNA"&#93; |
+| `rbp` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `clip_exp_num` | 정수 | **필수**; 최소: 1; 최대: 999 |
+| `pancancer_num` | 정수 | **필수**; 최소: 0; 최대: 32 |
+| `target` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `cell_type` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `max_records` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 선택 사항; 최소 길이: 1; 최대 길이: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rbp_targets", {"assembly":"hg38","gene_type":"mRNA","rbp":"all","clip_exp_num":1,"pancancer_num":0,"target":"TP53","cell_type":"HeLa","max_records":2})
+```
+
+### `query_cerna_network` {/* #query_cerna_network */}
+
+Query 공식 ceRNA 네트워크. 제한될 때 family=all를 사용하십시오. 공식 P 값 및 FDR 보존; 개수에서 가족 이름을 누락하지 마십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `assembly` | 문자열 | **필수**; 크기: "hg38", "mm10" |
+| `gene_type` | 문자열 | **필수**; koum: &#91;"mRNA", "lncRNA", "pseudogene"&#93; |
+| `cerna` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `mirna_num` | 정수 | **필수**; 최소: 1; 최대: 999 |
+| `family` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `pval` | 숫자 | **필수**; 최소: 0; 최대: 0.01 |
+| `fdr` | 숫자 | **필수**; 최소: 0; 최대: 0.01 |
+| `pancancer_num` | 정수 | **필수**; 최소: 0; 최대: 32 |
+| `max_records` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 선택 사항; 최소 길이: 1; 최대 길이: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_cerna_network", {"assembly":"hg38","gene_type":"mRNA","cerna":"MYC","mirna_num":1,"family":"all","pval":0.01,"fdr":0.01,"pancancer_num":0,"max_records":2})
+```
+
+### `query_rbp_disease` {/* #query_rbp_disease */}
+
+Query 공식 RBP 질병 증거. 조직, 질병 및 대상 필터를 넓히지 않고도 Zero-result queries를 보존합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `assembly` | 문자열 | **필수**; koum : &#91;"hg38"&#93; |
+| `rbp` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `tissue` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `disease` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `target` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 256; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `max_records` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 선택 사항; 최소 길이: 1; 최대 길이: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rbp_disease", {"assembly":"hg38","rbp":"all","tissue":"breast","disease":"carcinoma","target":"MYC","max_records":2})
+```
+
+### `scan_rbp_motifs` {/* #scan_rbp_motifs */}
+
+공식 RBP motif 순위를 검색하십시오. 예약 주문 및 점수. QueryMotif 및 IdentifiedMotif는 독립적 인 필드입니다. 반전 보완이 수행되거나 인화되지 않습니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `assembly` | 문자열 | **필수**; 크기: "hg38", "mm10", "dm6", "ce10", "sacCer3"&#93; |
+| `length` | 문자열 | **필수**; ENum: &#91;"short", "long"&#93; |
+| `motif` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 64; 패턴: "^&#91;ACGTUNRYKMSWBDHVacgtunrykmswbdhv&#93;+$" |
+| `rank_limit` | 정수 | **필수**; 최소: 1; 최대: 100 |
+| `max_records` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 선택 사항; 최소 길이: 1; 최대 길이: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "scan_rbp_motifs", {"assembly":"hg38","length":"short","motif":"UGCAUG","rank_limit":10,"max_records":2})
+```
+
+### `get_binding_sites` {/* #get_binding_sites */}
+
+dataset_id의 공식 BED 바인딩 사이트를 검색합니다. 파싱된 레코드에서 알려진 SQL 접두사 제거; 정확한 익지않는 바이트를 유지하십시오.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `assembly` | 문자열 | **필수**; 크기: "hg38", "mm10", "dm6", "ce10", "sacCer3"&#93; |
+| `dataset_id` | 문자열 | **필수**; 최소 길이: 1; 최대 길이: 64; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `max_records` | 정수 | 선택 사항; 기본: 100; 최소: 1; 최대: 1000 |
+| `output_dir` | &#91;'string', 'null'&#93; | 선택 사항; 최소 길이: 1; 최대 길이: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "get_binding_sites", {"assembly":"hg38","dataset_id":"SBDH2131","max_records":2})
+```
+
+### `get_reference_tables` {/* #get_reference_tables */}
+
+온라인 공식 참조 ZIP에서 정확한 테이블 이름을 나열하거나 reference_data/degradome_ref.txt와 같은 하나의 정확한 table_name을 읽으십시오. 각 통화에 ZIP anew를 구합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `table_name` | &#91;'string', 'null'&#93; | 선택 사항; 최소 길이: 1; 최대 길이: 512; 패턴: "^&#91;^\\\\n\u0000&#93;*&#91;^\\\u0000&#93; &#91;^\\r\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\n\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\n\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\u0000&#93; &#91;^\n\u0000&#93;\n\u0000&#93; &#91;\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\u0000&#93;\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\u0000&#93;\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u0000&#93;\u0000&#93;\n\u0000&#93;\n\n\n\u0000&#93;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u*$" |
+| `max_records` | 정수 | 선택 사항; 기본: 50; 최소: 1; 최대: 500 |
+| `output_dir` | &#91;'string', 'null'&#93; | 선택 사항; 최소 길이: 1; 최대 길이: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "get_reference_tables", {"table_name":"reference_data/degradome_ref.txt","max_records":2})
+```
+
+### `list_bulk_datasets` {/* #list_bulk_datasets */}
+
+24 문서화 된 공식 대량 데이터 세트 파일 이름 목록. 기본적으로 HEAD 프로브 가용성 및 바이트 크기로, 다운로드 없이 데이터. 무수한 가용성 및 크기는 null입니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `assembly` | &#91;'string', 'null'&#93; | 선택 사항; enum: &#91;"hg38", "mm10", null&#93; |
+| `data_type` | &#91;'string', 'null'&#93; | 선택 사항; 한국어 (ko)"미라_mRNA"· "미라_lncRNA"· "miRNA_조직진"· "미라_sncRNA"· "미라_circRNA"· "RNA_RNA의 특징"· "RBP_mRNA를"· "RBP_lncRNA를"· "RBP_조직"· "RBP_sncRNA의 특징"· "RBP_circRNA를"· "RBP_caRNA를", null&#93; , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , |
+| `check_availability` | 불리언 | 선택 사항; 기본값: true |
+
+```javascript
+const result = await host.mcp("encori", "list_bulk_datasets", {"assembly":"hg38","data_type":"miRNA_mRNA"})
+```
+
+### `download_bulk_dataset` {/* #download_bulk_dataset */}
+
+사용자가 다운로드를 요청할 때, 호출기를 실행하는 컴퓨터에서 destination_dir에 하나의 공식 대량 파일을 스트리밍합니다. 기존 파일을 덮지 마십시오. Interrupted .part 파일 ID와 HTTP 범위 검증 후 동일한 파일 이름 / 지시에 이력서. 발행하기 전에 크기와 gzip 무결성을 검증합니다.
+
+| (주) | 유형 | 필요조건 및 constraints |
+| --- | --- | --- |
+| `filename` | 문자열 | **필수**; 한국어 (ko)"hg38.miRNA_mRNA.tar.gz의"· "hg38.miRNA_lncRNA.tar.gz의"· "hg38.miRNA_pseudogene.tar.gz의"· "hg38.miRNA_sncRNA.tar.gz의"· "hg38.miRNA_circRNA.tar.gz의"· "hg38.RNA_RNA.tar.gz의"· "hg38.RBP_mRNA.tar.gz의"· "hg38.RBP_lncRNA.tar.gz의"· "hg38.RBP_pseudogene.tar.gz의"· "hg38.RBP_sncRNA.tar.gz의"· "hg38.RBP_circRNA.tar.gz의"· "hg38.RBP_caRNA.tar.gz의"· "mm10.miRNA_mRNA.tar.gz의 경우"· "mm10.miRNA_lncRNA.tar.gz의 경우"· "mm10.miRNA_동작.tar.gz"· "mm10.miRNA_sncRNA.tar.gz의 경우"· "mm10.miRNA_circRNA.tar.gz의"· "모델 번호: mm10.RNA_RNA.tar.gz"· "mm10.RBP_mRNA.tar.gz의 경우"· "mm10.RBP_lncRNA.tar.gz의 경우"· "mm10.RBP_동작.tar.gz"· "mm10.RBP_sncRNA.tar.gz의 경우"· "mm10.RBP_circRNA.tar.gz의"· "mm10.RBP_caRNA.tar.gz의 경우"· |
+| `destination_dir` | &#91;'string', 'null'&#93; | 선택 사항; 최소 길이: 1; 최대 길이: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
 ```
 
 </ToolOperationGroup>

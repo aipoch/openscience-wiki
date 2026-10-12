@@ -1785,5 +1785,17 @@
   },
   "docs.outline.reference.v0360.scope": {
     "message": "Traduction PDF, examen d'exécution Notebook, PDC, Ensembl LD et sélection des pages chargées."
+  },
+  "docs.outline.reference.v0371.title": {
+    "message": "v0.37.1"
+  },
+  "docs.outline.reference.v0371.scope": {
+    "message": "Scientific PDF fidelity, chemins Windows, exécution calme Notebook et installateurs plus petits."
+  },
+  "docs.outline.reference.v0370.title": {
+    "message": "v0.37.0"
+  },
+  "docs.outline.reference.v0370.scope": {
+    "message": "Le moteur autonome Node et les essais CLI, ENCORI, ChEMBL, les soumissions ClinVar et la capture Notebook."
   }
 }

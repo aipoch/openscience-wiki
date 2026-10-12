@@ -1,7 +1,7 @@
 ---
 title: "Architecture and diagnostics"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-12'
 ---
 
 # Architecture and diagnostics
@@ -12,7 +12,7 @@ Locate a failure by the component that owns the operation. A successful model re
 
 ```mermaid
 flowchart LR
-  UI[Desktop or browser interface] --> MAIN[Application main process]
+  UI[Desktop or browser interface] --> MAIN[Shared Node backend]
   MAIN --> STORE[Settings, database and managed files]
   MAIN --> AGENT[Agent framework and model provider]
   MAIN --> NB[Notebook runtime]
@@ -28,7 +28,7 @@ flowchart LR
 | Component | Owns | Evidence to inspect |
 | --- | --- | --- |
 | Renderer and preview | Display state, controls, rendered file content | Page, selected project/session, filename, preview error |
-| Main process | Persistent operations, application services and access boundaries | Operation error and associated diagnostics |
+| Node backend | Persistent operations, application services and access boundaries | Operation error and associated diagnostics |
 | Agent framework/provider | Model connection, task execution protocol and response stream | Framework/provider/model, connection test, failing tool or turn |
 | Notebook | Interpreter, code execution, outputs and live variables | Runtime ID/version, failing cell, stdout/stderr and execution record |
 | Connector | External service request | Connector/tool name, sanitized inputs, status/error from the service |
@@ -80,3 +80,7 @@ First distinguish a failed operation from failed refresh/cleanup after a committ
 **Export diagnostics…** collects chosen session metadata, database records and available application log metadata into a local archive with a manifest and export log. Missing sources do not stop the whole export; large or damaged sources can produce summaries. The current and historical application logs can cover activity outside the selected session, so review the selected sources and capture outcomes.
 
 Ordinary metadata sources exclude private content fields. After a sensitive-content package-export failure, the dialog can also offer redacted scanner evidence and original flagged files. Original files are unchecked by default; explicitly selecting them includes their original bytes. Export makes no upload or model request. Inspect the resulting archive before sharing. It does not replace a research-package backup or a minimal reproduction. See [the illustrated export procedure](../guides/troubleshooting.md#session-diagnostics).
+
+## Desktop and backend are separate processes {/* #node-backend */}
+
+From v0.37.0, Electron owns the native desktop shell while an ordinary Node backend owns shared services. The desktop, Web UI, CLI and SDK can connect to that same backend. Identify the configuration directory, version and actual port with `status --json` when a client cannot connect. A visible desktop window alone does not prove the backend is healthy. Follow [backend ownership](server.md#backend-ownership) before stopping it.

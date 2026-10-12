@@ -1433,6 +1433,28 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v0371",
+            "title": "v0.37.1",
+            "scope": "Scientific PDF fidelity, Windows paths, quiet Notebook execution and smaller installers.",
+            "currentDoc": "changelog/v0-37-1",
+            "proposedUrl": "/docs/changelog/v0-37-1/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-37-1"
+            ]
+          },
+          {
+            "id": "v0370",
+            "title": "v0.37.0",
+            "scope": "Standalone Node backend and CLI, ENCORI, ChEMBL assays, ClinVar submissions and Notebook capture.",
+            "currentDoc": "changelog/v0-37-0",
+            "proposedUrl": "/docs/changelog/v0-37-0/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-37-0"
+            ]
+          },
+          {
             "id": "v0360",
             "title": "v0.36.0",
             "scope": "PDF translation, Notebook execution review, PDC, Ensembl LD and loaded-page selection.",

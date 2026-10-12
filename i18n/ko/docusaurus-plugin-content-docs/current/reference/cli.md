@@ -1,7 +1,7 @@
 ---
 title: "CLI 및 구조 출력"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,12 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 터미널에서 설정 {/* #terminal-setup */}
 
-데스크톱 응용 프로그램을 먼저 설치하고 `open-science` 명령을 사용할 수 있습니다. CLI은 응용 프로그램의 백엔드를 사용합니다. 별도의 npm daemon이 아닙니다. Debian 패키지에는 명령이 포함되어 있습니다. 발사기가 누락된 곳에, 플랫폼 발사기를 따르거나 설치한 CLI 입장을 사용하십시오, 그 후에 `open-science cli install`.
+[공식 출시](https://github.com/aipoch/open-science/releases/tag/v0.37.1)에서 데스크탑 발사기 또는 독립 CLI 아카이브 중 하나를 선택하십시오. 독립 아카이브는 CLI, Node 런타임, 백엔드 및 웹 UI를 포함합니다; Electron 또는 별도로 설치된 Node/npm 툴체인이 필요하지 않습니다.
+
+1. macOS 또는 Linux arm64/x64 또는 Windows x64를 선택하여 호스트와 일치합니다.
+2. 완전한 아카이브를 writable 위치로 추출하십시오. 발사기, `backend` 및 `node-runtime`를 함께 유지하십시오; 시작자만 복사하면 스타트가 시작됩니다.
+3. 그 디렉토리에서 `./open-science --help`을 macOS/Linux 또는 PowerShell에서 `./open-science.cmd --help`에서 실행합니다. PATH에 그 디렉토리를 추가 한 후 새로운 터미널을 열고 아래 `open-science`을 사용하십시오.
+4. 현지 백엔드를 시작하고 readiness를 확인합니다. 혼자서 모델을 구성하지 않습니다.
 
 ```bash
 open-science init
@@ -24,7 +29,7 @@ open-science runtime list --json
 open-science doctor --json
 ```
 
-`init`은 응용 프로그램을 시작하지 않고 구성 디렉토리를 만듭니다. `--profile`는 지원된 발달 단면도를 위한 `--config-root`를 위한 별명으로 입니다; 포장된 시작은 이 overrides를 거부합니다. 1개의 예정된 단면도를 일관되게 사용하십시오. `runtime list`는 실행 실행 가능한 경로 없이 프레임 워크 읽기, 버전 및 관리/외부 소스를 검출합니다.
+`init`은 응용 프로그램을 시작하지 않고 구성 디렉토리를 만듭니다. `--profile` aliases `--config-root` 휴대용 CLI 프로파일. init, start 및 then commands에 대한 동일한 절대 구성 디렉토리를 사용하십시오. 별도의 프로파일은 자체 설정이 있습니다. `runtime list`는 실행 실행 가능한 경로 없이 프레임 워크 읽기, 버전 및 관리/외부 소스를 검출합니다.
 
 unconfigured Codex 설정을 위해:
 
@@ -46,7 +51,8 @@ open-science doctor --json
 | --- | --- | --- |
 | Installed 응용 프로그램 실행기 | **Settings → General → Command line tool → Install command** | `open-science --help` |
 | 소스 체크 아웃 | 내장된 응용 및 저장소 의존성 | `node packages/open-science/cli.mjs --help` |
-| npm 클라이언트 | Node.js 22.5+ 및 설치 응용 프로그램; 설치하기 전에 패키지 가용성 확인 | 패키지 식별자 `@aipoch/open-science` |
+| 독립 CLI 아카이브 | 일치 OS/architecture; 완전한 추출 된 디렉토리를 보존 | `./open-science --help` 또는 `./open-science.cmd --help` |
+| npm 클라이언트 / SDK | Node.js 22.13+ 및 실행 호환 백엔드; 설치하기 전에 패키지 요구 사항 확인 | 패키지 식별자 `@aipoch/open-science` |
 
 설치된 발사기는 신청의 번들된 런타임을 사용합니다. 그 디렉토리가 PATH에서 absent 인 경우, 일반 패널의 표시 명령을 따르고 새로운 터미널을 엽니 다. 표시 브랜딩과 일치하는 실행할 수 없습니다.
 
@@ -68,11 +74,11 @@ open-science status --json
 
 <p className="example-label"><strong>예시</strong> 명령줄에서 주의를 저장</p>
 
-1. 위의 입력을 사용하여 명령을 설치합니다. 작업 모델과 함께 실행되는 데스크탑 앱을 유지하십시오.
+1. 위의 입력을 사용하여 명령을 설치합니다. 작업 모델과 함께 백엔드 실행을 유지, 데스크탑 또는 `start --no-open`을 통해.
 2. `open-science status --json`을 실행하고 `open-science project list --json`을 실행합니다. 예정된 인스턴스를 확인하고 반환된 프로젝트 ID를 복사합니다.
 3. 저장 `task.md` 와: **간단한 연결 체크 메모를 포함하는 프로젝트-note.md를 저장하십시오. 다른 파일을 읽거나 네트워크를 사용하지 마십시오.**
 4. [입력 및 제어 플래그를 실행](#run-input-and-control-flags)에서 명령을 실행합니다. 우선순위 결과에서 ID를 취득한 후 각 위주를 대체합니다.
-5. 허가를 받으면 데스크탑 대화에 응답합니다. `--wait`은 작업이 계속되는 동안 시간을 할 수 있습니다. 다시 제출하기 전에 `run status RUN_ID --json`을 검사합니다.
+5. 허가를 위한 실행 일시 정지가 있는 경우, 해당 데스크탑 또는 인증된 브라우저 대화에 응답합니다. `--wait`은 작업이 계속되는 동안 시간을 할 수 있습니다. 다시 제출하기 전에 `run status RUN_ID --json`을 검사합니다.
 6. 반환된 Markdown artifact ID를 선택하고, 새로운 로컬 파일명에 다운로드하고, 그것을 엽니다. 요청 된 artifact없이 완료 된 실행은 그 세션에서 후속을 요구합니다. artifact가 존재하지만 다운로드가 실패하면 [artifact 다운로드 복구](./api.md#a-completed-task-whose-file-will-not-download)을 따르십시오.
 
 계획 첫 번째 작업을 위해 `--return-on-attention`을 사용하여 반품 된 계획을 검사하고 응용 프로그램 또는 플랜 명령을 통해 응답합니다. JSON 통합을 위해, 달리기, 완료, 실패 및 완료된 작업으로 모든 성공적인 HTTP 응답을 대우 대신 취소.
@@ -222,3 +228,7 @@ open-science run --project "Sequence and PDF Research" \
 ```
 
 옵션은 이 주장에만 적용되며 세션 선호도로 저장되지 않습니다. `--plan-first`과 결합할 수 없습니다. 최종 상태와 오류를 검사: 인간의 대기를 피하는 것은 작업 완료를 보장하지 않습니다. 호스트 기능 `permission-prompts-none`에 대한 클라이언트 체크; 이전 호스트가 `unsupported_capability`을 반환하면 일치하는 클라이언트와 앱을 업데이트합니다.
+
+## Windows 발사기 경로 {/* #windows-launcher-paths */}
+
+v0.37.1는 비 ASCII 문자를 포함하는 데스크탑 발사기 경로를 수정합니다. 업데이트 후 새로운 터미널을 열고 `Get-Command open-science` 및 `open-science --help`을 확인하십시오. 명령이 아직 이전 설치로 해결되면 **Settings → General**에서 표시된 경로를 사용하십시오. 전체 독립 아카이브 디렉토리 intact를 유지하십시오. 성공적인 도움말 명령은 모델 readiness를 설정하지 않습니다; 다음 `doctor --json`을 확인하십시오.

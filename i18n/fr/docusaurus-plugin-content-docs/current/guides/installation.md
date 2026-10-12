@@ -1,14 +1,14 @@
 ---
 title: "Installation et mises à jour"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
 # Installation et mises à jour {/* #installation-and-updates */}
 
-La plupart des utilisateurs doivent installer le paquet de bureau à partir de GitHub Releases. Les contributeurs, ou n'importe qui testant le nouveau code, peuvent exécuter l'application à partir de source. Open-Science est une application Electron; son rendeur prend également en charge l'accès local au navigateur protégé par jeton.
+La plupart des utilisateurs doivent installer le paquet de bureau à partir de GitHub Releases. Les contributeurs, ou toute personne testant le nouveau code, peuvent exécuter l'application à partir de source. Le client de bureau Electron se connecte à un moteur Node partagé, qui sert également l'interface du navigateur local authentifié.
 
 <PlatformGuide />
 
@@ -71,11 +71,15 @@ v0.34.0 fournit des paquets Linux **x64 et ARM64**. Pour ARM64, sélectionnez `a
 
 Le dossier d’installation contient l’application ; **Data location**, dans l’assistant de configuration, contient les fichiers de recherche et les environnements d’exécution. Ces emplacements se règlent séparément. Après l’installation, passez à la [configuration initiale](onboarding.md).
 
+### Utiliser le standalone CLI {/* #standalone-cli */}
+
+Pour une opération sans fenêtre de bureau, téléchargez l'archive autonome correspondante CLI depuis le [libération officielle](https://github.com/aipoch/open-science/releases/tag/v0.37.1). Il regroupe Node, le moteur et l'interface utilisateur Web. Extraire le répertoire complet, puis suivre [Configuration de CLI](../reference/cli.md#terminal-setup) pour le démarrer, configurer un modèle et vérifier l'état de préparation. Les utilisateurs de bureau peuvent toujours utiliser **Settings → General → Install command**.
+
 ### Exécuter à partir de la source {/* #run-from-source */}
 
-Vous avez besoin de Git, Node.js 22, npm, et la plate-forme construit les conditions préalables pour Electron. Installer ou sélectionner un cadre d'agent dans l'application. Pendant l'installation, le dépôt génère le client Prisma, applique les correctifs app et prépare les dépendances natives d'Electron.
+Vous avez besoin de Git, Node.js 24, npm, et la plate-forme construit les conditions préalables pour Electron. Installer ou sélectionner un cadre d'agent dans l'application. Pendant l'installation, le dépôt génère le client Prisma, applique les correctifs app et prépare les dépendances natives d'Electron.
 
-Pour une installation source reproductible, choisissez la balise de libération prévue à partir de [Changer de journal](../changelog/v0.34.0.md) avant d'installer les dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
+Pour une installation source reproductible, choisissez la balise de libération prévue à partir de [Changer de journal](../changelog/v0.37.1.md) avant d'installer les dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
 
 Remplacer `RELEASE_TAG` ci-dessous par la balise exacte affichée sur la version sélectionnée (y compris sa `v` de tête). Pour suivre le développement en cours, omettre `--branch RELEASE_TAG --depth 1`; que la commande suivra la branche par défaut.
 
@@ -92,7 +96,7 @@ Avant d'emballer une construction de production, lancez :
 npm run build
 ```
 
-`npm run build` vérifie TypeScript, puis construit le rendu Electron, le préchargement et les cibles principales. Si vous n'avez qu'à tester le point d'entrée web ou sans tête, utilisez les arguments sans tête existants du dépôt avec un répertoire de données séparé. Cela permet de garder les données de test hors du magasin par défaut.
+Utilisez les paquets.json et [guide d'exécution autonome](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md) de la balise sélectionnée pour ses cibles de construction et ses dépendances. `npm run dev:web` développe le point d'entrée Node/Web; `npm run dev` prépare également le client de bureau. Utilisez un répertoire de configuration isolé pour garder les données de test séparées.
 
 ## Configuration complète pour la première fois {/* #complete-first-time-setup */}
 

@@ -1,7 +1,7 @@
 ---
 title: "モデルとタスクポリシー"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # モデルとタスクポリシー {/* #models-and-task-policies */}
@@ -129,6 +129,6 @@ Main は **Codex subscription** を引き続き使用できます。 機能読�
 
 ## PDFの翻訳モデルを選択 {/* #pdf-translation-model */}
 
-PDF 翻訳は、**Translation method** と **Model** をリーダーに制御しています。 **Agent**は利用できる多用性があるモデルを使用できます; **Direct API**はAPIプロバイダが必要です。 Codex サブスクリプションモデルは、v0.36.0 でのこの操作では利用できません。 Mainを交換する必要はありません。 [PDF 翻訳](pdf-translation.md#prepare-translation) を参照してください。
+PDF 翻訳は、**Translation method** と **Model** をリーダーに制御しています。 **Agent**は利用できる多用性があるモデルを使用できます; **Direct API**はAPIプロバイダが必要です。 Codex サブスクリプションモデルは、v0.37.1 でのこの操作では利用できません。 Mainを交換する必要はありません。 [PDF 翻訳](pdf-translation.md#prepare-translation) を参照してください。
 
 公式のAnthropicカタログには、**クロードHaiku 5.5**が含まれています。 選択したエージェントとアカウントに依存して、モデルの可視性とアクセス。 コンテキストサイズのサフィックスを古いモデルIDに追加するのではなく、現在のカタログエントリを選択します。

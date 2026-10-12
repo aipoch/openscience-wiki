@@ -1,7 +1,7 @@
 ---
 title: "Notebook et preuves d'exécution"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -285,3 +285,9 @@ Si une exportation Windows Notebook n'a pas d'extension, ouvrez d'abord une copi
 | Avertissement avec une exécution terminée | Lisez ce que l'avertissement affecte, puis inspectez la sortie sauvegardée avant de décider s'il faut réexécuter |
 
 Lorsque vous signalez un problème, gardez la première ligne défaillante, l'exécution sélectionnée, l'identité du fichier et l'état des tâches. Lien de sortie sauvegardée à son exécution réelle de production.
+
+## Temps d'exécution prêts et paquets capturés {/* #runtime-capture */}
+
+Un délai d'exécution par défaut prêt n'exige plus une seconde approbation de configuration pour une opération supportée ordinaire. Une décision de code à risque ou une demande d'accès supplémentaire reste distincte : inspecter son action et sa portée avant de répondre.
+
+Dans le **Provenance → Environment** du résultat, conservez les origines de Conda et pip et les versions de paquets/chaînes de compilation rapportées lorsque l'environnement utilise les deux gestionnaires. v0.37.0 améliore la capture mixte de l'environnement et les métadonnées micromamba. Comparez l'environnement capturé avec le temps d'exécution prévu, puis utilisez [Vérification de la réexécution](reproducibility.md) lorsque vous avez besoin de preuves d'exécution. Un inventaire de paquets ne prouve pas à lui seul des résultats numériques identiques.

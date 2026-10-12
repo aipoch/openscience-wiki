@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -123,3 +123,7 @@ If cleanup is incomplete, use **Retry cleanup** before trying again. After a fai
 ## Replay a received research record {/* #replay-import */}
 
 After import completes, choose **View replay** to inspect the recorded steps or **Discuss** to ask about them in a writable conversation. The imported source remains read-only. A discussion reference does not recreate its original runtime; use **Fork to continue** for a working copy. See [Session replay](session-replay.md).
+
+## Import into a new project {/* #new-project-import-recovery */}
+
+If an older version fails while adopting a package into a new project's catalog, update to v0.37.0 or later, inspect whether the destination already exists, and use the import dialog's recovery action before starting another import. Check the resulting session and files. The fix does not make imported sessions writable: use **Fork** to continue analysis.

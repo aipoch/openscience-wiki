@@ -1,7 +1,7 @@
 ---
 title: "Task SDK und lokales API"
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-12'
 ---
 
 # Task SDK und lokales API {/* #task-sdk-and-local-api */}
@@ -14,13 +14,13 @@ Der `@aipoch/open-science` Node.js-Client verbindet sich mit einem authentifizie
 
 <p className="example-label"><strong>Beispiel</strong> Speichern und Herunterladen einer Verbindungs-Check-Notiz</p>
 
-Verwenden Sie Node.js 22.5 oder höher. Öffnen Sie die installierte Desktop-Anwendung auf demselben Computer, beenden Sie die Modelleinrichtung und halten Sie sie am Laufen. Der SDK verwendet die lokale Service-Discovery und sein lokal gespeichertes Token. Für einen separaten Daemon folgen Sie zuerst [Kopfloser Dienst](server.md).
+Verwenden Sie Node.js, das mit dem ausgewählten Paket kompatibel ist: Das v0.37.1-Backend-Paket erfordert Node.js 22.13 oder höher, während eigenständige CLI-Archive Node bündeln. Starten Sie ein Backend über den Desktop oder [CLI](server.md), beenden Sie die Modelleinrichtung und halten Sie es am Laufen. Der SDK verwendet die lokale Service-Discovery und sein lokal gespeichertes Token.
 
-Installieren Sie in einem leeren Arbeitsordner den Client:
+Installieren Sie in einem leeren Arbeitsordner das passende lokale Paket. Ersetzen Sie `BACKEND_DIRECTORY` durch den absoluten Pfad zum `backend`-Ordner im vollständig extrahierten Standalone-CLI-Archiv und behalten Sie dieses Verzeichnis bei:
 
 ```bash
 npm init -y
-npm install @aipoch/open-science
+npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
 ```
 
 Speichern Sie Folgendes als `connection-check.mjs`. Führen Sie `node connection-check.mjs` aus, um Projekt-IDs aufzulisten, dann `node connection-check.mjs PROJECT_ID` mit einer zurückgegebenen ID. Die erste Invokation wird nach der Auflistung von Projekten absichtlich gestoppt; Die zweite schafft eine kleine Aufgabe.
@@ -58,9 +58,9 @@ await writeFile('project-note.download.md', new Uint8Array(await response.arrayB
 console.log('Saved project-note.download.md; open and check its contents.');
 ```
 
-Halten Sie die Desktop-Sitzung offen. Reagieren Sie dort, wenn **Ask for approval** die Aufgabe pausiert. Ein Warte-Timeout stoppt die Kundenabfrage; Es storniert den Lauf nicht. Überprüfen Sie die gedruckte Lauf-ID mit `getRun`, warten Sie weiter, nachdem Sie die Anforderung gelöst haben, oder rufen Sie `cancelRun` an, wenn Sie beabsichtigen, sie zu stoppen. Der Download ist nur dann erfolgreich, wenn ein übereinstimmendes gespeichertes Artefakt vorhanden ist; Öffnen Sie den heruntergeladenen Markdown, um den Check abzuschließen.
+Halten Sie die entsprechende Desktop- oder authentifizierte Browsersitzung zugänglich. Reagieren Sie dort, wenn **Ask for approval** die Aufgabe pausiert. Ein Warte-Timeout stoppt die Kundenabfrage; Es storniert den Lauf nicht. Überprüfen Sie die gedruckte Lauf-ID mit `getRun`, warten Sie weiter, nachdem Sie die Anforderung gelöst haben, oder rufen Sie `cancelRun` an, wenn Sie beabsichtigen, sie zu stoppen. Der Download ist nur dann erfolgreich, wenn ein übereinstimmendes gespeichertes Artefakt vorhanden ist; Öffnen Sie den heruntergeladenen Markdown, um den Check abzuschließen.
 
-Dieses Programm zeigt den öffentlichen API-Vertrag. Es wird nicht davon ausgegangen, dass ein Modell immer die angeforderte Datei speichert. Wenn das npm-Paket nicht installiert werden kann, verwenden Sie den SDK-Ordner, der mit der passenden Quellauscheckung ausgeliefert wird, als lokales Paket; die Paket-Metadaten vor der Installation zu bestätigen.
+Dieses Programm zeigt den öffentlichen API-Vertrag. Es wird nicht davon ausgegangen, dass ein Modell immer die angeforderte Datei speichert. Verwenden Sie den SDK aus einem passenden Release- oder Source-Paket; Bestätigen Sie die Plattform- und Node-Anforderungen vor der Installation.
 
 ### Eine abgeschlossene Aufgabe, deren Datei nicht heruntergeladen wird {/* #a-completed-task-whose-file-will-not-download */}
 
@@ -78,7 +78,7 @@ Aufgabenabschluss und Artefakt-Download sind separate Prüfungen. Wenn `download
 | `listRuntimes()` | `GET /api/v1/runtimes` | Listen-Framework, Status, optionale Version und verwaltete / externe Quelle. |
 | `bootstrap({action: "status"})` | `POST /api/v1/bootstrap` | Prüfen Sie den First-Run-Setup-Zustand. |
 | `bootstrap({action: "runtime"})` | `POST /api/v1/bootstrap` | Bereiten oder reparieren Sie die verwaltete Codex-Laufzeit über den unterstützten Bootstrap-Flow vor. |
-| `installCli()` | `POST /api/v1/cli/install` | Installieren Sie den lokalen PATH Launcher. |
+| `installCli()` | `POST /api/v1/cli/install` | Installation nativer Desktop-Startgeräte; Nicht unterstützt von einem eigenständigen Node-Backend. Verwenden Sie Desktop General oder den Archive Launcher. |
 
 Setup-Mutationen erfordern den authentifizierten lokalen Dienst. Überprüfen Sie den zurückgegebenen `ok` und Fehlercode; Konfigurationskonflikte müssen vor dem erneuten Versuch gelöst werden. Ein Client-Timeout stellt nicht fest, dass eine akzeptierte Installation abgebrochen wurde. Überprüfen Sie die Bereitschaft erneut, bevor Sie eine weitere Installation starten. Für Abonnement-Login oder benannte Umgebungsvariable Credential-Eingabe verwenden Sie die [Terminalaufbaustrom](cli.md#terminal-setup).
 

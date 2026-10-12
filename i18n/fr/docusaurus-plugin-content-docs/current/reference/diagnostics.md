@@ -1,7 +1,7 @@
 ---
 title: "Architecture et diagnostic"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-12'
 ---
 
 # Architecture et diagnostic {/* #architecture-and-diagnostics */}
@@ -12,7 +12,7 @@ Localiser une défaillance par le composant qui possède l'opération. Une répo
 
 ```mermaid
 flowchart LR
-  UI[Desktop or browser interface] --> MAIN[Application main process]
+  UI[Desktop or browser interface] --> MAIN[Shared Node backend]
   MAIN --> STORE[Settings, database and managed files]
   MAIN --> AGENT[Agent framework and model provider]
   MAIN --> NB[Notebook runtime]
@@ -28,7 +28,7 @@ flowchart LR
 | Composante | Possède | Preuves à vérifier |
 | --- | --- | --- |
 | Rendu et prévisualisation | Affichage de l'état, des contrôles, du contenu du fichier rendu | Page, projet/session sélectionné, nom de fichier, erreur de prévisualisation |
-| Processus Main | Opérations persistantes, services d'application et limites d'accès | Erreur de fonctionnement et diagnostics associés |
+| Moteur Node | Opérations persistantes, services d'application et limites d'accès | Erreur de fonctionnement et diagnostics associés |
 | Cadre/fournisseur d'agents | Connexion du modèle, protocole d'exécution des tâches et flux de réponse | Cadre/fournisseur/modèle, test de connexion, outil défaillant ou tour |
 | Notebook | Interprète, exécution de code, sorties et variables en direct | ID/version d'exécution, cellule défaillante, stdout/stderr et enregistrement d'exécution |
 | Connecteur | Demande de service externe | Connector/nom de l'outil, entrées désinfectées, état/erreur du service |
@@ -80,3 +80,7 @@ Tout d'abord, il faut distinguer une opération échouée d'un rafraîchissement
 **Export diagnostics…** recueille les métadonnées de session, les enregistrements de base de données et les métadonnées disponibles dans une archive locale avec un registre de manifeste et d'exportation. Les sources manquantes n'arrêtent pas l'exportation totale; Les sources importantes ou endommagées peuvent produire des résumés. Les journaux d'applications actuels et historiques peuvent couvrir les activités en dehors de la session sélectionnée, donc examiner les sources sélectionnées et saisir les résultats.
 
 Les sources de métadonnées ordinaires excluent les champs de contenu privé. Après une défaillance de paquet-exportation sensible-contenu, la boîte de dialogue peut également offrir des preuves de scanner expurgées et des fichiers d'origine marqués. Les fichiers originaux sont décochés par défaut; Les sélectionner explicitement inclut leurs octets originaux. Exporter ne fait aucune demande de téléchargement ou de modèle. Inspectez l'archive résultante avant de partager. Il ne remplace pas une sauvegarde de paquet de recherche ou une reproduction minimale. Voir [la procédure d'exportation illustrée](../guides/troubleshooting.md#session-diagnostics).
+
+## Le bureau et le moteur sont des processus séparés {/* #node-backend */}
+
+De v0.37.0, Electron possède le shell de bureau natif tandis qu'un moteur Node ordinaire possède des services partagés. Le bureau, l'interface utilisateur Web, CLI et SDK peuvent se connecter à ce même moteur. Identifiez le répertoire de configuration, la version et le port réel avec `status --json` lorsqu'un client ne peut pas se connecter. Une fenêtre de bureau visible à elle seule ne prouve pas que le moteur est sain. Suivez [propriétaire du moteur](server.md#backend-ownership) avant de l'arrêter.

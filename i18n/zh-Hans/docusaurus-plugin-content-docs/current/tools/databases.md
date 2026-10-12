@@ -2,7 +2,7 @@
 title: "科学数据库"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # 科学数据库
@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支持哪些数据库 {/* #supported-databases */}
 
-Open-Science v0.36.0 内置 **34 个数据源 Connector，提供 347 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 349 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
+Open-Science v0.37.1 内置 **35 个数据源 Connector，提供 359 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 361 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
 
 | Connector | 来源 | 操作数 | 用途  |
 | --- | --- | --- | ---  |
@@ -22,11 +22,11 @@ Open-Science v0.36.0 内置 **34 个数据源 Connector，提供 347 个操作**
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | PubMed 文献检索与记录  |
 | Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | 基因及蛋白标识映射、UniProt 序列查找、GO 与 Reactome 注释、g:Profiler 与 Enrichr 基因集富集 |
 | Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 22 | 基因组注释、同源及序列信息；NCBI 物种、组装与序列身份；BLAST 检索、Clustal Omega 多序列比对；指定人群的 LD 与代理变异 |
-| Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | 群体频率、临床记录，以及实验特定的功能分数、变异映射和实验信息 |
+| Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | 群体频率、临床记录，以及实验特定的功能分数、变异映射和实验信息 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 临床试验登记记录  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | 临床基因组证据资源；新增 ClinPGx 药物基因组学记录 |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 17 | 结构档案与相关记录  |
-| ChEMBL · `chembl` | ChEMBL | 6 | 化合物、靶标和活性记录  |
+| ChEMBL · `chembl` | ChEMBL | 7 | 化合物、靶标和活性记录  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | 预印本元数据  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA、药品标签、FAERS 不良事件报告和药品召回 |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | 人类遗传关联资源  |
@@ -51,6 +51,7 @@ Open-Science v0.36.0 内置 **34 个数据源 Connector，提供 347 个操作**
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 查询疾病或基因与表型的关联，保留物种和支持证据 |
 | IEDB · `iedb` | Immune Epitope Database | 8 | 检索表位、抗原、T 细胞、B 细胞和 MHC 实验、TCR/BCR 证据及来源文献 |
 | PDC · `pdc` | NCI Proteomic Data Commons | 4 | 癌症蛋白组研究版本、样本关联和定量文件元数据；不下载文件 |
+| ENCORI · `encori` | ENCORI | 10 | miRNA／RBP 靶标、RNA 互作、ceRNA、motif、结合位点与参考／批量数据 |
 
 离线 Molecule 工具见[科学查看器](viewers.md)。各数据源实际提供的操作见 [Connector 操作参数参考](../reference/connector-operations.md)。
 
@@ -72,6 +73,45 @@ Open-Science v0.36.0 内置 **34 个数据源 Connector，提供 347 个操作**
 **Zenodo** 无需认证即可查询公开记录元数据，应保留版本级记录 ID、访问和许可字段。**GDC** 提供公开元数据，生成清单不等于获得下载授权，受控文件仍需 GDC 权限。[GDC 操作](../reference/connector-operations.md#family-24) · [Zenodo 操作](../reference/connector-operations.md#family-25)。
 
 数据库响应可以支持一个科研步骤，但不会自动下载数据、把所有论文加入文献库或完成整套分析。需要保存哪些记录和文件，应在请求中明确说明。
+
+## RNA 调控证据：ENCORI {/* #encori */}
+
+在 **Settings → Connectors** 搜索 **ENCORI**，启用并使其对 **Main** 可用。它是内置数据源，不需要自定义 MCP 地址或 API key。选择可用主模型，在会话中明确物种／assembly、RNA 或靶基因、细胞类型与证据阈值。
+
+| 任务 | 结果与使用边界 |
+| --- | --- |
+| miRNA、RNA–RNA、RBP 靶标及 ceRNA 查询 | 保留 CLIP、降解组、预测程序、p 值与 FDR 等适用证据；结合或关联不等于因果调控 |
+| RBP 疾病、motif 与结合位点 | 保留参考基因组、组织／细胞、上游顺序和原始坐标，避免混合不同物种或坐标体系 |
+| 参考表与批量数据 | 先列出精确表路径或文件名；批量下载是单独操作，明确文件、目录与所需空间后再执行 |
+
+<p className="example-label"><strong>案例演示</strong> 查询 PDCD4 在 HeLa 条件下的 miRNA 靶标证据</p>
+
+```text
+Use ENCORI to find human miRNA interactions targeting PDCD4 in HeLa cells,
+using hg38, mRNA targets, at least one CLIP experiment and TargetScan support.
+Show at most two rows. Preserve the exact filters, total count and full raw
+response in the session data folder. Explain the evidence limits in English.
+Do not download bulk datasets.
+```
+
+本例得到 19 条记录，前两条为 hsa-miR-23a-3p 与 hsa-miR-181a-5p。下图显示保存后的完整原始响应及其证据范围；这是本次查询结果，数据库更新后数量可能变化。
+
+![ENCORI 查询总结与打开的完整原始响应](/img/open-science/v0371/encori-response.webp)
+
+读取结果时，区分 `total_records` 与 `returned_records`，并检查 `is_complete`、`result_scope` 和 `completeness_note`。预览只显示部分行时，不要用它概括全部靶标分布。完整原始响应的 `raw_response_path` 是本地文件路径，不自动等于可下载的会话产物；需要共享时，让 Agent 保存到会话可访问的数据目录并附加文件，打开后核对内容。
+
+查询可返回真实空结果，也可返回 `ok:false`。不要为了得到命中自动放宽条件。批量文件下载完成后检查实际路径、大小与 `verified_gzip`；参考表查询和文件列表不等于已取得批量数据。精确参数见 [ENCORI 操作参考](../reference/connector-operations.md#family-35)。
+
+## 实验条件与逐条提交证据 {/* #assay-submission-evidence */}
+
+| 入口 | 操作顺序 | 判断边界 |
+| --- | --- | --- |
+| **ChEMBL** | 启用 Connector，无需 API key。先从活性记录取得 `assay_chembl_id`，用 `get_assay` 查看方法、物种、细胞／组织和靶标；再用同一 assay ID 查询 `get_bioactivity` | 靶标归属置信度不是测量质量；比较 IC50／Ki 前核对条件、单位及关系符号 |
+| **Variants → ClinVar** | 在 Connector 中配置真实的 NCBI 联系邮箱，API key 可选。查询 `clinvar_get_submissions`，传入 VCV accession 或正整数 Variation ID；后续分页沿返回的 `next_page` 固定版本 | 保留 SCV、提交者、疾病、评估日期、方法及引用；胚系、体细胞临床影响与致癌性应分别比较 |
+
+ChEMBL 每页按 `activity_id` 排序。保持过滤条件不变，将 `next_offset` 作为下一页 `offset`，直到 `has_more:false`；可以取得超过 1,000 条记录。`summary` 仅覆盖当前页，不能用一页最强活性代表整个查询。ClinVar 首页解析到最新版本后，继续使用返回的带版本 VCV；不要用 RCV、SCV 或 rsID 替代输入。
+
+[ChEMBL 实验参数](../reference/connector-operations.md#get_assay) · [活性分页](../reference/connector-operations.md#get_bioactivity) · [ClinVar 提交参数](../reference/connector-operations.md#clinvar_get_submissions)。
 
 ## 单细胞、模式生物及变异功能数据 {/* #single-cell-model-organisms */}
 
@@ -214,7 +254,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作参数参考](../reference/connector-operations.md)列出必填输入、可选值和准确调用方法。本页用于选择和连接数据源，参数参考用于查询某个具体工具的字段。
 
-目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/registry.ts)。
+目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts)。
 
 ## 序列检索与多序列比对 {/* #sequence-tools */}
 

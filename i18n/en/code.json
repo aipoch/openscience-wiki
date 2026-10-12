@@ -1851,5 +1851,17 @@
   },
   "docs.outline.reference.v0360.scope": {
     "message": "PDF translation, Notebook execution review, PDC, Ensembl LD and loaded-page selection."
+  },
+  "docs.outline.reference.v0371.title": {
+    "message": "v0.37.1"
+  },
+  "docs.outline.reference.v0371.scope": {
+    "message": "Scientific PDF fidelity, Windows paths, quiet Notebook execution and smaller installers."
+  },
+  "docs.outline.reference.v0370.title": {
+    "message": "v0.37.0"
+  },
+  "docs.outline.reference.v0370.scope": {
+    "message": "Standalone Node backend and CLI, ENCORI, ChEMBL assays, ClinVar submissions and Notebook capture."
   }
 }

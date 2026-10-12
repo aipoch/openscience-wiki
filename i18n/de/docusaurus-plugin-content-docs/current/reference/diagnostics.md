@@ -1,7 +1,7 @@
 ---
 title: "Architektur und Diagnostik"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-12'
 ---
 
 # Architektur und Diagnostik {/* #architecture-and-diagnostics */}
@@ -12,7 +12,7 @@ Suchen Sie einen Fehler durch die Komponente, die die Operation besitzt. Eine er
 
 ```mermaid
 flowchart LR
-  UI[Desktop or browser interface] --> MAIN[Application main process]
+  UI[Desktop or browser interface] --> MAIN[Shared Node backend]
   MAIN --> STORE[Settings, database and managed files]
   MAIN --> AGENT[Agent framework and model provider]
   MAIN --> NB[Notebook runtime]
@@ -28,7 +28,7 @@ flowchart LR
 | Komponente | Besitz | Untersuchungsnachweise |
 | --- | --- | --- |
 | Renderer und Preview | Anzeigezustand, Steuerelemente, gerenderter Dateiinhalt | Seite, ausgewähltes Projekt/Session, Dateiname, Vorschaufehler |
-| Main-Prozess | Persistente Operationen, Anwendungsdienste und Zugriffsgrenzen | Betriebsfehler und zugehörige Diagnose |
+| Node Backend | Persistente Operationen, Anwendungsdienste und Zugriffsgrenzen | Betriebsfehler und zugehörige Diagnose |
 | Agent Framework/Provider | Modellverbindung, Aufgabenausführungsprotokoll und Antwortstrom | Framework/Provider/Modell, Verbindungstest, ausfallendes Werkzeug oder Wende |
 | Notebook | Interpreter, Codeausführung, Outputs und Live-Variablen | Laufzeit-ID/-Version, ausfallende Zelle, Stdout/Stderr und Ausführungsprotokoll |
 | Konnektor | Externes Dienstleistungsersuchen | Connector/Toolname, bereinigte Eingaben, Status/Fehler aus dem Dienst |
@@ -80,3 +80,7 @@ Unterscheiden Sie zunächst eine fehlgeschlagene Operation von einer fehlgeschla
 **Export diagnostics…** sammelt ausgewählte Sitzungsmetadaten, Datenbankdatensätze und verfügbare Anwendungsprotokoll-Metadaten in einem lokalen Archiv mit einem Manifest und Exportprotokoll. Fehlende Quellen stoppen nicht den gesamten Export; große oder beschädigte Quellen können Zusammenfassungen erzeugen. Die aktuellen und historischen Anwendungsprotokolle können Aktivitäten außerhalb der ausgewählten Sitzung abdecken, also überprüfen Sie die ausgewählten Quellen und erfassen Sie die Ergebnisse.
 
 Gewöhnliche Metadatenquellen schließen private Inhaltsfelder aus. Nach einem fehlgeschlagenen Paketexport von sensiblen Inhalten kann der Dialog auch redigierte Scannernachweise und markierte Originaldateien anbieten. Originaldateien werden standardmäßig nicht überprüft; Sie explizit auszuwählen, beinhaltet ihre ursprünglichen Bytes. Export macht keine Upload- oder Modellanforderung. Überprüfen Sie das resultierende Archiv vor dem Teilen. Es ersetzt kein Research-Paket-Backup oder eine minimale Reproduktion. Siehe [das dargestellte Ausfuhrverfahren](../guides/troubleshooting.md#session-diagnostics).
+
+## Desktop und Backend sind getrennte Prozesse {/* #node-backend */}
+
+Von v0.37.0 aus besitzt Electron die native Desktop-Shell, während ein gewöhnliches Node-Backend Shared Services besitzt. Der Desktop, die Web-Benutzeroberfläche, CLI und SDK können sich mit demselben Backend verbinden. Identifizieren Sie das Konfigurationsverzeichnis, die Version und den tatsächlichen Port mit `status --json`, wenn ein Client keine Verbindung herstellen kann. Ein sichtbares Desktop-Fenster allein beweist nicht, dass das Backend gesund ist. Folgen Sie [Backend-Besitz](server.md#backend-ownership), bevor Sie es stoppen.

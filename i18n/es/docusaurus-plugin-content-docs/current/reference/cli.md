@@ -1,7 +1,7 @@
 ---
 title: "CLI y salida estructurada"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,12 @@ Utilice `open-science` para inspeccionar el estado de aplicación, ejecutar tare
 
 ## Configuración desde una terminal {/* #terminal-setup */}
 
-Instala la aplicación de escritorio primero y haz que su comando `open-science` esté disponible. El CLI utiliza el backend de la aplicación; no es un daemon de npm separado. Los paquetes de Debian incluyen el comando. Cuando el lanzador esté desaparecido, siga la configuración del lanzador de la plataforma o utilice la entrada CLI instalada, luego `open-science cli install`.
+Elija el lanzador de escritorio o un archivo CLI independiente desde el [liberación oficial](https://github.com/aipoch/open-science/releases/tag/v0.37.1). El archivo independiente contiene el tiempo de ejecución CLI, Node, backend y Web UI; no requiere Electron o una herramienta Node/npm instalada por separado.
+
+1. Elija macOS o Linux arm64/x64, o Windows x64, que coincida con el host.
+2. Extraiga el archivo completo en un lugar de trabajo. Mantenga el lanzador, `backend` y `node-runtime` juntos; copiar sólo el lanzador romperá el arranque.
+3. Desde ese directorio, ejecuta `./open-science --help` en macOS/Linux, o `./open-science.cmd --help` en PowerShell. Después de añadir ese directorio a PATH, abra un nuevo terminal y utilice `open-science` como abajo.
+4. Comience el backend local y compruebe la preparación. Comenzar solo no configura un modelo.
 
 ```bash
 open-science init
@@ -24,7 +29,7 @@ open-science runtime list --json
 open-science doctor --json
 ```
 
-`init` crea el directorio de configuración sin iniciar la aplicación. `--profile` es un alias para `--config-root` para perfiles de desarrollo apoyados; La startup empaquetada rechaza estas anulaciones. Utilice un perfil diseñado de forma consistente. `runtime list` muestra la preparación del marco detectado, versión y fuente administrada/external sin exponer caminos ejecutables.
+`init` crea el directorio de configuración sin iniciar la aplicación. `--profile` alias `--config-root` para un perfil CLI portátil. Utilice el mismo directorio de configuración absoluta para los comandos init, start y subsequent; un perfil separado tiene su propia configuración. `runtime list` muestra la preparación del marco detectado, versión y fuente administrada/external sin exponer caminos ejecutables.
 
 Para una configuración Codex no configurada:
 
@@ -46,7 +51,8 @@ Lea **Listo**, el **cheques** individual y sugirió acciones **siguiente** de `d
 | --- | --- | --- |
 | El lanzador de aplicaciones instalado | **Settings → General → Command line tool → Install command** | `open-science --help` |
 | Comprobación de fuentes | Dependencias de aplicación y repositorio construidas | `node packages/open-science/cli.mjs --help` |
-| Npm cliente | Node.js 22.5+ y una aplicación instalada; confirmar la disponibilidad de paquetes antes de la instalación | Identificador del paquete `@aipoch/open-science` |
+| Archivo CLI independiente | Coincidiendo con OS/arquitectura; preservar el directorio completo extraído | `./open-science --help` o `./open-science.cmd --help` |
+| npm cliente / SDK | Node.js 22.13+ y un backend compatible con el funcionamiento; check package requirements before installation | Identificador del paquete `@aipoch/open-science` |
 
 El lanzador instalado utiliza el tiempo de ejecución de la aplicación. Si su directorio está ausente de PATH, siga la instrucción mostrada del panel General y abra un nuevo terminal. No renombrar el ejecutable para que coincida con la marca de visualización.
 
@@ -68,11 +74,11 @@ Compruebe que **Source** apunta al lanzador mostrado en General, por lo general 
 
 <p className="example-label"><strong>Ejemplo</strong> Guardar una nota de la línea de comandos</p>
 
-1. Instala el comando usando la entrada anterior. Mantenga la aplicación de escritorio funcionando con un modelo de trabajo.
+1. Instala el comando usando la entrada anterior. Mantenga un backend funcionando con un modelo de trabajo, ya sea a través del escritorio o `start --no-open`.
 2. Corre `open-science status --json`, luego `open-science project list --json`. Revise la instancia prevista y copie un ID de proyecto devuelto.
 3. Guardar `task.md` con: **Guardar proyecto-note.md que contenga una breve nota de conexión. No lea otros archivos ni use la red.**
 4. Ejecute los comandos bajo [Ejecutar banderas de entrada y control](#run-input-and-control-flags). Reemplazar cada marcador de posición sólo después de obtener su identificación del resultado anterior.
-5. Si la ejecución se detiene para obtener permiso, responda en su conversación de escritorio. `--wait` puede pasar tiempo mientras la tarea continúa; inspeccionar `run status RUN_ID --json` antes de enviar de nuevo.
+5. Si la ejecución se detiene para el permiso, responda en el escritorio correspondiente o en la conversación del navegador autenticado. `--wait` puede pasar tiempo mientras la tarea continúa; inspeccionar `run status RUN_ID --json` antes de enviar de nuevo.
 6. Seleccione el ID de artefactos Markdown devueltos, descarguelo a un nuevo nombre de archivo local, y abralo. Una ejecución completa sin el artefacto solicitado requiere un seguimiento en esa sesión. Si el artefacto existe pero la descarga falla, siga [recuperación de la descarga del artefacto](./api.md#a-completed-task-whose-file-will-not-download).
 
 Para tareas de planificación, utilice `--return-on-attention`, inspeccione el plan devuelto y responda a través de la aplicación o los comandos del plan a continuación. Para las integraciones de JSON, distinguir correr, completar, fallar y cancelar en lugar de tratar cada respuesta HTTP exitosa como una tarea terminada.
@@ -222,3 +228,7 @@ open-science run --project "Sequence and PDF Research" \
 ```
 
 La opción sólo se aplica a esta invocación y no se guarda como una preferencia de sesión. No se puede combinar con `--plan-first`. Inspeccione el estado final y el error: evitar una espera humana no garantiza la terminación de la tarea. El cliente comprueba la capacidad de acogida `permission-prompts-none`; actualizar el cliente y la aplicación que coincida si un host antiguo devuelve `unsupported_capability`.
+
+## Rutas de lanzamiento Windows {/* #windows-launcher-paths */}
+
+v0.37.1 fija las rutas de lanzamiento de escritorio que contienen caracteres no ASCII. Después de actualizar, abra una nueva terminal y compruebe `Get-Command open-science` y `open-science --help`. Si el comando todavía se resuelve a una instalación más antigua, utilice el camino mostrado en **Settings → General**. Mantenga intacto todo el directorio de archivos independiente. Un comando de ayuda exitoso no establece la preparación del modelo; Comprueba `doctor --json` después.

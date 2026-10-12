@@ -1,14 +1,14 @@
 ---
 title: "安裝與更新"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
 # 安裝與更新 {/* #安装与更新 */}
 
-普通使用者應優先使用 GitHub Releases 提供的桌面安裝包。貢獻者或需要除錯最新版功能的使用者可以從原始碼啟動。Open-Science 是 Electron 應用，渲染層同時支援受令牌保護的本地 Web 訪問。
+普通使用者應優先使用 GitHub Releases 提供的桌面安裝包。貢獻者或需要除錯最新版功能的使用者可以從原始碼啟動。Open-Science 的 Electron 桌面客戶端連線共享 Node 後端，後端也提供經過認證的本地瀏覽器介面。
 
 <PlatformGuide />
 
@@ -71,11 +71,15 @@ v0.34.0 提供 Linux **x64 和 ARM64** 安裝包。ARM64 選擇 `aipoch-open-sci
 
 安裝位置用於存放應用程式；設定精靈中的 **Data location** 用於科研檔案和執行環境，兩者分別設定。安裝後繼續[首次設定](onboarding.md)。
 
+### 使用獨立 CLI {/* #standalone-cli */}
+
+無需桌面視窗時，可從[官方發行版](https://github.com/aipoch/open-science/releases/tag/v0.37.1)下載對應平臺的獨立 CLI 壓縮包。它自帶 Node、後端與 Web UI，完整解壓後即可執行。按 [CLI 首次設定](../reference/cli.md#terminal-setup)啟動、配置模型並檢查就緒狀態；已有桌面使用者仍可使用 **Settings → General → Install command**。
+
 ### 從原始碼執行 {/* #从源码运行 */}
 
-要求：Git、Node.js 22、npm，以及 Electron 在當前平臺的構建前提。代理框架可在應用中安裝或選擇。倉庫會在安裝階段生成 Prisma Client、應用補丁並準備 Electron 原生依賴。
+要求：Git、Node.js 24、npm，以及 Electron 在當前平臺的構建前提。代理框架可在應用中安裝或選擇。倉庫會在安裝階段生成 Prisma Client、應用補丁並準備 Electron 原生依賴。
 
-需要復現原始碼安裝時，先從 [Changelog](../changelog/v0.34.0.md) 確定目標釋出標籤，再安裝依賴。預設克隆跟隨分支，不會固定到某個釋出版本。記錄所選標籤、原始碼提交及執行時版本，便於他人復現環境。
+需要復現原始碼安裝時，先從 [Changelog](../changelog/v0.37.1.md) 確定目標釋出標籤，再安裝依賴。預設克隆跟隨分支，不會固定到某個釋出版本。記錄所選標籤、原始碼提交及執行時版本，便於他人復現環境。
 
 將下方 `RELEASE_TAG` 替換為所選發行頁的完整標籤（包括開頭的 `v`）。如果需要跟隨開發分支，省略 `--branch RELEASE_TAG --depth 1`；這條路線會使用預設分支。
 
@@ -92,7 +96,7 @@ npm run dev
 npm run build
 ```
 
-`npm run build` 會依次完成 TypeScript 檢查以及 renderer、preload、main 三個 Electron 構建目標。若只想驗證 Web/headless 入口，應使用倉庫已有的 headless 引數和單獨的資料目錄，避免測試資料進入預設儲存。
+構建目標與依賴應以所選標籤的 package.json 和[獨立執行說明](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md)為準。僅開發 Node 與 Web 入口可使用 `npm run dev:web`；`npm run dev` 同時準備桌面客戶端。使用獨立配置目錄，避免測試資料進入日常配置。
 
 ## 完成首次配置 {/* #完成首次配置 */}
 

@@ -1,7 +1,7 @@
 ---
 title: "서비스 및 브라우저 액세스"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-12'
 ---
 
 # 서비스 및 브라우저 액세스 {/* #headless-service-and-browser-access */}
@@ -10,21 +10,22 @@ last_update:
 
 ## 대상 선택 및 발견 {/* #target-selection-and-discovery */}
 
-| 옵션 정보 | 관련 상품 |
+v0.37.0에서 일반 Node 프로세스에서 공유된 서비스는 기본 클라이언트로 연결됩니다. CLI 시작은 더 이상 숨겨지은 Electron 주인을 필요로 하지 않습니다.
+
+| 회사 소개 | 범위 |
 | --- | --- |
-| `--port PORT` | override localhost 서비스 포트; 유효한 정수 1–65535 |
-| `--app-path PATH` | 설치된 응용 프로그램 실행을 선택; 실행 가능한 경로, 중재 프로젝트 폴더가 아닌 |
-| `--config-root PATH` | 개발 빌드 구성 override; 패키지 시작은 그것을 거부 |
-| `OPEN_SCIENCE_CONFIG_ROOT` / `OPEN_SCIENCE_STORAGE_ROOT` | Explicit 구성 discovery override 여기서 지원되는 |
-| 자동 발견 | 생산의 앞에 발달 윤곽을 시도하고, dead/unhealthy 후보자를 건너 뛰기 |
+| `--port PORT` | Localhost 포트, 정수 1–65535; 점유된 명시된 포트는 오류를 발생시킵니다. |
+| `--config-root PATH` / `--profile PATH` | 휴대용 CLI 구성 디렉토리; 전반적으로 동일한 절대 경로 유지 |
+| `OPEN_SCIENCE_CONFIG_ROOT` | 환경을 통해 Explicit 구성 디렉토리; 명령 옵션은 precedence를 가지고 |
+| 자동 발견 | 로컬 서비스 상태를 확인하고 프로필, 포트 및 버전을 확인 |
 
-명시된 구성 위치는 그 디렉토리에 대한 발견을 제한합니다. 시작하거나 중지하기 전에 의도 된 프로필에 대한 상태를 확인합니다. 상태가 `running:false`을 반환하면 아래 Lifecycle 명령을 따르십시오. 오픈 데스크톱 창은 다른 서비스/프로필을 사용할 수 있습니다.
+데스크탑 백엔드는 지정되지 않을 때 무료 포트를 선택합니다; CLI 시작 기본값은 44100입니다. 오픈 창에서 포트를 삽입하는 대신 `status --json`을 사용하십시오. 동일한 윤곽을 위한 호환성 기존하는 서비스는 재사용될 수 있습니다; 버전이 일치하지 않을 때 활성 작업을 완료하고 업데이트 지침을 따르십시오. 레거시 `--app-path` 옵션은 새로운 Node 백엔드로 Electron 실행을 턴하지 않습니다.
 
-서비스 상태 파일은 `web-service.json`입니다. 인증 실패는 기록 된 프로세스를 죽이는 권한이 없습니다. 폐쇄 부호는 진단을 위한 살아있는 비 건강 레코드를 보존하고 다른 과정에 의해 재사용될지도 모르다 PID를 신호하는 것을 피합니다.
+국가 파일은 `web-service.json`입니다. 인증 실패는 그 기록을 삭제하거나 PID를 죽이는 권한이 없습니다. 실제 서비스 및 진단을 검사하여 다른 프로세스에 영향을 미치는 것을 방지합니다.
 
 ## 초기화 및 체크 readiness {/* #readiness */}
 
-`open-science init`을 사용하여 앱을 시작하지 않고 기본 구성 디렉토리를 준비하십시오. `--profile` aliases `--config-root`는 개발 프로파일 override가 지원되는 유일한; 그것은 패키지 - 빌드 제한을 우회하지 않습니다. 데비안 패키지는 응용 프로그램에 따라 CLI을 설치합니다. Codex 준비 및 로그인에 대한 [터미널 설정](cli.md#terminal-setup) 참조.
+`open-science init`을 사용하여 앱을 시작하지 않고 기본 구성 디렉토리를 준비하십시오. 격리된 구성을 위해, init에 동일한 절대적인 `--profile` 경로, 시작 및 후속 명령을 통과하십시오. 데비안 패키지는 CLI을 응용 프로그램에 따라 설치합니다. Codex 준비 및 로그인에 대한 [터미널 설정](cli.md#terminal-setup) 참조.
 
 의도적인 `start --no-open` 후, `open-science doctor --json`을 실행합니다. 전반적인 `ready`, 개인적인 검사 및 제안된 다음 활동을 검열하십시오; 프로세스 종료 코드는 혼자 읽을 수 없습니다. 기존의 정통 로컬 인터페이스에서 서비스를 유지하십시오. 이 헤드리스 서비스를 시작하려면 Remote.It을 구성하거나 공개 엔드포인트를 게시하지 않습니다.
 
@@ -46,8 +47,8 @@ last_update:
 | JSON `result` | 이름 &#42; |
 | --- | --- |
 | `already-stopped` | 라이브 서비스 기록이 없습니다 |
-| `daemon-stopped` | Authenticated 독립 데몬 종료 |
-| `web-service-stopped` | 웹 서비스 중지; 데스크톱 응용 프로그램은 실행 남아 |
+| `daemon-stopped` | 정통 Node 백엔드 종료; 첨부된 클라이언트는 백엔드 연결을 잃습니다 |
+| `web-service-stopped` | Legacy Electron web-service outcome, 새로운 독립 Node 백엔드가 아닌 |
 
 거절된 요청 또는 놓인 종료 마감 기한은 실패를 반환합니다. 오류를 읽고 실제 대상 상태를 검사합니다. 명령이 반환되기 때문에 중지된대로 서비스를 보고하지 마십시오.
 
@@ -85,17 +86,25 @@ open-science start --credential-store=file --no-open
 
 구성이 컨테이너 교체를 살아야 할 때 persistent 저장을 사용하십시오. Shutdown는 윤곽을 유지합니다; 처분할 수 있는 콘테이너 filesystem를 대체해서 그것을 제거할 수 있습니다. [credential 저장 계약](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md) 참조.
 
+## 소유권 및 폐쇄 {/* #backend-ownership */}
+
+| .... | 백엔드의 효과 |
+| --- | --- |
+| 브라우저 탭 닫기 | 백엔드가 실행 |
+| 백엔드를 시작 하는 데스크탑을 Quit | 그것의 소유한 백엔드는 그것으로 멈추지 않습니다 |
+| 기존 CLI 백엔드에 부착된 데스크탑을 고정하십시오. | 클라이언트 detaches만; CLI 백엔드가 실행 유지 |
+| `open-science stop` | 선택한 백엔드를 중지, 모든 클라이언트에 영향을 미치는 |
+
+창을 닫을 때 특히 트레이에 남아있을 때 앱을 종료하는 것과 다를 수 있습니다. 공유 백엔드를 멈추기 전에 효과적인 연구, 그 후에 `status --json`를 가진 실제적인 국가를 검열합니다.
+
 ## 앱 업데이트 행동 {/* #application-update-behavior */}
 
-`open-science update`은 설치된 응용 프로그램을 업데이트합니다. npm 클라이언트를 별도로 업데이트하십시오. 명령은 필요한 경우 로컬 서비스를 시작하고 그 서비스를 사용할 수 있습니다.
+데스크탑 네이티브 업데이트 및 독립 패키지 업데이트는 다른 경로를 사용합니다. 일반 Node 백엔드는 데스크탑 설치자를 대체할 수 없습니다; `update --json`는 수동 업데이트 요구 사항 및 `package-manager` 모드를보고 있습니다. 반환된 지시를 따르십시오.
 
-| `update --json` 회사 정보 | 회사연혁 |
-| --- | --- |
-| `up-to-date` | 새로운 적용 가능한 버전이 없습니다. |
-| `install-started` | Updater는 임명 handoff를 받아들여집니다; 최종 설치된 버전은 그 invocation에 의해 확인되지 않습니다. |
-| `manual-action-required` | 보고된 설치자 경로/다음 단계 따르십시오 |
-| `blocked` | Active 연구는 in-place 갱신을 방지합니다; 관련 상품 `blockedBy` |
+- **데스크탑 앱:**는 앱 업데이 트를 사용합니다. 이전에 CLI에 의해 시작된 백엔드에 붙어 있다면, 종료 작업 및 데스크톱을 업데이트하기 전에 백엔드를 중지합니다.
+- **독립 CLI 아카이브:** 완료 작업, 의도 된 백엔드를 중지, 새로운 디렉토리에 새로운 릴리스를 추출, 구성 데이터를 유지, 발사기 또는 PATH를 업데이트. 실행 패키지를 덮지 마십시오.
+- **npm 임명:**은 npm을 통해 해당 패키지를 업데이트하고 클라이언트 / 백엔드 호환성을 확인합니다.
 
-지원은 서비스 기능 `update-cli-v1`를 요구합니다. 더 오래된 임명은 추측한 먼 절차 대신 수동 갱신을 요구할 수 있습니다. 인쇄 된 결과를 유지하고 설치 후 응용 프로그램을 확인합니다.
+Restart는 `status --json`과 `doctor --json`을 사용하여 버전, 구성 디렉토리 및 readiness를 확인합니다. 기존의 credential-store 모드를 보존합니다. 업데이트 작업을 수행하기 위해 자격 증명이나 구성을 삭제하지 마십시오.
 
-[Lifecycle 및 discovery 구현](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [구성 discovery](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/config-root.mjs). 작업 플래그 및 종료 코드의 경우 [CLI](./cli.md)을 참조하십시오. 프로그래밍 통화의 경우 [작업 SDK](./api.md)을 참조하십시오.
+[공식 독립 실행 시간 안내](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md), [CLI](cli.md) 및 [작업 SDK](api.md)를 참조하십시오.

@@ -1,14 +1,14 @@
 ---
 title: "Instalación y actualizaciones"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
 # Instalación y actualizaciones {/* #installation-and-updates */}
 
-La mayoría de los usuarios deben instalar el paquete de escritorio de GitHub Releases. Los colaboradores, o cualquier persona que pruebe el código más nuevo, pueden ejecutar la aplicación de la fuente. Open-Science es una aplicación Electron; su renderizador también soporta el acceso del navegador local protegido por token.
+La mayoría de los usuarios deben instalar el paquete de escritorio de GitHub Releases. Los colaboradores, o cualquier persona que pruebe el código más nuevo, pueden ejecutar la aplicación de la fuente. El cliente de escritorio Electron se conecta a un backend Node compartido, que también sirve la interfaz autenticada del navegador local.
 
 <PlatformGuide />
 
@@ -71,11 +71,15 @@ v0.34.0 proporciona paquetes Linux **x64 y ARM64** . Para ARM64, seleccione `aip
 
 La carpeta de instalación contiene la aplicación; **Data location**, en el asistente de configuración, contiene los archivos de investigación y los entornos de ejecución. Estas ubicaciones se configuran por separado. Después de instalar, continúe con la [configuración inicial](onboarding.md).
 
+### Use el CLI independiente {/* #standalone-cli */}
+
+Para la operación sin una ventana de escritorio, descargar el archivo independiente CLI de la [liberación oficial](https://github.com/aipoch/open-science/releases/tag/v0.37.1). Incluye Node, el backend y la interfaz de usuario web. Extraiga el directorio completo, luego siga [CLI setup](../reference/cli.md#terminal-setup) para iniciarlo, configure un modelo y compruebe la preparación. Los usuarios de escritorio todavía pueden utilizar **Settings → General → Install command**.
+
 ### Huir de la fuente {/* #run-from-source */}
 
-Necesitas Git, Node.js 22, npm, y la plataforma construye requisitos para Electron. Instala o selecciona un marco de agente en la aplicación. Durante la instalación, el repositorio genera el Cliente Prisma, aplica parches de aplicaciones y prepara dependencias nativas de Electron.
+Necesita Git, Node.js 24, npm, y la plataforma construye requisitos para Electron. Instala o selecciona un marco de agente en la aplicación. Durante la instalación, el repositorio genera el Cliente Prisma, aplica parches de aplicaciones y prepara dependencias nativas de Electron.
 
-Para una instalación de origen reproducible, elija la etiqueta de lanzamiento prevista de [Cambio](../changelog/v0.34.0.md) antes de instalar dependencias. Un clon predeterminado sigue la rama en lugar de una liberación fija. Grabar las versiones seleccionadas de etiqueta, fuente commit y tiempo de ejecución para que otra persona pueda reproducir el ambiente.
+Para una instalación de fuente reproducible, elija la etiqueta de lanzamiento prevista de [Cambio](../changelog/v0.37.1.md) antes de instalar dependencias. Un clon predeterminado sigue la rama en lugar de una liberación fija. Grabar las versiones seleccionadas de etiqueta, fuente commit y tiempo de ejecución para que otra persona pueda reproducir el ambiente.
 
 Reemplazar `RELEASE_TAG` abajo con la etiqueta exacta mostrada en la versión seleccionada (incluyendo su `v`) líder. Para seguir el desarrollo en curso, omitir `--branch RELEASE_TAG --depth 1`; que el checkout seguirá la rama predeterminada.
 
@@ -92,7 +96,7 @@ Antes de empaquetar una producción, ejecute:
 npm run build
 ```
 
-`npm run build` comprueba TipoScript, luego construye el renderizador de electrones, precarga y objetivos principales. Si sólo necesita probar el punto de entrada web o sin cabeza, utilice los argumentos de sin cabeza existentes del repositorio con un directorio de datos separado. Eso mantiene los datos de prueba fuera de la tienda predeterminada.
+Utilice el paquete de la etiqueta seleccionada.json y [guía de tiempo libre](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md) para sus objetivos de construcción y dependencias. `npm run dev:web` desarrolla el punto de entrada Node/Web; `npm run dev` también prepara al cliente de escritorio. Utilice un directorio de configuración aislado para mantener los datos de prueba separados.
 
 ## Configuración completa por primera vez {/* #complete-first-time-setup */}
 

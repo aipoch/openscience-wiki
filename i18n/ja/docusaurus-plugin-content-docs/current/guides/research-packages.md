@@ -2,7 +2,7 @@
 title: ".science 研究パッケージ"
 description: "そのファイルと証拠でセッションをエクスポートし、別のプロジェクトで研究記録をインポートし、検査します。"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -123,3 +123,7 @@ Keep everything in English and return links to both new files.
 ## 受領した研究記録を再生する {/* #replay-import */}
 
 インポートが完了したら、**View replay** を選択して、録画した手順または **Discuss** を調べて、書き込み可能な会話でそれらについて尋ねます。 インポートされたソースは読み取り専用のままです。 議論の参照は、元のランタイムを再作成しません。 **Fork to continue**は作業コピーに使用します。 [セッションリプレイ](session-replay.md) を参照してください。
+
+## 新規プロジェクトへのインポート {/* #new-project-import-recovery */}
+
+古いバージョンが新しいプロジェクトのカタログにパッケージを採用している間に失敗した場合、v0.37.0 以降に更新し、既に存在するか否かを調べ、別のインポートを開始する前にインポート ダイアログのリカバリ アクションを使用する。 結果のセッションとファイルをチェックします。 修正はインポートされたセッションを書き込み可能にしません:**Fork**を使用して分析を継続します。

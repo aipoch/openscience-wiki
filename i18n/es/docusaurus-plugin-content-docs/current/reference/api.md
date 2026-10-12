@@ -1,7 +1,7 @@
 ---
 title: "Tarea SDK y API local"
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-12'
 ---
 
 # Tarea SDK y API local {/* #task-sdk-and-local-api */}
@@ -14,13 +14,13 @@ El cliente `@aipoch/open-science` Node.js se conecta a un servicio de aplicació
 
 <p className="example-label"><strong>Ejemplo</strong> Guardar y descargar una nota de conexión</p>
 
-Use Node.js 22.5 o más tarde. Abra la aplicación de escritorio instalada en la misma máquina, termine la configuración del modelo y manténgalo en funcionamiento. El SDK utiliza el descubrimiento del servicio local y su token almacenado localmente. Para un daemon separado, primero siga [Servicio sin cabeza](server.md).
+Uso Node.js compatible con el paquete seleccionado: el v0.37.1 paquete de backend requiere Node.js 22.13 o más tarde, mientras que independiente CLI archivos paquete Node. Comience un backend a través del escritorio o [CLI](server.md), termine la configuración del modelo y mantenga el funcionamiento. El SDK utiliza el descubrimiento del servicio local y su token almacenado localmente.
 
-En una carpeta de trabajo vacía, instalar el cliente:
+En una carpeta de trabajo vacía, instale el paquete local que coincida. Reemplazar `BACKEND_DIRECTORY` con el camino absoluto a la carpeta `backend` en el archivo CLI completamente extraído, y retener ese directorio:
 
 ```bash
 npm init -y
-npm install @aipoch/open-science
+npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
 ```
 
 Guardar lo siguiente como `connection-check.mjs`. Ejecute `node connection-check.mjs` para listar los IDs del proyecto, luego `node connection-check.mjs PROJECT_ID` con un ID devuelto. La primera invocación se detiene deliberadamente después de la inclusión de proyectos; el segundo crea una pequeña tarea.
@@ -58,9 +58,9 @@ await writeFile('project-note.download.md', new Uint8Array(await response.arrayB
 console.log('Saved project-note.download.md; open and check its contents.');
 ```
 
-Mantenga la sesión de escritorio abierta. Responde allí si **Ask for approval** detiene la tarea. Un tiempo de espera detiene la encuesta del cliente; no cancela la carrera. Inspeccione el ID de ejecución impreso con `getRun`, siga esperando después de resolver la solicitud, o llame a `cancelRun` cuando tenga la intención de detenerlo. La descarga sólo tiene éxito cuando existe un artefacto guardado en combinación; abrir el Markdown descargado para terminar el cheque.
+Mantenga el escritorio correspondiente o la sesión del navegador autenticado accesible. Responde allí si **Ask for approval** detiene la tarea. Un tiempo de espera detiene la encuesta del cliente; no cancela la carrera. Inspeccione el ID de ejecución impreso con `getRun`, siga esperando después de resolver la solicitud, o llame a `cancelRun` cuando tenga la intención de detenerlo. La descarga sólo tiene éxito cuando existe un artefacto guardado en combinación; abrir el Markdown descargado para terminar el cheque.
 
-Este programa demuestra el contrato público API. No supone que un modelo guarde siempre el archivo solicitado. Si el paquete npm no puede instalarse, utilice la carpeta SDK enviada con el checkout de fuente correspondiente como el paquete local; confirmar sus metadatos de paquete antes de la instalación.
+Este programa demuestra el contrato público API. No supone que un modelo guarde siempre el archivo solicitado. Utilice el SDK de un paquete de liberación o fuente que coincida; confirmar sus necesidades de plataforma y Node antes de la instalación.
 
 ### Una tarea completa cuyo archivo no descargará {/* #a-completed-task-whose-file-will-not-download */}
 
@@ -78,7 +78,7 @@ Abra el artefacto en la aplicación y compruebe si su contenido está disponible
 | `listRuntimes()` | `GET /api/v1/runtimes` | Marco de lista, estado, versión opcional y fuente administrada/externa. |
 | `bootstrap({action: "status"})` | `POST /api/v1/bootstrap` | Inspeccione el estado de configuración de primera ejecución. |
 | `bootstrap({action: "runtime"})` | `POST /api/v1/bootstrap` | Preparar o reparar el tiempo de ejecución Codex gestionado a través del flujo de arranque soportado. |
-| `installCli()` | `POST /api/v1/cli/install` | Instala el lanzador local de PATH. |
+| `installCli()` | `POST /api/v1/cli/install` | Instalación de lanzacohetes de escritorio nativo; sin apoyo de un backend Node independiente. Utilice el escritorio General o el lanzador de archivos. |
 
 Las mutaciones de configuración requieren el servicio local autenticado. Compruebe el `ok` devuelto y el código de error; los conflictos de configuración deben resolverse antes de reintentar. Un tiempo de espera del cliente no establece que una instalación aceptada fue cancelada. Reprueba la preparación antes de comenzar otra instalación. Para la entrada de suscripción o entrada credencial variable llamada-ambiente, utilice el [flujo de configuración terminal](cli.md#terminal-setup).
 

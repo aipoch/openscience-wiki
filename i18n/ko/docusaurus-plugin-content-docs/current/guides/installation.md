@@ -1,14 +1,14 @@
 ---
 title: "설치 및 업데이트"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
 # 설치 및 업데이트 {/* #installation-and-updates */}
 
-대부분의 사용자는 GitHub 릴리스에서 데스크탑 패키지를 설치해야 합니다. 기여자 또는 최신 코드를 테스트하는 사람이 소스에서 앱을 실행할 수 있습니다. Open-Science는 전자 신청입니다; 그것의 렌더는 또한 토큰 보호된 로컬 브라우저 접근을 지원합니다.
+대부분의 사용자는 GitHub 릴리스에서 데스크탑 패키지를 설치해야 합니다. 기여자 또는 최신 코드를 테스트하는 사람이 소스에서 앱을 실행할 수 있습니다. Electron 데스크톱 클라이언트는 공용 Node 백엔드에 연결하여 정통 로컬 브라우저 인터페이스를 제공합니다.
 
 <PlatformGuide />
 
@@ -71,11 +71,15 @@ v0.34.0는 Linux **x64와 ARM64** 패키지를 제공합니다. ARM64의 경우 
 
 설치 위치에는 애플리케이션을 저장하고, 설정 마법사의 **Data location**에는 연구 파일과 실행 환경을 저장합니다. 두 위치는 별도로 설정합니다. 설치 후 [초기 설정](onboarding.md)을 진행하세요.
 
+### 독립 CLI 사용 {/* #standalone-cli */}
+
+데스크톱 창없이 작동하려면 [공식 출시](https://github.com/aipoch/open-science/releases/tag/v0.37.1)에서 일치 독립 CLI 아카이브를 다운로드하십시오. 그것은 Node, 백엔드 및 웹 UI를 묶습니다. 완전한 디렉토리를 추출 한 다음 [CLI 설정](../reference/cli.md#terminal-setup)을 따르고 모델을 구성하고 readiness를 확인합니다. 데스크톱 사용자는 여전히 **Settings → General → Install command**을 사용할 수 있습니다.
+
 ### 소스에서 실행 {/* #run-from-source */}
 
-Git, Node.js 22, npm 및 Electron을 위한 플랫폼 빌드가 필요합니다. 응용 프로그램에서 에이전트 프레임 워크를 설치하거나 선택합니다. 설치 중에 저장소는 Prisma Client를 생성하고 앱 패치를 적용하고 Electron native Dependencies를 준비합니다.
+당신은 Git, Node.js 24, npm 및 Electron에 대한 플랫폼 빌드 prerequisites가 필요합니다. 응용 프로그램에서 에이전트 프레임 워크를 설치 또는 선택. 설치 중에 저장소는 Prisma Client를 생성하고 앱 패치를 적용하고 Electron native Dependencies를 준비합니다.
 
-재현 가능한 소스 설치를 위해, 의존성을 설치하기 전에 [관련 링크](../changelog/v0.34.0.md)에서 의도한 릴리스 태그를 선택하십시오. 기본적으로 clone은 고정 릴리스보다는 분기를 따릅니다. 선택된 태그, 소스 커밋 및 런타임 버전을 기록하므로 다른 사람이 환경을 재현 할 수 있습니다.
+재현 가능한 소스 설치를 위해, 의존성을 설치하기 전에 [관련 링크](../changelog/v0.37.1.md)에서 의도한 릴리스 태그를 선택하십시오. 기본적으로 clone은 고정 릴리스보다는 분기를 따릅니다. 선택된 태그, 소스 커밋 및 런타임 버전을 기록하므로 다른 사람이 환경을 재현 할 수 있습니다.
 
 선택된 릴리즈에 표시된 정확한 태그로 아래 `RELEASE_TAG`을 대체하십시오. (`v`)를 포함합니다. 지속적인 개발을 따르기 위하여 대신, omit `--branch RELEASE_TAG --depth 1`; 체크 아웃은 기본 지점을 따라합니다.
 
@@ -92,7 +96,7 @@ npm run dev
 npm run build
 ```
 
-`npm run build`는 TypeScript를 검사하고 Electron 렌더링기, 사전 로드 및 주요 대상을 구축합니다. 웹 또는 헤드리스 항목 포인트를 테스트 할 필요가 있다면, 저장소의 기존 헤드리스 인수를 별도의 데이터 디렉토리로 사용하십시오. 그것은 기본 저장소에서 테스트 데이터를 유지합니다.
+선택한 태그의 package.json 및 [독립 실행 시간 안내](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md)을 사용하여 빌드 대상과 종속성을 제공합니다. `npm run dev:web`는 Node/Web 항목 포인트를 개발; `npm run dev`은 데스크톱 클라이언트를 준비합니다. 격리된 구성 디렉토리를 사용하여 테스트 데이터를 분리합니다.
 
 ## 첫 번째 시간 설정 완료 {/* #complete-first-time-setup */}
 

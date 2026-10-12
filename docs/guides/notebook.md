@@ -1,7 +1,7 @@
 ---
 title: "Notebook and execution evidence"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -285,3 +285,9 @@ If a Windows Notebook export has no extension, first open a copy as text and con
 | Warning with a completed run | Read what the warning affects, then inspect the saved output before deciding whether to rerun |
 
 When reporting a problem, keep the first failing line, selected runtime, file identity and task state. Link saved output to its actual producing run.
+
+## Ready runtimes and captured packages {/* #runtime-capture */}
+
+A ready default runtime no longer requires a second setup approval for an ordinary supported operation. A risky-code decision or a request for additional access remains separate: inspect its action and scope before responding.
+
+In the result's **Provenance → Environment**, retain Conda and pip origins and the reported package versions/build strings when the environment uses both managers. v0.37.0 improves mixed-environment capture and micromamba metadata. Compare the captured environment with the intended runtime, then use [rerun verification](reproducibility.md) when you need execution evidence. A package inventory alone does not prove identical numerical results.

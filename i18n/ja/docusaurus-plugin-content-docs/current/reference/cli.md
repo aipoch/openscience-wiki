@@ -1,7 +1,7 @@
 ---
 title: "CLIと構造化された出力"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,12 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## ターミナルからセットアップ {/* #terminal-setup */}
 
-デスクトップアプリケーションを最初にインストールし、`open-science` コマンドを実行します。 CLI はアプリケーションのバックエンドを使用します。 それは別のnpmデーモンではありません。 Debian パッケージにはコマンドが含まれています。 ランチャーが欠落している場所, プラットフォームランチャーのセットアップに従うか、インストールされたCLIエントリを使用する, その後、`open-science cli install`.
+[公式リリース](https://github.com/aipoch/open-science/releases/tag/v0.37.1)からデスクトップランチャーまたはスタンドアローンCLIアーカイブのいずれかを選択します。 スタンドアローン アーカイブには、CLI、Nodeのランタイム、バックエンド、Web UIが含まれています。 電動機や別途Node/npmツールチェーンは不要です。
+
+1. macOS または Linux アーム64/x64 または Windows x64 を選択し、ホストにマッチします。
+2. 完全なアーカイブを書き込み可能な場所に抽出します。 `backend`と`node-runtime`を一緒に保持してください。 起動者のみをコピーすると起動が解除されます。
+3. そのディレクトリから、macOS/Linux で `./open-science --help` を実行し、PowerShell で `./open-science.cmd --help` を実行します。 PATH にそのディレクトリを追加した後、新しいターミナルを開き、次として `open-science` を使用します。
+4. ローカルのバックエンドを開始し、準備を確かめます。 単独で起動するとモデルを構成しません。
 
 ```bash
 open-science init
@@ -24,7 +29,7 @@ open-science runtime list --json
 open-science doctor --json
 ```
 
-`init` は、アプリケーションを起動せずに設定ディレクトリを作成します。 `--profile`は、サポート開発プロファイルの`--config-root`のエイリアスです。 パッケージ化されたスタートアップは、これらのオーバーライドを拒否します。 意図したプロファイルを一貫して使用してください。 `runtime list`は、実行可能パスを提示することなく、検出されたフレームワークの信頼性、バージョンおよび管理/外部ソースを示しています。
+`init` は、アプリケーションを起動せずに設定ディレクトリを作成します。 `--profile` は `--config-root` をポータブル CLI プロファイルにエイリアスします。 init、start、およびその後のコマンドと同じ絶対設定ディレクトリを使用します。 別のプロファイルは、独自のセットアップを持っています。 `runtime list`は、実行可能パスを提示することなく、検出されたフレームワークの信頼性、バージョンおよび管理/外部ソースを示しています。
 
 未設定のCodex設定の場合:
 
@@ -46,7 +51,8 @@ open-science doctor --json
 | --- | --- | --- |
 | インストールされたアプリケーションランチャー | **Settings → General → Command line tool → Install command** | `open-science --help` |
 | ソースチェックアウト | 組み込みアプリケーションとリポジトリの依存関係 | `node packages/open-science/cli.mjs --help` |
-| npm クライアント | Node.js 22.5+ およびインストールされたアプリケーション; インストール前にパッケージの可用性を確認 | パッケージ識別子 `@aipoch/open-science` |
+| スタンドアローンCLIアーカイブ | マッチングOS/アーキテクチャ; 完全な抽出されたディレクトリを保持する | `./open-science --help` や `./open-science.cmd --help` |
+| npmクライアント/SDK | Node.js 22.13+ および実行中の互換性のあるバックエンド。 インストール前にパッケージの要件をチェック | パッケージ識別子 `@aipoch/open-science` |
 
 インストールされたランチャーは、アプリケーションのバンドルされたランタイムを使用します。 PATH からディレクトリが存在しない場合は、一般パネルの指示に従って、新しいターミナルを開きます。 表示ブランディングと一致させるために実行可能の名前を変更しないでください。
 
@@ -68,11 +74,11 @@ open-science status --json
 
 <p className="example-label"><strong>例</strong> コマンドラインからメモを保存</p>
 
-1. 上記のエントリを使用してコマンドをインストールします。 作業モデルでデスクトップアプリを稼働させます。
+1. 上記のエントリを使用してコマンドをインストールします。 デスクトップまたは`start --no-open`を介して、作業モデルでバックエンドを実行してください。
 2. `open-science status --json` を実行し、`open-science project list --json` を実行します。 意図したインスタンスを確認し、返されたプロジェクト ID をコピーします。
 3. `task.md` で保存: **簡単な接続チェックノートを含む project-note.md を保存します。 他のファイルを読み込むか、ネットワークを利用しないでください。**
 4. [入力を実行し、フラグを制御する](#run-input-and-control-flags) でコマンドを実行します。 前回からIDを取得した後に、各プレースホルダを交換してください。
-5. パーミッションの実行が停止する場合、デスクトップの会話で応答します。 `--wait` はタスクが続いたときにタイムアウトすることができます。 `run status RUN_ID --json`を再度送信する前に検査します。
+5. 許可の実行停止がない場合、対応するデスクトップまたは認証されたブラウザの会話で応答します。 `--wait` はタスクが続いたときにタイムアウトすることができます。 `run status RUN_ID --json`を再度送信する前に検査します。
 6. 返されたMarkdownアーティファクトIDを選択し、それを新しいローカルファイル名にダウンロードし、開きます。 リクエストされたアーティファクトのない完了した実行には、そのセッションのフォローアップが必要です。 遺物が存在してもダウンロードが失敗した場合は、[アーティファクトのダウンロードの回復](./api.md#a-completed-task-whose-file-will-not-download) に従ってください。
 
 プランファーストのタスクでは、`--return-on-attention` を利用し、返されたプランを調べて、下記のプランコマンドで対応します。 JSON の統合のために、実行、完了、失敗し、終了するタスクとしてすべての成功した HTTP 応答を処理するのではなくキャンセルを区別して下さい。
@@ -222,3 +228,7 @@ open-science run --project "Sequence and PDF Research" \
 ```
 
 オプションは、この呼び出しにのみ適用され、セッションの設定として保存されません。 `--plan-first`と併用できません。 最終的なステータスとエラーを調べる: 人間の待ちを避けてタスクの完了を保証するものではありません。 ホスト機能`permission-prompts-none`のクライアントチェック。 古いホストが`unsupported_capability`を返す場合、マッチングクライアントとアプリを更新します。
+
+## Windowsランチャーパス {/* #windows-launcher-paths */}
+
+v0.37.1は、非ASCII文字を含むデスクトップランチャーパスを修正しました。 更新後、新しいターミナルを開き、`Get-Command open-science`と`open-science --help`を確認してください。 コマンドがまだ古いインストールに解決しない場合は、**Settings → General** で示されているパスを使用します。 スタンドアローンのアーカイブディレクトリをそのまま保持します。 成功するヘルプコマンドはモデルの信頼性を確立しません。 `doctor --json` を次点検して下さい。

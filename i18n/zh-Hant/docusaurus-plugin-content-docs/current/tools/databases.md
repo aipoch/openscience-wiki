@@ -2,7 +2,7 @@
 title: "科學資料庫"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # 科學資料庫 {/* #科学数据库 */}
@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支援哪些資料庫 {/* #supported-databases */}
 
-Open-Science v0.36.0 內建 **34 個資料來源 Connector，提供 347 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整登錄檔共 349 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示覆蓋其網站的全部功能。
+Open-Science v0.37.1 內建 **35 個資料來源 Connector，提供 359 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整登錄檔共 361 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示覆蓋其網站的全部功能。
 
 | Connector | 來源 | 運算元 | 用途  |
 | --- | --- | --- | ---  |
@@ -22,11 +22,11 @@ Open-Science v0.36.0 內建 **34 個資料來源 Connector，提供 347 個操�
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | PubMed 文獻檢索與記錄  |
 | Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | 基因及蛋白標識對映、UniProt 序列查詢、GO 與 Reactome 註釋、g:Profiler 與 Enrichr 基因集富集 |
 | Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 22 | 基因組註釋、同源及序列資訊；NCBI 物種、組裝與序列身分；BLAST 檢索、Clustal Omega 多序列比對；指定人群的 LD 與代理變異 |
-| Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | 群體頻率、臨床記錄，以及實驗特定的功能分數、變異對映和實驗資訊 |
+| Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | 群體頻率、臨床記錄，以及實驗特定的功能分數、變異對映和實驗資訊 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床試驗登記記錄  |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | 臨床基因組證據資源；新增 ClinPGx 藥物基因組學記錄 |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 17 | 結構檔案與相關記錄  |
-| ChEMBL · `chembl` | ChEMBL | 6 | 化合物、靶標和活性記錄  |
+| ChEMBL · `chembl` | ChEMBL | 7 | 化合物、靶標和活性記錄  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | 預印本後設資料  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA、藥品標籤、FAERS 不良事件報告和藥品召回 |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | 人類遺傳關聯資源  |
@@ -51,6 +51,7 @@ Open-Science v0.36.0 內建 **34 個資料來源 Connector，提供 347 個操�
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 查詢疾病或基因與表型的關聯，保留物種和支援證據 |
 | IEDB · `iedb` | Immune Epitope Database | 8 | 檢索表位、抗原、T 細胞、B 細胞和 MHC 實驗、TCR/BCR 證據及來源文獻 |
 | PDC · `pdc` | NCI Proteomic Data Commons | 4 | 癌症蛋白組研究版本、樣本關聯和定量檔案後設資料；不下載檔案 |
+| ENCORI · `encori` | ENCORI | 10 | miRNA／RBP 靶標、RNA 互作、ceRNA、motif、結合位點與參考／批次資料 |
 
 離線 Molecule 工具見[科學檢視器](viewers.md)。各資料來源實際提供的操作見 [Connector 操作引數參考](../reference/connector-operations.md)。
 
@@ -72,6 +73,45 @@ Open-Science v0.36.0 內建 **34 個資料來源 Connector，提供 347 個操�
 **Zenodo** 無需認證即可查詢公開記錄後設資料，應保留版本級記錄 ID、訪問和許可欄位。**GDC** 提供公開後設資料，生成清單不等於獲得下載授權，受控檔案仍需 GDC 權限。[GDC 操作](../reference/connector-operations.md#family-24) · [Zenodo 操作](../reference/connector-operations.md#family-25)。
 
 資料庫響應可以支援一個科研步驟，但不會自動下載資料、把所有論文加入文獻庫或完成整套分析。需要儲存哪些記錄和檔案，應在請求中明確說明。
+
+## RNA 調控證據：ENCORI {/* #encori */}
+
+在 **Settings → Connectors** 搜尋 **ENCORI**，啟用並使其對 **Main** 可用。它是內建資料來源，不需要自定義 MCP 地址或 API key。選擇可用主模型，在會話中明確物種／assembly、RNA 或靶基因、細胞型別與證據閾值。
+
+| 任務 | 結果與使用邊界 |
+| --- | --- |
+| miRNA、RNA–RNA、RBP 靶標及 ceRNA 查詢 | 保留 CLIP、降解組、預測程式、p 值與 FDR 等適用證據；結合或關聯不等於因果調控 |
+| RBP 疾病、motif 與結合位點 | 保留參考基因組、組織／細胞、上游順序和原始座標，避免混合不同物種或座標體系 |
+| 參考表與批次資料 | 先列出精確表路徑或檔名；批次下載是單獨操作，明確檔案、目錄與所需空間後再執行 |
+
+<p className="example-label"><strong>案例演示</strong> 查詢 PDCD4 在 HeLa 條件下的 miRNA 靶標證據</p>
+
+```text
+Use ENCORI to find human miRNA interactions targeting PDCD4 in HeLa cells,
+using hg38, mRNA targets, at least one CLIP experiment and TargetScan support.
+Show at most two rows. Preserve the exact filters, total count and full raw
+response in the session data folder. Explain the evidence limits in English.
+Do not download bulk datasets.
+```
+
+本例得到 19 條記錄，前兩條為 hsa-miR-23a-3p 與 hsa-miR-181a-5p。下圖顯示儲存後的完整原始響應及其證據範圍；這是本次查詢結果，資料庫更新後數量可能變化。
+
+![ENCORI 查詢總結與開啟的完整原始響應](/img/open-science/v0371/encori-response.webp)
+
+讀取結果時，區分 `total_records` 與 `returned_records`，並檢查 `is_complete`、`result_scope` 和 `completeness_note`。預覽只顯示部分行時，不要用它概括全部靶標分佈。完整原始響應的 `raw_response_path` 是本地檔案路徑，不自動等於可下載的會話產物；需要共享時，讓 Agent 儲存到會話可訪問的資料目錄並附加檔案，開啟後核對內容。
+
+查詢可返回真實空結果，也可返回 `ok:false`。不要為了得到命中自動放寬條件。批次檔案下載完成後檢查實際路徑、大小與 `verified_gzip`；參考表查詢和檔案列表不等於已取得批次資料。精確引數見 [ENCORI 操作參考](../reference/connector-operations.md#family-35)。
+
+## 實驗條件與逐條提交證據 {/* #assay-submission-evidence */}
+
+| 入口 | 操作順序 | 判斷邊界 |
+| --- | --- | --- |
+| **ChEMBL** | 啟用 Connector，無需 API key。先從活性記錄取得 `assay_chembl_id`，用 `get_assay` 檢視方法、物種、細胞／組織和靶標；再用同一 assay ID 查詢 `get_bioactivity` | 靶標歸屬置信度不是測量質量；比較 IC50／Ki 前核對條件、單位及關係符號 |
+| **Variants → ClinVar** | 在 Connector 中配置真實的 NCBI 聯絡郵箱，API key 可選。查詢 `clinvar_get_submissions`，傳入 VCV accession 或正整數 Variation ID；後續分頁沿返回的 `next_page` 固定版本 | 保留 SCV、提交者、疾病、評估日期、方法及引用；胚系、體細胞臨床影響與致癌性應分別比較 |
+
+ChEMBL 每頁按 `activity_id` 排序。保持過濾條件不變，將 `next_offset` 作為下一頁 `offset`，直到 `has_more:false`；可以取得超過 1,000 條記錄。`summary` 僅覆蓋當前頁，不能用一頁最強活性代表整個查詢。ClinVar 首頁解析到最新版本後，繼續使用返回的帶版本 VCV；不要用 RCV、SCV 或 rsID 替代輸入。
+
+[ChEMBL 實驗引數](../reference/connector-operations.md#get_assay) · [活性分頁](../reference/connector-operations.md#get_bioactivity) · [ClinVar 提交引數](../reference/connector-operations.md#clinvar_get_submissions)。
 
 ## 單細胞、模式生物及變異功能資料 {/* #single-cell-model-organisms */}
 
@@ -214,7 +254,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作引數參考](../reference/connector-operations.md)列出必填輸入、可選值和準確呼叫方法。本頁用於選擇和連線資料來源，引數參考用於查詢某個具體工具的欄位。
 
-目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/registry.ts)。
+目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts)。
 
 ## 序列檢索與多序列比對 {/* #sequence-tools */}
 

@@ -1,7 +1,7 @@
 ---
 title: "작업 SDK 및 로컬 API"
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-12'
 ---
 
 # 작업 SDK 및 로컬 API {/* #task-sdk-and-local-api */}
@@ -14,13 +14,13 @@ last_update:
 
 <p className="example-label"><strong>예시</strong> 연결 확인 메모 저장 및 다운로드</p>
 
-Node.js 22.5 이상을 사용하십시오. 동일한 기계에 설치된 탁상용 신청을 열고, 모형 체제를 완료하고 그것을 달리십시오. SDK은 로컬 서비스 발견과 로컬 스토리지 토큰을 사용합니다. 별도의 데몬을 위해 먼저 [Headless 서비스](server.md)을 따르십시오.
+선택된 패키지와 호환되는 Node.js를 사용하십시오: v0.37.1 백엔드 패키지는 Node.js 22.13 또는 나중에, 독립 CLI 아카이브 번들 Node를 필요로 합니다. 바탕 화면 또는 [CLI](server.md)을 통해 백업을 시작, 모델 설정 완료하고 실행 유지. SDK은 로컬 서비스 발견과 로컬 스토리지 토큰을 사용합니다.
 
-빈 작업 폴더에서 클라이언트를 설치:
+빈 작업 폴더에서 일치 로컬 패키지를 설치합니다. `BACKEND_DIRECTORY`을 완전히 추출한 독립 CLI 아카이브에서 `backend` 폴더에 절대 경로로 바꾸고, 그 디렉토리를 유지하십시오.
 
 ```bash
 npm init -y
-npm install @aipoch/open-science
+npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
 ```
 
 `connection-check.mjs`로 다음을 저장합니다. `node connection-check.mjs`을 목록 프로젝트 ID로 실행하고, `node connection-check.mjs PROJECT_ID`을 한 반환 ID로 설정합니다. 첫 번째 invocation deliberately는 목록 프로젝트 후 중지합니다. 두 번째는 작은 작업을 만듭니다.
@@ -58,9 +58,9 @@ await writeFile('project-note.download.md', new Uint8Array(await response.arrayB
 console.log('Saved project-note.download.md; open and check its contents.');
 ```
 
-데스크탑 세션을 엽니다. **Ask for approval**이 작업을 일시 중지하는 경우 응답합니다. 대기 타임 아웃은 클라이언트 투표를 중지; 실행을 취소하지 않습니다. `getRun`과 인쇄된 실행 ID를 검사하고, 요청을 다시 해결하거나, `cancelRun`을 호출하여 중지 할 때 기다리십시오. 다운로드는 일치하는 저장된 artifact가 존재할 때만 성공합니다; 확인을 완료하기 위해 다운로드 된 Markdown을 엽니다.
+해당 데스크톱 또는 인증된 브라우저 세션을 엽니다. **Ask for approval**이 작업을 일시 중지하는 경우 응답합니다. 대기 타임 아웃은 클라이언트 투표를 중지; 실행을 취소하지 않습니다. `getRun`과 인쇄된 실행 ID를 검사하고, 요청을 다시 해결하거나, `cancelRun`을 호출하여 중지 할 때 기다리십시오. 다운로드는 일치하는 저장된 artifact가 존재할 때만 성공합니다; 확인을 완료하기 위해 다운로드 된 Markdown을 엽니다.
 
-이 프로그램은 공개 API 컨트랙트를 보여줍니다. 모델이 항상 요청한 파일을 저장한다는 것을 가정하지 않습니다. npm 패키지가 설치될 수 없는 경우, 해당 소스 체크 아웃과 함께 제공되는 SDK 폴더를 로컬 패키지로 사용하십시오. 설치하기 전에 패키지 메타데이터를 확인합니다.
+이 프로그램은 공개 API 컨트랙트를 보여줍니다. 모델이 항상 요청한 파일을 저장하는 것이 가정하지 않습니다. 일치하는 방출 또는 근원 포장에서 SDK를 사용하십시오; 설치하기 전에 플랫폼과 Node 요구 사항을 확인합니다.
 
 ### 파일이 다운로드되지 않는 완성 된 작업 {/* #a-completed-task-whose-file-will-not-download */}
 
@@ -78,7 +78,7 @@ console.log('Saved project-note.download.md; open and check its contents.');
 | `listRuntimes()` | `GET /api/v1/runtimes` | 목록 프레임 워크, 상태, 옵션 버전 및 관리 / 외부 소스. |
 | `bootstrap({action: "status"})` | `POST /api/v1/bootstrap` | 첫 번째 실행 설정 상태를 검사합니다. |
 | `bootstrap({action: "runtime"})` | `POST /api/v1/bootstrap` | 지원된 부트 스트랩 흐름을 통해 관리된 Codex 런타임을 준비하거나 수리하십시오. |
-| `installCli()` | `POST /api/v1/cli/install` | 로컬 PATH 발사기를 설치합니다. |
+| `installCli()` | `POST /api/v1/cli/install` | 본래 탁상용 발사기 임명; 독립 Node 백엔드에 의해 지원되지 않았습니다. 데스크탑 일반 또는 아카이브 실행기를 사용합니다. |
 
 Setup mutations는 정통 현지 서비스를 요구합니다. 반환된 `ok` 및 오류 코드 확인; 구성 분쟁은 재발송하기 전에 해결되어야 합니다. 클라이언트 타임아웃은 허용된 설치가 취소되었는지 설정하지 않습니다. 다른 설치를 시작하기 전에 recheck readiness. 구독 로그인 또는 name-environment-variable credential 입력을 위해, [터미널 설정 흐름](cli.md#terminal-setup)를 사용하십시오.
 

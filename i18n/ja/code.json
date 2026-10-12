@@ -1769,5 +1769,17 @@
   },
   "docs.outline.reference.v0360.scope": {
     "message": "PDF 翻訳、Notebook 実行レビュー、PDC、Ensembl LD および読み込みページ選択。"
+  },
+  "docs.outline.reference.v0371.title": {
+    "message": "v0.37.1"
+  },
+  "docs.outline.reference.v0371.scope": {
+    "message": "科学的PDF忠実度、Windowsパス、静的なNotebook実行と小型インストーラー。"
+  },
+  "docs.outline.reference.v0370.title": {
+    "message": "v0.37.0"
+  },
+  "docs.outline.reference.v0370.scope": {
+    "message": "スタンドアローンNodeバックエンドとCLI、ENCORI、ChEMBLアッセイ、ClinVar投稿とNotebookキャプチャ。"
   }
 }

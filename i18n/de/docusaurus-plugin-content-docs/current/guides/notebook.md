@@ -1,7 +1,7 @@
 ---
 title: "Notebook und Ausführungsnachweise"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -285,3 +285,9 @@ Wenn ein Windows Notebook-Export keine Erweiterung hat, öffnen Sie zuerst eine 
 | Warnung mit einem abgeschlossenen Lauf | Lesen Sie, was die Warnung betrifft, und überprüfen Sie dann die gespeicherte Ausgabe, bevor Sie entscheiden, ob Sie erneut ausführen möchten |
 
 Wenn Sie ein Problem melden, behalten Sie die erste fehlerhafte Zeile, die ausgewählte Laufzeit, die Dateiidentität und den Aufgabenzustand bei. Link speicherte die Ausgabe zu seinem tatsächlichen Produktionslauf.
+
+## Ready Runtimes und erfasste Pakete {/* #runtime-capture */}
+
+Für eine betriebsbereite Standardlaufzeit ist keine zweite Setup-Genehmigung mehr für einen gewöhnlichen unterstützten Betrieb erforderlich. Eine Risky-Code-Entscheidung oder ein Antrag auf zusätzlichen Zugang bleibt getrennt: Überprüfen Sie ihre Aktion und ihren Umfang, bevor Sie antworten.
+
+Behalten Sie in **Provenance → Environment** des Ergebnisses die Ursprünge von Conda und pip sowie die gemeldeten Paketversionen/Bauzeichenfolgen bei, wenn die Umgebung beide Manager verwendet. v0.37.0 verbessert Mixed-Environment-Capture und Mikromamba-Metadaten. Vergleichen Sie die erfasste Umgebung mit der vorgesehenen Laufzeit und verwenden Sie dann [Wiederholungsüberprüfung](reproducibility.md), wenn Sie Ausführungsnachweise benötigen. Ein Paketinventar allein beweist keine identischen numerischen Ergebnisse.

@@ -1,7 +1,7 @@
 ---
 title: "Arquitectura y diagnósticos"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-12'
 ---
 
 # Arquitectura y diagnósticos {/* #architecture-and-diagnostics */}
@@ -12,7 +12,7 @@ Localice un fallo por el componente que posee la operación. Una respuesta model
 
 ```mermaid
 flowchart LR
-  UI[Desktop or browser interface] --> MAIN[Application main process]
+  UI[Desktop or browser interface] --> MAIN[Shared Node backend]
   MAIN --> STORE[Settings, database and managed files]
   MAIN --> AGENT[Agent framework and model provider]
   MAIN --> NB[Notebook runtime]
@@ -28,7 +28,7 @@ flowchart LR
 | Componente | Owns | Pruebas para inspeccionar |
 | --- | --- | --- |
 | Renderer y vista previa | Mostrar estado, controles, contenido de archivo renderizado | Page, seleccionado proyecto/sesión, nombre de archivo, error de vista previa |
-| Proceso Main | Operaciones persistentes, servicios de aplicaciones y límites de acceso | Error de operación y diagnósticos asociados |
+| Node backend | Operaciones persistentes, servicios de aplicaciones y límites de acceso | Error de operación y diagnósticos asociados |
 | Marco de agente/providente | Conexión modelo, protocolo de ejecución de tareas y flujo de respuesta | Marco/providente/modelo, prueba de conexión, herramienta de falla o giro |
 | Notebook | Intérprete, ejecución de códigos, salidas y variables en vivo | ID/versión de tiempo de ejecución, celda de falla, stdout/stderr y registro de ejecución |
 | Conector | Solicitud de servicio externo | Connector/nombre de herramientas, insumos sanitarios, estado/error del servicio |
@@ -80,3 +80,7 @@ En primer lugar, distinguir una operación fallida del refresco/limpia fallido d
 **Export diagnostics…** recoge metadatos de sesión elegidos, registros de bases de datos y metadatos de registro de aplicaciones disponibles en un archivo local con un registro de manifiesto y exportación. Las fuentes desaparecidas no detienen toda la exportación; fuentes grandes o dañadas pueden producir resúmenes. Los registros de aplicaciones actuales e históricos pueden cubrir la actividad fuera de la sesión seleccionada, así que revise las fuentes seleccionadas y capture los resultados.
 
 Las fuentes ordinarias de metadatos excluyen los campos de contenido privado. Después de un fallo sensible-contenido paquete-exportación, el diálogo también puede ofrecer evidencia de escáner redacted y archivos originales marcados. Los archivos originales no se verifican por defecto; La selección explícita incluye sus bytes originales. Exportar no hace ninguna carga o solicitud de modelo. Inspeccione el archivo resultante antes de compartir. No reemplaza una copia de seguridad de paquete de investigación o una reproducción mínima. Ver [el procedimiento de exportación ilustrado](../guides/troubleshooting.md#session-diagnostics).
+
+## El escritorio y el backend son procesos separados {/* #node-backend */}
+
+Desde v0.37.0, Electron posee la cáscara de escritorio nativa mientras que un backend Node común posee servicios compartidos. El escritorio, Web UI, CLI y SDK pueden conectarse a ese mismo backend. Identificar el directorio de configuración, versión y puerto real con `status --json` cuando un cliente no puede conectarse. Una ventana de escritorio visible por sí sola no prueba que el backend es saludable. Siga a [propiedad de backend](server.md#backend-ownership) antes de detenerlo.

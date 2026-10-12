@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -390,3 +390,7 @@ Abra el accesorio PDF de referencia y utilice **Notes & Annotations** para anota
 Utilice la casilla de verificación selecta en la biblioteca o la bandeja de entrada para seleccionar los registros ya cargados en esa vista. Compruebe el recuento seleccionado y las filas visibles antes de elegir una acción de lote. Seleccionar esta casilla reemplaza la selección con las filas cargadas; despejar la selección.
 
 Cuando existen registros adicionales de la Biblioteca, una acción **Select all matching references** separada puede extender la selección más allá de la página cargada. Inspeccione sus filtros totales y activos antes de utilizarlo. La casilla de verificación de página por sí sola no hace esto. Utilice **Clear selection** para empezar de nuevo. La selección de registros no acepta candidatos de Inbox o archivos de exportación hasta que elija esa acción.
+
+## Recuperar un lote de cuello inteligente fallido {/* #smart-collection-retry */}
+
+Cuando una evaluación de recopilación inteligente se detiene en un lote fallido, inspeccione su error y el progreso restante antes de utilizar la reingresación ofrecida. Desde v0.37.0, la reingresación reanuda el lote fallido al tiempo que preserva el trabajo de evaluación completado. Mantenga el alcance y los criterios inalterados para esa reingresación, a continuación, revise Incluido, Repaso de las necesidades y resultados no incluidos. No cree una colección duplicada para recuperar una evaluación interrumpida.

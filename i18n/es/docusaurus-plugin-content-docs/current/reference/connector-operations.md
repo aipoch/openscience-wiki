@@ -2,7 +2,7 @@
 title: "Referencia de operación Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Los nombres de campo de retorno difieren por operación. Las descripciones y esq
 
 ## Contribuciones de las operaciones {/* #operation-inputs */}
 
-Ampliar un Connector a la vez. Los campos obligatorios están marcados con **obligatorio**; esta referencia y descarga utilizar el esquema Open-Science **v0.36.0** Una lista `input.required` anidada es autorizada; una lista de `required` de alto nivel puede estar ausente. Consulte el <ExampleDownload path="/examples/capabilities/connector-catalog-v0.36.0.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas de agentes. No pase un `id` genérico cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
+Ampliar un Connector a la vez. Los campos obligatorios están marcados con **obligatorio**; esta referencia y descarga utilizar el esquema Open-Science **v0.37.1** Una lista `input.required` anidada es autorizada; una lista de `required` de alto nivel puede estar ausente. Consulte el <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.1.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas de agentes. No pase un `id` genérico cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
 
 
 ## Química {/* #family-1 */}
@@ -1366,6 +1366,20 @@ Enumere la puntuación visible para un lector público de un experimento MaveDB.
 const result = await host.mcp("variants", "mavedb_get_experiment_score_sets", {"urn":"urn:mavedb:00000003-a"})
 ```
 
+### `clinvar_get_submissions` {/* #clinvar_get_submissions */}
+
+Obtenga pruebas individuales de presentación SCV de ClinVar VCV XML oficial. Requiere el mismo correo electrónico de contacto que clinvar_search. Adhesión de paso: una adhesión VCV (optional .version is honoured) o un ID de variación positivo. La entrada no versionada recupera el último VCV. RCV, SCV y rsIDs no son aceptados. Las devoluciones presentaron clasificaciones separadamente para germline, impacto clínico somático y oncogenicidad, condiciones, presentter, fecha de evaluación, métodos de aserción, comentarios de clasificación pública, evidencia observada y citas cuando se proporciona. Los campos de origen perdidos permanecen nulos/vacíos. Compare las presentaciones dentro del mismo tipo y condición de clasificación; esta herramienta no infiere conflictos. max_submissions establece el tamaño de la página (1-200, 200) predeterminado; offset defaults to 0. Para páginas posteriores, pase los argumentos devueltos next_page, que marcan la versión VCV; offset √ 0 requiere una versión VCV. Cada página vuelve a crear el XML completo; no hay caché de resultado. Los registros incluidos contienen referencias indirectas en lugar de pruebas directas de SCV. Los SCV Duplicados conservan la versión más alta presente en la instantánea solicitada.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `accession` | cadena de texto | **obligatorio** |
+| `max_submissions` | entero | facultativa; predeterminado: 200; mínimo: 1; máximo: 200 |
+| `offset` | entero | facultativa; predeterminado: 0; mínimo: 0 |
+
+```javascript
+const result = await host.mcp("variants", "clinvar_get_submissions", {"accession":"VCV000045122"})
+```
+
 </ToolOperationGroup>
 
 ## Estudios clínicos {/* #family-7 */}
@@ -2222,21 +2236,23 @@ const result = await host.mcp("chembl", "get_admet", {"molecule_chembl_id": "CHE
 
 ### `get_bioactivity` {/* #get_bioactivity */}
 
-Recuperar las mediciones de bioactividad ChEMBL (IC50, Ki, Kd, EC50, ...) para interacciones de compuesto-objetivo. Filtro por molecule_chembl_id y/o target_chembl_id, activity_type (standard_type), un suelo pChEMBL (min_pchembl), un rango standard_value (min_value/max_value), y unidad (standard_units). Devuelve una página ordenada por activity_id con un resumen más importante.
+Recuperar las mediciones de bioactividad ChEMBL (IC50, Ki, Kd, EC50, ...) para interacciones de compuesto-objetivo. Filtro por molecule_chembl_id, target_chembl_id, y/o assay_chembl_id, activity_type (standard_type), un suelo pChEMBL (min_pchembl), un rango standard_value (min_value/max_value), y unidad (standard_units). Devuelve una página ordenada por activity_id con un resumen de la página-local más-potente. Pase next_offset como offset con los mismos filtros para continuar más allá de los registros 1,000; Para cuando has_more es falso. Utilice get_assay para inspeccionar el contexto experimental antes de comparar las mediciones.
 
 | Campo | Tipo | Requisitos y limitaciones |
 | --- | --- | --- |
 | `molecule_chembl_id` | cadena de texto | opcional |
 | `target_chembl_id` | cadena de texto | opcional |
+| `assay_chembl_id` | cadena de texto | facultativa; minLength: 1; patrón: "^CHEMBL&#91;0-9&#93;+$" |
 | `activity_type` | cadena de texto | facultativa; enum: &#91;"IC50", "EC50", "Ki", "Kd", "AC50", "GI50", "ED50", "Potency"&#93; |
 | `min_pchembl` | número | facultativa; mínimo: 0; máximo: 14 |
 | `min_value` | número | opcional |
 | `max_value` | número | opcional |
 | `unit` | cadena de texto | facultativa; enum: &#91;"nM", "uM", "mM", "pM", "M"&#93; |
 | `limit` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 1000 |
+| `offset` | entero | facultativa; predeterminado: 0; mínimo: 0; máximo: 9007199254740991 |
 
 ```javascript
-const result = await host.mcp("chembl", "get_bioactivity", {"molecule_chembl_id": "CHEMBL25", "activity_type": "IC50", "limit": 10})
+const result = await host.mcp("chembl", "get_bioactivity", {"molecule_chembl_id":"CHEMBL25","activity_type":"IC50","limit":10})
 ```
 
 ### `get_mechanism` {/* #get_mechanism */}
@@ -2269,6 +2285,18 @@ Buscar objetivos biológicos ChEMBL (proteínas, complejos, familias, organismos
 
 ```javascript
 const result = await host.mcp("chembl", "target_search", {"gene_symbol": "EGFR", "organism": "Homo sapiens", "limit": 5})
+```
+
+### `get_assay` {/* #get_assay */}
+
+Recuperar un ensayo ChEMBL por assay_chembl_id de un registro de bioactividad. Devuelve la descripción experimental, el tipo de ensayo y el formato, el organismo, el contexto celular/tissue, los parámetros de ensayo, el objetivo asignado y la confianza de asignación de objetivos. La confianza describe la asignación de objetivos, no la calidad de medición; comparar las condiciones de ensayo antes de combinar los valores IC50/Ki. Utilice get_bioactivity con el mismo assay_chembl_id para recuperar sus mediciones.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `assay_chembl_id` | cadena de texto | **obligatorio**; minLength: 1; patrón: "^CHEMBL&#91;0-9&#93;+$" |
+
+```javascript
+const result = await host.mcp("chembl", "get_assay", {"assay_chembl_id":"CHEMBL1217643"})
 ```
 
 </ToolOperationGroup>
@@ -5391,6 +5419,187 @@ Proporcionar exactamente uno de `pdc_study_id` / `study_id`.
 
 ```javascript
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
+```
+
+</ToolOperationGroup>
+
+## ENCORI {/* #family-35 */}
+
+<ToolOperationGroup>
+<summary>Mostrar operaciones y parámetros</summary>
+
+### `query_mirna_targets` {/* #query_mirna_targets */}
+
+Query oficial miRNA dirija pruebas. Use mirna=all para miRNA sin restricciones; preservar cell_type exactamente. programa es una lista separada de PITA, RNA22, miRmap, DIANA-microT, miRanda, PicTar o TargetScan, nunca todos.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `assembly` | cadena de texto | **obligatorio**; enum: &#91;"hg38", "mm10"&#93; |
+| `gene_type` | cadena de texto | **obligatorio**; enum: &#91;"mRNA", "lncRNA", "pseudogene", "circRNA", "sncRNA"&#93; |
+| `mirna` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `clip_exp_num` | entero | **obligatorio**; mínimo: 0; máximo: 999 |
+| `degra_exp_num` | entero | **obligatorio**; mínimo: 0; máximo: 999 |
+| `pancancer_num` | entero | **obligatorio**; mínimo: 0; máximo: 32 |
+| `program_num` | entero | **obligatorio**; mínimo: 1; máximo: 7 |
+| `program` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `target` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `cell_type` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `max_records` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | facultativa; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_mirna_targets", {"assembly":"hg38","gene_type":"mRNA","mirna":"all","clip_exp_num":1,"degra_exp_num":0,"pancancer_num":0,"program_num":1,"program":"TargetScan","target":"PDCD4","cell_type":"HeLa","max_records":2})
+```
+
+### `query_rna_rna_interactions` {/* #query_rna_rna_interactions */}
+
+Consultar interacciones oficiales de ARN-RNA. Use cell_type=all sólo cuando no esté restringido; no sustituya otra base de datos.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `assembly` | cadena de texto | **obligatorio**; enum: &#91;"hg38", "mm10"&#93; |
+| `gene_type` | cadena de texto | **obligatorio**; enum: &#91;"mRNA", "lncRNA", "pseudogene", "sncRNA", "miRNA"&#93; |
+| `rna` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `inter_num` | entero | **obligatorio**; mínimo: 1; máximo: 999 |
+| `exp_num` | entero | **obligatorio**; mínimo: 1; máximo: 999 |
+| `cell_type` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `max_records` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | facultativa; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rna_rna_interactions", {"assembly":"hg38","gene_type":"mRNA","rna":"TP53","inter_num":1,"exp_num":1,"cell_type":"all","max_records":2})
+```
+
+### `query_rbp_targets` {/* #query_rbp_targets */}
+
+Consultar pruebas oficiales de RBP. Use rbp=all para todos los RBPs; preservar cell_type y distinguir cero filas del fallo de solicitud.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `assembly` | cadena de texto | **obligatorio**; enum: &#91;"hg38", "mm10", "dm6", "ce10", "sacCer3"&#93; |
+| `gene_type` | cadena de texto | **obligatorio**; enum: &#91;"mRNA", "lncRNA", "pseudogene", "circRNA", "sncRNA"&#93; |
+| `rbp` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `clip_exp_num` | entero | **obligatorio**; mínimo: 1; máximo: 999 |
+| `pancancer_num` | entero | **obligatorio**; mínimo: 0; máximo: 32 |
+| `target` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `cell_type` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `max_records` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | facultativa; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rbp_targets", {"assembly":"hg38","gene_type":"mRNA","rbp":"all","clip_exp_num":1,"pancancer_num":0,"target":"TP53","cell_type":"HeLa","max_records":2})
+```
+
+### `query_cerna_network` {/* #query_cerna_network */}
+
+Query official ceRNA networks. Use familia=todos cuando no estén restringidos. Preserve official P values and FDR; Nunca infiere nombres familiares desaparecidos de los condes.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `assembly` | cadena de texto | **obligatorio**; enum: &#91;"hg38", "mm10"&#93; |
+| `gene_type` | cadena de texto | **obligatorio**; enum: &#91;"mRNA", "lncRNA", "pseudogene"&#93; |
+| `cerna` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `mirna_num` | entero | **obligatorio**; mínimo: 1; máximo: 999 |
+| `family` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `pval` | número | **obligatorio**; mínimo: 0; máximo: 0.01 |
+| `fdr` | número | **obligatorio**; mínimo: 0; máximo: 0.01 |
+| `pancancer_num` | entero | **obligatorio**; mínimo: 0; máximo: 32 |
+| `max_records` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | facultativa; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_cerna_network", {"assembly":"hg38","gene_type":"mRNA","cerna":"MYC","mirna_num":1,"family":"all","pval":0.01,"fdr":0.01,"pancancer_num":0,"max_records":2})
+```
+
+### `query_rbp_disease` {/* #query_rbp_disease */}
+
+Pruebas oficiales de enfermedad de RBP. Tejido presto, enfermedad y filtros de destino sin ampliar las consultas de cero resultados.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `assembly` | cadena de texto | **obligatorio**; enum: &#91;"hg38"&#93; |
+| `rbp` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `tissue` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `disease` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `target` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 256; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `max_records` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | facultativa; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rbp_disease", {"assembly":"hg38","rbp":"all","tissue":"breast","disease":"carcinoma","target":"MYC","max_records":2})
+```
+
+### `scan_rbp_motifs` {/* #scan_rbp_motifs */}
+
+Buscar en la clasificación oficial de motivos RBP. Preserve el orden y las puntuaciones. QueryMotif e IdentifiedMotif son campos independientes; no se realiza ningún complemento inverso o se infiere.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `assembly` | cadena de texto | **obligatorio**; enum: &#91;"hg38", "mm10", "dm6", "ce10", "sacCer3"&#93; |
+| `length` | cadena de texto | **obligatorio**; enum: &#91;"short", "long"&#93; |
+| `motif` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 64; patrón: "^&#91;ACGTUNRYKMSWBDHVacgtunrykmswbdhv&#93;+$" |
+| `rank_limit` | entero | **obligatorio**; mínimo: 1; máximo: 100 |
+| `max_records` | entero | facultativa; predeterminado: 20; mínimo: 1; máximo: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | facultativa; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "scan_rbp_motifs", {"assembly":"hg38","length":"short","motif":"UGCAUG","rank_limit":10,"max_records":2})
+```
+
+### `get_binding_sites` {/* #get_binding_sites */}
+
+Recuperar los sitios de enlace oficiales BED por dataset_id. Eliminar sólo los prefijos SQL conocidos de los registros analizados; retener exactamente los bytes crudos.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `assembly` | cadena de texto | **obligatorio**; enum: &#91;"hg38", "mm10", "dm6", "ce10", "sacCer3"&#93; |
+| `dataset_id` | cadena de texto | **obligatorio**; minLength: 1; maxLength: 64; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `max_records` | entero | facultativa; predeterminado: 100; mínimo: 1; máximo: 1000 |
+| `output_dir` | &#91;'string', 'null'&#93; | facultativa; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "get_binding_sites", {"assembly":"hg38","dataset_id":"SBDH2131","max_records":2})
+```
+
+### `get_reference_tables` {/* #get_reference_tables */}
+
+Listar nombres de tabla exactos de la referencia oficial en línea ZIP, o leer un table_name exacto como reference_data/degradome_ref.txt. Señala el ZIP de nuevo en cada llamada.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `table_name` | &#91;'string', 'null'&#93; | facultativa; minLength: 1; maxLength: 512; patrón: "^&#91;^\\r\n\\u0000&#93;*&#91;^\\s\\\u0000&#93; &#91;^\\\\n\\\u0000&#93;*$" |
+| `max_records` | entero | facultativa; predeterminado: 50; mínimo: 1; máximo: 500 |
+| `output_dir` | &#91;'string', 'null'&#93; | facultativa; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "get_reference_tables", {"table_name":"reference_data/degradome_ref.txt","max_records":2})
+```
+
+### `list_bulk_datasets` {/* #list_bulk_datasets */}
+
+Enumerar los nombres de archivo oficiales de conjunto de datos de volumen 24 documentados. Por defecto HEAD sondas de disponibilidad y tamaños de byte, sin descargar datos. La disponibilidad y el tamaño no comprobados son nulos.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `assembly` | &#91;'string', 'null'&#93; | facultativa; enum: &#91;"hg38", "mm10", null&#93; |
+| `data_type` | &#91;'string', 'null'&#93; | facultativa; enum: &#91;"miRNA_mRNA", "miRNA_lncRNA", "miRNA_pseudogene", "miRNA_sncRNA", "miRNA_circRNA", "RNA_RNA", "RBP_mRNA", "RBP_lncRNA", "RBP_pseudogene", "RBP_sncRNA", "RBP_circRNA", "RBP_caRNA", null&#93; |
+| `check_availability` | booleano | facultativa; default: true |
+
+```javascript
+const result = await host.mcp("encori", "list_bulk_datasets", {"assembly":"hg38","data_type":"miRNA_mRNA"})
+```
+
+### `download_bulk_dataset` {/* #download_bulk_dataset */}
+
+Sólo cuando el usuario solicita una descarga, transmita un archivo de vracs oficial a destination_dir en el equipo que ejecuta el caller. Nunca sobreescribir un archivo existente. Los archivos interrumpidos .part reanudan el mismo nombre de archivo/directorio sólo después de la validación de la gama HTTP. Validar el tamaño y la integridad gzip antes de la publicación.
+
+| Campo | Tipo | Requisitos y limitaciones |
+| --- | --- | --- |
+| `filename` | cadena de texto | **obligatorio**; enum: &#91;"hg38.miRNA_mRNA.tar.gz", "hg38.miRNA_lncRNA.tar.gz", "hg38.miRNA_pseudogene.tar.gz", "hg38.miRNA_sncRNA.tar.gz", "hg38.miRNA_circRNA.tar.gz", "hg38.RNA_RNA.tar.gz", "hg38.RBP_mRNA.tar.gz", "hg38.RBP_lncRNA.tar.gz", "hg38.RBP_pseudogene.tar.gz", "hg38.RBP_sncRNA.tar.gz", "hg38.RBP_circRNA.tar.gz", "hg38.RBP_caRNA.tar.gz", "mm10.miRNA_mRNA.tar.gz", "mm10.miRNA_lncRNA.tar.gz", "mm10.miRNA_pseudogene.tar.gz", "mm10.miRNA_sncRNA.tar.gz", "mm10.miRNA_circRNA.tar.gz", "mm10.RNA_RNA.tar.gz", "mm10.RBP_mRNA.tar.gz", "mm10.RBP_lncRNA.tar.gz", "mm10.RBP_pseudogene.tar.gz", "mm10.RBP_sncRNA.tar.gz", "mm10.RBP_circRNA.tar.gz", "mm10.RBP_caRNA.tar.gz"&#93; |
+| `destination_dir` | &#91;'string', 'null'&#93; | facultativa; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
 ```
 
 </ToolOperationGroup>

@@ -1,7 +1,7 @@
 ---
 title: "CLI und strukturierter Output"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,12 @@ Verwenden Sie `open-science`, um den Anwendungsstatus zu überprüfen, Aufgaben 
 
 ## Aufgesetzt von einem Terminal {/* #terminal-setup */}
 
-Installieren Sie zuerst die Desktop-Anwendung und stellen Sie den Befehl `open-science` zur Verfügung. Das CLI verwendet das Backend der Anwendung; Es handelt sich nicht um einen separaten npm-Daemon. Debian-Pakete enthalten den Befehl. Wenn der Launcher fehlt, folgen Sie dem Setup des Platform Launchers oder verwenden Sie den installierten CLI-Eintrag, dann `open-science cli install`.
+Wählen Sie entweder den Desktop-Launcher oder ein eigenständiges CLI-Archiv aus dem [Offizielle Freigabe](https://github.com/aipoch/open-science/releases/tag/v0.37.1). Das Standalone-Archiv enthält die CLI, Node Runtime, Backend und Web UI; Es ist kein Electron oder eine separat installierte Node/npm-Toolchain erforderlich.
+
+1. Wählen Sie macOS oder Linux arm64/x64 oder Windows x64, die zum Host passen.
+2. Extrahieren Sie das komplette Archiv in einen beschreibbaren Ort. Halten Sie den Launcher, `backend` und `node-runtime` zusammen; Durch das Kopieren nur des Launchers wird der Start unterbrochen.
+3. Führen Sie `./open-science --help` in macOS/Linux oder `./open-science.cmd --help` in PowerShell aus. Nachdem Sie dieses Verzeichnis zu PATH hinzugefügt haben, öffnen Sie ein neues Terminal und verwenden Sie `open-science` wie unten.
+4. Starten Sie das lokale Backend und überprüfen Sie die Bereitschaft. Allein das Starten konfiguriert kein Modell.
 
 ```bash
 open-science init
@@ -24,7 +29,7 @@ open-science runtime list --json
 open-science doctor --json
 ```
 
-`init` erstellt das Konfigurationsverzeichnis, ohne die Anwendung zu starten. `--profile` ist ein Alias für `--config-root` für unterstützte Entwicklungsprofile; Ein verpacktes Startup lehnt diese Overrides ab. Verwenden Sie ein beabsichtigtes Profil konsistent. `runtime list` zeigt die erkannten Framework-Bereitschaft, Version und verwaltete / externe Quelle, ohne ausführbare Pfade freizulegen.
+`init` erstellt das Konfigurationsverzeichnis, ohne die Anwendung zu starten. `--profile` Alias `--config-root` für ein tragbares CLI-Profil. Verwenden Sie das gleiche absolute Konfigurationsverzeichnis für Init-, Start- und Folgebefehle; Ein separates Profil hat eine eigene Einrichtung. `runtime list` zeigt die erkannten Framework-Bereitschaft, Version und verwaltete / externe Quelle, ohne ausführbare Pfade freizulegen.
 
 Für ein unkonfiguriertes Codex-Setup:
 
@@ -46,7 +51,8 @@ Lesen Sie **bereit**, das individuelle **Kontrollen** und die vorgeschlagenen **
 | --- | --- | --- |
 | Installierter Application Launcher | **Settings → General → Command line tool → Install command** | `open-science --help` |
 | Quelle Checkout | Builded Application und Repository Abhängigkeiten | `node packages/open-science/cli.mjs --help` |
-| npm-Client | Node.js 22.5+ und eine installierte Anwendung; Paketverfügbarkeit vor der Installation bestätigen | Packungskennung `@aipoch/open-science` |
+| Standalone CLI Archiv | Anpassendes Betriebssystem/Architektur; Bewahren Sie das vollständige extrahierte Verzeichnis auf | `./open-science --help` oder `./open-science.cmd --help` |
+| npm-Client / SDK | Node.js 22.13+ und ein laufendes kompatibles Backend; Prüfen Sie die Anforderungen des Pakets vor der Installation | Packungskennung `@aipoch/open-science` |
 
 Der installierte Launcher verwendet die gebündelte Laufzeit der Anwendung. Wenn das Verzeichnis im PATH fehlt, folgen Sie der angezeigten Anweisung des General-Panels und öffnen Sie ein neues Terminal. Benennen Sie die ausführbare Datei nicht in das Display-Branding um.
 
@@ -68,11 +74,11 @@ open-science status --json
 
 <p className="example-label"><strong>Beispiel</strong> Speichern Sie eine Notiz aus der Befehlszeile</p>
 
-1. Installieren Sie den Befehl mit dem oben genannten Eintrag. Lassen Sie die Desktop-App mit einem funktionierenden Modell laufen.
+1. Installieren Sie den Befehl mit dem oben genannten Eintrag. Führen Sie ein Backend mit einem funktionierenden Modell, entweder über den Desktop oder `start --no-open`.
 2. Führen Sie `open-science status --json`, dann `open-science project list --json`. Überprüfen Sie die beabsichtigte Instanz und kopieren Sie eine zurückgegebene Projekt-ID.
 3. Speichern Sie `task.md` mit: **Speichern Sie project-note.md mit einer kurzen Verbindungsüberprüfung. Lesen Sie keine anderen Dateien oder verwenden Sie das Netzwerk.**
 4. Führen Sie die Befehle unter [Eingabe- und Kontrollflaggen ausführen](#run-input-and-control-flags) aus. Ersetzen Sie jeden Platzhalter erst nach Erhalt seiner ID aus dem vorherigen Ergebnis.
-5. Wenn der lauf um erlaubnis pausiert, antworten sie in seiner desktop-konversation. `--wait` kann Timeout, während die Aufgabe fortgesetzt wird; Überprüfen Sie `run status RUN_ID --json`, bevor Sie erneut einreichen.
+5. Wenn der lauf für die erlaubnis pausiert, antworten sie in der entsprechenden desktop- oder authentifizierten browserkonversation. `--wait` kann Timeout, während die Aufgabe fortgesetzt wird; Überprüfen Sie `run status RUN_ID --json`, bevor Sie erneut einreichen.
 6. Wählen Sie die zurückgegebene Markdown-Artefakt-ID aus, laden Sie sie auf einen neuen lokalen Dateinamen herunter und öffnen Sie sie. Ein abgeschlossener Lauf ohne das angeforderte Artefakt erfordert ein Follow-up in dieser Sitzung. Wenn das Artefakt existiert, der Download jedoch fehlschlägt, folgen Sie [Artefakt Download-Wiederherstellung](./api.md#a-completed-task-whose-file-will-not-download).
 
 Verwenden Sie für Plan-First-Aufgaben `--return-on-attention`, prüfen Sie den zurückgegebenen Plan und antworten Sie über die Anwendung oder die Planbefehle unten. Bei JSON-Integrationen unterscheiden Sie zwischen Laufen, abgeschlossen, fehlgeschlagen und abgebrochen, anstatt jede erfolgreiche HTTP-Antwort als abgeschlossene Aufgabe zu behandeln.
@@ -222,3 +228,7 @@ open-science run --project "Sequence and PDF Research" \
 ```
 
 Die Option gilt nur für diesen Aufruf und wird nicht als Session-Präferenz gespeichert. Es kann nicht mit `--plan-first` kombiniert werden. Überprüfen Sie den endgültigen Status und Fehler: Das Vermeiden eines menschlichen Wartens garantiert nicht den Abschluss der Aufgabe. Der Client prüft die Hostfähigkeit `permission-prompts-none`; Aktualisieren Sie den passenden Client und die passende App, wenn ein älterer Host `unsupported_capability` zurückgibt.
+
+## Windows-Startpfade {/* #windows-launcher-paths */}
+
+v0.37.1 behebt Desktop-Launcher-Pfade, die Nicht-ASCII-Zeichen enthalten. Öffnen Sie nach der Aktualisierung ein neues Terminal und überprüfen Sie `Get-Command open-science` und `open-science --help`. Wenn der Befehl für eine ältere Installation immer noch aufgelöst wird, verwenden Sie den in **Settings → General** gezeigten Pfad. Halten Sie das gesamte Standalone-Archivverzeichnis intakt. Ein erfolgreicher Hilfebefehl stellt keine Modellbereitschaft her; Überprüfen Sie `doctor --json` als nächstes.

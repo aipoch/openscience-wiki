@@ -1,14 +1,14 @@
 ---
 title: "Installation and updates"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
 # Installation and updates
 
-Most users should install the desktop package from GitHub Releases. Contributors, or anyone testing the newest code, can run the app from source. Open-Science is an Electron application; its renderer also supports token-protected local browser access.
+Most users should install the desktop package from GitHub Releases. Contributors, or anyone testing the newest code, can run the app from source. The Electron desktop client connects to a shared Node backend, which also serves the authenticated local browser interface.
 
 <PlatformGuide />
 
@@ -71,11 +71,15 @@ v0.34.0 provides Linux **x64 and ARM64** packages. For ARM64, select `aipoch-ope
 
 The installation location stores the application; **Data location** in the setup wizard stores research files and runtimes. Set them separately. After installation, continue with [First-time setup](onboarding.md).
 
+### Use the standalone CLI {/* #standalone-cli */}
+
+For operation without a desktop window, download the matching standalone CLI archive from the [official release](https://github.com/aipoch/open-science/releases/tag/v0.37.1). It bundles Node, the backend and Web UI. Extract the complete directory, then follow [CLI setup](../reference/cli.md#terminal-setup) to start it, configure a model and check readiness. Desktop users can still use **Settings → General → Install command**.
+
 ### Run from source
 
-You need Git, Node.js 22, npm, and the platform build prerequisites for Electron. Install or select an agent framework in the application. During installation, the repository generates the Prisma Client, applies app patches, and prepares Electron native dependencies.
+You need Git, Node.js 24, npm, and the platform build prerequisites for Electron. Install or select an agent framework in the application. During installation, the repository generates the Prisma Client, applies app patches, and prepares Electron native dependencies.
 
-For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v0.34.0.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
+For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v0.37.1.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
 
 Replace `RELEASE_TAG` below with the exact tag shown on the selected release (including its leading `v`). To follow ongoing development instead, omit `--branch RELEASE_TAG --depth 1`; that checkout will follow the default branch.
 
@@ -92,7 +96,7 @@ Before packaging a production build, run:
 npm run build
 ```
 
-`npm run build` checks TypeScript, then builds the Electron renderer, preload, and main targets. If you only need to test the web or headless entry point, use the repository's existing headless arguments with a separate data directory. That keeps test data out of the default store.
+Use the selected tag's package.json and [standalone runtime guide](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md) for its build targets and dependencies. `npm run dev:web` develops the Node/Web entry point; `npm run dev` also prepares the desktop client. Use an isolated configuration directory to keep test data separate.
 
 ## Complete first-time setup
 

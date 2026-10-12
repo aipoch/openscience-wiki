@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -390,3 +390,7 @@ Ouvrez la pièce jointe PDF d'une référence et utilisez **Notes & Annotations*
 Utilisez la case à cocher sélectionner dans la bibliothèque ou la boîte de réception pour sélectionner les enregistrements déjà chargés dans cette vue. Vérifiez le nombre sélectionné et les lignes visibles avant de choisir une action par lots. Sélectionner cette case remplace la sélection par les lignes chargées; l'effacement de la sélection.
 
 Lorsqu'il existe des enregistrements de bibliothèque supplémentaires, une action séparée de **Select all matching references** peut étendre la sélection au-delà de la page chargée. Inspectez ses filtres complets et actifs avant de l'utiliser. La case à cocher seule ne le fait pas. Utilisez **Clear selection** pour recommencer. La sélection des dossiers n'accepte pas les candidats de la boîte de réception ou les fichiers d'exportation tant que vous n'avez pas choisi cette action.
+
+## Résumez un lot de collecte intelligente échoué {/* #smart-collection-retry */}
+
+Lorsque l'évaluation de la collection intelligente s'arrête sur un lot échoué, inspectez son erreur et les progrès restants avant d'utiliser la réessayer proposée. À partir de v0.37.0, réessayer reprend le lot échoué tout en préservant le travail d'évaluation terminé. Maintenir la portée et les critères inchangés pour cette nouvelle tentative, puis passer en revue Inclus, Examen des besoins et résultats exclus. Ne créez pas de collection de duplicata pour récupérer une évaluation interrompue.

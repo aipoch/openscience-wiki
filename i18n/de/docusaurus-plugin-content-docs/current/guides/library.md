@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -390,3 +390,7 @@ Quellen: [Chargeneinfuhr](https://github.com/aipoch/open-science/blob/v0.27.0/sr
 Verwenden Sie das Kontrollkästchen "Alle auswählen" in Bibliothek oder Posteingang, um die in dieser Ansicht bereits geladenen Datensätze auszuwählen. Überprüfen Sie die ausgewählte Anzahl und die sichtbaren Zeilen, bevor Sie eine Batch-Aktion auswählen. Durch Auswählen dieses Kontrollkästchens wird die Auswahl durch die geladenen Zeilen ersetzt; Wenn Sie es löschen, wird die Auswahl gelöscht.
 
 Wenn zusätzliche übereinstimmende Bibliotheksdatensätze vorhanden sind, kann eine separate **Select all matching references**-Aktion die Auswahl über die geladene Seite hinaus erweitern. Überprüfen Sie die gesamten und aktiven Filter, bevor Sie sie verwenden. Die Checkbox der Seite allein tut dies nicht. Verwenden Sie **Clear selection**, um erneut zu starten. Das Auswählen von Datensätzen akzeptiert keine Posteingangskandidaten oder Exportdateien, bis Sie diese Aktion ausgewählt haben.
+
+## Eine fehlgeschlagene Smart-Collection-Charge fortsetzen {/* #smart-collection-retry */}
+
+Wenn eine Smart-Collection-Auswertung bei einem fehlgeschlagenen Batch stoppt, überprüfen Sie dessen Fehler und den verbleibenden Fortschritt, bevor Sie den angebotenen Wiederholungsversuch verwenden. Von v0.37.0 aus wird der fehlgeschlagene Batch wieder aufgenommen, während die abgeschlossene Bewertungsarbeit erhalten bleibt. Behalten Sie den Umfang und die Kriterien für diesen Wiederholungsversuch unverändert bei, dann überprüfen Sie Included, Needs review und Excluded results. Erstellen Sie keine doppelte Sammlung, um eine unterbrochene Auswertung wiederherzustellen.

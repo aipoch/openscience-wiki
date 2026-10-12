@@ -1,7 +1,7 @@
 ---
 title: "Service sans tête et accès au navigateur"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-12'
 ---
 
 # Service sans tête et accès au navigateur {/* #headless-service-and-browser-access */}
@@ -10,21 +10,22 @@ Le service local fournit un moteur sans tête et une interface de navigateur loc
 
 ## Sélection des cibles et découverte {/* #target-selection-and-discovery */}
 
-| Sélecteur | Portée |
+Depuis v0.37.0, les services partagés fonctionnent dans un processus ordinaire Node et le bureau se connecte en tant que client natif. Le démarrage de CLI n'a plus besoin d'un hôte Electron caché.
+
+| Sélecteur | Périmètre |
 | --- | --- |
-| `--port PORT` | Surpasser le port de service local d'hôte; entier valide 1–65535 |
-| `--app-path PATH` | Sélectionnez une application exécutable installée; utiliser le chemin exécutable, pas un dossier de projet arbitraire |
-| `--config-root PATH` | le dépassement de la configuration de développement-construction; le démarrage emballé le rejette |
-| `OPEN_SCIENCE_CONFIG_ROOT` / `OPEN_SCIENCE_STORAGE_ROOT` | Dépassement explicite de la découverte de configuration où pris en charge |
-| Découverte automatique | Essayez la configuration de développement avant la production, en sautant les candidats morts ou malsains |
+| `--port PORT` | port local hôte, entier 1–65535; un port explicite occupé provoque une erreur |
+| `--config-root PATH` / `--profile PATH` | répertoire de configuration portable CLI; garder le même chemin absolu tout au long |
+| `OPEN_SCIENCE_CONFIG_ROOT` | le répertoire de configuration explicite à travers l'environnement; les options de commande ont priorité |
+| Découverte automatique | Trouvez l'état de service local et confirmez son profil, son port et sa version |
 
-Un emplacement de configuration explicite limite la découverte à ce répertoire. Vérifier l'état du profil prévu avant de le démarrer ou de l'arrêter. Si l'état renvoie `running:false`, suivez les commandes du cycle de vie ci-dessous; une fenêtre de bureau ouverte peut utiliser un autre service/profil.
+Les moteurs de bureau sélectionnent un port libre lorsqu'aucun n'est spécifié; Le démarrage de CLI se fait par défaut sur 44100. Utilisez `status --json` plutôt que d'inférer le port depuis une fenêtre ouverte. Un service existant compatible pour la même configuration peut être réutilisé; terminer le travail actif et suivre les instructions de mise à jour lorsque les versions ne correspondent pas. L'ancienne option `--app-path` ne transforme pas un exécutable Electron en un nouveau moteur Node.
 
-Le fichier de l'état de service est `web-service.json`. L'échec de l'authentification n'est pas la permission de tuer son processus enregistré. Le code d'arrêt préserve les dossiers insalubres vivants pour le diagnostic et évite de signaler un ID qui peut avoir été réutilisé par un autre processus.
+Le fichier État est `web-service.json`. L'échec d'authentification n'est pas la permission de supprimer cet enregistrement ou de tuer son PID. Inspectez d'abord le service réel et les diagnostics pour éviter d'affecter un autre processus.
 
 ## Initialiser et vérifier la préparation {/* #readiness */}
 
-Utilisez `open-science init` pour préparer le répertoire de configuration par défaut sans démarrer l'application. `--profile` alias `--config-root` uniquement lorsque les dépassements de profil de développement sont supportés; il ne contourne pas la restriction relative à la construction emballée. Les paquets Debian installent le CLI à côté de l'application. Voir [configuration du terminal](cli.md#terminal-setup) pour la préparation et la connexion Codex.
+Utilisez `open-science init` pour préparer le répertoire de configuration par défaut sans démarrer l'application. Pour une configuration isolée, passez le même chemin absolu `--profile` à init, start et commandes suivantes. Les paquets Debian installent le CLI à côté de l'application. Voir [configuration du terminal](cli.md#terminal-setup) pour la préparation et la connexion Codex.
 
 Après un `start --no-open` intentionnel, lancez `open-science doctor --json`. Inspecter globalement `ready`, vérifier les données individuelles et proposer des mesures à prendre; le code de sortie du processus à lui seul n'est pas un verdict de préparation. Gardez le service sur son interface locale existante authentifiée. Démarrer ce service sans tête ne configure pas Remote.It ou ne publie pas un paramètre public.
 
@@ -46,8 +47,8 @@ Parmi ces commandes, **statut et arrêt du soutien `--json`; début et url ne**.
 | JSON `result` | Signification |
 | --- | --- |
 | `already-stopped` | Aucun dossier de service en direct trouvé |
-| `daemon-stopped` | Démon autonome authentifié sorti |
-| `web-service-stopped` | Le service Web joint a cessé; l'application de bureau reste en cours d'exécution |
+| `daemon-stopped` | Le moteur Node authentifié est sorti; les clients attachés perdent leur connexion de moteur |
+| `web-service-stopped` | Legacy Electron web-service résultat, pas le nouveau moteur autonome Node |
 
 Une demande rejetée ou une date limite d'arrêt manquée renvoie un échec. Lisez l'erreur et inspectez l'état réel de la cible. Ne déclarez pas un service comme étant arrêté simplement parce que la commande est retournée.
 
@@ -85,17 +86,25 @@ Les valeurs cryptées existantes ne sont pas automatiquement migrées et nécess
 
 Utiliser un stockage persistant lorsque la configuration doit survivre au remplacement du contenant. L'arrêt conserve la configuration; Le remplacement d'un système de fichiers conteneur jetable peut l'enlever. Voir le [contrat d'entreposage des titres de créance](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
 
+## Propriété du moteur et fermeture {/* #backend-ownership */}
+
+| Décision | Effet sur le moteur |
+| --- | --- |
+| Fermer un onglet de navigateur | Le moteur continue de fonctionner |
+| Arrête le bureau qui a démarré le moteur | Son propre moteur s'arrête avec lui |
+| Quitter un bureau attaché à un moteur CLI existant | Seul ce client se détache; le moteur CLI continue à fonctionner |
+| `open-science stop` | Arrêter le moteur sélectionné, affectant tous les clients attachés à celui-ci |
+
+Fermer une fenêtre peut différer de quitter l'application, surtout lorsqu'elle reste dans le plateau. Terminer la recherche active avant d'arrêter un moteur partagé, puis inspecter l'état réel avec `status --json`.
+
 ## Comportement de mise à jour de l'application {/* #application-update-behavior */}
 
-`open-science update` met à jour l'application installée. Mettre à jour le client npm séparément. La commande peut commencer un service local au besoin et laisser ce service disponible ultérieurement.
+Les mises à jour natives de bureau et les mises à jour de paquets autonomes utilisent différents chemins. Un moteur ordinaire Node ne peut pas remplacer l'installateur de bureau; son `update --json` signale une exigence de mise à jour manuelle et le mode `package-manager`. Suivez les instructions retournées.
 
-| `update --json` Résultat | Interprétation |
-| --- | --- |
-| `up-to-date` | Aucune nouvelle version applicable trouvée |
-| `install-started` | Updater a accepté le retrait de l'installation; la version finale installée n'est pas vérifiée par cette invocation |
-| `manual-action-required` | Suivre le chemin d'installation/étape suivante |
-| `blocked` | La recherche active empêche une mise à jour en place; inspecter `blockedBy` |
+- **Application bureautique :** utilise sa mise à jour in-app. S'il est attaché à un moteur précédemment démarré par le CLI, terminer le travail et arrêter ce moteur avant de mettre à jour le bureau.
+- **archive Standalone CLI :** terminer le travail, arrêter le moteur prévu, extraire la nouvelle version dans un nouveau répertoire, conserver vos données de configuration, et mettre à jour le lanceur ou PATH. N'écrasez pas le paquet en cours d'exécution.
+- **installation npm:** met à jour le paquet correspondant par npm et confirme la compatibilité client/backend.
 
-Le support nécessite la capacité de service `update-cli-v1`. Les installations plus anciennes peuvent nécessiter une mise à jour manuelle au lieu d'une procédure distante devinée. Conserver le résultat imprimé et vérifier la version de l'application après l'installation.
+Redémarrer, puis utiliser `status --json` et `doctor --json` pour confirmer la version, le répertoire de configuration et l'état de préparation. Préserver le mode de stockage des titres de compétence existants; ne supprimez pas les identifiants ou la configuration pour effectuer une mise à jour.
 
-[Mise en œuvre du cycle de vie et des découvertes](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [découverte de configuration](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/config-root.mjs). Pour les drapeaux des tâches et les codes de sortie, voir [CLI](./cli.md); pour les appels programmatiques, voir [Tâche SDK](./api.md).
+Voir les [guide officiel d'exécution autonome](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md), [CLI](cli.md) et [Tâche SDK](api.md).

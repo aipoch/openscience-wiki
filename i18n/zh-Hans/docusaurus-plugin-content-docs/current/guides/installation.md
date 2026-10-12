@@ -1,14 +1,14 @@
 ---
 title: "安装与更新"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
 # 安装与更新
 
-普通用户应优先使用 GitHub Releases 提供的桌面安装包。贡献者或需要调试最新版功能的用户可以从源码启动。Open-Science 是 Electron 应用，渲染层同时支持受令牌保护的本地 Web 访问。
+普通用户应优先使用 GitHub Releases 提供的桌面安装包。贡献者或需要调试最新版功能的用户可以从源码启动。Open-Science 的 Electron 桌面客户端连接共享 Node 后端，后端也提供经过认证的本地浏览器界面。
 
 <PlatformGuide />
 
@@ -71,11 +71,15 @@ v0.34.0 提供 Linux **x64 和 ARM64** 安装包。ARM64 选择 `aipoch-open-sci
 
 安装位置用于存放应用程序；向导中的 **Data location** 用于科研文件和运行环境，两者分别设置。安装后继续[首次设置](onboarding.md)。
 
+### 使用独立 CLI {/* #standalone-cli */}
+
+无需桌面窗口时，可从[官方发行版](https://github.com/aipoch/open-science/releases/tag/v0.37.1)下载对应平台的独立 CLI 压缩包。它自带 Node、后端与 Web UI，完整解压后即可运行。按 [CLI 首次设置](../reference/cli.md#terminal-setup)启动、配置模型并检查就绪状态；已有桌面用户仍可使用 **Settings → General → Install command**。
+
 ### 从源码运行
 
-要求：Git、Node.js 22、npm，以及 Electron 在当前平台的构建前提。代理框架可在应用中安装或选择。仓库会在安装阶段生成 Prisma Client、应用补丁并准备 Electron 原生依赖。
+要求：Git、Node.js 24、npm，以及 Electron 在当前平台的构建前提。代理框架可在应用中安装或选择。仓库会在安装阶段生成 Prisma Client、应用补丁并准备 Electron 原生依赖。
 
-需要复现源码安装时，先从 [Changelog](../changelog/v0.34.0.md) 确定目标发布标签，再安装依赖。默认克隆跟随分支，不会固定到某个发布版本。记录所选标签、源码提交及运行时版本，便于他人复现环境。
+需要复现源码安装时，先从 [Changelog](../changelog/v0.37.1.md) 确定目标发布标签，再安装依赖。默认克隆跟随分支，不会固定到某个发布版本。记录所选标签、源码提交及运行时版本，便于他人复现环境。
 
 将下方 `RELEASE_TAG` 替换为所选发行页的完整标签（包括开头的 `v`）。如果需要跟随开发分支，省略 `--branch RELEASE_TAG --depth 1`；这条路线会使用默认分支。
 
@@ -92,7 +96,7 @@ npm run dev
 npm run build
 ```
 
-`npm run build` 会依次完成 TypeScript 检查以及 renderer、preload、main 三个 Electron 构建目标。若只想验证 Web/headless 入口，应使用仓库已有的 headless 参数和单独的数据目录，避免测试数据进入默认存储。
+构建目标与依赖应以所选标签的 package.json 和[独立运行说明](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md)为准。仅开发 Node 与 Web 入口可使用 `npm run dev:web`；`npm run dev` 同时准备桌面客户端。使用独立配置目录，避免测试数据进入日常配置。
 
 ## 完成首次配置
 

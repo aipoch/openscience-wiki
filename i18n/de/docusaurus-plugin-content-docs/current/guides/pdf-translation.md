@@ -1,7 +1,7 @@
 ---
 title: "Übersetzen eines vollständigen PDF"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # Übersetzen eines vollständigen PDF {/* #translate-a-full-pdf */}
@@ -17,7 +17,7 @@ Lesen Sie ein Papier in einer anderen Sprache, während Sie das Original zum Ver
 
 | Methode | Was zu konfigurieren |
 | --- | --- |
-| **Agent** | ein verfügbares Agentenmodell oder **Main model** Wenn unterstützt. In v0.36.0 können Codex-Abonnementmodelle diesen PDF-Übersetzungsvorgang nicht ausführen. Wählen Sie ein kompatibles Übersetzungsmodell aus, ohne das Main-Modell der Konversation zu ersetzen. |
+| **Agent** | ein verfügbares Agentenmodell oder **Main model** Wenn unterstützt. In v0.37.1 können Codex-Abonnementmodelle diesen PDF-Übersetzungsvorgang nicht ausführen. Wählen Sie ein kompatibles Übersetzungsmodell aus, ohne das Main-Modell der Konversation zu ersetzen. |
 | **Direct API** | Ein konfiguriertes, verfügbares API-Modell. Die Abonnementanmeldung kann nicht als Direct API-Anmeldeinformationen verwendet werden. Siehe [Provider Setup](providers.md). |
 | **Local model**, wenn angeboten | Installieren Sie das Modell über die angezeigten Bedienelemente und warten Sie, bis es fertig ist. Lokale Übersetzung läuft einen Absatz nach dem anderen. |
 
@@ -51,3 +51,7 @@ Wählen Sie **Export translated PDF**, speichern Sie eine separate Kopie und öf
 | Fortschritt konnte nicht gerettet werden | Öffnen Sie den PDF erneut, um das zuletzt gespeicherte Ergebnis zu laden, bevor Sie fortfahren. |
 
 Verwenden Sie [PDF Anmerkungen und Dokumentnotizen](pdf-notes.md), um Lesefragen aufzuzeichnen. Übersetzung und Annotation sind getrennte Werkzeuge.
+
+## Überprüfen Sie das wissenschaftliche Layout {/* #scientific-layout */}
+
+Bevor Sie eine exportierte Übersetzung verwenden, vergleichen Sie eine Multi-Panel-Figur und eine Tabelle mit dem Original. Bewahren Sie Legenden mit ihren Panels auf, überprüfen Sie gruppierte Header und Zeilenbeschriftungen und überprüfen Sie Formeln, Superscripts, Symbole und Einheiten. v0.37.1 verbessert diese Quellbeziehungen und akzeptiert gültige eingebettete Glyphennamenunterschiede während der Regeneration, aber das Original bleibt der Beweis für ein Zitat oder eine wissenschaftliche Behauptung. Wenn ein älterer Export Inhalte verloren hat, aktualisieren Sie die App und exportieren Sie erneut aus der gespeicherten Übersetzung. das Original behalten und die neue Datei vergleichen.

@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v0.36.0は**347 操作で 34 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを349に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
+Open-Science v0.37.1は**359 操作で 35 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを361に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
@@ -22,11 +22,11 @@ Open-Science v0.36.0は**347 操作で 34 のデータソース コネクタ**�
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI Eユーティリティ、PMC IDコンバーター、ヨーロッパPMCによる生物医学文献 — 検索、メタデータ、関連記事、引用ルックアップ、ID変換、完全なテキストと著作権。  |
 | 遺伝子・オントロジー・ `genes` | MyGene、UniProt、OLS、QuickGO、Reactome、g:Profiler、Enrichr | 15 | 遺伝子/タンパク質識別子、UniProtシーケンス検出、GOおよびReactomeアノテーション、およびg:ProfilerおよびEnrichr遺伝子セットの濃縮。 |
 | ゲノム・ `genomes` | 組み立て、UCSC、NCBI、BLAST、Clustalオメガ | 22 | ゲノムのアノテーション、均質学および順序; NCBIタムン/アセンブリ/シーケンスアイデンティティ; BLAST検索とClustal Omegaの複数のシーケンスアライメント。 人口固有のLDおよびプロキシの変形。 |
-| バリアント・ `variants` | gnomAD、ClinVar、dbSNP、MaveDB | 21 | 人口の頻度、臨床記録および試金固有の機能スコア、マッピングおよび実験。 |
+| バリアント・ `variants` | gnomAD、ClinVar、dbSNP、MaveDB | 22 | 人口の頻度、臨床記録および試金固有の機能スコア、マッピングおよび実験。 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床トライアル.gov — 検索、詳細、スポンサー、投資家、エンドポイント、および適格性。  |
 | 臨床ゲノム・ `clinical-genomics` | ClinGen、CIViC、オープンターゲット、ClinPGx | 30 | 臨床ゲノムの知識ベース:ClinGenの治験、CIViCの臨床証拠およびオープン ターゲット プラットフォーム、およびClinPGxの薬学の記録。 |
 | 構造と相互作用 · `structures` | PDB、AlphaFold、EMDB、複雑なポータル、IntAct | 17 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
-| ChEMBL · `chembl` | ChEMBL | 6 | CEMBL REST API による生体活性化合物、薬物、標的、生体活性およびメカニズム。  |
+| ChEMBL・ `chembl` | チャムBL | 7 | CEMBL REST API による生体活性化合物、薬物、標的、生体活性およびメカニズム。  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | BioRxiv/medRxiv のプリプリント — 日付/カテゴリ、DOI によるメタデータ、ジャーナル公開リンク、ファンダリスト、およびプラットフォームの統計による検索。  |
 | 薬物規制・ `drug-regulatory` | オープンFDA | 10 | Drugs@FDA、ラベル、FAERSの副作用報告および薬剤のrecalls。 |
 | ヒト遺伝学・ `human-genetics` | GWASカタログ、eQTLカタログ、PheWeb | 15 | GWASカタログ、eQTLカタログ、PheWeb PheWASポータル(FinnGen、BioBank Japan)  |
@@ -51,6 +51,7 @@ Open-Science v0.36.0は**347 操作で 34 のデータソース コネクタ**�
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 生物と遺伝子対フェノタイプと遺伝子の関連と、証拠を支持する。 |
 | IEDB · `iedb` | 免疫エピトープデータベース | 8 | エピトープ、抗原、Tセル、B細胞、MHCアッセイ、TCR/BCRの証拠、およびソース出版物。 |
 | PDC · `pdc` | NCI プロテオミック・データ・コモンズ | 4 | がんプロテオミクス研究版、検体協会および量的ファイルメタデータ; ダウンロードなし。 |
+| ENCORI · `encori` | ENCORI | 10 | miRNA/RBPターゲット、RNAインタラクション、ceRNA、モチーフ、バインディングサイト、参照テーブル、バルクファイル。 |
 
 [科学ビューア](viewers.md)でオフラインのモレキュラーツールがカバーされています。 それぞれのデータソースで露出した正確な操作については、[Connectorの操作の参照](../reference/connector-operations.md) を使用します。
 
@@ -72,6 +73,45 @@ Open-Science v0.36.0は**347 操作で 34 のデータソース コネクタ**�
 **ゼノドー** は、認証なしで公開レコードメタデータを公開します。 バージョン固有のレコードIDとアクセス/ライセンスフィールドをファイル在庫で保持します。 **GDCの特長** は公開メタデータを公開します。 マニフェストは、認可をダウンロードせず、管理されたファイルはGDC権限が必要です。 [GDC の操作](../reference/connector-operations.md#family-24) · [Zenodo オペレーション](../reference/connector-operations.md#family-25).
 
 データベースの応答は、研究のステップをサポートすることができます。 自動的にデータをダウンロードし、すべての論文を文献ライブラリに追加するか、完全な分析を実行しません。 保存したいレコードやファイルを指定します。
+
+## ENCORIによるRNA規制証拠 {/* #encori */}
+
+**Settings → Connectors**で**ENCORI**を検索し、**メインエージェント**に有効化して使用可能にします。 この組み込みのソースは、カスタムMCP URLまたはAPIキーを必要としません。 選択された Main モデルを使用して、生物/アセンブリ、RNA またはターゲット遺伝子、細胞タイプおよび証拠の境界を会話で指定します。
+
+| タスク | 結果と境界 |
+| --- | --- |
+| miRNA, RNA-RNA, RBP-target, ceRNA のクエリ | 該当するCLIP、劣化、予測プログラム、p値、FDRのエビデンスが含まれています。 結束または協会は、因果規制を確立しません。 |
+| RBP疾患の証拠、モチーフおよび結合サイト | アセンブリ、組織/細胞のコンテキスト、上流の順序および元の座標を予約して下さい; 種別や座標系を混合しないでください。 |
+| 参照テーブルとバルクデータ | 最初に正確なテーブルパスまたはファイル名をリストします。 一括ダウンロードは別々です。リクエストの前にファイル、宛先、必要なストレージを指定します。 |
+
+<p className="example-label"><strong>実践例</strong> HeLaでPDCD4のMIRNA証拠をクエリする</p>
+
+```text
+Use ENCORI to find human miRNA interactions targeting PDCD4 in HeLa cells,
+using hg38, mRNA targets, at least one CLIP experiment and TargetScan support.
+Show at most two rows. Preserve the exact filters, total count and full raw
+response in the session data folder. Explain the evidence limits in English.
+Do not download bulk datasets.
+```
+
+このクエリは、19レコードを返しました。 最初の2つはhsa-miR-23a-3pとhsa-miR-181a-5pでした。 スクリーンショットは、保存された完全な生の応答と証拠の制限を示しています。 これらは、データベースの更新として、例固有の結果であり、変更することができます。
+
+![ENCORI クエリの要約は、保存された完全な生の応答の横にある](/img/open-science/v0371/encori-response.webp)
+
+`returned_records`から`total_records`を区別し、`is_complete`、`result_scope`および`completeness_note`を点検して下さい。 プレビューは、完全なターゲット分布ではありません。 フルレスポンスの`raw_response_path`はローカルファイルパスで、ダウンロード可能なセッションアーティファクトは自動ではありません。 共有するには、エージェントがアクセス可能なセッションデータディレクトリに保存し、ファイルを添付するかどうかを尋ねます。 添付ファイルを開き、その内容を確認します。
+
+クエリは、本物の空の結果や`ok:false`を返すことができます。 フィルターをサイレントに広げてヒットしません。 一括ダウンロード後、実際のパス、サイズ、および`verified_gzip`を確認してください。 参照表やデータセットのリストを読み込み、バルクファイルをダウンロードしません。 正確なパラメータについては、[ENCORIの操作](../reference/connector-operations.md#family-35)を参照してください。
+
+## 文脈と個々の投稿を試す {/* #assay-submission-evidence */}
+
+| エントリーフォーム | プロシージャ | 通訳の境界 |
+| --- | --- | --- |
+| **チャムBL** | Connectorを有効にします。 APIキーは必要ありません。 お問い合わせ `assay_chembl_id` 生体活性記録、検査方法、生物、細胞/チス、ターゲットから `get_assay`, 取得します。 `get_bioactivity` 同じアッセイIDの場合。 | ターゲットアサインの自信は測定品質ではありません。 IC50/Ki値を組み合わせる前に条件、ユニット、リレーション演算子を比較します。 |
+| **Variants → ClinVar** | Connector の実際の NCBI の連絡先メールの設定 API キーは任意です。 コールセンター `clinvar_get_submissions` VCVアクセスまたは肯定的な変化IDを使って、そして版ピン留めに従って下さい `next_page` 引数。 | SCV、送信者、条件、評価日、方法および引用を保存します。 germline、ソマチックな臨床影響および腫瘍性を別に比較して下さい。 |
+
+ChEMBLページは`activity_id`で注文されます。 `has_more:false` までの次の `offset` としてフィルターを交換し、`next_offset` に渡して下さい; これは、1,000レコード以上を取得することができます。 `summary`は現在のページのみをカバーしています。そのため、最も強力なアクティビティは必ずしも完全なクエリで最も強いものではありません。 ClinVar が最新バージョンの最初のページを解決した後、返されたバージョンの VCV を継続します。 RCV、SCV、または rsID の入力を代入しません。
+
+[ChEMBLアッセイフィールド](../reference/connector-operations.md#get_assay) · [生物活動のpagination](../reference/connector-operations.md#get_bioactivity) · [ClinVar 投稿フィールド](../reference/connector-operations.md#clinvar_get_submissions).
 
 ## 単一セル、モデルオーナリズムおよび変形欠陥データ {/* #single-cell-model-organisms */}
 
@@ -214,7 +254,7 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/registry.ts)。
+カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts)。
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 

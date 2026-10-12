@@ -1,7 +1,7 @@
 ---
 title: "Notebook 与执行证据"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -275,3 +275,9 @@ Runtimes 的包清单描述已安装环境，Provenance 描述某个文件所捕
 | 运行完成但有警告 | 阅读警告影响范围，检查保存输出后决定是否重跑 |
 
 反馈时保留首条失败行、所选环境、文件身份和任务状态。保存输出应关联到实际产出运行。
+
+## 已就绪运行时与软件包记录 {/* #runtime-capture */}
+
+默认运行时已就绪时，普通受支持操作不再重复要求设置授权。风险代码决定或额外访问请求仍是独立步骤，回应前应检查操作及范围。
+
+在结果的 **Provenance → Environment** 中，若环境混用 Conda 和 pip，保留各包来源、版本与报告的构建字符串。v0.37.0 改进混合环境与 micromamba 信息的记录。核对捕获环境是否符合目标运行时，需要执行证据时再做[重跑验证](reproducibility.md)。软件包清单本身不能保证数值结果一致。

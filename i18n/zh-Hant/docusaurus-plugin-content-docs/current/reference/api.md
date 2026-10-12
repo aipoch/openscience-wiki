@@ -1,7 +1,7 @@
 ---
 title: "Task SDK 與本地 API"
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-12'
 ---
 
 # Task SDK 與本地 API {/* #task-sdk-与本地-api */}
@@ -14,13 +14,13 @@ last_update:
 
 <p className="example-label"><strong>示例</strong> 儲存並下載連線檢查說明</p>
 
-使用 Node.js 22.5 或更高版本。在同一臺電腦開啟桌面應用，完成模型設定並保持執行。SDK 透過本地服務發現及儲存的本地令牌連線。獨立守護程序的準備見[無介面服務](server.md)。
+使用與所選包相容的 Node.js；v0.37.1 後端包要求 Node.js 22.13 或更高版本，獨立 CLI 壓縮包已自帶 Node。透過桌面應用或 [CLI](server.md) 啟動後端，完成模型設定並保持執行。SDK 透過本地服務發現及儲存的本地令牌連線。
 
-在一個空工作資料夾安裝客戶端：
+在空工作資料夾中，安裝與目標平臺匹配的本地包。將 `BACKEND_DIRECTORY` 替換為獨立 CLI 壓縮包完整解壓後的 `backend` 絕對路徑，並保留該目錄：
 
 ```bash
 npm init -y
-npm install @aipoch/open-science
+npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
 ```
 
 將下方儲存為 `connection-check.mjs`。先執行 `node connection-check.mjs` 列出專案 ID，再執行 `node connection-check.mjs PROJECT_ID`，將佔位符換成返回的 ID。第一次呼叫在列出專案後主動停止；第二次才會建立小任務。
@@ -58,9 +58,9 @@ await writeFile('project-note.download.md', new Uint8Array(await response.arrayB
 console.log('Saved project-note.download.md; open and check its contents.');
 ```
 
-保持桌面會話開啟。如果 **Ask for approval** 暫停任務，在應用中回應。等待超時只停止客戶端輪詢，不會取消任務。用輸出的 run ID 呼叫 `getRun` 檢查，處理請求後繼續等待；需要停止時才呼叫 `cancelRun`。只有找到匹配的已儲存產物才會下載，開啟下載的 Markdown 即完成檢查。
+保持對應的桌面或已認證瀏覽器會話可訪問。如果 **Ask for approval** 暫停任務，在應用中回應。等待超時只停止客戶端輪詢，不會取消任務。用輸出的 run ID 呼叫 `getRun` 檢查，處理請求後繼續等待；需要停止時才呼叫 `cancelRun`。只有找到匹配的已儲存產物才會下載，開啟下載的 Markdown 即完成檢查。
 
-此程式說明公共 API 契約，不假設模型總能儲存指定檔案。如果無法安裝 npm 包，可使用匹配原始碼中附帶的 SDK 資料夾作為本地包；安裝前確認其包後設資料。
+此程式說明公共 API 契約，不假設模型總能儲存指定檔案。使用匹配版本或原始碼包中的 SDK，安裝前核對平臺與 Node 要求。
 
 ### 任務已完成，但檔案下載失敗 {/* #任务已完成但文件下载失败 */}
 
@@ -78,7 +78,7 @@ console.log('Saved project-note.download.md; open and check its contents.');
 | `listRuntimes()` | `GET /api/v1/runtimes` | 列出框架、狀態、可用版本和應用管理/外部來源 |
 | `bootstrap({action: "status"})` | `POST /api/v1/bootstrap` | 檢查首次設定狀態 |
 | `bootstrap({action: "runtime"})` | `POST /api/v1/bootstrap` | 透過受支援的首次設定流程，準備或修復應用管理的 Codex 執行時 |
-| `installCli()` | `POST /api/v1/cli/install` | 安裝本地 PATH 命令入口 |
+| `installCli()` | `POST /api/v1/cli/install` | 原生桌面命令安裝；獨立 Node 後端不支援，使用桌面 General 或壓縮包啟動器 |
 
 設定寫操作需要經過認證的本地服務。檢查返回的 `ok` 和錯誤碼，配置衝突處理後再重試。客戶端超時不能證明已經接受的安裝被取消，發起另一輪安裝前先重新檢查就緒狀態。訂閱登入或透過指定環境變數提供憑據，見[終端設定流程](cli.md#terminal-setup)。
 

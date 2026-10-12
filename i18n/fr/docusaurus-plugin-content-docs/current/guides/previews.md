@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -143,7 +143,7 @@ Utilisez l'éditeur PDF pour [Catalyseur monoatome thermiquement stable non stab
 2. Sélectionnez **Figures & Tables**. Lors de la première utilisation, compléter **Download and continue**; attendre que la page rapporte **Analysis complete**.
 3. Sélectionnez **Fig. 1** dans l'index. Cette copie téléchargée place la figure sur **PDF page 3**. Comparer ses panneaux d'images et sa légende; l'image extraite est une preuve à inspecter, et non une nouvelle constatation.
 
-![Extraction locale terminée du papier Lang téléchargé](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+![Extraction locale terminée du papier Lang téléchargé](/img/open-science/v0371/pdf-extraction.webp)
 
 4. Choisissez **Show in PDF**. Confirmez **3 / 10** dans l'aperçu original et comparez les étiquettes de panneaux, les barres d'échelle et les courbes. Utilisez la page d'origine pour résoudre une erreur de numéro de page ou de légende avant de citer la figure.
 
@@ -238,3 +238,7 @@ La réponse a identifié **Figure 1 sur PDF page 3** à partir du texte papier e
 ## Traduire le document {/* #full-text-translation */}
 
 Ouvrez **Full-text translation** dans la barre d'outils PDF pour préparer le texte, choisissez un modèle pris en charge et enregistrez une traduction recommençable. Suivez [Traduire un PDF complet](pdf-translation.md) pour les exigences du modèle, la comparaison originale/translationnelle et l'exportation de PDF. Gardez l'original pour vérifier les chiffres, tableaux et citations.
+
+## Vérifier la structure scientifique extraite {/* #scientific-structure-check */}
+
+Après **Analyze PDF**, ouvrez une figure et une table à côté de la page d'origine. Confirmer que les cultures figuratives comprennent tous les panneaux et leurs légendes/légendes, et que les tableaux conservent les en-têtes groupés, les groupes de rangées, les unités et les notes de bas de page. Une formule ou un paragraphe à proximité ne doit pas devenir une cellule de table ou une légende de figure. v0.37.1 améliore ces limites et les références des cellules sources; l'extraction reste quelque chose à vérifier avant de réutiliser les valeurs. Si une extraction enregistrée plus ancienne est incomplète, utilisez une nouvelle analyse lorsque le lecteur l'offre, puis comparez les éléments résultants avant de remplacer une table en aval.

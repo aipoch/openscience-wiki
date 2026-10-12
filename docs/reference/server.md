@@ -1,7 +1,7 @@
 ---
 title: "Headless service and browser access"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-12'
 ---
 
 # Headless service and browser access
@@ -10,21 +10,22 @@ The local service provides a headless backend and a localhost browser interface.
 
 ## Target selection and discovery
 
+From v0.37.0, shared services run in an ordinary Node process and the desktop connects as a native client. CLI startup no longer needs a hidden Electron host.
+
 | Selector | Scope |
 | --- | --- |
-| `--port PORT` | Override localhost service port; valid integer 1–65535 |
-| `--app-path PATH` | Select an installed application executable; use the executable path, not an arbitrary project folder |
-| `--config-root PATH` | Development-build config override; packaged startup rejects it |
-| `OPEN_SCIENCE_CONFIG_ROOT` / `OPEN_SCIENCE_STORAGE_ROOT` | Explicit configuration discovery override where supported |
-| Automatic discovery | Try development configuration before production, skipping dead/unhealthy candidates |
+| `--port PORT` | Localhost port, integer 1–65535; an occupied explicit port causes an error |
+| `--config-root PATH` / `--profile PATH` | Portable CLI configuration directory; keep the same absolute path throughout |
+| `OPEN_SCIENCE_CONFIG_ROOT` | Explicit configuration directory through the environment; command options take precedence |
+| Automatic discovery | Find local service state and confirm its profile, port and version |
 
-An explicit configuration location restricts discovery to that directory. Check status for the intended profile before starting or stopping it. If status returns `running:false`, follow the lifecycle commands below; an open desktop window may use another service/profile.
+Desktop backends select a free port when none is specified; CLI startup defaults to 44100. Use `status --json` rather than inferring the port from an open window. A compatible existing service for the same configuration can be reused; finish active work and follow the update instructions when versions do not match. The legacy `--app-path` option does not turn an Electron executable into a new Node backend.
 
-The service state file is `web-service.json`. Authentication failure is not permission to kill its recorded process. The shutdown code preserves live unhealthy records for diagnosis and avoids signalling a PID that may have been reused by another process.
+The state file is `web-service.json`. Authentication failure is not permission to delete that record or kill its PID. Inspect the actual service and diagnostics first to avoid affecting another process.
 
 ## Initialize and check readiness {/* #readiness */}
 
-Use `open-science init` to prepare the default configuration directory without starting the app. `--profile` aliases `--config-root` only where development-profile overrides are supported; it does not bypass the packaged-build restriction. Debian packages install the CLI alongside the application. See [terminal setup](cli.md#terminal-setup) for Codex preparation and login.
+Use `open-science init` to prepare the default configuration directory without starting the app. For an isolated configuration, pass the same absolute `--profile` path to init, start and subsequent commands. Debian packages install the CLI alongside the application. See [terminal setup](cli.md#terminal-setup) for Codex preparation and login.
 
 After an intentional `start --no-open`, run `open-science doctor --json`. Inspect overall `ready`, individual checks and suggested next actions; the process exit code alone is not a readiness verdict. Keep the service on its existing authenticated local interface. Starting this headless service does not configure Remote.It or publish a public endpoint.
 
@@ -46,8 +47,8 @@ Among these commands, **status and stop support `--json`; start and url do not**
 | JSON `result` | Meaning |
 | --- | --- |
 | `already-stopped` | No live service record found |
-| `daemon-stopped` | Authenticated standalone daemon exited |
-| `web-service-stopped` | Attached web service stopped; desktop application remains running |
+| `daemon-stopped` | Authenticated Node backend exited; attached clients lose their backend connection |
+| `web-service-stopped` | Legacy Electron web-service outcome, not the new standalone Node backend |
 
 A rejected request or missed shutdown deadline returns a failure. Read the error and inspect the actual target state. Do not report a service as stopped merely because the command returned.
 
@@ -85,17 +86,25 @@ Existing encrypted values are not automatically migrated and still require their
 
 Use persistent storage when the configuration must survive container replacement. Shutdown retains configuration; replacing a disposable container filesystem can remove it. See the [credential-storage contract](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
 
+## Backend ownership and shutdown {/* #backend-ownership */}
+
+| Action | Effect on the backend |
+| --- | --- |
+| Close a browser tab | Backend keeps running |
+| Quit the desktop that started the backend | Its owned backend stops with it |
+| Quit a desktop attached to an existing CLI backend | Only that client detaches; the CLI backend keeps running |
+| `open-science stop` | Stop the selected backend, affecting all clients attached to it |
+
+Closing a window can differ from quitting the app, especially when it remains in the tray. Finish active research before stopping a shared backend, then inspect the actual state with `status --json`.
+
 ## Application update behavior
 
-`open-science update` updates the installed application. Update the npm client separately. The command may start a local service when needed and leave that service available afterward.
+Desktop native updates and standalone package updates use different paths. An ordinary Node backend cannot replace the desktop installer; its `update --json` reports a manual update requirement and `package-manager` mode. Follow the returned instructions.
 
-| `update --json` outcome | Interpretation |
-| --- | --- |
-| `up-to-date` | No newer applicable version found |
-| `install-started` | Updater accepted the installation handoff; final installed version is not verified by that invocation |
-| `manual-action-required` | Follow the reported installer path/next step |
-| `blocked` | Active research prevents an in-place update; inspect `blockedBy` |
+- **Desktop app:** use its in-app updater. If it is attached to a backend previously started by the CLI, finish work and stop that backend before updating the desktop.
+- **Standalone CLI archive:** finish work, stop the intended backend, extract the new release into a new directory, retain your configuration data, and update the launcher or PATH. Do not overwrite the running package.
+- **npm installation:** update the corresponding package through npm and confirm client/backend compatibility.
 
-Support requires the service capability `update-cli-v1`. Older installations can require a manual update instead of a guessed remote procedure. Retain the printed outcome and verify the application version after installation.
+Restart, then use `status --json` and `doctor --json` to confirm the version, configuration directory and readiness. Preserve the existing credential-store mode; do not delete credentials or configuration to perform an update.
 
-[Lifecycle and discovery implementation](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [configuration discovery](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/config-root.mjs). For task flags and exit codes, see [CLI](./cli.md); for programmatic calls, see [Task SDK](./api.md).
+See the [official standalone runtime guide](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md), [CLI](cli.md) and [Task SDK](api.md).

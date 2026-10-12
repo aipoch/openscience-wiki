@@ -1,7 +1,7 @@
 ---
 title: "Task SDK and local API"
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-12'
 ---
 
 # Task SDK and local API
@@ -14,13 +14,13 @@ The `@aipoch/open-science` Node.js client connects to an authenticated local app
 
 <p className="example-label"><strong>Example</strong> Save and download a connection-check note</p>
 
-Use Node.js 22.5 or later. Open the installed desktop application on the same machine, finish model setup and keep it running. The SDK uses local service discovery and its locally stored token. For a separate daemon, first follow [Headless service](server.md).
+Use Node.js compatible with the selected package: the v0.37.1 backend package requires Node.js 22.13 or later, while standalone CLI archives bundle Node. Start a backend through the desktop or [CLI](server.md), finish model setup and keep it running. The SDK uses local service discovery and its locally stored token.
 
-In an empty working folder, install the client:
+In an empty working folder, install the matching local package. Replace `BACKEND_DIRECTORY` with the absolute path to the `backend` folder in the completely extracted standalone CLI archive, and retain that directory:
 
 ```bash
 npm init -y
-npm install @aipoch/open-science
+npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
 ```
 
 Save the following as `connection-check.mjs`. Run `node connection-check.mjs` to list project IDs, then `node connection-check.mjs PROJECT_ID` with one returned ID. The first invocation deliberately stops after listing projects; the second creates a small task.
@@ -58,9 +58,9 @@ await writeFile('project-note.download.md', new Uint8Array(await response.arrayB
 console.log('Saved project-note.download.md; open and check its contents.');
 ```
 
-Keep the desktop session open. Respond there if **Ask for approval** pauses the task. A wait timeout stops client polling; it does not cancel the run. Inspect the printed run ID with `getRun`, continue waiting after resolving the request, or call `cancelRun` when you intend to stop it. The download succeeds only when a matching saved artifact exists; open the downloaded Markdown to finish the check.
+Keep the corresponding desktop or authenticated browser session accessible. Respond there if **Ask for approval** pauses the task. A wait timeout stops client polling; it does not cancel the run. Inspect the printed run ID with `getRun`, continue waiting after resolving the request, or call `cancelRun` when you intend to stop it. The download succeeds only when a matching saved artifact exists; open the downloaded Markdown to finish the check.
 
-This program demonstrates the public API contract. It does not assume that a model will always save the requested file. If the npm package cannot be installed, use the SDK folder shipped with the matching source checkout as the local package; confirm its package metadata before installation.
+This program demonstrates the public API contract. It does not assume that a model will always save the requested file. Use the SDK from a matching release or source package; confirm its platform and Node requirements before installation.
 
 ### A completed task whose file will not download
 
@@ -78,7 +78,7 @@ Open the artifact in the application and check whether its content is available.
 | `listRuntimes()` | `GET /api/v1/runtimes` | List framework, status, optional version and managed/external source. |
 | `bootstrap({action: "status"})` | `POST /api/v1/bootstrap` | Inspect first-run setup state. |
 | `bootstrap({action: "runtime"})` | `POST /api/v1/bootstrap` | Prepare or repair the managed Codex runtime through the supported bootstrap flow. |
-| `installCli()` | `POST /api/v1/cli/install` | Install the local PATH launcher. |
+| `installCli()` | `POST /api/v1/cli/install` | Native desktop launcher installation; unsupported by a standalone Node backend. Use desktop General or the archive launcher. |
 
 Setup mutations require the authenticated local service. Check the returned `ok` and error code; configuration conflicts must be resolved before retrying. A client timeout does not establish that an accepted installation was cancelled. Recheck readiness before starting another install. For subscription login or named-environment-variable credential input, use the [terminal setup flow](cli.md#terminal-setup).
 

@@ -2641,5 +2641,17 @@
   },
   "docs.guides.outline.pdf-translation.scope": {
     "message": "準備 PDF、選擇翻譯模型、繼續已儲存進度、對照原文並匯出。"
+  },
+  "docs.outline.reference.v0371.title": {
+    "message": "v0.37.1"
+  },
+  "docs.outline.reference.v0371.scope": {
+    "message": "科學 PDF 保真、Windows 路徑、Notebook 控制檯及安裝包體積改進。"
+  },
+  "docs.outline.reference.v0370.title": {
+    "message": "v0.37.0"
+  },
+  "docs.outline.reference.v0370.scope": {
+    "message": "獨立 Node 後端與 CLI、ENCORI、ChEMBL 實驗、ClinVar 提交證據及 Notebook 記錄。"
   }
 }

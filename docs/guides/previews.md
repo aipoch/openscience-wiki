@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -143,7 +143,7 @@ Use the publisher PDF for [Non defect-stabilized thermally stable single-atom ca
 2. Select **Figures & Tables**. On first use, complete **Download and continue**; wait until the page reports **Analysis complete**.
 3. Select **Fig. 1** in the index. This uploaded copy places the figure on **PDF page 3**. Compare its image panels and caption; the extracted image is evidence to inspect, not a new finding.
 
-![Completed local figure extraction from the uploaded Lang paper](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+![Completed local figure extraction from the uploaded Lang paper](/img/open-science/v0371/pdf-extraction.webp)
 
 4. Choose **Show in PDF**. Confirm **3 / 10** in the original preview and compare panel labels, scale bars and curves. Use the original page to resolve a page-number or caption mismatch before citing the figure.
 
@@ -238,3 +238,7 @@ The response identified **Figure 1 on PDF page 3** from the paper text and capti
 ## Translate the document {/* #full-text-translation */}
 
 Open **Full-text translation** in the PDF toolbar to prepare text, choose a supported model and save a resumable translation. Follow [Translate a full PDF](pdf-translation.md) for model requirements, original/translated comparison and PDF export. Keep the original for checking figures, tables and quotations.
+
+## Check extracted scientific structure {/* #scientific-structure-check */}
+
+After **Analyze PDF**, open a figure and table alongside the original page. Confirm that figure crops include every panel and their captions/legends, and that tables retain grouped headers, row groups, units and footnotes. A nearby formula or paragraph must not become a table cell or figure caption. v0.37.1 improves these boundaries and source-cell references; extraction remains something to check before reusing values. If an older saved extraction is incomplete, use reanalysis when the reader offers it, then compare the resulting elements before replacing a downstream table.

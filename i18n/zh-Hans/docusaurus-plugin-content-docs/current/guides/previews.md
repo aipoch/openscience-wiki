@@ -1,7 +1,7 @@
 ---
 title: "打开与预览文件"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -141,7 +141,7 @@ PDF 上下文只关联当前任务需要的论文，后续不应使用时取消�
 2. 选择 **Figures & Tables**。首次使用时完成 **Download and continue**，等待页面显示 **Analysis complete**。
 3. 在索引中选择 **Fig. 1**。本例上传副本的图片位于 **PDF 第 3 页**。对照图像分面与图注；提取出的图片是供检查的证据，不是新的研究发现。
 
-![上传的 Lang 论文已完成本地图表提取](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+![上传的 Lang 论文已完成本地图表提取](/img/open-science/v0371/pdf-extraction.webp)
 
 4. 选择 **Show in PDF**，确认原文预览显示 **3 / 10**，对照分面标签、比例尺和曲线。引用前，用原文解决页码或图注不一致的问题。
 
@@ -240,3 +240,7 @@ inspect. Keep the response in English.
 ## 翻译整篇文档 {/* #full-text-translation */}
 
 在 PDF 工具栏打开 **Full-text translation**，准备全文、选择受支持的模型并保存可继续的译本。模型要求、原文／译文对照和 PDF 导出见 [PDF 全文翻译](pdf-translation.md)。核对图表与引文时应保留原文。
+
+## 检查提取后的科学结构 {/* #scientific-structure-check */}
+
+完成 **Analyze PDF** 后，将一张图和一张表与原始页面对照。确认图像包含所有面板及对应图注／图例，表格保留分组表头、行分组、单位和脚注。相邻公式或正文不应被误当成单元格或图注。v0.37.1 改进这些边界与单元格来源引用，复用数值前仍须核对。旧的提取结果不完整时，使用阅读器提供的重新分析入口，再比较新元素，之后才替换下游表格。

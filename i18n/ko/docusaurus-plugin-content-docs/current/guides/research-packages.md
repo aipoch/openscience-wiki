@@ -2,7 +2,7 @@
 title: ".science 연구 패키지"
 description: "파일 및 증거와 함께 세션을 내보내고 다른 프로젝트에 대한 연구 기록을 검사합니다."
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -123,3 +123,7 @@ Keep everything in English and return links to both new files.
 ## 수신된 연구 기록 재생 {/* #replay-import */}
 
 수입 완료 후, 기록 된 단계 또는 **Discuss**을 검사하기 위해 **View replay**을 선택하여 쓸 수있는 대화에서 묻습니다. 수입된 근원은 읽기 전용 남아 있습니다. 토론 참조는 원래 실행 시간을 재 작성하지 않습니다; **Fork to continue**을 사용하여 작업 복사본을 사용할 수 있습니다. [세션 재생](session-replay.md) 참조.
+
+## 새로운 프로젝트로 가져 오기 {/* #new-project-import-recovery */}
+
+이전 버전이 새로운 프로젝트 카탈로그로 패키지를 채택하는 동안 실패하면 v0.37.0 또는 나중에 업데이트하면 목적지가 이미 존재 여부를 검사하고 다른 수입을 시작하기 전에 import 대화 상자의 복구 작업을 사용합니다. 결과 세션 및 파일 확인. 수정은 수입된 세션을 writable하지 않습니다: **Fork**을 사용하여 분석을 계속합니다.

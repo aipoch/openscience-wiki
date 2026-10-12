@@ -1784,5 +1784,17 @@
   },
   "docs.outline.reference.v0360.scope": {
     "message": "PDF Übersetzung, Notebook Ausführungsüberprüfung, PDC, Ensembl LD und geladene Seitenauswahl."
+  },
+  "docs.outline.reference.v0371.title": {
+    "message": "v0.37.1"
+  },
+  "docs.outline.reference.v0371.scope": {
+    "message": "Wissenschaftliche PDF-Fidelität, Windows-Pfade, leise Notebook-Ausführung und kleinere Installateure."
+  },
+  "docs.outline.reference.v0370.title": {
+    "message": "v0.37.0"
+  },
+  "docs.outline.reference.v0370.scope": {
+    "message": "Standalone Node Backend und CLI, ENCORI, ChEMBL Assays, ClinVar Einreichungen und Notebook Erfassung."
   }
 }

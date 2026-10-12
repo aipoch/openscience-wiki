@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -143,7 +143,7 @@ Utilice el editor PDF para [catalizador de un solo átomo térmicamente estable 
 2. Seleccione **Figures & Tables**. En primer lugar, **Download and continue** completo; espera hasta que la página reporte **Analysis complete**.
 3. Seleccione **Fig. 1** en el índice. Esta copia subida coloca la figura en **PDF página 3**. Compare sus paneles de imagen y capción; la imagen extraída es evidencia para inspeccionar, no un nuevo hallazgo.
 
-![Extracción de figuras locales completadas del papel de Lang cargado](/img/open-science/v0350/uploaded-pdf-extraction.webp)
+![Extracción de figuras locales completadas del papel de Lang cargado](/img/open-science/v0371/pdf-extraction.webp)
 
 4. Elige **Show in PDF**. Confirme **3 / 10** en la vista previa original y compare etiquetas de panel, barras de escala y curvas. Utilice la página original para resolver un desajuste de número de página o capción antes de citar la figura.
 
@@ -238,3 +238,7 @@ La respuesta identificó **Figura 1 en la página PDF 3** del texto y la capció
 ## Traducir el documento {/* #full-text-translation */}
 
 Abrir **Full-text translation** en la barra de herramientas PDF para preparar texto, elegir un modelo compatible y guardar una traducción resumible. Siga [Traducir un PDF completo](pdf-translation.md) para requisitos modelo, comparación original/traducida y exportación PDF. Mantenga el original para comprobar las cifras, tablas y citas.
+
+## Verificación de la estructura científica extraída {/* #scientific-structure-check */}
+
+Después de **Analyze PDF**, abra una figura y tabla junto a la página original. Confirme que los cultivos de figuras incluyen cada panel y sus capciones/legendas, y que las tablas conservan cabeceras agrupadas, grupos de filas, unidades y notas de pie de página. Una fórmula o párrafo cercano no debe convertirse en una celda de mesa o en una capción de figuras. v0.37.1 mejora estos límites y referencias de las células fuente; la extracción sigue siendo algo para comprobar antes de reutilizar los valores. Si una extracción salvada mayor es incompleta, use reanálisis cuando el lector lo ofrezca, compare los elementos resultantes antes de reemplazar una tabla de aguas abajo.

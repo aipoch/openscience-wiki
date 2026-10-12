@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -123,3 +123,7 @@ Si la limpieza es incompleta, use **Retry cleanup** antes de intentarlo de nuevo
 ## Replay a received research record {/* #replay-import */}
 
 Después de que la importación termine, elija **View replay** para inspeccionar los pasos registrados o **Discuss** para preguntar sobre ellos en una conversación ridícula. La fuente importada sigue siendo de sólo lectura. Una referencia de discusión no recrea su tiempo de ejecución original; use **Fork to continue** para una copia de trabajo. Ver [Repetición de sesión](session-replay.md).
+
+## Importar en un nuevo proyecto {/* #new-project-import-recovery */}
+
+Si una versión anterior falla al adoptar un paquete en el catálogo de un nuevo proyecto, actualice a v0.37.0 o posterior, inspeccione si el destino ya existe, y utilice la acción de recuperación del diálogo de importación antes de iniciar otra importación. Compruebe la sesión y los archivos resultantes. La solución no hace que las sesiones importadas sean útiles: use **Fork** para continuar el análisis.

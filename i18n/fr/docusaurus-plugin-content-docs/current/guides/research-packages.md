@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -123,3 +123,7 @@ Si le nettoyage est incomplet, utilisez **Retry cleanup** avant d'essayer à nou
 ## Rejouer un dossier de recherche reçu {/* #replay-import */}
 
 Une fois l'importation terminée, choisissez **View replay** pour inspecter les étapes enregistrées ou **Discuss** pour demander à leur sujet dans une conversation en écriture. La source importée reste en lecture seule. Une référence de discussion ne recrée pas son temps d'exécution original; Utilisez **Fork to continue** pour une copie de travail. Voir [Rejouer la session](session-replay.md).
+
+## Importer dans un nouveau projet {/* #new-project-import-recovery */}
+
+Si une version ancienne échoue en adoptant un paquet dans le catalogue d'un nouveau projet, mettez à jour v0.37.0 ou plus tard, vérifiez si la destination existe déjà, et utilisez l'action de récupération de la boîte de dialogue d'importation avant de commencer une autre importation. Vérifiez la session et les fichiers résultants. La correction ne rend pas les sessions importées enregistrables : utilisez **Fork** pour poursuivre l'analyse.

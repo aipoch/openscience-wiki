@@ -1,7 +1,7 @@
 ---
 title: "Servicio sin cabeza y acceso al navegador"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-12'
 ---
 
 # Servicio sin cabeza y acceso al navegador {/* #headless-service-and-browser-access */}
@@ -10,21 +10,22 @@ El servicio local proporciona un backend sin cabeza y una interfaz del navegador
 
 ## Selección y descubrimiento de objetivos {/* #target-selection-and-discovery */}
 
+Desde v0.37.0, los servicios compartidos se ejecutan en un proceso Node ordinario y el escritorio se conecta como cliente nativo. La startup CLI ya no necesita un host electrónico oculto.
+
 | Selector | Ámbito |
 | --- | --- |
-| `--port PORT` | Superar el puerto de servicio localhost; entero válido 1-65535 |
-| `--app-path PATH` | Seleccione un ejecutable de aplicación instalado; utilizar el camino ejecutable, no una carpeta de proyecto arbitraria |
-| `--config-root PATH` | Desarrollar la configuración anular; paquete de startup lo rechaza |
-| `OPEN_SCIENCE_CONFIG_ROOT` / `OPEN_SCIENCE_STORAGE_ROOT` | Explicar el descubrimiento de la configuración donde se admite |
-| Descubrimiento automático | Pruebe la configuración de desarrollo antes de la producción, saltando candidatos muertos/no saludables |
+| `--port PORT` | Puerto local host, entero 1-65535; un puerto explícito ocupado causa un error |
+| `--config-root PATH` / `--profile PATH` | directorio de configuración CLI portátil; mantener el mismo camino absoluto a través de |
+| `OPEN_SCIENCE_CONFIG_ROOT` | Explicar directorio de configuración a través del medio ambiente; las opciones de comando tienen precedencia |
+| El descubrimiento automático | Encontrar el estado de servicio local y confirmar su perfil, puerto y versión |
 
-Un lugar de configuración explícito restringe el descubrimiento a ese directorio. Compruebe el estado del perfil previsto antes de comenzar o detenerlo. Si el estado regresa `running:false`, siga los comandos del ciclo de vida a continuación; una ventana de escritorio abierta puede utilizar otro servicio / archivo.
+Los backends de escritorio seleccionan un puerto libre cuando no se especifica; CLI por defecto de inicio a 44100. Use `status --json` en lugar de inferir el puerto desde una ventana abierta. Se puede reutilizar un servicio existente compatible para la misma configuración; terminar el trabajo activo y seguir las instrucciones de actualización cuando las versiones no coincidan. La opción `--app-path` heredada no convierte un ejecutable Electron en un nuevo backend Node.
 
-El archivo del estado de servicio es `web-service.json`. La falta de autenticación no es el permiso para matar su proceso registrado. El código de cierre preserva registros insalubres para el diagnóstico y evita la señalización de un PID que puede haber sido reutilizado por otro proceso.
+El archivo del estado es `web-service.json`. La falta de autenticación no es el permiso para borrar ese registro o matar a su PID. Inspeccione primero el servicio y el diagnóstico real para evitar afectar otro proceso.
 
 ## Inicializar y comprobar la preparación {/* #readiness */}
 
-Utilice `open-science init` para preparar el directorio de configuración predeterminado sin iniciar la aplicación. `--profile` alias `--config-root` sólo cuando se apoyan las anulaciones de perfil de desarrollo; no evita la restricción de la compilación empaquetada. Los paquetes Debian instalan el CLI junto a la aplicación. Ver [terminal setup](cli.md#terminal-setup) para la preparación y inicio de sesión de Codex.
+Utilice `open-science init` para preparar el directorio de configuración predeterminado sin iniciar la aplicación. Para una configuración aislada, pase el mismo camino absoluto `--profile` para init, start y comandos posteriores. Los paquetes Debian instalan el CLI junto a la aplicación. Ver [terminal setup](cli.md#terminal-setup) para la preparación y inicio de sesión de Codex.
 
 Después de un `start --no-open` intencional, ejecute `open-science doctor --json`. Inspeccione el `ready` general, los cheques individuales y las siguientes acciones sugeridas; el código de salida del proceso por sí solo no es un veredicto de preparación. Mantenga el servicio en su interfaz local autenticada existente. Iniciar este servicio sin cabeza no configura Remote.It ni publica un endpoint público.
 
@@ -46,8 +47,8 @@ Entre estos comandos, **status and stop support `--json`; empezar y url no**. El
 | JSON `result` | Significado |
 | --- | --- |
 | `already-stopped` | No hay registro de servicio en vivo encontrado |
-| `daemon-stopped` | Authenticated standalone daemon salió |
-| `web-service-stopped` | Se detuvo el servicio web adjunto; La aplicación de escritorio sigue funcionando |
+| `daemon-stopped` | Authenticated Node backend salió; clientes adjuntos pierden su conexión de backend |
+| `web-service-stopped` | Legacy Electron resultado del servicio web, no el nuevo backend independiente Node |
 
 Una solicitud rechazada o el plazo de cierre perdido devuelve un fracaso. Lea el error e inspeccione el estado de destino real. No reporte un servicio como se detuvo simplemente porque el comando regresó.
 
@@ -85,17 +86,25 @@ Los valores encriptados existentes no se migran automáticamente y todavía requ
 
 Utilice almacenamiento persistente cuando la configuración debe sobrevivir el reemplazo de contenedores. La desconexión mantiene la configuración; reemplazar un sistema de archivos de contenedores desechable puede eliminarlo. Vea el [contrato de almacenamiento de credenciales](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
 
+## Propietario y cierre de backend {/* #backend-ownership */}
+
+| Medida | Efecto en el backend |
+| --- | --- |
+| Cerrar una pestaña del navegador | Backend sigue corriendo |
+| Deja el escritorio que comenzó el backend | Su backend de propiedad se detiene con él |
+| Dejar un escritorio conectado a un backend CLI existente | Sólo ese cliente se separa; el backend CLI sigue funcionando |
+| `open-science stop` | Parar el backend seleccionado, afectando a todos los clientes que se adjuntan a él |
+
+Cerrar una ventana puede diferir de dejar la aplicación, especialmente cuando permanece en la bandeja. Terminar la investigación activa antes de detener un backend compartido, luego inspeccionar el estado actual con `status --json`.
+
 ## Comportamiento de actualización de la aplicación {/* #application-update-behavior */}
 
-`open-science update` actualiza la aplicación instalada. Actualizar el cliente npm por separado. El comando puede iniciar un servicio local cuando sea necesario y dejar ese servicio disponible después.
+Actualizaciones nativas de escritorio y actualizaciones de paquetes independientes utilizan diferentes caminos. Un backend Node ordinario no puede reemplazar el instalador de escritorio; su `update --json` informa un requisito de actualización manual y el modo `package-manager`. Siga las instrucciones devueltas.
 
-| `update --json` resultados | Interpretación |
-| --- | --- |
-| `up-to-date` | No nueva versión aplicable encontrada |
-| `install-started` | Updater aceptó el desvío de la instalación; la versión instalada final no es verificada por esa invocación |
-| `manual-action-required` | Siga la ruta del instalador notificado/siguiente paso |
-| `blocked` | La investigación activa impide una actualización en el lugar; inspectiva `blockedBy` |
+- **Aplicación de escritorio:** utiliza su actualización en la aplicación. Si se adjunta a un backend iniciado previamente por el CLI, termine el trabajo y detenga ese backend antes de actualizar el escritorio.
+- **Archivo CLI independiente:** terminar el trabajo, detener el backend previsto, extraer la nueva versión en un nuevo directorio, conservar los datos de configuración y actualizar el lanzador o PATH. No sobreescribas el paquete de ejecución.
+- **instalación npm:** actualiza el paquete correspondiente a través de npm y confirma la compatibilidad cliente/backend.
 
-El soporte requiere la capacidad de servicio `update-cli-v1`. Las instalaciones más antiguas pueden requerir una actualización manual en lugar de un procedimiento remoto adivinado. Retener el resultado impreso y verificar la versión de aplicación después de la instalación.
+Reinicie, luego utilice `status --json` y `doctor --json` para confirmar la versión, directorio de configuración y preparación. Preserve el modo de plantación credencial existente; no eliminar credenciales o configuración para realizar una actualización.
 
-[Aplicación del ciclo de vida y el descubrimiento](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [configuración de descubrimiento](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/config-root.mjs). Para banderas de tareas y códigos de salida, véase [CLI](./cli.md); para llamadas programáticas, vea [Task SDK](./api.md).
+Vea el [guía oficial de tiempo libre](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md), [CLI](cli.md) y [Task SDK](api.md).

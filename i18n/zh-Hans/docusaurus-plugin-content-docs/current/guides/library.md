@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -390,3 +390,7 @@ Citation 的四个复制按钮写入不同格式。粘贴到目标编辑器，�
 使用 Library 或 Inbox 的全选复选框，选中该视图已加载的记录。选择批量操作前，核对已选数量与可见记录。勾选此框会用已加载行替换选择范围，取消勾选会清除选择。
 
 Library 中还有更多匹配记录时，独立的 **Select all matching references** 操作可以把范围扩展到已加载页面之外。使用前先核对总数与当前筛选条件；仅勾选页面复选框不会执行这一扩展。需要重新选择时，使用 **Clear selection**。选中记录不会直接接受 Inbox 候选或导出文件，还需要选择对应操作。
+
+## 继续失败的智能集合批次 {/* #smart-collection-retry */}
+
+智能集合评估停在失败批次时，先检查错误与剩余进度，再使用界面提供的重试操作。v0.37.0 起，重试继续失败批次并保留已完成的评估。此次重试保持范围和规则不变，完成后检查 Included、Needs review 与 Excluded 的结果。不要通过创建重复集合来恢复中断评估。

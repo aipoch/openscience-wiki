@@ -1,7 +1,7 @@
 ---
 title: "Traduire un PDF complet"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # Traduire un PDF complet {/* #translate-a-full-pdf */}
@@ -17,7 +17,7 @@ Lisez un article dans une autre langue tout en conservant l'original pour compar
 
 | Méthode | Que configurer |
 | --- | --- |
-| **Agent** | un modèle d'agent disponible, ou **Main model** lorsqu'ils sont soutenus. Dans v0.36.0, les modèles d'abonnement Codex ne peuvent pas exécuter cette opération de traduction PDF. Sélectionnez un modèle de traduction compatible sans remplacer le modèle Main de la conversation. |
+| **Agent** | un modèle d'agent disponible, ou **Main model** lorsqu'ils sont soutenus. Dans v0.37.1, les modèles d'abonnement Codex ne peuvent pas exécuter cette opération de traduction PDF. Sélectionnez un modèle de traduction compatible sans remplacer le modèle Main de la conversation. |
 | **Direct API** | Un modèle API configuré et disponible. L'inscription à l'abonnement ne peut pas être utilisée comme titre de compétence direct API. Voir [configuration du fournisseur](providers.md). |
 | **Local model**, lorsqu'il est offert | Installez le modèle à travers les commandes affichées et attendez qu'il soit prêt. La traduction locale exécute un paragraphe à la fois. |
 
@@ -51,3 +51,7 @@ Choisissez **Export translated PDF**, enregistrez une copie séparée, puis rouv
 | Les progrès ne peuvent pas être sauvés | Réouvrez le PDF pour charger le dernier résultat enregistré avant de continuer. |
 
 Utilisez [Annotations et notes de document PDF](pdf-notes.md) pour enregistrer les questions de lecture. La traduction et l'annotation sont des outils distincts.
+
+## Vérifier la présentation scientifique {/* #scientific-layout */}
+
+Avant d'utiliser une traduction exportée, comparez une figure multi-panneau et une table avec l'original. Conservez les légendes avec leurs panneaux, vérifiez les en-têtes groupés et les étiquettes des rangées, et vérifiez les formules, les superscripts, les symboles et les unités. v0.37.1 améliore ces relations de source et accepte les différences valides de noms de glyphes encastrés pendant la régénération, mais l'original reste la preuve d'une citation ou d'une revendication scientifique. Si une ancienne exportation de contenu perdu, mettre à jour l'application et exporter à nouveau à partir de la traduction enregistrée; conserver l'original et comparer le nouveau fichier.

@@ -2,7 +2,7 @@
 title: "Bases de données scientifiques"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # Bases de données scientifiques {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Utilisez cette page pour choisir une source de données, comprendre ce qu'elle p
 
 ## Bases de données prises en charge {/* #supported-databases */}
 
-Open-Science v0.36.0 comprend **Connecteurs source de données 34 avec opérations 347**. Le Molecule Connector séparé hors ligne ajoute deux opérations, apportant le registre complet à 349. Noms Connector ci-dessous correspondent à **Settings → Connectors**; Chaque famille peut exposer plusieurs bases de données. L'inscription d'une source ne signifie pas que toutes les fonctionnalités de son site Web sont disponibles.
+Open-Science v0.37.1 comprend **Connecteurs source de données 35 avec opérations 359**. Le Molecule Connector séparé hors ligne ajoute deux opérations, apportant le registre complet à 361. Noms Connector ci-dessous correspondent à **Settings → Connectors**; Chaque famille peut exposer plusieurs bases de données. L'inscription d'une source ne signifie pas que toutes les fonctionnalités de son site Web sont disponibles.
 
 | Connecteur | Sources | Opérations | Utilisez-le pour  |
 | --- | --- | --- | ---  |
@@ -22,11 +22,11 @@ Open-Science v0.36.0 comprend **Connecteurs source de données 34 avec opératio
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Littérature biomédicale par l'intermédiaire de l'E-utilities NCBI, du PMC ID Converter et d'Europe PMC — recherche, métadonnées, articles connexes, recherche de citation, conversion d'ID, texte intégral et copyright.  |
 | Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Identificateurs de gènes/protéines, découverte de séquences UniProt, annotations GO et Réactome, et g:Profiler et enrichissement de la série de gènes Enrichr. |
 | Génomes · `genomes` | Ensembl, UCSC, NCI, BLAST, Omega clustal | 22 | annotation du génome, homologie et séquence; l'identification des taxons/ensembles/séquences de la BCNI; Recherche BLAST et alignement de plusieurs séquences de Clustal Omega; Variantes LD et proxy propres à la population. |
-| Variantes · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 21 | Fréquences des populations, dossiers cliniques et scores fonctionnels, cartes et expériences propres à chaque essai. |
+| Variantes · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | Fréquences des populations, dossiers cliniques et scores fonctionnels, cartes et expériences propres à chaque essai. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Essais cliniques de ClinicalTrials.gov — recherche, détails, commanditaires, chercheurs, critères et admissibilité.  |
 | Génomique clinique · `clinical-genomics` | ClinGen, CIViC, cibles ouvertes, ClinPGx | 30 | Bases de connaissances en génomique clinique : ClinGenations, preuves cliniques du CIVIC et plateforme Open Targets, plus dossiers pharmacogénomiques ClinPGx. |
 | Structures et interactions · `structures` | PDB, AlphaFold, EMDB, Portail complexe, IntAct | 17 | Structures et interactions moléculaires — Structures PDB, prédictions AlphaFold, entrées EMDB cryo-EM, complexes de portails complexes, réseaux d'interactions IntAct.  |
-| ChEMBL · `chembl` | ChEMBL | 6 | Composés bioactifs, médicaments, cibles, bioactivité et mécanismes via le ChEMBL REST API.  |
+| ChEMBL · `chembl` | CEMBL | 7 | Composés bioactifs, médicaments, cibles, bioactivité et mécanismes via le ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | préimpressions bioRxiv/medRxiv — recherche par date/catégorie, métadonnées par DOI, liens de publication de revues, listes de bailleurs de fonds et statistiques des plates-formes.  |
 | Réglementation des médicaments · `drug-regulatory` | ouvertFDA | 10 | Médicaments@FDA, étiquettes, rapports d'événements indésirables FAERS et rappels de médicaments. |
 | Génétique humaine · `human-genetics` | Catalogue GWAS, Catalogue eQTL, PheWeb | 15 | Données probantes sur les associations génétiques humaines — Catalogue GWAS, catalogue eQTL et portails PheWeb PheWAS (FinnGen, BioBank Japan).  |
@@ -51,6 +51,7 @@ Open-Science v0.36.0 comprend **Connecteurs source de données 34 avec opératio
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | Les associations entre la maladie et le gène et le phénotype avec l'organisme et les preuves à l'appui. |
 | IEDB · `iedb` | Base de données Imune Epitope | 8 | Epitopes, antigènes, tests sur cellules T, cellules B et MHC, preuves TCR/BCR et publications sources. |
 | PDC · `pdc` | NCI Proteomic Data Commons | 4 | Les versions d'études sur le cancer-protéomique, les associations de spécimens et les métadonnées de fichiers quantitatifs; Aucun téléchargement. |
+| ENCORI · `encori` | ENCORI | 10 | cibles miRNA/RBP, interactions RNA, ceRNA, motifs, sites de fixation, tableaux de référence et fichiers en vrac. |
 
 Les outils Molecule hors ligne sont couverts par [Vérificateurs scientifiques](viewers.md). Pour les opérations exactes exposées par chaque source de données, utilisez le [Référence de fonctionnement Connector](../reference/connector-operations.md).
 
@@ -72,6 +73,45 @@ Pour la conversion de l'identificateur de lot, **Genes & Ontologies** ajoute `su
 **Zenodo** expose les métadonnées des enregistrements publics sans authentification. Conservez l'identifiant d'enregistrement propre à la version et les champs d'accès/licence avec l'inventaire des fichiers. **GDC** expose les métadonnées publiques; un manifeste n'est pas une autorisation de téléchargement, et les fichiers contrôlés nécessitent une autorisation GDC. [Opérations de développement durable](../reference/connector-operations.md#family-24) · [Opérations Zenodo](../reference/connector-operations.md#family-25).
 
 Une réponse à une base de données peut appuyer une étape de recherche; il ne télécharge pas automatiquement les données, n'ajoute pas chaque papier à la bibliothèque de littérature ou n'effectue pas une analyse complète. Spécifiez quels enregistrements et fichiers vous souhaitez enregistrer.
+
+## Preuves réglementaires de l'ARN avec ENCORI {/* #encori */}
+
+Trouvez **ENCORI** dans **Settings → Connectors**, activez-le et rendez-le disponible sur **Agent principal**. Cette source intégrée n'a pas besoin d'être personnalisée MCP URL ou API La clé. Avec un modèle Main fonctionnel sélectionné, spécifiez l'organisme/assemblage, l'ARN ou le gène cible, le type de cellule et les seuils de preuve dans la conversation.
+
+| Tâche | Résultat et limite |
+| --- | --- |
+| requêtes miRNA, RNA–ARN, RBP-cible et ceRNA | Conserver les preuves applicables de CLIP, de dégradome, de programme de prédiction, de valeur p et de FDR; n'établit pas de réglementation causale. |
+| Preuves, motifs et sites de fixation de la maladie du RBP | Préserver l'assemblage, le contexte tissulaire/cellulaire, l'ordre en amont et les coordonnées originales; ne mélangent pas les espèces et ne coordonnent pas les systèmes. |
+| Tableaux de référence et données globales | Listez d'abord les chemins exacts de table ou les noms de fichiers. Le téléchargement en vrac est séparé: spécifiez le fichier, la destination et le stockage requis avant de le demander. |
+
+<p className="example-label"><strong>Exemple pratique</strong> Interroger les preuves de l'ARNi pour PDCD4 dans HeLa</p>
+
+```text
+Use ENCORI to find human miRNA interactions targeting PDCD4 in HeLa cells,
+using hg38, mRNA targets, at least one CLIP experiment and TargetScan support.
+Show at most two rows. Preserve the exact filters, total count and full raw
+response in the session data folder. Explain the evidence limits in English.
+Do not download bulk datasets.
+```
+
+Cette requête a retourné les enregistrements 19; les deux premiers étaient hsa-miR-23a-3p et hsa-miR-181a-5p. La capture d'écran montre la réponse brute complète enregistrée et les limites de preuve. Ce sont des résultats spécifiques à l'exemple et peuvent changer à mesure que la base de données est mise à jour.
+
+![Sommaire de la requête ENCORI à côté de la réponse brute complète enregistrée](/img/open-science/v0371/encori-response.webp)
+
+Distinguer `total_records` de `returned_records` et inspecter `is_complete`, `result_scope` et `completeness_note`. Un aperçu n'est pas une distribution cible complète. Le `raw_response_path` de la réponse complète est un chemin de fichier local, pas automatiquement un artefact de session téléchargeable. Pour le partager, demandez à l'agent de l'enregistrer dans un répertoire de données de session accessible et joignez le fichier; ouvrir la pièce jointe pour vérifier son contenu.
+
+Une requête peut renvoyer un véritable résultat vide ou `ok:false`; n'élargissez pas silencieusement les filtres pour obtenir un coup. Après un téléchargement en vrac, vérifiez le chemin, la taille et `verified_gzip`. Lire des tableaux de référence ou des ensembles de données ne télécharge pas les fichiers en vrac. Voir [Opérations ENCORI](../reference/connector-operations.md#family-35) pour les paramètres exacts.
+
+## Contexte de l'analyse et observations individuelles {/* #assay-submission-evidence */}
+
+| Entrée | Procédure | Limite d'interprétation |
+| --- | --- | --- |
+| **CEMBL** | Activer le Connector; Aucune clé API n'est nécessaire. Prenez `assay_chembl_id` à partir d'un dossier de bioactivité, inspecter la méthode, l'organisme, les cellules/tissus et la cible avec `get_assay`, puis récupérer `get_bioactivity` pour la même identification d'essai. | La confiance dans l'attribution des cibles n'est pas une qualité de mesure. Comparer les conditions, les unités et les opérateurs de relation avant de combiner les valeurs IC50/Ki. |
+| **Variants → ClinVar** | Configurer un véritable courriel de contact NCI dans le Connector; La clé API est optionnelle. Appeler `clinvar_get_submissions` avec une adhésion VCV ou un identifiant de variation positif, puis suivre la version épinglée `next_page` les arguments. | Préserver SCV, soumettre, condition, date d'évaluation, méthode et citations. Comparer séparément la germination, l'impact clinique somatique et l'oncogénicité. |
+
+Les pages ChEMBL sont commandées par `activity_id`. Conserver les filtres inchangés et passer `next_offset` comme `offset` suivant jusqu'à `has_more:false`; cela peut récupérer plus d'enregistrements 1,000. Le `summary` ne couvre que la page actuelle, de sorte que son activité la plus forte n'est pas nécessairement la plus forte dans la requête complète. Après que ClinVar résout une première page de la dernière version, conservez la version retournée VCV pour la suite; ne remplacez pas une entrée RCV, SCV ou rsID.
+
+[Champs d'essai ChEMBL](../reference/connector-operations.md#get_assay) · [Pagination de la bioactivité](../reference/connector-operations.md#get_bioactivity) · [Champs de soumission ClinVar](../reference/connector-operations.md#clinvar_get_submissions).
 
 ## Données monocellulaires, modélistes-organismes et variables-effets {/* #single-cell-model-organisms */}
 
@@ -214,7 +254,7 @@ Pour `get_variant`, définissez `include_populations: true` uniquement lorsque l
 
 Les listes [Référence de fonctionnement Connector](../reference/connector-operations.md) contiennent les entrées requises, les valeurs autorisées et les appels exacts. Utilisez cette page pour choisir une source et la connecter; utiliser la référence pour les champs d'un outil particulier.
 
-Source du catalogue: [catalogue.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/catalog.ts), [registre.ts](https://github.com/aipoch/open-science/blob/v0.35.1/src/main/connectors/registry.ts).
+Source du catalogue: [catalogue.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts), [registre.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts).
 
 ## Recherches de séquences et alignement {/* #sequence-tools */}
 

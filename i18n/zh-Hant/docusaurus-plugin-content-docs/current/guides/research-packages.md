@@ -2,7 +2,7 @@
 title: ".science 研究包"
 description: "將會話、檔案和證據一起匯出，再匯入專案檢視與交接研究記錄。"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -123,3 +123,7 @@ Keep everything in English and return links to both new files.
 ## 回放收到的研究記錄 {/* #replay-import */}
 
 匯入完成後，選擇 **View replay** 檢視記錄步驟，或用 **Discuss** 在可寫會話中提問。匯入的源會話仍保持只讀，討論引用不會恢復原執行環境；需要工作副本時使用 **Fork to continue**。詳見[會話回放](session-replay.md)。
+
+## 匯入新專案 {/* #new-project-import-recovery */}
+
+舊版本接納研究包到新專案目錄時失敗，可更新至 v0.37.0 或更高版本，先檢查目標專案是否已存在，再使用匯入對話方塊的恢復操作，避免重複匯入。完成後核對會話與檔案。這項修復不會讓匯入會話變成可寫；繼續分析仍需使用 **Fork**。

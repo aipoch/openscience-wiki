@@ -1774,5 +1774,17 @@
   },
   "docs.outline.reference.v0360.scope": {
     "message": "PDF 번역, Notebook 실행 검토, PDC, Ensembl LD 및 로드 페이지 선택."
+  },
+  "docs.outline.reference.v0371.title": {
+    "message": "v0.37.1"
+  },
+  "docs.outline.reference.v0371.scope": {
+    "message": "과학적인 PDF fidelity, Windows 경로, 조용한 Notebook 실행 및 작은 설치자."
+  },
+  "docs.outline.reference.v0370.title": {
+    "message": "v0.37.0"
+  },
+  "docs.outline.reference.v0370.scope": {
+    "message": "독립 Node 백엔드 및 CLI, ENCORI, ChEMBL 분석실험, ClinVar 제출 및 Notebook 캡처."
   }
 }

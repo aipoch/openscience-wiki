@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -390,3 +390,7 @@ Open a reference's PDF attachment and use **Notes & Annotations** for annotation
 Use the select-all checkbox in Library or Inbox to select the records already loaded in that view. Check the selected count and visible rows before choosing a batch action. Selecting this checkbox replaces the selection with the loaded rows; clearing it clears the selection.
 
 When additional matching Library records exist, a separate **Select all matching references** action can extend the selection beyond the loaded page. Inspect its total and active filters before using it. The page checkbox alone does not do this. Use **Clear selection** to start again. Selecting records does not accept Inbox candidates or export files until you choose that action.
+
+## Resume a failed smart-collection batch {/* #smart-collection-retry */}
+
+When a smart-collection evaluation stops on a failed batch, inspect its error and the remaining progress before using the offered retry. From v0.37.0, retry resumes the failed batch while preserving completed evaluation work. Keep the scope and criteria unchanged for that retry, then review Included, Needs review and Excluded results. Do not create a duplicate collection to recover an interrupted evaluation.

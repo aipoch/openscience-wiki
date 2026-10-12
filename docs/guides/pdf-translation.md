@@ -1,7 +1,7 @@
 ---
 title: "Translate a full PDF"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 # Translate a full PDF
@@ -17,7 +17,7 @@ Read a paper in another language while retaining the original for comparison. **
 
 | Method | What to configure |
 | --- | --- |
-| **Agent** | An available Agent model, or **Main model** when supported. In v0.36.0, Codex subscription models cannot run this PDF translation operation. Select a compatible translation model without replacing the conversation's Main model. |
+| **Agent** | An available Agent model, or **Main model** when supported. In v0.37.1, Codex subscription models cannot run this PDF translation operation. Select a compatible translation model without replacing the conversation's Main model. |
 | **Direct API** | A configured, available API model. Subscription sign-in cannot be used as a Direct API credential. See [provider setup](providers.md). |
 | **Local model**, when offered | Install the model through the displayed controls and wait until it is ready. Local translation runs one paragraph at a time. |
 
@@ -51,3 +51,7 @@ Choose **Export translated PDF**, save a separate copy, then reopen it in a PDF 
 | Progress could not be saved | Reopen the PDF to load the latest saved result before continuing. |
 
 Use [PDF annotations and document notes](pdf-notes.md) to record reading questions. Translation and annotation are separate tools.
+
+## Check scientific layout {/* #scientific-layout */}
+
+Before using an exported translation, compare a multi-panel figure and a table with the original. Keep legends with their panels, verify grouped headers and row labels, and check formulas, superscripts, symbols and units. v0.37.1 improves these source relationships and accepts valid embedded-font glyph-name differences during regeneration, but the original remains the evidence for a quotation or scientific claim. If an older export lost content, update the app and export again from the saved translation; retain the original and compare the new file.

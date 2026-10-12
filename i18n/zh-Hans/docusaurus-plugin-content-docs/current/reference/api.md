@@ -1,7 +1,7 @@
 ---
 title: "Task SDK 与本地 API"
 last_update:
-  date: '2026-09-22'
+  date: '2026-10-12'
 ---
 
 # Task SDK 与本地 API
@@ -14,13 +14,13 @@ last_update:
 
 <p className="example-label"><strong>示例</strong> 保存并下载连接检查说明</p>
 
-使用 Node.js 22.5 或更高版本。在同一台电脑打开桌面应用，完成模型设置并保持运行。SDK 通过本地服务发现及保存的本地令牌连接。独立守护进程的准备见[无界面服务](server.md)。
+使用与所选包兼容的 Node.js；v0.37.1 后端包要求 Node.js 22.13 或更高版本，独立 CLI 压缩包已自带 Node。通过桌面应用或 [CLI](server.md) 启动后端，完成模型设置并保持运行。SDK 通过本地服务发现及保存的本地令牌连接。
 
-在一个空工作文件夹安装客户端：
+在空工作文件夹中，安装与目标平台匹配的本地包。将 `BACKEND_DIRECTORY` 替换为独立 CLI 压缩包完整解压后的 `backend` 绝对路径，并保留该目录：
 
 ```bash
 npm init -y
-npm install @aipoch/open-science
+npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
 ```
 
 将下方保存为 `connection-check.mjs`。先运行 `node connection-check.mjs` 列出项目 ID，再运行 `node connection-check.mjs PROJECT_ID`，将占位符换成返回的 ID。第一次调用在列出项目后主动停止；第二次才会创建小任务。
@@ -58,9 +58,9 @@ await writeFile('project-note.download.md', new Uint8Array(await response.arrayB
 console.log('Saved project-note.download.md; open and check its contents.');
 ```
 
-保持桌面会话打开。如果 **Ask for approval** 暂停任务，在应用中回应。等待超时只停止客户端轮询，不会取消任务。用输出的 run ID 调用 `getRun` 检查，处理请求后继续等待；需要停止时才调用 `cancelRun`。只有找到匹配的已保存产物才会下载，打开下载的 Markdown 即完成检查。
+保持对应的桌面或已认证浏览器会话可访问。如果 **Ask for approval** 暂停任务，在应用中回应。等待超时只停止客户端轮询，不会取消任务。用输出的 run ID 调用 `getRun` 检查，处理请求后继续等待；需要停止时才调用 `cancelRun`。只有找到匹配的已保存产物才会下载，打开下载的 Markdown 即完成检查。
 
-此程序说明公共 API 契约，不假设模型总能保存指定文件。如果无法安装 npm 包，可使用匹配源码中附带的 SDK 文件夹作为本地包；安装前确认其包元数据。
+此程序说明公共 API 契约，不假设模型总能保存指定文件。使用匹配版本或源码包中的 SDK，安装前核对平台与 Node 要求。
 
 ### 任务已完成，但文件下载失败
 
@@ -78,7 +78,7 @@ console.log('Saved project-note.download.md; open and check its contents.');
 | `listRuntimes()` | `GET /api/v1/runtimes` | 列出框架、状态、可用版本和应用管理/外部来源 |
 | `bootstrap({action: "status"})` | `POST /api/v1/bootstrap` | 检查首次设置状态 |
 | `bootstrap({action: "runtime"})` | `POST /api/v1/bootstrap` | 通过受支持的首次设置流程，准备或修复应用管理的 Codex 运行时 |
-| `installCli()` | `POST /api/v1/cli/install` | 安装本地 PATH 命令入口 |
+| `installCli()` | `POST /api/v1/cli/install` | 原生桌面命令安装；独立 Node 后端不支持，使用桌面 General 或压缩包启动器 |
 
 设置写操作需要经过认证的本地服务。检查返回的 `ok` 和错误码，配置冲突处理后再重试。客户端超时不能证明已经接受的安装被取消，发起另一轮安装前先重新检查就绪状态。订阅登录或通过指定环境变量提供凭据，见[终端设置流程](cli.md#terminal-setup)。
 

@@ -2,7 +2,7 @@
 title: "Connector 操作引數參考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-12'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.36.0** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.36.0.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
+每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.37.1** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.1.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
 
 
 ## 化學 {/* #family-1 */}
@@ -1368,6 +1368,20 @@ const result = await host.mcp("variants", "mavedb_get_experiment", {"urn":"urn:m
 const result = await host.mcp("variants", "mavedb_get_experiment_score_sets", {"urn":"urn:mavedb:00000003-a"})
 ```
 
+### `clinvar_get_submissions` {/* #clinvar_get_submissions */}
+
+讀取 ClinVar VCV 記錄中的逐條 SCV 提交證據，需要已有 NCBI 聯絡郵箱，API key 可選。accession 接受可帶版本號的 VCV 或正整數 Variation ID，不接受 RCV、SCV 或 rsID。首頁未指定版本時解析最新版本；後續分頁沿返回的 next_page 引數固定版本。保留提交者、條件、評估日期、斷言方法、觀測和引用，分別比較胚系、體細胞臨床影響及致癌性分類，不能將不同型別或疾病的標籤直接視為衝突。缺失欄位保留 null 或空列表；間接 Included 記錄不是該 VCV 的直接 SCV 證據，查詢異常不代表不存在提交。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `accession` | string | **必填** |
+| `max_submissions` | integer | 可選; default: 200; minimum: 1; maximum: 200 |
+| `offset` | integer | 可選; default: 0; minimum: 0 |
+
+```javascript
+const result = await host.mcp("variants", "clinvar_get_submissions", {"accession":"VCV000045122"})
+```
+
 </ToolOperationGroup>
 
 ## 臨床試驗 {/* #family-7 */}
@@ -2224,21 +2238,23 @@ const result = await host.mcp("chembl", "get_admet", {"molecule_chembl_id": "CHE
 
 ### `get_bioactivity` {/* #get_bioactivity */}
 
-檢索 ChEMBL 化合物與靶標的生物活性測量，如 IC50、Ki、Kd、EC50。可按分子、靶標、型別、pChEMBL、數值範圍和單位篩選；返回按 activity_id 排序的一頁及效力摘要。
+查詢 ChEMBL 活性測量值，可按化合物、靶標、assay_chembl_id、活性型別、pChEMBL 下限、測量範圍和單位過濾。每頁按 activity_id 排序；保持過濾條件不變，用 next_offset 作為下一頁 offset，直至 has_more 為 false，可讀取超過 1000 條記錄。summary 僅總結當前頁，truncated 不是停止翻頁依據；缺少上游總數時 total 的回退頁數不是已驗證總量。比較數值前用 get_assay 核對實驗條件。
 
-| 欄位 | 型別 | 要求與約束 |
+| 欄位 | 型別 | 必填與約束 |
 | --- | --- | --- |
-| `molecule_chembl_id` | 字串 | 可選 |
-| `target_chembl_id` | 字串 | 可選 |
-| `activity_type` | 字串 | 可選; 列舉： &#91;&quot;IC50&quot;, &quot;EC50&quot;, &quot;Ki&quot;, &quot;Kd&quot;, &quot;AC50&quot;, &quot;GI50&quot;, &quot;ED50&quot;, &quot;Potency&quot;&#93; |
-| `min_pchembl` | 數值 | 可選; 最小值： 0; 最大值： 14 |
-| `min_value` | 數值 | 可選 |
-| `max_value` | 數值 | 可選 |
-| `unit` | 字串 | 可選; 列舉： &#91;&quot;nM&quot;, &quot;uM&quot;, &quot;mM&quot;, &quot;pM&quot;, &quot;M&quot;&#93; |
-| `limit` | 整數 | 可選; 預設值： 20; 最小值： 1; 最大值： 1000 |
+| `molecule_chembl_id` | string | 可選 |
+| `target_chembl_id` | string | 可選 |
+| `assay_chembl_id` | string | 可選; minLength: 1; pattern: &quot;^CHEMBL&#91;0-9&#93;+$&quot; |
+| `activity_type` | string | 可選; enum: &#91;&quot;IC50&quot;, &quot;EC50&quot;, &quot;Ki&quot;, &quot;Kd&quot;, &quot;AC50&quot;, &quot;GI50&quot;, &quot;ED50&quot;, &quot;Potency&quot;&#93; |
+| `min_pchembl` | number | 可選; minimum: 0; maximum: 14 |
+| `min_value` | number | 可選 |
+| `max_value` | number | 可選 |
+| `unit` | string | 可選; enum: &#91;&quot;nM&quot;, &quot;uM&quot;, &quot;mM&quot;, &quot;pM&quot;, &quot;M&quot;&#93; |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 1000 |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 9007199254740991 |
 
 ```javascript
-const result = await host.mcp("chembl", "get_bioactivity", {"molecule_chembl_id": "CHEMBL25", "activity_type": "IC50", "limit": 10})
+const result = await host.mcp("chembl", "get_bioactivity", {"molecule_chembl_id":"CHEMBL25","activity_type":"IC50","limit":10})
 ```
 
 ### `get_mechanism` {/* #get_mechanism */}
@@ -2271,6 +2287,18 @@ const result = await host.mcp("chembl", "get_mechanism", {"molecule_chembl_id": 
 
 ```javascript
 const result = await host.mcp("chembl", "target_search", {"gene_symbol": "EGFR", "organism": "Homo sapiens", "limit": 5})
+```
+
+### `get_assay` {/* #get_assay */}
+
+按 assay_chembl_id 查詢 ChEMBL 實驗描述、型別與格式、物種、細胞／組織、實驗引數、靶標與靶標歸屬置信度。confidence 描述靶標歸屬，不是測量質量；合併 IC50／Ki 前比較實驗條件。用相同 assay_chembl_id 呼叫 get_bioactivity 獲取測量值。只有有效空響應才表示 found:false，請求或響應異常不等於記錄不存在。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `assay_chembl_id` | string | **必填**; minLength: 1; pattern: &quot;^CHEMBL&#91;0-9&#93;+$&quot; |
+
+```javascript
+const result = await host.mcp("chembl", "get_assay", {"assay_chembl_id":"CHEMBL1217643"})
 ```
 
 </ToolOperationGroup>
@@ -5393,6 +5421,187 @@ const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"P
 
 ```javascript
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
+```
+
+</ToolOperationGroup>
+
+## ENCORI {/* #family-35 */}
+
+<ToolOperationGroup>
+<summary>展開操作與引數</summary>
+
+### `query_mirna_targets` {/* #query_mirna_targets */}
+
+查詢 ENCORI 的 miRNA 靶標證據。明確指定物種對應的 assembly、gene_type、miRNA、靶基因、細胞型別、CLIP／降解組／癌種閾值及預測程式；program 只接受列出的具體程式名，可用逗號組合，不使用 all。max_records 限制預覽行數，完整原始響應會儲存到檔案。保留過濾條件與完整性欄位，預測加 CLIP 支援不等於因果調控或表達抑制已被證實。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `assembly` | string | **必填**; enum: &#91;&quot;hg38&quot;, &quot;mm10&quot;&#93; |
+| `gene_type` | string | **必填**; enum: &#91;&quot;mRNA&quot;, &quot;lncRNA&quot;, &quot;pseudogene&quot;, &quot;circRNA&quot;, &quot;sncRNA&quot;&#93; |
+| `mirna` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `clip_exp_num` | integer | **必填**; minimum: 0; maximum: 999 |
+| `degra_exp_num` | integer | **必填**; minimum: 0; maximum: 999 |
+| `pancancer_num` | integer | **必填**; minimum: 0; maximum: 32 |
+| `program_num` | integer | **必填**; minimum: 1; maximum: 7 |
+| `program` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `target` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `cell_type` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `max_records` | integer | 可選; default: 20; minimum: 1; maximum: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 可選; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_mirna_targets", {"assembly":"hg38","gene_type":"mRNA","mirna":"all","clip_exp_num":1,"degra_exp_num":0,"pancancer_num":0,"program_num":1,"program":"TargetScan","target":"PDCD4","cell_type":"HeLa","max_records":2})
+```
+
+### `query_rna_rna_interactions` {/* #query_rna_rna_interactions */}
+
+按參考基因組、RNA 型別、RNA 名稱、細胞型別及互作／實驗閾值查詢 RNA–RNA 互作。保留精確條件、上游證據與完整原始響應；預覽行數不是全部結果數量。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `assembly` | string | **必填**; enum: &#91;&quot;hg38&quot;, &quot;mm10&quot;&#93; |
+| `gene_type` | string | **必填**; enum: &#91;&quot;mRNA&quot;, &quot;lncRNA&quot;, &quot;pseudogene&quot;, &quot;sncRNA&quot;, &quot;miRNA&quot;&#93; |
+| `rna` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `inter_num` | integer | **必填**; minimum: 1; maximum: 999 |
+| `exp_num` | integer | **必填**; minimum: 1; maximum: 999 |
+| `cell_type` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `max_records` | integer | 可選; default: 20; minimum: 1; maximum: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 可選; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rna_rna_interactions", {"assembly":"hg38","gene_type":"mRNA","rna":"TP53","inter_num":1,"exp_num":1,"cell_type":"all","max_records":2})
+```
+
+### `query_rbp_targets` {/* #query_rbp_targets */}
+
+查詢指定 RBP 的結合靶標，保留參考基因組、基因型別、細胞型別、CLIP 閾值與癌種過濾條件。返回的是資料庫收錄的結合證據，不自動建立調控因果關係。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `assembly` | string | **必填**; enum: &#91;&quot;hg38&quot;, &quot;mm10&quot;, &quot;dm6&quot;, &quot;ce10&quot;, &quot;sacCer3&quot;&#93; |
+| `gene_type` | string | **必填**; enum: &#91;&quot;mRNA&quot;, &quot;lncRNA&quot;, &quot;pseudogene&quot;, &quot;circRNA&quot;, &quot;sncRNA&quot;&#93; |
+| `rbp` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `clip_exp_num` | integer | **必填**; minimum: 1; maximum: 999 |
+| `pancancer_num` | integer | **必填**; minimum: 0; maximum: 32 |
+| `target` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `cell_type` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `max_records` | integer | 可選; default: 20; minimum: 1; maximum: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 可選; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rbp_targets", {"assembly":"hg38","gene_type":"mRNA","rbp":"all","clip_exp_num":1,"pancancer_num":0,"target":"TP53","cell_type":"HeLa","max_records":2})
+```
+
+### `query_cerna_network` {/* #query_cerna_network */}
+
+查詢 ceRNA 網路，明確指定參考基因組、ceRNA、基因型別、miRNA 數量、family、p 值、FDR 與癌種閾值。保留返回的 p 值和 FDR，不從數量推斷 family；關聯網路不等於已驗證的競爭調控機制。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `assembly` | string | **必填**; enum: &#91;&quot;hg38&quot;, &quot;mm10&quot;&#93; |
+| `gene_type` | string | **必填**; enum: &#91;&quot;mRNA&quot;, &quot;lncRNA&quot;, &quot;pseudogene&quot;&#93; |
+| `cerna` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `mirna_num` | integer | **必填**; minimum: 1; maximum: 999 |
+| `family` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `pval` | number | **必填**; minimum: 0; maximum: 0.01 |
+| `fdr` | number | **必填**; minimum: 0; maximum: 0.01 |
+| `pancancer_num` | integer | **必填**; minimum: 0; maximum: 32 |
+| `max_records` | integer | 可選; default: 20; minimum: 1; maximum: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 可選; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_cerna_network", {"assembly":"hg38","gene_type":"mRNA","cerna":"MYC","mirna_num":1,"family":"all","pval":0.01,"fdr":0.01,"pancancer_num":0,"max_records":2})
+```
+
+### `query_rbp_disease` {/* #query_rbp_disease */}
+
+查詢人類 RBP、組織、疾病及靶標之間的證據。assembly 為 hg38；零結果時不自動放寬條件。保留上游記錄和精確過濾條件，不能將查詢關聯直接作為疾病因果結論。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `assembly` | string | **必填**; enum: &#91;&quot;hg38&quot;&#93; |
+| `rbp` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `tissue` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `disease` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `target` | string | **必填**; minLength: 1; maxLength: 256; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `max_records` | integer | 可選; default: 20; minimum: 1; maximum: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 可選; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "query_rbp_disease", {"assembly":"hg38","rbp":"all","tissue":"breast","disease":"carcinoma","target":"MYC","max_records":2})
+```
+
+### `scan_rbp_motifs` {/* #scan_rbp_motifs */}
+
+使用 IUPAC RNA／DNA motif 掃描 RBP 模式。指定參考基因組、short／long 與排名上限，保留上游順序和分數；QueryMotif 與 IdentifiedMotif 獨立記錄，不自行推斷反向互補序列。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `assembly` | string | **必填**; enum: &#91;&quot;hg38&quot;, &quot;mm10&quot;, &quot;dm6&quot;, &quot;ce10&quot;, &quot;sacCer3&quot;&#93; |
+| `length` | string | **必填**; enum: &#91;&quot;short&quot;, &quot;long&quot;&#93; |
+| `motif` | string | **必填**; minLength: 1; maxLength: 64; pattern: &quot;^&#91;ACGTUNRYKMSWBDHVacgtunrykmswbdhv&#93;+$&quot; |
+| `rank_limit` | integer | **必填**; minimum: 1; maximum: 100 |
+| `max_records` | integer | 可選; default: 20; minimum: 1; maximum: 200 |
+| `output_dir` | &#91;'string', 'null'&#93; | 可選; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "scan_rbp_motifs", {"assembly":"hg38","length":"short","motif":"UGCAUG","rank_limit":10,"max_records":2})
+```
+
+### `get_binding_sites` {/* #get_binding_sites */}
+
+按 ENCORI dataset_id 獲取結合位點 BED 記錄，保留原始座標、參考基因組與檔案位元組。max_records 限制顯示行數，預設 100、最多 1000；完整原始響應另存。不要將 BED 座標無說明地改寫為其他座標體系。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `assembly` | string | **必填**; enum: &#91;&quot;hg38&quot;, &quot;mm10&quot;, &quot;dm6&quot;, &quot;ce10&quot;, &quot;sacCer3&quot;&#93; |
+| `dataset_id` | string | **必填**; minLength: 1; maxLength: 64; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `max_records` | integer | 可選; default: 100; minimum: 1; maximum: 1000 |
+| `output_dir` | &#91;'string', 'null'&#93; | 可選; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "get_binding_sites", {"assembly":"hg38","dataset_id":"SBDH2131","max_records":2})
+```
+
+### `get_reference_tables` {/* #get_reference_tables */}
+
+讀取官方參考資料 ZIP。省略 table_name 時僅列出表路徑；指定精確路徑時讀取該表。每次請求重新獲取 ZIP，完整表可直接返回全部行；截斷時儲存完整原始檔案。列出表名不生成下載檔案。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `table_name` | &#91;'string', 'null'&#93; | 可選; minLength: 1; maxLength: 512; pattern: &quot;^&#91;^\\r\\n\\u0000&#93;*&#91;^\\s\\u0000&#93;&#91;^\\r\\n\\u0000&#93;*$&quot; |
+| `max_records` | integer | 可選; default: 50; minimum: 1; maximum: 500 |
+| `output_dir` | &#91;'string', 'null'&#93; | 可選; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "get_reference_tables", {"table_name":"reference_data/degradome_ref.txt","max_records":2})
+```
+
+### `list_bulk_datasets` {/* #list_bulk_datasets */}
+
+列出官方文件中的 24 個批次檔名（兩種參考基因組各 12 類），可按 assembly 與 data_type 過濾。預設透過 HEAD 檢查可用性，不下載資料；未知的大小或可用狀態保留 null。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `assembly` | &#91;'string', 'null'&#93; | 可選; enum: &#91;&quot;hg38&quot;, &quot;mm10&quot;, null&#93; |
+| `data_type` | &#91;'string', 'null'&#93; | 可選; enum: &#91;&quot;miRNA_mRNA&quot;, &quot;miRNA_lncRNA&quot;, &quot;miRNA_pseudogene&quot;, &quot;miRNA_sncRNA&quot;, &quot;miRNA_circRNA&quot;, &quot;RNA_RNA&quot;, &quot;RBP_mRNA&quot;, &quot;RBP_lncRNA&quot;, &quot;RBP_pseudogene&quot;, &quot;RBP_sncRNA&quot;, &quot;RBP_circRNA&quot;, &quot;RBP_caRNA&quot;, null&#93; |
+| `check_availability` | boolean | 可選; default: true |
+
+```javascript
+const result = await host.mcp("encori", "list_bulk_datasets", {"assembly":"hg38","data_type":"miRNA_mRNA"})
+```
+
+### `download_bulk_dataset` {/* #download_bulk_dataset */}
+
+僅在明確需要完整資料時下載列舉中的指定 gzip 檔案。保留目標目錄、實際檔案路徑、大小和 verified_gzip；完成完整性檢查後才釋出結果，不覆蓋已有檔案。相同檔名和目錄可在身份及 HTTP Range 檢查透過後續傳 .part 與 .meta.json，不能用預覽查詢代替下載授權。
+
+| 欄位 | 型別 | 必填與約束 |
+| --- | --- | --- |
+| `filename` | string | **必填**; enum: &#91;&quot;hg38.miRNA_mRNA.tar.gz&quot;, &quot;hg38.miRNA_lncRNA.tar.gz&quot;, &quot;hg38.miRNA_pseudogene.tar.gz&quot;, &quot;hg38.miRNA_sncRNA.tar.gz&quot;, &quot;hg38.miRNA_circRNA.tar.gz&quot;, &quot;hg38.RNA_RNA.tar.gz&quot;, &quot;hg38.RBP_mRNA.tar.gz&quot;, &quot;hg38.RBP_lncRNA.tar.gz&quot;, &quot;hg38.RBP_pseudogene.tar.gz&quot;, &quot;hg38.RBP_sncRNA.tar.gz&quot;, &quot;hg38.RBP_circRNA.tar.gz&quot;, &quot;hg38.RBP_caRNA.tar.gz&quot;, &quot;mm10.miRNA_mRNA.tar.gz&quot;, &quot;mm10.miRNA_lncRNA.tar.gz&quot;, &quot;mm10.miRNA_pseudogene.tar.gz&quot;, &quot;mm10.miRNA_sncRNA.tar.gz&quot;, &quot;mm10.miRNA_circRNA.tar.gz&quot;, &quot;mm10.RNA_RNA.tar.gz&quot;, &quot;mm10.RBP_mRNA.tar.gz&quot;, &quot;mm10.RBP_lncRNA.tar.gz&quot;, &quot;mm10.RBP_pseudogene.tar.gz&quot;, &quot;mm10.RBP_sncRNA.tar.gz&quot;, &quot;mm10.RBP_circRNA.tar.gz&quot;, &quot;mm10.RBP_caRNA.tar.gz&quot;&#93; |
+| `destination_dir` | &#91;'string', 'null'&#93; | 可選; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
 ```
 
 </ToolOperationGroup>
