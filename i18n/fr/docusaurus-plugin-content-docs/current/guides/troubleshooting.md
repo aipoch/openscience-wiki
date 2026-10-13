@@ -1,7 +1,7 @@
 ---
 title: "Dépannage et questions communes"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-13'
 ---
 
 # Dépannage et questions communes {/* #troubleshooting-and-common-questions */}
@@ -35,6 +35,26 @@ Trouvez le texte d'erreur ci-dessous, suivez les vérifications pour l'opératio
 | Source en texte intégral trouvée mais la pièce jointe échoue | Résultat de téléchargement réel et validation PDF | Utilisez une autre source légitime/locale PDF, puis ouvrez la pièce jointe |
 | Side Chat désactivé | Message de compatibilité agent/fournisseur | [Délégation](delegation.md): vérifier la restriction de compatibilité indiquée par votre cadre sélectionné |
 | Le travail à distance ne peut pas fonctionner | Préalables réels d'hôte, d'authentification, de calendrier et d'exécution | [Calcul à distance](remote-compute.md) |
+
+## Restaurer une connexion perdue {/* #connection-recovery */}
+
+Lorsque **Desktop connection lost** apparaît, attendez le rétablissement de l’état actuel avant d’envoyer de nouvelles opérations.
+
+1. Sélectionnez **Reconnect**. **Restoring desktop connection…** indique que l’application actualise l’état du backend d’origine. Attendez que les commandes redeviennent disponibles.
+2. Rouvrez la conversation, l’exécution Notebook ou le fichier d’origine. Une opération envoyée avant l’interruption peut être terminée même si sa réponse n’a pas été affichée. Vérifiez son état avant de la soumettre à nouveau ; la reconnexion ne répète pas automatiquement les opérations déjà envoyées.
+3. Si le backend d’origine n’est plus disponible, sélectionnez **Quit app**, puis rouvrez l’application. Reconnect ne redémarre pas un backend arrêté et ne bascule pas vers une autre instance.
+4. Avant de quitter, conservez les éléments non enregistrés encore accessibles et lisez la confirmation. Quitter pendant une déconnexion ne confirme pas l’arrêt du backend. Pour une instance lancée par la CLI, vérifiez le même profil avec `open-science status --json` ; consultez [la gestion et l’arrêt du backend](../reference/server.md#backend-ownership).
+
+L’interface du navigateur suspend les commandes pendant la récupération des mises à jour manquées. Si **Reload required** apparaît, copiez les brouillons non envoyés avant de sélectionner **Reload**. Si leur stockage a échoué, confirmez d’abord que vous avez enregistré une copie. Les mentions sont restaurées sous forme de texte ; vérifiez aussi les pièces jointes avant l’envoi. **Pairing required** signifie que l’autorisation d’accès a expiré : rouvrez le lien Web de l’hôte ou suivez [la procédure d’association à distance](remote-access.md), au lieu de soumettre la tâche plusieurs fois.
+## Récupérer une panne de démarrage {/* #startup-recovery */}
+
+| Avis | Décision |
+| --- | --- |
+| **Open-Science n’a pas pu démarrer le backend.** | Utilisez **Ouvrir les journaux de démarrage**, identifiez le rapport `STARTUP_STAGE`, et de résoudre sa cause. Choisir **Réessayer le démarrage** lorsqu'il est offert. S'il n'est pas disponible, le moteur précédent peut toujours fonctionner; Inspecter son statut avant de rouvrir une autre copie. |
+| **Les paramètres n'ont pas pu être chargés** | Sélectionnez à nouveau **Retry**. Si elle se répète, utiliser **Report this error** et inclure le code d'erreur de paramètres affiché. |
+| Erreur du stockage des identifiants | Déverrouillez le trousseau système d’origine ou restaurez la clé et le profil d’origine comme indiqué. Conserver les données cryptées existantes; réinstaller ou créer des clés de remplacement n'est pas une étape de récupération. |
+
+La récupération est terminée lorsque les projets et les paramètres prévus se chargent. Si l'avis persiste, conservez son code d'erreur et les logs désinfectés pour [un rapport](#report-a-bug-or-ask-the-community). Pour les défaillances spécifiques à la base de données, utilisez les vérifications ci-dessous.
 
 <span id="storage-migration-reports-an-error" />
 

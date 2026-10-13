@@ -1,7 +1,7 @@
 ---
 title: "Instalación y actualizaciones"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -73,13 +73,43 @@ La carpeta de instalación contiene la aplicación; **Data location**, en el asi
 
 ### Use el CLI independiente {/* #standalone-cli */}
 
-Para la operación sin una ventana de escritorio, descargar el archivo independiente CLI de la [liberación oficial](https://github.com/aipoch/open-science/releases/tag/v0.37.1). Incluye Node, el backend y la interfaz de usuario web. Extraiga el directorio completo, luego siga [CLI setup](../reference/cli.md#terminal-setup) para iniciarlo, configure un modelo y compruebe la preparación. Los usuarios de escritorio todavía pueden utilizar **Settings → General → Install command**.
+Para la operación sin una ventana de escritorio, descargar el archivo independiente CLI de la [liberación oficial](https://github.com/aipoch/open-science/releases/tag/v0.37.2). Incluye Node, el backend y la interfaz de usuario web. Extraiga el directorio completo, luego siga [CLI setup](../reference/cli.md#terminal-setup) para iniciarlo, configure un modelo y compruebe la preparación. Los usuarios de escritorio todavía pueden utilizar **Settings → General → Install command**.
+
+#### Homebrew CLI {/* #homebrew-cli */}
+
+En macOS o Linux, instalar la fórmula CLI con `brew install aipoch/tap/open-science`. Esto está separado de la cacerola de escritorio. Incluye Node y la UI Web local; la instalación no inicia un servicio. Si otro lanzador posee `open-science`, inspeccione `type -a open-science` y use `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"` en lugar de reemplazar el enlace de la otra instalación.
+
+#### Paquetes Linux CLI {/* #linux-cli-packages */}
+
+Para una instalación terminal/browser, elija **open-science-cli**, no el paquete de escritorio **aipoch-open-science**. Descargue el activo que coincide con `CLI-PACKAGE-SHA256SUMS.txt` de la misma versión, y luego compare su suma de comprobación SHA256.
+
+| Distribución / arquitectura | Activo v0.37.2 CLI |
+| --- | --- |
+| Debian / Ubuntu, x64 | `open-science-cli_0.37.2_amd64.deb` |
+| Debian / Ubuntu, ARM64 | `open-science-cli_0.37.2_arm64.deb` |
+| Fedora, x64 | `open-science-cli-0.37.2-1.x86_64.rpm` |
+| Fedora, ARM64 | `open-science-cli-0.37.2-1.aarch64.rpm` |
+
+Instala el archivo descargado con el administrador de paquetes adecuado. Estos ejemplos utilizan x64; utilice el nombre de archivo ARM64 cuando corresponda.
+
+```bash
+# Debian / Ubuntu
+sudo apt install ./open-science-cli_0.37.2_amd64.deb
+# Fedora: use this instead of the apt command
+sudo dnf install ./open-science-cli-0.37.2-1.x86_64.rpm
+```
+
+Corre `open-science-cli start --no-open`, luego `open-science-cli status --json`. Una vez que se ejecuta, utilice `open-science-cli url` para abrir la interfaz web local autenticada; mantener esa URL privada. Continúe con [CLI setup](../reference/cli.md#terminal-setup) para la configuración del modelo y los cheques `doctor`, reemplazando `open-science` con `open-science-cli` en esos comandos.
+
+Los paquetes de Node, el backend y la interfaz de usuario web. No instala Python/R ni crea un servicio de sistema iniciado automáticamente. Los requisitos de la tienda y de la caja de arena de OS todavía se aplican; ver [credenciales de Linux sin cabeza](../reference/server.md). Utilice `open-science-cli` explícitamente cuando un lanzador de escritorio también está instalado.
+
+Antes de actualizar o eliminar el paquete, terminar el trabajo y detener **cada perfil iniciado por ese paquete**. Instalar el siguiente paquete descargado a través de apt/dnf; no hay un repositorio AIPOCH apt/dnf configurado por esta instalación. La eliminación de paquetes preserva datos de investigación y credenciales. El [guía oficial del paquete](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md#linux-cli-distribution-packages) describe conflictos de comandos y requisitos de plataforma.
 
 ### Huir de la fuente {/* #run-from-source */}
 
 Necesita Git, Node.js 24, npm, y la plataforma construye requisitos para Electron. Instala o selecciona un marco de agente en la aplicación. Durante la instalación, el repositorio genera el Cliente Prisma, aplica parches de aplicaciones y prepara dependencias nativas de Electron.
 
-Para una instalación de fuente reproducible, elija la etiqueta de lanzamiento prevista de [Cambio](../changelog/v0.37.1.md) antes de instalar dependencias. Un clon predeterminado sigue la rama en lugar de una liberación fija. Grabar las versiones seleccionadas de etiqueta, fuente commit y tiempo de ejecución para que otra persona pueda reproducir el ambiente.
+Para una instalación de fuente reproducible, elija la etiqueta de lanzamiento prevista de [Cambio](../changelog/v0.37.2.md) antes de instalar dependencias. Un clon predeterminado sigue la rama en lugar de una liberación fija. Grabar las versiones seleccionadas de etiqueta, fuente commit y tiempo de ejecución para que otra persona pueda reproducir el ambiente.
 
 Reemplazar `RELEASE_TAG` abajo con la etiqueta exacta mostrada en la versión seleccionada (incluyendo su `v`) líder. Para seguir el desarrollo en curso, omitir `--branch RELEASE_TAG --depth 1`; que el checkout seguirá la rama predeterminada.
 
@@ -96,7 +126,7 @@ Antes de empaquetar una producción, ejecute:
 npm run build
 ```
 
-Utilice el paquete de la etiqueta seleccionada.json y [guía de tiempo libre](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md) para sus objetivos de construcción y dependencias. `npm run dev:web` desarrolla el punto de entrada Node/Web; `npm run dev` también prepara al cliente de escritorio. Utilice un directorio de configuración aislado para mantener los datos de prueba separados.
+Utilice el paquete de la etiqueta seleccionada.json y [guía de tiempo libre](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md) para sus objetivos de construcción y dependencias. `npm run dev:web` desarrolla el punto de entrada Node/Web; `npm run dev` también prepara al cliente de escritorio. Utilice un directorio de configuración aislado para mantener los datos de prueba separados.
 
 ## Configuración completa por primera vez {/* #complete-first-time-setup */}
 

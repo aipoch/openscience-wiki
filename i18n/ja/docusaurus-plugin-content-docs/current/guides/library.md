@@ -1,7 +1,7 @@
 ---
 title: "文学ライブラリと引用"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -166,6 +166,8 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 v0.33.3 から、Crossref メタデータ補完も、ソースが 1 つを供給するときに抽象的なインポートをします。 **要約**を完成後、元のレコードにインスペクトします。 これは、欠落した抽象的な生成や完全なテキストを取得しません。
 
 参照を開き、**More actions → Edit metadata** を開きます。 **Complete metadata** を使用する前に現在の値を確認します。これは、純粋にローカル編集ではなく、ルックアップを実行します。
+
+識別子が競合するので、保存が拒否された場合、現在の参照を再オープンし、その比較を行います。 DOI, , PMID、元の出版物が付いている arXiv ID および他の識別子。 異なる作品から識別子を結合したり、識別子を単に削除したりして保存を強制したりしないでください。 意図したレコードを修正し、再び保存し、変更を確認するためにそれを再開します。 作業中に別のクライアントが編集した場合、再試行する前に最新の保存状態と比較します。
 
 ![保存された組織権限フィールドを再オープン](/img/open-science/v0.27.0/04-organization-author.webp)
 

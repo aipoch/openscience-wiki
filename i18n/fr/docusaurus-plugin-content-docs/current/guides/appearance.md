@@ -1,7 +1,7 @@
 ---
 title: "Comparution et notifications"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -130,6 +130,12 @@ Commencez par le résultat de l'essai, puis vérifiez la condition qui s'appliqu
 Avec **General → Close button behaviour → Ask every time**, fermer la fenêtre ouvre **Minimize or quit?** Choisissez **Minimize to tray** pour masquer la fenêtre, puis utilisez l'icône Open-Science dans le plateau Windows pour revenir. Sélectionnez **Ne demande pas à nouveau** uniquement si vous souhaitez conserver ce choix; changer plus tard dans Général. Minimiser ne quitte pas l'application.
 
 </PlatformContent>
+
+## Ouvrir le centre d'aide {/* #help-center */}
+
+Ouvrez **Settings → General → About → Help Center** pour lire les instructions de configuration et de dépannage dans votre navigateur. Le lien suit la langue courante de l'application : l'anglais ouvre la racine de documentation, tandis que d'autres langues supportées ouvrent leur propre édition. Vous pouvez également rechercher Paramètres pour **Centre d’aide** en utilisant son étiquette traduite dans votre interface. Utilisez **Notes de version** pour l'historique de l'application.
+
+![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
 
 ## Trouver les paramètres associés {/* #find-related-settings */}
 

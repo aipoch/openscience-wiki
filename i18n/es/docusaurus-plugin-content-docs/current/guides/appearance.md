@@ -1,7 +1,7 @@
 ---
 title: "Apariencia y notificaciones"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -130,6 +130,12 @@ Comience con el resultado de la prueba, a continuación, verifique la condición
 Con **General → Close button behaviour → Ask every time**, cerrar la ventana abre **Minimize or quit?** Elija **Minimize to tray** para ocultar la ventana, a continuación, utilice el icono Open-Science en la bandeja Windows para regresar. Seleccione **No preguntes otra vez.** sólo si desea retener esa opción; cambiarlo más tarde en General. La minimización no deja de aplicar.
 
 </PlatformContent>
+
+## Open Help Center {/* #help-center */}
+
+Abra **Settings → General → About → Help Center** para leer la orientación de configuración y solución de problemas en su navegador. El enlace sigue el idioma actual de la aplicación: el inglés abre la raíz de la documentación, mientras que otros idiomas compatibles abren su propia edición. También puede buscar Ajustes para **Centro de ayuda** utilizando su etiqueta traducida en su interfaz. Utilice **Notas de la versión** para el historial de liberación de la aplicación.
+
+![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
 
 ## Encontrar configuración relacionada {/* #find-related-settings */}
 

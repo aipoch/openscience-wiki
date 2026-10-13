@@ -1797,5 +1797,11 @@
   },
   "docs.outline.reference.v0370.scope": {
     "message": "Le moteur autonome Node et les essais CLI, ENCORI, ChEMBL, les soumissions ClinVar et la capture Notebook."
+  },
+  "docs.outline.reference.v0372.title": {
+    "message": "v0.37.2"
+  },
+  "docs.outline.reference.v0372.scope": {
+    "message": "Récupération de démarrage et de connexion, paquets Linux CLI, aide localisée et corrections de données scientifiques."
   }
 }

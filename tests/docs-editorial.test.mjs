@@ -19,7 +19,7 @@ const operations = (text) => [...text.matchAll(/^### `([^`]+)`(?: \{\/\* #[^ ]+ 
 
 test('translated operation explanations preserve all callable names and example arguments', () => {
   const original = operations(en), translated = operations(zh);
-  const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.37.1.json', 'utf8'));
+  const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.37.2.json', 'utf8'));
   const dataTools = registry.filter((c) => c.id !== 'molecule').flatMap((c) => c.tools);
   assert.equal(original.length, 359);
   assert.deepEqual(original.map((t) => t.name).sort(), dataTools.map((t) => t.id).sort());
@@ -51,13 +51,13 @@ for (const prefix of locales.map((locale) => locale === 'en' ? '' : `${locale}/`
   });
 }
 
-const currentRegistry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.37.1.json', 'utf8'));
+const currentRegistry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v0.37.2.json', 'utf8'));
 for (const prefix of ['', 'zh-Hans/']) {
   test(`${prefix || 'en/'} latest release belongs to the documentation sidebar`, () => {
-    const html = readFileSync(`${buildDir}/${prefix}changelog/v0-37-1/index.html`, 'utf8');
+    const html = readFileSync(`${buildDir}/${prefix}changelog/v0-37-2/index.html`, 'utf8');
     const aside = html.match(/<aside\b[\s\S]*?<\/aside>/)?.[0];
     assert.ok(aside, 'the new release must not become a standalone page without chapter navigation');
-    assert.ok(aside.includes(`/docs/${prefix}changelog/v0-37-1/`));
+    assert.ok(aside.includes(`/docs/${prefix}changelog/v0-37-2/`));
   });
 }
 const currentTools = currentRegistry.filter((c) => c.id !== 'molecule').flatMap((c) => c.tools);

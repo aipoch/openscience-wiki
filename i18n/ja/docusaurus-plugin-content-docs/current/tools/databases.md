@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -285,6 +285,10 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 | Omics アーカイブ → MGnify | MGYA解析アクセスによる結果ファイルを一覧表示 | 報告されたときタイプ、カテゴリ、上流 URL およびサイズを返します。 ファイルバイトはダウンロードされません。 行方不明のサイズや URL が null にとどまります。 |
 
 必要なフィールド、条件、例については、[Connectorの操作の参照](../reference/connector-operations.md) を参照してください。
+
+### 通訳 Bgee 種 利用可能 {/* #bgee-species */}
+
+`bgee_species`で種を識別します。 その`taxon_id`は、その参照ゲノムを供給する種ではなく、生物のNCBIの分類IDです。 リスト応答では、`has_expression_data: null` は可用性が決定されていないことを意味します。 返された `taxon_id` を `species_id` として使用して、その種のデータソースメタデータをロードします。 メタデータが不在であるとき、`null` を未知の状態に保って下さい; 明示的な`false`のみが負の可用性の結果です。 これらのフィールドは、特定の遺伝子が組織で表現されているかどうかではなく、アトラスカバレッジを記述します。
 
 ## GWASサマリー統計ファイルを探す {/* #gwas-summary-statistics */}
 

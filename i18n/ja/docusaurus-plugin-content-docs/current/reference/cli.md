@@ -1,7 +1,7 @@
 ---
 title: "CLIと構造化された出力"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## ターミナルからセットアップ {/* #terminal-setup */}
 
-[公式リリース](https://github.com/aipoch/open-science/releases/tag/v0.37.1)からデスクトップランチャーまたはスタンドアローンCLIアーカイブのいずれかを選択します。 スタンドアローン アーカイブには、CLI、Nodeのランタイム、バックエンド、Web UIが含まれています。 電動機や別途Node/npmツールチェーンは不要です。
+[公式リリース](https://github.com/aipoch/open-science/releases/tag/v0.37.2)からデスクトップランチャーまたはスタンドアローンCLIアーカイブのいずれかを選択します。 スタンドアローン アーカイブには、CLI、Nodeのランタイム、バックエンド、Web UIが含まれています。 電動機や別途Node/npmツールチェーンは不要です。
 
 1. macOS または Linux アーム64/x64 または Windows x64 を選択し、ホストにマッチします。
 2. 完全なアーカイブを書き込み可能な場所に抽出します。 `backend`と`node-runtime`を一緒に保持してください。 起動者のみをコピーすると起動が解除されます。
@@ -44,6 +44,8 @@ open-science doctor --json
 代わりにOpenAI APIキーを使用する場合は、`provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`を使用して、サポートされているモデルIDと、既に秘密管理環境によって供給されたキーを使用します。 OpenAlex では、`connector configure literature --openalex-key-env OPENALEX_API_KEY --json` を使用します。 `open-science` で両方のコマンドをプレフィックスします。 コマンド引数にキー自体を置かないでください。 巧妙なクレデンシャルチェックは、研究クエリが完了したか、そのクオータが残っていることを確立しません。
 
 **準備完了**、個々の**チェック**を読んで、`doctor`から**次へ**アクションを提案しました。 `ready` が false である間、レポートは正常に終了できます。 バックエンドが不在の場合、医師はそれを報告し、3を終了します。 報告された前提条件を完成させ、再度確認し、意図したプロジェクトで[タスクを実行する](#run-input-and-control-flags)を検証します。
+
+Homebrew または Linux `.deb`/`.rpm` のインストールは、[パッケージの指示](../guides/installation.md#standalone-cli) に従って下さい。 Linuxの配電パッケージは`open-science-cli`を提供します; 別のデスクトップランチャーを選択することを避けるために、このページ上の例でそのコマンドを置換します。
 
 ## エントリーポイント {/* #entry-points */}
 

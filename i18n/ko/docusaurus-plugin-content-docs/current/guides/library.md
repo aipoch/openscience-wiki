@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -166,6 +166,8 @@ Inbox는 **Inbox is clear**을 보여줍니다. **현재 프로젝트**로 전�
 v0.33.3에서, Crossref 메타데이터 완료는 소스가 공급할 때 요약을 가져올 수도 있습니다. 완료 후 원래 기록에 대한 **초록** 검사. 이것은 누락된 요약을 생성하지 않거나 전체 텍스트를 검색하지 않습니다.
 
 참조를 열고, **More actions → Edit metadata**. **Complete metadata**을 사용하기 전에 현재 값을 검토하고, 순수 로컬 편집보다는 룩업을 수행한다.
+
+식별자 충돌이 발생하면 현재 참조를 다시 열고 DOI, PMID, arXiv ID 및 기타 식별자를 원본 출판물과 비교합니다. 다른 작업에서 식별자를 결합하거나 저장을 강제로 식별자를 제거하지 마십시오. 규칙적인 기록, 다시 저장하고 변화를 확인하기 위하여 그것을 다시 엽니다. 또 다른 클라이언트가 작동하면서도 최신 저장된 상태에 대해 비교해 보았을 때.
 
 ![저장된 조직 저자 필드 reopened](/img/open-science/v0.27.0/04-organization-author.webp)
 

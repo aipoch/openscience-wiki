@@ -1,7 +1,7 @@
 ---
 title: "외관 및 알림"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -130,6 +130,12 @@ import Screenshot from '@site/src/components/Screenshot';
 **General → Close button behaviour → Ask every time**로 창을 닫아 **Minimize or quit?**을 열면 **Minimize to tray**를 선택하여 창을 숨기고 Open-Science 아이콘을 Windows 트레이에서 반환합니다. **자주 묻는 질문**을 선택하면 선택한 것을 유지할 수 있습니다. 나중에 일반으로 변경하십시오. Minimizing 앱을 종료하지 않습니다.
 
 </PlatformContent>
+
+## 공지사항 {/* #help-center */}
+
+브라우저에서 설정 및 문제 해결 지침을 읽는 **Settings → General → About → Help Center**을 엽니 다. 이 링크는 앱의 현재 언어를 따릅니다: 영어는 문서 루트를 열고, 다른 지원 언어는 자신의 판을 엽니다. 인터페이스에서 번역된 라벨을 사용하여 **도움말 센터** 설정도 검색할 수 있습니다. 응용 프로그램의 릴리스 역사를 위해 **릴리스 노트**을 사용합니다.
+
+![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
 
 ## 관련 설정 찾기 {/* #find-related-settings */}
 

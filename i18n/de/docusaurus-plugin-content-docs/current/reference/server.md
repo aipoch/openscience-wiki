@@ -1,7 +1,7 @@
 ---
 title: "Headless Service und Browserzugriff"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 # Headless Service und Browserzugriff {/* #headless-service-and-browser-access */}
@@ -97,14 +97,18 @@ Verwenden Sie persistenten Speicher, wenn die Konfiguration den Containerwechsel
 
 Das Schließen eines Fensters kann sich vom Beenden der App unterscheiden, insbesondere wenn es im Tablar verbleibt. Beenden Sie die aktive Recherche, bevor Sie ein gemeinsames Backend stoppen, und überprüfen Sie dann den tatsächlichen Zustand mit `status --json`.
 
+Ein getrennter Desktop bietet **Erneut verbinden** und **App beenden**. Reconnect aktualisiert das ursprüngliche Live-Backend und sendet keine Arbeit erneut; Wenn das Backend weg ist, beenden und wieder öffnen. Ein getrenntes beenden kann nur den client schließen, also überprüfen sie den status des ausgewählten profils, bevor sie annehmen, dass der dienst gestoppt wurde. Folgen Sie [Anschlusswiederherstellung](../guides/troubleshooting.md#connection-recovery), einschließlich der Überprüfung von Operationen, deren Antworten verloren gegangen sind.
+
 ## Anwendungsaktualisierungsverhalten {/* #application-update-behavior */}
 
 Native Desktop-Updates und eigenständige Paket-Updates verwenden unterschiedliche Pfade. Ein gewöhnliches Node-Backend kann das Desktop-Installationsprogramm nicht ersetzen; `update --json` meldet eine manuelle Aktualisierungsanforderung und den `package-manager`-Modus. Befolgen Sie die zurückgegebenen Anweisungen.
 
 - **Desktop-App:** verwendet seinen In-App-Updater. Wenn es an ein Backend angeschlossen ist, das zuvor vom CLI gestartet wurde, beenden Sie die Arbeit und beenden Sie dieses Backend, bevor Sie den Desktop aktualisieren.
 - **Standalone CLI Archiv:** beendet die Arbeit, stoppt das beabsichtigte Backend, extrahiert das neue Release in ein neues Verzeichnis, behält Ihre Konfigurationsdaten und aktualisiert den Launcher oder PATH. Überschreiben Sie das laufende Paket nicht.
+- **Homebrew CLI oder Linux CLI Paket:** beendet die Arbeit und stoppt jedes Profil mit dieser Installation und folgt dann dem [Anweisungen zur Paketaktualisierung](../guides/installation.md#standalone-cli). Verwenden Sie danach das gleiche Konfigurationsverzeichnis.
+
 - **npm-Anlage:** aktualisiert das entsprechende Paket über npm und bestätigt die Client/Backend-Kompatibilität.
 
 Starten Sie neu und verwenden Sie dann `status --json` und `doctor --json`, um die Version, das Konfigurationsverzeichnis und die Bereitschaft zu bestätigen. Bewahren Sie den bestehenden Credential-Store-Modus auf; Löschen Sie keine Anmeldeinformationen oder Konfigurationen, um ein Update durchzuführen.
 
-Siehe [Offizieller Standalone Runtime Guide](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md), [CLI](cli.md) und [Aufgabe SDK](api.md).
+Siehe [Offizieller Standalone Runtime Guide](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md), [CLI](cli.md) und [Aufgabe SDK](api.md).

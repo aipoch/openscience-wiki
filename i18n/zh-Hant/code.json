@@ -2653,5 +2653,11 @@
   },
   "docs.outline.reference.v0370.scope": {
     "message": "獨立 Node 後端與 CLI、ENCORI、ChEMBL 實驗、ClinVar 提交證據及 Notebook 記錄。"
+  },
+  "docs.outline.reference.v0372.title": {
+    "message": "v0.37.2"
+  },
+  "docs.outline.reference.v0372.scope": {
+    "message": "啟動與連線恢復、Linux CLI 安裝包、本地化幫助及科研資料修復"
   }
 }

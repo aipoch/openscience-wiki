@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -166,6 +166,8 @@ Dans cet exemple, les trois candidats ont été acceptés individuellement, et l
 À partir de v0.33.3, la finalisation des métadonnées Crossref importe également un résumé lorsque la source en fournit une. Inspectez **Résumé** par rapport à l'enregistrement original après l'achèvement. Cela ne génère pas un résumé manquant ou récupérer le texte complet.
 
 Ouvrez une référence, puis **More actions → Edit metadata**. Passez en revue les valeurs actuelles avant d'utiliser **Complete metadata**, qui effectue une recherche plutôt qu'une modification purement locale.
+
+Si l'enregistrement est rejeté parce que les identifiants sont en conflit, rouvrez la référence actuelle et comparez son ID DOI, PMID, arXiv et d'autres identifiants avec la publication originale. Ne pas combiner des identifiants de différentes œuvres ou supprimer un identifiant simplement pour forcer un sauvegarde. Corriger l'enregistrement prévu, enregistrer à nouveau et rouvrir pour confirmer le changement. Si un autre client l'a édité pendant que vous travailliez, comparez-vous au dernier état enregistré avant de réessayer.
 
 ![Réouverture du champ organisme-auteur sauvegardé](/img/open-science/v0.27.0/04-organization-author.webp)
 

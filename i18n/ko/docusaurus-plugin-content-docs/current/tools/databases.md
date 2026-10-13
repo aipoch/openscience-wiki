@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -285,6 +285,10 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 | Omics Archives → MGnify | MGYA 분석 액세스에 의한 결과 파일 목록 | 반환 유형, 카테고리, 업스트림 URL 및 크기 때 보고. 파일 바이트가 다운로드되지 않습니다; 누락된 크기 또는 URL은 null을 유지합니다. |
 
 정확한 필수 필드, 조건 및 예에 대한 [Connector 가동 참고](../reference/connector-operations.md) 참조.
+
+### Interpret Bgee 종 가용성 {/* #bgee-species */}
+
+`bgee_species`로 시작하여 종을 식별합니다. `taxon_id`은 생물의 NCBI 세무성 ID이며, 종은 참조 genome을 공급하지 않습니다. 목록 응답에서 `has_expression_data: null`은 가용성이 결정되지 않았습니다. 반환된 `taxon_id`을 `species_id`로 사용하여 다시 쿼리는 종의 데이터 소스 메타데이터를 로드합니다. metadata가 absent 때 알 수없는 `null`을 유지하십시오. 명시된 `false`은 부정적인 가용성 결과입니다. 이 필드는 특정 유전자가 조직에서 표현되는지 여부에 atlas 적용을 설명합니다.
 
 ## GWAS 요약 통계 파일 찾기 {/* #gwas-summary-statistics */}
 

@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.37.1**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.1.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
+Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.37.2**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
 
 
 ## 化学化学品 {/* #family-1 */}
@@ -3005,7 +3005,7 @@ const result = await host.mcp("expression", "gtex_calculate_eqtl", {"gencode_id"
 
 ### `bgee_species` {/* #bgee_species */}
 
-Bgee の健康な野生型表現のアトラスで利用可能な種を一覧表示するか、NCBI の分類 ID で 1 つの種を抽出します。
+Bgee の健康な野生型表現のアトラスで利用可能な種を一覧表示するか、NCBI の分類 ID で 1 つの種を抽出します。 返された`taxon_id`は、その参照のゲノムが他の種に属している場合でも、その種を識別します。 リストは、データソースメタデータをロードしないため、`has_expression_data: null` を返します。 特定の `species_id` をクエリして、空室状況をチェックします。 また、`false` ではなく `null` を欠落させたメタデータも残っています。
 
 | 受け入れられた値 | 型 | 要件と制約 |
 | --- | --- | --- |

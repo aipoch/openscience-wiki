@@ -1,7 +1,7 @@
 ---
 title: "Notebook et preuves d'exécution"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -45,6 +45,8 @@ Avant d'exécuter Python ou R, [activer un temps d'exécution compatible](runtim
 | Fermer / effondrement de l'aperçu | Retour à la conversation | Conserve l'historique des exécutions enregistrées |
 
 Vérifiez **Données/Inputs** quand vous êtes présent. Correspondez au fichier et à la version affichés à votre demande. Si une référence n'est pas disponible, rouvrez ou joignez l'entrée prévue à travers l'application avant de réessayer.
+
+Lors de la préparation du premier lancement, Notebook peut déjà afficher le code reçu pendant que l'exécution est toujours prête. Le code visible n'est pas la preuve qu'il a fonctionné. Attendez toute configuration ou approbation requise, puis inspectez l'état final et la sortie de l'exécution numérotée. Si une grande session ou Notebook est toujours en cours de restauration, attendez que la récupération de chargement ou de connexion se termine avant de décider s'il faut la réutiliser.
 
 ## Consulter le code avant qu'il ne soit lancé {/* #execution-review */}
 

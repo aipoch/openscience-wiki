@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -166,6 +166,8 @@ In this example, the three candidates were accepted individually, and Inbox beca
 From v0.33.3, Crossref metadata completion also imports an abstract when the source supplies one. Inspect **Abstract** against the original record after completion. This does not generate a missing abstract or retrieve full text.
 
 Open a reference, then **More actions → Edit metadata**. Review the current values before using **Complete metadata**, which performs a lookup rather than a purely local edit.
+
+If saving is rejected because the identifiers conflict, reopen the current reference and compare its DOI, PMID, arXiv ID and other identifiers with the original publication. Do not combine identifiers from different works or remove an identifier merely to force a save. Correct the intended record, save again and reopen it to confirm the change. If another client edited it while you were working, compare against the latest saved state before retrying.
 
 ![Saved organization-author field reopened](/img/open-science/v0.27.0/04-organization-author.webp)
 

@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -166,6 +166,8 @@ Inbox 随后显示 **Inbox is clear**；切换到 **Current project** 可见 **2
 从 v0.33.3 起，通过 Crossref 补全元数据时会带入来源返回的摘要。补全后检查 **Abstract** 和原始记录；来源未提供摘要时，该更新不会生成摘要或取得全文。
 
 条目 **More actions → Edit metadata** 打开当前字段。**Complete metadata** 会查询来源，与纯本地编辑不同。
+
+若保存因标识符冲突被拒绝，重新打开当前条目，将 DOI、PMID、arXiv ID 等与原始出版物核对。不要把不同文献的标识符合在一起，也不要仅为强行保存而删掉标识符。修正目标条目后再次保存，并重新打开确认；若编辑期间另一客户端修改了条目，先与最新保存状态比较再重试。
 
 ![已保存并重新打开的机构作者字段](/img/open-science/v0.27.0/04-organization-author.webp)
 

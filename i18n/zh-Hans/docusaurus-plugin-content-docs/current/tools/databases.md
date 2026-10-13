@@ -2,7 +2,7 @@
 title: "科学数据库"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 # 科学数据库
@@ -285,6 +285,10 @@ matched records and any unmatched identifiers. Keep the response in English.
 | Omics Archives → MGnify | 按 MGYA 分析编号列出结果文件 | 返回类型、类别、来源 URL 和可用大小；没有下载文件内容，缺少大小或 URL 时保留 null |
 
 准确必填字段、条件和示例见[Connector 操作参考](../reference/connector-operations.md)。
+
+### 理解 Bgee 物种的数据可用性 {/* #bgee-species */}
+
+先用 `bgee_species` 确定物种。`taxon_id` 是该物种的 NCBI taxonomy ID，不是为它提供参考基因组的物种 ID。列表响应中的 `has_expression_data: null` 表示尚未判断可用性。将返回的物种 ID 作为 `species_id` 再查一次，加载该物种的数据来源元数据。元数据缺失时保留 `null` 的未知状态，只有明确的 `false` 才是无可用数据的结果。这些字段描述图谱的数据覆盖范围，不表示某个基因在某组织中是否表达。
 
 ## 查找 GWAS 汇总统计文件 {/* #gwas-summary-statistics */}
 

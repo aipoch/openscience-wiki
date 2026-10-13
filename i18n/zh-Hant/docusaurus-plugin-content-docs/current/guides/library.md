@@ -1,7 +1,7 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -166,6 +166,8 @@ Inbox 隨後顯示 **Inbox is clear**；切換到 **Current project** 可見 **2
 從 v0.33.3 起，透過 Crossref 補全後設資料時會帶入來源返回的摘要。補全後檢查 **Abstract** 和原始記錄；來源未提供摘要時，該更新不會生成摘要或取得全文。
 
 條目 **More actions → Edit metadata** 開啟當前欄位。**Complete metadata** 會查詢來源，與純本地編輯不同。
+
+若儲存因識別符號衝突被拒絕，重新開啟當前條目，將 DOI、PMID、arXiv ID 等與原始出版物核對。不要把不同文獻的識別符號合在一起，也不要僅為強行儲存而刪掉識別符號。修正目標條目後再次儲存，並重新開啟確認；若編輯期間另一客戶端修改了條目，先與最新儲存狀態比較再重試。
 
 ![已儲存並重新開啟的機構作者欄位](/img/open-science/v0.27.0/04-organization-author.webp)
 

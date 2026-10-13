@@ -2,7 +2,7 @@
 title: "Scientific databases"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 # Scientific databases
@@ -285,6 +285,10 @@ Enable the corresponding family in **Settings → Connectors**, then tell the ag
 | Omics Archives → MGnify | List result files by MGYA analysis accession | Returns type, category, upstream URL and size when reported. No file bytes are downloaded; missing sizes or URLs stay null. |
 
 See the [Connector operation reference](../reference/connector-operations.md) for exact required fields, conditions and examples.
+
+### Interpret Bgee species availability {/* #bgee-species */}
+
+Start with `bgee_species` to identify the species. Its `taxon_id` is the organism's NCBI taxonomy ID, not the species supplying its reference genome. In a list response, `has_expression_data: null` means availability was not determined. Query again using the returned `taxon_id` as `species_id` to load that species' data-source metadata. Keep `null` as unknown when metadata is absent; only an explicit `false` is a negative availability result. These fields describe atlas coverage, not whether a particular gene is expressed in a tissue.
 
 ## Find GWAS summary-statistics files {/* #gwas-summary-statistics */}
 

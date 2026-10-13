@@ -1,7 +1,7 @@
 ---
 title: "Notebook 與執行證據"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -43,6 +43,8 @@ import Screenshot from '@site/src/components/Screenshot';
 | 關閉/收起預覽 | 返回對話 | 保留執行歷史 |
 
 有 **Input data / Inputs** 時，核對檔案及版本是否與請求一致。引用不可用時，透過應用重新開啟或附加目標輸入，再重試。
+
+首次執行準備期間，Notebook 可以先顯示正在接收的程式碼，此時執行環境可能尚未就緒。看到程式碼不代表已經執行。完成必要的環境準備或批准後，檢視帶編號執行的最終狀態和輸出。大型會話或 Notebook 仍在恢復時，等待載入或連線恢復結束，再決定是否需要重新執行。
 
 ## 執行前檢查程式碼 {/* #execution-review */}
 

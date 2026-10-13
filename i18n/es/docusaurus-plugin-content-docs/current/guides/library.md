@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -166,6 +166,8 @@ En este ejemplo, los tres candidatos fueron aceptados individualmente, y Inbox q
 Desde v0.33.3, la terminación de metadatos Crossref también importa un resumen cuando la fuente suministra uno. Inspeccione **Resumen** contra el registro original después de la terminación. Esto no genera un resumen perdido o recupera texto completo.
 
 Abre una referencia, luego **More actions → Edit metadata**. Revise los valores actuales antes de usar **Complete metadata**, que realiza una búsqueda en lugar de una edición puramente local.
+
+Si el ahorro es rechazado porque el conflicto de identificadores, vuelva a abrir la referencia actual y compare su DOI, PMID, arXiv ID y otros identificadores con la publicación original. No combinar identificadores de diferentes obras o eliminar un identificador simplemente para forzar un ahorro. Corregir el registro previsto, guardar de nuevo y reabrirlo para confirmar el cambio. Si otro cliente lo editó mientras trabajaba, compare con el último estado guardado antes de reintentar.
 
 ![Reabierto de la organización-autor](/img/open-science/v0.27.0/04-organization-author.webp)
 

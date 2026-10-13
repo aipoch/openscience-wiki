@@ -2,7 +2,7 @@
 title: "Wissenschaftliche Datenbanken"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 # Wissenschaftliche Datenbanken {/* #scientific-databases */}
@@ -285,6 +285,10 @@ Aktivieren Sie die entsprechende Familie in **Settings → Connectors** und teil
 | Omics Archives → MGnify | Ergebnisdateien nach MGYA-Analyse-Zugang auflisten | Gibt Art, Kategorie, Upstream-URL und Größe zurück, wenn gemeldet. Es werden keine Dateibytes heruntergeladen; Fehlende Größen oder URLs bleiben null. |
 
 Siehe [Connector Betriebsnummer](../reference/connector-operations.md) für genaue erforderliche Felder, Bedingungen und Beispiele.
+
+### Interpretieren Bgee Arten Verfügbarkeit {/* #bgee-species */}
+
+Beginnen Sie mit `bgee_species`, um die Arten zu identifizieren. Sein `taxon_id` ist die NCBI-Taxonomie-ID des Organismus, nicht die Spezies, die sein Referenzgenom liefert. In einer Listenantwort bedeutet `has_expression_data: null`, dass die Verfügbarkeit nicht bestimmt wurde. Abfrage erneut unter Verwendung des zurückgegebenen `taxon_id` als `species_id`, um die Metadaten dieser Spezies zu laden. Halten Sie `null` als unbekannt, wenn Metadaten fehlen; Nur ein explizites `false` ist ein negatives Verfügbarkeitsergebnis. Diese Felder beschreiben die Atlasabdeckung, nicht ob ein bestimmtes Gen in einem Gewebe exprimiert wird.
 
 ## GWAS Zusammenfassungsstatistiken finden {/* #gwas-summary-statistics */}
 

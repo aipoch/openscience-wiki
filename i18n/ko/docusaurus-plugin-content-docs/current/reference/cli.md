@@ -1,7 +1,7 @@
 ---
 title: "CLI 및 구조 출력"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 터미널에서 설정 {/* #terminal-setup */}
 
-[공식 출시](https://github.com/aipoch/open-science/releases/tag/v0.37.1)에서 데스크탑 발사기 또는 독립 CLI 아카이브 중 하나를 선택하십시오. 독립 아카이브는 CLI, Node 런타임, 백엔드 및 웹 UI를 포함합니다; Electron 또는 별도로 설치된 Node/npm 툴체인이 필요하지 않습니다.
+[공식 출시](https://github.com/aipoch/open-science/releases/tag/v0.37.2)에서 데스크탑 발사기 또는 독립 CLI 아카이브 중 하나를 선택하십시오. 독립 아카이브는 CLI, Node 런타임, 백엔드 및 웹 UI를 포함합니다; Electron 또는 별도로 설치된 Node/npm 툴체인이 필요하지 않습니다.
 
 1. macOS 또는 Linux arm64/x64 또는 Windows x64를 선택하여 호스트와 일치합니다.
 2. 완전한 아카이브를 writable 위치로 추출하십시오. 발사기, `backend` 및 `node-runtime`를 함께 유지하십시오; 시작자만 복사하면 스타트가 시작됩니다.
@@ -44,6 +44,8 @@ open-science doctor --json
 대신 OpenAI API 키를 사용하는 경우, 지원된 모델 ID와 함께 `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`을 사용하며, 비밀 관리 환경을 통해 이미 공급된 키입니다. OpenAlex를 위해, `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`를 사용하십시오. `open-science`과 명령을 모두 접목합니다. 명령의 인수에서 키 자체를 넣지 마십시오. 성공적인 자격 검사는 연구 쿼리 완료 또는 할당량은 유지되지 않습니다.
 
 **뚱 베어**, 개별 **기타 제품**을 읽고 `doctor`에서 **이름 &#42;** 작업을 제안했습니다. `ready`이 false인 경우 보고서를 성공적으로 종료할 수 있습니다. 백엔드가 복부되면 의사가 3을 종료합니다. 보고된 우선권을 완료하고, 다시 확인한 후, [작업 실행](#run-input-and-control-flags)은 예정된 프로젝트에서 확인할 수 있습니다.
+
+Homebrew 또는 Linux `.deb`/`.rpm` 임명을 위해, [포장 지침](../guides/installation.md#standalone-cli)를 따르십시오. Linux 배급 포장은 `open-science-cli`를 제공합니다; 이 페이지의 예제에서 명령을 대체하여 다른 데스크탑 실행기를 선택하지 않도록합니다.
 
 ## 관련 항목 {/* #entry-points */}
 

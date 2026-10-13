@@ -1,7 +1,7 @@
 ---
 title: "CLI and structured output"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,7 @@ Use `open-science` to inspect application status, run tasks, manage Connectors a
 
 ## Set up from a terminal {/* #terminal-setup */}
 
-Choose either the desktop launcher or a standalone CLI archive from the [official release](https://github.com/aipoch/open-science/releases/tag/v0.37.1). The standalone archive contains the CLI, Node runtime, backend and Web UI; it does not require Electron or a separately installed Node/npm toolchain.
+Choose either the desktop launcher or a standalone CLI archive from the [official release](https://github.com/aipoch/open-science/releases/tag/v0.37.2). The standalone archive contains the CLI, Node runtime, backend and Web UI; it does not require Electron or a separately installed Node/npm toolchain.
 
 1. Choose macOS or Linux arm64/x64, or Windows x64, matching the host.
 2. Extract the complete archive into a writable location. Keep the launcher, `backend` and `node-runtime` together; copying only the launcher will break startup.
@@ -44,6 +44,8 @@ Follow the login flow. This prepares or repairs the managed Codex runtime and re
 If using an OpenAI API key instead, use `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`, with a supported model ID and the key already supplied through your secret-management environment. For OpenAlex, use `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`. Prefix both commands with `open-science`. Never put the key itself in command arguments. A successful credential check does not establish that a research query completed or that quota remains.
 
 Read **ready**, the individual **checks** and suggested **next** actions from `doctor`. A report can exit successfully while `ready` is false; if the backend is absent, Doctor reports it and exits 3. Complete the reported prerequisite, check again, then [run a task](#run-input-and-control-flags) in the intended project.
+
+For Homebrew or Linux `.deb`/`.rpm` installation, follow the [package instructions](../guides/installation.md#standalone-cli). Linux distribution packages provide `open-science-cli`; substitute that command in the examples on this page to avoid selecting a different desktop launcher.
 
 ## Entry points
 

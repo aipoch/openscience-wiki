@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -166,6 +166,8 @@ In diesem Beispiel wurden die drei Kandidaten einzeln akzeptiert und Inbox wurde
 Von v0.33.3 importiert die Crossref-Metadatenvervollständigung auch ein Abstract, wenn die Quelle eines liefert. Überprüfen Sie **Zusammenfassung** nach Abschluss mit dem Originaldatensatz. Dadurch wird kein fehlendes Abstract generiert oder Volltext abgerufen.
 
 Öffnen Sie eine Referenz, dann **More actions → Edit metadata**. Überprüfen Sie die aktuellen Werte, bevor Sie **Complete metadata** verwenden, das einen Lookup anstelle einer rein lokalen Bearbeitung durchführt.
+
+Wenn das Speichern abgelehnt wird, weil die Identifikatoren in Konflikt stehen, öffnen Sie die aktuelle Referenz erneut und vergleichen Sie ihre DOI, PMID, arXiv ID und andere Identifikatoren mit der ursprünglichen Veröffentlichung. Kombinieren Sie keine Bezeichner aus verschiedenen Werken oder entfernen Sie einen Bezeichner nur, um ein Speichern zu erzwingen. Korrigieren Sie den beabsichtigten Datensatz, speichern Sie ihn erneut und öffnen Sie ihn erneut, um die Änderung zu bestätigen. Wenn ein anderer Client es bearbeitet hat, während Sie gearbeitet haben, vergleichen Sie ihn mit dem letzten gespeicherten Zustand, bevor Sie es erneut versuchen.
 
 ![Gespeichertes Organisations-Autor-Feld wieder geöffnet](/img/open-science/v0.27.0/04-organization-author.webp)
 

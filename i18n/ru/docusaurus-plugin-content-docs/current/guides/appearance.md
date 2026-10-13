@@ -1,7 +1,7 @@
 ---
 title: "Внешний вид и уведомления"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -130,6 +130,12 @@ import Screenshot from '@site/src/components/Screenshot';
 С **General → Close button behaviour → Ask every time**, закрыв окно, открывается **Minimize or quit?** Выберите **Minimize to tray**, чтобы скрыть окно, затем используйте значок Open-Science в лотоке Windows, чтобы вернуться. Выберите **Не спрашивайте снова** только в том случае, если вы хотите сохранить этот выбор. Измените его позже в целом. Минимизация не покидает приложение.
 
 </PlatformContent>
+
+## Открытый справочный центр {/* #help-center */}
+
+Откройте **Settings → General → About → Help Center**, чтобы прочитать настройки и рекомендации по устранению неполадок в вашем браузере. Ссылка следует за текущим языком приложения: английский язык открывает корень документации, в то время как другие поддерживаемые языки открывают собственное издание. Вы также можете искать Настройки для **Справочный центр**, используя переведенную этикетку в вашем интерфейсе. Используйте **Примечания к выпускам** для истории выпуска приложения.
+
+![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
 
 ## Найти соответствующие настройки {/* #find-related-settings */}
 

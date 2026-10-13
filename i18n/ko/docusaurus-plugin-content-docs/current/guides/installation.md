@@ -1,7 +1,7 @@
 ---
 title: "설치 및 업데이트"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -73,13 +73,43 @@ v0.34.0는 Linux **x64와 ARM64** 패키지를 제공합니다. ARM64의 경우 
 
 ### 독립 CLI 사용 {/* #standalone-cli */}
 
-데스크톱 창없이 작동하려면 [공식 출시](https://github.com/aipoch/open-science/releases/tag/v0.37.1)에서 일치 독립 CLI 아카이브를 다운로드하십시오. 그것은 Node, 백엔드 및 웹 UI를 묶습니다. 완전한 디렉토리를 추출 한 다음 [CLI 설정](../reference/cli.md#terminal-setup)을 따르고 모델을 구성하고 readiness를 확인합니다. 데스크톱 사용자는 여전히 **Settings → General → Install command**을 사용할 수 있습니다.
+데스크톱 창없이 작동하려면 [공식 출시](https://github.com/aipoch/open-science/releases/tag/v0.37.2)에서 일치 독립 CLI 아카이브를 다운로드하십시오. 그것은 Node, 백엔드 및 웹 UI를 묶습니다. 완전한 디렉토리를 추출 한 다음 [CLI 설정](../reference/cli.md#terminal-setup)을 따르고 모델을 구성하고 readiness를 확인합니다. 데스크톱 사용자는 여전히 **Settings → General → Install command**을 사용할 수 있습니다.
+
+#### 홈 양조장 CLI {/* #homebrew-cli */}
+
+macOS 또는 Linux에서 `brew install aipoch/tap/open-science`로 CLI 공식을 설치하십시오. 이것은 데스크탑 케이스에서 분리됩니다. 그것은 Node과 로컬 웹 UI를 포함합니다; 설치는 서비스를 시작하지 않습니다. 또 다른 발사자가 `open-science`을 소유하면 `type -a open-science`을 검사하고 다른 설치 링크 대신 `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"`를 사용합니다.
+
+#### Linux CLI 패키지 {/* #linux-cli-packages */}
+
+맨끝/브로셔 임명을 위해, **개방 과학 - cli**를, **aipoch-open-과학** 탁상용 포장 아닙니다 선택합니다. 동일한 릴리스에서 일치하는 자산과 `CLI-PACKAGE-SHA256SUMS.txt`을 다운로드 한 다음 SHA256 체크섬을 비교하십시오.
+
+| 유통/건축 | v0.37.2 CLI 자산 |
+| --- | --- |
+| 데비안 / 우분투, x64 | `open-science-cli_0.37.2_amd64.deb` |
+| 데비안 / 우분투, ARM64 | `open-science-cli_0.37.2_arm64.deb` |
+| 페도라, x64 | `open-science-cli-0.37.2-1.x86_64.rpm` |
+| 페도라, ARM64 | `open-science-cli-0.37.2-1.aarch64.rpm` |
+
+적절한 패키지 관리자로 다운로드 된 파일을 설치합니다. 이 예제는 x64를 사용합니다. 적절한 경우 ARM64 파일명을 사용합니다.
+
+```bash
+# Debian / Ubuntu
+sudo apt install ./open-science-cli_0.37.2_amd64.deb
+# Fedora: use this instead of the apt command
+sudo dnf install ./open-science-cli-0.37.2-1.x86_64.rpm
+```
+
+`open-science-cli start --no-open`을 실행하고 `open-science-cli status --json`을 실행합니다. 일단 실행되면, 정통 로컬 웹 인터페이스를 열려면 `open-science-cli url`을 사용하십시오. URL을 개인적으로 유지하십시오. [CLI 설정](../reference/cli.md#terminal-setup) 모델 구성 및 `doctor` 체크를 위해 계속하여 `open-science`를 `open-science-cli`로 대체합니다.
+
+패키지 번들 Node, 백엔드 및 웹 UI. Python/R을 설치하지 않거나 자동으로 시스템 서비스를 시작하지 않습니다. OS credential 상점과 sandbox prerequisites는 아직도 적용합니다; [헤드리스 Linux 자격](../reference/server.md) 참조. 데스크톱 발사기가 설치되면 `open-science-cli`을 명시적으로 사용하십시오.
+
+격상시키기 전에 또는 포장을 제거하기 전에, 끝 일 및 정지 **모든 프로파일은 그 패키지에 의해 시작**. apt/dnf를 통해 다음 다운로드 패키지를 설치; 이 설치에 의해 구성 된 AIPOCH apt/dnf 저장소가 없습니다. 포장 제거는 연구 자료와 credentials를 보존합니다. [공식 패키지 가이드](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md#linux-cli-distribution-packages)은 명령 충돌과 플랫폼 요구 사항을 설명합니다.
 
 ### 소스에서 실행 {/* #run-from-source */}
 
 당신은 Git, Node.js 24, npm 및 Electron에 대한 플랫폼 빌드 prerequisites가 필요합니다. 응용 프로그램에서 에이전트 프레임 워크를 설치 또는 선택. 설치 중에 저장소는 Prisma Client를 생성하고 앱 패치를 적용하고 Electron native Dependencies를 준비합니다.
 
-재현 가능한 소스 설치를 위해, 의존성을 설치하기 전에 [관련 링크](../changelog/v0.37.1.md)에서 의도한 릴리스 태그를 선택하십시오. 기본적으로 clone은 고정 릴리스보다는 분기를 따릅니다. 선택된 태그, 소스 커밋 및 런타임 버전을 기록하므로 다른 사람이 환경을 재현 할 수 있습니다.
+재현 가능한 소스 설치를 위해, 의존성을 설치하기 전에 [관련 링크](../changelog/v0.37.2.md)에서 의도한 릴리스 태그를 선택하십시오. 기본적으로 clone은 고정 릴리스보다는 분기를 따릅니다. 선택된 태그, 소스 커밋 및 런타임 버전을 기록하므로 다른 사람이 환경을 재현 할 수 있습니다.
 
 선택된 릴리즈에 표시된 정확한 태그로 아래 `RELEASE_TAG`을 대체하십시오. (`v`)를 포함합니다. 지속적인 개발을 따르기 위하여 대신, omit `--branch RELEASE_TAG --depth 1`; 체크 아웃은 기본 지점을 따라합니다.
 
@@ -96,7 +126,7 @@ npm run dev
 npm run build
 ```
 
-선택한 태그의 package.json 및 [독립 실행 시간 안내](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md)을 사용하여 빌드 대상과 종속성을 제공합니다. `npm run dev:web`는 Node/Web 항목 포인트를 개발; `npm run dev`은 데스크톱 클라이언트를 준비합니다. 격리된 구성 디렉토리를 사용하여 테스트 데이터를 분리합니다.
+선택한 태그의 package.json 및 [독립 실행 시간 안내](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md)을 사용하여 빌드 대상과 종속성을 제공합니다. `npm run dev:web`는 Node/Web 항목 포인트를 개발; `npm run dev`은 데스크톱 클라이언트를 준비합니다. 격리된 구성 디렉토리를 사용하여 테스트 데이터를 분리합니다.
 
 ## 첫 번째 시간 설정 완료 {/* #complete-first-time-setup */}
 

@@ -2,7 +2,7 @@
 title: "Connector 操作参数参考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作输入
 
-每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.37.1** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.1.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
+每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.37.2** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
 
 
 ## 化学 {/* #family-1 */}
@@ -3007,7 +3007,7 @@ const result = await host.mcp("expression", "gtex_calculate_eqtl", {"gencode_id"
 
 ### `bgee_species`
 
-列出 Bgee 健康野生型表达图谱中的物种，或用 NCBI taxonomy ID 查询一个物种。
+列出 Bgee 健康野生型表达图谱中的物种，或用 NCBI taxonomy ID 查询一个物种。返回的 `taxon_id` 标识该物种，即使其参考基因组来自另一物种。列表查询不加载数据来源元数据，因此返回 `has_expression_data: null`。需要判断可用性时，用具体 `species_id` 查询；元数据缺失时仍保留 `null`，不能视为 `false`。
 
 | 字段 | 类型 | 必填与约束 |
 | --- | --- | --- |

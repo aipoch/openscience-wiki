@@ -1,7 +1,7 @@
 ---
 title: "Solución de problemas y preguntas comunes"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-13'
 ---
 
 # Solución de problemas y preguntas comunes {/* #troubleshooting-and-common-questions */}
@@ -35,6 +35,26 @@ Encontrar el texto de error a continuación, siga los cheques para la operación
 | Fuente de texto completo encontrada pero el apego falla | Resultado de descarga real y validación PDF | Utilice otra fuente legítima PDF local, luego abra el apego |
 | Desactivado Side Chat | Mensaje de compatibilidad del agente/providente | [Delegación](delegation.md): verifique la restricción de compatibilidad mostrada por su marco seleccionado |
 | El trabajo a distancia no se puede ejecutar | Real host, autenticación, agendador y requisitos de tiempo de ejecución | [Computación remota](remote-compute.md) |
+
+## Restaurar una conexión perdida {/* #connection-recovery */}
+
+Cuando aparezca **Desktop connection lost**, espere a que se restaure el estado actual antes de enviar nuevas operaciones.
+
+1. Seleccione **Reconnect**. **Restoring desktop connection…** indica que la aplicación está actualizando el estado del backend original. Espere a que los controles vuelvan a estar disponibles.
+2. Abra la conversación, la ejecución de Notebook o el archivo original. Una operación enviada antes de la interrupción puede haberse completado aunque no se haya mostrado su respuesta. Compruebe su estado antes de enviarla de nuevo; la reconexión no repite automáticamente las operaciones enviadas.
+3. Si el aviso indica que el backend original ya no está disponible, seleccione **Quit app** y vuelva a abrir la aplicación. Reconnect no inicia un backend detenido ni cambia a otra instancia.
+4. Antes de cerrar la aplicación, conserve el trabajo sin guardar al que aún tenga acceso y lea la confirmación. Salir durante una desconexión no confirma que el backend se haya detenido. Para una instancia iniciada con la CLI, compruebe el mismo perfil con `open-science status --json`; consulte [propiedad y cierre del backend](../reference/server.md#backend-ownership).
+
+La interfaz del navegador pausa los controles mientras recupera las actualizaciones pendientes. Si aparece **Reload required**, guarde una copia de los borradores no enviados antes de seleccionar **Reload**. Si falló el almacenamiento de borradores, confirme primero que guardó la copia. Las menciones se restauran como texto; revise también los archivos adjuntos antes de enviar. **Pairing required** indica que la autorización de acceso ha caducado: vuelva a abrir el enlace Web del equipo anfitrión o siga el [emparejamiento remoto](remote-access.md), en lugar de enviar la tarea repetidamente.
+## Recuperar una falla de arranque {/* #startup-recovery */}
+
+| Aviso | Medida |
+| --- | --- |
+| **Open-Science no ha podido iniciar el backend.** | Utilice **Abrir registros de inicio**, identificar el informe `STARTUP_STAGE`, y resolver su causa. Elija **Reintentar el inicio** cuando se ofrece. Si no está disponible, el backend anterior puede seguir funcionando; inspeccionar su estado antes de reabrir otra copia. |
+| **No se pudo cargar la configuración** | Seleccione **Retry**. Si se repite, use **Report this error** e incluir el código de error de configuración mostrado. |
+| Error de recuperación de almacenamiento creíble | Desbloquear la tienda de credenciales originales del sistema operativo o restaurar la clave/profile original como se instruyó. Mantener los datos cifrados existentes; reinstalar o crear llaves de reemplazo no es un paso de recuperación. |
+
+La recuperación se completa cuando se cargan los proyectos y ajustes esperados. Si el aviso persiste, mantenga su código de error y registros sanitarios para [Informe](#report-a-bug-or-ask-the-community). Para fallos específicos de la base de datos, utilice los cheques a continuación.
 
 <span id="storage-migration-reports-an-error" />
 

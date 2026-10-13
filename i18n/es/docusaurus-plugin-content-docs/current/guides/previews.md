@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -242,3 +242,5 @@ Abrir **Full-text translation** en la barra de herramientas PDF para preparar te
 ## Verificación de la estructura científica extraída {/* #scientific-structure-check */}
 
 Después de **Analyze PDF**, abra una figura y tabla junto a la página original. Confirme que los cultivos de figuras incluyen cada panel y sus capciones/legendas, y que las tablas conservan cabeceras agrupadas, grupos de filas, unidades y notas de pie de página. Una fórmula o párrafo cercano no debe convertirse en una celda de mesa o en una capción de figuras. v0.37.1 mejora estos límites y referencias de las células fuente; la extracción sigue siendo algo para comprobar antes de reutilizar los valores. Si una extracción salvada mayor es incompleta, use reanálisis cuando el lector lo ofrezca, compare los elementos resultantes antes de reemplazar una tabla de aguas abajo.
+
+En v0.37.2, la extracción corrige aún más la figura/propiedad estable y los símbolos de matemáticas PDF heredados. Compare menos signos, letras griegas, superscriptos, subscriptos y operadores con la fuente renderizada antes de copiar un valor de fórmula o tabla. Una extracción limpia no es un sustituto para comprobar la expresión científica.

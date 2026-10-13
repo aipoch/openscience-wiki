@@ -1,7 +1,7 @@
 ---
 title: "Fehlerbehebung und häufige Fragen"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-13'
 ---
 
 # Fehlerbehebung und häufige Fragen {/* #troubleshooting-and-common-questions */}
@@ -35,6 +35,26 @@ Suchen Sie den Fehlertext unten, folgen Sie den Überprüfungen für die betroff
 | Volltextquelle gefunden, aber Attachment fehlschlägt | Aktuelles Downloadergebnis und PDF Validierung | Verwenden Sie eine andere legitime Quelle / lokale PDF, dann öffnen Sie die Anlage |
 | Side Chat deaktiviert | Kompatibilitätsmeldung Agent/Provider | [Delegation](delegation.md): Überprüfen Sie die Kompatibilitätsbeschränkung, die von Ihrem ausgewählten Framework angezeigt wird |
 | Remote Job kann nicht ausgeführt werden | Echte Host-, Authentifizierungs-, Zeitplan- und Laufzeitvoraussetzungen | [Remote Compute](remote-compute.md) |
+
+## Wiederherstellen einer verlorenen Verbindung {/* #connection-recovery */}
+
+Wenn **Desktop connection lost** erscheint, warten Sie mit neuen Vorgängen, bis der aktuelle Zustand wiederhergestellt ist.
+
+1. Wählen Sie **Reconnect**. **Restoring desktop connection…** bedeutet, dass die App den Zustand des ursprünglichen Backends aktualisiert. Warten Sie, bis die Bedienelemente wieder verfügbar sind.
+2. Öffnen Sie die ursprüngliche Unterhaltung, den Notebook-Ausführungsdatensatz oder die Datei. Ein vor der Unterbrechung gesendeter Vorgang kann bereits abgeschlossen sein, auch wenn keine Antwort angezeigt wurde. Prüfen Sie vor einer erneuten Übermittlung den Zustand; die Wiederverbindung wiederholt keine bereits gesendeten Vorgänge automatisch.
+3. Ist das ursprüngliche Backend nicht mehr verfügbar, wählen Sie **Quit app** und öffnen Sie die App erneut. Reconnect startet kein beendetes Backend und wechselt nicht zu einer anderen Instanz.
+4. Sichern Sie vor dem Beenden noch zugängliche, ungespeicherte Inhalte und lesen Sie die Bestätigung. Das Beenden bei unterbrochener Verbindung bestätigt nicht, dass das Backend angehalten wurde. Prüfen Sie bei einer CLI-Instanz dasselbe Profil mit `open-science status --json`; siehe [Backend-Zuordnung und Beenden](../reference/server.md#backend-ownership).
+
+Die Browseroberfläche pausiert die Bedienelemente, während fehlende Aktualisierungen wiederhergestellt werden. Bei **Reload required** sichern Sie eine Kopie nicht gesendeter Entwürfe, bevor Sie **Reload** wählen. Falls die Entwurfsspeicherung fehlgeschlagen ist, bestätigen Sie zuerst, dass Sie eine Kopie gesichert haben. Erwähnungen werden als Text wiederhergestellt; prüfen Sie vor dem Senden auch die Anhänge. **Pairing required** bedeutet, dass die Zugriffsberechtigung abgelaufen ist: Öffnen Sie den Weblink des Hosts erneut oder führen Sie die [Remote-Kopplung](remote-access.md) durch, statt die Aufgabe wiederholt zu senden.
+## Wiederherstellen eines Startfehlers {/* #startup-recovery */}
+
+| Bekanntmachung | Aktion |
+| --- | --- |
+| **Open-Science konnte das Backend nicht starten.** | Verwenden Sie **Startprotokolle öffnen**, Identifizieren Sie die gemeldeten `STARTUP_STAGE`und seine Ursache zu lösen. Wählen Sie **Start erneut versuchen** wenn angeboten. Wenn nicht verfügbar, kann das vorherige Backend noch laufen; den Status zu überprüfen, bevor eine weitere Kopie wieder geöffnet wird. |
+| **Einstellungen konnten nicht geladen werden** | Wählen Sie **Retry**fort. Wenn es sich wiederholt, verwenden **Report this error** und fügen Sie den angezeigten Einstellungsfehlercode hinzu. |
+| Credential-Storage-Wiederherstellungsfehler | Entsperren Sie den ursprünglichen OS-Anmeldedatenspeicher oder stellen Sie den ursprünglichen Schlüssel/Profil wie angewiesen wieder her. Bewahren Sie vorhandene verschlüsselte Daten auf; Das Neuinstallieren oder Erstellen von Ersatzschlüsseln ist kein Wiederherstellungsschritt. |
+
+Die Wiederherstellung ist abgeschlossen, wenn die erwarteten Projekte und Einstellungen geladen werden. Wenn die Benachrichtigung weiterhin besteht, behalten Sie den Fehlercode und die entsorgten Protokolle für [einen Bericht](#report-a-bug-or-ask-the-community). Bei datenbankspezifischen Fehlern verwenden Sie die folgenden Prüfungen.
 
 <span id="storage-migration-reports-an-error" />
 

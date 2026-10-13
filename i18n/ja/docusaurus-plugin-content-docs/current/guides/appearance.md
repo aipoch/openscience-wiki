@@ -1,7 +1,7 @@
 ---
 title: "外観と通知"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -130,6 +130,12 @@ import Screenshot from '@site/src/components/Screenshot';
 **General → Close button behaviour → Ask every time** では、ウィンドウを閉じると **Minimize or quit?** ウィンドウを非表示に **Minimize to tray** を選択し、 Windows トレイの Open-Science アイコンを使用して戻ります。 その選択を保持したい場合は、**もう一度尋ねないでください**だけを選択します。 変更後、一般。 最小化はアプリを終了しません。
 
 </PlatformContent>
+
+## オープンヘルプセンター {/* #help-center */}
+
+**Settings → General → About → Help Center** を開き、ブラウザのセットアップとトラブルシューティングガイダンスをお読みください。 このリンクは、アプリの現在の言語を次のようになります。英語はドキュメントのルートを開きますが、他のサポートされている言語は独自のエディションを開きます。 また、あなたのインターフェイスで翻訳されたラベルを使用して、**ヘルプセンター** の &#91;設定&#93; を検索することもできます。 アプリケーションのリリース履歴に**リリースノート**を使用します。
+
+![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
 
 ## 関連する設定を探す {/* #find-related-settings */}
 

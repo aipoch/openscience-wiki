@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting and common questions"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-13'
 ---
 
 # Troubleshooting and common questions
@@ -35,6 +35,27 @@ Find the error text below, follow the checks for the affected operation, then re
 | Full-text source found but attachment fails | Actual download result and PDF validation | Use another legitimate source/local PDF, then open the attachment |
 | Side Chat disabled | Agent/provider compatibility message | [Delegation](delegation.md): check the compatibility restriction shown by your selected framework |
 | Remote job cannot run | Real host, authentication, scheduler and runtime prerequisites | [Remote compute](remote-compute.md) |
+
+## Restore a lost connection {/* #connection-recovery */}
+
+When **Desktop connection lost** appears, stop submitting work until the current state has been restored.
+
+1. Select **Reconnect**. **Restoring desktop connection…** means the app is refreshing the original backend's state; wait for normal controls to return.
+2. Reopen the original conversation, Notebook run or file. A request sent before the interruption may already have completed, even if no response appeared. Inspect its state before submitting it again; reconnect does not automatically retry submitted operations.
+3. If the notice says the original backend is no longer available, use **Quit app** and reopen the app. Reconnect cannot restart a dead backend or switch to a replacement instance.
+4. Before quitting, preserve any unsaved work you can access and read the confirmation. Quitting while disconnected does not confirm that the backend stopped. For a CLI-backed instance, check the same profile with `open-science status --json`; see [backend ownership](../reference/server.md#backend-ownership).
+
+The browser interface restores missed updates while controls are paused. If **Reload required** appears, save a copy of unsent drafts before selecting **Reload**; if draft storage failed, confirm the copy first. Mentions return as text, and attachments need checking before sending. **Pairing required** instead means access authorization expired: reopen the host's Web link or follow [remote pairing](remote-access.md), rather than repeatedly submitting the task.
+
+## Recover a startup failure {/* #startup-recovery */}
+
+| Notice | Action |
+| --- | --- |
+| **Open-Science could not start the backend.** | Use **Open startup logs**, identify the reported `STARTUP_STAGE`, and resolve its cause. Choose **Retry startup** when offered. If unavailable, the previous backend may still be running; inspect its status before reopening another copy. |
+| **Settings could not be loaded** | Select **Retry**. If it repeats, use **Report this error** and include the displayed settings error code. |
+| Credential-storage recovery error | Unlock the original OS credential store or restore the original key/profile as instructed. Keep existing encrypted data; reinstalling or creating replacement keys is not a recovery step. |
+
+Recovery is complete when the expected projects and settings load. If the notice persists, keep its error code and sanitized logs for [a report](#report-a-bug-or-ask-the-community). For database-specific failures, use the checks below.
 
 <span id="storage-migration-reports-an-error" />
 

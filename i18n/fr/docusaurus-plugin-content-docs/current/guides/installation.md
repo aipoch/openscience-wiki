@@ -1,7 +1,7 @@
 ---
 title: "Installation et mises à jour"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -73,13 +73,43 @@ Le dossier d’installation contient l’application ; **Data location**, dans l
 
 ### Utiliser le standalone CLI {/* #standalone-cli */}
 
-Pour une opération sans fenêtre de bureau, téléchargez l'archive autonome correspondante CLI depuis le [libération officielle](https://github.com/aipoch/open-science/releases/tag/v0.37.1). Il regroupe Node, le moteur et l'interface utilisateur Web. Extraire le répertoire complet, puis suivre [Configuration de CLI](../reference/cli.md#terminal-setup) pour le démarrer, configurer un modèle et vérifier l'état de préparation. Les utilisateurs de bureau peuvent toujours utiliser **Settings → General → Install command**.
+Pour une opération sans fenêtre de bureau, téléchargez l'archive autonome correspondante CLI depuis le [libération officielle](https://github.com/aipoch/open-science/releases/tag/v0.37.2). Il regroupe Node, le moteur et l'interface utilisateur Web. Extraire le répertoire complet, puis suivre [Configuration de CLI](../reference/cli.md#terminal-setup) pour le démarrer, configurer un modèle et vérifier l'état de préparation. Les utilisateurs de bureau peuvent toujours utiliser **Settings → General → Install command**.
+
+#### Accueilrew CLI {/* #homebrew-cli */}
+
+Sur macOS ou Linux, installez la formule CLI avec `brew install aipoch/tap/open-science`. Ceci est séparé du fût de bureau. Il comprend Node et l'interface utilisateur Web locale; l'installation ne démarre pas un service. Si un autre lanceur possède `open-science`, inspectez `type -a open-science` et utilisez `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"` plutôt que de remplacer le lien de l'autre installation.
+
+#### Paquets Linux CLI {/* #linux-cli-packages */}
+
+Pour une installation de terminal/navigateur, choisissez **ouvert-science-cli**, et non le paquet de bureau **aipoch-science ouverte**. Téléchargez l'actif correspondant et `CLI-PACKAGE-SHA256SUMS.txt` de la même version, puis comparez son somme de contrôle SHA256.
+
+| Distribution / architecture | Actif v0.37.2 CLI |
+| --- | --- |
+| Debian / Ubuntu, x64 | `open-science-cli_0.37.2_amd64.deb` |
+| Debian / Ubuntu, ARM64 | `open-science-cli_0.37.2_arm64.deb` |
+| Fedora, x64 | `open-science-cli-0.37.2-1.x86_64.rpm` |
+| Fedora, ARM64 | `open-science-cli-0.37.2-1.aarch64.rpm` |
+
+Installez le fichier téléchargé avec le gestionnaire de paquets approprié. Ces exemples utilisent x64; utiliser le nom de fichier ARM64 le cas échéant.
+
+```bash
+# Debian / Ubuntu
+sudo apt install ./open-science-cli_0.37.2_amd64.deb
+# Fedora: use this instead of the apt command
+sudo dnf install ./open-science-cli-0.37.2-1.x86_64.rpm
+```
+
+Exécutez `open-science-cli start --no-open`, puis `open-science-cli status --json`. Une fois exécuté, utilisez `open-science-cli url` pour ouvrir l'interface Web locale authentifiée; Gardez cette URL privée. Continuer avec [Configuration de CLI](../reference/cli.md#terminal-setup) pour la configuration du modèle et les vérifications `doctor`, en remplaçant `open-science` par `open-science-cli` dans ces commandes.
+
+Le paquet regroupe Node, le moteur et l'interface utilisateur Web. Il n'installe pas Python/R ou crée un service système démarré automatiquement. Les conditions préalables de stockage et de bac à sable de l'OS s'appliquent toujours; Voir [identifiants Linux sans tête](../reference/server.md). Utilisez `open-science-cli` explicitement lorsqu'un lanceur de bureau est également installé.
+
+Avant de mettre à niveau ou de retirer le paquet, terminer le travail et arrêter **chaque profil commencé par ce paquet**. Installez le prochain paquet téléchargé via apt/dnf; Il n'y a pas de dépôt AIPOCH apt/dnf configuré par cette installation. La suppression des paquets préserve les données de recherche et les références. Le [guide officiel de l'emballage](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md#linux-cli-distribution-packages) décrit les conflits de commande et les exigences de la plate-forme.
 
 ### Exécuter à partir de la source {/* #run-from-source */}
 
 Vous avez besoin de Git, Node.js 24, npm, et la plate-forme construit les conditions préalables pour Electron. Installer ou sélectionner un cadre d'agent dans l'application. Pendant l'installation, le dépôt génère le client Prisma, applique les correctifs app et prépare les dépendances natives d'Electron.
 
-Pour une installation source reproductible, choisissez la balise de libération prévue à partir de [Changer de journal](../changelog/v0.37.1.md) avant d'installer les dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
+Pour une installation source reproductible, choisissez la balise de libération prévue à partir de [Changer de journal](../changelog/v0.37.2.md) avant d'installer les dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
 
 Remplacer `RELEASE_TAG` ci-dessous par la balise exacte affichée sur la version sélectionnée (y compris sa `v` de tête). Pour suivre le développement en cours, omettre `--branch RELEASE_TAG --depth 1`; que la commande suivra la branche par défaut.
 
@@ -96,7 +126,7 @@ Avant d'emballer une construction de production, lancez :
 npm run build
 ```
 
-Utilisez les paquets.json et [guide d'exécution autonome](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md) de la balise sélectionnée pour ses cibles de construction et ses dépendances. `npm run dev:web` développe le point d'entrée Node/Web; `npm run dev` prépare également le client de bureau. Utilisez un répertoire de configuration isolé pour garder les données de test séparées.
+Utilisez les paquets.json et [guide d'exécution autonome](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md) de la balise sélectionnée pour ses cibles de construction et ses dépendances. `npm run dev:web` développe le point d'entrée Node/Web; `npm run dev` prépare également le client de bureau. Utilisez un répertoire de configuration isolé pour garder les données de test séparées.
 
 ## Configuration complète pour la première fois {/* #complete-first-time-setup */}
 

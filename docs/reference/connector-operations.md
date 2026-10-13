@@ -2,7 +2,7 @@
 title: "Connector operation reference"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Return field names differ by operation. The descriptions and downloadable schema
 
 ## Operation inputs
 
-Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.37.1** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.1.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
+Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.37.2** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
 
 
 ## Chemistry {/* #family-1 */}
@@ -3005,7 +3005,7 @@ const result = await host.mcp("expression", "gtex_calculate_eqtl", {"gencode_id"
 
 ### `bgee_species`
 
-List species available in the Bgee healthy wild-type expression atlas, or retrieve one species by its NCBI taxonomy id.
+List species available in the Bgee healthy wild-type expression atlas, or retrieve one species by its NCBI taxonomy id. The returned `taxon_id` identifies that species, even when its reference genome belongs to another species. A list request returns `has_expression_data: null` because it does not load data-source metadata. Query a specific `species_id` to check availability; missing metadata also remains `null`, not `false`.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |

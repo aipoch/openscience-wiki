@@ -1,7 +1,7 @@
 ---
 title: "Service sans tête et accès au navigateur"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 # Service sans tête et accès au navigateur {/* #headless-service-and-browser-access */}
@@ -97,14 +97,18 @@ Utiliser un stockage persistant lorsque la configuration doit survivre au rempla
 
 Fermer une fenêtre peut différer de quitter l'application, surtout lorsqu'elle reste dans le plateau. Terminer la recherche active avant d'arrêter un moteur partagé, puis inspecter l'état réel avec `status --json`.
 
+Un bureau déconnecté offre **Reconnecter** et **Quitter l’application**. Reconnecter rafraîchit le moteur en direct original et ne soumet pas de nouveau le travail; Si ce moteur est parti, quittez et rouvrez. Un Quit déconnecté peut fermer seulement le client, donc inspecter l'état du profil sélectionné avant de supposer que le service s'est arrêté. Suivez [récupération de connexion](../guides/troubleshooting.md#connection-recovery), y compris les opérations de vérification des réponses perdues.
+
 ## Comportement de mise à jour de l'application {/* #application-update-behavior */}
 
 Les mises à jour natives de bureau et les mises à jour de paquets autonomes utilisent différents chemins. Un moteur ordinaire Node ne peut pas remplacer l'installateur de bureau; son `update --json` signale une exigence de mise à jour manuelle et le mode `package-manager`. Suivez les instructions retournées.
 
 - **Application bureautique :** utilise sa mise à jour in-app. S'il est attaché à un moteur précédemment démarré par le CLI, terminer le travail et arrêter ce moteur avant de mettre à jour le bureau.
 - **archive Standalone CLI :** terminer le travail, arrêter le moteur prévu, extraire la nouvelle version dans un nouveau répertoire, conserver vos données de configuration, et mettre à jour le lanceur ou PATH. N'écrasez pas le paquet en cours d'exécution.
+- **Paquet Homebrew CLI ou Linux CLI :** terminer le travail et arrêter chaque profil à l'aide de cette installation, puis suivre le [instructions de mise à jour du paquet](../guides/installation.md#standalone-cli). Continuez à utiliser le même répertoire de configuration après.
+
 - **installation npm:** met à jour le paquet correspondant par npm et confirme la compatibilité client/backend.
 
 Redémarrer, puis utiliser `status --json` et `doctor --json` pour confirmer la version, le répertoire de configuration et l'état de préparation. Préserver le mode de stockage des titres de compétence existants; ne supprimez pas les identifiants ou la configuration pour effectuer une mise à jour.
 
-Voir les [guide officiel d'exécution autonome](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md), [CLI](cli.md) et [Tâche SDK](api.md).
+Voir les [guide officiel d'exécution autonome](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md), [CLI](cli.md) et [Tâche SDK](api.md).

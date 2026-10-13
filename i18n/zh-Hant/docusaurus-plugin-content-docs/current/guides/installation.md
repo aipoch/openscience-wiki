@@ -1,7 +1,7 @@
 ---
 title: "安裝與更新"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -73,13 +73,43 @@ v0.34.0 提供 Linux **x64 和 ARM64** 安裝包。ARM64 選擇 `aipoch-open-sci
 
 ### 使用獨立 CLI {/* #standalone-cli */}
 
-無需桌面視窗時，可從[官方發行版](https://github.com/aipoch/open-science/releases/tag/v0.37.1)下載對應平臺的獨立 CLI 壓縮包。它自帶 Node、後端與 Web UI，完整解壓後即可執行。按 [CLI 首次設定](../reference/cli.md#terminal-setup)啟動、配置模型並檢查就緒狀態；已有桌面使用者仍可使用 **Settings → General → Install command**。
+無需桌面視窗時，可從[官方發行版](https://github.com/aipoch/open-science/releases/tag/v0.37.2)下載對應平臺的獨立 CLI 壓縮包。它自帶 Node、後端與 Web UI，完整解壓後即可執行。按 [CLI 首次設定](../reference/cli.md#terminal-setup)啟動、配置模型並檢查就緒狀態；已有桌面使用者仍可使用 **Settings → General → Install command**。
+
+#### Homebrew CLI {/* #homebrew-cli */}
+
+在 macOS 或 Linux 上，用 `brew install aipoch/tap/open-science` 安裝 CLI formula，與桌面版 cask 分開。它包含 Node 和本地 Web UI，安裝不會啟動服務。若其他安裝已佔用 `open-science`，先用 `type -a open-science` 檢查，再透過 `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"` 呼叫，不要覆蓋另一套安裝的命令連結。
+
+#### Linux CLI 安裝包 {/* #linux-cli-packages */}
+
+需要終端／瀏覽器入口時，選擇 **open-science-cli**，桌面安裝包則是 **aipoch-open-science**。從同一發行頁下載對應安裝包和 `CLI-PACKAGE-SHA256SUMS.txt`，核對檔案的 SHA256 校驗值。
+
+| 發行版／架構 | v0.37.2 CLI 安裝包 |
+| --- | --- |
+| Debian / Ubuntu，x64 | `open-science-cli_0.37.2_amd64.deb` |
+| Debian / Ubuntu，ARM64 | `open-science-cli_0.37.2_arm64.deb` |
+| Fedora，x64 | `open-science-cli-0.37.2-1.x86_64.rpm` |
+| Fedora，ARM64 | `open-science-cli-0.37.2-1.aarch64.rpm` |
+
+透過對應的包管理器安裝已下載的檔案。下例使用 x64；ARM64 裝置應替換為表中的相應檔名。
+
+```bash
+# Debian / Ubuntu
+sudo apt install ./open-science-cli_0.37.2_amd64.deb
+# Fedora: use this instead of the apt command
+sudo dnf install ./open-science-cli-0.37.2-1.x86_64.rpm
+```
+
+執行 `open-science-cli start --no-open`，再執行 `open-science-cli status --json`。確認執行後，用 `open-science-cli url` 開啟帶認證的本地 Web 介面；不要公開此地址。繼續按 [CLI 首次設定](../reference/cli.md#terminal-setup)配置模型並執行 `doctor` 檢查，將其中的 `open-science` 替換為 `open-science-cli`。
+
+安裝包包含 Node、後端和 Web UI，不會安裝 Python／R，也不會建立自動啟動的系統服務。系統憑據儲存和沙箱前提仍適用，參見[無介面 Linux 的憑據儲存](../reference/server.md)。同時安裝了桌面啟動器時，明確使用 `open-science-cli`。
+
+升級或解除安裝前，結束工作並停止**所有由該安裝包啟動的配置例項**。下載下一版安裝包後再透過 apt／dnf 安裝；此安裝方式不會配置 AIPOCH apt／dnf 軟體源。解除安裝保留研究資料和憑據。命令衝突與平臺要求見[官方安裝包說明](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md#linux-cli-distribution-packages)。
 
 ### 從原始碼執行 {/* #从源码运行 */}
 
 要求：Git、Node.js 24、npm，以及 Electron 在當前平臺的構建前提。代理框架可在應用中安裝或選擇。倉庫會在安裝階段生成 Prisma Client、應用補丁並準備 Electron 原生依賴。
 
-需要復現原始碼安裝時，先從 [Changelog](../changelog/v0.37.1.md) 確定目標釋出標籤，再安裝依賴。預設克隆跟隨分支，不會固定到某個釋出版本。記錄所選標籤、原始碼提交及執行時版本，便於他人復現環境。
+需要復現原始碼安裝時，先從 [Changelog](../changelog/v0.37.2.md) 確定目標釋出標籤，再安裝依賴。預設克隆跟隨分支，不會固定到某個釋出版本。記錄所選標籤、原始碼提交及執行時版本，便於他人復現環境。
 
 將下方 `RELEASE_TAG` 替換為所選發行頁的完整標籤（包括開頭的 `v`）。如果需要跟隨開發分支，省略 `--branch RELEASE_TAG --depth 1`；這條路線會使用預設分支。
 
@@ -96,7 +126,7 @@ npm run dev
 npm run build
 ```
 
-構建目標與依賴應以所選標籤的 package.json 和[獨立執行說明](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md)為準。僅開發 Node 與 Web 入口可使用 `npm run dev:web`；`npm run dev` 同時準備桌面客戶端。使用獨立配置目錄，避免測試資料進入日常配置。
+構建目標與依賴應以所選標籤的 package.json 和[獨立執行說明](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md)為準。僅開發 Node 與 Web 入口可使用 `npm run dev:web`；`npm run dev` 同時準備桌面客戶端。使用獨立配置目錄，避免測試資料進入日常配置。
 
 ## 完成首次配置 {/* #完成首次配置 */}
 

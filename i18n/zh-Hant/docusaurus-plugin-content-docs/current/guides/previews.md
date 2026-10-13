@@ -1,7 +1,7 @@
 ---
 title: "開啟與預覽檔案"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -244,3 +244,5 @@ inspect. Keep the response in English.
 ## 檢查提取後的科學結構 {/* #scientific-structure-check */}
 
 完成 **Analyze PDF** 後，將一張圖和一張表與原始頁面對照。確認影象包含所有面板及對應圖注／圖例，表格保留分組表頭、行分組、單位和腳註。相鄰公式或正文不應被誤當成單元格或圖注。v0.37.1 改進這些邊界與單元格來源引用，複用數值前仍須核對。舊的提取結果不完整時，使用閱讀器提供的重新分析入口，再比較新元素，之後才替換下游表格。
+
+v0.37.2 進一步修正圖表內容的歸屬以及舊式 PDF 數學符號的解碼。複製公式或表格數值前，對照原始頁面檢查負號、希臘字母、上下標和運算子；提取結果更整齊不代表科學表達已核對無誤。

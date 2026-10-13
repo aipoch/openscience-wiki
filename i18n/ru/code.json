@@ -1796,5 +1796,11 @@
   },
   "docs.outline.reference.v0370.scope": {
     "message": "Автономный бэкэнд Node и CLI, ENCORI, ChEMBL анализы, ClinVar представления и Notebook захват."
+  },
+  "docs.outline.reference.v0372.title": {
+    "message": "v0.37.2"
+  },
+  "docs.outline.reference.v0372.scope": {
+    "message": "Запуск и восстановление соединения, пакеты Linux CLI, локализованная помощь и исправления научных данных."
   }
 }

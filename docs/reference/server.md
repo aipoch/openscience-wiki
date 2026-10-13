@@ -1,7 +1,7 @@
 ---
 title: "Headless service and browser access"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 # Headless service and browser access
@@ -97,14 +97,18 @@ Use persistent storage when the configuration must survive container replacement
 
 Closing a window can differ from quitting the app, especially when it remains in the tray. Finish active research before stopping a shared backend, then inspect the actual state with `status --json`.
 
+A disconnected desktop offers **Reconnect** and **Quit app**. Reconnect refreshes the original live backend and does not resubmit work; if that backend is gone, quit and reopen. A disconnected Quit may close only the client, so inspect the selected profile's status before assuming the service stopped. Follow [connection recovery](../guides/troubleshooting.md#connection-recovery), including checking operations whose responses were lost.
+
 ## Application update behavior
 
 Desktop native updates and standalone package updates use different paths. An ordinary Node backend cannot replace the desktop installer; its `update --json` reports a manual update requirement and `package-manager` mode. Follow the returned instructions.
 
 - **Desktop app:** use its in-app updater. If it is attached to a backend previously started by the CLI, finish work and stop that backend before updating the desktop.
 - **Standalone CLI archive:** finish work, stop the intended backend, extract the new release into a new directory, retain your configuration data, and update the launcher or PATH. Do not overwrite the running package.
+- **Homebrew CLI or Linux CLI package:** finish work and stop every profile using that installation, then follow the [package update instructions](../guides/installation.md#standalone-cli). Keep using the same configuration directory afterward.
+
 - **npm installation:** update the corresponding package through npm and confirm client/backend compatibility.
 
 Restart, then use `status --json` and `doctor --json` to confirm the version, configuration directory and readiness. Preserve the existing credential-store mode; do not delete credentials or configuration to perform an update.
 
-See the [official standalone runtime guide](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md), [CLI](cli.md) and [Task SDK](api.md).
+See the [official standalone runtime guide](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md), [CLI](cli.md) and [Task SDK](api.md).

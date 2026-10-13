@@ -1,7 +1,7 @@
 ---
 title: "CLI 与结构化输出"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 从终端完成首次设置 {/* #terminal-setup */}
 
-选择桌面应用的命令入口，或[官方发行版](https://github.com/aipoch/open-science/releases/tag/v0.37.1)中的独立 CLI 压缩包。独立包包含 CLI、Node 运行时、后端与 Web UI，不需要 Electron，也无需另装 Node/npm。
+选择桌面应用的命令入口，或[官方发行版](https://github.com/aipoch/open-science/releases/tag/v0.37.2)中的独立 CLI 压缩包。独立包包含 CLI、Node 运行时、后端与 Web UI，不需要 Electron，也无需另装 Node/npm。
 
 1. 选择与主机匹配的 macOS／Linux arm64 或 x64 包，或 Windows x64 包。
 2. 完整解压到可写目录，保留启动器、`backend` 与 `node-runtime` 的相对位置；只复制启动器会导致无法启动。
@@ -44,6 +44,8 @@ open-science doctor --json
 改用 OpenAI API key 时，使用 `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`，填入受支持的模型 ID，并通过已有密钥管理方式提供环境变量。配置 OpenAlex 时使用 `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`。这两条命令前均加 `open-science`。不要把密钥本身放进命令参数。凭据检查成功不代表科研查询已完成，也不保证仍有配额。
 
 查看 `doctor` 的 **ready**、逐项 **checks** 和建议的 **next** 操作。命令成功退出时 `ready` 仍可能为 false；后端未启动时会明确报告并以 3 退出。完成提示中的前置条件，再次检查，然后在目标项目中[运行任务](#运行输入与控制参数)。
+
+通过 Homebrew 或 Linux `.deb`／`.rpm` 安装时，先按[安装包说明](../guides/installation.md#standalone-cli)操作。Linux 发行包提供 `open-science-cli`；在本页示例中使用该命令，避免误用另一套桌面启动器。
 
 ## 入口
 

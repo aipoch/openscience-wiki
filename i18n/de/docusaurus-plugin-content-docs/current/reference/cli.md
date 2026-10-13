@@ -1,7 +1,7 @@
 ---
 title: "CLI und strukturierter Output"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,7 @@ Verwenden Sie `open-science`, um den Anwendungsstatus zu überprüfen, Aufgaben 
 
 ## Aufgesetzt von einem Terminal {/* #terminal-setup */}
 
-Wählen Sie entweder den Desktop-Launcher oder ein eigenständiges CLI-Archiv aus dem [Offizielle Freigabe](https://github.com/aipoch/open-science/releases/tag/v0.37.1). Das Standalone-Archiv enthält die CLI, Node Runtime, Backend und Web UI; Es ist kein Electron oder eine separat installierte Node/npm-Toolchain erforderlich.
+Wählen Sie entweder den Desktop-Launcher oder ein eigenständiges CLI-Archiv aus dem [Offizielle Freigabe](https://github.com/aipoch/open-science/releases/tag/v0.37.2). Das Standalone-Archiv enthält die CLI, Node Runtime, Backend und Web UI; Es ist kein Electron oder eine separat installierte Node/npm-Toolchain erforderlich.
 
 1. Wählen Sie macOS oder Linux arm64/x64 oder Windows x64, die zum Host passen.
 2. Extrahieren Sie das komplette Archiv in einen beschreibbaren Ort. Halten Sie den Launcher, `backend` und `node-runtime` zusammen; Durch das Kopieren nur des Launchers wird der Start unterbrochen.
@@ -44,6 +44,8 @@ Folgen Sie dem Login-Flow. Dies bereitet oder repariert die verwaltete Codex-Lau
 Wenn Sie stattdessen einen OpenAI API-Schlüssel verwenden, verwenden Sie `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`, mit einer unterstützten Modell-ID und dem bereits über Ihre Geheimverwaltungsumgebung gelieferten Schlüssel. Verwenden Sie für OpenAlex `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`. Präfixieren Sie beide Befehle mit `open-science`. Setzen Sie den Schlüssel niemals selbst in Befehlsargumente. Eine erfolgreiche Nachweisprüfung stellt nicht fest, dass eine Forschungsanfrage abgeschlossen ist oder dass die Quote verbleibt.
 
 Lesen Sie **bereit**, das individuelle **Kontrollen** und die vorgeschlagenen **nächstens**-Aktionen aus `doctor`. Ein Bericht kann erfolgreich beendet werden, während `ready` falsch ist; Wenn das Backend abwesend ist, meldet Doctor es und verlässt 3. Füllen Sie die gemeldete Voraussetzung aus, überprüfen Sie erneut, dann [Führen Sie eine Aufgabe](#run-input-and-control-flags) im beabsichtigten Projekt.
+
+Für die Installation von Homebrew oder Linux `.deb`/`.rpm` folgen Sie dem [Packungsanweisungen](../guides/installation.md#standalone-cli). Linux-Verteilungspakete bieten `open-science-cli`; Ersetzen Sie diesen Befehl in den Beispielen auf dieser Seite, um zu vermeiden, dass Sie einen anderen Desktop-Launcher auswählen.
 
 ## Eingangsorte {/* #entry-points */}
 

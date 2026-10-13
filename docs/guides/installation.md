@@ -1,7 +1,7 @@
 ---
 title: "Installation and updates"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -73,13 +73,43 @@ The installation location stores the application; **Data location** in the setup
 
 ### Use the standalone CLI {/* #standalone-cli */}
 
-For operation without a desktop window, download the matching standalone CLI archive from the [official release](https://github.com/aipoch/open-science/releases/tag/v0.37.1). It bundles Node, the backend and Web UI. Extract the complete directory, then follow [CLI setup](../reference/cli.md#terminal-setup) to start it, configure a model and check readiness. Desktop users can still use **Settings → General → Install command**.
+For operation without a desktop window, download the matching standalone CLI archive from the [official release](https://github.com/aipoch/open-science/releases/tag/v0.37.2). It bundles Node, the backend and Web UI. Extract the complete directory, then follow [CLI setup](../reference/cli.md#terminal-setup) to start it, configure a model and check readiness. Desktop users can still use **Settings → General → Install command**.
+
+#### Homebrew CLI {/* #homebrew-cli */}
+
+On macOS or Linux, install the CLI formula with `brew install aipoch/tap/open-science`. This is separate from the desktop cask. It includes Node and the local Web UI; installation does not start a service. If another launcher owns `open-science`, inspect `type -a open-science` and use `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"` rather than replacing the other installation's link.
+
+#### Linux CLI packages {/* #linux-cli-packages */}
+
+For a terminal/browser installation, choose **open-science-cli**, not the **aipoch-open-science** desktop package. Download the matching asset and `CLI-PACKAGE-SHA256SUMS.txt` from the same release, then compare its SHA256 checksum.
+
+| Distribution / architecture | v0.37.2 CLI asset |
+| --- | --- |
+| Debian / Ubuntu, x64 | `open-science-cli_0.37.2_amd64.deb` |
+| Debian / Ubuntu, ARM64 | `open-science-cli_0.37.2_arm64.deb` |
+| Fedora, x64 | `open-science-cli-0.37.2-1.x86_64.rpm` |
+| Fedora, ARM64 | `open-science-cli-0.37.2-1.aarch64.rpm` |
+
+Install the downloaded file with the appropriate package manager. These examples use x64; use the ARM64 filename when appropriate.
+
+```bash
+# Debian / Ubuntu
+sudo apt install ./open-science-cli_0.37.2_amd64.deb
+# Fedora: use this instead of the apt command
+sudo dnf install ./open-science-cli-0.37.2-1.x86_64.rpm
+```
+
+Run `open-science-cli start --no-open`, then `open-science-cli status --json`. Once running, use `open-science-cli url` to open the authenticated local Web interface; keep that URL private. Continue with [CLI setup](../reference/cli.md#terminal-setup) for model configuration and `doctor` checks, replacing `open-science` with `open-science-cli` in those commands.
+
+The package bundles Node, the backend and Web UI. It does not install Python/R or create an automatically started system service. The OS credential store and sandbox prerequisites still apply; see [headless Linux credentials](../reference/server.md). Use `open-science-cli` explicitly when a desktop launcher is also installed.
+
+Before upgrading or removing the package, finish work and stop **every profile started by that package**. Install the next downloaded package through apt/dnf; there is no AIPOCH apt/dnf repository configured by this installation. Package removal preserves research data and credentials. The [official package guide](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md#linux-cli-distribution-packages) describes command conflicts and platform requirements.
 
 ### Run from source
 
 You need Git, Node.js 24, npm, and the platform build prerequisites for Electron. Install or select an agent framework in the application. During installation, the repository generates the Prisma Client, applies app patches, and prepares Electron native dependencies.
 
-For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v0.37.1.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
+For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v0.37.2.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
 
 Replace `RELEASE_TAG` below with the exact tag shown on the selected release (including its leading `v`). To follow ongoing development instead, omit `--branch RELEASE_TAG --depth 1`; that checkout will follow the default branch.
 
@@ -96,7 +126,7 @@ Before packaging a production build, run:
 npm run build
 ```
 
-Use the selected tag's package.json and [standalone runtime guide](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md) for its build targets and dependencies. `npm run dev:web` develops the Node/Web entry point; `npm run dev` also prepares the desktop client. Use an isolated configuration directory to keep test data separate.
+Use the selected tag's package.json and [standalone runtime guide](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md) for its build targets and dependencies. `npm run dev:web` develops the Node/Web entry point; `npm run dev` also prepares the desktop client. Use an isolated configuration directory to keep test data separate.
 
 ## Complete first-time setup
 

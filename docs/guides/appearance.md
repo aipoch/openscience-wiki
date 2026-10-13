@@ -1,7 +1,7 @@
 ---
 title: "Appearance and notifications"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -130,6 +130,12 @@ Start with the test result, then check the condition that applies.
 With **General → Close button behaviour → Ask every time**, closing the window opens **Minimize or quit?** Choose **Minimize to tray** to hide the window, then use the Open-Science icon in the Windows tray to return. Select **Don’t ask again** only if you want to retain that choice; change it later in General. Minimizing does not quit the app.
 
 </PlatformContent>
+
+## Open Help Center {/* #help-center */}
+
+Open **Settings → General → About → Help Center** to read setup and troubleshooting guidance in your browser. The link follows the app's current language: English opens the documentation root, while other supported languages open their own edition. You can also search Settings for **Help Center** using its translated label in your interface. Use **Release notes** for the application's release history.
+
+![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
 
 ## Find related settings
 

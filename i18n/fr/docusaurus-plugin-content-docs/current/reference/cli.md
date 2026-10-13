@@ -1,7 +1,7 @@
 ---
 title: "CLI et sortie structurée"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,7 @@ Utilisez `open-science` pour inspecter l'état de l'application, exécuter les t
 
 ## Mise en place depuis un terminal {/* #terminal-setup */}
 
-Choisissez soit le lanceur de bureau ou une archive autonome CLI à partir du [libération officielle](https://github.com/aipoch/open-science/releases/tag/v0.37.1). L'archive autonome contient le CLI, Node runtime, backend et Web UI; il n'exige pas d'Electron ou d'une chaîne d'outils Node/npm installée séparément.
+Choisissez soit le lanceur de bureau ou une archive autonome CLI à partir du [libération officielle](https://github.com/aipoch/open-science/releases/tag/v0.37.2). L'archive autonome contient le CLI, Node runtime, backend et Web UI; il n'exige pas d'Electron ou d'une chaîne d'outils Node/npm installée séparément.
 
 1. Choisissez macOS ou Linux arm64/x64, ou Windows x64, correspondant à l'hôte.
 2. Extraire l'archive complète dans un emplacement enregistrable. Conserver le lanceur, `backend` et `node-runtime` ensemble; copier seulement le lanceur va casser le démarrage.
@@ -44,6 +44,8 @@ Suivez le flux de connexion. Cela prépare ou répare le temps d'exécution de C
 Si vous utilisez plutôt une clé OpenAI API, utilisez `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`, avec un ID de modèle supporté et la clé déjà fournie par votre environnement de gestion secrète. Pour OpenAlex, utilisez `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`. Préfixez les deux commandes avec `open-science`. Ne jamais mettre la clé elle-même dans les arguments de commande. Une vérification des titres de compétence réussie n'établit pas qu'une demande de recherche a été remplie ou qu'il reste un quota.
 
 Lire **Prêt**, l'action individuelle **Contrôles** et suggère des actions **suivant** de `doctor`. Un rapport peut sortir avec succès alors que `ready` est faux; Si le moteur est absent, le docteur le signale et quitte 3. Complétez la condition préalable rapportée, vérifiez à nouveau, puis [exécuter une tâche](#run-input-and-control-flags) dans le projet prévu.
+
+Pour l'installation Homebrew ou Linux `.deb`/`.rpm`, suivez le [instructions pour le colis](../guides/installation.md#standalone-cli). Les paquets de distribution Linux fournissent `open-science-cli`; remplacer cette commande dans les exemples de cette page pour éviter de sélectionner un lanceur de bureau différent.
 
 ## Points d'entrée {/* #entry-points */}
 

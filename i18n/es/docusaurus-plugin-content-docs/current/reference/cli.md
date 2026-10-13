@@ -1,7 +1,7 @@
 ---
 title: "CLI y salida estructurada"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -15,7 +15,7 @@ Utilice `open-science` para inspeccionar el estado de aplicación, ejecutar tare
 
 ## Configuración desde una terminal {/* #terminal-setup */}
 
-Elija el lanzador de escritorio o un archivo CLI independiente desde el [liberación oficial](https://github.com/aipoch/open-science/releases/tag/v0.37.1). El archivo independiente contiene el tiempo de ejecución CLI, Node, backend y Web UI; no requiere Electron o una herramienta Node/npm instalada por separado.
+Elija el lanzador de escritorio o un archivo CLI independiente desde el [liberación oficial](https://github.com/aipoch/open-science/releases/tag/v0.37.2). El archivo independiente contiene el tiempo de ejecución CLI, Node, backend y Web UI; no requiere Electron o una herramienta Node/npm instalada por separado.
 
 1. Elija macOS o Linux arm64/x64, o Windows x64, que coincida con el host.
 2. Extraiga el archivo completo en un lugar de trabajo. Mantenga el lanzador, `backend` y `node-runtime` juntos; copiar sólo el lanzador romperá el arranque.
@@ -44,6 +44,8 @@ Siga el flujo de entrada. Esto prepara o repara el tiempo de ejecución gestiona
 Si utiliza una llave de OpenAI API, utilice `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`, con un ID de modelo compatible y la clave ya suministrada a través de su entorno de gestión secreta. Para OpenAlex, utilice `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`. Prefijo ambos comandos con `open-science`. Nunca ponga la clave en los argumentos de mando. Un cheque crédencial exitoso no establece que una consulta de investigación completó o que la cuota sigue siendo.
 
 Lea **Listo**, el **cheques** individual y sugirió acciones **siguiente** de `doctor`. Un informe puede salir con éxito mientras `ready` es falso; Si el backend está ausente, el Doctor lo reporta y sale de 3. Complete el requisito reportado, compruebe de nuevo, luego [ejecutar una tarea](#run-input-and-control-flags) en el proyecto previsto.
+
+Para la instalación Homebrew o Linux `.deb`/`.rpm`, siga la instalación [Instrucciones del paquete](../guides/installation.md#standalone-cli). Los paquetes de distribución Linux proporcionan `open-science-cli`; sustituir ese comando en los ejemplos en esta página para evitar seleccionar un lanzador de escritorio diferente.
 
 ## Puntos de entrada {/* #entry-points */}
 

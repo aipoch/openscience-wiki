@@ -1863,5 +1863,11 @@
   },
   "docs.outline.reference.v0370.scope": {
     "message": "Standalone Node backend and CLI, ENCORI, ChEMBL assays, ClinVar submissions and Notebook capture."
+  },
+  "docs.outline.reference.v0372.title": {
+    "message": "v0.37.2"
+  },
+  "docs.outline.reference.v0372.scope": {
+    "message": "Startup and connection recovery, Linux CLI packages, localized help and scientific data fixes."
   }
 }

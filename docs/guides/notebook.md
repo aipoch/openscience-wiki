@@ -1,7 +1,7 @@
 ---
 title: "Notebook and execution evidence"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -45,6 +45,8 @@ Before running Python or R, [enable a compatible runtime](runtimes.md). For a co
 | Close / collapse preview | Return to the conversation | Keeps recorded execution history |
 
 Check **Input data / Inputs** when present. Match the displayed file and version to your request. If a reference is unavailable, reopen or attach the intended input through the application before retrying.
+
+During first-run preparation, Notebook can already show code being received while the runtime is still getting ready. Visible code is not evidence that it ran. Wait for any required setup or approval, then inspect the numbered run's final state and output. If a large session or Notebook is still restoring, wait for loading or connection recovery to finish before deciding whether to rerun it.
 
 ## Review code before it runs {/* #execution-review */}
 

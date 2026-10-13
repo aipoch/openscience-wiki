@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.37.1** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.1.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
+한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.37.2** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
 
 
 ## 뚱 베어 {/* #family-1 */}
@@ -3005,7 +3005,7 @@ const result = await host.mcp("expression", "gtex_calculate_eqtl", {"gencode_id"
 
 ### `bgee_species` {/* #bgee_species */}
 
-Bgee 건강한 야생 유형 표식 아틀라스에서 사용 가능한 종 목록, 또는 NCBI 세토니티 ID로 한 종을 검색하십시오.
+Bgee 건강한 야생 유형 표식 아틀라스에서 사용 가능한 종 목록, 또는 NCBI 세토니티 ID로 한 종을 검색하십시오. 반환된 `taxon_id`은 종을 식별, 심지어 참조 게놈 다른 종에 속한다. 목록 요청은 데이터 소스 메타 데이터를로드하지 않기 때문에 `has_expression_data: null`을 반환합니다. 특정 `species_id`을 쿼리하여 가용성 확인; 누락 된 메타 데이터는 `null`, `false`이 아닙니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |

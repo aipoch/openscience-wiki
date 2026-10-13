@@ -2,7 +2,7 @@
 title: "Connector Betriebsnummer"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Die Namen der Rückgabefelder unterscheiden sich je nach Operation. Die folgende
 
 ## Betriebsinputs {/* #operation-inputs */}
 
-Erweitern Sie einen Connector auf einmal. Erforderliche Felder sind mit **erforderlich** gekennzeichnet; Diese Referenz und Download verwenden Sie das Open-Science **v0.37.1** Schema. Eine verschachtelte `input.required`-Liste ist maßgebend; eine ältere `required`-Liste der obersten Ebene möglicherweise fehlt. Konsultieren Sie den <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.1.json">vollständiges herunterladbares Register</ExampleDownload> für verschachtelte JSON-Schemata, vollständige Rückgabebeschreibungen und agentenseitige Anrufbeispiele. Übergeben Sie kein generisches `id`, wenn ein Tool `accessions`, `cids`, `rs_id` oder ein anderes Namespace-spezifisches Feld erwartet.
+Erweitern Sie einen Connector auf einmal. Erforderliche Felder sind mit **erforderlich** gekennzeichnet; Diese Referenz und Download verwenden Sie das Open-Science **v0.37.2** Schema. Eine verschachtelte `input.required`-Liste ist maßgebend; eine ältere `required`-Liste der obersten Ebene möglicherweise fehlt. Konsultieren Sie den <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">vollständiges herunterladbares Register</ExampleDownload> für verschachtelte JSON-Schemata, vollständige Rückgabebeschreibungen und agentenseitige Anrufbeispiele. Übergeben Sie kein generisches `id`, wenn ein Tool `accessions`, `cids`, `rs_id` oder ein anderes Namespace-spezifisches Feld erwartet.
 
 
 ## Chemie {/* #family-1 */}
@@ -3005,7 +3005,7 @@ const result = await host.mcp("expression", "gtex_calculate_eqtl", {"gencode_id"
 
 ### `bgee_species` {/* #bgee_species */}
 
-Listen Sie Arten auf, die im Bgee-Atlas zur gesunden Wildtypexpression verfügbar sind, oder rufen Sie eine Art anhand ihrer NCBI-Taxonomie-ID ab.
+Listen Sie Arten auf, die im Bgee-Atlas zur gesunden Wildtypexpression verfügbar sind, oder rufen Sie eine Art anhand ihrer NCBI-Taxonomie-ID ab. Das zurückgegebene `taxon_id` identifiziert diese Spezies, auch wenn ihr Referenzgenom zu einer anderen Spezies gehört. Eine Listenanforderung gibt `has_expression_data: null` zurück, da sie keine Datenquellenmetadaten lädt. Abfrage eines bestimmten `species_id` zur Überprüfung der Verfügbarkeit; Fehlende Metadaten bleiben auch `null`, nicht `false`.
 
 | Feld | Typ | Anforderungen und Beschränkungen |
 | --- | --- | --- |

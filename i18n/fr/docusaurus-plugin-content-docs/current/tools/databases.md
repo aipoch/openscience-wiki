@@ -2,7 +2,7 @@
 title: "Bases de données scientifiques"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 # Bases de données scientifiques {/* #scientific-databases */}
@@ -285,6 +285,10 @@ Activer la famille correspondante dans **Settings → Connectors**, puis indique
 | Archives Omics → MGnify | Lister les fichiers de résultats par l'adhésion à l'analyse MGYA | Retourne le type, la catégorie, l'URL en amont et la taille lorsque signalé. Aucun octet de fichier n'est téléchargé; Les tailles manquantes ou les URL restent nulles. |
 
 Consultez le [Référence de fonctionnement Connector](../reference/connector-operations.md) pour connaître les champs, les conditions et les exemples requis.
+
+### Interpréter la disponibilité des espèces Bgee {/* #bgee-species */}
+
+Commencez par `bgee_species` pour identifier l'espèce. Son `taxon_id` est l'ID taxonomique de l'organisme, et non l'espèce fournissant son génome de référence. Dans une réponse à la liste, `has_expression_data: null` signifie que la disponibilité n'a pas été déterminée. Redemandez-vous à l'aide du `taxon_id` retourné comme `species_id` pour charger les métadonnées source de données de cette espèce. Conserver `null` comme inconnu lorsque les métadonnées sont absentes; Seul un `false` explicite est un résultat de disponibilité négatif. Ces champs décrivent la couverture de l'atlas, et non pas si un gène particulier est exprimé dans un tissu.
 
 ## Trouver des fichiers de statistiques sommaires GWAS {/* #gwas-summary-statistics */}
 

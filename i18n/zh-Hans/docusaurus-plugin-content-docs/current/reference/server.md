@@ -1,7 +1,7 @@
 ---
 title: "无界面服务与浏览器访问"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 # 无界面服务与浏览器访问
@@ -97,14 +97,18 @@ open-science start --credential-store=file --no-open
 
 关闭窗口与退出应用可能不同，特别是在应用仍驻留托盘时。停止共享后端前先结束活动研究，再检查 `status --json` 的实际状态。
 
+桌面断线后提供 **Reconnect** 和 **Quit app**。重连刷新原先仍在运行的后端，不会重新提交任务；原后端已停止时应退出并重新打开。断线时退出可能只关闭客户端，因此不能直接认定服务已停，应检查所选配置的状态。按[连接恢复](../guides/troubleshooting.md#connection-recovery)操作，并检查未收到响应的原操作。
+
 ## 应用更新
 
 桌面应用的原生更新入口与独立 CLI 包的更新方式不同。普通 Node 后端不能执行桌面安装器替换；其 `update --json` 会报告需要手动更新及 `package-manager` 模式，应按返回说明处理。
 
 - **桌面应用**：使用应用内更新。若连接的是先前由 CLI 启动的后端，先结束任务并停止该后端，再更新桌面应用。
 - **独立 CLI 压缩包**：结束工作、停止目标后端，将新版本解压到新目录，保留原配置数据，更新所用启动器或 PATH；不要覆盖运行中的包。
+- **Homebrew CLI 或 Linux CLI 安装包：** 结束工作并停止使用该安装的所有配置实例，再按[安装包更新说明](../guides/installation.md#standalone-cli)操作；之后继续使用同一配置目录。
+
 - **npm 安装**：按包管理器流程更新对应包，并确认客户端与后端兼容。
 
 更新后重新启动，运行 `status --json` 与 `doctor --json`，确认版本、配置目录与就绪状态。保留原有凭据存储方式；不要为了更新删除凭据或配置目录。
 
-参见[官方独立运行说明](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md)、[CLI](cli.md)与 [Task SDK](api.md)。
+参见[官方独立运行说明](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md)、[CLI](cli.md)与 [Task SDK](api.md)。

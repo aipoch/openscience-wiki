@@ -1,7 +1,7 @@
 ---
 title: "Öffnen und Vorschauen von Dateien"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -242,3 +242,5 @@ Die Antwort identifizierte **Abbildung 1 auf PDF Seite 3** aus dem Papiertext un
 ## Ausgesuchte wissenschaftliche Kontrolle {/* #scientific-structure-check */}
 
 Öffnen Sie nach **Analyze PDF** eine Figur und Tabelle neben der Originalseite. Bestätigen Sie, dass alle Figurenfelder und ihre Beschriftungen/Legenden enthalten sind und dass die Tabellen gruppierte Kopfzeilen, Zeilengruppen, Einheiten und Fußnoten enthalten. Eine nahegelegene Formel oder ein Absatz darf nicht zu einer Tabellenzelle oder Abbildungsunterschrift werden. v0.37.1 verbessert diese Grenzen und Source-Cell-Referenzen; Die Extraktion bleibt etwas zu überprüfen, bevor die Werte wiederverwendet werden. Wenn eine ältere gespeicherte Extraktion unvollständig ist, verwenden Sie eine erneute Analyse, wenn der Leser sie anbietet, und vergleichen Sie dann die resultierenden Elemente, bevor Sie eine nachgelagerte Tabelle ersetzen.
+
+In v0.37.2 korrigiert die Extraktion den Besitz von Zahlen/Tabellen und die alten PDF-Mathematiksymbole weiter. Vergleichen Sie Minuszeichen, griechische Buchstaben, Superscripts, Subscripts und Operatoren mit der gerenderten Quelle, bevor Sie einen Formel- oder Tabellenwert kopieren. Eine sauberere Extraktion ist kein Ersatz für die Überprüfung des wissenschaftlichen Ausdrucks.

@@ -1786,5 +1786,11 @@
   },
   "docs.outline.reference.v0370.scope": {
     "message": "독립 Node 백엔드 및 CLI, ENCORI, ChEMBL 분석실험, ClinVar 제출 및 Notebook 캡처."
+  },
+  "docs.outline.reference.v0372.title": {
+    "message": "v0.37.2"
+  },
+  "docs.outline.reference.v0372.scope": {
+    "message": "시작 및 연결 복구, Linux CLI 패키지, 현지화 된 도움 및 과학 데이터 수정."
   }
 }

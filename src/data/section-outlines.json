@@ -1433,6 +1433,17 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v0372",
+            "title": "v0.37.2",
+            "scope": "Startup and connection recovery, Linux CLI packages, localized help and scientific data fixes.",
+            "currentDoc": "changelog/v0-37-2",
+            "proposedUrl": "/docs/changelog/v0-37-2/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v0-37-2"
+            ]
+          },
+          {
             "id": "v0371",
             "title": "v0.37.1",
             "scope": "Scientific PDF fidelity, Windows paths, quiet Notebook execution and smaller installers.",

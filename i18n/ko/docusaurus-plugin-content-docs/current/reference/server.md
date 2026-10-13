@@ -1,7 +1,7 @@
 ---
 title: "서비스 및 브라우저 액세스"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 # 서비스 및 브라우저 액세스 {/* #headless-service-and-browser-access */}
@@ -97,14 +97,18 @@ open-science start --credential-store=file --no-open
 
 창을 닫을 때 특히 트레이에 남아있을 때 앱을 종료하는 것과 다를 수 있습니다. 공유 백엔드를 멈추기 전에 효과적인 연구, 그 후에 `status --json`를 가진 실제적인 국가를 검열합니다.
 
+분리된 데스크톱은 **다시 연결** 및 **앱 종료**을 제공합니다. Reconnect는 원래의 라이브 백엔드를 새로 고침하고 재조달하지 않습니다. 그 후반이 사라지면 종료 및 재개. 단선된 Quit는 클라이언트만 닫을 수 있으므로, 서비스 중단 전에 선택한 프로필 상태를 검사합니다. [연결 복구](../guides/troubleshooting.md#connection-recovery)을 따르십시오. 응답이 잃어버린 작업을 검사합니다.
+
 ## 앱 업데이트 행동 {/* #application-update-behavior */}
 
 데스크탑 네이티브 업데이트 및 독립 패키지 업데이트는 다른 경로를 사용합니다. 일반 Node 백엔드는 데스크탑 설치자를 대체할 수 없습니다; `update --json`는 수동 업데이트 요구 사항 및 `package-manager` 모드를보고 있습니다. 반환된 지시를 따르십시오.
 
 - **데스크탑 앱:**는 앱 업데이 트를 사용합니다. 이전에 CLI에 의해 시작된 백엔드에 붙어 있다면, 종료 작업 및 데스크톱을 업데이트하기 전에 백엔드를 중지합니다.
 - **독립 CLI 아카이브:** 완료 작업, 의도 된 백엔드를 중지, 새로운 디렉토리에 새로운 릴리스를 추출, 구성 데이터를 유지, 발사기 또는 PATH를 업데이트. 실행 패키지를 덮지 마십시오.
+- **Homebrew CLI 또는 Linux CLI 패키지:**는 일을 완료하고 그 임명을 사용하여 각 단면도를 멈추고, 그 후에 [패키지 업데이트 지침](../guides/installation.md#standalone-cli)를 따릅니다. 같은 구성 디렉토리를 사용 하 여 후.
+
 - **npm 임명:**은 npm을 통해 해당 패키지를 업데이트하고 클라이언트 / 백엔드 호환성을 확인합니다.
 
 Restart는 `status --json`과 `doctor --json`을 사용하여 버전, 구성 디렉토리 및 readiness를 확인합니다. 기존의 credential-store 모드를 보존합니다. 업데이트 작업을 수행하기 위해 자격 증명이나 구성을 삭제하지 마십시오.
 
-[공식 독립 실행 시간 안내](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md), [CLI](cli.md) 및 [작업 SDK](api.md)를 참조하십시오.
+[공식 독립 실행 시간 안내](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md), [CLI](cli.md) 및 [작업 SDK](api.md)를 참조하십시오.

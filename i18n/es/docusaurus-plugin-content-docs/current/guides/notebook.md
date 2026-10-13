@@ -1,7 +1,7 @@
 ---
 title: "Notebook y pruebas de ejecución"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -45,6 +45,8 @@ Antes de ejecutar Python o R, [habilitar un tiempo de ejecución compatible](run
 | Cerrar / colapsar vista previa | Volver a la conversación | Mantiene historia de ejecución registrada |
 
 Comprueba **Datos de entrada / Entradas** cuando esté presente. Coincide con el archivo y la versión mostrada a su solicitud. Si una referencia no está disponible, reabrir o adjuntar la entrada prevista a través de la aplicación antes de reintentar.
+
+Durante la preparación de primera ejecución, Notebook ya puede mostrar el código que se recibe mientras el tiempo de ejecución todavía se está preparando. El código visible no es evidencia de que corrió. Espere a cualquier configuración o aprobación necesaria, luego inspeccione el estado final de la carrera numerada y la salida. Si una sesión grande o Notebook todavía está restaurando, espere a la recuperación de carga o conexión para terminar antes de decidir si repetirlo.
 
 ## Código de revisión antes de que funcione {/* #execution-review */}
 

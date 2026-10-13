@@ -1,7 +1,7 @@
 ---
 title: "Aussehen und Meldungen"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -130,6 +130,12 @@ Beginnen Sie mit dem Testergebnis und überprüfen Sie dann die geltende Bedingu
 Mit **General → Close button behaviour → Ask every time** öffnet das Schließen des Fensters **Minimize or quit?** Wählen Sie **Minimize to tray**, um das Fenster auszublenden, und verwenden Sie dann das Open-Science-Symbol im Windows-Tray, um zurückzukehren. Wählen Sie **Frag nicht noch einmal** nur, wenn Sie diese Option beibehalten möchten; Ändern Sie es später im Allgemeinen. Die Minimierung beendet die App nicht.
 
 </PlatformContent>
+
+## Offenes Hilfezentrum {/* #help-center */}
+
+Öffnen Sie **Settings → General → About → Help Center**, um die Einrichtungs- und Fehlerbehebungsanleitung in Ihrem Browser zu lesen. Der Link folgt der aktuellen Sprache der App: Englisch öffnet die Dokumentationswurzel, während andere unterstützte Sprachen ihre eigene Edition öffnen. Sie können Einstellungen für **Hilfe-Center** auch mit dem übersetzten Label in Ihrer Benutzeroberfläche durchsuchen. Verwenden Sie **Versionshinweise** für die Release-Historie der Anwendung.
+
+![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
 
 ## Finden Sie verwandte Einstellungen {/* #find-related-settings */}
 

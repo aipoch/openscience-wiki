@@ -1,7 +1,7 @@
 ---
 title: "インストールとアップデート"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -73,13 +73,43 @@ v0.34.0はLinux **x64およびARM64の**パッケージを提供します。 ARM
 
 ### スタンドアローンCLIを使う {/* #standalone-cli */}
 
-デスクトップウィンドウなしで操作するには、[公式リリース](https://github.com/aipoch/open-science/releases/tag/v0.37.1)からマッチングスタンドアローンCLIアーカイブをダウンロードしてください。 Node、バックエンド、Web UI をバンドルします。 完全なディレクトリを抽出し、その後、[CLI セットアップ](../reference/cli.md#terminal-setup) に従って起動し、モデルを設定し、準備を確認します。 デスクトップユーザーは**Settings → General → Install command**を利用することができます。
+デスクトップウィンドウなしで操作するには、[公式リリース](https://github.com/aipoch/open-science/releases/tag/v0.37.2)からマッチングスタンドアローンCLIアーカイブをダウンロードしてください。 Node、バックエンド、Web UI をバンドルします。 完全なディレクトリを抽出し、その後、[CLI セットアップ](../reference/cli.md#terminal-setup) に従って起動し、モデルを設定し、準備を確認します。 デスクトップユーザーは**Settings → General → Install command**を利用することができます。
+
+#### ホーム醸造 CLI {/* #homebrew-cli */}
+
+macOS または Linux では、`brew install aipoch/tap/open-science` で CLI 式をインストールします。 これはデスクトップの樽とは別です。 NodeとローカルWeb UIが含まれています。 インストールはサービスを開始しません。 別のランチャーが`open-science`を所有している場合は、`type -a open-science`を調べて、`"$(brew --prefix aipoch/tap/open-science)/bin/open-science"`を他のインストールのリンクを交換するのではなく使用してください。
+
+#### Linux CLIパッケージ {/* #linux-cli-packages */}
+
+ターミナル/ブラウザのインストールでは、**オープン・サイエンス・クライエント** を選択し、**エイポックオープンサイエンス** デスクトップパッケージではありません。 マッチングアセットと`CLI-PACKAGE-SHA256SUMS.txt`を同じリリースからダウンロードし、SHA256チェックサムを比較します。
+
+| 流通・建築 | v0.37.2 CLIアセット |
+| --- | --- |
+| Debian / Ubuntu, x64 | `open-science-cli_0.37.2_amd64.deb` |
+| Debian/Ubuntu, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64, ARM64 | `open-science-cli_0.37.2_arm64.deb` |
+| フェドラ、x64 | `open-science-cli-0.37.2-1.x86_64.rpm` |
+| フェドラ、ARM64 | `open-science-cli-0.37.2-1.aarch64.rpm` |
+
+適切なパッケージマネージャでダウンロードしたファイルをインストールします。 これらの例は x64 を使用します。 ARM64 ファイル名を適切に使用してください。
+
+```bash
+# Debian / Ubuntu
+sudo apt install ./open-science-cli_0.37.2_amd64.deb
+# Fedora: use this instead of the apt command
+sudo dnf install ./open-science-cli-0.37.2-1.x86_64.rpm
+```
+
+`open-science-cli start --no-open` を実行し、`open-science-cli status --json` を実行します。 実行したら、認証されたローカルWebインターフェイスを開くには、`open-science-cli url`を使用します。 URL をプライベートに保ちます。 [CLI セットアップ](../reference/cli.md#terminal-setup) では、モデル構成と `doctor` チェックを続けて、`open-science` を `open-science-cli` に置き換えます。
+
+パッケージは、Node、バックエンド、Web UI をバンドルします。 Python/Rをインストールしたり、自動起動したシステムサービスを作成したりしません。 OSのクレデンシャルストアとサンドボックスの前提条件はまだ適用されます。 [ヘッドレス Linux 資格情報](../reference/server.md) を参照してください。 デスクトップランチャーがインストールされている場合は、`open-science-cli` を明示的に使用してください。
+
+パッケージをアップグレードまたは削除する前に、作業を終了し、**パッケージから始まるすべてのプロファイル**を停止します。 apt/dnf でダウンロードしたパッケージをインストールします。 このインストールで設定されているAIPOCH apt/dnfリポジトリはありません。 パッケージ除去は、研究データと資格情報を保存します。 [公式パッケージガイド](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md#linux-cli-distribution-packages) は、コマンドの競合とプラットフォームの要件について説明します。
 
 ### ソースから実行 {/* #run-from-source */}
 
 Git、Node.js 24、npm、およびElectron用のプラットフォームビルド前提条件が必要です。 アプリケーションにエージェントフレームワークをインストールまたは選択します。 インストール中に、リポジトリはPrisma Clientを生成し、アプリパッチを適用し、電子ネイティブ依存関係を準備します。
 
-再現可能なソースのインストールには、依存関係をインストールする前に、[変更履歴](../changelog/v0.37.1.md)から意図したリリースタグを選択します。 デフォルトのクローンは、固定リリースではなくブランチを追従します。 選択したタグ、ソースコミット、ランタイムのバージョンを録音して、別の人が環境を再現できるようにします。
+再現可能なソースのインストールには、依存関係をインストールする前に、[変更履歴](../changelog/v0.37.2.md)から意図したリリースタグを選択します。 デフォルトのクローンは、固定リリースではなくブランチを追従します。 選択したタグ、ソースコミット、ランタイムのバージョンを録音して、別の人が環境を再現できるようにします。
 
 交換する `RELEASE_TAG` 選択したリリースに示す正確なタグ(そのリードを含む) `v`)... `--branch RELEASE_TAG --depth 1`を省略する代わりに、継続的な開発に従うため。 そのチェックアウトは、デフォルトのブランチに従います。
 
@@ -96,7 +126,7 @@ npm run dev
 npm run build
 ```
 
-選択したタグのパッケージ.json と [スタンドアローンランタイムガイド](https://github.com/aipoch/open-science/blob/v0.37.1/docs/standalone-runtime.md) を使用して、ビルド対象と依存関係を処理します。 `npm run dev:web` は Node/Web エントリーポイントを開発しています。 `npm run dev`はデスクトップクライアントも用意しています。 独立した構成ディレクトリを使用して、テストデータを分離します。
+選択したタグのパッケージ.json と [スタンドアローンランタイムガイド](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md) を使用して、ビルド対象と依存関係を処理します。 `npm run dev:web` は Node/Web エントリーポイントを開発しています。 `npm run dev`はデスクトップクライアントも用意しています。 独立した構成ディレクトリを使用して、テストデータを分離します。
 
 ## 初回設定完了 {/* #complete-first-time-setup */}
 

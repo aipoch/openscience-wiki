@@ -1,7 +1,7 @@
 ---
 title: "故障排查與常見問題"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-13'
 ---
 
 # 故障排查與常見問題 {/* #故障排查与常见问题 */}
@@ -43,6 +43,27 @@ last_update:
 | 找到全文但新增失敗 | 下載結果和 PDF 校驗 | 使用另一合法來源/本地 PDF 並實際開啟 |
 | Side Chat 禁用 | 框架/Provider 提示 | 見[委派](delegation.md)，檢查當前框架顯示的相容性限制 |
 | 遠端任務不可執行 | 主機、認證、排程器和環境 | 見[遠端計算](remote-compute.md) |
+
+## 恢復中斷的連線 {/* #connection-recovery */}
+
+出現 **Desktop connection lost** 時，先恢復當前狀態，再繼續提交操作。
+
+1. 點選 **Reconnect**。**Restoring desktop connection…** 表示應用正在重新整理原後端的狀態，等待常規控制元件恢復可用。
+2. 重新開啟原會話、Notebook 執行或檔案。中斷前發出的請求即使沒有顯示響應，也可能已經完成；再次提交前先查狀態。重連不會自動重試已提交的操作。
+3. 若提示原後端已不可用，使用 **Quit app** 後重新開啟應用。Reconnect 不能啟動已停止的後端，也不會切換到另一個例項。
+4. 退出前，儘可能保留仍可訪問的未儲存內容，並閱讀確認提示。斷線時退出不代表後端已停止；CLI 啟動的例項應使用相同配置執行 `open-science status --json`，參見[服務歸屬](../reference/server.md#backend-ownership)。
+
+瀏覽器介面恢復遺漏的更新時會暫停控制元件。出現 **Reload required** 時，先複製未傳送的草稿，再選擇 **Reload**；若草稿儲存失敗，需先確認已儲存副本。提及內容恢復為文字，傳送前還需檢查附件。**Pairing required** 則表示訪問授權已過期，應重新開啟主機提供的 Web 連結或按[遠端配對](remote-access.md)操作，不要反覆提交任務。
+
+## 恢復啟動故障 {/* #startup-recovery */}
+
+| 提示 | 操作 |
+| --- | --- |
+| **Open-Science could not start the backend.** | 使用 **Open startup logs**，定位 `STARTUP_STAGE` 所示階段並處理原因。提供 **Retry startup** 時可重試；未提供時，原後端可能仍在執行，應先檢查狀態再開啟另一份應用 |
+| **Settings could not be loaded** | 選擇 **Retry**；仍然失敗時，使用 **Report this error** 並附上所示設定錯誤碼 |
+| 憑據儲存恢復錯誤 | 按提示解鎖原系統憑據儲存，或恢復原金鑰／配置。保留現有加密資料；重灌或建立替代金鑰不是恢復步驟 |
+
+預期的專案和設定正常載入後，才表示恢復完成。提示持續出現時，保留錯誤碼和去除敏感資訊的日誌用於[反饋](#report-a-bug-or-ask-the-community)。資料庫類故障繼續按下方的對應檢查處理。
 
 ## HTTP 錯誤：400、403、429 與 5xx {/* #http-错误400403429-与-5xx */}
 

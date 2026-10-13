@@ -1,7 +1,7 @@
 ---
 title: "Notebook und Ausführungsnachweise"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -45,6 +45,8 @@ Vor dem Ausführen von Python oder R, [eine kompatible Laufzeit ermöglichen](ru
 | Schließen / Zusammenbruch Preview | Zurück zum Gespräch | Hält aufgezeichnete Ausführung Geschichte |
 
 Überprüfen Sie **Inputdaten/Inputs**, wenn vorhanden. Passen Sie die angezeigte Datei und Version Ihrer Anfrage an. Wenn eine Referenz nicht verfügbar ist, öffnen oder fügen Sie die beabsichtigte Eingabe über die Anwendung erneut an, bevor Sie erneut versuchen.
+
+Während der Erstlaufvorbereitung kann Notebook bereits den empfangenen Code anzeigen, während die Laufzeit noch fertig ist. Sichtbarer Code ist kein Beweis dafür, dass er ausgeführt wurde. Warten Sie auf die erforderliche Einrichtung oder Genehmigung und prüfen Sie dann den endgültigen Zustand und die Ausgabe des nummerierten Laufs. Wenn eine große Sitzung oder Notebook immer noch wiederhergestellt wird, warten Sie, bis das Laden oder die Verbindungswiederherstellung abgeschlossen ist, bevor Sie entscheiden, ob Sie sie erneut ausführen möchten.
 
 ## Code überprüfen, bevor er ausgeführt wird {/* #execution-review */}
 

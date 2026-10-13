@@ -1,7 +1,7 @@
 ---
 title: "外观与通知"
 last_update:
-  date: '2026-09-29'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -130,6 +130,12 @@ import Screenshot from '@site/src/components/Screenshot';
 在 **General → Close button behaviour** 选择 **Ask every time** 后，关闭窗口会显示 **Minimize or quit?**。选择 **Minimize to tray** 可隐藏窗口，再从 Windows 托盘中的 Open-Science 图标返回。只有希望记住选择时才勾选 **Don’t ask again**；需要改变行为时回到 General。最小化不等于退出应用。
 
 </PlatformContent>
+
+## 打开帮助中心 {/* #help-center */}
+
+进入 **Settings → General → About → Help Center**，在浏览器阅读设置和故障排查说明。链接跟随应用当前语言：英文打开文档根页，其他受支持语言打开对应版本。也可以在 Settings 搜索框中搜索界面对应的“帮助中心”名称。需要查看应用版本历史时，使用 **Release notes**。
+
+![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
 
 ## 查找相关设置
 

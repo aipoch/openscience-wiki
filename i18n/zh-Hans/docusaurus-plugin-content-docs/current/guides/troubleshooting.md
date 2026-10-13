@@ -1,7 +1,7 @@
 ---
 title: "故障排查与常见问题"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-13'
 ---
 
 # 故障排查与常见问题
@@ -43,6 +43,27 @@ last_update:
 | 找到全文但添加失败 | 下载结果和 PDF 校验 | 使用另一合法来源/本地 PDF 并实际打开 |
 | Side Chat 禁用 | 框架/Provider 提示 | 见[委派](delegation.md)，检查当前框架显示的兼容性限制 |
 | 远程任务不可运行 | 主机、认证、调度器和环境 | 见[远程计算](remote-compute.md) |
+
+## 恢复中断的连接 {/* #connection-recovery */}
+
+出现 **Desktop connection lost** 时，先恢复当前状态，再继续提交操作。
+
+1. 点击 **Reconnect**。**Restoring desktop connection…** 表示应用正在刷新原后端的状态，等待常规控件恢复可用。
+2. 重新打开原会话、Notebook 运行或文件。中断前发出的请求即使没有显示响应，也可能已经完成；再次提交前先查状态。重连不会自动重试已提交的操作。
+3. 若提示原后端已不可用，使用 **Quit app** 后重新打开应用。Reconnect 不能启动已停止的后端，也不会切换到另一个实例。
+4. 退出前，尽可能保留仍可访问的未保存内容，并阅读确认提示。断线时退出不代表后端已停止；CLI 启动的实例应使用相同配置执行 `open-science status --json`，参见[服务归属](../reference/server.md#backend-ownership)。
+
+浏览器界面恢复遗漏的更新时会暂停控件。出现 **Reload required** 时，先复制未发送的草稿，再选择 **Reload**；若草稿存储失败，需先确认已保存副本。提及内容恢复为文字，发送前还需检查附件。**Pairing required** 则表示访问授权已过期，应重新打开主机提供的 Web 链接或按[远程配对](remote-access.md)操作，不要反复提交任务。
+
+## 恢复启动故障 {/* #startup-recovery */}
+
+| 提示 | 操作 |
+| --- | --- |
+| **Open-Science could not start the backend.** | 使用 **Open startup logs**，定位 `STARTUP_STAGE` 所示阶段并处理原因。提供 **Retry startup** 时可重试；未提供时，原后端可能仍在运行，应先检查状态再打开另一份应用 |
+| **Settings could not be loaded** | 选择 **Retry**；仍然失败时，使用 **Report this error** 并附上所示设置错误码 |
+| 凭据存储恢复错误 | 按提示解锁原系统凭据存储，或恢复原密钥／配置。保留现有加密数据；重装或创建替代密钥不是恢复步骤 |
+
+预期的项目和设置正常加载后，才表示恢复完成。提示持续出现时，保留错误码和去除敏感信息的日志用于[反馈](#report-a-bug-or-ask-the-community)。数据库类故障继续按下方的对应检查处理。
 
 ## HTTP 错误：400、403、429 与 5xx
 

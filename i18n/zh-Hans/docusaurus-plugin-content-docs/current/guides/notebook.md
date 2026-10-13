@@ -1,7 +1,7 @@
 ---
 title: "Notebook 与执行证据"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-13'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -43,6 +43,8 @@ import Screenshot from '@site/src/components/Screenshot';
 | 关闭/收起预览 | 返回对话 | 保留执行历史 |
 
 有 **Input data / Inputs** 时，核对文件及版本是否与请求一致。引用不可用时，通过应用重新打开或附加目标输入，再重试。
+
+首次运行准备期间，Notebook 可以先显示正在接收的代码，此时运行环境可能尚未就绪。看到代码不代表已经执行。完成必要的环境准备或批准后，查看带编号运行的最终状态和输出。大型会话或 Notebook 仍在恢复时，等待加载或连接恢复结束，再决定是否需要重新执行。
 
 ## 运行前检查代码 {/* #execution-review */}
 
