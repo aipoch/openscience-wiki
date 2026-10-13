@@ -1,7 +1,7 @@
 ---
 title: "远程浏览器访问"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-13'
 ---
 
 # 远程浏览器访问
@@ -23,6 +23,8 @@ Remote.It 可能已经接受服务变更，但后台代理尚未报告就绪。�
 | Browser access | 通过持久 HTTPS 链接访问，并完成两步验证 |
 
 ![实查的 Off 页面](/img/open-science/walkthrough-2026-09-08/63-remote-off.webp)
+
+![Open-Science Remote control 页面，显示 Remote.It 应用链接与 Off、App access、Browser access 三种模式](/img/open-science/settings-remote-control.webp)
 
 访问模式只能在本机桌面窗口修改。有权限的已连接浏览器可管理配对/信任，但不能代替本机修改模式。
 

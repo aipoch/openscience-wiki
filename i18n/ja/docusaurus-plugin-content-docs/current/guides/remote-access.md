@@ -22,6 +22,8 @@ last_update:
 
 ![オフの状態で点検されるリモート・アクセス](/img/open-science/walkthrough-2026-09-08/63-remote-off.webp)
 
+![Remote.It アプリのリンクと Off、App access、Browser access モードを示す Open-Science Remote control](/img/open-science/settings-remote-control.webp)
+
 アクセスモードの設定は、ホームコンピュータのデスクトップウィンドウから変更できます。 接続されたブラウザは、許可されたときにペアリング/トラストを管理できますが、デスクトップ専用のモード制御には代用されません。
 
 ## 環境が利用可能になったらブラウザをペアリング {/* #pair-a-browser-when-the-environment-is-available */}

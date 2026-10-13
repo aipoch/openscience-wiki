@@ -22,6 +22,8 @@ Der Remote-Browserzugriff ermöglicht es einem anderen Gerät, den laufenden Arb
 
 ![Fernzugriff im Aus-Zustand überprüft](/img/open-science/walkthrough-2026-09-08/63-remote-off.webp)
 
+![Open-Science Remote control mit dem Remote.It-App-Link sowie den Modi Off, App access und Browser access](/img/open-science/settings-remote-control.webp)
+
 Access-Mode-Einstellungen können vom Desktop-Fenster auf dem Heimcomputer geändert werden. Ein angeschlossener Browser kann die Paarung / das Vertrauen verwalten, wenn er autorisiert ist, aber er ist kein Ersatz für diese reine Desktop-Modussteuerung.
 
 ## Verbinden Sie einen Browser, wenn die Umgebung verfügbar ist {/* #pair-a-browser-when-the-environment-is-available */}

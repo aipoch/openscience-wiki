@@ -22,6 +22,8 @@ Ouvrez **Settings → Remote** sur l'ordinateur d'accueil. Installez et connecte
 
 ![Accès à distance inspecté en dehors de l'état](/img/open-science/walkthrough-2026-09-08/63-remote-off.webp)
 
+![Remote control d’Open-Science avec le lien vers l’application Remote.It et les modes Off, App access et Browser access](/img/open-science/settings-remote-control.webp)
+
 Les paramètres du mode d'accès peuvent être modifiés depuis la fenêtre du bureau de l'ordinateur d'accueil. Un navigateur connecté peut gérer l'appariement ou la confiance lorsqu'il est autorisé, mais il n'est pas un substitut à ce contrôle de mode de bureau seulement.
 
 ## Paire un navigateur lorsque l'environnement est disponible {/* #pair-a-browser-when-the-environment-is-available */}

@@ -22,6 +22,8 @@ Abre **Settings → Remote** en el ordenador de casa. Instala y accede a la apli
 
 ![Acceso remoto inspeccionado en el estado Off](/img/open-science/walkthrough-2026-09-08/63-remote-off.webp)
 
+![Remote control de Open-Science con el enlace a la aplicación Remote.It y los modos Off, App access y Browser access](/img/open-science/settings-remote-control.webp)
+
 Los ajustes de movimiento de acceso se pueden cambiar desde la ventana de escritorio en el ordenador de inicio. Un navegador conectado puede gestionar el emparejamiento/trust cuando está autorizado, pero no es un sustituto de ese control de modo solo de escritorio.
 
 ## Pare un navegador cuando el ambiente esté disponible {/* #pair-a-browser-when-the-environment-is-available */}

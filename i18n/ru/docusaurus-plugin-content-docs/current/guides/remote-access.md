@@ -22,6 +22,8 @@ Remote.It может принимать изменения в сервисе д�
 
 ![Дистанционный доступ проверен в Off State](/img/open-science/walkthrough-2026-09-08/63-remote-off.webp)
 
+![Open-Science Remote control со ссылкой на приложение Remote.It и режимами Off, App access и Browser access](/img/open-science/settings-remote-control.webp)
+
 Настройки режима доступа можно изменить из окна рабочего стола на домашнем компьютере. Подключенный браузер может управлять сопряжением/доверием при авторизации, но он не является заменой для управления только режимом рабочего стола.
 
 ## Парный браузер, когда среда доступна {/* #pair-a-browser-when-the-environment-is-available */}

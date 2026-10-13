@@ -24,6 +24,8 @@ Remote.It 可能已經接受服務變更，但後臺代理尚未報告就緒。�
 
 ![實查的 Off 頁面](/img/open-science/walkthrough-2026-09-08/63-remote-off.webp)
 
+![Open-Science Remote control 頁面，顯示 Remote.It 應用程式連結與 Off、App access、Browser access 三種模式](/img/open-science/settings-remote-control.webp)
+
 訪問模式只能在本機桌面視窗修改。有權限的已連線瀏覽器可管理配對/信任，但不能代替本機修改模式。
 
 ## 環境就緒後的配對步驟 {/* #环境就绪后的配对步骤 */}

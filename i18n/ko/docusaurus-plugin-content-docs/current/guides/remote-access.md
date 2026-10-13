@@ -22,6 +22,8 @@ last_update:
 
 ![먼 접근은 Off 국가에서 검열했습니다](/img/open-science/walkthrough-2026-09-08/63-remote-off.webp)
 
+![Remote.It 앱 링크와 Off, App access, Browser access 모드를 보여 주는 Open-Science Remote control](/img/open-science/settings-remote-control.webp)
+
 액세스 모드 설정은 홈 컴퓨터에서 데스크톱 창에서 변경할 수 있습니다. 연결된 브라우저는 인증될 때 페어링/신뢰를 관리할 수 있지만 데스크탑 전용 모드 컨트롤의 대용품이 아닙니다.
 
 ## 환경을 사용할 때 브라우저를 페어링 {/* #pair-a-browser-when-the-environment-is-available */}
