@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -244,3 +244,5 @@ Abrir **Full-text translation** en la barra de herramientas PDF para preparar te
 Después de **Analyze PDF**, abra una figura y tabla junto a la página original. Confirme que los cultivos de figuras incluyen cada panel y sus capciones/legendas, y que las tablas conservan cabeceras agrupadas, grupos de filas, unidades y notas de pie de página. Una fórmula o párrafo cercano no debe convertirse en una celda de mesa o en una capción de figuras. v0.37.1 mejora estos límites y referencias de las células fuente; la extracción sigue siendo algo para comprobar antes de reutilizar los valores. Si una extracción salvada mayor es incompleta, use reanálisis cuando el lector lo ofrezca, compare los elementos resultantes antes de reemplazar una tabla de aguas abajo.
 
 En v0.37.2, la extracción corrige aún más la figura/propiedad estable y los símbolos de matemáticas PDF heredados. Compare menos signos, letras griegas, superscriptos, subscriptos y operadores con la fuente renderizada antes de copiar un valor de fórmula o tabla. Una extracción limpia no es un sustituto para comprobar la expresión científica.
+
+v1.0.0 mejora aún más la propiedad de tablas y figuras nativas, incluyendo registros repetidos, columnas escasas y fracciones científicas. Al revisar una tabla, mantenga repetidas filas como registros separados a menos que la fuente los identifique como duplicados. Compare numeradores/denominadores de fracciones, etiquetas agrupadas y células vacías con la página original; no llenan una célula vacía de la prosa vecina.

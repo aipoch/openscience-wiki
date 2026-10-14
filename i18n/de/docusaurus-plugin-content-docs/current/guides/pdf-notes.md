@@ -2,7 +2,7 @@
 title: "PDF Anmerkungen und Dokumentnotizen"
 description: "Markieren Sie Passagen, sammeln Sie Dokumentnotizen, finden Sie sie wieder und exportieren Sie eine Lesekopie."
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,3 +72,7 @@ Von v0.35.1 aus können verwaltete Dateiversionen, die als derselbe PDF-Inhalt v
 Öffnen Sie dasselbe PDF in einem anderen Projekt, inspizieren Sie **Notes & Annotations**, und verwenden Sie dann **Show annotation source**, um die gespeicherte Seite und Passage zu überprüfen. Wenn keine Notizen vorhanden sind, bestätigen Sie, dass Sie die gleiche Inhaltsversion geöffnet haben und dass die verwaltete Datei noch lesbar ist.
 
 Diese Notizen werden lokal gespeichert und synchronisieren sich nicht über Maschinen hinweg. Exportieren Sie für eine Übergabe die Notizen oder ein kommentiertes PDF und prüfen Sie, was der Empfänger erhalten wird. Dies ändert keine privaten Session-Lesezeichen oder macht jede Lesenotiz Teil eines [.science Forschungspaket](research-packages.md).
+
+## Zeigen Sie eine Notiz, ohne die Seite zu bedecken {/* #reveal-note */}
+
+In v1.0.0 wird die **Annotation note**-Taste einer gespeicherten Annotation angezeigt, wenn ihre Markierung ausgewählt, bewegt oder fokussiert wird. Wählen Sie das Highlight oder die Region und öffnen Sie dann die Notiztaste, um den Kommentar zu lesen oder zu bearbeiten. Ein versteckter Button bedeutet nicht, dass die Notiz gelöscht wurde. Verwenden Sie **Show notes sidebar** oder **Notes & Annotations**, um die vollständige Liste zu durchsuchen, und **Show annotation source**, um zum markierten Speicherort zurückzukehren.

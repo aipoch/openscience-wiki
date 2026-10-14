@@ -1803,5 +1803,11 @@
   },
   "docs.outline.reference.v0372.scope": {
     "message": "Récupération de démarrage et de connexion, paquets Linux CLI, aide localisée et corrections de données scientifiques."
+  },
+  "docs.outline.reference.v100.title": {
+    "message": "v1.0.0"
+  },
+  "docs.outline.reference.v100.scope": {
+    "message": "Compatibilité stable 1.x, disponibilité des versions de bureau, récupération de session et contexte de données scientifiques."
   }
 }

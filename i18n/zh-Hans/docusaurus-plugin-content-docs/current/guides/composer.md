@@ -1,7 +1,7 @@
 ---
 title: "对话与排队请求"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-14'
 ---
 
 # 对话与排队请求
@@ -138,3 +138,11 @@ original column-name mapping in the CSV/report.
 ## 拖拽文件建立引用 {/* #drag-file-mention */}
 
 从 **Files** 拖动文件卡片，或把已打开产物的文件标题拖入 Composer。确认草稿中出现了正确文件的引用，补充问题后再发送。拖入只会添加草稿上下文，不会直接发起请求；新会话也可从 Files 面板引用文件。发送前核对项目与文件。
+
+## 回答澄清问题 {/* #clarification-questions */}
+
+Agent 显示问题卡片时，先确认提问者和所需选择。多选卡片会显示 **Select one or more options**：选中所有适用项，再点一次可取消；选项较多时在卡片内滚动查看。
+
+需要其他回答时用 **Type your own answer**；希望 Agent 决定时选 **Let the agent decide**；不回答则选 **Skip**。自行输入会替代选项选择。多道问题用 **Next** 和 **Back** 前后检查，最后点击 **Finish** 提交。仅选中选项会保存草稿，不代表已经完成回答；等待卡片结束、任务继续后再判断是否需要补充。
+
+问题卡片用于澄清研究需求，不等于授予工具权限，也不替代单独的 Plan 批准。

@@ -1,7 +1,7 @@
 ---
 title: "Service sans tête et accès au navigateur"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 # Service sans tête et accès au navigateur {/* #headless-service-and-browser-access */}
@@ -98,17 +98,20 @@ Utiliser un stockage persistant lorsque la configuration doit survivre au rempla
 Fermer une fenêtre peut différer de quitter l'application, surtout lorsqu'elle reste dans le plateau. Terminer la recherche active avant d'arrêter un moteur partagé, puis inspecter l'état réel avec `status --json`.
 
 Un bureau déconnecté offre **Reconnecter** et **Quitter l’application**. Reconnecter rafraîchit le moteur en direct original et ne soumet pas de nouveau le travail; Si ce moteur est parti, quittez et rouvrez. Un Quit déconnecté peut fermer seulement le client, donc inspecter l'état du profil sélectionné avant de supposer que le service s'est arrêté. Suivez [récupération de connexion](../guides/troubleshooting.md#connection-recovery), y compris les opérations de vérification des réponses perdues.
+### Reconnecter après un arrêt de bureau interrompu {/* #desktop-service-recovery */}
+
+Si le bureau sort de façon inattendue pendant que son moteur de travail survit, la réouverture d'un bureau de même version peut adopter ce service de bureau lancé après l'ancien contrôleur et le démontage s'installe. Un service lancé par CLI reste emprunté; PC de bureau ordinaire Quit ne l'arrête pas simplement parce que le bureau reconnecté.
+
+Si la préparation échoue, la fenêtre reste ouverte. Lire l'avis, préserver le travail non sauvé et attendre que la conversation récupère avant de vérifier l'exécution originale et les fichiers. Une fenêtre ouverte ne signifie pas que la tâche a été annulée. Si le démarrage signale un ancien service autonome le bloquant, vérifiez le profil et la version avant de choisir l'action d'arrêt explicite. Annuler laisse ce service fonctionner; un stop échoué peut être réétudié ou revérifié sans supprimer les fichiers de verrouillage.
 
 ## Comportement de mise à jour de l'application {/* #application-update-behavior */}
 
-Les mises à jour natives de bureau et les mises à jour de paquets autonomes utilisent différents chemins. Un moteur ordinaire Node ne peut pas remplacer l'installateur de bureau; son `update --json` signale une exigence de mise à jour manuelle et le mode `package-manager`. Suivez les instructions retournées.
+v1.0.0 supprime la mise à jour de l'application CLI; n'utilisez pas `open-science update --json`. Utilisez les commandes de mise à jour du bureau ou le gestionnaire d'installation/paquet d'origine, en observant [disponibilité de la version actuelle](../guides/installation.md#standalone-cli).
 
-- **Application bureautique :** utilise sa mise à jour in-app. S'il est attaché à un moteur précédemment démarré par le CLI, terminer le travail et arrêter ce moteur avant de mettre à jour le bureau.
-- **archive Standalone CLI :** terminer le travail, arrêter le moteur prévu, extraire la nouvelle version dans un nouveau répertoire, conserver vos données de configuration, et mettre à jour le lanceur ou PATH. N'écrasez pas le paquet en cours d'exécution.
-- **Paquet Homebrew CLI ou Linux CLI :** terminer le travail et arrêter chaque profil à l'aide de cette installation, puis suivre le [instructions de mise à jour du paquet](../guides/installation.md#standalone-cli). Continuez à utiliser le même répertoire de configuration après.
+- **Application bureautique :** terminer la recherche active avant de vérifier les mises à jour. Si la mise à jour lors d'une connexion à un service CLI demande de l'arrêter et de passer à la gestion de bureau, vérifier le profil et les tâches affectées avant de consentir. Annuler laisse le service d'origine fonctionner. Ce commutateur ne met pas à niveau les fichiers de programme autonomes d'origine CLI.
+- **Installation autonome CLI:** arrête chaque profil en l'utilisant, puis installe un paquet réellement publié par son canal d'origine. N'écrasez pas les fichiers en cours d'exécution ou rouvrez un profil avec un vieux moteur après qu'un bureau plus récent lui ait écrit.
+- **Avis d'occupation ou de récupération:** suit les vérifications affichées pour les instances actives et l'état d'installation. Ne supprimez pas les verrous, les enregistrements de configuration ou de récupération pour forcer une mise à jour lorsque l'arrêt est incertain.
 
-- **installation npm:** met à jour le paquet correspondant par npm et confirme la compatibilité client/backend.
+Après la mise à jour, confirmez la version et les données originales, puis utilisez `status --json` et `doctor --json` pour vérifier l'état de service et l'état de préparation. Préservez le mode de magasin des titres de compétences. [Compatibilité 1.x](../guides/installation.md#version-compatibility) ne promet pas des versions mixtes bureau/backend.
 
-Redémarrer, puis utiliser `status --json` et `doctor --json` pour confirmer la version, le répertoire de configuration et l'état de préparation. Préserver le mode de stockage des titres de compétence existants; ne supprimez pas les identifiants ou la configuration pour effectuer une mise à jour.
-
-Voir les [guide officiel d'exécution autonome](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md), [CLI](cli.md) et [Tâche SDK](api.md).
+Voir les [guide officiel des temps d'exécution](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md), [CLI](cli.md) et [Tâche SDK](api.md).

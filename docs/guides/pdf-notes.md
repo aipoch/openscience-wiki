@@ -2,7 +2,7 @@
 title: PDF annotations and document notes
 description: Mark passages, collect document notes, find them again and export a reading copy.
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,3 +72,7 @@ From v0.35.1, managed file versions verified as the same PDF content can share o
 Open the same PDF in another project, inspect **Notes & Annotations**, then use **Show annotation source** to check the saved page and passage. If notes are absent, confirm that you opened the same content version and that its managed file is still readable.
 
 These notes are stored locally and do not synchronize across machines. For a handover, export the notes or an annotated PDF and check what the recipient will receive. This does not change private session bookmarks or make every reading note part of a [.science research package](research-packages.md).
+
+## Reveal a note without covering the page {/* #reveal-note */}
+
+In v1.0.0, a saved annotation's **Annotation note** button appears when its mark is selected, hovered or focused. Select the highlight or region, then open the note button to read or edit the comment. A hidden button does not mean the note was deleted. Use **Show notes sidebar** or **Notes & Annotations** to browse the complete list, and **Show annotation source** to return to the marked location.

@@ -1,7 +1,7 @@
 ---
 title: "Sessions et sections"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -55,8 +55,6 @@ Les actions non disponibles sont désactivées pour l'état actuel. Une session 
 | Exporter la conversation… | Exporter la conversation dans le format ou les options proposés | L'exportation de transcription est distincte d'un paquet artefact/Notebook |
 | Archiver | Cacher la session de la navigation active | Il reste récupérable dans Paramètres → Archivé |
 | Supprimer | Ouvrir une confirmation de suppression permanente | Lisez exactement quelles données sont affectées; Annuler le préserver |
-
-
 
 ## Branche après un résultat terminé {/* #branch-after-a-completed-result */}
 
@@ -171,7 +169,6 @@ Dans le projet GSE60450, fourchez la session QC existante et ouvrez la `gse60450
 
 Sélectionnez le titre de la session pour voir son nombre, sa description, sa source, les heures de création/mise à jour, le nombre de messages pour la branche actuelle et le nombre d'objets. Utilisez **Pin** pour garder la session facile à trouver, ou **Modifier la session** pour changer son titre et sa description. Un diviseur **Suite d’une conversation** se lie de nouveau au tour de la source enregistrée.
 
-
 ## Diagnostic des sessions d'exportation {/* #session-diagnostics */}
 
 Utilisez **Session actions → Export → Export diagnostics…** dans l'en-tête, ou le sous-menu correspondant de **Export** dans la ligne de session, pour collecter les sources de diagnostic sélectionnées dans une archive locale. Les journaux d'application peuvent inclure des métadonnées en dehors de la session sélectionnée. Examiner la liste des sources, le message d'achèvement et le contenu des archives avant de partager; Voir [étapes diagnostiques de l'exportation](troubleshooting.md#session-diagnostics).
@@ -179,3 +176,7 @@ Utilisez **Session actions → Export → Export diagnostics…** dans l'en-têt
 ## Rejouer ou discuter de travail enregistré {/* #replay-session */}
 
 Choisissez **View replay** dans le menu de la ligne de session pour passer à travers la conversation enregistrée, l'activité Notebook et les versions de fichiers sauvegardés. **Discuss** commence une conversation séparée liée à cette recherche. Les sessions importées exposent également les deux actions à côté de leur avis en lecture seule. Suivez [Rejouer la session](session-replay.md) pour la lecture, l'inspection des sources et une discussion.
+
+## Continuer après avoir changé l'agent ou reconnecté {/* #resume-selected-agent */}
+
+Avant d'envoyer le tour suivant, vérifiez l'Agent/Specialist sélectionné et le modèle. v1.0.0 restaure les conversations ACP avec l'agent sélectionné et répare la suite Codex détachée après les commutateurs Specialist. Réouvrir la conversation originale et inspecter ses derniers messages enregistrés et exécuter l'état après la reconnexion. Ne renvoyez pas un écrit simplement parce que sa réponse a été interrompue; confirmer si elle a été achevée en premier. Changer un agent ou récupérer une connexion n'est pas une preuve qu'une analyse antérieure a échoué.

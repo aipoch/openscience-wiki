@@ -1,7 +1,7 @@
 ---
 title: "Instalación y actualizaciones"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -11,6 +11,8 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 La mayoría de los usuarios deben instalar el paquete de escritorio de GitHub Releases. Los colaboradores, o cualquier persona que pruebe el código más nuevo, pueden ejecutar la aplicación de la fuente. El cliente de escritorio Electron se conecta a un backend Node compartido, que también sirve la interfaz autenticada del navegador local.
 
 <PlatformGuide />
+
+**Disponibilidad v1.0.0:** [Esta liberación](https://github.com/aipoch/open-science/releases/tag/v1.0.0) contiene paquetes de escritorio sólo, sin archivos CLI independientes o Linux CLI `.deb`/`.rpm` paquetes. Descargue de esa página y verifique contra su `SHA256SUMS.txt`. Las descargas del sitio web y los canales de actualización automática se promueven por separado, por lo que un cheque no puede ofrecer 1.0. Las instalaciones de escritorio todavía proporcionan **Settings → General → Command line tool → Install command**.
 
 ## Elija un método de instalación {/* #choose-an-installation-method */}
 
@@ -65,7 +67,7 @@ Los instaladores oficiales de Windows se firman con código desde v0.33.2; v0.33
 | Ubuntu / Debian | `uname -m`: `x86_64` significa x64, `aarch64` significa ARM64 | Elija la coincidencia `.deb`, abrirlo con el instalador de paquetes del sistema, luego lanzar desde el menú de aplicación |
 | Otras distribuciones Linux apoyadas | Check `uname -m` | Elija la coincidencia `.AppImage`, permitir la ejecución en los permisos del archivo, y luego abrirlo; resolver cualquier error de dependencia reportado por la distribución |
 
-v0.34.0 proporciona paquetes Linux **x64 y ARM64** . Para ARM64, seleccione `aipoch-open-science-0.34.0-linux-arm64.AppImage` o `aipoch-open-science_0.34.0_arm64.deb`. Los contrapartes x64 son `aipoch-open-science-0.34.0-linux-x86_64.AppImage` y `aipoch-open-science_0.34.0_amd64.deb`. Descarga de los activos oficiales de la versión seleccionada y coincide con el resultado de `uname -m`.
+v1.0.0 proporciona paquetes Linux **x64 y ARM64** . Para ARM64, seleccione `aipoch-open-science-1.0.0-linux-arm64.AppImage` o `aipoch-open-science_1.0.0_arm64.deb`. Los contrapartes x64 son `aipoch-open-science-1.0.0-linux-x86_64.AppImage` y `aipoch-open-science_1.0.0_amd64.deb`. Descarga de los activos oficiales de la versión seleccionada y coincide con el resultado de `uname -m`.
 
 </PlatformContent>
 
@@ -73,15 +75,15 @@ La carpeta de instalación contiene la aplicación; **Data location**, en el asi
 
 ### Use el CLI independiente {/* #standalone-cli */}
 
-Para la operación sin una ventana de escritorio, descargar el archivo independiente CLI de la [liberación oficial](https://github.com/aipoch/open-science/releases/tag/v0.37.2). Incluye Node, el backend y la interfaz de usuario web. Extraiga el directorio completo, luego siga [CLI setup](../reference/cli.md#terminal-setup) para iniciarlo, configure un modelo y compruebe la preparación. Los usuarios de escritorio todavía pueden utilizar **Settings → General → Install command**.
+**Los pasos de empaquetado independiente a continuación se aplican a las versiones que en realidad las enviaron, como por ejemplo [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2), no a los activos de v1.0.0.** Usa esa versión anterior sólo deliberadamente. Mantenga las versiones de escritorio/backend coincidan y no señale un backend más antiguo en los datos escritos por una aplicación más reciente. Para la entrada de línea de comandos 1.0, instale el lanzador suministrado por su aplicación de escritorio y siga [CLI setup](../reference/cli.md#terminal-setup).
 
 #### Homebrew CLI {/* #homebrew-cli */}
 
-En macOS o Linux, instalar la fórmula CLI con `brew install aipoch/tap/open-science`. Esto está separado de la cacerola de escritorio. Incluye Node y la UI Web local; la instalación no inicia un servicio. Si otro lanzador posee `open-science`, inspeccione `type -a open-science` y use `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"` en lugar de reemplazar el enlace de la otra instalación.
+Una instalación de Homebrew CLI existente se gestiona a través de `brew install aipoch/tap/open-science`, separadamente de la carcasa de escritorio. Revise la versión realmente ofrecida por Homebrew; publicación de 1.0 en GitHub no establece que la fórmula ha avanzado. La instalación no inicia un servicio de sistema. Si los lanzadores entran en conflicto, inspeccione `type -a open-science` y use `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"` para esa instalación.
 
 #### Paquetes Linux CLI {/* #linux-cli-packages */}
 
-Para una instalación terminal/browser, elija **open-science-cli**, no el paquete de escritorio **aipoch-open-science**. Descargue el activo que coincide con `CLI-PACKAGE-SHA256SUMS.txt` de la misma versión, y luego compare su suma de comprobación SHA256.
+Esta tabla conserva el método de instalación **v0.37.2** Linux CLI; v1.0.0 no publica estos paquetes CLI. `open-science-cli` está separado del paquete de escritorio `aipoch-open-science`. Si necesita esa versión anterior, obtenga el activo y `CLI-PACKAGE-SHA256SUMS.txt` de [v0.37.2 Assets](https://github.com/aipoch/open-science/releases/tag/v0.37.2), a continuación, verifique antes de instalar.
 
 | Distribución / arquitectura | Activo v0.37.2 CLI |
 | --- | --- |
@@ -109,7 +111,7 @@ Antes de actualizar o eliminar el paquete, terminar el trabajo y detener **cada 
 
 Necesita Git, Node.js 24, npm, y la plataforma construye requisitos para Electron. Instala o selecciona un marco de agente en la aplicación. Durante la instalación, el repositorio genera el Cliente Prisma, aplica parches de aplicaciones y prepara dependencias nativas de Electron.
 
-Para una instalación de fuente reproducible, elija la etiqueta de lanzamiento prevista de [Cambio](../changelog/v0.37.2.md) antes de instalar dependencias. Un clon predeterminado sigue la rama en lugar de una liberación fija. Grabar las versiones seleccionadas de etiqueta, fuente commit y tiempo de ejecución para que otra persona pueda reproducir el ambiente.
+Para una instalación de fuente reproducible, elija la etiqueta de lanzamiento prevista de [Cambio](../changelog/v1.0.0.md) antes de instalar dependencias. Un clon predeterminado sigue la rama en lugar de una liberación fija. Grabar las versiones seleccionadas de etiqueta, fuente commit y tiempo de ejecución para que otra persona pueda reproducir el ambiente.
 
 Reemplazar `RELEASE_TAG` abajo con la etiqueta exacta mostrada en la versión seleccionada (incluyendo su `v`) líder. Para seguir el desarrollo en curso, omitir `--branch RELEASE_TAG --depth 1`; que el checkout seguirá la rama predeterminada.
 
@@ -126,7 +128,7 @@ Antes de empaquetar una producción, ejecute:
 npm run build
 ```
 
-Utilice el paquete de la etiqueta seleccionada.json y [guía de tiempo libre](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md) para sus objetivos de construcción y dependencias. `npm run dev:web` desarrolla el punto de entrada Node/Web; `npm run dev` también prepara al cliente de escritorio. Utilice un directorio de configuración aislado para mantener los datos de prueba separados.
+Utilice el paquete de la etiqueta seleccionada.json y [guía de tiempo libre](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md) para sus objetivos de construcción y dependencias. `npm run dev:web` desarrolla el punto de entrada Node/Web; `npm run dev` también prepara al cliente de escritorio. Utilice un directorio de configuración aislado para mantener los datos de prueba separados.
 
 ## Configuración completa por primera vez {/* #complete-first-time-setup */}
 
@@ -151,6 +153,8 @@ La aplicación se abre, el paso de verificación de entorno requerido, un agente
 ## Comprobar actualizaciones de la aplicación {/* #choose-a-reproducible-version-and-update-deliberately */}
 
 En **Settings → General → About**, lee la versión instalada y utilice **Check now** para comprobar la disponibilidad de actualización. Inspeccione la versión listada antes de instalarla, y termine el trabajo activo primero. Una fuente de desarrollo puede reportar actualizaciones de forma diferente de una instalación envasada. Mantenga una copia de los resultados exportados importantes antes de una actualización; no renombrar los directorios de datos internos de la aplicación.
+
+Desde 1.0, `open-science update` es eliminado. Actualice la aplicación a través de sus controles de escritorio o instalador oficial, y actualice una instalación CLI a través del administrador de instalador/paquete que la posee. Si **Check now** aún no ofrece una versión publicada, compruebe la página oficial de lanzamiento; Eliminar la configuración o restablecer la aplicación no promoverá un canal de actualización.
 
 <PlatformContent platform="macos">
 
@@ -177,3 +181,11 @@ La reinstalación conserva los datos existentes. Si usted necesita deliberadamen
 ## Nombre del producto después de v0.31.0 {/* #product-name */}
 
 La interfaz actual y los nuevos paquetes utilizan **Open-Science** de forma consistente. Actualizar preserva los nombres de instalación y ubicaciones existentes, datos de investigación, credenciales y ajustes. Un camino de instalación más antiguo que contiene `Open Science` no es por sí mismo un fallo de actualización; no renombrar o mover sus carpetas de datos para que coincida con el nuevo nombre de la pantalla.
+
+## Actualizar a 1.0 y entender la compatibilidad {/* #version-compatibility */}
+
+1. Terminar la investigación activa y respaldar el directorio de configuración más cualquier ubicación de datos configurada por separado. Una exportación `.science` no es una copia de seguridad de todo el perfil.
+2. Cerrar instancias de escritorio/backend utilizando la instalación, luego actualizar a través del instalador oficial. Preserve el perfil original, los datos y la tienda de credencial OS.
+3. Reabrir y comprobar la versión, proyectos, sesiones, archivos, modelo y tiempos de ejecución antes de continuar. Una bajada binaria no retrocede los datos; Los binarios antiguos no pueden leer datos guardados más nuevos.
+
+1.0 retiene las rutas de actualización e importación históricas existentes; el número de versión no requiere un reseteo de perfil. El [Política de compatibilidad 1.x](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md) cubre las interfaces documentadas de CLI/SDK y de automatización de tareas, las importaciones de paquetes `.science` válidos y las actualizaciones de perfiles soportadas. No garantiza respuestas modelo idénticas, disponibilidad de terceros o reproducción determinista de toda una sesión de investigación, o transferencia de formularios de credenciales protegidas por el sistema operativo. Seguridad fija el objetivo de la última liberación estable.

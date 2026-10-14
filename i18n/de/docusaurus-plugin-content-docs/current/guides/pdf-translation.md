@@ -1,7 +1,7 @@
 ---
 title: "Übersetzen eines vollständigen PDF"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-14'
 ---
 
 # Übersetzen eines vollständigen PDF {/* #translate-a-full-pdf */}
@@ -55,3 +55,5 @@ Verwenden Sie [PDF Anmerkungen und Dokumentnotizen](pdf-notes.md), um Lesefragen
 ## Überprüfen Sie das wissenschaftliche Layout {/* #scientific-layout */}
 
 Bevor Sie eine exportierte Übersetzung verwenden, vergleichen Sie eine Multi-Panel-Figur und eine Tabelle mit dem Original. Bewahren Sie Legenden mit ihren Panels auf, überprüfen Sie gruppierte Header und Zeilenbeschriftungen und überprüfen Sie Formeln, Superscripts, Symbole und Einheiten. v0.37.1 verbessert diese Quellbeziehungen und akzeptiert gültige eingebettete Glyphennamenunterschiede während der Regeneration, aber das Original bleibt der Beweis für ein Zitat oder eine wissenschaftliche Behauptung. Wenn ein älterer Export Inhalte verloren hat, aktualisieren Sie die App und exportieren Sie erneut aus der gespeicherten Übersetzung. das Original behalten und die neue Datei vergleichen.
+
+In v1.0.0 bereitet **New translation** frischen Quelltext vor, bevor die neue Ausgabe gestartet wird. Verwenden Sie es, wenn Sie absichtlich neue Extraktions- oder andere Übersetzungseinstellungen benötigen; Eine gewöhnliche Wiederholung behält die Einstellungen der vorhandenen Edition bei. Warten Sie auf die Quellvorbereitung und überprüfen Sie die Reihenfolge, Formeln und gruppierten Inhalt, bevor Sie exportieren. Das Starten einer neuen Edition kann neue Modellanforderungen stellen.

@@ -2,7 +2,7 @@
 title: "科学数据库"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 # 科学数据库
@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支持哪些数据库 {/* #supported-databases */}
 
-Open-Science v0.37.1 内置 **35 个数据源 Connector，提供 359 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 361 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
+Open-Science v1.0.0 内置 **35 个数据源 Connector，提供 359 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 361 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
 
 | Connector | 来源 | 操作数 | 用途  |
 | --- | --- | --- | ---  |
@@ -254,7 +254,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作参数参考](../reference/connector-operations.md)列出必填输入、可选值和准确调用方法。本页用于选择和连接数据源，参数参考用于查询某个具体工具的字段。
 
-目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts)。
+目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/registry.ts)。
 
 ## 序列检索与多序列比对 {/* #sequence-tools */}
 
@@ -327,3 +327,19 @@ matched records and any unmatched identifiers. Keep the response in English.
 在 **Settings → Connectors** 启用 **Genomes**。Ensembl LD 工具使用公开 API，不需要密钥。`ensembl_ld_pairwise` 需要两个变异 ID，`ensembl_ld_proxies` 需要一个；两者都必须提供完整人群名，例如 `1000GENOMES:phase_3:KHV`。工具不会自动发现人群或推断祖源，应选择适合研究的参考人群。
 
 两变异查询报告 r² 和 D′。代理变异查询默认 r² ≥ 0.8，窗口为 **总宽 500 kb**，即两侧各约 250 kb。`max_records` 限制排序后的返回列表，不限制上游工作量。结果应保留人群与检索元数据；该接口不报告参考基因组或 Ensembl 版本。空结果表示未返回符合条件的数据，不是零 LD；高 LD 既不证明因果，也不证明功能等价。见[两变异参数](../reference/connector-operations.md#ensembl_ld_pairwise)与[代理变异参数](../reference/connector-operations.md#ensembl_ld_proxies)。
+
+## 保留样本、表达和组装背景 {/* #scientific-context */}
+
+| 查询 | v1.0.0 中的解读方式 |
+| --- | --- |
+| `arrayexpress_get_experiment_samples` | `samples` 是按路径排序后的第一个 SDRF 文件中的关系行。`n_rows_total`／`n_rows_returned` 计行数；`n_samples`／`n_samples_returned` 计去重标识数量，优先 **Sample Name**，其次 **Source Name**，不是独立生物学重复数。缺少标识可使样本计数为 `null`；空文件或 `no_sdrf` 不表示实验没有样本 |
+| `metabolights_get_studies` 配合 `include_samples` | 导出 `sample_table` 时按返回的 `headers` 顺序处理；重名列使用不覆盖原名称的 `#2`、`#3` 等后缀。保留所有列，短行中的空字符串表示缺失元数据，并检查 `rows_truncated` |
+| `bgee_expression_calls` | 同时保留 `anatomical_entity_id/name` 与 `cell_type_id/name`。细胞类型缺失时是 `null`，不是阴性表达判断；表达状态、质量和条件应一起保留 |
+| dbSNP 变异查询 | 保留每个定位结果的 `assembly`、`assembly_full`、`seq_id`、位置与等位基因。同一序列可能关联多个组装，不能折叠这些关联，也不能把第一个定位结果当成自动坐标转换 |
+
+这些修正影响返回证据的解读。比较旧响应与新查询前，先核对[操作参数参考](../reference/connector-operations.md)。
+
+
+### OpenAlex 凭据提示 {/* #openalex-prompts */}
+
+v1.0.0 会在当前会话中记住对 OpenAlex 凭据提示的拒绝，避免重复打断。之后需要该来源时，在 **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** 主动配置，再重试目标查询。拒绝提示不等于已经提供密钥，也不保证访问权限或额度。

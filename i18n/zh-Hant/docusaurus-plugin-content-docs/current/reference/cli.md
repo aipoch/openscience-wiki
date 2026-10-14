@@ -1,7 +1,7 @@
 ---
 title: "CLI 與結構化輸出"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -13,9 +13,11 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformGuide />
 
+**應用更新命令已移除：** v1.0.0 不再接受 `open-science update` 或其 `--json` 形式。使用桌面更新控制元件，或原安裝器／包管理器；原更新專用退出碼 5 和 6 不再屬於當前 CLI 表。升級步驟見[安裝與更新](../guides/installation.md#version-compatibility)。
+
 ## 從終端完成首次設定 {/* #terminal-setup */}
 
-選擇桌面應用的命令入口，或[官方發行版](https://github.com/aipoch/open-science/releases/tag/v0.37.2)中的獨立 CLI 壓縮包。獨立包包含 CLI、Node 執行時、後端與 Web UI，不需要 Electron，也無需另裝 Node/npm。
+v1.0.0 使用桌面附帶的啟動器：在 **Settings → General → Command line tool** 選擇 **Install command**，新開終端檢查 `open-science --help`。本次釋出沒有獨立 CLI 包。下面的獨立歸檔解壓步驟僅用於實際提供歸檔的版本，例如 [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2)；不要將其當成 1.0 安裝，也不要混用不同版本的桌面和後端。
 
 1. 選擇與主機匹配的 macOS／Linux arm64 或 x64 包，或 Windows x64 包。
 2. 完整解壓到可寫目錄，保留啟動器、`backend` 與 `node-runtime` 的相對位置；只複製啟動器會導致無法啟動。
@@ -208,14 +210,12 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 | 2 | CLI 引數無效 |
 | 3 | 本地 daemon 不可用 |
 | 4 | 指定專案、Run、會話、產物或 Specialist 不存在 |
-| 5 | 活動工作阻止應用更新 |
-| 6 | 更新需要手動安裝步驟 |
 
 JSONL 可能包含 `run.progress` 和 `stream.resync-required`。重連後無法重放時，重新讀取權威 Run 狀態，不把事件流當作永久歷史。服務命令另有引數限制，見[無介面服務](./server.md)。
 
-[CLI 實現](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md)。
+[CLI 實現](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md)。
 
-技術參考：[CLI 約定](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+技術參考：[CLI 約定](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
 ## 無人值守執行 {/* #unattended-runs */}
 

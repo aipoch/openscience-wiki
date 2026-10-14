@@ -1,7 +1,7 @@
 ---
 title: "Unterhaltungen und wartende Anfragen"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-14'
 ---
 
 # Unterhaltungen und wartende Anfragen {/* #conversations-and-queued-requests */}
@@ -138,3 +138,11 @@ Sie können lokale Dateien in den Konversationsbereich ziehen, nicht nur den Com
 ## Erwähnen Sie eine Datei, indem Sie sie ziehen {/* #drag-file-mention */}
 
 Ziehen Sie eine Dateikarte aus **Files** oder den Dateikopf des offenen Artefakts in den Composer. Bestätigen Sie, dass der Entwurf eine Erwähnung für die beabsichtigte Datei enthält, fügen Sie Ihre Frage hinzu und senden Sie dann. Dropping fügt Kontext in den Entwurf ein; Es wird keine Anfrage gestartet. In einem neuen Gespräch kann das Dateifeld auch eine Erwähnung liefern. Überprüfen Sie das ausgewählte Projekt und die Datei vor dem Senden.
+
+## Beantworten Sie eine Klarstellungsfrage {/* #clarification-questions */}
+
+Wenn der Agent eine Fragekarte vorlegt, lesen Sie, wer sie gefragt hat und welche Wahl er beantragt hat, bevor Sie fortfahren. Eine Multi-Select-Karte sagt **Eine oder mehrere Optionen auswählen**; Wählen Sie jede zutreffende Antwort aus und wählen Sie erneut ein Element aus, um es zu entfernen. Längere Optionslisten scrollen innerhalb der Karte.
+
+Verwenden Sie **Geben Sie Ihre eigene Antwort ein** für eine andere Antwort, **Agent entscheiden lassen**, um diese Option zu delegieren, oder **Skip**, um sie unbeantwortet zu lassen. Eine typisierte Antwort ersetzt die Optionsauswahl. Verwenden Sie **Weiter** und **Back**, um eine Reihe von Fragen zu überprüfen, dann **Finish**, um sie einzureichen. Durch die bloße Auswahl einer Option wird ein Entwurf gespeichert; die Antwort nicht beendet wird. Warten Sie, bis die Karte gelöst ist und die Aufgabe fortgesetzt wird, bevor Sie die gleiche Antwort erneut senden.
+
+Diese Karten verdeutlichen die Forschungsanfrage. Sie gewähren keine Tool-Berechtigungen oder genehmigen einen separaten Plan.

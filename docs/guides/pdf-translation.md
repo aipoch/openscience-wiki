@@ -1,7 +1,7 @@
 ---
 title: "Translate a full PDF"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-14'
 ---
 
 # Translate a full PDF
@@ -55,3 +55,5 @@ Use [PDF annotations and document notes](pdf-notes.md) to record reading questio
 ## Check scientific layout {/* #scientific-layout */}
 
 Before using an exported translation, compare a multi-panel figure and a table with the original. Keep legends with their panels, verify grouped headers and row labels, and check formulas, superscripts, symbols and units. v0.37.1 improves these source relationships and accepts valid embedded-font glyph-name differences during regeneration, but the original remains the evidence for a quotation or scientific claim. If an older export lost content, update the app and export again from the saved translation; retain the original and compare the new file.
+
+In v1.0.0, **New translation** prepares fresh source text before starting the new edition. Use it when you intentionally need new extraction or different translation settings; an ordinary retry keeps the existing edition's settings. Wait for source preparation and review reading order, formulas and grouped content before exporting. Starting a new edition can make new model requests.

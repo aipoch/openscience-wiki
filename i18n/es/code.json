@@ -1788,5 +1788,11 @@
   },
   "docs.outline.reference.v0372.scope": {
     "message": "Recuperación de startups y conexión, paquetes Linux CLI, ayuda localizada y correcciones de datos científicos."
+  },
+  "docs.outline.reference.v100.title": {
+    "message": "v1.0.0"
+  },
+  "docs.outline.reference.v100.scope": {
+    "message": "Compatibilidad Stable 1.x, disponibilidad de versión de escritorio, recuperación de sesión y contexto de datos científicos."
   }
 }

@@ -1,7 +1,7 @@
 ---
 title: "CLI y salida estructurada"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -13,9 +13,11 @@ Utilice `open-science` para inspeccionar el estado de aplicación, ejecutar tare
 
 <PlatformGuide />
 
+**Actualizador de aplicación eliminado:** v1.0.0 ya no acepta `open-science update`, incluyendo su forma `--json`. Utilice los controles de actualización de escritorio o el administrador original del instalador/paquete. Los antiguos códigos de salida sólo de actualización 5 y 6 no forman parte de la tabla actual CLI. Ver [Orientación para mejorar las mejoras](../guides/installation.md#version-compatibility).
+
 ## Configuración desde una terminal {/* #terminal-setup */}
 
-Elija el lanzador de escritorio o un archivo CLI independiente desde el [liberación oficial](https://github.com/aipoch/open-science/releases/tag/v0.37.2). El archivo independiente contiene el tiempo de ejecución CLI, Node, backend y Web UI; no requiere Electron o una herramienta Node/npm instalada por separado.
+Para v1.0.0, instale el lanzador suministrado por escritorio a través de **Settings → General → Command line tool → Install command**, abra una nueva terminal y compruebe `open-science --help`. Esta versión no tiene un paquete CLI independiente. Los pasos de extracción de archivos a continuación sólo se aplican a versiones que proporcionan uno, como [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2); no son una instalación 1.0 o permiso para mezclar versiones de escritorio / backend.
 
 1. Elija macOS o Linux arm64/x64, o Windows x64, que coincida con el host.
 2. Extraiga el archivo completo en un lugar de trabajo. Mantenga el lanzador, `backend` y `node-runtime` juntos; copiar sólo el lanzador romperá el arranque.
@@ -210,14 +212,12 @@ Se reprodujo localmente la siguiente respuesta inválida:
 | 2 | Uso inválido CLI |
 | 3 | Daemon local no disponible |
 | 4 | No se ha encontrado el proyecto/run/session/artifact/Specialist solicitado |
-| 5 | Trabajo activo bloqueó una actualización de la aplicación |
-| 6 | Actualización de aplicaciones requiere un paso de instalación manual |
 
 JSONL puede incluir `run.progress` y `stream.resync-required`. Si la repetición no está disponible después de la reconexión, vuelva a leer el estado de funcionamiento autorizado; no asuma que el flujo del evento es una historia permanente. Los comandos de ciclo de vida tienen restricciones de bandera separadas descritas en [Servicio sin cabeza](./server.md).
 
-[Ejecución de la CLI](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [Guía de comandos](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
+[Ejecución de la CLI](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [Guía de comandos](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
-Referencia técnica: [Contrato CLI](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+Referencia técnica: [Contrato CLI](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
 ## Carreras no solicitadas {/* #unattended-runs */}
 

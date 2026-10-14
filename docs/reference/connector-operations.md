@@ -2,7 +2,7 @@
 title: "Connector operation reference"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,8 +38,7 @@ Return field names differ by operation. The descriptions and downloadable schema
 
 ## Operation inputs
 
-Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v0.37.2** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
-
+Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v1.0.0** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
 
 ## Chemistry {/* #family-1 */}
 
@@ -3017,7 +3016,7 @@ const result = await host.mcp("expression", "bgee_species", {})
 
 ### `bgee_expression_calls`
 
-Retrieve Bgee present/absent expression calls and normalized expression scores for one gene in one species. Results are healthy wild-type baseline calls and can be capped with max_calls.
+Retrieve Bgee present/absent expression calls and normalized expression scores for one gene in one species, preserving anatomical entity and cell type context. Results are healthy wild-type baseline calls and can be capped with max_calls. Missing or unspecified cell types are returned as null.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
@@ -3629,7 +3628,7 @@ const result = await host.mcp("omics-archives", "arrayexpress_get_experiment_fil
 
 ### `arrayexpress_get_experiment_samples`
 
-Fetch per-sample SDRF annotation rows for an ArrayExpress experiment (MAGE-TAB headers verbatim, repeats suffixed #2/#3). Experiments with no SDRF return &#123;&quot;error&quot;:&quot;no_sdrf&quot;&#125;.
+Fetch relationship rows from the first SDRF file sorted by path for an ArrayExpress experiment, preserving every sample/assay/file relationship in that file (trimmed MAGE-TAB headers, repeats suffixed #2/#3). Count distinct named sample/source identifiers, not independent biological replicates, using Sample Name in preference to Source Name. Experiments with no SDRF return `{"error":"no_sdrf"}`.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
@@ -3679,7 +3678,7 @@ const result = await host.mcp("omics-archives", "metabolights_list_studies", {})
 
 ### `metabolights_get_studies`
 
-Fetch structured metadata for MetaboLights studies (MTBLSxxx) from the parsed ISA payload — title, status, years, organisms, assays, factors, descriptors, sample count, protocols; optional per-sample table. Unknown/private accessions go in not_found.
+Fetch structured metadata for MetaboLights studies (MTBLSxxx) from the parsed ISA payload — title, status, years, organisms, assays, factors, descriptors, sample count, protocols; optional per-sample table with unique column keys preserving ISA column order and associations. Unknown/private accessions go in not_found.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
@@ -4487,7 +4486,6 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ```
 
 </ToolOperationGroup>
-
 
 ## Example response records
 

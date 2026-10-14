@@ -1,7 +1,7 @@
 ---
 title: "Sitzungen und Verzweigungen"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -55,8 +55,6 @@ Nicht verfügbare Aktionen sind für den aktuellen Zustand deaktiviert. Eine sch
 | Konversation exportieren… | Exportieren Sie die Konversation durch das angebotene Format/Optionen | Transkriptexport unterscheidet sich von einem Artefakt/Notebook-Bundle |
 | Archiv | Verstecken Sie die Sitzung vor der aktiven Navigation | Es bleibt wiederherstellbar in Einstellungen → Archiviert |
 | Löschen | Eine permanente Löschungsbestätigung öffnen | Lesen Sie genau, welche Daten betroffen sind; Cancel bewahrt es |
-
-
 
 ## Verzweigen nach einem abgeschlossenen Ergebnis {/* #branch-after-a-completed-result */}
 
@@ -171,7 +169,6 @@ Im GSE60450-Projekt forken Sie die bestehende QC-Sitzung ab und öffnen Sie das 
 
 Wählen Sie den Sitzungstitel aus, um die Anzahl, Beschreibung, Quelle, Erstellungs-/Aktualisierungszeiten, Nachrichtenanzahl für den aktuellen Zweig und Artefaktanzahl anzuzeigen. Verwenden Sie **Pin**, um die Sitzung leicht zu finden, oder **Sitzung bearbeiten**, um den Titel und die Beschreibung zu ändern. Ein **Fortgesetzt aus einem Chat**-Teiler verbindet sich wieder mit dem aufgezeichneten Source-Turn.
 
-
 ## Exportsitzungsdiagnosen {/* #session-diagnostics */}
 
 Verwenden Sie **Session actions → Export → Export diagnostics…** im Header oder das entsprechende **Export**-Untermenü in der Sitzungszeile, um ausgewählte Diagnosequellen in einem lokalen Archiv zu sammeln. Anwendungsprotokolle können Metadaten außerhalb der ausgewählten Sitzung enthalten. Überprüfen Sie die Quellliste, die Vervollständigungsnachricht und den Archivinhalt vor dem Teilen; siehe [Diagnoseausfuhrschritte](troubleshooting.md#session-diagnostics).
@@ -179,3 +176,7 @@ Verwenden Sie **Session actions → Export → Export diagnostics…** im Header
 ## Wiedergabe oder Diskutieren aufgezeichneter Arbeiten {/* #replay-session */}
 
 Wählen Sie **View replay** aus dem Sitzungszeilenmenü, um die aufgezeichnete Konversation, die Notebook-Aktivität und die gespeicherten Dateiversionen zu durchlaufen. **Discuss** beginnt eine separate Konversation, die mit dieser Forschung verbunden ist. Importierte sitzungen zeigen auch beide aktionen neben ihrer schreibgeschützten nachricht. Folgen Sie [Session Replay](session-replay.md) für die Wiedergabe, Quelleninspektion und eine bearbeitete Diskussion.
+
+## Fahren Sie fort, nachdem Sie den Agenten gewechselt oder die Verbindung wieder hergestellt haben {/* #resume-selected-agent */}
+
+Bevor Sie den nächsten Zug senden, überprüfen Sie den ausgewählten Agent / Specialist und das Modell. v1.0.0 stellt ACP-Gespräche mit dem ausgewählten Agenten wieder her und repariert die Codex-Fortsetzung nach Specialist-Wechsel. Öffne die ursprüngliche konversation wieder und inspiziere die neuesten gespeicherten nachrichten und laufe den zustand nach der wiederverbindung. Senden Sie ein Schreiben nicht erneut, nur weil seine Antwort unterbrochen wurde; Bestätigen Sie, ob es zuerst abgeschlossen wurde. Das Ändern eines Agenten oder das Wiederherstellen einer Verbindung ist kein Beweis dafür, dass eine frühere fehlgeschlagene Analyse erfolgreich war.

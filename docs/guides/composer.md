@@ -1,7 +1,7 @@
 ---
 title: "Conversations and queued requests"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-14'
 ---
 
 # Conversations and queued requests
@@ -138,3 +138,11 @@ You can drag local files onto the conversation area, not only the Composer. Wait
 ## Mention a file by dragging it {/* #drag-file-mention */}
 
 Drag a file card from **Files**, or the open artifact's file header, into the Composer. Confirm that the draft contains a mention for the intended file, add your question, then send. Dropping inserts context into the draft; it does not start a request. In a new conversation, the Files panel can also supply a mention. Check the selected project and file before sending.
+
+## Answer a clarification question {/* #clarification-questions */}
+
+When the agent presents a question card, read who asked it and the requested choice before continuing. A multi-select card says **Select one or more options**; select each applicable answer, and select an item again to remove it. Longer option lists scroll within the card.
+
+Use **Type your own answer** for a different response, **Let the agent decide** to delegate that choice, or **Skip** to leave it unanswered. A typed response replaces the option selection. Use **Next** and **Back** to review a set of questions, then **Finish** to submit it. Merely selecting an option saves a draft; it does not finish the response. Wait for the card to resolve and the task to continue before sending the same answer again.
+
+These cards clarify the research request. They do not grant tool permissions or approve a separate Plan.

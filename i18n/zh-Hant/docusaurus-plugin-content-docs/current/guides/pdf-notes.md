@@ -2,7 +2,7 @@
 title: "PDF 批註與文件筆記"
 description: "標記文獻段落，整理閱讀筆記，搜尋返回原文，並匯出帶批註的閱讀副本。"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,3 +72,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 在另一專案開啟同一份 PDF 後，進入 **Notes & Annotations** 檢查原有筆記，再使用 **Show annotation source** 核對所在頁及原文。如果筆記沒有出現，先確認是否開啟了相同內容的版本，以及檔案是否仍可讀取。
 
 這些筆記儲存在本機，不會跨裝置同步。交接時匯出筆記或帶批註 PDF，並檢查接收者實際拿到的內容。這不會改變私人會話書籤的規則，也不代表所有閱讀筆記都會包含在 [.science 研究包](research-packages.md)中。
+
+## 按需顯示筆記入口 {/* #reveal-note */}
+
+v1.0.0 中，選中、懸停或聚焦已儲存的標記時才顯示 **Annotation note** 按鈕。先點選高亮或區域，再開啟筆記按鈕閱讀或編輯評論。按鈕暫時隱藏不代表筆記被刪除。需要瀏覽全部筆記時用 **Show notes sidebar** 或 **Notes & Annotations**，再用 **Show annotation source** 返回標記位置。

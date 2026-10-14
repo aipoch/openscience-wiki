@@ -1,7 +1,7 @@
 ---
 title: "CLI 및 구조 출력"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -13,9 +13,11 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformGuide />
 
+**신청 updater는 제거했습니다:** v1.0.0 더 이상 `open-science update`를 받아 `--json` 양식을 포함. 데스크탑 업데이트 컨트롤 또는 원래 설치자 / 패키지 관리자를 사용하십시오. 이전 업데이트자 전용 출구 코드 5 및 6는 현재 CLI 테이블의 일부가 아닙니다. [업그레이드 안내](../guides/installation.md#version-compatibility) 참조.
+
 ## 터미널에서 설정 {/* #terminal-setup */}
 
-[공식 출시](https://github.com/aipoch/open-science/releases/tag/v0.37.2)에서 데스크탑 발사기 또는 독립 CLI 아카이브 중 하나를 선택하십시오. 독립 아카이브는 CLI, Node 런타임, 백엔드 및 웹 UI를 포함합니다; Electron 또는 별도로 설치된 Node/npm 툴체인이 필요하지 않습니다.
+v1.0.0의 경우 **Settings → General → Command line tool → Install command**을 통해 데스크톱 공급 발사기를 설치하고 새로운 터미널을 열고 `open-science --help`를 확인하십시오. 이 릴리스에는 독립 CLI 패키지가 없습니다. 아래 아카이브 추출 단계는 [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2)과 같은 하나를 제공하는 버전에만 적용; 그들은 1.0 설치 또는 데스크탑 / 백엔드 버전을 혼합하는 권한이 없습니다.
 
 1. macOS 또는 Linux arm64/x64 또는 Windows x64를 선택하여 호스트와 일치합니다.
 2. 완전한 아카이브를 writable 위치로 추출하십시오. 발사기, `backend` 및 `node-runtime`를 함께 유지하십시오; 시작자만 복사하면 스타트가 시작됩니다.
@@ -210,14 +212,12 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 | 2 | 잘못된 CLI 사용 |
 | 3 | 지역 daemon 사용 가능 |
 | 4 | 요청된 프로젝트/런/session/artifact/Specialist 찾을 수 없습니다 |
-| 5 | Active work는 응용 프로그램 업데이트 차단 |
-| 6 | 신청 갱신은 수동 임명 단계 요구합니다 |
 
 JSONL은 `run.progress` 및 `stream.resync-required`을 포함 할 수 있습니다. 재전송 후 재전송이 불가능한 경우, 재전송이 실행 상태; 이벤트 스트림은 영구적 인 역사를 가정하지 마십시오. Lifecycle 명령은 [Headless 서비스](./server.md)에 설명된 별도의 플래그 제한이 있습니다.
 
-[CLI 구현](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [upstream 명령 가이드](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
+[CLI 구현](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [upstream 명령 가이드](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
-기술적인 참고: [CLI 계약](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+기술적인 참고: [CLI 계약](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
 ## 무력한 실행 {/* #unattended-runs */}
 

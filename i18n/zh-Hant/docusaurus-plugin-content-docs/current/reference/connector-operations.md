@@ -2,7 +2,7 @@
 title: "Connector 操作引數參考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,8 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v0.37.2** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
-
+每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v1.0.0** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
 
 ## 化學 {/* #family-1 */}
 
@@ -3019,7 +3018,7 @@ const result = await host.mcp("expression", "bgee_species", {})
 
 ### `bgee_expression_calls` {/* #bgee_expression_calls */}
 
-查詢單個物種中一個基因的表達存在／缺失判斷及標準化表達分數。這是健康野生型基線結果，不是差異表達檢驗；max_calls 限制返回數量。
+讀取一個物種中某基因的 Bgee 表達狀態和標準化評分，同時保留解剖結構與細胞型別背景。結果為健康野生型基線表達，可用 `max_calls` 限制數量；缺失或未指定的 `cell_type_id`、`cell_type_name` 返回 `null`，不代表陰性表達。
 
 | 欄位 | 型別 | 必填與約束 |
 | --- | --- | --- |
@@ -3631,7 +3630,7 @@ const result = await host.mcp("omics-archives", "arrayexpress_get_experiment_fil
 
 ### `arrayexpress_get_experiment_samples` {/* #arrayexpress_get_experiment_samples */}
 
-獲取 ArrayExpress 實驗逐樣本 SDRF 註釋，保留 MAGE-TAB 原始表頭，重複列新增序號。無 SDRF 時返回 error 為 no_sdrf。
+讀取 ArrayExpress 實驗中按路徑排序的第一個 SDRF 檔案，保留樣本、實驗與檔案之間的關係行。`n_rows_total`／`n_rows_returned` 為行數；`n_samples`／`n_samples_returned` 為去重後的樣本標識數，優先 Sample Name，再用 Source Name，不表示獨立生物學重複。缺失標識可返回 `null`；無 SDRF 返回 `no_sdrf`，不能據此斷定實驗沒有樣本。
 
 | 欄位 | 型別 | 要求與約束 |
 | --- | --- | --- |
@@ -3681,7 +3680,7 @@ const result = await host.mcp("omics-archives", "metabolights_list_studies", {})
 
 ### `metabolights_get_studies` {/* #metabolights_get_studies */}
 
-按 MTBLS 登入號獲取 MetaboLights 的 ISA 後設資料，包括標題、狀態、年份、物種、測定、因子、樣本數和方案；可附逐樣本表。未知或私有專案列入 not_found。
+讀取 MetaboLights（MTBLSxxx）的結構化研究後設資料，可選返回樣本表。樣本表按 ISA 列索引排序，重名列用不覆蓋原名稱的字尾區分，保留各列與值的對應關係；短行補空字串。未知或私有編號進入 `not_found`。
 
 | 欄位 | 型別 | 要求與約束 |
 | --- | --- | --- |
@@ -4489,7 +4488,6 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ```
 
 </ToolOperationGroup>
-
 
 ## 示例響應記錄 {/* #示例响应记录 */}
 

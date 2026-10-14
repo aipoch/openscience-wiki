@@ -2,7 +2,7 @@
 title: "Connector 操作参数参考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,8 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作输入
 
-每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v0.37.2** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
-
+每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v1.0.0** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
 
 ## 化学 {/* #family-1 */}
 
@@ -3019,7 +3018,7 @@ const result = await host.mcp("expression", "bgee_species", {})
 
 ### `bgee_expression_calls`
 
-查询单个物种中一个基因的表达存在／缺失判断及标准化表达分数。这是健康野生型基线结果，不是差异表达检验；max_calls 限制返回数量。
+读取一个物种中某基因的 Bgee 表达状态和标准化评分，同时保留解剖结构与细胞类型背景。结果为健康野生型基线表达，可用 `max_calls` 限制数量；缺失或未指定的 `cell_type_id`、`cell_type_name` 返回 `null`，不代表阴性表达。
 
 | 字段 | 类型 | 必填与约束 |
 | --- | --- | --- |
@@ -3631,7 +3630,7 @@ const result = await host.mcp("omics-archives", "arrayexpress_get_experiment_fil
 
 ### `arrayexpress_get_experiment_samples`
 
-获取 ArrayExpress 实验逐样本 SDRF 注释，保留 MAGE-TAB 原始表头，重复列添加序号。无 SDRF 时返回 error 为 no_sdrf。
+读取 ArrayExpress 实验中按路径排序的第一个 SDRF 文件，保留样本、实验与文件之间的关系行。`n_rows_total`／`n_rows_returned` 为行数；`n_samples`／`n_samples_returned` 为去重后的样本标识数，优先 Sample Name，再用 Source Name，不表示独立生物学重复。缺失标识可返回 `null`；无 SDRF 返回 `no_sdrf`，不能据此断定实验没有样本。
 
 | 字段 | 类型 | 要求与约束 |
 | --- | --- | --- |
@@ -3681,7 +3680,7 @@ const result = await host.mcp("omics-archives", "metabolights_list_studies", {})
 
 ### `metabolights_get_studies`
 
-按 MTBLS 登录号获取 MetaboLights 的 ISA 元数据，包括标题、状态、年份、物种、测定、因子、样本数和方案；可附逐样本表。未知或私有项目列入 not_found。
+读取 MetaboLights（MTBLSxxx）的结构化研究元数据，可选返回样本表。样本表按 ISA 列索引排序，重名列用不覆盖原名称的后缀区分，保留各列与值的对应关系；短行补空字符串。未知或私有编号进入 `not_found`。
 
 | 字段 | 类型 | 要求与约束 |
 | --- | --- | --- |
@@ -4489,7 +4488,6 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ```
 
 </ToolOperationGroup>
-
 
 ## 示例响应记录
 

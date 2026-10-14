@@ -1,7 +1,7 @@
 ---
 title: "CLIと構造化された出力"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -13,9 +13,11 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformGuide />
 
+**アプリケーション・アップデートャーは取除かれました:** v1.0.0は`--json`の形態を含む`open-science update`を、もはや受け入れません。 デスクトップの更新制御または元のインストーラ/パッケージマネージャを使用してください。 5 と 6 は、現在の CLI のテーブルの一部ではありません。 [アップグレードガイド](../guides/installation.md#version-compatibility) を参照してください。
+
 ## ターミナルからセットアップ {/* #terminal-setup */}
 
-[公式リリース](https://github.com/aipoch/open-science/releases/tag/v0.37.2)からデスクトップランチャーまたはスタンドアローンCLIアーカイブのいずれかを選択します。 スタンドアローン アーカイブには、CLI、Nodeのランタイム、バックエンド、Web UIが含まれています。 電動機や別途Node/npmツールチェーンは不要です。
+v1.0.0 では、**Settings → General → Command line tool → Install command** を介してデスクトップのアップグレードされたランチャーをインストールし、新しいターミナルを開き、`open-science --help` をチェックします。 スタンドアローンCLIパッケージはありません。 下のアーカイブ抽出手順は、[v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2)などの1つを提供するバージョンのみに適用されます。 1.0のインストールや、デスクトップ/バックエンドのバージョンをミックスする権限はありません。
 
 1. macOS または Linux アーム64/x64 または Windows x64 を選択し、ホストにマッチします。
 2. 完全なアーカイブを書き込み可能な場所に抽出します。 `backend`と`node-runtime`を一緒に保持してください。 起動者のみをコピーすると起動が解除されます。
@@ -210,14 +212,12 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 | 2 | 無効な CLI の使用 |
 | 3 | ローカルデーモンは利用できません |
 | 4 | リクエストされたプロジェクト/実行/セッション/アーティファクト/Specialistが見つかりませんでした |
-| 5 | 活動的な仕事はアプリケーション更新を妨げました |
-| 6 | 適用更新は手動設置ステップを要求します |
 
 `run.progress` と `stream.resync-required` を含むことができます。 再接続後再再生が利用できなくなった場合、権限のある実行状態を再読み込みします。 イベントストリームは永続的な歴史であると仮定しません。 ライフサイクルコマンドは、[ヘッドレスサービス](./server.md) で説明されている別のフラグ制限を持っています。
 
-[CLI実装](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [上流コマンドガイド](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
+[CLI実装](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [上流コマンドガイド](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
-技術的な参照: [CLI契約](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md)。
+技術的な参照: [CLI契約](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md)。
 
 ## 無人走行 {/* #unattended-runs */}
 

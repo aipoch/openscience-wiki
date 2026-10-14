@@ -2,7 +2,7 @@
 title: "Connector Betriebsnummer"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,8 +38,7 @@ Die Namen der Rückgabefelder unterscheiden sich je nach Operation. Die folgende
 
 ## Betriebsinputs {/* #operation-inputs */}
 
-Erweitern Sie einen Connector auf einmal. Erforderliche Felder sind mit **erforderlich** gekennzeichnet; Diese Referenz und Download verwenden Sie das Open-Science **v0.37.2** Schema. Eine verschachtelte `input.required`-Liste ist maßgebend; eine ältere `required`-Liste der obersten Ebene möglicherweise fehlt. Konsultieren Sie den <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">vollständiges herunterladbares Register</ExampleDownload> für verschachtelte JSON-Schemata, vollständige Rückgabebeschreibungen und agentenseitige Anrufbeispiele. Übergeben Sie kein generisches `id`, wenn ein Tool `accessions`, `cids`, `rs_id` oder ein anderes Namespace-spezifisches Feld erwartet.
-
+Erweitern Sie einen Connector auf einmal. Erforderliche Felder sind mit **erforderlich** gekennzeichnet; Diese Referenz und Download verwenden Sie das Open-Science **v1.0.0** Schema. Eine verschachtelte `input.required`-Liste ist maßgebend; eine ältere `required`-Liste der obersten Ebene möglicherweise fehlt. Konsultieren Sie den <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">vollständiges herunterladbares Register</ExampleDownload> für verschachtelte JSON-Schemata, vollständige Rückgabebeschreibungen und agentenseitige Anrufbeispiele. Übergeben Sie kein generisches `id`, wenn ein Tool `accessions`, `cids`, `rs_id` oder ein anderes Namespace-spezifisches Feld erwartet.
 
 ## Chemie {/* #family-1 */}
 
@@ -3017,7 +3016,7 @@ const result = await host.mcp("expression", "bgee_species", {})
 
 ### `bgee_expression_calls` {/* #bgee_expression_calls */}
 
-Abrufen von Bgee vorhandenen/abwesenden Expressionsaufrufen und normalisierten Expressionswerten für ein Gen in einer Spezies. Die Ergebnisse sind gesunde Wildtyp-Baseline-Aufrufe und können mit max_calls gedeckelt werden.
+Abrufen von vorhandenen/abwesenden Expressionsaufrufen von Bgee und normalisierte Expressionsergebnisse für ein Gen in einer Spezies, wobei der anatomische Entitäts- und Zelltypkontext erhalten bleibt. Die Ergebnisse sind gesunde Wildtyp-Baseline-Aufrufe und können mit max_calls gedeckelt werden. Fehlende oder nicht spezifizierte Zelltypen werden als Null zurückgegeben.
 
 | Feld | Typ | Anforderungen und Beschränkungen |
 | --- | --- | --- |
@@ -3629,7 +3628,7 @@ const result = await host.mcp("omics-archives", "arrayexpress_get_experiment_fil
 
 ### `arrayexpress_get_experiment_samples` {/* #arrayexpress_get_experiment_samples */}
 
-Suchen Sie nach SDRF-Annotationszeilen pro Stichprobe für ein ArrayExpress-Experiment (MAGE-TAB-Header verbatim, wiederholt mit #2/#3). Experimente ohne SDRF geben &#123;"error" zurück:"no_sdrf"&#125;.
+Suchen Sie Beziehungszeilen aus der ersten SDRF-Datei, sortiert nach Pfad für ein ArrayExpress-Experiment, wobei jede Sample/Assay/Datei-Beziehung in dieser Datei erhalten bleibt (beschnittene MAGE-TAB-Header, Wiederholungen mit #2/#3). Zählen Sie verschiedene benannte Proben- / Quellenkennungen, nicht unabhängige biologische Replikate, wobei Sie den Probennamen anstelle des Quellennamens verwenden. Experimente ohne SDRF geben `{"error":"no_sdrf"}` zurück.
 
 | Feld | Typ | Anforderungen und Beschränkungen |
 | --- | --- | --- |
@@ -3679,7 +3678,7 @@ const result = await host.mcp("omics-archives", "metabolights_list_studies", {})
 
 ### `metabolights_get_studies` {/* #metabolights_get_studies */}
 
-Strukturierte Metadaten für MetaboLights-Studien (MTBLSxxx) aus der analysierten ISA-Nutzlast abrufen — Titel, Status, Jahre, Organismen, Assays, Faktoren, Deskriptoren, Probenzahl, Protokolle; fakultative Tabelle je Stichprobe. Unbekannte / private Accessions gehen in not_found.
+Strukturierte Metadaten für MetaboLights-Studien (MTBLSxxx) aus der analysierten ISA-Nutzlast abrufen — Titel, Status, Jahre, Organismen, Assays, Faktoren, Deskriptoren, Probenzahl, Protokolle; fakultative Tabelle für jede Stichprobe mit eindeutigen Spaltenschlüsseln, wobei die Reihenfolge und die Zuordnung der ISA-Spalten beibehalten werden. Unbekannte / private Accessions gehen in not_found.
 
 | Feld | Typ | Anforderungen und Beschränkungen |
 | --- | --- | --- |
@@ -4487,7 +4486,6 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ```
 
 </ToolOperationGroup>
-
 
 ## Beispiel-Antwortdaten {/* #example-response-records */}
 

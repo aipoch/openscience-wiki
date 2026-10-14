@@ -1,7 +1,7 @@
 ---
 title: "Períodos de sesiones y ramas"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -55,8 +55,6 @@ Las acciones indisponibles son deshabilitadas para el estado actual. Una sesión
 | Exportar conversación… | Exportar la conversación a través del formato ofrecido/opciones | La exportación de la transcripción es distinta de un paquete de artefacto/Notebook |
 | Archivo | Ocultar la sesión de navegación activa | Queda recuperable en Ajustes → Archivado |
 | Eliminar | Abra una confirmación de eliminación permanente | Lea exactamente qué datos se afectan; Cancela las conservas |
-
-
 
 ## Branch after a completed result {/* #branch-after-a-completed-result */}
 
@@ -171,7 +169,6 @@ En el proyecto GSE60450, marque la sesión QC existente y abra el `gse60450-qc-s
 
 Seleccione el título de sesión para ver su número, descripción, fuente, tiempos de creación/actualización, recuento de mensajes para el recuento actual de rama y artefacto. Utilice **Pin** para mantener la sesión fácil de encontrar, o **Editar sesión** para cambiar su título y descripción. Un separador **Continuación de una conversación** se vincula de nuevo a la fuente registrada.
 
-
 ## Diagnóstico de la sesión de exportación {/* #session-diagnostics */}
 
 Utilice **Session actions → Export → Export diagnostics…** en el encabezado, o el submenú **Export** correspondiente en la fila de sesión, para recoger fuentes de diagnóstico seleccionadas en un archivo local. Los registros de aplicaciones pueden incluir metadatos fuera de la sesión seleccionada. Revise la lista de fuentes, el mensaje de terminación y el contenido de archivo antes de compartir; ver [Medidas de exportación de diagnóstico](troubleshooting.md#session-diagnostics).
@@ -179,3 +176,7 @@ Utilice **Session actions → Export → Export diagnostics…** en el encabezad
 ## Replay o discuta el trabajo grabado {/* #replay-session */}
 
 Elija **View replay** del menú de filas de sesión para pasar por la conversación grabada, la actividad Notebook y las versiones de archivos guardadas. **Discuss** inicia una conversación separada vinculada a esa investigación. Las sesiones importadas también exponen ambas acciones al lado de su solo aviso de lectura. Siga [Repetición de sesión](session-replay.md) para la reproducción, inspección de fuentes y una discusión trabajada.
+
+## Continuar después de cambiar el agente o reconectar {/* #resume-selected-agent */}
+
+Antes de enviar el siguiente turno, compruebe el agente/Specialist seleccionado y el modelo. v1.0.0 restaura las conversaciones ACP con el agente seleccionado y repara la continuación Codex despreocupada después de los interruptores Specialist. Reabrir la conversación original e inspeccionar sus mensajes guardados más recientes y ejecutar estado después de la reconexión. No reenviar una escritura simplemente porque su respuesta fue interrumpida; confirmar si se completó primero. Cambiar un agente o recuperar una conexión no es evidencia de que un análisis fallido anterior tuvo éxito.

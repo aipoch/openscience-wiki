@@ -2,7 +2,7 @@
 title: PDF 批注与文档笔记
 description: 标记文献段落，整理阅读笔记，搜索返回原文，并导出带批注的阅读副本。
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,3 +72,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 在另一项目打开同一份 PDF 后，进入 **Notes & Annotations** 检查原有笔记，再使用 **Show annotation source** 核对所在页及原文。如果笔记没有出现，先确认是否打开了相同内容的版本，以及文件是否仍可读取。
 
 这些笔记保存在本机，不会跨设备同步。交接时导出笔记或带批注 PDF，并检查接收者实际拿到的内容。这不会改变私人会话书签的规则，也不代表所有阅读笔记都会包含在 [.science 研究包](research-packages.md)中。
+
+## 按需显示笔记入口 {/* #reveal-note */}
+
+v1.0.0 中，选中、悬停或聚焦已保存的标记时才显示 **Annotation note** 按钮。先点选高亮或区域，再打开笔记按钮阅读或编辑评论。按钮暂时隐藏不代表笔记被删除。需要浏览全部笔记时用 **Show notes sidebar** 或 **Notes & Annotations**，再用 **Show annotation source** 返回标记位置。

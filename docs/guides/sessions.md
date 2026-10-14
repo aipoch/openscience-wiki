@@ -1,7 +1,7 @@
 ---
 title: "Sessions and branches"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -55,8 +55,6 @@ Unavailable actions are disabled for the current state. A read-only imported ses
 | Export conversation… | Export the conversation through the offered format/options | Transcript export is distinct from an artifact/Notebook bundle |
 | Archive | Hide the session from active navigation | It remains recoverable in Settings → Archived |
 | Delete | Open a permanent-deletion confirmation | Read exactly which data is affected; Cancel preserves it |
-
-
 
 ## Branch after a completed result
 
@@ -171,7 +169,6 @@ In the GSE60450 project, fork the existing QC session and open the inherited `gs
 
 Select the session title to see its number, description, source, creation/update times, message count for the current branch and artifact count. Use **Pin** to keep the session easy to find, or **Edit session** to change its title and description. A **Continued from chat** divider links back to the recorded source turn.
 
-
 ## Export session diagnostics {/* #session-diagnostics */}
 
 Use **Session actions → Export → Export diagnostics…** in the header, or the corresponding **Export** submenu on the session row, to collect selected diagnostic sources in a local archive. Application logs can include metadata outside the selected session. Review the source list, completion message and archive contents before sharing; see [diagnostic export steps](troubleshooting.md#session-diagnostics).
@@ -179,3 +176,7 @@ Use **Session actions → Export → Export diagnostics…** in the header, or t
 ## Replay or discuss recorded work {/* #replay-session */}
 
 Choose **View replay** from the session row menu to step through the recorded conversation, Notebook activity and saved file versions. **Discuss** starts a separate conversation linked to that research. Imported sessions also expose both actions beside their read-only notice. Follow [Session replay](session-replay.md) for playback, source inspection and a worked discussion.
+
+## Continue after changing the agent or reconnecting {/* #resume-selected-agent */}
+
+Before sending the next turn, check the selected Agent/Specialist and model. v1.0.0 restores ACP conversations with the selected agent and repairs detached Codex continuation after Specialist switches. Reopen the original conversation and inspect its latest saved messages and run state after reconnection. Do not resend a write simply because its response was interrupted; confirm whether it completed first. Changing an agent or recovering a connection is not evidence that a previous failed analysis succeeded.

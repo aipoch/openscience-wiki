@@ -1,7 +1,7 @@
 ---
 title: "会话与分支"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -55,8 +55,6 @@ GSE60450 实际运行完成后，通过 **Edit…** 保存了以下内容：
 | Export conversation… | 按界面选项导出对话 | 不等于产物或 Notebook 打包 |
 | Archive | 从活跃导航中隐藏 | 可在 Settings → Archived 恢复 |
 | Delete | 打开永久删除确认 | 阅读影响范围；Cancel 保留数据 |
-
-
 
 ## 从完成结果创建分支
 
@@ -171,7 +169,6 @@ Fork 目前在桌面端提供。导入会话仍为只读，应在其副本中继
 
 点击会话标题，查看编号、描述、来源、创建与更新时间、当前分支消息数及文件数。使用 **Pin** 固定会话，或通过 **Edit session** 修改标题和描述。**Continued from chat** 分隔条可返回记录的来源消息。
 
-
 ## 导出会话诊断 {/* #session-diagnostics */}
 
 使用会话顶部的 **Session actions → Export → Export diagnostics…**，或侧栏会话行的对应 **Export** 子菜单，将所选诊断来源收集到本地归档。应用日志可能包含所选会话之外的元数据，分享前检查来源列表、完成提示和归档内容，见[诊断导出步骤](troubleshooting.md#session-diagnostics)。
@@ -179,3 +176,7 @@ Fork 目前在桌面端提供。导入会话仍为只读，应在其副本中继
 ## 回放或讨论已有研究 {/* #replay-session */}
 
 在会话行菜单选择 **View replay**，逐步查看已有对话、Notebook 活动和保存的文件版本。**Discuss** 在另一会话中引用这项研究。导入会话的只读提示旁也有这两个入口。播放、来源检查和讨论案例见[会话回放](session-replay.md)。
+
+## 切换代理或重连后继续 {/* #resume-selected-agent */}
+
+发送下一条消息前，检查当前 Agent／Specialist 和模型。v1.0.0 按已选代理恢复 ACP 会话，并修复切换 Specialist 后 Codex 会话脱离导致的继续问题。重连后打开原会话，核对最后保存的消息和运行状态；响应中断时先确认原写入是否完成，不要直接重复提交。切换代理或恢复连接不表示之前失败的分析已经成功。

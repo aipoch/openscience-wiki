@@ -1,7 +1,7 @@
 ---
 title: "Headless service and browser access"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 # Headless service and browser access
@@ -99,16 +99,20 @@ Closing a window can differ from quitting the app, especially when it remains in
 
 A disconnected desktop offers **Reconnect** and **Quit app**. Reconnect refreshes the original live backend and does not resubmit work; if that backend is gone, quit and reopen. A disconnected Quit may close only the client, so inspect the selected profile's status before assuming the service stopped. Follow [connection recovery](../guides/troubleshooting.md#connection-recovery), including checking operations whose responses were lost.
 
+### Reconnect after an interrupted desktop shutdown {/* #desktop-service-recovery */}
+
+If the desktop exits unexpectedly while its backend survives, reopening a same-version desktop can adopt that desktop-launched service after the old controller and teardown settle. A CLI-launched service remains borrowed; ordinary desktop Quit does not stop it merely because the desktop reconnected.
+
+If quit preparation fails, the window stays open. Read the notice, preserve unsaved work and wait for the conversation to recover before checking the original run and files. An open window does not mean the task was cancelled. If startup reports an older standalone service blocking it, check the profile and version before choosing the explicit stop action. Cancel leaves that service running; a failed stop can be retried or rechecked without deleting lock files.
+
 ## Application update behavior
 
-Desktop native updates and standalone package updates use different paths. An ordinary Node backend cannot replace the desktop installer; its `update --json` reports a manual update requirement and `package-manager` mode. Follow the returned instructions.
+v1.0.0 removes the CLI application updater; do not use `open-science update --json`. Use the desktop update controls or the original installer/package manager, observing [current release availability](../guides/installation.md#standalone-cli).
 
-- **Desktop app:** use its in-app updater. If it is attached to a backend previously started by the CLI, finish work and stop that backend before updating the desktop.
-- **Standalone CLI archive:** finish work, stop the intended backend, extract the new release into a new directory, retain your configuration data, and update the launcher or PATH. Do not overwrite the running package.
-- **Homebrew CLI or Linux CLI package:** finish work and stop every profile using that installation, then follow the [package update instructions](../guides/installation.md#standalone-cli). Keep using the same configuration directory afterward.
+- **Desktop app:** finish active research before checking updates. If updating while attached to a CLI service asks to stop it and switch to desktop management, check the profile and affected tasks before consenting. Cancel leaves the original service running. This switch does not upgrade the original standalone CLI program files.
+- **Standalone CLI installation:** stop every profile using it, then install an actually published package through its original channel. Do not overwrite running files or reopen a profile with an old backend after a newer desktop has written to it.
+- **Occupancy or recovery notice:** follow the displayed checks for active instances and installation state. Do not delete locks, configuration or recovery records to force an update when shutdown is uncertain.
 
-- **npm installation:** update the corresponding package through npm and confirm client/backend compatibility.
+After upgrading, confirm the version and original data, then use `status --json` and `doctor --json` to inspect service state and readiness. Preserve the credential-store mode. [1.x compatibility](../guides/installation.md#version-compatibility) does not promise mixed desktop/backend versions.
 
-Restart, then use `status --json` and `doctor --json` to confirm the version, configuration directory and readiness. Preserve the existing credential-store mode; do not delete credentials or configuration to perform an update.
-
-See the [official standalone runtime guide](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md), [CLI](cli.md) and [Task SDK](api.md).
+See the [official runtime guide](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md), [CLI](cli.md) and [Task SDK](api.md).

@@ -1,7 +1,7 @@
 ---
 title: "安装与更新"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -11,6 +11,8 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 普通用户应优先使用 GitHub Releases 提供的桌面安装包。贡献者或需要调试最新版功能的用户可以从源码启动。Open-Science 的 Electron 桌面客户端连接共享 Node 后端，后端也提供经过认证的本地浏览器界面。
 
 <PlatformGuide />
+
+**v1.0.0 发布范围：** [本次发行页](https://github.com/aipoch/open-science/releases/tag/v1.0.0)仅提供桌面安装包，不包含独立 CLI 压缩包或 Linux CLI `.deb`／`.rpm`。从该页下载并对照同页的 `SHA256SUMS.txt` 校验；网站下载和自动更新通道单独发布，检查结果可能暂未显示 1.0。已有桌面安装可继续使用 **Settings → General → Command line tool → Install command**。
 
 ## 选择安装方式
 
@@ -65,7 +67,7 @@ Homebrew 自动选择 Apple Silicon 或 Intel。安装后在 **Settings → Gene
 | Ubuntu / Debian | `uname -m`：`x86_64` 对应 x64，`aarch64` 对应 ARM64 | 选择匹配的 `.deb`，用系统软件安装器打开，再从应用菜单启动 |
 | 其他受支持的 Linux 发行版 | 查看 `uname -m` | 选择匹配的 `.AppImage`，在文件权限中允许执行，再打开；若系统提示缺少依赖，按报错补齐 |
 
-v0.34.0 提供 Linux **x64 和 ARM64** 安装包。ARM64 选择 `aipoch-open-science-0.34.0-linux-arm64.AppImage` 或 `aipoch-open-science_0.34.0_arm64.deb`；x64 对应 `aipoch-open-science-0.34.0-linux-x86_64.AppImage` 或 `aipoch-open-science_0.34.0_amd64.deb`。从所选版本的官方 Assets 下载，与 `uname -m` 的结果对应。
+v1.0.0 提供 Linux **x64 和 ARM64** 安装包。ARM64 选择 `aipoch-open-science-1.0.0-linux-arm64.AppImage` 或 `aipoch-open-science_1.0.0_arm64.deb`；x64 对应 `aipoch-open-science-1.0.0-linux-x86_64.AppImage` 或 `aipoch-open-science_1.0.0_amd64.deb`。从所选版本的官方 Assets 下载，与 `uname -m` 的结果对应。
 
 </PlatformContent>
 
@@ -73,15 +75,15 @@ v0.34.0 提供 Linux **x64 和 ARM64** 安装包。ARM64 选择 `aipoch-open-sci
 
 ### 使用独立 CLI {/* #standalone-cli */}
 
-无需桌面窗口时，可从[官方发行版](https://github.com/aipoch/open-science/releases/tag/v0.37.2)下载对应平台的独立 CLI 压缩包。它自带 Node、后端与 Web UI，完整解压后即可运行。按 [CLI 首次设置](../reference/cli.md#terminal-setup)启动、配置模型并检查就绪状态；已有桌面用户仍可使用 **Settings → General → Install command**。
+**以下独立包步骤适用于提供这些文件的历史版本，例如 [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2)，不是 v1.0.0 的安装包。** 仅在有意使用该版本时下载；保持桌面与后端版本匹配，不要让旧后端直接打开由新版写入的数据。需要 1.0 命令行入口时，使用其桌面附带的启动器，再按 [CLI 首次设置](../reference/cli.md#terminal-setup)操作。
 
 #### Homebrew CLI {/* #homebrew-cli */}
 
-在 macOS 或 Linux 上，用 `brew install aipoch/tap/open-science` 安装 CLI formula，与桌面版 cask 分开。它包含 Node 和本地 Web UI，安装不会启动服务。若其他安装已占用 `open-science`，先用 `type -a open-science` 检查，再通过 `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"` 调用，不要覆盖另一套安装的命令链接。
+已有 Homebrew CLI 可通过原来的 formula 管理：`brew install aipoch/tap/open-science`，与桌面 cask 不同。先查看 Homebrew 实际提供的版本，不要由 GitHub 已发布 1.0 推断 formula 已更新。安装不会启动系统服务。命令冲突时用 `type -a open-science` 检查，并使用 `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"` 指定该安装。
 
 #### Linux CLI 安装包 {/* #linux-cli-packages */}
 
-需要终端／浏览器入口时，选择 **open-science-cli**，桌面安装包则是 **aipoch-open-science**。从同一发行页下载对应安装包和 `CLI-PACKAGE-SHA256SUMS.txt`，核对文件的 SHA256 校验值。
+下表保留 **v0.37.2** 的 Linux CLI 安装方法；v1.0.0 没有发布这些 CLI 安装包。`open-science-cli` 与桌面包 `aipoch-open-science` 不同。需要此旧版时，从 [v0.37.2 Assets](https://github.com/aipoch/open-science/releases/tag/v0.37.2) 下载对应文件及 `CLI-PACKAGE-SHA256SUMS.txt`，先校验再安装。
 
 | 发行版／架构 | v0.37.2 CLI 安装包 |
 | --- | --- |
@@ -109,7 +111,7 @@ sudo dnf install ./open-science-cli-0.37.2-1.x86_64.rpm
 
 要求：Git、Node.js 24、npm，以及 Electron 在当前平台的构建前提。代理框架可在应用中安装或选择。仓库会在安装阶段生成 Prisma Client、应用补丁并准备 Electron 原生依赖。
 
-需要复现源码安装时，先从 [Changelog](../changelog/v0.37.2.md) 确定目标发布标签，再安装依赖。默认克隆跟随分支，不会固定到某个发布版本。记录所选标签、源码提交及运行时版本，便于他人复现环境。
+需要复现源码安装时，先从 [Changelog](../changelog/v1.0.0.md) 确定目标发布标签，再安装依赖。默认克隆跟随分支，不会固定到某个发布版本。记录所选标签、源码提交及运行时版本，便于他人复现环境。
 
 将下方 `RELEASE_TAG` 替换为所选发行页的完整标签（包括开头的 `v`）。如果需要跟随开发分支，省略 `--branch RELEASE_TAG --depth 1`；这条路线会使用默认分支。
 
@@ -126,7 +128,7 @@ npm run dev
 npm run build
 ```
 
-构建目标与依赖应以所选标签的 package.json 和[独立运行说明](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md)为准。仅开发 Node 与 Web 入口可使用 `npm run dev:web`；`npm run dev` 同时准备桌面客户端。使用独立配置目录，避免测试数据进入日常配置。
+构建目标与依赖应以所选标签的 package.json 和[独立运行说明](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md)为准。仅开发 Node 与 Web 入口可使用 `npm run dev:web`；`npm run dev` 同时准备桌面客户端。使用独立配置目录，避免测试数据进入日常配置。
 
 ## 完成首次配置
 
@@ -154,6 +156,8 @@ npm run build
 
 在 **Settings → General → About** 检查安装版本，点击 **Check now** 查询更新。安装前确认目标版本并完成正在运行的任务。源码开发版与打包安装版的更新表现可能不同。更新前保留重要输出的导出副本，不要手动重命名应用内部数据目录。
 
+从 1.0 起，`open-science update` 已移除。应用更新使用桌面提供的更新控件或官方安装包；CLI 安装通过原安装器或包管理器更新。发布页有新版而 **Check now** 暂未显示时，直接核对官方发行页，不要删除配置或反复重置应用。
+
 <PlatformContent platform="macos">
 
 出现 **Install Open-Science before updating** 时，应用正在只读位置运行。选择 **Install in Applications**，或通过 Finder 将应用移入 Applications。安装完成后使用 **Restart**，或退出当前副本、从 Applications 重新打开，再检查更新。**Continue using** 只会继续使用当前副本，不会让该位置变为可更新。安装失败时先按显示的错误处理。
@@ -179,3 +183,11 @@ npm run build
 ## v0.31.0 之后的产品名称 {/* #product-name */}
 
 当前界面和新安装包统一使用 **Open-Science**。升级会保留已有安装名称与位置、研究数据、凭据和设置。旧安装路径仍包含 `Open Science`，本身不代表升级失败；不要为了匹配新的显示名称而重命名或移动数据目录。
+
+## 升级到 1.0 与兼容范围 {/* #version-compatibility */}
+
+1. 结束活动研究，备份配置目录以及另行设置的数据位置；只导出一个 `.science` 包不等于备份整个配置。
+2. 关闭使用同一安装的桌面与后端实例，再通过官方安装器完成升级。保留原配置、数据和系统凭据存储。
+3. 重新打开，确认版本、项目、会话、文件、模型和运行环境，再继续工作。降级程序不会回滚数据；旧程序未必能读取新版保存的数据。
+
+1.0 沿用现有历史数据升级和导入路径，不因版本号变化要求清空配置。官方 [1.x 兼容政策](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md)覆盖已记录的 CLI／SDK、Task 自动化接口、有效 `.science` 包的向前导入，以及受支持的配置升级。它不保证模型回答、外部数据库可用性或整段科研会话的确定性复现，也不承诺跨平台迁移系统保护的凭据。安全修复面向最新稳定版。

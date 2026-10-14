@@ -1,7 +1,7 @@
 ---
 title: "설치 및 업데이트"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -11,6 +11,8 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 대부분의 사용자는 GitHub 릴리스에서 데스크탑 패키지를 설치해야 합니다. 기여자 또는 최신 코드를 테스트하는 사람이 소스에서 앱을 실행할 수 있습니다. Electron 데스크톱 클라이언트는 공용 Node 백엔드에 연결하여 정통 로컬 브라우저 인터페이스를 제공합니다.
 
 <PlatformGuide />
+
+**v1.0.0 가용성:** [이 릴리스](https://github.com/aipoch/open-science/releases/tag/v1.0.0)는 독립 CLI 아카이브 또는 Linux CLI `.deb`/`.rpm` 패키지없이 데스크탑 패키지 만 포함되어 있습니다. 그 페이지에서 다운로드하고 `SHA256SUMS.txt`에 대해 확인. 웹 사이트 다운로드 및 자동 업데이트 채널은 별도로 홍보됩니다, 그래서 체크는 아직 1.0을 제공 할 수 없습니다. 데스크톱 설치는 여전히 **Settings → General → Command line tool → Install command**을 제공합니다.
 
 ## 설치방법 선택 {/* #choose-an-installation-method */}
 
@@ -65,7 +67,7 @@ Homebrew는 Apple Silicon 또는 Intel을 자동으로 선택합니다. 설치 �
 | 우분투 / 데비안 | `uname -m`: `x86_64` x64를 의미한다. `aarch64` 의미 ARM64 | 일치하는 것을 선택하십시오 `.deb`, 시스템 패키지 설치자와 함께, 다음 응용 프로그램 메뉴에서 실행 |
 | 다른 지원되는 Linux 배급 | 【특전】 `uname -m` | 일치하는 것을 선택하십시오 `.AppImage`, 파일의 권한에서 실행을 허용, 다음 그것을 엽니 다; 배포에 의해보고 된 모든 의존성 오류를 해결 |
 
-v0.34.0는 Linux **x64와 ARM64** 패키지를 제공합니다. ARM64의 경우 `aipoch-open-science-0.34.0-linux-arm64.AppImage` 또는 `aipoch-open-science_0.34.0_arm64.deb`을 선택하십시오. x64는 `aipoch-open-science-0.34.0-linux-x86_64.AppImage` 및 `aipoch-open-science_0.34.0_amd64.deb`입니다. 선택한 릴리스의 공식 자산에서 다운로드하고 `uname -m`의 결과를 일치합니다.
+v1.0.0는 Linux **x64와 ARM64** 패키지를 제공합니다. ARM64의 경우 `aipoch-open-science-1.0.0-linux-arm64.AppImage` 또는 `aipoch-open-science_1.0.0_arm64.deb`을 선택하십시오. x64는 `aipoch-open-science-1.0.0-linux-x86_64.AppImage` 및 `aipoch-open-science_1.0.0_amd64.deb`입니다. 선택한 릴리스의 공식 자산에서 다운로드하고 `uname -m`의 결과를 일치합니다.
 
 </PlatformContent>
 
@@ -73,15 +75,15 @@ v0.34.0는 Linux **x64와 ARM64** 패키지를 제공합니다. ARM64의 경우 
 
 ### 독립 CLI 사용 {/* #standalone-cli */}
 
-데스크톱 창없이 작동하려면 [공식 출시](https://github.com/aipoch/open-science/releases/tag/v0.37.2)에서 일치 독립 CLI 아카이브를 다운로드하십시오. 그것은 Node, 백엔드 및 웹 UI를 묶습니다. 완전한 디렉토리를 추출 한 다음 [CLI 설정](../reference/cli.md#terminal-setup)을 따르고 모델을 구성하고 readiness를 확인합니다. 데스크톱 사용자는 여전히 **Settings → General → Install command**을 사용할 수 있습니다.
+**아래 독립 포장 단계는 실제로 그(것)들을 발송하는 방출에 적용합니다 [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2), v1.0.0 자산에 아닙니다.** 이전 릴리스 만 deliberately 사용. 데스크탑/백엔드 버전이 일치하고 더 새로운 앱에 의해 작성된 데이터에서 이전 백엔드를 지적하지 마십시오. 1.0 명령행 항목의 경우, 데스크톱 앱에서 제공하는 발사기를 설치하고 [CLI 설정](../reference/cli.md#terminal-setup)을 따르십시오.
 
 #### 홈 양조장 CLI {/* #homebrew-cli */}
 
-macOS 또는 Linux에서 `brew install aipoch/tap/open-science`로 CLI 공식을 설치하십시오. 이것은 데스크탑 케이스에서 분리됩니다. 그것은 Node과 로컬 웹 UI를 포함합니다; 설치는 서비스를 시작하지 않습니다. 또 다른 발사자가 `open-science`을 소유하면 `type -a open-science`을 검사하고 다른 설치 링크 대신 `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"`를 사용합니다.
+기존의 Homebrew CLI 설치는 데스크톱 케이스에서 `brew install aipoch/tap/open-science`을 통해 관리됩니다. 실제로 Homebrew에서 제공하는 버전을 확인; GitHub의 1.0의 출판은 공식이 고급임을 설정하지 않습니다. 설치는 시스템 서비스를 시작하지 않습니다. 발사자 충돌이면 `type -a open-science`을 검사하고 그 설치를 위해 `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"`을 사용하십시오.
 
 #### Linux CLI 패키지 {/* #linux-cli-packages */}
 
-맨끝/브로셔 임명을 위해, **개방 과학 - cli**를, **aipoch-open-과학** 탁상용 포장 아닙니다 선택합니다. 동일한 릴리스에서 일치하는 자산과 `CLI-PACKAGE-SHA256SUMS.txt`을 다운로드 한 다음 SHA256 체크섬을 비교하십시오.
+이 테이블은 **v0.37.2** Linux CLI 설치 방법을 유지합니다; v1.0.0은 이러한 CLI 패키지를 게시하지 않습니다. `open-science-cli`는 `aipoch-open-science` 데스크탑 패키지에서 분리됩니다. 이전 버전이 필요하면 [v0.37.2 자산](https://github.com/aipoch/open-science/releases/tag/v0.37.2)에서 자산과 `CLI-PACKAGE-SHA256SUMS.txt`을 얻을 수 있으며 설치하기 전에 확인합니다.
 
 | 유통/건축 | v0.37.2 CLI 자산 |
 | --- | --- |
@@ -109,7 +111,7 @@ sudo dnf install ./open-science-cli-0.37.2-1.x86_64.rpm
 
 당신은 Git, Node.js 24, npm 및 Electron에 대한 플랫폼 빌드 prerequisites가 필요합니다. 응용 프로그램에서 에이전트 프레임 워크를 설치 또는 선택. 설치 중에 저장소는 Prisma Client를 생성하고 앱 패치를 적용하고 Electron native Dependencies를 준비합니다.
 
-재현 가능한 소스 설치를 위해, 의존성을 설치하기 전에 [관련 링크](../changelog/v0.37.2.md)에서 의도한 릴리스 태그를 선택하십시오. 기본적으로 clone은 고정 릴리스보다는 분기를 따릅니다. 선택된 태그, 소스 커밋 및 런타임 버전을 기록하므로 다른 사람이 환경을 재현 할 수 있습니다.
+재현 가능한 소스 설치를 위해, 의존성을 설치하기 전에 [관련 링크](../changelog/v1.0.0.md)에서 의도한 릴리스 태그를 선택하십시오. 기본적으로 clone은 고정 릴리스보다는 분기를 따릅니다. 선택된 태그, 소스 커밋 및 런타임 버전을 기록하므로 다른 사람이 환경을 재현 할 수 있습니다.
 
 선택된 릴리즈에 표시된 정확한 태그로 아래 `RELEASE_TAG`을 대체하십시오. (`v`)를 포함합니다. 지속적인 개발을 따르기 위하여 대신, omit `--branch RELEASE_TAG --depth 1`; 체크 아웃은 기본 지점을 따라합니다.
 
@@ -126,7 +128,7 @@ npm run dev
 npm run build
 ```
 
-선택한 태그의 package.json 및 [독립 실행 시간 안내](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md)을 사용하여 빌드 대상과 종속성을 제공합니다. `npm run dev:web`는 Node/Web 항목 포인트를 개발; `npm run dev`은 데스크톱 클라이언트를 준비합니다. 격리된 구성 디렉토리를 사용하여 테스트 데이터를 분리합니다.
+선택한 태그의 package.json 및 [독립 실행 시간 안내](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md)을 사용하여 빌드 대상과 종속성을 제공합니다. `npm run dev:web`는 Node/Web 항목 포인트를 개발; `npm run dev`은 데스크톱 클라이언트를 준비합니다. 격리된 구성 디렉토리를 사용하여 테스트 데이터를 분리합니다.
 
 ## 첫 번째 시간 설정 완료 {/* #complete-first-time-setup */}
 
@@ -151,6 +153,8 @@ npm run build
 ## 자주 묻는 질문 {/* #choose-a-reproducible-version-and-update-deliberately */}
 
 **Settings → General → About**에서 설치 된 버전을 읽고 **Check now**을 사용하여 업데이트 가용성을 확인하십시오. 설치하기 전에 나열된 버전을 검사하고 활성 작업을 먼저 완료합니다. 개발 소스 빌드는 패키지 설치에서 다르게 업데이트 할 수 있습니다. 갱신의 앞에 중요한 수출한 결과의 사본을 지키십시오; 애플리케이션의 내부 데이터 디렉토리를 변경하지 마십시오.
+
+1.0에서 `open-science update`이 제거됩니다. 데스크톱 컨트롤 또는 공식 설치 프로그램을 통해 앱을 업데이트하고, 설치자 / 패키지 관리자를 통해 CLI 설치를 업데이트하십시오. **Check now**이 아직 공개된 릴리스를 제공하지 않는 경우, 공식 릴리스 페이지를 확인하십시오. 구성을 삭제하거나 앱을 재설정하지 않습니다 업데이트 채널.
 
 <PlatformContent platform="macos">
 
@@ -177,3 +181,11 @@ Reinstalling은 기존 데이터를 유지합니다. 데이터 문제 후 신선
 ## v0.31.0 후에 제품 naming {/* #product-name */}
 
 현재 인터페이스 및 새로운 패키지 사용 **Open-Science** 지속적으로. Upgrading는 기존의 설치 이름과 위치, 연구 자료, 자격 및 설정을 보존합니다. `Open Science`을 포함하는 오래된 임명 경로는 격상 실패 자체에 의해 아닙니다; 새 디스플레이 이름과 일치하는 데이터 폴더를 변경하지 마십시오.
+
+## 1.0로 업그레이드하고 호환성을 이해 {/* #version-compatibility */}
+
+1. 구성 디렉토리를 다시 완료하고 별도로 구성 된 데이터 위치. 하나의 `.science` 수출은 전체 프로필의 백업이 아닙니다.
+2. 설치를 사용하여 데스크톱 / 백엔드 인스턴스를 닫고, 공식 설치 프로그램을 통해 업그레이드합니다. 원본 프로파일, 데이터 및 OS 자격 저장을 보존합니다.
+3. 오픈 및 버전, 프로젝트, 세션, 파일, 모델 및 런타임을 계속 확인하십시오. 이진 downgrade는 뒤 자료를 구하지 않습니다; 이전의 binaries는 더 새로운 저장된 데이터를 읽지 않을 수 있습니다.
+
+1.0은 기존의 역사적인 업그레이드 및 수입 경로 유지; 버전 번호는 프로파일 재설정이 필요하지 않습니다. [1.x 호환성 정책](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md)은 CLI/SDK 및 작업 자동화 인터페이스를 문서화하고, 유효한 `.science` 패키지의 앞으로 수입 및 지원된 프로파일 업그레이드를 포함합니다. OS-protected credentials의 동일한 모형 대답, 제3자 가용성 또는 deterministic 재생산을 보장하지 않습니다, 또는 OS-protected credentials의 교차 플랫폼 이동. Security Fixes는 최신 안정된 릴리스를 목표로 합니다.

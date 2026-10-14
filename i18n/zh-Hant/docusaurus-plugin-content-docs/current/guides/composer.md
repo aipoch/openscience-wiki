@@ -1,7 +1,7 @@
 ---
 title: "對話與排隊請求"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-14'
 ---
 
 # 對話與排隊請求 {/* #对话与排队请求 */}
@@ -138,3 +138,11 @@ original column-name mapping in the CSV/report.
 ## 拖拽檔案建立引用 {/* #drag-file-mention */}
 
 從 **Files** 拖動檔案卡片，或把已開啟產物的檔案標題拖入 Composer。確認草稿中出現了正確檔案的引用，補充問題後再傳送。拖入只會新增草稿上下文，不會直接發起請求；新會話也可從 Files 面板引用檔案。傳送前核對專案與檔案。
+
+## 回答澄清問題 {/* #clarification-questions */}
+
+Agent 顯示問題卡片時，先確認提問者和所需選擇。多選卡片會顯示 **Select one or more options**：選中所有適用項，再點一次可取消；選項較多時在卡片內滾動檢視。
+
+需要其他回答時用 **Type your own answer**；希望 Agent 決定時選 **Let the agent decide**；不回答則選 **Skip**。自行輸入會替代選項選擇。多道問題用 **Next** 和 **Back** 前後檢查，最後點選 **Finish** 提交。僅選中選項會儲存草稿，不代表已經完成回答；等待卡片結束、任務繼續後再判斷是否需要補充。
+
+問題卡片用於澄清研究需求，不等於授予工具權限，也不替代單獨的 Plan 批准。

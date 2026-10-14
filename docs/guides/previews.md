@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -244,3 +244,5 @@ Open **Full-text translation** in the PDF toolbar to prepare text, choose a supp
 After **Analyze PDF**, open a figure and table alongside the original page. Confirm that figure crops include every panel and their captions/legends, and that tables retain grouped headers, row groups, units and footnotes. A nearby formula or paragraph must not become a table cell or figure caption. v0.37.1 improves these boundaries and source-cell references; extraction remains something to check before reusing values. If an older saved extraction is incomplete, use reanalysis when the reader offers it, then compare the resulting elements before replacing a downstream table.
 
 In v0.37.2, extraction further corrects figure/table ownership and legacy PDF math symbols. Compare minus signs, Greek letters, superscripts, subscripts and operators with the rendered source before copying a formula or table value. A cleaner extraction is not a substitute for checking the scientific expression.
+
+v1.0.0 further improves native table and figure ownership, including repeated records, sparse columns and scientific fractions. When checking a table, keep repeated rows as separate records unless the source identifies them as duplicates. Compare fraction numerators/denominators, grouped labels and empty cells with the original page; do not fill an empty cell from neighboring prose.
