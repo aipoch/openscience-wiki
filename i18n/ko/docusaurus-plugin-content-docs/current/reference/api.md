@@ -1,7 +1,7 @@
 ---
 title: "작업 SDK 및 로컬 API"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-14'
 ---
 
 # 작업 SDK 및 로컬 API {/* #task-sdk-and-local-api */}
@@ -14,9 +14,9 @@ last_update:
 
 <p className="example-label"><strong>예시</strong> 연결 확인 메모 저장 및 다운로드</p>
 
-선택된 패키지와 호환되는 Node.js를 사용하십시오: v0.37.1 백엔드 패키지는 Node.js 22.13 또는 나중에, 독립 CLI 아카이브 번들 Node를 필요로 합니다. 바탕 화면 또는 [CLI](server.md)을 통해 백업을 시작, 모델 설정 완료하고 실행 유지. SDK은 로컬 서비스 발견과 로컬 스토리지 토큰을 사용합니다.
+선택한 패키지와 호환되는 Node.js를 사용하세요. v1.0.0 백엔드 패키지에는 Node.js 22.13 이상이 필요하며, 데스크톱 배포판에는 백엔드 런타임이 포함되어 있습니다. 데스크톱 앱 또는 [CLI](server.md)로 백엔드를 시작하고 모델 설정을 완료한 후 실행 상태를 유지하세요. SDK는 로컬 서비스 검색과 로컬에 저장된 토큰을 사용합니다.
 
-빈 작업 폴더에서 일치 로컬 패키지를 설치합니다. `BACKEND_DIRECTORY`을 완전히 추출한 독립 CLI 아카이브에서 `backend` 폴더에 절대 경로로 바꾸고, 그 디렉토리를 유지하십시오.
+빈 작업 폴더에서 일치 로컬 SDK 패키지를 설치하십시오. 데스크탑 배포 (`Contents/Resources/backend` macOS) 내부의 절대 `backend` 디렉토리와 `BACKEND_DIRECTORY`을 대체하거나 해당 태그에서 내장 된 백엔드 패키지. v1.0.0에는 독립 CLI 아카이브가 없습니다; 이 디렉토리를 얻기 위해 이전 아카이브를 대체하지 마십시오. 참고된 디렉토리를 유지하고 앱을 업데이트 한 후 클라이언트 버전을 다시 체크하십시오.
 
 ```bash
 npm init -y
@@ -197,3 +197,7 @@ retry-safe 프로젝트 생성 및 입학을 위해, 최종 옵션 인수에서 
 CLI `--permission-prompts none`에 대응하는 `startRun` 입력에 `permissionPrompts: 'none'`을 설정합니다. 적절한 `permissionProfile` 유지: 이 옵션은 해결되지 않은 인간의 상호 작용을 감소시키고 허가를 확장하지 않습니다. `planFirst: true`과 결합하지 마십시오.
 
 호스트는 `permission-prompts-none` 기능을 선언해야합니다; 그렇지 않으면 클라이언트가 실행을 만들기 전에 `unsupported_capability`을보고합니다. 이 정책은 현재 주장에만 적용됩니다. 런의 실제 상태와 오류를 평소처럼 취급합니다. [무인 CLI 실행](cli.md#unattended-runs) 참조.
+
+## 1.x의 공용 인터페이스 호환성 {/* #public-compatibility */}
+
+[의 호환성 정책](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md)은 SDK의 공개 루트 수출 / 유형 및 문서화 작업 요청, 응답 및 이벤트와 일치합니다. 임의 로컬 HTTP 경로, 내부 수입 또는 전자 IPC 공개 API를 만들지 않습니다. 문서화 오류 코드, tolerate unknown object 필드 및 일치하는 진단 prose 방지. 응용 프로그램, 독립적으로 출판 된 패키지 및 연구 패키지 스키마 버전은 별도입니다.

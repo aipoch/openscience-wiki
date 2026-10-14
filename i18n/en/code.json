@@ -1869,5 +1869,11 @@
   },
   "docs.outline.reference.v0372.scope": {
     "message": "Startup and connection recovery, Linux CLI packages, localized help and scientific data fixes."
+  },
+  "docs.outline.reference.v100.title": {
+    "message": "v1.0.0"
+  },
+  "docs.outline.reference.v100.scope": {
+    "message": "Stable 1.x compatibility, desktop release availability, session recovery and scientific data context."
   }
 }

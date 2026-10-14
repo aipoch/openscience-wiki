@@ -2,7 +2,7 @@
 title: "Wissenschaftliche Datenbanken"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 # Wissenschaftliche Datenbanken {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Verwenden Sie diese Seite, um eine Datenquelle auszuwählen, zu verstehen, was s
 
 ## Unterstützte Datenbanken {/* #supported-databases */}
 
-Open-Science v0.37.1 beinhaltet **35-Datenquellenstecker mit 359-Operationen**. Das separate Offline-Molekül Connector fügt zwei Operationen hinzu, wodurch die vollständige Registrierung auf 361 gebracht wird. Connector-Namen unter **Settings → Connectors** übereinstimmen; Jede Familie kann mehrere Datenbanken freilegen. Das Auflisten einer Quelle bedeutet nicht, dass jedes Feature seiner Website verfügbar ist.
+Open-Science v1.0.0 beinhaltet **35-Datenquellenstecker mit 359-Operationen**. Das separate Offline-Molekül Connector fügt zwei Operationen hinzu, wodurch die vollständige Registrierung auf 361 gebracht wird. Connector-Namen unter **Settings → Connectors** übereinstimmen; Jede Familie kann mehrere Datenbanken freilegen. Das Auflisten einer Quelle bedeutet nicht, dass jedes Feature seiner Website verfügbar ist.
 
 | Konnektor | Quellen | Vorgänge | Verwenden Sie es für  |
 | --- | --- | --- | ---  |
@@ -254,7 +254,7 @@ Von v0.31.0 enthält `get_string_network.nodes` zurückgegebene Nachbarn und iso
 
 Der [Connector Betriebsnummer](../reference/connector-operations.md) listet die erforderlichen Eingaben, erlaubten Werte und genauen Aufrufe auf. Verwenden Sie diese Seite, um eine Quelle auszuwählen und sie zu verbinden; Verwenden Sie die Referenz für die Felder eines bestimmten Werkzeugs.
 
-Katalogquelle: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts).
+Katalogquelle: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/registry.ts).
 
 ## Sequenzsuche und Ausrichtung {/* #sequence-tools */}
 
@@ -327,3 +327,19 @@ Siehe [PDC-Operationen und Paginierung](../reference/connector-operations.md#fam
 **Genome** in **Settings → Connectors** aktivieren. Seine Ensembl LD-Tools verwenden das öffentliche API ohne Schlüssel. Geben Sie zwei Varianten-IDs für `ensembl_ld_pairwise` oder eine für `ensembl_ld_proxies` zusammen mit dem vollständigen Populationsnamen wie `1000GENOMES:phase_3:KHV` an. Die Werkzeuge entdecken nicht die Bevölkerung oder schließen Abstammung; eine für die Studie geeignete Referenzpopulation auswählen.
 
 Paarweise Ergebnisse berichten r2 und D′. Proxy-Abfragen standardmäßig zu r2 ≥ 0.8 und einem **500 kb Gesamtfenster**, ungefähr 250 kb auf beiden Seiten. `max_records` begrenzt die zurückgegebene Liste nach dem Sortieren, nicht die vorgelagerte Arbeit. Behalten Sie die Population und Abrufen von Metadaten mit dem Ergebnis; Dieser Endpunkt meldet die Referenzbaugruppe oder Ensembl-Freigabe nicht. Leere Ergebnisse bedeuten, dass keine qualifizierenden Daten zurückgegeben werden, nicht Null LD. Hohes LD stellt weder Kausalität noch funktionale Äquivalenz fest. Siehe [paarweise Felder](../reference/connector-operations.md#ensembl_ld_pairwise) und [Proxyfelder](../reference/connector-operations.md#ensembl_ld_proxies).
+
+## Konservieren von Probe, Ausdruck und Assemblierungskontext {/* #scientific-context */}
+
+| Suchanfrage | Interpretation in v1.0.0 |
+| --- | --- |
+| `arrayexpress_get_experiment_samples` | `samples` enthält Beziehungszeilen aus der ersten SDRF-Datei, sortiert nach Pfad. `n_rows_total` / `n_rows_returned` Zeilen zählen; `n_samples` / `n_samples_returned` Zählen Sie verschiedene Identifikatoren, bevorzugen **Probenbezeichnung**, dann **Quelle:**fort. Sie sind keine unabhängigen biologischen Replikatzählungen. Fehlende Identifikatoren können zu Stichprobenzählungen führen `null`fort. Eine leere Datei oder `no_sdrf` Die Reaktion stellt nicht fest, dass das Experiment keine Proben hat. |
+| `metabolights_get_studies` mit `include_samples` | Verwenden Sie die zurückgegebene `headers` Bestellung beim Export `sample_table`fort. Wiederholte Spaltennamen haben eindeutige `#2`, `#3`, ... Suffixe ohne Überschreibung der Originalnamen. Alle Spalten aufbewahren; einem leeren String in einer kurzen Zeile fehlen Metadaten. Überprüfung `rows_truncated`. |
+| `bgee_expression_calls` | Bleiben `anatomical_entity_id/name` zusammen mit `cell_type_id/name`fort. Ein fehlender Zelltyp ist `null`Nicht ein negativer Ausdruck. Halten Sie den Ausdruck Zustand, Qualität und Zustand zusammen. |
+| dbSNP Variante Lookups | Behalten Sie jede Platzierung `assembly`, `assembly_full`, `seq_id`, Position und Allele. Eine Sequenz kann mehr als einer Baugruppe zugeordnet werden; Diese Assoziationen nicht zusammenbrechen oder die erste Platzierung als automatischen Liftover verwenden. |
+
+Diese Korrekturen ändern, wie zurückgegebene Beweise gelesen werden sollten. Überprüfen Sie den [Betriebsnummer](../reference/connector-operations.md), bevor Sie eine ältere gespeicherte Antwort mit einem neuen Lookup vergleichen.
+
+
+### OpenAlex-Anmeldeaufforderungen {/* #openalex-prompts */}
+
+v1.0.0 erinnert sich an eine abgelehnte OpenAlex-Anmeldeaufforderung für die aktuelle Sitzung, wodurch wiederholte Eingabeaufforderungen vermieden werden. Wenn Sie diese Quelle später benötigen, konfigurieren Sie sie explizit in **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** und wiederholen Sie die beabsichtigte Abfrage. Die Rücknahme der Eingabeaufforderung liefert weder einen Schlüssel noch garantiert sie den Zugang oder das Kontingent.

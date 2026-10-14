@@ -1,7 +1,7 @@
 ---
 title: "Task SDK 与本地 API"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-14'
 ---
 
 # Task SDK 与本地 API
@@ -14,9 +14,9 @@ last_update:
 
 <p className="example-label"><strong>示例</strong> 保存并下载连接检查说明</p>
 
-使用与所选包兼容的 Node.js；v0.37.1 后端包要求 Node.js 22.13 或更高版本，独立 CLI 压缩包已自带 Node。通过桌面应用或 [CLI](server.md) 启动后端，完成模型设置并保持运行。SDK 通过本地服务发现及保存的本地令牌连接。
+使用与所选包兼容的 Node.js；v1.0.0 后端包要求 Node.js 22.13 或更高版本，桌面发行包已附带后端运行时。通过桌面应用或 [CLI](server.md) 启动后端，完成模型设置并保持运行。SDK 通过本地服务发现及保存的本地令牌连接。
 
-在空工作文件夹中，安装与目标平台匹配的本地包。将 `BACKEND_DIRECTORY` 替换为独立 CLI 压缩包完整解压后的 `backend` 绝对路径，并保留该目录：
+在空工作目录中安装同版本的本地 SDK 包。将 `BACKEND_DIRECTORY` 替换为桌面发行包中 `backend` 目录的绝对路径（macOS 为应用内 `Contents/Resources/backend`），或对应标签构建出的后端包目录。v1.0.0 未发布独立 CLI 归档；不要为寻找该目录改用旧版归档。保留被引用的目录，更新应用后重新核对客户端版本。
 
 ```bash
 npm init -y
@@ -197,3 +197,7 @@ console.log(state);
 在 `startRun` 的输入中设置 `permissionPrompts: 'none'`，对应 CLI 的 `--permission-prompts none`。仍需设置合适的 `permissionProfile`；此选项拒绝尚需人工处理的请求，不会扩大任务授权。不要与 `planFirst: true` 组合。
 
 主机必须声明 `permission-prompts-none` 能力；不支持时客户端会在创建任务前报告 `unsupported_capability`。此策略仅限当前调用，运行结果仍需按状态和错误处理。详见 [CLI 无人值守运行](cli.md#unattended-runs)。
+
+## 1.x 公共接口兼容性 {/* #public-compatibility */}
+
+[官方兼容政策](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md)覆盖匹配版本 SDK 的公开根导出和类型，以及文档化的 Task 请求、响应与事件。它不把任意本地 HTTP 路由、内部模块或 Electron IPC 都变成公共 API。程序应按文档化错误码判断，忽略未知对象字段，不要依赖诊断文字。应用、独立包和研究包 schema 的版本号彼此独立。

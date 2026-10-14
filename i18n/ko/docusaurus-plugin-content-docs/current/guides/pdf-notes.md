@@ -2,7 +2,7 @@
 title: "PDF 주석 및 문서 노트"
 description: "마크 패스, 문서 노트를 수집, 다시 찾아 읽고 읽기 사본을 수출."
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,3 +72,7 @@ v0.35.1에서 동일한 PDF 콘텐츠로 확인된 관리 파일 버전은 라�
 다른 프로젝트에서 동일한 PDF을 열고 **Notes & Annotations**을 검사하고 **Show annotation source**를 사용하여 저장된 페이지와 통행을 검사합니다. 메모가 복부되면 동일한 콘텐츠 버전을 열 수 있으며 관리 된 파일이 여전히 읽기 쉽습니다.
 
 이 노트는 로컬에 저장하고 기계 전체에 동기화하지 않습니다. 손전등의 경우, 노트 또는 annotated PDF을 내보내고 수신자가 수신되는 것을 확인합니다. 이 개인 세션 북마크를 변경하지 않거나 [.science 연구 패키지](research-packages.md)의 모든 읽기 메모 부분을 만들 수 없습니다.
+
+## 페이지를 덮지 않고 메모를 공개 {/* #reveal-note */}
+
+v1.0.0에서 저장된 annotation의 **Annotation note** 버튼은 마크가 선택되었을 때 나타납니다. hovered 또는 집중. 강조 또는 지역을 선택하면 메모 버튼을 열고 의견을 편집합니다. 숨겨진 버튼은 메모가 삭제되었습니다. **Show notes sidebar** 또는 **Notes & Annotations**을 사용하여 전체 목록 및 **Show annotation source**를 검색하여 표시된 위치로 돌아갑니다.

@@ -1,7 +1,7 @@
 ---
 title: "CLI et sortie structurée"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -13,9 +13,11 @@ Utilisez `open-science` pour inspecter l'état de l'application, exécuter les t
 
 <PlatformGuide />
 
+**Mise à jour de l'application supprimée:** v1.0.0 n'accepte plus `open-science update`, y compris son formulaire `--json`. Utilisez les contrôles de mise à jour du bureau ou le gestionnaire d'installation/de paquet d'origine. Les codes de sortie 5 et 6 ne font pas partie de la table CLI actuelle. Voir [Directives de mise à niveau](../guides/installation.md#version-compatibility).
+
 ## Mise en place depuis un terminal {/* #terminal-setup */}
 
-Choisissez soit le lanceur de bureau ou une archive autonome CLI à partir du [libération officielle](https://github.com/aipoch/open-science/releases/tag/v0.37.2). L'archive autonome contient le CLI, Node runtime, backend et Web UI; il n'exige pas d'Electron ou d'une chaîne d'outils Node/npm installée séparément.
+Pour v1.0.0, installez le lanceur fourni par le bureau via **Settings → General → Command line tool → Install command**, ouvrez un nouveau terminal et vérifiez `open-science --help`. Cette version n'a pas de paquet autonome CLI. Les étapes d'extraction d'archives ci-dessous ne s'appliquent qu'aux versions qui en fournissent une, comme [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2); ils ne sont pas une installation 1.0 ou la permission de mixer des versions de bureau / backend.
 
 1. Choisissez macOS ou Linux arm64/x64, ou Windows x64, correspondant à l'hôte.
 2. Extraire l'archive complète dans un emplacement enregistrable. Conserver le lanceur, `backend` et `node-runtime` ensemble; copier seulement le lanceur va casser le démarrage.
@@ -210,14 +212,12 @@ La réponse ci-après a été reproduite localement :
 | 2 | Utilisation non valide de CLI |
 | 3 | démon local non disponible |
 | 4 | Projet/exécution/session/artefact/Specialist non trouvé |
-| 5 | Le travail actif a bloqué une mise à jour d'application |
-| 6 | La mise à jour de l'application nécessite une étape d'installation manuelle |
 
 JSONL peut inclure `run.progress` et `stream.resync-required`. Si le replay n'est pas disponible après la reconnection, relisez l'état d'exécution faisant autorité; ne présumez pas que le flux d'événements est une histoire permanente. Les commandes du cycle de vie ont des restrictions de drapeau distinctes décrites dans [Service sans tête](./server.md).
 
-[Mise en œuvre de CLI](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [guide de commande en amont](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
+[Mise en œuvre de CLI](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [guide de commande en amont](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
-Référence technique: [Contrat CLI](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+Référence technique: [Contrat CLI](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
 ## Courses sans surveillance {/* #unattended-runs */}
 

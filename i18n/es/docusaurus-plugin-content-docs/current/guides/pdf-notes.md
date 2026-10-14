@@ -2,7 +2,7 @@
 title: "Anotaciones PDF y notas de documentos"
 description: "Marcar pasajes, recoger notas de documentos, encontrarlas de nuevo y exportar una copia de lectura."
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,3 +72,7 @@ Desde v0.35.1, las versiones de archivos gestionadas verificadas como el mismo c
 Abra el mismo PDF en otro proyecto, inspeccione **Notes & Annotations**, luego utilice **Show annotation source** para comprobar la página y el pasaje guardados. Si las notas están ausentes, confirme que abrió la misma versión de contenido y que su archivo gestionado sigue siendo legible.
 
 Estas notas se almacenan localmente y no sincronizan a través de máquinas. Para una entrega, exporte las notas o un PDF anotado y compruebe lo que recibirá el receptor. Esto no cambia los marcadores de sesión privada o hace que cada nota de lectura sea parte de un [Paquete de investigación .science](research-packages.md).
+
+## Revela una nota sin cubrir la página {/* #reveal-note */}
+
+En v1.0.0, aparece un botón **Annotation note** de anotación guardada cuando se selecciona su marca, se mueve o se centra. Seleccione el punto culminante o región, a continuación, abra el botón de la nota para leer o editar el comentario. Un botón oculto no significa que la nota fue eliminada. Utilice **Show notes sidebar** o **Notes & Annotations** para navegar por la lista completa, y **Show annotation source** para volver a la ubicación marcada.

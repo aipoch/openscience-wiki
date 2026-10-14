@@ -1792,5 +1792,11 @@
   },
   "docs.outline.reference.v0372.scope": {
     "message": "시작 및 연결 복구, Linux CLI 패키지, 현지화 된 도움 및 과학 데이터 수정."
+  },
+  "docs.outline.reference.v100.title": {
+    "message": "v1.0.0"
+  },
+  "docs.outline.reference.v100.scope": {
+    "message": "안정적인 1.x 호환성, 데스크톱 릴리스 가용성, 세션 복구 및 과학 데이터 컨텍스트."
   }
 }

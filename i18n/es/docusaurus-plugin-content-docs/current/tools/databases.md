@@ -2,7 +2,7 @@
 title: "Bases de datos científicos"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 # Bases de datos científicos {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Utilice esta página para elegir una fuente de datos, entender lo que puede devo
 
 ## Bases de datos respaldadas {/* #supported-databases */}
 
-Open-Science v0.37.1 incluye **35 data-source Connectors with 359 operations**. El Molecule Connector independiente añade dos operaciones, trayendo el registro completo a 361. Connector nombres a continuación coinciden con **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
+Open-Science v1.0.0 incluye **35 data-source Connectors with 359 operations**. El Molecule Connector independiente añade dos operaciones, trayendo el registro completo a 361. Connector nombres a continuación coinciden con **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
 
 | Conector | Fuentes | Operaciones | Úsalo para  |
 | --- | --- | --- | ---  |
@@ -254,7 +254,7 @@ Desde v0.31.0, `get_string_network.nodes` incluye vecinos devueltos y entradas a
 
 Las listas [Referencia de operación Connector](../reference/connector-operations.md) requieren entradas, valores permitidos y llamadas exactas. Utilice esta página para elegir una fuente y conectarla; utilizar la referencia para los campos de una herramienta en particular.
 
-Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts), [registro.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts).
+Fuente de catálogo: [catálogo.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/catalog.ts), [registro.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/registry.ts).
 
 ## Búsquedas de secuencia y alineación {/* #sequence-tools */}
 
@@ -327,3 +327,19 @@ Ver [Operaciones PDC y paginación](../reference/connector-operations.md#family-
 Activar **Genomes** en **Settings → Connectors**. Sus herramientas Ensembl LD utilizan el API público sin una llave. Proveer dos IDs variantes para `ensembl_ld_pairwise`, o uno para `ensembl_ld_proxies`, junto con el nombre completo de la población, como `1000GENOMES:phase_3:KHV`. Las herramientas no descubren la población o la ascendencia infernal; elegir una población de referencia apropiada para el estudio.
 
 Informe de resultados pares r2 y D′. Consultas indirectas predeterminadas a r2 ≥ 0.8 y **500 kb ventana total**, aproximadamente 250 kb en ambos lados. `max_records` capta la lista devuelta después de ordenar, no el trabajo de arriba. Mantener la población y los metadatos de recuperación con el resultado; este punto final no reporta la asamblea de referencia o la liberación Ensembl. Los resultados vacíos significan que no se devuelven los datos de calificación, no cero LD. El LD alto no establece ninguna causalidad ni equivalencia funcional. Ver [campos pares](../reference/connector-operations.md#ensembl_ld_pairwise) y [campos proxy](../reference/connector-operations.md#ensembl_ld_proxies).
+
+## Ejemplo, expresión y contexto de montaje {/* #scientific-context */}
+
+| Consulta | Interpretación en v1.0.0 |
+| --- | --- |
+| `arrayexpress_get_experiment_samples` | `samples` contiene filas de relación del primer archivo SDRF ordenados por ruta. `n_rows_total` / `n_rows_returned` contar filas; `n_samples` / `n_samples_returned` contar identificadores distintos, preferir **Nombre de la muestra**Entonces, **Nombre de la fuente**. No son réplicas biológicas independientes cuenta. Los identificadores perdidos pueden hacer conteos de muestras `null`. Un archivo vacío o `no_sdrf` la respuesta no establece que el experimento no tiene muestras. |
+| `metabolights_get_studies` con `include_samples` | Usar el devuelto `headers` orden al exportar `sample_table`. Nombres de columna repetidos tienen únicos `#2`, `#3`, ... sufijos sin sobrescribir nombres originales. Retener todas las columnas; una cuerda vacía en una fila corta falta metadatos. Check `rows_truncated`. |
+| `bgee_expression_calls` | Manténganse. `anatomical_entity_id/name` junto con `cell_type_id/name`. Un tipo de célula desaparecido `null`, no una llamada de expresión negativa. Mantenga la expresión estado, calidad y condición juntos. |
+| dbSNP variantes de búsquedas | Retener cada colocación `assembly`, `assembly_full`, `seq_id`, posición y alelos. Una secuencia se puede asociar con más de una asamblea; no derrumben esas asociaciones ni utilizan la primera colocación como relevo automático. |
+
+Estas correcciones cambian la forma en que deben leerse las pruebas devueltas. Revise el [referencia a la operación](../reference/connector-operations.md) antes de comparar una respuesta ahorrada más antigua con una nueva búsqueda.
+
+
+### OpenAlex credential prompts {/* #openalex-prompts */}
+
+v1.0.0 recuerda un impulso credencial de OpenAlex declinado para la sesión actual, evitando repetidos avisos allí. Si más tarde necesita esa fuente, configure explícitamente en **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** y vuelva a iniciar la consulta prevista. Declining the prompt neither supplies a key nor guarantees access or quota.

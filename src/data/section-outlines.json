@@ -1433,6 +1433,17 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v100",
+            "title": "v1.0.0",
+            "scope": "Stable 1.x compatibility, desktop release availability, session recovery and scientific data context.",
+            "currentDoc": "changelog/v1-0-0",
+            "proposedUrl": "/docs/changelog/v1-0-0/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-0-0"
+            ]
+          },
+          {
             "id": "v0372",
             "title": "v0.37.2",
             "scope": "Startup and connection recovery, Linux CLI packages, localized help and scientific data fixes.",

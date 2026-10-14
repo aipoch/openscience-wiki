@@ -1,7 +1,7 @@
 ---
 title: "Tarea SDK y API local"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-14'
 ---
 
 # Tarea SDK y API local {/* #task-sdk-and-local-api */}
@@ -14,9 +14,9 @@ El cliente `@aipoch/open-science` Node.js se conecta a un servicio de aplicació
 
 <p className="example-label"><strong>Ejemplo</strong> Guardar y descargar una nota de conexión</p>
 
-Uso Node.js compatible con el paquete seleccionado: el v0.37.1 paquete de backend requiere Node.js 22.13 o más tarde, mientras que independiente CLI archivos paquete Node. Comience un backend a través del escritorio o [CLI](server.md), termine la configuración del modelo y mantenga el funcionamiento. El SDK utiliza el descubrimiento del servicio local y su token almacenado localmente.
+Use una versión de Node.js compatible con el paquete elegido. El backend v1.0.0 requiere Node.js 22.13 o posterior; la distribución de escritorio incluye su propio entorno de ejecución. Inicie el backend desde la aplicación de escritorio o la [CLI](server.md), configure el modelo y mantenga el servicio en ejecución. El SDK utiliza la detección del servicio local y el token guardado localmente.
 
-En una carpeta de trabajo vacía, instale el paquete local que coincida. Reemplazar `BACKEND_DIRECTORY` con el camino absoluto a la carpeta `backend` en el archivo CLI completamente extraído, y retener ese directorio:
+En una carpeta de trabajo vacía, instale el paquete SDK local que coincida. Reemplazar `BACKEND_DIRECTORY` con el directorio `backend` absoluto dentro de la distribución de escritorio (`Contents/Resources/backend` en macOS), o el paquete backend construido desde la etiqueta correspondiente. v1.0.0 no tiene un archivo CLI independiente; no sustituya un archivo antiguo para obtener este directorio. Mantenga el directorio referenciado y vuelva a revisar la versión cliente después de actualizar la aplicación.
 
 ```bash
 npm init -y
@@ -197,3 +197,7 @@ Fuentes: [firmas](https://github.com/aipoch/open-science/blob/v0.27.0/packages/o
 Establecer `permissionPrompts: 'none'` en la entrada `startRun`, correspondiente a CLI `--permission-prompts none`. Mantener un `permissionProfile` adecuado: esta opción disminuye las interacciones humanas sin resolver y no amplía los permisos. No lo combine con `planFirst: true`.
 
 El anfitrión debe declarar la capacidad `permission-prompts-none`; de lo contrario el cliente informa `unsupported_capability` antes de crear la carrera. Esta política se aplica únicamente a la invocación actual. Maneja el estado y el error de la carrera como siempre. Ver [CLI no tripulado](cli.md#unattended-runs).
+
+## Compatibilidad de interfaz pública en 1.x {/* #public-compatibility */}
+
+El [Política de compatibilidad](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md) cubre las exportaciones/tipos de raíz pública de SDK y las solicitudes de tareas documentadas, respuestas y eventos. No hace rutas arbitrarias locales HTTP, importaciones internas o API públicas Electron IPC. Parse documentado códigos de error, tolerar campos de objetos desconocidos y evitar que coincida con la prosa de diagnóstico. Aplicación, versión de paquete y esquemas de empaquetado de investigación publicada independientemente son independientes.

@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,8 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v0.37.2** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
-
+한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v1.0.0** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
 
 ## 뚱 베어 {/* #family-1 */}
 
@@ -3017,7 +3016,7 @@ const result = await host.mcp("expression", "bgee_species", {})
 
 ### `bgee_expression_calls` {/* #bgee_expression_calls */}
 
-Bgee 현재/absent expression 호출 및 1 종에서 한 유전자에 대한 정상화 된 표현 점수를 검색합니다. 결과는 건강한 야생 유형 기본 전화이고 max_calls로 모자를 씌워질 수 있습니다.
+Bgee 현재/absent expression 호출 및 1 종에서 한 유전자에 대한 정상화 된 표현 점수를 검색하고 원자성 및 세포 유형 컨텍스트를 보존합니다. 결과는 건강한 야생 유형 기본 전화이고 max_calls로 모자를 씌워질 수 있습니다. 미스링 또는 비정형 셀 타입은 null로 반환됩니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -3629,7 +3628,7 @@ const result = await host.mcp("omics-archives", "arrayexpress_get_experiment_fil
 
 ### `arrayexpress_get_experiment_samples` {/* #arrayexpress_get_experiment_samples */}
 
-배열익스프레스 실험(MAGE-TAB headers verbatim, 반복 suffixed #2/#3)을 위한 샘플 SDRF 표기 행. SDRF 반환 &#123;"error":"no_sdrf"&#125;를 가진 Experiments.
+ArrayExpress 실험을 위한 경로로 분류된 최초의 SDRF 파일에서 Fetch 관계 행은, 그 파일에 있는 모든 샘플/assay/file 관계를 보존합니다 (trimmed MAGE-TAB 헤더, 반복 suffixed #2/#3). 샘플/출원 식별자, 독립적인 생물학 복제, 소스 이름에 있는 샘플 이름 사용. SDRF 반품 `{"error":"no_sdrf"}`과 경험.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -3679,7 +3678,7 @@ const result = await host.mcp("omics-archives", "metabolights_list_studies", {})
 
 ### `metabolights_get_studies` {/* #metabolights_get_studies */}
 
-MetaboLights 연구 (MTBLSxxx)에 대한 Fetch 구조화 된 메타 데이터는 ISA 페이로드 - 제목, 상태, 년, 유기체, 분석실험, 요소, descriptors, 샘플 수, 프로토콜; 선택적 per-sample 테이블. 알 수없는 / 개인 액세스는 not_found에서 이동합니다.
+MetaboLights 연구 (MTBLSxxx)에 대한 Fetch 구조화 된 메타 데이터는 ISA 페이로드 - 제목, 상태, 년, 유기체, 분석실험, 요소, descriptors, 샘플 수, 프로토콜; ISA 열 주문 및 협회를 보존하는 유일한 열 열쇠를 가진 선택적인 각 표본 테이블. 알 수없는 / 개인 액세스는 not_found에서 이동합니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -4487,7 +4486,6 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ```
 
 </ToolOperationGroup>
-
 
 ## 예제 응답 기록 {/* #example-response-records */}
 

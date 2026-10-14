@@ -2,7 +2,7 @@
 title: "Référence de fonctionnement Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,8 +38,7 @@ Les noms de champs de retour diffèrent selon l'opération. Les descriptions et 
 
 ## Entrées d'exploitation {/* #operation-inputs */}
 
-Expandez un Connector à la fois. Les champs obligatoires sont marqués **requis**; cette référence et téléchargement utilisent le schéma Open-Science **v0.37.2**. Une liste de `input.required` imbriquée fait autorité; une liste de haut niveau de `required` peut être absente. Consultez le <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">Registre téléchargeable complet</ExampleDownload> pour les schémas JSON imbriqués, les descriptions complètes des retours et les exemples d'appels côté agent. Ne passez pas un `id` générique lorsqu'un outil s'attend à `accessions`, `cids`, `rs_id` ou à un autre champ spécifique à l'espace de noms.
-
+Expandez un Connector à la fois. Les champs obligatoires sont marqués **requis**; cette référence et téléchargement utilisent le schéma Open-Science **v1.0.0**. Une liste de `input.required` imbriquée fait autorité; une liste de haut niveau de `required` peut être absente. Consultez le <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">Registre téléchargeable complet</ExampleDownload> pour les schémas JSON imbriqués, les descriptions complètes des retours et les exemples d'appels côté agent. Ne passez pas un `id` générique lorsqu'un outil s'attend à `accessions`, `cids`, `rs_id` ou à un autre champ spécifique à l'espace de noms.
 
 ## Chimie {/* #family-1 */}
 
@@ -3017,7 +3016,7 @@ const result = await host.mcp("expression", "bgee_species", {})
 
 ### `bgee_expression_calls` {/* #bgee_expression_calls */}
 
-Récupérer les appels d'expression présents/absents Bgee et les scores d'expression normalisés pour un gène chez une espèce. Les résultats sont des appels de base sains de type sauvage et peuvent être plafonnés avec max_calls.
+Récupérer les appels d'expression présents/absents Bgee et les scores d'expression normalisés pour un gène d'une espèce, en préservant l'entité anatomique et le contexte de type cellulaire. Les résultats sont des appels de base sains de type sauvage et peuvent être plafonnés avec max_calls. Les types de cellules manquants ou non spécifiés sont renvoyés comme null.
 
 | Champ | Type | Besoins et contraintes |
 | --- | --- | --- |
@@ -3629,7 +3628,7 @@ const result = await host.mcp("omics-archives", "arrayexpress_get_experiment_fil
 
 ### `arrayexpress_get_experiment_samples` {/* #arrayexpress_get_experiment_samples */}
 
-Récupérer les lignes d'annotation SDRF par échantillon pour une expérience ArrayExpress (en-têtes MAGE-TAB stepful, répétitions suffixées #2/#3). Expériences sans retour SDRF &#123;"error":"no_sdrf"&#125;.
+Retirez les lignes de relation du premier fichier SDRF trié par chemin pour une expérience ArrayExpress, en préservant chaque relation échantillon/essai/fichier dans ce fichier (en-têtes MAGE-TAB triés, répètes suffixés #2/#3). Compter des identificateurs d'échantillon/de source distincts, et non des répliques biologiques indépendantes, en utilisant le nom de l'échantillon de préférence au nom de la source. Expériences sans retour SDRF `{"error":"no_sdrf"}`.
 
 | Champ | Type | Besoins et contraintes |
 | --- | --- | --- |
@@ -3679,7 +3678,7 @@ const result = await host.mcp("omics-archives", "metabolights_list_studies", {})
 
 ### `metabolights_get_studies` {/* #metabolights_get_studies */}
 
-Remplir des métadonnées structurées pour les études de MetaboLights (MTBLSxxx) à partir de la charge utile de l'ISA analysée — titre, état, années, organismes, analyses, facteurs, descripteurs, nombre d'échantillons, protocoles; tableau par échantillon en option. Les adhésions inconnues/privées vont en not_found.
+Remplir des métadonnées structurées pour les études de MetaboLights (MTBLSxxx) à partir de la charge utile de l'ISA analysée — titre, état, années, organismes, analyses, facteurs, descripteurs, nombre d'échantillons, protocoles; tableau optionnel par échantillon avec des touches de colonne uniques préservant l'ordre des colonnes ISA et les associations. Les adhésions inconnues/privées vont en not_found.
 
 | Champ | Type | Besoins et contraintes |
 | --- | --- | --- |
@@ -4487,7 +4486,6 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ```
 
 </ToolOperationGroup>
-
 
 ## Exemple d'enregistrement des réponses {/* #example-response-records */}
 

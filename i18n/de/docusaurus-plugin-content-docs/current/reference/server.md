@@ -1,7 +1,7 @@
 ---
 title: "Headless Service und Browserzugriff"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 # Headless Service und Browserzugriff {/* #headless-service-and-browser-access */}
@@ -98,17 +98,20 @@ Verwenden Sie persistenten Speicher, wenn die Konfiguration den Containerwechsel
 Das Schließen eines Fensters kann sich vom Beenden der App unterscheiden, insbesondere wenn es im Tablar verbleibt. Beenden Sie die aktive Recherche, bevor Sie ein gemeinsames Backend stoppen, und überprüfen Sie dann den tatsächlichen Zustand mit `status --json`.
 
 Ein getrennter Desktop bietet **Erneut verbinden** und **App beenden**. Reconnect aktualisiert das ursprüngliche Live-Backend und sendet keine Arbeit erneut; Wenn das Backend weg ist, beenden und wieder öffnen. Ein getrenntes beenden kann nur den client schließen, also überprüfen sie den status des ausgewählten profils, bevor sie annehmen, dass der dienst gestoppt wurde. Folgen Sie [Anschlusswiederherstellung](../guides/troubleshooting.md#connection-recovery), einschließlich der Überprüfung von Operationen, deren Antworten verloren gegangen sind.
+### Reconnect nach unterbrochenem Desktop-Shutdown {/* #desktop-service-recovery */}
 
-## Anwendungsaktualisierungsverhalten {/* #application-update-behavior */}
+Wenn der Desktop unerwartet beendet wird, während sein Backend überlebt, kann das Wiedereröffnen eines Desktops mit gleicher Version diesen Desktop-gestarteten Dienst übernehmen, nachdem sich der alte Controller und das Teardown erledigt haben. Ein CLI-gestarteter Dienst bleibt ausgeliehen; Ein normaler Desktop Quit stoppt es nicht nur, weil der Desktop wieder verbunden ist.
 
-Native Desktop-Updates und eigenständige Paket-Updates verwenden unterschiedliche Pfade. Ein gewöhnliches Node-Backend kann das Desktop-Installationsprogramm nicht ersetzen; `update --json` meldet eine manuelle Aktualisierungsanforderung und den `package-manager`-Modus. Befolgen Sie die zurückgegebenen Anweisungen.
+Wenn die Vorbereitung fehlschlägt, bleibt das Fenster offen. Lesen Sie die Notiz, bewahren Sie die nicht gespeicherte Arbeit auf und warten Sie, bis sich die Konversation erholt hat, bevor Sie den ursprünglichen Ablauf und die Dateien überprüfen. Ein offenes Fenster bedeutet nicht, dass die Aufgabe abgebrochen wurde. Wenn ein Startup meldet, dass ein älterer eigenständiger Dienst ihn blockiert, überprüfen Sie das Profil und die Version, bevor Sie die explizite Stoppaktion auswählen. Abbrechen lässt diesen Dienst laufen; ein fehlgeschlagenes Stoppen kann wiederholt oder erneut überprüft werden, ohne Sperrdateien zu löschen.
 
-- **Desktop-App:** verwendet seinen In-App-Updater. Wenn es an ein Backend angeschlossen ist, das zuvor vom CLI gestartet wurde, beenden Sie die Arbeit und beenden Sie dieses Backend, bevor Sie den Desktop aktualisieren.
-- **Standalone CLI Archiv:** beendet die Arbeit, stoppt das beabsichtigte Backend, extrahiert das neue Release in ein neues Verzeichnis, behält Ihre Konfigurationsdaten und aktualisiert den Launcher oder PATH. Überschreiben Sie das laufende Paket nicht.
-- **Homebrew CLI oder Linux CLI Paket:** beendet die Arbeit und stoppt jedes Profil mit dieser Installation und folgt dann dem [Anweisungen zur Paketaktualisierung](../guides/installation.md#standalone-cli). Verwenden Sie danach das gleiche Konfigurationsverzeichnis.
+## Anwendungs-Updateverhalten {/* #application-update-behavior */}
 
-- **npm-Anlage:** aktualisiert das entsprechende Paket über npm und bestätigt die Client/Backend-Kompatibilität.
+v1.0.0 entfernt den CLI-Anwendungs-Updater; Verwenden Sie `open-science update --json` nicht. Verwenden Sie die Desktop-Update-Steuerelemente oder den Original-Installationsprogramm- / Paketmanager und beobachten Sie [Aktuelle Release-Verfügbarkeit](../guides/installation.md#standalone-cli).
 
-Starten Sie neu und verwenden Sie dann `status --json` und `doctor --json`, um die Version, das Konfigurationsverzeichnis und die Bereitschaft zu bestätigen. Bewahren Sie den bestehenden Credential-Store-Modus auf; Löschen Sie keine Anmeldeinformationen oder Konfigurationen, um ein Update durchzuführen.
+- **Desktop-App:** beendet aktive Recherchen, bevor Updates überprüft werden. Wenn die Aktualisierung, während sie an einen CLI-Dienst angeschlossen ist, darum bittet, sie zu stoppen und zur Desktop-Verwaltung zu wechseln, überprüfen Sie das Profil und die betroffenen Aufgaben, bevor Sie zustimmen. Cancel lässt den ursprünglichen Dienst laufen. Dieser Switch aktualisiert die ursprünglichen eigenständigen CLI-Programmdateien nicht.
+- **Standalone CLI Installation:** stoppt jedes Profil, das es verwendet, und installiert dann ein tatsächlich veröffentlichtes Paket über den ursprünglichen Kanal. Überschreiben Sie keine laufenden Dateien oder öffnen Sie ein Profil mit einem alten Backend erneut, nachdem ein neuerer Desktop darauf geschrieben hat.
+- **Belegungs- oder Wiedereinziehungsanzeige:** folgt den angezeigten Überprüfungen auf aktive Instanzen und Installationszustand. Löschen Sie keine Sperren, Konfigurations- oder Wiederherstellungsaufzeichnungen, um ein Update zu erzwingen, wenn das Herunterfahren unsicher ist.
 
-Siehe [Offizieller Standalone Runtime Guide](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md), [CLI](cli.md) und [Aufgabe SDK](api.md).
+Nach dem Upgrade bestätigen Sie die Version und die Originaldaten und verwenden dann `status --json` und `doctor --json`, um den Servicezustand und die Bereitschaft zu überprüfen. Bewahren Sie den Credential-Store-Modus. [1.x Kompatibilität](../guides/installation.md#version-compatibility) verspricht keine gemischten Desktop- / Backend-Versionen.
+
+Siehe [Offizieller Runtime Guide](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md), [CLI](cli.md) und [Aufgabe SDK](api.md).

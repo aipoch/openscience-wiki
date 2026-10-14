@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -244,3 +244,5 @@ Ouvrez **Full-text translation** dans la barre d'outils PDF pour préparer le te
 Après **Analyze PDF**, ouvrez une figure et une table à côté de la page d'origine. Confirmer que les cultures figuratives comprennent tous les panneaux et leurs légendes/légendes, et que les tableaux conservent les en-têtes groupés, les groupes de rangées, les unités et les notes de bas de page. Une formule ou un paragraphe à proximité ne doit pas devenir une cellule de table ou une légende de figure. v0.37.1 améliore ces limites et les références des cellules sources; l'extraction reste quelque chose à vérifier avant de réutiliser les valeurs. Si une extraction enregistrée plus ancienne est incomplète, utilisez une nouvelle analyse lorsque le lecteur l'offre, puis comparez les éléments résultants avant de remplacer une table en aval.
 
 Dans v0.37.2, l'extraction corrige davantage la propriété de la figure/table et les symboles maths anciens de PDF. Comparer moins les signes, les lettres grecques, les superscripts, les sous-scripts et les opérateurs avec la source rendue avant de copier une formule ou une valeur de table. Une extraction plus propre ne remplace pas la vérification de l'expression scientifique.
+
+v1.0.0 améliore encore la propriété des tableaux et des figures natifs, y compris les enregistrements répétés, les colonnes éparses et les fractions scientifiques. Lors de la vérification d'une table, conservez des lignes répétées comme des enregistrements séparés, à moins que la source ne les identifie comme des duplicatas. Comparer les numérateurs/dénominateurs fractionnés, les étiquettes groupées et les cellules vides avec la page d'origine; ne pas remplir une cellule vide de la prose voisine.

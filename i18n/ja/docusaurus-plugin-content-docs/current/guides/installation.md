@@ -1,7 +1,7 @@
 ---
 title: "インストールとアップデート"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -11,6 +11,8 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 ほとんどのユーザーは、GitHubリリースからデスクトップパッケージをインストールする必要があります。 貢献者、または最新のコードをテストする人、またはソースからアプリを実行できます。 Electronデスクトップクライアントは、認証されたローカルブラウザインターフェイスを提供する共有Nodeバックエンドに接続します。
 
 <PlatformGuide />
+
+**v1.0.0 の可用性:** [リリース](https://github.com/aipoch/open-science/releases/tag/v1.0.0)は、スタンドアローンCLIアーカイブまたはLinux CLI `.deb` / `.rpm`パッケージなしでデスクトップパッケージのみが含まれています。 そのページからダウンロードし、`SHA256SUMS.txt` から検証します。 ウェブサイトのダウンロードと自動更新チャネルは別々に推進されるため、1.0は提供していません。 デスクトップのインストールはまだ**Settings → General → Command line tool → Install command**を提供します。
 
 ## インストール方法の選択 {/* #choose-an-installation-method */}
 
@@ -65,7 +67,7 @@ Homebrew は、Apple Silicon または Intel を自動的に選択します。 �
 | Ubuntu / デビアン | `uname -m`: `x86_64` x64 を意味します。 `aarch64` ARM64の意味 | マッチングを選ぶ `.deb`、システム パッケージのインストーラーでそれを開けて下さい、それからアプリケーション メニューから進水して下さい |
 | その他のサポート Linux 配布 | チェックイン `uname -m` | マッチングを選ぶ `.AppImage`, ファイルの権限で実行を許可します。, その後、それを開きます。; 配布によって報告された依存エラーを解決する |
 
-v0.34.0はLinux **x64およびARM64の**パッケージを提供します。 ARM64 の場合、`aipoch-open-science-0.34.0-linux-arm64.AppImage` または `aipoch-open-science_0.34.0_arm64.deb` を選択します。 x64 は `aipoch-open-science-0.34.0-linux-x86_64.AppImage` と `aipoch-open-science_0.34.0_amd64.deb` です。 選択したリリースの公式アセットからダウンロードし、`uname -m`の結果と一致します。
+v1.0.0はLinux **x64およびARM64の**パッケージを提供します。 ARM64 の場合、`aipoch-open-science-1.0.0-linux-arm64.AppImage` または `aipoch-open-science_1.0.0_arm64.deb` を選択します。 x64 は `aipoch-open-science-1.0.0-linux-x86_64.AppImage` と `aipoch-open-science_1.0.0_amd64.deb` です。 選択したリリースの公式アセットからダウンロードし、`uname -m`の結果と一致します。
 
 </PlatformContent>
 
@@ -73,15 +75,15 @@ v0.34.0はLinux **x64およびARM64の**パッケージを提供します。 ARM
 
 ### スタンドアローンCLIを使う {/* #standalone-cli */}
 
-デスクトップウィンドウなしで操作するには、[公式リリース](https://github.com/aipoch/open-science/releases/tag/v0.37.2)からマッチングスタンドアローンCLIアーカイブをダウンロードしてください。 Node、バックエンド、Web UI をバンドルします。 完全なディレクトリを抽出し、その後、[CLI セットアップ](../reference/cli.md#terminal-setup) に従って起動し、モデルを設定し、準備を確認します。 デスクトップユーザーは**Settings → General → Install command**を利用することができます。
+**以下のスタンドアローンパッケージ手順は、実際にそれらを出荷したリリースに適用されます。 [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2)v1.0.0アセットではなく、** 古いリリースが非適度にのみ使用. デスクトップ/バックエンドのバージョンを一致させ、新しいアプリによって書かれたデータで古いバックエンドを指すことはありません。 1.0 コマンドラインエントリーでは、デスクトップアプリで提供されるランチャーをインストールし、[CLI セットアップ](../reference/cli.md#terminal-setup) に従う。
 
 #### ホーム醸造 CLI {/* #homebrew-cli */}
 
-macOS または Linux では、`brew install aipoch/tap/open-science` で CLI 式をインストールします。 これはデスクトップの樽とは別です。 NodeとローカルWeb UIが含まれています。 インストールはサービスを開始しません。 別のランチャーが`open-science`を所有している場合は、`type -a open-science`を調べて、`"$(brew --prefix aipoch/tap/open-science)/bin/open-science"`を他のインストールのリンクを交換するのではなく使用してください。
+既存のHomebrew CLIインストールは、デスクトップの樽とは別に`brew install aipoch/tap/open-science`を介して管理されます。 Homebrewが提供するバージョンをチェックしてください。 GitHubで1.0の出版物は、式が高度に確立されていない。 インストールはシステムサービスを開始しません。 ランチャーが競合している場合、`type -a open-science` を調べて、そのインストールに `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"` を使用します。
 
 #### Linux CLIパッケージ {/* #linux-cli-packages */}
 
-ターミナル/ブラウザのインストールでは、**オープン・サイエンス・クライエント** を選択し、**エイポックオープンサイエンス** デスクトップパッケージではありません。 マッチングアセットと`CLI-PACKAGE-SHA256SUMS.txt`を同じリリースからダウンロードし、SHA256チェックサムを比較します。
+このテーブルは、**v0.37.2** Linux CLIインストール方法を保持します。 v1.0.0 はこれらの CLI パッケージを公開していません。 `open-science-cli`は`aipoch-open-science`デスクトップパッケージとは別です。 古いバージョンが必要な場合は、[v0.37.2 アセット](https://github.com/aipoch/open-science/releases/tag/v0.37.2)からアセットと`CLI-PACKAGE-SHA256SUMS.txt`を取得し、インストールする前に確認します。
 
 | 流通・建築 | v0.37.2 CLIアセット |
 | --- | --- |
@@ -109,7 +111,7 @@ sudo dnf install ./open-science-cli-0.37.2-1.x86_64.rpm
 
 Git、Node.js 24、npm、およびElectron用のプラットフォームビルド前提条件が必要です。 アプリケーションにエージェントフレームワークをインストールまたは選択します。 インストール中に、リポジトリはPrisma Clientを生成し、アプリパッチを適用し、電子ネイティブ依存関係を準備します。
 
-再現可能なソースのインストールには、依存関係をインストールする前に、[変更履歴](../changelog/v0.37.2.md)から意図したリリースタグを選択します。 デフォルトのクローンは、固定リリースではなくブランチを追従します。 選択したタグ、ソースコミット、ランタイムのバージョンを録音して、別の人が環境を再現できるようにします。
+再現可能なソースのインストールには、依存関係をインストールする前に、[変更履歴](../changelog/v1.0.0.md)から意図したリリースタグを選択します。 デフォルトのクローンは、固定リリースではなくブランチを追従します。 選択したタグ、ソースコミット、ランタイムのバージョンを録音して、別の人が環境を再現できるようにします。
 
 交換する `RELEASE_TAG` 選択したリリースに示す正確なタグ(そのリードを含む) `v`)... `--branch RELEASE_TAG --depth 1`を省略する代わりに、継続的な開発に従うため。 そのチェックアウトは、デフォルトのブランチに従います。
 
@@ -126,7 +128,7 @@ npm run dev
 npm run build
 ```
 
-選択したタグのパッケージ.json と [スタンドアローンランタイムガイド](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md) を使用して、ビルド対象と依存関係を処理します。 `npm run dev:web` は Node/Web エントリーポイントを開発しています。 `npm run dev`はデスクトップクライアントも用意しています。 独立した構成ディレクトリを使用して、テストデータを分離します。
+選択したタグのパッケージ.json と [スタンドアローンランタイムガイド](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md) を使用して、ビルド対象と依存関係を処理します。 `npm run dev:web` は Node/Web エントリーポイントを開発しています。 `npm run dev`はデスクトップクライアントも用意しています。 独立した構成ディレクトリを使用して、テストデータを分離します。
 
 ## 初回設定完了 {/* #complete-first-time-setup */}
 
@@ -151,6 +153,8 @@ npm run build
 ## アプリケーションの更新をチェックする {/* #choose-a-reproducible-version-and-update-deliberately */}
 
 **Settings → General → About** では、インストールされたバージョンを読み込み、**Check now** を使用して、アップデートの可用性を確認します。 インストールする前に、リストされているバージョンを調べて、最初にアクティブな作業を終了します。 開発ソースビルドは、パッケージされたインストールとは異なる更新を報告することができます。 更新前に重要なエクスポート結果のコピーを保持します。 アプリケーションの内部データディレクトリの名前を変更しません。
+
+1.0から`open-science update`が削除されます。 デスクトップコントロールや公式インストーラーを通じてアプリを更新し、インストーラー/パッケージマネージャでCLIインストールを更新します。 **Check now**が公開されたリリースをまだ提供していない場合は、公式リリースページを確認してください。 設定を削除したり、アプリをリセットしたりすると、更新チャネルをプロモーションしません。
 
 <PlatformContent platform="macos">
 
@@ -177,3 +181,11 @@ npm run build
 ## v0.31.0の後のプロダクト命名 {/* #product-name */}
 
 現在のインターフェイスと新しいパッケージは、**Open-Science**を一貫して使用しています。 アップグレードは、既存のインストール名と場所、研究データ、資格情報、設定を保存します。 `Open Science`を含む古いインストールパスは、アップグレードの失敗ではなく、 新しい表示名と一致させるためにデータ フォルダーの名前を変更したり、移動したりしないでください。
+
+## 1.0へのアップグレードと互換性の理解 {/* #version-compatibility */}
+
+1. アクティブな研究を終了し、構成ディレクトリと任意の別々の構成されたデータの場所をバックアップします。 1つの`.science`エクスポートは、プロファイル全体のバックアップではありません。
+2. インストールを使用してデスクトップ/バックエンドのインスタンスを閉じて、公式インストーラーでアップグレードします。 オリジナルのプロファイル、データ、OS認証ストアを保管します。
+3. バージョン、プロジェクト、セッション、ファイル、モデル、ランタイムを継続的に再オープンし、確認します。 バイナリダウングレードはデータをロールバックしません。 古いバイナリは、新しい保存されたデータを読み取らない場合があります。
+
+1.0 は既存の歴史的アップグレードとインポートパスを保持します。 バージョン番号はプロファイルのリセットを必要としません。 [1.xの互換性ポリシー](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md) は、CLI/SDK およびタスク・オートメーション・インターフェイスの文書化、有効な `.science` パッケージのフォワード・インポートおよびサポートされたプロフィールのアップグレードをカバーします。 同一のモデルの回答、第三者の可用性、または全研究セッションの決定的な再生、またはOS保護された資格情報のクロスプラットフォーム転送を保証するものではありません。 セキュリティは、最新の安定したリリースをターゲットに固定します。

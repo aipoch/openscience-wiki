@@ -1,7 +1,7 @@
 ---
 title: "세션 및 지점"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -55,8 +55,6 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | 대화 내보내기… | 제안된 형식/옵션을 통해 대화 내보내기 | Transcript 수출은 artifact/Notebook 뭉치에서 명백합니다 |
 | 보관 | 활동 탐색에서 세션을 숨기기 | 설정에서 복구 가능 → Archived |
 | 삭제 | 영구 삭제 확인을 엽니다. | 데이터가 영향을받는 것을 정확히 읽으십시오. 저장 취소 |
-
-
 
 ## 완료된 결과 후 분기 {/* #branch-after-a-completed-result */}
 
@@ -171,7 +169,6 @@ GSE60450 프로젝트에서 기존의 QC 세션을 포크하고 `gse60450-qc-sum
 
 세션 제목을 선택하여 번호, 설명, 소스, 생성/업데이트 시간, 현재 지점 및 artifact 카운트에 대한 메시지 수를 참조하십시오. **Pin**을 사용하여 세션을 쉽게 찾을 수 있도록, 또는 **세션 편집**은 제목과 설명을 변경합니다. **이전 대화에서 계속** 배당자는 기록 된 소스 회전으로 다시 연결합니다.
 
-
 ## 수출 회의 진단 {/* #session-diagnostics */}
 
 Header에서 **Session actions → Export → Export diagnostics…**을 사용하거나 세션 행에 해당 **Export** 하위 메누를 사용하여 로컬 아카이브에서 선택한 진단 소스를 수집합니다. Application logs는 선택한 세션 밖에 메타데이터를 포함할 수 있습니다. 공유하기 전에 소스 목록, 완료 메시지 및 아카이브 내용을 검토; [진단 수출 단계](troubleshooting.md#session-diagnostics) 참조.
@@ -179,3 +176,7 @@ Header에서 **Session actions → Export → Export diagnostics…**을 사용�
 ## Replay 또는 토론 기록 작업 {/* #replay-session */}
 
 세션 행 메뉴에서 **View replay**을 선택하여 녹화 대화, Notebook 활동 및 저장된 파일 버전을 통해 단계별합니다. **Discuss**은 해당 연구에 연결된 별도의 대화를 시작합니다. 수입된 세션은 또한 읽기 전용 통지 옆에 두 작업을 노출합니다. 재생을위한 [세션 재생](session-replay.md)을 따르십시오, 소스 검사 및 일한 토론.
+
+## 에이전트를 변경하거나 다시 연결 후 계속 {/* #resume-selected-agent */}
+
+다음 차례로 전송하기 전에 선택한 Agent/Specialist 및 모델을 확인하십시오. v1.0.0는 선택된 대리인과 수리를 가진 ACP 대화를 Specialist 스위치 후에 분리된 Codex 윤곽을 복구합니다. 원래 대화를 열고 최신 저장된 메시지를 검사하고 다시 연결 후 상태를 실행합니다. 응답이 중단되기 때문에 단순히 쓰기를 거부하지 마십시오; 첫 번째 완료 여부를 확인합니다. 에이전트를 변경하거나 연결을 복구하는 것은 이전 실패 분석이 성공한 증거입니다.

@@ -1,7 +1,7 @@
 ---
 title: "Conversations et demandes en attente"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-14'
 ---
 
 # Conversations et demandes en attente {/* #conversations-and-queued-requests */}
@@ -138,3 +138,11 @@ Vous pouvez faire glisser des fichiers locaux sur la zone de conversation, pas s
 ## Mentionnez un fichier en le faisant glisser {/* #drag-file-mention */}
 
 Faites glisser une carte de fichier de **Files**, ou l'en-tête de fichier de l'artefact ouvert, dans le Compositeur. Confirmez que l'ébauche contient une mention pour le fichier prévu, ajoutez votre question, puis envoyez. La chute insère le contexte dans le projet; il ne commence pas une demande. Dans une nouvelle conversation, le panneau Fichiers peut également fournir une mention. Vérifiez le projet et le fichier sélectionnés avant d'envoyer.
+
+## Répondre à une question de clarification {/* #clarification-questions */}
+
+Lorsque l'agent présente une carte de questions, lisez qui l'a demandée et le choix demandé avant de continuer. Une carte à sélection multiple indique **Sélectionnez une ou plusieurs options**; sélectionner chaque réponse applicable, et sélectionner à nouveau un élément pour la supprimer. Les listes d'options plus longues défilent dans la carte.
+
+Utilisez **Tapez votre propre réponse** pour une réponse différente, **Laissez l'agent décider** pour déléguer ce choix, ou **Skip** pour le laisser sans réponse. Une réponse dactylographiée remplace la sélection de l'option. Utilisez **Suivant** et **Back** pour examiner un ensemble de questions, puis **Finish** pour le soumettre. En sélectionnant simplement une option, vous enregistrez un brouillon; il ne termine pas la réponse. Attendez que la carte soit résolue et que la tâche se poursuive avant d'envoyer la même réponse à nouveau.
+
+Ces cartes clarifient la demande de recherche. Ils n'accordent pas de permis d'utilisation d'outils ni n'approuvent un plan distinct.

@@ -1,0 +1,40 @@
+.celebration {
+  padding: 24px;
+  margin: 24px 0;
+  border: 1px solid var(--aip-line);
+  border-top: 2px solid var(--aip-yellow);
+  background: linear-gradient(140deg, rgba(236, 212, 76, .09), transparent 65%);
+}
+.content > p:first-child {font-size: 1.18em; color: var(--aip-ink);}
+.content > p:last-child {margin-bottom: 0;}
+.confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+.stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  transform: scale(var(--scale, 1));
+}
+.particle {
+  display: block;
+  position: absolute;
+  opacity: 0;
+  transform-origin: center;
+  background: var(--paper-color);
+}
+/* Preserve the reference palette; make its black pieces visible in dark mode. */
+:global([data-theme='dark']) .ink {background: #f6f6f3;}
+@media (max-width: 600px) {
+  .celebration {padding: 18px 16px;}
+}
+@media (prefers-reduced-motion: reduce) {
+  .confetti {display: none;}
+  .particle {animation: none;}
+}

@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v0.37.1は**359 操作で 35 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを361に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
+Open-Science v1.0.0は**359 操作で 35 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを361に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
@@ -254,7 +254,7 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts)。
+カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/registry.ts)。
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 
@@ -327,3 +327,19 @@ Mainで**IEDB**を有効にし、少なくとも1つの生物学的または証�
 **Settings → Connectors**で**ゲノム**を有効にします。 そのEnsembl LDツールは、キーなしで公開APIを使用します。 2つの variant ID をのための供給して下さい `ensembl_ld_pairwise`、またはのための1つ `ensembl_ld_proxies`、のような完全な人口の名前と共に、 `1000GENOMES:phase_3:KHV`. . . . ツールは、人口や推論を発見しません。 研究に適した参照人口を選択します。
 
 平等な結果報告 r2 と D ′. プロキシのクエリは r2 ≥ 0.8 と **500 kb合計ウィンドウ** にデフォルトで、両側で約 250 kb です。 `max_records`は、上流作業ではなく、ソート後に返されたリストをキャップします。 その結果、人口と反省のメタデータを保存します。 このエンドポイントは、参照アセンブリやEnsemblリリースを報告しません。 空の結果は、LD をゼロにしない、返されたデータの修飾を意味しません。 高いLDは、因果性および機能的な等価性を確立しません。 [ペアウェイトフィールド](../reference/connector-operations.md#ensembl_ld_pairwise)と[プロキシフィールド](../reference/connector-operations.md#ensembl_ld_proxies)を参照してください。
+
+## サンプル、式およびアセンブリコンテキストを予約する {/* #scientific-context */}
+
+| クエリ | v1.0.0の解釈 |
+| --- | --- |
+| `arrayexpress_get_experiment_samples` | `samples` パスでソートされた最初のSDRFファイルからリレーション行が含まれています。 `n_rows_total` / `n_rows_returned` カウント行; `n_samples` / `n_samples_returned` 異なる識別子を数える, 好み **サンプル名**, それから **ソース名**に進んでください。 彼らは独立した生物学的複製数ではありません。 識別子を欠くと、サンプルカウントが生成できます。 `null`に進んでください。 空のファイルまたは `no_sdrf` 実験にサンプルがないという反応は確立しません。 |
+| `metabolights_get_studies` とりあえず `include_samples` | 返された使用 `headers` 輸出するときの順序 `sample_table`に進んでください。 繰り返しカラム名は一意 `#2`, `#3`,... 元の名前を上書きせずに接尾辞. すべての列を保持します。 短い行の空の文字列はメタデータが欠落しています。 チェックイン `rows_truncated`. |
+| `bgee_expression_calls` | 保存する `anatomical_entity_id/name` 一緒に一緒に `cell_type_id/name`に進んでください。 欠落したセルタイプは `null`ネガティブな表現呼び出しではありません。 式の状態、質、条件を一緒に保って下さい。 |
+| dbSNP 多様体検索 | 各配置の保持 `assembly`, `assembly_full`, `seq_id`, 位置とアレル. 1つのシーケンスは複数のアセンブリと関連付けることができます; これらの団体を倒したり、最初の配置を自動リフターとして使用したりしないでください。 |
+
+これらの修正は、返された証拠が読み込まれる方法を変更します。 古い保存された応答を新しいルックアップと比較する前に、[操作の参照](../reference/connector-operations.md)を確認してください。
+
+
+### OpenAlex 認証プロンプト {/* #openalex-prompts */}
+
+v1.0.0 は、リピートされたプロンプトを回避する、現在のセッションの OpenAlex クレデンシャル プロンプトの低下を記憶します。 その後、そのソースが必要な場合は、**Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** で明示的に設定し、意図したクエリを再試行します。 プロンプトの決定は、キーやアクセスやクォータを保証するものではありません。

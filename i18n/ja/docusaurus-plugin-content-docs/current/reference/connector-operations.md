@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,8 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v0.37.2**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
-
+Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v1.0.0**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
 
 ## 化学化学品 {/* #family-1 */}
 
@@ -3017,7 +3016,7 @@ const result = await host.mcp("expression", "bgee_species", {})
 
 ### `bgee_expression_calls` {/* #bgee_expression_calls */}
 
-Bgee を 1 つの種で 1 つの遺伝子に対して呼び出し、正規表現のスコアを取得する。 結果は、健康な野生型ベースラインコールであり、max_callsでキャップすることができます。
+Bgee を 1 つの種で 1 つの遺伝子に対して呼び出せる式と正規表現のスコアを取得する, 解剖組織と細胞型コンテキストを保存. 結果は、健康な野生型ベースラインコールであり、max_callsでキャップすることができます。 未指定のセルタイプがnullとして返されます。
 
 | 受け入れられた値 | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -3629,7 +3628,7 @@ const result = await host.mcp("omics-archives", "arrayexpress_get_experiment_fil
 
 ### `arrayexpress_get_experiment_samples` {/* #arrayexpress_get_experiment_samples */}
 
-ArrayExpress 実験 (MAGE-TAB ヘッダの動詞、 #2/#3 をリピートする) のための 1 サンプル SDRF アノテーション行をフェッチします。 SDRF のリターン無しの実験 &#123;"error":"no_sdrf"&#125;.
+ArrayExpress実験のパスでソートされた最初のSDRFファイルから関係列をフェッチし、そのファイル内のすべてのサンプル/アッセイ/ファイル関係を保存します(MAGE-TABヘッダーをトリムし、#2/#3)を繰り返します。 サンプル/ソースの識別子、独立した生物的レプリカではなく、ソース名への好みのサンプル名を使用して区別をカウントします。 SDRF なしの実験は `{"error":"no_sdrf"}` を返します。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -3679,7 +3678,7 @@ const result = await host.mcp("omics-archives", "metabolights_list_studies", {})
 
 ### `metabolights_get_studies` {/* #metabolights_get_studies */}
 
-パースされたISAのペイロードからのMetaboLightsの調査(MTBLSxxx)のためのフェッチ構造化されたメタデータ — タイトル、状態、年、生物、試金、要因、記述子、サンプル計算、プロトコル; 任意/サンプル テーブル。 not_found で非公開/プライベートアクセスが出来ます。
+パースされたISAペイロードからMetaboLights研究(MTBLSxxx)のためのフェッチ構造メタデータ — タイトル、ステータス、年、生物、試金、要因、記述子、サンプルカウント、プロトコル; ISAカラムの注文と関連付けを予約するユニークな列キーを持つオプションの1サンプルテーブル。 not_found で非公開/プライベートアクセスが確認されています。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -4487,7 +4486,6 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ```
 
 </ToolOperationGroup>
-
 
 ## 応答レコードの例 {/* #example-response-records */}
 

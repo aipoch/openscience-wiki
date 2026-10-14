@@ -2736,5 +2736,11 @@
   },
   "docs.outline.reference.v0372.scope": {
     "message": "启动与连接恢复、Linux CLI 安装包、本地化帮助及科研数据修复"
+  },
+  "docs.outline.reference.v100.title": {
+    "message": "v1.0.0"
+  },
+  "docs.outline.reference.v100.scope": {
+    "message": "1.x 稳定兼容范围、桌面发行包、会话恢复与科学数据背景"
   }
 }

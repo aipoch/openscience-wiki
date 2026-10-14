@@ -1,7 +1,7 @@
 ---
 title: "Task SDK and local API"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-14'
 ---
 
 # Task SDK and local API
@@ -14,9 +14,9 @@ The `@aipoch/open-science` Node.js client connects to an authenticated local app
 
 <p className="example-label"><strong>Example</strong> Save and download a connection-check note</p>
 
-Use Node.js compatible with the selected package: the v0.37.1 backend package requires Node.js 22.13 or later, while standalone CLI archives bundle Node. Start a backend through the desktop or [CLI](server.md), finish model setup and keep it running. The SDK uses local service discovery and its locally stored token.
+Use Node.js compatible with the selected package: the v1.0.0 backend package requires Node.js 22.13 or later, and the desktop distribution bundles its own backend runtime. Start a backend through the desktop or [CLI](server.md), finish model setup and keep it running. The SDK uses local service discovery and its locally stored token.
 
-In an empty working folder, install the matching local package. Replace `BACKEND_DIRECTORY` with the absolute path to the `backend` folder in the completely extracted standalone CLI archive, and retain that directory:
+In an empty working folder, install the matching local SDK package. Replace `BACKEND_DIRECTORY` with the absolute `backend` directory inside the desktop distribution (`Contents/Resources/backend` on macOS), or the backend package built from the corresponding tag. v1.0.0 has no standalone CLI archive; do not substitute an older archive to obtain this directory. Keep the referenced directory and recheck the client version after updating the app.
 
 ```bash
 npm init -y
@@ -197,3 +197,7 @@ Sources: [signatures](https://github.com/aipoch/open-science/blob/v0.27.0/packag
 Set `permissionPrompts: 'none'` in the `startRun` input, corresponding to CLI `--permission-prompts none`. Keep an appropriate `permissionProfile`: this option declines unresolved human interactions and does not expand permissions. Do not combine it with `planFirst: true`.
 
 The host must declare capability `permission-prompts-none`; otherwise the client reports `unsupported_capability` before creating the run. This policy applies only to the current invocation. Handle the run's actual status and error as usual. See [unattended CLI runs](cli.md#unattended-runs).
+
+## Public interface compatibility in 1.x {/* #public-compatibility */}
+
+The [compatibility policy](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md) covers the matching SDK's public root exports/types and documented Task requests, responses and events. It does not make arbitrary local HTTP routes, internal imports or Electron IPC public APIs. Parse documented error codes, tolerate unknown object fields and avoid matching diagnostic prose. Application, independently published package and research-package schema versions are separate.

@@ -1,7 +1,7 @@
 ---
 title: "Conversaciones y solicitudes en cola"
 last_update:
-  date: '2026-10-09'
+  date: '2026-10-14'
 ---
 
 # Conversaciones y solicitudes en cola {/* #conversations-and-queued-requests */}
@@ -138,3 +138,11 @@ Puede arrastrar archivos locales en el área de conversación, no sólo el Compo
 ## Mención de un archivo arrastrandolo {/* #drag-file-mention */}
 
 Arrastre una tarjeta de archivo de **Files**, o el encabezado de archivo del artefacto abierto, en el Compositor. Confirme que el borrador contiene una mención para el archivo deseado, agregue su pregunta, luego envíe. b) El contexto de la supresión de los insertos en el proyecto; no inicia una solicitud. En una nueva conversación, el panel Archivos también puede proporcionar una mención. Compruebe el proyecto y el archivo seleccionados antes de enviar.
+
+## Responder a una pregunta de aclaración {/* #clarification-questions */}
+
+Cuando el agente presenta una tarjeta de pregunta, lea quién lo hizo y la opción solicitada antes de continuar. Una tarjeta multi-seleccion dice **Seleccionar una o varias opciones**; seleccione cada respuesta aplicable, y seleccione un artículo de nuevo para eliminarlo. Las listas de opciones más largas se desplazan dentro de la tarjeta.
+
+Utilice **Escriba su propia respuesta** para una respuesta diferente, **Dejar que el agente decida** para delegar esa opción, o **Skip** para dejarlo sin respuesta. Una respuesta tipoada reemplaza la selección de opciones. Utilice **Siguiente** y **Back** para revisar un conjunto de preguntas, luego **Finish** para someterlo. La simple selección de una opción ahorra un borrador; no termina la respuesta. Espere a que la tarjeta se resuelva y la tarea de continuar antes de enviar la misma respuesta de nuevo.
+
+Estas tarjetas aclaran la solicitud de investigación. No otorgan permisos de herramientas ni aprueban un plan separado.

@@ -1,7 +1,7 @@
 ---
 title: "CLI 与结构化输出"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -13,9 +13,11 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformGuide />
 
+**应用更新命令已移除：** v1.0.0 不再接受 `open-science update` 或其 `--json` 形式。使用桌面更新控件，或原安装器／包管理器；原更新专用退出码 5 和 6 不再属于当前 CLI 表。升级步骤见[安装与更新](../guides/installation.md#version-compatibility)。
+
 ## 从终端完成首次设置 {/* #terminal-setup */}
 
-选择桌面应用的命令入口，或[官方发行版](https://github.com/aipoch/open-science/releases/tag/v0.37.2)中的独立 CLI 压缩包。独立包包含 CLI、Node 运行时、后端与 Web UI，不需要 Electron，也无需另装 Node/npm。
+v1.0.0 使用桌面附带的启动器：在 **Settings → General → Command line tool** 选择 **Install command**，新开终端检查 `open-science --help`。本次发布没有独立 CLI 包。下面的独立归档解压步骤仅用于实际提供归档的版本，例如 [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2)；不要将其当成 1.0 安装，也不要混用不同版本的桌面和后端。
 
 1. 选择与主机匹配的 macOS／Linux arm64 或 x64 包，或 Windows x64 包。
 2. 完整解压到可写目录，保留启动器、`backend` 与 `node-runtime` 的相对位置；只复制启动器会导致无法启动。
@@ -208,14 +210,12 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 | 2 | CLI 参数无效 |
 | 3 | 本地 daemon 不可用 |
 | 4 | 指定项目、Run、会话、产物或 Specialist 不存在 |
-| 5 | 活动工作阻止应用更新 |
-| 6 | 更新需要手动安装步骤 |
 
 JSONL 可能包含 `run.progress` 和 `stream.resync-required`。重连后无法重放时，重新读取权威 Run 状态，不把事件流当作永久历史。服务命令另有参数限制，见[无界面服务](./server.md)。
 
-[CLI 实现](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md)。
+[CLI 实现](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md)。
 
-技术参考：[CLI 约定](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+技术参考：[CLI 约定](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
 ## 无人值守运行 {/* #unattended-runs */}
 

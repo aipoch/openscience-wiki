@@ -2,7 +2,7 @@
 title: "Referencia de operación Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,8 +38,7 @@ Los nombres de campo de retorno difieren por operación. Las descripciones y esq
 
 ## Contribuciones de las operaciones {/* #operation-inputs */}
 
-Ampliar un Connector a la vez. Los campos obligatorios están marcados con **obligatorio**; esta referencia y descarga utilizar el esquema Open-Science **v0.37.2** Una lista `input.required` anidada es autorizada; una lista de `required` de alto nivel puede estar ausente. Consulte el <ExampleDownload path="/examples/capabilities/connector-catalog-v0.37.2.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas de agentes. No pase un `id` genérico cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
-
+Ampliar un Connector a la vez. Los campos obligatorios están marcados con **obligatorio**; esta referencia y descarga utilizar el esquema Open-Science **v1.0.0** Una lista `input.required` anidada es autorizada; una lista de `required` de alto nivel puede estar ausente. Consulte el <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas de agentes. No pase un `id` genérico cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
 
 ## Química {/* #family-1 */}
 
@@ -3017,7 +3016,7 @@ const result = await host.mcp("expression", "bgee_species", {})
 
 ### `bgee_expression_calls` {/* #bgee_expression_calls */}
 
-Retrieve Bgee llamadas de expresión presentes/absente y puntuaciones de expresión normalizadas para un gen en una especie. Los resultados son llamadas de base de tipo salvaje saludable y se pueden cubrir con max_calls.
+Retrieve Bgee presentes/absent expresiones llamadas y puntajes de expresión normalizados para un gen en una especie, preservando la entidad anatómica y el contexto de tipo celular. Los resultados son llamadas de base de tipo salvaje saludable y se pueden cubrir con max_calls. Los tipos de células desaparecidas o no especificadas son devueltos como nulos.
 
 | Campo | Tipo | Requisitos y limitaciones |
 | --- | --- | --- |
@@ -3629,7 +3628,7 @@ const result = await host.mcp("omics-archives", "arrayexpress_get_experiment_fil
 
 ### `arrayexpress_get_experiment_samples` {/* #arrayexpress_get_experiment_samples */}
 
-Busque filas de anotación SDRF por muestreo para un experimento de ArrayExpress (MAGE-TAB headers verbatim, repite #2/#3) sufixiado. Experimentos sin retorno SDRF &#123;"error":"no_sdrf"&#125;.
+Obtenga filas de relación del primer archivo SDRF ordenados por ruta para un experimento de ArrayExpress, preservando cada relación muestra/ensayo/archivo en ese archivo (cabezadores MAGE-TAB entristecidos, repite #2/#3). Cuenta con identificadores de muestra/fuente distintos, no réplicas biológicas independientes, utilizando el Nombre de muestra en preferencia al Nombre de Fuente. Experimentos sin retorno de SDRF `{"error":"no_sdrf"}`.
 
 | Campo | Tipo | Requisitos y limitaciones |
 | --- | --- | --- |
@@ -3679,7 +3678,7 @@ const result = await host.mcp("omics-archives", "metabolights_list_studies", {})
 
 ### `metabolights_get_studies` {/* #metabolights_get_studies */}
 
-Obtenga metadatos estructurados para los estudios de MetaboLights (MTBLSxxxx) de la carga útil de ISA perseguida: título, estado, años, organismos, ensayos, factores, descriptores, conteo de muestras, protocolos; opcional por mesa de muestreo. Las adhesiones no conocidas/privadas van en not_found.
+Obtenga metadatos estructurados para los estudios de MetaboLights (MTBLSxxxx) de la carga útil de ISA perseguida: título, estado, años, organismos, ensayos, factores, descriptores, conteo de muestras, protocolos; opcional mesa por muestreo con teclas de columna únicas que preservan el orden de columna ISA y las asociaciones. Las adhesiones no conocidas/privadas van en not_found.
 
 | Campo | Tipo | Requisitos y limitaciones |
 | --- | --- | --- |
@@ -4487,7 +4486,6 @@ const result = await host.mcp("zinc", "zinc_get_3d", {"zinc_ids": ["ZINC00000000
 ```
 
 </ToolOperationGroup>
-
 
 ## Registros de respuesta por ejemplo {/* #example-response-records */}
 

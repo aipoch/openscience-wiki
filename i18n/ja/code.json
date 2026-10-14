@@ -1787,5 +1787,11 @@
   },
   "docs.outline.reference.v0372.scope": {
     "message": "スタートアップと接続の回復、Linux CLIパッケージ、ローカライズされたヘルプと科学的なデータ修正。"
+  },
+  "docs.outline.reference.v100.title": {
+    "message": "v1.0.0"
+  },
+  "docs.outline.reference.v100.scope": {
+    "message": "安定した1.xの両立性、デスクトップ解放の可用性、セッションの回復および科学的なデータコンテキスト。"
   }
 }

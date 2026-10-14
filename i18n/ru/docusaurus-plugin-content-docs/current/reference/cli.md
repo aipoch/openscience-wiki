@@ -1,7 +1,7 @@
 ---
 title: "CLI и структурированный выход"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -13,9 +13,11 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformGuide />
 
+**Обновитель приложений удален:** v1.0.0 больше не принимает `open-science update`, включая его форму `--json`. Используйте элементы управления обновлениями рабочего стола или оригинальный установщик / менеджер пакетов. Бывший код выхода 5 и 6 не являются частью текущей таблицы CLI. Смотрите [Обновление руководства](../guides/installation.md#version-compatibility).
+
 ## Настройка из терминала {/* #terminal-setup */}
 
-Выберите либо настольную пусковую установку, либо отдельный архив CLI из [официальное освобождение](https://github.com/aipoch/open-science/releases/tag/v0.37.2). Отдельный архив содержит CLI, Node время выполнения, бэкэнд и веб-интерфейс; Для этого не требуется электрон или отдельно установленная цепочка инструментов Node/npm.
+Для v1.0.0 установите пусковую установку, поставляемую на рабочий стол, через **Settings → General → Command line tool → Install command**, откройте новый терминал и проверьте `open-science --help`. Данный релиз не имеет отдельного пакета CLI. Нижеприведенные этапы извлечения архива применяются только к версиям, которые предоставляют один из них, например [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2). Они не являются установкой 1.0 или разрешением на смешивание настольных / фоновых версий.
 
 1. Выберите macOS или Linux arm64/x64, или Windows x64, соответствующий хосту.
 2. Извлеките полный архив в письменное место. Держите пусковую установку, `backend` и `node-runtime` вместе. Копирование только пусковой установки сломает стартап.
@@ -210,14 +212,12 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 | 2 | Недействительное использование CLI |
 | 3 | Местный демон недоступен |
 | 4 | Запрошенный проект/запуск/сессия/артефакт/Specialist не найден |
-| 5 | Активная работа заблокировала обновление приложения |
-| 6 | Обновление приложения требует ручного этапа установки |
 
 JSONL может включать `run.progress` и `stream.resync-required`. Если повторное воспроизведение недоступно после повторного подключения, перечитайте авторитетное состояние запуска; Не думайте, что поток событий — это постоянная история. Команды жизненного цикла имеют отдельные ограничения флага, описанные в [Безголовый сервис](./server.md).
 
-[Реализация CLI](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [Руководитель командной строки](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
+[Реализация CLI](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [Руководитель командной строки](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
-Технический справочник: [Контракт CLI](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+Технический справочник: [CLI контракт](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
 ## Без присмотра бегут {/* #unattended-runs */}
 

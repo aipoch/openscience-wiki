@@ -1,7 +1,7 @@
 ---
 title: "CLI and structured output"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -13,9 +13,11 @@ Use `open-science` to inspect application status, run tasks, manage Connectors a
 
 <PlatformGuide />
 
+**Application updater removed:** v1.0.0 no longer accepts `open-science update`, including its `--json` form. Use the desktop update controls or the original installer/package manager. The former updater-only exit codes 5 and 6 are not part of the current CLI table. See [upgrade guidance](../guides/installation.md#version-compatibility).
+
 ## Set up from a terminal {/* #terminal-setup */}
 
-Choose either the desktop launcher or a standalone CLI archive from the [official release](https://github.com/aipoch/open-science/releases/tag/v0.37.2). The standalone archive contains the CLI, Node runtime, backend and Web UI; it does not require Electron or a separately installed Node/npm toolchain.
+For v1.0.0, install the desktop-supplied launcher through **Settings → General → Command line tool → Install command**, open a new terminal and check `open-science --help`. This release has no standalone CLI package. The archive extraction steps below apply only to versions that provide one, such as [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2); they are not a 1.0 installation or permission to mix desktop/backend versions.
 
 1. Choose macOS or Linux arm64/x64, or Windows x64, matching the host.
 2. Extract the complete archive into a writable location. Keep the launcher, `backend` and `node-runtime` together; copying only the launcher will break startup.
@@ -210,14 +212,12 @@ The following invalid-option response was reproduced locally:
 | 2 | Invalid CLI usage |
 | 3 | Local daemon unavailable |
 | 4 | Requested project/run/session/artifact/Specialist not found |
-| 5 | Active work blocked an application update |
-| 6 | Application update requires a manual installation step |
 
 JSONL can include `run.progress` and `stream.resync-required`. If replay is unavailable after reconnection, reread authoritative run state; do not assume the event stream is a permanent history. Lifecycle commands have separate flag restrictions described in [Headless service](./server.md).
 
-[CLI implementation](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [upstream command guide](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
+[CLI implementation](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [upstream command guide](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
-Technical reference: [CLI contract](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+Technical reference: [CLI contract](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
 ## Unattended runs {/* #unattended-runs */}
 

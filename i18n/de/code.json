@@ -1802,5 +1802,11 @@
   },
   "docs.outline.reference.v0372.scope": {
     "message": "Start- und Verbindungswiederherstellung, Linux CLI-Pakete, lokalisierte Hilfe und wissenschaftliche Datenbehebungen."
+  },
+  "docs.outline.reference.v100.title": {
+    "message": "v1.0.0"
+  },
+  "docs.outline.reference.v100.scope": {
+    "message": "Stabile 1.x-Kompatibilität, Verfügbarkeit von Desktop-Releases, Sitzungswiederherstellung und wissenschaftlicher Datenkontext."
   }
 }

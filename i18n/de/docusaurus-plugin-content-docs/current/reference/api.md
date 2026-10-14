@@ -1,7 +1,7 @@
 ---
 title: "Task SDK und lokales API"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-14'
 ---
 
 # Task SDK und lokales API {/* #task-sdk-and-local-api */}
@@ -14,9 +14,9 @@ Der `@aipoch/open-science` Node.js-Client verbindet sich mit einem authentifizie
 
 <p className="example-label"><strong>Beispiel</strong> Speichern und Herunterladen einer Verbindungs-Check-Notiz</p>
 
-Verwenden Sie Node.js, das mit dem ausgewählten Paket kompatibel ist: Das v0.37.1-Backend-Paket erfordert Node.js 22.13 oder höher, während eigenständige CLI-Archive Node bündeln. Starten Sie ein Backend über den Desktop oder [CLI](server.md), beenden Sie die Modelleinrichtung und halten Sie es am Laufen. Der SDK verwendet die lokale Service-Discovery und sein lokal gespeichertes Token.
+Verwenden Sie eine zum Paket passende Node.js-Version. Das Backend-Paket v1.0.0 benötigt Node.js 22.13 oder neuer; die Desktop-Distribution enthält ihre eigene Backend-Laufzeit. Starten Sie das Backend über die Desktop-App oder die [CLI](server.md), richten Sie das Modell ein und lassen Sie den Dienst laufen. Das SDK nutzt die lokale Diensterkennung und das lokal gespeicherte Token.
 
-Installieren Sie in einem leeren Arbeitsordner das passende lokale Paket. Ersetzen Sie `BACKEND_DIRECTORY` durch den absoluten Pfad zum `backend`-Ordner im vollständig extrahierten Standalone-CLI-Archiv und behalten Sie dieses Verzeichnis bei:
+Installieren Sie in einem leeren Arbeitsordner das passende lokale SDK-Paket. Ersetzen Sie `BACKEND_DIRECTORY` durch das absolute `backend`-Verzeichnis innerhalb der Desktop-Distribution (`Contents/Resources/backend` auf macOS) oder das Backend-Paket, das aus dem entsprechenden Tag aufgebaut ist. v1.0.0 hat kein eigenständiges CLI-Archiv; Ersetzen Sie kein älteres Archiv, um dieses Verzeichnis zu erhalten. Behalten Sie das referenzierte Verzeichnis und überprüfen Sie die Clientversion nach dem Aktualisieren der App erneut.
 
 ```bash
 npm init -y
@@ -197,3 +197,7 @@ Quellen: [Unterschriften](https://github.com/aipoch/open-science/blob/v0.27.0/pa
 Setzen Sie `permissionPrompts: 'none'` im `startRun`-Eingang entsprechend CLI `--permission-prompts none`. Halten Sie ein geeignetes `permissionProfile`: Diese Option lehnt ungelöste menschliche Interaktionen ab und erweitert keine Berechtigungen. Kombinieren Sie es nicht mit `planFirst: true`.
 
 Der Host muss die Fähigkeit `permission-prompts-none` deklarieren; Andernfalls meldet der Client `unsupported_capability`, bevor er den Lauf erstellt. Diese Richtlinie gilt nur für die aktuelle Invokation. Behandeln Sie den tatsächlichen Status und Fehler des Laufs wie gewohnt. Siehe [unbeaufsichtigte CLI-Läufe](cli.md#unattended-runs).
+
+## Kompatibilität der öffentlichen Schnittstelle in 1.x {/* #public-compatibility */}
+
+Der [Kompatibilitätspolitik](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md) deckt die entsprechenden öffentlichen Root-Exporte/Typen des SDK und dokumentierte Aufgabenanforderungen, Antworten und Ereignisse ab. Es macht keine willkürlichen lokalen HTTP-Routen, interne Importe oder Electron IPC öffentliche APIs. Zerlegen Sie dokumentierte Fehlercodes, tolerieren Sie unbekannte Objektfelder und vermeiden Sie die Übereinstimmung mit diagnostischer Prosa. Anwendung, unabhängig veröffentlichte Paket- und Forschungspaket-Schemaversionen sind getrennt.

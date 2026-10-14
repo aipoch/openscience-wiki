@@ -1,7 +1,7 @@
 ---
 title: "CLI und strukturierter Output"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -13,9 +13,11 @@ Verwenden Sie `open-science`, um den Anwendungsstatus zu überprüfen, Aufgaben 
 
 <PlatformGuide />
 
+**Application Updater entfernt:** v1.0.0 akzeptiert `open-science update`, einschließlich seines `--json`-Formulars, nicht mehr. Verwenden Sie die Desktop-Update-Steuerelemente oder den Original-Installationsprogramm- / Paketmanager. Die ehemaligen Updater-only-Exitcodes 5 und 6 sind nicht Teil der aktuellen CLI-Tabelle. Siehe [Aktualisierungsleitfaden](../guides/installation.md#version-compatibility).
+
 ## Aufgesetzt von einem Terminal {/* #terminal-setup */}
 
-Wählen Sie entweder den Desktop-Launcher oder ein eigenständiges CLI-Archiv aus dem [Offizielle Freigabe](https://github.com/aipoch/open-science/releases/tag/v0.37.2). Das Standalone-Archiv enthält die CLI, Node Runtime, Backend und Web UI; Es ist kein Electron oder eine separat installierte Node/npm-Toolchain erforderlich.
+Installieren Sie für v1.0.0 den Desktop-gelieferten Launcher über **Settings → General → Command line tool → Install command**, öffnen Sie ein neues Terminal und überprüfen Sie `open-science --help`. Diese Version hat kein eigenständiges CLI-Paket. Die folgenden Archivextraktionsschritte gelten nur für Versionen, die eine solche bereitstellen, wie z. B. [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2); Es handelt sich nicht um eine 1.0-Installation oder um eine Berechtigung zum Mischen von Desktop-/Backend-Versionen.
 
 1. Wählen Sie macOS oder Linux arm64/x64 oder Windows x64, die zum Host passen.
 2. Extrahieren Sie das komplette Archiv in einen beschreibbaren Ort. Halten Sie den Launcher, `backend` und `node-runtime` zusammen; Durch das Kopieren nur des Launchers wird der Start unterbrochen.
@@ -210,14 +212,12 @@ Die folgende Ungültig-Optionsantwort wurde lokal reproduziert:
 | 2 | Ungültige Nutzung von CLI |
 | 3 | Lokaler Daemon nicht verfügbar |
 | 4 | Angefordertes Projekt/Run/Session/Artefakt/Specialist nicht gefunden |
-| 5 | Aktives Arbeiten blockierte ein Anwendungsupdate |
-| 6 | Anwendungsaktualisierung erfordert einen manuellen Installationsschritt |
 
 JSONL kann `run.progress` und `stream.resync-required` enthalten. Wenn die Wiedergabe nach der Wiederverbindung nicht verfügbar ist, lesen Sie den autoritativen Laufzustand erneut; Gehen Sie nicht davon aus, dass der Ereignisstrom eine permanente Geschichte ist. Lifecycle-Befehle haben separate Flaggenbeschränkungen, die in [Kopfloser Dienst](./server.md) beschrieben sind.
 
-[CLI Implementierung](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/cli.mjs), [stromaufwärts gelegene Kommandoführung](https://github.com/aipoch/open-science/blob/v0.26.0/packages/open-science/CLI.md).
+[CLI Implementierung](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [Upstream-Kommandobefehlsführer](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
-Technische Referenz: [CLI Vertrag](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md).
+Technische Referenz: [CLI Vertrag](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
 
 ## Unbeaufsichtigte Strecken {/* #unattended-runs */}
 

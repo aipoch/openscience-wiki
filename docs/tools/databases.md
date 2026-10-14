@@ -2,7 +2,7 @@
 title: "Scientific databases"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 # Scientific databases
@@ -13,7 +13,7 @@ Use this page to choose a data source, understand what it can return, and make i
 
 ## Supported databases {/* #supported-databases */}
 
-Open-Science v0.37.1 includes **35 data-source Connectors with 359 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 361. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+Open-Science v1.0.0 includes **35 data-source Connectors with 359 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 361. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
 
 | Connector | Sources | Operations | Use it for  |
 | --- | --- | --- | ---  |
@@ -254,7 +254,7 @@ From v0.31.0, `get_string_network.nodes` includes returned neighbors and isolate
 
 The [Connector operation reference](../reference/connector-operations.md) lists required inputs, allowed values and exact calls. Use this page to choose a source and connect it; use the reference for a particular tool's fields.
 
-Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts).
+Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/registry.ts).
 
 ## Sequence searches and alignment {/* #sequence-tools */}
 
@@ -327,3 +327,19 @@ See [PDC operations and pagination](../reference/connector-operations.md#family-
 Enable **Genomes** in **Settings → Connectors**. Its Ensembl LD tools use the public API without a key. Supply two variant IDs for `ensembl_ld_pairwise`, or one for `ensembl_ld_proxies`, together with the complete population name, such as `1000GENOMES:phase_3:KHV`. The tools do not discover the population or infer ancestry; choose a reference population appropriate to the study.
 
 Pairwise results report r² and D′. Proxy queries default to r² ≥ 0.8 and a **500 kb total window**, approximately 250 kb on either side. `max_records` caps the returned list after sorting, not the upstream work. Keep the population and retrieval metadata with the result; this endpoint does not report the reference assembly or Ensembl release. Empty results mean no qualifying data returned, not zero LD. High LD establishes neither causality nor functional equivalence. See [pairwise fields](../reference/connector-operations.md#ensembl_ld_pairwise) and [proxy fields](../reference/connector-operations.md#ensembl_ld_proxies).
+
+## Preserve sample, expression and assembly context {/* #scientific-context */}
+
+| Query | Interpretation in v1.0.0 |
+| --- | --- |
+| `arrayexpress_get_experiment_samples` | `samples` contains relationship rows from the first SDRF file sorted by path. `n_rows_total` / `n_rows_returned` count rows; `n_samples` / `n_samples_returned` count distinct identifiers, preferring **Sample Name**, then **Source Name**. They are not independent biological replicate counts. Missing identifiers can make sample counts `null`. An empty file or `no_sdrf` response does not establish that the experiment has no samples. |
+| `metabolights_get_studies` with `include_samples` | Use the returned `headers` order when exporting `sample_table`. Repeated column names have unique `#2`, `#3`, … suffixes without overwriting original names. Retain all columns; an empty string in a short row is missing metadata. Check `rows_truncated`. |
+| `bgee_expression_calls` | Keep `anatomical_entity_id/name` together with `cell_type_id/name`. A missing cell type is `null`, not a negative expression call. Keep the expression state, quality and condition together. |
+| dbSNP variant lookups | Retain each placement's `assembly`, `assembly_full`, `seq_id`, position and alleles. One sequence can be associated with more than one assembly; do not collapse those associations or use the first placement as an automatic liftover. |
+
+These corrections change how returned evidence should be read. Check the [operation reference](../reference/connector-operations.md) before comparing an older saved response with a new lookup.
+
+
+### OpenAlex credential prompts {/* #openalex-prompts */}
+
+v1.0.0 remembers a declined OpenAlex credential prompt for the current session, avoiding repeated prompts there. If you later need that source, configure it explicitly in **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** and retry the intended query. Declining the prompt neither supplies a key nor guarantees access or quota.

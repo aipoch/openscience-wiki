@@ -2,7 +2,7 @@
 title: "Annotations et notes de document PDF"
 description: "Marquer les passages, recueillir les notes de documents, les retrouver et exporter une copie de lecture."
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-14'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,3 +72,7 @@ L'exemple enregistre deux notes : une surligne avec un commentaire et une note d
 Ouvrez le même PDF dans un autre projet, inspectez **Notes & Annotations**, puis utilisez **Show annotation source** pour vérifier la page et le passage sauvegardés. Si les notes sont absentes, confirmez que vous avez ouvert la même version de contenu et que son fichier géré est toujours lisible.
 
 Ces notes sont stockées localement et ne se synchronisent pas entre les machines. Pour un transfert, exportez les billets ou un PDF annoté et vérifiez ce que le destinataire recevra. Cela ne change pas les signets privés de session ou fait chaque note de lecture d'un [Paquet de recherche .science](research-packages.md).
+
+## Réveler une note sans couvrir la page {/* #reveal-note */}
+
+Dans v1.0.0, le bouton **Annotation note** d'une annotation sauvegardée s'affiche lorsque sa marque est sélectionnée, planée ou focalisée. Sélectionnez le point fort ou la région, puis ouvrez le bouton Note pour lire ou modifier le commentaire. Un bouton caché ne signifie pas que la note a été supprimée. Utilisez **Show notes sidebar** ou **Notes & Annotations** pour parcourir la liste complète, et **Show annotation source** pour revenir à l'emplacement marqué.

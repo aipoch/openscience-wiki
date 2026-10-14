@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v0.37.1에는 **35 데이터 소스 커넥터 359 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 361에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
+Open-Science v1.0.0에는 **35 데이터 소스 커넥터 359 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 361에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
 
 | 커넥터 | 출처 | 작업 | 사용하기  |
 | --- | --- | --- | ---  |
@@ -254,7 +254,7 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v0.37.1/src/main/connectors/registry.ts).
+카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/registry.ts).
 
 ## Sequence 검색 및 정렬 {/* #sequence-tools */}
 
@@ -327,3 +327,19 @@ receptor-group ID, 체인을 유지, assay ID 및 소스 출판보고. 호스트
 **Settings → Connectors**에서 **한국어 (Korean)**을 활성화하십시오. Ensembl LD 도구는 키가없는 공공 API를 사용합니다. `ensembl_ld_pairwise`에 대한 두 가지 변형 ID를 공급, 또는 `ensembl_ld_proxies`에 대한 하나, `1000GENOMES:phase_3:KHV`와 같은 전체 인구 이름과 함께. 도구는 인구 또는 인퍼 ancestry를 발견하지 않습니다; 연구에 적합한 참조 인구를 선택하십시오.
 
 쌍방향 결과 보고서 r2 및 D′. r2 ≥ 0.8 및 **500 kb 총 창**에 프록시 쿼리 기본, 어느 쪽에 250 kb. `max_records`는 정렬 후 반환된 목록을 캡, 업스트림 작업이 아닙니다. 결과를 가진 인구와 retrieval metadata 유지; 이 엔드포인트는 참고 집합 또는 Ensembl 방출을 보고하지 않습니다. 빈 결과가 반환되지 않는 자격이 없는 데이터, 제로 LD. 높은 LD는 카시니즘과 기능적인 평등도 설치하지 않습니다. [쌍방향 필드](../reference/connector-operations.md#ensembl_ld_pairwise) 및 [프록시 필드](../reference/connector-operations.md#ensembl_ld_proxies)을 참조하십시오.
+
+## 표본, 표정 및 집합 상황에 보존하십시오 {/* #scientific-context */}
+
+| 검색어 | v1.0.0의 해석 |
+| --- | --- |
+| `arrayexpress_get_experiment_samples` | `samples` 경로에 의해 분류 된 최초의 SDRF 파일에서 관계 행을 포함합니다. `n_rows_total` / `n_rows_returned` 줄을 곱합니다; `n_samples` / `n_samples_returned` 구별 식별자, 선호 **표본 이름**, 다음 **근원 이름**을 진행하세요. 그들은 독립적 인 생물학 복제 수 없습니다. 식별자는 샘플 수를 만들 수 있습니다. `null`을 진행하세요. 빈 파일 또는 `no_sdrf` 응답은 실험이 샘플이 없다는 것을 설정하지 않습니다. |
+| `metabolights_get_studies` 으로 `include_samples` | 반환된 사용 `headers` 수출할 때 순서 `sample_table`을 진행하세요. 반복된 열 이름은 독특합니다 `#2`, `#3`, ... 본래의 이름을 과잉하지 않고 suffixes. 모든 열을 유지; 짧은 행의 빈 문자열은 메타데이터가 누락됩니다. 【특전】 `rows_truncated`. |
+| `bgee_expression_calls` | 뚱 베어 `anatomical_entity_id/name` 함께하기 `cell_type_id/name`을 진행하세요. 누락된 세포 유형은 입니다 `null`, 부정적인 표식이 아닌. 표현 상태, 품질 및 상태를 함께 유지하십시오. |
+| dbSNP 변형 조회 | 각 배치의 유지 `assembly`, `assembly_full`, `seq_id`, 위치 및 alleles. 1개의 순서는 1개의 집합과 관련될 수 있습니다; 그 협회를 붕괴하거나 자동 Liftover로 첫 번째 배치를 사용하지 마십시오. |
+
+이 수정은 반환된 증거가 읽을 수 있는 방법을 변경합니다. [및 다운로드 가능한 레지스트리는 이제 v0.31.1 :](../reference/connector-operations.md)을 체크 아웃하여 이전의 저장된 응답을 새로운 모습으로 비교하십시오.
+
+
+### OpenAlex 자격 증명 {/* #openalex-prompts */}
+
+v1.0.0은 현재 세션에 대한 쇠퇴 OpenAlex 자격 증명 프롬프트를 기억하고 반복 된 프롬프트를 피합니다. 나중에 소스가 필요하다면 **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**에서 명시적으로 구성하고 의도한 쿼리를 재개합니다. 신속한 공급은 열쇠를 공급하지 않으며 액세스 또는 할당량을 보장합니다.

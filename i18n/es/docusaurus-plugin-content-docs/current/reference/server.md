@@ -1,7 +1,7 @@
 ---
 title: "Servicio sin cabeza y acceso al navegador"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-14'
 ---
 
 # Servicio sin cabeza y acceso al navegador {/* #headless-service-and-browser-access */}
@@ -98,17 +98,20 @@ Utilice almacenamiento persistente cuando la configuración debe sobrevivir el r
 Cerrar una ventana puede diferir de dejar la aplicación, especialmente cuando permanece en la bandeja. Terminar la investigación activa antes de detener un backend compartido, luego inspeccionar el estado actual con `status --json`.
 
 Un escritorio desconectado ofrece **Volver a conectar** y **Cerrar la aplicación**. Reconectar refresca el backend original en vivo y no vuelve a presentar trabajo; Si ese backend se ha ido, renunció y reabrió. Un Quit desconectado puede cerrar sólo al cliente, así que inspeccione el estado del perfil seleccionado antes de asumir que el servicio se detuvo. Siga a [Recuperación de conexiones](../guides/troubleshooting.md#connection-recovery), incluyendo operaciones de verificación cuyas respuestas se perdieron.
+### Reconectar después de una interrupción del escritorio {/* #desktop-service-recovery */}
+
+Si el escritorio sale de forma inesperada mientras su backend sobrevive, la reapertura de un escritorio de la misma versión puede adoptar ese servicio de escritorio después del viejo controlador y el desgarro se resuelve. Se presta un servicio CLI sin asistencia; El escritorio ordinario Quit no lo detiene simplemente porque el escritorio se reconectó.
+
+Si la preparación deja de funcionar, la ventana permanece abierta. Lea el aviso, mantenga el trabajo sin guardar y espere a que la conversación se recupere antes de comprobar la ejecución original y los archivos. Una ventana abierta no significa que la tarea fue cancelada. Si la startup reporta un servicio independiente más antiguo que lo bloquea, compruebe el perfil y la versión antes de elegir la acción explícita de la parada. Cancelar deja que funcione ese servicio; una parada fallida puede ser retried o rechecked sin borrar archivos de bloqueo.
 
 ## Comportamiento de actualización de la aplicación {/* #application-update-behavior */}
 
-Actualizaciones nativas de escritorio y actualizaciones de paquetes independientes utilizan diferentes caminos. Un backend Node ordinario no puede reemplazar el instalador de escritorio; su `update --json` informa un requisito de actualización manual y el modo `package-manager`. Siga las instrucciones devueltas.
+v1.0.0 elimina el actualizador de aplicaciones CLI; no use `open-science update --json`. Utilice los controles de actualización de escritorio o el administrador original del instalador/paquete, observando [disponibilidad de la versión actual](../guides/installation.md#standalone-cli).
 
-- **Aplicación de escritorio:** utiliza su actualización en la aplicación. Si se adjunta a un backend iniciado previamente por el CLI, termine el trabajo y detenga ese backend antes de actualizar el escritorio.
-- **Archivo CLI independiente:** terminar el trabajo, detener el backend previsto, extraer la nueva versión en un nuevo directorio, conservar los datos de configuración y actualizar el lanzador o PATH. No sobreescribas el paquete de ejecución.
-- **Homebrew CLI o Linux CLI paquete:** termina el trabajo y detiene cada perfil usando esa instalación, luego sigue el [Instrucciones de actualización del paquete](../guides/installation.md#standalone-cli). Siga utilizando el mismo directorio de configuración después.
+- **Aplicación de escritorio:** termina la investigación activa antes de comprobar las actualizaciones. Si la actualización se adjunta a un servicio CLI pide detenerlo y cambiar a la gestión de escritorio, compruebe el perfil y las tareas afectadas antes de consentir. Cancelar deja el servicio original funcionando. Este conmutador no actualiza los archivos originales del programa independiente CLI.
+- **Instalación Standalone CLI:** detiene cada perfil usando él, luego instala un paquete publicado en realidad a través de su canal original. No sobreescribir archivos de funcionamiento o reabrir un perfil con un backend antiguo después de que un nuevo escritorio le haya escrito.
+- **Aviso de ocupación o recuperación:** sigue los cheques mostrados para casos activos y estado de instalación. No borre bloqueos, configuración o registros de recuperación para forzar una actualización cuando el cierre es incierto.
 
-- **instalación npm:** actualiza el paquete correspondiente a través de npm y confirma la compatibilidad cliente/backend.
+Después de actualizar, confirme la versión y los datos originales, luego utilice `status --json` y `doctor --json` para inspeccionar el estado de servicio y la preparación. Preserve el modo de tienda de credenciales. [Compatibilidad 1.x](../guides/installation.md#version-compatibility) no promete versiones mixtas de escritorio / backend.
 
-Reinicie, luego utilice `status --json` y `doctor --json` para confirmar la versión, directorio de configuración y preparación. Preserve el modo de plantación credencial existente; no eliminar credenciales o configuración para realizar una actualización.
-
-Vea el [guía oficial de tiempo libre](https://github.com/aipoch/open-science/blob/v0.37.2/docs/standalone-runtime.md), [CLI](cli.md) y [Task SDK](api.md).
+Vea el [guía oficial de horario de ejecución](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md), [CLI](cli.md) y [Task SDK](api.md).
