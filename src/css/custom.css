@@ -232,7 +232,7 @@ mark {background:#f1dd67; color:#111111; padding:0 2px;}
 .docs-d-catalog .guides-outline-group .menu__link--active::before {content:'';position:absolute;left:-10px;top:0;bottom:0;width:2px;background:var(--aip-ink);}
 .docs-d-breadcrumbs {margin-bottom:32px;}
 @media(max-width:996px) {
-  .navbar-sidebar {width:min(390px,100vw);}
+  .navbar-sidebar {--ifm-navbar-sidebar-width:min(390px,100vw);width:var(--ifm-navbar-sidebar-width);}
   .navbar-sidebar__item:has(.docs-d-rail) {padding:0!important;overflow:hidden;}
   .navbar-sidebar__item:has(.docs-d-rail) .navbar-sidebar__back {margin:0;width:100%;}
   .theme-doc-sidebar-menu:has(> .docs-d-rail) {grid-template-columns:76px minmax(0,1fr);height:calc(100dvh - 112px);}
