@@ -1,7 +1,7 @@
 ---
 title: "Управлять и проверять Skills"
 last_update:
-  date: '2026-09-15'
+  date: '2026-10-22'
 ---
 
 # Управлять и проверять Skills {/* #manage-and-validate-skills */}
@@ -113,3 +113,7 @@ last_update:
 | GitHub/ошибка аутентификации | Сохранить фактический статус HTTP и дезинфицированный URL-адрес источника; смотреть [устранение неполадок](../guides/troubleshooting.md). |
 
 Ссылка на осуществление: [SkillUploadView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillUploadView.tsx), [SkillBulkManageView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillBulkManageView.tsx), [SkillImportView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillImportView.tsx).
+
+## Импорт и редактирование Навыки безопасно {/* #import-batches */}
+
+Большой выбор установленных навыков импортируется партиями. Дождитесь окончательного результата и проверьте импортный список, прежде чем повторять импорт. Внешнему мастерству с зарезервированным префиксом имени присваивается безопасное локальное имя; используйте имя, указанное в местном каталоге. При редактировании тела сохраните его и убедитесь, что отдельно отредактированные имя и описание остаются правильными. Изображения, прикрепленные к текущему сообщению, также могут информировать выбор навыков; проверьте область выбранного навыка, прежде чем позволить ему действовать.

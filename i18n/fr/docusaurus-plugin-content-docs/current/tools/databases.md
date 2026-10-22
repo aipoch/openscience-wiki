@@ -2,7 +2,7 @@
 title: "Bases de données scientifiques"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # Bases de données scientifiques {/* #scientific-databases */}
@@ -13,18 +13,18 @@ Utilisez cette page pour choisir une source de données, comprendre ce qu'elle p
 
 ## Bases de données prises en charge {/* #supported-databases */}
 
-Open-Science v1.0.0 comprend **Connecteurs source de données 35 avec opérations 359**. Le Molecule Connector séparé hors ligne ajoute deux opérations, apportant le registre complet à 361. Noms Connector ci-dessous correspondent à **Settings → Connectors**; Chaque famille peut exposer plusieurs bases de données. L'inscription d'une source ne signifie pas que toutes les fonctionnalités de son site Web sont disponibles.
+Open-Science v1.0.2 comprend **36 connecteurs source de données avec 371 opérations**. Le connecteur Molecule séparé hors ligne ajoute deux opérations, portant le registre complet à 373. Noms du connecteur ci-dessous correspondent **Settings → Connectors**; chaque famille peut exposer plusieurs bases de données. L'inscription d'une source ne signifie pas que toutes les fonctionnalités de son site Web sont disponibles.
 
 | Connecteur | Sources | Opérations | Utilisez-le pour  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | Chimie des petites molécules via PubChem, ChEBI, Rhea et BindingDB.  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Papiers, auteurs, citations, mises à jour DOI et enregistrements dataset/software. |
-| PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | Littérature biomédicale par l'intermédiaire de l'E-utilities NCBI, du PMC ID Converter et d'Europe PMC — recherche, métadonnées, articles connexes, recherche de citation, conversion d'ID, texte intégral et copyright.  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | Identificateurs de gènes/protéines, découverte de séquences UniProt, annotations GO et Réactome, et g:Profiler et enrichissement de la série de gènes Enrichr. |
+| PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | Littérature biomédicale par l'intermédiaire de l'E-utilities NCBI, du PMC ID Converter et d'Europe PMC — recherche, métadonnées, articles connexes, recherche de citation, conversion d'ID, texte intégral et copyright.  |
+| Genes &amp; Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr, HGNC | 17 | Identificateurs de gènes/protéines, découverte de séquences UniProt, annotations GO et Réactome, et enrichissement de g:Profiler et Enrichr. |
 | Génomes · `genomes` | Ensembl, UCSC, NCI, BLAST, Omega clustal | 22 | annotation du génome, homologie et séquence; l'identification des taxons/ensembles/séquences de la BCNI; Recherche BLAST et alignement de plusieurs séquences de Clustal Omega; Variantes LD et proxy propres à la population. |
 | Variantes · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | Fréquences des populations, dossiers cliniques et scores fonctionnels, cartes et expériences propres à chaque essai. |
-| Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | Essais cliniques de ClinicalTrials.gov — recherche, détails, commanditaires, chercheurs, critères et admissibilité.  |
-| Génomique clinique · `clinical-genomics` | ClinGen, CIViC, cibles ouvertes, ClinPGx | 30 | Bases de connaissances en génomique clinique : ClinGenations, preuves cliniques du CIVIC et plateforme Open Targets, plus dossiers pharmacogénomiques ClinPGx. |
+| Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | Découverte des essais, protocoles et mesures des résultats affichés, dénominateurs de groupe, statistiques et événements indésirables. |
+| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx, DGIdb | 32 | Bases de connaissances en génomique clinique: ClinGenations, preuves cliniques du CIVIC, et la plateforme Open Targets, ainsi que les dossiers pharmacogénomiques ClinPGx. |
 | Structures et interactions · `structures` | PDB, AlphaFold, EMDB, Portail complexe, IntAct | 17 | Structures et interactions moléculaires — Structures PDB, prédictions AlphaFold, entrées EMDB cryo-EM, complexes de portails complexes, réseaux d'interactions IntAct.  |
 | ChEMBL · `chembl` | CEMBL | 7 | Composés bioactifs, médicaments, cibles, bioactivité et mécanismes via le ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | préimpressions bioRxiv/medRxiv — recherche par date/catégorie, métadonnées par DOI, liens de publication de revues, listes de bailleurs de fonds et statistiques des plates-formes.  |
@@ -33,7 +33,7 @@ Open-Science v1.0.0 comprend **Connecteurs source de données 35 avec opération
 | Expression · `expression` | GTEx, Bgee | 16 | expression des tissus humains GTEx et eQTL; Expression de base de Bgee pour les espèces croisées. |
 | Annotation protéique · `protein-annotation` | InterPro, Pfam, Atlas des protéines humaines, STRING | 14 | Architecture du domaine protéique, appartenance à la famille/clan, atlas d'expression et réseaux d'interactions via InterPro/Pfam, l'Atlas des protéines humaines et STRING, y compris l'enrichissement des interactions réseau. |
 | Modèles de cancer · `cancer-models` | cBioPortal | 10 | Études, mutations, nombre de copies, échantillons, patients, attributs cliniques et expression du profil moléculaire. |
-| RNA · `rna` | Rfam | 9 | Données sur les familles d'ARN non codantes (métadonnées, alignements, modèles, structures) via Rfam.  |
+| RNA · `rna` | Rfam, RNAcentral | 11 | Données sur les familles d'ARN non codantes (métadonnées, alignements, modèles, structures) via Rfam.  |
 | Archives Omics · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | Étude et gestion des métadonnées et des répertoires de fichiers Omics; des échantillons, des facteurs, des analyses et des enregistrements composés. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Identité de type cellulaire, gènes marqueurs, ensembles de données source et tissus via CELLxGENE CellGuide.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | Génomique fonctionnelle de régulation génétique — expériences ENCODE/biosamples/files, profils de liaison JASPAR TF et UniBind ChIP-seq TFBS.  |
@@ -50,8 +50,9 @@ Open-Science v1.0.0 comprend **Connecteurs source de données 35 avec opération
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | Trouvez les noms de lignes cellulaires et les synonymes, puis inspectez l'identité d'adhésion et les annotations de qualité. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | Les associations entre la maladie et le gène et le phénotype avec l'organisme et les preuves à l'appui. |
 | IEDB · `iedb` | Base de données Imune Epitope | 8 | Epitopes, antigènes, tests sur cellules T, cellules B et MHC, preuves TCR/BCR et publications sources. |
-| PDC · `pdc` | NCI Proteomic Data Commons | 4 | Les versions d'études sur le cancer-protéomique, les associations de spécimens et les métadonnées de fichiers quantitatifs; Aucun téléchargement. |
+| PDC · `pdc` | NCI Proteomic Data Commons | 5 | Les versions des études sur le cancer-protéomique, les liens de spécimens, les métadonnées cliniques de cas public et les répertoires de fichiers; aucun téléchargement. |
 | ENCORI · `encori` | ENCORI | 10 | cibles miRNA/RBP, interactions RNA, ceRNA, motifs, sites de fixation, tableaux de référence et fichiers en vrac. |
+| Orphadata · `orphadata` | Orphadata, Orphanet | 2 | Associations de gènes des maladies rares et fréquences de phénotype HPO; désactivé par défaut. |
 
 Les outils Molecule hors ligne sont couverts par [Vérificateurs scientifiques](viewers.md). Pour les opérations exactes exposées par chaque source de données, utilisez le [Référence de fonctionnement Connector](../reference/connector-operations.md).
 
@@ -254,7 +255,7 @@ Pour `get_variant`, définissez `include_populations: true` uniquement lorsque l
 
 Les listes [Référence de fonctionnement Connector](../reference/connector-operations.md) contiennent les entrées requises, les valeurs autorisées et les appels exacts. Utilisez cette page pour choisir une source et la connecter; utiliser la référence pour les champs d'un outil particulier.
 
-Source du catalogue: [catalogue.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/catalog.ts), [registre.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/registry.ts).
+Source du catalogue : [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/registry.ts).
 
 ## Recherches de séquences et alignement {/* #sequence-tools */}
 
@@ -330,7 +331,7 @@ Rapport de résultats par paire r2 et D′. Les requêtes proxy par défaut à r
 
 ## Préserver le contexte de l'échantillon, de l'expression et du montage {/* #scientific-context */}
 
-| Requête | Interprétation en v1.0.0 |
+| Demande | Interprétation dans v1.0.2 |
 | --- | --- |
 | `arrayexpress_get_experiment_samples` | `samples` contient des lignes de relation à partir du premier fichier SDRF trié par chemin. `n_rows_total` / `n_rows_returned` nombre de lignes; `n_samples` / `n_samples_returned` compter les identifiants distincts, en préférant **Nom de l'échantillon**, alors **Nom de la source**. Ils ne sont pas des comptes biologiques de répétition indépendants. Les identificateurs manquants peuvent faire des dénombrements d'échantillons `null`. Un fichier vide ou `no_sdrf` la réponse n'établit pas que l'expérience n'a pas d'échantillons. |
 | `metabolights_get_studies` avec `include_samples` | Utiliser le retour `headers` commande lors de l'exportation `sample_table`. Les noms de colonnes répétés sont uniques `#2`, `#3`, ... suffixes sans écraser les noms originaux. Conserver toutes les colonnes; une chaîne vide dans une rangée courte est manquante de métadonnées. Vérifier `rows_truncated`. |
@@ -342,4 +343,27 @@ Ces corrections modifient la façon dont les éléments de preuve retournés doi
 
 ### OpenAlex invites à la reconnaissance {/* #openalex-prompts */}
 
-v1.0.0 se souvient d'une prompte de reconnaissance OpenAlex refusée pour la session en cours, en évitant les invites répétées là. Si vous avez plus tard besoin de cette source, configurez-la explicitement dans **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** et réessayez la requête prévue. La réduction de l'invite ne fournit ni clé, ni garantie d'accès ou de quota.
+v1.0.2 se souvient d'une prompte d'identification d'OpenAlex refusée pour la session en cours, en évitant les invites répétées. Si vous avez plus tard besoin de cette source, configurez-la explicitement dans **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** et réessayer la requête prévue. Le déclin de l'invite ne fournit ni clé ni garantie d'accès ni quota.
+
+## Connecter les nouvelles sources et préserver leur sens {/* #new-source-access */}
+
+Dans **Settings → Connectors**, trouver l'entrée ci-dessous et le permettre **Main** ou le spécialiste prévu. HGNC, PubTator 3, DGIdb et RNAcentral sont des outils dans les entrées existantes. **Orphadata** est une entrée séparée et est désactivée par défaut. Ces nouveaux outils utilisent des paramètres publics sans leur propre clé API; d'autres outils dans la même entrée peuvent avoir des exigences de certification différentes.
+
+| Source | Entrée des paramètres | Demande et contrôle |
+| --- | --- | --- |
+| HGNC | Genes &amp; Ontologies | Interroger un symbole humain approuvé ou résoudre un alias exact. Conserver chaque match ambigu et le statut approuvé/retiré avant de choisir un gène. |
+| PubTator 3 | PubMed | Récupérer les annotations par le PMID ou les entités/relations de recherche. La recherche de l'annotation couvre les titres/abstracts; elle ne soumet pas votre texte brut ou ne prouve pas que le texte complet supporte une revendication. |
+| DGIdb | Clinical Genomics | Interrogez un nom de gène ou de médicament, conservez les sources et les publications et suivez le curseur retourné. Une interaction médicament-gène n'est pas une recommandation thérapeutique. |
+| RNAcentral | RNA | Rechercher une adhésion URS, puis page à travers des références de base de données d'experts. Préserver la taxonomie, la séquence MD5 et les versions d'adhésion. |
+| Orphadata | Orphadata | Activer l'accès d'abord, puis fournir un ORPHAcode pour les gènes ou les phénotypes HPO. Conserver les types d'association et les catégories de fréquence; ce ne sont pas des probabilités propres au patient. |
+
+Appels exacts : [HGNC](../reference/connector-operations.md#get_hgnc_gene), [PubTator](../reference/connector-operations.md#get_pubtator_annotations), [DGIdb](../reference/connector-operations.md#get_dgidb_gene_drugs), [RNAcentral](../reference/connector-operations.md#get_rnacentral_record), [Orphadata](../reference/connector-operations.md#family-36).
+
+## Relier les métadonnées sur le cancer et interpréter une variante {/* #clinical-context */}
+
+- **PDC:** demander des données démographiques publiques et des champs de diagnostic avec `pdc_list_clinical`. Utiliser soit `pdc_study_id` pour la dernière version ou `study_id` pour une version fixe. Conserver les valeurs manquantes/obfusées et les références externes nommées; les UUID PDC et GDC ne sont pas interchangeables.
+- **GDC:** filtre les fichiers par `case_ids`, `sample_types` et `workflow_types`. Conservez l'échantillon de chaque fichier, les associations aliquote et tumorale/normale au lieu de fusionner tous les fichiers dans un seul cas. Les filtres sont OU dans un champ et ET à travers les champs. L'accès aux métadonnées n'autorise pas les téléchargements de fichiers contrôlés.
+- **Ensembl VEP:** passe `hgvs_notation` de lui-même, sans `variant_id`, `region`, `allele` ou `allele_orientation`. Conservez le rapport d'assemblage, les versions de transcription et les drapeaux de troncation. les versions de référence d'entrée sont transmises, non validées; `matched` n'établit pas de correspondance de version. Il s'agit de l'annotation de conséquence, et non de l'interprétation clinique ou du soulèvement.
+- **Clinical Trials:** Utilisation `get_trial_results` pour les mesures des résultats affichés, les dénominateurs, les analyses statistiques et les événements indésirables. Les identifiants de groupe correspondent uniquement dans le même module/résultats. Les résultats manquants ne sont pas des événements nuls ni une preuve d'aucun effet.
+
+Voir [Champs PDC](../reference/connector-operations.md#pdc_list_clinical), [Filtres GDC](../reference/connector-operations.md#gdc_search_files), [Modes VEP](../reference/connector-operations.md#ensembl_vep_variant) et [résultats d'essai affichés](../reference/connector-operations.md#get_trial_results).

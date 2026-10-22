@@ -1,7 +1,7 @@
 ---
 title: "CLIと構造化された出力"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## ターミナルからセットアップ {/* #terminal-setup */}
 
-v1.0.0 では、**Settings → General → Command line tool → Install command** を介してデスクトップのアップグレードされたランチャーをインストールし、新しいターミナルを開き、`open-science --help` をチェックします。 スタンドアローンCLIパッケージはありません。 下のアーカイブ抽出手順は、[v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2)などの1つを提供するバージョンのみに適用されます。 1.0のインストールや、デスクトップ/バックエンドのバージョンをミックスする権限はありません。
+デスクトップランチャーをインストールし、v1.0.2スタンドアローンのアーカイブを使用して、またはフォローしてください。 [npmインストール手順](../guides/installation.md#npm-cli)お問い合わせ スタンドアローンは、バンドルノード、バックエンド、Web UI をアーカイブします。以下の抽出手順は、これらのアーカイブに適用されます。
 
 1. macOS または Linux アーム64/x64 または Windows x64 を選択し、ホストにマッチします。
 2. 完全なアーカイブを書き込み可能な場所に抽出します。 `backend`と`node-runtime`を一緒に保持してください。 起動者のみをコピーすると起動が解除されます。
@@ -215,9 +215,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 `run.progress` と `stream.resync-required` を含むことができます。 再接続後再再生が利用できなくなった場合、権限のある実行状態を再読み込みします。 イベントストリームは永続的な歴史であると仮定しません。 ライフサイクルコマンドは、[ヘッドレスサービス](./server.md) で説明されている別のフラグ制限を持っています。
 
-[CLI実装](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [上流コマンドガイド](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
+[CLI実装](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/cli.mjs), [上流コマンドガイド](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
 
-技術的な参照: [CLI契約](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md)。
+技術的な参照: [CLI契約](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
 
 ## 無人走行 {/* #unattended-runs */}
 
@@ -234,3 +234,14 @@ open-science run --project "Sequence and PDF Research" \
 ## Windowsランチャーパス {/* #windows-launcher-paths */}
 
 v0.37.1は、非ASCII文字を含むデスクトップランチャーパスを修正しました。 更新後、新しいターミナルを開き、`Get-Command open-science`と`open-science --help`を確認してください。 コマンドがまだ古いインストールに解決しない場合は、**Settings → General** で示されているパスを使用します。 スタンドアローンのアーカイブディレクトリをそのまま保持します。 成功するヘルプコマンドはモデルの信頼性を確立しません。 `doctor --json` を次点検して下さい。
+
+## サービスを起動せず CLI の情報を確認する {/* #local-information */}
+
+```bash
+open-science version --json
+open-science help run
+open-science paths --json
+open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
+```
+
+これらのコマンドはバックエンドが停止していても使えます。 `version` が表示するのは実行したインストールのバージョンであり、接続先サービスのバージョンではありません。 `paths` が表示するのは `cliPath`, `nodePath`, `startupConfigRoot` および `discoveryConfigRoots`です。実行中のサービスや研究データの保存先を特定するものではありません。プロファイルの明示指定は起動・検出先を選びますが、作成はしません。パスにはローカルユーザー名が含まれる場合があるので、共有前に確認してください。

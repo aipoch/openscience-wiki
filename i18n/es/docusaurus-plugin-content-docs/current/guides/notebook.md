@@ -1,7 +1,7 @@
 ---
 title: "Notebook y pruebas de ejecución"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -293,3 +293,7 @@ Al informar de un problema, mantenga la primera línea de falla, tiempo de ejecu
 Un tiempo de ejecución predeterminado listo ya no requiere una segunda aprobación de configuración para una operación soportada ordinaria. Una decisión de código de riesgo o una solicitud de acceso adicional sigue siendo separada: inspeccionar su acción y alcance antes de responder.
 
 En el resultado de **Provenance → Environment**, conservar los orígenes Conda y pip y las versiones de paquetes reportadas / cadenas de compilación cuando el medio ambiente utiliza ambos administradores. v0.37.0 mejora la captura de ambiente mixto y metadatos de micromamba. Compare el entorno capturado con el tiempo de ejecución previsto, y luego use [verificación de repeticiones](reproducibility.md) cuando necesite pruebas de ejecución. Un inventario de paquetes por sí solo no prueba resultados numéricos idénticos.
+
+## Compruebe las dependencias después de un análisis encadenado {/* #chained-analysis-lineage */}
+
+Después de leer un CSV, transformándolo y exportando un nuevo archivo en Python o R, abra la procedencia de la salida e inspeccione las versiones de entrada registradas y las dependencias de ejecución. Utilice esos registros para seleccionar la versión de archivo para verificar. La captura de linaje más precisa no reedita por sí misma el cálculo o establece la validez científica del análisis; seguir [verificación del artefacto](reproducibility.md).

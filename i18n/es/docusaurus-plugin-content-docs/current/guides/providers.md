@@ -1,7 +1,7 @@
 ---
 title: "Proveedor y configuración del modelo local"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -229,7 +229,7 @@ Seleccione el modelo exacto ofrecido para su agente activo, revise sus opciones 
 
 Los catálogos de proveedores v0.33.1 añaden **GPT-6** y **Claude Opus 5.5**. Abra la lista de modelos del proveedor y elija una entrada apoyada por el marco activo y su cuenta. La presencia del catálogo no otorga acceso o cambia el modelo Main guardado. Validar al proveedor y enviar una pequeña solicitud antes de utilizar un modelo cambiado para la investigación.
 
-v0.34.0 añade **MiniMax M3.1 Flash Preview** y **Claude Sonnet 5.5**. Seleccione de la lista de modelos de su proveedor respectivo y el acceso a la cuenta de verificación y la compatibilidad de agente activo. Esto no reemplaza automáticamente el modelo Main guardado.
+**MiniMax M3.1 Flash** es el modelo multimodal liberado con un contexto 1M-token, disponible en ambas regiones de MiniMax. Elija la región que emitió su llave, seleccione el modelo y pruebe la configuración guardada. v1.0.2 corrige su conexión integrada a través de Codex. **Claude Sonnet 5.5** permanece en el catálogo del proveedor. Seleccionar una entrada de catálogo no reemplaza automáticamente el modelo principal guardado.
 
 v0.34.1 añade **gpt-6.1-sol** al catálogo modelo Codex. Seleccione explícitamente en el selector modelo, luego envíe una pequeña solicitud para confirmar el acceso a la cuenta. Actualizar la aplicación no reemplaza automáticamente el modelo Main guardado.
 
@@ -246,3 +246,7 @@ v0.35.0 amplía el catálogo **OpenCode Zen** y añade soporte de clasificación
 ![Requesty seleccionado en el formulario oficial del proveedor, mostrando la llave API necesaria y los modelos compatibles](/img/open-science/v0351/requesty-form.webp)
 
 Requesty utiliza `https://router.requesty.ai`; el agente activo determina qué protocolo y modelos compatibles se ofrecen. El acceso y la cuota dependen de la cuenta Requesty. Añadiendo a este proveedor no reemplaza automáticamente el modelo Main guardado. v0.35.1 también actualiza el catálogo OpenRouter; use el picker actual en lugar de copiar un ID modelo de una vieja captura de pantalla.
+
+## Recuperar una conexión modelo {/* #credential-recovery */}
+
+Use la acción de recuperación adjunta a una credencial caducada o inválida, actualice la entrada correcta del proveedor, y luego pruebe antes de volver a la misma sesión. El Compositor está bloqueado sólo mientras la recuperación requiere su acción. Preserve el borrador y compruebe si el giro anterior sigue funcionando antes de reenviar. Para los modelos de suscripción de Codex, el uso de contexto refleja la capacidad reportada del modelo seleccionado; puede diferir de una estimación más antigua.

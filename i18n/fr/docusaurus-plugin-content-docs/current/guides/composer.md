@@ -1,7 +1,7 @@
 ---
 title: "Conversations et demandes en attente"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # Conversations et demandes en attente {/* #conversations-and-queued-requests */}
@@ -141,8 +141,14 @@ Faites glisser une carte de fichier de **Files**, ou l'en-tête de fichier de l'
 
 ## Répondre à une question de clarification {/* #clarification-questions */}
 
-Lorsque l'agent présente une carte de questions, lisez qui l'a demandée et le choix demandé avant de continuer. Une carte à sélection multiple indique **Sélectionnez une ou plusieurs options**; sélectionner chaque réponse applicable, et sélectionner à nouveau un élément pour la supprimer. Les listes d'options plus longues défilent dans la carte.
+Lisez l'étiquette sur chaque question : **Single select** permet une option; **Multi select** permet plusieurs. Sélectionnez les choix qui répondent à cette question. Les listes d'options plus longues défilent à l'intérieur de la carte. Après la soumission, élargir une réponse antérieure pour inspecter la liste complète des questions, des réponses et des options.
 
 Utilisez **Tapez votre propre réponse** pour une réponse différente, **Laissez l'agent décider** pour déléguer ce choix, ou **Skip** pour le laisser sans réponse. Une réponse dactylographiée remplace la sélection de l'option. Utilisez **Suivant** et **Back** pour examiner un ensemble de questions, puis **Finish** pour le soumettre. En sélectionnant simplement une option, vous enregistrez un brouillon; il ne termine pas la réponse. Attendez que la carte soit résolue et que la tâche se poursuive avant d'envoyer la même réponse à nouveau.
 
 Ces cartes clarifient la demande de recherche. Ils n'accordent pas de permis d'utilisation d'outils ni n'approuvent un plan distinct.
+
+## Préserver un projet tout en résolvant un bloc {/* #draft-recovery */}
+
+Si un message en file d'attente signale une erreur, lisez-le et utilisez l'action d'annulation proposée avant d'éditer ou de renvoyer. Un avertissement d'abandon/rechargement peut signifier qu'il reste un avant-projet non envoyé; retourner à l'avant-projet ou le rejeter délibérément. Déposer un dossier vous demande maintenant de sélectionner les fichiers à l'intérieur : ouvrez le dossier, sélectionnez les fichiers prévus et attendez leurs puces de fixation.
+
+Pour un modèle expiré ou un titre de connexion, suivez l'action de récupération indiquée pour ce service, puis retournez à la conversation originale et vérifiez son état. N'envoyez pas à nouveau la même demande alors que sa réponse antérieure pourrait encore être en cours. Artéfact `@` Les mentions sont également disponibles dans les conversations web distantes ; sélectionnez le fichier/version souhaité avant d'envoyer.

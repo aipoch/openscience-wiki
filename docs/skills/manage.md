@@ -1,7 +1,7 @@
 ---
 title: "Manage and validate Skills"
 last_update:
-  date: '2026-09-15'
+  date: '2026-10-22'
 ---
 
 # Manage and validate Skills
@@ -113,3 +113,7 @@ Featured and Specialist-linked packages can be protected from deletion. Remove a
 | GitHub/authentication error | Retain the actual HTTP status and sanitized source URL; see [Troubleshooting](../guides/troubleshooting.md). |
 
 Implementation reference: [SkillUploadView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillUploadView.tsx), [SkillBulkManageView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillBulkManageView.tsx), [SkillImportView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillImportView.tsx).
+
+## Import and edit Skills safely {/* #import-batches */}
+
+Large installed-Skill selections are imported in batches. Wait for the final result and inspect the imported list before repeating the import. An external Skill with a reserved name prefix is assigned a safe local name; use the name shown in the local catalog. When editing the body, save it and verify that the separately edited name and description remain correct. Images attached to the current message can also inform Skill selection; check the selected Skill's scope before letting it act.

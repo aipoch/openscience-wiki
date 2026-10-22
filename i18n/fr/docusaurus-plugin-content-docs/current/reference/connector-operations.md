@@ -2,7 +2,7 @@
 title: "Référence de fonctionnement Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Les noms de champs de retour diffèrent selon l'opération. Les descriptions et 
 
 ## Entrées d'exploitation {/* #operation-inputs */}
 
-Expandez un Connector à la fois. Les champs obligatoires sont marqués **requis**; cette référence et téléchargement utilisent le schéma Open-Science **v1.0.0**. Une liste de `input.required` imbriquée fait autorité; une liste de haut niveau de `required` peut être absente. Consultez le <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">Registre téléchargeable complet</ExampleDownload> pour les schémas JSON imbriqués, les descriptions complètes des retours et les exemples d'appels côté agent. Ne passez pas un `id` générique lorsqu'un outil s'attend à `accessions`, `cids`, `rs_id` ou à un autre champ spécifique à l'espace de noms.
+Étendre un connecteur à la fois. Les champs obligatoires sont marqués **requis**; cette référence et téléchargement utilisent l'Open-Science **v1.0.2** schéma. Un nid `input.required` liste fait autorité; un héritage de haut niveau `required` liste peut être absente. Consultez la <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.2.json">Registre téléchargeable complet</ExampleDownload> pour les schémas JSON imbriqués, les descriptions complètes des retours et les exemples d'appels côté agent. Ne passez pas un générique `id` quand un outil attend `accessions`, `cids`, `rs_id` ou un autre champ spécifique à l'espace de noms.
 
 ## Chimie {/* #family-1 */}
 
@@ -502,6 +502,31 @@ Signaler le droit d'auteur et le statut de licence par PMID en combinant PubMed 
 const result = await host.mcp("pubmed", "get_copyright_status", {"pmids": ["35891187", "34375400"]})
 ```
 
+### `get_pubtator_annotations`
+
+Export PubTator 3 BioC JSON entité et relation annotations pour les articles publiés PubMed (titre/résumé). Garde le texte de passage, les décalages, les identifiants normalisés et les relations. Ne soumet pas de texte brut.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `pmids` | array | **requis**; minItems: 1; maxItems: 10 |
+
+```javascript
+const result = await host.mcp("pubmed", "get_pubtator_annotations", {"pmids": ["29355051"]})
+```
+
+### `search_pubtator`
+
+Recherche d'une page de publications PubTator 3 par texte, identifiants d'entités ou relations (par exemple relations:ANY=@CHEMICAL Doxorubicin=@DISEASE Neoplasmes). Les relations automatisées sont des preuves de recherche et non des conclusions cliniques.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `query` | string | **requis**; minLength: 1; maxLength: 1000 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("pubmed", "search_pubtator", {"query": "relations:ANY|@CHEMICAL_Doxorubicin|@DISEASE_Neoplasms", "page": 1})
+```
+
 </ToolOperationGroup>
 
 ## Genes & Ontologies {/* #family-4 */}
@@ -740,6 +765,30 @@ Exécutez l'enrichissement Enrichr pour les symboles de gènes ou les identifian
 const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
+### `get_hgnc_gene`
+
+Récupérer la nomenclature des gènes humains par le symbole exact HGNC. Conserve le statut approuvé/retiré, les noms, alias, références croisées et les dates de modification.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `symbol` | string | **requis**; minLength: 1; maxLength: 100 |
+
+```javascript
+const result = await host.mcp("genes", "get_hgnc_gene", {"symbol": "BRCA1"})
+```
+
+### `resolve_hgnc_alias`
+
+Résoudre un symbole exact d'alias du gène humain par l'intermédiaire du HGNC. Retourne chaque gène correspondant ; ne choisit jamais silencieusement parmi les alias ambigus. Utilisez get\_hgnc\_gene pour les symboles approuvés.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `symbol` | string | **requis**; minLength: 1; maxLength: 100 |
+
+```javascript
+const result = await host.mcp("genes", "resolve_hgnc_alias", {"symbol": "P53"})
+```
+
 </ToolOperationGroup>
 
 ## Génomes {/* #family-5 */}
@@ -819,15 +868,16 @@ const result = await host.mcp("genomes", "ensembl_xrefs", {"stable_id": "ENSG000
 
 ### `ensembl_vep_variant` {/* #ensembl_vep_variant */}
 
-Si `variant_id` est fourni, la recherche par ID a priorité et ignore `region`, `allele` et `allele_orientation`. `allele` ne filtre pas ses résultats. La recherche par région utilise l’assemblage de référence actuel de l’espèce (GRCh38 pour l’humain). Les coordonnées commencent à 1 et incluent les deux bornes ; une insertion utilise `start = end + 1`. Par défaut, `allele_orientation` vaut `forward` : l’allèle est interprété sur le brin positif de référence, même avec le suffixe `:-1`. Avec `region`, un allèle de séquence sur le brin négatif est converti en son complément inverse avant la requête. Les allèles symboliques d’une région négative exigent `forward`. Toutes les requêtes par région sont envoyées sur le brin positif ; `normalization` conserve les entrées avant et après normalisation. Les coordonnées ne sont ni converties vers un autre assemblage ni inversées. Un gène situé sur le brin négatif n’exige pas une entrée sur ce brin.
+Ensembl VEP annote les conséquences des variants et résume les résultats par transcrit, des plus sévères aux moins sévères. Sans hgvs\_notation, variant\_id est prioritaire et region, allele et allele\_orientation sont ignorés. HGVS ne peut être combiné à aucun de ces paramètres. hgvs\_notation accepte les notations génomiques, codantes et protéiques (ex. ENST00000366667:c.803C&gt;T). Les versions de référence sont transmises sans modification et sans validation. L’assemblage courant de l’espèce sur rest.ensembl.org est utilisé ; aucun choix d’assemblage ni liftover. assembly\_name indique l’assemblage résolu. Les requêtes HGVS utilisent hgvs=1 et transcript\_version=1 ; transcript\_id inclut sa version, hgvsc/hgvsp sont conservés si disponibles. version\_validation vaut unchecked. input\_reference\_annotations conserve les annotations de la liste complète de transcrits, indépendamment de max\_consequences. matched signifie uniquement une identité de référence hors suffixe de version, sans validation de syntaxe ou de version ; unknown signifie qu’aucune annotation comparable n’existe. Les allèles HGVS gardent l’orientation de la source, y compris le brin négatif, sans normalisation régionale. allele ne filtre pas la recherche par ID. region utilise des coordonnées inclusives à partir de 1 sur l’assemblage courant (GRCh38 chez l’humain ; ex. 7:140753336-140753336), avec start=end pour un SNV et start=end+1 pour une insertion. Les suffixes :1/:-1 sont acceptés, toujours dans les coordonnées du génome de référence. allele accepte A/C/G/T, - pour une délétion et INS/DUP/DEL/TDUP. Par défaut, allele\_orientation=forward interprète l’allèle sur le brin de référence positif. Le mode region suit le brin régional et prend le complément inverse des séquences sur le brin négatif ; les allèles symboliques d’une région négative exigent forward. Les requêtes et résultats régionaux sont toujours orientés positivement. Un gène sur le brin négatif n’exige pas une entrée négative. species vaut homo\_sapiens par défaut. max\_consequences limite les lignes (25 par défaut), triées HIGH&gt;MODERATE&gt;LOW&gt;MODIFIER ; n\_transcript\_consequences donne le total et transcript\_consequences\_truncated indique la limitation. Les résultats conservent coordonnées, allèles, gènes, conséquences sur les transcrits, régions régulatrices et motifs, et variants colocalisés. variant\_allele est conservé. n\_transcripts compte les ID de transcrits distincts non vides par gène ; worst\_impact porte sur tous les allèles renvoyés. Les erreurs HGVS et rsID inconnus conservent le motif fourni par la source.
 
 | Champ | Type | Besoins et contraintes |
 | --- | --- | --- |
-| `variant_id` | chaîne de caractères | facultatif |
-| `region` | chaîne de caractères | facultatif |
-| `allele` | chaîne de caractères | facultatif |
-| `allele_orientation` | chaîne de caractères | facultatif; par défaut  : `forward`; Numéro: `forward`, `region` |
-| `species` | chaîne de caractères | facultatif; par défaut : "homo_sapiens" |
+| `variant_id` | string | mode-dependent; see exclusion and strand rules above |
+| `hgvs_notation` | string | mode-dependent; see exclusion and strand rules above; minLength: 1 |
+| `region` | string | mode-dependent; see exclusion and strand rules above |
+| `allele` | string | mode-dependent; see exclusion and strand rules above |
+| `allele_orientation` | string | mode-dependent; see exclusion and strand rules above; default: "forward"; enum: \["forward", "region"\] |
+| `species` | string | optional; default: "homo\_sapiens" |
 | `max_consequences` | entier | facultatif; par défaut : 25 |
 
 ```javascript
@@ -1490,6 +1540,18 @@ Appariement patient-procès. DÉFAUTS DE RECRUTIR les essais à moins que le sta
 const result = await host.mcp("clinical-trials", "search_by_eligibility", {"condition": "diabetes", "min_age": "65 Years", "sex": "FEMALE"})
 ```
 
+### `get_trial_results`
+
+Lire les résultats d'essai affichés par NCT id (insensible à l'affaire; nu 8 chiffres acceptés). Retourne les mesures réelles des résultats, les dénombrements et les dénominateurs propres au groupe, les unités, les analyses statistiques, le débit des participants, les caractéristiques de base, les événements indésirables et les mises en garde découlant des résultatsSection. Les champs nichés conservent les noms et la hiérarchie officiels de l'API camelCase. Résoudre le groupeId/groupeIds seulement contre les groupes dans le même module ou le même résultat; ne les joignez pas au protocole des armes ou d'autres modules. Les données manquantes ne signifient pas qu'il y a zéro événement ou aucun effet thérapeutique.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `nct_id` | string | **requis** |
+
+```javascript
+const result = await host.mcp("clinical-trials", "get_trial_results", {"nct_id": "NCT04280705"})
+```
+
 </ToolOperationGroup>
 
 ## Génomique clinique {/* #family-8 */}
@@ -1938,6 +2000,32 @@ Pour ce groupe, fournir au moins l'un des éléments suivants: `object2Id` / `ob
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
+```
+
+### `get_dgidb_gene_drugs`
+
+Interactions DGIdb-médicaments par nom de gène. Un enregistrement correspondant par page, avec toutes les sources d'interaction, versions sources, licences, types, attributs et preuves de publication. Les noms peuvent correspondre à plusieurs enregistrements; suivez next\_cursor explicitement.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `name` | string | **requis**; minLength: 1; maxLength: 200 |
+| `after` | string | optional; minLength: 1; maxLength: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_gene_drugs", {"name": "BRAF"})
+```
+
+### `get_dgidb_drug_genes`
+
+Interactions entre les médicaments et les gènes par nom de médicament. Un enregistrement correspondant par page, avec toutes les sources d'interaction, versions sources, licences, types, attributs et preuves de publication. Les noms peuvent correspondre à plusieurs enregistrements; suivez next\_cursor explicitement.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `name` | string | **requis**; minLength: 1; maxLength: 200 |
+| `after` | string | optional; minLength: 1; maxLength: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_drug_genes", {"name": "IMATINIB"})
 ```
 
 </ToolOperationGroup>
@@ -3522,6 +3610,32 @@ Effectuez une recherche dans une séquence d'ARN par l'intermédiaire du paramè
 const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGAAGGCAGCAGGUGGAAACCUGCCA"})
 ```
 
+### `get_rnacentral_record`
+
+Récupération d'un enregistrement de séquence RNAcentral par adhésion URS en utilisant API v1. Conserve la séquence, MD5, l'état d'activité, l'organisme et les métadonnées de type ARN.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `urs` | string | **requis** |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_record", {"urs": "URS0000000001"})
+```
+
+### `get_rnacentral_xrefs`
+
+Cartographier une adhésion de l'URS central RNA à une page d'identificateurs de base de données d'experts. Conserve la base de données source, la taxonomie, la version d'adhésion, l'activité et les dates du premier ou du dernier aperçu; aucune page traversant automatiquement.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `urs` | string | **requis** |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | optional; default: 10; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_xrefs", {"urs": "URS0000000001", "page": 1, "page_size": 10})
+```
+
 </ToolOperationGroup>
 
 ## Archives Omics {/* #family-18 */}
@@ -4514,7 +4628,7 @@ const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-
 
 ### `gdc_list_cases` {/* #gdc_list_cases */}
 
-Énumérer les cas de CPG (donateurs d'exemples) avec des métadonnées sur les projets et les maladies. Les résultats permettent d'identifier les cas et de ne pas exposer ou télécharger les données contrôlées.
+Lister les cas de CPG (donateurs d'échantillons) avec des métadonnées de projet, de maladie et de biospécimen (échantillons et aliquotes). Les résultats permettent d'identifier les cas et de ne pas exposer ou télécharger les données contrôlées.
 
 | Champ | Type | Besoins et contraintes |
 | --- | --- | --- |
@@ -4530,12 +4644,15 @@ const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BR
 
 ### `gdc_search_files` {/* #gdc_search_files */}
 
-Effectuez une recherche dans l'inventaire des fichiers GDC et étiquettez explicitement chaque fichier comme un accès ouvert ou contrôlé. La découverte de métadonnées n'accorde pas d'accès au téléchargement; Les dossiers contrôlés exigent l'autorisation appropriée de la GDC.
+Recherche dans l'inventaire des fichiers GDC par projet, cas UUID, type d'échantillon et type de flux de travail d'analyse (OU dans chaque filtre, ET à travers les filtres), et étiquette explicitement chaque fichier comme accès ouvert ou contrôlé. La découverte de métadonnées n'accorde pas d'accès au téléchargement; les fichiers contrôlés nécessitent une autorisation GDC appropriée.
 
 | Champ | Type | Besoins et contraintes |
 | --- | --- | --- |
 | `project_ids` | chaîne / tableau | facultatif |
-| `access` | chaîne de caractères | facultatif; par défaut: "all"; enum: &#91;"all", "open", " contrôlée"&#93; |
+| `case_ids` | string / array | facultatif |
+| `sample_types` | string / array | facultatif |
+| `workflow_types` | string / array | facultatif |
+| `access` | string | optional; default: "all"; enum: \["all", "open", "controlled"\] |
 | `data_category` | chaîne de caractères | facultatif; Longueur min: 1; Longueur max: 200 |
 | `data_type` | chaîne de caractères | facultatif; Longueur min: 1; Longueur max: 200 |
 | `data_format` | chaîne de caractères | facultatif; Longueur min: 1; Longueur max: 50 |
@@ -4544,7 +4661,7 @@ Effectuez une recherche dans l'inventaire des fichiers GDC et étiquettez explic
 | `page_size` | entier | facultatif; par défaut : 20; minimum: 1; maximum: 100 |
 
 ```javascript
-const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "sample_types": "Primary Tumor", "workflow_types": "STAR - Counts", "access": "open", "page_size": 10})
 ```
 
 ### `gdc_get_file` {/* #gdc_get_file */}
@@ -5419,6 +5536,21 @@ Fournissez exactement un de `pdc_study_id` / `study_id`.
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
+### `pdc_list_clinical`
+
+Récupère les données démographiques et diagnostiques publiques des cas PDC, les identifiants d’échantillons disponibles et les références externes nommées pour les liens vers GDC. Conserve les types, valeurs null et indicateurs de masquage de la source. pdc\_study\_id sélectionne la dernière version ; study\_id est l’UUID d’une version précise. Réutilisez le study\_id renvoyé pour fixer la version des appels suivants. Les identifiants externes appartiennent à la ressource nommée : les UUID PDC et GDC ne sont pas interchangeables.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `pdc_study_id` | string | provide exactly one of these two identifiers; maxLength: 9 |
+| `study_id` | string | provide exactly one of these two identifiers; maxLength: 36 |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 1000000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_clinical", {"pdc_study_id": "PDC000127", "limit": 10})
+```
+
 </ToolOperationGroup>
 
 ## ENCORI {/* #family-35 */}
@@ -5598,6 +5730,36 @@ Seulement lorsque l'utilisateur demande un téléchargement, stream un fichier e
 
 ```javascript
 const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
+```
+
+</ToolOperationGroup>
+
+## Orphadata {/* #family-36 */}
+
+<ToolOperationGroup>
+
+### `get_disease_genes`
+
+Récupérer les associations de gènes Orphadata pour maladies rares par ORPHAcode, y compris le type/status d'association, les sources de validation et les cartes de bases de données de gènes.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `orphacode` | integer | **requis**; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_genes", {"orphacode": 166024})
+```
+
+### `get_disease_phenotypes`
+
+Récupérer les phénotypes et les catégories de fréquence des maladies rares d'Orphadata par ORPHAcode. Conserve les critères de diagnostic et les métadonnées de validation; les catégories de fréquence ne sont pas des probabilités propres au patient.
+
+| Champ | Type | Besoins et contraintes |
+| --- | --- | --- |
+| `orphacode` | integer | **requis**; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_phenotypes", {"orphacode": 58})
 ```
 
 </ToolOperationGroup>

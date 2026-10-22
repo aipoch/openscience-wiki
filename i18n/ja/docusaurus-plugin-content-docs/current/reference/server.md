@@ -1,7 +1,7 @@
 ---
 title: "ヘッドレスサービスおよびブラウザアクセス"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # ヘッドレスサービスおよびブラウザアクセス {/* #headless-service-and-browser-access */}
@@ -115,3 +115,7 @@ v1.0.0 は CLI アプリケーション アップデータを削除します。 
 アップグレード後、バージョンと元のデータを確認し、`status --json`と`doctor --json`を使用してサービスの状態と信頼性を調べます。 クレデンシャルストアモードを保存します。 [1.xの互換性](../guides/installation.md#version-compatibility)は、混合デスクトップ/バックエンドのバージョンを約束しません。
 
 [公式ランタイムガイド](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md)、[CLI](cli.md)、[タスクSDK](api.md) をご覧ください。
+
+## Web ワークスペースの Compute {/* #web-compute */}
+
+スタンドアロン Web ワークスペースでは、 **Compute** を利用できます。ただし、バックエンドが必要な Notebook・Compute API を提供している必要があります。接続したワークスペースでパネルを確認し、既存の SSH/Slurm 設定手順に従ってください。パネルの表示だけでは、リモート認証情報やジョブ実行の可否は確認できません。

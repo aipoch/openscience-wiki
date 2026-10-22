@@ -1,7 +1,7 @@
 ---
 title: "Períodos de sesiones y ramas"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -180,3 +180,9 @@ Elija **View replay** del menú de filas de sesión para pasar por la conversaci
 ## Continuar después de cambiar el agente o reconectar {/* #resume-selected-agent */}
 
 Antes de enviar el siguiente turno, compruebe el agente/Specialist seleccionado y el modelo. v1.0.0 restaura las conversaciones ACP con el agente seleccionado y repara la continuación Codex despreocupada después de los interruptores Specialist. Reabrir la conversación original e inspeccionar sus mensajes guardados más recientes y ejecutar estado después de la reconexión. No reenviar una escritura simplemente porque su respuesta fue interrumpida; confirmar si se completó primero. Cambiar un agente o recuperar una conexión no es evidencia de que un análisis fallido anterior tuvo éxito.
+
+## Reconozca una sesión esperando por usted {/* #waiting-for-input */}
+
+Una sesión parada para su respuesta o aprobación muestra un estado de espera en el hogar, en la barra lateral y en la conversación. Abra la tarjeta pendiente, lea la decisión solicitada y envíela para continuar. Recargar la aplicación no responde por sí misma a la pregunta o aprueba una herramienta. Haga doble clic en una sesión en la barra lateral del espacio de trabajo para abrir su editor.
+
+Para las exportaciones de diagnóstico, lea el resumen de la terminación: una exportación parcial es una advertencia, no un paquete de diagnóstico completo. Mantenga el error específico y revise los archivos exportados antes de compartirlos.

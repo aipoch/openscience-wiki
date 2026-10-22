@@ -2,7 +2,7 @@
 title: "Connector 操作参数参考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作输入
 
-每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v1.0.0** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
+每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v1.0.2** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.2.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
 
 ## 化学 {/* #family-1 */}
 
@@ -502,6 +502,31 @@ const result = await host.mcp("pubmed", "get_full_text_article", {"pmc_ids": ["P
 const result = await host.mcp("pubmed", "get_copyright_status", {"pmids": ["35891187", "34375400"]})
 ```
 
+### `get_pubtator_annotations`
+
+获取已发表 PubMed 论文标题／摘要的 PubTator 3 BioC JSON 实体与关系标注。保留原文片段、偏移、规范化 ID 和关系；不接受原始文本提交。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `pmids` | array | **必填**; 最少项数: 1; 最多项数: 10 |
+
+```javascript
+const result = await host.mcp("pubmed", "get_pubtator_annotations", {"pmids": ["29355051"]})
+```
+
+### `search_pubtator`
+
+按文本、实体 ID 或关系查询一页 PubTator 3 文献。自动提取关系用于研究线索，不是临床结论；需要回到原文核对。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `query` | string | **必填**; 最短长度: 1; 最长长度: 1000 |
+| `page` | integer | 可选; 默认值: 1; 最小值: 1; 最大值: 10000 |
+
+```javascript
+const result = await host.mcp("pubmed", "search_pubtator", {"query": "relations:ANY|@CHEMICAL_Doxorubicin|@DISEASE_Neoplasms", "page": 1})
+```
+
 </ToolOperationGroup>
 
 ## 基因与本体 {/* #family-4 */}
@@ -740,6 +765,30 @@ const result = await host.mcp("genes", "list_enrichr_libraries", {"organism": "h
 const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
+### `get_hgnc_gene`
+
+按精确的人类基因符号查询 HGNC 命名记录，保留批准／撤回状态、名称、别名、交叉引用和修改日期。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `symbol` | string | **必填**; 最短长度: 1; 最长长度: 100 |
+
+```javascript
+const result = await host.mcp("genes", "get_hgnc_gene", {"symbol": "BRCA1"})
+```
+
+### `resolve_hgnc_alias`
+
+按精确的人类基因别名查询 HGNC，返回所有匹配项，不自动挑选歧义名称。已批准的符号使用 get_hgnc_gene 查询。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `symbol` | string | **必填**; 最短长度: 1; 最长长度: 100 |
+
+```javascript
+const result = await host.mcp("genes", "resolve_hgnc_alias", {"symbol": "P53"})
+```
+
 </ToolOperationGroup>
 
 ## 基因组 {/* #family-5 */}
@@ -819,16 +868,17 @@ const result = await host.mcp("genomes", "ensembl_xrefs", {"stable_id": "ENSG000
 
 ### `ensembl_vep_variant`
 
-提供 `variant_id` 时优先按 ID 查询，忽略 `region`、`allele` 和 `allele_orientation`，也不会用 `allele` 筛选 ID 结果。区域查询使用该物种当前组装，人类为 GRCh38；坐标从 1 开始且两端包含，插入时 `start = end + 1`。`allele_orientation` 默认为 `forward`，即使区域后缀为 `:-1`，等位基因也按参考正链解释；设为 `region` 时，负链区域中的序列等位基因会先反向互补。负链区域的符号等位基因必须使用 `forward`。区域请求统一按正链发送，`normalization` 保留原输入与规范化结果；不转换参考组装，也不反转坐标。基因位于负链不意味着必须提供负链输入。
+使用 Ensembl VEP 查询变异后果。提供 hgvs_notation 时，不能同时传入 variant_id、region、allele 或 allele_orientation；支持基因组、编码和蛋白 HGVS，原样传递参考序列版本。否则 variant_id 优先于 region/allele，allele 不筛选 ID 查询结果。区域模式使用当前物种组装，人类为 GRCh38；坐标为 1-based 闭区间，插入为 start=end+1。allele_orientation 默认 forward，即使区域带 :-1，等位基因仍按参考正链解释；region 模式会反向互补负链序列等位基因，负链符号等位基因应使用 forward。HGVS 查询不提供组装选择或 liftover，也不验证输入参考版本：version_validation 为 unchecked。matched 仅比较去掉版本后缀的参考身份，不表示版本验证通过。保留 assembly_name、版本化 transcript_id、hgvsc/hgvsp 和 input_reference_annotations。max_consequences 限制逐转录本结果，检查完整计数与截断标志；预测后果不是临床致病性结论。
 
-| 字段 | 类型 | 要求与约束 |
+| 字段 | 类型 | 要求与限制 |
 | --- | --- | --- |
-| `variant_id` | 字符串 | 可选 |
-| `region` | 字符串 | 可选 |
-| `allele` | 字符串 | 可选 |
-| `allele_orientation` | 字符串 | 可选; 默认值：`forward`; 枚举：`forward`、`region` |
-| `species` | 字符串 | 可选; 默认值： &quot;homo_sapiens&quot; |
-| `max_consequences` | 整数 | 可选; 默认值： 25 |
+| `variant_id` | string | 按查询模式选择；见上文互斥与链方向规则 |
+| `hgvs_notation` | string | 按查询模式选择；见上文互斥与链方向规则; 最短长度: 1 |
+| `region` | string | 按查询模式选择；见上文互斥与链方向规则 |
+| `allele` | string | 按查询模式选择；见上文互斥与链方向规则 |
+| `allele_orientation` | string | 按查询模式选择；见上文互斥与链方向规则; 默认值: "forward"; 允许值: ["forward", "region"] |
+| `species` | string | 可选; 默认值: "homo_sapiens" |
+| `max_consequences` | integer | 可选; 默认值: 25 |
 
 ```javascript
 const result = await host.mcp("genomes", "ensembl_vep_variant", {"variant_id": "rs7412", "max_consequences": 25})
@@ -1492,6 +1542,18 @@ const result = await host.mcp("clinical-trials", "analyze_endpoints", {"nct_id":
 const result = await host.mcp("clinical-trials", "search_by_eligibility", {"condition": "diabetes", "min_age": "65 Years", "sex": "FEMALE"})
 ```
 
+### `get_trial_results`
+
+按 NCT 标识符读取已经公布的试验结果。接受大小写不同的 NCT 或八位数字；保留结局测量、分组人数和分母、单位、统计分析、受试者流程、基线特征、不良事件及报告限制。嵌套字段保留官方 API 命名和层级。groupId/groupIds 只能与同一模块或结局中的分组关联，不能直接与方案组或其他模块拼接。缺失结果不等于零事件或无治疗效果。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `nct_id` | string | **必填** |
+
+```javascript
+const result = await host.mcp("clinical-trials", "get_trial_results", {"nct_id": "NCT04280705"})
+```
+
 </ToolOperationGroup>
 
 ## 临床基因组学 {/* #family-8 */}
@@ -1940,6 +2002,32 @@ const result = await host.mcp("clinical-genomics", "clinpgx_get_variant_frequenc
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
+```
+
+### `get_dgidb_gene_drugs`
+
+按基因名称查询 DGIdb 药物—基因相互作用。每页返回一个匹配记录，保留来源、版本、许可、相互作用类型、属性和文献证据。名称可能匹配多条记录；使用 next_cursor 继续，不能把相互作用记录当成用药建议。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `name` | string | **必填**; 最短长度: 1; 最长长度: 200 |
+| `after` | string | 可选; 最短长度: 1; 最长长度: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_gene_drugs", {"name": "BRAF"})
+```
+
+### `get_dgidb_drug_genes`
+
+按药物名称查询 DGIdb 药物—基因相互作用。每页返回一个匹配记录，保留来源、版本、许可、类型、属性和文献证据。名称可能匹配多条记录；使用 next_cursor 继续。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `name` | string | **必填**; 最短长度: 1; 最长长度: 200 |
+| `after` | string | 可选; 最短长度: 1; 最长长度: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_drug_genes", {"name": "IMATINIB"})
 ```
 
 </ToolOperationGroup>
@@ -3524,6 +3612,32 @@ const result = await host.mcp("rna", "id_to_accession", {"family_id": "tRNA"})
 const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGAAGGCAGCAGGUGGAAACCUGCCA"})
 ```
 
+### `get_rnacentral_record`
+
+按 URS accession 读取 RNAcentral API v1 序列记录，保留序列、MD5、活动状态、物种及 RNA 类型元数据。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `urs` | string | **必填** |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_record", {"urs": "URS0000000001"})
+```
+
+### `get_rnacentral_xrefs`
+
+将 RNAcentral URS accession 映射到一页专家数据库标识符。保留数据库来源、分类、accession 版本、活动状态和首次／最后出现日期；不会自动遍历下一页。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `urs` | string | **必填** |
+| `page` | integer | 可选; 默认值: 1; 最小值: 1; 最大值: 100000 |
+| `page_size` | integer | 可选; 默认值: 10; 最小值: 1; 最大值: 100 |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_xrefs", {"urs": "URS0000000001", "page": 1, "page_size": 10})
+```
+
 </ToolOperationGroup>
 
 ## 组学档案 {/* #family-18 */}
@@ -4516,15 +4630,15 @@ const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-
 
 ### `gdc_list_cases`
 
-分页列出 GDC 病例（样本提供者）的项目和疾病元数据，不读取或下载受控数据。页码从 1 开始，最多 10000 页；结合 total、total_relation 与 next_page 判断范围，达到分页上限时缩小筛选条件。
+分页列出 GDC 病例（样本供体），包含项目、疾病、样本和 aliquot 元数据。case_ids 指定病例 UUID；它们不是样本标识符。结果不授予受控数据访问权限，也不下载文件。
 
-| 字段 | 类型 | 必填与约束 |
+| 字段 | 类型 | 要求与限制 |
 | --- | --- | --- |
 | `project_ids` | string / array | 可选 |
 | `submitter_ids` | string / array | 可选 |
 | `case_ids` | string / array | 可选 |
-| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
-| `page_size` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可选; 默认值: 1; 最小值: 1; 最大值: 10000 |
+| `page_size` | integer | 可选; 默认值: 20; 最小值: 1; 最大值: 100 |
 
 ```javascript
 const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BRCA"], "page_size": 5})
@@ -4532,21 +4646,24 @@ const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BR
 
 ### `gdc_search_files`
 
-检索 GDC 文件清单，逐项标明 open 或 controlled。只返回元数据，不下载文件或授予访问权限；受控文件不提供可下载 URL，状态为 requires_authorization。access_summary 只描述当前页。project_id 是单个关联项目摘要，不代表完整关联集合。next_page 为空不一定表示全部匹配已取完。
+按项目、病例 UUID、样本类型和分析流程检索 GDC 文件。每个筛选项内部按 OR 合并，不同筛选项之间按 AND 合并。保留文件关联的样本、aliquot、分析流程及肿瘤／正常信息；同一病例的不同标本不可直接混合。每个文件标明 open 或 controlled；元数据可查询不等于具备下载权限。
 
-| 字段 | 类型 | 必填与约束 |
+| 字段 | 类型 | 要求与限制 |
 | --- | --- | --- |
 | `project_ids` | string / array | 可选 |
-| `access` | string | 可选; default: &quot;all&quot;; enum: [&quot;all&quot;, &quot;open&quot;, &quot;controlled&quot;] |
-| `data_category` | string | 可选; minLength: 1; maxLength: 200 |
-| `data_type` | string | 可选; minLength: 1; maxLength: 200 |
-| `data_format` | string | 可选; minLength: 1; maxLength: 50 |
-| `file_name` | string | 可选; minLength: 1; maxLength: 500 |
-| `page` | integer | 可选; default: 1; minimum: 1; maximum: 10000 |
-| `page_size` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `case_ids` | string / array | 可选 |
+| `sample_types` | string / array | 可选 |
+| `workflow_types` | string / array | 可选 |
+| `access` | string | 可选; 默认值: "all"; 允许值: ["all", "open", "controlled"] |
+| `data_category` | string | 可选; 最短长度: 1; 最长长度: 200 |
+| `data_type` | string | 可选; 最短长度: 1; 最长长度: 200 |
+| `data_format` | string | 可选; 最短长度: 1; 最长长度: 50 |
+| `file_name` | string | 可选; 最短长度: 1; 最长长度: 500 |
+| `page` | integer | 可选; 默认值: 1; 最小值: 1; 最大值: 10000 |
+| `page_size` | integer | 可选; 默认值: 20; 最小值: 1; 最大值: 100 |
 
 ```javascript
-const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "sample_types": "Primary Tumor", "workflow_types": "STAR - Counts", "access": "open", "page_size": 10})
 ```
 
 ### `gdc_get_file`
@@ -5421,6 +5538,21 @@ const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"P
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
+### `pdc_list_clinical`
+
+获取 PDC 公开病例的人口学和诊断信息，以及可用样本标识符、用于关联 GDC 的具名外部引用。保留上游类型、空值和遮蔽标记。pdc_study_id 解析最新版本，study_id 为具体版本的 UUID；二者只能提供一个。使用返回的 study_id 固定后续查询版本。外部 ID 属于其标注的来源，不能将 PDC 和 GDC 的 UUID 互换。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `pdc_study_id` | string | 二选一，不能同时提供; 最长长度: 9 |
+| `study_id` | string | 二选一，不能同时提供; 最长长度: 36 |
+| `offset` | integer | 可选; 默认值: 0; 最小值: 0; 最大值: 1000000 |
+| `limit` | integer | 可选; 默认值: 20; 最小值: 1; 最大值: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_clinical", {"pdc_study_id": "PDC000127", "limit": 10})
+```
+
 </ToolOperationGroup>
 
 ## ENCORI {/* #family-35 */}
@@ -5600,6 +5732,36 @@ const result = await host.mcp("encori", "list_bulk_datasets", {"assembly":"hg38"
 
 ```javascript
 const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
+```
+
+</ToolOperationGroup>
+
+## Orphadata {/* #family-36 */}
+
+<ToolOperationGroup>
+
+### `get_disease_genes`
+
+按 ORPHAcode 获取 Orphadata 罕见病—基因关联，保留关联类型／状态、验证来源和基因数据库映射。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `orphacode` | integer | **必填**; 最小值: 1; 最大值: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_genes", {"orphacode": 166024})
+```
+
+### `get_disease_phenotypes`
+
+按 ORPHAcode 获取 Orphadata 的 HPO 表型及频率类别，保留诊断标准与验证元数据。频率类别不是某个患者的患病概率。
+
+| 字段 | 类型 | 要求与限制 |
+| --- | --- | --- |
+| `orphacode` | integer | **必填**; 最小值: 1; 最大值: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_phenotypes", {"orphacode": 58})
 ```
 
 </ToolOperationGroup>

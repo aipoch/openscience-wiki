@@ -2742,5 +2742,17 @@
   },
   "docs.outline.reference.v100.scope": {
     "message": "1.x 稳定兼容范围、桌面发行包、会话恢复与科学数据背景"
+  },
+  "docs.outline.reference.v101.title": {
+    "message": "v1.0.1"
+  },
+  "docs.outline.reference.v101.scope": {
+    "message": "网页研究包导入、更新进度、等待状态与凭据恢复。"
+  },
+  "docs.outline.reference.v102.title": {
+    "message": "v1.0.2"
+  },
+  "docs.outline.reference.v102.scope": {
+    "message": "科学数据源、npm CLI 安装、问题卡片与研究记录可靠性。"
   }
 }

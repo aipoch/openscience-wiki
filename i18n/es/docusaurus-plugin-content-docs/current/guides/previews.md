@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -246,3 +246,9 @@ Después de **Analyze PDF**, abra una figura y tabla junto a la página original
 En v0.37.2, la extracción corrige aún más la figura/propiedad estable y los símbolos de matemáticas PDF heredados. Compare menos signos, letras griegas, superscriptos, subscriptos y operadores con la fuente renderizada antes de copiar un valor de fórmula o tabla. Una extracción limpia no es un sustituto para comprobar la expresión científica.
 
 v1.0.0 mejora aún más la propiedad de tablas y figuras nativas, incluyendo registros repetidos, columnas escasas y fracciones científicas. Al revisar una tabla, mantenga repetidas filas como registros separados a menos que la fuente los identifique como duplicados. Compare numeradores/denominadores de fracciones, etiquetas agrupadas y células vacías con la página original; no llenan una célula vacía de la prosa vecina.
+
+## Consultar la cobertura de búsqueda en PDF {/* #pdf-search-coverage */}
+
+Si la búsqueda PDF indica cobertura incompleta, interprete las coincidencias solo como resultados del texto que pudo buscar. La ausencia de coincidencias no demuestra que la frase no aparezca en el artículo completo. Revise las páginas pertinentes del PDF original, especialmente páginas escaneadas, figuras, ecuaciones y tablas. Aunque la extracción y traducción conserven mejor la estructura, el PDF original sigue siendo la referencia.
+
+Para las previsiones DOCX, compruebe la numeración de lista continua y las fronteras de tabla contra el documento descargado antes de citar o compartir el resultado.

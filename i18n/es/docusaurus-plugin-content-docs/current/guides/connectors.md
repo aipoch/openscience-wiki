@@ -1,7 +1,7 @@
 ---
 title: "Conectores y credenciales"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,3 +179,7 @@ Cree y administre secretos en [Cátedras de servicio](../tools/credentials.md), 
 ## Búsqueda de error HTTP {/* #http-error-lookup */}
 
 Para 400, 401, 403, 404, 429 o 5xx, use el [Mesa de solución de problemas HTTP](troubleshooting.md#http-errors-400-403-429-and-5xx). Mantenga el servicio de respuesta y su mensaje detallado con el código de estado.
+
+## Reconectarse después de un error credencial OAuth {/* #oauth-reconnect */}
+
+Para un conector OAuth personalizado, abra su configuración y utilice el flujo de autorización ofrecido de nuevo si la credencial guardada es rechazada. Las credenciales están vinculadas al servidor de autorización que las emitió; cambiar una dirección de servidor no es una manera de reutilizar una ficha emitida en otro lugar. Mantener cambios de forma sin guardar hasta que el ahorro termine, luego probar la conexión y reiniciar la consulta prevista. Una prueba de conexión exitosa no establece que la consulta de datos devueltos.

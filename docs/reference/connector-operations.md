@@ -2,7 +2,7 @@
 title: "Connector operation reference"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Return field names differ by operation. The descriptions and downloadable schema
 
 ## Operation inputs
 
-Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v1.0.0** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
+Expand one Connector at a time. Required fields are marked **required**; this reference and download use the Open-Science **v1.0.2** schema. A nested `input.required` list is authoritative; a legacy top-level `required` list may be absent. Consult the <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.2.json">complete downloadable registry</ExampleDownload> for nested JSON schemas, full return descriptions and agent-side call examples. Do not pass a generic `id` when a tool expects `accessions`, `cids`, `rs_id` or another namespace-specific field.
 
 ## Chemistry {/* #family-1 */}
 
@@ -502,6 +502,31 @@ Report copyright and license status per PMID by combining PubMed CopyrightInform
 const result = await host.mcp("pubmed", "get_copyright_status", {"pmids": ["35891187", "34375400"]})
 ```
 
+### `get_pubtator_annotations`
+
+Export PubTator 3 BioC JSON entity and relation annotations for published PubMed articles (title/abstract). Keeps passage text, offsets, normalized IDs and relations. Does not submit raw text.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `pmids` | array | **required**; minItems: 1; maxItems: 10 |
+
+```javascript
+const result = await host.mcp("pubmed", "get_pubtator_annotations", {"pmids": ["29355051"]})
+```
+
+### `search_pubtator`
+
+Search one page of PubTator 3 publications by text, entity IDs or relations (e.g. relations:ANY&#124;@CHEMICAL_Doxorubicin&#124;@DISEASE_Neoplasms). Automated relations are research evidence, not clinical conclusions.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 1000 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("pubmed", "search_pubtator", {"query": "relations:ANY|@CHEMICAL_Doxorubicin|@DISEASE_Neoplasms", "page": 1})
+```
+
 </ToolOperationGroup>
 
 ## Genes &amp; Ontologies {/* #family-4 */}
@@ -740,6 +765,30 @@ Run Enrichr enrichment for gene symbols or identifiers accepted by selected Enri
 const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
+### `get_hgnc_gene`
+
+Fetch human gene nomenclature by exact HGNC symbol. Retains approved/withdrawn status, names, aliases, cross-references and modification dates.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `symbol` | string | **required**; minLength: 1; maxLength: 100 |
+
+```javascript
+const result = await host.mcp("genes", "get_hgnc_gene", {"symbol": "BRCA1"})
+```
+
+### `resolve_hgnc_alias`
+
+Resolve an exact human gene alias symbol through HGNC. Returns every matching gene; never silently chooses among ambiguous aliases. Use get_hgnc_gene for approved symbols.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `symbol` | string | **required**; minLength: 1; maxLength: 100 |
+
+```javascript
+const result = await host.mcp("genes", "resolve_hgnc_alias", {"symbol": "P53"})
+```
+
 </ToolOperationGroup>
 
 ## Genomes {/* #family-5 */}
@@ -819,15 +868,16 @@ const result = await host.mcp("genomes", "ensembl_xrefs", {"stable_id": "ENSG000
 
 ### `ensembl_vep_variant`
 
-A supplied `variant_id` takes precedence and ignores `region`, `allele` and `allele_orientation`; `allele` does not filter ID results. Region queries use the current species assembly (GRCh38 for human). Coordinates are 1-based inclusive; an insertion uses `start = end + 1`. `allele_orientation` defaults to `forward`: the allele is on the reference forward strand, even with a `:-1` suffix. With `region`, a negative-strand sequence allele is reverse-complemented before the request. Symbolic alleles on a negative region require `forward`. Every region request is sent on the forward strand; `normalization` records the original and normalized inputs. Coordinates are not lifted or reversed. A negative-strand gene does not require negative-strand input.
+Predict variant consequences with Ensembl VEP — most-severe-first summary of the (often huge) per-transcript consequence list. Without hgvs_notation, variant_id takes precedence and region/allele/allele_orientation are ignored. Otherwise, supply hgvs_notation or both region and allele. HGVS must not be combined with variant_id, region, allele, or allele_orientation. hgvs_notation accepts genomic, coding, or protein HGVS (e.g. ENST00000366667:c.803C&gt;T); reference versions are passed unchanged. HGVS uses the current species assembly from rest.ensembl.org (no assembly selection or liftover); assembly_name reports the resolved assembly. HGVS requests include hgvs=1 and transcript_version=1: transcript_id is versioned, hgvsc/hgvsp are retained when available. Input reference versions are not verified: version_validation is unchecked. Each HGVS result preserves input_reference_annotations from the complete upstream transcript list independently of max_consequences. matched means exact reference identity excluding the version suffix, not validated parsing or a version match; unknown means no comparable annotation (including unmapped gene symbols or genomic references). HGVS alleles retain the upstream strand, including negative strand; no region normalization is applied. allele does not filter results from the ID route. Args: variant_id (dbSNP rsID rs7412, COSMIC COSV..., or HGMD ID); region (1-based inclusive chrom:start-end on the current species assembly, GRCh38 for human, e.g. 7:140753336-140753336; SNV start==end; insertion start=end+1; explicit strand suffix :1/:-1 accepted; coordinates always refer to the reference genome, including on the negative strand); allele (A/C/G/T replacement sequence, or - for deletion; upstream symbolic alleles INS/DUP/DEL/TDUP are accepted in forward orientation); allele_orientation (forward by default, preserving existing calls: allele is on the reference forward strand regardless of the region suffix; region opts into interpreting allele on the region strand, so :-1 reverse-complements sequence alleles before querying; symbolic alleles on a negative region require forward orientation). Every region request is sent on the forward strand; region results are forward-oriented. A negative-strand gene does not require negative-strand input; species (default homo_sapiens); max_consequences (cap on returned per-transcript rows, default 25; full count in n_transcript_consequences, rows kept are most severe HIGH&gt;MODERATE&gt;LOW&gt;MODIFIER; transcript_consequences_truncated flags the cap). Returns &#123;query, n_results, results:[&#123;input, assembly_name, seq_region_name, start, end, strand, allele_string, most_severe_consequence, genes:[&#123;gene_id, gene_symbol, worst_impact, n_transcripts&#125;], n_transcript_consequences, transcript_consequences_truncated, transcript_consequences:[...], n_regulatory_feature_consequences, n_motif_feature_consequences, colocated_variants:[...]&#125;]&#125;. Each transcript consequence retains variant_allele. n_transcripts counts distinct non-empty transcript IDs per gene across the full list; worst_impact spans all returned upstream alleles, while n_transcript_consequences counts rows. HGVS parsing errors retain the upstream reason; unknown rsIDs raise with the upstream message.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
-| `variant_id` | string | optional |
-| `region` | string | optional |
-| `allele` | string | optional |
-| `allele_orientation` | string | optional; default: `forward`; enum: `forward`, `region` |
-| `species` | string | optional; default: &quot;homo_sapiens&quot; |
+| `variant_id` | string | mode-dependent; see exclusion and strand rules above |
+| `hgvs_notation` | string | mode-dependent; see exclusion and strand rules above; minLength: 1 |
+| `region` | string | mode-dependent; see exclusion and strand rules above |
+| `allele` | string | mode-dependent; see exclusion and strand rules above |
+| `allele_orientation` | string | mode-dependent; see exclusion and strand rules above; default: "forward"; enum: ["forward", "region"] |
+| `species` | string | optional; default: "homo_sapiens" |
 | `max_consequences` | integer | optional; default: 25 |
 
 ```javascript
@@ -1490,6 +1540,18 @@ Patient-trial matching. DEFAULTS to RECRUITING trials unless status is set. Supp
 const result = await host.mcp("clinical-trials", "search_by_eligibility", {"condition": "diabetes", "min_age": "65 Years", "sex": "FEMALE"})
 ```
 
+### `get_trial_results`
+
+Read posted trial results by NCT id (case-insensitive; bare 8 digits accepted). Returns actual outcome measurements, group-specific counts and denominators, units, statistical analyses, participant flow, baseline characteristics, adverse events and reporting caveats from resultsSection. Nested fields retain the official API camelCase names and hierarchy. Resolve groupId/groupIds only against the groups in the same module or outcome; do not join them to protocol arms or other modules. Missing data does not mean zero events or no treatment effect.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `nct_id` | string | **required** |
+
+```javascript
+const result = await host.mcp("clinical-trials", "get_trial_results", {"nct_id": "NCT04280705"})
+```
+
 </ToolOperationGroup>
 
 ## Clinical Genomics {/* #family-8 */}
@@ -1938,6 +2000,32 @@ For this group provide at least one of: `object2Id` / `object2Name` / `object2Ty
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
+```
+
+### `get_dgidb_gene_drugs`
+
+Query DGIdb drug–gene interactions by gene name. One matching record per page, with full interaction sources, source versions, licenses, types, attributes and publication evidence. Names can match multiple records; follow next_cursor explicitly.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `name` | string | **required**; minLength: 1; maxLength: 200 |
+| `after` | string | optional; minLength: 1; maxLength: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_gene_drugs", {"name": "BRAF"})
+```
+
+### `get_dgidb_drug_genes`
+
+Query DGIdb drug–gene interactions by drug name. One matching record per page, with full interaction sources, source versions, licenses, types, attributes and publication evidence. Names can match multiple records; follow next_cursor explicitly.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `name` | string | **required**; minLength: 1; maxLength: 200 |
+| `after` | string | optional; minLength: 1; maxLength: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_drug_genes", {"name": "IMATINIB"})
 ```
 
 </ToolOperationGroup>
@@ -3522,6 +3610,32 @@ Search an RNA sequence through the official Rfam batch endpoint. Keep the return
 const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGAAGGCAGCAGGUGGAAACCUGCCA"})
 ```
 
+### `get_rnacentral_record`
+
+Fetch an RNAcentral sequence record by URS accession using API v1. Retains sequence, MD5, activity status, organism and RNA type metadata.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `urs` | string | **required** |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_record", {"urs": "URS0000000001"})
+```
+
+### `get_rnacentral_xrefs`
+
+Map an RNAcentral URS accession to one page of expert-database identifiers. Retains source database, taxonomy, accession version, activity and first/last-seen dates; no automatic page traversal.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `urs` | string | **required** |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | optional; default: 10; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_xrefs", {"urs": "URS0000000001", "page": 1, "page_size": 10})
+```
+
 </ToolOperationGroup>
 
 ## Omics Archives {/* #family-18 */}
@@ -4514,7 +4628,7 @@ const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-
 
 ### `gdc_list_cases`
 
-List GDC cases (sample donors) with project and disease metadata. Results identify cases and do not expose or download controlled data.
+List GDC cases (sample donors) with project, disease and biospecimen metadata (samples and aliquots). Results identify cases and do not expose or download controlled data.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
@@ -4530,12 +4644,15 @@ const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BR
 
 ### `gdc_search_files`
 
-Search the GDC file inventory and explicitly label each file as open or controlled access. Metadata discovery does not grant download access; controlled files require appropriate GDC authorization.
+Search the GDC file inventory by project, case UUID, sample type and analysis workflow type (OR within each filter, AND across filters), and explicitly label each file as open or controlled access. Metadata discovery does not grant download access; controlled files require appropriate GDC authorization.
 
 | Field | Type | Requirement and constraints |
 | --- | --- | --- |
 | `project_ids` | string / array | optional |
-| `access` | string | optional; default: &quot;all&quot;; enum: [&quot;all&quot;, &quot;open&quot;, &quot;controlled&quot;] |
+| `case_ids` | string / array | optional |
+| `sample_types` | string / array | optional |
+| `workflow_types` | string / array | optional |
+| `access` | string | optional; default: "all"; enum: ["all", "open", "controlled"] |
 | `data_category` | string | optional; minLength: 1; maxLength: 200 |
 | `data_type` | string | optional; minLength: 1; maxLength: 200 |
 | `data_format` | string | optional; minLength: 1; maxLength: 50 |
@@ -4544,7 +4661,7 @@ Search the GDC file inventory and explicitly label each file as open or controll
 | `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
 
 ```javascript
-const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "sample_types": "Primary Tumor", "workflow_types": "STAR - Counts", "access": "open", "page_size": 10})
 ```
 
 ### `gdc_get_file`
@@ -5419,6 +5536,21 @@ Provide exactly one of `pdc_study_id` / `study_id`.
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
+### `pdc_list_clinical`
+
+Retrieve public PDC case demographics and diagnosis metadata, with available sample identifiers and named external references for linking to GDC. Values retain upstream types, nulls and obfuscation flags. pdc_study_id selects the latest version; study_id is the UUID of a specific version. Use a returned study_id to pin subsequent calls. External reference IDs belong to the named resource; do not assume PDC and GDC UUIDs are interchangeable.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `pdc_study_id` | string | provide exactly one of these two identifiers; maxLength: 9 |
+| `study_id` | string | provide exactly one of these two identifiers; maxLength: 36 |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 1000000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_clinical", {"pdc_study_id": "PDC000127", "limit": 10})
+```
+
 </ToolOperationGroup>
 
 ## ENCORI {/* #family-35 */}
@@ -5598,6 +5730,36 @@ Only when the user requests a download, stream one official bulk file to destina
 
 ```javascript
 const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
+```
+
+</ToolOperationGroup>
+
+## Orphadata {/* #family-36 */}
+
+<ToolOperationGroup>
+
+### `get_disease_genes`
+
+Retrieve Orphadata rare-disease gene associations by ORPHAcode, including association type/status, validation sources and gene database mappings.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `orphacode` | integer | **required**; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_genes", {"orphacode": 166024})
+```
+
+### `get_disease_phenotypes`
+
+Retrieve Orphadata rare-disease HPO phenotypes and frequency categories by ORPHAcode. Keeps diagnostic criteria and validation metadata; frequency categories are not patient-specific probabilities.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `orphacode` | integer | **required**; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_phenotypes", {"orphacode": 58})
 ```
 
 </ToolOperationGroup>

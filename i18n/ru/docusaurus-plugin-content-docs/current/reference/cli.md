@@ -1,7 +1,7 @@
 ---
 title: "CLI и структурированный выход"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## Настройка из терминала {/* #terminal-setup */}
 
-Для v1.0.0 установите пусковую установку, поставляемую на рабочий стол, через **Settings → General → Command line tool → Install command**, откройте новый терминал и проверьте `open-science --help`. Данный релиз не имеет отдельного пакета CLI. Нижеприведенные этапы извлечения архива применяются только к версиям, которые предоставляют один из них, например [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2). Они не являются установкой 1.0 или разрешением на смешивание настольных / фоновых версий.
+Установите десктопную пусковую установку, используйте автономный архив v1.0.2 или следуйте [npm инсталляция](../guides/installation.md#npm-cli). Отдельный пакет архивов Node, бэкэнд и веб-интерфейс; этапы извлечения ниже применяются к этим архивам.
 
 1. Выберите macOS или Linux arm64/x64, или Windows x64, соответствующий хосту.
 2. Извлеките полный архив в письменное место. Держите пусковую установку, `backend` и `node-runtime` вместе. Копирование только пусковой установки сломает стартап.
@@ -215,9 +215,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL может включать `run.progress` и `stream.resync-required`. Если повторное воспроизведение недоступно после повторного подключения, перечитайте авторитетное состояние запуска; Не думайте, что поток событий — это постоянная история. Команды жизненного цикла имеют отдельные ограничения флага, описанные в [Безголовый сервис](./server.md).
 
-[Реализация CLI](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [Руководитель командной строки](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
+[Реализация CLI](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/cli.mjs), [командный гид](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
 
-Технический справочник: [CLI контракт](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
+Технический справочник: [Контракт CLI](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
 
 ## Без присмотра бегут {/* #unattended-runs */}
 
@@ -234,3 +234,14 @@ open-science run --project "Sequence and PDF Research" \
 ## Пути запуска Windows {/* #windows-launcher-paths */}
 
 v0.37.1 исправляет пути запуска настольных компьютеров, содержащие символы, не являющиеся ASCII. После обновления откройте новый терминал и проверьте `Get-Command open-science` и `open-science --help`. Если команда по-прежнему решается на более старую установку, используйте путь, показанный в **Settings → General**. Держите весь отдельный архивный каталог нетронутым. Успешная команда помощи не устанавливает модель готовности. Проверьте `doctor --json`.
+
+## Проверьте установленный CLI без запуска сервиса {/* #local-information */}
+
+```bash
+open-science version --json
+open-science help run
+open-science paths --json
+open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
+```
+
+Эти команды работают без бегущего бэкэнда. `version` сообщает об инсталляции, а не о версии подключенного сервиса. `paths` отчеты `cliPath`, `nodePath`, `startupConfigRoot` и `discoveryConfigRoots`Он не идентифицирует активную службу или каталог исследовательских данных. Явный профиль выбирает место запуска / обнаружения, не создавая его. Пути могут раскрывать локальные имена пользователей, поэтому просмотрите выход, прежде чем делиться им.

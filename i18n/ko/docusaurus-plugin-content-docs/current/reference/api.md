@@ -1,7 +1,7 @@
 ---
 title: "작업 SDK 및 로컬 API"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # 작업 SDK 및 로컬 API {/* #task-sdk-and-local-api */}
@@ -14,13 +14,11 @@ last_update:
 
 <p className="example-label"><strong>예시</strong> 연결 확인 메모 저장 및 다운로드</p>
 
-선택한 패키지와 호환되는 Node.js를 사용하세요. v1.0.0 백엔드 패키지에는 Node.js 22.13 이상이 필요하며, 데스크톱 배포판에는 백엔드 런타임이 포함되어 있습니다. 데스크톱 앱 또는 [CLI](server.md)로 백엔드를 시작하고 모델 설정을 완료한 후 실행 상태를 유지하세요. SDK는 로컬 서비스 검색과 로컬에 저장된 토큰을 사용합니다.
-
-빈 작업 폴더에서 일치 로컬 SDK 패키지를 설치하십시오. 데스크탑 배포 (`Contents/Resources/backend` macOS) 내부의 절대 `backend` 디렉토리와 `BACKEND_DIRECTORY`을 대체하거나 해당 태그에서 내장 된 백엔드 패키지. v1.0.0에는 독립 CLI 아카이브가 없습니다; 이 디렉토리를 얻기 위해 이전 아카이브를 대체하지 마십시오. 참고된 디렉토리를 유지하고 앱을 업데이트 한 후 클라이언트 버전을 다시 체크하십시오.
+Node.js 사용 **22.13 이상**· 바탕 화면을 통해 호환 된 백엔드를 시작하거나 [CLI](server.md), 끝 모형 체제 및 그것을 달리기 지킵니다. 빈 작업 폴더에서, 게시된 SDK를 설치:
 
 ```bash
 npm init -y
-npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
+npm install @aipoch/open-science@1.0.2
 ```
 
 `connection-check.mjs`로 다음을 저장합니다. `node connection-check.mjs`을 목록 프로젝트 ID로 실행하고, `node connection-check.mjs PROJECT_ID`을 한 반환 ID로 설정합니다. 첫 번째 invocation deliberately는 목록 프로젝트 후 중지합니다. 두 번째는 작은 작업을 만듭니다.

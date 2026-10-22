@@ -1,7 +1,7 @@
 ---
 title: "タスクSDKとローカルAPI"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # タスクSDKとローカルAPI {/* #task-sdk-and-local-api */}
@@ -14,13 +14,11 @@ last_update:
 
 <p className="example-label"><strong>例</strong> 接続チェックノートを保存してダウンロードする</p>
 
-選択したパッケージに対応する Node.js を使用してください。v1.0.0 のバックエンドパッケージには Node.js 22.13 以降が必要です。デスクトップ配布版にはバックエンド用の実行環境が含まれています。デスクトップアプリまたは [CLI](server.md) でバックエンドを起動し、モデルを設定して、起動したままにしてください。SDK はローカルサービスの検出とローカルに保存されたトークンを使用します。
-
-空の作業フォルダに、マッチングローカルSDKパッケージをインストールします。 交換する `BACKEND_DIRECTORY` 絶対的な `backend` デスクトップの配布中のディレクトリ()`Contents/Resources/backend` お問い合わせ macOS)、または対応するタグから構築されたバックエンドパッケージ。 v1.0.0はスタンドアローンCLIのアーカイブがありません; このディレクトリを取得するには、古いアーカイブを置換しません。 参照されたディレクトリを保ち、アプリを更新した後にクライアントバージョンを再確認します。
+Node.js を使う **22.13 以降**お問い合わせ デスクトップまたはデスクトップを介して互換性のあるバックエンドを開始する [CLI](server.md), モデルのセットアップを終了し、実行し続ける. 空の作業フォルダに公開されたSDKをインストールします。
 
 ```bash
 npm init -y
-npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
+npm install @aipoch/open-science@1.0.2
 ```
 
 `connection-check.mjs` として以下を保存します。 `node connection-check.mjs` を実行して、プロジェクト ID をリストし、`node connection-check.mjs PROJECT_ID` を 1 つの ID で返します。 最初の呼び出しは、プロジェクトをリストした後に意図的に停止します。 2 番目は小さなタスクを作成します。

@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-Connectorを一度に拡大します。 必須フィールドは、**必須** マークされています。 この参照とダウンロードは、Open-Science **v1.0.0**スキーマを使用します。 ネストされた`input.required`リストは権威ある; `required` のレガシートップレベルのリストは、不在である可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">完全なダウンロード可能なレジストリ</ExampleDownload> ネスト JSON スキーマ、フルリターンの説明、エージェント・サイドのコール例。 ツールが`id`、`accessions`、`cids`、または別の名前空間固有のフィールドを期待したときに、一般的な`rs_id`を渡すしないでください。
+1つのコネクターを一度に拡大して下さい。 必須項目は必須項目です **お問い合わせ**; この参照およびダウンロードは開いた科学を使用します **v1.0.2** スキーマ。 ネスト `input.required` リストは権威的です。レガシートップレベル `required` リストが存在しない可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.2.json">ダウンロード可能なレジストリ</ExampleDownload> ネストされた JSON スキーマ、完全なリターン 説明およびエージェント・サイド・コールの例のため。 ジェネリックを通さない `id` ツールが期待したときに `accessions`, `cids`, `rs_id` または別の名前空間固有のフィールド。
 
 ## 化学化学品 {/* #family-1 */}
 
@@ -502,6 +502,31 @@ const result = await host.mcp("pubmed", "get_full_text_article", {"pmc_ids": ["P
 const result = await host.mcp("pubmed", "get_copyright_status", {"pmids": ["35891187", "34375400"]})
 ```
 
+### `get_pubtator_annotations`
+
+公開済み PubMed 論文のタイトル・抄録から、PubTator 3 BioC JSON のエンティティ・関係注釈を取得します。本文断片、オフセット、正規化 ID、関係を保持します。生テキストの送信は行いません。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `pmids` | array | **お問い合わせ**; minItems: 1; maxItems: 10 |
+
+```javascript
+const result = await host.mcp("pubmed", "get_pubtator_annotations", {"pmids": ["29355051"]})
+```
+
+### `search_pubtator`
+
+PubTator 3 の文献をテキスト、エンティティ ID、関係で 1 ページ検索します（例：relations:ANY&#124;@CHEMICAL\_Doxorubicin&#124;@DISEASE\_Neoplasms）。自動抽出した関係は研究資料であり、臨床的結論ではありません。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `query` | string | **お問い合わせ**; minLength: 1; maxLength: 1000 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("pubmed", "search_pubtator", {"query": "relations:ANY|@CHEMICAL_Doxorubicin|@DISEASE_Neoplasms", "page": 1})
+```
+
 </ToolOperationGroup>
 
 ## ジャンル & オントロジー {/* #family-4 */}
@@ -740,6 +765,30 @@ Enrichr は、選択された Enrichr ライブラリによって受け入れら
 const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
+### `get_hgnc_gene`
+
+正確な HGNC 記号からヒト遺伝子の命名情報を取得します。承認・撤回状態、名称、別名、相互参照、更新日を保持します。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `symbol` | string | **お問い合わせ**; minLength: 1; maxLength: 100 |
+
+```javascript
+const result = await host.mcp("genes", "get_hgnc_gene", {"symbol": "BRCA1"})
+```
+
+### `resolve_hgnc_alias`
+
+ヒト遺伝子の別名を HGNC で完全一致検索します。一致する全遺伝子を返し、曖昧な候補を自動で選びません。承認済み記号には get\_hgnc\_gene を使います。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `symbol` | string | **お問い合わせ**; minLength: 1; maxLength: 100 |
+
+```javascript
+const result = await host.mcp("genes", "resolve_hgnc_alias", {"symbol": "P53"})
+```
+
 </ToolOperationGroup>
 
 ## ゲノム {/* #family-5 */}
@@ -819,15 +868,16 @@ const result = await host.mcp("genomes", "ensembl_xrefs", {"stable_id": "ENSG000
 
 ### `ensembl_vep_variant` {/* #ensembl_vep_variant */}
 
-`variant_id` が指定されると ID 検索が優先され、`region`、`allele`、`allele_orientation` は無視されます。`allele` で ID 検索結果を絞り込むことはできません。領域検索は対象種の現在の参照ゲノム（ヒトでは GRCh38）を使います。座標は 1 始まりで両端を含み、挿入では `start = end + 1` とします。`allele_orientation` の既定値は `forward` で、領域に `:-1` が付いていてもアレルを参照ゲノムの正鎖として解釈します。`region` を指定した負鎖領域の配列アレルは、送信前に逆相補配列へ変換されます。負鎖領域の記号アレルには `forward` が必要です。領域検索は常に正鎖で送信され、`normalization` に変換前後の入力が残ります。座標のゲノム間変換や反転は行いません。遺伝子が負鎖にあっても、入力を負鎖にする必要はありません。
+Ensembl VEP でバリアントの影響を注釈し、転写産物ごとの結果を重症度順に要約します。hgvs\_notation を指定しない場合、variant\_id が優先され、region、allele、allele\_orientation は無視されます。HGVS はこれらの引数と併用できません。hgvs\_notation はゲノム・コード領域・タンパク質表記を受け付けます（例：ENST00000366667:c.803C&gt;T）。参照バージョンは変更せず渡しますが、検証しません。rest.ensembl.org の対象種の現在のアセンブリを使用し、アセンブリ選択や座標変換は行いません。assembly\_name で解決結果を確認します。HGVS では hgvs=1、transcript\_version=1 を指定し、バージョン付き transcript\_id と利用可能な hgvsc/hgvsp を保持します。version\_validation は unchecked です。input\_reference\_annotations は max\_consequences とは独立に上流の全転写産物から保持されます。matched はバージョン接尾辞を除いた参照 ID の一致だけを意味し、構文やバージョンの妥当性を証明しません。unknown は比較可能な注釈がないことを示します。HGVS のアレルは負鎖を含む上流の向きを保持し、領域の正規化を行いません。allele は ID 検索結果を絞り込みません。region は現在の参照アセンブリ上の 1 始まり・両端包含座標です（ヒト GRCh38、例：7:140753336-140753336）。SNV は start=end、挿入は start=end+1。:1/:-1 の鎖指定を受け付けますが、座標は常に参照ゲノムの座標です。allele は A/C/G/T 配列、欠失の -、または INS/DUP/DEL/TDUP を受け付けます。allele\_orientation の既定値 forward はアレルを参照正鎖として扱います。region を選ぶと領域の鎖で解釈し、負鎖の配列アレルを逆相補化します。負鎖領域の記号アレルには forward が必要です。領域要求と結果は常に正鎖です。負鎖の遺伝子でも負鎖入力は不要です。species の既定値は homo\_sapiens。max\_consequences は既定 25 で、HIGH&gt;MODERATE&gt;LOW&gt;MODIFIER の順に保持します。n\_transcript\_consequences は全行数、transcript\_consequences\_truncated は切り詰めを示します。結果には座標、アレル、遺伝子、転写産物・調節領域・モチーフへの影響、重複バリアントが含まれます。variant\_allele を保持し、n\_transcripts は遺伝子ごとの空でない固有転写産物 ID 数、worst\_impact は上流の全アレルを対象とします。HGVS の解析エラーや未知の rsID は上流の理由を保持して報告します。
 
 | フィールド | 型 | 要件と制約 |
 | --- | --- | --- |
-| `variant_id` | 文字列 | オプション |
-| `region` | 文字列 | オプション |
-| `allele` | 文字列 | オプション |
-| `allele_orientation` | 文字列 | 任意; デフォルト: `forward`; エヌム: `forward`, `region` |
-| `species` | 文字列 | 任意; デフォルト: "homo_sapiens" |
+| `variant_id` | string | mode-dependent; see exclusion and strand rules above |
+| `hgvs_notation` | string | mode-dependent; see exclusion and strand rules above; minLength: 1 |
+| `region` | string | mode-dependent; see exclusion and strand rules above |
+| `allele` | string | mode-dependent; see exclusion and strand rules above |
+| `allele_orientation` | string | mode-dependent; see exclusion and strand rules above; default: "forward"; enum: \["forward", "region"\] |
+| `species` | string | optional; default: "homo\_sapiens" |
 | `max_consequences` | 整数 | 任意; デフォルト: 25 |
 
 ```javascript
@@ -1490,6 +1540,18 @@ const result = await host.mcp("clinical-trials", "analyze_endpoints", {"nct_id":
 const result = await host.mcp("clinical-trials", "search_by_eligibility", {"condition": "diabetes", "min_age": "65 Years", "sex": "FEMALE"})
 ```
 
+### `get_trial_results`
+
+NCT ID から公開済み試験結果を取得します（大文字小文字を区別せず、8 桁の数字だけでも可）。resultsSection の測定値、群別件数・分母、単位、統計解析、参加者フロー、ベースライン特性、有害事象、報告上の注意を返します。公式 API の camelCase 名と階層を保持します。groupId/groupIds は同じモジュール・評価項目の groups とだけ対応付け、プロトコルの群や他のモジュールと結合しないでください。欠損はゼロ件や治療効果がないことを意味しません。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `nct_id` | string | **お問い合わせ** |
+
+```javascript
+const result = await host.mcp("clinical-trials", "get_trial_results", {"nct_id": "NCT04280705"})
+```
+
 </ToolOperationGroup>
 
 ## 臨床ゲノム {/* #family-8 */}
@@ -1938,6 +2000,32 @@ const result = await host.mcp("clinical-genomics", "clinpgx_get_variant_frequenc
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
+```
+
+### `get_dgidb_gene_drugs`
+
+遺伝子名で DGIdb の薬剤・遺伝子相互作用を検索します。1 ページに一致レコード 1 件を返し、全出典、出典バージョン、ライセンス、種類、属性、文献情報を保持します。同名で複数レコードがあり得るので、next\_cursor を明示的にたどります。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `name` | string | **お問い合わせ**; minLength: 1; maxLength: 200 |
+| `after` | string | optional; minLength: 1; maxLength: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_gene_drugs", {"name": "BRAF"})
+```
+
+### `get_dgidb_drug_genes`
+
+薬剤名で DGIdb の薬剤・遺伝子相互作用を検索します。1 ページに一致レコード 1 件を返し、全出典、出典バージョン、ライセンス、種類、属性、文献情報を保持します。同名で複数レコードがあり得るので、next\_cursor を明示的にたどります。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `name` | string | **お問い合わせ**; minLength: 1; maxLength: 200 |
+| `after` | string | optional; minLength: 1; maxLength: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_drug_genes", {"name": "IMATINIB"})
 ```
 
 </ToolOperationGroup>
@@ -3522,6 +3610,32 @@ Rfam バッチの公式エンドポイントから RNA のシーケンスを検�
 const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGAAGGCAGCAGGUGGAAACCUGCCA"})
 ```
 
+### `get_rnacentral_record`
+
+API v1 で URS アクセッションから RNAcentral 配列を取得します。配列、MD5、有効状態、生物種、RNA 種別のメタデータを保持します。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `urs` | string | **お問い合わせ** |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_record", {"urs": "URS0000000001"})
+```
+
+### `get_rnacentral_xrefs`
+
+RNAcentral の URS アクセッションを専門データベースの識別子 1 ページに対応付けます。出典、分類群、アクセッションのバージョン、有効状態、初回・最終確認日を保持します。次ページは自動取得しません。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `urs` | string | **お問い合わせ** |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | optional; default: 10; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_xrefs", {"urs": "URS0000000001", "page": 1, "page_size": 10})
+```
+
 </ToolOperationGroup>
 
 ## Omics アーカイブ {/* #family-18 */}
@@ -4514,7 +4628,7 @@ const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-
 
 ### `gdc_list_cases` {/* #gdc_list_cases */}
 
-プロジェクトや疾患メタデータでGDCケース(サンプルドナー)を一覧表示します。 結果は、ケースを識別し、制御されたデータを露出またはダウンロードしません。
+GDC の症例（検体提供者）を、プロジェクト、疾患、検体・分注試料のメタデータとともに一覧化します。症例を識別する結果であり、アクセス制限付きデータの公開・ダウンロードは行いません。
 
 | 受け入れられた値 | 型 | 要件と制約 |
 | --- | --- | --- |
@@ -4530,12 +4644,15 @@ const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BR
 
 ### `gdc_search_files` {/* #gdc_search_files */}
 
-GDCファイル在庫を検索し、各ファイルをオープンまたは管理されたアクセスとして明示的にラベル付けします。 Metadataの発見はダウンロードアクセスを付与しません。 制御されたファイルは適切なGDCの承認を要求します。
+GDC ファイル一覧をプロジェクト、症例 UUID、検体種別、解析ワークフローで検索します。同一フィルター内は OR、フィルター間は AND です。各ファイルに open/controlled を明示します。メタデータの検索はダウンロード権限を与えません。制限付きファイルには GDC の認可が必要です。
 
 | 受け入れられた値 | 型 | 要件と制約 |
 | --- | --- | --- |
 | `project_ids` | 文字列/配列 | オプション |
-| `access` | 文字列 | 任意; デフォルト: "all"; enum: &#91;"all"、"open"、"controlled"&#93; |
+| `case_ids` | string / array | オプション |
+| `sample_types` | string / array | オプション |
+| `workflow_types` | string / array | オプション |
+| `access` | string | optional; default: "all"; enum: \["all", "open", "controlled"\] |
 | `data_category` | 文字列 | 任意; 最長: 1; 最高長さ: 200 |
 | `data_type` | 文字列 | 任意; 最長: 1; 最高長さ: 200 |
 | `data_format` | 文字列 | 任意; 最長: 1; 最高長さ: 50 |
@@ -4544,7 +4661,7 @@ GDCファイル在庫を検索し、各ファイルをオープンまたは管�
 | `page_size` | 整数 | 任意; デフォルト: 20; 最小値: 1; 最高: 100 |
 
 ```javascript
-const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "sample_types": "Primary Tumor", "workflow_types": "STAR - Counts", "access": "open", "page_size": 10})
 ```
 
 ### `gdc_get_file` {/* #gdc_get_file */}
@@ -5419,6 +5536,21 @@ const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"P
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
+### `pdc_list_clinical`
+
+PDC 症例の公開人口統計・診断メタデータと、利用可能な検体 ID、GDC との連携用外部参照を取得します。元の型、null、秘匿フラグを保持します。pdc\_study\_id は最新版、study\_id は特定バージョンの UUID です。以後の呼び出しを固定するには返された study\_id を使います。外部参照 ID は指定されたリソースに属し、PDC と GDC の UUID は互換ではありません。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `pdc_study_id` | string | provide exactly one of these two identifiers; maxLength: 9 |
+| `study_id` | string | provide exactly one of these two identifiers; maxLength: 36 |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 1000000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_clinical", {"pdc_study_id": "PDC000127", "limit": 10})
+```
+
 </ToolOperationGroup>
 
 ## ENCORI {/* #family-35 */}
@@ -5598,6 +5730,36 @@ const result = await host.mcp("encori", "list_bulk_datasets", {"assembly":"hg38"
 
 ```javascript
 const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
+```
+
+</ToolOperationGroup>
+
+## Orphadata {/* #family-36 */}
+
+<ToolOperationGroup>
+
+### `get_disease_genes`
+
+ORPHAcode で Orphadata の希少疾患・遺伝子関連を取得します。関連の種類・状態、検証の出典、遺伝子データベースの対応関係を含みます。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `orphacode` | integer | **お問い合わせ**; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_genes", {"orphacode": 166024})
+```
+
+### `get_disease_phenotypes`
+
+ORPHAcode で Orphadata の希少疾患の HPO 表現型と頻度区分を取得します。診断基準と検証メタデータを保持します。頻度区分は患者個人の確率ではありません。
+
+| フィールド | タイプ: | 要件と制約 |
+| --- | --- | --- |
+| `orphacode` | integer | **お問い合わせ**; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_phenotypes", {"orphacode": 58})
 ```
 
 </ToolOperationGroup>

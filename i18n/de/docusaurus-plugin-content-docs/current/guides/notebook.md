@@ -1,7 +1,7 @@
 ---
 title: "Notebook und Ausführungsnachweise"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -293,3 +293,7 @@ Wenn Sie ein Problem melden, behalten Sie die erste fehlerhafte Zeile, die ausge
 Für eine betriebsbereite Standardlaufzeit ist keine zweite Setup-Genehmigung mehr für einen gewöhnlichen unterstützten Betrieb erforderlich. Eine Risky-Code-Entscheidung oder ein Antrag auf zusätzlichen Zugang bleibt getrennt: Überprüfen Sie ihre Aktion und ihren Umfang, bevor Sie antworten.
 
 Behalten Sie in **Provenance → Environment** des Ergebnisses die Ursprünge von Conda und pip sowie die gemeldeten Paketversionen/Bauzeichenfolgen bei, wenn die Umgebung beide Manager verwendet. v0.37.0 verbessert Mixed-Environment-Capture und Mikromamba-Metadaten. Vergleichen Sie die erfasste Umgebung mit der vorgesehenen Laufzeit und verwenden Sie dann [Wiederholungsüberprüfung](reproducibility.md), wenn Sie Ausführungsnachweise benötigen. Ein Paketinventar allein beweist keine identischen numerischen Ergebnisse.
+
+## Abhängigkeiten nach einer verketteten Analyse prüfen {/* #chained-analysis-lineage */}
+
+Nachdem Sie eine CSV gelesen, transformiert und eine neue Datei in Python oder R exportiert haben, öffnen Sie die Herkunft der Ausgabe und prüfen Sie die aufgezeichneten Eingabeversionen und Ausführungsabhängigkeiten. Verwenden Sie diese Datensätze, um die Dateiversion zur Überprüfung auszuwählen. Eine genauere Abstammungslinie führt nicht allein die Berechnung durch oder stellt die wissenschaftliche Gültigkeit der Analyse fest; [Artefaktprüfung](reproducibility.md).

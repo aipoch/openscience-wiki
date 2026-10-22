@@ -1,7 +1,7 @@
 ---
 title: "Unterhaltungen und wartende Anfragen"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # Unterhaltungen und wartende Anfragen {/* #conversations-and-queued-requests */}
@@ -141,8 +141,14 @@ Ziehen Sie eine Dateikarte aus **Files** oder den Dateikopf des offenen Artefakt
 
 ## Beantworten Sie eine Klarstellungsfrage {/* #clarification-questions */}
 
-Wenn der Agent eine Fragekarte vorlegt, lesen Sie, wer sie gefragt hat und welche Wahl er beantragt hat, bevor Sie fortfahren. Eine Multi-Select-Karte sagt **Eine oder mehrere Optionen auswählen**; Wählen Sie jede zutreffende Antwort aus und wählen Sie erneut ein Element aus, um es zu entfernen. Längere Optionslisten scrollen innerhalb der Karte.
+Lesen Sie das Etikett zu jeder Frage: **Single select** erlaubt eine Option; **Multi select** erlaubt mehrere. Wählen Sie die Auswahlmöglichkeiten, die diese Frage beantworten. Längere Optionslisten scrollen innerhalb der Karte. Erweitern Sie nach dem Einreichen eine frühere Antwort, um die vollständige Frage-, Antwort- und Optionsliste zu überprüfen.
 
 Verwenden Sie **Geben Sie Ihre eigene Antwort ein** für eine andere Antwort, **Agent entscheiden lassen**, um diese Option zu delegieren, oder **Skip**, um sie unbeantwortet zu lassen. Eine typisierte Antwort ersetzt die Optionsauswahl. Verwenden Sie **Weiter** und **Back**, um eine Reihe von Fragen zu überprüfen, dann **Finish**, um sie einzureichen. Durch die bloße Auswahl einer Option wird ein Entwurf gespeichert; die Antwort nicht beendet wird. Warten Sie, bis die Karte gelöst ist und die Aufgabe fortgesetzt wird, bevor Sie die gleiche Antwort erneut senden.
 
 Diese Karten verdeutlichen die Forschungsanfrage. Sie gewähren keine Tool-Berechtigungen oder genehmigen einen separaten Plan.
+
+## Behalten Sie einen Entwurf, während Sie einen Block auflösen {/* #draft-recovery */}
+
+Wenn eine in der Warteschlange stehende Nachricht einen Fehler meldet, lesen Sie ihn und verwenden Sie die angebotene Rückgängig-Aktion, bevor Sie sie bearbeiten oder erneut senden. Eine Quit / Reload-Warnung kann bedeuten, dass ein nicht gesendeter Entwurf erhalten bleibt; kehren Sie zum Entwurf zurück oder verwerfen Sie ihn absichtlich. Wenn Sie einen Ordner ablegen, werden Sie nun aufgefordert, Dateien darin auszuwählen: Öffnen Sie den Ordner, wählen Sie die beabsichtigten Dateien aus und warten Sie auf ihre Anhängechips.
+
+Folgen Sie bei einem abgelaufenen Modell oder Connector-Anmeldenachweis der für diesen Dienst gezeigten Wiederherstellungsaktion, kehren Sie dann zur ursprünglichen Konversation zurück und überprüfen Sie ihren Status. Senden Sie nicht die gleiche Anfrage erneut, während die frühere Antwort möglicherweise noch im Gange ist. Artefakt `@` Erwähnungen sind auch in Remote-Web-Konversationen verfügbar; Wählen Sie vor dem Senden die beabsichtigte Datei / Version aus.

@@ -1,7 +1,7 @@
 ---
 title: "Conversations and queued requests"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # Conversations and queued requests
@@ -141,8 +141,14 @@ Drag a file card from **Files**, or the open artifact's file header, into the Co
 
 ## Answer a clarification question {/* #clarification-questions */}
 
-When the agent presents a question card, read who asked it and the requested choice before continuing. A multi-select card says **Select one or more options**; select each applicable answer, and select an item again to remove it. Longer option lists scroll within the card.
+Read the label on each question: **Single select** permits one option; **Multi select** permits several. Select the choices that answer that question. Longer option lists scroll inside the card. After submission, expand a past answer to inspect its full question, answer and option list.
 
 Use **Type your own answer** for a different response, **Let the agent decide** to delegate that choice, or **Skip** to leave it unanswered. A typed response replaces the option selection. Use **Next** and **Back** to review a set of questions, then **Finish** to submit it. Merely selecting an option saves a draft; it does not finish the response. Wait for the card to resolve and the task to continue before sending the same answer again.
 
 These cards clarify the research request. They do not grant tool permissions or approve a separate Plan.
+
+## Preserve a draft while resolving a block {/* #draft-recovery */}
+
+If a queued message reports an error, read it and use the offered undo action before editing or resending. A quit/reload warning can mean an unsent draft remains; return to the draft or deliberately discard it. Dropping a folder now asks you to select files inside it: open the folder, select the intended files and wait for their attachment chips.
+
+For an expired model or Connector credential, follow the recovery action shown for that service, then return to the original conversation and check its state. Do not send the same request again while its earlier reply may still be in progress. Artifact `@` mentions are also available in remote web conversations; select the intended file/version before sending.

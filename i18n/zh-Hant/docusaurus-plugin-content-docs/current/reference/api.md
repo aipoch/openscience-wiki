@@ -1,7 +1,7 @@
 ---
 title: "Task SDK 與本地 API"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # Task SDK 與本地 API {/* #task-sdk-与本地-api */}
@@ -14,13 +14,11 @@ last_update:
 
 <p className="example-label"><strong>示例</strong> 儲存並下載連線檢查說明</p>
 
-使用與所選包相容的 Node.js；v1.0.0 後端包要求 Node.js 22.13 或更高版本，桌面發行包已附帶後端執行環境。透過桌面應用或 [CLI](server.md) 啟動後端，完成模型設定並保持執行。SDK 透過本地服務發現及儲存的本地令牌連線。
-
-在空工作目錄中安裝同版本的本地 SDK 包。將 `BACKEND_DIRECTORY` 替換為桌面發行包中 `backend` 目錄的絕對路徑（macOS 為應用內 `Contents/Resources/backend`），或對應標籤構建出的後端包目錄。v1.0.0 未釋出獨立 CLI 歸檔；不要為尋找該目錄改用舊版歸檔。保留被引用的目錄，更新應用後重新核對客戶端版本。
+使用 Node.js **22.13 或更高版本**。通過桌面版或 [CLI](server.md)啓動兼容後端，完成模型設置並保持運行。在空工作目錄中安裝已發佈的 SDK：
 
 ```bash
 npm init -y
-npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
+npm install @aipoch/open-science@1.0.2
 ```
 
 將下方儲存為 `connection-check.mjs`。先執行 `node connection-check.mjs` 列出專案 ID，再執行 `node connection-check.mjs PROJECT_ID`，將佔位符換成返回的 ID。第一次呼叫在列出專案後主動停止；第二次才會建立小任務。

@@ -2,7 +2,7 @@
 title: "科學資料庫"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # 科學資料庫 {/* #科学数据库 */}
@@ -13,18 +13,18 @@ last_update:
 
 ## 目前支援哪些資料庫 {/* #supported-databases */}
 
-Open-Science v1.0.0 內建 **35 個資料來源 Connector，提供 359 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整登錄檔共 361 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示覆蓋其網站的全部功能。
+Open-Science v1.0.2 內置 **36 個數據源 Connector，提供 371 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整註冊表共 373 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個數據庫。支持某個數據源不表示覆蓋其網站的全部功能。
 
 | Connector | 來源 | 運算元 | 用途  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | 小分子、化學識別符號、反應及結合資料  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 文獻、作者、引用、DOI 更新及資料集/軟體記錄 |
-| PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | PubMed 文獻檢索與記錄  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | 基因及蛋白標識對映、UniProt 序列查詢、GO 與 Reactome 註釋、g:Profiler 與 Enrichr 基因集富集 |
+| PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | PubMed 文獻檢索與記錄  |
+| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr, HGNC | 17 | 基因及蛋白標識映射、UniProt 序列查找、GO 與 Reactome 註釋、g:Profiler 與 Enrichr 基因集富集 |
 | Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 22 | 基因組註釋、同源及序列資訊；NCBI 物種、組裝與序列身分；BLAST 檢索、Clustal Omega 多序列比對；指定人群的 LD 與代理變異 |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | 群體頻率、臨床記錄，以及實驗特定的功能分數、變異對映和實驗資訊 |
-| Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床試驗登記記錄  |
-| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx | 30 | 臨床基因組證據資源；新增 ClinPGx 藥物基因組學記錄 |
+| Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | 檢索試驗與方案，並讀取已公佈的結局測量、分組、統計及不良事件 |
+| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx, DGIdb | 32 | 臨牀基因組證據資源；新增 ClinPGx 藥物基因組學記錄 |
 | Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 17 | 結構檔案與相關記錄  |
 | ChEMBL · `chembl` | ChEMBL | 7 | 化合物、靶標和活性記錄  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | 預印本後設資料  |
@@ -33,7 +33,7 @@ Open-Science v1.0.0 內建 **35 個資料來源 Connector，提供 359 個操作
 | Expression · `expression` | GTEx, Bgee | 16 | GTEx 人類組織表達和 eQTL；Bgee 跨物種基線表達 |
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | 蛋白結構域與功能註釋；新增互作富集檢驗 |
 | Cancer Models · `cancer-models` | cBioPortal | 10 | 研究、突變、複製數、樣本、患者、臨床屬性及分子 profile 表達 |
-| RNA · `rna` | Rfam | 9 | RNA 家族與相關資源  |
+| RNA · `rna` | Rfam, RNAcentral | 11 | RNA 家族與相關資源  |
 | Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | 組學研究／執行後設資料與檔案清單；代謝組樣本、實驗因素、分析及化合物記錄 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | 細胞型別參考資訊  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 調控與功能組學記錄  |
@@ -50,8 +50,9 @@ Open-Science v1.0.0 內建 **35 個資料來源 Connector，提供 359 個操作
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 查詢細胞系名稱和別名，再檢查編號身份及質量註釋 |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 查詢疾病或基因與表型的關聯，保留物種和支援證據 |
 | IEDB · `iedb` | Immune Epitope Database | 8 | 檢索表位、抗原、T 細胞、B 細胞和 MHC 實驗、TCR/BCR 證據及來源文獻 |
-| PDC · `pdc` | NCI Proteomic Data Commons | 4 | 癌症蛋白組研究版本、樣本關聯和定量檔案後設資料；不下載檔案 |
+| PDC · `pdc` | NCI Proteomic Data Commons | 5 | 癌症蛋白組研究版本、樣本關聯、公開病例臨牀信息及文件元數據；不下載文件 |
 | ENCORI · `encori` | ENCORI | 10 | miRNA／RBP 靶標、RNA 互作、ceRNA、motif、結合位點與參考／批次資料 |
+| Orphadata · `orphadata` | Orphadata, Orphanet | 2 | 罕見病—基因關聯及 HPO 表型頻率；默認關閉 |
 
 離線 Molecule 工具見[科學檢視器](viewers.md)。各資料來源實際提供的操作見 [Connector 操作引數參考](../reference/connector-operations.md)。
 
@@ -254,7 +255,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作引數參考](../reference/connector-operations.md)列出必填輸入、可選值和準確呼叫方法。本頁用於選擇和連線資料來源，引數參考用於查詢某個具體工具的欄位。
 
-目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/registry.ts)。
+目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/registry.ts)。
 
 ## 序列檢索與多序列比對 {/* #sequence-tools */}
 
@@ -330,7 +331,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 ## 保留樣本、表達和組裝背景 {/* #scientific-context */}
 
-| 查詢 | v1.0.0 中的解讀方式 |
+| 查詢 | v1.0.2 中的解讀方式 |
 | --- | --- |
 | `arrayexpress_get_experiment_samples` | `samples` 是按路徑排序後的第一個 SDRF 檔案中的關係行。`n_rows_total`／`n_rows_returned` 計行數；`n_samples`／`n_samples_returned` 計去重標識數量，優先 **Sample Name**，其次 **Source Name**，不是獨立生物學重複數。缺少標識可使樣本計數為 `null`；空檔案或 `no_sdrf` 不表示實驗沒有樣本 |
 | `metabolights_get_studies` 配合 `include_samples` | 匯出 `sample_table` 時按返回的 `headers` 順序處理；重名列使用不覆蓋原名稱的 `#2`、`#3` 等字尾。保留所有列，短行中的空字串表示缺失後設資料，並檢查 `rows_truncated` |
@@ -342,4 +343,27 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 ### OpenAlex 憑據提示 {/* #openalex-prompts */}
 
-v1.0.0 會在當前會話中記住對 OpenAlex 憑據提示的拒絕，避免重複打斷。之後需要該來源時，在 **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** 主動配置，再重試目標查詢。拒絕提示不等於已經提供金鑰，也不保證訪問權限或額度。
+v1.0.2 會在當前會話中記住對 OpenAlex 憑據提示的拒絕，避免重複打斷。之後需要該來源時，在 **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** 主動配置，再重試目標查詢。拒絕提示不等於已經提供密鑰，也不保證訪問權限或額度。
+
+## 連接新增數據源並正確理解結果 {/* #new-source-access */}
+
+在 **Settings → Connectors** 找到下表入口，向 **Main** 或目標 Specialist 開放。HGNC、PubTator 3、DGIdb 和 RNAcentral 屬於現有入口中的工具；**Orphadata** 爲獨立入口，默認關閉。這些新工具使用公開接口，不需要單獨的 API key；同一入口內的其他工具可能有不同憑據要求。
+
+| 數據源 | 設置入口 | 請求與檢查 |
+| --- | --- | --- |
+| HGNC | Genes & Ontologies | 查詢已批准的人類基因符號或解析精確別名；選擇基因前保留全部歧義匹配及批准／撤回狀態 |
+| PubTator 3 | PubMed | 按 PMID 獲取標註或搜索實體／關係；標註獲取覆蓋標題／摘要，不提交你的原始文本，也不能證明全文支持某個論斷 |
+| DGIdb | Clinical Genomics | 按基因或藥物名稱查詢，保留來源與文獻，並沿返回遊標繼續；藥物—基因相互作用不是用藥建議 |
+| RNAcentral | RNA | 查詢 URS accession，再分頁讀取專家數據庫交叉引用；保留分類、序列 MD5 和 accession 版本 |
+| Orphadata | Orphadata | 先啓用訪問，再提供 ORPHAcode 查詢基因或 HPO 表型；保留關聯類型及頻率類別，它們不是個體患者概率 |
+
+具體調用：[HGNC](../reference/connector-operations.md#get_hgnc_gene)、[PubTator](../reference/connector-operations.md#get_pubtator_annotations)、[DGIdb](../reference/connector-operations.md#get_dgidb_gene_drugs)、[RNAcentral](../reference/connector-operations.md#get_rnacentral_record)、[Orphadata](../reference/connector-operations.md#family-36)。
+
+## 關聯癌症元數據與解釋變異 {/* #clinical-context */}
+
+- **PDC：** 用 `pdc_list_clinical` 獲取公開人口學和診斷字段。`pdc_study_id` 選擇最新版本，`study_id` 固定具體版本，二者選一。保留缺失／遮蔽值與標明來源的外部引用；PDC 和 GDC 的 UUID 不可互換。
+- **GDC：** 用 `case_ids`、`sample_types` 和 `workflow_types` 篩選文件。保留每個文件的樣本、aliquot 及腫瘤／正常流程關聯，不要將同一病例下所有文件混合。單個字段內按 OR 合併，字段之間按 AND 合併。能查詢元數據不代表獲准下載受控文件。
+- **Ensembl VEP：** 單獨傳入 `hgvs_notation`，不要同時提供 `variant_id`、`region`、`allele` 或 `allele_orientation`。保留返回組裝、轉錄本版本和截斷標誌。輸入參考版本會原樣傳遞，不進行驗證；`matched` 不表示版本匹配。這是後果註釋，不是臨牀解釋或 liftover。
+- **Clinical Trials：** 用 `get_trial_results` 讀取已公佈的結局測量、分母、統計分析和不良事件。組 ID 僅在同一個結果模塊／結局內匹配。缺失結果不等於零事件，也不證明無效果。
+
+參數見 [PDC 字段](../reference/connector-operations.md#pdc_list_clinical)、[GDC 篩選](../reference/connector-operations.md#gdc_search_files)、[VEP 模式](../reference/connector-operations.md#ensembl_vep_variant)和[已公佈試驗結果](../reference/connector-operations.md#get_trial_results)。

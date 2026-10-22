@@ -1,7 +1,7 @@
 ---
 title: "Gestionar y validar Skills"
 last_update:
-  date: '2026-09-15'
+  date: '2026-10-22'
 ---
 
 # Gestionar y validar Skills {/* #manage-and-validate-skills */}
@@ -113,3 +113,7 @@ Destacados y Specialist- Los paquetes conectados pueden ser protegidos de la eli
 | GitHub/authentication error | Retener el estado HTTP real y la URL de origen sanitario; ver [Solución de problemas](../guides/troubleshooting.md). |
 
 Referencia de implementación: [HabilidadUploadView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillUploadView.tsx), [SkillBulkManageView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillBulkManageView.tsx), [HabilidadImportView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillImportView.tsx).
+
+## Importar y editar Habilidades de forma segura {/* #import-batches */}
+
+Grandes selecciones instaladas-Skill se importan en lotes. Esperar el resultado final e inspeccionar la lista importada antes de repetir la importación. Una Habilidad externa con un prefijo de nombre reservado se asigna un nombre local seguro; utilice el nombre mostrado en el catálogo local. Al editar el cuerpo, guardarlo y verificar que el nombre y descripción editados por separado siguen siendo correctos. Las imágenes adjuntas al mensaje actual también pueden informar la selección de Habilidad; comprobar el alcance de la Habilidad seleccionada antes de dejar que actúe.

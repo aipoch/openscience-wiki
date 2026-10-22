@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -246,3 +246,9 @@ After **Analyze PDF**, open a figure and table alongside the original page. Conf
 In v0.37.2, extraction further corrects figure/table ownership and legacy PDF math symbols. Compare minus signs, Greek letters, superscripts, subscripts and operators with the rendered source before copying a formula or table value. A cleaner extraction is not a substitute for checking the scientific expression.
 
 v1.0.0 further improves native table and figure ownership, including repeated records, sparse columns and scientific fractions. When checking a table, keep repeated rows as separate records unless the source identifies them as duplicates. Compare fraction numerators/denominators, grouped labels and empty cells with the original page; do not fill an empty cell from neighboring prose.
+
+## Check PDF search coverage {/* #pdf-search-coverage */}
+
+When PDF search reports incomplete coverage, treat its matches as results from the text it could search. No match does not prove the phrase is absent from the whole paper. Inspect relevant pages in the original PDF, especially scanned pages, figures, equations and tables. Reader-mode extraction and translation can preserve more structure, but the source PDF remains the reference for checking content.
+
+For DOCX previews, check continuous list numbering and table borders against the downloaded document before quoting or sharing the result.

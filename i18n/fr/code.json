@@ -1809,5 +1809,17 @@
   },
   "docs.outline.reference.v100.scope": {
     "message": "Compatibilité stable 1.x, disponibilité des versions de bureau, récupération de session et contexte de données scientifiques."
+  },
+  "docs.outline.reference.v101.title": {
+    "message": "v1.0.1"
+  },
+  "docs.outline.reference.v101.scope": {
+    "message": "Importer le paquet navigateur, mettre à jour les progrès, les sessions d'attente et la récupération des titres de compétences."
+  },
+  "docs.outline.reference.v102.title": {
+    "message": "v1.0.2"
+  },
+  "docs.outline.reference.v102.scope": {
+    "message": "Sources de données scientifiques, installation de npm CLI, fiches de questions et fiabilité des dossiers de recherche."
   }
 }

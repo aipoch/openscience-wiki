@@ -1,7 +1,7 @@
 ---
 title: "连接器与凭据"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -178,3 +178,7 @@ Connector 让服务工具可供 Agent 使用，Credential 在服务要求时提�
 ## 查询 HTTP 报错
 
 遇到 400、401、403、404、429 或 5xx 响应时，查看 [HTTP 故障排查表](troubleshooting.md#http-错误400403429-与-5xx)，同时记录返回错误的服务与详细消息。
+
+## OAuth 凭据出错后重新连接 {/* #oauth-reconnect */}
+
+自定义 OAuth Connector 拒绝已保存凭据时，打开其设置，按提供的授权流程重新登录。凭据绑定到签发它的授权服务器；修改服务器地址不能复用另一服务器签发的令牌。保存完成前保留表单改动，然后测试连接并重试原查询。连接测试成功不代表查询已经返回数据。

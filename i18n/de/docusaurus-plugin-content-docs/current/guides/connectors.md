@@ -1,7 +1,7 @@
 ---
 title: "Steckverbinder und Anmeldeinformationen"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,3 +179,7 @@ Erstellen und Verwalten von Geheimnissen in [Dienstanmeldeinformationen](../tool
 ## HTTP Fehlersuche {/* #http-error-lookup */}
 
 Verwenden Sie für 400, 401, 403, 404, 429 oder 5xx Antworten den [HTTP Fehlerbehebungstabelle](troubleshooting.md#http-errors-400-403-429-and-5xx). Behalten Sie den antwortenden Dienst und seine detaillierte Nachricht mit dem Statuscode.
+
+## Reconnect nach einem OAuth-Anmeldefehler {/* #oauth-reconnect */}
+
+Öffnen Sie für einen benutzerdefinierten OAuth Connector die Einstellungen und verwenden Sie den angebotenen Berechtigungsfluss erneut, wenn der gespeicherte Berechtigungsnachweis abgelehnt wird. Anmeldeinformationen sind an den Autorisierungsserver gebunden, der sie ausgestellt hat; das Ändern einer Serveradresse ist keine Möglichkeit, ein an anderer Stelle ausgegebenes Token wiederzuverwenden. Halten Sie nicht gespeicherte Formularänderungen bis zum Ende des Speicherns, testen Sie dann die Verbindung und wiederholen Sie die beabsichtigte Abfrage. Ein erfolgreicher Verbindungstest stellt nicht fest, dass die Abfrage Daten zurückgegeben hat.

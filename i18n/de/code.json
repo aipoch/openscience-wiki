@@ -1808,5 +1808,17 @@
   },
   "docs.outline.reference.v100.scope": {
     "message": "Stabile 1.x-Kompatibilität, Verfügbarkeit von Desktop-Releases, Sitzungswiederherstellung und wissenschaftlicher Datenkontext."
+  },
+  "docs.outline.reference.v101.title": {
+    "message": "v1.0.1"
+  },
+  "docs.outline.reference.v101.scope": {
+    "message": "Browserpaket importieren, aktualisieren Fortschritt, Wartesitzungen und Credential Recovery."
+  },
+  "docs.outline.reference.v102.title": {
+    "message": "v1.0.2"
+  },
+  "docs.outline.reference.v102.scope": {
+    "message": "Wissenschaftliche Datenquellen, npm CLI Installation, Fragekarten und Forschung Rekord Zuverlässigkeit."
   }
 }

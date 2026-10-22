@@ -1,7 +1,7 @@
 ---
 title: "CLI 與結構化輸出"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 從終端完成首次設定 {/* #terminal-setup */}
 
-v1.0.0 使用桌面附帶的啟動器：在 **Settings → General → Command line tool** 選擇 **Install command**，新開終端檢查 `open-science --help`。本次釋出沒有獨立 CLI 包。下面的獨立歸檔解壓步驟僅用於實際提供歸檔的版本，例如 [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2)；不要將其當成 1.0 安裝，也不要混用不同版本的桌面和後端。
+可安裝桌面版命令入口、使用 v1.0.2 獨立壓縮包，或按 [npm 安裝步驟](../guides/installation.md#npm-cli)操作。獨立壓縮包包含 Node、後端和 Web UI；下面的解壓步驟適用於這些壓縮包。
 
 1. 選擇與主機匹配的 macOS／Linux arm64 或 x64 包，或 Windows x64 包。
 2. 完整解壓到可寫目錄，保留啟動器、`backend` 與 `node-runtime` 的相對位置；只複製啟動器會導致無法啟動。
@@ -213,9 +213,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL 可能包含 `run.progress` 和 `stream.resync-required`。重連後無法重放時，重新讀取權威 Run 狀態，不把事件流當作永久歷史。服務命令另有引數限制，見[無介面服務](./server.md)。
 
-[CLI 實現](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md)。
+[CLI 實現](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md)。
 
-技術參考：[CLI 約定](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
+技術參考：[CLI 約定](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
 
 ## 無人值守執行 {/* #unattended-runs */}
 
@@ -232,3 +232,14 @@ open-science run --project "Sequence and PDF Research" \
 ## Windows 啟動器路徑 {/* #windows-launcher-paths */}
 
 v0.37.1 修復含非 ASCII 字元的桌面啟動器路徑。更新後開啟新終端，檢查 `Get-Command open-science` 與 `open-science --help`。若仍指向舊安裝，使用 **Settings → General** 顯示的入口。獨立壓縮包應保留完整目錄。幫助命令成功不代表模型已就緒，之後執行 `doctor --json` 檢查。
+
+## 不啓動服務，檢查本地 CLI {/* #local-information */}
+
+```bash
+open-science version --json
+open-science help run
+open-science paths --json
+open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
+```
+
+這些命令不要求後端運行。`version` 顯示實際調用的安裝版本，不是已連接服務的版本。`paths` 返回 `cliPath`、`nodePath`、`startupConfigRoot` 和 `discoveryConfigRoots`；它不代表活動服務或研究數據目錄。顯式指定配置目錄會選擇啓動／發現位置，但不會創建該目錄。路徑可能包含本機用戶名，分享前先檢查輸出。

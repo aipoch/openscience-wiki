@@ -1,7 +1,7 @@
 ---
 title: "CLI and structured output"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ Use `open-science` to inspect application status, run tasks, manage Connectors a
 
 ## Set up from a terminal {/* #terminal-setup */}
 
-For v1.0.0, install the desktop-supplied launcher through **Settings → General → Command line tool → Install command**, open a new terminal and check `open-science --help`. This release has no standalone CLI package. The archive extraction steps below apply only to versions that provide one, such as [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2); they are not a 1.0 installation or permission to mix desktop/backend versions.
+Install the desktop launcher, use a v1.0.2 standalone archive, or follow the [npm installation steps](../guides/installation.md#npm-cli). Standalone archives bundle Node, the backend and Web UI; the extraction steps below apply to those archives.
 
 1. Choose macOS or Linux arm64/x64, or Windows x64, matching the host.
 2. Extract the complete archive into a writable location. Keep the launcher, `backend` and `node-runtime` together; copying only the launcher will break startup.
@@ -215,9 +215,9 @@ The following invalid-option response was reproduced locally:
 
 JSONL can include `run.progress` and `stream.resync-required`. If replay is unavailable after reconnection, reread authoritative run state; do not assume the event stream is a permanent history. Lifecycle commands have separate flag restrictions described in [Headless service](./server.md).
 
-[CLI implementation](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [upstream command guide](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
+[CLI implementation](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/cli.mjs), [upstream command guide](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
 
-Technical reference: [CLI contract](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
+Technical reference: [CLI contract](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
 
 ## Unattended runs {/* #unattended-runs */}
 
@@ -234,3 +234,14 @@ The option applies only to this invocation and is not saved as a session prefere
 ## Windows launcher paths {/* #windows-launcher-paths */}
 
 v0.37.1 fixes desktop launcher paths containing non-ASCII characters. After updating, open a new terminal and check `Get-Command open-science` and `open-science --help`. If the command still resolves to an older installation, use the path shown in **Settings → General**. Keep the whole standalone archive directory intact. A successful help command does not establish model readiness; check `doctor --json` next.
+
+## Inspect the installed CLI without starting a service {/* #local-information */}
+
+```bash
+open-science version --json
+open-science help run
+open-science paths --json
+open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
+```
+
+These commands work without a running backend. `version` reports the invoked installation, not the version of a connected service. `paths` reports `cliPath`, `nodePath`, `startupConfigRoot` and `discoveryConfigRoots`; it does not identify an active service or the research-data directory. An explicit profile selects the startup/discovery location without creating it. Paths can reveal local usernames, so review output before sharing it.

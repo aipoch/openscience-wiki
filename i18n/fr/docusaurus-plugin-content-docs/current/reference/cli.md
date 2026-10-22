@@ -1,7 +1,7 @@
 ---
 title: "CLI et sortie structurée"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ Utilisez `open-science` pour inspecter l'état de l'application, exécuter les t
 
 ## Mise en place depuis un terminal {/* #terminal-setup */}
 
-Pour v1.0.0, installez le lanceur fourni par le bureau via **Settings → General → Command line tool → Install command**, ouvrez un nouveau terminal et vérifiez `open-science --help`. Cette version n'a pas de paquet autonome CLI. Les étapes d'extraction d'archives ci-dessous ne s'appliquent qu'aux versions qui en fournissent une, comme [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2); ils ne sont pas une installation 1.0 ou la permission de mixer des versions de bureau / backend.
+Installez le lanceur de bureau, utilisez une archive autonome v1.0.2 ou suivez le [npm étapes d'installation](../guides/installation.md#npm-cli). Les archives autonomes regroupent Node, le moteur et l'interface utilisateur Web; les étapes d'extraction ci-dessous s'appliquent à ces archives.
 
 1. Choisissez macOS ou Linux arm64/x64, ou Windows x64, correspondant à l'hôte.
 2. Extraire l'archive complète dans un emplacement enregistrable. Conserver le lanceur, `backend` et `node-runtime` ensemble; copier seulement le lanceur va casser le démarrage.
@@ -215,9 +215,9 @@ La réponse ci-après a été reproduite localement :
 
 JSONL peut inclure `run.progress` et `stream.resync-required`. Si le replay n'est pas disponible après la reconnection, relisez l'état d'exécution faisant autorité; ne présumez pas que le flux d'événements est une histoire permanente. Les commandes du cycle de vie ont des restrictions de drapeau distinctes décrites dans [Service sans tête](./server.md).
 
-[Mise en œuvre de CLI](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [guide de commande en amont](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
+[Mise en œuvre de la CLI](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/cli.mjs), [guide de commande en amont](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
 
-Référence technique: [Contrat CLI](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
+Référence technique: [Contrat CLI](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
 
 ## Courses sans surveillance {/* #unattended-runs */}
 
@@ -234,3 +234,14 @@ L'option ne s'applique qu'à cette invocation et n'est pas sauvegardée comme pr
 ## Pistes de lanceurs Windows {/* #windows-launcher-paths */}
 
 v0.37.1 corrige les chemins de lancement de bureau contenant des caractères non-ASCII. Après mise à jour, ouvrez un nouveau terminal et vérifiez `Get-Command open-science` et `open-science --help`. Si la commande résout encore une ancienne installation, utilisez le chemin indiqué dans **Settings → General**. Gardez intact tout le répertoire d'archives autonome. Une commande d'aide réussie ne permet pas d'établir la disponibilité du modèle; Vérifiez `doctor --json` suivant.
+
+## Inspecter le CLI installé sans commencer un service {/* #local-information */}
+
+```bash
+open-science version --json
+open-science help run
+open-science paths --json
+open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
+```
+
+Ces commandes fonctionnent sans backend courant. `version` rapporte l'installation invoquée, et non la version d'un service connecté. `paths` Rapports `cliPath`, `nodePath`, `startupConfigRoot` et `discoveryConfigRoots`; elle n'identifie pas un service actif ni le répertoire de données de recherche. Un profil explicite sélectionne l'emplacement de démarrage/découverte sans le créer. Les chemins peuvent révéler des noms d'utilisateur locaux, alors examinez la sortie avant de la partager.

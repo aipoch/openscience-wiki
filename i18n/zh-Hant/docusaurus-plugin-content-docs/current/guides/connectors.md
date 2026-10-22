@@ -1,7 +1,7 @@
 ---
 title: "聯結器與憑據"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -178,3 +178,7 @@ Connector 讓服務工具可供 Agent 使用，Credential 在服務要求時提�
 ## 查詢 HTTP 報錯 {/* #查询-http-报错 */}
 
 遇到 400、401、403、404、429 或 5xx 響應時，檢視 [HTTP 故障排查表](troubleshooting.md#http-错误400403429-与-5xx)，同時記錄返回錯誤的服務與詳細訊息。
+
+## OAuth 憑據出錯後重新連接 {/* #oauth-reconnect */}
+
+自定義 OAuth Connector 拒絕已保存憑據時，打開其設置，按提供的授權流程重新登錄。憑據綁定到簽發它的授權服務器；修改服務器地址不能複用另一服務器簽發的令牌。保存完成前保留表單改動，然後測試連接並重試原查詢。連接測試成功不代表查詢已經返回數據。

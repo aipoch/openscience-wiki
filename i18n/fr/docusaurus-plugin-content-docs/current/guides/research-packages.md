@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -127,3 +127,16 @@ Une fois l'importation terminée, choisissez **View replay** pour inspecter les 
 ## Importer dans un nouveau projet {/* #new-project-import-recovery */}
 
 Si une version ancienne échoue en adoptant un paquet dans le catalogue d'un nouveau projet, mettez à jour v0.37.0 ou plus tard, vérifiez si la destination existe déjà, et utilisez l'action de récupération de la boîte de dialogue d'importation avant de commencer une autre importation. Vérifiez la session et les fichiers résultants. La correction ne rend pas les sessions importées enregistrables : utilisez **Fork** pour poursuivre l'analyse.
+
+## Importer un paquet depuis un site Web {/* #browser-import */}
+
+Utilisez une application de bureau installée sur le **même ordinateur** comme le navigateur. Le site Web doit offrir le transfert de paquets Open-Science; un lien de téléchargement ordinaire à lui seul ne le fournit pas.
+
+1. Sur une page de paquet de confiance, sélectionnez son importation/action ouverte Open-Science. Permettre au navigateur d'ouvrir l'application de bureau. Si vous demandez un accès au réseau local, n'accordez-le qu'au site que vous comptez utiliser.
+2. Gardez la page ouverte pendant que l'application affiche **Receiving package…** et **Validating package…**. Un message de réception du site Web ne confirme que la livraison à l'application.
+3. Dans l'application, examinez le paquet, sélectionnez le projet de destination et confirmez l'importation. Attendez l'achèvement, puis ouvrez la session importée.
+4. Inspectez ses dossiers et ses preuves. Le dossier de recherche reste en lecture seule; utilisation **Fork to continue** pour de nouvelles recherches. Modifier son titre ne rend pas la recherche importée inscriptible.
+
+Si le retrait n'est pas disponible ou bloqué, téléchargez le `.science` fichier et utiliser le contrôle d'importation existant. Vous pouvez également la déposer sur la maison du projet. Une goutte de dossier normale dans le Compositeur n'importe pas un paquet. Si une importation signale une défaillance partielle, vérifiez la destination d'une session existante avant de réessayer; ne créez pas un autre projet simplement pour répéter le même transfert.
+
+Pour les auteurs du site, [navigateur-importation SDK guide](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md) nécessite HTTPS (ou une source de développement loopback), un handoff de bureau de même ordinateur et un paquet non vide pas plus de 2 GiB. Le reçu local ne remplace jamais la confirmation d'importation finale de l'utilisateur.

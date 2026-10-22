@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -127,3 +127,16 @@ After import completes, choose **View replay** to inspect the recorded steps or 
 ## Import into a new project {/* #new-project-import-recovery */}
 
 If an older version fails while adopting a package into a new project's catalog, update to v0.37.0 or later, inspect whether the destination already exists, and use the import dialog's recovery action before starting another import. Check the resulting session and files. The fix does not make imported sessions writable: use **Fork** to continue analysis.
+
+## Import a package from a website {/* #browser-import */}
+
+Use an installed desktop app on the **same computer** as the browser. The website must offer Open-Science package transfer; an ordinary download link alone does not provide it.
+
+1. On a trusted package page, select its Open-Science import/open action. Allow the browser to open the desktop app. If asked for local-network access, grant it only to the site you intend to use.
+2. Keep the page open while the app shows **Receiving package…** and **Validating package…**. A website receipt message only confirms delivery to the app.
+3. In the app, review the package, select the destination project and confirm the import. Wait for completion, then open the imported session.
+4. Inspect its files and evidence. The research record remains read-only; use **Fork to continue** for new research. Editing its title does not make the imported research writable.
+
+If handoff is unavailable or blocked, download the `.science` file and use the existing import control. You can also drop it onto the project home. A normal folder drop into the Composer does not import a package. If an import reports a partial failure, check the destination for an existing session before retrying; do not create another project just to repeat the same transfer.
+
+For website authors, the [browser-import SDK guide](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md) requires HTTPS (or a loopback development origin), a same-computer desktop handoff and a nonempty package no larger than 2 GiB. Local receipt never replaces the user's final import confirmation.
