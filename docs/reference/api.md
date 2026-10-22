@@ -1,7 +1,7 @@
 ---
 title: "Task SDK and local API"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # Task SDK and local API
@@ -14,13 +14,11 @@ The `@aipoch/open-science` Node.js client connects to an authenticated local app
 
 <p className="example-label"><strong>Example</strong> Save and download a connection-check note</p>
 
-Use Node.js compatible with the selected package: the v1.0.0 backend package requires Node.js 22.13 or later, and the desktop distribution bundles its own backend runtime. Start a backend through the desktop or [CLI](server.md), finish model setup and keep it running. The SDK uses local service discovery and its locally stored token.
-
-In an empty working folder, install the matching local SDK package. Replace `BACKEND_DIRECTORY` with the absolute `backend` directory inside the desktop distribution (`Contents/Resources/backend` on macOS), or the backend package built from the corresponding tag. v1.0.0 has no standalone CLI archive; do not substitute an older archive to obtain this directory. Keep the referenced directory and recheck the client version after updating the app.
+Use Node.js **22.13 or later**. Start a compatible backend through the desktop or [CLI](server.md), finish model setup and keep it running. In an empty working folder, install the published SDK:
 
 ```bash
 npm init -y
-npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
+npm install @aipoch/open-science@1.0.2
 ```
 
 Save the following as `connection-check.mjs`. Run `node connection-check.mjs` to list project IDs, then `node connection-check.mjs PROJECT_ID` with one returned ID. The first invocation deliberately stops after listing projects; the second creates a small task.

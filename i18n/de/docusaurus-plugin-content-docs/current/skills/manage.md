@@ -1,7 +1,7 @@
 ---
 title: "Verwalten und Validieren von Skills"
 last_update:
-  date: '2026-09-15'
+  date: '2026-10-22'
 ---
 
 # Verwalten und Validieren von Skills {/* #manage-and-validate-skills */}
@@ -113,3 +113,7 @@ Featured- und Specialist-verknüpfte Pakete können vor Löschung geschützt wer
 | GitHub/Authentifizierungsfehler | Bewahren Sie den aktuellen HTTP-Status und die entsorgte Quell-URL auf; siehe [Fehlerbehebung](../guides/troubleshooting.md). |
 
 Bezugsnummer der Durchführung: [SkillUploadView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillUploadView.tsx), [SkillBulkManageView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillBulkManageView.tsx), [SkillImportView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillImportView.tsx).
+
+## Sicher Importieren und Bearbeiten von Skills {/* #import-batches */}
+
+Große Installed-Skill-Auswahlen werden in Batches importiert. Warten Sie auf das endgültige Ergebnis und prüfen Sie die importierte Liste, bevor Sie den Import wiederholen. Einem externen Fertigkeit mit einem reservierten Namenspräfix wird ein sicherer lokaler Name zugewiesen; verwenden Sie den Namen, der im lokalen Katalog angezeigt wird. Speichern Sie den Körper beim Bearbeiten und überprüfen Sie, ob der separat bearbeitete Name und die Beschreibung korrekt bleiben. Bilder, die der aktuellen Nachricht beigefügt sind, können auch die Auswahl der Fertigkeit informieren; Überprüfen Sie den Umfang der ausgewählten Fertigkeit, bevor Sie sie handeln lassen.

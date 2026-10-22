@@ -1,7 +1,7 @@
 ---
 title: "서비스 및 브라우저 액세스"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # 서비스 및 브라우저 액세스 {/* #headless-service-and-browser-access */}
@@ -115,3 +115,7 @@ v1.0.0는 CLI 신청 갱신자를 제거합니다; `open-science update --json`�
 업그레이드 후, 버전 및 원래 데이터를 확인 한 다음 `status --json` 및 `doctor --json`을 사용하여 서비스 상태 및 읽음을 검사합니다. credential 상점 형태를 보존하십시오. [1.x 호환성](../guides/installation.md#version-compatibility)은 혼합 데스크톱 / 백엔드 버전을 약속하지 않습니다.
 
 [공식 런타임 가이드](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md), [CLI](cli.md) 및 [작업 SDK](api.md)를 참조하십시오.
+
+## 웹 작업공간의 Compute {/* #web-compute */}
+
+독립 실행 웹 작업공간은 **Compute** 를 제공합니다. 단, 백엔드가 필요한 Notebook·Compute API를 지원해야 합니다. 연결된 작업공간에서 패널을 확인하고 기존 SSH/Slurm 설정 절차를 따르세요. 패널이 보인다고 원격 인증 정보가 제공되거나 작업 실행이 보장되지는 않습니다.

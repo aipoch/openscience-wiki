@@ -2,7 +2,7 @@
 title: "Операционный справочник Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## Эксплуатационные материалы {/* #operation-inputs */}
 
-Расширяйте один Connector за раз. Требуемые поля помечены **обязательно**; Эта ссылка и загрузка используют схему Open-Science **v1.0.0**. Вложенный список `input.required` является авторитетным; Унаследованный список `required` может отсутствовать. Проконсультируйтесь с <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">Полный загружаемый реестр</ExampleDownload> для вложенных схем JSON, полных описаний возврата и примеров вызова на стороне агента. Не пропустите общий `id`, когда инструмент ожидает `accessions`, `cids`, `rs_id` или другое поле пространства имен.
+Расширяйте один коннектор за раз. Требуемые поля отмечены **необходимый**; эта ссылка и скачать использовать Open-Science **v1.0.2** схема. Вложенный `input.required` Список авторитетный; наследие высшего уровня `required` Список может отсутствовать. Проконсультируйтесь <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.2.json">Полный загружаемый реестр</ExampleDownload> для вложенных схем JSON, полных описаний возврата и примеров вызова на стороне агента. Не пропустите дженерик `id` Когда инструмент ожидает `accessions`, `cids`, `rs_id` или иное поле пространства имен.
 
 ## химия {/* #family-1 */}
 
@@ -502,6 +502,31 @@ const result = await host.mcp("pubmed", "get_full_text_article", {"pmc_ids": ["P
 const result = await host.mcp("pubmed", "get_copyright_status", {"pmids": ["35891187", "34375400"]})
 ```
 
+### `get_pubtator_annotations`
+
+Export PubTator 3 BioC JSON entity and relation annotations for published PubMed articles (title/abstract). Сохраняет текст прохода, смещения, нормализованные идентификаторы и отношения. Не представляет сырой текст.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `pmids` | array | **необходимый**; minItems: 1; maxItems: 10 |
+
+```javascript
+const result = await host.mcp("pubmed", "get_pubtator_annotations", {"pmids": ["29355051"]})
+```
+
+### `search_pubtator`
+
+Поиск по одной странице публикаций PubTator 3 по тексту, идентификаторам сущности или отношениям (например, отношения: ЛЮБОЙ &#124; @ CHEMICAL Doxorubicin &#124; @DISEASE Neoplasms). Автоматизированные отношения являются научными доказательствами, а не клиническими выводами.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `query` | string | **необходимый**; minLength: 1; maxLength: 1000 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("pubmed", "search_pubtator", {"query": "relations:ANY|@CHEMICAL_Doxorubicin|@DISEASE_Neoplasms", "page": 1})
+```
+
 </ToolOperationGroup>
 
 ## Гены & онтологии {/* #family-4 */}
@@ -740,6 +765,30 @@ const result = await host.mcp("genes", "list_enrichr_libraries", {"organism": "h
 const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
+### `get_hgnc_gene`
+
+Получите номенклатуру человеческого гена по точному символу HGNC. Сохраняет утвержденный/отозванный статус, имена, псевдонимы, перекрестные ссылки и даты внесения изменений.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `symbol` | string | **необходимый**; minLength: 1; maxLength: 100 |
+
+```javascript
+const result = await host.mcp("genes", "get_hgnc_gene", {"symbol": "BRCA1"})
+```
+
+### `resolve_hgnc_alias`
+
+Решите точный символ псевдонима человеческого гена через HGNC. Возвращает каждый соответствующий ген; никогда молча не выбирает среди неоднозначных псевдонимов. Используйте get\_hgnc\_gene для утвержденных символов.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `symbol` | string | **необходимый**; minLength: 1; maxLength: 100 |
+
+```javascript
+const result = await host.mcp("genes", "resolve_hgnc_alias", {"symbol": "P53"})
+```
+
 </ToolOperationGroup>
 
 ## геномы {/* #family-5 */}
@@ -819,15 +868,16 @@ const result = await host.mcp("genomes", "ensembl_xrefs", {"stable_id": "ENSG000
 
 ### `ensembl_vep_variant` {/* #ensembl_vep_variant */}
 
-Если указан `variant_id`, поиск по ID имеет приоритет: `region`, `allele` и `allele_orientation` игнорируются. `allele` не фильтрует результаты поиска по ID. Запрос по области использует текущую референсную сборку вида (GRCh38 для человека). Координаты начинаются с 1 и включают обе границы; для вставки применяется `start = end + 1`. По умолчанию `allele_orientation` равен `forward`: аллель интерпретируется относительно прямой цепи референса даже при суффиксе `:-1`. При значении `region` последовательность аллеля в области обратной цепи преобразуется в обратный комплемент перед запросом. Символьные аллели в такой области требуют `forward`. Все запросы по области отправляются относительно прямой цепи; `normalization` сохраняет исходный и нормализованный ввод. Перенос координат между сборками и обращение координат не выполняются. Расположение гена на обратной цепи не требует ввода относительно обратной цепи.
+Ensembl VEP аннотирует последствия вариантов и суммирует результаты по транскриптам в порядке тяжести. Без hgvs\_notation приоритет имеет variant\_id, а region, allele и allele\_orientation игнорируются. HGVS нельзя сочетать с этими параметрами. hgvs\_notation принимает геномную, кодирующую или белковую запись HGVS (например ENST00000366667:c.803C&gt;T). Версии референсных последовательностей передаются без изменения и проверки. Используется текущая сборка вида на rest.ensembl.org, без выбора сборки и liftover; assembly\_name сообщает разрешенную сборку. Запросы HGVS включают hgvs=1 и transcript\_version=1: transcript\_id содержит версию, доступные hgvsc/hgvsp сохраняются. version\_validation имеет значение unchecked. input\_reference\_annotations берутся из полного списка транскриптов независимо от max\_consequences. matched означает совпадение идентичности референса без суффикса версии, а не проверку синтаксиса или версии; unknown — отсутствие сопоставимой аннотации. Аллели HGVS сохраняют исходную ориентацию, в том числе отрицательную цепь, без нормализации региона. allele не фильтрует поиск по ID. region использует включительные координаты с 1 в текущей сборке (GRCh38 человека; например 7:140753336-140753336): SNV start=end, вставка start=end+1. Допускаются суффиксы :1/:-1, но координаты всегда относятся к референсному геному. allele принимает A/C/G/T, - для делеции и INS/DUP/DEL/TDUP. По умолчанию allele\_orientation=forward означает положительную референсную цепь. Режим region использует цепь региона и обратно комплементарно преобразует отрицательные последовательности; символические аллели отрицательного региона требуют forward. Запросы и результаты регионов всегда имеют положительную ориентацию. Ген на отрицательной цепи не требует отрицательного ввода. species по умолчанию homo\_sapiens. max\_consequences ограничивает строки (по умолчанию 25), упорядоченные HIGH&gt;MODERATE&gt;LOW&gt;MODIFIER; n\_transcript\_consequences показывает общее число, transcript\_consequences\_truncated — усечение. Результаты содержат координаты, аллели, гены, последствия для транскриптов, регуляторных участков и мотивов, а также совпадающие по положению варианты. variant\_allele сохраняется. n\_transcripts считает уникальные непустые ID транскриптов на ген; worst\_impact учитывает все полученные аллели. Ошибки HGVS и неизвестные rsID сохраняют причину от исходного сервиса.
 
 | Полное поле | Тип | Требования и ограничения |
 | --- | --- | --- |
-| `variant_id` | строка | необязательный |
-| `region` | строка | необязательный |
-| `allele` | строка | необязательный |
-| `allele_orientation` | строка | факультативный; по умолчанию: `forward`; ЭНУМ: `forward`, `region` |
-| `species` | строка | факультативный; По умолчанию: "homo_sapiens" |
+| `variant_id` | string | mode-dependent; see exclusion and strand rules above |
+| `hgvs_notation` | string | mode-dependent; see exclusion and strand rules above; minLength: 1 |
+| `region` | string | mode-dependent; see exclusion and strand rules above |
+| `allele` | string | mode-dependent; see exclusion and strand rules above |
+| `allele_orientation` | string | mode-dependent; see exclusion and strand rules above; default: "forward"; enum: \["forward", "region"\] |
+| `species` | string | optional; default: "homo\_sapiens" |
 | `max_consequences` | целое число | факультативный; По умолчанию: 25 |
 
 ```javascript
@@ -1490,6 +1540,18 @@ const result = await host.mcp("clinical-trials", "analyze_endpoints", {"nct_id":
 const result = await host.mcp("clinical-trials", "search_by_eligibility", {"condition": "diabetes", "min_age": "65 Years", "sex": "FEMALE"})
 ```
 
+### `get_trial_results`
+
+Читайте опубликованные результаты испытаний по идентификатору NCT (случай-нечувствительный; голые 8 цифр приняты). Возвращает фактические измерения результатов, подсчеты и знаменатели, единицы, статистический анализ, поток участников, исходные характеристики, неблагоприятные события и оговорки отчетности из результатов Раздел. Нестационарные поля сохраняют официальные названия и иерархию верблюжьих кейсов API. Решайте групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групповые/групп Отсутствие данных не означает нулевых событий или отсутствия эффекта лечения.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `nct_id` | string | **необходимый** |
+
+```javascript
+const result = await host.mcp("clinical-trials", "get_trial_results", {"nct_id": "NCT04280705"})
+```
+
 </ToolOperationGroup>
 
 ## Клиническая геномика {/* #family-8 */}
@@ -1938,6 +2000,32 @@ const result = await host.mcp("clinical-genomics", "clinpgx_get_variant_frequenc
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
+```
+
+### `get_dgidb_gene_drugs`
+
+Запрос DGIdb лекарственно-генных взаимодействий по имени гена. Одна соответствующая запись на странице с полными источниками взаимодействия, версиями источников, лицензиями, типами, атрибутами и доказательствами публикации. Имена могут совпадать с несколькими записями; следуйте за next\_cursor явно.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `name` | string | **необходимый**; minLength: 1; maxLength: 200 |
+| `after` | string | optional; minLength: 1; maxLength: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_gene_drugs", {"name": "BRAF"})
+```
+
+### `get_dgidb_drug_genes`
+
+Запрос DGIdb лекарственно-генных взаимодействий по названию препарата. Одна соответствующая запись на странице с полными источниками взаимодействия, версиями источников, лицензиями, типами, атрибутами и доказательствами публикации. Имена могут совпадать с несколькими записями; следуйте за next\_cursor явно.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `name` | string | **необходимый**; minLength: 1; maxLength: 200 |
+| `after` | string | optional; minLength: 1; maxLength: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_drug_genes", {"name": "IMATINIB"})
 ```
 
 </ToolOperationGroup>
@@ -3522,6 +3610,32 @@ const result = await host.mcp("rna", "id_to_accession", {"family_id": "tRNA"})
 const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGAAGGCAGCAGGUGGAAACCUGCCA"})
 ```
 
+### `get_rnacentral_record`
+
+Получите запись РНК-центральной последовательности путем присоединения URS с использованием API v1. Сохраняет последовательность, MD5, статус активности, метаданные организма и типа РНК.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `urs` | string | **необходимый** |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_record", {"urs": "URS0000000001"})
+```
+
+### `get_rnacentral_xrefs`
+
+Карта присоединения РНК-центрального URS к одной странице идентификаторов базы экспертных данных. Сохраняет исходную базу данных, таксономию, версию присоединения, активность и первые/последние даты; нет автоматического обхода страницы.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `urs` | string | **необходимый** |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | optional; default: 10; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_xrefs", {"urs": "URS0000000001", "page": 1, "page_size": 10})
+```
+
 </ToolOperationGroup>
 
 ## Архивы Omics {/* #family-18 */}
@@ -4514,7 +4628,7 @@ const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-
 
 ### `gdc_list_cases` {/* #gdc_list_cases */}
 
-Перечислите случаи ГДК (доноры образцов) с метаданными о проектах и заболеваниях. Результаты идентифицируют случаи и не разоблачают и не загружают контролируемые данные.
+Перечислите случаи ГДК (доноры образцов) с метаданными проекта, болезни и биопрепаратов (образцы и аликоты). Результаты идентифицируют случаи и не разоблачают и не загружают контролируемые данные.
 
 | Полное поле | Тип | Тип |
 | --- | --- | --- |
@@ -4530,12 +4644,15 @@ const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BR
 
 ### `gdc_search_files` {/* #gdc_search_files */}
 
-Поиск по инвентарю файлов GDC и явная маркировка каждого файла как открытого или контролируемого доступа. Обнаружение метаданных не предоставляет доступ к загрузке; Контролируемые файлы требуют соответствующей авторизации GDC.
+Ищите инвентарь файлов GDC по проекту, UUID корпуса, типу выборки и типу рабочего процесса анализа (ИЛИ в каждом фильтре, И через фильтры) и явно помечайте каждый файл как открытый или контролируемый доступ. Обнаружение метаданных не предоставляет доступ к загрузке; контролируемые файлы требуют соответствующей авторизации GDC.
 
 | Полное поле | Тип | Тип |
 | --- | --- | --- |
 | `project_ids` | струна/массив | строка |
-| `access` | строка | факультативный; по умолчанию: "all"; enum: &#91;"all", "open", "controlled"&#93; |
+| `case_ids` | string / array | необязательный |
+| `sample_types` | string / array | необязательный |
+| `workflow_types` | string / array | необязательный |
+| `access` | string | optional; default: "all"; enum: \["all", "open", "controlled"\] |
 | `data_category` | строка | ; шаблон: "^GC&#91;AF&#93;_&#91;0-9&#93;&#123; 9&#125;\\.&#91;0-9&#93;+$" |
 | `data_type` | строка | ; шаблон: "^GC&#91;AF&#93;_&#91;0-9&#93;&#123; 9&#125;\\.&#91;0-9&#93;+$" |
 | `data_format` | строка | факультативный; Длина: 1; Длина: 50 |
@@ -4544,7 +4661,7 @@ const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BR
 | `page_size` | целое число | ; Длина: 1; Длина: 200 |
 
 ```javascript
-const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "sample_types": "Primary Tumor", "workflow_types": "STAR - Counts", "access": "open", "page_size": 10})
 ```
 
 ### `gdc_get_file` {/* #gdc_get_file */}
@@ -5419,6 +5536,21 @@ const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"P
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
+### `pdc_list_clinical`
+
+Получает открытые демографические и диагностические метаданные случаев PDC, доступные ID образцов и именованные внешние ссылки для связи с GDC. Сохраняет исходные типы, null и признаки скрытия данных. pdc\_study\_id выбирает последнюю версию; study\_id — UUID конкретной версии. Используйте возвращенный study\_id, чтобы закрепить версию последующих запросов. Внешние ID относятся к указанному ресурсу; UUID PDC и GDC не взаимозаменяемы.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `pdc_study_id` | string | provide exactly one of these two identifiers; maxLength: 9 |
+| `study_id` | string | provide exactly one of these two identifiers; maxLength: 36 |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 1000000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_clinical", {"pdc_study_id": "PDC000127", "limit": 10})
+```
+
 </ToolOperationGroup>
 
 ## ENCORI {/* #family-35 */}
@@ -5598,6 +5730,36 @@ const result = await host.mcp("encori", "list_bulk_datasets", {"assembly":"hg38"
 
 ```javascript
 const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
+```
+
+</ToolOperationGroup>
+
+## Orphadata {/* #family-36 */}
+
+<ToolOperationGroup>
+
+### `get_disease_genes`
+
+Восстановление ассоциаций генов редких заболеваний с помощью ORPHAcode, включая тип ассоциации / статус, источники проверки и отображения базы данных генов.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `orphacode` | integer | **необходимый**; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_genes", {"orphacode": 166024})
+```
+
+### `get_disease_phenotypes`
+
+Восстановление фенотипов HPO редких заболеваний орфадатами и частотных категорий ORPHAcode. Сохраняет диагностические критерии и валидацию метаданных; частотные категории не являются специфичными для пациента вероятностями.
+
+| поле | Тип | Требования и ограничения |
+| --- | --- | --- |
+| `orphacode` | integer | **необходимый**; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_phenotypes", {"orphacode": 58})
 ```
 
 </ToolOperationGroup>

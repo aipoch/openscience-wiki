@@ -1,7 +1,7 @@
 ---
 title: "Notebook et preuves d'exécution"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -293,3 +293,7 @@ Lorsque vous signalez un problème, gardez la première ligne défaillante, l'ex
 Un délai d'exécution par défaut prêt n'exige plus une seconde approbation de configuration pour une opération supportée ordinaire. Une décision de code à risque ou une demande d'accès supplémentaire reste distincte : inspecter son action et sa portée avant de répondre.
 
 Dans le **Provenance → Environment** du résultat, conservez les origines de Conda et pip et les versions de paquets/chaînes de compilation rapportées lorsque l'environnement utilise les deux gestionnaires. v0.37.0 améliore la capture mixte de l'environnement et les métadonnées micromamba. Comparez l'environnement capturé avec le temps d'exécution prévu, puis utilisez [Vérification de la réexécution](reproducibility.md) lorsque vous avez besoin de preuves d'exécution. Un inventaire de paquets ne prouve pas à lui seul des résultats numériques identiques.
+
+## Vérifier les dépendances après une analyse enchaînée {/* #chained-analysis-lineage */}
+
+Après avoir lu un CSV, le transformer et exporter un nouveau fichier en Python ou R, ouvrir la provenance de la sortie et inspecter les versions d'entrée enregistrées et les dépendances d'exécution. Utilisez ces enregistrements pour sélectionner la version du fichier à vérifier. Une capture plus précise de la lignée ne réexamine pas en soi le calcul ou n'établit pas la validité scientifique de l'analyse; suivre [vérification des artefacts](reproducibility.md).

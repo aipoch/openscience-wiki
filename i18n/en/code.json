@@ -1875,5 +1875,17 @@
   },
   "docs.outline.reference.v100.scope": {
     "message": "Stable 1.x compatibility, desktop release availability, session recovery and scientific data context."
+  },
+  "docs.outline.reference.v101.title": {
+    "message": "v1.0.1"
+  },
+  "docs.outline.reference.v101.scope": {
+    "message": "Browser package import, update progress, waiting sessions and credential recovery."
+  },
+  "docs.outline.reference.v102.title": {
+    "message": "v1.0.2"
+  },
+  "docs.outline.reference.v102.scope": {
+    "message": "Scientific data sources, npm CLI installation, question cards and research-record reliability."
   }
 }

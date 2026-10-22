@@ -2,7 +2,7 @@
 title: ".science 研究包"
 description: "將會話、檔案和證據一起匯出，再匯入專案檢視與交接研究記錄。"
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -127,3 +127,16 @@ Keep everything in English and return links to both new files.
 ## 匯入新專案 {/* #new-project-import-recovery */}
 
 舊版本接納研究包到新專案目錄時失敗，可更新至 v0.37.0 或更高版本，先檢查目標專案是否已存在，再使用匯入對話方塊的恢復操作，避免重複匯入。完成後核對會話與檔案。這項修復不會讓匯入會話變成可寫；繼續分析仍需使用 **Fork**。
+
+## 從網頁導入研究包 {/* #browser-import */}
+
+瀏覽器和已安裝的桌面應用需要位於**同一臺電腦**。網頁必須提供 Open-Science 研究包傳輸功能；普通下載鏈接本身不具備這個功能。
+
+1. 在可信的研究包頁面選擇 Open-Science 導入／打開入口，允許瀏覽器打開桌面應用。如果瀏覽器請求本地網絡訪問，只授權給你打算使用的網站。
+2. 應用顯示 **Receiving package…** 和 **Validating package…** 時，保持網頁打開。網頁顯示已接收，只表示文件已送達應用。
+3. 在應用中核對研究包，選擇目標項目並確認導入。等待完成後打開導入的會話。
+4. 檢查文件與證據。研究記錄仍爲只讀；需要繼續研究時選擇 **Fork to continue**。修改標題不會讓導入的研究記錄變爲可寫。
+
+如果網頁傳輸不可用或被阻止，先下載 `.science` 文件，再使用現有導入入口；也可以把它拖到項目首頁。向 Composer 拖入普通文件夾不會導入研究包。導入報告部分失敗時，先檢查目標項目中是否已存在該會話，再決定是否重試，不要爲重複傳輸另建項目。
+
+網站開發者可參考[瀏覽器導入 SDK 指南](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md)：需要 HTTPS（或本機迴環開發地址）、同機桌面應用，以及非空且不超過 2 GiB 的研究包。本地接收不替代用戶最後的導入確認。

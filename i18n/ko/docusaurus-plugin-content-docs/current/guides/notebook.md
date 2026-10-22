@@ -1,7 +1,7 @@
 ---
 title: "Notebook 및 실행 증거"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -293,3 +293,7 @@ Windows Notebook 수출에는 연장이 없습니다, 첫번째 텍스트로 사
 준비된 기본 실행 시간은 더 이상 일반 지원 작업에 대한 두 번째 설정 승인이 필요합니다. 위험 부호 결정 또는 추가 접근을 위한 요청은 분리될 것입니다: 응답하기 전에 그것의 활동 및 범위를 검열하십시오.
 
 결과의 **Provenance → Environment**에서는 Conda 및 pip 기원을 유지하고 환경이 관리자를 사용할 때보고 된 패키지 버전 / 빌드 문자열을 보여줍니다. v0.37.0은 혼합 환경 캡처 및 micromamba 메타데이터를 향상시킵니다. 의도한 실행 시간을 가진 붙잡힌 환경을 비교하고, 당신이 증거를 실행할 때 [rerun 검증](reproducibility.md)를 이용합니다. 패키지 재고는 단독으로 동일한 수치 결과를 증명하지 않습니다.
+
+## 연속 분석 후 의존성 확인 {/* #chained-analysis-lineage */}
+
+Python 또는 R로 CSV를 읽고 변환해 새 파일을 내보낸 뒤, 출력의 출처 기록에서 입력 버전과 실행 의존성을 확인하세요. 이 기록으로 검증할 파일 버전을 선택합니다. 계보 기록이 개선되어도 계산 재실행이나 과학적 타당성 검증이 자동으로 이루어지는 것은 아닙니다. 참고: [산출물 검증](reproducibility.md).

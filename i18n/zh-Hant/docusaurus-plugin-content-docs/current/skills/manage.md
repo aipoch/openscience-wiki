@@ -1,7 +1,7 @@
 ---
 title: "管理與驗證 Skills"
 last_update:
-  date: '2026-09-15'
+  date: '2026-10-22'
 ---
 
 # 管理與驗證 Skills {/* #管理与验证-skills */}
@@ -113,3 +113,7 @@ Featured 和被 Specialist 引用的包可能受到刪除保護。按需移除�
 | GitHub 或認證錯誤 | 保留 HTTP 狀態與脫敏 URL，參見[故障排除](../guides/troubleshooting.md) |
 
 實現依據: [SkillUploadView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillUploadView.tsx), [SkillBulkManageView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillBulkManageView.tsx), [SkillImportView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillImportView.tsx)。
+
+## 導入和編輯 Skill {/* #import-batches */}
+
+大量已安裝 Skill 會分批導入。等待最終結果並檢查導入列表後，再決定是否重試。外部 Skill 的名稱若使用保留前綴，會獲得安全的本地名稱；以本地目錄顯示的名稱爲準。編輯正文並保存後，檢查單獨編輯的名稱與說明是否仍正確。當前消息附帶的圖片也可參與 Skill 選擇；使用前確認所選 Skill 的範圍。

@@ -1,7 +1,7 @@
 ---
 title: "Conversaciones y solicitudes en cola"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # Conversaciones y solicitudes en cola {/* #conversations-and-queued-requests */}
@@ -141,8 +141,14 @@ Arrastre una tarjeta de archivo de **Files**, o el encabezado de archivo del art
 
 ## Responder a una pregunta de aclaración {/* #clarification-questions */}
 
-Cuando el agente presenta una tarjeta de pregunta, lea quién lo hizo y la opción solicitada antes de continuar. Una tarjeta multi-seleccion dice **Seleccionar una o varias opciones**; seleccione cada respuesta aplicable, y seleccione un artículo de nuevo para eliminarlo. Las listas de opciones más largas se desplazan dentro de la tarjeta.
+Lea la etiqueta en cada pregunta: **Single select** permite una opción; **Multi select** permite varios. Seleccione las opciones que respondan a esa pregunta. Las listas de opciones más largas se desplazan dentro de la tarjeta. Después de la presentación, amplíe una respuesta anterior para inspeccionar su lista completa de preguntas, respuestas y opciones.
 
 Utilice **Escriba su propia respuesta** para una respuesta diferente, **Dejar que el agente decida** para delegar esa opción, o **Skip** para dejarlo sin respuesta. Una respuesta tipoada reemplaza la selección de opciones. Utilice **Siguiente** y **Back** para revisar un conjunto de preguntas, luego **Finish** para someterlo. La simple selección de una opción ahorra un borrador; no termina la respuesta. Espere a que la tarjeta se resuelva y la tarea de continuar antes de enviar la misma respuesta de nuevo.
 
 Estas tarjetas aclaran la solicitud de investigación. No otorgan permisos de herramientas ni aprueban un plan separado.
+
+## Preserve un borrador al resolver un bloque {/* #draft-recovery */}
+
+Si un mensaje preguntado reporta un error, lee y utilice la acción deshacer ofrecida antes de editar o reenviar. Una advertencia de renuncia/recarga puede significar un borrador sin sentido; volver al proyecto o descartarlo deliberadamente. Dejar una carpeta ahora le pide que seleccione los archivos dentro de ella: abra la carpeta, seleccione los archivos previstos y espere sus chips de acceso.
+
+Para un modelo expirado o Credencial Connector, siga la acción de recuperación mostrada para ese servicio, luego vuelva a la conversación original y compruebe su estado. No vuelva a enviar la misma solicitud mientras su respuesta anterior aún esté en curso. Artifact `@` menciones también están disponibles en conversaciones web remotas; seleccione el archivo/versión deseado antes de enviar.

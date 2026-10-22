@@ -1,7 +1,7 @@
 ---
 title: "Service sans tête et accès au navigateur"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # Service sans tête et accès au navigateur {/* #headless-service-and-browser-access */}
@@ -115,3 +115,7 @@ v1.0.0 supprime la mise à jour de l'application CLI; n'utilisez pas `open-scien
 Après la mise à jour, confirmez la version et les données originales, puis utilisez `status --json` et `doctor --json` pour vérifier l'état de service et l'état de préparation. Préservez le mode de magasin des titres de compétences. [Compatibilité 1.x](../guides/installation.md#version-compatibility) ne promet pas des versions mixtes bureau/backend.
 
 Voir les [guide officiel des temps d'exécution](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md), [CLI](cli.md) et [Tâche SDK](api.md).
+
+## Calculer dans l'espace de travail web {/* #web-compute */}
+
+L'espace de travail web autonome expose **Compute** lorsque son moteur fournit le carnet de notes et les API de calcul nécessaires. Ouvrez l'espace de travail connecté, vérifiez que le panneau est disponible, puis utilisez les étapes de configuration SSH/Slurm existantes. Un panneau disponible ne fournit pas d'identifiants à distance ou ne confirme pas qu'un travail peut fonctionner.

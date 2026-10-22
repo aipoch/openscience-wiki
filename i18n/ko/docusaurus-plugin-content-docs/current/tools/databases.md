@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,18 +13,18 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v1.0.0에는 **35 데이터 소스 커넥터 359 작업**가 포함되어 있습니다. 별도의 오프라인 Molecule Connector은 361에 전체 레지스트리를 가져다 두 개의 작업을 추가합니다. Connector는 일치 **Settings → Connectors**의 밑에 이름; 각 가족은 몇몇 데이타베이스를 노출할 수 있습니다. 소스는 웹 사이트의 모든 기능을 의미하지 않습니다.
+Open-Science v1.0.2에는 **36개 데이터 소스 Connector와 371개 작업**이 포함됩니다. 별도의 오프라인 Molecule Connector의 작업 2개를 더하면 전체 등록 목록은 373개입니다. 아래 Connector 이름은 **Settings → Connectors**의 항목과 일치합니다. 한 항목에서 여러 데이터베이스를 제공할 수 있지만, 해당 웹사이트의 모든 기능을 지원한다는 뜻은 아닙니다.
 
 | 커넥터 | 출처 | 작업 | 사용하기  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | PubChem, ChEBI, Rhea 및 BindingDB를 통해 소형 molecule 화학.  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 용지, 저자, 인용, DOI 업데이트 및 데이터 세트 / 소프트웨어 레코드. |
-| PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI E-utilities, PMC ID 변환기 및 유럽 PMC를 통해 생물 의학 문학 - 검색, 메타 데이터, 관련 기사, 인용 조회, ID 변환, 전체 텍스트 및 저작권.  |
-| 유전자 및 종양학 · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 15 | 유전자/단백 식별자, UniProt 시퀀스 발견, GO 및 Reactome 주석, 그리고 g:Profiler 및 Enrichr 유전자 세트 풍부. |
+| PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | NCBI E-utilities, PMC ID Converter, Europe PMC를 통한 생의학 문헌 검색, 메타데이터, 관련 논문, 인용 조회, ID 변환, 전문 및 저작권 정보.  |
+| Genes &amp; Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr, HGNC | 17 | 유전자·단백질 식별자, UniProt 서열 검색, GO·Reactome 주석, g:Profiler·Enrichr 유전자 집합 풍부도 분석. |
 | 게놈 · `genomes` | 회의, UCSC, NCBI, BLAST, 클러스터 오메가 | 22 | Genome 주석, 균질 및 순서; NCBI taxon/assembly/sequence 정체성; BLAST 검색 및 클러스터 오메가 다중 시퀀스 정렬; 인구 별 LD 및 프록시 변형. |
 | Variants · `variants` | gnomAD, 크린바르, dbSNP, MaveDB | 22 | 인구 빈도, 임상 기록 및 분석실험 특정한 기능적인 점수, 매핑 및 실험. |
-| Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | ClinicalTrials.gov의 임상 시험 - 검색, 세부 사항, 스폰서, 조사, endpoints 및 자격.  |
-| 임상 Genomics · `clinical-genomics` | ClinGen, CIViC, 열린 대상, ClinPGx | 30 | 임상 genomics 지식 기초: ClinGen 치료, CIViC 임상 증거, 그리고 Open Targets 플랫폼, 플러스 ClinPGx pharmacogenomic 기록. |
+| Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | 임상시험 검색, 프로토콜, 공개된 결과 측정값, 군별 분모, 통계 분석 및 이상반응. |
+| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx, DGIdb | 32 | ClinGen 큐레이션, CIViC 임상 근거, Open Targets Platform 및 ClinPGx 약물유전체 기록. |
 | 구조 및 상호 작용 · `structures` | PDB, AlphaFold, EMDB, 복합 포털, IntAct | 17 | 구조 및 분자 상호 작용 — PDB 구조, AlphaFold 예측, EMDB cryo-EM 항목, Complex Portal complexes, IntAct 상호 작용 네트워크.  |
 | · · `chembl` | 담당자: Mr. wang | 7 | 비활성 화합물, 약물, 표적, 생물 활성성, 그리고 메커니즘을 통해 ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — 날짜/category, DOI, 저널-publication 링크, 펀더 목록 및 플랫폼 통계에 의해 검색.  |
@@ -33,7 +33,7 @@ Open-Science v1.0.0에는 **35 데이터 소스 커넥터 359 작업**가 포함
 | · · `expression` | GTEx, Bgee | 16 | 인간적인 GTEx 조직 표식 및 eQTLs; Bgee 크로스 사양 기본 표현. |
 | 단백질 표기 · `protein-annotation` | InterPro, Pfam, 인간 단백질 아틀라스, STRING | 14 | Protein Domain Architecture, 가족/실란 회원, 인터프로/Pfam, Human Protein Atlas 및 STRING을 통한 식각 atlas 및 상호 작용 네트워크. |
 | 암 모델 · `cancer-models` | cBioPortal의 특징 | 10 | 연구, mutations, 복사 번호, 샘플, 환자, 임상 특성 및 분자 프로파일 표현. |
-| RNA · `rna` | Rfam | 9 | 비 코딩 RNA 제품군 데이터 (metadata, 정렬, 모델, 구조) Rfam을 통해.  |
+| RNA · `rna` | Rfam, RNAcentral | 11 | Rfam의 비암호화 RNA 계열 메타데이터, 정렬, 모델 및 구조.  |
 | Omics Archives · `omics-archives` | ArrayExpress, GEO, 메타보라이트, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | Omics 연구 / 실행 메타 데이터 및 파일 재고; metabolomics 표본, 요인, 분석 및 화합물 기록. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Cell-type identity, 마커 유전자, 소스 데이터 세트, 그리고 CELLxGENEGuide Cell을 통해 조직.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 유전자 조절 기능 genomics - ENCODE 실험 / 생물 샘플 / 파일, JASPAR TF 바인딩 프로파일 및 UniBind ChIP-seq TFBS.  |
@@ -50,8 +50,9 @@ Open-Science v1.0.0에는 **35 데이터 소스 커넥터 359 작업**가 포함
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 셀 라인 이름과 동의를 찾기, 다음 액세스 정체성 및 품질 annotations를 검사. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 질병/진-to-phenotype 협회는 생물과 지원 증거를 가진다. |
 | IEDB · `iedb` | Immune Epitope 데이터베이스 | 8 | Epitopes, 항원, T 세포, B 세포 및 MHC 분석실험, TCR/BCR 증거 및 근원 간행물. |
-| PDC · `pdc` | NCI Proteomic 데이터 커먼즈 | 4 | 암-proteomics 연구 버전, 견본 협회 및 양적 파일 metadata; 다운로드 없음. |
+| PDC · `pdc` | NCI Proteomic Data Commons | 5 | 암 단백질체 연구 버전, 검체 연결, 공개 증례 임상 메타데이터 및 파일 목록. 파일 다운로드는 제공하지 않습니다. |
 | ENCORI · `encori` | ENCORI | 10 | miRNA/RBP 표적, RNA 상호 작용, ceRNA, motifs, 바인딩 위치, 참고 테이블 및 대량 파일. |
+| Orphadata · `orphadata` | Orphadata, Orphanet | 2 | 희귀질환 유전자 연관성과 HPO 표현형 빈도. 기본적으로 꺼져 있습니다. |
 
 오프라인 Molecule 도구는 [사이트맵](viewers.md)에 덮여 있습니다. 각 데이터 소스에 노출된 정확한 작업을 위해 [Connector 가동 참고](../reference/connector-operations.md)을 사용합니다.
 
@@ -254,7 +255,7 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 소스: [카탈로그.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/catalog.ts), [레지스트리](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/registry.ts).
+카탈로그 출처: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/registry.ts).
 
 ## Sequence 검색 및 정렬 {/* #sequence-tools */}
 
@@ -330,7 +331,7 @@ receptor-group ID, 체인을 유지, assay ID 및 소스 출판보고. 호스트
 
 ## 표본, 표정 및 집합 상황에 보존하십시오 {/* #scientific-context */}
 
-| 검색어 | v1.0.0의 해석 |
+| 조회 | v1.0.2에서의 해석 |
 | --- | --- |
 | `arrayexpress_get_experiment_samples` | `samples` 경로에 의해 분류 된 최초의 SDRF 파일에서 관계 행을 포함합니다. `n_rows_total` / `n_rows_returned` 줄을 곱합니다; `n_samples` / `n_samples_returned` 구별 식별자, 선호 **표본 이름**, 다음 **근원 이름**을 진행하세요. 그들은 독립적 인 생물학 복제 수 없습니다. 식별자는 샘플 수를 만들 수 있습니다. `null`을 진행하세요. 빈 파일 또는 `no_sdrf` 응답은 실험이 샘플이 없다는 것을 설정하지 않습니다. |
 | `metabolights_get_studies` 으로 `include_samples` | 반환된 사용 `headers` 수출할 때 순서 `sample_table`을 진행하세요. 반복된 열 이름은 독특합니다 `#2`, `#3`, ... 본래의 이름을 과잉하지 않고 suffixes. 모든 열을 유지; 짧은 행의 빈 문자열은 메타데이터가 누락됩니다. 【특전】 `rows_truncated`. |
@@ -342,4 +343,27 @@ receptor-group ID, 체인을 유지, assay ID 및 소스 출판보고. 호스트
 
 ### OpenAlex 자격 증명 {/* #openalex-prompts */}
 
-v1.0.0은 현재 세션에 대한 쇠퇴 OpenAlex 자격 증명 프롬프트를 기억하고 반복 된 프롬프트를 피합니다. 나중에 소스가 필요하다면 **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**에서 명시적으로 구성하고 의도한 쿼리를 재개합니다. 신속한 공급은 열쇠를 공급하지 않으며 액세스 또는 할당량을 보장합니다.
+v1.0.2는 현재 세션에서 거절한 OpenAlex 인증 정보 요청을 기억하여 반복하지 않습니다. 나중에 이 소스가 필요하면 다음 설정에서 직접 구성하세요: **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** 그런 다음 원하는 조회를 다시 실행합니다. 요청을 거절해도 키가 등록되거나 접근 권한·사용량이 보장되지는 않습니다.
+
+## 새 데이터 소스를 연결하고 결과의 의미 확인하기 {/* #new-source-access */}
+
+설정 **Settings → Connectors**에서 아래 항목을 찾아 사용을 허용하세요. 대상은 **Main** 또는 사용할 Specialist입니다. HGNC, PubTator 3, DGIdb, RNAcentral은 기존 항목 안의 도구입니다. **Orphadata** 는 별도 항목이며 기본적으로 꺼져 있습니다. 이 새 도구들은 별도 API 키 없이 공개 엔드포인트를 이용합니다. 같은 항목의 다른 도구에는 별도의 인증 요건이 있을 수 있습니다.
+
+| 데이터 소스 | 설정 항목 | 요청 및 확인 사항 |
+| --- | --- | --- |
+| HGNC | Genes &amp; Ontologies | 승인된 인간 유전자 기호를 조회하거나 정확히 일치하는 별칭을 찾습니다. 후보가 여러 개면 모두 유지하고 승인·철회 상태를 확인한 뒤 유전자를 선택하세요. |
+| PubTator 3 | PubMed | PMID로 주석을 가져오거나 개체·관계를 검색합니다. 주석 조회는 제목과 초록을 대상으로 하며, 원시 텍스트를 제출하는 기능이 아닙니다. 주장이 전문에서 뒷받침된다는 증거도 아닙니다. |
+| DGIdb | Clinical Genomics | 유전자명이나 약물명으로 조회하고 출처와 문헌을 보존하며 반환된 커서를 따라가세요. 약물·유전자 상호작용은 치료 권고가 아닙니다. |
+| RNAcentral | RNA | URS 등록번호를 조회한 뒤 전문 데이터베이스의 교차 참조를 페이지별로 확인합니다. 분류군, 서열 MD5, 등록번호 버전을 보존하세요. |
+| Orphadata | Orphadata | 먼저 접근을 켠 뒤 ORPHAcode로 유전자 또는 HPO 표현형을 조회하세요. 연관 유형과 빈도 범주를 보존해야 하며, 이를 개별 환자의 확률로 해석하면 안 됩니다. |
+
+정확한 호출: [HGNC](../reference/connector-operations.md#get_hgnc_gene), [PubTator](../reference/connector-operations.md#get_pubtator_annotations), [DGIdb](../reference/connector-operations.md#get_dgidb_gene_drugs), [RNAcentral](../reference/connector-operations.md#get_rnacentral_record), [Orphadata](../reference/connector-operations.md#family-36).
+
+## 암 메타데이터 연결과 변이 주석 {/* #clinical-context */}
+
+- **PDC:** 다음 작업으로 공개 인구통계·진단 필드를 요청합니다: `pdc_list_clinical`. 최신 버전에는 `pdc_study_id` , 고정된 버전에는 `study_id` 를 사용합니다. 누락·비식별 처리 값과 외부 참조의 출처를 유지하세요. PDC와 GDC UUID는 서로 바꿔 쓸 수 없습니다.
+- **GDC:** 파일 필터: `case_ids`, `sample_types` 및 `workflow_types`. 증례 하나로 모든 파일을 합치지 말고 파일별 검체, 분주 검체, 종양·정상 워크플로의 연결을 보존하세요. 같은 필드 안은 OR, 필드 사이는 AND입니다. 메타데이터 접근은 제한 파일의 다운로드 권한을 부여하지 않습니다.
+- **Ensembl VEP:** 단독으로 지정할 인수: `hgvs_notation` . 함께 사용할 수 없는 인수: `variant_id`, `region`, `allele` 또는 `allele_orientation`. 반환된 어셈블리, 전사체 버전, 결과 잘림 표시를 보존하세요. 입력 참조 버전은 그대로 전달되며 검증되지 않습니다. `matched` 도 버전 일치를 증명하지 않습니다. 이는 변이 영향 주석이며 임상 해석이나 게놈 좌표 변환이 아닙니다.
+- **Clinical Trials:** 작업 `get_trial_results` 로 공개된 측정값, 분모, 통계 분석, 이상반응을 조회합니다. 군 ID는 동일한 결과 모듈·평가변수 안에서만 연결하세요. 결과 누락은 사건 0건이나 치료 효과가 없다는 뜻이 아닙니다.
+
+참고: [PDC 필드](../reference/connector-operations.md#pdc_list_clinical), [GDC 필터](../reference/connector-operations.md#gdc_search_files), [VEP 모드](../reference/connector-operations.md#ensembl_vep_variant) 및 [공개된 임상시험 결과](../reference/connector-operations.md#get_trial_results).

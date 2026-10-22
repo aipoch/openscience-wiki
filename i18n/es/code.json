@@ -1794,5 +1794,17 @@
   },
   "docs.outline.reference.v100.scope": {
     "message": "Compatibilidad Stable 1.x, disponibilidad de versión de escritorio, recuperación de sesión y contexto de datos científicos."
+  },
+  "docs.outline.reference.v101.title": {
+    "message": "v1.0.1"
+  },
+  "docs.outline.reference.v101.scope": {
+    "message": "Importación del paquete del navegador, actualización del progreso, sesiones de espera y recuperación credencial."
+  },
+  "docs.outline.reference.v102.title": {
+    "message": "v1.0.2"
+  },
+  "docs.outline.reference.v102.scope": {
+    "message": "Fuentes científicas de datos, instalación CLI npm, tarjetas de interrogación y fiabilidad de registros de investigación."
   }
 }

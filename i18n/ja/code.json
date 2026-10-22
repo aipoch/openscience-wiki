@@ -1793,5 +1793,17 @@
   },
   "docs.outline.reference.v100.scope": {
     "message": "安定した1.xの両立性、デスクトップ解放の可用性、セッションの回復および科学的なデータコンテキスト。"
+  },
+  "docs.outline.reference.v101.title": {
+    "message": "v1.0.1"
+  },
+  "docs.outline.reference.v101.scope": {
+    "message": "ブラウザーからの研究パッケージ取り込み、更新状況、入力待ちセッション、認証情報の復旧。"
+  },
+  "docs.outline.reference.v102.title": {
+    "message": "v1.0.2"
+  },
+  "docs.outline.reference.v102.scope": {
+    "message": "科学データソース、npm での CLI 導入、質問カード、研究記録の信頼性。"
   }
 }

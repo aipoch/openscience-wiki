@@ -1,7 +1,7 @@
 ---
 title: "Anbieter und lokales Modell-Setup"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -229,7 +229,7 @@ Wählen Sie das genaue Modell aus, das für Ihren aktiven Agenten angeboten wird
 
 Die v0.33.1-Anbieterkataloge fügen **GPT-6** und **Claude Opus 5.5** hinzu. Öffnen Sie die Modellliste des Anbieters und wählen Sie einen Eintrag aus, der vom aktiven Framework und Ihrem Konto unterstützt wird. Die Katalogpräsenz gewährt keinen Zugriff auf das gespeicherte Main-Modell oder wechselt es. Validieren Sie den Anbieter und senden Sie eine kleine Anfrage, bevor Sie ein geändertes Modell für die Forschung verwenden.
 
-v0.34.0 fügt **MiniMax M3.1 Flash-Vorschau** und **Claude Sonnet 5.5** hinzu. Wählen Sie sie aus der Modellliste des jeweiligen Anbieters aus und prüfen Sie den Zugriff auf das Konto und die Kompatibilität mit dem aktiven Agenten. Dies ersetzt nicht automatisch das gespeicherte Main-Modell.
+**MiniMax M3.1 Flash** ist das veröffentlichte multimodale Modell mit einem 1M-Token-Kontext, das in beiden MiniMax-Regionen verfügbar ist. Wählen Sie die Region aus, die Ihren Schlüssel ausgegeben hat, wählen Sie das Modell aus und testen Sie die gespeicherte Konfiguration. v1.0.2 behebt die eingebaute Verbindung über den Codex. **Claude Sonnet 5.5** bleibt im Anbieterkatalog. Die Auswahl eines Katalogeintrags ersetzt nicht automatisch das gespeicherte Hauptmodell.
 
 v0.34.1 fügt **gpt-6.1-sol** dem Codex-Modellkatalog hinzu. Wählen Sie es explizit in der Modellauswahl aus und senden Sie dann eine kleine Anforderung, um den Kontozugriff zu bestätigen. Die Aktualisierung der App ersetzt nicht automatisch das gespeicherte Main-Modell.
 
@@ -246,3 +246,7 @@ v0.35.0 erweitert den **OpenCode Zen**-Katalog und fügt Jev-Klassifizierungsunt
 ![Requesty im offiziellen Anbieterformular ausgewählt, zeigt den erforderlichen API-Schlüssel und unterstützte Modelle](/img/open-science/v0351/requesty-form.webp)
 
 Requesty verwendet `https://router.requesty.ai`; der aktive Agent bestimmt, welche kompatiblen Protokolle und Modelle angeboten werden. Zugriff und Kontingent hängen vom Requesty-Konto ab. Das Hinzufügen dieses Anbieters ersetzt nicht automatisch das gespeicherte Main-Modell. v0.35.1 aktualisiert auch den OpenRouter-Katalog; Verwenden sie den aktuellen picker, anstatt eine modell-id von einem alten screenshot zu kopieren.
+
+## Wiederherstellen einer Modellverbindung {/* #credential-recovery */}
+
+Verwenden Sie die Wiederherstellungsaktion, die an eine abgelaufene oder ungültige Anmeldeinformationen angehängt ist, aktualisieren Sie den korrekten Anbietereintrag und testen Sie ihn dann, bevor Sie zur gleichen Sitzung zurückkehren. Der Composer wird nur blockiert, während die Wiederherstellung Ihre Aktion erfordert. Bewahren Sie den Entwurf auf und prüfen Sie, ob die vorherige Runde noch läuft, bevor Sie erneut senden. Bei Codex-Abonnementmodellen spiegelt die Kontextnutzung die gemeldete Kapazität des ausgewählten Modells wider; sie kann von einer älteren angezeigten Schätzung abweichen.

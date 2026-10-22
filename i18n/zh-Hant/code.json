@@ -2665,5 +2665,17 @@
   },
   "docs.outline.reference.v100.scope": {
     "message": "1.x 穩定相容範圍、桌面發行包、會話恢復與科學資料背景"
+  },
+  "docs.outline.reference.v101.title": {
+    "message": "v1.0.1"
+  },
+  "docs.outline.reference.v101.scope": {
+    "message": "網頁研究包導入、更新進度、等待狀態與憑據恢復。"
+  },
+  "docs.outline.reference.v102.title": {
+    "message": "v1.0.2"
+  },
+  "docs.outline.reference.v102.scope": {
+    "message": "科學數據源、npm CLI 安裝、問題卡片與研究記錄可靠性。"
   }
 }

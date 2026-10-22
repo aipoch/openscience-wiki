@@ -1,7 +1,7 @@
 ---
 title: "Provider and local model setup"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -229,7 +229,7 @@ Select the exact model offered for your active Agent, check its input and reason
 
 The v0.33.1 provider catalogs add **GPT-6** and **Claude Opus 5.5**. Open the provider's model list and choose an entry supported by the active framework and your account. Catalog presence does not grant access or switch the saved Main model. Validate the provider and send a small request before using a changed model for research.
 
-v0.34.0 adds **MiniMax M3.1 Flash Preview** and **Claude Sonnet 5.5**. Select them from their respective provider's model list and check account access and active-Agent compatibility. This does not automatically replace the saved Main model.
+**MiniMax M3.1 Flash** is the released multimodal model with a 1M-token context, available in both MiniMax regions. Choose the region that issued your key, select the model and test the saved configuration. v1.0.2 fixes its built-in connection through Codex. **Claude Sonnet 5.5** remains in the provider catalog. Selecting a catalog entry does not automatically replace the saved Main model.
 
 v0.34.1 adds **gpt-6.1-sol** to the Codex model catalog. Select it explicitly in the model picker, then send a small request to confirm account access. Updating the app does not automatically replace the saved Main model.
 
@@ -246,3 +246,7 @@ v0.35.0 expands the **OpenCode Zen** catalog and adds Jev classification support
 ![Requesty selected in the official provider form, showing the required API key and supported models](/img/open-science/v0351/requesty-form.webp)
 
 Requesty uses `https://router.requesty.ai`; the active Agent determines which compatible protocol and models are offered. Access and quota depend on the Requesty account. Adding this provider does not automatically replace the saved Main model. v0.35.1 also refreshes the OpenRouter catalog; use the current picker rather than copying a model ID from an old screenshot.
+
+## Recover a model connection {/* #credential-recovery */}
+
+Use the recovery action attached to an expired or invalid credential, update the correct provider entry, then test it before returning to the same session. The Composer is blocked only while recovery requires your action. Preserve the draft and check whether the previous turn is still running before resending. For Codex subscription models, context usage reflects the selected model's reported capacity; it can differ from an older displayed estimate.

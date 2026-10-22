@@ -1798,5 +1798,17 @@
   },
   "docs.outline.reference.v100.scope": {
     "message": "안정적인 1.x 호환성, 데스크톱 릴리스 가용성, 세션 복구 및 과학 데이터 컨텍스트."
+  },
+  "docs.outline.reference.v101.title": {
+    "message": "v1.0.1"
+  },
+  "docs.outline.reference.v101.scope": {
+    "message": "브라우저 패키지 가져오기, 업데이트 진행, 입력 대기 세션, 인증 정보 복구."
+  },
+  "docs.outline.reference.v102.title": {
+    "message": "v1.0.2"
+  },
+  "docs.outline.reference.v102.scope": {
+    "message": "과학 데이터 소스, npm CLI 설치, 질문 카드, 연구 기록 신뢰성."
   }
 }

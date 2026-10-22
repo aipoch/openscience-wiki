@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -246,3 +246,9 @@ Après **Analyze PDF**, ouvrez une figure et une table à côté de la page d'or
 Dans v0.37.2, l'extraction corrige davantage la propriété de la figure/table et les symboles maths anciens de PDF. Comparer moins les signes, les lettres grecques, les superscripts, les sous-scripts et les opérateurs avec la source rendue avant de copier une formule ou une valeur de table. Une extraction plus propre ne remplace pas la vérification de l'expression scientifique.
 
 v1.0.0 améliore encore la propriété des tableaux et des figures natifs, y compris les enregistrements répétés, les colonnes éparses et les fractions scientifiques. Lors de la vérification d'une table, conservez des lignes répétées comme des enregistrements séparés, à moins que la source ne les identifie comme des duplicatas. Comparer les numérateurs/dénominateurs fractionnés, les étiquettes groupées et les cellules vides avec la page d'origine; ne pas remplir une cellule vide de la prose voisine.
+
+## Vérifiez la couverture de recherche PDF {/* #pdf-search-coverage */}
+
+Si la recherche PDF indique une couverture incomplète, ses résultats ne concernent que le texte effectivement recherché. L’absence de résultat ne prouve pas que l’expression est absente de tout l’article. Vérifiez les pages pertinentes dans le PDF original, notamment les pages numérisées, figures, équations et tableaux. Même si l’extraction et la traduction préservent mieux la structure, le PDF source reste la référence.
+
+Pour les prévisualisations DOCX, vérifiez la numérotation continue de la liste et les bordures de la table par rapport au document téléchargé avant de citer ou de partager le résultat.

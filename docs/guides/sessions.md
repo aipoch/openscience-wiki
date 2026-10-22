@@ -1,7 +1,7 @@
 ---
 title: "Sessions and branches"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -180,3 +180,9 @@ Choose **View replay** from the session row menu to step through the recorded co
 ## Continue after changing the agent or reconnecting {/* #resume-selected-agent */}
 
 Before sending the next turn, check the selected Agent/Specialist and model. v1.0.0 restores ACP conversations with the selected agent and repairs detached Codex continuation after Specialist switches. Reopen the original conversation and inspect its latest saved messages and run state after reconnection. Do not resend a write simply because its response was interrupted; confirm whether it completed first. Changing an agent or recovering a connection is not evidence that a previous failed analysis succeeded.
+
+## Recognize a session waiting for you {/* #waiting-for-input */}
+
+A session paused for your answer or approval shows a waiting state on Home, in the sidebar and in the conversation. Open the pending card, read the requested decision, and submit it to continue. Reloading the app does not by itself answer the question or approve a tool. Double-click a session in the workspace sidebar to open its editor.
+
+For diagnostic exports, read the completion summary: a partial export is a warning, not a complete diagnostic bundle. Keep the specific error and review the exported files before sharing them.

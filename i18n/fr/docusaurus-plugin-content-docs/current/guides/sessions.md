@@ -1,7 +1,7 @@
 ---
 title: "Sessions et sections"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -180,3 +180,9 @@ Choisissez **View replay** dans le menu de la ligne de session pour passer à tr
 ## Continuer après avoir changé l'agent ou reconnecté {/* #resume-selected-agent */}
 
 Avant d'envoyer le tour suivant, vérifiez l'Agent/Specialist sélectionné et le modèle. v1.0.0 restaure les conversations ACP avec l'agent sélectionné et répare la suite Codex détachée après les commutateurs Specialist. Réouvrir la conversation originale et inspecter ses derniers messages enregistrés et exécuter l'état après la reconnexion. Ne renvoyez pas un écrit simplement parce que sa réponse a été interrompue; confirmer si elle a été achevée en premier. Changer un agent ou récupérer une connexion n'est pas une preuve qu'une analyse antérieure a échoué.
+
+## Reconnaissez une session qui vous attend {/* #waiting-for-input */}
+
+Une session suspendue pour votre réponse ou approbation montre un état d'attente sur la maison, dans la barre latérale et dans la conversation. Ouvrir la carte en attente, lire la décision demandée et la soumettre pour continuer. Le rechargement de l'application ne répond pas en soi à la question ou n'approuve pas un outil. Double-cliquez sur une session dans la barre latérale de l'espace de travail pour ouvrir son éditeur.
+
+Pour les exportations de diagnostic, lisez le résumé d'achèvement : une exportation partielle est un avertissement et non un ensemble de diagnostics complet. Gardez l'erreur spécifique et examinez les fichiers exportés avant de les partager.

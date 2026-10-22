@@ -2,7 +2,7 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -127,3 +127,16 @@ Nachdem der Import abgeschlossen ist, wählen Sie **View replay**, um die aufgez
 ## Import in ein neues Projekt {/* #new-project-import-recovery */}
 
 Wenn eine ältere Version beim Annehmen eines Pakets in den Katalog eines neuen Projekts fehlschlägt, aktualisieren Sie auf v0.37.0 oder höher, prüfen Sie, ob das Ziel bereits vorhanden ist, und verwenden Sie die Wiederherstellungsaktion des Importdialogs, bevor Sie einen anderen Import starten. Überprüfen Sie die resultierende Sitzung und Dateien. Der Fix macht importierte Sitzungen nicht beschreibbar: Verwenden Sie **Fork**, um die Analyse fortzusetzen.
+
+## Importieren eines Pakets von einer Website {/* #browser-import */}
+
+Verwenden Sie eine installierte Desktop-App auf der **derselbe Computer** Als Browser. Die Website muss Open-Science-Pakettransfer anbieten; ein gewöhnlicher Download-Link allein bietet dies nicht an.
+
+1. Wählen Sie auf einer vertrauenswürdigen Paketseite die Open-Science-Import-/Open-Aktion aus. Lassen Sie den Browser die Desktop-App öffnen. Wenn Sie nach lokalem Netzwerkzugang gefragt werden, gewähren Sie diesen nur für die Website, die Sie verwenden möchten.
+2. Halten Sie die Seite offen, während die App angezeigt wird **Receiving package…** und **Validating package…**. Eine Website-Belegnachricht bestätigt nur die Lieferung an die App.
+3. Überprüfen Sie in der App das Paket, wählen Sie das Zielprojekt aus und bestätigen Sie den Import. Warten Sie auf den Abschluss und öffnen Sie dann die importierte Sitzung.
+4. Überprüfen Sie seine Akten und Beweise. Die Forschungsaufzeichnung bleibt schreibgeschützt; Verwendung **Fork to continue** für neue Forschung. Das Bearbeiten des Titels macht die importierte Forschung nicht beschreibbar.
+
+Wenn die Übergabe nicht verfügbar oder blockiert ist, laden Sie die `.science` Datei und verwenden Sie die bestehende Importkontrolle. Sie können es auch auf das Projekt nach Hause legen. Ein normaler Ordner-Drop in den Composer importiert kein Paket. Wenn ein Import einen Teilfehler meldet, überprüfen Sie das Ziel für eine bestehende Sitzung, bevor Sie es erneut versuchen; Erstellen Sie kein anderes Projekt, nur um den gleichen Transfer zu wiederholen.
+
+Für Website-Autoren, die [Browser-Import SDK Guide](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md) erfordert HTTPS (oder einen Loopback-Entwicklungsursprung), eine Desktop-Handoff-Funktion für den gleichen Computer und ein nicht leeres Paket, das nicht größer als 2 GiB ist. Die lokale Quittung ersetzt niemals die endgültige Importbestätigung des Benutzers.

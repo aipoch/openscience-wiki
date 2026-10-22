@@ -1,7 +1,7 @@
 ---
 title: "Configuration du fournisseur et du modèle local"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -229,7 +229,7 @@ Sélectionnez le modèle exact proposé pour votre Agent actif, vérifiez ses op
 
 Les catalogues des fournisseurs v0.33.1 ajoutent **GPT-6** et **Claude Opus 5.5**. Ouvrez la liste de modèles du fournisseur et choisissez une entrée prise en charge par le cadre actif et votre compte. La présence du catalogue ne permet pas d'accéder au modèle Main enregistré ou de le changer. Valider le fournisseur et envoyer une petite demande avant d'utiliser un modèle modifié pour la recherche.
 
-v0.34.0 ajoute **MiniMax M3.1 Aperçu flash** et **Claude Sonnet 5.5**. Sélectionnez-les dans la liste de modèles de leur fournisseur respectif et vérifiez l'accès au compte et la compatibilité active-Agent. Cela ne remplace pas automatiquement le modèle Main enregistré.
+**MiniMax M3.1 Flash** est le modèle multimodal libéré avec un contexte de jeton 1M, disponible dans les deux régions MiniMax. Choisissez la région qui a émis votre clé, sélectionnez le modèle et testez la configuration enregistrée. v1.0.2 corrige sa connexion intégrée via Codex. **Claude Sonnet 5.5** reste dans le catalogue des fournisseurs. Sélectionner une entrée de catalogue ne remplace pas automatiquement le modèle principal enregistré.
 
 v0.34.1 ajoute **gpt-6.1-sol** au catalogue du modèle Codex. Sélectionnez-le explicitement dans le sélecteur de modèle, puis envoyez une petite requête pour confirmer l'accès au compte. La mise à jour de l'application ne remplace pas automatiquement le modèle Main enregistré.
 
@@ -246,3 +246,7 @@ v0.35.0 élargit le catalogue **OpenCode Zen** et ajoute le support de classific
 ![Requesty sélectionné dans le formulaire du fournisseur officiel, montrant la clé API requise et les modèles pris en charge](/img/open-science/v0351/requesty-form.webp)
 
 Requesty utilise `https://router.requesty.ai`; l'Agent actif détermine quel protocole et quels modèles compatibles sont proposés. L'accès et le quota dépendent du compte Requesty. L'ajout de ce fournisseur ne remplace pas automatiquement le modèle Main enregistré. v0.35.1 rafraîchit également le catalogue OpenRouter ; utiliser le sélecteur actuel plutôt que de copier un modèle ID à partir d'une vieille capture d'écran.
+
+## Récupérer une connexion modèle {/* #credential-recovery */}
+
+Utilisez l’action de récupération affichée pour les identifiants expirés ou invalides, mettez à jour le bon fournisseur et testez la connexion avant de revenir à la même session. Le Composer est bloqué uniquement tant que la récupération exige votre intervention. Conservez le brouillon et vérifiez que la requête précédente est terminée avant de la renvoyer. Pour les modèles de l’abonnement Codex, l’utilisation du contexte repose sur la capacité déclarée du modèle choisi et peut différer d’une ancienne estimation.

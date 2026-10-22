@@ -1,7 +1,7 @@
 ---
 title: "Skillsの管理と検証"
 last_update:
-  date: '2026-09-15'
+  date: '2026-10-22'
 ---
 
 # Skillsの管理と検証 {/* #manage-and-validate-skills */}
@@ -113,3 +113,7 @@ Specialist-linkedパッケージは削除から保護できます。 obsolete �
 | GitHub/authenticationエラー | 実際の HTTP ステータスとサニタイズされたソース URL を保持します。 詳しくはこちら [トラブルシューティング](../guides/troubleshooting.md). |
 
 実装参照: [スキルアップロードビュー.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillUploadView.tsx)、[スキルBulkManageView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillBulkManageView.tsx)、[スキルImportView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillImportView.tsx)。
+
+## Skill を安全にインポート・編集する {/* #import-batches */}
+
+大量のインストール済み Skill はバッチ単位で取り込みます。最終結果と取り込み一覧を確認するまで繰り返さないでください。予約済み接頭辞を持つ外部 Skill には安全なローカル名が付きます。ローカルカタログの名前を使用してください。本文を保存したら、別途編集した名前と説明も保持されているか確認します。現在のメッセージの添付画像も Skill 選択に使われるため、実行前に選ばれた Skill の対象範囲を確認してください。

@@ -1,7 +1,7 @@
 ---
 title: "Task SDK und lokales API"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # Task SDK und lokales API {/* #task-sdk-and-local-api */}
@@ -14,13 +14,11 @@ Der `@aipoch/open-science` Node.js-Client verbindet sich mit einem authentifizie
 
 <p className="example-label"><strong>Beispiel</strong> Speichern und Herunterladen einer Verbindungs-Check-Notiz</p>
 
-Verwenden Sie eine zum Paket passende Node.js-Version. Das Backend-Paket v1.0.0 benötigt Node.js 22.13 oder neuer; die Desktop-Distribution enthält ihre eigene Backend-Laufzeit. Starten Sie das Backend über die Desktop-App oder die [CLI](server.md), richten Sie das Modell ein und lassen Sie den Dienst laufen. Das SDK nutzt die lokale Diensterkennung und das lokal gespeicherte Token.
-
-Installieren Sie in einem leeren Arbeitsordner das passende lokale SDK-Paket. Ersetzen Sie `BACKEND_DIRECTORY` durch das absolute `backend`-Verzeichnis innerhalb der Desktop-Distribution (`Contents/Resources/backend` auf macOS) oder das Backend-Paket, das aus dem entsprechenden Tag aufgebaut ist. v1.0.0 hat kein eigenständiges CLI-Archiv; Ersetzen Sie kein älteres Archiv, um dieses Verzeichnis zu erhalten. Behalten Sie das referenzierte Verzeichnis und überprüfen Sie die Clientversion nach dem Aktualisieren der App erneut.
+Verwenden Sie Node.js **22.13 oder später**. Starten Sie ein kompatibles Backend über den Desktop oder [CLI](server.md)Beenden Sie die Modelleinrichtung und halten Sie sie am Laufen. Installieren Sie in einem leeren Arbeitsordner das veröffentlichte SDK:
 
 ```bash
 npm init -y
-npm install "/ABSOLUTE/PATH/TO/BACKEND_DIRECTORY"
+npm install @aipoch/open-science@1.0.2
 ```
 
 Speichern Sie Folgendes als `connection-check.mjs`. Führen Sie `node connection-check.mjs` aus, um Projekt-IDs aufzulisten, dann `node connection-check.mjs PROJECT_ID` mit einer zurückgegebenen ID. Die erste Invokation wird nach der Auflistung von Projekten absichtlich gestoppt; Die zweite schafft eine kleine Aufgabe.

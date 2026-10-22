@@ -1,7 +1,7 @@
 ---
 title: "Gérer et valider Skills"
 last_update:
-  date: '2026-09-15'
+  date: '2026-10-22'
 ---
 
 # Gérer et valider Skills {/* #manage-and-validate-skills */}
@@ -113,3 +113,7 @@ Les paquets en vedette et liés à Specialist peuvent être protégés contre la
 | Erreur de GitHub/authentification | Conserver l'état réel de HTTP et l'URL de source désinfectée; voir [Dépannage](../guides/troubleshooting.md). |
 
 Référence de mise en œuvre: [SkillUploadView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillUploadView.tsx), [CompétenceBulkManageView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillBulkManageView.tsx), [SkillImportView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillImportView.tsx).
+
+## Importer et éditer des compétences en toute sécurité {/* #import-batches */}
+
+Les grandes sélections de compétences installées sont importées en lots. Attendez le résultat final et inspectez la liste importée avant de répéter l'importation. Une compétence externe avec un préfixe de nom réservé est assigné un nom local sûr; utilisez le nom affiché dans le catalogue local. Lors de l'édition du corps, enregistrez-le et vérifiez que le nom et la description modifiés séparément restent corrects. Les images jointes au message actuel peuvent également éclairer la sélection des compétences; vérifier la portée de la compétence sélectionnée avant de la laisser agir.

@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -127,3 +127,16 @@ Después de que la importación termine, elija **View replay** para inspeccionar
 ## Importar en un nuevo proyecto {/* #new-project-import-recovery */}
 
 Si una versión anterior falla al adoptar un paquete en el catálogo de un nuevo proyecto, actualice a v0.37.0 o posterior, inspeccione si el destino ya existe, y utilice la acción de recuperación del diálogo de importación antes de iniciar otra importación. Compruebe la sesión y los archivos resultantes. La solución no hace que las sesiones importadas sean útiles: use **Fork** para continuar el análisis.
+
+## Importar un paquete de un sitio web {/* #browser-import */}
+
+Utilice una aplicación de escritorio instalada en la **mismo ordenador** como el navegador. El sitio web debe ofrecer la transferencia de paquetes Open-Science; un enlace de descarga ordinario por sí solo no lo proporciona.
+
+1. En una página de paquete de confianza, seleccione su acción de importación/abierto de Open-Science. Permite que el navegador abra la aplicación de escritorio. Si se le pide acceso a redes locales, concédelo sólo al sitio que desea utilizar.
+2. Mantenga la página abierta mientras la aplicación muestra **Receiving package…** y **Validating package…**. Un mensaje de recibo del sitio web sólo confirma la entrega a la aplicación.
+3. En la aplicación, revise el paquete, seleccione el proyecto de destino y confirme la importación. Esperar la terminación, luego abrir la sesión importada.
+4. Inspeccione sus archivos y pruebas. El registro de investigación sigue siendo sólo leído; uso **Fork to continue** para nuevas investigaciones. Editar su título no hace que la investigación importada sea obligatoria.
+
+Si el handoff no está disponible o bloqueado, descargar el `.science` archivar y utilizar el control de importación existente. También puede dejarla en casa del proyecto. Una carpeta normal caer en el Compositor no importa un paquete. Si una importación reporta un fracaso parcial, compruebe el destino para una sesión existente antes de reintentar; no cree otro proyecto sólo para repetir la misma transferencia.
+
+Para los autores del sitio web, [guía SDK navegador-import](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md) requiere HTTPS (o un origen de desarrollo de loopback), un manual de escritorio del mismo ordenador y un paquete no vacío no superior a 2 GiB. La recepción local nunca reemplaza la confirmación final de importación del usuario.

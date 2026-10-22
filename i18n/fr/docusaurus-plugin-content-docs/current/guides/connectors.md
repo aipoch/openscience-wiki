@@ -1,7 +1,7 @@
 ---
 title: "Connecteurs et identifiants"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,3 +179,7 @@ Créez et gérez des secrets dans [Pouvoirs de service](../tools/credentials.md)
 ## Recherche d'erreur HTTP {/* #http-error-lookup */}
 
 Pour les réponses 400, 401, 403, 404, 429 ou 5xx, utilisez le [Table de dépannage HTTP](troubleshooting.md#http-errors-400-403-429-and-5xx). Conservez le service répondant et son message détaillé avec le code d'état.
+
+## Reconnecter après une erreur de reconnaissance OAuth {/* #oauth-reconnect */}
+
+Pour un connecteur OAuth personnalisé, ouvrez ses paramètres et utilisez à nouveau le flux d'autorisation offert si le justificatif enregistré est rejeté. Les pouvoirs sont liés au serveur d'autorisation qui les a délivrés; modifier une adresse de serveur n'est pas un moyen de réutiliser un jeton émis ailleurs. Gardez les changements de forme non enregistrés jusqu'à la fin de l'enregistrement, puis testez la connexion et réessayez la requête prévue. Un test de connexion réussi n'établit pas que la requête a renvoyé des données.

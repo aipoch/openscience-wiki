@@ -1,7 +1,7 @@
 ---
 title: "Connectors and credentials"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,3 +179,7 @@ Create and manage secrets in [Service credentials](../tools/credentials.md), the
 ## HTTP error lookup
 
 For 400, 401, 403, 404, 429 or 5xx responses, use the [HTTP troubleshooting table](troubleshooting.md#http-errors-400-403-429-and-5xx). Keep the responding service and its detailed message with the status code.
+
+## Reconnect after an OAuth credential error {/* #oauth-reconnect */}
+
+For a custom OAuth Connector, open its settings and use the offered authorization flow again if the saved credential is rejected. Credentials are bound to the authorization server that issued them; changing a server address is not a way to reuse a token issued elsewhere. Keep unsaved form changes until the save finishes, then test the connection and retry the intended query. A successful connection test does not establish that the query returned data.

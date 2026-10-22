@@ -1,7 +1,7 @@
 ---
 title: "커넥터 및 자격"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,3 +179,7 @@ Connector 명령 파일이 읽을 수 없다면 EPERM 오류를 유지하고 활
 ## HTTP 오류 조회 {/* #http-error-lookup */}
 
 400, 401, 403, 404, 429 또는 5xx 응답을 위해, [HTTP 문제 해결 테이블](troubleshooting.md#http-errors-400-403-429-and-5xx)를 사용하십시오. 응답 서비스 및 상태 코드와 상세한 메시지 유지.
+
+## OAuth 인증 오류 후 재연결 {/* #oauth-reconnect */}
+
+사용자 정의 OAuth Connector가 저장된 인증 정보를 거부하면 설정에서 제공하는 인증 절차를 다시 진행하세요. 인증 정보는 발급 서버에 연결되므로 서버 주소를 바꿔 다른 서버의 토큰을 재사용할 수 없습니다. 저장이 끝날 때까지 양식 변경을 유지하고, 연결 테스트 후 원하는 조회를 재시도하세요. 연결 테스트 성공이 실제 데이터 조회 성공을 뜻하지는 않습니다.

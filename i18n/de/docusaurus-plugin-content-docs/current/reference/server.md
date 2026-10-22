@@ -1,7 +1,7 @@
 ---
 title: "Headless Service und Browserzugriff"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # Headless Service und Browserzugriff {/* #headless-service-and-browser-access */}
@@ -115,3 +115,7 @@ v1.0.0 entfernt den CLI-Anwendungs-Updater; Verwenden Sie `open-science update -
 Nach dem Upgrade bestätigen Sie die Version und die Originaldaten und verwenden dann `status --json` und `doctor --json`, um den Servicezustand und die Bereitschaft zu überprüfen. Bewahren Sie den Credential-Store-Modus. [1.x Kompatibilität](../guides/installation.md#version-compatibility) verspricht keine gemischten Desktop- / Backend-Versionen.
 
 Siehe [Offizieller Runtime Guide](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md), [CLI](cli.md) und [Aufgabe SDK](api.md).
+
+## Compute im Web Workspace {/* #web-compute */}
+
+Der Standalone Web Workspace zeigt **Compute** wenn sein Backend die erforderlichen Notebook- und Compute-APIs bereitstellt. Öffnen Sie den verbundenen Arbeitsbereich, überprüfen Sie, ob das Panel verfügbar ist, und verwenden Sie dann die vorhandenen SSH/Slurm-Konfigurationsschritte. Ein verfügbares Panel liefert keine Remote-Anmeldeinformationen oder bestätigt, dass ein Job ausgeführt werden kann.

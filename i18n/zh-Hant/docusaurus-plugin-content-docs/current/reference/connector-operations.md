@@ -2,7 +2,7 @@
 title: "Connector 操作引數參考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標為 **必填**，本頁與下載目錄依據 Open-Science **v1.0.0** 的結構定義。以巢狀的 `input.required` 為準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">完整登錄檔下載</ExampleDownload>提供巢狀 JSON、完整返回說明和準確 Agent 側呼叫示例。工具要求 `accessions`、`cids`、`rs_id` 等專用欄位時，不要統一改為 `id`。
+每次展開一個 Connector。必填項標爲 **必填**，本頁與下載目錄依據 Open-Science **v1.0.2** 的結構定義。以嵌套的 `input.required` 爲準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.2.json">完整註冊表下載</ExampleDownload>提供嵌套 JSON、完整返回說明和準確 Agent 側調用示例。工具要求 `accessions`、`cids`、`rs_id` 等專用字段時，不要統一改爲 `id`。
 
 ## 化學 {/* #family-1 */}
 
@@ -502,6 +502,31 @@ const result = await host.mcp("pubmed", "get_full_text_article", {"pmc_ids": ["P
 const result = await host.mcp("pubmed", "get_copyright_status", {"pmids": ["35891187", "34375400"]})
 ```
 
+### `get_pubtator_annotations`
+
+獲取已發表 PubMed 論文標題／摘要的 PubTator 3 BioC JSON 實體與關係標註。保留原文片段、偏移、規範化 ID 和關係；不接受原始文本提交。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `pmids` | array | **必填**; 最少項數: 1; 最多項數: 10 |
+
+```javascript
+const result = await host.mcp("pubmed", "get_pubtator_annotations", {"pmids": ["29355051"]})
+```
+
+### `search_pubtator`
+
+按文本、實體 ID 或關係查詢一頁 PubTator 3 文獻。自動提取關係用於研究線索，不是臨牀結論；需要回到原文覈對。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `query` | string | **必填**; 最短長度: 1; 最長長度: 1000 |
+| `page` | integer | 可選; 默認值: 1; 最小值: 1; 最大值: 10000 |
+
+```javascript
+const result = await host.mcp("pubmed", "search_pubtator", {"query": "relations:ANY|@CHEMICAL_Doxorubicin|@DISEASE_Neoplasms", "page": 1})
+```
+
 </ToolOperationGroup>
 
 ## 基因與本體 {/* #family-4 */}
@@ -740,6 +765,30 @@ const result = await host.mcp("genes", "list_enrichr_libraries", {"organism": "h
 const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
+### `get_hgnc_gene`
+
+按精確的人類基因符號查詢 HGNC 命名記錄，保留批准／撤回狀態、名稱、別名、交叉引用和修改日期。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `symbol` | string | **必填**; 最短長度: 1; 最長長度: 100 |
+
+```javascript
+const result = await host.mcp("genes", "get_hgnc_gene", {"symbol": "BRCA1"})
+```
+
+### `resolve_hgnc_alias`
+
+按精確的人類基因別名查詢 HGNC，返回所有匹配項，不自動挑選歧義名稱。已批准的符號使用 get_hgnc_gene 查詢。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `symbol` | string | **必填**; 最短長度: 1; 最長長度: 100 |
+
+```javascript
+const result = await host.mcp("genes", "resolve_hgnc_alias", {"symbol": "P53"})
+```
+
 </ToolOperationGroup>
 
 ## 基因組 {/* #family-5 */}
@@ -819,16 +868,17 @@ const result = await host.mcp("genomes", "ensembl_xrefs", {"stable_id": "ENSG000
 
 ### `ensembl_vep_variant` {/* #ensembl_vep_variant */}
 
-提供 `variant_id` 時優先按 ID 查詢，忽略 `region`、`allele` 和 `allele_orientation`，也不會用 `allele` 篩選 ID 結果。區域查詢使用該物種當前組裝，人類為 GRCh38；座標從 1 開始且兩端包含，插入時 `start = end + 1`。`allele_orientation` 預設為 `forward`，即使區域字尾為 `:-1`，等位基因也按參考正鏈解釋；設為 `region` 時，負鏈區域中的序列等位基因會先反向互補。負鏈區域的符號等位基因必須使用 `forward`。區域請求統一按正鏈傳送，`normalization` 保留原輸入與規範化結果；不轉換參考組裝，也不反轉座標。基因位於負鏈不意味著必須提供負鏈輸入。
+使用 Ensembl VEP 查詢變異後果。提供 hgvs_notation 時，不能同時傳入 variant_id、region、allele 或 allele_orientation；支持基因組、編碼和蛋白 HGVS，原樣傳遞參考序列版本。否則 variant_id 優先於 region/allele，allele 不篩選 ID 查詢結果。區域模式使用當前物種組裝，人類爲 GRCh38；座標爲 1-based 閉區間，插入爲 start=end+1。allele_orientation 默認 forward，即使區域帶 :-1，等位基因仍按參考正鏈解釋；region 模式會反向互補負鏈序列等位基因，負鏈符號等位基因應使用 forward。HGVS 查詢不提供組裝選擇或 liftover，也不驗證輸入參考版本：version_validation 爲 unchecked。matched 僅比較去掉版本後綴的參考身份，不表示版本驗證通過。保留 assembly_name、版本化 transcript_id、hgvsc/hgvsp 和 input_reference_annotations。max_consequences 限制逐轉錄本結果，檢查完整計數與截斷標誌；預測後果不是臨牀致病性結論。
 
-| 欄位 | 型別 | 要求與約束 |
+| 字段 | 類型 | 要求與限制 |
 | --- | --- | --- |
-| `variant_id` | 字串 | 可選 |
-| `region` | 字串 | 可選 |
-| `allele` | 字串 | 可選 |
-| `allele_orientation` | 字串 | 可選; 預設值：`forward`; 列舉：`forward`、`region` |
-| `species` | 字串 | 可選; 預設值： &quot;homo_sapiens&quot; |
-| `max_consequences` | 整數 | 可選; 預設值： 25 |
+| `variant_id` | string | 按查詢模式選擇；見上文互斥與鏈方向規則 |
+| `hgvs_notation` | string | 按查詢模式選擇；見上文互斥與鏈方向規則; 最短長度: 1 |
+| `region` | string | 按查詢模式選擇；見上文互斥與鏈方向規則 |
+| `allele` | string | 按查詢模式選擇；見上文互斥與鏈方向規則 |
+| `allele_orientation` | string | 按查詢模式選擇；見上文互斥與鏈方向規則; 默認值: "forward"; 允許值: ["forward", "region"] |
+| `species` | string | 可選; 默認值: "homo_sapiens" |
+| `max_consequences` | integer | 可選; 默認值: 25 |
 
 ```javascript
 const result = await host.mcp("genomes", "ensembl_vep_variant", {"variant_id": "rs7412", "max_consequences": 25})
@@ -1492,6 +1542,18 @@ const result = await host.mcp("clinical-trials", "analyze_endpoints", {"nct_id":
 const result = await host.mcp("clinical-trials", "search_by_eligibility", {"condition": "diabetes", "min_age": "65 Years", "sex": "FEMALE"})
 ```
 
+### `get_trial_results`
+
+按 NCT 標識符讀取已經公佈的試驗結果。接受大小寫不同的 NCT 或八位數字；保留結局測量、分組人數和分母、單位、統計分析、受試者流程、基線特徵、不良事件及報告限制。嵌套字段保留官方 API 命名和層級。groupId/groupIds 只能與同一模塊或結局中的分組關聯，不能直接與方案組或其他模塊拼接。缺失結果不等於零事件或無治療效果。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `nct_id` | string | **必填** |
+
+```javascript
+const result = await host.mcp("clinical-trials", "get_trial_results", {"nct_id": "NCT04280705"})
+```
+
 </ToolOperationGroup>
 
 ## 臨床基因組學 {/* #family-8 */}
@@ -1940,6 +2002,32 @@ const result = await host.mcp("clinical-genomics", "clinpgx_get_variant_frequenc
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
+```
+
+### `get_dgidb_gene_drugs`
+
+按基因名稱查詢 DGIdb 藥物—基因相互作用。每頁返回一個匹配記錄，保留來源、版本、許可、相互作用類型、屬性和文獻證據。名稱可能匹配多條記錄；使用 next_cursor 繼續，不能把相互作用記錄當成用藥建議。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `name` | string | **必填**; 最短長度: 1; 最長長度: 200 |
+| `after` | string | 可選; 最短長度: 1; 最長長度: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_gene_drugs", {"name": "BRAF"})
+```
+
+### `get_dgidb_drug_genes`
+
+按藥物名稱查詢 DGIdb 藥物—基因相互作用。每頁返回一個匹配記錄，保留來源、版本、許可、類型、屬性和文獻證據。名稱可能匹配多條記錄；使用 next_cursor 繼續。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `name` | string | **必填**; 最短長度: 1; 最長長度: 200 |
+| `after` | string | 可選; 最短長度: 1; 最長長度: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_drug_genes", {"name": "IMATINIB"})
 ```
 
 </ToolOperationGroup>
@@ -3524,6 +3612,32 @@ const result = await host.mcp("rna", "id_to_accession", {"family_id": "tRNA"})
 const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGAAGGCAGCAGGUGGAAACCUGCCA"})
 ```
 
+### `get_rnacentral_record`
+
+按 URS accession 讀取 RNAcentral API v1 序列記錄，保留序列、MD5、活動狀態、物種及 RNA 類型元數據。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `urs` | string | **必填** |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_record", {"urs": "URS0000000001"})
+```
+
+### `get_rnacentral_xrefs`
+
+將 RNAcentral URS accession 映射到一頁專家數據庫標識符。保留數據庫來源、分類、accession 版本、活動狀態和首次／最後出現日期；不會自動遍歷下一頁。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `urs` | string | **必填** |
+| `page` | integer | 可選; 默認值: 1; 最小值: 1; 最大值: 100000 |
+| `page_size` | integer | 可選; 默認值: 10; 最小值: 1; 最大值: 100 |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_xrefs", {"urs": "URS0000000001", "page": 1, "page_size": 10})
+```
+
 </ToolOperationGroup>
 
 ## 組學檔案 {/* #family-18 */}
@@ -4516,15 +4630,15 @@ const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-
 
 ### `gdc_list_cases` {/* #gdc_list_cases */}
 
-分頁列出 GDC 病例（樣本提供者）的專案和疾病後設資料，不讀取或下載受控資料。頁碼從 1 開始，最多 10000 頁；結合 total、total_relation 與 next_page 判斷範圍，達到分頁上限時縮小篩選條件。
+分頁列出 GDC 病例（樣本供體），包含項目、疾病、樣本和 aliquot 元數據。case_ids 指定病例 UUID；它們不是樣本標識符。結果不授予受控數據訪問權限，也不下載文件。
 
-| 欄位 | 型別 | 必填與約束 |
+| 字段 | 類型 | 要求與限制 |
 | --- | --- | --- |
 | `project_ids` | string / array | 可選 |
 | `submitter_ids` | string / array | 可選 |
 | `case_ids` | string / array | 可選 |
-| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
-| `page_size` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `page` | integer | 可選; 默認值: 1; 最小值: 1; 最大值: 10000 |
+| `page_size` | integer | 可選; 默認值: 20; 最小值: 1; 最大值: 100 |
 
 ```javascript
 const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BRCA"], "page_size": 5})
@@ -4532,21 +4646,24 @@ const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BR
 
 ### `gdc_search_files` {/* #gdc_search_files */}
 
-檢索 GDC 檔案清單，逐項標明 open 或 controlled。只返回後設資料，不下載檔案或授予訪問權限；受控檔案不提供可下載 URL，狀態為 requires_authorization。access_summary 只描述當前頁。project_id 是單個關聯專案摘要，不代表完整關聯集合。next_page 為空不一定表示全部匹配已取完。
+按項目、病例 UUID、樣本類型和分析流程檢索 GDC 文件。每個篩選項內部按 OR 合併，不同篩選項之間按 AND 合併。保留文件關聯的樣本、aliquot、分析流程及腫瘤／正常信息；同一病例的不同標本不可直接混合。每個文件標明 open 或 controlled；元數據可查詢不等於具備下載權限。
 
-| 欄位 | 型別 | 必填與約束 |
+| 字段 | 類型 | 要求與限制 |
 | --- | --- | --- |
 | `project_ids` | string / array | 可選 |
-| `access` | string | 可選; default: &quot;all&quot;; enum: &#91;&quot;all&quot;, &quot;open&quot;, &quot;controlled&quot;&#93; |
-| `data_category` | string | 可選; minLength: 1; maxLength: 200 |
-| `data_type` | string | 可選; minLength: 1; maxLength: 200 |
-| `data_format` | string | 可選; minLength: 1; maxLength: 50 |
-| `file_name` | string | 可選; minLength: 1; maxLength: 500 |
-| `page` | integer | 可選; default: 1; minimum: 1; maximum: 10000 |
-| `page_size` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `case_ids` | string / array | 可選 |
+| `sample_types` | string / array | 可選 |
+| `workflow_types` | string / array | 可選 |
+| `access` | string | 可選; 默認值: "all"; 允許值: ["all", "open", "controlled"] |
+| `data_category` | string | 可選; 最短長度: 1; 最長長度: 200 |
+| `data_type` | string | 可選; 最短長度: 1; 最長長度: 200 |
+| `data_format` | string | 可選; 最短長度: 1; 最長長度: 50 |
+| `file_name` | string | 可選; 最短長度: 1; 最長長度: 500 |
+| `page` | integer | 可選; 默認值: 1; 最小值: 1; 最大值: 10000 |
+| `page_size` | integer | 可選; 默認值: 20; 最小值: 1; 最大值: 100 |
 
 ```javascript
-const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "sample_types": "Primary Tumor", "workflow_types": "STAR - Counts", "access": "open", "page_size": 10})
 ```
 
 ### `gdc_get_file` {/* #gdc_get_file */}
@@ -5421,6 +5538,21 @@ const result = await host.mcp("pdc", "pdc_list_biospecimens", {"pdc_study_id":"P
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
+### `pdc_list_clinical`
+
+獲取 PDC 公開病例的人口學和診斷信息，以及可用樣本標識符、用於關聯 GDC 的具名外部引用。保留上游類型、空值和遮蔽標記。pdc_study_id 解析最新版本，study_id 爲具體版本的 UUID；二者只能提供一個。使用返回的 study_id 固定後續查詢版本。外部 ID 屬於其標註的來源，不能將 PDC 和 GDC 的 UUID 互換。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `pdc_study_id` | string | 二選一，不能同時提供; 最長長度: 9 |
+| `study_id` | string | 二選一，不能同時提供; 最長長度: 36 |
+| `offset` | integer | 可選; 默認值: 0; 最小值: 0; 最大值: 1000000 |
+| `limit` | integer | 可選; 默認值: 20; 最小值: 1; 最大值: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_clinical", {"pdc_study_id": "PDC000127", "limit": 10})
+```
+
 </ToolOperationGroup>
 
 ## ENCORI {/* #family-35 */}
@@ -5600,6 +5732,36 @@ const result = await host.mcp("encori", "list_bulk_datasets", {"assembly":"hg38"
 
 ```javascript
 const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
+```
+
+</ToolOperationGroup>
+
+## Orphadata {/* #family-36 */}
+
+<ToolOperationGroup>
+
+### `get_disease_genes`
+
+按 ORPHAcode 獲取 Orphadata 罕見病—基因關聯，保留關聯類型／狀態、驗證來源和基因數據庫映射。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `orphacode` | integer | **必填**; 最小值: 1; 最大值: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_genes", {"orphacode": 166024})
+```
+
+### `get_disease_phenotypes`
+
+按 ORPHAcode 獲取 Orphadata 的 HPO 表型及頻率類別，保留診斷標準與驗證元數據。頻率類別不是某個患者的患病概率。
+
+| 字段 | 類型 | 要求與限制 |
+| --- | --- | --- |
+| `orphacode` | integer | **必填**; 最小值: 1; 最大值: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_phenotypes", {"orphacode": 58})
 ```
 
 </ToolOperationGroup>

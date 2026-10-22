@@ -1,7 +1,7 @@
 ---
 title: "Sitzungen und Verzweigungen"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -180,3 +180,9 @@ Wählen Sie **View replay** aus dem Sitzungszeilenmenü, um die aufgezeichnete K
 ## Fahren Sie fort, nachdem Sie den Agenten gewechselt oder die Verbindung wieder hergestellt haben {/* #resume-selected-agent */}
 
 Bevor Sie den nächsten Zug senden, überprüfen Sie den ausgewählten Agent / Specialist und das Modell. v1.0.0 stellt ACP-Gespräche mit dem ausgewählten Agenten wieder her und repariert die Codex-Fortsetzung nach Specialist-Wechsel. Öffne die ursprüngliche konversation wieder und inspiziere die neuesten gespeicherten nachrichten und laufe den zustand nach der wiederverbindung. Senden Sie ein Schreiben nicht erneut, nur weil seine Antwort unterbrochen wurde; Bestätigen Sie, ob es zuerst abgeschlossen wurde. Das Ändern eines Agenten oder das Wiederherstellen einer Verbindung ist kein Beweis dafür, dass eine frühere fehlgeschlagene Analyse erfolgreich war.
+
+## Erkennen Sie eine Sitzung, die auf Sie wartet {/* #waiting-for-input */}
+
+Eine für Ihre Antwort oder Genehmigung angehaltene Sitzung zeigt einen Wartezustand zu Hause, in der Seitenleiste und im Gespräch. Öffnen Sie die ausstehende Karte, lesen Sie die angeforderte Entscheidung und senden Sie sie zur Fortsetzung. Das Neuladen der App beantwortet nicht von selbst die Frage oder genehmigt ein Tool. Doppelklicken Sie auf eine Sitzung in der Arbeitsbereichsseitenleiste, um den Editor zu öffnen.
+
+Lesen Sie für Diagnoseexporte die Zusammenfassung des Abschlusses: Ein Teilexport ist eine Warnung, kein vollständiges Diagnosepaket. Behalten Sie den spezifischen Fehler und überprüfen Sie die exportierten Dateien, bevor Sie sie teilen.

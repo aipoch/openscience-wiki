@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,18 +13,18 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v1.0.0は**359 操作で 35 のデータソース コネクタ**を含んでいます。 別のオフラインのMolecule Connectorは2つの操作を追加します。, フルレジストリを361に持って来る. Connector の下の名前は **Settings → Connectors** に一致します; それぞれの家族が複数のデータベースを公開することができます。 ソースのリストは、ウェブサイトのすべての機能を意味しません。
+Open-Science v1.0.2 には **36 のデータソース Connector、371 の操作**が含まれます。オフラインの Molecule Connector の 2 操作を加えると、全体で 373 操作です。以下の Connector 名は **Settings → Connectors**に対応します。1 つの項目から複数のデータベースを利用できる場合があります。掲載されているデータソースの Web サイト上の全機能が使えるわけではありません。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | パブケム、チェビ、レア、ビンディングDBによる小分子化学。  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 論文、著者、引用、DOIの更新とデータセット/ソフトウェアレコード。 |
-| PubMed · `pubmed` | PubMed, PMC, Europe PMC | 7 | NCBI Eユーティリティ、PMC IDコンバーター、ヨーロッパPMCによる生物医学文献 — 検索、メタデータ、関連記事、引用ルックアップ、ID変換、完全なテキストと著作権。  |
-| 遺伝子・オントロジー・ `genes` | MyGene、UniProt、OLS、QuickGO、Reactome、g:Profiler、Enrichr | 15 | 遺伝子/タンパク質識別子、UniProtシーケンス検出、GOおよびReactomeアノテーション、およびg:ProfilerおよびEnrichr遺伝子セットの濃縮。 |
+| PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | NCBI E-utilities、PMC ID Converter、Europe PMC を通じて生物医学文献を検索し、メタデータ、関連論文、引用、ID 変換、全文と著作権情報を取得します。  |
+| Genes &amp; Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr, HGNC | 17 | 遺伝子・タンパク質の識別子、UniProt 配列検索、GO・Reactome 注釈、g:Profiler・Enrichr の遺伝子セット濃縮解析。 |
 | ゲノム・ `genomes` | 組み立て、UCSC、NCBI、BLAST、Clustalオメガ | 22 | ゲノムのアノテーション、均質学および順序; NCBIタムン/アセンブリ/シーケンスアイデンティティ; BLAST検索とClustal Omegaの複数のシーケンスアライメント。 人口固有のLDおよびプロキシの変形。 |
 | バリアント・ `variants` | gnomAD、ClinVar、dbSNP、MaveDB | 22 | 人口の頻度、臨床記録および試金固有の機能スコア、マッピングおよび実験。 |
-| Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 6 | 臨床トライアル.gov — 検索、詳細、スポンサー、投資家、エンドポイント、および適格性。  |
-| 臨床ゲノム・ `clinical-genomics` | ClinGen、CIViC、オープンターゲット、ClinPGx | 30 | 臨床ゲノムの知識ベース:ClinGenの治験、CIViCの臨床証拠およびオープン ターゲット プラットフォーム、およびClinPGxの薬学の記録。 |
+| Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | 臨床試験の検索、プロトコル、公開済み評価項目の測定値、群別の分母、統計解析、有害事象。 |
+| Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx, DGIdb | 32 | ClinGen のキュレーション、CIViC の臨床エビデンス、Open Targets Platform、ClinPGx の薬理ゲノム情報。 |
 | 構造と相互作用 · `structures` | PDB、AlphaFold、EMDB、複雑なポータル、IntAct | 17 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
 | ChEMBL・ `chembl` | チャムBL | 7 | CEMBL REST API による生体活性化合物、薬物、標的、生体活性およびメカニズム。  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | BioRxiv/medRxiv のプリプリント — 日付/カテゴリ、DOI によるメタデータ、ジャーナル公開リンク、ファンダリスト、およびプラットフォームの統計による検索。  |
@@ -33,7 +33,7 @@ Open-Science v1.0.0は**359 操作で 35 のデータソース コネクタ**を
 | エクスプレス・ `expression` | GTEx、Bgeeの特長 | 16 | 人間のGTExのティッシュの表現およびeQTL; Bgee のクロススペックのベースライン式。 |
 | タンパク質アノテーション・ `protein-annotation` | InterPro、Pfam、ヒトプロテインアトラス、ストリング | 14 | タンパク質ドメインアーキテクチャ、家族/クランのメンバーシップ、InterPro/Pfam、ヒューマンプロテインアトラス、STRINGによる表現アトラスと相互作用ネットワーク、ネットワークの相互作用の豊かさを含みます。 |
 | がんモデル・ `cancer-models` | cBioPortal(バイオポータル) | 10 | 研究、変異、コピー番号、サンプル、患者、臨床属性および分子プロファイル式。 |
-| RNA · `rna` | Rfam | 9 | Rfam による RNA の家族データ(メタデータ、アライメント、モデル、構造)を非コーディング。  |
+| RNA · `rna` | Rfam, RNAcentral | 11 | Rfam の非コード RNA ファミリー情報（メタデータ、アラインメント、モデル、構造）。  |
 | Omics アーカイブズ・ `omics-archives` | ArrayExpress、GEO、MetaboLights、Metabolomics Workbench、MGnify、PRIDE、ENA | 28 | Omics はメタデータとファイルインベントリを学習/実行します。 メタボロミクスのサンプル、要因、分析および化合物レコード。 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | セルックスジーン・セルギドによる細胞型アイデンティティ、マーカー遺伝子、ソースデータセット、組織。  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 遺伝子調整機能ゲノム — ENCODE実験/biosamples/files、JASPAR TF結合プロファイル、UniBind ChIP-seq TFBS。  |
@@ -50,8 +50,9 @@ Open-Science v1.0.0は**359 操作で 35 のデータソース コネクタ**を
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | セル・ラインの名前と同義語を見つけ、アクセスアイデンティティと品質アノテーションを検査します。 |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 生物と遺伝子対フェノタイプと遺伝子の関連と、証拠を支持する。 |
 | IEDB · `iedb` | 免疫エピトープデータベース | 8 | エピトープ、抗原、Tセル、B細胞、MHCアッセイ、TCR/BCRの証拠、およびソース出版物。 |
-| PDC · `pdc` | NCI プロテオミック・データ・コモンズ | 4 | がんプロテオミクス研究版、検体協会および量的ファイルメタデータ; ダウンロードなし。 |
+| PDC · `pdc` | NCI Proteomic Data Commons | 5 | がんプロテオミクス研究のバージョン、検体の対応関係、公開症例メタデータ、ファイル一覧。ファイルのダウンロードは行いません。 |
 | ENCORI · `encori` | ENCORI | 10 | miRNA/RBPターゲット、RNAインタラクション、ceRNA、モチーフ、バインディングサイト、参照テーブル、バルクファイル。 |
+| Orphadata · `orphadata` | Orphadata, Orphanet | 2 | 希少疾患と遺伝子の関連、HPO 表現型の頻度。既定では無効です。 |
 
 [科学ビューア](viewers.md)でオフラインのモレキュラーツールがカバーされています。 それぞれのデータソースで露出した正確な操作については、[Connectorの操作の参照](../reference/connector-operations.md) を使用します。
 
@@ -254,7 +255,7 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログソース: [カタログ.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/catalog.ts)、[レジストリ.ts](https://github.com/aipoch/open-science/blob/v1.0.0/src/main/connectors/registry.ts)。
+カタログの出典： [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/registry.ts).
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 
@@ -330,7 +331,7 @@ Mainで**IEDB**を有効にし、少なくとも1つの生物学的または証�
 
 ## サンプル、式およびアセンブリコンテキストを予約する {/* #scientific-context */}
 
-| クエリ | v1.0.0の解釈 |
+| クエリ | v1.0.2 での解釈 |
 | --- | --- |
 | `arrayexpress_get_experiment_samples` | `samples` パスでソートされた最初のSDRFファイルからリレーション行が含まれています。 `n_rows_total` / `n_rows_returned` カウント行; `n_samples` / `n_samples_returned` 異なる識別子を数える, 好み **サンプル名**, それから **ソース名**に進んでください。 彼らは独立した生物学的複製数ではありません。 識別子を欠くと、サンプルカウントが生成できます。 `null`に進んでください。 空のファイルまたは `no_sdrf` 実験にサンプルがないという反応は確立しません。 |
 | `metabolights_get_studies` とりあえず `include_samples` | 返された使用 `headers` 輸出するときの順序 `sample_table`に進んでください。 繰り返しカラム名は一意 `#2`, `#3`,... 元の名前を上書きせずに接尾辞. すべての列を保持します。 短い行の空の文字列はメタデータが欠落しています。 チェックイン `rows_truncated`. |
@@ -342,4 +343,27 @@ Mainで**IEDB**を有効にし、少なくとも1つの生物学的または証�
 
 ### OpenAlex 認証プロンプト {/* #openalex-prompts */}
 
-v1.0.0 は、リピートされたプロンプトを回避する、現在のセッションの OpenAlex クレデンシャル プロンプトの低下を記憶します。 その後、そのソースが必要な場合は、**Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** で明示的に設定し、意図したクエリを再試行します。 プロンプトの決定は、キーやアクセスやクォータを保証するものではありません。
+v1.0.2 は、現在のセッションで拒否した OpenAlex 認証情報の要求を記憶し、同じ要求を繰り返しません。後から利用する場合は、次の設定画面で明示的に設定してください： **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** 設定後、目的のクエリを再実行します。要求を拒否してもキーは設定されず、アクセスや利用枠も保証されません。
+
+## 新しいデータソースを接続し、結果を正しく扱う {/* #new-source-access */}
+
+設定画面 **Settings → Connectors**で以下の項目を探し、利用を許可します。対象は **Main** または利用する Specialist です。HGNC、PubTator 3、DGIdb、RNAcentral は既存項目に含まれるツールです。 **Orphadata** は独立した項目で、既定では無効です。これらの新規ツールは公開エンドポイントを利用し、専用 API キーを必要としません。同じ項目の他のツールは別の認証要件を持つ場合があります。
+
+| データソース | 設定項目 | 要求内容と確認点 |
+| --- | --- | --- |
+| HGNC | Genes &amp; Ontologies | 承認済みのヒト遺伝子記号を検索するか、別名を完全一致で解決します。候補が複数ある場合は全件を保持し、承認済み・撤回済みの状態を確認してから遺伝子を選びます。 |
+| PubTator 3 | PubMed | PMID から注釈を取得するか、エンティティや関係を検索します。取得対象はタイトルと抄録の注釈です。手元の生テキストを送信する機能ではなく、主張が全文で裏付けられたことも示しません。 |
+| DGIdb | Clinical Genomics | 遺伝子名または薬剤名で検索し、出典と文献情報を保持して返されたカーソルをたどります。薬剤と遺伝子の相互作用は、治療の推奨ではありません。 |
+| RNAcentral | RNA | URS アクセッションを検索し、専門データベースとの相互参照をページごとに取得します。分類群、配列の MD5、アクセッションのバージョンを保持してください。 |
+| Orphadata | Orphadata | まず利用を有効にし、ORPHAcode を指定して遺伝子または HPO 表現型を取得します。関連の種類と頻度区分を保持してください。頻度区分は個々の患者の確率ではありません。 |
+
+呼び出しの詳細： [HGNC](../reference/connector-operations.md#get_hgnc_gene), [PubTator](../reference/connector-operations.md#get_pubtator_annotations), [DGIdb](../reference/connector-operations.md#get_dgidb_gene_drugs), [RNAcentral](../reference/connector-operations.md#get_rnacentral_record), [Orphadata](../reference/connector-operations.md#family-36).
+
+## がんメタデータの関連付けとバリアント注釈 {/* #clinical-context */}
+
+- **PDC:** 公開されている人口統計・診断フィールドを次の操作で取得します： `pdc_list_clinical`。最新バージョンには `pdc_study_id` 、固定バージョンには `study_id` を使います。欠損・秘匿値と外部参照の所属先を保持してください。PDC と GDC の UUID は互換ではありません。
+- **GDC:** ファイルの絞り込みには `case_ids`, `sample_types` および `workflow_types`を使います。症例単位で全ファイルを混ぜず、各ファイルの検体、分注試料、腫瘍・正常組織のワークフローとの対応を保持してください。同じフィールド内は OR、異なるフィールド間は AND です。メタデータへのアクセスは、制限付きファイルのダウンロード権限を与えません。
+- **Ensembl VEP:** 単独で指定する引数は `hgvs_notation` です。併用できない引数は `variant_id`, `region`, `allele` または `allele_orientation`です。返されたアセンブリ、転写産物のバージョン、件数の切り詰めフラグを保持してください。入力の参照バージョンはそのまま送信され、検証されません。 `matched` もバージョンの一致を証明しません。これは影響の注釈であり、臨床的解釈やゲノム座標変換ではありません。
+- **Clinical Trials:** 操作 `get_trial_results` で公開済みの測定値、分母、統計解析、有害事象を取得します。群 ID は同じ結果モジュール・評価項目の中でのみ対応付けます。欠損はゼロ件や治療効果がないことを意味しません。
+
+参照： [PDC のフィールド](../reference/connector-operations.md#pdc_list_clinical), [GDC のフィルター](../reference/connector-operations.md#gdc_search_files), [VEP のモード](../reference/connector-operations.md#ensembl_vep_variant) および [公開済み試験結果](../reference/connector-operations.md#get_trial_results).

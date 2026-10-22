@@ -1,7 +1,7 @@
 ---
 title: "CLI 및 구조 출력"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 터미널에서 설정 {/* #terminal-setup */}
 
-v1.0.0의 경우 **Settings → General → Command line tool → Install command**을 통해 데스크톱 공급 발사기를 설치하고 새로운 터미널을 열고 `open-science --help`를 확인하십시오. 이 릴리스에는 독립 CLI 패키지가 없습니다. 아래 아카이브 추출 단계는 [v0.37.2](https://github.com/aipoch/open-science/releases/tag/v0.37.2)과 같은 하나를 제공하는 버전에만 적용; 그들은 1.0 설치 또는 데스크탑 / 백엔드 버전을 혼합하는 권한이 없습니다.
+데스크톱 실행기를 설치하고 v1.0.2 독립 아카이브를 사용하거나 따라 [npm 설치 단계](../guides/installation.md#npm-cli)· 독립 아카이브 번들 노드, 백엔드 및 웹 UI; 아래의 추출 단계는 해당 아카이브에 적용됩니다.
 
 1. macOS 또는 Linux arm64/x64 또는 Windows x64를 선택하여 호스트와 일치합니다.
 2. 완전한 아카이브를 writable 위치로 추출하십시오. 발사기, `backend` 및 `node-runtime`를 함께 유지하십시오; 시작자만 복사하면 스타트가 시작됩니다.
@@ -215,9 +215,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL은 `run.progress` 및 `stream.resync-required`을 포함 할 수 있습니다. 재전송 후 재전송이 불가능한 경우, 재전송이 실행 상태; 이벤트 스트림은 영구적 인 역사를 가정하지 마십시오. Lifecycle 명령은 [Headless 서비스](./server.md)에 설명된 별도의 플래그 제한이 있습니다.
 
-[CLI 구현](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/cli.mjs), [upstream 명령 가이드](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
+[CLI 구현](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/cli.mjs), [upstream 명령 가이드](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
 
-기술적인 참고: [CLI 계약](https://github.com/aipoch/open-science/blob/v1.0.0/packages/open-science/CLI.md).
+기술적인 참고: [CLI 계약](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
 
 ## 무력한 실행 {/* #unattended-runs */}
 
@@ -234,3 +234,14 @@ open-science run --project "Sequence and PDF Research" \
 ## Windows 발사기 경로 {/* #windows-launcher-paths */}
 
 v0.37.1는 비 ASCII 문자를 포함하는 데스크탑 발사기 경로를 수정합니다. 업데이트 후 새로운 터미널을 열고 `Get-Command open-science` 및 `open-science --help`을 확인하십시오. 명령이 아직 이전 설치로 해결되면 **Settings → General**에서 표시된 경로를 사용하십시오. 전체 독립 아카이브 디렉토리 intact를 유지하십시오. 성공적인 도움말 명령은 모델 readiness를 설정하지 않습니다; 다음 `doctor --json`을 확인하십시오.
+
+## 서비스를 시작하지 않고 CLI 정보 확인 {/* #local-information */}
+
+```bash
+open-science version --json
+open-science help run
+open-science paths --json
+open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
+```
+
+이 명령들은 백엔드가 실행 중이 아니어도 작동합니다. `version` 은 연결된 서비스가 아닌 호출한 설치본의 버전을 표시합니다. `paths` 이 표시하는 값은 `cliPath`, `nodePath`, `startupConfigRoot` 및 `discoveryConfigRoots`이며 실행 중인 서비스나 연구 데이터 폴더를 식별하지 않습니다. 명시적 프로필은 시작·검색 위치만 선택하며 생성하지 않습니다. 경로에는 로컬 사용자 이름이 포함될 수 있으므로 공유 전에 검토하세요.

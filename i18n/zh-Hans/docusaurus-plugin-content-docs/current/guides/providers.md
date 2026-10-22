@@ -1,7 +1,7 @@
 ---
 title: "提供商与本地模型配置"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-22'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -229,7 +229,7 @@ v0.33.0 目录加入 **Xiaomi MiMo v2.6**、**xAI Grok 4.7**，并更新 **OpenC
 
 v0.33.1 的提供商目录新增 **GPT-6** 和 **Claude Opus 5.5**。打开对应提供商的模型列表，选择当前框架与账户支持的条目。出现在目录中不代表账户已获得权限，也不会自动切换已保存的 Main 模型。更换后先验证连接并发送一个小请求，再用于研究。
 
-v0.34.0 新增 **MiniMax M3.1 Flash Preview** 和 **Claude Sonnet 5.5**。在各自 Provider 的模型列表中选择，并确认账号访问权限及当前 Agent 的兼容性；这不会自动改变已保存的 Main 模型。
+**MiniMax M3.1 Flash** 已为正式多模态模型，支持 1M-token 上下文，并在两个 MiniMax 区域提供。选择签发密钥的区域、模型并测试保存的配置；v1.0.2 修复了它通过 Codex 使用内置连接时的问题。模型目录中仍保留 **Claude Sonnet 5.5**。选择目录条目不会自动替换已保存的主模型。
 
 v0.34.1 在 Codex 模型目录中增加 **gpt-6.1-sol**。在模型选择器中主动选择后，先发送一个小请求确认账号可用；升级不会自动替换已保存的主模型。
 
@@ -246,3 +246,7 @@ v0.35.0 扩展 **OpenCode Zen** 模型目录，并补充 Jev 分类支持。按�
 ![官方提供商表单中的 Requesty、必填密钥及支持的模型](/img/open-science/v0351/requesty-form.webp)
 
 Requesty 使用 `https://router.requesty.ai`；实际可用的协议和模型取决于当前 Agent。访问权限和额度由 Requesty 账号决定。添加提供商不会自动替换已保存的 Main 模型。v0.35.1 同时更新了 OpenRouter 目录，应以当前选择器为准，不要照抄旧截图中的模型 ID。
+
+## 恢复模型连接 {/* #credential-recovery */}
+
+凭据过期或无效时，使用提示中的恢复入口，更新对应提供商并测试，再返回同一会话。只有恢复确实需要你处理时，Composer 才会被阻塞。保留草稿，重发前检查上一轮是否仍在运行。Codex 订阅模型的上下文用量按所选模型报告的容量显示，可能与旧版估算不同。

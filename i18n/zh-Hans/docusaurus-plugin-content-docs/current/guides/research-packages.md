@@ -2,7 +2,7 @@
 title: .science 研究包
 description: 将会话、文件和证据一起导出，再导入项目查看与交接研究记录。
 last_update:
-  date: '2026-10-12'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -127,3 +127,16 @@ Keep everything in English and return links to both new files.
 ## 导入新项目 {/* #new-project-import-recovery */}
 
 旧版本接纳研究包到新项目目录时失败，可更新至 v0.37.0 或更高版本，先检查目标项目是否已存在，再使用导入对话框的恢复操作，避免重复导入。完成后核对会话与文件。这项修复不会让导入会话变成可写；继续分析仍需使用 **Fork**。
+
+## 从网页导入研究包 {/* #browser-import */}
+
+浏览器和已安装的桌面应用需要位于**同一台电脑**。网页必须提供 Open-Science 研究包传输功能；普通下载链接本身不具备这个功能。
+
+1. 在可信的研究包页面选择 Open-Science 导入／打开入口，允许浏览器打开桌面应用。如果浏览器请求本地网络访问，只授权给你打算使用的网站。
+2. 应用显示 **Receiving package…** 和 **Validating package…** 时，保持网页打开。网页显示已接收，只表示文件已送达应用。
+3. 在应用中核对研究包，选择目标项目并确认导入。等待完成后打开导入的会话。
+4. 检查文件与证据。研究记录仍为只读；需要继续研究时选择 **Fork to continue**。修改标题不会让导入的研究记录变为可写。
+
+如果网页传输不可用或被阻止，先下载 `.science` 文件，再使用现有导入入口；也可以把它拖到项目首页。向 Composer 拖入普通文件夹不会导入研究包。导入报告部分失败时，先检查目标项目中是否已存在该会话，再决定是否重试，不要为重复传输另建项目。
+
+网站开发者可参考[浏览器导入 SDK 指南](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md)：需要 HTTPS（或本机回环开发地址）、同机桌面应用，以及非空且不超过 2 GiB 的研究包。本地接收不替代用户最后的导入确认。

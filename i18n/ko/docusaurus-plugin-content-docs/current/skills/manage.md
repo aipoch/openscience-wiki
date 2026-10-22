@@ -1,7 +1,7 @@
 ---
 title: "Skills 관리 및 검증"
 last_update:
-  date: '2026-09-15'
+  date: '2026-10-22'
 ---
 
 # Skills 관리 및 검증 {/* #manage-and-validate-skills */}
@@ -113,3 +113,7 @@ Markdown 업로드는 YAML `name` 및 `description`가 필요합니다. ZIP/`.sk
 | GitHub/authentication 오류 | 실제 HTTP 상태 및 위생 소스 URL을 유지; 은 은 [문제 해결](../guides/troubleshooting.md). |
 
 구현 참조 : [기술업로드View.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillUploadView.tsx), [기술BulkManageView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillBulkManageView.tsx), [기술ImportView.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/SkillImportView.tsx).
+
+## Skill을 안전하게 가져오고 편집하기 {/* #import-batches */}
+
+많은 설치 Skill은 일괄 단위로 가져옵니다. 최종 결과와 가져온 목록을 확인한 뒤 재시도하세요. 예약 접두사가 있는 외부 Skill에는 안전한 로컬 이름이 부여되므로 로컬 목록에 표시된 이름을 사용합니다. 본문을 저장한 뒤 별도로 편집한 이름과 설명이 유지되는지 확인하세요. 현재 메시지의 첨부 이미지도 Skill 선택에 활용되므로 실행 전에 선택된 Skill의 범위를 확인하세요.

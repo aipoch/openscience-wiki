@@ -1,7 +1,7 @@
 ---
 title: "Notebook 與執行證據"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-22'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -283,3 +283,7 @@ Runtimes 的包清單描述已安裝環境，Provenance 描述某個檔案所捕
 預設執行時已就緒時，普通受支援操作不再重複要求設定授權。風險程式碼決定或額外訪問請求仍是獨立步驟，回應前應檢查操作及範圍。
 
 在結果的 **Provenance → Environment** 中，若環境混用 Conda 和 pip，保留各包來源、版本與報告的構建字串。v0.37.0 改進混合環境與 micromamba 資訊的記錄。核對捕獲環境是否符合目標執行時，需要執行證據時再做[重跑驗證](reproducibility.md)。軟體包清單本身不能保證數值結果一致。
+
+## 檢查連續分析的依賴記錄 {/* #chained-analysis-lineage */}
+
+在 Python 或 R 中讀取 CSV、轉換數據並導出新文件後，打開輸出的溯源信息，檢查記錄的輸入版本和執行依賴，再選擇要驗證的文件版本。依賴記錄更準確，本身不等於重新運行計算或確認分析的科學有效性；後續按[產物驗證](reproducibility.md)操作。

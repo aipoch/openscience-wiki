@@ -1,7 +1,7 @@
 ---
 title: "無介面服務與瀏覽器訪問"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 # 無介面服務與瀏覽器訪問 {/* #无界面服务与浏览器访问 */}
@@ -115,3 +115,7 @@ v1.0.0 已移除 CLI 的應用更新命令；不要再執行 `open-science updat
 升級後確認版本和原資料，執行 `status --json` 與 `doctor --json` 核對服務及就緒狀態。保留原憑據儲存方式。[1.x 相容範圍](../guides/installation.md#version-compatibility)不保證混用不同版本的桌面與後端。
 
 參見[官方執行說明](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md)、[CLI](cli.md)與 [Task SDK](api.md)。
+
+## 網頁工作區中的 Compute {/* #web-compute */}
+
+獨立網頁工作區的後端具備所需 Notebook 和 Compute API 時，會開放 **Compute**。打開已連接的工作區，確認面板可用，再按原有 SSH／Slurm 配置步驟操作。面板可用不代表已提供遠程憑據，也不證明作業能夠執行。

@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-22'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 Connector을 확장합니다. 필수 필드는 **필수** 표시; 이 참조 및 다운로드는 Open-Science **v1.0.0** 스키마를 사용합니다. 배열된 `input.required` 명부는 권위입니다; 레거시 최고 수준의 `required` 목록은 absent 될 수 있습니다. JSON 스키마, 전체 반품 설명 및 에이전트 사이드 호출 예제를 배열 <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.0.json">완전한 다운로드 레지스트리</ExampleDownload>을 상담하십시오. 도구가 `id`, `accessions`, `cids` 또는 다른 네임스페이스 별 필드를 기대할 때 일반 `rs_id`을 통과하지 마십시오.
+한 번에 1개의 연결관을 확장하십시오. 필수 필드가 표시됩니다. **\*필수**; 이 참고 및 다운로드 Open-Science 사용 **v1.0.2** 스키마. 한국어 `input.required` 목록은 권한이 있습니다; Legacy top-level `required` 목록은 absent 일 수 있습니다. 견적 요청 <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.2.json">완전한 다운로드 가능한 registry</ExampleDownload> 배열된 JSON schemas를 위해, 가득 차있는 반환 묘사 및 대리인 측 호출 예. 일반을 통과하지 마십시오 `id` 도구가 기대할 때 `accessions`, `cids`, `rs_id` 또는 다른 namespace-specific 필드.
 
 ## 뚱 베어 {/* #family-1 */}
 
@@ -502,6 +502,31 @@ PubMed 저작권정보, PMC ID 변환기 (PMID ->)를 결합하여 PMID의 저�
 const result = await host.mcp("pubmed", "get_copyright_status", {"pmids": ["35891187", "34375400"]})
 ```
 
+### `get_pubtator_annotations`
+
+공개된 PubMed 논문의 제목·초록에서 PubTator 3 BioC JSON 개체·관계 주석을 가져옵니다. 구절, 오프셋, 정규화 ID 및 관계를 유지합니다. 원시 텍스트를 제출하지 않습니다.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `pmids` | array | **\*필수**; minItems: 1; maxItems: 10 |
+
+```javascript
+const result = await host.mcp("pubmed", "get_pubtator_annotations", {"pmids": ["29355051"]})
+```
+
+### `search_pubtator`
+
+텍스트, 개체 ID 또는 관계로 PubTator 3 문헌 한 페이지를 검색합니다(예: relations:ANY&#124;@CHEMICAL\_Doxorubicin&#124;@DISEASE\_Neoplasms). 자동 추출 관계는 연구 근거이며 임상 결론이 아닙니다.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `query` | string | **\*필수**; minLength: 1; maxLength: 1000 |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 10000 |
+
+```javascript
+const result = await host.mcp("pubmed", "search_pubtator", {"query": "relations:ANY|@CHEMICAL_Doxorubicin|@DISEASE_Neoplasms", "page": 1})
+```
+
 </ToolOperationGroup>
 
 ## 유전자 & 관련 기사 {/* #family-4 */}
@@ -740,6 +765,30 @@ Enrichr은 Enrichr 라이브러리에 의해 허용된 유전자 기호 또는 �
 const result = await host.mcp("genes", "enrich_gene_set_enrichr", {"genes": ["TP53", "EGFR", "BRCA1"], "libraries": ["ChEA_2022", "LINCS_L1000_Chem_Pert_up"]})
 ```
 
+### `get_hgnc_gene`
+
+정확한 HGNC 기호로 인간 유전자 명명 정보를 조회합니다. 승인·철회 상태, 이름, 별칭, 교차 참조 및 수정 날짜를 유지합니다.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `symbol` | string | **\*필수**; minLength: 1; maxLength: 100 |
+
+```javascript
+const result = await host.mcp("genes", "get_hgnc_gene", {"symbol": "BRCA1"})
+```
+
+### `resolve_hgnc_alias`
+
+HGNC에서 정확히 일치하는 인간 유전자 별칭을 찾습니다. 일치하는 모든 유전자를 반환하며 모호한 후보 중 하나를 임의로 선택하지 않습니다. 승인된 기호에는 get\_hgnc\_gene을 사용하세요.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `symbol` | string | **\*필수**; minLength: 1; maxLength: 100 |
+
+```javascript
+const result = await host.mcp("genes", "resolve_hgnc_alias", {"symbol": "P53"})
+```
+
 </ToolOperationGroup>
 
 ## 한국어 (Korean) {/* #family-5 */}
@@ -819,15 +868,16 @@ const result = await host.mcp("genomes", "ensembl_xrefs", {"stable_id": "ENSG000
 
 ### `ensembl_vep_variant` {/* #ensembl_vep_variant */}
 
-`variant_id`를 지정하면 ID 조회가 우선하며 `region`, `allele`, `allele_orientation`은 무시됩니다. `allele`로 ID 조회 결과를 필터링할 수 없습니다. 영역 조회는 해당 종의 현재 참조 유전체 조립본(사람은 GRCh38)을 사용합니다. 좌표는 1부터 시작하며 양 끝을 포함하고, 삽입은 `start = end + 1`로 지정합니다. `allele_orientation`의 기본값은 `forward`이며, 영역에 `:-1` 접미사가 있어도 대립유전자를 참조 유전체의 정방향 가닥으로 해석합니다. `region`을 선택한 역방향 영역의 서열 대립유전자는 요청 전에 역상보 서열로 변환됩니다. 역방향 영역에서 기호 대립유전자를 쓰려면 `forward`가 필요합니다. 모든 영역 요청은 정방향 가닥으로 전송되고 `normalization`에 원래 입력과 변환된 입력이 기록됩니다. 참조 조립본 간 좌표 변환이나 좌표 반전은 수행하지 않습니다. 유전자가 역방향 가닥에 있어도 역방향 입력이 필요한 것은 아닙니다.
+Ensembl VEP로 변이 영향을 주석 처리하고 전사체별 결과를 심각도순으로 요약합니다. hgvs\_notation이 없으면 variant\_id가 우선하며 region, allele, allele\_orientation은 무시됩니다. HGVS는 이 인수들과 함께 사용할 수 없습니다. hgvs\_notation은 게놈·코딩·단백질 HGVS를 받습니다(예: ENST00000366667:c.803C&gt;T). 참조 버전은 그대로 전달하지만 검증하지 않습니다. rest.ensembl.org의 해당 종 현재 어셈블리를 사용하며 어셈블리 선택이나 좌표 변환은 하지 않습니다. assembly\_name으로 실제 어셈블리를 확인하세요. HGVS 요청은 hgvs=1과 transcript\_version=1을 사용하여 버전이 있는 transcript\_id와 가능한 hgvsc/hgvsp를 보존합니다. version\_validation은 unchecked입니다. input\_reference\_annotations는 max\_consequences와 무관하게 상위 서비스의 전체 전사체 목록에서 보존됩니다. matched는 버전 접미사를 제외한 참조 ID 일치이며 구문 검증이나 버전 일치를 뜻하지 않습니다. unknown은 비교할 주석이 없다는 뜻입니다. HGVS 대립유전자는 음성 가닥을 포함한 상위 서비스 방향을 유지하며 영역 정규화를 하지 않습니다. allele은 ID 조회 결과를 필터링하지 않습니다. region은 현재 참조 어셈블리의 1부터 시작하는 양 끝 포함 좌표입니다(인간 GRCh38, 예: 7:140753336-140753336). SNV는 start=end, 삽입은 start=end+1입니다. :1/:-1 가닥 표기는 허용되지만 좌표는 항상 참조 게놈 기준입니다. allele은 A/C/G/T 서열, 결실의 -, 또는 INS/DUP/DEL/TDUP를 받습니다. 기본 allele\_orientation=forward는 참조 정방향으로 해석합니다. region을 선택하면 영역 가닥으로 해석하고 음성 가닥 서열을 역상보 변환합니다. 음성 영역의 기호 대립유전자에는 forward가 필요합니다. 영역 요청과 결과는 항상 정방향입니다. 음성 가닥 유전자라고 음성 입력이 필요한 것은 아닙니다. species 기본값은 homo\_sapiens입니다. max\_consequences 기본값은 25이며 HIGH&gt;MODERATE&gt;LOW&gt;MODIFIER 순서로 보존합니다. n\_transcript\_consequences는 전체 행 수, transcript\_consequences\_truncated는 잘림 여부입니다. 결과는 좌표, 대립유전자, 유전자, 전사체·조절영역·모티프 영향과 중첩 변이를 포함합니다. variant\_allele을 보존합니다. n\_transcripts는 유전자별 비어 있지 않은 고유 전사체 ID 수이며 worst\_impact는 상위 서비스가 반환한 모든 대립유전자를 대상으로 합니다. HGVS 구문 오류와 알 수 없는 rsID는 상위 서비스의 원인을 보존해 보고합니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
-| `variant_id` | 문자열 | 옵션 정보 |
-| `region` | 문자열 | 옵션 정보 |
-| `allele` | 문자열 | 옵션 정보 |
-| `allele_orientation` | 문자열 | 선택 사항; 기본 : `forward`; 제품 이름: `forward`, `region` |
-| `species` | 문자열 | 선택 사항; 기본: "homo_sapiens" |
+| `variant_id` | string | mode-dependent; see exclusion and strand rules above |
+| `hgvs_notation` | string | mode-dependent; see exclusion and strand rules above; minLength: 1 |
+| `region` | string | mode-dependent; see exclusion and strand rules above |
+| `allele` | string | mode-dependent; see exclusion and strand rules above |
+| `allele_orientation` | string | mode-dependent; see exclusion and strand rules above; default: "forward"; enum: \["forward", "region"\] |
+| `species` | string | optional; default: "homo\_sapiens" |
 | `max_consequences` | 정수 | 선택 사항; 기본: 25 |
 
 ```javascript
@@ -1490,6 +1540,18 @@ const result = await host.mcp("clinical-trials", "analyze_endpoints", {"nct_id":
 const result = await host.mcp("clinical-trials", "search_by_eligibility", {"condition": "diabetes", "min_age": "65 Years", "sex": "FEMALE"})
 ```
 
+### `get_trial_results`
+
+NCT ID로 공개된 임상시험 결과를 가져옵니다(대소문자 구분 없음, 숫자 8자리만 입력 가능). resultsSection의 실제 측정값, 군별 건수·분모, 단위, 통계 분석, 참여자 흐름, 기초 특성, 이상반응 및 보고 주의점을 반환합니다. 공식 API의 camelCase 필드명과 계층을 유지합니다. groupId/groupIds는 같은 모듈·평가변수의 groups 안에서만 연결하며 프로토콜 군이나 다른 모듈과 합치지 마세요. 누락은 사건 0건이나 치료 효과 없음이 아닙니다.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `nct_id` | string | **\*필수** |
+
+```javascript
+const result = await host.mcp("clinical-trials", "get_trial_results", {"nct_id": "NCT04280705"})
+```
+
 </ToolOperationGroup>
 
 ## 임상 Genomics {/* #family-8 */}
@@ -1938,6 +2000,32 @@ const result = await host.mcp("clinical-genomics", "clinpgx_get_variant_frequenc
 
 ```javascript
 const result = await host.mcp("clinical-genomics", "clinpgx_get_drug_gene_variant", {"object1Name": "warfarin", "object1Type": "chemical", "object2Name": "VKORC1", "object2Type": "gene", "view": "max"})
+```
+
+### `get_dgidb_gene_drugs`
+
+유전자명으로 DGIdb 약물·유전자 상호작용을 조회합니다. 페이지당 일치 레코드 하나를 반환하고 출처, 버전, 라이선스, 유형, 속성 및 문헌 근거를 보존합니다. 이름이 여러 레코드와 일치할 수 있으므로 next\_cursor를 직접 따라가세요.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `name` | string | **\*필수**; minLength: 1; maxLength: 200 |
+| `after` | string | optional; minLength: 1; maxLength: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_gene_drugs", {"name": "BRAF"})
+```
+
+### `get_dgidb_drug_genes`
+
+약물명으로 DGIdb 약물·유전자 상호작용을 조회합니다. 페이지당 일치 레코드 하나를 반환하고 출처, 버전, 라이선스, 유형, 속성 및 문헌 근거를 보존합니다. 이름이 여러 레코드와 일치할 수 있으므로 next\_cursor를 직접 따라가세요.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `name` | string | **\*필수**; minLength: 1; maxLength: 200 |
+| `after` | string | optional; minLength: 1; maxLength: 500 |
+
+```javascript
+const result = await host.mcp("clinical-genomics", "get_dgidb_drug_genes", {"name": "IMATINIB"})
 ```
 
 </ToolOperationGroup>
@@ -3522,6 +3610,32 @@ const result = await host.mcp("rna", "id_to_accession", {"family_id": "tRNA"})
 const result = await host.mcp("rna", "search_sequence", {"sequence": "GGUUCCGGGAAGGCAGCAGGUGGAAACCUGCCA"})
 ```
 
+### `get_rnacentral_record`
+
+API v1에서 URS 등록번호로 RNAcentral 서열을 가져옵니다. 서열, MD5, 활성 상태, 생물종 및 RNA 유형 메타데이터를 유지합니다.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `urs` | string | **\*필수** |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_record", {"urs": "URS0000000001"})
+```
+
+### `get_rnacentral_xrefs`
+
+RNAcentral URS 등록번호에 대응하는 전문 데이터베이스 ID 한 페이지를 가져옵니다. 출처 데이터베이스, 분류군, 등록번호 버전, 활성 상태, 최초·최종 확인 날짜를 유지합니다. 자동으로 다음 페이지를 가져오지는 않습니다.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `urs` | string | **\*필수** |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | optional; default: 10; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("rna", "get_rnacentral_xrefs", {"urs": "URS0000000001", "page": 1, "page_size": 10})
+```
+
 </ToolOperationGroup>
 
 ## Omics 아카이브 {/* #family-18 */}
@@ -4514,7 +4628,7 @@ const result = await host.mcp("gdc", "gdc_list_projects", {"project_ids": "TCGA-
 
 ### `gdc_list_cases` {/* #gdc_list_cases */}
 
-프로젝트와 질병 메타데이터를 가진 GDC 케이스 (샘플 도우미) 목록. 결과가 표시된 경우를 식별하고 노출하거나 다운로드할 수 없습니다.
+GDC 증례(검체 제공자)를 프로젝트, 질환, 검체·분주 검체 메타데이터와 함께 나열합니다. 증례 식별 결과이며 제한 데이터의 공개나 다운로드는 수행하지 않습니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
@@ -4530,12 +4644,15 @@ const result = await host.mcp("gdc", "gdc_list_cases", {"project_ids": ["TCGA-BR
 
 ### `gdc_search_files` {/* #gdc_search_files */}
 
-GDC 파일 재고를 검색하고 명시적으로 각 파일을 열거나 제어 된 액세스로 표시합니다. Metadata discovery는 다운로드 권한을 부여하지 않습니다; 제어된 파일은 적절한 GDC 승인이 필요합니다.
+프로젝트, 증례 UUID, 검체 유형, 분석 워크플로 유형으로 GDC 파일 목록을 검색합니다. 필터 안은 OR, 필터 사이는 AND입니다. 파일별 open/controlled 상태를 표시합니다. 메타데이터 검색은 다운로드 권한을 부여하지 않으며 제한 파일에는 GDC 승인이 필요합니다.
 
 | (주) | 유형 | 필요조건 및 constraints |
 | --- | --- | --- |
 | `project_ids` | 문자열 / 배열 | 옵션 정보 |
-| `access` | 문자열 | 선택 사항; 기본: "all"; 크기: "all", "open", "controlled" |
+| `case_ids` | string / array | 옵션 정보 |
+| `sample_types` | string / array | 옵션 정보 |
+| `workflow_types` | string / array | 옵션 정보 |
+| `access` | string | optional; default: "all"; enum: \["all", "open", "controlled"\] |
 | `data_category` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200 |
 | `data_type` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 200 |
 | `data_format` | 문자열 | 선택 사항; 최소 길이: 1; 최대 길이: 50 |
@@ -4544,7 +4661,7 @@ GDC 파일 재고를 검색하고 명시적으로 각 파일을 열거나 제어
 | `page_size` | 정수 | 선택 사항; 기본: 20; 최소: 1; 최대: 100 |
 
 ```javascript
-const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "access": "open", "page_size": 10})
+const result = await host.mcp("gdc", "gdc_search_files", {"project_ids": ["TCGA-BRCA"], "sample_types": "Primary Tumor", "workflow_types": "STAR - Counts", "access": "open", "page_size": 10})
 ```
 
 ### `gdc_get_file` {/* #gdc_get_file */}
@@ -5419,6 +5536,21 @@ quantitative 보고서 (data_category : Protein Assembly) 및 출판 보충제�
 const result = await host.mcp("pdc", "pdc_list_files", {"pdc_study_id":"PDC000127", "data_category":"Protein Assembly", "limit":10})
 ```
 
+### `pdc_list_clinical`
+
+공개 PDC 증례의 인구통계·진단 메타데이터, 이용 가능한 검체 ID 및 GDC 연결용 외부 참조를 가져옵니다. 원래 형식, null, 비식별 처리 플래그를 유지합니다. pdc\_study\_id는 최신 버전, study\_id는 특정 버전의 UUID를 지정합니다. 후속 호출을 고정하려면 반환된 study\_id를 사용하세요. 외부 참조 ID는 명시된 리소스에 속하며 PDC와 GDC UUID는 서로 바꿔 쓸 수 없습니다.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `pdc_study_id` | string | provide exactly one of these two identifiers; maxLength: 9 |
+| `study_id` | string | provide exactly one of these two identifiers; maxLength: 36 |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 1000000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("pdc", "pdc_list_clinical", {"pdc_study_id": "PDC000127", "limit": 10})
+```
+
 </ToolOperationGroup>
 
 ## ENCORI {/* #family-35 */}
@@ -5598,6 +5730,36 @@ const result = await host.mcp("encori", "list_bulk_datasets", {"assembly":"hg38"
 
 ```javascript
 const result = await host.mcp("encori", "download_bulk_dataset", {"filename":"hg38.miRNA_sncRNA.tar.gz","destination_dir":"/absolute/path/to/output"})
+```
+
+</ToolOperationGroup>
+
+## Orphadata {/* #family-36 */}
+
+<ToolOperationGroup>
+
+### `get_disease_genes`
+
+ORPHAcode로 Orphadata 희귀질환·유전자 연관성을 가져옵니다. 연관 유형·상태, 검증 출처, 유전자 데이터베이스 매핑을 포함합니다.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `orphacode` | integer | **\*필수**; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_genes", {"orphacode": 166024})
+```
+
+### `get_disease_phenotypes`
+
+ORPHAcode로 Orphadata 희귀질환의 HPO 표현형과 빈도 범주를 가져옵니다. 진단 기준과 검증 메타데이터를 보존합니다. 빈도 범주는 개별 환자의 확률이 아닙니다.
+
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
+| --- | --- | --- |
+| `orphacode` | integer | **\*필수**; minimum: 1; maximum: 2147483647 |
+
+```javascript
+const result = await host.mcp("orphadata", "get_disease_phenotypes", {"orphacode": 58})
 ```
 
 </ToolOperationGroup>

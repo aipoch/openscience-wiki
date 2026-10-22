@@ -1433,6 +1433,28 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v102",
+            "title": "v1.0.2",
+            "scope": "Scientific data sources, npm CLI installation, question cards and research-record reliability.",
+            "currentDoc": "changelog/v1-0-2",
+            "proposedUrl": "/docs/changelog/v1-0-2/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-0-2"
+            ]
+          },
+          {
+            "id": "v101",
+            "title": "v1.0.1",
+            "scope": "Browser package import, update progress, waiting sessions and credential recovery.",
+            "currentDoc": "changelog/v1-0-1",
+            "proposedUrl": "/docs/changelog/v1-0-1/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-0-1"
+            ]
+          },
+          {
             "id": "v100",
             "title": "v1.0.0",
             "scope": "Stable 1.x compatibility, desktop release availability, session recovery and scientific data context.",
