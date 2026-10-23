@@ -7,6 +7,9 @@ Documentation source: https://github.com/aipoch/openscience-wiki
 Product page: https://aipoch.com/open-science
 Site-level facts and contacts: https://aipoch.com/llms.txt
 
+Full documentation text (English): https://aipoch.com/docs/llms-full.txt
+Other published languages provide their own `llms-full.txt` under the corresponding documentation locale path, such as https://aipoch.com/docs/zh-Hans/llms-full.txt.
+
 ## Start here
 
 - [Installation and updates](https://aipoch.com/docs/guides/installation/): Most users should install the desktop package from GitHub Releases. Contributors, or anyone testing the newest code, can run the app from source. Open-Science is an Electron application; its renderer also supports token-protected local browser access.

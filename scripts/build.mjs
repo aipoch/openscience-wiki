@@ -4,6 +4,7 @@ import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {addAlternateRefs, createSitemapIndex} from '../src/plugins/locale-sitemap-utils.cjs';
 import {patchDocumentMetadata} from '../src/plugins/seo-metadata.cjs';
+import {writeLocaleFullText} from './llms-full.mjs';
 import {defaultLocale, localeConfigs, locales} from '../i18n.config.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -65,6 +66,14 @@ for (const locale of hasLocale ? [null] : locales) {
   if (result.status !== 0) process.exit(result.status ?? 1);
   patchLocaleSitemap(buildLocale);
   patchLocaleMetadata(buildLocale);
+  const outputDirectory = join(root, 'build', buildLocale === defaultLocale ? '' : buildLocale);
+  const fullText = await writeLocaleFullText({
+    outDir: outputDirectory,
+    siteUrl: 'https://aipoch.com',
+    baseUrl: localeConfigs[buildLocale].baseUrl,
+    locale: buildLocale,
+  });
+  console.log(`[llms-full] ${buildLocale}: ${fullText.articleCount} documentation articles exported`);
 }
 
 // Recreate the index after all locale builds have completed. This keeps the
