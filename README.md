@@ -89,6 +89,26 @@ and use `npm run serve` to test search locally. No search service account is
 required. Run `node --test tests/*.test.mjs` after building to validate body
 matches, locale isolation, and target routes.
 
+## Plain-text documentation exports
+
+`npm run build` generates `llms-full.txt` for every built documentation locale:
+English at `/docs/llms-full.txt` and translated editions beneath their locale
+paths, such as `/docs/zh-Hans/llms-full.txt`. The existing `llms.txt` remains the
+short page index and links to the English full text.
+
+The export reads the rendered documentation article bodies from the same build
+as the website. It retains headings, code, tables, links, image descriptions,
+platform-specific instructions, source URLs, and available document modification
+dates. Navigation, search pages, redirects, and interface controls are excluded.
+Product versions and translation-status notices remain as stated in each article;
+the export does not replace them with a global latest version or build date.
+
+Generated text belongs in `build/`, not in version control. Rebuild after content
+changes; single-locale builds regenerate only that locale's full text. Run
+`node --test tests/llms-full.test.mjs` for conversion and generated-output checks.
+These are additional static files inside the existing `/docs/` ownership boundary;
+no proxy, domain, deployment, or application-runtime configuration is required.
+
 ## SEO metadata maintenance
 
 When a document changes substantively, update its `last_update.date` in front
