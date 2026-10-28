@@ -1,7 +1,7 @@
 ---
 title: "Разрешения и контроль"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 # Разрешения и контроль {/* #permissions-and-control */}
@@ -78,3 +78,9 @@ last_update:
 | Уведомление | отменяет отмену гранта в пределах его отображаемой доступности; Это не отменяет эффект инструмента. |
 
 Технический справочник: [профили](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/permission-profiles.ts) · [Connector брокер](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/connector-broker.ts) · [базовые гранты](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/defaults.ts) · [агентская политика](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/acp/permission-policy.ts).
+
+## Ограниченные папки Notebook и Shell {/* #notebook-folder-restrictions */}
+
+В **Settings → Permissions → Notebook and Shell folder access** включённый параметр **Restrict Notebook and Shell folders** ограничивает локальное исполнение рабочим пространством, утвержденными папками и файлами, требуемыми инструментами. Предоставьте необходимую папку ввода вместо расширения доступа только для чтения одного файла. Предпочтение по умолчанию включено, включая старые настройки без сохраненного значения.
+
+Изменение его прекращает работу процессов Notebook и Shell и очищает переменные в памяти; сохраняется сохраненная история. Параметр не действует на собственные инструменты агента или удалённые компьютеры. В Windows переключатель **Restrict WSL2 Shell folders**: нативный защищенный режим сохраняет ограничения, в то время как нативный стандартный режим использует разрешения папки текущего пользователя. v1.0.4 исправляет выполнение стандартного режима Windows Notebook.

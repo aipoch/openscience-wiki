@@ -1,7 +1,7 @@
 ---
 title: "Network, proxies, and package mirrors"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-27'
 ---
 
 # Network, proxies, and package mirrors
@@ -28,11 +28,12 @@ If Network reports **Ready** but a tool fails, expand that tool's error. The sta
 
 ## Configure public network rules {/* #public-network-rules */}
 
-1. Open **Settings → Network → Manage access**. Read **Public internet access** to see which public HTTPS reads can proceed and which requests require approval.
-2. Inspect **Built-in services**. A group marked **Required** stays enabled; other groups can be selected for the task.
-3. Under **Custom public domains**, enter the exact **Domain hostname**, then choose **Add to list**. Review the draft entry before **Save changes**.
+1. Open **Settings → Network → Manage access**. Read **Public internet access** and inspect **Built-in services**; groups marked **Required** stay enabled.
+2. Under **Custom public domains**, enter a hostname, an HTTP(S) URL or a leading-wildcard rule in **Domain hostname**, then choose **Add to list**.
+3. Inspect the normalized rule before **Save changes**, then retry the intended request. Saved approvals persist across restarts.
 
-A public-domain rule allows sending data to that hostname; it does not cover subdomains or grant access to a private address. Enter a hostname without a scheme, path, port, wildcard or IP address. A hostname resolving to a non-public address still needs the appropriate private-service review. These rules also apply when protected code follows links or retrieves icons.
+An exact hostname does not include subdomains. `*.example.org` covers its subdomains but not `example.org` itself. A URL such as `https://example.org/path` becomes a hostname rule: its path and port do not limit access. Rules allow sending data to their matching hosts. IP literals, localhost and credentials embedded in URLs are rejected. A hostname resolving to a private address still needs private-service review; a public rule does not grant that access.
+
 
 ## Trust a private service {/* #trusted-private-services */}
 

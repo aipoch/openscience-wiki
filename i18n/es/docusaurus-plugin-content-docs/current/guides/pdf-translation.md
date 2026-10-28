@@ -1,7 +1,7 @@
 ---
 title: "Traducir un PDF completo"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-27'
 ---
 
 # Traducir un PDF completo {/* #translate-a-full-pdf */}
@@ -57,3 +57,9 @@ Utilice [Anotaciones PDF y notas de documentos](pdf-notes.md) para grabar pregun
 Antes de utilizar una traducción exportada, compare una figura multipanel y una tabla con el original. Mantener leyendas con sus paneles, verificar cabeceras agrupadas y etiquetas de fila, y comprobar fórmulas, superscripts, símbolos y unidades. v0.37.1 mejora estas relaciones de origen y acepta diferencias válidas de nombre de glifo incrustado durante la regeneración, pero el original sigue siendo la evidencia de una cita o reclamación científica. Si una exportación anterior perdió contenido, actualice la aplicación y exporte de nuevo de la traducción guardada; conservar el original y comparar el nuevo archivo.
 
 En v1.0.0, **New translation** prepara texto de fuente nueva antes de comenzar la nueva edición. Úsalo cuando necesites intencionadamente nuevas opciones de extracción o diferentes configuraciones de traducción; una retícula ordinaria mantiene la configuración de la edición existente. Esperar la preparación de fuentes y revisar el orden de lectura, fórmulas y contenido agrupado antes de exportar. Iniciar una nueva edición puede hacer nuevas solicitudes de modelos.
+
+## Elija un diseño de primer contenido {/* #content-first */}
+
+Antes de empezar **New translation**, ampliar **Advanced** y permitir **Content first** si prefiere un diseño de lectura de un solo alumno. Está apagado por defecto y guardado con esa edición de traducción; sus ajustes se bloquean al traducir. Para cambiar el diseño, crear una nueva edición en lugar de tratar Retry como un cambio de configuración.
+
+Este diseño refluye texto corporal traducido y capciones preservando imágenes originales, tablas, fórmulas y bibliografía. Compare el mapeo de la página fuente a salida, y luego vuelva a abrir el PDF exportado e inspeccionar las figuras y leyendas. Los números de página de salida pueden diferir del original: cite y verifique reclamaciones contra el PDF fuente.

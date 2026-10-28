@@ -1,7 +1,7 @@
 ---
 title: "Files, artifacts, and versions"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -143,3 +143,7 @@ Before exporting selected artifacts or a bundle, confirm the complete selection,
 Implementation references: [copied references](https://github.com/aipoch/open-science/commit/f0c0e081), [complete export selections](https://github.com/aipoch/open-science/commit/f0468f35) and [preview edits](https://github.com/aipoch/open-science/commit/8763f9aa). If an attachment reports **Managed file or its Session is deleted**, reattach the intended current input through the app and inspect its ownership; see [Troubleshooting](troubleshooting.md).
 
 Sources: [project file library](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ProjectFilesView.tsx), [local file actions](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/LocalFileHeaderActions.tsx).
+
+## Keep an authorized local file as an artifact {/* #import-local-artifact */}
+
+Open a file from an authorized folder under **This computer**. In its preview, use **… → Save as artifact** and wait for completion. Open the resulting conversation artifact and check its contents. Open-Science keeps an immutable managed copy; later edits to the original local file do not update that copy. Merely previewing a folder file does not import it.

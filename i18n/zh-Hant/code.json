@@ -2677,5 +2677,17 @@
   },
   "docs.outline.reference.v102.scope": {
     "message": "科學數據源、npm CLI 安裝、問題卡片與研究記錄可靠性。"
+  },
+  "docs.outline.reference.v103.title": {
+    "message": "v1.0.3"
+  },
+  "docs.outline.reference.v103.scope": {
+    "message": "文獻發現、本地研究包傳輸、PDF 排版與科研數據來源。"
+  },
+  "docs.outline.reference.v104.title": {
+    "message": "v1.0.4"
+  },
+  "docs.outline.reference.v104.scope": {
+    "message": "外部 MCP 客戶端、出版通知、會話摺疊與本地文件導入。"
   }
 }

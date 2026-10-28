@@ -1,7 +1,7 @@
 ---
 title: "CLI 및 구조 출력"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -245,3 +245,29 @@ open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
 ```
 
 이 명령들은 백엔드가 실행 중이 아니어도 작동합니다. `version` 은 연결된 서비스가 아닌 호출한 설치본의 버전을 표시합니다. `paths` 이 표시하는 값은 `cliPath`, `nodePath`, `startupConfigRoot` 및 `discoveryConfigRoots`이며 실행 중인 서비스나 연구 데이터 폴더를 식별하지 않습니다. 명시적 프로필은 시작·검색 위치만 선택하며 생성하지 않습니다. 경로에는 로컬 사용자 이름이 포함될 수 있으므로 공유 전에 검토하세요.
+
+## 외부 MCP 클라이언트 연결하기 {/* #external-mcp */}
+
+v1.0.4 독립 CLI는 **stdio**로 연구 도구를 제공합니다. 대상 프로필의 서비스를 먼저 시작하세요. 어댑터는 서비스를 자동으로 시작하지 않습니다. 클라이언트 설정의 절대 경로 두 개를 실제 경로로 바꿉니다.
+
+```bash
+open-science start --no-open --config-root /absolute/path/to/profile
+open-science mcp --help
+```
+
+```json
+{
+  "mcpServers": {
+    "open-science": {
+      "command": "/absolute/path/to/open-science",
+      "args": ["mcp", "--config-root", "/absolute/path/to/profile"]
+    }
+  }
+}
+```
+
+클라이언트가 어댑터를 실행하게 합니다. **list_projects**로 받은 프로젝트 ID를 **start_run**에 전달하고, **get_run**으로 진행 상황을 확인하며 **list_artifacts**로 파일을 조회합니다. 도구 목록이 보인다고 서비스가 사용 가능한 것은 아닙니다. 실제 호출에는 실행 중인 인증된 로컬 서비스가 필요하며, 원격 HTTP MCP 엔드포인트가 아닙니다.
+
+클라이언트는 프로필의 기존 권한으로 동작합니다. 프로젝트를 저장하고 설정을 바꾸거나, 파일 쓰기와 모델 비용을 수반하는 연구를 시작할 수 있습니다. Open-Science에서 사람의 승인이 필요할 수도 있습니다. 시간 초과 후에는 현재 상태를 확인한 뒤 쓰기를 재시도하세요. 클라이언트를 닫거나 요청을 취소해도 수락된 연구는 취소되지 않습니다. **cancel_run**을 명시적으로 사용하세요. [공식 MCP 도구 및 권한 설명](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp)을 참고하세요.
+
+패키지 명령은 [CLI 가져오기 및 내보내기](../guides/research-packages.md#local-package-transfer)를 참고하세요.

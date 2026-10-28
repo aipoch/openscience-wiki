@@ -1,7 +1,7 @@
 ---
 title: "Redes, proxies y espejos de paquete"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-27'
 ---
 
 # Redes, proxies y espejos de paquete {/* #network-proxies-and-package-mirrors */}
@@ -28,11 +28,12 @@ Si Network informa **Ready** pero una herramienta falla, expanda el error de esa
 
 ## Configurar reglas de red pública {/* #public-network-rules */}
 
-1. Abre **Settings → Network → Manage access**. Lea **Public internet access** para ver qué lectura pública HTTPS puede proceder y qué solicitudes requieren aprobación.
-2. Inspeccione **Built-in services**. Un grupo marcado **Required** se mantiene habilitado; otros grupos pueden ser seleccionados para la tarea.
-3. Bajo **Custom public domains**, introduzca el **Domain hostname** exacto y luego elija **Add to list**. Revise el proyecto de entrada antes de **Save changes**.
+1. Abra **Settings → Network → Manage access**. Revise **Public internet access** y **Built-in services**; los grupos **Required** permanecen activados.
+2. En **Custom public domains**, introduzca un nombre de host, una URL HTTP(S) o una regla con comodín inicial en **Domain hostname** y seleccione **Add to list**.
+3. Revise la regla normalizada antes de **Save changes** y repita la solicitud. Las autorizaciones guardadas persisten tras reiniciar.
 
-Una regla de dominio público permite enviar datos a ese nombre de host; no cubre subdominios ni otorga acceso a una dirección privada. Introduzca un nombre de host sin un esquema, ruta, puerto, comodín o dirección IP. Un nombre de host que se resuelva a una dirección no pública todavía necesita el examen adecuado del servicio privado. Estas reglas también se aplican cuando el código protegido sigue enlaces o recupera iconos.
+Un nombre exacto no incluye subdominios. `*.example.org` cubre sus subdominios, pero no `example.org` en sí. Una URL como `https://example.org/path` se convierte en una regla de host: la ruta y el puerto no limitan el acceso. Las reglas permiten enviar datos a los hosts coincidentes. Se rechazan las direcciones IP, localhost y las URL con credenciales. Si el host se resuelve a una dirección privada, sigue siendo necesaria la revisión del servicio privado.
+
 
 ## Confía en un servicio privado {/* #trusted-private-services */}
 

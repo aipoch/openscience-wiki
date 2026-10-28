@@ -2,7 +2,7 @@
 title: "Referencia de operación Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Los nombres de campo de retorno difieren por operación. Las descripciones y esq
 
 ## Contribuciones de las operaciones {/* #operation-inputs */}
 
-Ampliar un conector a la vez. Los campos obligatorios están marcados **necesarios**; esta referencia y descarga utilizar el Open-Science **v1.0.2** Schema. Un anidado `input.required` la lista es autorizada; un legado de alto nivel `required` la lista puede estar ausente. Consultar <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.2.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas al lado del agente. No pase un genérico `id` cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
+Ampliar un conector a la vez. Los campos obligatorios están marcados **necesarios**; esta referencia y descarga utilizar el Open-Science **v1.0.4** Schema. Un anidado `input.required` la lista es autorizada; un legado de alto nivel `required` la lista puede estar ausente. Consultar <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.4.json">registro completo descargable</ExampleDownload> para los esquemas JSON anidados, descripciones de rendimiento completo y ejemplos de llamadas al lado del agente. No pase un genérico `id` cuando una herramienta espera `accessions`, `cids`, `rs_id` u otro campo específico del espacio de nombres.
 
 ## Química {/* #family-1 */}
 
@@ -208,6 +208,32 @@ Metas de proteína con afinidades medidas para compuestos 2D-similar a una consu
 
 ```javascript
 const result = await host.mcp("chemistry", "bindingdb_targets_by_compound", {"smiles": "CC(=O)OC1=CC=CC=C1C(=O)O", "similarity": 0.85})
+```
+
+### `lipidmaps_get_compound` {/* #chemistry-lipidmaps_get_compound */}
+
+Busque la clasificación de lípidos y los detalles compuestos en LIPID MAPS por un LMID exacto o PubChem CID. Resolver nombres con PubChem primero. Devuelve identificadores de la estructura nativa y cartografías de bases de datos disponibles; los campos perdidos permanecen desconocidos. Un LMID puede describir una estructura genérica o incompletamente especificada, no una molécula única identificada experimentalmente. Preserve todos los partidos devueltos en lugar de seleccionar el primero. No nombre, fórmula, abreviatura, búsqueda masiva o masiva. Datos: LIPID MAPS, CC BY 4.0; retener atribución y registrar enlaces.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id_type` | string | **required**; enum: [&quot;lm_id&quot;, &quot;pubchem_cid&quot;] |
+| `identifier` | string | **required**; MaxLength: 15 |
+
+```javascript
+const result = await host.mcp("chemistry", "lipidmaps_get_compound", {"id_type": "lm_id", "identifier": "LMFA01010001"})
+```
+
+### `unichem_map_compound` {/* #chemistry-unichem_map_compound */}
+
+Map one exact full InChIKey or ChEMBL ID to PubChem, ChEMBL and ChEBI identifiers using UniChem. Resolver nombres con PubChem primero. Preserva distintas estructuras y reportes de filtrado y truncación. El mapeo refleja asignaciones indexadas UniChem, no registros de fuentes actuales verificados o equivalencia biológica. No nombre, similitud, conectividad, sal-componente o búsqueda por lotes.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id_type` | string | **required**; enum: [&quot;inchikey&quot;, &quot;chembl&quot;] |
+| `identifier` | string | **required**; max Longitud: 27 |
+
+```javascript
+const result = await host.mcp("chemistry", "unichem_map_compound", {"id_type": "chembl", "identifier": "CHEMBL1089"})
 ```
 
 </ToolOperationGroup>
@@ -2268,6 +2294,46 @@ Encuentre las entidades experimentales de proteína PDB de una secuencia de prot
 const result = await host.mcp("structures", "pdb_search_sequence", {"sequence": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQV", "identity_cutoff": 0.9, "min_query_coverage": 0.8, "max_rows": 10})
 ```
 
+### `omnipath_query_regulation` {/* #structures-omnipath_query_regulation */}
+
+Consulta dirigida, firmada regulación de proteínas humanas de OmniPath. Proveer una adhesión humana canónica UniProt (resolver nombres con el conector Genes primero). Los nodos de pareja pueden ser proteínas o COMPLEX nativo: identificadores; nunca se expanden complejos en bordes pares inferidos. aguas arriba devuelve fuentes que regulan el objetivo buscado; downstream devuelve objetivos regulados por la fuente preguntada. Tanto la estimulación como la inhibición pueden ser verdaderas: preservar pruebas conflictivas y banderas de consenso separadas. Utiliza el conjunto de datos omnipath y el filtro de licencia comercial upstream; los términos de recursos originales todavía se aplican. Las relaciones y citas agregan múltiples fuentes y contextos biológicos, no prueba causal específica del tejido. Los resultados utilizan el orden de arriba, no el ranking de confianza; los resultados limitados no son la red completa. Sin paginación o descarga a granel.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accession` | string | **required**; pattern: &quot;^(?:&#91;OPQ&#93;&#91;0-9&#93;&#91;A-Z0-9&#93;&#123;3&#125;&#91;0-9&#93;&#124;&#91;A-NR-Z&#93;&#91;0-9&#93;(?:&#91;A-Z&#93;&#91;A-Z0-9&#93;&#123;2&#125;&#91;0-9&#93;)&#123;1,2&#125;)$&quot; |
+| `direction` | string | **required**; enum: [&quot;upstream&quot;, &quot;downstream&quot;] |
+| `limit` | integer | optional; default: 10; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("structures", "omnipath_query_regulation", {"accession": "P00533", "direction": "upstream", "limit": 10})
+```
+
+### `pdb_search_structure_similarity` {/* #structures-pdb_search_structure_similarity */}
+
+Encontrar cadenas experimentales de proteínas PDB similares en 3D a una cadena PDB depositada usando la búsqueda de embedding de estructura RCSB con emparejamiento global, predicho TM-score 0.8 y 10.000 candidatos. Suministrar un ID de PDB de cuatro caracteres y label asym id (RCSB/mmCIF chain ID, no el ID de cadena del autor; disponible desde pdb get entities). Devuelve los identificadores de cadena de rango superior y puntuaciones aguas arriba; la cadena de consulta puede aparecer entre golpes. No hay subida de coordenadas, alineación estructural, RMSD o TM-score computado localmente.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `pdb_id` | string | **required**; pattern: &quot;^[1-9][A-Za-z0-9]&#123;3&#125;$&quot; |
+| `label_asym_id` | string | **required**; minLength: 1; maxLength: 16; pattern: &quot;^[A-Za-z0-9]+$&quot; |
+| `max_rows` | integer | optional; default: 10; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("structures", "pdb_search_structure_similarity", {"pdb_id": "1CLL", "label_asym_id": "A", "max_rows": 10})
+```
+
+### `pdbe_get_validation` {/* #structures-pdbe_get_validation */}
+
+Obtenga puntuaciones de calidad PDBe y estadísticas de validación clave para una entrada PDB experimental. Incluye el método experimental. métricas preserve null y disponibilidad de datos experimentales desconocidos; métricas faltantes no son cero o evidencia de mala calidad. Las puntuaciones son resúmenes preliminares, no un ranking universal a través de métodos experimentales. No existen modelos previstos ni informes sobre residuos.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `pdb_id` | string | **required**; maxLength: 4; pattern: &quot;^[1-9][A-Za-z0-9]&#123;3&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("structures", "pdbe_get_validation", {"pdb_id": "1cbs"})
+```
+
 </ToolOperationGroup>
 
 ## ChEMBL {/* #family-10 */}
@@ -3488,6 +3554,75 @@ Obtenga valores numéricos de ARN o expresión de proteínas de un perfil molecu
 
 ```javascript
 const result = await host.mcp("cancer-models", "cbioportal_get_molecular_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "molecular_profile_id": "brca_tcga_pan_can_atlas_2018_rna_seq_v2_mrna", "gene_symbol": "ESR1", "sample_list_id": "brca_tcga_pan_can_atlas_2018_all"})
+```
+
+### `depmap_search_models` {/* #cancer-models-depmap_search_models */}
+
+Buscar modelos de cáncer DepMap/CCLE por subestring o ACH ModelID exacto y devolver la identidad seleccionada, linaje, enfermedad y metadatos RRID. Los nombres pueden coincidir con varios modelos: conservar sus modelos distintos. No hay descarga completa del catálogo del modelo.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 2; maxLength: 100; pattern: &quot;\\S&quot; |
+| `limit` | integer | optional; default: 10; minimum: 1; maximum: 20 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_search_models", {"query": "A549"})
+```
+
+### `depmap_gene_dependency` {/* #cancer-models-depmap_gene_dependency */}
+
+Obtenga un perfil de efectos genéticos de DepMap Chronos, opcionalmente restringido a ModelIDs. Devuelve los efectos más fuertes primero, ligados a 50 modelos. Las puntuaciones perdidas son desconocidas, no cero; los efectos genéticos negativos no son probabilidades de dependencia. Incluye la versión actual de conjunto de datos y anotaciones modelo; ninguna descarga de matriz completa.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | array | opcional; minItems: 1; maxItems: 20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_gene_dependency", {"gene": "KRAS", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_drug_response` {/* #cancer-models-depmap_drug_response */}
+
+Obtenga el perfil AUC de la pantalla secundaria DepMap PRISM de un compuesto, opcionalmente restringido a ModelIDs. Acepta un ID de compuesto DPC exacto o nombre de compuesto completo (concordancia exacta insensible en caso, sin sustitución borrosa). Devuelve el AUC más bajo primero, ligado a 50 modelos. AUC no es IC50 o viabilidad; los valores perdidos permanecen nulos. Reporta la liberación del PRISM separada de los metadatos modelo.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `compound` | string | **required**; minLength: 2; maxLength: 100; pattern: &quot;\\S&quot; |
+| `model_ids` | array | opcional; minItems: 1; maxItems: 20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_drug_response", {"compound": "trametinib", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_gene_expression` {/* #cancer-models-depmap_gene_expression */}
+
+Obtenga un símbolo de gen exacto perfil de expresión DepMap/CCLE RNA en log2(TPM+1), opcionalmente restringido a ModelIDs. Devuelve la máxima expresión primero, en la mayoría de 50 modelos, con metadatos de liberación y modelo. Esto no es datos brutos de TPM o z-score. Utilice depmap search models para resolver los nombres de las líneas celulares a ModelIDs; sin descarga de matriz completa.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | array | opcional; minItems: 1; maxItems: 20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_gene_expression", {"gene": "KRAS", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_copy_number` {/* #cancer-models-depmap_copy_number */}
+
+Obtenga un símbolo de gen exacto en el perfil actual DepMap/CCLE WGS gen copy-number relativo al modelo ploidy, opcionalmente restringido a ModelIDs. Devuelve el número de copia relativa más alto primero, en la mayoría de 50 modelos, con metadatos de liberación y modelo. Los valores no son copias absolutas, valores de log2 o llamadas discretas de amplificación/deleción. Utilice depmap search models para resolver los nombres de las líneas celulares a ModelIDs.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | array | opcional; minItems: 1; maxItems: 20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_copy_number", {"gene": "MYC", "model_ids": ["ACH-000681"]})
 ```
 
 </ToolOperationGroup>
@@ -5760,6 +5895,233 @@ Retrieve Orphadata rare-disease HPO fenotipos y categorías de frecuencia por OR
 
 ```javascript
 const result = await host.mcp("orphadata", "get_disease_phenotypes", {"orphacode": 58})
+```
+
+</ToolOperationGroup>
+
+## TCIA {/* #family-37 */}
+
+<ToolOperationGroup>
+<summary>Mostrar operaciones y parámetros</summary>
+
+### `search_collections` {/* #tcia-search_collections */}
+
+Buscar colecciones públicas de TCIA por palabra clave, una página a la vez. Incluye cáncer, modalidad, DOI y requisitos de descarga. Collection Manager y NBIA tienen una cobertura diferente. Descargar enlaces puede ser Data Retriever manifiestos, no imágenes. No descarga DICOM ni accede a datos restringidos.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `page` | integer | optional; minimum: 1; maximum: 1000 |
+| `page_size` | integer | optional; minimum: 1; maximum: 20 |
+
+```javascript
+const result = await host.mcp("tcia", "search_collections", {"query": "LIDC-IDRI", "page_size": 5})
+```
+
+### `get_collection` {/* #tcia-get_collection */}
+
+Encontrar una colección TCIA por título corto exacto devuelto por search collections. Busca hasta 20 candidatos y verifica la identidad: el filtro upstream incluye=id no es confiable. Un resultado nulo con lookup complete=false significa refinar la apariencia, no la ausencia. Devuelve los requisitos de licencia y descargador; no descarga archivos.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `short_title` | string | **required**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("tcia", "get_collection", {"short_title": "4D-Lung"})
+```
+
+### `get_series` {/* #tcia-get_series */}
+
+Recuperar metadatos públicos NBIA para una serie DICOM exactaInstanceUID: collection, subject/study identity, modality, image count, byte size and license. Utilice un UID existente de TCIA; ninguna enumeración amplia o descarga de imágenes. Este punto final no cubre cada colección TCIA.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `series_uid` | string | **required**; maxLength: 64; pattern: &quot;^[0-9]+(?:\\.[0-9]+)+$&quot; |
+
+```javascript
+const result = await host.mcp("tcia", "get_series", {"series_uid": "1.3.6.1.4.1.14519.5.2.1.6834.5010.189721824525842725510380467695"})
+```
+
+</ToolOperationGroup>
+
+## KEGG {/* #family-38 */}
+
+<ToolOperationGroup>
+<summary>Mostrar operaciones y parámetros</summary>
+
+### `search_entries` {/* #kegg-search_entries */}
+
+Buscar KEGG pathway, KO, compuesto o nombres de reacción. Devuelve una lista tapada, no la paginación lado servidor; estrecha la consulta cuando se trunca. Public KEGG API es sólo para uso académico elegible; uso no académico y prestación de servicios requieren licencias apropiadas. Habilitar este conector no otorga una licencia.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `database` | string | **required**; enum: [&quot;pathway&quot;, &quot;ko&quot;, &quot;compound&quot;, &quot;reaction&quot;] |
+| `query` | string | **required**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `limit` | integer | optional; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("kegg", "search_entries", {"database": "pathway", "query": "glycolysis"})
+```
+
+### `get_entry` {/* #kegg-get_entry */}
+
+Lea una vía KEGG, KO, compuesto o resumen de reacción. Devuelve campos de archivo plano seleccionados con truncación explícita; excluye GENES a granel, secuencias e imágenes de ruta. HTTP 404 no es un registro vacío. Public KEGG API es sólo para uso académico elegible; uso no académico y prestación de servicios requieren licencias apropiadas. Habilitar este conector no otorga una licencia.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id` | string | **required**; pattern: &quot;^(?:[KCR][0-9]&#123;5&#125;&#124;(?:map&#124;[a-z]&#123;3,4&#125;)[0-9]&#123;5&#125;)$&quot; |
+
+```javascript
+const result = await host.mcp("kegg", "get_entry", {"id": "hsa00010"})
+```
+
+### `map_gene` {/* #kegg-map_gene */}
+
+Mapa un gen KEGG calificado por organismo a caminos o adhesiones UniProt. Preserva los partidos únicos a muchos; no hay elección automática de una proteína canónica. Los resultados son capped sin paginación del lado del servidor. Public KEGG API es sólo para uso académico elegible; uso no académico y prestación de servicios requieren licencias apropiadas. Habilitar este conector no otorga una licencia.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; maxLength: 80; pattern: &quot;^[a-z][a-z0-9]&#123;1,4&#125;:[A-Za-z0-9_.-]+$&quot; |
+| `target` | string | **required**; enum: [&quot;pathway&quot;, &quot;uniprot&quot;] |
+| `limit` | integer | optional; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("kegg", "map_gene", {"gene": "hsa:7157", "target": "uniprot"})
+```
+
+</ToolOperationGroup>
+
+## RxNorm / RxNav {/* #family-39 */}
+
+<ToolOperationGroup>
+<summary>Mostrar operaciones y parámetros</summary>
+
+### `resolve_name` {/* #rxnorm-resolve_name */}
+
+Resolver un nombre de droga a RxNorm RxCUIs activos. Exact matching es el predeterminado; normalizado matching puede ignorar sales y orden de palabra. Retiene todos los partidos ambiguos y no establece equivalencia clínica.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `name` | string | **required**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `search` | integer | optional; enum: [0, 1, 2] |
+
+```javascript
+const result = await host.mcp("rxnorm", "resolve_name", {"name": "aspirin"})
+```
+
+### `get_concept` {/* #rxnorm-get_concept */}
+
+Recuperar propiedades activas de concepto RxNorm por RxCUI: nombre, sinónimo, tipo de término, lenguaje y bandera de supresión. Un registro ausente no es prueba de que un identificador nunca existió.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `rxcui` | string | **required**; pattern: &quot;^[0-9]&#123;1,12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("rxnorm", "get_concept", {"rxcui": "1191"})
+```
+
+</ToolOperationGroup>
+
+## DailyMed {/* #family-40 */}
+
+<ToolOperationGroup>
+<summary>Mostrar operaciones y parámetros</summary>
+
+### `search_labels` {/* #dailymed-search_labels */}
+
+Búsqueda DailyMed SPL etiqueta identidades, títulos, versiones y fechas de publicación por nombre de droga, opcionalmente reducido a un RxCUI. Retrieves una página de metadatos; presencia de etiquetas no establece la aprobación de la FDA.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `drug_name` | string | **required**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `rxcui` | string | optional; pattern: &quot;^[0-9]&#123;1,12&#125;$&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("dailymed", "search_labels", {"drug_name": "aspirin", "page_size": 5})
+```
+
+### `get_label_history` {/* #dailymed-get_label_history */}
+
+Recuperar una página de la versión de DailyMed SPL para un ID SET exacto, preservando la identidad de la etiqueta, el título y las fechas de publicación. No descarga contenido histórico de etiquetas.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `setid` | string | **required**; pattern: &quot;^[a-fA-F0-9]&#123;8&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;12&#125;$&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("dailymed", "get_label_history", {"setid": "9aa7140c-012c-4ea6-866d-4732e915dab6"})
+```
+
+</ToolOperationGroup>
+
+## BioSamples {/* #family-41 */}
+
+<ToolOperationGroup>
+<summary>Mostrar operaciones y parámetros</summary>
+
+### `search_samples` {/* #biosamples-search_samples */}
+
+Búsqueda pública EMBL-EBI BioSamples metadatos, una página de cursor a la vez. Retiene características, términos de ontología, referencias externas y fechas de liberación/actualización. Utilice el siguiente cursor devuelto con consulta sin cambios y page size; sin traversal automático.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `cursor` | string | optional; minLength: 1; maxLength: 2048; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("biosamples", "search_samples", {"query": "leukaemia", "page_size": 5})
+```
+
+### `get_sample` {/* #biosamples-get_sample */}
+
+Recuperar un registro público de BioSamples por adhesión, con curaciones aplicadas predeterminadas, características, términos de ontología, relaciones, referencias externas y fechas de procedencia. Los recursos y archivos vinculados no se recogen.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accession` | string | **required**; pattern: &quot;^SAM[END][A-Z]?[0-9]&#123;1,15&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("biosamples", "get_sample", {"accession": "SAMD00023550"})
+```
+
+</ToolOperationGroup>
+
+## WikiPathways {/* #family-42 */}
+
+<ToolOperationGroup>
+<summary>Mostrar operaciones y parámetros</summary>
+
+### `search_pathways` {/* #wikipathways-search_pathways */}
+
+Encontrar WikiPathways por nombre insensible o subestring identificador WP, opcionalmente restringido a un nombre exacto de especie científica. Filtra la lista oficial actualPathways JSON instantánea localmente; esto no es búsqueda de texto completo o gen.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `species` | string | optional; minLength: 1; maxLength: 100; pattern: &quot;\\S&quot; |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 100000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("wikipathways", "search_pathways", {"query": "glycolysis", "species": "Homo sapiens"})
+```
+
+### `get_pathway` {/* #wikipathways-get_pathway */}
+
+Recuperar un registro de metadatos de WikiPathways por identificador WP de la instantánea actual getPathwayInfo JSON. Conserva especies, revisión, autores, descripción de fuentes y citas. No recupera gráficos de ruta, mapas de genes o revisiones históricas.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id` | string | **required**; pattern: &quot;^WP[0-9]&#123;1,10&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("wikipathways", "get_pathway", {"id": "WP534"})
 ```
 
 </ToolOperationGroup>

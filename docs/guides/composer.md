@@ -1,7 +1,7 @@
 ---
 title: "Conversations and queued requests"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Conversations and queued requests
@@ -152,3 +152,7 @@ These cards clarify the research request. They do not grant tool permissions or 
 If a queued message reports an error, read it and use the offered undo action before editing or resending. A quit/reload warning can mean an unsent draft remains; return to the draft or deliberately discard it. Dropping a folder now asks you to select files inside it: open the folder, select the intended files and wait for their attachment chips.
 
 For an expired model or Connector credential, follow the recovery action shown for that service, then return to the original conversation and check its state. Do not send the same request again while its earlier reply may still be in progress. Artifact `@` mentions are also available in remote web conversations; select the intended file/version before sending.
+
+## Skip a clarification question {/* #skip-question */}
+
+Use **Skip** to leave the current question unanswered, or its menu's **Skip all** for the remaining questions. **Let the agent decide** delegates the choice instead; it is a different response. Check the saved answer history and whether the conversation resumes before submitting another answer after an error.

@@ -1,7 +1,7 @@
 ---
 title: "Notebookと実行証拠"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -297,3 +297,7 @@ Windows Notebookエクスポートが拡張子がない場合、まずコピー�
 ## 連続した解析の依存関係を確認する {/* #chained-analysis-lineage */}
 
 Python または R で CSV を読み込み、変換して新しいファイルを保存したら、出力の来歴を開き、入力のバージョンと実行の依存関係を確認します。この記録から検証対象のファイルバージョンを選びます。来歴の精度が上がっても、計算の再実行や科学的妥当性の確認が自動で行われるわけではありません。参照： [成果物の検証](reproducibility.md).
+
+## ローカルフォルダーの権限を確認する {/* #folder-access */}
+
+入力を読めない場合は [Notebook と Shell のフォルダー権限](../reference/permissions.md#notebook-folder-restrictions)を確認します。制限変更は実行中プロセスを停止し変数を消去します。結果を保存し、必要なフォルダーを許可してから、作業状態の復元に必要なセルだけを再実行してください。

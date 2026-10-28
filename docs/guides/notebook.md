@@ -1,7 +1,7 @@
 ---
 title: "Notebook and execution evidence"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -297,3 +297,7 @@ In the result's **Provenance → Environment**, retain Conda and pip origins and
 ## Check dependencies after a chained analysis {/* #chained-analysis-lineage */}
 
 After reading a CSV, transforming it and exporting a new file in Python or R, open the output's provenance and inspect the recorded input versions and execution dependencies. Use those records to select the file version to verify. More accurate lineage capture does not by itself rerun the calculation or establish the scientific validity of the analysis; follow [artifact verification](reproducibility.md).
+
+## Check local folder access {/* #folder-access */}
+
+If a local input cannot be read, check [Notebook and Shell folder permissions](../reference/permissions.md#notebook-folder-restrictions). Changing the restriction stops live processes and clears variables. Save results first, grant the required folder, then rerun only the cells needed to rebuild the working state.

@@ -1,7 +1,7 @@
 ---
 title: "ネットワーク、プロキシ、パッケージミラー"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-27'
 ---
 
 # ネットワーク、プロキシ、パッケージミラー {/* #network-proxies-and-package-mirrors */}
@@ -26,13 +26,14 @@ last_update:
 
 <span id="configure-notebook-domains" />
 
-## パブリックネットワークルールの設定 {/* #public-network-rules */}
+## 公開ネットワークのルールを設定する {/* #public-network-rules */}
 
-1. **Settings → Network → Manage access** を開きます。 **Public internet access** を読んで、HTTPS が読み込まれているか、どのリクエストが承認を必要とするかを確認します。
-2. **Built-in services** を点検して下さい。 **Required** がマークされたグループが有効になっています。 タスクに他のグループが選択できます。
-3. **Custom public domains** では、**Domain hostname** を正確に入力し、**Add to list** を選択します。 **Save changes** の前の草案の記入項目を見直して下さい。
+1. **Settings → Network → Manage access** で **Public internet access** と **Built-in services** を確認します。**Required** のグループは有効のままです。
+2. **Custom public domains** の **Domain hostname** にホスト名、HTTP(S) URL、または先頭がワイルドカードのルールを入力し、**Add to list** を選びます。
+3. 正規化されたルールを確認して **Save changes** を選び、要求を再試行します。保存した承認は再起動後も残ります。
 
-パブリックドメインルールでは、そのホスト名にデータを送信することができます。 サブドメインをカバーしたり、プライベートアドレスへのアクセスを許可したりしません。 スキーム、パス、ポート、ワイルドカード、またはIPアドレスなしでホスト名を入力します。 パブリックでないアドレスに解決するホスト名は、適切なプライベートサービスレビューを必要とします。 これらのルールは、保護されたコードがリンクまたはアイコンの検索に続く場合にも適用されます。
+完全一致のホスト名はサブドメインを含みません。`*.example.org` はサブドメインを含みますが `example.org` 自体は含みません。`https://example.org/path` はホスト名のルールに変換され、パスやポートはアクセス範囲を制限しません。ルールは一致するホストへのデータ送信を許可します。IP アドレス、localhost、認証情報入り URL は使えません。私有アドレスに解決されるホストは別途の私有サービス審査が必要です。
+
 
 ## プライベートサービス {/* #trusted-private-services */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Fichiers, artefacts et versions"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -143,3 +143,7 @@ Avant d'exporter des artefacts sélectionnés ou un paquet, confirmez la sélect
 Références de mise en œuvre: [références copiées](https://github.com/aipoch/open-science/commit/f0c0e081), [sélection complète des exportations](https://github.com/aipoch/open-science/commit/f0468f35) et [prévisualiser les modifications](https://github.com/aipoch/open-science/commit/8763f9aa). Si une pièce jointe signale **Le fichier géré ou sa session est supprimé**, rebranchez l'entrée actuelle prévue dans l'application et inspectez sa propriété; Voir [Dépannage](troubleshooting.md).
 
 Sources: [bibliothèque de fichiers de projets](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ProjectFilesView.tsx), [actions de fichiers locaux](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/LocalFileHeaderActions.tsx).
+
+## Conserver un fichier local autorisé comme artefact {/* #import-local-artifact */}
+
+Ouvrir un fichier depuis un dossier autorisé sous **This computer**. Dans son aperçu, utiliser **… → Save as artifact** et attendre l'achèvement. Ouvrez l'artefact de conversation résultant et vérifiez son contenu. Open-Science conserve une copie de gestion immuable; les modifications ultérieures au fichier local original ne mettent pas à jour cette copie. La simple prévisualisation d'un fichier de dossier ne l'importe pas.

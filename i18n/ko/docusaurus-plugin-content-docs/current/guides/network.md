@@ -1,7 +1,7 @@
 ---
 title: "네트워크, 프록시 및 패키지 미러"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-27'
 ---
 
 # 네트워크, 프록시 및 패키지 미러 {/* #network-proxies-and-package-mirrors */}
@@ -26,13 +26,14 @@ last_update:
 
 <span id="configure-notebook-domains" />
 
-## 공공 네트워크 규칙 구성 {/* #public-network-rules */}
+## 공용 네트워크 규칙 설정하기 {/* #public-network-rules */}
 
-1. **Settings → Network → Manage access**을 엽니다. **Public internet access** 을 읽으려면 공개 HTTPS 읽음이 진행되고 요청이 승인되어야합니다.
-2. **Built-in services** 검사. 그룹은 **Required**이 활성화되어 있음을 나타냅니다. 다른 그룹은 작업을 선택 할 수 있습니다.
-3. **Custom public domains**의 밑에, 정확한 **Domain hostname**를 입력하고, 그 후에 **Add to list**를 선택합니다. **Save changes** 이전의 초안 항목을 검토합니다.
+1. **Settings → Network → Manage access**에서 **Public internet access**와 **Built-in services**를 확인합니다. **Required** 그룹은 계속 활성화됩니다.
+2. **Custom public domains**의 **Domain hostname**에 호스트명, HTTP(S) URL 또는 앞에 와일드카드가 붙은 규칙을 입력한 뒤 **Add to list**를 선택합니다.
+3. 정규화된 규칙을 확인하고 **Save changes**를 선택한 뒤 원래 요청을 재시도합니다. 저장된 승인은 재시작 후에도 유지됩니다.
 
-public-domain 규칙은 그 호스트 이름에 데이터를 보낼 수 있습니다; 그것은 하위 도메인을 커버하지 않거나 개인 주소에 액세스 권한을 부여하지 않습니다. 계획, 경로, 포트, 와일드 카드 또는 IP 주소없이 호스트 이름을 입력하십시오. 비공개 주소에 대한 호스트 이름은 여전히 적절한 개인 서비스 리뷰를 필요로한다. 이 규칙은 보호된 코드가 링크 또는 검색 아이콘을 따르는 경우도 적용됩니다.
+정확한 호스트명 규칙에는 하위 도메인이 포함되지 않습니다. `*.example.org`는 하위 도메인을 포함하지만 `example.org` 자체는 포함하지 않습니다. `https://example.org/path`는 호스트명 규칙으로 변환되므로 경로나 포트가 접근 범위를 제한하지 않습니다. 규칙은 일치하는 호스트로 데이터 전송을 허용합니다. IP 주소, localhost, 자격 증명이 들어간 URL은 거부됩니다. 사설 주소로 해석되는 호스트는 별도의 사설 서비스 검토가 필요합니다.
+
 
 ## 개인 서비스 신뢰 {/* #trusted-private-services */}
 

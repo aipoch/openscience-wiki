@@ -1,7 +1,7 @@
 ---
 title: "권한 및 통제"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 # 권한 및 통제 {/* #permissions-and-control */}
@@ -78,3 +78,9 @@ Connector 브로커는 이러한 조건을 평가:
 | 자주 묻는 질문 | 표시된 가용성 내에서 자격이 된 보조금 재발급; 도구의 효과를 반전하지 않습니다. |
 
 기술 참조 : [이름 &#42;](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/permission-profiles.ts) · [Connector 브로커](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/connector-broker.ts) · [기본 교부금](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/defaults.ts) · [에이전트 정책](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/acp/permission-policy.ts).
+
+## Notebook과 Shell의 폴더 접근 제한하기 {/* #notebook-folder-restrictions */}
+
+**Settings → Permissions → Notebook and Shell folder access**에서 **Restrict Notebook and Shell folders**를 켜 두면 로컬 실행 범위가 작업 공간, 승인된 폴더, 도구에 필요한 파일로 제한됩니다. 한 파일을 읽기 위해 전체 제한을 풀지 말고 필요한 폴더를 승인하세요. 값이 저장되지 않은 이전 설정에서도 기본적으로 켜집니다.
+
+설정을 바꾸면 실행 중인 Notebook과 Shell이 중지되고 메모리 변수가 지워집니다. 저장된 기록은 유지됩니다. 에이전트 자체 도구나 원격 컴퓨터에는 적용되지 않습니다. Windows의 **Restrict WSL2 Shell folders**는 WSL2에 적용됩니다. 네이티브 보호 모드는 제한을 유지하며 표준 모드는 현재 사용자 권한을 사용합니다. v1.0.4는 Windows Notebook 표준 모드 실행을 수정합니다.

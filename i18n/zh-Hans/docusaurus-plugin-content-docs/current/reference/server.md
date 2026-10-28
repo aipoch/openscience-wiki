@@ -1,7 +1,7 @@
 ---
 title: "无界面服务与浏览器访问"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # 无界面服务与浏览器访问
@@ -120,3 +120,7 @@ v1.0.0 已移除 CLI 的应用更新命令；不要再执行 `open-science updat
 ## 网页工作区中的 Compute {/* #web-compute */}
 
 独立网页工作区的后端具备所需 Notebook 和 Compute API 时，会开放 **Compute**。打开已连接的工作区，确认面板可用，再按原有 SSH／Slurm 配置步骤操作。面板可用不代表已提供远程凭据，也不证明作业能够执行。
+
+## 研究包与外部工具客户端 {/* #local-research-tools */}
+
+已认证的本地网页会话可以[导入与导出研究包](../guides/research-packages.md#local-package-transfer)，远程网页会话不能进行这种任意路径传输。要向同机的外部客户端提供科研工具，可配置 [stdio MCP 适配器](cli.md#external-mcp)。它连接已经运行的本地服务并使用该配置的权限，不会创建远程 MCP URL。

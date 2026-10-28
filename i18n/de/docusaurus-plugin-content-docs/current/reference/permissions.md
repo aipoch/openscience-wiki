@@ -1,7 +1,7 @@
 ---
 title: "Genehmigungen und Kontrolle"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 # Genehmigungen und Kontrolle {/* #permissions-and-control */}
@@ -78,3 +78,9 @@ Anwendungseigene Ausnahmen gibt es auch außerhalb dieser Liste: Das Speichern e
 | Rückfälligkeit | Rücknahme des Widerrufs der förderfähigen Finanzhilfe innerhalb der angezeigten Verfügbarkeit; Es kehrt nicht die Effekte eines Werkzeugs um |
 
 Technische Referenz: [Profile](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/permission-profiles.ts) · [Connector Broker](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/connector-broker.ts) · [Basiszuschüsse](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/defaults.ts) · [Agentenpolitik](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/acp/permission-policy.ts).
+
+## Restrict Notebook und Shell Ordner {/* #notebook-folder-restrictions */}
+
+In **Settings → Permissions → Notebook and Shell folder access**, behalten **Restrict Notebook and Shell folders** ermöglicht, die lokale Ausführung auf den Arbeitsbereich, genehmigte Ordner und Dateien zu beschränken, die von den Tools benötigt werden. Geben Sie den erforderlichen Eingabeordner, anstatt den Zugriff zu erweitern, nur um eine Datei zu lesen. Die Präferenz ist standardmäßig aktiviert, einschließlich älterer Einstellungen ohne gespeicherten Wert.
+
+Das Ändern stoppt die Ausführung von Notebook- und Shell-Prozessen und löscht In-Memory-Variablen; gespeicherte Geschichte bleibt. Die Einstellung gilt nicht für native Agent-Werkzeuge oder Remote-Computer. Unter Windows ist der Switch **Restrict WSL2 Shell folders**: Der native geschützte Modus behält Einschränkungen bei, während der native Standardmodus die Ordnerberechtigungen des aktuellen Benutzers verwendet. v1.0.4 behebt die Ausführung von Windows Notebook im Standardmodus.

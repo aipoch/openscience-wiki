@@ -1,7 +1,7 @@
 ---
 title: "Notebook und Ausführungsnachweise"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -297,3 +297,7 @@ Behalten Sie in **Provenance → Environment** des Ergebnisses die Ursprünge vo
 ## Abhängigkeiten nach einer verketteten Analyse prüfen {/* #chained-analysis-lineage */}
 
 Nachdem Sie eine CSV gelesen, transformiert und eine neue Datei in Python oder R exportiert haben, öffnen Sie die Herkunft der Ausgabe und prüfen Sie die aufgezeichneten Eingabeversionen und Ausführungsabhängigkeiten. Verwenden Sie diese Datensätze, um die Dateiversion zur Überprüfung auszuwählen. Eine genauere Abstammungslinie führt nicht allein die Berechnung durch oder stellt die wissenschaftliche Gültigkeit der Analyse fest; [Artefaktprüfung](reproducibility.md).
+
+## Überprüfen Sie den lokalen Ordnerzugriff {/* #folder-access */}
+
+Wenn eine lokale Eingabe nicht gelesen werden kann, überprüfen Sie [Berechtigungen für Notebook- und Shell-Ordner](../reference/permissions.md#notebook-folder-restrictions). Das Ändern der Einschränkung stoppt Live-Prozesse und löscht Variablen. Speichern Sie zuerst die Ergebnisse, gewähren Sie den erforderlichen Ordner und führen Sie dann nur die Zellen erneut aus, die zum Wiederaufbau des Arbeitszustands erforderlich sind.

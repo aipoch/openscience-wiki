@@ -1,7 +1,7 @@
 ---
 title: "Artikel mit einer intelligenten Sammlung auswählen"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -105,3 +105,7 @@ Bestätigen Sie **Eingeschlossen 5**, **Ausgenommen 3** und null verbleibende **
 Wählen Sie **Collection actions → Export included references → BibTeX** oder **RIS**, speichern Sie die Datei und überprüfen Sie, ob sie fünf DOI-Einträge enthält. Das <ExampleDownload path="/examples/v0330/screened-primary-studies.bib">Beispiel BibTeX</ExampleDownload> bewahrt die exportierten Zitate mit Abstracts, die zur Weiterverteilung entfernt wurden. Es ist eine Bibliographie, kein Screening-Entscheidungsprotokoll oder PDF-Bundle. Halten Sie das <ExampleDownload path="/examples/v0330/screening-decisions.csv">Überprüfung der Entscheidungstabelle</ExampleDownload> bei der Übergabe der Auswahl neben sich.
 
 Verwenden Sie das ausgewählte Set für ein [Lesepackung für Gruppentreffen](journal-club.md). Erhalten und prüfen Sie die Volltexte, bevor Sie detaillierte Ergebnisse extrahieren oder die Katalysatorleistung vergleichen. **Update automatically** kann neue oder geänderte Datensätze im gewählten Umfang auswerten und kann Servicekosten verursachen; Es durchsucht keine externen Datenbanken nach neuen Papieren.
+
+## Export der Screening-Entscheidungen {/* #screening-csv */}
+
+Ab v1.0.3, offen **Collection actions → Export screening results (CSV)**. Dieser Export umfasst alle Kandidaten mit endgültigen Urteilen, manuellen Entscheidungen, Gründen und Modellwahrscheinlichkeiten. Öffne den CSV und überprüfe die Anzahl der Kandidaten und überschreite sie. Behalten Sie es neben der obigen Inklusiv-Referenz-Bibliographie; weder Export enthält jeden Volltext, und eine Modellwahrscheinlichkeit ist keine Papierqualität.

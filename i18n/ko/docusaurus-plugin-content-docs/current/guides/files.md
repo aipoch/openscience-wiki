@@ -1,7 +1,7 @@
 ---
 title: "파일, artifacts 및 버전"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -143,3 +143,7 @@ Notepad에서 다운로드 된 `.md` 파일을 엽니 다. Notepad 디스플레�
 구현 참조 : [복사된 참고](https://github.com/aipoch/open-science/commit/f0c0e081), [완전한 수출 선택](https://github.com/aipoch/open-science/commit/f0468f35) 및 [미리보기 편집](https://github.com/aipoch/open-science/commit/8763f9aa). 첨부 파일이 **관리 파일 또는 세션은 삭제됩니다.**을 보고 있다면, 앱을 통해 의도한 현재 입력을 다시 입력하고 소유권을 검사합니다. [문제 해결](troubleshooting.md) 참조.
 
 출처: [프로젝트 파일 라이브러리](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ProjectFilesView.tsx), [로컬 파일 작업](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/LocalFileHeaderActions.tsx).
+
+## 승인된 로컬 파일을 산출물로 저장하기 {/* #import-local-artifact */}
+
+**This computer**의 승인된 폴더에서 파일을 열고 미리보기의 **… → Save as artifact**를 선택합니다. 완료 후 대화에 생성된 산출물을 열어 내용을 확인하세요. Open-Science는 변경 불가능한 관리 사본을 보관합니다. 나중에 원본 파일을 수정해도 사본은 바뀌지 않습니다. 미리보기만으로는 파일을 가져오지 않습니다.

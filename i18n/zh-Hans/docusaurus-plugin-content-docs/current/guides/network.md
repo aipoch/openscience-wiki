@@ -1,7 +1,7 @@
 ---
 title: "网络、代理与包镜像"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-27'
 ---
 
 # 网络、代理与包镜像
@@ -28,11 +28,12 @@ Network 显示 **Ready** 但工具失败时，展开该工具的错误。状态�
 
 ## 配置公网访问规则 {/* #public-network-rules */}
 
-1. 打开 **Settings → Network → Manage access**。阅读 **Public internet access**，区分哪些公网 HTTPS 读取可以直接进行、哪些请求需要批准。
-2. 检查 **Built-in services**。标为 **Required** 的分组保持启用；其他分组按任务需要选择。
-3. 在 **Custom public domains** 下填写完整的 **Domain hostname**，选择 **Add to list**。检查草稿条目后再点 **Save changes**。
+1. 打开 **Settings → Network → Manage access**，阅读 **Public internet access** 并检查 **Built-in services**；标为 **Required** 的分组保持启用。
+2. 在 **Custom public domains** 的 **Domain hostname** 中输入主机名、HTTP(S) URL 或以通配符开头的规则，然后选择 **Add to list**。
+3. 检查规范化后的规则，再选择 **Save changes**，重试原请求。已保存的批准会在重启后保留。
 
-公网域名规则允许向该主机发送数据，不包含其子域名，也不会授权访问私有地址。填写主机名，不要带协议、路径、端口、通配符或 IP 地址。主机名若解析到非公网地址，仍需按私有服务流程审核。受保护代码跟随链接或获取图标时也适用这些规则。
+精确主机名不包含子域名。`*.example.org` 覆盖其子域名，但不包含 `example.org` 本身。`https://example.org/path` 这样的 URL 会转换为主机名规则，路径和端口不会限制访问范围。规则允许向匹配的主机发送数据。输入不接受 IP 字面值、localhost 或嵌有账号密码的 URL。主机名若解析到私有地址，仍需经过私有服务审核，公网规则不会授予该权限。
+
 
 ## 信任私有服务 {/* #trusted-private-services */}
 

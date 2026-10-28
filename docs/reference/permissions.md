@@ -1,7 +1,7 @@
 ---
 title: "Permissions and control"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 # Permissions and control
@@ -78,3 +78,9 @@ Application-owned exceptions also exist outside this list: saving an already-exi
 | Undo notice | Reverses the eligible grant revocation within its displayed availability; it does not reverse a tool's effects |
 
 Technical reference: [profiles](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/permission-profiles.ts) · [Connector broker](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/connector-broker.ts) · [baseline grants](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/defaults.ts) · [agent policy](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/acp/permission-policy.ts).
+
+## Restrict Notebook and Shell folders {/* #notebook-folder-restrictions */}
+
+In **Settings → Permissions → Notebook and Shell folder access**, keep **Restrict Notebook and Shell folders** enabled to limit local execution to the workspace, approved folders and files required by tools. Grant the required input folder instead of broadening access just to read one file. The preference defaults to enabled, including older settings without a saved value.
+
+Changing it stops running Notebook and Shell processes and clears in-memory variables; saved history remains. It does not govern agent-native tools or remote computers. On Windows, the switch is **Restrict WSL2 Shell folders**: native protected mode retains restrictions, while native standard mode uses the current user's folder permissions. v1.0.4 fixes standard-mode Windows Notebook execution.

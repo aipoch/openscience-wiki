@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-27'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -396,3 +396,23 @@ Library 中还有更多匹配记录时，独立的 **Select all matching referen
 ## 继续失败的智能集合批次 {/* #smart-collection-retry */}
 
 智能集合评估停在失败批次时，先检查错误与剩余进度，再使用界面提供的重试操作。v0.37.0 起，重试继续失败批次并保留已完成的评估。此次重试保持范围和规则不变，完成后检查 Included、Needs review 与 Excluded 的结果。不要通过创建重复集合来恢复中断评估。
+
+## 追踪参考文献与引用论文 {/* #citation-discovery */}
+
+打开一条文献的详情，选择 **References** 或 **Cited by**，查看 Semantic Scholar 提供的参考文献或引用关系。如果仅通过标题匹配，请核对候选论文的标题、作者和年份后再确认。使用 **Load more** 加载后续结果，勾选需要的论文，选择 **Add selected to Inbox**。在 Inbox 审阅后再接受到文献库；找到引用关系不代表已经取得全文。
+
+API key 为可选项。遇到限流时可以稍后重试，或在本地桌面应用中通过 **Configure API key** 配置。没有结果可能与数据覆盖或访问限制有关，不能据此认定论文没有参考文献或引用。
+
+## 导入文件与补充材料 {/* #supplementary-materials */}
+
+将 PDF 或支持的文献目录文件拖入文献库，检查导入结果。查找论文的附属文件时，打开详情并选择 **Find supplementary materials**。下载前核对来源、与论文的关系、文件名和许可。搜索覆盖 Figshare、DataCite 和 Europe PMC；找到来源链接或搜索为空，都不能证明已经找全补充材料。
+
+逐个查看附件的下载进度。遇到压缩包时，选择需要解压的文件；下载完成后使用对应格式的预览打开，Word 文件也支持预览。区分正文与补充附件，重试前检查已保存的内容，只重试失败的下载。
+
+## 检查撤稿与更正通知 {/* #publication-checks */}
+
+1. 打开具有一个有效 DOI 的文献。在 **More actions → Retractions and corrections** 中选择 **Check retractions and corrections**。
+2. 此操作会将该 DOI 发送给 Crossref。查看通知类型、来源、日期和通知链接；调整论文的使用方式前，先阅读通知原文。
+3. 结果及 **Last checked** 时间会保存在文献记录中。重新打开面板显示的是已保存的记录；需要最新信息时再次检查。
+
+**No related notices found** 只表示本次查询没有返回通知，不代表论文不受影响。Crossref 的覆盖并不完整。检查不会改写文献元数据或筛选决定。刷新失败时会保留上一次成功结果，请查看日期并稍后重试。

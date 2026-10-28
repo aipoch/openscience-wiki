@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -140,3 +140,18 @@ Utilice una aplicación de escritorio instalada en la **mismo ordenador** como e
 Si el handoff no está disponible o bloqueado, descargar el `.science` archivar y utilizar el control de importación existente. También puede dejarla en casa del proyecto. Una carpeta normal caer en el Compositor no importa un paquete. Si una importación reporta un fracaso parcial, compruebe el destino para una sesión existente antes de reintentar; no cree otro proyecto sólo para repetir la misma transferencia.
 
 Para los autores del sitio web, [guía SDK navegador-import](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md) requiere HTTPS (o un origen de desarrollo de loopback), un manual de escritorio del mismo ordenador y un paquete no vacío no superior a 2 GiB. La recepción local nunca reemplaza la confirmación final de importación del usuario.
+
+## Utilice paquetes de la aplicación CLI o web local {/* #local-package-transfer */}
+
+Desde v1.0.3, el CLI y la aplicación web local autenticada pueden utilizar paquetes de sesión. En la aplicación web local, utilice los controles de exportación de sesiones o importación en proyectos y proporcione una ruta en el ordenador que ejecute el servicio cuando se le solicite. Las sesiones web remotas no pueden usar transferencia de paquetes arbitrarios. El desvío de sitio web a escritorio arriba es un flujo separado.
+
+Para el CLI, inicie el perfil local previsto primero y espere hasta que la sesión de origen esté ociosa. Sustitúyase los IDs y caminos a continuación por su cuenta:
+
+```bash
+open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
+open-science session import ./session.science --new-project "Restored research" --non-interactive --json
+```
+
+La exportación requiere un explícito `.science` ruta de salida. La importación requiere **--non-interactive**, que confirma la vista previa en su nombre: inspeccionar el origen del paquete y destino previsto primero. Elija **--project** para un proyecto existente o **--new-project** para uno nuevo, nunca ambos. Omitir ambos crea un proyecto usando el nombre del proyecto del paquete. El plazo de solicitud predeterminado es de una hora; ajustar **--timeout-ms** para una transferencia grande.
+
+Compruebe el camino guardado o la sesión importada en el resultado. La investigación importada sigue siendo sólo lectura; uso **Fork** para continuar. En v1.0.4, la exportación también fija una espera que podría permanecer después de seleccionar la ubicación de guardado.

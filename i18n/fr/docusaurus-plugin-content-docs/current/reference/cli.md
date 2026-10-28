@@ -1,7 +1,7 @@
 ---
 title: "CLI et sortie structurée"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -245,3 +245,29 @@ open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
 ```
 
 Ces commandes fonctionnent sans backend courant. `version` rapporte l'installation invoquée, et non la version d'un service connecté. `paths` Rapports `cliPath`, `nodePath`, `startupConfigRoot` et `discoveryConfigRoots`; elle n'identifie pas un service actif ni le répertoire de données de recherche. Un profil explicite sélectionne l'emplacement de démarrage/découverte sans le créer. Les chemins peuvent révéler des noms d'utilisateur locaux, alors examinez la sortie avant de la partager.
+
+## Connecter un client externe MCP {/* #external-mcp */}
+
+Le CLI autonome dans v1.0.4 expose les outils de recherche sur **stdio**. Commencez d'abord le service du profil prévu; l'adaptateur ne le démarre pas automatiquement. Remplacer les deux chemins absolus dans cette configuration client :
+
+```bash
+open-science start --no-open --config-root /absolute/path/to/profile
+open-science mcp --help
+```
+
+```json
+{
+  "mcpServers": {
+    "open-science": {
+      "command": "/absolute/path/to/open-science",
+      "args": ["mcp", "--config-root", "/absolute/path/to/profile"]
+    }
+  }
+}
+```
+
+Laissez le client lancer l'adaptateur. Découvrir des projets avec **list_projects**, soumettre **start_run** avec l'ID du projet retourné, suivez **get_run**, et inspecter **list_artifacts**. La seule découverte d'outils ne prouve pas que le service est disponible. Les appels nécessitent le service local authentifié en cours d'exécution; ce n’est pas un point de terminaison HTTP MCP distant.
+
+Le client agit sous les autorisations existantes du profil. Il peut créer des projets persistants, modifier la configuration et commencer à travailler qui écrit des fichiers ou engage des coûts de modèle. Les approbations peuvent encore nécessiter une action en Open-Science. Inspectez l'état actuel après un délai avant de répéter une écriture. Fermer le client ou annuler sa demande n'annule pas la recherche acceptée : utilisation **cancel_run** explicitement. Voir [outil MCP officiel et référence d'autorisation](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp).
+
+Pour les commandes de paquets, suivez [Importation et exportation de CLI](../guides/research-packages.md#local-package-transfer).

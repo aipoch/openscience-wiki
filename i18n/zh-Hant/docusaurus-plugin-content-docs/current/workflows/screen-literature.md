@@ -1,7 +1,7 @@
 ---
 title: "用智慧集合篩選文獻"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -105,3 +105,7 @@ Keep the output in English.
 選擇 **Collection actions → Export included references → BibTeX** 或 **RIS**，儲存後檢查檔案包含五條 DOI 記錄。<ExampleDownload path="/examples/v0330/screened-primary-studies.bib">示例 BibTeX</ExampleDownload>保留匯出的引用資訊，為便於再分發已移除摘要。它是書目檔案，不包含篩選決定日誌或 PDF 全文。交接時可同時保留<ExampleDownload path="/examples/v0330/screening-decisions.csv">複核決定表</ExampleDownload>。
 
 將入選文獻用於[組會資料包](journal-club.md)。提取詳細結果或比較催化效能前，先取得並閱讀全文。**Update automatically** 可評估所選範圍內新增或變化的記錄，並可能產生服務費用；它不會去外部資料庫檢索新論文。
+
+## 導出篩選決定 {/* #screening-csv */}
+
+從 v1.0.3 起，可選擇 **Collection actions → Export screening results (CSV)**。此文件包含全部候選文獻的最終判定、人工決定、原因和模型概率。重新打開 CSV，覈對候選數量及人工覆蓋結果，與上面的入選文獻目錄一同保存。兩種導出都不包含全部全文，模型概率也不是論文質量評分。

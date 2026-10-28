@@ -1,7 +1,7 @@
 ---
 title: "Headless Service und Browserzugriff"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Headless Service und Browserzugriff {/* #headless-service-and-browser-access */}
@@ -119,3 +119,7 @@ Siehe [Offizieller Runtime Guide](https://github.com/aipoch/open-science/blob/v1
 ## Compute im Web Workspace {/* #web-compute */}
 
 Der Standalone Web Workspace zeigt **Compute** wenn sein Backend die erforderlichen Notebook- und Compute-APIs bereitstellt. Öffnen Sie den verbundenen Arbeitsbereich, überprüfen Sie, ob das Panel verfügbar ist, und verwenden Sie dann die vorhandenen SSH/Slurm-Konfigurationsschritte. Ein verfügbares Panel liefert keine Remote-Anmeldeinformationen oder bestätigt, dass ein Job ausgeführt werden kann.
+
+## Pakete und externe Tool-Clients {/* #local-research-tools */}
+
+Authentifizierte lokale Web-Sitzungen können [Forschungspakete importieren und exportieren](../guides/research-packages.md#local-package-transfer); Remote-Web-Sitzungen können diese willkürlichen Pfadübertragungen nicht durchführen. Um Forschungswerkzeuge einem externen Client auf derselben Maschine auszusetzen, konfigurieren Sie die [Stdio MCP Adapter](cli.md#external-mcp). Es stellt eine Verbindung zu einem bereits laufenden lokalen Dienst her und verwendet die Berechtigungen dieses Profils; es erstellt keine entfernte MCP-URL.

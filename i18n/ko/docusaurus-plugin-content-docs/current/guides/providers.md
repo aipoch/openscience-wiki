@@ -1,7 +1,7 @@
 ---
 title: "공급자 및 지역 모델 설정"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -250,3 +250,7 @@ Requesty는 `https://router.requesty.ai`를 사용합니다; Active Agent는 호
 ## 모델 연결 복구 {/* #credential-recovery */}
 
 만료되거나 잘못된 인증 정보에 표시되는 복구 작업을 사용해 해당 공급자 설정을 갱신하고 테스트한 후 원래 세션으로 돌아가세요. 복구에 사용자 조치가 필요한 동안에만 Composer가 차단됩니다. 초안을 유지하고 재전송 전 이전 요청이 아직 실행 중인지 확인하세요. Codex 구독 모델의 컨텍스트 사용량은 선택한 모델이 보고한 용량을 반영하므로 이전 표시와 다를 수 있습니다.
+
+## Kimi K3.1 Pro 선택하기 {/* #kimi-k31 */}
+
+v1.0.3은 제공자 카탈로그에 Kimi K3.1 Pro를 추가합니다. 대상 제공자의 모델 선택에서 사용 가능한 항목을 고르고 연결을 테스트하세요. 실제 사용 가능 여부는 활성 Agent 프레임워크, 엔드포인트, 계정에 따라 달라집니다. 목록에 있다고 접근 권한이 보장되는 것은 아닙니다.

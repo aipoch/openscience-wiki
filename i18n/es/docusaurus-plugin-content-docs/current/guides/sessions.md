@@ -1,7 +1,7 @@
 ---
 title: "Períodos de sesiones y ramas"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -186,3 +186,7 @@ Antes de enviar el siguiente turno, compruebe el agente/Specialist seleccionado 
 Una sesión parada para su respuesta o aprobación muestra un estado de espera en el hogar, en la barra lateral y en la conversación. Abra la tarjeta pendiente, lea la decisión solicitada y envíela para continuar. Recargar la aplicación no responde por sí misma a la pregunta o aprueba una herramienta. Haga doble clic en una sesión en la barra lateral del espacio de trabajo para abrir su editor.
 
 Para las exportaciones de diagnóstico, lea el resumen de la terminación: una exportación parcial es una advertencia, no un paquete de diagnóstico completo. Mantenga el error específico y revise los archivos exportados antes de compartirlos.
+
+## Ampliar una conversación compacta {/* #collapsed-conversation */}
+
+En v1.0.4, los cambios completados colapsan mensajes intermedios y la actividad de la herramienta de grupo en resúmenes. Ampliar un grupo para inspeccionar sus detalles; correr, esperar y interrumpir el trabajo sigue siendo visible. Búsqueda de conversación, anotaciones y hallazgos nativos revelan contenido oculto coincidente. Presentación de cambios de fusión, no el registro de investigación guardado o si una tarea completada.

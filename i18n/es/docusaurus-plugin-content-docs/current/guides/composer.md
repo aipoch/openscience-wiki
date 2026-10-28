@@ -1,7 +1,7 @@
 ---
 title: "Conversaciones y solicitudes en cola"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Conversaciones y solicitudes en cola {/* #conversations-and-queued-requests */}
@@ -152,3 +152,7 @@ Estas tarjetas aclaran la solicitud de investigación. No otorgan permisos de he
 Si un mensaje preguntado reporta un error, lee y utilice la acción deshacer ofrecida antes de editar o reenviar. Una advertencia de renuncia/recarga puede significar un borrador sin sentido; volver al proyecto o descartarlo deliberadamente. Dejar una carpeta ahora le pide que seleccione los archivos dentro de ella: abra la carpeta, seleccione los archivos previstos y espere sus chips de acceso.
 
 Para un modelo expirado o Credencial Connector, siga la acción de recuperación mostrada para ese servicio, luego vuelva a la conversación original y compruebe su estado. No vuelva a enviar la misma solicitud mientras su respuesta anterior aún esté en curso. Artifact `@` menciones también están disponibles en conversaciones web remotas; seleccione el archivo/versión deseado antes de enviar.
+
+## Skip a clarification question {/* #skip-question */}
+
+Uso **Skip** para dejar la pregunta actual sin respuesta, o su menú **Skip all** para las preguntas restantes. **Let the agent decide** delegados la elección en su lugar; es una respuesta diferente. Compruebe la historia de la respuesta guardada y si la conversación se reanudará antes de enviar otra respuesta después de un error.

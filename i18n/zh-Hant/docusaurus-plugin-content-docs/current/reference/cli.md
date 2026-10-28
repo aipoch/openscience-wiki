@@ -1,7 +1,7 @@
 ---
 title: "CLI 與結構化輸出"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -243,3 +243,29 @@ open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
 ```
 
 這些命令不要求後端運行。`version` 顯示實際調用的安裝版本，不是已連接服務的版本。`paths` 返回 `cliPath`、`nodePath`、`startupConfigRoot` 和 `discoveryConfigRoots`；它不代表活動服務或研究數據目錄。顯式指定配置目錄會選擇啓動／發現位置，但不會創建該目錄。路徑可能包含本機用戶名，分享前先檢查輸出。
+
+## 連接外部 MCP 客戶端 {/* #external-mcp */}
+
+v1.0.4 的獨立 CLI 通過 **stdio** 提供科研工具。先啓動目標配置對應的服務；適配器不會自動啓動服務。將客戶端配置中的兩個絕對路徑替換爲實際路徑：
+
+```bash
+open-science start --no-open --config-root /absolute/path/to/profile
+open-science mcp --help
+```
+
+```json
+{
+  "mcpServers": {
+    "open-science": {
+      "command": "/absolute/path/to/open-science",
+      "args": ["mcp", "--config-root", "/absolute/path/to/profile"]
+    }
+  }
+}
+```
+
+由客戶端啓動適配器。先用 **list_projects** 獲取項目 ID，再交給 **start_run** 提交任務，通過 **get_run** 查看進度，使用 **list_artifacts** 查看文件。僅能發現工具不代表服務可用；實際調用需要運行中的已認證本地服務，這不是遠程 HTTP MCP 入口。
+
+客戶端沿用該配置已有的權限，可以創建持久項目、修改配置，併發起會寫文件或產生模型費用的任務。審批仍可能需要你在 Open-Science 中處理。請求超時後，先檢查當前狀態再重複寫操作。關閉客戶端或取消請求不會取消已接受的研究任務；需要停止任務時明確調用 **cancel_run**。詳見[官方 MCP 工具與權限說明](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp)。
+
+研究包命令見 [CLI 導入與導出](../guides/research-packages.md#local-package-transfer)。

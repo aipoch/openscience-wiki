@@ -1,7 +1,7 @@
 ---
 title: "Conversations et demandes en attente"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Conversations et demandes en attente {/* #conversations-and-queued-requests */}
@@ -152,3 +152,7 @@ Ces cartes clarifient la demande de recherche. Ils n'accordent pas de permis d'u
 Si un message en file d'attente signale une erreur, lisez-le et utilisez l'action d'annulation proposée avant d'éditer ou de renvoyer. Un avertissement d'abandon/rechargement peut signifier qu'il reste un avant-projet non envoyé; retourner à l'avant-projet ou le rejeter délibérément. Déposer un dossier vous demande maintenant de sélectionner les fichiers à l'intérieur : ouvrez le dossier, sélectionnez les fichiers prévus et attendez leurs puces de fixation.
 
 Pour un modèle expiré ou un titre de connexion, suivez l'action de récupération indiquée pour ce service, puis retournez à la conversation originale et vérifiez son état. N'envoyez pas à nouveau la même demande alors que sa réponse antérieure pourrait encore être en cours. Artéfact `@` Les mentions sont également disponibles dans les conversations web distantes ; sélectionnez le fichier/version souhaité avant d'envoyer.
+
+## Passer une question de clarification {/* #skip-question */}
+
+Utilisation **Skip** pour laisser la question actuelle sans réponse, ou son menu **Skip all** pour les questions restantes. **Let the agent decide** c'est une réponse différente. Vérifiez l'historique des réponses enregistrées et si la conversation reprend avant de soumettre une autre réponse après une erreur.

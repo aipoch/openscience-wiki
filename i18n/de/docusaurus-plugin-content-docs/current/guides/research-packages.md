@@ -2,7 +2,7 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -140,3 +140,18 @@ Verwenden Sie eine installierte Desktop-App auf der **derselbe Computer** Als Br
 Wenn die Übergabe nicht verfügbar oder blockiert ist, laden Sie die `.science` Datei und verwenden Sie die bestehende Importkontrolle. Sie können es auch auf das Projekt nach Hause legen. Ein normaler Ordner-Drop in den Composer importiert kein Paket. Wenn ein Import einen Teilfehler meldet, überprüfen Sie das Ziel für eine bestehende Sitzung, bevor Sie es erneut versuchen; Erstellen Sie kein anderes Projekt, nur um den gleichen Transfer zu wiederholen.
 
 Für Website-Autoren, die [Browser-Import SDK Guide](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md) erfordert HTTPS (oder einen Loopback-Entwicklungsursprung), eine Desktop-Handoff-Funktion für den gleichen Computer und ein nicht leeres Paket, das nicht größer als 2 GiB ist. Die lokale Quittung ersetzt niemals die endgültige Importbestätigung des Benutzers.
+
+## Verwenden Sie Pakete aus der CLI oder der lokalen Web-App {/* #local-package-transfer */}
+
+Ab v1.0.3 können die CLI und die authentifizierte lokale Web-App Sitzungspakete verwenden. Verwenden Sie in der lokalen Web-App die Steuerung für den Sitzungsexport oder den Projektimport und geben Sie auf Anfrage einen Pfad auf dem Computer an, auf dem der Dienst ausgeführt wird. Remote-Websitzungen können keine Paketübertragung mit beliebigem Pfad verwenden. Die Website-to-Desktop-Handoff oben ist ein separater Fluss.
+
+Starten Sie für die CLI zuerst das vorgesehene lokale Profil und warten Sie, bis die Quellsitzung im Leerlauf ist. Ersetzen Sie die IDs und Pfade unten durch Ihre eigenen:
+
+```bash
+open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
+open-science session import ./session.science --new-project "Restored research" --non-interactive --json
+```
+
+Export erfordert eine explizite `.science` Ausgangspfad. Import erfordert **--non-interactive**, die die Vorschau in Ihrem Namen bestätigt: Überprüfen Sie zuerst den Ursprung und das beabsichtigte Ziel des Pakets. Wählen **--project** für ein bestehendes Projekt oder **--new-project** Für einen neuen, niemals beides. Das Auslassen beider erstellt ein Projekt unter Verwendung des Projektnamens des Pakets. Die Standardanforderungsfrist beträgt eine Stunde; Anpassung **--timeout-ms** für einen großen Transfer.
+
+Überprüfen Sie den gespeicherten Pfad oder die importierte Sitzung im Ergebnis. Importierte Forschung bleibt schreibgeschützt; Nutzung **Fork** weiterzumachen. In v1.0.4 behebt der Export auch eine Wartezeit, die nach der Auswahl des Speicherorts verbleiben könnte.

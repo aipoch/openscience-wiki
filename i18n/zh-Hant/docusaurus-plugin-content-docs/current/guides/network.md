@@ -1,7 +1,7 @@
 ---
 title: "網路、代理與包映象"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-27'
 ---
 
 # 網路、代理與包映象 {/* #网络代理与包镜像 */}
@@ -28,11 +28,12 @@ Network 顯示 **Ready** 但工具失敗時，展開該工具的錯誤。狀態�
 
 ## 配置公網訪問規則 {/* #public-network-rules */}
 
-1. 開啟 **Settings → Network → Manage access**。閱讀 **Public internet access**，區分哪些公網 HTTPS 讀取可以直接進行、哪些請求需要批准。
-2. 檢查 **Built-in services**。標為 **Required** 的分組保持啟用；其他分組按任務需要選擇。
-3. 在 **Custom public domains** 下填寫完整的 **Domain hostname**，選擇 **Add to list**。檢查草稿條目後再點 **Save changes**。
+1. 打開 **Settings → Network → Manage access**，閱讀 **Public internet access** 並檢查 **Built-in services**；標爲 **Required** 的分組保持啓用。
+2. 在 **Custom public domains** 的 **Domain hostname** 中輸入主機名、HTTP(S) URL 或以通配符開頭的規則，然後選擇 **Add to list**。
+3. 檢查規範化後的規則，再選擇 **Save changes**，重試原請求。已保存的批准會在重啓後保留。
 
-公網域名規則允許向該主機傳送資料，不包含其子域名，也不會授權訪問私有地址。填寫主機名，不要帶協議、路徑、埠、萬用字元或 IP 地址。主機名若解析到非公網地址，仍需按私有服務流程稽核。受保護程式碼跟隨連結或獲取圖示時也適用這些規則。
+精確主機名不包含子域名。`*.example.org` 覆蓋其子域名，但不包含 `example.org` 本身。`https://example.org/path` 這樣的 URL 會轉換爲主機名規則，路徑和端口不會限制訪問範圍。規則允許向匹配的主機發送數據。輸入不接受 IP 字面值、localhost 或嵌有賬號密碼的 URL。主機名若解析到私有地址，仍需經過私有服務審覈，公網規則不會授予該權限。
+
 
 ## 信任私有服務 {/* #trusted-private-services */}
 

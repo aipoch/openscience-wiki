@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -140,3 +140,18 @@ Use an installed desktop app on the **same computer** as the browser. The websit
 If handoff is unavailable or blocked, download the `.science` file and use the existing import control. You can also drop it onto the project home. A normal folder drop into the Composer does not import a package. If an import reports a partial failure, check the destination for an existing session before retrying; do not create another project just to repeat the same transfer.
 
 For website authors, the [browser-import SDK guide](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md) requires HTTPS (or a loopback development origin), a same-computer desktop handoff and a nonempty package no larger than 2 GiB. Local receipt never replaces the user's final import confirmation.
+
+## Use packages from the CLI or local web app {/* #local-package-transfer */}
+
+From v1.0.3, the CLI and authenticated local web app can use session packages. In the local web app, use the session export or project import controls and supply a path on the computer running the service when asked. Remote web sessions cannot use arbitrary-path package transfer. The website-to-desktop handoff above is a separate flow.
+
+For the CLI, start the intended local profile first and wait until the source session is idle. Replace the IDs and paths below with your own:
+
+```bash
+open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
+open-science session import ./session.science --new-project "Restored research" --non-interactive --json
+```
+
+Export requires an explicit `.science` output path. Import requires **--non-interactive**, which confirms the preview on your behalf: inspect the package's origin and intended destination first. Choose **--project** for an existing project or **--new-project** for a new one, never both. Omitting both creates a project using the package's project name. The default request deadline is one hour; adjust **--timeout-ms** for a large transfer.
+
+Check the saved path or imported session in the result. Imported research remains read-only; use **Fork** to continue. In v1.0.4, export also fixes a wait that could remain after selecting the save location.

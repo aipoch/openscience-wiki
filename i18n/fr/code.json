@@ -1821,5 +1821,17 @@
   },
   "docs.outline.reference.v102.scope": {
     "message": "Sources de données scientifiques, installation de npm CLI, fiches de questions et fiabilité des dossiers de recherche."
+  },
+  "docs.outline.reference.v103.title": {
+    "message": "v1.0.3"
+  },
+  "docs.outline.reference.v103.scope": {
+    "message": "Découverte bibliographique, transfert local de paquets, mise en page PDF et sources scientifiques."
+  },
+  "docs.outline.reference.v104.title": {
+    "message": "v1.0.4"
+  },
+  "docs.outline.reference.v104.scope": {
+    "message": "Clients MCP externes, avis de publication, conversations compactes et import de fichiers locaux."
   }
 }

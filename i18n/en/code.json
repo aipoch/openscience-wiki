@@ -1887,5 +1887,17 @@
   },
   "docs.outline.reference.v102.scope": {
     "message": "Scientific data sources, npm CLI installation, question cards and research-record reliability."
+  },
+  "docs.outline.reference.v103.title": {
+    "message": "v1.0.3"
+  },
+  "docs.outline.reference.v103.scope": {
+    "message": "Literature discovery, local package transfer, PDF layouts and scientific data sources."
+  },
+  "docs.outline.reference.v104.title": {
+    "message": "v1.0.4"
+  },
+  "docs.outline.reference.v104.scope": {
+    "message": "External MCP clients, publication notices, compact conversations and local file imports."
   }
 }

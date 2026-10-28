@@ -1,7 +1,7 @@
 ---
 title: "檔案、產物與版本"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -145,3 +145,7 @@ import Screenshot from '@site/src/components/Screenshot';
 原始碼：[專案檔案庫](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ProjectFilesView.tsx)、[本地檔案操作](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/LocalFileHeaderActions.tsx)。
 
 實現參考：[複製引用](https://github.com/aipoch/open-science/commit/f0c0e081)、[完整匯出選擇](https://github.com/aipoch/open-science/commit/f0468f35)、[預覽編輯](https://github.com/aipoch/open-science/commit/8763f9aa)。
+
+## 將已授權的本地文件保存爲產物 {/* #import-local-artifact */}
+
+在 **This computer** 中打開已授權文件夾內的文件，在預覽中選擇 **… → Save as artifact**，等待完成後打開會話中生成的產物，檢查內容。Open-Science 保存的是應用管理的不可變副本；之後編輯本地原文件不會更新此副本。僅預覽文件夾內的文件並不等於導入。

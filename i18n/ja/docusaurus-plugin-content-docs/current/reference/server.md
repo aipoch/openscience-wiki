@@ -1,7 +1,7 @@
 ---
 title: "ヘッドレスサービスおよびブラウザアクセス"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # ヘッドレスサービスおよびブラウザアクセス {/* #headless-service-and-browser-access */}
@@ -119,3 +119,7 @@ v1.0.0 は CLI アプリケーション アップデータを削除します。 
 ## Web ワークスペースの Compute {/* #web-compute */}
 
 スタンドアロン Web ワークスペースでは、 **Compute** を利用できます。ただし、バックエンドが必要な Notebook・Compute API を提供している必要があります。接続したワークスペースでパネルを確認し、既存の SSH/Slurm 設定手順に従ってください。パネルの表示だけでは、リモート認証情報やジョブ実行の可否は確認できません。
+
+## 研究パッケージと外部ツールクライアント {/* #local-research-tools */}
+
+認証済みローカル Web セッションでは[研究パッケージの入出力](../guides/research-packages.md#local-package-transfer)が可能ですが、リモート Web セッションは任意パスでの転送を行えません。同じマシンの外部クライアントには [stdio MCP アダプター](cli.md#external-mcp)を設定します。稼働中のローカルサービスと既存権限を使い、リモート MCP URL は作成しません。

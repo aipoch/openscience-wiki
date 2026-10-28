@@ -1,7 +1,7 @@
 ---
 title: "Sessions et sections"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -186,3 +186,7 @@ Avant d'envoyer le tour suivant, vérifiez l'Agent/Specialist sélectionné et l
 Une session suspendue pour votre réponse ou approbation montre un état d'attente sur la maison, dans la barre latérale et dans la conversation. Ouvrir la carte en attente, lire la décision demandée et la soumettre pour continuer. Le rechargement de l'application ne répond pas en soi à la question ou n'approuve pas un outil. Double-cliquez sur une session dans la barre latérale de l'espace de travail pour ouvrir son éditeur.
 
 Pour les exportations de diagnostic, lisez le résumé d'achèvement : une exportation partielle est un avertissement et non un ensemble de diagnostics complet. Gardez l'erreur spécifique et examinez les fichiers exportés avant de les partager.
+
+## Étendre une conversation compacte {/* #collapsed-conversation */}
+
+Dans v1.0.4, complété transforme les messages intermédiaires d'effondrement et l'activité d'outil de groupe en résumés. Étendre un groupe pour en vérifier les détails; les travaux en cours, en attente et interrompus restent visibles. Recherche de conversation, annotations et recherche native révèlent des contenus cachés correspondants. Collapsing change la présentation, pas le dossier de recherche sauvegardé ou si une tâche terminée.

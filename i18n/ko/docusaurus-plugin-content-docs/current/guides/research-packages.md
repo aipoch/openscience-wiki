@@ -2,7 +2,7 @@
 title: ".science 연구 패키지"
 description: "파일 및 증거와 함께 세션을 내보내고 다른 프로젝트에 대한 연구 기록을 검사합니다."
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -140,3 +140,18 @@ Keep everything in English and return links to both new files.
 전달을 사용할 수 없거나 차단되면 `.science` 파일을 다운로드해 기존 가져오기 기능을 사용하세요. 프로젝트 홈에 끌어 놓아도 됩니다. Composer에 일반 폴더를 끌어 놓는 것은 패키지 가져오기가 아닙니다. 일부 실패가 보고되면 재시도 전에 대상 프로젝트에 세션이 이미 생겼는지 확인하세요. 같은 전송을 반복하려고 새 프로젝트를 만들지 마세요.
 
 웹사이트 개발자를 위한 [브라우저 가져오기 SDK 가이드](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md) 는 HTTPS(개발용 루프백 주소 허용), 같은 컴퓨터의 데스크톱 앱, 비어 있지 않은 2 GiB 이하 패키지를 요구합니다. 로컬 수신은 사용자의 최종 가져오기 확인을 대신하지 않습니다.
+
+## CLI와 로컬 웹 앱에서 연구 패키지 사용하기 {/* #local-package-transfer */}
+
+v1.0.3부터 CLI와 인증된 로컬 웹 앱에서 연구 패키지를 사용할 수 있습니다. 웹 앱에서는 세션 내보내기나 프로젝트 가져오기를 선택하고, 요청되면 서비스를 실행하는 컴퓨터의 경로를 입력합니다. 원격 웹 세션은 임의 경로 전송을 지원하지 않습니다. 위의 웹사이트에서 데스크톱으로 전달하는 기능과는 별개입니다.
+
+CLI에서는 대상 프로필의 서비스를 먼저 시작하고 원본 세션이 유휴 상태가 될 때까지 기다립니다. 아래 ID와 경로를 실제 값으로 바꾸세요.
+
+```bash
+open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
+open-science session import ./session.science --new-project "Restored research" --non-interactive --json
+```
+
+내보내기에는 명시적인 `.science` 출력 경로가 필요합니다. 가져오기의 **--non-interactive**는 미리보기를 대신 승인하므로 출처와 목적지를 먼저 확인하세요. 기존 프로젝트는 **--project**, 새 프로젝트는 **--new-project**를 사용하며 둘을 함께 지정할 수 없습니다. 둘 다 생략하면 패키지의 프로젝트 이름으로 새 프로젝트를 만듭니다. 기본 요청 제한 시간은 1시간이며 큰 전송은 **--timeout-ms**로 조정합니다.
+
+결과에 표시된 저장 경로나 가져온 세션을 확인합니다. 가져온 기록은 읽기 전용이므로 연구를 계속하려면 **Fork**를 사용합니다. v1.0.4는 저장 위치 선택 후 내보내기가 계속 대기하던 문제도 수정합니다.

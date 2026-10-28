@@ -1,7 +1,7 @@
 ---
 title: "Headless service and browser access"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Headless service and browser access
@@ -120,3 +120,7 @@ See the [official runtime guide](https://github.com/aipoch/open-science/blob/v1.
 ## Compute in the web workspace {/* #web-compute */}
 
 The standalone web workspace exposes **Compute** when its backend provides the required Notebook and Compute APIs. Open the connected workspace, check that the panel is available, then use the existing SSH/Slurm configuration steps. An available panel does not supply remote credentials or confirm that a job can run.
+
+## Packages and external tool clients {/* #local-research-tools */}
+
+Authenticated local web sessions can [import and export research packages](../guides/research-packages.md#local-package-transfer); remote web sessions cannot perform these arbitrary-path transfers. To expose research tools to an external client on the same machine, configure the [stdio MCP adapter](cli.md#external-mcp). It connects to an already-running local service and uses that profile's permissions; it does not create a remote MCP URL.

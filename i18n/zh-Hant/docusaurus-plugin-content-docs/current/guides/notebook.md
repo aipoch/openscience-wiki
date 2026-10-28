@@ -1,7 +1,7 @@
 ---
 title: "Notebook 與執行證據"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -287,3 +287,7 @@ Runtimes 的包清單描述已安裝環境，Provenance 描述某個檔案所捕
 ## 檢查連續分析的依賴記錄 {/* #chained-analysis-lineage */}
 
 在 Python 或 R 中讀取 CSV、轉換數據並導出新文件後，打開輸出的溯源信息，檢查記錄的輸入版本和執行依賴，再選擇要驗證的文件版本。依賴記錄更準確，本身不等於重新運行計算或確認分析的科學有效性；後續按[產物驗證](reproducibility.md)操作。
+
+## 檢查本地文件夾權限 {/* #folder-access */}
+
+無法讀取本地輸入時，檢查 [Notebook 與 Shell 文件夾權限](../reference/permissions.md#notebook-folder-restrictions)。更改限制會停止正在運行的進程並清空變量。先保存結果，授權所需文件夾，再重跑恢復工作狀態所需的單元格。

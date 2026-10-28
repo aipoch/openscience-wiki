@@ -1,7 +1,7 @@
 ---
 title: "Service sans tête et accès au navigateur"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Service sans tête et accès au navigateur {/* #headless-service-and-browser-access */}
@@ -119,3 +119,7 @@ Voir les [guide officiel des temps d'exécution](https://github.com/aipoch/open-
 ## Calculer dans l'espace de travail web {/* #web-compute */}
 
 L'espace de travail web autonome expose **Compute** lorsque son moteur fournit le carnet de notes et les API de calcul nécessaires. Ouvrez l'espace de travail connecté, vérifiez que le panneau est disponible, puis utilisez les étapes de configuration SSH/Slurm existantes. Un panneau disponible ne fournit pas d'identifiants à distance ou ne confirme pas qu'un travail peut fonctionner.
+
+## Paquets et clients d'outils externes {/* #local-research-tools */}
+
+Les sessions Web locales authentifiées peuvent [Packages de recherche sur les importations et les exportations](../guides/research-packages.md#local-package-transfer); les sessions web distantes ne peuvent pas effectuer ces transferts arbitraires. Pour exposer des outils de recherche à un client externe sur la même machine, configurez le [adaptateur MCP stdio](cli.md#external-mcp). Il se connecte à un service local déjà en cours d'exécution et utilise les permissions de ce profil ; il ne crée pas une URL MCP distante.

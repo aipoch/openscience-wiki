@@ -1,7 +1,7 @@
 ---
 title: "權限與控制"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 # 權限與控制 {/* #权限与控制 */}
@@ -78,3 +78,9 @@ Connector 授權處理順序如下：
 | Undo 提示 | 在介面提供的有效期內恢復對應撤銷；不會逆轉工具已經產生的影響 |
 
 技術參考：[模式定義](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/permission-profiles.ts) · [Connector 授權處理](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/connector-broker.ts) · [預設授權](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/defaults.ts) · [代理策略](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/acp/permission-policy.ts).
+
+## 限制 Notebook 與 Shell 的文件夾訪問 {/* #notebook-folder-restrictions */}
+
+在 **Settings → Permissions → Notebook and Shell folder access** 中，保持 **Restrict Notebook and Shell folders** 開啓，將本地執行限制在工作區、已授權文件夾及工具必需的文件內。只需讀取一個輸入時，授權對應文件夾即可。該選項默認開啓，舊設置未保存此值時也按開啓處理。
+
+更改它會停止運行中的 Notebook 與 Shell 進程，清空內存變量，但保留已保存的歷史。它不管理代理原生工具或遠程計算機。Windows 上的開關爲 **Restrict WSL2 Shell folders**：原生受保護模式仍限制文件夾，原生標準模式使用當前用戶的文件夾權限。v1.0.4 修復了 Windows Notebook 標準模式的執行問題。

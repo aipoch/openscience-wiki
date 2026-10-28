@@ -1,7 +1,7 @@
 ---
 title: "Файлы, артефакты и версии"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -143,3 +143,7 @@ import Screenshot from '@site/src/components/Screenshot';
 Ссылки на внедрение: [скопированные ссылки](https://github.com/aipoch/open-science/commit/f0c0e081), [Полный выбор экспортных товаров](https://github.com/aipoch/open-science/commit/f0468f35) и [предварительный просмотр правок](https://github.com/aipoch/open-science/commit/8763f9aa). Если приложение сообщает **Управляемый файл или его Сеанс удаляется**, прикрепите предполагаемый текущий ввод через приложение и проверьте его право собственности; См. [устранение неполадок](troubleshooting.md).
 
 Источники: [Библиотека файлов проекта](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ProjectFilesView.tsx), [локальные файловые действия](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/LocalFileHeaderActions.tsx).
+
+## Храните авторизованный локальный файл как артефакт {/* #import-local-artifact */}
+
+Откройте файл из авторизованной папки под **This computer**. В предварительном просмотре использовать **… → Save as artifact** И ждать завершения. Откройте полученный разговорный артефакт и проверьте его содержимое. Open-Science сохраняет неизменяемую управляемую копию; более поздние правки к исходному локальному файлу не обновляют эту копию. Простое предварительное просмотр файла папки не импортирует его.

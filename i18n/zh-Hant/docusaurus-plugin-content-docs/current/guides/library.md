@@ -1,7 +1,7 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-27'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -396,3 +396,23 @@ Library 中還有更多匹配記錄時，獨立的 **Select all matching referen
 ## 繼續失敗的智慧集合批次 {/* #smart-collection-retry */}
 
 智慧集合評估停在失敗批次時，先檢查錯誤與剩餘進度，再使用介面提供的重試操作。v0.37.0 起，重試繼續失敗批次並保留已完成的評估。此次重試保持範圍和規則不變，完成後檢查 Included、Needs review 與 Excluded 的結果。不要透過建立重複集合來恢復中斷評估。
+
+## 追蹤參考文獻與引用論文 {/* #citation-discovery */}
+
+打開一條文獻的詳情，選擇 **References** 或 **Cited by**，查看 Semantic Scholar 提供的參考文獻或引用關係。如果僅通過標題匹配，請覈對候選論文的標題、作者和年份後再確認。使用 **Load more** 加載後續結果，勾選需要的論文，選擇 **Add selected to Inbox**。在 Inbox 審閱後再接受到文獻庫；找到引用關係不代表已經取得全文。
+
+API key 爲可選項。遇到限流時可以稍後重試，或在本地桌面應用中通過 **Configure API key** 配置。沒有結果可能與數據覆蓋或訪問限制有關，不能據此認定論文沒有參考文獻或引用。
+
+## 導入文件與補充材料 {/* #supplementary-materials */}
+
+將 PDF 或支持的文獻目錄文件拖入文獻庫，檢查導入結果。查找論文的附屬文件時，打開詳情並選擇 **Find supplementary materials**。下載前核對來源、與論文的關係、文件名和許可。搜索覆蓋 Figshare、DataCite 和 Europe PMC；找到來源鏈接或搜索爲空，都不能證明已經找全補充材料。
+
+逐個查看附件的下載進度。遇到壓縮包時，選擇需要解壓的文件；下載完成後使用對應格式的預覽打開，Word 文件也支持預覽。區分正文與補充附件，重試前檢查已保存的內容，只重試失敗的下載。
+
+## 檢查撤稿與更正通知 {/* #publication-checks */}
+
+1. 打開具有一個有效 DOI 的文獻。在 **More actions → Retractions and corrections** 中選擇 **Check retractions and corrections**。
+2. 此操作會將該 DOI 發送給 Crossref。查看通知類型、來源、日期和通知鏈接；調整論文的使用方式前，先閱讀通知原文。
+3. 結果及 **Last checked** 時間會保存在文獻記錄中。重新打開面板顯示的是已保存的記錄；需要最新信息時再次檢查。
+
+**No related notices found** 只表示本次查詢沒有返回通知，不代表論文不受影響。Crossref 的覆蓋並不完整。檢查不會改寫文獻元數據或篩選決定。刷新失敗時會保留上一次成功結果，請查看日期並稍後重試。

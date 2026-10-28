@@ -1,7 +1,7 @@
 ---
 title: "Notebook et preuves d'exécution"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -297,3 +297,7 @@ Dans le **Provenance → Environment** du résultat, conservez les origines de C
 ## Vérifier les dépendances après une analyse enchaînée {/* #chained-analysis-lineage */}
 
 Après avoir lu un CSV, le transformer et exporter un nouveau fichier en Python ou R, ouvrir la provenance de la sortie et inspecter les versions d'entrée enregistrées et les dépendances d'exécution. Utilisez ces enregistrements pour sélectionner la version du fichier à vérifier. Une capture plus précise de la lignée ne réexamine pas en soi le calcul ou n'établit pas la validité scientifique de l'analyse; suivre [vérification des artefacts](reproducibility.md).
+
+## Vérifier l'accès au dossier local {/* #folder-access */}
+
+Si une entrée locale ne peut pas être lue, vérifiez [Autorisations des carnets et des dossiers Shell](../reference/permissions.md#notebook-folder-restrictions). Changer la restriction arrête les processus en direct et efface les variables. Enregistrer les résultats d'abord, accorder le dossier requis, puis réexécuter seulement les cellules nécessaires pour reconstruire l'état de travail.

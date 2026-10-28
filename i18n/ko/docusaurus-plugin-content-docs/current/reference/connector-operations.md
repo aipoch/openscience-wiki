@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 1개의 연결관을 확장하십시오. 필수 필드가 표시됩니다. **\*필수**; 이 참고 및 다운로드 Open-Science 사용 **v1.0.2** 스키마. 한국어 `input.required` 목록은 권한이 있습니다; Legacy top-level `required` 목록은 absent 일 수 있습니다. 견적 요청 <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.2.json">완전한 다운로드 가능한 registry</ExampleDownload> 배열된 JSON schemas를 위해, 가득 차있는 반환 묘사 및 대리인 측 호출 예. 일반을 통과하지 마십시오 `id` 도구가 기대할 때 `accessions`, `cids`, `rs_id` 또는 다른 namespace-specific 필드.
+한 번에 1개의 연결관을 확장하십시오. 필수 필드가 표시됩니다. **\*필수**; 이 참고 및 다운로드 Open-Science 사용 **v1.0.4** 스키마. 한국어 `input.required` 목록은 권한이 있습니다; Legacy top-level `required` 목록은 absent 일 수 있습니다. 견적 요청 <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.4.json">완전한 다운로드 가능한 registry</ExampleDownload> 배열된 JSON schemas를 위해, 가득 차있는 반환 묘사 및 대리인 측 호출 예. 일반을 통과하지 마십시오 `id` 도구가 기대할 때 `accessions`, `cids`, `rs_id` 또는 다른 namespace-specific 필드.
 
 ## 뚱 베어 {/* #family-1 */}
 
@@ -208,6 +208,32 @@ const result = await host.mcp("chemistry", "bindingdb_ligands_by_target", {"unip
 
 ```javascript
 const result = await host.mcp("chemistry", "bindingdb_targets_by_compound", {"smiles": "CC(=O)OC1=CC=CC=C1C(=O)O", "similarity": 0.85})
+```
+
+### `lipidmaps_get_compound` {/* #chemistry-lipidmaps_get_compound */}
+
+정확한 LMID나 PubChem CID로 LIPID MAPS를 조회합니다. 이름은 먼저 PubChem으로 확인하세요. 여러 일치, 결측값, 출처를 보존합니다. 이름·질량·일괄 검색은 지원하지 않습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id_type` | string | **required**; enum: [&quot;lm_id&quot;, &quot;pubchem_cid&quot;] |
+| `identifier` | string | **required**최대 길이: 15 |
+
+```javascript
+const result = await host.mcp("chemistry", "lipidmaps_get_compound", {"id_type": "lm_id", "identifier": "LMFA01010001"})
+```
+
+### `unichem_map_compound` {/* #chemistry-unichem_map_compound */}
+
+완전한 InChIKey나 ChEMBL ID를 UniChem으로 PubChem·ChEMBL·ChEBI에 매핑합니다. 서로 다른 구조와 잘림 정보를 보존합니다. 색인 매핑은 최신 레코드 검증이나 생물학적 동등성을 보장하지 않습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id_type` | string | **required**; enum: [&quot;inchikey&quot;, &quot;chembl&quot;] |
+| `identifier` | string | **required**; 최대 길이: 27 |
+
+```javascript
+const result = await host.mcp("chemistry", "unichem_map_compound", {"id_type": "chembl", "identifier": "CHEMBL1089"})
 ```
 
 </ToolOperationGroup>
@@ -2268,6 +2294,46 @@ const result = await host.mcp("structures", "alphafold_check_coverage", {"unipro
 const result = await host.mcp("structures", "pdb_search_sequence", {"sequence": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQV", "identity_cutoff": 0.9, "min_query_coverage": 0.8, "max_rows": 10})
 ```
 
+### `omnipath_query_regulation` {/* #structures-omnipath_query_regulation */}
+
+인간의 표준 UniProt accession으로 OmniPath 상류·하류 조절을 조회합니다. 방향, 활성화·억제의 충돌, 복합체 ID를 보존하며 복합체를 추정한 개별 연결로 풀지 않습니다. 제한된 결과는 전체 네트워크나 조직 특이적 인과 증거가 아닙니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accession` | string | **required**; pattern: &quot;^(?:&#91;OPQ&#93;&#91;0-9&#93;&#91;A-Z0-9&#93;&#123;3&#125;&#91;0-9&#93;&#124;&#91;A-NR-Z&#93;&#91;0-9&#93;(?:&#91;A-Z&#93;&#91;A-Z0-9&#93;&#123;2&#125;&#91;0-9&#93;)&#123;1,2&#125;)$&quot; |
+| `direction` | string | **required**; enum: [&quot;upstream&quot;, &quot;downstream&quot;] |
+| `limit` | integer | optional; default: 10; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("structures", "omnipath_query_regulation", {"accession": "P00533", "direction": "upstream", "limit": 10})
+```
+
+### `pdb_search_structure_similarity` {/* #structures-pdb_search_structure_similarity */}
+
+등록된 PDB 사슬로 유사한 실험 구조 사슬을 검색합니다. 저자 사슬 ID가 아닌 label_asym_id를 사용합니다. 상위 서비스 점수를 반환하며 좌표 업로드, 구조 정렬, RMSD 계산은 수행하지 않습니다. 조회 사슬 자체가 포함될 수 있습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `pdb_id` | string | **required**; pattern: &quot;^[1-9][A-Za-z0-9]&#123;3&#125;$&quot; |
+| `label_asym_id` | string | **required**; minLength: 1; maxLength: 16; pattern: &quot;^[A-Za-z0-9]+$&quot; |
+| `max_rows` | integer | optional; default: 10; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("structures", "pdb_search_structure_similarity", {"pdb_id": "1CLL", "label_asym_id": "A", "max_rows": 10})
+```
+
+### `pdbe_get_validation` {/* #structures-pdbe_get_validation */}
+
+실험 PDB 항목 하나의 PDBe 품질 점수와 검증 통계를 가져옵니다. 실험 방법과 빈 값을 보존합니다. 결측값은 0점이 아니며 서로 다른 실험 방법 간 순위를 그대로 비교할 수 없습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `pdb_id` | string | **required**; maxLength: 4; pattern: &quot;^[1-9][A-Za-z0-9]&#123;3&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("structures", "pdbe_get_validation", {"pdb_id": "1cbs"})
+```
+
 </ToolOperationGroup>
 
 ## 주 메뉴 {/* #family-10 */}
@@ -3488,6 +3554,75 @@ Fetch numeric mRNA 또는 명시된 연구 분자 프로파일에서 단백질 �
 
 ```javascript
 const result = await host.mcp("cancer-models", "cbioportal_get_molecular_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "molecular_profile_id": "brca_tcga_pan_can_atlas_2018_rna_seq_v2_mrna", "gene_symbol": "ESR1", "sample_list_id": "brca_tcga_pan_can_atlas_2018_all"})
+```
+
+### `depmap_search_models` {/* #cancer-models-depmap_search_models */}
+
+이름 부분 일치나 정확한 ACH ModelID로 DepMap/CCLE 모델을 검색합니다. 서로 다른 ModelID, 계통, 질병, RRID를 보존하며 전체 카탈로그를 다운로드하지 않습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 2; maxLength: 100; pattern: &quot;\\S&quot; |
+| `limit` | integer | optional; default: 10; minimum: 1; maximum: 20 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_search_models", {"query": "A549"})
+```
+
+### `depmap_gene_dependency` {/* #cancer-models-depmap_gene_dependency */}
+
+정확한 유전자 기호로 DepMap Chronos gene-effect를 조회하고 ModelID로 제한할 수 있습니다. 최대 50개 모델이며 음수는 의존 확률이 아니고 결측값은 0이 아닙니다. 데이터 버전을 보존합니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | 지원하다 | 선택 사항; minItems: 1; maxItems: 20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_gene_dependency", {"gene": "KRAS", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_drug_response` {/* #cancer-models-depmap_drug_response */}
+
+정확한 DPC ID나 화합물 전체 이름으로 PRISM 이차 스크린 AUC를 최대 50개 모델에서 조회합니다. AUC는 IC50나 생존율이 아닙니다. PRISM과 모델 메타데이터의 버전을 따로 보존합니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `compound` | string | **required**; minLength: 2; maxLength: 100; pattern: &quot;\\S&quot; |
+| `model_ids` | 지원하다 | 선택 사항; minItems: 1; maxItems: 20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_drug_response", {"compound": "trametinib", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_gene_expression` {/* #cancer-models-depmap_gene_expression */}
+
+정확한 유전자 기호로 DepMap/CCLE RNA 발현을 최대 50개 모델에서 조회합니다. 척도는 log2(TPM+1)이며 원래 TPM이나 z 점수가 아닙니다. ModelID와 데이터 버전을 보존합니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | 지원하다 | 선택 사항; minItems: 1; maxItems: 20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_gene_expression", {"gene": "KRAS", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_copy_number` {/* #cancer-models-depmap_copy_number */}
+
+DepMap/CCLE WGS 유전자 복제수를 배수성 대비 상대값으로 최대 50개 모델에서 조회합니다. 절대 복제수, log2 값, 이산적인 증폭·결실 판정이 아닙니다. ModelID와 데이터 버전을 보존합니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | 지원하다 | 선택 사항; minItems: 1; maxItems: 20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_copy_number", {"gene": "MYC", "model_ids": ["ACH-000681"]})
 ```
 
 </ToolOperationGroup>
@@ -5760,6 +5895,233 @@ ORPHAcode로 Orphadata 희귀질환의 HPO 표현형과 빈도 범주를 가져�
 
 ```javascript
 const result = await host.mcp("orphadata", "get_disease_phenotypes", {"orphacode": 58})
+```
+
+</ToolOperationGroup>
+
+## TCIA {/* #family-37 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개변수 표시</summary>
+
+### `search_collections` {/* #tcia-search_collections */}
+
+TCIA 공개 컬렉션을 키워드로 페이지별 검색합니다. 라이선스와 다운로드 조건을 보존합니다. 링크는 매니페스트일 수 있으며 영상 다운로드나 제한 데이터 접근은 수행하지 않습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `page` | integer | optional; minimum: 1; maximum: 1000 |
+| `page_size` | integer | optional; minimum: 1; maximum: 20 |
+
+```javascript
+const result = await host.mcp("tcia", "search_collections", {"query": "LIDC-IDRI", "page_size": 5})
+```
+
+### `get_collection` {/* #tcia-get_collection */}
+
+정확한 TCIA 컬렉션 짧은 제목으로 설명, 라이선스, 접근 조건과 다운로드 경로를 조회합니다. 인터페이스별 수록 범위가 다르며 링크 조회는 영상 다운로드가 아닙니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `short_title` | string | **required**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("tcia", "get_collection", {"short_title": "4D-Lung"})
+```
+
+### `get_series` {/* #tcia-get_series */}
+
+기존 DICOM SeriesInstanceUID로 공개 NBIA 시리즈 메타데이터를 가져옵니다. 컬렉션, 대상·연구 ID, 모달리티, 영상 수, 크기, 라이선스를 보존하며 영상은 다운로드하지 않습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `series_uid` | string | **required**; maxLength: 64; pattern: &quot;^[0-9]+(?:\\.[0-9]+)+$&quot; |
+
+```javascript
+const result = await host.mcp("tcia", "get_series", {"series_uid": "1.3.6.1.4.1.14519.5.2.1.6834.5010.189721824525842725510380467695"})
+```
+
+</ToolOperationGroup>
+
+## KEGG {/* #family-38 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개변수 표시</summary>
+
+### `search_entries` {/* #kegg-search_entries */}
+
+KEGG 경로·KO·화합물·반응 이름을 검색합니다. 결과 수가 제한되며 서버 페이지 처리가 없습니다. 공개 API는 자격을 갖춘 학술 용도로 제한되고 다른 용도에는 적절한 라이선스가 필요합니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `database` | string | **required**; enum: [&quot;pathway&quot;, &quot;ko&quot;, &quot;compound&quot;, &quot;reaction&quot;] |
+| `query` | string | **required**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `limit` | integer | optional; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("kegg", "search_entries", {"database": "pathway", "query": "glycolysis"})
+```
+
+### `get_entry` {/* #kegg-get_entry */}
+
+KEGG 항목 하나의 요약과 잘림 정보를 가져옵니다. 전체 유전자 목록, 서열, 경로 이미지는 가져오지 않습니다. 404는 빈 레코드가 아니며 Connector 활성화는 이용 허가가 아닙니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id` | string | **required**; pattern: &quot;^(?:[KCR][0-9]&#123;5&#125;&#124;(?:map&#124;[a-z]&#123;3,4&#125;)[0-9]&#123;5&#125;)$&quot; |
+
+```javascript
+const result = await host.mcp("kegg", "get_entry", {"id": "hsa00010"})
+```
+
+### `map_gene` {/* #kegg-map_gene */}
+
+종 접두어가 있는 KEGG 유전자 하나를 경로나 UniProt에 매핑합니다. 일대다 대응을 보존하며 표준 단백질을 자동 선택하지 않습니다. 풍부도 분석이 아니며 KEGG 이용 조건을 따라야 합니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; maxLength: 80; pattern: &quot;^[a-z][a-z0-9]&#123;1,4&#125;:[A-Za-z0-9_.-]+$&quot; |
+| `target` | string | **required**; enum: [&quot;pathway&quot;, &quot;uniprot&quot;] |
+| `limit` | integer | optional; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("kegg", "map_gene", {"gene": "hsa:7157", "target": "uniprot"})
+```
+
+</ToolOperationGroup>
+
+## RxNorm / RxNav {/* #family-39 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개변수 표시</summary>
+
+### `resolve_name` {/* #rxnorm-resolve_name */}
+
+약물명을 유효한 RxCUI로 확인합니다. 기본값은 정확한 일치입니다. 정규화 일치는 염 형태나 어순을 무시할 수 있으므로 모호한 결과를 모두 보존하세요. 임상적 동등성을 뜻하지 않습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `name` | string | **required**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `search` | integer | optional; enum: [0, 1, 2] |
+
+```javascript
+const result = await host.mcp("rxnorm", "resolve_name", {"name": "aspirin"})
+```
+
+### `get_concept` {/* #rxnorm-get_concept */}
+
+RxCUI로 유효한 RxNorm 개념의 이름, 동의어, 유형, 언어 등을 가져옵니다. 현재 유효한 기록이 없다고 과거에도 그 ID가 없었다는 뜻은 아닙니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `rxcui` | string | **required**; pattern: &quot;^[0-9]&#123;1,12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("rxnorm", "get_concept", {"rxcui": "1191"})
+```
+
+</ToolOperationGroup>
+
+## DailyMed {/* #family-40 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개변수 표시</summary>
+
+### `search_labels` {/* #dailymed-search_labels */}
+
+약물명으로 DailyMed SPL 라벨의 ID, 제목, 버전, 공개일을 페이지별로 검색하고 RxCUI로 제한할 수 있습니다. 수록이 FDA 승인을 의미하지 않습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `drug_name` | string | **required**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `rxcui` | string | optional; pattern: &quot;^[0-9]&#123;1,12&#125;$&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("dailymed", "search_labels", {"drug_name": "aspirin", "page_size": 5})
+```
+
+### `get_label_history` {/* #dailymed-get_label_history */}
+
+정확한 SET ID로 DailyMed SPL 버전 이력을 페이지별로 가져오고 ID와 날짜를 보존합니다. 과거 라벨 본문을 다운로드하지 않습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `setid` | string | **required**; pattern: &quot;^[a-fA-F0-9]&#123;8&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;12&#125;$&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("dailymed", "get_label_history", {"setid": "9aa7140c-012c-4ea6-866d-4732e915dab6"})
+```
+
+</ToolOperationGroup>
+
+## BioSamples {/* #family-41 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개변수 표시</summary>
+
+### `search_samples` {/* #biosamples-search_samples */}
+
+공개 BioSamples 메타데이터를 커서 기반으로 페이지별 검색합니다. 특성, 용어, 외부 참조, 날짜를 보존합니다. next_cursor 사용 시 query와 page_size를 유지하세요.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `cursor` | string | optional; minLength: 1; maxLength: 2048; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("biosamples", "search_samples", {"query": "leukaemia", "page_size": 5})
+```
+
+### `get_sample` {/* #biosamples-get_sample */}
+
+accession으로 공개 BioSamples의 특성, 적용된 수정, 관계, 출처 날짜를 가져옵니다. 링크가 가리키는 자원이나 파일은 가져오지 않습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accession` | string | **required**; pattern: &quot;^SAM[END][A-Z]?[0-9]&#123;1,15&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("biosamples", "get_sample", {"accession": "SAMD00023550"})
+```
+
+</ToolOperationGroup>
+
+## WikiPathways {/* #family-42 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개변수 표시</summary>
+
+### `search_pathways` {/* #wikipathways-search_pathways */}
+
+이름이나 WP ID의 부분 일치로 WikiPathways를 검색하고 정확한 종 학명으로 제한할 수 있습니다. 현재 스냅샷 검색이며 전문·유전자 검색이 아닙니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `species` | string | optional; minLength: 1; maxLength: 100; pattern: &quot;\\S&quot; |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 100000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("wikipathways", "search_pathways", {"query": "glycolysis", "species": "Homo sapiens"})
+```
+
+### `get_pathway` {/* #wikipathways-get_pathway */}
+
+WP ID로 현재 경로 메타데이터를 가져옵니다. 종, 개정 번호, 저자, 설명, 인용을 보존합니다. 경로 그래프, 유전자 매핑, 과거 버전은 가져오지 않습니다.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id` | string | **required**; pattern: &quot;^WP[0-9]&#123;1,10&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("wikipathways", "get_pathway", {"id": "WP534"})
 ```
 
 </ToolOperationGroup>

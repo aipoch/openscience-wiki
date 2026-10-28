@@ -1,7 +1,7 @@
 ---
 title: "Gestionar y validar Skills"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Gestionar y validar Skills {/* #manage-and-validate-skills */}
@@ -117,3 +117,7 @@ Referencia de implementación: [HabilidadUploadView.tsx](https://github.com/aipo
 ## Importar y editar Habilidades de forma segura {/* #import-batches */}
 
 Grandes selecciones instaladas-Skill se importan en lotes. Esperar el resultado final e inspeccionar la lista importada antes de repetir la importación. Una Habilidad externa con un prefijo de nombre reservado se asigna un nombre local seguro; utilice el nombre mostrado en el catálogo local. Al editar el cuerpo, guardarlo y verificar que el nombre y descripción editados por separado siguen siendo correctos. Las imágenes adjuntas al mensaje actual también pueden informar la selección de Habilidad; comprobar el alcance de la Habilidad seleccionada antes de dejar que actúe.
+
+## Guarda un repositorio GitHub para más tarde {/* #saved-repositories */}
+
+Después **Import from GitHub → Find skills** escanea un repositorio, elegir **Save repository**. La próxima vez, seleccione debajo **Saved repositories** para escanear de nuevo, luego previsualizar e importar las Habilidades previstas. Se mantiene un ref guardado; una rama predeterminada puede cambiar. Ahorro no instala o actualiza automáticamente Habilidades, y la eliminación del marcador mantiene instaladas Habilidades.

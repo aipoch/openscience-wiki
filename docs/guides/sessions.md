@@ -1,7 +1,7 @@
 ---
 title: "Sessions and branches"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -186,3 +186,7 @@ Before sending the next turn, check the selected Agent/Specialist and model. v1.
 A session paused for your answer or approval shows a waiting state on Home, in the sidebar and in the conversation. Open the pending card, read the requested decision, and submit it to continue. Reloading the app does not by itself answer the question or approve a tool. Double-click a session in the workspace sidebar to open its editor.
 
 For diagnostic exports, read the completion summary: a partial export is a warning, not a complete diagnostic bundle. Keep the specific error and review the exported files before sharing them.
+
+## Expand a compact conversation {/* #collapsed-conversation */}
+
+In v1.0.4, completed turns collapse intermediate messages and group tool activity into summaries. Expand a group to inspect its details; running, waiting and interrupted work remains visible. Conversation search, annotations and native find reveal matching hidden content. Collapsing changes presentation, not the saved research record or whether a task completed.

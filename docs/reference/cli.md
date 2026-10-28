@@ -1,7 +1,7 @@
 ---
 title: "CLI and structured output"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -245,3 +245,29 @@ open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
 ```
 
 These commands work without a running backend. `version` reports the invoked installation, not the version of a connected service. `paths` reports `cliPath`, `nodePath`, `startupConfigRoot` and `discoveryConfigRoots`; it does not identify an active service or the research-data directory. An explicit profile selects the startup/discovery location without creating it. Paths can reveal local usernames, so review output before sharing it.
+
+## Connect an external MCP client {/* #external-mcp */}
+
+The standalone CLI in v1.0.4 exposes research tools over **stdio**. Start the intended profile's service first; the adapter does not start it automatically. Replace both absolute paths in this client configuration:
+
+```bash
+open-science start --no-open --config-root /absolute/path/to/profile
+open-science mcp --help
+```
+
+```json
+{
+  "mcpServers": {
+    "open-science": {
+      "command": "/absolute/path/to/open-science",
+      "args": ["mcp", "--config-root", "/absolute/path/to/profile"]
+    }
+  }
+}
+```
+
+Let the client launch the adapter. Discover projects with **list_projects**, submit **start_run** with the returned project ID, follow **get_run**, and inspect **list_artifacts**. Tool discovery alone does not prove that the service is available. Calls require the running authenticated local service; this is not a remote HTTP MCP endpoint.
+
+The client acts under the profile's existing permissions. It can create persistent projects, change configuration and start work that writes files or incurs model costs. Approvals may still require action in Open-Science. Inspect current state after a timeout before repeating a write. Closing the client or cancelling its request does not cancel accepted research: use **cancel_run** explicitly. See the [official MCP tool and permission reference](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp).
+
+For package commands, follow [CLI import and export](../guides/research-packages.md#local-package-transfer).

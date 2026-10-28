@@ -1,7 +1,7 @@
 ---
 title: "Netzwerk, Proxies und Paketspiegel"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-27'
 ---
 
 # Netzwerk, Proxies und Paketspiegel {/* #network-proxies-and-package-mirrors */}
@@ -26,13 +26,14 @@ Wenn Network **Ready** meldet, aber ein Tool ausfällt, erweitern Sie den Fehler
 
 <span id="configure-notebook-domains" />
 
-## Konfigurieren von Regeln für öffentliche Netzwerke {/* #public-network-rules */}
+## Regeln für öffentliche Netzwerke konfigurieren {/* #public-network-rules */}
 
-1. Öffnen Sie **Settings → Network → Manage access**. Lesen Sie **Public internet access**, um zu sehen, welche öffentlichen HTTPS-Lesevorgänge fortgesetzt werden können und welche Anfragen eine Genehmigung erfordern.
-2. **Built-in services** prüfen. Eine Gruppe mit der Markierung **Required** bleibt aktiviert; andere Gruppen für die Aufgabe ausgewählt werden können.
-3. Geben Sie unter **Custom public domains** den genauen **Domain hostname** ein und wählen Sie dann **Add to list**. Überprüfen Sie den Entwurf Eintrag vor **Save changes**.
+1. Öffnen Sie **Settings → Network → Manage access**. Prüfen Sie **Public internet access** und **Built-in services**; Gruppen mit **Required** bleiben aktiviert.
+2. Geben Sie unter **Custom public domains** in **Domain hostname** einen Hostnamen, eine HTTP(S)-URL oder eine Regel mit führendem Platzhalter ein und wählen Sie **Add to list**.
+3. Prüfen Sie die normalisierte Regel vor **Save changes** und wiederholen Sie die Anfrage. Gespeicherte Freigaben bleiben nach Neustarts erhalten.
 
-Eine Public-Domain-Regel ermöglicht das Senden von Daten an diesen Hostnamen; Es umfasst keine Subdomains oder gewährt Zugang zu einer privaten Adresse. Geben Sie einen Hostnamen ohne Schema, Pfad, Port, Platzhalter oder IP-Adresse ein. Ein Hostname, der auf eine nicht öffentliche Adresse auflöst, benötigt immer noch die entsprechende Überprüfung des privaten Dienstes. Diese Regeln gelten auch, wenn geschützter Code Links folgt oder Icons abruft.
+Ein exakter Hostname umfasst keine Subdomains. `*.example.org` umfasst Subdomains, aber nicht `example.org` selbst. Eine URL wie `https://example.org/path` wird zur Hostnamenregel; Pfad und Port begrenzen den Zugriff nicht. Regeln erlauben das Senden von Daten an passende Hosts. IP-Adressen, localhost und URLs mit Zugangsdaten werden abgelehnt. Bei Auflösung in eine private Adresse ist weiterhin eine Prüfung des privaten Dienstes nötig.
+
 
 ## Vertrauen Sie einem privaten Service {/* #trusted-private-services */}
 

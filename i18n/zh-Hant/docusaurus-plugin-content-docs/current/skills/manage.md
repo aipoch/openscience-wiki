@@ -1,7 +1,7 @@
 ---
 title: "管理與驗證 Skills"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # 管理與驗證 Skills {/* #管理与验证-skills */}
@@ -117,3 +117,7 @@ Featured 和被 Specialist 引用的包可能受到刪除保護。按需移除�
 ## 導入和編輯 Skill {/* #import-batches */}
 
 大量已安裝 Skill 會分批導入。等待最終結果並檢查導入列表後，再決定是否重試。外部 Skill 的名稱若使用保留前綴，會獲得安全的本地名稱；以本地目錄顯示的名稱爲準。編輯正文並保存後，檢查單獨編輯的名稱與說明是否仍正確。當前消息附帶的圖片也可參與 Skill 選擇；使用前確認所選 Skill 的範圍。
+
+## 保存 GitHub 倉庫以便再次使用 {/* #saved-repositories */}
+
+通過 **Import from GitHub → Find skills** 掃描倉庫後，選擇 **Save repository**。下次在 **Saved repositories** 中選擇該倉庫再次掃描，再預覽並導入所需 Skill。保存時指定的 ref 會保留，默認分支則可能變化。保存倉庫不會安裝或自動更新 Skill，移除書籤也不會刪除已安裝的 Skill。

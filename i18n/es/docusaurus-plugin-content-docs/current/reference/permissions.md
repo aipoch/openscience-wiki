@@ -1,7 +1,7 @@
 ---
 title: "Permisos y control"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 # Permisos y control {/* #permissions-and-control */}
@@ -78,3 +78,9 @@ Las excepciones de propiedad de la aplicación también existen fuera de esta li
 | Undo de aviso | Invierte la revocación de la subvención elegible dentro de su disponibilidad mostrada; no revierte los efectos de una herramienta |
 
 Referencia técnica: [Perfiles](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/permission-profiles.ts) · [Interventor Connector](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/connector-broker.ts) · [Subvenciones de referencia](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/defaults.ts) · [de la política](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/acp/permission-policy.ts).
+
+## Restrict Notebook y carpetas Shell {/* #notebook-folder-restrictions */}
+
+En **Settings → Permissions → Notebook and Shell folder access**, mantener **Restrict Notebook and Shell folders** activado limita la ejecución local al espacio de trabajo, carpetas aprobadas y archivos requeridos por herramientas. Conceda la carpeta de entrada necesaria en lugar de ampliar el acceso sólo para leer un archivo. La preferencia predetermina habilitarse, incluyendo ajustes antiguos sin un valor guardado.
+
+Cambiarlo deja de ejecutar los procesos de Notebook y Shell y borra las variables en memoria; la historia guardada permanece. No controla las herramientas nativas del agente ni los equipos remotos. En Windows, el interruptor es **Restrict WSL2 Shell folders**: modo protegido nativo mantiene restricciones, mientras que el modo estándar nativo utiliza los permisos de carpeta del usuario actual. v1.0.4 fija la ejecución estándar de Windows Notebook.

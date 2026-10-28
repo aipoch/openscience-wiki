@@ -2,7 +2,7 @@
 title: "科學資料庫"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # 科學資料庫 {/* #科学数据库 */}
@@ -13,46 +13,52 @@ last_update:
 
 ## 目前支援哪些資料庫 {/* #supported-databases */}
 
-Open-Science v1.0.2 內置 **36 個數據源 Connector，提供 371 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整註冊表共 373 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個數據庫。支持某個數據源不表示覆蓋其網站的全部功能。
+Open-Science v1.0.4 內置 **42 個數據源 Connector，提供 395 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整註冊表共 397 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個數據庫。支持某個數據源不表示覆蓋其網站的全部功能。
 
 | Connector | 來源 | 運算元 | 用途  |
 | --- | --- | --- | ---  |
-| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | 小分子、化學識別符號、反應及結合資料  |
+| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB, LIPID MAPS, UniChem | 14 | 小分子、化學識別符號、反應及結合資料  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 文獻、作者、引用、DOI 更新及資料集/軟體記錄 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | PubMed 文獻檢索與記錄  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr, HGNC | 17 | 基因及蛋白標識映射、UniProt 序列查找、GO 與 Reactome 註釋、g:Profiler 與 Enrichr 基因集富集 |
-| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 22 | 基因組註釋、同源及序列資訊；NCBI 物種、組裝與序列身分；BLAST 檢索、Clustal Omega 多序列比對；指定人群的 LD 與代理變異 |
+| Genes & Ontologies · `genes` | HGNC, MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 17 | 基因及蛋白標識映射、UniProt 序列查找、GO 與 Reactome 註釋、g:Profiler 與 Enrichr 基因集富集 |
+| Genomes · `genomes` | NCBI Datasets, NCBI BLAST, EMBL-EBI Job Dispatcher, Ensembl, UCSC | 22 | 基因組註釋、同源及序列資訊；NCBI 物種、組裝與序列身分；BLAST 檢索、Clustal Omega 多序列比對；指定人群的 LD 與代理變異 |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | 群體頻率、臨床記錄，以及實驗特定的功能分數、變異對映和實驗資訊 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | 檢索試驗與方案，並讀取已公佈的結局測量、分組、統計及不良事件 |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx, DGIdb | 32 | 臨牀基因組證據資源；新增 ClinPGx 藥物基因組學記錄 |
-| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 17 | 結構檔案與相關記錄  |
+| Structures & Interactions · `structures` | PDB, PDBe, AlphaFold, EMDB, Complex Portal, IntAct, OmniPath | 20 | 結構檔案與相關記錄  |
 | ChEMBL · `chembl` | ChEMBL | 7 | 化合物、靶標和活性記錄  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | 預印本後設資料  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA、藥品標籤、FAERS 不良事件報告和藥品召回 |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | 人類遺傳關聯資源  |
 | Expression · `expression` | GTEx, Bgee | 16 | GTEx 人類組織表達和 eQTL；Bgee 跨物種基線表達 |
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | 蛋白結構域與功能註釋；新增互作富集檢驗 |
-| Cancer Models · `cancer-models` | cBioPortal | 10 | 研究、突變、複製數、樣本、患者、臨床屬性及分子 profile 表達 |
+| Cancer Models · `cancer-models` | cBioPortal, DepMap / CCLE | 15 | 研究、突變、複製數、樣本、患者、臨床屬性及分子 profile 表達 |
 | RNA · `rna` | Rfam, RNAcentral | 11 | RNA 家族與相關資源  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | 組學研究／執行後設資料與檔案清單；代謝組樣本、實驗因素、分析及化合物記錄 |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, ENA, MetaboLights, Metabolomics Workbench, MGnify, PRIDE | 28 | 組學研究／執行後設資料與檔案清單；代謝組樣本、實驗因素、分析及化合物記錄 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | 細胞型別參考資訊  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 調控與功能組學記錄  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 研究專案、資助等資源  |
 | BioMart · `biomart` | Ensembl BioMart | 8 | BioMart 資料集與欄位查詢  |
 | ZINC · `zinc` | ZINC | 5 | ZINC 化合物記錄  |
-| GDC · `gdc` | NCI GDC | 5 | 癌症專案、病例與檔案後設資料，公開／受控訪問類別及傳輸清單；不下載或授予受控訪問 |
+| GDC · `gdc` | Genomic Data Commons (GDC) | 5 | 癌症專案、病例與檔案後設資料，公開／受控訪問類別及傳輸清單；不下載或授予受控訪問 |
 | Zenodo · `zenodo` | Zenodo | 2 | 公開資料集、軟體和文獻記錄的檢索、版本級後設資料與檔案清單；不上傳或下載檔案 |
-| HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | 按程式提交蛋白序列／profile HMM／比對檢索，查詢狀態並獲取結果 |
-| InterProScan · `interproscan` | EMBL-EBI InterProScan | 3 | 提交蛋白序列、查詢註釋任務狀態並獲取 TSV 報告 |
-| Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | 通路檢索、頂層通路、圖查詢及 BioPAX 子模型匯出 |
+| HMMER · `hmmer` | HMMER3, EMBL-EBI | 3 | 按程式提交蛋白序列／profile HMM／比對檢索，查詢狀態並獲取結果 |
+| InterProScan · `interproscan` | InterProScan, EMBL-EBI | 3 | 提交蛋白序列、查詢註釋任務狀態並獲取 TSV 報告 |
+| Pathway Commons · `pathway-commons` | Pathway Commons, Reactome | 4 | 通路檢索、頂層通路、圖查詢及 BioPAX 子模型匯出 |
 | Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | 人類與模式生物基因、直系同源、疾病模型、表型、等位基因及表達 |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 單細胞集合與資料集發現、釋出版本、檔案格式／大小／下載 URL |
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 查詢細胞系名稱和別名，再檢查編號身份及質量註釋 |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 查詢疾病或基因與表型的關聯，保留物種和支援證據 |
-| IEDB · `iedb` | Immune Epitope Database | 8 | 檢索表位、抗原、T 細胞、B 細胞和 MHC 實驗、TCR/BCR 證據及來源文獻 |
-| PDC · `pdc` | NCI Proteomic Data Commons | 5 | 癌症蛋白組研究版本、樣本關聯、公開病例臨牀信息及文件元數據；不下載文件 |
+| IEDB · `iedb` | IEDB | 8 | 檢索表位、抗原、T 細胞、B 細胞和 MHC 實驗、TCR/BCR 證據及來源文獻 |
+| PDC · `pdc` | PDC | 5 | 癌症蛋白組研究版本、樣本關聯、公開病例臨牀信息及文件元數據；不下載文件 |
 | ENCORI · `encori` | ENCORI | 10 | miRNA／RBP 靶標、RNA 互作、ceRNA、motif、結合位點與參考／批次資料 |
 | Orphadata · `orphadata` | Orphadata, Orphanet | 2 | 罕見病—基因關聯及 HPO 表型頻率；默認關閉 |
+| TCIA · `tcia` | TCIA, NBIA | 3 | 公開影像集合、訪問條件與序列元數據 |
+| KEGG · `kegg` | KEGG | 3 | 通路、化合物條目及基因映射；須遵守許可限制 |
+| RxNorm / RxNav · `rxnorm` | RxNorm, RxNav | 2 | 藥名解析與有效概念屬性 |
+| DailyMed · `dailymed` | DailyMed | 2 | 藥品標籤身份與版本歷史 |
+| BioSamples · `biosamples` | EMBL-EBI BioSamples | 2 | 公開樣本元數據與交叉引用 |
+| WikiPathways · `wikipathways` | WikiPathways | 2 | 通路元數據、物種及修訂信息 |
 
 離線 Molecule 工具見[科學檢視器](viewers.md)。各資料來源實際提供的操作見 [Connector 操作引數參考](../reference/connector-operations.md)。
 
@@ -255,7 +261,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作引數參考](../reference/connector-operations.md)列出必填輸入、可選值和準確呼叫方法。本頁用於選擇和連線資料來源，引數參考用於查詢某個具體工具的欄位。
 
-目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/registry.ts)。
+目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/registry.ts)。
 
 ## 序列檢索與多序列比對 {/* #sequence-tools */}
 
@@ -367,3 +373,20 @@ v1.0.2 會在當前會話中記住對 OpenAlex 憑據提示的拒絕，避免重
 - **Clinical Trials：** 用 `get_trial_results` 讀取已公佈的結局測量、分母、統計分析和不良事件。組 ID 僅在同一個結果模塊／結局內匹配。缺失結果不等於零事件，也不證明無效果。
 
 參數見 [PDC 字段](../reference/connector-operations.md#pdc_list_clinical)、[GDC 篩選](../reference/connector-operations.md#gdc_search_files)、[VEP 模式](../reference/connector-operations.md#ensembl_vep_variant)和[已公佈試驗結果](../reference/connector-operations.md#get_trial_results)。
+
+## 影像、通路、脂質與癌症模型 {/* #expanded-sources */}
+
+在 **Settings → Connectors** 中啓用所需來源，並設置爲 **Main** 可用。TCIA、KEGG、RxNorm / RxNav、DailyMed、BioSamples 和 WikiPathways 是默認關閉的獨立入口。下列操作訪問公開服務，不需要自建 MCP 服務或 API key。啓用 Connector 不等於取得數據許可或受限數據權限。
+
+| 入口 | 可以請求什麼 | 結果中要保留什麼 |
+| --- | --- | --- |
+| TCIA | 查找影像集合；查看集合或已有 DICOM series UID | 許可、訪問條件和下載要求；返回鏈接可能是 Data Retriever 清單，而不是影像文件 |
+| KEGG | 搜索通路、KO、化合物與反應條目；映射帶物種前綴的基因 | 學術用途資格和許可條款、一對多映射及截斷標記；這不是基因集富集分析 |
+| Chemistry → LIPID MAPS / UniChem | 用精確 LMID 或 PubChem CID 查詢；用 InChIKey 或 ChEMBL ID 映射 | 名稱先通過 PubChem 解析；保留不同匹配結果與來源歸屬，這些操作不做相似性搜索 |
+| Structures & Interactions → OmniPath | 按人類標準 UniProt accession 查詢上游或下游調控 | 方向、激活與抑制的衝突證據、複合物標識；彙總關係不是組織特異的因果證據 |
+| Structures & Interactions → PDBe / PDB | 查看實驗結構驗證統計，或檢索相似的已存檔蛋白鏈 | 實驗方法與缺失指標；使用 label_asym_id 而非作者鏈編號；相似性分數不是實際計算的結構比對或 RMSD |
+| Cancer Models → DepMap / CCLE | 將細胞系解析爲 ModelID，再查詢基因或化合物的測量值 | 數據版本與量綱：Chronos 不是概率，PRISM AUC 不是 IC50，RNA 爲 log2(TPM+1)，拷貝數相對於倍性 |
+| RxNorm / RxNav · DailyMed | 將藥名解析爲 RxCUI；查看 SPL 標籤身份與版本歷史 | 保留有歧義的身份；名稱匹配不代表臨牀等效，DailyMed 收錄不代表 FDA 批准 |
+| BioSamples · WikiPathways | 查找樣本元數據或通路元數據與修訂信息 | accession、物種、來源日期及證據鏈接；查詢不會下載關聯的樣本文件或通路圖 |
+
+精確輸入與分頁方式見[操作參數參考](../reference/connector-operations.md)。保留空值與結果截斷標記；有限結果不等於整個數據庫。

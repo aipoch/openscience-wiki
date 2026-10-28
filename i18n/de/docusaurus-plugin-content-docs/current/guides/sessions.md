@@ -1,7 +1,7 @@
 ---
 title: "Sitzungen und Verzweigungen"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -186,3 +186,7 @@ Bevor Sie den nächsten Zug senden, überprüfen Sie den ausgewählten Agent / S
 Eine für Ihre Antwort oder Genehmigung angehaltene Sitzung zeigt einen Wartezustand zu Hause, in der Seitenleiste und im Gespräch. Öffnen Sie die ausstehende Karte, lesen Sie die angeforderte Entscheidung und senden Sie sie zur Fortsetzung. Das Neuladen der App beantwortet nicht von selbst die Frage oder genehmigt ein Tool. Doppelklicken Sie auf eine Sitzung in der Arbeitsbereichsseitenleiste, um den Editor zu öffnen.
 
 Lesen Sie für Diagnoseexporte die Zusammenfassung des Abschlusses: Ein Teilexport ist eine Warnung, kein vollständiges Diagnosepaket. Behalten Sie den spezifischen Fehler und überprüfen Sie die exportierten Dateien, bevor Sie sie teilen.
+
+## Erweitern Sie ein kompaktes Gespräch {/* #collapsed-conversation */}
+
+In v1.0.4 zerlegen abgeschlossene Runden Zwischennachrichten und Gruppenwerkzeugaktivitäten in Zusammenfassungen. Erweitern Sie eine Gruppe, um ihre Details zu überprüfen; Laufen, Warten und unterbrochene Arbeit bleibt sichtbar. Konversationssuche, annotationen und native find enthüllen übereinstimmende versteckte inhalte. Kollapsing verändert die Präsentation, nicht die gespeicherte Forschungsaufzeichnung oder ob eine Aufgabe abgeschlossen wurde.

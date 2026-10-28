@@ -1,7 +1,7 @@
 ---
 title: "提供商与本地模型配置"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -250,3 +250,7 @@ Requesty 使用 `https://router.requesty.ai`；实际可用的协议和模型取
 ## 恢复模型连接 {/* #credential-recovery */}
 
 凭据过期或无效时，使用提示中的恢复入口，更新对应提供商并测试，再返回同一会话。只有恢复确实需要你处理时，Composer 才会被阻塞。保留草稿，重发前检查上一轮是否仍在运行。Codex 订阅模型的上下文用量按所选模型报告的容量显示，可能与旧版估算不同。
+
+## 选择 Kimi K3.1 Pro {/* #kimi-k31 */}
+
+v1.0.3 在提供方模型目录中加入 Kimi K3.1 Pro。打开目标提供方的模型选择器，选择可用条目后测试连接。模型是否可用仍取决于当前 Agent 框架、端点和账号；列入目录不等于账号已取得访问权限。

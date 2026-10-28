@@ -1,7 +1,7 @@
 ---
 title: "Notebook 与执行证据"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -287,3 +287,7 @@ Runtimes 的包清单描述已安装环境，Provenance 描述某个文件所捕
 ## 检查连续分析的依赖记录 {/* #chained-analysis-lineage */}
 
 在 Python 或 R 中读取 CSV、转换数据并导出新文件后，打开输出的溯源信息，检查记录的输入版本和执行依赖，再选择要验证的文件版本。依赖记录更准确，本身不等于重新运行计算或确认分析的科学有效性；后续按[产物验证](reproducibility.md)操作。
+
+## 检查本地文件夹权限 {/* #folder-access */}
+
+无法读取本地输入时，检查 [Notebook 与 Shell 文件夹权限](../reference/permissions.md#notebook-folder-restrictions)。更改限制会停止正在运行的进程并清空变量。先保存结果，授权所需文件夹，再重跑恢复工作状态所需的单元格。

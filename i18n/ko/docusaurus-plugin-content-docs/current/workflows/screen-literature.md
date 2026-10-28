@@ -1,7 +1,7 @@
 ---
 title: "스마트 컬렉션으로 논문 선별하기"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -105,3 +105,7 @@ Keep the output in English.
 **Collection actions → Export included references → BibTeX** 또는 **RIS**을 선택하고 파일을 저장하고, 5 DOI 레코드를 포함하는 검사하십시오. <ExampleDownload path="/examples/v0330/screened-primary-studies.bib">예 BibTeX</ExampleDownload>은 Redistribution을 위해 제거된 초록색으로 수출된 인용을 보존합니다. 가시성 로그 또는 PDF 번들을 가리키지 않는 전기입니다. 선택에 손을 때 <ExampleDownload path="/examples/v0330/screening-decisions.csv">관련기관</ExampleDownload> 유지.
 
 [그룹 메모리 팩](journal-club.md)의 선택된 세트를 사용합니다. 상세한 결과를 추출하기 전에 전체 텍스트를 확인하고 검사하거나 촉매 성능을 비교하십시오. **Update automatically**은 선택한 범위의 새로운 또는 변경된 레코드를 평가할 수 있으며, 서비스 비용이 발생할 수 있습니다. 그것은 새로운 종이에 대한 외부 데이터베이스를 검색하지 않습니다.
+
+## 선별 결정을 CSV로 내보내기 {/* #screening-csv */}
+
+v1.0.3부터 **Collection actions → Export screening results (CSV)**를 사용할 수 있습니다. 모든 후보의 최종 판단, 수동 결정, 이유, 모델 확률이 포함됩니다. CSV를 다시 열어 후보 수와 수동 변경을 확인하고 위의 채택 문헌 목록과 함께 보관하세요. 어느 쪽도 전체 전문 묶음은 아니며 모델 확률은 논문 품질 점수가 아닙니다.

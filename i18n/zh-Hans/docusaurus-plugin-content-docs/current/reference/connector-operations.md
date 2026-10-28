@@ -2,7 +2,7 @@
 title: "Connector 操作参数参考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作输入
 
-每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v1.0.2** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.2.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
+每次展开一个 Connector。必填项标为 **必填**，本页与下载目录依据 Open-Science **v1.0.4** 的结构定义。以嵌套的 `input.required` 为准；旧式顶层 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.4.json">完整注册表下载</ExampleDownload>提供嵌套 JSON、完整返回说明和准确 Agent 侧调用示例。工具要求 `accessions`、`cids`、`rs_id` 等专用字段时，不要统一改为 `id`。
 
 ## 化学 {/* #family-1 */}
 
@@ -208,6 +208,32 @@ const result = await host.mcp("chemistry", "bindingdb_ligands_by_target", {"unip
 
 ```javascript
 const result = await host.mcp("chemistry", "bindingdb_targets_by_compound", {"smiles": "CC(=O)OC1=CC=CC=C1C(=O)O", "similarity": 0.85})
+```
+
+### `lipidmaps_get_compound` {/* #chemistry-lipidmaps_get_compound */}
+
+按精确 LMID 或 PubChem CID 查询 LIPID MAPS，名称须先通过 PubChem 解析。保留多个匹配、缺失字段及来源归属；不支持名称、质量或批量搜索。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `id_type` | string | **必填**; enum: [&quot;lm_id&quot;, &quot;pubchem_cid&quot;] |
+| `identifier` | string | **必填**; maxLength: 15 |
+
+```javascript
+const result = await host.mcp("chemistry", "lipidmaps_get_compound", {"id_type": "lm_id", "identifier": "LMFA01010001"})
+```
+
+### `unichem_map_compound` {/* #chemistry-unichem_map_compound */}
+
+使用完整 InChIKey 或 ChEMBL ID，通过 UniChem 映射到 PubChem、ChEMBL 和 ChEBI。保留不同结构及截断信息；索引映射不代表当前来源记录已验证或生物学等效。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `id_type` | string | **必填**; enum: [&quot;inchikey&quot;, &quot;chembl&quot;] |
+| `identifier` | string | **必填**; maxLength: 27 |
+
+```javascript
+const result = await host.mcp("chemistry", "unichem_map_compound", {"id_type": "chembl", "identifier": "CHEMBL1089"})
 ```
 
 </ToolOperationGroup>
@@ -2270,6 +2296,46 @@ const result = await host.mcp("structures", "alphafold_check_coverage", {"unipro
 const result = await host.mcp("structures", "pdb_search_sequence", {"sequence": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQV", "identity_cutoff": 0.9, "min_query_coverage": 0.8, "max_rows": 10})
 ```
 
+### `omnipath_query_regulation` {/* #structures-omnipath_query_regulation */}
+
+按人类标准 UniProt accession 查询 OmniPath 上游或下游调控。保留方向、激活与抑制冲突及复合物身份；不把复合物推断成成对边。结果有上限，不代表完整网络或组织特异因果证据。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `accession` | string | **必填**; pattern: &quot;^(?:&#91;OPQ&#93;&#91;0-9&#93;&#91;A-Z0-9&#93;&#123;3&#125;&#91;0-9&#93;&#124;&#91;A-NR-Z&#93;&#91;0-9&#93;(?:&#91;A-Z&#93;&#91;A-Z0-9&#93;&#123;2&#125;&#91;0-9&#93;)&#123;1,2&#125;)$&quot; |
+| `direction` | string | **必填**; enum: [&quot;upstream&quot;, &quot;downstream&quot;] |
+| `limit` | integer | 可选; default: 10; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("structures", "omnipath_query_regulation", {"accession": "P00533", "direction": "upstream", "limit": 10})
+```
+
+### `pdb_search_structure_similarity` {/* #structures-pdb_search_structure_similarity */}
+
+以已存档 PDB 蛋白链查找三维相似的实验结构链。使用 label_asym_id 而非作者链编号；返回上游分数，不进行坐标上传、结构比对或 RMSD 计算，结果可能包括查询链自身。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `pdb_id` | string | **必填**; pattern: &quot;^[1-9][A-Za-z0-9]&#123;3&#125;$&quot; |
+| `label_asym_id` | string | **必填**; minLength: 1; maxLength: 16; pattern: &quot;^[A-Za-z0-9]+$&quot; |
+| `max_rows` | integer | 可选; default: 10; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("structures", "pdb_search_structure_similarity", {"pdb_id": "1CLL", "label_asym_id": "A", "max_rows": 10})
+```
+
+### `pdbe_get_validation` {/* #structures-pdbe_get_validation */}
+
+查询单个实验 PDB 条目的 PDBe 质量分数和验证统计，保留实验方法及空值；缺失不是零分，也不能跨实验方法直接排名。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `pdb_id` | string | **必填**; maxLength: 4; pattern: &quot;^[1-9][A-Za-z0-9]&#123;3&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("structures", "pdbe_get_validation", {"pdb_id": "1cbs"})
+```
+
 </ToolOperationGroup>
 
 ## ChEMBL {/* #family-10 */}
@@ -3490,6 +3556,75 @@ const result = await host.mcp("cancer-models", "cbioportal_get_clinical_data", {
 
 ```javascript
 const result = await host.mcp("cancer-models", "cbioportal_get_molecular_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "molecular_profile_id": "brca_tcga_pan_can_atlas_2018_rna_seq_v2_mrna", "gene_symbol": "ESR1", "sample_list_id": "brca_tcga_pan_can_atlas_2018_all"})
+```
+
+### `depmap_search_models` {/* #cancer-models-depmap_search_models */}
+
+按名称子串或精确 ACH ModelID 查找 DepMap/CCLE 模型，保留不同 ModelID、谱系、疾病与 RRID；不下载完整目录。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 2; maxLength: 100; pattern: &quot;\\S&quot; |
+| `limit` | integer | 可选; default: 10; minimum: 1; maximum: 20 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_search_models", {"query": "A549"})
+```
+
+### `depmap_gene_dependency` {/* #cancer-models-depmap_gene_dependency */}
+
+查询一个精确基因符号的 DepMap Chronos gene-effect，可限定 ModelID，最多返回 50 个模型。负值不是依赖概率，缺失不是零；保留数据发布版本。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `gene` | string | **必填**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | array | 可选; minItems: 1; maxItems: 20 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_gene_dependency", {"gene": "KRAS", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_drug_response` {/* #cancer-models-depmap_drug_response */}
+
+按精确 DPC 编号或完整化合物名称查询 PRISM 次级筛选 AUC，可限定 ModelID。最多 50 个模型；AUC 不是 IC50 或存活率，保留 PRISM 与模型元数据各自的版本。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `compound` | string | **必填**; minLength: 2; maxLength: 100; pattern: &quot;\\S&quot; |
+| `model_ids` | array | 可选; minItems: 1; maxItems: 20 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_drug_response", {"compound": "trametinib", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_gene_expression` {/* #cancer-models-depmap_gene_expression */}
+
+按精确基因符号查询当前 DepMap/CCLE RNA 表达，量纲为 log2(TPM+1)，不是原始 TPM 或 z 分数。可限定 ModelID，最多 50 个模型，保留发布版本。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `gene` | string | **必填**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | array | 可选; minItems: 1; maxItems: 20 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_gene_expression", {"gene": "KRAS", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_copy_number` {/* #cancer-models-depmap_copy_number */}
+
+查询相对于模型倍性的 DepMap/CCLE WGS 基因拷贝数，最多 50 个模型。数值不是绝对拷贝数、log2 值或离散扩增/缺失判定；保留 ModelID 和发布版本。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `gene` | string | **必填**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | array | 可选; minItems: 1; maxItems: 20 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_copy_number", {"gene": "MYC", "model_ids": ["ACH-000681"]})
 ```
 
 </ToolOperationGroup>
@@ -5762,6 +5897,233 @@ const result = await host.mcp("orphadata", "get_disease_genes", {"orphacode": 16
 
 ```javascript
 const result = await host.mcp("orphadata", "get_disease_phenotypes", {"orphacode": 58})
+```
+
+</ToolOperationGroup>
+
+## TCIA {/* #family-37 */}
+
+<ToolOperationGroup>
+<summary>显示操作与参数</summary>
+
+### `search_collections` {/* #tcia-search_collections */}
+
+按关键词分页搜索 TCIA 公开影像集合，保留下载条件、许可和 DOI。返回的可能是下载清单，不会下载影像或访问受限数据。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `page` | integer | 可选; minimum: 1; maximum: 1000 |
+| `page_size` | integer | 可选; minimum: 1; maximum: 20 |
+
+```javascript
+const result = await host.mcp("tcia", "search_collections", {"query": "LIDC-IDRI", "page_size": 5})
+```
+
+### `get_collection` {/* #tcia-get_collection */}
+
+按精确集合短标题查询 TCIA 集合的说明、许可、访问条件和下载入口；不同接口覆盖范围不同，下载链接不等于影像文件。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `short_title` | string | **必填**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("tcia", "get_collection", {"short_title": "4D-Lung"})
+```
+
+### `get_series` {/* #tcia-get_series */}
+
+按已有 DICOM SeriesInstanceUID 查询公开 NBIA 序列元数据，保留集合、样本与研究身份、模态、影像数量、大小和许可；不会下载影像。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `series_uid` | string | **必填**; maxLength: 64; pattern: &quot;^[0-9]+(?:\\.[0-9]+)+$&quot; |
+
+```javascript
+const result = await host.mcp("tcia", "get_series", {"series_uid": "1.3.6.1.4.1.14519.5.2.1.6834.5010.189721824525842725510380467695"})
+```
+
+</ToolOperationGroup>
+
+## KEGG {/* #family-38 */}
+
+<ToolOperationGroup>
+<summary>显示操作与参数</summary>
+
+### `search_entries` {/* #kegg-search_entries */}
+
+搜索 KEGG 通路、KO、化合物或反应名称。结果有上限且无服务端分页；截断时缩小查询范围。公开 API 仅限符合资格的学术用途，其他用途须取得相应许可。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `database` | string | **必填**; enum: [&quot;pathway&quot;, &quot;ko&quot;, &quot;compound&quot;, &quot;reaction&quot;] |
+| `query` | string | **必填**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `limit` | integer | 可选; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("kegg", "search_entries", {"database": "pathway", "query": "glycolysis"})
+```
+
+### `get_entry` {/* #kegg-get_entry */}
+
+读取单个 KEGG 条目摘要并保留截断标记；不获取完整基因列表、序列或通路图。404 不是空记录，启用入口不代表取得数据许可。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `id` | string | **必填**; pattern: &quot;^(?:[KCR][0-9]&#123;5&#125;&#124;(?:map&#124;[a-z]&#123;3,4&#125;)[0-9]&#123;5&#125;)$&quot; |
+
+```javascript
+const result = await host.mcp("kegg", "get_entry", {"id": "hsa00010"})
+```
+
+### `map_gene` {/* #kegg-map_gene */}
+
+将一个带物种前缀的 KEGG 基因映射到通路或 UniProt，保留一对多结果；不自动选定标准蛋白，也不执行富集分析。须遵守 KEGG 许可。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `gene` | string | **必填**; maxLength: 80; pattern: &quot;^[a-z][a-z0-9]&#123;1,4&#125;:[A-Za-z0-9_.-]+$&quot; |
+| `target` | string | **必填**; enum: [&quot;pathway&quot;, &quot;uniprot&quot;] |
+| `limit` | integer | 可选; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("kegg", "map_gene", {"gene": "hsa:7157", "target": "uniprot"})
+```
+
+</ToolOperationGroup>
+
+## RxNorm / RxNav {/* #family-39 */}
+
+<ToolOperationGroup>
+<summary>显示操作与参数</summary>
+
+### `resolve_name` {/* #rxnorm-resolve_name */}
+
+将药名解析为有效 RxCUI；默认精确匹配。归一化匹配可能忽略盐形式与词序，应保留全部歧义结果，不能据此认定临床等效。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `name` | string | **必填**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `search` | integer | 可选; enum: [0, 1, 2] |
+
+```javascript
+const result = await host.mcp("rxnorm", "resolve_name", {"name": "aspirin"})
+```
+
+### `get_concept` {/* #rxnorm-get_concept */}
+
+按 RxCUI 查询有效 RxNorm 条目的名称、同义词、类型与语言等属性；没有有效记录不代表该标识从未存在。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `rxcui` | string | **必填**; pattern: &quot;^[0-9]&#123;1,12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("rxnorm", "get_concept", {"rxcui": "1191"})
+```
+
+</ToolOperationGroup>
+
+## DailyMed {/* #family-40 */}
+
+<ToolOperationGroup>
+<summary>显示操作与参数</summary>
+
+### `search_labels` {/* #dailymed-search_labels */}
+
+按药名分页查找 DailyMed SPL 标签的身份、标题、版本和发布日期，可限定 RxCUI；被收录不代表已获 FDA 批准。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `drug_name` | string | **必填**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `rxcui` | string | 可选; pattern: &quot;^[0-9]&#123;1,12&#125;$&quot; |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("dailymed", "search_labels", {"drug_name": "aspirin", "page_size": 5})
+```
+
+### `get_label_history` {/* #dailymed-get_label_history */}
+
+按精确 SET ID 分页查询 DailyMed SPL 版本历史，保留标签身份和日期；不会下载历史标签内容。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `setid` | string | **必填**; pattern: &quot;^[a-fA-F0-9]&#123;8&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;12&#125;$&quot; |
+| `page` | integer | 可选; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("dailymed", "get_label_history", {"setid": "9aa7140c-012c-4ea6-866d-4732e915dab6"})
+```
+
+</ToolOperationGroup>
+
+## BioSamples {/* #family-41 */}
+
+<ToolOperationGroup>
+<summary>显示操作与参数</summary>
+
+### `search_samples` {/* #biosamples-search_samples */}
+
+分页搜索公开 BioSamples 元数据，保留特征、术语、外部引用及日期；使用返回的 next_cursor 继续时保持查询及 page_size 不变。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `page_size` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+| `cursor` | string | 可选; minLength: 1; maxLength: 2048; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("biosamples", "search_samples", {"query": "leukaemia", "page_size": 5})
+```
+
+### `get_sample` {/* #biosamples-get_sample */}
+
+按 accession 查询公开 BioSamples 样本记录，包括默认应用的修订、特征、关系和来源日期；不获取链接所指的资源或文件。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `accession` | string | **必填**; pattern: &quot;^SAM[END][A-Z]?[0-9]&#123;1,15&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("biosamples", "get_sample", {"accession": "SAMD00023550"})
+```
+
+</ToolOperationGroup>
+
+## WikiPathways {/* #family-42 */}
+
+<ToolOperationGroup>
+<summary>显示操作与参数</summary>
+
+### `search_pathways` {/* #wikipathways-search_pathways */}
+
+按名称或 WP 标识的子串查找 WikiPathways，可限定精确物种学名；这是对当前快照的筛选，不是全文或基因搜索。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `species` | string | 可选; minLength: 1; maxLength: 100; pattern: &quot;\\S&quot; |
+| `offset` | integer | 可选; default: 0; minimum: 0; maximum: 100000 |
+| `limit` | integer | 可选; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("wikipathways", "search_pathways", {"query": "glycolysis", "species": "Homo sapiens"})
+```
+
+### `get_pathway` {/* #wikipathways-get_pathway */}
+
+按 WP 标识查询当前通路元数据，保留物种、修订号、作者、说明与引用；不获取通路图、基因映射或历史版本。
+
+| 字段 | 类型 | 必填性与限制 |
+| --- | --- | --- |
+| `id` | string | **必填**; pattern: &quot;^WP[0-9]&#123;1,10&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("wikipathways", "get_pathway", {"id": "WP534"})
 ```
 
 </ToolOperationGroup>
