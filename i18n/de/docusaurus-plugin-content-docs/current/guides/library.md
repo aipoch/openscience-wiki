@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-27'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -396,3 +396,23 @@ Wenn zusätzliche übereinstimmende Bibliotheksdatensätze vorhanden sind, kann 
 ## Eine fehlgeschlagene Smart-Collection-Charge fortsetzen {/* #smart-collection-retry */}
 
 Wenn eine Smart-Collection-Auswertung bei einem fehlgeschlagenen Batch stoppt, überprüfen Sie dessen Fehler und den verbleibenden Fortschritt, bevor Sie den angebotenen Wiederholungsversuch verwenden. Von v0.37.0 aus wird der fehlgeschlagene Batch wieder aufgenommen, während die abgeschlossene Bewertungsarbeit erhalten bleibt. Behalten Sie den Umfang und die Kriterien für diesen Wiederholungsversuch unverändert bei, dann überprüfen Sie Included, Needs review und Excluded results. Erstellen Sie keine doppelte Sammlung, um eine unterbrochene Auswertung wiederherzustellen.
+
+## Trace Referenzen und zitierte Papiere {/* #citation-discovery */}
+
+Öffnen Sie die Details einer Referenz und wählen Sie **References** oder **Cited by**. Semantic Scholar liefert diese Beziehungen. Wenn Lookup allein nach Titel übereinstimmt, vergleichen Sie den Titel, die Autoren und das Jahr des vorgeschlagenen Papiers, bevor Sie es bestätigen. Verwendung **Load more** für spätere Ergebnisse, wählen Sie die Papiere, die Sie benötigen, dann **Add selected to Inbox**. Überprüfen sie sie im posteingang, bevor sie sie in die bibliothek akzeptieren; das entdecken eines zitats ruft seinen vollen text nicht ab.
+
+Ein API-Schlüssel ist optional. Wenn Anfragen begrenzt sind, warten oder verwenden **Configure API key** In der lokalen Desktop-App. Ein fehlendes Ergebnis kann die Quellenabdeckung oder Zugangsbeschränkungen widerspiegeln; es stellt nicht fest, dass das Papier keine Referenzen oder Zitate hat.
+
+## Einfuhrdateien und ergänzendes Material {/* #supplementary-materials */}
+
+Lassen Sie PDFs oder unterstützte Bibliographiedateien in die Bibliothek fallen und überprüfen Sie die Importergebnisse. Für die unterstützenden Dateien eines Papiers öffnen Sie die Details und wählen **Find supplementary materials**. Überprüfen Sie die Quelle, die Beziehung zum Papier, den Dateinamen und die Lizenz vor dem Herunterladen. Discovery sucht Figshare, DataCite und Europe PMC; ein Quelllink oder eine leere Suche ist kein Beweis dafür, dass jede Ergänzung gefunden wurde.
+
+Folgen Sie dem Download-Fortschritt jedes Attachments. Wählen Sie für ein Archiv die zu extrahierenden Dateien aus. Öffnen Sie den resultierenden Anhang mit der Vorschau des Dateityps; Word-Dateien können ebenfalls in der Vorschau angezeigt werden. Halten Sie den Hauptartikel und die ergänzenden Anhänge getrennt und wiederholen Sie nur fehlgeschlagene Downloads, nachdem Sie überprüft haben, was bereits vorhanden ist.
+
+## Rückzieh- und Korrekturkontrollen {/* #publication-checks */}
+
+1. Öffnen Sie eine Referenz mit einem gültigen DOI. Unter **More actions → Retractions and corrections**, auswählen **Check retractions and corrections**.
+2. Die Aktion sendet diesen DOI an Crossref. Lesen Sie die zurückgegebene Mitteilung Art, Quelle, Datum und verknüpfte Mitteilung; Überprüfen Sie die Mitteilung selbst, bevor Sie ändern, wie Sie das Papier verwenden.
+3. Das Ergebnis und der Zeitpunkt **Last checked** werden mit der Referenz gespeichert. Das erneute Öffnen des Panels zeigt die gespeicherte Beobachtung an; führen Sie eine weitere Überprüfung aus, wenn Sie neue Informationen benötigen.
+
+**No related notices found** bedeutet, dass die Abfrage keine Benachrichtigungen zurückgegeben hat, nicht dass das Papier nicht betroffen ist. Die Crossref-Abdeckung ist unvollständig. Checks schreiben keine bibliographischen Metadaten oder Screening-Entscheidungen um. Wenn eine Aktualisierung fehlschlägt, bleibt das vorherige erfolgreiche Ergebnis erhalten: Lesen Sie das Datum und versuchen Sie es später erneut.

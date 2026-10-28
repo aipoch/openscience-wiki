@@ -1806,5 +1806,17 @@
   },
   "docs.outline.reference.v102.scope": {
     "message": "Fuentes científicas de datos, instalación CLI npm, tarjetas de interrogación y fiabilidad de registros de investigación."
+  },
+  "docs.outline.reference.v103.title": {
+    "message": "v1.0.3"
+  },
+  "docs.outline.reference.v103.scope": {
+    "message": "Descubrimiento bibliográfico, transferencia local de paquetes, diseño PDF y fuentes científicas."
+  },
+  "docs.outline.reference.v104.title": {
+    "message": "v1.0.4"
+  },
+  "docs.outline.reference.v104.scope": {
+    "message": "Clientes MCP externos, avisos de publicación, conversaciones compactas e importación de archivos."
   }
 }

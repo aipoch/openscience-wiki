@@ -2,7 +2,7 @@
 title: ".science 研究パッケージ"
 description: "そのファイルと証拠でセッションをエクスポートし、別のプロジェクトで研究記録をインポートし、検査します。"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -140,3 +140,18 @@ Keep everything in English and return links to both new files.
 転送が利用できない、またはブロックされる場合は、 `.science` ファイルをダウンロードして既存のインポート操作を使います。プロジェクトのホームへのドロップも可能です。Composer への通常のフォルダードロップはパッケージを取り込みません。一部失敗と表示された場合は、再試行前に取り込み先のセッションを確認してください。同じ転送のために別のプロジェクトを作る必要はありません。
 
 Web サイト開発者向けの [ブラウザーインポート SDK ガイド](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md) では HTTPS（開発用のループバック接続も可）、同じコンピューターのデスクトップアプリ、0 バイトより大きく 2 GiB 以下のパッケージを要求します。ローカル受信は、ユーザーの最終確認を代替しません。
+
+## CLI・ローカル Web アプリで研究パッケージを使う {/* #local-package-transfer */}
+
+v1.0.3 以降、CLI と認証済みローカル Web アプリで研究パッケージを扱えます。Web ではセッションのエクスポートまたはプロジェクトのインポートから、求められた場合にサービス実行ホスト上のパスを指定します。リモート Web セッションは任意パスでの転送に対応しません。上記の Web サイトからデスクトップへの転送とは別の機能です。
+
+CLI では対象プロファイルのサービスを先に起動し、元のセッションが待機状態になるまで待ちます。ID とパスを置き換えてください。
+
+```bash
+open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
+open-science session import ./session.science --new-project "Restored research" --non-interactive --json
+```
+
+エクスポートには明示的な `.science` 出力パスが必要です。インポートの **--non-interactive** はプレビューを代理承認するため、出所と保存先を先に確認します。既存プロジェクトには **--project**、新規作成には **--new-project** を使い、両方は指定しません。両方省略するとパッケージのプロジェクト名で新規作成します。既定の要求期限は 1 時間です。大きな転送では **--timeout-ms** を調整できます。
+
+結果の保存パスまたは取込セッションを確認します。取込記録は読み取り専用のため、研究の続行には **Fork** を使います。v1.0.4 では保存先選択後にエクスポートが待ち続ける問題も修正されています。

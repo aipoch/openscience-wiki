@@ -1433,6 +1433,28 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v104",
+            "title": "v1.0.4",
+            "scope": "External MCP clients, publication notices, compact conversations and local file imports.",
+            "currentDoc": "changelog/v1-0-4",
+            "proposedUrl": "/docs/changelog/v1-0-4/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-0-4"
+            ]
+          },
+          {
+            "id": "v103",
+            "title": "v1.0.3",
+            "scope": "Literature discovery, local package transfer, PDF layouts and scientific data sources.",
+            "currentDoc": "changelog/v1-0-3",
+            "proposedUrl": "/docs/changelog/v1-0-3/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-0-3"
+            ]
+          },
+          {
             "id": "v102",
             "title": "v1.0.2",
             "scope": "Scientific data sources, npm CLI installation, question cards and research-record reliability.",

@@ -1,7 +1,7 @@
 ---
 title: "スマートコレクションで論文を選別する"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -105,3 +105,7 @@ Keep the output in English.
 **Collection actions → Export included references → BibTeX** または **RIS** を選択し、ファイルを保存し、5 つの DOI レコードを含むことを確認します。 <ExampleDownload path="/examples/v0330/screened-primary-studies.bib">例えば、BibTeX</ExampleDownload>は、再配布のために削除された抽象でエクスポートされた引用を保存します。 これは、スクリーニング決定ログやPDFバンドルではなく、伝記です。 <ExampleDownload path="/examples/v0330/screening-decisions.csv">決定書表のレビュー</ExampleDownload>は、選択を渡すとそのままにしてください。
 
 選択したセットを [グループミーティング読書パック](journal-club.md) に使用してください。 詳細な結果や触媒性能を比較する前に、完全なテキストを入手し、検査します。 **Update automatically**は、選択したスコープ内の新規または変更されたレコードを評価し、サービスコストを請求することができます。 外部データベースを新しい論文に検索しません。
+
+## 選定結果を CSV に書き出す {/* #screening-csv */}
+
+v1.0.3 以降は **Collection actions → Export screening results (CSV)** を使えます。全候補の最終判断、手動判断、理由、モデル確率を含みます。CSV を開き直し、候補数と手動変更を確認し、上記の採択文献目録と一緒に保存してください。どちらも全文一式ではなく、モデル確率は論文品質の評価点ではありません。

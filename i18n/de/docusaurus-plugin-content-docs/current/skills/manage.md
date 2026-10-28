@@ -1,7 +1,7 @@
 ---
 title: "Verwalten und Validieren von Skills"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Verwalten und Validieren von Skills {/* #manage-and-validate-skills */}
@@ -117,3 +117,7 @@ Bezugsnummer der Durchführung: [SkillUploadView.tsx](https://github.com/aipoch/
 ## Sicher Importieren und Bearbeiten von Skills {/* #import-batches */}
 
 Große Installed-Skill-Auswahlen werden in Batches importiert. Warten Sie auf das endgültige Ergebnis und prüfen Sie die importierte Liste, bevor Sie den Import wiederholen. Einem externen Fertigkeit mit einem reservierten Namenspräfix wird ein sicherer lokaler Name zugewiesen; verwenden Sie den Namen, der im lokalen Katalog angezeigt wird. Speichern Sie den Körper beim Bearbeiten und überprüfen Sie, ob der separat bearbeitete Name und die Beschreibung korrekt bleiben. Bilder, die der aktuellen Nachricht beigefügt sind, können auch die Auswahl der Fertigkeit informieren; Überprüfen Sie den Umfang der ausgewählten Fertigkeit, bevor Sie sie handeln lassen.
+
+## Speichern Sie ein GitHub-Repository für später {/* #saved-repositories */}
+
+Nach **Import from GitHub → Find skills** Scannt ein Repository, wählen **Save repository**. Nächstes Mal, wählen Sie es unter **Saved repositories** um erneut zu scannen, dann Vorschau und Import der beabsichtigten Fähigkeiten. Ein gespeicherter Ref wird beibehalten; ein Standardzweig kann sich ändern. Das Speichern installiert oder aktualisiert keine Fähigkeiten automatisch, und das Entfernen des Lesezeichens führt zu installierten Fähigkeiten.

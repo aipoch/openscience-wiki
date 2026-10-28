@@ -1820,5 +1820,17 @@
   },
   "docs.outline.reference.v102.scope": {
     "message": "Wissenschaftliche Datenquellen, npm CLI Installation, Fragekarten und Forschung Rekord Zuverlässigkeit."
+  },
+  "docs.outline.reference.v103.title": {
+    "message": "v1.0.3"
+  },
+  "docs.outline.reference.v103.scope": {
+    "message": "Literatursuche, lokale Paketübertragung, PDF-Layouts und wissenschaftliche Datenquellen."
+  },
+  "docs.outline.reference.v104.title": {
+    "message": "v1.0.4"
+  },
+  "docs.outline.reference.v104.scope": {
+    "message": "Externe MCP-Clients, Publikationshinweise, kompakte Gespräche und lokale Dateiimporte."
   }
 }

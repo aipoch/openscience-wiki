@@ -1,7 +1,7 @@
 ---
 title: "インストールとアップデート"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,7 +12,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformGuide />
 
-**現在のパッケージ:** [v1.0.2 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.2) デスクトップインストーラー、スタンドアローンCLIアーカイブ、Linux CLI `.deb`/`.rpm` パッケージ。 意図したインストールタイプとアーキテクチャを選択し、同じリリースからチェックサムを確認します。 デスクトップランチャーは、デスクトップランチャーがご利用いただけます。 **Settings → General → Command line tool → Install command**.
+**現在のパッケージ:** [v1.0.4 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.4) デスクトップインストーラー、スタンドアローンCLIアーカイブ、Linux CLI `.deb`/`.rpm` パッケージ。 意図したインストールタイプとアーキテクチャを選択し、同じリリースからチェックサムを確認します。 デスクトップランチャーは、デスクトップランチャーがご利用いただけます。 **Settings → General → Command line tool → Install command**.
 
 ## インストール方法の選択 {/* #choose-an-installation-method */}
 
@@ -67,7 +67,7 @@ Homebrew は、Apple Silicon または Intel を自動的に選択します。 �
 | Ubuntu / デビアン | `uname -m`: `x86_64` x64 を意味します。 `aarch64` ARM64の意味 | マッチングを選ぶ `.deb`、システム パッケージのインストーラーでそれを開けて下さい、それからアプリケーション メニューから進水して下さい |
 | その他のサポート Linux 配布 | チェックイン `uname -m` | マッチングを選ぶ `.AppImage`, ファイルの権限で実行を許可します。, その後、それを開きます。; 配布によって報告された依存エラーを解決する |
 
-v1.0.2 は Linux を提供します。 **x64とARM64** パッケージ。 ARM64 の場合、選択して下さい `aipoch-open-science-1.0.2-linux-arm64.AppImage` または `aipoch-open-science_1.0.2_arm64.deb`お問い合わせ x64 のカウンターパーツは `aipoch-open-science-1.0.2-linux-x86_64.AppImage` および `aipoch-open-science_1.0.2_amd64.deb`お問い合わせ 選択したリリースの公式アセットからダウンロードし、結果と一致 `uname -m`.
+v1.0.4 は Linux を提供します。 **x64とARM64** パッケージ。 ARM64 の場合、選択して下さい `aipoch-open-science-1.0.4-linux-arm64.AppImage` または `aipoch-open-science_1.0.4_arm64.deb`お問い合わせ x64 のカウンターパーツは `aipoch-open-science-1.0.4-linux-x86_64.AppImage` および `aipoch-open-science_1.0.4_amd64.deb`お問い合わせ 選択したリリースの公式アセットからダウンロードし、結果と一致 `uname -m`.
 
 </PlatformContent>
 
@@ -75,7 +75,7 @@ v1.0.2 は Linux を提供します。 **x64とARM64** パッケージ。 ARM64 
 
 ### スタンドアローンCLIを使う {/* #standalone-cli */}
 
-ターミナル/ブラウザのインストールでは、一致するスタンドアローンCLIアーカイブをダウンロードしてください。 [v1.0.2](https://github.com/aipoch/open-science/releases/tag/v1.0.2)お問い合わせ ノード、バックエンド、Web UI をバンドルします。 完全なディレクトリを抽出し、次に続く [CLI設定](../reference/cli.md#terminal-setup)お問い合わせ CLI を保ち、同じインストールからバックエンドを一緒に保持します。
+ターミナル/ブラウザのインストールでは、一致するスタンドアローンCLIアーカイブをダウンロードしてください。 [v1.0.4](https://github.com/aipoch/open-science/releases/tag/v1.0.4)お問い合わせ ノード、バックエンド、Web UI をバンドルします。 完全なディレクトリを抽出し、次に続く [CLI設定](../reference/cli.md#terminal-setup)お問い合わせ CLI を保ち、同じインストールからバックエンドを一緒に保持します。
 
 #### ホーム醸造 CLI {/* #homebrew-cli */}
 
@@ -83,35 +83,35 @@ Homebrew CLIをインストールまたは管理する `brew install aipoch/tap/
 
 #### Linux CLIパッケージ {/* #linux-cli-packages */}
 
-Linux端末/ブラウザ利用の場合、選択 **open-science-cli**、別にから **aipoch-open-science** デスクトップのパッケージ。 マッチングパッケージをダウンロードし、 `CLI-PACKAGE-SHA256SUMS.txt` と [v1.0.2 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.2)インストール前に確認します。
+Linux端末/ブラウザ利用の場合、選択 **open-science-cli**、別にから **aipoch-open-science** デスクトップのパッケージ。 マッチングパッケージをダウンロードし、 `CLI-PACKAGE-SHA256SUMS.txt` と [v1.0.4 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.4)インストール前に確認します。
 
-| 流通・建築 | v1.0.2 CLIアセット |
+| 流通・建築 | v1.0.4 CLIアセット |
 | --- | --- |
-| Debian / Ubuntu、x64 | `open-science-cli_1.0.2_amd64.deb` |
-| Debian / Ubuntu、ARM64 | `open-science-cli_1.0.2_arm64.deb` |
-| フェドラ、x64 | `open-science-cli-1.0.2-1.x86_64.rpm` |
-| フェドラ、ARM64 | `open-science-cli-1.0.2-1.aarch64.rpm` |
+| Debian / Ubuntu、x64 | `open-science-cli_1.0.4_amd64.deb` |
+| Debian / Ubuntu、ARM64 | `open-science-cli_1.0.4_arm64.deb` |
+| フェドラ、x64 | `open-science-cli-1.0.4-1.x86_64.rpm` |
+| フェドラ、ARM64 | `open-science-cli-1.0.4-1.aarch64.rpm` |
 
 適切なパッケージマネージャでダウンロードしたファイルをインストールします。 これらの例は x64 を使用します。 ARM64 ファイル名を適切に使用してください。
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ./open-science-cli_1.0.2_amd64.deb
+sudo apt install ./open-science-cli_1.0.4_amd64.deb
 # Fedora: use this instead of the apt command
-sudo dnf install ./open-science-cli-1.0.2-1.x86_64.rpm
+sudo dnf install ./open-science-cli-1.0.4-1.x86_64.rpm
 ```
 
 `open-science-cli start --no-open` を実行し、`open-science-cli status --json` を実行します。 実行したら、認証されたローカルWebインターフェイスを開くには、`open-science-cli url`を使用します。 URL をプライベートに保ちます。 [CLI セットアップ](../reference/cli.md#terminal-setup) では、モデル構成と `doctor` チェックを続けて、`open-science` を `open-science-cli` に置き換えます。
 
 パッケージは、Node、バックエンド、Web UI をバンドルします。 Python/Rをインストールしたり、自動起動したシステムサービスを作成したりしません。 OSのクレデンシャルストアとサンドボックスの前提条件はまだ適用されます。 [ヘッドレス Linux 資格情報](../reference/server.md) を参照してください。 デスクトップランチャーがインストールされている場合は、`open-science-cli` を明示的に使用してください。
 
-パッケージをアップグレードまたは削除する前に、作業を終了し、停止します。 **パッケージから始まるすべてのプロファイル**お問い合わせ apt/dnf でダウンロードしたパッケージをインストールします。このインストールで構成されている AIPOCH apt/dnf リポジトリはありません。 パッケージ除去は、研究データと資格情報を保存します。 ふりがな [公式パッケージガイド](https://github.com/aipoch/open-science/blob/v1.0.2/docs/standalone-runtime.md#linux-cli-distribution-packages) コマンドの競合とプラットフォームの要件について説明します。
+パッケージをアップグレードまたは削除する前に、作業を終了し、停止します。 **パッケージから始まるすべてのプロファイル**お問い合わせ apt/dnf でダウンロードしたパッケージをインストールします。このインストールで構成されている AIPOCH apt/dnf リポジトリはありません。 パッケージ除去は、研究データと資格情報を保存します。 ふりがな [公式パッケージガイド](https://github.com/aipoch/open-science/blob/v1.0.4/docs/standalone-runtime.md#linux-cli-distribution-packages) コマンドの競合とプラットフォームの要件について説明します。
 
 ### ソースから実行 {/* #run-from-source */}
 
 Git、Node.js 24、npm、およびElectron用のプラットフォームビルド前提条件が必要です。 アプリケーションにエージェントフレームワークをインストールまたは選択します。 インストール中に、リポジトリはPrisma Clientを生成し、アプリパッチを適用し、電子ネイティブ依存関係を準備します。
 
-再現可能なソースのインストールには、意図したリリースタグから選択します [変更履歴](../changelog/v1.0.2.md) 依存関係をインストールする前に. デフォルトクローンは、固定リリースではなくブランチに続く。 選択したタグ、ソースコミット、ランタイムバージョンを記録するので、別の人が環境を再現することができます。
+再現可能なソースのインストールには、意図したリリースタグから選択します [変更履歴](../changelog/v1.0.4.md) 依存関係をインストールする前に. デフォルトクローンは、固定リリースではなくブランチに続く。 選択したタグ、ソースコミット、ランタイムバージョンを記録するので、別の人が環境を再現することができます。
 
 交換する `RELEASE_TAG` 選択したリリースに示す正確なタグ(そのリードを含む) `v`)... `--branch RELEASE_TAG --depth 1`を省略する代わりに、継続的な開発に従うため。 そのチェックアウトは、デフォルトのブランチに従います。
 
@@ -128,7 +128,7 @@ npm run dev
 npm run build
 ```
 
-選択したタグのpackage.jsonを使用し、 [スタンドアローンランタイムガイド](https://github.com/aipoch/open-science/blob/v1.0.2/docs/standalone-runtime.md) ビルドターゲットと依存関係のため。 `npm run dev:web` Node/Web エントリ ポイントを開発します。 `npm run dev` また、デスクトップクライアントを用意します。 独立した構成ディレクトリを使用して、テストデータを分離します。
+選択したタグのpackage.jsonを使用し、 [スタンドアローンランタイムガイド](https://github.com/aipoch/open-science/blob/v1.0.4/docs/standalone-runtime.md) ビルドターゲットと依存関係のため。 `npm run dev:web` Node/Web エントリ ポイントを開発します。 `npm run dev` また、デスクトップクライアントを用意します。 独立した構成ディレクトリを使用して、テストデータを分離します。
 
 ## 初回設定完了 {/* #complete-first-time-setup */}
 
@@ -188,14 +188,14 @@ npm run build
 2. インストールを使用してデスクトップ/バックエンドのインスタンスを閉じて、公式インストーラーでアップグレードします。 オリジナルのプロファイル、データ、OS認証ストアを保管します。
 3. バージョン、プロジェクト、セッション、ファイル、モデル、ランタイムを継続的に再オープンし、確認します。 バイナリダウングレードはデータをロールバックしません。 古いバイナリは、新しい保存されたデータを読み取らない場合があります。
 
-1.0 は、既存の履歴アップグレードとインポートパスを保持します。バージョン番号はプロファイルリセットを必要としません。 ふりがな [1.x 互換性ポリシー](https://github.com/aipoch/open-science/blob/v1.0.2/docs/compatibility.md) 文書化された CLI/SDK およびタスクのオートメーション インターフェイス、有効なの先の輸入をカバーして下さい `.science` パッケージ、およびサポートされたプロフィールのアップグレード。 同じモデルの回答、サードパーティの可用性、または全研究セッションの決定的な再生、またはOS保護された資格情報のクロスプラットフォーム転送を保証するものではありません。 セキュリティは、最新の安定したリリースをターゲットに固定します。
+1.0 は、既存の履歴アップグレードとインポートパスを保持します。バージョン番号はプロファイルリセットを必要としません。 ふりがな [1.x 互換性ポリシー](https://github.com/aipoch/open-science/blob/v1.0.4/docs/compatibility.md) 文書化された CLI/SDK およびタスクのオートメーション インターフェイス、有効なの先の輸入をカバーして下さい `.science` パッケージ、およびサポートされたプロフィールのアップグレード。 同じモデルの回答、サードパーティの可用性、または全研究セッションの決定的な再生、またはOS保護された資格情報のクロスプラットフォーム転送を保証するものではありません。 セキュリティは、最新の安定したリリースをターゲットに固定します。
 
 ## npm で CLI をインストールする {/* #npm-cli */}
 
 Node.js を使う **22.13 以降** を公開 CLI・バックエンドパッケージに使います。ターミナルでインストールし、実行されるバージョンを確認します：
 
 ```bash
-npm install --global @aipoch/open-science@1.0.2
+npm install --global @aipoch/open-science@1.0.4
 open-science version --json
 open-science help
 ```
@@ -206,4 +206,4 @@ open-science help
 
 設定画面 **Settings → General → About**、選ぶ **Check now** 提供されるリリースを見直します。 更新ダイアログは、ダウンロードの進捗、リリースノート、インストールの準備を一緒に保ちます。 ダウンロード完了はインストール完了ではありません:再起動後にインストールされたバージョンを確認してください。
 
-このチャネルで自動インストールできないと表示された場合は、ダウンロードしたパッケージを保持し、実行中の作業を終えてから公式インストーラーを使います。v1.0.2 でも自動置換の制限は残ります。Windows の進捗表示改善は、この制限の解除ではありません。Notebook の終了処理中にアプリを強制終了しないでください。
+このチャネルで自動インストールできないと表示された場合は、ダウンロードしたパッケージを保持し、実行中の作業を終えてから公式インストーラーを使います。v1.0.4 でも自動置換の制限は残ります。Windows の進捗表示改善は、この制限の解除ではありません。Notebook の終了処理中にアプリを強制終了しないでください。

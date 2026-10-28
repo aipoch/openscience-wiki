@@ -1,7 +1,7 @@
 ---
 title: "Skills 관리 및 검증"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Skills 관리 및 검증 {/* #manage-and-validate-skills */}
@@ -117,3 +117,7 @@ Markdown 업로드는 YAML `name` 및 `description`가 필요합니다. ZIP/`.sk
 ## Skill을 안전하게 가져오고 편집하기 {/* #import-batches */}
 
 많은 설치 Skill은 일괄 단위로 가져옵니다. 최종 결과와 가져온 목록을 확인한 뒤 재시도하세요. 예약 접두사가 있는 외부 Skill에는 안전한 로컬 이름이 부여되므로 로컬 목록에 표시된 이름을 사용합니다. 본문을 저장한 뒤 별도로 편집한 이름과 설명이 유지되는지 확인하세요. 현재 메시지의 첨부 이미지도 Skill 선택에 활용되므로 실행 전에 선택된 Skill의 범위를 확인하세요.
+
+## GitHub 저장소를 다시 사용하도록 저장하기 {/* #saved-repositories */}
+
+**Import from GitHub → Find skills**로 검색한 뒤 **Save repository**를 선택합니다. 다음에는 **Saved repositories**에서 다시 검색하고 필요한 Skill을 미리 본 뒤 가져옵니다. 지정한 ref는 유지되지만 기본 브랜치는 바뀔 수 있습니다. 저장만으로 Skill이 설치되거나 자동 업데이트되지 않습니다. 북마크를 제거해도 설치된 Skill은 남습니다.

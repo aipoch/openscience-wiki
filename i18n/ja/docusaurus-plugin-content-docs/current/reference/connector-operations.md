@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-1つのコネクターを一度に拡大して下さい。 必須項目は必須項目です **お問い合わせ**; この参照およびダウンロードは開いた科学を使用します **v1.0.2** スキーマ。 ネスト `input.required` リストは権威的です。レガシートップレベル `required` リストが存在しない可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.2.json">ダウンロード可能なレジストリ</ExampleDownload> ネストされた JSON スキーマ、完全なリターン 説明およびエージェント・サイド・コールの例のため。 ジェネリックを通さない `id` ツールが期待したときに `accessions`, `cids`, `rs_id` または別の名前空間固有のフィールド。
+1つのコネクターを一度に拡大して下さい。 必須項目は必須項目です **お問い合わせ**; この参照およびダウンロードは開いた科学を使用します **v1.0.4** スキーマ。 ネスト `input.required` リストは権威的です。レガシートップレベル `required` リストが存在しない可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.4.json">ダウンロード可能なレジストリ</ExampleDownload> ネストされた JSON スキーマ、完全なリターン 説明およびエージェント・サイド・コールの例のため。 ジェネリックを通さない `id` ツールが期待したときに `accessions`, `cids`, `rs_id` または別の名前空間固有のフィールド。
 
 ## 化学化学品 {/* #family-1 */}
 
@@ -208,6 +208,32 @@ const result = await host.mcp("chemistry", "bindingdb_ligands_by_target", {"unip
 
 ```javascript
 const result = await host.mcp("chemistry", "bindingdb_targets_by_compound", {"smiles": "CC(=O)OC1=CC=CC=C1C(=O)O", "similarity": 0.85})
+```
+
+### `lipidmaps_get_compound` {/* #chemistry-lipidmaps_get_compound */}
+
+正確な LMID または PubChem CID で LIPID MAPS を検索します。名称は先に PubChem で解決してください。複数一致・欠測値・出典を保持します。名前・質量・一括検索には対応しません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id_type` | string | **required**; enum: [&quot;lm_id&quot;, &quot;pubchem_cid&quot;] |
+| `identifier` | string | **required**;最大長:15 |
+
+```javascript
+const result = await host.mcp("chemistry", "lipidmaps_get_compound", {"id_type": "lm_id", "identifier": "LMFA01010001"})
+```
+
+### `unichem_map_compound` {/* #chemistry-unichem_map_compound */}
+
+完全な InChIKey または ChEMBL ID を UniChem で PubChem・ChEMBL・ChEBI に対応付けます。異なる構造と打切り情報を保持します。索引の対応は最新レコードの確認や生物学的同等性を保証しません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id_type` | string | **required**; enum: [&quot;inchikey&quot;, &quot;chembl&quot;] |
+| `identifier` | string | **required**;最大長: 27 |
+
+```javascript
+const result = await host.mcp("chemistry", "unichem_map_compound", {"id_type": "chembl", "identifier": "CHEMBL1089"})
 ```
 
 </ToolOperationGroup>
@@ -2268,6 +2294,46 @@ const result = await host.mcp("structures", "alphafold_check_coverage", {"unipro
 const result = await host.mcp("structures", "pdb_search_sequence", {"sequence": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQV", "identity_cutoff": 0.9, "min_query_coverage": 0.8, "max_rows": 10})
 ```
 
+### `omnipath_query_regulation` {/* #structures-omnipath_query_regulation */}
+
+ヒトの標準 UniProt accession で OmniPath の上流・下流調節を調べます。方向、活性化と阻害の矛盾、複合体 ID を保持し、複合体を推測で個別エッジに展開しません。上限付き結果は完全なネットワークや組織特異的因果証拠ではありません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accession` | string | **required**; pattern: &quot;^(?:&#91;OPQ&#93;&#91;0-9&#93;&#91;A-Z0-9&#93;&#123;3&#125;&#91;0-9&#93;&#124;&#91;A-NR-Z&#93;&#91;0-9&#93;(?:&#91;A-Z&#93;&#91;A-Z0-9&#93;&#123;2&#125;&#91;0-9&#93;)&#123;1,2&#125;)$&quot; |
+| `direction` | string | **required**; enum: [&quot;upstream&quot;, &quot;downstream&quot;] |
+| `limit` | integer | optional; default: 10; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("structures", "omnipath_query_regulation", {"accession": "P00533", "direction": "upstream", "limit": 10})
+```
+
+### `pdb_search_structure_similarity` {/* #structures-pdb_search_structure_similarity */}
+
+登録済み PDB 鎖を使って実験構造の類似鎖を検索します。著者の鎖 ID ではなく label_asym_id を使います。上流スコアを返し、座標アップロード・構造アラインメント・RMSD 計算は行いません。検索元自身が結果に含まれる場合があります。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `pdb_id` | string | **required**; pattern: &quot;^[1-9][A-Za-z0-9]&#123;3&#125;$&quot; |
+| `label_asym_id` | string | **required**; minLength: 1; maxLength: 16; pattern: &quot;^[A-Za-z0-9]+$&quot; |
+| `max_rows` | integer | optional; default: 10; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("structures", "pdb_search_structure_similarity", {"pdb_id": "1CLL", "label_asym_id": "A", "max_rows": 10})
+```
+
+### `pdbe_get_validation` {/* #structures-pdbe_get_validation */}
+
+実験 PDB 項目一件の PDBe 品質スコアと検証統計を取得します。実験法と空値を保持します。欠測はゼロ点ではなく、異なる実験法の順位をそのまま比較できません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `pdb_id` | string | **required**; maxLength: 4; pattern: &quot;^[1-9][A-Za-z0-9]&#123;3&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("structures", "pdbe_get_validation", {"pdb_id": "1cbs"})
+```
+
 </ToolOperationGroup>
 
 ## チャムBL {/* #family-10 */}
@@ -3488,6 +3554,75 @@ const result = await host.mcp("cancer-models", "cbioportal_get_clinical_data", {
 
 ```javascript
 const result = await host.mcp("cancer-models", "cbioportal_get_molecular_data", {"study_id": "brca_tcga_pan_can_atlas_2018", "molecular_profile_id": "brca_tcga_pan_can_atlas_2018_rna_seq_v2_mrna", "gene_symbol": "ESR1", "sample_list_id": "brca_tcga_pan_can_atlas_2018_all"})
+```
+
+### `depmap_search_models` {/* #cancer-models-depmap_search_models */}
+
+名前の部分一致または正確な ACH ModelID で DepMap/CCLE モデルを検索します。異なる ModelID、系統、疾患、RRID を保持し、全カタログは取得しません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 2; maxLength: 100; pattern: &quot;\\S&quot; |
+| `limit` | integer | optional; default: 10; minimum: 1; maximum: 20 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_search_models", {"query": "A549"})
+```
+
+### `depmap_gene_dependency` {/* #cancer-models-depmap_gene_dependency */}
+
+正確な遺伝子記号で DepMap Chronos gene-effect を取得し、ModelID で限定できます。最大 50 モデルです。負値は依存確率ではなく、欠測はゼロではありません。データ版を保持します。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | 配列 | オプション; minItems:1; maxItems:20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_gene_dependency", {"gene": "KRAS", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_drug_response` {/* #cancer-models-depmap_drug_response */}
+
+正確な DPC ID または化合物の正式名で PRISM 二次スクリーニング AUC を最大 50 モデル取得します。AUC は IC50 や生存率ではありません。PRISM とモデルメタデータの版を別々に保持します。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `compound` | string | **required**; minLength: 2; maxLength: 100; pattern: &quot;\\S&quot; |
+| `model_ids` | 配列 | オプション; minItems:1; maxItems:20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_drug_response", {"compound": "trametinib", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_gene_expression` {/* #cancer-models-depmap_gene_expression */}
+
+正確な遺伝子記号で DepMap/CCLE RNA 発現を最大 50 モデル取得します。尺度は log2(TPM+1) であり、生 TPM や z スコアではありません。ModelID とデータ版を保持します。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | 配列 | オプション; minItems:1; maxItems:20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_gene_expression", {"gene": "KRAS", "model_ids": ["ACH-000681"]})
+```
+
+### `depmap_copy_number` {/* #cancer-models-depmap_copy_number */}
+
+DepMap/CCLE WGS 遺伝子コピー数を倍数性に対する相対値として最大 50 モデル取得します。絶対コピー数、log2 値、離散的な増幅・欠失判定ではありません。ModelID とデータ版を保持します。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; pattern: &quot;^[A-Za-z0-9][A-Za-z0-9._-]&#123;0,59&#125;$&quot; |
+| `model_ids` | 配列 | オプション; minItems:1; maxItems:20 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 50 |
+
+```javascript
+const result = await host.mcp("cancer-models", "depmap_copy_number", {"gene": "MYC", "model_ids": ["ACH-000681"]})
 ```
 
 </ToolOperationGroup>
@@ -5760,6 +5895,233 @@ ORPHAcode で Orphadata の希少疾患の HPO 表現型と頻度区分を取得
 
 ```javascript
 const result = await host.mcp("orphadata", "get_disease_phenotypes", {"orphacode": 58})
+```
+
+</ToolOperationGroup>
+
+## TCIA {/* #family-37 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメーターを表示</summary>
+
+### `search_collections` {/* #tcia-search_collections */}
+
+TCIA の公開コレクションをキーワードでページごとに検索します。ライセンスとダウンロード条件を保持します。リンクはマニフェストの場合があり、画像の取得や制限付きデータへのアクセスは行いません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `page` | integer | optional; minimum: 1; maximum: 1000 |
+| `page_size` | integer | optional; minimum: 1; maximum: 20 |
+
+```javascript
+const result = await host.mcp("tcia", "search_collections", {"query": "LIDC-IDRI", "page_size": 5})
+```
+
+### `get_collection` {/* #tcia-get_collection */}
+
+TCIA の正確なコレクション短縮名で説明・ライセンス・アクセス条件・取得入口を調べます。インターフェースごとに収録範囲が異なり、リンク取得は画像のダウンロードではありません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `short_title` | string | **required**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("tcia", "get_collection", {"short_title": "4D-Lung"})
+```
+
+### `get_series` {/* #tcia-get_series */}
+
+既存の DICOM SeriesInstanceUID で公開 NBIA シリーズのメタデータを取得します。コレクション、被験体・研究 ID、モダリティ、画像数、サイズ、ライセンスを保持し、画像は取得しません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `series_uid` | string | **required**; maxLength: 64; pattern: &quot;^[0-9]+(?:\\.[0-9]+)+$&quot; |
+
+```javascript
+const result = await host.mcp("tcia", "get_series", {"series_uid": "1.3.6.1.4.1.14519.5.2.1.6834.5010.189721824525842725510380467695"})
+```
+
+</ToolOperationGroup>
+
+## KEGG {/* #family-38 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメーターを表示</summary>
+
+### `search_entries` {/* #kegg-search_entries */}
+
+KEGG の経路・KO・化合物・反応名を検索します。結果は上限付きでサーバー側ページ分割はありません。公開 API は適格な学術用途に限られ、その他の用途には適切なライセンスが必要です。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `database` | string | **required**; enum: [&quot;pathway&quot;, &quot;ko&quot;, &quot;compound&quot;, &quot;reaction&quot;] |
+| `query` | string | **required**; minLength: 1; maxLength: 200; pattern: &quot;\\S&quot; |
+| `limit` | integer | optional; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("kegg", "search_entries", {"database": "pathway", "query": "glycolysis"})
+```
+
+### `get_entry` {/* #kegg-get_entry */}
+
+KEGG 項目一件の要約を取得し、打切り情報を保持します。全遺伝子一覧・配列・経路画像は取得しません。404 は空のレコードではなく、Connector の有効化は利用許諾ではありません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id` | string | **required**; pattern: &quot;^(?:[KCR][0-9]&#123;5&#125;&#124;(?:map&#124;[a-z]&#123;3,4&#125;)[0-9]&#123;5&#125;)$&quot; |
+
+```javascript
+const result = await host.mcp("kegg", "get_entry", {"id": "hsa00010"})
+```
+
+### `map_gene` {/* #kegg-map_gene */}
+
+種を指定した一つの KEGG 遺伝子を経路または UniProt に対応付けます。一対多対応を保持し、標準タンパク質を自動選択しません。濃縮解析ではなく、KEGG の利用条件に従う必要があります。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `gene` | string | **required**; maxLength: 80; pattern: &quot;^[a-z][a-z0-9]&#123;1,4&#125;:[A-Za-z0-9_.-]+$&quot; |
+| `target` | string | **required**; enum: [&quot;pathway&quot;, &quot;uniprot&quot;] |
+| `limit` | integer | optional; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("kegg", "map_gene", {"gene": "hsa:7157", "target": "uniprot"})
+```
+
+</ToolOperationGroup>
+
+## RxNorm / RxNav {/* #family-39 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメーターを表示</summary>
+
+### `resolve_name` {/* #rxnorm-resolve_name */}
+
+薬剤名を有効な RxCUI に照合します。既定は完全一致です。正規化一致では塩形や語順が無視される場合があり、曖昧な結果を保持してください。臨床的同等性は示しません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `name` | string | **required**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `search` | integer | optional; enum: [0, 1, 2] |
+
+```javascript
+const result = await host.mcp("rxnorm", "resolve_name", {"name": "aspirin"})
+```
+
+### `get_concept` {/* #rxnorm-get_concept */}
+
+RxCUI から有効な RxNorm 概念の名称・同義語・種類・言語などを取得します。該当する有効記録がなくても、その ID が過去に存在しなかったとは限りません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `rxcui` | string | **required**; pattern: &quot;^[0-9]&#123;1,12&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("rxnorm", "get_concept", {"rxcui": "1191"})
+```
+
+</ToolOperationGroup>
+
+## DailyMed {/* #family-40 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメーターを表示</summary>
+
+### `search_labels` {/* #dailymed-search_labels */}
+
+薬剤名で DailyMed SPL ラベルの識別情報・タイトル・版・公開日をページごとに検索します。RxCUI で限定できます。収録は FDA 承認を意味しません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `drug_name` | string | **required**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `rxcui` | string | optional; pattern: &quot;^[0-9]&#123;1,12&#125;$&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("dailymed", "search_labels", {"drug_name": "aspirin", "page_size": 5})
+```
+
+### `get_label_history` {/* #dailymed-get_label_history */}
+
+正確な SET ID で DailyMed SPL の版履歴をページごとに取得し、識別情報と日付を保持します。過去版の本文は取得しません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `setid` | string | **required**; pattern: &quot;^[a-fA-F0-9]&#123;8&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;4&#125;-[a-fA-F0-9]&#123;12&#125;$&quot; |
+| `page` | integer | optional; default: 1; minimum: 1; maximum: 100000 |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("dailymed", "get_label_history", {"setid": "9aa7140c-012c-4ea6-866d-4732e915dab6"})
+```
+
+</ToolOperationGroup>
+
+## BioSamples {/* #family-41 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメーターを表示</summary>
+
+### `search_samples` {/* #biosamples-search_samples */}
+
+公開 BioSamples メタデータをカーソルでページごとに検索します。特徴・用語・外部参照・日付を保持します。next_cursor を使う際は query と page_size を変えないでください。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 500; pattern: &quot;\\S&quot; |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `cursor` | string | optional; minLength: 1; maxLength: 2048; pattern: &quot;\\S&quot; |
+
+```javascript
+const result = await host.mcp("biosamples", "search_samples", {"query": "leukaemia", "page_size": 5})
+```
+
+### `get_sample` {/* #biosamples-get_sample */}
+
+accession で公開 BioSamples の特徴・修訂・関係・出典日付を取得します。リンク先の資源やファイルは取得しません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accession` | string | **required**; pattern: &quot;^SAM[END][A-Z]?[0-9]&#123;1,15&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("biosamples", "get_sample", {"accession": "SAMD00023550"})
+```
+
+</ToolOperationGroup>
+
+## WikiPathways {/* #family-42 */}
+
+<ToolOperationGroup>
+<summary>操作とパラメーターを表示</summary>
+
+### `search_pathways` {/* #wikipathways-search_pathways */}
+
+名前または WP ID の部分一致で WikiPathways を検索し、正確な種の学名で限定できます。現在のスナップショットの検索であり、全文・遺伝子検索ではありません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 300; pattern: &quot;\\S&quot; |
+| `species` | string | optional; minLength: 1; maxLength: 100; pattern: &quot;\\S&quot; |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 100000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("wikipathways", "search_pathways", {"query": "glycolysis", "species": "Homo sapiens"})
+```
+
+### `get_pathway` {/* #wikipathways-get_pathway */}
+
+WP ID で現在の経路メタデータを取得します。種・改訂番号・著者・説明・引用を保持します。経路グラフ、遺伝子対応、過去版は取得しません。
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `id` | string | **required**; pattern: &quot;^WP[0-9]&#123;1,10&#125;$&quot; |
+
+```javascript
+const result = await host.mcp("wikipathways", "get_pathway", {"id": "WP534"})
 ```
 
 </ToolOperationGroup>

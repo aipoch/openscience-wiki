@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,46 +13,52 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v1.0.2에는 **36개 데이터 소스 Connector와 371개 작업**이 포함됩니다. 별도의 오프라인 Molecule Connector의 작업 2개를 더하면 전체 등록 목록은 373개입니다. 아래 Connector 이름은 **Settings → Connectors**의 항목과 일치합니다. 한 항목에서 여러 데이터베이스를 제공할 수 있지만, 해당 웹사이트의 모든 기능을 지원한다는 뜻은 아닙니다.
+Open-Science v1.0.4에는 **42개 데이터 소스 Connector와 395개 작업**이 포함됩니다. 별도의 오프라인 Molecule Connector의 작업 2개를 더하면 전체 등록 목록은 397개입니다. 아래 Connector 이름은 **Settings → Connectors**의 항목과 일치합니다. 한 항목에서 여러 데이터베이스를 제공할 수 있지만, 해당 웹사이트의 모든 기능을 지원한다는 뜻은 아닙니다.
 
 | 커넥터 | 출처 | 작업 | 사용하기  |
 | --- | --- | --- | ---  |
-| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | PubChem, ChEBI, Rhea 및 BindingDB를 통해 소형 molecule 화학.  |
+| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB, LIPID MAPS, UniChem | 14 | PubChem, ChEBI, Rhea 및 BindingDB를 통해 소형 molecule 화학.  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 용지, 저자, 인용, DOI 업데이트 및 데이터 세트 / 소프트웨어 레코드. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | NCBI E-utilities, PMC ID Converter, Europe PMC를 통한 생의학 문헌 검색, 메타데이터, 관련 논문, 인용 조회, ID 변환, 전문 및 저작권 정보.  |
-| Genes &amp; Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr, HGNC | 17 | 유전자·단백질 식별자, UniProt 서열 검색, GO·Reactome 주석, g:Profiler·Enrichr 유전자 집합 풍부도 분석. |
-| 게놈 · `genomes` | 회의, UCSC, NCBI, BLAST, 클러스터 오메가 | 22 | Genome 주석, 균질 및 순서; NCBI taxon/assembly/sequence 정체성; BLAST 검색 및 클러스터 오메가 다중 시퀀스 정렬; 인구 별 LD 및 프록시 변형. |
-| Variants · `variants` | gnomAD, 크린바르, dbSNP, MaveDB | 22 | 인구 빈도, 임상 기록 및 분석실험 특정한 기능적인 점수, 매핑 및 실험. |
+| Genes &amp; Ontologies · `genes` | HGNC, MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 17 | 유전자·단백질 식별자, UniProt 서열 검색, GO·Reactome 주석, g:Profiler·Enrichr 유전자 집합 풍부도 분석. |
+| 게놈 · `genomes` | NCBI Datasets, NCBI BLAST, EMBL-EBI Job Dispatcher, Ensembl, UCSC | 22 | Genome 주석, 균질 및 순서; NCBI taxon/assembly/sequence 정체성; BLAST 검색 및 클러스터 오메가 다중 시퀀스 정렬; 인구 별 LD 및 프록시 변형. |
+| Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | 인구 빈도, 임상 기록 및 분석실험 특정한 기능적인 점수, 매핑 및 실험. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | 임상시험 검색, 프로토콜, 공개된 결과 측정값, 군별 분모, 통계 분석 및 이상반응. |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx, DGIdb | 32 | ClinGen 큐레이션, CIViC 임상 근거, Open Targets Platform 및 ClinPGx 약물유전체 기록. |
-| 구조 및 상호 작용 · `structures` | PDB, AlphaFold, EMDB, 복합 포털, IntAct | 17 | 구조 및 분자 상호 작용 — PDB 구조, AlphaFold 예측, EMDB cryo-EM 항목, Complex Portal complexes, IntAct 상호 작용 네트워크.  |
-| · · `chembl` | 담당자: Mr. wang | 7 | 비활성 화합물, 약물, 표적, 생물 활성성, 그리고 메커니즘을 통해 ChEMBL REST API.  |
+| 구조 및 상호 작용 · `structures` | PDB, PDBe, AlphaFold, EMDB, Complex Portal, IntAct, OmniPath | 20 | 구조 및 분자 상호 작용 — PDB 구조, AlphaFold 예측, EMDB cryo-EM 항목, Complex Portal complexes, IntAct 상호 작용 네트워크.  |
+| · · `chembl` | ChEMBL | 7 | 비활성 화합물, 약물, 표적, 생물 활성성, 그리고 메커니즘을 통해 ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — 날짜/category, DOI, 저널-publication 링크, 펀더 목록 및 플랫폼 통계에 의해 검색.  |
-| 의약품 규제 · `drug-regulatory` | 오픈FDA | 10 | Drugs@FDA, 상표, FAERS 불리 배출 보고와 약은 회귀합니다. |
-| 인간 유전학 · `human-genetics` | GWAS 카탈로그, eQTL 카탈로그, PheWeb | 15 | 인간 유전학 협회 증거 - GWAS 카탈로그, eQTL 카탈로그, PheWeb PheWAS 포털 (FinnGen, BioBank Japan).  |
+| 의약품 규제 · `drug-regulatory` | openFDA | 10 | Drugs@FDA, 상표, FAERS 불리 배출 보고와 약은 회귀합니다. |
+| 인간 유전학 · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | 인간 유전학 협회 증거 - GWAS 카탈로그, eQTL 카탈로그, PheWeb PheWAS 포털 (FinnGen, BioBank Japan).  |
 | · · `expression` | GTEx, Bgee | 16 | 인간적인 GTEx 조직 표식 및 eQTLs; Bgee 크로스 사양 기본 표현. |
-| 단백질 표기 · `protein-annotation` | InterPro, Pfam, 인간 단백질 아틀라스, STRING | 14 | Protein Domain Architecture, 가족/실란 회원, 인터프로/Pfam, Human Protein Atlas 및 STRING을 통한 식각 atlas 및 상호 작용 네트워크. |
-| 암 모델 · `cancer-models` | cBioPortal의 특징 | 10 | 연구, mutations, 복사 번호, 샘플, 환자, 임상 특성 및 분자 프로파일 표현. |
+| 단백질 표기 · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | Protein Domain Architecture, 가족/실란 회원, 인터프로/Pfam, Human Protein Atlas 및 STRING을 통한 식각 atlas 및 상호 작용 네트워크. |
+| 암 모델 · `cancer-models` | cBioPortal, DepMap / CCLE | 15 | 연구, mutations, 복사 번호, 샘플, 환자, 임상 특성 및 분자 프로파일 표현. |
 | RNA · `rna` | Rfam, RNAcentral | 11 | Rfam의 비암호화 RNA 계열 메타데이터, 정렬, 모델 및 구조.  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, 메타보라이트, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | Omics 연구 / 실행 메타 데이터 및 파일 재고; metabolomics 표본, 요인, 분석 및 화합물 기록. |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, ENA, MetaboLights, Metabolomics Workbench, MGnify, PRIDE | 28 | Omics 연구 / 실행 메타 데이터 및 파일 재고; metabolomics 표본, 요인, 분석 및 화합물 기록. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Cell-type identity, 마커 유전자, 소스 데이터 세트, 그리고 CELLxGENEGuide Cell을 통해 조직.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 유전자 조절 기능 genomics - ENCODE 실험 / 생물 샘플 / 파일, JASPAR TF 바인딩 프로파일 및 UniBind ChIP-seq TFBS.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Funding-opportunity search (Grants.gov) 및 항체 카탈로그 조회 (Antibody Registry).  |
 | BioMart · `biomart` | Ensembl BioMart | 8 | Ensembl BioMart 속성 쿼리 및 식별자 번역.  |
 | ZINC · `zinc` | ZINC | 5 | ZINC22 purchasable 화학 공간 (CartBlanche22) - ZINC id, SMILES에 의해 합성 보기 정확하고/similarity 수색, 공급자 부호 해결책, 무작위 표본 추출, 선창을 위한 3D 구조 위치.  |
-| GDC · `gdc` | NCI GDC | 5 | 암 프로젝트, 케이스, 파일 메타 데이터, 오픈 / 제어 라벨 및 전송 표시; 다운로드 또는 액세스 권한을 부여하지 않습니다. |
+| GDC · `gdc` | Genomic Data Commons (GDC) | 5 | 암 프로젝트, 케이스, 파일 메타 데이터, 오픈 / 제어 라벨 및 전송 표시; 다운로드 또는 액세스 권한을 부여하지 않습니다. |
 | Zenodo · `zenodo` | Zenodo | 2 | 공공 데이터 세트, 소프트웨어 및 출판 발견, 버전 별 메타 데이터 및 파일 재고; 업로드 또는 다운로드. |
-| · · `hmmer` | EMBL-EBI 헬멧3 | 3 | 프로그램별 단백질/프로필/분리 검색, 작업 상태 및 결과. |
-| InterProScan · `interproscan` | EMBL-EBI InterProScan에 대한 정보 | 3 | 단백질 시퀀스 제출, annotation-job 상태를 확인하고 TSV 보고서를 검색하십시오. |
-| Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Pathway 검색, 최고 통로, 그래프 쿼리 및 BioPAX 서브모델 수출. |
-| Alliance Genome Resources · `alliance` | Genome 자원의 동맹 | 8 | 인간 및 모델 조직 유전자, 정형화, 질병 모델, 페형화, 알레르기 및 표현. |
+| · · `hmmer` | HMMER3, EMBL-EBI | 3 | 프로그램별 단백질/프로필/분리 검색, 작업 상태 및 결과. |
+| InterProScan · `interproscan` | InterProScan, EMBL-EBI | 3 | 단백질 시퀀스 제출, annotation-job 상태를 확인하고 TSV 보고서를 검색하십시오. |
+| Pathway Commons · `pathway-commons` | Pathway Commons, Reactome | 4 | Pathway 검색, 최고 통로, 그래프 쿼리 및 BioPAX 서브모델 수출. |
+| Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | 인간 및 모델 조직 유전자, 정형화, 질병 모델, 페형화, 알레르기 및 표현. |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Single-cell 컬렉션 및 데이터 세트, 출판된 버전, 파일 형식, 크기 및 다운로드 URL. |
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 셀 라인 이름과 동의를 찾기, 다음 액세스 정체성 및 품질 annotations를 검사. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 질병/진-to-phenotype 협회는 생물과 지원 증거를 가진다. |
-| IEDB · `iedb` | Immune Epitope 데이터베이스 | 8 | Epitopes, 항원, T 세포, B 세포 및 MHC 분석실험, TCR/BCR 증거 및 근원 간행물. |
-| PDC · `pdc` | NCI Proteomic Data Commons | 5 | 암 단백질체 연구 버전, 검체 연결, 공개 증례 임상 메타데이터 및 파일 목록. 파일 다운로드는 제공하지 않습니다. |
+| IEDB · `iedb` | IEDB | 8 | Epitopes, 항원, T 세포, B 세포 및 MHC 분석실험, TCR/BCR 증거 및 근원 간행물. |
+| PDC · `pdc` | PDC | 5 | 암 단백질체 연구 버전, 검체 연결, 공개 증례 임상 메타데이터 및 파일 목록. 파일 다운로드는 제공하지 않습니다. |
 | ENCORI · `encori` | ENCORI | 10 | miRNA/RBP 표적, RNA 상호 작용, ceRNA, motifs, 바인딩 위치, 참고 테이블 및 대량 파일. |
 | Orphadata · `orphadata` | Orphadata, Orphanet | 2 | 희귀질환 유전자 연관성과 HPO 표현형 빈도. 기본적으로 꺼져 있습니다. |
+| TCIA · `tcia` | TCIA, NBIA | 3 | 공개 영상 컬렉션, 접근 조건 및 시리즈 메타데이터. |
+| KEGG · `kegg` | KEGG | 3 | 경로·화합물 항목 및 유전자 매핑. 라이선스 조건 준수. |
+| RxNorm / RxNav · `rxnorm` | RxNorm, RxNav | 2 | 약물명 확인 및 유효한 개념의 속성. |
+| DailyMed · `dailymed` | DailyMed | 2 | 의약품 라벨 식별 정보 및 버전 이력. |
+| BioSamples · `biosamples` | EMBL-EBI BioSamples | 2 | 공개 시료 메타데이터 및 교차 참조. |
+| WikiPathways · `wikipathways` | WikiPathways | 2 | 경로 메타데이터, 종 및 개정 정보. |
 
 오프라인 Molecule 도구는 [사이트맵](viewers.md)에 덮여 있습니다. 각 데이터 소스에 노출된 정확한 작업을 위해 [Connector 가동 참고](../reference/connector-operations.md)을 사용합니다.
 
@@ -255,7 +261,7 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 출처: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/registry.ts).
+카탈로그 출처: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/registry.ts).
 
 ## Sequence 검색 및 정렬 {/* #sequence-tools */}
 
@@ -367,3 +373,20 @@ v1.0.2는 현재 세션에서 거절한 OpenAlex 인증 정보 요청을 기억�
 - **Clinical Trials:** 작업 `get_trial_results` 로 공개된 측정값, 분모, 통계 분석, 이상반응을 조회합니다. 군 ID는 동일한 결과 모듈·평가변수 안에서만 연결하세요. 결과 누락은 사건 0건이나 치료 효과가 없다는 뜻이 아닙니다.
 
 참고: [PDC 필드](../reference/connector-operations.md#pdc_list_clinical), [GDC 필터](../reference/connector-operations.md#gdc_search_files), [VEP 모드](../reference/connector-operations.md#ensembl_vep_variant) 및 [공개된 임상시험 결과](../reference/connector-operations.md#get_trial_results).
+
+## 영상·경로·지질·암 모델 데이터 {/* #expanded-sources */}
+
+**Settings → Connectors**에서 대상을 켜고 **Main**에 제공하세요. TCIA, KEGG, RxNorm / RxNav, DailyMed, BioSamples, WikiPathways는 독립 항목이며 기본적으로 꺼져 있습니다. 아래 공개 서비스에는 별도 MCP 서버나 API key가 필요 없지만, 활성화가 데이터 라이선스나 제한 데이터 접근 권한을 부여하지는 않습니다.
+
+| 항목 | 요청할 내용 | 보존할 정보 |
+| --- | --- | --- |
+| TCIA | 컬렉션 및 기존 DICOM series UID 메타데이터 | 라이선스, 접근·다운로드 조건. 링크는 영상 파일이 아닌 Data Retriever 매니페스트일 수 있습니다. |
+| KEGG | 경로·KO·화합물·반응 검색 및 종을 지정한 유전자 매핑 | 학술 이용 자격, 라이선스, 일대다 대응, 잘림 정보. 유전자 집합 풍부도 분석이 아닙니다. |
+| Chemistry → LIPID MAPS / UniChem | 정확한 LMID·PubChem CID 조회 및 InChIKey·ChEMBL ID 매핑 | 이름은 먼저 PubChem으로 확인하고 서로 다른 결과와 출처를 보존합니다. 유사성 검색이 아닙니다. |
+| Structures & Interactions → OmniPath | 인간의 표준 UniProt accession으로 상류·하류 조절 조회 | 방향, 활성화·억제의 상충 증거, 복합체 ID. 집계된 관계는 조직 특이적 인과 증거가 아닙니다. |
+| Structures & Interactions → PDBe / PDB | 실험 구조 검증 통계 또는 등록된 단백질 사슬 유사성 조회 | 실험 방법과 결측값. 저자 사슬 ID가 아닌 label_asym_id를 사용합니다. 실제 구조 정렬이나 RMSD 계산이 아닙니다. |
+| Cancer Models → DepMap / CCLE | 세포주를 ModelID로 확인한 후 유전자·화합물 프로파일 조회 | 데이터 버전과 척도. Chronos는 확률이 아니고 PRISM AUC는 IC50가 아닙니다. RNA는 log2(TPM+1), 복제수는 배수성 대비 상대값입니다. |
+| RxNorm / RxNav · DailyMed | 약물명을 RxCUI로 확인하고 SPL 라벨 식별 정보와 이력 조회 | 모호한 일치를 보존합니다. 이름 일치는 임상적 동등성을, DailyMed 수록은 FDA 승인을 뜻하지 않습니다. |
+| BioSamples · WikiPathways | 시료 또는 경로 메타데이터와 개정 정보 | accession, 종, 날짜, 증거 링크. 연결된 시료 파일이나 경로 그래프를 다운로드하지 않습니다. |
+
+정확한 입력과 페이지 처리는 [작업 참조](../reference/connector-operations.md)를 확인하세요. 빈 값과 잘림 표시를 보존하고 제한된 결과를 전체 데이터베이스로 간주하지 마세요.

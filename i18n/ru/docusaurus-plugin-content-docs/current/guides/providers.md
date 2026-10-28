@@ -1,7 +1,7 @@
 ---
 title: "Поставщик и локальная настройка модели"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -250,3 +250,7 @@ Requesty использует `https://router.requesty.ai`; Активный а�
 ## Восстановление модельного соединения {/* #credential-recovery */}
 
 Используйте действие восстановления, прилагаемое к просроченным или недействительным учетным данным, обновите правильную запись поставщика, а затем проверьте ее перед возвращением в тот же сеанс. Композитор блокируется только тогда, когда восстановление требует ваших действий. Сохраните черновик и проверьте, работает ли предыдущая очередь до отправки. Для моделей подписки на Codex использование контекста отражает заявленную емкость выбранной модели; она может отличаться от более старой отображаемой оценки.
+
+## Выберите Kimi K3.1 Pro {/* #kimi-k31 */}
+
+v1.0.3 adds Kimi K3.1 Pro models to the provider catalog. Open the intended provider's model picker and select an available entry, then test the connection. Model availability still depends on the active Agent framework, endpoint and account; a catalog entry alone does not establish access.

@@ -1,7 +1,7 @@
 ---
 title: "許可および制御"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 # 許可および制御 {/* #permissions-and-control */}
@@ -78,3 +78,9 @@ Connectorブローカーは、これらの条件を評価します。
 | Undoの通知 | 表示される可用性内で、対象となる付与の取消を逆転させます。 ツールの効果を逆転させない |
 
 技術的な参照: [プロフィール](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/permission-profiles.ts) · [Connectorブローカー](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/connector-broker.ts) · [ベースライン付与](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/defaults.ts) · [代理店ポリシー](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/acp/permission-policy.ts)。
+
+## Notebook と Shell のフォルダーアクセスを制限する {/* #notebook-folder-restrictions */}
+
+**Settings → Permissions → Notebook and Shell folder access** の **Restrict Notebook and Shell folders** を有効にすると、ローカル実行はワークスペース、許可済みフォルダー、ツールに必要なファイルに制限されます。一つの入力を読むために全体の制限を解除せず、そのフォルダーを許可します。値が未保存の旧設定も含め、既定では有効です。
+
+設定変更は実行中の Notebook・Shell を停止し、メモリー上の変数を消去します。保存済み履歴は残ります。エージェント固有ツールやリモート計算機は対象外です。Windows の **Restrict WSL2 Shell folders** は WSL2 に適用されます。ネイティブの保護モードは制限を保持し、標準モードは現在のユーザー権限で動作します。v1.0.4 は Windows Notebook 標準モードの実行を修正します。

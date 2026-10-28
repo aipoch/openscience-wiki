@@ -2,7 +2,7 @@
 title: "科学数据库"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # 科学数据库
@@ -13,46 +13,52 @@ last_update:
 
 ## 目前支持哪些数据库 {/* #supported-databases */}
 
-Open-Science v1.0.2 内置 **36 个数据源 Connector，提供 371 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 373 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
+Open-Science v1.0.4 内置 **42 个数据源 Connector，提供 395 个操作**。独立的离线 Molecule Connector 另有两个操作，完整注册表共 397 个。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
 
 | Connector | 来源 | 操作数 | 用途  |
 | --- | --- | --- | ---  |
-| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | 小分子、化学标识符、反应及结合数据  |
+| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB, LIPID MAPS, UniChem | 14 | 小分子、化学标识符、反应及结合数据  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 文献、作者、引用、DOI 更新及数据集/软件记录 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | PubMed 文献检索与记录  |
-| Genes & Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr, HGNC | 17 | 基因及蛋白标识映射、UniProt 序列查找、GO 与 Reactome 注释、g:Profiler 与 Enrichr 基因集富集 |
-| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 22 | 基因组注释、同源及序列信息；NCBI 物种、组装与序列身份；BLAST 检索、Clustal Omega 多序列比对；指定人群的 LD 与代理变异 |
+| Genes & Ontologies · `genes` | HGNC, MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 17 | 基因及蛋白标识映射、UniProt 序列查找、GO 与 Reactome 注释、g:Profiler 与 Enrichr 基因集富集 |
+| Genomes · `genomes` | NCBI Datasets, NCBI BLAST, EMBL-EBI Job Dispatcher, Ensembl, UCSC | 22 | 基因组注释、同源及序列信息；NCBI 物种、组装与序列身份；BLAST 检索、Clustal Omega 多序列比对；指定人群的 LD 与代理变异 |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | 群体频率、临床记录，以及实验特定的功能分数、变异映射和实验信息 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | 检索试验与方案，并读取已公布的结局测量、分组、统计及不良事件 |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx, DGIdb | 32 | 临床基因组证据资源；新增 ClinPGx 药物基因组学记录 |
-| Structures & Interactions · `structures` | PDB, AlphaFold, EMDB, Complex Portal, IntAct | 17 | 结构档案与相关记录  |
+| Structures & Interactions · `structures` | PDB, PDBe, AlphaFold, EMDB, Complex Portal, IntAct, OmniPath | 20 | 结构档案与相关记录  |
 | ChEMBL · `chembl` | ChEMBL | 7 | 化合物、靶标和活性记录  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | 预印本元数据  |
 | Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA、药品标签、FAERS 不良事件报告和药品召回 |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | 人类遗传关联资源  |
 | Expression · `expression` | GTEx, Bgee | 16 | GTEx 人类组织表达和 eQTL；Bgee 跨物种基线表达 |
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | 蛋白结构域与功能注释；新增互作富集检验 |
-| Cancer Models · `cancer-models` | cBioPortal | 10 | 研究、突变、拷贝数、样本、患者、临床属性及分子 profile 表达 |
+| Cancer Models · `cancer-models` | cBioPortal, DepMap / CCLE | 15 | 研究、突变、拷贝数、样本、患者、临床属性及分子 profile 表达 |
 | RNA · `rna` | Rfam, RNAcentral | 11 | RNA 家族与相关资源  |
-| Omics Archives · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | 组学研究／运行元数据与文件清单；代谢组样本、实验因素、分析及化合物记录 |
+| Omics Archives · `omics-archives` | ArrayExpress, GEO, ENA, MetaboLights, Metabolomics Workbench, MGnify, PRIDE | 28 | 组学研究／运行元数据与文件清单；代谢组样本、实验因素、分析及化合物记录 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | 细胞类型参考信息  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 调控与功能组学记录  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 研究项目、资助等资源  |
 | BioMart · `biomart` | Ensembl BioMart | 8 | BioMart 数据集与字段查询  |
 | ZINC · `zinc` | ZINC | 5 | ZINC 化合物记录  |
-| GDC · `gdc` | NCI GDC | 5 | 癌症项目、病例与文件元数据，公开／受控访问类别及传输清单；不下载或授予受控访问 |
+| GDC · `gdc` | Genomic Data Commons (GDC) | 5 | 癌症项目、病例与文件元数据，公开／受控访问类别及传输清单；不下载或授予受控访问 |
 | Zenodo · `zenodo` | Zenodo | 2 | 公开数据集、软件和文献记录的检索、版本级元数据与文件清单；不上传或下载文件 |
-| HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | 按程序提交蛋白序列／profile HMM／比对检索，查询状态并获取结果 |
-| InterProScan · `interproscan` | EMBL-EBI InterProScan | 3 | 提交蛋白序列、查询注释任务状态并获取 TSV 报告 |
-| Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | 通路检索、顶层通路、图查询及 BioPAX 子模型导出 |
+| HMMER · `hmmer` | HMMER3, EMBL-EBI | 3 | 按程序提交蛋白序列／profile HMM／比对检索，查询状态并获取结果 |
+| InterProScan · `interproscan` | InterProScan, EMBL-EBI | 3 | 提交蛋白序列、查询注释任务状态并获取 TSV 报告 |
+| Pathway Commons · `pathway-commons` | Pathway Commons, Reactome | 4 | 通路检索、顶层通路、图查询及 BioPAX 子模型导出 |
 | Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | 人类与模式生物基因、直系同源、疾病模型、表型、等位基因及表达 |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 单细胞集合与数据集发现、发布版本、文件格式／大小／下载 URL |
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 查找细胞系名称和别名，再检查编号身份及质量注释 |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 查询疾病或基因与表型的关联，保留物种和支持证据 |
-| IEDB · `iedb` | Immune Epitope Database | 8 | 检索表位、抗原、T 细胞、B 细胞和 MHC 实验、TCR/BCR 证据及来源文献 |
-| PDC · `pdc` | NCI Proteomic Data Commons | 5 | 癌症蛋白组研究版本、样本关联、公开病例临床信息及文件元数据；不下载文件 |
+| IEDB · `iedb` | IEDB | 8 | 检索表位、抗原、T 细胞、B 细胞和 MHC 实验、TCR/BCR 证据及来源文献 |
+| PDC · `pdc` | PDC | 5 | 癌症蛋白组研究版本、样本关联、公开病例临床信息及文件元数据；不下载文件 |
 | ENCORI · `encori` | ENCORI | 10 | miRNA／RBP 靶标、RNA 互作、ceRNA、motif、结合位点与参考／批量数据 |
 | Orphadata · `orphadata` | Orphadata, Orphanet | 2 | 罕见病—基因关联及 HPO 表型频率；默认关闭 |
+| TCIA · `tcia` | TCIA, NBIA | 3 | 公开影像集合、访问条件与序列元数据 |
+| KEGG · `kegg` | KEGG | 3 | 通路、化合物条目及基因映射；须遵守许可限制 |
+| RxNorm / RxNav · `rxnorm` | RxNorm, RxNav | 2 | 药名解析与有效概念属性 |
+| DailyMed · `dailymed` | DailyMed | 2 | 药品标签身份与版本历史 |
+| BioSamples · `biosamples` | EMBL-EBI BioSamples | 2 | 公开样本元数据与交叉引用 |
+| WikiPathways · `wikipathways` | WikiPathways | 2 | 通路元数据、物种及修订信息 |
 
 离线 Molecule 工具见[科学查看器](viewers.md)。各数据源实际提供的操作见 [Connector 操作参数参考](../reference/connector-operations.md)。
 
@@ -255,7 +261,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作参数参考](../reference/connector-operations.md)列出必填输入、可选值和准确调用方法。本页用于选择和连接数据源，参数参考用于查询某个具体工具的字段。
 
-目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/registry.ts)。
+目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/registry.ts)。
 
 ## 序列检索与多序列比对 {/* #sequence-tools */}
 
@@ -367,3 +373,20 @@ v1.0.2 会在当前会话中记住对 OpenAlex 凭据提示的拒绝，避免重
 - **Clinical Trials：** 用 `get_trial_results` 读取已公布的结局测量、分母、统计分析和不良事件。组 ID 仅在同一个结果模块／结局内匹配。缺失结果不等于零事件，也不证明无效果。
 
 参数见 [PDC 字段](../reference/connector-operations.md#pdc_list_clinical)、[GDC 筛选](../reference/connector-operations.md#gdc_search_files)、[VEP 模式](../reference/connector-operations.md#ensembl_vep_variant)和[已公布试验结果](../reference/connector-operations.md#get_trial_results)。
+
+## 影像、通路、脂质与癌症模型 {/* #expanded-sources */}
+
+在 **Settings → Connectors** 中启用所需来源，并设置为 **Main** 可用。TCIA、KEGG、RxNorm / RxNav、DailyMed、BioSamples 和 WikiPathways 是默认关闭的独立入口。下列操作访问公开服务，不需要自建 MCP 服务或 API key。启用 Connector 不等于取得数据许可或受限数据权限。
+
+| 入口 | 可以请求什么 | 结果中要保留什么 |
+| --- | --- | --- |
+| TCIA | 查找影像集合；查看集合或已有 DICOM series UID | 许可、访问条件和下载要求；返回链接可能是 Data Retriever 清单，而不是影像文件 |
+| KEGG | 搜索通路、KO、化合物与反应条目；映射带物种前缀的基因 | 学术用途资格和许可条款、一对多映射及截断标记；这不是基因集富集分析 |
+| Chemistry → LIPID MAPS / UniChem | 用精确 LMID 或 PubChem CID 查询；用 InChIKey 或 ChEMBL ID 映射 | 名称先通过 PubChem 解析；保留不同匹配结果与来源归属，这些操作不做相似性搜索 |
+| Structures & Interactions → OmniPath | 按人类标准 UniProt accession 查询上游或下游调控 | 方向、激活与抑制的冲突证据、复合物标识；汇总关系不是组织特异的因果证据 |
+| Structures & Interactions → PDBe / PDB | 查看实验结构验证统计，或检索相似的已存档蛋白链 | 实验方法与缺失指标；使用 label_asym_id 而非作者链编号；相似性分数不是实际计算的结构比对或 RMSD |
+| Cancer Models → DepMap / CCLE | 将细胞系解析为 ModelID，再查询基因或化合物的测量值 | 数据版本与量纲：Chronos 不是概率，PRISM AUC 不是 IC50，RNA 为 log2(TPM+1)，拷贝数相对于倍性 |
+| RxNorm / RxNav · DailyMed | 将药名解析为 RxCUI；查看 SPL 标签身份与版本历史 | 保留有歧义的身份；名称匹配不代表临床等效，DailyMed 收录不代表 FDA 批准 |
+| BioSamples · WikiPathways | 查找样本元数据或通路元数据与修订信息 | accession、物种、来源日期及证据链接；查询不会下载关联的样本文件或通路图 |
+
+精确输入与分页方式见[操作参数参考](../reference/connector-operations.md)。保留空值与结果截断标记；有限结果不等于整个数据库。

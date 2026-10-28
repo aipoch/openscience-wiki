@@ -1820,5 +1820,17 @@
   },
   "docs.outline.reference.v102.scope": {
     "message": "Научные источники данных, установка npm CLI, карты вопросов и надежность записей исследований."
+  },
+  "docs.outline.reference.v103.title": {
+    "message": "v1.0.3"
+  },
+  "docs.outline.reference.v103.scope": {
+    "message": "Поиск литературы, локальная передача пакетов, макеты PDF и научные источники."
+  },
+  "docs.outline.reference.v104.title": {
+    "message": "v1.0.4"
+  },
+  "docs.outline.reference.v104.scope": {
+    "message": "Внешние MCP-клиенты, уведомления о публикациях, свёрнутые беседы и импорт локальных файлов."
   }
 }

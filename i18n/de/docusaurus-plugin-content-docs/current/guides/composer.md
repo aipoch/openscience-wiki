@@ -1,7 +1,7 @@
 ---
 title: "Unterhaltungen und wartende Anfragen"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Unterhaltungen und wartende Anfragen {/* #conversations-and-queued-requests */}
@@ -152,3 +152,7 @@ Diese Karten verdeutlichen die Forschungsanfrage. Sie gewähren keine Tool-Berec
 Wenn eine in der Warteschlange stehende Nachricht einen Fehler meldet, lesen Sie ihn und verwenden Sie die angebotene Rückgängig-Aktion, bevor Sie sie bearbeiten oder erneut senden. Eine Quit / Reload-Warnung kann bedeuten, dass ein nicht gesendeter Entwurf erhalten bleibt; kehren Sie zum Entwurf zurück oder verwerfen Sie ihn absichtlich. Wenn Sie einen Ordner ablegen, werden Sie nun aufgefordert, Dateien darin auszuwählen: Öffnen Sie den Ordner, wählen Sie die beabsichtigten Dateien aus und warten Sie auf ihre Anhängechips.
 
 Folgen Sie bei einem abgelaufenen Modell oder Connector-Anmeldenachweis der für diesen Dienst gezeigten Wiederherstellungsaktion, kehren Sie dann zur ursprünglichen Konversation zurück und überprüfen Sie ihren Status. Senden Sie nicht die gleiche Anfrage erneut, während die frühere Antwort möglicherweise noch im Gange ist. Artefakt `@` Erwähnungen sind auch in Remote-Web-Konversationen verfügbar; Wählen Sie vor dem Senden die beabsichtigte Datei / Version aus.
+
+## Überspringen Sie eine Klärungsfrage {/* #skip-question */}
+
+Verwendung **Skip** die aktuelle Frage unbeantwortet zu lassen, oder das Menü **Skip all** für die übrigen Fragen. **Let the agent decide** delegiert stattdessen die Wahl; es ist eine andere Antwort. Überprüfen Sie den gespeicherten Antwortverlauf und ob die Konversation wieder aufgenommen wird, bevor Sie nach einem Fehler eine weitere Antwort einreichen.

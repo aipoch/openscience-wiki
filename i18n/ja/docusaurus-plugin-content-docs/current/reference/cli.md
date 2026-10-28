@@ -1,7 +1,7 @@
 ---
 title: "CLIと構造化された出力"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -245,3 +245,29 @@ open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
 ```
 
 これらのコマンドはバックエンドが停止していても使えます。 `version` が表示するのは実行したインストールのバージョンであり、接続先サービスのバージョンではありません。 `paths` が表示するのは `cliPath`, `nodePath`, `startupConfigRoot` および `discoveryConfigRoots`です。実行中のサービスや研究データの保存先を特定するものではありません。プロファイルの明示指定は起動・検出先を選びますが、作成はしません。パスにはローカルユーザー名が含まれる場合があるので、共有前に確認してください。
+
+## 外部 MCP クライアントを接続する {/* #external-mcp */}
+
+v1.0.4 の独立 CLI は **stdio** で研究ツールを提供します。対象プロファイルのサービスを先に起動してください。アダプターは自動起動しません。設定内の二つの絶対パスを実際のパスに置き換えます。
+
+```bash
+open-science start --no-open --config-root /absolute/path/to/profile
+open-science mcp --help
+```
+
+```json
+{
+  "mcpServers": {
+    "open-science": {
+      "command": "/absolute/path/to/open-science",
+      "args": ["mcp", "--config-root", "/absolute/path/to/profile"]
+    }
+  }
+}
+```
+
+クライアントからアダプターを起動します。**list_projects** で得たプロジェクト ID を **start_run** に渡し、**get_run** で進捗を確認して **list_artifacts** でファイルを調べます。ツール一覧を取得できてもサービスへの接続成功とは限りません。実行には稼働中の認証済みローカルサービスが必要で、リモート HTTP MCP 入口ではありません。
+
+クライアントはプロファイルの既存権限で動作し、プロジェクトの保存、設定変更、ファイル書込みやモデル利用料を伴う研究を開始できます。Open-Science で承認が必要な場合もあります。タイムアウト後は状態を確認してから書込みを再試行します。クライアント終了や要求の取消しでは受理済み研究は止まりません。明示的に **cancel_run** を使ってください。[公式 MCP ツール・権限リファレンス](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp)も参照してください。
+
+パッケージの操作は [CLI インポート・エクスポート](../guides/research-packages.md#local-package-transfer)を参照してください。

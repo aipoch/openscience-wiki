@@ -1,7 +1,7 @@
 ---
 title: "Manage and validate Skills"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Manage and validate Skills
@@ -117,3 +117,7 @@ Implementation reference: [SkillUploadView.tsx](https://github.com/aipoch/open-s
 ## Import and edit Skills safely {/* #import-batches */}
 
 Large installed-Skill selections are imported in batches. Wait for the final result and inspect the imported list before repeating the import. An external Skill with a reserved name prefix is assigned a safe local name; use the name shown in the local catalog. When editing the body, save it and verify that the separately edited name and description remain correct. Images attached to the current message can also inform Skill selection; check the selected Skill's scope before letting it act.
+
+## Save a GitHub repository for later {/* #saved-repositories */}
+
+After **Import from GitHub → Find skills** scans a repository, choose **Save repository**. Next time, select it under **Saved repositories** to scan again, then preview and import the intended Skills. A saved ref is retained; a default branch can change. Saving does not install or automatically update Skills, and removing the bookmark keeps installed Skills.

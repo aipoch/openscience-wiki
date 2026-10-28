@@ -1,7 +1,7 @@
 ---
 title: "Notebook 및 실행 증거"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -297,3 +297,7 @@ Windows Notebook 수출에는 연장이 없습니다, 첫번째 텍스트로 사
 ## 연속 분석 후 의존성 확인 {/* #chained-analysis-lineage */}
 
 Python 또는 R로 CSV를 읽고 변환해 새 파일을 내보낸 뒤, 출력의 출처 기록에서 입력 버전과 실행 의존성을 확인하세요. 이 기록으로 검증할 파일 버전을 선택합니다. 계보 기록이 개선되어도 계산 재실행이나 과학적 타당성 검증이 자동으로 이루어지는 것은 아닙니다. 참고: [산출물 검증](reproducibility.md).
+
+## 로컬 폴더 접근 확인하기 {/* #folder-access */}
+
+로컬 입력을 읽을 수 없으면 [Notebook과 Shell의 폴더 권한](../reference/permissions.md#notebook-folder-restrictions)을 확인합니다. 제한 변경은 실행 중인 프로세스를 중지하고 변수를 지웁니다. 결과를 저장하고 필요한 폴더를 승인한 뒤 작업 상태 복구에 필요한 셀만 다시 실행하세요.

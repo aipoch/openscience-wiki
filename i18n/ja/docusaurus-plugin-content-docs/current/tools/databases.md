@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,46 +13,52 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v1.0.2 には **36 のデータソース Connector、371 の操作**が含まれます。オフラインの Molecule Connector の 2 操作を加えると、全体で 373 操作です。以下の Connector 名は **Settings → Connectors**に対応します。1 つの項目から複数のデータベースを利用できる場合があります。掲載されているデータソースの Web サイト上の全機能が使えるわけではありません。
+Open-Science v1.0.4 には **42 のデータソース Connector、395 の操作**が含まれます。オフラインの Molecule Connector の 2 操作を加えると、全体で 397 操作です。以下の Connector 名は **Settings → Connectors**に対応します。1 つの項目から複数のデータベースを利用できる場合があります。掲載されているデータソースの Web サイト上の全機能が使えるわけではありません。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
-| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | パブケム、チェビ、レア、ビンディングDBによる小分子化学。  |
+| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB, LIPID MAPS, UniChem | 14 | パブケム、チェビ、レア、ビンディングDBによる小分子化学。  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 論文、著者、引用、DOIの更新とデータセット/ソフトウェアレコード。 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | NCBI E-utilities、PMC ID Converter、Europe PMC を通じて生物医学文献を検索し、メタデータ、関連論文、引用、ID 変換、全文と著作権情報を取得します。  |
-| Genes &amp; Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr, HGNC | 17 | 遺伝子・タンパク質の識別子、UniProt 配列検索、GO・Reactome 注釈、g:Profiler・Enrichr の遺伝子セット濃縮解析。 |
-| ゲノム・ `genomes` | 組み立て、UCSC、NCBI、BLAST、Clustalオメガ | 22 | ゲノムのアノテーション、均質学および順序; NCBIタムン/アセンブリ/シーケンスアイデンティティ; BLAST検索とClustal Omegaの複数のシーケンスアライメント。 人口固有のLDおよびプロキシの変形。 |
-| バリアント・ `variants` | gnomAD、ClinVar、dbSNP、MaveDB | 22 | 人口の頻度、臨床記録および試金固有の機能スコア、マッピングおよび実験。 |
+| Genes &amp; Ontologies · `genes` | HGNC, MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 17 | 遺伝子・タンパク質の識別子、UniProt 配列検索、GO・Reactome 注釈、g:Profiler・Enrichr の遺伝子セット濃縮解析。 |
+| ゲノム・ `genomes` | NCBI Datasets, NCBI BLAST, EMBL-EBI Job Dispatcher, Ensembl, UCSC | 22 | ゲノムのアノテーション、均質学および順序; NCBIタムン/アセンブリ/シーケンスアイデンティティ; BLAST検索とClustal Omegaの複数のシーケンスアライメント。 人口固有のLDおよびプロキシの変形。 |
+| バリアント・ `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | 人口の頻度、臨床記録および試金固有の機能スコア、マッピングおよび実験。 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | 臨床試験の検索、プロトコル、公開済み評価項目の測定値、群別の分母、統計解析、有害事象。 |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx, DGIdb | 32 | ClinGen のキュレーション、CIViC の臨床エビデンス、Open Targets Platform、ClinPGx の薬理ゲノム情報。 |
-| 構造と相互作用 · `structures` | PDB、AlphaFold、EMDB、複雑なポータル、IntAct | 17 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
-| ChEMBL・ `chembl` | チャムBL | 7 | CEMBL REST API による生体活性化合物、薬物、標的、生体活性およびメカニズム。  |
+| 構造と相互作用 · `structures` | PDB, PDBe, AlphaFold, EMDB, Complex Portal, IntAct, OmniPath | 20 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
+| ChEMBL・ `chembl` | ChEMBL | 7 | CEMBL REST API による生体活性化合物、薬物、標的、生体活性およびメカニズム。  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | BioRxiv/medRxiv のプリプリント — 日付/カテゴリ、DOI によるメタデータ、ジャーナル公開リンク、ファンダリスト、およびプラットフォームの統計による検索。  |
-| 薬物規制・ `drug-regulatory` | オープンFDA | 10 | Drugs@FDA、ラベル、FAERSの副作用報告および薬剤のrecalls。 |
-| ヒト遺伝学・ `human-genetics` | GWASカタログ、eQTLカタログ、PheWeb | 15 | GWASカタログ、eQTLカタログ、PheWeb PheWASポータル(FinnGen、BioBank Japan)  |
-| エクスプレス・ `expression` | GTEx、Bgeeの特長 | 16 | 人間のGTExのティッシュの表現およびeQTL; Bgee のクロススペックのベースライン式。 |
-| タンパク質アノテーション・ `protein-annotation` | InterPro、Pfam、ヒトプロテインアトラス、ストリング | 14 | タンパク質ドメインアーキテクチャ、家族/クランのメンバーシップ、InterPro/Pfam、ヒューマンプロテインアトラス、STRINGによる表現アトラスと相互作用ネットワーク、ネットワークの相互作用の豊かさを含みます。 |
-| がんモデル・ `cancer-models` | cBioPortal(バイオポータル) | 10 | 研究、変異、コピー番号、サンプル、患者、臨床属性および分子プロファイル式。 |
+| 薬物規制・ `drug-regulatory` | openFDA | 10 | Drugs@FDA、ラベル、FAERSの副作用報告および薬剤のrecalls。 |
+| ヒト遺伝学・ `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | GWASカタログ、eQTLカタログ、PheWeb PheWASポータル(FinnGen、BioBank Japan)  |
+| エクスプレス・ `expression` | GTEx, Bgee | 16 | 人間のGTExのティッシュの表現およびeQTL; Bgee のクロススペックのベースライン式。 |
+| タンパク質アノテーション・ `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | タンパク質ドメインアーキテクチャ、家族/クランのメンバーシップ、InterPro/Pfam、ヒューマンプロテインアトラス、STRINGによる表現アトラスと相互作用ネットワーク、ネットワークの相互作用の豊かさを含みます。 |
+| がんモデル・ `cancer-models` | cBioPortal, DepMap / CCLE | 15 | 研究、変異、コピー番号、サンプル、患者、臨床属性および分子プロファイル式。 |
 | RNA · `rna` | Rfam, RNAcentral | 11 | Rfam の非コード RNA ファミリー情報（メタデータ、アラインメント、モデル、構造）。  |
-| Omics アーカイブズ・ `omics-archives` | ArrayExpress、GEO、MetaboLights、Metabolomics Workbench、MGnify、PRIDE、ENA | 28 | Omics はメタデータとファイルインベントリを学習/実行します。 メタボロミクスのサンプル、要因、分析および化合物レコード。 |
+| Omics アーカイブズ・ `omics-archives` | ArrayExpress, GEO, ENA, MetaboLights, Metabolomics Workbench, MGnify, PRIDE | 28 | Omics はメタデータとファイルインベントリを学習/実行します。 メタボロミクスのサンプル、要因、分析および化合物レコード。 |
 | CellGuide · `cellguide` | CELLxGENE | 5 | セルックスジーン・セルギドによる細胞型アイデンティティ、マーカー遺伝子、ソースデータセット、組織。  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | 遺伝子調整機能ゲノム — ENCODE実験/biosamples/files、JASPAR TF結合プロファイル、UniBind ChIP-seq TFBS。  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | 資金調達機会検索(Grants.gov)と抗体カタログ検索(抗体レジストリ)。  |
 | BioMart · `biomart` | Ensembl BioMart | 8 | BioMart 属性のクエリと識別子の翻訳を統合します。  |
 | ZINC · `zinc` | ZINC | 5 | ZINC22 浄化可能な化学空間(CartBlanche22) — ZINC id、SMILES の完全/類似検索、サプライヤーコードの解像度、ランダムサンプリング、ドックのための 3D 構造の場所による化合物のルックアップ。  |
-| GDC · `gdc` | NCI GDC | 5 | がんプロジェクト、例、ファイルメタデータ、オープン/コントロールラベル、およびマニフェストを転送する。 ダウンロードやアクセスの付与はありません。 |
+| GDC · `gdc` | Genomic Data Commons (GDC) | 5 | がんプロジェクト、例、ファイルメタデータ、オープン/コントロールラベル、およびマニフェストを転送する。 ダウンロードやアクセスの付与はありません。 |
 | Zenodo · `zenodo` | Zenodo | 2 | 公開データセット、ソフトウェアおよび出版物の発見、バージョン固有のメタデータおよびファイル在庫; アップロードやダウンロードはありません。 |
-| ムマー・ `hmmer` | EMBL-EBI HMMER3(エンブレ・エビ・ムマー3) | 3 | プログラム固有のタンパク質/プロファイル/アライメント検索、ジョブの状態と結果。 |
-| インタープロスキャン・ `interproscan` | EMBL-EBI インタープロスキャン | 3 | タンパク質シーケンスを提出し、アノテーションジョブの状態を確認し、TSVレポートを取得します。 |
-| Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | パスウェイ検索、トップパスウェイ、グラフクエリ、BioPAXサブモデルエクスポート。 |
-| Alliance Genome Resources · `alliance` | ゲノムリソースのアライアンス | 8 | 人間とモデル組織遺伝子、オルトログ、病気モデル、フェノタイプ、アレルと表現。 |
+| ムマー・ `hmmer` | HMMER3, EMBL-EBI | 3 | プログラム固有のタンパク質/プロファイル/アライメント検索、ジョブの状態と結果。 |
+| インタープロスキャン・ `interproscan` | InterProScan, EMBL-EBI | 3 | タンパク質シーケンスを提出し、アノテーションジョブの状態を確認し、TSVレポートを取得します。 |
+| Pathway Commons · `pathway-commons` | Pathway Commons, Reactome | 4 | パスウェイ検索、トップパスウェイ、グラフクエリ、BioPAXサブモデルエクスポート。 |
+| Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | 人間とモデル組織遺伝子、オルトログ、病気モデル、フェノタイプ、アレルと表現。 |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 単一セルコレクションとデータセット、公開バージョン、ファイル形式、サイズ、ダウンロードURL。 |
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | セル・ラインの名前と同義語を見つけ、アクセスアイデンティティと品質アノテーションを検査します。 |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 生物と遺伝子対フェノタイプと遺伝子の関連と、証拠を支持する。 |
-| IEDB · `iedb` | 免疫エピトープデータベース | 8 | エピトープ、抗原、Tセル、B細胞、MHCアッセイ、TCR/BCRの証拠、およびソース出版物。 |
-| PDC · `pdc` | NCI Proteomic Data Commons | 5 | がんプロテオミクス研究のバージョン、検体の対応関係、公開症例メタデータ、ファイル一覧。ファイルのダウンロードは行いません。 |
+| IEDB · `iedb` | IEDB | 8 | エピトープ、抗原、Tセル、B細胞、MHCアッセイ、TCR/BCRの証拠、およびソース出版物。 |
+| PDC · `pdc` | PDC | 5 | がんプロテオミクス研究のバージョン、検体の対応関係、公開症例メタデータ、ファイル一覧。ファイルのダウンロードは行いません。 |
 | ENCORI · `encori` | ENCORI | 10 | miRNA/RBPターゲット、RNAインタラクション、ceRNA、モチーフ、バインディングサイト、参照テーブル、バルクファイル。 |
 | Orphadata · `orphadata` | Orphadata, Orphanet | 2 | 希少疾患と遺伝子の関連、HPO 表現型の頻度。既定では無効です。 |
+| TCIA · `tcia` | TCIA, NBIA | 3 | 公開画像コレクション、アクセス条件、シリーズのメタデータ。 |
+| KEGG · `kegg` | KEGG | 3 | 経路・化合物の項目と遺伝子の対応。ライセンス条件に従う。 |
+| RxNorm / RxNav · `rxnorm` | RxNorm, RxNav | 2 | 薬剤名の照合と有効な概念の属性。 |
+| DailyMed · `dailymed` | DailyMed | 2 | 医薬品ラベルの識別情報と版の履歴。 |
+| BioSamples · `biosamples` | EMBL-EBI BioSamples | 2 | 公開サンプルのメタデータと相互参照。 |
+| WikiPathways · `wikipathways` | WikiPathways | 2 | 経路のメタデータ、種、改訂情報。 |
 
 [科学ビューア](viewers.md)でオフラインのモレキュラーツールがカバーされています。 それぞれのデータソースで露出した正確な操作については、[Connectorの操作の参照](../reference/connector-operations.md) を使用します。
 
@@ -255,7 +261,7 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログの出典： [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/registry.ts).
+カタログの出典： [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/registry.ts).
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 
@@ -367,3 +373,20 @@ v1.0.2 は、現在のセッションで拒否した OpenAlex 認証情報の要
 - **Clinical Trials:** 操作 `get_trial_results` で公開済みの測定値、分母、統計解析、有害事象を取得します。群 ID は同じ結果モジュール・評価項目の中でのみ対応付けます。欠損はゼロ件や治療効果がないことを意味しません。
 
 参照： [PDC のフィールド](../reference/connector-operations.md#pdc_list_clinical), [GDC のフィルター](../reference/connector-operations.md#gdc_search_files), [VEP のモード](../reference/connector-operations.md#ensembl_vep_variant) および [公開済み試験結果](../reference/connector-operations.md#get_trial_results).
+
+## 画像・経路・脂質・がんモデルのデータ {/* #expanded-sources */}
+
+**Settings → Connectors** で対象を有効にし、**Main** で利用可能にします。TCIA、KEGG、RxNorm / RxNav、DailyMed、BioSamples、WikiPathways は独立した項目で、既定では無効です。以下の公開サービスには独自 MCP サーバーや API key は不要ですが、有効化してもライセンスや制限付きデータへの権限は付与されません。
+
+| 項目 | 要求できる内容 | 保持すべき情報 |
+| --- | --- | --- |
+| TCIA | コレクションと既存 DICOM series UID のメタデータ | ライセンス、アクセス・ダウンロード条件。リンクは画像ではなく Data Retriever のマニフェストの場合があります。 |
+| KEGG | 経路・KO・化合物・反応の検索、種を指定した遺伝子の対応付け | 学術利用資格、ライセンス、一対多対応、打切り情報。遺伝子セット濃縮解析ではありません。 |
+| Chemistry → LIPID MAPS / UniChem | LMID・PubChem CID の完全一致検索、InChIKey・ChEMBL ID の対応付け | 名称は先に PubChem で解決し、異なる一致結果と出典を保持します。類似性検索ではありません。 |
+| Structures & Interactions → OmniPath | ヒトの標準 UniProt accession に対する上流・下流調節 | 方向、活性化・阻害の矛盾、複合体 ID。集約関係は組織特異的な因果証拠ではありません。 |
+| Structures & Interactions → PDBe / PDB | 実験構造の検証統計、登録済みタンパク質鎖の類似検索 | 実験法と欠測値。著者の鎖 ID ではなく label_asym_id を使います。構造アラインメントや RMSD 計算ではありません。 |
+| Cancer Models → DepMap / CCLE | 細胞株を ModelID に解決して遺伝子・化合物プロファイルを取得 | データ版と尺度。Chronos は確率ではなく、PRISM AUC は IC50 ではありません。RNA は log2(TPM+1)、コピー数は倍数性に対する相対値です。 |
+| RxNorm / RxNav · DailyMed | 薬剤名を RxCUI に照合、SPL ラベルの識別情報と版の履歴 | 曖昧な一致を保持します。名称一致は臨床的同等性を、DailyMed 掲載は FDA 承認を保証しません。 |
+| BioSamples · WikiPathways | サンプルまたは経路のメタデータと改訂情報 | accession、種、日付、証拠リンク。リンク先ファイルや経路グラフは取得しません。 |
+
+入力とページ分割は[操作リファレンス](../reference/connector-operations.md)を参照してください。空値と打切り情報を保持し、上限付き結果をデータベース全体とみなさないでください。

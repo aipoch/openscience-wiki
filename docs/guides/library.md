@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-27'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -396,3 +396,23 @@ When additional matching Library records exist, a separate **Select all matching
 ## Resume a failed smart-collection batch {/* #smart-collection-retry */}
 
 When a smart-collection evaluation stops on a failed batch, inspect its error and the remaining progress before using the offered retry. From v0.37.0, retry resumes the failed batch while preserving completed evaluation work. Keep the scope and criteria unchanged for that retry, then review Included, Needs review and Excluded results. Do not create a duplicate collection to recover an interrupted evaluation.
+
+## Trace references and citing papers {/* #citation-discovery */}
+
+Open a reference's details and choose **References** or **Cited by**. Semantic Scholar supplies these relationships. If lookup matches by title alone, compare the proposed paper's title, authors and year before confirming it. Use **Load more** for later results, select the papers you need, then **Add selected to Inbox**. Review them in Inbox before accepting them into the Library; discovering a citation does not retrieve its full text.
+
+An API key is optional. If requests are rate limited, wait or use **Configure API key** in the local desktop app. A missing result can reflect source coverage or access limits; it does not establish that the paper has no references or citations.
+
+## Import files and supplementary materials {/* #supplementary-materials */}
+
+Drop PDFs or supported bibliography files into the Library and review the import results. For a paper's supporting files, open its details and choose **Find supplementary materials**. Check the source, relation to the paper, filename and license before downloading. Discovery searches Figshare, DataCite and Europe PMC; a source link or an empty search is not proof that every supplement has been found.
+
+Follow each attachment's download progress. For an archive, select the files to extract. Open the resulting attachment using its file-type preview; Word files can be previewed too. Keep the main article and supplementary attachments distinct, and retry only failed downloads after checking what is already present.
+
+## Check retractions and corrections {/* #publication-checks */}
+
+1. Open a reference with one valid DOI. Under **More actions → Retractions and corrections**, select **Check retractions and corrections**.
+2. The action sends that DOI to Crossref. Read the returned notice type, source, date and linked notice; check the notice itself before changing how you use the paper.
+3. The result and **Last checked** time are saved with the reference. Reopening the panel shows the saved observation; run another check when you need fresh information.
+
+**No related notices found** means the query returned no notices, not that the paper is unaffected. Crossref coverage is incomplete. Checks do not rewrite bibliographic metadata or screening decisions. If a refresh fails, the previous successful result remains: read its date and retry later.

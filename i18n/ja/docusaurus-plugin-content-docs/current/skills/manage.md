@@ -1,7 +1,7 @@
 ---
 title: "Skillsの管理と検証"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Skillsの管理と検証 {/* #manage-and-validate-skills */}
@@ -117,3 +117,7 @@ Specialist-linkedパッケージは削除から保護できます。 obsolete �
 ## Skill を安全にインポート・編集する {/* #import-batches */}
 
 大量のインストール済み Skill はバッチ単位で取り込みます。最終結果と取り込み一覧を確認するまで繰り返さないでください。予約済み接頭辞を持つ外部 Skill には安全なローカル名が付きます。ローカルカタログの名前を使用してください。本文を保存したら、別途編集した名前と説明も保持されているか確認します。現在のメッセージの添付画像も Skill 選択に使われるため、実行前に選ばれた Skill の対象範囲を確認してください。
+
+## GitHub リポジトリを保存する {/* #saved-repositories */}
+
+**Import from GitHub → Find skills** でスキャン後、**Save repository** を選びます。次回は **Saved repositories** から再スキャンし、対象 Skill をプレビューして取り込みます。指定した ref は保持されますが、既定ブランチは変わる場合があります。保存だけでは Skill のインストールや自動更新は行われません。ブックマークを削除しても導入済み Skill は残ります。

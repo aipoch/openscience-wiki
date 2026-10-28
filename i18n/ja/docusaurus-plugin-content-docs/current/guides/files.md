@@ -1,7 +1,7 @@
 ---
 title: "ファイル、アーティファクト、バージョン"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -143,3 +143,7 @@ Windows **Attach files** ダイアログでは、中国語の文字やスペー�
 実装参照: [コピーされた参照](https://github.com/aipoch/open-science/commit/f0c0e081)、[完全な輸出選択](https://github.com/aipoch/open-science/commit/f0468f35)、[プレビュー編集](https://github.com/aipoch/open-science/commit/8763f9aa)。 添付ファイルが**管理されたファイルまたはセッションが削除される**を報告した場合、アプリを介して意図した現在の入力を再添付し、その所有権を検査します。 [トラブルシューティング](troubleshooting.md) を参照してください。
 
 ソース: [プロジェクトファイルライブラリ](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ProjectFilesView.tsx)、[ローカルファイルアクション](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/LocalFileHeaderActions.tsx)。
+
+## 許可済みローカルファイルを成果物として保存する {/* #import-local-artifact */}
+
+**This computer** の許可済みフォルダーからファイルを開き、プレビューの **… → Save as artifact** を選びます。完了後、会話の成果物を開いて内容を確認してください。Open-Science は変更不能な管理コピーを保持します。元ファイルを後で編集しても、このコピーは変わりません。プレビューするだけでは取り込まれません。

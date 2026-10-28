@@ -1,7 +1,7 @@
 ---
 title: "Notebook y pruebas de ejecución"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -297,3 +297,7 @@ En el resultado de **Provenance → Environment**, conservar los orígenes Conda
 ## Compruebe las dependencias después de un análisis encadenado {/* #chained-analysis-lineage */}
 
 Después de leer un CSV, transformándolo y exportando un nuevo archivo en Python o R, abra la procedencia de la salida e inspeccione las versiones de entrada registradas y las dependencias de ejecución. Utilice esos registros para seleccionar la versión de archivo para verificar. La captura de linaje más precisa no reedita por sí misma el cálculo o establece la validez científica del análisis; seguir [verificación del artefacto](reproducibility.md).
+
+## Consultar acceso a la carpeta local {/* #folder-access */}
+
+Si no se puede leer una entrada local, compruebe [Permisos de la carpeta Notebook y Shell](../reference/permissions.md#notebook-folder-restrictions). Cambiar la restricción detiene los procesos en vivo y aclara las variables. Guarde los resultados primero, conceda la carpeta requerida, luego vuelva a administrar sólo las células necesarias para reconstruir el estado de trabajo.

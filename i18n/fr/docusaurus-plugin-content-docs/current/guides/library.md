@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-27'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -396,3 +396,23 @@ Lorsqu'il existe des enregistrements de bibliothèque supplémentaires, une acti
 ## Résumez un lot de collecte intelligente échoué {/* #smart-collection-retry */}
 
 Lorsque l'évaluation de la collection intelligente s'arrête sur un lot échoué, inspectez son erreur et les progrès restants avant d'utiliser la réessayer proposée. À partir de v0.37.0, réessayer reprend le lot échoué tout en préservant le travail d'évaluation terminé. Maintenir la portée et les critères inchangés pour cette nouvelle tentative, puis passer en revue Inclus, Examen des besoins et résultats exclus. Ne créez pas de collection de duplicata pour récupérer une évaluation interrompue.
+
+## Références et citations {/* #citation-discovery */}
+
+Ouvrir les détails d'une référence et choisir **References** ou **Cited by**. Semantic Scholar fournit ces relations. Si la recherche correspond au seul titre, comparez le titre de l'article proposé, les auteurs et l'année avant de le confirmer. Utilisation **Load more** pour les résultats ultérieurs, sélectionnez les documents dont vous avez besoin, puis **Add selected to Inbox**. Examinez-les dans la boîte de réception avant de les accepter dans la Bibliothèque; découvrir une citation ne récupère pas son texte complet.
+
+Une clé API est optionnelle. Si les demandes sont limitées, attendez ou utilisez **Configure API key** dans l'application de bureau local. Un résultat manquant peut refléter la couverture des sources ou les limites d'accès; il n'établit pas que le document n'a pas de références ou de citations.
+
+## Importer des fichiers et des documents supplémentaires {/* #supplementary-materials */}
+
+Déposer les fichiers PDF ou les fichiers de bibliographie pris en charge dans la bibliothèque et examiner les résultats d'importation. Pour les fichiers supportant un papier, ouvrez ses détails et choisissez **Find supplementary materials**. Vérifiez la source, la relation avec le papier, le nom du fichier et la licence avant de télécharger. Recherches découvertes Figshare, DataCite et Europe PMC; un lien source ou une recherche vide ne prouve pas que chaque supplément a été trouvé.
+
+Suivez les progrès de téléchargement de chaque pièce jointe. Pour une archive, sélectionnez les fichiers à extraire. Ouvrez la pièce jointe résultante en utilisant son prévisualisation de type fichier ; les fichiers Word peuvent également être prévisualisés. Gardez l'article principal et les pièces jointes supplémentaires distinctes, et réessayer les téléchargements échoués seulement après avoir vérifié ce qui est déjà présent.
+
+## Vérifier les rétractations et les corrections {/* #publication-checks */}
+
+1. Ouvrez une référence avec un DOI valide. Sous **More actions → Retractions and corrections**, sélectionner **Check retractions and corrections**.
+2. L'action envoie cette DOI à Crossref. Lisez le type d'avis retourné, la source, la date et l'avis lié; vérifiez l'avis lui-même avant de modifier la façon dont vous utilisez le papier.
+3. Le résultat et la date **Last checked** sont enregistrés avec la référence. Réouvrir le panneau affiche l'observation sauvegardée; effectuez une autre vérification lorsque vous avez besoin de nouvelles informations.
+
+**No related notices found** signifie que la requête n’a renvoyé aucun avis, pas que l’article est exempt de problème. La couverture du Crossref est incomplète. Les vérifications ne réécrivent pas les métadonnées bibliographiques ni les décisions de présélection. Si un rafraîchissement échoue, le précédent résultat réussi reste: lire sa date et réessayer plus tard.

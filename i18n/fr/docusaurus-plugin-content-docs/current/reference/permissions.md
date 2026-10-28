@@ -1,7 +1,7 @@
 ---
 title: "Autorisations et contrôle"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 # Autorisations et contrôle {/* #permissions-and-control */}
@@ -78,3 +78,9 @@ Il existe également des exceptions en dehors de cette liste : enregistrer un r�
 | Annuler l'avis | Inverse la révocation de subvention admissible dans le cadre de sa disponibilité affichée; il n'inverse pas les effets d'un outil |
 
 Référence technique: [profils](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/permission-profiles.ts) · [Courtier Connector](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/connector-broker.ts) · [Subventions de base](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/permission-grants/defaults.ts) · [politique de l'agent](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/acp/permission-policy.ts).
+
+## Restriction des dossiers Notebook et Shell {/* #notebook-folder-restrictions */}
+
+Dans **Settings → Permissions → Notebook and Shell folder access**, garder **Restrict Notebook and Shell folders** permet de limiter l'exécution locale à l'espace de travail, dossiers et fichiers approuvés requis par les outils. Accorder le dossier d'entrée requis au lieu d'élargir l'accès pour lire un seul fichier. La préférence est activée par défaut, y compris les paramètres plus anciens sans valeur enregistrée.
+
+Le modifier cesse d'exécuter les processus Notebook et Shell et efface les variables en mémoire ; l'historique sauvegardé reste. Il ne régit pas les outils agents-natifs ou les ordinateurs à distance. Sous Windows, l'interrupteur est **Restrict WSL2 Shell folders**: native protected mode conserve les restrictions, tandis que native standard mode utilise les permissions de dossier de l'utilisateur actuel. v1.0.4 corrige l'exécution standard de Windows Notebook.

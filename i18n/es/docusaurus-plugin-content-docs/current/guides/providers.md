@@ -1,7 +1,7 @@
 ---
 title: "Proveedor y configuración del modelo local"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -250,3 +250,7 @@ Requesty utiliza `https://router.requesty.ai`; el agente activo determina qué p
 ## Recuperar una conexión modelo {/* #credential-recovery */}
 
 Use la acción de recuperación adjunta a una credencial caducada o inválida, actualice la entrada correcta del proveedor, y luego pruebe antes de volver a la misma sesión. El Compositor está bloqueado sólo mientras la recuperación requiere su acción. Preserve el borrador y compruebe si el giro anterior sigue funcionando antes de reenviar. Para los modelos de suscripción de Codex, el uso de contexto refleja la capacidad reportada del modelo seleccionado; puede diferir de una estimación más antigua.
+
+## Seleccione Kimi K3.1 Pro {/* #kimi-k31 */}
+
+v1.0.3 adds Kimi K3.1 Pro models to the provider catalog. Open the intended provider's model picker and select an available entry, then test the connection. Model availability still depends on the active Agent framework, endpoint and account; a catalog entry alone does not establish access.

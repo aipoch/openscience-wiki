@@ -1,7 +1,7 @@
 ---
 title: "Rétroviseurs de réseau, de proxies et de paquets"
 last_update:
-  date: '2026-10-08'
+  date: '2026-10-27'
 ---
 
 # Rétroviseurs de réseau, de proxies et de paquets {/* #network-proxies-and-package-mirrors */}
@@ -28,11 +28,12 @@ Si Network signale **Ready** mais qu'un outil échoue, élargissez l'erreur de c
 
 ## Configurer les règles du réseau public {/* #public-network-rules */}
 
-1. Ouvrez **Settings → Network → Manage access**. Lisez **Public internet access** pour voir quel public HTTPS lit peut procéder et quelles demandes doivent être approuvées.
-2. Inspectez **Built-in services**. Un groupe marqué **Required** reste activé; d'autres groupes peuvent être sélectionnés pour la tâche.
-3. Sous **Custom public domains**, saisissez la **Domain hostname** exacte, puis choisissez **Add to list**. Examiner le projet d'entrée avant **Save changes**.
+1. Ouvrez **Settings → Network → Manage access**. Consultez **Public internet access** et **Built-in services** ; les groupes **Required** restent activés.
+2. Dans **Custom public domains**, saisissez un nom d’hôte, une URL HTTP(S) ou une règle commençant par un caractère générique dans **Domain hostname**, puis **Add to list**.
+3. Vérifiez la règle normalisée avant **Save changes**, puis réessayez la requête. Les autorisations enregistrées persistent après redémarrage.
 
-Une règle du domaine public permet d'envoyer des données à ce nom d'hôte; elle ne couvre pas les sous-domaines ni n'accorde l'accès à une adresse privée. Saisissez un nom d'hôte sans schéma, chemin, port, wildcard ou adresse IP. Un nom d'hôte qui se résout à une adresse non publique doit encore faire l'objet d'un examen de service privé approprié. Ces règles s'appliquent également lorsque le code protégé suit des liens ou récupère des icônes.
+Un nom exact n’inclut pas les sous-domaines. `*.example.org` couvre les sous-domaines mais pas `example.org` lui-même. Une URL comme `https://example.org/path` devient une règle de nom d’hôte : son chemin et son port ne limitent pas l’accès. Les règles autorisent l’envoi de données aux hôtes correspondants. Les adresses IP, localhost et les URL contenant des identifiants sont refusés. Une résolution vers une adresse privée exige toujours un examen du service privé.
+
 
 ## Faire confiance à un service privé {/* #trusted-private-services */}
 

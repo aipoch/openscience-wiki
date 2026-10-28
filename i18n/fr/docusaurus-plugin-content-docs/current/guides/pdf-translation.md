@@ -1,7 +1,7 @@
 ---
 title: "Traduire un PDF complet"
 last_update:
-  date: '2026-10-14'
+  date: '2026-10-27'
 ---
 
 # Traduire un PDF complet {/* #translate-a-full-pdf */}
@@ -57,3 +57,9 @@ Utilisez [Annotations et notes de document PDF](pdf-notes.md) pour enregistrer l
 Avant d'utiliser une traduction exportée, comparez une figure multi-panneau et une table avec l'original. Conservez les légendes avec leurs panneaux, vérifiez les en-têtes groupés et les étiquettes des rangées, et vérifiez les formules, les superscripts, les symboles et les unités. v0.37.1 améliore ces relations de source et accepte les différences valides de noms de glyphes encastrés pendant la régénération, mais l'original reste la preuve d'une citation ou d'une revendication scientifique. Si une ancienne exportation de contenu perdu, mettre à jour l'application et exporter à nouveau à partir de la traduction enregistrée; conserver l'original et comparer le nouveau fichier.
 
 Dans v1.0.0, **New translation** prépare un nouveau texte source avant de lancer la nouvelle édition. Utilisez-le lorsque vous avez intentionnellement besoin d'une nouvelle extraction ou de différents paramètres de traduction; une réessayer ordinaire conserve les paramètres de l'édition existante. Attendez la préparation de la source et revoyez l'ordre de lecture, les formules et le contenu groupé avant d'exporter. Commencer une nouvelle édition peut faire de nouvelles demandes de modèles.
+
+## Choisissez une mise en page en premier contenu {/* #content-first */}
+
+Avant le début **New translation**, élargir **Advanced** et permettre **Content first** si vous préférez une mise en page de lecture à une colonne. Il est désactivé par défaut et sauvegardé avec cette édition de traduction; ses paramètres sont verrouillés lors de la traduction. Pour modifier la mise en page, créez une nouvelle édition plutôt que de traiter Retry comme un changement de paramètres.
+
+Cette mise en page retransmet le texte du corps traduit et les légendes tout en préservant les images originales, les tableaux, les formules et la bibliographie. Comparer la cartographie source-sortie, puis rouvrir le PDF exporté et inspecter les figures et les légendes. Les numéros de page de sortie peuvent différer de l'original : citer et vérifier les revendications par rapport au PDF source.

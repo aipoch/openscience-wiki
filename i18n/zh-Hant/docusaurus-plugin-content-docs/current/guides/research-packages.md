@@ -2,7 +2,7 @@
 title: ".science 研究包"
 description: "將會話、檔案和證據一起匯出，再匯入專案檢視與交接研究記錄。"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -140,3 +140,18 @@ Keep everything in English and return links to both new files.
 如果網頁傳輸不可用或被阻止，先下載 `.science` 文件，再使用現有導入入口；也可以把它拖到項目首頁。向 Composer 拖入普通文件夾不會導入研究包。導入報告部分失敗時，先檢查目標項目中是否已存在該會話，再決定是否重試，不要爲重複傳輸另建項目。
 
 網站開發者可參考[瀏覽器導入 SDK 指南](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md)：需要 HTTPS（或本機迴環開發地址）、同機桌面應用，以及非空且不超過 2 GiB 的研究包。本地接收不替代用戶最後的導入確認。
+
+## 從 CLI 或本地網頁使用研究包 {/* #local-package-transfer */}
+
+從 v1.0.3 起，CLI 和已認證的本地網頁可使用會話研究包。在本地網頁中使用會話導出或項目導入入口，並按提示填寫運行服務的計算機上的路徑。遠程網頁會話不支持任意路徑的研究包傳輸。上面的“網站傳給桌面應用”屬於另一種流程。
+
+使用 CLI 前，先啓動目標本地配置對應的服務，等待源會話空閒。將以下 ID 和路徑替換爲自己的值：
+
+```bash
+open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
+open-science session import ./session.science --new-project "Restored research" --non-interactive --json
+```
+
+導出必須明確提供 `.science` 輸出路徑。導入必須帶 **--non-interactive**，它會代替你確認預覽，因此先檢查研究包來源和目標位置。使用 **--project** 選擇已有項目，或使用 **--new-project** 創建項目，兩者不能同時使用。均未指定時，按研究包中的項目名稱創建新項目。默認請求時限爲一小時，大文件傳輸可調整 **--timeout-ms**。
+
+檢查結果中的保存路徑或導入會話。導入記錄仍爲只讀，繼續研究請使用 **Fork**。v1.0.4 還修復了選擇保存位置後導出仍可能停留在等待狀態的問題。

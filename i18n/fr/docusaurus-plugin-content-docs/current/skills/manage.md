@@ -1,7 +1,7 @@
 ---
 title: "Gérer et valider Skills"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Gérer et valider Skills {/* #manage-and-validate-skills */}
@@ -117,3 +117,7 @@ Référence de mise en œuvre: [SkillUploadView.tsx](https://github.com/aipoch/o
 ## Importer et éditer des compétences en toute sécurité {/* #import-batches */}
 
 Les grandes sélections de compétences installées sont importées en lots. Attendez le résultat final et inspectez la liste importée avant de répéter l'importation. Une compétence externe avec un préfixe de nom réservé est assigné un nom local sûr; utilisez le nom affiché dans le catalogue local. Lors de l'édition du corps, enregistrez-le et vérifiez que le nom et la description modifiés séparément restent corrects. Les images jointes au message actuel peuvent également éclairer la sélection des compétences; vérifier la portée de la compétence sélectionnée avant de la laisser agir.
+
+## Enregistrer un dépôt GitHub pour plus tard {/* #saved-repositories */}
+
+Après **Import from GitHub → Find skills** scanne un dépôt, choisissez **Save repository**. La prochaine fois, sélectionnez-la sous **Saved repositories** pour scanner à nouveau, puis prévisualiser et importer les Compétences prévues. Un ref sauvegardé est conservé; une branche par défaut peut changer. Enregistrer n'installe pas ou met automatiquement à jour Skills, et la suppression du signet maintient les Skills installés.

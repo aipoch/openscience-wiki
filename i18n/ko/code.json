@@ -1810,5 +1810,17 @@
   },
   "docs.outline.reference.v102.scope": {
     "message": "과학 데이터 소스, npm CLI 설치, 질문 카드, 연구 기록 신뢰성."
+  },
+  "docs.outline.reference.v103.title": {
+    "message": "v1.0.3"
+  },
+  "docs.outline.reference.v103.scope": {
+    "message": "문헌 발견, 로컬 연구 패키지 전송, PDF 레이아웃 및 과학 데이터."
+  },
+  "docs.outline.reference.v104.title": {
+    "message": "v1.0.4"
+  },
+  "docs.outline.reference.v104.scope": {
+    "message": "외부 MCP 클라이언트, 출판 공지, 대화 접기 및 로컬 파일 가져오기."
   }
 }

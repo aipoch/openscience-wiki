@@ -1,7 +1,7 @@
 ---
 title: "Seleccionar artículos con una colección inteligente"
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -105,3 +105,7 @@ Confirme las entradas **Incluye 5**, **Excluido 3**, y cero restantes **Needs re
 Elija **Collection actions → Export included references → BibTeX** o **RIS**, guarde el archivo, y compruebe que contiene cinco registros DOI. El <ExampleDownload path="/examples/v0330/screened-primary-studies.bib">ejemplo BibTeX</ExampleDownload> conserva las citas exportadas con resúmenes eliminados para la redistribución. Es una bibliografía, no un registro de detección-decisión o un paquete PDF. Mantenga el <ExampleDownload path="/examples/v0330/screening-decisions.csv">mesa de decisión revisada</ExampleDownload> junto a él al entregar la selección.
 
 Utilice el conjunto seleccionado para un [paquete de lectura de mezclas de grupo](journal-club.md). Obtenga e inspeccione los textos completos antes de extraer resultados detallados o comparar el rendimiento del catalizador. **Update automatically** puede evaluar los registros nuevos o modificados en el alcance elegido y puede incurrir en costos de servicio; no busca bases de datos externas para nuevos papeles.
+
+## Exportar las decisiones de selección {/* #screening-csv */}
+
+De v1.0.3, abierto **Collection actions → Export screening results (CSV)**. Esta exportación incluye a todos los candidatos, con veredictos finales, decisiones manuales, razones y probabilidades modelo. Reabrir el CSV y comprobar que el candidato cuenta y anula. Mantenlo junto a la bibliografía de referencia incluida arriba; ninguna exportación incluye todo texto completo, y una probabilidad modelo no es una puntuación de calidad de papel.

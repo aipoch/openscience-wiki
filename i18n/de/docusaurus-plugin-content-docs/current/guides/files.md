@@ -1,7 +1,7 @@
 ---
 title: "Dateien, Artefakte und Versionen"
 last_update:
-  date: '2026-09-14'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -143,3 +143,7 @@ Bevor Sie ausgewählte Artefakte oder ein Bündel exportieren, bestätigen Sie d
 Referenzen für die Implementierung: [kopierte Referenzen](https://github.com/aipoch/open-science/commit/f0c0e081), [vollständige Ausfuhrauswahlen](https://github.com/aipoch/open-science/commit/f0468f35) und [Preview Edits](https://github.com/aipoch/open-science/commit/8763f9aa). Wenn ein Anhang **Verwaltete Datei oder deren Sitzung wird gelöscht** meldet, fügen Sie die beabsichtigte aktuelle Eingabe über die App wieder an und überprüfen Sie deren Eigentum; siehe [Fehlerbehebung](troubleshooting.md).
 
 Quellen: [Projektdateibibliothek](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/ProjectFilesView.tsx), [lokale Dateiaktionen](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/LocalFileHeaderActions.tsx).
+
+## Halten Sie eine autorisierte lokale Datei als Artefakt {/* #import-local-artifact */}
+
+Öffnen Sie eine Datei aus einem autorisierten Ordner unter **This computer**. In seiner Vorschau, verwenden **… → Save as artifact** und warten auf die Vollendung. Öffnen Sie das resultierende Gesprächsartefakt und überprüfen Sie dessen Inhalt. Open-Science behält eine unveränderliche verwaltete Kopie; spätere Änderungen der ursprünglichen lokalen Datei aktualisieren diese Kopie nicht. Die bloße Vorschau einer Ordnerdatei importiert sie nicht.

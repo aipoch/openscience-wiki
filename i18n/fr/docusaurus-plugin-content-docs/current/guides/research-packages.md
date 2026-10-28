@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -140,3 +140,18 @@ Utilisez une application de bureau installée sur le **même ordinateur** comme 
 Si le retrait n'est pas disponible ou bloqué, téléchargez le `.science` fichier et utiliser le contrôle d'importation existant. Vous pouvez également la déposer sur la maison du projet. Une goutte de dossier normale dans le Compositeur n'importe pas un paquet. Si une importation signale une défaillance partielle, vérifiez la destination d'une session existante avant de réessayer; ne créez pas un autre projet simplement pour répéter le même transfert.
 
 Pour les auteurs du site, [navigateur-importation SDK guide](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md) nécessite HTTPS (ou une source de développement loopback), un handoff de bureau de même ordinateur et un paquet non vide pas plus de 2 GiB. Le reçu local ne remplace jamais la confirmation d'importation finale de l'utilisateur.
+
+## Utiliser les paquets de l'application Web CLI ou locale {/* #local-package-transfer */}
+
+Depuis v1.0.3, le CLI et l'application web locale authentifiée peuvent utiliser des paquets de session. Dans l'application web locale, utilisez les contrôles d'exportation de session ou d'importation de projet et fournir un chemin sur l'ordinateur exécutant le service quand demandé. Les sessions Web distantes ne peuvent pas utiliser le transfert de paquets de chemins arbitraires. Le transfert du site Web au bureau ci-dessus est un flux séparé.
+
+Pour le CLI, commencez d'abord le profil local prévu et attendez que la session source soit inactive. Remplacer les ID et les chemins ci-dessous par les vôtres :
+
+```bash
+open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
+open-science session import ./session.science --new-project "Restored research" --non-interactive --json
+```
+
+L'exportation nécessite une `.science` chemin de sortie. Importation requise **--non-interactive**, qui confirme l'aperçu en votre nom : contrôlez d'abord l'origine du colis et la destination prévue. Choisir **--project** pour un projet existant ou **--new-project** pour un nouveau, jamais les deux. L'omission des deux crée un projet en utilisant le nom du projet du paquet. Le délai de demande par défaut est d'une heure; ajuster **--timeout-ms** pour un grand transfert.
+
+Vérifiez le chemin enregistré ou la session importée dans le résultat. La recherche importée reste en lecture seule; utilisation **Fork** pour continuer. Dans v1.0.4, export corrige également une attente qui pourrait rester après avoir sélectionné l'emplacement de sauvegarde.

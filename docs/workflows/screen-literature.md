@@ -1,7 +1,7 @@
 ---
 title: Screen papers with a smart collection
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -105,3 +105,7 @@ Confirm **Included 5**, **Excluded 3**, and zero remaining **Needs review** or *
 Choose **Collection actions → Export included references → BibTeX** or **RIS**, save the file, and check that it contains five DOI records. The <ExampleDownload path="/examples/v0330/screened-primary-studies.bib">example BibTeX</ExampleDownload> preserves the exported citations with abstracts removed for redistribution. It is a bibliography, not a screening-decision log or PDF bundle. Keep the <ExampleDownload path="/examples/v0330/screening-decisions.csv">reviewed decision table</ExampleDownload> alongside it when handing over the selection.
 
 Use the selected set for a [group-meeting reading pack](journal-club.md). Obtain and inspect the full texts before extracting detailed results or comparing catalyst performance. **Update automatically** can evaluate new or changed records in the chosen scope and may incur service costs; it does not search external databases for new papers.
+
+## Export the screening decisions {/* #screening-csv */}
+
+From v1.0.3, open **Collection actions → Export screening results (CSV)**. This export includes all candidates, with final verdicts, manual decisions, reasons and model probabilities. Reopen the CSV and check the candidate count and overrides. Keep it alongside the included-reference bibliography above; neither export includes every full text, and a model probability is not a paper-quality score.

@@ -1,7 +1,7 @@
 ---
 title: 用智能集合筛选文献
 last_update:
-  date: '2026-09-28'
+  date: '2026-10-27'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -105,3 +105,7 @@ Keep the output in English.
 选择 **Collection actions → Export included references → BibTeX** 或 **RIS**，保存后检查文件包含五条 DOI 记录。<ExampleDownload path="/examples/v0330/screened-primary-studies.bib">示例 BibTeX</ExampleDownload>保留导出的引用信息，为便于再分发已移除摘要。它是书目文件，不包含筛选决定日志或 PDF 全文。交接时可同时保留<ExampleDownload path="/examples/v0330/screening-decisions.csv">复核决定表</ExampleDownload>。
 
 将入选文献用于[组会资料包](journal-club.md)。提取详细结果或比较催化性能前，先取得并阅读全文。**Update automatically** 可评估所选范围内新增或变化的记录，并可能产生服务费用；它不会去外部数据库检索新论文。
+
+## 导出筛选决定 {/* #screening-csv */}
+
+从 v1.0.3 起，可选择 **Collection actions → Export screening results (CSV)**。此文件包含全部候选文献的最终判定、人工决定、原因和模型概率。重新打开 CSV，核对候选数量及人工覆盖结果，与上面的入选文献目录一同保存。两种导出都不包含全部全文，模型概率也不是论文质量评分。

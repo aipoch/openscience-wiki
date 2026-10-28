@@ -1805,5 +1805,17 @@
   },
   "docs.outline.reference.v102.scope": {
     "message": "科学データソース、npm での CLI 導入、質問カード、研究記録の信頼性。"
+  },
+  "docs.outline.reference.v103.title": {
+    "message": "v1.0.3"
+  },
+  "docs.outline.reference.v103.scope": {
+    "message": "文献の発見、ローカル研究パッケージ転送、PDF レイアウト、科学データ。"
+  },
+  "docs.outline.reference.v104.title": {
+    "message": "v1.0.4"
+  },
+  "docs.outline.reference.v104.scope": {
+    "message": "外部 MCP クライアント、出版通知、会話の折りたたみ、ローカルファイル取込。"
   }
 }

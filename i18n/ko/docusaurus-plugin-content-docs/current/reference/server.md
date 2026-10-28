@@ -1,7 +1,7 @@
 ---
 title: "서비스 및 브라우저 액세스"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # 서비스 및 브라우저 액세스 {/* #headless-service-and-browser-access */}
@@ -119,3 +119,7 @@ v1.0.0는 CLI 신청 갱신자를 제거합니다; `open-science update --json`�
 ## 웹 작업공간의 Compute {/* #web-compute */}
 
 독립 실행 웹 작업공간은 **Compute** 를 제공합니다. 단, 백엔드가 필요한 Notebook·Compute API를 지원해야 합니다. 연결된 작업공간에서 패널을 확인하고 기존 SSH/Slurm 설정 절차를 따르세요. 패널이 보인다고 원격 인증 정보가 제공되거나 작업 실행이 보장되지는 않습니다.
+
+## 연구 패키지와 외부 도구 클라이언트 {/* #local-research-tools */}
+
+인증된 로컬 웹 세션에서는 [연구 패키지 가져오기와 내보내기](../guides/research-packages.md#local-package-transfer)를 사용할 수 있지만 원격 웹 세션은 임의 경로 전송을 지원하지 않습니다. 같은 컴퓨터의 외부 클라이언트에는 [stdio MCP 어댑터](cli.md#external-mcp)를 설정합니다. 실행 중인 로컬 서비스의 기존 권한을 사용하며 원격 MCP URL을 만들지 않습니다.

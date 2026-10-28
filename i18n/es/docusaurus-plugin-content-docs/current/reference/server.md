@@ -1,7 +1,7 @@
 ---
 title: "Servicio sin cabeza y acceso al navegador"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Servicio sin cabeza y acceso al navegador {/* #headless-service-and-browser-access */}
@@ -119,3 +119,7 @@ Vea el [guía oficial de horario de ejecución](https://github.com/aipoch/open-s
 ## Computar en el espacio de trabajo web {/* #web-compute */}
 
 El espacio de trabajo web independiente expone **Compute** cuando su backend proporciona el Notebook y Compute APIs requeridos. Abra el espacio de trabajo conectado, compruebe que el panel está disponible, luego utilice los pasos de configuración SSH/Slurm existentes. Un panel disponible no suministra credenciales remotas o confirma que un trabajo puede funcionar.
+
+## Paquetes y clientes de herramientas externas {/* #local-research-tools */}
+
+Authenticated Web sesiones locales puede [paquetes de investigación de importación y exportación](../guides/research-packages.md#local-package-transfer); las sesiones web remotas no pueden realizar estas transferencias arbitrarias. Para exponer herramientas de investigación a un cliente externo en la misma máquina, configura el [adaptador stdio MCP](cli.md#external-mcp). Se conecta a un servicio local ya gestionado y utiliza los permisos de ese perfil; no crea una URL remota MCP.

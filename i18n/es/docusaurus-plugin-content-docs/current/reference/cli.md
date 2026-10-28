@@ -1,7 +1,7 @@
 ---
 title: "CLI y salida estructurada"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -245,3 +245,29 @@ open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
 ```
 
 Estos comandos funcionan sin un backend. `version` reporta la instalación invocada, no la versión de un servicio conectado. `paths` informes `cliPath`, `nodePath`, `startupConfigRoot` y `discoveryConfigRoots`; no identifica un servicio activo o el directorio de datos de investigación. Un perfil explícito selecciona la ubicación de inicio/descubrimiento sin crearlo. Los caminos pueden revelar nombres de usuario locales, así que revise la salida antes de compartirla.
+
+## Conectar un cliente MCP externo {/* #external-mcp */}
+
+El CLI independiente en v1.0.4 expone herramientas de investigación sobre **stdio**. Comience el servicio del perfil previsto primero; el adaptador no lo inicia automáticamente. Reemplazar ambos caminos absolutos en esta configuración del cliente:
+
+```bash
+open-science start --no-open --config-root /absolute/path/to/profile
+open-science mcp --help
+```
+
+```json
+{
+  "mcpServers": {
+    "open-science": {
+      "command": "/absolute/path/to/open-science",
+      "args": ["mcp", "--config-root", "/absolute/path/to/profile"]
+    }
+  }
+}
+```
+
+Que el cliente inicie el adaptador. Descubre proyectos con **list_projects**, presentar **start_run** con el ID del proyecto devuelto, siga **get_run**, e inspeccionar **list_artifacts**. El descubrimiento de herramientas por sí solo no prueba que el servicio está disponible. Las llamadas requieren el servicio local autenticado en funcionamiento; este no es un punto final remoto HTTP MCP.
+
+El cliente actúa bajo los permisos existentes del perfil. Puede crear proyectos persistentes, cambiar la configuración y comenzar el trabajo que escriba archivos o incurra en costos de modelo. Las aprobaciones todavía pueden requerir acción en Open-Science. Inspeccione el estado actual después de un tiempo fuera antes de repetir una escritura. Cerrar el cliente o cancelar su solicitud no cancela la investigación aceptada: uso **cancel_run** explícitamente. Ver el [herramienta oficial MCP y referencia de permiso](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp).
+
+Para los comandos del paquete, siga [Importación y exportación de CLI](../guides/research-packages.md#local-package-transfer).

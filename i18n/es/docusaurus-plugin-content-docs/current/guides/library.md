@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-10-13'
+  date: '2026-10-27'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -396,3 +396,23 @@ Cuando existen registros adicionales de la Biblioteca, una acción **Select all 
 ## Recuperar un lote de cuello inteligente fallido {/* #smart-collection-retry */}
 
 Cuando una evaluación de recopilación inteligente se detiene en un lote fallido, inspeccione su error y el progreso restante antes de utilizar la reingresación ofrecida. Desde v0.37.0, la reingresación reanuda el lote fallido al tiempo que preserva el trabajo de evaluación completado. Mantenga el alcance y los criterios inalterados para esa reingresación, a continuación, revise Incluido, Repaso de las necesidades y resultados no incluidos. No cree una colección duplicada para recuperar una evaluación interrumpida.
+
+## Trace references and citing papers {/* #citation-discovery */}
+
+Abra los detalles de una referencia y elija **References** o **Cited by**. Semántica Scholar suministra estas relaciones. Si la búsqueda coincide solo por título, compare el título de papel propuesto, autores y año antes de confirmarlo. Uso **Load more** para resultados posteriores, seleccione los papeles que necesita, luego **Add selected to Inbox**. Reviselos en Inbox antes de aceptarlos en la Biblioteca; descubrir una cita no recupera su texto completo.
+
+Una clave de API es opcional. Si las solicitudes son limitadas, espere o use **Configure API key** en la aplicación de escritorio local. Un resultado perdido puede reflejar la cobertura de la fuente o los límites de acceso; no establece que el documento no tiene referencias ni citas.
+
+## Importar archivos y materiales complementarios {/* #supplementary-materials */}
+
+Dejar archivos PDF o bibliografía compatibles en la Biblioteca y revisar los resultados de importación. Para los archivos de soporte de un papel, abra sus detalles y elija **Find supplementary materials**. Compruebe la fuente, relación con el papel, nombre de archivo y licencia antes de descargar. Búsquedas de descubrimiento Figshare, DataCite y Europa PMC; un enlace fuente o una búsqueda vacía no es prueba de que cada suplemento se ha encontrado.
+
+Siga el progreso de descarga de cada adjunto. Para un archivo, seleccione los archivos para extraer. Abra el accesorio resultante usando su previsualización tipo archivo; Los archivos de Word pueden ser previsualizados también. Mantenga el artículo principal y los adjuntos suplementarios distintos, y retry sólo descargas fallidas después de comprobar lo que ya está presente.
+
+## Compruebe las retracciones y correcciones {/* #publication-checks */}
+
+1. Abra una referencia con un DOI válido. En **More actions → Retractions and corrections**, seleccionar **Check retractions and corrections**.
+2. La acción envía al DOI a Crossref. Lea el tipo de aviso devuelto, fuente, fecha y aviso enlazado; verifique el aviso en sí mismo antes de cambiar cómo utiliza el papel.
+3. El resultado y **Last checked** tiempo se guardan con la referencia. La reapertura del panel muestra la observación guardada; ejecute otro cheque cuando necesite información fresca.
+
+**No related notices found** significa que la consulta no devolvió avisos, no que el papel no es afectado. La cobertura de Crossref es incompleta. Las comprobaciones no modifican los metadatos bibliográficos ni las decisiones de selección. Si un refresco falla, el resultado de éxito anterior sigue siendo: leer su fecha y volver a intentarlo más tarde.

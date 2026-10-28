@@ -1,7 +1,7 @@
 ---
 title: "Anbieter und lokales Modell-Setup"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -250,3 +250,7 @@ Requesty verwendet `https://router.requesty.ai`; der aktive Agent bestimmt, welc
 ## Wiederherstellen einer Modellverbindung {/* #credential-recovery */}
 
 Verwenden Sie die Wiederherstellungsaktion, die an eine abgelaufene oder ungültige Anmeldeinformationen angehängt ist, aktualisieren Sie den korrekten Anbietereintrag und testen Sie ihn dann, bevor Sie zur gleichen Sitzung zurückkehren. Der Composer wird nur blockiert, während die Wiederherstellung Ihre Aktion erfordert. Bewahren Sie den Entwurf auf und prüfen Sie, ob die vorherige Runde noch läuft, bevor Sie erneut senden. Bei Codex-Abonnementmodellen spiegelt die Kontextnutzung die gemeldete Kapazität des ausgewählten Modells wider; sie kann von einer älteren angezeigten Schätzung abweichen.
+
+## Wählen Sie Kimi K3.1 Pro {/* #kimi-k31 */}
+
+v1.0.3 adds Kimi K3.1 Pro models to the provider catalog. Open the intended provider's model picker and select an available entry, then test the connection. Model availability still depends on the active Agent framework, endpoint and account; a catalog entry alone does not establish access.

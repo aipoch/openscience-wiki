@@ -2,7 +2,7 @@
 title: "Bases de datos científicos"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-27'
 ---
 
 # Bases de datos científicos {/* #scientific-databases */}
@@ -13,46 +13,52 @@ Utilice esta página para elegir una fuente de datos, entender lo que puede devo
 
 ## Bases de datos respaldadas {/* #supported-databases */}
 
-Open-Science v1.0.2 incluye **36 conectores de fuente de datos con 371 operaciones**. El conector Molecule sin conexión añade dos operaciones, trayendo el registro completo a 373. Nombres de conexión a continuación **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
+Open-Science v1.0.4 incluye **42 conectores de fuente de datos con 395 operaciones**. El conector Molecule sin conexión añade dos operaciones, trayendo el registro completo a 397. Nombres de conexión a continuación **Settings → Connectors**; cada familia puede exponer varias bases de datos. La inclusión de una fuente no significa que cada característica de su sitio web esté disponible.
 
 | Conector | Fuentes | Operaciones | Úsalo para  |
 | --- | --- | --- | ---  |
-| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB | 12 | Química de moléculas pequeñas a través de PubChem, ChEBI, Rhea y BindingDB.  |
+| Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB, LIPID MAPS, UniChem | 14 | Química de moléculas pequeñas a través de PubChem, ChEBI, Rhea y BindingDB.  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Documentos, autores, citas, actualizaciones de DOI y registros de dataset/software. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | Bibliografía biomédica a través de NCBI E-utilities, el PMC ID Converter y Europa PMC — búsqueda, metadatos, artículos relacionados, búsqueda de citas, conversión de ID, texto completo y copyright.  |
-| Genes &amp; Ontologies · `genes` | MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr, HGNC | 17 | Identificadores genéticos/proteínas, descubrimiento de secuencia UniProt, Anotaciones GO y Reactome, y g:Enriquecimiento de genes de Profiler y Enrichr. |
-| Genomes · `genomes` | Ensembl, UCSC, NCBI, BLAST, Clustal Omega | 22 | Anotación genoma, homología y secuencia; NCBI taxon/assembly/sequence identity; BLAST búsqueda y alineación de secuencia múltiple de Clustal Omega; LD específico de la población y variantes proxy. |
+| Genes &amp; Ontologies · `genes` | HGNC, MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 17 | Identificadores genéticos/proteínas, descubrimiento de secuencia UniProt, Anotaciones GO y Reactome, y g:Enriquecimiento de genes de Profiler y Enrichr. |
+| Genomes · `genomes` | NCBI Datasets, NCBI BLAST, EMBL-EBI Job Dispatcher, Ensembl, UCSC | 22 | Anotación genoma, homología y secuencia; NCBI taxon/assembly/sequence identity; BLAST búsqueda y alineación de secuencia múltiple de Clustal Omega; LD específico de la población y variantes proxy. |
 | Variantes · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | Frecuencias demográficas, registros clínicos y puntajes funcionales específicos para ensayos, cartografías y experimentos. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | Búsqueda de pruebas, protocolos y mediciones de resultados publicadas, denominadores de grupos, estadísticas y eventos adversos. |
 | Clinical Genomics · `clinical-genomics` | ClinGen, CIViC, Open Targets, ClinPGx, DGIdb | 32 | Bases de conocimiento de la genómica clínica: curaciones ClinGen, evidencia clínica CIViC y Plataforma de objetivos abiertos, además de registros farmaceuticos ClinPGx. |
-| Estructuras & Interacciones · `structures` | PDB, AlphaFold, EMDB, Portal Complejo, IntAct | 17 | Estructuras e interacciones moleculares — estructuras PDB, predicciones AlphaFold, entradas EMDB cryo-EM, complejos complejos Portales Complejos, redes de interacción IntAct.  |
+| Estructuras & Interacciones · `structures` | PDB, PDBe, AlphaFold, EMDB, Complex Portal, IntAct, OmniPath | 20 | Estructuras e interacciones moleculares — estructuras PDB, predicciones AlphaFold, entradas EMDB cryo-EM, complejos complejos Portales Complejos, redes de interacción IntAct.  |
 | ChEMBL · `chembl` | ChEMBL | 7 | Compuestos bioactivos, fármacos, objetivos, bioactividad y mecanismos a través del ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | preimpresión bioRxiv/medRxiv — búsqueda por fecha/categoría, metadatos por DOI, enlaces de publicación de revistas, listados de fondos y estadísticas de plataforma.  |
 | Regulación de drogas · `drug-regulatory` | openFDA | 10 | Drug@FDA, etiquetas, informes de eventos adversos de FAERS y memorias de drogas. |
 | Genética humana · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | Pruebas de asociación genética humana — GWAS Catalog, eQTL Catalogue, y portales PheWeb PheWAS (FinnGen, BioBank Japan).  |
 | Expresión · `expression` | GTEx, Bgee | 16 | Expresión de tejido GTEx humano y eQTLs; Bgee expresión de referencia de especies cruzadas. |
 | Anotación de proteínas · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | Arquitectura de dominio Protein, membresía familiar/clan, atlas de expresión y redes de interacción a través de InterPro/Pfam, el Atlas de Proteína Humana y STRING, incluyendo enriquecimiento de interacción de red. |
-| Modelos de cáncer · `cancer-models` | cBioPortal | 10 | Estudios, mutaciones, número de copia, muestras, pacientes, atributos clínicos y expresión de perfil molecular. |
+| Modelos de cáncer · `cancer-models` | cBioPortal, DepMap / CCLE | 15 | Estudios, mutaciones, número de copia, muestras, pacientes, atributos clínicos y expresión de perfil molecular. |
 | RNA · `rna` | Rfam, RNAcentral | 11 | Datos familiares de ARN no codificación (metadatos, alineamientos, modelos, estructuras) a través de Rfam.  |
-| Archivos de Omics · `omics-archives` | ArrayExpress, GEO, MetaboLights, Metabolomics Workbench, MGnify, PRIDE, ENA | 28 | Omics study/run metadata and file inventories; muestras metabolomicas, factores, análisis y registros compuestos. |
+| Archivos de Omics · `omics-archives` | ArrayExpress, GEO, ENA, MetaboLights, Metabolomics Workbench, MGnify, PRIDE | 28 | Omics study/run metadata and file inventories; muestras metabolomicas, factores, análisis y registros compuestos. |
 | CellGuide · `cellguide` | CELLxGENE | 5 | Identidad de tipo celular, genes marcadores, conjuntos de datos fuente y tejidos a través de CELLxGENE CellGuide.  |
 | Regulation · `regulation` | ENCODE, JASPAR, UniBind | 16 | Genética-regulación de la genómica funcional — experimentos ENCODE/biosamples/files, perfiles de unión JASPAR TF y TFBS UniBind ChIP-seq.  |
 | Research Resources · `research-resources` | Grants.gov, Antibody Registry | 5 | Búsqueda de financiación-oportunidad (Grants.gov) y búsquedas de catálogo de anticuerpos (Registro Anticuerpo).  |
 | BioMart · `biomart` | Ensembl BioMart | 8 | Ensembl BioMart atributo consultas y traducción de identificador.  |
 | ZINC · `zinc` | ZINC | 5 | ZINC22 espacio químico depurable (CartBlanche22) — búsqueda compuesta por ZINC id, búsqueda exacta/similaridad de SMILES, resolución de código de proveedor, muestreo aleatorio, ubicaciones de estructura 3D para acoplamiento.  |
-| GDC · `gdc` | NCI GDC | 5 | Proyectos de cáncer, casos, metadatos de archivos, etiquetas abiertas/controladas y manifiestos de transferencia; no descarga ni acceso. |
+| GDC · `gdc` | Genomic Data Commons (GDC) | 5 | Proyectos de cáncer, casos, metadatos de archivos, etiquetas abiertas/controladas y manifiestos de transferencia; no descarga ni acceso. |
 | Zenodo · `zenodo` | Zenodo | 2 | Conjunto de datos públicos, software y descubrimiento de publicaciones, metadatos e inventarios de archivos específicos de la versión; no subir ni descargar. |
-| HMMER · `hmmer` | EMBL-EBI HMMER3 | 3 | Búsqueda de proteínas/profile/alineación específica del programa, estado de trabajo y resultados. |
-| InterProScan · `interproscan` | EMBL-EBI InterProScan | 3 | Presentar secuencias de proteínas, comprobar el estado de anotación-job y recuperar los informes TSV. |
-| Pathway Commons · `pathway-commons` | Pathway Commons / Reactome | 4 | Caminos de búsqueda, rutas de arriba, consultas gráficas y exportaciones de submodelo BioPAX. |
+| HMMER · `hmmer` | HMMER3, EMBL-EBI | 3 | Búsqueda de proteínas/profile/alineación específica del programa, estado de trabajo y resultados. |
+| InterProScan · `interproscan` | InterProScan, EMBL-EBI | 3 | Presentar secuencias de proteínas, comprobar el estado de anotación-job y recuperar los informes TSV. |
+| Pathway Commons · `pathway-commons` | Pathway Commons, Reactome | 4 | Caminos de búsqueda, rutas de arriba, consultas gráficas y exportaciones de submodelo BioPAX. |
 | Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | genes humanos y modelo-organismo, ortologs, modelos de enfermedades, fenotipos, alelos y expresión. |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Colecciones de células individuales y conjuntos de datos, versiones publicadas, formatos de archivo, tamaños y URLs de descarga. |
 | Cellosaurus · `cellosaurus` | Cellosaurus | 2 | Encontrar nombres de línea celular y sinónimos, luego inspeccionar identidad de adhesión y anotaciones de calidad. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | Asociaciones de enfermedad/gene a fenotipo con organismo y evidencia de apoyo. |
-| IEDB · `iedb` | Immune Epitope Database | 8 | Epitopes, antígenos, T-cell, B-cell y MHC, evidencia TCR/BCR y publicaciones de origen. |
-| PDC · `pdc` | NCI Proteomic Data Commons | 5 | Versiones de estudio proteomics del cáncer, especímenes, metadatos clínicos de caso público e inventarios de archivos; sin descarga. |
+| IEDB · `iedb` | IEDB | 8 | Epitopes, antígenos, T-cell, B-cell y MHC, evidencia TCR/BCR y publicaciones de origen. |
+| PDC · `pdc` | PDC | 5 | Versiones de estudio proteomics del cáncer, especímenes, metadatos clínicos de caso público e inventarios de archivos; sin descarga. |
 | ENCORI · `encori` | ENCORI | 10 | miRNA/RBP objetivos, interacciones RNA, ceRNA, motivos, sitios vinculantes, tablas de referencia y archivos a granel. |
 | Orphadata · `orphadata` | Orphadata, Orphanet | 2 | Rare-disease gene associations and HPO phenotype frequencies; disabled by default. |
+| TCIA · `tcia` | TCIA, NBIA | 3 | Colecciones de imágenes, condiciones de acceso y metadatos de series. |
+| KEGG · `kegg` | KEGG | 3 | Rutas, compuestos y mapeos de genes; se aplican restricciones de licencia. |
+| RxNorm / RxNav · `rxnorm` | RxNorm, RxNav | 2 | Resolución de nombres de fármacos y propiedades de conceptos activos. |
+| DailyMed · `dailymed` | DailyMed | 2 | Identidades de etiquetas de medicamentos e historial de versiones. |
+| BioSamples · `biosamples` | EMBL-EBI BioSamples | 2 | Metadatos públicos de muestras y referencias cruzadas. |
+| WikiPathways · `wikipathways` | WikiPathways | 2 | Metadatos de rutas, especies y revisiones. |
 
 Las herramientas Molecule offline están cubiertas en [Visores científicos](viewers.md). Para las operaciones exactas expuestas por cada fuente de datos, utilice el [Referencia de operación Connector](../reference/connector-operations.md).
 
@@ -255,7 +261,7 @@ Desde v0.31.0, `get_string_network.nodes` incluye vecinos devueltos y entradas a
 
 Las listas [Referencia de operación Connector](../reference/connector-operations.md) requieren entradas, valores permitidos y llamadas exactas. Utilice esta página para elegir una fuente y conectarla; utilizar la referencia para los campos de una herramienta en particular.
 
-Fuente del catálogo: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.2/src/main/connectors/registry.ts).
+Fuente del catálogo: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/registry.ts).
 
 ## Búsquedas de secuencia y alineación {/* #sequence-tools */}
 
@@ -347,7 +353,7 @@ v1.0.2 recuerda un impulso decreciente OpenAlex para la sesión actual, evitando
 
 ## Conectar las nuevas fuentes y preservar su significado {/* #new-source-access */}
 
-In **Settings → Connectors**, encontrar la entrada abajo y permitir que **Main** o el Especialista previsto. HGNC, PubTator 3, DGIdb y RNAcentral son herramientas dentro de las entradas existentes. **Orphadata** es una entrada separada y se apaga por defecto. Estas nuevas herramientas utilizan puntos finales públicos sin su propia clave de API; otras herramientas en la misma entrada pueden tener diferentes requisitos credenciales.
+En **Settings → Connectors**, encontrar la entrada abajo y permitir que **Main** o el Especialista previsto. HGNC, PubTator 3, DGIdb y RNAcentral son herramientas dentro de las entradas existentes. **Orphadata** es una entrada separada y se apaga por defecto. Estas nuevas herramientas utilizan puntos finales públicos sin su propia clave de API; otras herramientas en la misma entrada pueden tener diferentes requisitos credenciales.
 
 | Fuente | Entrada de configuración | Solicitud y comprobación |
 | --- | --- | --- |
@@ -367,3 +373,20 @@ Llamadas exactas: [HGNC](../reference/connector-operations.md#get_hgnc_gene), [P
 - **Clinical Trials:** uso `get_trial_results` para mediciones de resultados publicadas, denominadores, análisis estadísticos y eventos adversos. ID de grupo de coincidencias sólo dentro del mismo módulo de resultado / salida. Los resultados perdidos no son cero eventos o prueba de ningún efecto.
 
 Véase [PDC](../reference/connector-operations.md#pdc_list_clinical), [Filtros GDC](../reference/connector-operations.md#gdc_search_files), [Modos VEP](../reference/connector-operations.md#ensembl_vep_variant) y [Resultados del juicio publicados](../reference/connector-operations.md#get_trial_results).
+
+## Imágenes, vías, lípidos y modelos de cáncer {/* #expanded-sources */}
+
+En **Settings → Connectors**, habilitar la fuente prevista y ponerla a disposición **Main**. TCIA, KEGG, RxNorm / RxNav, DailyMed, BioSamples y WikiPathways son entradas separadas, deshabilitadas por defecto. Las operaciones a continuación utilizan servicios públicos sin un servidor MCP personalizado o clave API. El acceso a un conector no otorga una licencia de datos ni acceso a datos restringidos.
+
+| Entrada | Solicitud | Mantener con el resultado |
+| --- | --- | --- |
+| TCIA | Buscar colecciones; inspeccionar una colección o una serie DICOM existente UID | Licencia, condiciones de acceso y requisitos de descarga. Los enlaces devueltos pueden ser manifiestos Data Retriever, no archivos de imagen. |
+| KEGG | Buscar entradas de vías, KO, compuestos o reacciones; mapear un gen identificado junto con su organismo | Elegibilidad de uso académico y términos de licencia; mapeos de uno a varios y truncación. Esto no es el enriquecimiento de los genes. |
+| Química → LIPID MAPS / UniChem | Buscar un LMID exacto o PubChem CID; mapear un ID InChIKey o ChEMBL | Resolver nombres primero con PubChem. Conserve las coincidencias distintas y atribución fuente; estos no son búsquedas de similitud. |
+| Estructuras e interacciones → OmniPath | Consultar la regulación anterior o posterior de un identificador UniProt humano canónico | Dirección, pruebas contradictorias de estimulación/inhibición e identificadores complejos. Las relaciones agregadas no son una prueba causal específica del tejido. |
+| Estructuras e interacciones → PDBe / PDB | Inspeccione la validación de la estructura experimental o encuentre cadenas de proteínas depositadas similares | Método y métricas faltantes; use label_asym_id, no un ID de cadena de autor. Las puntuaciones de similitud no son una alineación estructural computada o RMSD. |
+| Modelos de cáncer → DepMap / CCLE | Resolver una línea celular a ModelID, después consultar un gen o perfil compuesto | Versión y escala de los datos: Chronos no es una probabilidad; PRISM AUC no es IC50; el ARN se expresa como log2(TPM+1); el número de copias es relativo a la ploidía. |
+| RxNorm / RxNav · DailyMed | Resolver los nombres de las drogas a RxCUIs; inspeccionar las identidades de las etiquetas SPL y la historia de la versión | Mantener identidades ambiguas. Los nombres de coincidencia no establecen equivalencia clínica; un listado DailyMed no establece la aprobación de la FDA. |
+| BioSamples · WikiPathways | Encontrar metadatos de muestra o metadatos de vías y revisiones | Identificador, especie, fechas de origen y evidencia vinculada. Estas búsquedas no descargan archivos de muestras enlazados o gráficos de ruta. |
+
+Usar el [referencia a la operación](../reference/connector-operations.md) para entradas exactas y paginación. Conserve los valores null y las marcas de resultados truncados; un resultado limitado no representa toda la base de datos.
