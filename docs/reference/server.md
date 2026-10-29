@@ -1,7 +1,7 @@
 ---
 title: "Headless service and browser access"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # Headless service and browser access
@@ -29,28 +29,31 @@ Use `open-science init` to prepare the default configuration directory without s
 
 After an intentional `start --no-open`, run `open-science doctor --json`. Inspect overall `ready`, individual checks and suggested next actions; the process exit code alone is not a readiness verdict. Keep the service on its existing authenticated local interface. Starting this headless service does not configure Remote.It or publish a public endpoint.
 
-## Lifecycle commands
+## Lifecycle commands {/* #lifecycle-commands */}
 
-| Command | Result | Options and boundary |
-| --- | --- | --- |
-| `open-science start` | Start the backend and open the browser | Default port 44100 |
-| `open-science start --no-open` | Start without opening a browser | Use for an intentional local service session |
-| `open-science status --json` | Print machine-readable service state | A missing service returns `{"running":false}` and exit code 1 |
-| `open-science url` | Print the authenticated browser URL | Contains local access authority; do not paste into published examples |
-| `open-science stop` | Request authenticated graceful shutdown | Does not blindly signal a PID from a stale state file |
-| `open-science stop --json` | Report the shutdown outcome | See the result table below |
+From v1.0.5, an App connection or an explicit CLI start keeps the service alive. Use the same absolute profile path for all commands.
 
-Among these commands, **status and stop support `--json`; start and url do not**. The local `start --json` check returned `invalid_cli_usage` with exit code 2 before starting anything. For a scripted launch, run `start --no-open`, then `status --json`.
+| Command | Result |
+| --- | --- |
+| `open-science start` | Start or reuse the service, keep it running explicitly, and open the browser |
+| `open-science start --no-open --json` | Set the same persistent hold without opening a browser; return `started` or `already-running`, service information and `lifetime` |
+| `open-science status --json` | Inspect the selected service; a missing service returns `{"running":false}` and exit code 1 |
+| `open-science url` | Print its authenticated browser URL; keep this private |
+| `open-science stop --json` | Release the explicit hold; stop only when no App remains connected |
+| `open-science stop --force --json` | Request a whole-service stop, including connected Apps; may interrupt active tasks |
+
+Repeated `start` calls do not accumulate holds. **start**, **status** and **stop** support `--json`; **url** does not. JSON launch output does not expose the authenticated browser URL. Older services may report an unknown lifetime; use matching versions before relying on the new contract.
 
 ### Shutdown outcomes
 
 | JSON `result` | Meaning |
 | --- | --- |
 | `already-stopped` | No live service record found |
-| `daemon-stopped` | Authenticated Node backend exited; attached clients lose their backend connection |
-| `web-service-stopped` | Legacy Electron web-service outcome, not the new standalone Node backend |
+| `keep-alive-revoked` | Explicit running was revoked, but connected Apps still keep the service alive |
+| `stopped` | The requested service generation exited and released ownership |
+| `shutdown-requested` | A legacy service accepted the request but exit is unconfirmed; the command returns a nonzero exit code |
 
-A rejected request or missed shutdown deadline returns a failure. Read the error and inspect the actual target state. Do not report a service as stopped merely because the command returned.
+Read `result` and `lifetime`; a successful exit code alone does not mean the service stopped. The older `daemon-stopped` and `web-service-stopped` result names are no longer emitted. `--force` requires the modern lifetime protocol and fails explicitly against an older service. Inspect errors and current status instead of deleting state files or killing a recorded PID.
 
 ## Authentication and browser access
 
@@ -90,32 +93,32 @@ Use persistent storage when the configuration must survive container replacement
 
 | Action | Effect on the backend |
 | --- | --- |
-| Close a browser tab | Backend keeps running |
-| Quit the desktop that started the backend | Its owned backend stops with it |
-| Quit a desktop attached to an existing CLI backend | Only that client detaches; the CLI backend keeps running |
-| `open-science stop` | Stop the selected backend, affecting all clients attached to it |
+| Quit the last connected App without an explicit CLI start | Service stops |
+| Run CLI `start`, then quit all Apps | Service keeps running under the explicit hold |
+| Close a browser tab or SDK client | Does not release the explicit hold |
+| Run an ordinary CLI, Web or SDK task | Does not independently keep the service alive after all Apps quit |
+| Run `open-science stop` with an App connected | Release the explicit hold; service continues for the connected App |
+| Run `open-science stop --force` | Request service-wide shutdown, potentially interrupting work |
 
-Closing a window can differ from quitting the app, especially when it remains in the tray. Finish active research before stopping a shared backend, then inspect the actual state with `status --json`.
+If browser or automated work must continue after quitting the desktop, explicitly start the same profile first. Closing a window to the tray is not quitting. Finish active research before a whole-service stop, then check `status --json`.
 
-A disconnected desktop offers **Reconnect** and **Quit app**. Reconnect refreshes the original live backend and does not resubmit work; if that backend is gone, quit and reopen. A disconnected Quit may close only the client, so inspect the selected profile's status before assuming the service stopped. Follow [connection recovery](../guides/troubleshooting.md#connection-recovery), including checking operations whose responses were lost.
+A disconnected desktop offers **Reconnect** and **Quit app**. Reconnect does not resubmit work. Follow [connection recovery](../guides/troubleshooting.md#connection-recovery), and inspect operations whose responses were lost before retrying.
 
 ### Reconnect after an interrupted desktop shutdown {/* #desktop-service-recovery */}
 
-If the desktop exits unexpectedly while its backend survives, reopening a same-version desktop can adopt that desktop-launched service after the old controller and teardown settle. A CLI-launched service remains borrowed; ordinary desktop Quit does not stop it merely because the desktop reconnected.
+Reopen the same-version desktop and reconnect to the original profile. App connections and any explicit CLI hold determine whether that service stays alive; a browser tab alone does not replace either.
 
-If quit preparation fails, the window stays open. Read the notice, preserve unsaved work and wait for the conversation to recover before checking the original run and files. An open window does not mean the task was cancelled. If startup reports an older standalone service blocking it, check the profile and version before choosing the explicit stop action. Cancel leaves that service running; a failed stop can be retried or rechecked without deleting lock files.
+If quit preparation fails, the window stays open. Preserve unsaved work and inspect the original task after recovery. If startup reports an older service blocking it, check the profile, version and active clients before choosing its explicit stop action. Cancel leaves the service running. A failed stop can be retried or rechecked without deleting lock files.
 
-## Application update behavior
+## Application update behavior {/* #application-update-behavior */}
 
-v1.0.0 removes the CLI application updater; do not use `open-science update --json`. Use the desktop update controls or the original installer/package manager, observing [current release availability](../guides/installation.md#standalone-cli).
+The CLI application updater remains removed; do not use `open-science update --json`. Use [desktop update controls or the original installation channel](../guides/installation.md#manual-update).
 
-- **Desktop app:** finish active research before checking updates. If updating while attached to a CLI service asks to stop it and switch to desktop management, check the profile and affected tasks before consenting. Cancel leaves the original service running. This switch does not upgrade the original standalone CLI program files.
-- **Standalone CLI installation:** stop every profile using it, then install an actually published package through its original channel. Do not overwrite running files or reopen a profile with an old backend after a newer desktop has written to it.
-- **Occupancy or recovery notice:** follow the displayed checks for active instances and installation state. Do not delete locks, configuration or recovery records to force an update when shutdown is uncertain.
+Before replacing standalone CLI files, finish work in every profile using that installation. Quit its connected Apps and release each profile's explicit hold with `stop --json`. Confirm `stopped` or `already-stopped`; `keep-alive-revoked` means an App still keeps the service running. Use `stop --force` only when you intend to stop all clients' work. Do not overwrite running program files.
 
-After upgrading, confirm the version and original data, then use `status --json` and `doctor --json` to inspect service state and readiness. Preserve the credential-store mode. [1.x compatibility](../guides/installation.md#version-compatibility) does not promise mixed desktop/backend versions.
+A desktop update may ask to stop an attached CLI service and switch to desktop management. Check the profile and affected tasks before consenting; cancelling leaves it running. This does not update the original standalone CLI program files. Follow occupancy and recovery notices without deleting locks or configuration.
 
-See the [official runtime guide](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md), [CLI](cli.md) and [Task SDK](api.md).
+After upgrading, confirm the version and original data, then inspect `status --json` and `doctor --json`. Preserve the credential-store mode. [1.x compatibility](../guides/installation.md#version-compatibility) does not promise mixed desktop/backend versions. See the [official runtime guide](https://github.com/aipoch/open-science/blob/v1.0.5/docs/standalone-runtime.md), [CLI](cli.md) and [Task SDK](api.md).
 
 ## Compute in the web workspace {/* #web-compute */}
 
@@ -123,4 +126,4 @@ The standalone web workspace exposes **Compute** when its backend provides the r
 
 ## Packages and external tool clients {/* #local-research-tools */}
 
-Authenticated local web sessions can [import and export research packages](../guides/research-packages.md#local-package-transfer); remote web sessions cannot perform these arbitrary-path transfers. To expose research tools to an external client on the same machine, configure the [stdio MCP adapter](cli.md#external-mcp). It connects to an already-running local service and uses that profile's permissions; it does not create a remote MCP URL.
+Authenticated local Web sessions can [upload and download research packages](../guides/research-packages.md#local-package-transfer); remote Web sessions do not gain this transfer capability. To connect an external tool client on the same machine, configure the [stdio MCP adapter](cli.md#external-mcp). It uses an already-running local service and that profile's permissions; it does not create a remote MCP URL.

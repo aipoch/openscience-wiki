@@ -2,7 +2,7 @@
 title: "Connector 操作引數參考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標爲 **必填**，本頁與下載目錄依據 Open-Science **v1.0.4** 的結構定義。以嵌套的 `input.required` 爲準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.4.json">完整註冊表下載</ExampleDownload>提供嵌套 JSON、完整返回說明和準確 Agent 側調用示例。工具要求 `accessions`、`cids`、`rs_id` 等專用字段時，不要統一改爲 `id`。
+每次展開一個 Connector。必填項標爲 **必填**，本頁與下載目錄依據 Open-Science **v1.0.5** 的結構定義。以嵌套的 `input.required` 爲準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.5.json">完整註冊表下載</ExampleDownload>提供嵌套 JSON、完整返回說明和準確 Agent 側調用示例。工具要求 `accessions`、`cids`、`rs_id` 等專用字段時，不要統一改爲 `id`。
 
 ## 化學 {/* #family-1 */}
 
@@ -813,6 +813,45 @@ const result = await host.mcp("genes", "get_hgnc_gene", {"symbol": "BRCA1"})
 
 ```javascript
 const result = await host.mcp("genes", "resolve_hgnc_alias", {"symbol": "P53"})
+```
+
+### `get_hgnc_service_info` {/* #genes-get_hgnc_service_info */}
+
+讀取 HGNC 官方 REST 服務元數據、可檢索字段和存儲字段；與已有 HGNC 查詢共用請求限制，不要求密鑰。
+
+無需輸入字段；傳入空對象。
+
+```javascript
+const result = await host.mcp("genes", "get_hgnc_service_info", {})
+```
+
+### `query_hgnc_field` {/* #genes-query_hgnc_field */}
+
+按已記錄的 HGNC 字段取記錄或檢索，包括歷史符號和外部標識。search 返回索引標識，fetch 返回存儲記錄；保留歧義和有效或撤回狀態，不靜默選定一個基因。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `mode` | string | 可選; default: &quot;fetch&quot;; enum: &#91;&quot;fetch&quot;, &quot;search&quot;&#93; |
+| `field` | string | **必填**; enum: &#91;&quot;symbol&quot;, &quot;alias_symbol&quot;, &quot;prev_symbol&quot;, &quot;name&quot;, &quot;hgnc_id&quot;, &quot;entrez_id&quot;, &quot;ensembl_gene_id&quot;&#93; |
+| `value` | string | **必填**; minLength: 1; maxLength: 300 |
+| `max_rows` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("genes", "query_hgnc_field", {"field": "entrez_id", "value": "7157", "mode": "fetch"})
+```
+
+### `list_hgnc_files` {/* #genes-list_hgnc_files */}
+
+列出 HGNC 官方公開存儲桶中的對象、大小、身份或校驗信息及分頁令牌。僅發現下載鏈接，不下載文件或創建本地狀態；ETag 不是 SHA256 校驗和。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `prefix` | string | 可選; default: &quot;hgnc/tsv/tsv/&quot;; maxLength: 200; pattern: &quot;^hgnc/&#91;A-Za-z0-9_./-&#93;*$&quot; |
+| `cursor` | string | 可選; default: &quot;&quot;; maxLength: 4096 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("genes", "list_hgnc_files", {"prefix": "hgnc/tsv/tsv/", "limit": 5})
 ```
 
 </ToolOperationGroup>
@@ -2769,6 +2808,19 @@ const result = await host.mcp("drug-regulatory", "count_drug_adverse_events", {"
 
 ```javascript
 const result = await host.mcp("drug-regulatory", "search_drug_recalls", {"reason_for_recall": "contamination", "max_records": 10})
+```
+
+### `list_faers_bulk_files` {/* #drug-regulatory-list_faers_bulk_files */}
+
+讀取 openFDA 官方 drug/event 批量 JSON 分區清單。文件保留在官方 URL，不下載、不創建本地任務或分析數據庫；報告不是發生率估計。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `offset` | integer | 可選; default: 0; minimum: 0; maximum: 100000 |
+| `limit` | integer | 可選; default: 20; minimum: 1; maximum: 200 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "list_faers_bulk_files", {"offset": 0, "limit": 5})
 ```
 
 </ToolOperationGroup>
@@ -5598,6 +5650,60 @@ const result = await host.mcp("cellosaurus", "search_cell_lines", {"query": "HeL
 const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
 ```
 
+### `get_cell_line_rdf` {/* #cellosaurus-get_cell_line_rdf */}
+
+通過 Cellosaurus 官方解析服務獲取一個 accession 的 RDF。RDF 文本保留在本次返回結果中，不建立 Connector 文件倉庫或下載本體庫。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `accession` | string | **必填**; pattern: &quot;^CVCL_&#91;A-Z0-9&#93;&#123;4&#125;$&quot; |
+| `format` | string | 可選; default: &quot;ttl&quot;; enum: &#91;&quot;ttl&quot;, &quot;rdf&quot;, &quot;jsonld&quot;&#93; |
+
+```javascript
+const result = await host.mcp("cellosaurus", "get_cell_line_rdf", {"accession": "CVCL_0030", "format": "ttl"})
+```
+
+### `query_knowledge_graph` {/* #cellosaurus-query_knowledge_graph */}
+
+對 Cellosaurus 官方圖執行有邊界的 SPARQL SELECT 查詢。僅支持無 SERVICE、FROM 或更新操作的 PREFIX/SELECT 查詢；輸入查詢會被嵌套並限制行數，不會因零結果而擴大範圍。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 1; maxLength: 12000 |
+| `max_rows` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellosaurus", "query_knowledge_graph", {"query": "SELECT ?s WHERE { ?s a <http://www.w3.org/2002/07/owl#Class> }", "max_rows": 2})
+```
+
+### `search_str_similarity` {/* #cellosaurus-search_str_similarity */}
+
+將明確輸入的細胞系 STR 圖譜交給官方 CLASTR 服務比較，標記等位基因會發送上游。相似度取決於位點與評分選項，不能據此認證樣本身份或無污染。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `markers` | object | **必填** |
+| `species` | string | 可選; default: &quot;human&quot;; enum: &#91;&quot;human&quot;, &quot;mouse&quot;, &quot;dog&quot;&#93; |
+| `algorithm` | integer | 可選; default: 1; enum: &#91;1, 2, 3&#93; |
+| `scoring_mode` | integer | 可選; default: 1; enum: &#91;1, 2, 3&#93; |
+| `score_filter` | integer | 可選; default: 70; minimum: 0; maximum: 100 |
+| `min_markers` | integer | 可選; default: 8; minimum: 1; maximum: 50 |
+| `max_results` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellosaurus", "search_str_similarity", {"markers": {"D5S818": "12,13"}, "min_markers": 1, "max_results": 2})
+```
+
+### `list_cellosaurus_files` {/* #cellosaurus-list_cellosaurus_files */}
+
+發現 Cellosaurus 官方數據文件鏈接，不會自動下載或持久保存本體、文件或數據集。
+
+無需輸入字段；傳入空對象。
+
+```javascript
+const result = await host.mcp("cellosaurus", "list_cellosaurus_files", {})
+```
+
 </ToolOperationGroup>
 
 ## PDC {/* #family-34 */}
@@ -6124,6 +6230,206 @@ const result = await host.mcp("wikipathways", "search_pathways", {"query": "glyc
 
 ```javascript
 const result = await host.mcp("wikipathways", "get_pathway", {"id": "WP534"})
+```
+
+</ToolOperationGroup>
+
+## Europe PMC {/* #family-43 */}
+
+<ToolOperationGroup>
+<summary>顯示操作與參數</summary>
+
+### `search_europepmc` {/* #europepmc-search_europepmc */}
+
+直接使用布爾、字段和日期語法檢索 Europe PMC，返回核心記錄、實際可用摘要和明確的分頁遊標；不要求 NCBI Key 或聯繫郵箱。全文鏈接不等於已取得全文，可用已有全文工具繼續查詢 PMC 標識。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `query` | string | **必填**; minLength: 1; maxLength: 12000 |
+| `page_size` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+| `cursor` | string | 可選; default: &quot;*&quot;; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("europepmc", "search_europepmc", {"query": "TP53 AND liver fibrosis", "page_size": 5})
+```
+
+</ToolOperationGroup>
+
+## Research Datasets {/* #family-44 */}
+
+<ToolOperationGroup>
+<summary>顯示操作與參數</summary>
+
+### `get_dataset_access` {/* #research-datasets-get_dataset_access */}
+
+讀取 NHANES、CHARLS、CHNS、SEER、MIMIC、eICU、FAERS、GBD 的官方訪問要求與入口。這是訪問說明，不是賬號權限檢查、批准或數據查詢；獲取數據前應重查官方條款。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `dataset` | string | **必填**; enum: &#91;&quot;nhanes&quot;, &quot;charls&quot;, &quot;chns&quot;, &quot;seer&quot;, &quot;mimic&quot;, &quot;eicu&quot;, &quot;faers&quot;, &quot;gbd&quot;&#93; |
+
+```javascript
+const result = await host.mcp("research-datasets", "get_dataset_access", {"dataset": "seer"})
+```
+
+### `list_nhanes_files` {/* #research-datasets-list_nhanes_files */}
+
+按調查週期和類別查找 NHANES 官方公開 XPT 文件，返回文件與說明鏈接，不下載文件。來源頁面變化或出現驗證頁時會報錯，不會當作空數據集。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `cycle_begin_year` | integer | **必填**; minimum: 1999; maximum: 2100 |
+| `component` | string | 可選; default: &quot;Demographics&quot;; enum: &#91;&quot;Demographics&quot;, &quot;Dietary&quot;, &quot;Examination&quot;, &quot;Laboratory&quot;, &quot;Questionnaire&quot;&#93; |
+
+```javascript
+const result = await host.mcp("research-datasets", "list_nhanes_files", {"cycle_begin_year": 2017, "component": "Demographics"})
+```
+
+### `list_physionet_demo_files` {/* #research-datasets-list_physionet_demo_files */}
+
+列出官方 MIMIC-IV 2.2 或 eICU 2.0 公開演示數據的文件。僅支持固定的演示位置，不訪問需憑據的項目，不接受任意 URL，也不發送賬號憑據。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `dataset` | string | **必填**; enum: &#91;&quot;mimic&quot;, &quot;eicu&quot;&#93; |
+| `directory` | string | 可選; default: &quot;root&quot;; enum: &#91;&quot;root&quot;, &quot;hosp&quot;, &quot;icu&quot;&#93; |
+
+```javascript
+const result = await host.mcp("research-datasets", "list_physionet_demo_files", {"dataset": "mimic", "directory": "hosp"})
+```
+
+</ToolOperationGroup>
+
+## ChEA3 {/* #family-45 */}
+
+<ToolOperationGroup>
+<summary>顯示操作與參數</summary>
+
+### `rank_transcription_factors` {/* #chea3-rank_transcription_factors */}
+
+向官方 ChEA3 富集接口提交公開基因符號列表，分別返回各來源庫的排名。排名和分數用於提出假設，不是因果驗證；請求僅提交一次，不會列明全部被識別的輸入基因。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `genes` | array | **必填**; minItems: 1; maxItems: 2000 |
+| `query_name` | string | 可選; default: &quot;query&quot;; minLength: 1; maxLength: 100 |
+| `top_n` | integer | 可選; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("chea3", "rank_transcription_factors", {"genes": ["FOXM1", "SMAD9", "MYC", "SMAD3", "STAT1", "STAT3"], "top_n": 5})
+```
+
+### `list_gmt_libraries` {/* #chea3-list_gmt_libraries */}
+
+從 ChEA3 官方下載頁發現 GMT 文件鏈接。主要、附加和基準測試庫可能不同；可下載的庫未必是在線結果使用的庫。此操作不會下載文件。
+
+無需輸入字段；傳入空對象。
+
+```javascript
+const result = await host.mcp("chea3", "list_gmt_libraries", {})
+```
+
+</ToolOperationGroup>
+
+## bioDBnet {/* #family-46 */}
+
+<ToolOperationGroup>
+<summary>顯示操作與參數</summary>
+
+### `list_input_types` {/* #biodbnet-list_input_types */}
+
+調用 bioDBnet 官方 getinputs 操作，查詢支持的輸入類型；轉換前先確認類型名稱。保留未映射和多結果，不把缺失解釋爲不存在生物學對應關係。
+
+無需輸入字段；傳入空對象。
+
+```javascript
+const result = await host.mcp("biodbnet", "list_input_types", {})
+```
+
+### `list_output_types` {/* #biodbnet-list_output_types */}
+
+調用 bioDBnet 官方 getoutputsforinput 操作，查詢某輸入類型支持的輸出類型。保留未映射和多結果，不把缺失解釋爲不存在生物學對應關係。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `input_type` | string | **必填**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+
+```javascript
+const result = await host.mcp("biodbnet", "list_output_types", {"input_type": "genesymbol"})
+```
+
+### `convert_ids` {/* #biodbnet-convert_ids */}
+
+調用 bioDBnet 官方 db2db 操作轉換標識。先確認類型名稱，保留未映射和一對多結果；沒有映射不代表不存在生物學對應關係。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `input_type` | string | **必填**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+| `values` | array | **必填**; minItems: 1; maxItems: 200 |
+| `outputs` | array | **必填**; minItems: 1; maxItems: 20 |
+| `taxon_id` | integer | 可選; default: 9606; minimum: 1; maximum: 100000000 |
+
+```javascript
+const result = await host.mcp("biodbnet", "convert_ids", {"input_type": "genesymbol", "values": ["TP53"], "outputs": ["geneid"], "taxon_id": 9606})
+```
+
+### `recognize_ids` {/* #biodbnet-recognize_ids */}
+
+調用 bioDBnet 官方 dbfind 操作識別標識並取得指定類型的結果。先確認支持的類型，保留未映射和多結果。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `values` | array | **必填**; minItems: 1; maxItems: 200 |
+| `output_type` | string | **必填**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+| `taxon_id` | integer | 可選; default: 9606; minimum: 1; maximum: 100000000 |
+
+```javascript
+const result = await host.mcp("biodbnet", "recognize_ids", {"values": ["TP53"], "output_type": "geneid"})
+```
+
+### `map_orthologs` {/* #biodbnet-map_orthologs */}
+
+調用 bioDBnet 官方 dbortho 操作映射同源基因。先確認類型和物種，保留一對多及未映射結果；不要自動選定一個同源基因。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `input_type` | string | **必填**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+| `values` | array | **必填**; minItems: 1; maxItems: 200 |
+| `input_taxon` | integer | 可選; default: 9606; minimum: 1; maximum: 100000000 |
+| `output_taxon` | integer | 可選; default: 10090; minimum: 1; maximum: 100000000 |
+| `output_type` | string | **必填**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+
+```javascript
+const result = await host.mcp("biodbnet", "map_orthologs", {"input_type": "genesymbol", "values": ["TP53"], "output_type": "genesymbol", "input_taxon": 9606, "output_taxon": 10090})
+```
+
+### `list_pathways` {/* #biodbnet-list_pathways */}
+
+調用 bioDBnet 官方 getpathways 操作取得通路列表，可指定物種。缺失結果不能證明不存在對應通路。
+
+| 字段 | 類型 | 必填性與限制 |
+| --- | --- | --- |
+| `taxon_id` | integer | 可選; default: 9606; minimum: 1; maximum: 100000000 |
+
+```javascript
+const result = await host.mcp("biodbnet", "list_pathways", {"taxon_id": 9606})
+```
+
+</ToolOperationGroup>
+
+## CTD {/* #family-47 */}
+
+<ToolOperationGroup>
+<summary>顯示操作與參數</summary>
+
+### `list_ctd_reports` {/* #ctd-list_ctd_reports */}
+
+返回維護的 CTD 官方公開報告入口子集與來源條款。靜態目錄不確認實時可用性，也不提供 CTD 網頁查詢。請到官方頁面獲取文件；遇到人工驗證時停止自動訪問。
+
+無需輸入字段；傳入空對象。
+
+```javascript
+const result = await host.mcp("ctd", "list_ctd_reports", {})
 ```
 
 </ToolOperationGroup>

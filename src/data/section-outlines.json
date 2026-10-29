@@ -1433,6 +1433,17 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v105",
+            "title": "v1.0.5",
+            "scope": "Reading status, browser research packages, service lifetime and scientific file discovery.",
+            "currentDoc": "changelog/v1-0-5",
+            "proposedUrl": "/docs/changelog/v1-0-5/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-0-5"
+            ]
+          },
+          {
             "id": "v104",
             "title": "v1.0.4",
             "scope": "External MCP clients, publication notices, compact conversations and local file imports.",

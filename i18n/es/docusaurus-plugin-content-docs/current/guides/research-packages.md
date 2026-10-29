@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -143,15 +143,33 @@ Para los autores del sitio web, [guía SDK navegador-import](https://github.com/
 
 ## Utilice paquetes de la aplicación CLI o web local {/* #local-package-transfer */}
 
-Desde v1.0.3, el CLI y la aplicación web local autenticada pueden utilizar paquetes de sesión. En la aplicación web local, utilice los controles de exportación de sesiones o importación en proyectos y proporcione una ruta en el ordenador que ejecute el servicio cuando se le solicite. Las sesiones web remotas no pueden usar transferencia de paquetes arbitrarios. El desvío de sitio web a escritorio arriba es un flujo separado.
+De v1.0.5, el autentificado **local Web** utiliza los controles del navegador para subir y descargar los `.science` paquetes. Las sesiones web remotas no obtienen esta capacidad. El [sitio web a escritorio](#browser-import) sigue siendo un flujo separado.
 
-Para el CLI, inicie el perfil local previsto primero y espere hasta que la sesión de origen esté ociosa. Sustitúyase los IDs y caminos a continuación por su cuenta:
+### Subir o descargar en Web local {/* #web-package-transfer */}
+
+1. Abra el espacio de trabajo local y espere a que la sesión de origen esté inactiva. En su menú, seleccione **Export → Export Session package**, elija el contenido y pulse **Choose save location…** para preparar el paquete.
+2. Espera a que el paquete termine de prepararse. Seleccione **Download** junto al nombre de archivo del paquete completo, a continuación, guardarlo a través del navegador. Un paquete de backend preparado todavía no es una descarga del navegador guardado; comprobar el descargado `.science` archivo antes de compartirlo.
+3. Para importar, utilice el control de importación de paquetes del proyecto y seleccione un `.science` archivo de tu computadora. Espere a subir y validar, revise el paquete y el proyecto de destino, a continuación, confirme la importación.
+4. Abra la sesión importada y revise sus archivos. El registro de investigación es de solo lectura. Para continuarlo, abra el mismo espacio de trabajo en la aplicación de escritorio y seleccione **Fork to continue**. Fork no está disponible en Web.
+
+![Paquete preparado con el botón Download del navegador](/img/open-science/v105/package-download.webp)
+
+Si la carga, descarga o importación falla, inspeccione el resultado mostrado y el destino antes de reintentar. No trate un archivo recibido o una carga exitosa como una importación completa.
+
+### Use el CLI {/* #cli-package-transfer */}
+
+Comience el perfil local indicado primero y espere hasta que la sesión de origen esté ociosa. Reemplaza estos IDs y caminos por tu cuenta:
 
 ```bash
 open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
-open-science session import ./session.science --new-project "Restored research" --non-interactive --json
 ```
 
-La exportación requiere un explícito `.science` ruta de salida. La importación requiere **--non-interactive**, que confirma la vista previa en su nombre: inspeccionar el origen del paquete y destino previsto primero. Elija **--project** para un proyecto existente o **--new-project** para uno nuevo, nunca ambos. Omitir ambos crea un proyecto usando el nombre del proyecto del paquete. El plazo de solicitud predeterminado es de una hora; ajustar **--timeout-ms** para una transferencia grande.
+La exportación requiere una ruta de salida `.science` explícita. El plazo predeterminado es de una hora; use **--timeout-ms** para transferencias grandes y compruebe la ruta devuelta. En **v1.0.5**, importe archivos locales mediante la [carga en Web local](#web-package-transfer) o la aplicación de escritorio. La ruta de `session import` del CLI puede rechazarse antes de validar el paquete.
 
-Compruebe el camino guardado o la sesión importada en el resultado. La investigación importada sigue siendo sólo lectura; uso **Fork** para continuar. En v1.0.4, la exportación también fija una espera que podría permanecer después de seleccionar la ubicación de guardado.
+## Inicio de un caso de investigación de página principal {/* #use-case-gallery */}
+
+En la página principal, elija **Details** en una tarjeta de caso para leer su página de caso oficial. Elija **Import** para descargar su paquete de investigación. Seguir los progresos en la preparación, descarga y verificación; **Cancel** detiene una transferencia no deseada. Si el paquete está esperando un destino, **Continue** reabre el diálogo de importación.
+
+Revisa el proyecto de destino y confirma la importación. Abrir el resultado, inspeccionar las entradas y salidas, luego utilizar **Fork to continue** en la aplicación de escritorio para su propia pregunta. Descargar verificación comprueba la transferencia del paquete; no valida las conclusiones científicas del caso o suministra sus credenciales modelo.
+
+![Revisar un paquete de la galería oficial antes de importarlo](/img/open-science/v105/package-preview.webp)

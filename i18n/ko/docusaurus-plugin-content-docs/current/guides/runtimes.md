@@ -1,7 +1,7 @@
 ---
 title: "Python 및 R 실행 시간"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -356,3 +356,9 @@ WSL2 배포 및 정확한 비 루트 **Linux user**을 선택한 다음 **Save a
 readiness가 실패하면,보고 된 이유를 유지하고 PowerShell을 계속하여 해결합니다. 설치 WSL 구성 요소는 Windows 관리자 승인이 필요할 수 있습니다. 이 미리보기는 Python/R Notebook 해석기를 선택하여 분리됩니다.
 
 </PlatformContent>
+
+## Windows에 Bioconductor 패키지 설치 {/* #windows-bioconductor */}
+
+Bioconda는 Windows 패키지를 제공하지 않습니다. 앱 관리형 Windows R에서는 Agent에게 Notebook 패키지 설치기의 `installer="biocmanager"`를 사용하도록 요청하고 `DESeq2`와 같은 대소문자를 유지합니다. 승인 전 대상 환경을 확인하고 Linux 전용 `bioconductor-*` Conda 이름이나 무관한 시스템 R 라이브러리 설치로 대체하지 마세요.
+
+결과와 해당 환경의 **Packages** 목록을 확인한 뒤 같은 R 환경에서 패키지를 로드합니다. 의존성이나 컴파일 오류는 해결해야 합니다. BiocManager 선택 자체는 설치 성공을 보장하지 않습니다. 외부 R은 기존 [라이브러리 권한](#external-r-packages)을 따릅니다.

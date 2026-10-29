@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -411,8 +411,23 @@ Follow each attachment's download progress. For an archive, select the files to 
 
 ## Check retractions and corrections {/* #publication-checks */}
 
-1. Open a reference with one valid DOI. Under **More actions → Retractions and corrections**, select **Check retractions and corrections**.
-2. The action sends that DOI to Crossref. Read the returned notice type, source, date and linked notice; check the notice itself before changing how you use the paper.
-3. The result and **Last checked** time are saved with the reference. Reopening the panel shows the saved observation; run another check when you need fresh information.
+1. Open a reference with one valid DOI. Choose **More actions → Retractions and corrections**, then **Check now**. Use **Check again** to refresh a saved result, or **Retry** after an error.
+2. The check sends that DOI to Crossref. Read each notice's type, source, date and DOI link; open the notice before changing how you use the paper.
+3. Read **Last checked** beside the saved result. Reopening the panel shows the earlier observation, not a new query.
 
-**No related notices found** means the query returned no notices, not that the paper is unaffected. Crossref coverage is incomplete. Checks do not rewrite bibliographic metadata or screening decisions. If a refresh fails, the previous successful result remains: read its date and retry later.
+**No related notices found** means the query returned no notices, not that the paper is unaffected. Crossref coverage is incomplete. Checks do not rewrite bibliographic metadata or screening decisions. If refreshing fails, inspect the date of the previous successful result and retry later.
+
+![A saved Crossref check and its Last checked time](/img/open-science/v105/publication-check.webp)
+
+## Track your reading progress {/* #reading-status */}
+
+Reading status is your own annotation. Opening a PDF, attaching it or asking the Agent to read it does not mark the paper as read.
+
+1. In the Library, use **Customize** to show the **Status** column if it is hidden. Select a row's status, or open the reference's details and its **Reading status** control.
+2. Choose **Unread**, **Reading** or **Read**. Records without a saved status start as **Unread**.
+3. For several papers, select the intended rows and choose **Set reading status** in the bulk actions. Check the selected count; use [all-matching selection](#loaded-page-selection) only when you intend to include records beyond the loaded page.
+4. Use **Filters → Reading status** to find papers at the same stage. If a changed record leaves the current filtered view, clear the filter to find it again.
+
+The status applies to the reference, including its project and collection views. It is separate from smart-collection screening decisions and evidence quality. If saving fails, keep the existing status and retry after checking the current record.
+
+![Filtering the Library by Reading status](/img/open-science/v105/reading-filter.webp)

@@ -1,7 +1,7 @@
 ---
 title: "Rétroviseurs de réseau, de proxies et de paquets"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # Rétroviseurs de réseau, de proxies et de paquets {/* #network-proxies-and-package-mirrors */}
@@ -121,3 +121,9 @@ Après avoir modifié les paramètres de domaine proxy, miroir ou Notebook, conf
 ## Une cellule R a été bloquée avant exécution {/* #r-network-warning */}
 
 Dans v0.31.1, Notebook affiche un avertissement en ligne lorsque la protection réseau bloque une exécution R. Suivez son lien de réglage et inspectez l'accès demandé. L'avertissement signifie que la cellule n'a pas exécuté; il n'est pas un résultat scientifique ou une course terminée. Après avoir résolu l'exigence spécifique, exécutez à nouveau la cellule et inspectez sa sortie. La prise en charge standard R en mode Windows n'autorise pas elle-même la protection réseau.
+
+## Accès au réseau lorsque le mode d'approbation change {/* #network-mode-changes */}
+
+de v1.0.5, **Full access** permet des destinations réseau publiques sans carte d'autorisation individuelle. D'autres authentifications, restrictions de source et vérifications du service privé s'appliquent encore. Le passage à un mode plus restrictif ferme les connexions existantes de sorte qu'elles ne peuvent pas continuer sous l'ancienne autorisation. Réessayez la demande prévue sous le nouveau mode et examinez toute carte de permission qu'elle présente.
+
+Les autorisations réseau globales apparaissent dans **Settings → Network** immédiatement. Inspectez la liste du domaine ou du service privé avant d'ajouter une autre règle. Une subvention globale est plus large qu'une approbation ponctuelle; ne conservez que la portée que vous comptez. Voir [modes d ' homologation](approval-modes.md).

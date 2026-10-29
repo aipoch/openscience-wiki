@@ -1,7 +1,7 @@
 ---
 title: "Öffnen und Vorschauen von Dateien"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -252,3 +252,9 @@ v1.0.0 verbessert den nativen Tabellen- und Figurenbesitz, einschließlich wiede
 Bei unvollständiger PDF-Suchabdeckung beziehen sich die Treffer nur auf den tatsächlich durchsuchbaren Text. Keine Treffer bedeuten nicht, dass der Ausdruck im gesamten Artikel fehlt. Prüfen Sie die betreffenden Seiten im Original-PDF, besonders Scans, Abbildungen, Gleichungen und Tabellen. Auch bei verbesserter Extraktion und Übersetzung bleibt das Original-PDF die Referenz.
 
 Überprüfen Sie bei DOCX-Vorschauen die fortlaufende Listennummerierung und Tabellenrahmen mit dem heruntergeladenen Dokument, bevor Sie das Ergebnis zitieren oder teilen.
+
+## Bewahren Sie eine Word-Vorlage bei der Erstellung von DOCX {/* #docx-templates */}
+
+Befestigen der `.docx` Vorlage für die Sitzung und bitten Sie den Agenten, einen separaten Bericht zu erstellen, während das Layout, die Tabellenformatierung, die Rahmen und die Seitenstruktur beibehalten werden. Geben Sie an, welche Inhalte ersetzt und welche Template-Elemente beibehalten werden sollen. v1.0.5 verbessert diese Erhaltung; es macht nicht jede Vorlage für Word-kompatible Zuschauer identisch.
+
+Öffnen Sie die generierte Datei in der Vorschau, laden Sie sie dann herunter und prüfen Sie sie in der Word-Anwendung, die Sie für die Lieferung verwenden. Überprüfen Sie Tabellenbreiten, Seitenumbrüche, Kopfzeilen, Fußzeilen und langen Text vor dem Teilen. Behalten Sie die Originalvorlage, damit die Ausgabe verglichen und überarbeitet werden kann.

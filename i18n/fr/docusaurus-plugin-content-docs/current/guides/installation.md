@@ -1,7 +1,7 @@
 ---
 title: "Installation et mises à jour"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,7 +12,7 @@ La plupart des utilisateurs doivent installer le paquet de bureau à partir de G
 
 <PlatformGuide />
 
-**Les paquets actuels &amp; #160;:** [v1.0.4 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.4) inclure les installateurs de bureau, les archives CLI autonomes et CLI Linux `.deb`/`.rpm` les colis. Choisissez le type d'installation et l'architecture prévus, puis vérifiez le somme de contrôle de la même version. Le lanceur de bureau reste disponible via **Settings → General → Command line tool → Install command**.
+**Les paquets actuels &amp; #160;:** [v1.0.5 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.5) inclure les installateurs de bureau, les archives CLI autonomes et CLI Linux `.deb`/`.rpm` les colis. Choisissez le type d'installation et l'architecture prévus, puis vérifiez le somme de contrôle de la même version. Le lanceur de bureau reste disponible via **Settings → General → Command line tool → Install command**.
 
 ## Choisir une méthode d'installation {/* #choose-an-installation-method */}
 
@@ -67,7 +67,7 @@ Les installateurs officiels Windows sont signés par code depuis v0.33.2; v0.33.
 | Ubuntu / Debian | `uname -m`: `x86_64` signifie x64, `aarch64` signifie ARM64 | Choisissez la correspondance `.deb`, l'ouvrir avec l'installateur du paquet système, puis lancer à partir du menu d'application |
 | Autres distributions prises en charge par Linux | Vérifier `uname -m` | Choisissez la correspondance `.AppImage`, permettre l'exécution dans les permissions du fichier, puis l'ouvrir; résoudre toute erreur de dépendance signalée par la distribution |
 
-v1.0.4 fournit Linux **x64 et ARM64** les colis. Pour ARM64, sélectionnez `aipoch-open-science-1.0.4-linux-arm64.AppImage` ou `aipoch-open-science_1.0.4_arm64.deb`. Les homologues x64 sont `aipoch-open-science-1.0.4-linux-x86_64.AppImage` et `aipoch-open-science_1.0.4_amd64.deb`. Télécharger à partir des actifs officiels de la publication sélectionnée et correspondre au résultat de `uname -m`.
+v1.0.5 fournit Linux **x64 et ARM64** les colis. Pour ARM64, sélectionnez `aipoch-open-science-1.0.5-linux-arm64.AppImage` ou `aipoch-open-science_1.0.5_arm64.deb`. Les homologues x64 sont `aipoch-open-science-1.0.5-linux-x86_64.AppImage` et `aipoch-open-science_1.0.5_amd64.deb`. Télécharger à partir des actifs officiels de la publication sélectionnée et correspondre au résultat de `uname -m`.
 
 </PlatformContent>
 
@@ -75,7 +75,7 @@ Le dossier d’installation contient l’application ; **Data location**, dans l
 
 ### Utiliser le standalone CLI {/* #standalone-cli */}
 
-Pour une installation terminal/browser, téléchargez une archive CLI autonome correspondante depuis [v1.0.4](https://github.com/aipoch/open-science/releases/tag/v1.0.4). Il regroupe Node, le moteur et l'interface utilisateur Web. Extraire le répertoire complet, puis suivre [Configuration CLI](../reference/cli.md#terminal-setup). Gardez le CLI et le moteur de la même installation ensemble.
+Pour une installation terminal/browser, téléchargez une archive CLI autonome correspondante depuis [v1.0.5](https://github.com/aipoch/open-science/releases/tag/v1.0.5). Il regroupe Node, le moteur et l'interface utilisateur Web. Extraire le répertoire complet, puis suivre [Configuration CLI](../reference/cli.md#terminal-setup). Gardez le CLI et le moteur de la même installation ensemble.
 
 #### Accueilrew CLI {/* #homebrew-cli */}
 
@@ -83,35 +83,35 @@ Installer ou gérer le Homebrew CLI avec `brew install aipoch/tap/open-science`,
 
 #### Paquets Linux CLI {/* #linux-cli-packages */}
 
-Pour utiliser le terminal/navigateur Linux, choisissez **open-science-cli**, séparément des **aipoch-open-science** paquet de bureau. Télécharger le paquet correspondant et `CLI-PACKAGE-SHA256SUMS.txt` de [v1.0.4 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.4), puis vérifier avant l'installation.
+Pour utiliser le terminal/navigateur Linux, choisissez **open-science-cli**, séparément des **aipoch-open-science** paquet de bureau. Télécharger le paquet correspondant et `CLI-PACKAGE-SHA256SUMS.txt` de [v1.0.5 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.5), puis vérifier avant l'installation.
 
-| Distribution / architecture | v1.0.4 Actifs CLI |
+| Distribution / architecture | v1.0.5 Actifs CLI |
 | --- | --- |
-| Debian / Ubuntu, x64 | `open-science-cli_1.0.4_amd64.deb` |
-| Debian / Ubuntu, ARM64 | `open-science-cli_1.0.4_arm64.deb` |
-| Fedora, x64 | `open-science-cli-1.0.4-1.x86_64.rpm` |
-| Fedora, ARM64 | `open-science-cli-1.0.4-1.aarch64.rpm` |
+| Debian / Ubuntu, x64 | `open-science-cli_1.0.5_amd64.deb` |
+| Debian / Ubuntu, ARM64 | `open-science-cli_1.0.5_arm64.deb` |
+| Fedora, x64 | `open-science-cli-1.0.5-1.x86_64.rpm` |
+| Fedora, ARM64 | `open-science-cli-1.0.5-1.aarch64.rpm` |
 
 Installez le fichier téléchargé avec le gestionnaire de paquets approprié. Ces exemples utilisent x64; utiliser le nom de fichier ARM64 le cas échéant.
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ./open-science-cli_1.0.4_amd64.deb
+sudo apt install ./open-science-cli_1.0.5_amd64.deb
 # Fedora: use this instead of the apt command
-sudo dnf install ./open-science-cli-1.0.4-1.x86_64.rpm
+sudo dnf install ./open-science-cli-1.0.5-1.x86_64.rpm
 ```
 
 Exécutez `open-science-cli start --no-open`, puis `open-science-cli status --json`. Une fois exécuté, utilisez `open-science-cli url` pour ouvrir l'interface Web locale authentifiée; Gardez cette URL privée. Continuer avec [Configuration de CLI](../reference/cli.md#terminal-setup) pour la configuration du modèle et les vérifications `doctor`, en remplaçant `open-science` par `open-science-cli` dans ces commandes.
 
 Le paquet regroupe Node, le moteur et l'interface utilisateur Web. Il n'installe pas Python/R ou crée un service système démarré automatiquement. Les conditions préalables de stockage et de bac à sable de l'OS s'appliquent toujours; Voir [identifiants Linux sans tête](../reference/server.md). Utilisez `open-science-cli` explicitement lorsqu'un lanceur de bureau est également installé.
 
-Avant de mettre à niveau ou de retirer le paquet, terminer le travail et arrêter **chaque profil commencé par ce paquet**. Installez le prochain paquet téléchargé via apt/dnf; il n'y a pas de dépôt AIPOCH apt/dnf configuré par cette installation. La suppression des paquets préserve les données de recherche et les références. Les [guide officiel de l'emballage](https://github.com/aipoch/open-science/blob/v1.0.4/docs/standalone-runtime.md#linux-cli-distribution-packages) décrit les conflits de commande et les exigences de la plate-forme.
+Avant de mettre à niveau ou de retirer le paquet, terminer le travail et arrêter **chaque profil commencé par ce paquet**. Installez le prochain paquet téléchargé via apt/dnf; il n'y a pas de dépôt AIPOCH apt/dnf configuré par cette installation. La suppression des paquets préserve les données de recherche et les références. Les [guide officiel de l'emballage](https://github.com/aipoch/open-science/blob/v1.0.5/docs/standalone-runtime.md#linux-cli-distribution-packages) décrit les conflits de commande et les exigences de la plate-forme.
 
 ### Exécuter à partir de la source {/* #run-from-source */}
 
 Vous avez besoin de Git, Node.js 24, npm, et la plate-forme construit les conditions préalables pour Electron. Installer ou sélectionner un cadre d'agent dans l'application. Pendant l'installation, le dépôt génère le client Prisma, applique les correctifs app et prépare les dépendances natives d'Electron.
 
-Pour une installation source reproductible, choisissez la balise de sortie prévue parmi [Changer de journal](../changelog/v1.0.4.md) avant d'installer des dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
+Pour une installation source reproductible, choisissez la balise de sortie prévue parmi [Changer de journal](../changelog/v1.0.5.md) avant d'installer des dépendances. Un clone par défaut suit la branche plutôt qu'une libération fixe. Enregistrez la balise sélectionnée, le commit source et les versions d'exécution afin qu'une autre personne puisse reproduire l'environnement.
 
 Remplacer `RELEASE_TAG` ci-dessous par la balise exacte affichée sur la version sélectionnée (y compris sa `v` de tête). Pour suivre le développement en cours, omettre `--branch RELEASE_TAG --depth 1`; que la commande suivra la branche par défaut.
 
@@ -128,7 +128,7 @@ Avant d'emballer une construction de production, lancez :
 npm run build
 ```
 
-Utilisez le paquet.json de la balise sélectionnée et [guide d'exécution autonome](https://github.com/aipoch/open-science/blob/v1.0.4/docs/standalone-runtime.md) pour ses objectifs de construction et ses dépendances. `npm run dev:web` développe le point d'entrée Node/Web; `npm run dev` prépare également le client de bureau. Utilisez un répertoire de configuration isolé pour séparer les données de test.
+Utilisez le paquet.json de la balise sélectionnée et [guide d'exécution autonome](https://github.com/aipoch/open-science/blob/v1.0.5/docs/standalone-runtime.md) pour ses objectifs de construction et ses dépendances. `npm run dev:web` développe le point d'entrée Node/Web; `npm run dev` prépare également le client de bureau. Utilisez un répertoire de configuration isolé pour séparer les données de test.
 
 ## Configuration complète pour la première fois {/* #complete-first-time-setup */}
 
@@ -188,14 +188,14 @@ L'interface actuelle et les nouveaux paquets utilisent toujours **Open-Science**
 2. Fermez les instances de bureau / backend en utilisant l'installation, puis mettez à niveau via l'installateur officiel. Préservez le profil original, les données et le magasin de titres de compétence OS.
 3. Réouvrir et vérifier la version, les projets, les sessions, les fichiers, les modèles et les temps d'exécution avant de continuer. Une rétrograde binaire ne retourne pas les données; les binaires plus anciens ne peuvent pas lire les données enregistrées plus récentes.
 
-1.0 conserve les chemins de mise à jour et d'importation existants; le numéro de version ne nécessite pas de réinitialisation du profil. Les [1.x politique de compatibilité](https://github.com/aipoch/open-science/blob/v1.0.4/docs/compatibility.md) couvre les interfaces documentées CLI/SDK et l'automatisation des tâches, les importations à terme de valide `.science` les paquets et les mises à niveau de profil supportées. Il ne garantit pas des réponses de modèle identiques, la disponibilité de tiers ou la reproduction déterministe de toute une session de recherche, ni le transfert de lettres d'identité protégées par OS. Les corrections de sécurité ciblent la dernière version stable.
+1.0 conserve les chemins de mise à jour et d'importation existants; le numéro de version ne nécessite pas de réinitialisation du profil. Les [1.x politique de compatibilité](https://github.com/aipoch/open-science/blob/v1.0.5/docs/compatibility.md) couvre les interfaces documentées CLI/SDK et l'automatisation des tâches, les importations à terme de valide `.science` les paquets et les mises à niveau de profil supportées. Il ne garantit pas des réponses de modèle identiques, la disponibilité de tiers ou la reproduction déterministe de toute une session de recherche, ni le transfert de lettres d'identité protégées par OS. Les corrections de sécurité ciblent la dernière version stable.
 
 ## Installez le CLI avec npm {/* #npm-cli */}
 
 Utiliser Node.js **22.13 ou plus tard** pour le paquet CLI/backend publié. Dans un terminal, installer et inspecter la version invoquée :
 
 ```bash
-npm install --global @aipoch/open-science@1.0.4
+npm install --global @aipoch/open-science@1.0.5
 open-science version --json
 open-science help
 ```
@@ -206,4 +206,12 @@ Ensuite, suivez [configuration du terminal](../reference/cli.md#terminal-setup) 
 
 Dans **Settings → General → About**, choisissez **Check now** et examiner la mise en liberté offerte. La boîte de dialogue de mise à jour maintient les progrès de téléchargement, les notes de publication et la préparation de l'installation ensemble. Le téléchargement n'est pas terminé : vérifiez la version installée après la relance.
 
-Si l'application indique que l'installation automatique n'est pas disponible pour ce canal, conservez le paquet téléchargé et utilisez l'installateur officiel après avoir terminé le travail actif. Les canaux d'installation v1.0.4 restreignent toujours le remplacement automatique; une boîte de dialogue de progression Windows améliorée ne supprime pas cette restriction. Ne forcez pas l'application fermée alors que le nettoyage du carnet est en cours.
+Si l'application indique que l'installation automatique n'est pas disponible pour ce canal, conservez le paquet téléchargé et utilisez l'installateur officiel après avoir terminé le travail actif. Les canaux d'installation v1.0.5 restreignent toujours le remplacement automatique; une boîte de dialogue de progression Windows améliorée ne supprime pas cette restriction. Ne forcez pas l'application fermée alors que le nettoyage du carnet est en cours.
+
+## Installez une mise à jour manuellement {/* #manual-update */}
+
+Dans la boîte de dialogue de mise à jour, ouvrir **Installation instructions**. Utilisation **Download from website** si vous n'avez pas de colis. Pour un installateur téléchargé confirmé, choisissez **Show in Finder**, **Show in File Explorer** ou **Show in file manager**, selon la plateforme. Gardez ce dossier ouvert tout en quittant l'application.
+
+Enregistrer le travail et attendre l'installation active ou le nettoyage pour terminer avant de démarrer un autre installateur. Sur macOS, ouvrez le DMG ou dézipez le paquet et remplacez Open-Science dans Applications. Sous Windows, exécutez l'installateur en utilisant le dossier d'installation existant. Sur Linux, installez le DEB correspondant ou remplacez l'AppImage et conservez la permission exécutable. Suivez les instructions pour votre format de paquet réel.
+
+Si l'installateur est manquant ou a changé, téléchargez-le à nouveau ; révéler un paquet ne l'exécute pas. Réouvrir Open-Science et vérifier **Settings → General → About**, puis confirmez vos projets et données originaux. Lors de la mise à jour des fichiers CLI autonomes, d'abord [vérifier que tous les services concernés ont cessé](../reference/server.md#application-update-behavior).

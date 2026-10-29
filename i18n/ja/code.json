@@ -1817,5 +1817,11 @@
   },
   "docs.outline.reference.v104.scope": {
     "message": "外部 MCP クライアント、出版通知、会話の折りたたみ、ローカルファイル取込。"
+  },
+  "docs.outline.reference.v105.title": {
+    "message": "v1.0.5"
+  },
+  "docs.outline.reference.v105.scope": {
+    "message": "読書状況、ブラウザーでの研究パッケージ、サービスの稼働期間、科学データファイル。"
   }
 }

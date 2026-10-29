@@ -1,7 +1,7 @@
 ---
 title: "Redes, proxies y espejos de paquete"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # Redes, proxies y espejos de paquete {/* #network-proxies-and-package-mirrors */}
@@ -121,3 +121,9 @@ Después de cambiar la configuración de dominio proxy, mirror o Notebook, confi
 ## Una célula R fue bloqueada antes de la ejecución {/* #r-network-warning */}
 
 En v0.31.1, Notebook muestra una advertencia en línea cuando la protección de la red bloquea una carrera R. Siga su enlace de configuración e inspeccione el acceso solicitado. La advertencia significa que la célula no ejecutó; no es un resultado científico o una carrera completa. Después de resolver el requisito específico, ejecute la célula de nuevo e inspeccione su salida. El soporte Windows estándar R no permite la protección de la red.
+
+## Acceso a la red cuando el modo de aprobación cambia {/* #network-mode-changes */}
+
+De v1.0.5, **Full access** permite destinos de red pública sin tarjetas de permiso individuales. Todavía se aplican otras autenticaciones, restricciones de origen y cheques de servicio privado. Cambiar a un modo más restrictivo cierra las conexiones existentes para que no puedan continuar bajo el viejo permiso. Retrocede la solicitud prevista bajo el nuevo modo y revise cualquier tarjeta de permiso que presente.
+
+Los permisos globales de red se reflejan en **Settings → Network** inmediatamente. Inspeccione el dominio actual o la lista de servicios privados antes de añadir otra regla. Una subvención global es más amplia que una aprobación única; mantener sólo el alcance que se propone. Véase [modos de aprobación](approval-modes.md).

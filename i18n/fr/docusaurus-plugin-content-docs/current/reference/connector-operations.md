@@ -2,7 +2,7 @@
 title: "Référence de fonctionnement Connector"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Les noms de champs de retour diffèrent selon l'opération. Les descriptions et 
 
 ## Entrées d'exploitation {/* #operation-inputs */}
 
-Étendre un connecteur à la fois. Les champs obligatoires sont marqués **requis**; cette référence et téléchargement utilisent l'Open-Science **v1.0.4** schéma. Un nid `input.required` liste fait autorité; un héritage de haut niveau `required` liste peut être absente. Consultez la <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.4.json">Registre téléchargeable complet</ExampleDownload> pour les schémas JSON imbriqués, les descriptions complètes des retours et les exemples d'appels côté agent. Ne passez pas un générique `id` quand un outil attend `accessions`, `cids`, `rs_id` ou un autre champ spécifique à l'espace de noms.
+Étendre un connecteur à la fois. Les champs obligatoires sont marqués **requis**; cette référence et téléchargement utilisent l'Open-Science **v1.0.5** schéma. Un nid `input.required` liste fait autorité; un héritage de haut niveau `required` liste peut être absente. Consultez la <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.5.json">Registre téléchargeable complet</ExampleDownload> pour les schémas JSON imbriqués, les descriptions complètes des retours et les exemples d'appels côté agent. Ne passez pas un générique `id` quand un outil attend `accessions`, `cids`, `rs_id` ou un autre champ spécifique à l'espace de noms.
 
 ## Chimie {/* #family-1 */}
 
@@ -813,6 +813,45 @@ Résoudre un symbole exact d'alias du gène humain par l'intermédiaire du HGNC.
 
 ```javascript
 const result = await host.mcp("genes", "resolve_hgnc_alias", {"symbol": "P53"})
+```
+
+### `get_hgnc_service_info` {/* #genes-get_hgnc_service_info */}
+
+Lisez les métadonnées officielles du service HGNC REST, les champs consultables et les champs stockés. Partager demande l'admission avec les recherches HGNC existantes; aucune clé n'est nécessaire.
+
+Pas de champs d'entrée; passez un objet vide.
+
+```javascript
+const result = await host.mcp("genes", "get_hgnc_service_info", {})
+```
+
+### `query_hgnc_field` {/* #genes-query_hgnc_field */}
+
+Saisissez ou recherchez un champ HGNC documenté, y compris des symboles historiques et des identifiants externes. Recherche de retours identificateurs indexés; récupérer les retours enregistrés. Préserver les correspondances ambiguës et le statut approuvé/retiré au lieu de choisir silencieusement un gène.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `mode` | string | optional; default: &quot;fetch&quot;; enum: &#91;&quot;fetch&quot;, &quot;search&quot;&#93; |
+| `field` | string | **required**; enum: &#91;&quot;symbol&quot;, &quot;alias_symbol&quot;, &quot;prev_symbol&quot;, &quot;name&quot;, &quot;hgnc_id&quot;, &quot;entrez_id&quot;, &quot;ensembl_gene_id&quot;&#93; |
+| `value` | string | **required**; minLength: 1; maxLength: 300 |
+| `max_rows` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("genes", "query_hgnc_field", {"field": "entrez_id", "value": "7157", "mode": "fetch"})
+```
+
+### `list_hgnc_files` {/* #genes-list_hgnc_files */}
+
+Lister les objets, les tailles, les métadonnées d'identité/de vérification et les jetons de page officiels de HGNC. Ceci ne découvre que les URLs de téléchargement; il ne télécharge pas les fichiers ou crée l'état local. ETag n'est pas un bilan SHA256.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `prefix` | string | optional; default: &quot;hgnc/tsv/tsv/&quot;; maxLength: 200; pattern: &quot;^hgnc/&#91;A-Za-z0-9_./-&#93;*$&quot; |
+| `cursor` | string | optional; default: &quot;&quot;; maxLength: 4096 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("genes", "list_hgnc_files", {"prefix": "hgnc/tsv/tsv/", "limit": 5})
 ```
 
 </ToolOperationGroup>
@@ -2767,6 +2806,19 @@ Rechercher les rapports d'application de la loi de la FDA (rappel de produit) de
 
 ```javascript
 const result = await host.mcp("drug-regulatory", "search_drug_recalls", {"reason_for_recall": "contamination", "max_records": 10})
+```
+
+### `list_faers_bulk_files` {/* #drug-regulatory-list_faers_bulk_files */}
+
+Lisez le manifeste officiel de partition JSON ouvert sur le médicament et l'événement. Les fichiers restent à leur URL officielle; aucun téléchargement de fichier, travail local ou base de données d'analyse n'est créé. Les rapports ne sont pas des estimations de l'incidence.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `offset` | integer | optional; default: 0; minimum: 0; maximum: 100000 |
+| `limit` | integer | optional; default: 20; minimum: 1; maximum: 200 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "list_faers_bulk_files", {"offset": 0, "limit": 5})
 ```
 
 </ToolOperationGroup>
@@ -5596,6 +5648,60 @@ Résoudre une adhésion à la CLCV Cellosaurus ou un identifiant RID:CVCL. Récu
 const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
 ```
 
+### `get_cell_line_rdf` {/* #cellosaurus-get_cell_line_rdf */}
+
+Récupérer RDF pour une adhésion de Cellosaurus du service officiel de référence. Le texte RDF retourné reste dans le résultat de la requête; il n'y a pas de magasin de fichiers appartenant au connecteur ou de téléchargement d'ontologie.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `accession` | string | **required**; pattern: &quot;^CVCL_&#91;A-Z0-9&#93;&#123;4&#125;$&quot; |
+| `format` | string | optional; default: &quot;ttl&quot;; enum: &#91;&quot;ttl&quot;, &quot;rdf&quot;, &quot;jsonld&quot;&#93; |
+
+```javascript
+const result = await host.mcp("cellosaurus", "get_cell_line_rdf", {"accession": "CVCL_0030", "format": "ttl"})
+```
+
+### `query_knowledge_graph` {/* #cellosaurus-query_knowledge_graph */}
+
+Lancez un Cellosaurus SPARQL SELECT limité contre le graphique officiel local. Seules les requêtes PREFIX/SELECT sans SERVICE, FROM ou updates sont prises en charge ; la requête fournie est imbriquée et limitée, jamais élargie sur zéro résultat.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 12000 |
+| `max_rows` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellosaurus", "query_knowledge_graph", {"query": "SELECT ?s WHERE { ?s a <http://www.w3.org/2002/07/owl#Class> }", "max_rows": 2})
+```
+
+### `search_str_similarity` {/* #cellosaurus-search_str_similarity */}
+
+Comparer un profil STR de ligne cellulaire fourni explicitement avec le service officiel CLASTR. Des allèles de marquage sont envoyés en amont. La similitude dépend des loci et des options de notation; elle ne certifie pas l'identité de l'échantillon ou l'absence de contamination.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `markers` | object | **required** |
+| `species` | string | optional; default: &quot;human&quot;; enum: &#91;&quot;human&quot;, &quot;mouse&quot;, &quot;dog&quot;&#93; |
+| `algorithm` | integer | optional; default: 1; enum: &#91;1, 2, 3&#93; |
+| `scoring_mode` | integer | optional; default: 1; enum: &#91;1, 2, 3&#93; |
+| `score_filter` | integer | optional; default: 70; minimum: 0; maximum: 100 |
+| `min_markers` | integer | optional; default: 8; minimum: 1; maximum: 50 |
+| `max_results` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellosaurus", "search_str_similarity", {"markers": {"D5S818": "12,13"}, "min_markers": 1, "max_results": 2})
+```
+
+### `list_cellosaurus_files` {/* #cellosaurus-list_cellosaurus_files */}
+
+Découvrez les liens officiels des fichiers de données Cellosaurus. Aucun ontologie, fichier ou jeu de données n'est téléchargé ou maintenu automatiquement.
+
+Pas de champs d'entrée; passez un objet vide.
+
+```javascript
+const result = await host.mcp("cellosaurus", "list_cellosaurus_files", {})
+```
+
 </ToolOperationGroup>
 
 ## PDC {/* #family-34 */}
@@ -6122,6 +6228,206 @@ Récupérer un enregistrement de métadonnées WikiPathways par identifiant WP �
 
 ```javascript
 const result = await host.mcp("wikipathways", "get_pathway", {"id": "WP534"})
+```
+
+</ToolOperationGroup>
+
+## Europe PMC {/* #family-43 */}
+
+<ToolOperationGroup>
+<summary>Afficher les opérations et paramètres</summary>
+
+### `search_europepmc` {/* #europepmc-search_europepmc */}
+
+Rechercher en Europe PMC directement en utilisant la syntaxe booléenne, champ et date. Retourne les enregistrements de base, y compris les résumés disponibles réels et un curseur de pagination explicite. Public : aucune clé de l'INNE ou courriel de contact n'est requis pour cette méthode. Une URL en texte intégral n'est pas récupérée; suivez les identifiants PMC à l'aide des outils en texte intégral existants.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `query` | string | **required**; minLength: 1; maxLength: 12000 |
+| `page_size` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+| `cursor` | string | optional; default: &quot;*&quot;; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("europepmc", "search_europepmc", {"query": "TP53 AND liver fibrosis", "page_size": 5})
+```
+
+</ToolOperationGroup>
+
+## Research Datasets {/* #family-44 */}
+
+<ToolOperationGroup>
+<summary>Afficher les opérations et paramètres</summary>
+
+### `get_dataset_access` {/* #research-datasets-get_dataset_access */}
+
+Lisez les exigences d'accès et les points d'entrée officiels pour NHANES, CHARLS, CHNS, SEER, MIMIC, eICU, FAERS ou GBD. Ce n'est pas une vérification de compte, une approbation ou une requête de la base de données source. Revérifier les conditions officielles actuelles avant l'acquisition.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `dataset` | string | **required**; enum: &#91;&quot;nhanes&quot;, &quot;charls&quot;, &quot;chns&quot;, &quot;seer&quot;, &quot;mimic&quot;, &quot;eicu&quot;, &quot;faers&quot;, &quot;gbd&quot;&#93; |
+
+```javascript
+const result = await host.mcp("research-datasets", "get_dataset_access", {"dataset": "seer"})
+```
+
+### `list_nhanes_files` {/* #research-datasets-list_nhanes_files */}
+
+Découvrez les fichiers officiels publics NHANES XPT pour un cycle/composante d'enquête. Retourne les liens de documentation sans télécharger de fichiers. Rejete une page modifiée/défi plutôt que de la traiter comme un ensemble de données vide.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `cycle_begin_year` | integer | **required**; minimum: 1999; maximum: 2100 |
+| `component` | string | optional; default: &quot;Demographics&quot;; enum: &#91;&quot;Demographics&quot;, &quot;Dietary&quot;, &quot;Examination&quot;, &quot;Laboratory&quot;, &quot;Questionnaire&quot;&#93; |
+
+```javascript
+const result = await host.mcp("research-datasets", "list_nhanes_files", {"cycle_begin_year": 2017, "component": "Demographics"})
+```
+
+### `list_physionet_demo_files` {/* #research-datasets-list_physionet_demo_files */}
+
+Lister les fichiers dans la démo publique officielle MIMIC-IV 2.2 ou eICU 2.0. Supporte uniquement les emplacements de démo fixes ; cela ne sonne jamais les projets reconnus, accepte les URL arbitraires ou envoie les identifiants de compte.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `dataset` | string | **required**; enum: &#91;&quot;mimic&quot;, &quot;eicu&quot;&#93; |
+| `directory` | string | optional; default: &quot;root&quot;; enum: &#91;&quot;root&quot;, &quot;hosp&quot;, &quot;icu&quot;&#93; |
+
+```javascript
+const result = await host.mcp("research-datasets", "list_physionet_demo_files", {"dataset": "mimic", "directory": "hosp"})
+```
+
+</ToolOperationGroup>
+
+## ChEA3 {/* #family-45 */}
+
+<ToolOperationGroup>
+<summary>Afficher les opérations et paramètres</summary>
+
+### `rank_transcription_factors` {/* #chea3-rank_transcription_factors */}
+
+Soumettre une liste publique des gènes-symboles à l'API officielle d'enrichissement ChEA3. Renvoie chaque classement de bibliothèque séparément; les classements et les scores sont des preuves d'hypothèses, et non une validation causale. La demande est soumise une fois et n'identifie pas tous les gènes d'entrée reconnus.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `genes` | tableau | **required**; minItems: 1; maxItems: 2000 |
+| `query_name` | string | optional; default: &quot;query&quot;; minLength: 1; maxLength: 100 |
+| `top_n` | integer | optional; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("chea3", "rank_transcription_factors", {"genes": ["FOXM1", "SMAD9", "MYC", "SMAD3", "STAT1", "STAT3"], "top_n": 5})
+```
+
+### `list_gmt_libraries` {/* #chea3-list_gmt_libraries */}
+
+Découvrez les liens officiels du fichier ChEA3 GMT depuis sa page de téléchargement. Les bibliothèques primaires, supplémentaires et de benchmarking peuvent différer; une bibliothèque téléchargeable n'est pas automatiquement la bibliothèque utilisée par un résultat en ligne. Aucun fichier n'est téléchargé par cette méthode.
+
+Pas de champs d'entrée; passez un objet vide.
+
+```javascript
+const result = await host.mcp("chea3", "list_gmt_libraries", {})
+```
+
+</ToolOperationGroup>
+
+## bioDBnet {/* #family-46 */}
+
+<ToolOperationGroup>
+<summary>Afficher les opérations et paramètres</summary>
+
+### `list_input_types` {/* #biodbnet-list_input_types */}
+
+Appelez l'opération REST officielle de bioDBnet. Découvrez les noms de nœuds pris en charge avant la conversion. Préserver les intrants non maquillés et les sorties multiples; l'absence n'est pas la preuve qu'il n'existe aucune cartographie biologique.
+
+Pas de champs d'entrée; passez un objet vide.
+
+```javascript
+const result = await host.mcp("biodbnet", "list_input_types", {})
+```
+
+### `list_output_types` {/* #biodbnet-list_output_types */}
+
+Appelez le bioDBnet officiel des sorties pour l'opération REST. Découvrez les noms de nœuds pris en charge avant la conversion. Préserver les intrants non maquillés et les sorties multiples; l'absence n'est pas la preuve qu'il n'existe aucune cartographie biologique.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `input_type` | string | **required**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+
+```javascript
+const result = await host.mcp("biodbnet", "list_output_types", {"input_type": "genesymbol"})
+```
+
+### `convert_ids` {/* #biodbnet-convert_ids */}
+
+Appelez l'opération officielle de bioDBnet db2db REST. Découvrez les noms de nœuds pris en charge avant la conversion. Préserver les intrants non maquillés et les sorties multiples; l'absence n'est pas la preuve qu'il n'existe aucune cartographie biologique.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `input_type` | string | **required**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+| `values` | tableau | **required**; minItems: 1; maxItems: 200 |
+| `outputs` | tableau | **required**; minItems: 1; maxItems: 20 |
+| `taxon_id` | integer | optional; default: 9606; minimum: 1; maximum: 100000000 |
+
+```javascript
+const result = await host.mcp("biodbnet", "convert_ids", {"input_type": "genesymbol", "values": ["TP53"], "outputs": ["geneid"], "taxon_id": 9606})
+```
+
+### `recognize_ids` {/* #biodbnet-recognize_ids */}
+
+Appeler l'opération officielle de bioDBnet dbfind REST. Découvrez les noms de nœuds pris en charge avant la conversion. Préserver les intrants non maquillés et les sorties multiples; l'absence n'est pas la preuve qu'il n'existe aucune cartographie biologique.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `values` | tableau | **required**; minItems: 1; maxItems: 200 |
+| `output_type` | string | **required**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+| `taxon_id` | integer | optional; default: 9606; minimum: 1; maximum: 100000000 |
+
+```javascript
+const result = await host.mcp("biodbnet", "recognize_ids", {"values": ["TP53"], "output_type": "geneid"})
+```
+
+### `map_orthologs` {/* #biodbnet-map_orthologs */}
+
+Appelez l'opération officielle bioDBnet dbortho REST. Découvrez les noms de nœuds pris en charge avant la conversion. Préserver les intrants non maquillés et les sorties multiples; l'absence n'est pas la preuve qu'il n'existe aucune cartographie biologique.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `input_type` | string | **required**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+| `values` | tableau | **required**; minItems: 1; maxItems: 200 |
+| `input_taxon` | integer | optional; default: 9606; minimum: 1; maximum: 100000000 |
+| `output_taxon` | integer | optional; default: 10090; minimum: 1; maximum: 100000000 |
+| `output_type` | string | **required**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+
+```javascript
+const result = await host.mcp("biodbnet", "map_orthologs", {"input_type": "genesymbol", "values": ["TP53"], "output_type": "genesymbol", "input_taxon": 9606, "output_taxon": 10090})
+```
+
+### `list_pathways` {/* #biodbnet-list_pathways */}
+
+Appelez le bioDBnet officiel getpathways REST opération. Découvrez les noms de nœuds pris en charge avant la conversion. Préserver les intrants non maquillés et les sorties multiples; l'absence n'est pas la preuve qu'il n'existe aucune cartographie biologique.
+
+| Field | Type | Requirement and constraints |
+| --- | --- | --- |
+| `taxon_id` | integer | optional; default: 9606; minimum: 1; maximum: 100000000 |
+
+```javascript
+const result = await host.mcp("biodbnet", "list_pathways", {"taxon_id": 9606})
+```
+
+</ToolOperationGroup>
+
+## CTD {/* #family-47 */}
+
+<ToolOperationGroup>
+<summary>Afficher les opérations et paramètres</summary>
+
+### `list_ctd_reports` {/* #ctd-list_ctd_reports */}
+
+Retourner un sous-ensemble tenu des points d'entrée officiels des rapports publics CTD et des termes source. Ce catalogue statique ne vérifie pas la disponibilité en direct ni ne fournit des requêtes web CTD. Utilisez la page officielle pour obtenir des fichiers; arrêtez si une vérification humaine est nécessaire.
+
+Pas de champs d'entrée; passez un objet vide.
+
+```javascript
+const result = await host.mcp("ctd", "list_ctd_reports", {})
 ```
 
 </ToolOperationGroup>

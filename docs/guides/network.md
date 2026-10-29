@@ -1,7 +1,7 @@
 ---
 title: "Network, proxies, and package mirrors"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # Network, proxies, and package mirrors
@@ -121,3 +121,9 @@ After changing proxy, mirror or Notebook domain settings, confirm the values per
 ## An R cell was blocked before execution {/* #r-network-warning */}
 
 In v0.31.1, Notebook shows an inline warning when network protection blocks an R run. Follow its setting link and inspect the requested access. The warning means the cell did not execute; it is not a scientific result or a completed run. After resolving the specific requirement, run the cell again and inspect its output. Windows standard-mode R support does not itself enable network protection.
+
+## Network access when the approval mode changes {/* #network-mode-changes */}
+
+From v1.0.5, **Full access** allows public network destinations without individual permission cards. Other authentication, source restrictions and private-service checks still apply. Changing to a more restrictive mode closes existing connections so they cannot continue under the old permission. Retry the intended request under the new mode and review any permission card it presents.
+
+Global network grants are reflected in **Settings → Network** immediately. Inspect the current domain or private-service list before adding another rule. A global grant is broader than a one-time approval; keep only the scope you intend. See [approval modes](approval-modes.md).

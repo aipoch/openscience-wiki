@@ -1832,5 +1832,11 @@
   },
   "docs.outline.reference.v104.scope": {
     "message": "Externe MCP-Clients, Publikationshinweise, kompakte Gespräche und lokale Dateiimporte."
+  },
+  "docs.outline.reference.v105.title": {
+    "message": "v1.0.5"
+  },
+  "docs.outline.reference.v105.scope": {
+    "message": "Lesestatus, Forschungspakete im Browser, Dienstlaufzeit und wissenschaftliche Dateien."
   }
 }

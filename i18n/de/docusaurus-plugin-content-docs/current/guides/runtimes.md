@@ -1,7 +1,7 @@
 ---
 title: "Python und R Laufzeiten"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -356,3 +356,9 @@ Wählen Sie eine WSL2-Distribution und deren genaue Nicht-Root-**Linux user**, d
 Wenn die Bereitschaft fehlschlägt, behalten Sie den gemeldeten Grund bei und fahren Sie mit PowerShell fort, während Sie ihn beheben. Die Installation von WSL-Komponenten erfordert möglicherweise die Windows-Administratorgenehmigung. Diese Vorschau ist getrennt von der Auswahl von Python/R Notebook-Interpretern.
 
 </PlatformContent>
+
+## Installieren von Bioconductor-Paketen unter Windows {/* #windows-bioconductor */}
+
+Bioconda bietet keine Windows-Pakete an. Für eine App-verwaltete Windows R-Umgebung bitten Sie den Agenten, das Notebook-Paket-Installationsprogramm mit `installer="biocmanager"`Behalten des fallsensitiven R-Paketnamens wie `DESeq2`. Bestätigen Sie die Zielumgebung vor der Genehmigung der Installation. Ersetzen Sie dies nicht durch eine Linux-only `bioconductor-*` Conda-Paketname oder eine Installation in einer nicht verwandten System-R-Bibliothek.
+
+Prüfen Sie das Installationsergebnis und die Umgebung **Packages** Liste, dann laden Sie das Paket in der gleichen R-Umgebung. Ein Abhängigkeits- oder Kompilierungsfehler muss noch behoben werden; die Auswahl von BiocManager allein stellt nicht sicher, dass die Installation erfolgreich war. Bestehende externe R-Umgebungen behalten ihre [Bibliotheksberechtigungen](#external-r-packages).

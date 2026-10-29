@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -252,3 +252,9 @@ v1.0.0 further improves native table and figure ownership, including repeated re
 When PDF search reports incomplete coverage, treat its matches as results from the text it could search. No match does not prove the phrase is absent from the whole paper. Inspect relevant pages in the original PDF, especially scanned pages, figures, equations and tables. Reader-mode extraction and translation can preserve more structure, but the source PDF remains the reference for checking content.
 
 For DOCX previews, check continuous list numbering and table borders against the downloaded document before quoting or sharing the result.
+
+## Preserve a Word template when generating DOCX {/* #docx-templates */}
+
+Attach the `.docx` template to the session and ask the Agent to create a separate report while preserving its layout, table formatting, borders and page structure. State which content to replace and which template elements to retain. v1.0.5 improves this preservation; it does not make every template identical across Word-compatible viewers.
+
+Open the generated file in its preview, then download it and inspect it in the Word application you will use for delivery. Check table widths, page breaks, headers, footers and long text before sharing. Keep the original template so the output can be compared and revised.

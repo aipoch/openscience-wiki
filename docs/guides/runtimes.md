@@ -1,7 +1,7 @@
 ---
 title: "Python and R runtimes"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -356,3 +356,9 @@ Select a WSL2 distribution and its exact non-root **Linux user**, then choose **
 If readiness fails, retain the reported reason and continue with PowerShell while resolving it. Installing WSL components may require Windows administrator approval. This preview is separate from choosing Python/R Notebook interpreters.
 
 </PlatformContent>
+
+## Install Bioconductor packages on Windows {/* #windows-bioconductor */}
+
+Bioconda does not provide Windows packages. For an app-managed Windows R environment, ask the Agent to use the Notebook package installer with `installer="biocmanager"`, keeping the case-sensitive R package name such as `DESeq2`. Confirm the target environment before approving installation. Do not replace this with a Linux-only `bioconductor-*` Conda package name or an installation into an unrelated system R library.
+
+Inspect the installation result and the environment's **Packages** list, then load the package in that same R environment. A dependency or compilation error still needs to be resolved; choosing BiocManager alone does not establish that installation succeeded. Existing external R environments retain their [library permissions](#external-r-packages).

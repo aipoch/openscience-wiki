@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -252,3 +252,9 @@ v1.0.0 améliore encore la propriété des tableaux et des figures natifs, y com
 Si la recherche PDF indique une couverture incomplète, ses résultats ne concernent que le texte effectivement recherché. L’absence de résultat ne prouve pas que l’expression est absente de tout l’article. Vérifiez les pages pertinentes dans le PDF original, notamment les pages numérisées, figures, équations et tableaux. Même si l’extraction et la traduction préservent mieux la structure, le PDF source reste la référence.
 
 Pour les prévisualisations DOCX, vérifiez la numérotation continue de la liste et les bordures de la table par rapport au document téléchargé avant de citer ou de partager le résultat.
+
+## Préserver un modèle Word lors de la génération de DOCX {/* #docx-templates */}
+
+Joindre le `.docx` modèle à la session et demander à l'Agent de créer un rapport séparé tout en préservant sa mise en page, le formatage de la table, les bordures et la structure des pages. Indiquer le contenu à remplacer et les éléments de gabarit à conserver. v1.0.5 améliore cette conservation; il ne rend pas chaque gabarit identique pour les téléspectateurs compatibles Word.
+
+Ouvrez le fichier généré dans son aperçu, puis téléchargez-le et inspectez-le dans l'application Word que vous utiliserez pour la livraison. Vérifiez les largeurs de table, les pauses de page, les en-têtes, les pied de page et le texte long avant de partager. Conservez le modèle original pour que la sortie puisse être comparée et révisée.

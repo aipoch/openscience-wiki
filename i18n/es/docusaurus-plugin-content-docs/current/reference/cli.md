@@ -1,7 +1,7 @@
 ---
 title: "CLI y salida estructurada"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ Utilice `open-science` para inspeccionar el estado de aplicación, ejecutar tare
 
 ## Configuración desde una terminal {/* #terminal-setup */}
 
-Instalar el lanzador de escritorio, utilizar un archivo independiente v1.0.2, o seguir el [npm pasos de instalación](../guides/installation.md#npm-cli). Paquete de archivos Standalone Node, el backend y Web UI; los pasos de extracción a continuación se aplican a esos archivos.
+Instalar el lanzador de escritorio, utilizar un archivo independiente v1.0.5, o seguir el [npm pasos de instalación](../guides/installation.md#npm-cli). Paquete de archivos Standalone Node, el backend y Web UI; los pasos de extracción a continuación se aplican a esos archivos.
 
 1. Elija macOS o Linux arm64/x64, o Windows x64, que coincida con el host.
 2. Extraiga el archivo completo en un lugar de trabajo. Mantenga el lanzador, `backend` y `node-runtime` juntos; copiar sólo el lanzador romperá el arranque.
@@ -215,9 +215,9 @@ Se reprodujo localmente la siguiente respuesta inválida:
 
 JSONL puede incluir `run.progress` y `stream.resync-required`. Si la repetición no está disponible después de la reconexión, vuelva a leer el estado de funcionamiento autorizado; no asuma que el flujo del evento es una historia permanente. Los comandos de ciclo de vida tienen restricciones de bandera separadas descritas en [Servicio sin cabeza](./server.md).
 
-[CLI implementation](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/cli.mjs), [Guía de comandos](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
+[CLI implementation](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/cli.mjs), [Guía de comandos](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
 
-Referencia técnica: [CLI contract](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
+Referencia técnica: [CLI contract](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
 
 ## Carreras no solicitadas {/* #unattended-runs */}
 
@@ -271,3 +271,7 @@ Que el cliente inicie el adaptador. Descubre proyectos con **list_projects**, pr
 El cliente actúa bajo los permisos existentes del perfil. Puede crear proyectos persistentes, cambiar la configuración y comenzar el trabajo que escriba archivos o incurra en costos de modelo. Las aprobaciones todavía pueden requerir acción en Open-Science. Inspeccione el estado actual después de un tiempo fuera antes de repetir una escritura. Cerrar el cliente o cancelar su solicitud no cancela la investigación aceptada: uso **cancel_run** explícitamente. Ver el [herramienta oficial MCP y referencia de permiso](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp).
 
 Para los comandos del paquete, siga [Importación y exportación de CLI](../guides/research-packages.md#local-package-transfer).
+
+## Mantenga un servicio funcionando para la automatización {/* #persistent-service */}
+
+Uso `open-science start --no-open --json` en el perfil previsto antes de cerrar el escritorio si el trabajo CLI, navegador o SDK debe continuar. Desde v1.0.5 activa una sola ejecución persistente; las repeticiones no se acumulan. El comando simple `stop` desactiva esa ejecución persistente, pero el servicio continúa mientras haya una App conectada. Consulte los [resultados del ciclo de vida](server.md#lifecycle-commands) antes de tratar un exitoso comando stop como un servicio detenido.

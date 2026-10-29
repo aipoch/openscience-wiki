@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -411,8 +411,23 @@ Siga el progreso de descarga de cada adjunto. Para un archivo, seleccione los ar
 
 ## Compruebe las retracciones y correcciones {/* #publication-checks */}
 
-1. Abra una referencia con un DOI válido. En **More actions → Retractions and corrections**, seleccionar **Check retractions and corrections**.
-2. La acción envía al DOI a Crossref. Lea el tipo de aviso devuelto, fuente, fecha y aviso enlazado; verifique el aviso en sí mismo antes de cambiar cómo utiliza el papel.
-3. El resultado y **Last checked** tiempo se guardan con la referencia. La reapertura del panel muestra la observación guardada; ejecute otro cheque cuando necesite información fresca.
+1. Abra una referencia con un DOI válido. Elija **More actions → Retractions and corrections**Entonces **Check now**. Uso **Check again** para refrescar un resultado salvado, o **Retry** después de un error.
+2. La comprobación envía ese DOI a Crossref. Lea el tipo, la fuente, la fecha y el enlace DOI de cada aviso; abra el aviso antes de decidir cómo utilizar el artículo.
+3. Leer **Last checked** al lado del resultado salvado. La reapertura del panel muestra la observación anterior, no una nueva consulta.
 
-**No related notices found** significa que la consulta no devolvió avisos, no que el papel no es afectado. La cobertura de Crossref es incompleta. Las comprobaciones no modifican los metadatos bibliográficos ni las decisiones de selección. Si un refresco falla, el resultado de éxito anterior sigue siendo: leer su fecha y volver a intentarlo más tarde.
+**No related notices found** significa que la consulta no devolvió avisos, no que el artículo esté libre de problemas. La cobertura de Crossref es incompleta. La comprobación no cambia los metadatos ni las decisiones de selección. Si falla la actualización, revise la fecha del último resultado correcto e inténtelo más tarde.
+
+![Resultado de Crossref guardado y fecha Last checked](/img/open-science/v105/publication-check.webp)
+
+## Seguimiento de su progreso de lectura {/* #reading-status */}
+
+El estado de lectura es su propia anotación. Abrir un PDF, adjuntarlo o pedirle al Agente que lo lea no marca el papel como leído.
+
+1. En la Biblioteca, uso **Customize** para mostrar el **Status** columna si está oculta. Seleccione el estado de una fila, o abra los detalles de la referencia y su **Reading status** control.
+2. Elija **Unread**, **Reading** o **Read**. Los registros sin un estado guardado comienzan como **Unread**.
+3. Para varios papeles, seleccione las filas deseadas y elija **Set reading status** en las acciones masivas. Compruebe el recuento seleccionado; uso [selección all-matching](#loaded-page-selection) sólo cuando se pretende incluir registros más allá de la página cargada.
+4. Uso **Filters → Reading status** para encontrar papeles en la misma etapa. Si un registro cambiado deja la vista filtrada actual, despeja el filtro para encontrarlo de nuevo.
+
+El estado se aplica a la referencia, incluyendo sus opiniones de proyecto y colección. Está separado de las decisiones de selección inteligente y la calidad de las pruebas. Si el ahorro falla, mantenga el estado existente y vuelva a entrar después de comprobar el registro actual.
+
+![Filtrar la biblioteca por Reading status](/img/open-science/v105/reading-filter.webp)

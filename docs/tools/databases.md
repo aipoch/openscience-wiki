@@ -2,7 +2,7 @@
 title: "Scientific databases"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # Scientific databases
@@ -13,14 +13,16 @@ Use this page to choose a data source, understand what it can return, and make i
 
 ## Supported databases {/* #supported-databases */}
 
-Open-Science v1.0.4 includes **42 data-source Connectors with 395 operations**. The separate offline Molecule Connector adds two operations, bringing the full registry to 397. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+Open-Science v1.0.5 includes **48 built-in Connectors with 418 operations**: 47 data-source Connectors provide 416 operations, and the offline Molecule Connector provides two. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+
+The count covers all built-in entries, including disabled ones; custom MCP Connectors are additional. Connector count, underlying database count and operation count measure different things.
 
 | Connector | Sources | Operations | Use it for  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB, LIPID MAPS, UniChem | 14 | Small-molecule chemistry via PubChem, ChEBI, Rhea and BindingDB.  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | Papers, authors, citations, DOI updates and dataset/software records. |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | Biomedical literature via NCBI E-utilities, the PMC ID Converter and Europe PMC — search, metadata, related articles, citation lookup, ID conversion, full text and copyright.  |
-| Genes & Ontologies · `genes` | HGNC, MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 17 | Gene/protein identifiers, UniProt sequence discovery, GO and Reactome annotations, and g:Profiler and Enrichr gene-set enrichment. |
+| Genes & Ontologies · `genes` | HGNC, MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 20 | Gene/protein identifiers, UniProt sequence discovery, GO and Reactome annotations, and g:Profiler and Enrichr gene-set enrichment. |
 | Genomes · `genomes` | NCBI Datasets, NCBI BLAST, EMBL-EBI Job Dispatcher, Ensembl, UCSC | 22 | Genome annotation, homology and sequence; NCBI taxon/assembly/sequence identity; BLAST search and Clustal Omega multiple sequence alignment; population-specific LD and proxy variants. |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | Population frequencies, clinical records and assay-specific functional scores, mappings and experiments. |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | Trial discovery, protocols and posted outcome measurements, group denominators, statistics and adverse events. |
@@ -28,7 +30,7 @@ Open-Science v1.0.4 includes **42 data-source Connectors with 395 operations**. 
 | Structures & Interactions · `structures` | PDB, PDBe, AlphaFold, EMDB, Complex Portal, IntAct, OmniPath | 20 | Structures and molecular interactions — PDB structures, AlphaFold predictions, EMDB cryo-EM entries, Complex Portal complexes, IntAct interaction networks.  |
 | ChEMBL · `chembl` | ChEMBL | 7 | Bioactive compounds, drugs, targets, bioactivity, and mechanisms via the ChEMBL REST API.  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | bioRxiv/medRxiv preprints — search by date/category, metadata by DOI, journal-publication links, funder listings, and platform statistics.  |
-| Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA, labels, FAERS adverse-event reports and drug recalls. |
+| Drug Regulatory · `drug-regulatory` | openFDA | 11 | Drugs@FDA, labels, FAERS adverse-event reports and drug recalls. |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | Human genetic association evidence — GWAS Catalog, eQTL Catalogue, and PheWeb PheWAS portals (FinnGen, BioBank Japan).  |
 | Expression · `expression` | GTEx, Bgee | 16 | Human GTEx tissue expression and eQTLs; Bgee cross-species baseline expression. |
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | Protein domain architecture, family/clan membership, expression atlas and interaction networks via InterPro/Pfam, the Human Protein Atlas and STRING, including network interaction enrichment. |
@@ -47,7 +49,7 @@ Open-Science v1.0.4 includes **42 data-source Connectors with 395 operations**. 
 | Pathway Commons · `pathway-commons` | Pathway Commons, Reactome | 4 | Pathway search, top pathways, graph queries and BioPAX submodel exports. |
 | Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | Human and model-organism genes, orthologs, disease models, phenotypes, alleles and expression. |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | Single-cell collections and datasets, published versions, file formats, sizes and download URLs. |
-| Cellosaurus · `cellosaurus` | Cellosaurus | 2 | Find cell-line names and synonyms, then inspect accession identity and quality annotations. |
+| Cellosaurus · `cellosaurus` | Cellosaurus | 6 | Find cell-line names and synonyms, then inspect accession identity and quality annotations. |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | Disease/gene-to-phenotype associations with organism and supporting evidence. |
 | IEDB · `iedb` | IEDB | 8 | Epitopes, antigens, T-cell, B-cell and MHC assays, TCR/BCR evidence, and source publications. |
 | PDC · `pdc` | PDC | 5 | Cancer-proteomics study versions, specimen links, public case clinical metadata and file inventories; no download. |
@@ -59,6 +61,11 @@ Open-Science v1.0.4 includes **42 data-source Connectors with 395 operations**. 
 | DailyMed · `dailymed` | DailyMed | 2 | Drug-label identities and version history. |
 | BioSamples · `biosamples` | EMBL-EBI BioSamples | 2 | Public sample metadata and cross-references. |
 | WikiPathways · `wikipathways` | WikiPathways | 2 | Pathway metadata, species and revisions. |
+| Europe PMC · `europepmc` | Europe PMC | 1 | Direct literature search, abstracts and pagination. |
+| Research Datasets · `research-datasets` | NHANES, CHARLS, CHNS, SEER, MIMIC, eICU, GBD | 3 | Dataset access requirements and public file discovery. |
+| ChEA3 · `chea3` | ChEA3 | 2 | Transcription-factor enrichment rankings and GMT links. |
+| bioDBnet · `biodbnet` | bioDBnet | 6 | Identifier conversion, ortholog mapping and pathways. |
+| CTD · `ctd` | CTD | 1 | Official public report entry points and terms. |
 
 The offline Molecule tools are covered in [Scientific viewers](viewers.md). For the exact operations exposed by each data source, use the [Connector operation reference](../reference/connector-operations.md).
 
@@ -261,7 +268,7 @@ From v0.31.0, `get_string_network.nodes` includes returned neighbors and isolate
 
 The [Connector operation reference](../reference/connector-operations.md) lists required inputs, allowed values and exact calls. Use this page to choose a source and connect it; use the reference for a particular tool's fields.
 
-Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/registry.ts).
+Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.5/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.5/src/main/connectors/registry.ts).
 
 ## Sequence searches and alignment {/* #sequence-tools */}
 
@@ -390,3 +397,19 @@ In **Settings → Connectors**, enable the intended source and make it available
 | BioSamples · WikiPathways | Find sample metadata or pathway metadata and revisions | Accession, species, source dates and linked evidence. These lookups do not download linked sample files or pathway graphs. |
 
 Use the [operation reference](../reference/connector-operations.md) for exact inputs and pagination. Preserve nulls and truncated-result markers; a bounded result is not the entire database.
+
+## Discover official research data and file lists {/* #scientific-file-discovery */}
+
+In **Settings → Connectors**, enable only the entries needed for your question. The new Europe PMC, Research Datasets, ChEA3, bioDBnet and CTD entries use public services without a required API key. Requests still send the supplied search terms, identifiers or gene lists to those services. [Connection controls](#connect-database).
+
+| Need | Entry and result | Next step |
+| --- | --- | --- |
+| Search biomedical papers directly | **Europe PMC** returns core records, available abstracts and a next-page cursor | Save identifiers and continue pagination; a full-text URL is not retrieved full text |
+| Find survey or clinical demo files | **Research Datasets** lists NHANES files with cycle/documentation links and fixed-version public MIMIC/eICU demos | Check cycle, version, license and documentation before downloading from the official source |
+| Understand dataset access | **Research Datasets** explains entry points for NHANES, CHARLS, CHNS, SEER, MIMIC, eICU, FAERS and GBD | Complete the source's own registration, training or export process where required |
+| Discover public reports | **Drug Regulatory**, **CTD** and **Cellosaurus** list official file locations | Check the current source page, release and terms; discovery does not download or import files |
+| Normalize gene identifiers | **Genes & Ontologies** adds HGNC service fields, field queries and file lists; **bioDBnet** adds conversion and ortholog mapping | Discover supported fields/types first; retain ambiguous, unmapped and one-to-many results |
+| Rank candidate regulators | **ChEA3** returns per-library transcription-factor rankings and GMT library links | Treat rankings as hypotheses; a downloaded GMT library may differ from the library behind an online result |
+| Inspect cell-line evidence | **Cellosaurus** adds RDF, bounded SPARQL and STR similarity | Preserve accession and marker settings; similarity alone does not certify sample identity |
+
+File listings return official URLs and source metadata, not downloaded files or a ready analysis database. NHANES analysis still requires the correct survey design and weights. MIMIC/eICU demo access does not grant access to their full datasets. FAERS reports cannot be interpreted as incidence rates. For exact fields and examples, use the [operation reference](../reference/connector-operations.md).

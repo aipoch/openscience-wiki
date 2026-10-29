@@ -2,7 +2,7 @@
 title: ".science 研究パッケージ"
 description: "そのファイルと証拠でセッションをエクスポートし、別のプロジェクトで研究記録をインポートし、検査します。"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -141,17 +141,35 @@ Keep everything in English and return links to both new files.
 
 Web サイト開発者向けの [ブラウザーインポート SDK ガイド](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md) では HTTPS（開発用のループバック接続も可）、同じコンピューターのデスクトップアプリ、0 バイトより大きく 2 GiB 以下のパッケージを要求します。ローカル受信は、ユーザーの最終確認を代替しません。
 
-## CLI・ローカル Web アプリで研究パッケージを使う {/* #local-package-transfer */}
+## CLI とローカル Web でパッケージを使う {/* #local-package-transfer */}
 
-v1.0.3 以降、CLI と認証済みローカル Web アプリで研究パッケージを扱えます。Web ではセッションのエクスポートまたはプロジェクトのインポートから、求められた場合にサービス実行ホスト上のパスを指定します。リモート Web セッションは任意パスでの転送に対応しません。上記の Web サイトからデスクトップへの転送とは別の機能です。
+v1.0.5 から、認証済みの **local Web** で `.science` パッケージをアップロード・ダウンロードできます。リモート Web にこの権限は追加されません。[ウェブサイトからデスクトップへの転送](#browser-import)とは別の機能です。
 
-CLI では対象プロファイルのサービスを先に起動し、元のセッションが待機状態になるまで待ちます。ID とパスを置き換えてください。
+### ローカル Web で転送する {/* #web-package-transfer */}
+
+1. 対象のローカルワークスペースを開き、元のセッションが待機状態になるまで待ちます。メニューで **Export → Export Session package** を選び、内容を選択して **Choose save location…** を押すと、パッケージの準備が始まります。
+2. 準備完了後、ファイル名の横の **Download** を選び、ブラウザーで保存します。バックエンドでの準備完了だけではダウンロードは保存されません。共有前に `.science` ファイルを確認します。
+3. インポートはプロジェクトの入口からコンピューター上の `.science` ファイルを選択。アップロードと検証後、内容と保存先を確認して確定します。
+4. インポートしたセッションとファイルを確認します。研究記録は読み取り専用です。続けるには、デスクトップアプリで同じワークスペースを開き、**Fork to continue** を選びます。Web では Fork は使えません。
+
+![準備が完了したパッケージとブラウザーの Download ボタン](/img/open-science/v105/package-download.webp)
+
+失敗した場合は、表示結果と保存先を確認してから再試行します。ファイルの受信やアップロードの成功はインポート完了とは異なります。
+
+### CLI を使う {/* #cli-package-transfer */}
+
+対象プロファイルのサービスを起動し、元セッションが待機状態になるまで待ちます。ID とパスを実際の値に置き換えてください。
 
 ```bash
 open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
-open-science session import ./session.science --new-project "Restored research" --non-interactive --json
 ```
 
-エクスポートには明示的な `.science` 出力パスが必要です。インポートの **--non-interactive** はプレビューを代理承認するため、出所と保存先を先に確認します。既存プロジェクトには **--project**、新規作成には **--new-project** を使い、両方は指定しません。両方省略するとパッケージのプロジェクト名で新規作成します。既定の要求期限は 1 時間です。大きな転送では **--timeout-ms** を調整できます。
+エクスポートには明示的な `.science` 出力パスが必要です。既定の期限は1時間です。大きな転送では **--timeout-ms** で調整し、返されたファイルパスを確認します。**v1.0.5** でローカルファイルをインポートするには、[ローカル Web のアップロード](#web-package-transfer)またはデスクトップアプリを使ってください。CLI の `session import` は、パッケージ検証前にファイルパスが拒否される場合があります。
 
-結果の保存パスまたは取込セッションを確認します。取込記録は読み取り専用のため、研究の続行には **Fork** を使います。v1.0.4 では保存先選択後にエクスポートが待ち続ける問題も修正されています。
+## ホームの研究事例から始める {/* #use-case-gallery */}
+
+事例カードの **Details** で公式の説明を読み、**Import** で研究パッケージをダウンロードします。準備・転送・検証の進行を確認し、不要なら **Cancel**。保存先の指定待ちなら **Continue** でインポート画面へ戻ります。
+
+保存先プロジェクトを確認してインポートし、入力と出力を点検します。自分の問いは デスクトップアプリの **Fork to continue** で続けます。ダウンロード検証は転送の確認であり、科学的結論の検証やモデル認証情報の提供ではありません。
+
+![公式ギャラリーのパッケージと保存先の確認](/img/open-science/v105/package-preview.webp)

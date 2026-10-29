@@ -1818,5 +1818,11 @@
   },
   "docs.outline.reference.v104.scope": {
     "message": "Clientes MCP externos, avisos de publicación, conversaciones compactas e importación de archivos."
+  },
+  "docs.outline.reference.v105.title": {
+    "message": "v1.0.5"
+  },
+  "docs.outline.reference.v105.scope": {
+    "message": "Estado de lectura, paquetes de investigación en el navegador, duración del servicio y archivos científicos."
   }
 }

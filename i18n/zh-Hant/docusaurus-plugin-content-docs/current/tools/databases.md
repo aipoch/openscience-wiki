@@ -2,7 +2,7 @@
 title: "科學資料庫"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # 科學資料庫 {/* #科学数据库 */}
@@ -13,14 +13,16 @@ last_update:
 
 ## 目前支援哪些資料庫 {/* #supported-databases */}
 
-Open-Science v1.0.4 內置 **42 個數據源 Connector，提供 395 個操作**。獨立的離線 Molecule Connector 另有兩個操作，完整註冊表共 397 個。下表名稱對應 **Settings → Connectors** 中的條目，一個 Connector 可以包含多個數據庫。支持某個數據源不表示覆蓋其網站的全部功能。
+Open-Science v1.0.5 內建 **48 個 Connector，共提供 418 項操作**：其中 47 個資料來源 Connector 提供 416 項操作，1 個離線 Molecule Connector 提供 2 項操作。下表名稱對應 **Settings → Connectors** 中的項目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示涵蓋其網站的全部功能。
+
+此處統計全部內建項目，包括未啟用的項目；使用者自行新增的 MCP Connector 另計。Connector 數量、涵蓋的資料庫數量和可呼叫的操作數量是不同的統計口徑。
 
 | Connector | 來源 | 運算元 | 用途  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB, LIPID MAPS, UniChem | 14 | 小分子、化學識別符號、反應及結合資料  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 文獻、作者、引用、DOI 更新及資料集/軟體記錄 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | PubMed 文獻檢索與記錄  |
-| Genes & Ontologies · `genes` | HGNC, MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 17 | 基因及蛋白標識映射、UniProt 序列查找、GO 與 Reactome 註釋、g:Profiler 與 Enrichr 基因集富集 |
+| Genes & Ontologies · `genes` | HGNC, MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 20 | 基因及蛋白標識映射、UniProt 序列查找、GO 與 Reactome 註釋、g:Profiler 與 Enrichr 基因集富集 |
 | Genomes · `genomes` | NCBI Datasets, NCBI BLAST, EMBL-EBI Job Dispatcher, Ensembl, UCSC | 22 | 基因組註釋、同源及序列資訊；NCBI 物種、組裝與序列身分；BLAST 檢索、Clustal Omega 多序列比對；指定人群的 LD 與代理變異 |
 | Variants · `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | 群體頻率、臨床記錄，以及實驗特定的功能分數、變異對映和實驗資訊 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | 檢索試驗與方案，並讀取已公佈的結局測量、分組、統計及不良事件 |
@@ -28,7 +30,7 @@ Open-Science v1.0.4 內置 **42 個數據源 Connector，提供 395 個操作**�
 | Structures & Interactions · `structures` | PDB, PDBe, AlphaFold, EMDB, Complex Portal, IntAct, OmniPath | 20 | 結構檔案與相關記錄  |
 | ChEMBL · `chembl` | ChEMBL | 7 | 化合物、靶標和活性記錄  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | 預印本後設資料  |
-| Drug Regulatory · `drug-regulatory` | openFDA | 10 | Drugs@FDA、藥品標籤、FAERS 不良事件報告和藥品召回 |
+| Drug Regulatory · `drug-regulatory` | openFDA | 11 | Drugs@FDA、藥品標籤、FAERS 不良事件報告和藥品召回 |
 | Human Genetics · `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | 人類遺傳關聯資源  |
 | Expression · `expression` | GTEx, Bgee | 16 | GTEx 人類組織表達和 eQTL；Bgee 跨物種基線表達 |
 | Protein Annotation · `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | 蛋白結構域與功能註釋；新增互作富集檢驗 |
@@ -47,7 +49,7 @@ Open-Science v1.0.4 內置 **42 個數據源 Connector，提供 395 個操作**�
 | Pathway Commons · `pathway-commons` | Pathway Commons, Reactome | 4 | 通路檢索、頂層通路、圖查詢及 BioPAX 子模型匯出 |
 | Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | 人類與模式生物基因、直系同源、疾病模型、表型、等位基因及表達 |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 單細胞集合與資料集發現、釋出版本、檔案格式／大小／下載 URL |
-| Cellosaurus · `cellosaurus` | Cellosaurus | 2 | 查詢細胞系名稱和別名，再檢查編號身份及質量註釋 |
+| Cellosaurus · `cellosaurus` | Cellosaurus | 6 | 查詢細胞系名稱和別名，再檢查編號身份及質量註釋 |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 查詢疾病或基因與表型的關聯，保留物種和支援證據 |
 | IEDB · `iedb` | IEDB | 8 | 檢索表位、抗原、T 細胞、B 細胞和 MHC 實驗、TCR/BCR 證據及來源文獻 |
 | PDC · `pdc` | PDC | 5 | 癌症蛋白組研究版本、樣本關聯、公開病例臨牀信息及文件元數據；不下載文件 |
@@ -59,6 +61,11 @@ Open-Science v1.0.4 內置 **42 個數據源 Connector，提供 395 個操作**�
 | DailyMed · `dailymed` | DailyMed | 2 | 藥品標籤身份與版本歷史 |
 | BioSamples · `biosamples` | EMBL-EBI BioSamples | 2 | 公開樣本元數據與交叉引用 |
 | WikiPathways · `wikipathways` | WikiPathways | 2 | 通路元數據、物種及修訂信息 |
+| Europe PMC · `europepmc` | Europe PMC | 1 | 直接檢索文獻、摘要與分頁 |
+| Research Datasets · `research-datasets` | NHANES, CHARLS, CHNS, SEER, MIMIC, eICU, GBD | 3 | 數據訪問條件與公開文件發現 |
+| ChEA3 · `chea3` | ChEA3 | 2 | 轉錄因子富集排名與 GMT 鏈接 |
+| bioDBnet · `biodbnet` | bioDBnet | 6 | 標識轉換、同源映射與通路 |
+| CTD · `ctd` | CTD | 1 | 官方公開報告入口與條款 |
 
 離線 Molecule 工具見[科學檢視器](viewers.md)。各資料來源實際提供的操作見 [Connector 操作引數參考](../reference/connector-operations.md)。
 
@@ -261,7 +268,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作引數參考](../reference/connector-operations.md)列出必填輸入、可選值和準確呼叫方法。本頁用於選擇和連線資料來源，引數參考用於查詢某個具體工具的欄位。
 
-目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/registry.ts)。
+目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.5/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.5/src/main/connectors/registry.ts)。
 
 ## 序列檢索與多序列比對 {/* #sequence-tools */}
 
@@ -390,3 +397,19 @@ v1.0.2 會在當前會話中記住對 OpenAlex 憑據提示的拒絕，避免重
 | BioSamples · WikiPathways | 查找樣本元數據或通路元數據與修訂信息 | accession、物種、來源日期及證據鏈接；查詢不會下載關聯的樣本文件或通路圖 |
 
 精確輸入與分頁方式見[操作參數參考](../reference/connector-operations.md)。保留空值與結果截斷標記；有限結果不等於整個數據庫。
+
+## 查找官方研究數據與文件列表 {/* #scientific-file-discovery */}
+
+在 **Settings → Connectors** 中，只啓用當前問題需要的入口。新增的 Europe PMC、Research Datasets、ChEA3、bioDBnet 和 CTD 使用公開服務，不要求 API Key；請求仍會將輸入的檢索詞、標識或基因列表發送給相應服務。[連接控件](#connect-database)。
+
+| 需要做什麼 | 入口與返回內容 | 下一步 |
+| --- | --- | --- |
+| 直接檢索生物醫學文獻 | **Europe PMC** 返回核心記錄、可用摘要與下一頁遊標 | 保存標識並繼續翻頁；全文 URL 不等於已經取得全文 |
+| 找調查數據或臨牀演示文件 | **Research Datasets** 提供帶週期及說明鏈接的 NHANES 文件列表，以及固定版本的公開 MIMIC/eICU 演示數據 | 從官方來源下載前核對週期、版本、許可和文檔 |
+| 瞭解數據訪問條件 | **Research Datasets** 說明 NHANES、CHARLS、CHNS、SEER、MIMIC、eICU、FAERS、GBD 的入口 | 按來源要求完成註冊、培訓或導出流程 |
+| 找公開報告文件 | **Drug Regulatory**、**CTD** 和 **Cellosaurus** 列出官方文件位置 | 查看當前來源頁面、發佈版本和條款；發現文件不會自動下載或導入 |
+| 整理基因標識 | **Genes & Ontologies** 補充 HGNC 服務字段、字段查詢及文件列表；**bioDBnet** 提供轉換和同源映射 | 先查詢支持的字段或類型；保留歧義、未映射和一對多結果 |
+| 排序候選調控因子 | **ChEA3** 返回各來源庫的轉錄因子排名及 GMT 庫鏈接 | 將排名用於提出假設；下載的 GMT 庫可能不同於在線結果使用的庫 |
+| 檢查細胞系證據 | **Cellosaurus** 補充 RDF、有邊界的 SPARQL 查詢和 STR 相似度 | 保留 accession 和標記設置；僅憑相似度不能認證樣本身份 |
+
+文件列表返回官方 URL 與來源元數據，不會自動下載文件或建立分析數據庫。NHANES 分析仍需正確的調查設計和權重；MIMIC/eICU 演示數據權限不等於完整數據集權限；FAERS 報告不能直接解釋爲發生率。具體字段和示例見[操作參考](../reference/connector-operations.md)。
