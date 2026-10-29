@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -409,10 +409,25 @@ PDF나 지원되는 서지 파일을 라이브러리에 끌어 놓고 가져오�
 
 첨부 파일별 다운로드 진행 상황을 확인합니다. 압축 파일에서는 풀어낼 파일을 선택하고, 완료 후 해당 형식의 미리보기로 엽니다. Word 파일도 미리 볼 수 있습니다. 본문과 보충 첨부물을 구분하고, 이미 저장된 내용을 확인한 뒤 실패한 다운로드만 재시도합니다.
 
-## 철회 및 정정 공지 확인하기 {/* #publication-checks */}
+## 철회 및 정정 공지 확인 {/* #publication-checks */}
 
-1. 유효한 DOI가 하나 있는 문헌 상세에서 **More actions → Retractions and corrections**를 열고 **Check retractions and corrections**를 선택합니다.
-2. DOI가 Crossref로 전송됩니다. 공지 유형, 출처, 날짜, 링크를 확인하고 논문의 사용 방식을 바꾸기 전에 공지 원문을 읽습니다.
-3. 결과와 **Last checked** 시간이 저장됩니다. 패널을 다시 열면 저장된 결과가 나오므로 최신 정보가 필요할 때 다시 확인합니다.
+1. 유효한 DOI가 하나 있는 문헌에서 **More actions → Retractions and corrections**를 열고 **Check now**를 선택합니다. 갱신에는 **Check again**, 오류 후에는 **Retry**를 사용합니다.
+2. 해당 DOI가 Crossref로 전송됩니다. 공지 유형, 출처, 날짜 및 DOI 링크를 읽고 공지 원문을 확인한 뒤 논문 사용 여부를 판단합니다.
+3. 저장된 결과의 **Last checked**를 확인합니다. 패널을 다시 열기만 하면 새 조회가 실행되지 않습니다.
 
-**No related notices found**는 공지가 반환되지 않았다는 뜻이지 문제가 없다는 보장이 아닙니다. Crossref의 수록 범위는 불완전합니다. 확인 작업은 서지 정보나 선별 결정을 수정하지 않습니다. 새 조회가 실패하면 이전 성공 결과가 남으므로 날짜를 확인하고 나중에 재시도하세요.
+**No related notices found**는 조회에서 공지가 반환되지 않았다는 뜻이며, 논문에 문제가 없다는 보장은 아닙니다. Crossref의 범위는 불완전합니다. 확인 작업은 서지 정보나 선별 판정을 수정하지 않습니다. 갱신에 실패하면 이전 성공 결과의 날짜를 보고 나중에 다시 시도합니다.
+
+![저장된 Crossref 결과와 Last checked 시간](/img/open-science/v105/publication-check.webp)
+
+## 읽기 진행 상태 기록 {/* #reading-status */}
+
+읽기 상태는 직접 지정합니다. PDF를 열거나 첨부하거나 Agent에게 읽도록 요청해도 자동으로 읽음 처리되지 않습니다.
+
+1. 열이 숨겨져 있으면 **Customize**에서 **Status**를 표시합니다. 행의 상태 또는 문헌 상세의 **Reading status**를 엽니다.
+2. **Unread**, **Reading**, **Read** 중 선택합니다. 저장된 상태가 없는 기록은 **Unread**입니다.
+3. 여러 문헌은 대상 행을 선택하고 **Set reading status**를 사용합니다. 선택 수를 확인하고, 로드된 페이지 밖의 기록까지 포함할 때만 [일치하는 전체 기록 선택](#loaded-page-selection)을 사용합니다.
+4. **Filters → Reading status**로 필터링합니다. 상태 변경 후 행이 사라지면 필터를 해제해 다시 확인합니다.
+
+상태는 프로젝트와 컬렉션에서 같은 문헌에 공유됩니다. 스마트 컬렉션 판정이나 근거의 질과는 별개입니다. 저장에 실패하면 현재 상태를 확인한 뒤 다시 시도합니다.
+
+![Reading status로 문헌 필터링](/img/open-science/v105/reading-filter.webp)

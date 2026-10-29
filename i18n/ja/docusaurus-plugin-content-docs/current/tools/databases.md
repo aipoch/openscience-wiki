@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,14 +13,16 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v1.0.4 には **42 のデータソース Connector、395 の操作**が含まれます。オフラインの Molecule Connector の 2 操作を加えると、全体で 397 操作です。以下の Connector 名は **Settings → Connectors**に対応します。1 つの項目から複数のデータベースを利用できる場合があります。掲載されているデータソースの Web サイト上の全機能が使えるわけではありません。
+Open-Science v1.0.5 は **48 個の組み込み Connector と 418 操作**を提供します。内訳は、47 個のデータソース Connector の 416 操作と、オフラインの Molecule Connector 1 個の 2 操作です。以下の名前は **Settings → Connectors** の項目に対応します。1 個の Connector が複数のデータベースを扱う場合があります。掲載されたデータソースの Web サイトの全機能を利用できるとは限りません。
+
+この数には無効なものを含む全組み込み項目が含まれます。独自に追加した MCP Connector は別途数えます。Connector 数、対象データベース数、呼び出せる操作数は異なる指標です。
 
 | コネクタ | 出典 | 操作 | 利用する  |
 | --- | --- | --- | ---  |
 | Chemistry · `chemistry` | PubChem, ChEBI, Rhea, BindingDB, LIPID MAPS, UniChem | 14 | パブケム、チェビ、レア、ビンディングDBによる小分子化学。  |
 | Literature Graph · `literature` | OpenAlex, arXiv, Crossref, DataCite | 13 | 論文、著者、引用、DOIの更新とデータセット/ソフトウェアレコード。 |
 | PubMed · `pubmed` | PubMed, PMC, Europe PMC, PubTator 3 | 9 | NCBI E-utilities、PMC ID Converter、Europe PMC を通じて生物医学文献を検索し、メタデータ、関連論文、引用、ID 変換、全文と著作権情報を取得します。  |
-| Genes &amp; Ontologies · `genes` | HGNC, MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 17 | 遺伝子・タンパク質の識別子、UniProt 配列検索、GO・Reactome 注釈、g:Profiler・Enrichr の遺伝子セット濃縮解析。 |
+| Genes &amp; Ontologies · `genes` | HGNC, MyGene, UniProt, OLS, QuickGO, Reactome, g:Profiler, Enrichr | 20 | 遺伝子・タンパク質の識別子、UniProt 配列検索、GO・Reactome 注釈、g:Profiler・Enrichr の遺伝子セット濃縮解析。 |
 | ゲノム・ `genomes` | NCBI Datasets, NCBI BLAST, EMBL-EBI Job Dispatcher, Ensembl, UCSC | 22 | ゲノムのアノテーション、均質学および順序; NCBIタムン/アセンブリ/シーケンスアイデンティティ; BLAST検索とClustal Omegaの複数のシーケンスアライメント。 人口固有のLDおよびプロキシの変形。 |
 | バリアント・ `variants` | gnomAD, ClinVar, dbSNP, MaveDB | 22 | 人口の頻度、臨床記録および試金固有の機能スコア、マッピングおよび実験。 |
 | Clinical Trials · `clinical-trials` | ClinicalTrials.gov | 7 | 臨床試験の検索、プロトコル、公開済み評価項目の測定値、群別の分母、統計解析、有害事象。 |
@@ -28,7 +30,7 @@ Open-Science v1.0.4 には **42 のデータソース Connector、395 の操作*
 | 構造と相互作用 · `structures` | PDB, PDBe, AlphaFold, EMDB, Complex Portal, IntAct, OmniPath | 20 | 構造と分子相互作用 — PDB 構造, アルファフォールド予測, EMDB クリオ-EM エントリ, 複雑なポータルの複合体, IntAct 相互作用ネットワーク.  |
 | ChEMBL・ `chembl` | ChEMBL | 7 | CEMBL REST API による生体活性化合物、薬物、標的、生体活性およびメカニズム。  |
 | bioRxiv · `biorxiv` | bioRxiv, medRxiv, ROR | 7 | BioRxiv/medRxiv のプリプリント — 日付/カテゴリ、DOI によるメタデータ、ジャーナル公開リンク、ファンダリスト、およびプラットフォームの統計による検索。  |
-| 薬物規制・ `drug-regulatory` | openFDA | 10 | Drugs@FDA、ラベル、FAERSの副作用報告および薬剤のrecalls。 |
+| 薬物規制・ `drug-regulatory` | openFDA | 11 | Drugs@FDA、ラベル、FAERSの副作用報告および薬剤のrecalls。 |
 | ヒト遺伝学・ `human-genetics` | GWAS Catalog, eQTL Catalogue, PheWeb | 15 | GWASカタログ、eQTLカタログ、PheWeb PheWASポータル(FinnGen、BioBank Japan)  |
 | エクスプレス・ `expression` | GTEx, Bgee | 16 | 人間のGTExのティッシュの表現およびeQTL; Bgee のクロススペックのベースライン式。 |
 | タンパク質アノテーション・ `protein-annotation` | InterPro, Pfam, Human Protein Atlas, STRING | 14 | タンパク質ドメインアーキテクチャ、家族/クランのメンバーシップ、InterPro/Pfam、ヒューマンプロテインアトラス、STRINGによる表現アトラスと相互作用ネットワーク、ネットワークの相互作用の豊かさを含みます。 |
@@ -47,7 +49,7 @@ Open-Science v1.0.4 には **42 のデータソース Connector、395 の操作*
 | Pathway Commons · `pathway-commons` | Pathway Commons, Reactome | 4 | パスウェイ検索、トップパスウェイ、グラフクエリ、BioPAXサブモデルエクスポート。 |
 | Alliance Genome Resources · `alliance` | Alliance of Genome Resources | 8 | 人間とモデル組織遺伝子、オルトログ、病気モデル、フェノタイプ、アレルと表現。 |
 | CELLxGENE Discover · `cellxgene-discover` | CELLxGENE Discover | 9 | 単一セルコレクションとデータセット、公開バージョン、ファイル形式、サイズ、ダウンロードURL。 |
-| Cellosaurus · `cellosaurus` | Cellosaurus | 2 | セル・ラインの名前と同義語を見つけ、アクセスアイデンティティと品質アノテーションを検査します。 |
+| Cellosaurus · `cellosaurus` | Cellosaurus | 6 | セル・ラインの名前と同義語を見つけ、アクセスアイデンティティと品質アノテーションを検査します。 |
 | Monarch Initiative · `monarch` | Monarch Initiative | 2 | 生物と遺伝子対フェノタイプと遺伝子の関連と、証拠を支持する。 |
 | IEDB · `iedb` | IEDB | 8 | エピトープ、抗原、Tセル、B細胞、MHCアッセイ、TCR/BCRの証拠、およびソース出版物。 |
 | PDC · `pdc` | PDC | 5 | がんプロテオミクス研究のバージョン、検体の対応関係、公開症例メタデータ、ファイル一覧。ファイルのダウンロードは行いません。 |
@@ -59,6 +61,11 @@ Open-Science v1.0.4 には **42 のデータソース Connector、395 の操作*
 | DailyMed · `dailymed` | DailyMed | 2 | 医薬品ラベルの識別情報と版の履歴。 |
 | BioSamples · `biosamples` | EMBL-EBI BioSamples | 2 | 公開サンプルのメタデータと相互参照。 |
 | WikiPathways · `wikipathways` | WikiPathways | 2 | 経路のメタデータ、種、改訂情報。 |
+| Europe PMC · `europepmc` | Europe PMC | 1 | 文献の直接検索、抄録、ページ送り。 |
+| Research Datasets · `research-datasets` | NHANES, CHARLS, CHNS, SEER, MIMIC, eICU, GBD | 3 | データの利用条件と公開ファイルの検索。 |
+| ChEA3 · `chea3` | ChEA3 | 2 | 転写因子のエンリッチメント順位と GMT リンク。 |
+| bioDBnet · `biodbnet` | bioDBnet | 6 | 識別子の変換、オルソログの対応、経路。 |
+| CTD · `ctd` | CTD | 1 | 公式公開レポートの入口と利用条件。 |
 
 [科学ビューア](viewers.md)でオフラインのモレキュラーツールがカバーされています。 それぞれのデータソースで露出した正確な操作については、[Connectorの操作の参照](../reference/connector-operations.md) を使用します。
 
@@ -261,7 +268,7 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログの出典： [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.4/src/main/connectors/registry.ts).
+カタログの出典： [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.5/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.5/src/main/connectors/registry.ts).
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 
@@ -390,3 +397,19 @@ v1.0.2 は、現在のセッションで拒否した OpenAlex 認証情報の要
 | BioSamples · WikiPathways | サンプルまたは経路のメタデータと改訂情報 | accession、種、日付、証拠リンク。リンク先ファイルや経路グラフは取得しません。 |
 
 入力とページ分割は[操作リファレンス](../reference/connector-operations.md)を参照してください。空値と打切り情報を保持し、上限付き結果をデータベース全体とみなさないでください。
+
+## 公式データとファイル一覧を探す {/* #scientific-file-discovery */}
+
+**Settings → Connectors** で必要な入口だけ有効にします。Europe PMC、Research Datasets、ChEA3、bioDBnet、CTD は API キー必須ではありません。検索語、識別子、遺伝子リストは各サービスへ送信されます。[接続設定](#connect-database)。
+
+| 目的 | 入口と結果 | 次の操作 |
+| --- | --- | --- |
+| 生物医学文献を直接検索 | **Europe PMC** の記録、利用可能な抄録、次ページカーソル | 識別子を保存してページを進める。全文リンクは取得済み全文ではない |
+| 調査・臨床デモファイルを探す | **Research Datasets** の NHANES 周期・説明と、固定版 MIMIC/eICU デモ | 公式ダウンロード前に周期、版、ライセンス、説明を確認 |
+| 利用条件を調べる | **Research Datasets** が NHANES、CHARLS、CHNS、SEER、MIMIC、eICU、FAERS、GBD の入口を案内 | 必要な登録、研修、エクスポートを提供元で行う |
+| 公開レポートを探す | **Drug Regulatory**、**CTD**、**Cellosaurus** の公式ファイル位置 | 最新ページ、版、利用条件を確認。自動ダウンロードや取込ではない |
+| 遺伝子識別子を整理 | **Genes & Ontologies** の HGNC フィールド・ファイル、**bioDBnet** の変換・オルソログ | 対応型を先に確認し、曖昧・未対応・一対多の結果を残す |
+| 調節因子候補を順位付け | **ChEA3** のライブラリ別順位と GMT リンク | 仮説として扱う。ダウンロード用 GMT とオンライン結果のライブラリは異なる場合がある |
+| 細胞株の証拠を確認 | **Cellosaurus** の RDF、制限付き SPARQL、STR 類似性 | accession とマーカー設定を保持。類似度だけでは試料同一性を認証できない |
+
+一覧は公式 URL とメタデータを返し、ファイルや分析 DB を自動取得しません。NHANES には正しい調査設計と重みが必要です。MIMIC/eICU デモの利用権は全データへの権限ではなく、FAERS 報告は発生率ではありません。詳細は[操作リファレンス](../reference/connector-operations.md)を参照してください。

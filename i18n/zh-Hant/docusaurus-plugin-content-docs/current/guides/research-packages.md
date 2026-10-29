@@ -2,7 +2,7 @@
 title: ".science 研究包"
 description: "將會話、檔案和證據一起匯出，再匯入專案檢視與交接研究記錄。"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -141,17 +141,35 @@ Keep everything in English and return links to both new files.
 
 網站開發者可參考[瀏覽器導入 SDK 指南](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/BROWSER_IMPORT.md)：需要 HTTPS（或本機迴環開發地址）、同機桌面應用，以及非空且不超過 2 GiB 的研究包。本地接收不替代用戶最後的導入確認。
 
-## 從 CLI 或本地網頁使用研究包 {/* #local-package-transfer */}
+## 在 CLI 或本地 Web 界面中使用研究包 {/* #local-package-transfer */}
 
-從 v1.0.3 起，CLI 和已認證的本地網頁可使用會話研究包。在本地網頁中使用會話導出或項目導入入口，並按提示填寫運行服務的計算機上的路徑。遠程網頁會話不支持任意路徑的研究包傳輸。上面的“網站傳給桌面應用”屬於另一種流程。
+從 v1.0.5 起，經過身份驗證的**本地 Web** 工作區通過瀏覽器上傳、下載 `.science` 研究包。遠程 Web 會話不因此獲得這項能力。[網站向桌面應用傳包](#browser-import)仍是另一條流程。
 
-使用 CLI 前，先啓動目標本地配置對應的服務，等待源會話空閒。將以下 ID 和路徑替換爲自己的值：
+### 在本地 Web 中上傳或下載 {/* #web-package-transfer */}
+
+1. 開啟目標本地工作區，等待來源工作階段閒置。在工作階段選單選擇 **Export → Export Session package**，選擇包內材料，再點擊 **Choose save location…** 準備研究包。
+2. 等待研究包準備完成，再點擊已完成包文件名旁的 **Download**，通過瀏覽器保存。後臺準備好研究包不等於瀏覽器已經保存下載；分享前確認實際下載到了 `.science` 文件。
+3. 導入時，使用項目的研究包導入入口，從電腦中選擇一個 `.science` 文件。等待上傳與校驗，檢查包內容和目標項目，再確認導入。
+4. 開啟匯入後的工作階段並檢查檔案。研究記錄為唯讀。要繼續研究，請在桌面版開啟同一工作區，再選擇 **Fork to continue**；Web 不提供 Fork。
+
+![研究包準備完成後顯示瀏覽器 Download 按鈕](/img/open-science/v105/package-download.webp)
+
+上傳、下載或導入失敗時，先檢查界面結果與目標項目再重試。收到文件或上傳成功，並不等於導入已經完成。
+
+### 使用 CLI {/* #cli-package-transfer */}
+
+先啓動目標本地配置的服務，並等待源會話空閒。將下面的標識與路徑替換爲實際值：
 
 ```bash
 open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
-open-science session import ./session.science --new-project "Restored research" --non-interactive --json
 ```
 
-導出必須明確提供 `.science` 輸出路徑。導入必須帶 **--non-interactive**，它會代替你確認預覽，因此先檢查研究包來源和目標位置。使用 **--project** 選擇已有項目，或使用 **--new-project** 創建項目，兩者不能同時使用。均未指定時，按研究包中的項目名稱創建新項目。默認請求時限爲一小時，大文件傳輸可調整 **--timeout-ms**。
+匯出必須指定 `.science` 輸出路徑。預設等待時限為一小時；大型傳輸可用 **--timeout-ms** 調整，完成後檢查傳回的檔案路徑。在 **v1.0.5** 中，匯入本地檔案請使用[本地 Web 上傳](#web-package-transfer)或桌面版匯入入口；CLI 的 `session import` 檔案路徑可能在研究包驗證前被拒絕。
 
-檢查結果中的保存路徑或導入會話。導入記錄仍爲只讀，繼續研究請使用 **Fork**。v1.0.4 還修復了選擇保存位置後導出仍可能停留在等待狀態的問題。
+## 從首頁科研案例開始 {/* #use-case-gallery */}
+
+在首頁案例卡片中選擇 **Details**，閱讀對應的官方案例頁面；選擇 **Import** 下載研究包。留意準備、下載和校驗進度；不需要的傳輸可用 **Cancel** 取消。若已下載的包正在等待選擇目標，點擊 **Continue** 重新打開導入對話框。
+
+確認目標項目後導入。打開結果，檢查輸入與產物，再用 桌面版的 **Fork to continue** 研究自己的問題。下載校驗檢查的是包的傳輸，不代表已經驗證案例的科學結論，也不會提供其模型憑據。
+
+![匯入前檢查官方案例包與目標專案](/img/open-science/v105/package-preview.webp)

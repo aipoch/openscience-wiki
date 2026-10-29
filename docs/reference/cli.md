@@ -1,7 +1,7 @@
 ---
 title: "CLI and structured output"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ Use `open-science` to inspect application status, run tasks, manage Connectors a
 
 ## Set up from a terminal {/* #terminal-setup */}
 
-Install the desktop launcher, use a v1.0.2 standalone archive, or follow the [npm installation steps](../guides/installation.md#npm-cli). Standalone archives bundle Node, the backend and Web UI; the extraction steps below apply to those archives.
+Install the desktop launcher, use a v1.0.5 standalone archive, or follow the [npm installation steps](../guides/installation.md#npm-cli). Standalone archives bundle Node, the backend and Web UI; the extraction steps below apply to those archives.
 
 1. Choose macOS or Linux arm64/x64, or Windows x64, matching the host.
 2. Extract the complete archive into a writable location. Keep the launcher, `backend` and `node-runtime` together; copying only the launcher will break startup.
@@ -215,9 +215,9 @@ The following invalid-option response was reproduced locally:
 
 JSONL can include `run.progress` and `stream.resync-required`. If replay is unavailable after reconnection, reread authoritative run state; do not assume the event stream is a permanent history. Lifecycle commands have separate flag restrictions described in [Headless service](./server.md).
 
-[CLI implementation](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/cli.mjs), [upstream command guide](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
+[CLI implementation](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/cli.mjs), [upstream command guide](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
 
-Technical reference: [CLI contract](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
+Technical reference: [CLI contract](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
 
 ## Unattended runs {/* #unattended-runs */}
 
@@ -271,3 +271,7 @@ Let the client launch the adapter. Discover projects with **list_projects**, sub
 The client acts under the profile's existing permissions. It can create persistent projects, change configuration and start work that writes files or incurs model costs. Approvals may still require action in Open-Science. Inspect current state after a timeout before repeating a write. Closing the client or cancelling its request does not cancel accepted research: use **cancel_run** explicitly. See the [official MCP tool and permission reference](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp).
 
 For package commands, follow [CLI import and export](../guides/research-packages.md#local-package-transfer).
+
+## Keep a service running for automation {/* #persistent-service */}
+
+Use `open-science start --no-open --json` on the intended profile before quitting the desktop when CLI, browser or SDK work must continue. From v1.0.5, this creates one persistent hold; repeated starts do not add more. Plain `stop` releases the hold but leaves the service running while an App is connected. Read the [lifecycle results](server.md#lifecycle-commands) before treating a successful stop command as a stopped service.

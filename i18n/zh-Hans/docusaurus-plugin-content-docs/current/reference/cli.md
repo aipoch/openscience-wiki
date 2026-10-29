@@ -1,7 +1,7 @@
 ---
 title: "CLI 与结构化输出"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 从终端完成首次设置 {/* #terminal-setup */}
 
-可安装桌面版命令入口、使用 v1.0.2 独立压缩包，或按 [npm 安装步骤](../guides/installation.md#npm-cli)操作。独立压缩包包含 Node、后端和 Web UI；下面的解压步骤适用于这些压缩包。
+可安装桌面版命令入口、使用 v1.0.5 独立压缩包，或按 [npm 安装步骤](../guides/installation.md#npm-cli)操作。独立压缩包包含 Node、后端和 Web UI；下面的解压步骤适用于这些压缩包。
 
 1. 选择与主机匹配的 macOS／Linux arm64 或 x64 包，或 Windows x64 包。
 2. 完整解压到可写目录，保留启动器、`backend` 与 `node-runtime` 的相对位置；只复制启动器会导致无法启动。
@@ -213,9 +213,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL 可能包含 `run.progress` 和 `stream.resync-required`。重连后无法重放时，重新读取权威 Run 状态，不把事件流当作永久历史。服务命令另有参数限制，见[无界面服务](./server.md)。
 
-[CLI 实现](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md)。
+[CLI 实现](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md)。
 
-技术参考：[CLI 约定](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
+技术参考：[CLI 约定](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
 
 ## 无人值守运行 {/* #unattended-runs */}
 
@@ -269,3 +269,7 @@ open-science mcp --help
 客户端沿用该配置已有的权限，可以创建持久项目、修改配置，并发起会写文件或产生模型费用的任务。审批仍可能需要你在 Open-Science 中处理。请求超时后，先检查当前状态再重复写操作。关闭客户端或取消请求不会取消已接受的研究任务；需要停止任务时明确调用 **cancel_run**。详见[官方 MCP 工具与权限说明](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp)。
 
 研究包命令见 [CLI 导入与导出](../guides/research-packages.md#local-package-transfer)。
+
+## 让服务持续运行以完成自动化 {/* #persistent-service */}
+
+若 CLI、浏览器或 SDK 工作需要在退出桌面应用后继续，请先对目标配置执行 `open-science start --no-open --json`。从 v1.0.5 起，这会设置一次持续运行状态；重复启动不会累加。普通 `stop` 解除该设置，但仍有 App 连接时服务会保留。判断服务是否停止前，请读取[生命周期结果](server.md#lifecycle-commands)，不要只看命令成功与否。

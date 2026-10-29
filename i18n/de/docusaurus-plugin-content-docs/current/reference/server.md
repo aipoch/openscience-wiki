@@ -1,7 +1,7 @@
 ---
 title: "Headless Service und Browserzugriff"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # Headless Service und Browserzugriff {/* #headless-service-and-browser-access */}
@@ -31,26 +31,29 @@ Führen Sie nach einem beabsichtigten `start --no-open` `open-science doctor --j
 
 ## Lifecycle-Befehle {/* #lifecycle-commands */}
 
-| Befehl | Ergebnis | Optionen und Grenzen |
-| --- | --- | --- |
-| `open-science start` | Starten Sie das Backend und öffnen Sie den Browser | Standard-Port 44100 |
-| `open-science start --no-open` | Starten Sie, ohne einen Browser zu öffnen | Verwendung für eine absichtliche lokale Servicesitzung |
-| `open-science status --json` | Druckmaschinenlesbarer Servicezustand | Ein fehlender Service kehrt zurück `{"running":false}` und Ausstiegscode 1 |
-| `open-science url` | Drucken Sie die authentifizierte Browser-URL | Enthält die lokale Zugangsbehörde; Nicht in veröffentlichte Beispiele einfügen |
-| `open-science stop` | Anfordern authentifizierter Graceful Shutdown | Signalisiert nicht blind eine PID aus einer veralteten Zustandsdatei |
-| `open-science stop --json` | Melden Sie das Abschaltungsergebnis | Siehe die Ergebnistabelle unten |
+Ab v1.0.5 hält eine App-Verbindung oder ein expliziter CLI-Start den Dienst am Leben. Verwenden Sie den gleichen absoluten Profilpfad für alle Befehle.
 
-Unter diesen Befehlen ist **Status und Stop Support `--json`; Start und URL nicht**. Der lokale `start --json`-Check hat `invalid_cli_usage` mit dem Ausstiegscode 2 zurückgegeben, bevor er etwas gestartet hat. Führen Sie für einen Skriptstart `start --no-open` und dann `status --json` aus.
+| Kommando | Ergebnis |
+| --- | --- |
+| `open-science start` | Starten oder Wiederverwenden des Dienstes, lassen Sie ihn explizit laufen und öffnen Sie den Browser |
+| `open-science start --no-open --json` | Denselben dauerhaften Weiterbetrieb ohne Browser aktivieren; Rückgabe: `started` oder `already-running`, Serviceinformationen und `lifetime` |
+| `open-science status --json` | Überprüfen Sie den ausgewählten Dienst; ein fehlender Dienst kehrt zurück `{"running":false}` und Ausstiegscode 1 |
+| `open-science url` | Drucken Sie seine authentifizierte Browser-URL; halten Sie diese privat |
+| `open-science stop --json` | Dauerhaften Weiterbetrieb deaktivieren; nur ohne verbundene App stoppen |
+| `open-science stop --force --json` | Anfordern eines vollständigen Servicestopps, einschließlich verbundener Apps; kann aktive Aufgaben unterbrechen |
 
-### Shutdown Ergebnisse {/* #shutdown-outcomes */}
+Wiederholt `start` erhöhen die Anzahl der Laufanforderungen nicht. **start**, **status** und **stop** Unterstützung `--json`; **url** nicht. Die JSON-Startausgabe stellt die authentifizierte Browser-URL nicht frei. Ältere Dienste können eine unbekannte Lebensdauer melden; Verwenden Sie passende Versionen, bevor Sie sich auf den neuen Vertrag verlassen.
+
+### Shutdown Ergebnisse
 
 | JSON `result` | Bedeutung |
 | --- | --- |
-| `already-stopped` | Kein Live-Service-Rekord gefunden |
-| `daemon-stopped` | Authentifiziertes Node-Backend beendet; Angehängte Clients verlieren ihre Backend-Verbindung |
-| `web-service-stopped` | Legacy Electron Web-Service Ergebnis, nicht das neue Standalone Node Backend |
+| `already-stopped` | Kein Live-Service-Record gefunden |
+| `keep-alive-revoked` | Dauerhafter Weiterbetrieb deaktiviert; verbundene Apps halten den Dienst aktiv |
+| `stopped` | Die angeforderte Servicegenerierung verließ und gab das Eigentum frei |
+| `shutdown-requested` | Ein Legacy-Dienst akzeptierte die Anforderung, aber Exit ist nicht bestätigt; der Befehl gibt einen Nicht-Null-Exit-Code zurück. |
 
-Eine abgelehnte Anfrage oder verpasste Abschaltungsfrist gibt einen Fehler zurück. Lesen Sie den Fehler und prüfen Sie den tatsächlichen Zielzustand. Melden Sie einen Dienst nicht als angehalten, nur weil der Befehl zurückgegeben wurde.
+Lesen `result` und `lifetime`; Ein erfolgreicher Exit-Code allein bedeutet nicht, dass der Dienst gestoppt wurde. Ältere `daemon-stopped` und `web-service-stopped` Ergebnisnamen werden nicht mehr ausgegeben. `--force` erfordert das moderne Lifetime-Protokoll und schlägt explizit gegen einen älteren Dienst fehl. Überprüfen Sie Fehler und aktuellen Status, anstatt Statusdateien zu löschen oder eine aufgezeichnete PID zu töten.
 
 ## Authentifizierung und Browserzugriff {/* #authentication-and-browser-access */}
 
@@ -90,31 +93,32 @@ Verwenden Sie persistenten Speicher, wenn die Konfiguration den Containerwechsel
 
 | Aktion | Auswirkungen auf das Backend |
 | --- | --- |
-| Schließen Sie einen Browser-Tab | Backend läuft weiter |
-| Beenden Sie den Desktop, der das Backend gestartet hat | Sein eigenes Backend stoppt mit ihm |
-| Beenden eines Desktops, der an ein bestehendes CLI-Backend angehängt ist | Nur dieser Kunde löst sich; Das CLI Backend läuft weiter |
-| `open-science stop` | Stoppen Sie das ausgewählte Backend, was sich auf alle daran angeschlossenen Clients auswirkt |
+| Beenden Sie die letzte angeschlossene App ohne expliziten CLI-Start | Betriebsstopps |
+| Run CLI `start`, dann alle Apps beenden | Der Dienst läuft durch die ausdrückliche Einstellung weiter |
+| Schließen Sie einen Browser-Tab oder einen SDK-Client | Deaktiviert den dauerhaften Weiterbetrieb nicht |
+| Führen Sie eine gewöhnliche CLI-, Web- oder SDK-Aufgabe aus | Hält den Dienst nicht unabhängig am Leben, nachdem alle Apps beendet wurden |
+| Lauf `open-science stop` Mit einer App verbunden | Dauerhaften Weiterbetrieb deaktivieren; für die verbundene App weiterlaufen |
+| Lauf `open-science stop --force` | Serviceweites Herunterfahren anfordern, möglicherweise Unterbrechung der Arbeit |
 
-Das Schließen eines Fensters kann sich vom Beenden der App unterscheiden, insbesondere wenn es im Tablar verbleibt. Beenden Sie die aktive Recherche, bevor Sie ein gemeinsames Backend stoppen, und überprüfen Sie dann den tatsächlichen Zustand mit `status --json`.
+Wenn der Browser oder die automatisierte Arbeit nach dem Beenden des Desktops fortgesetzt werden muss, starten Sie zuerst explizit dasselbe Profil. Das Schließen eines Fensters zum Tablett wird nicht beendet. Beenden Sie aktive Forschung vor einem Whole-Service-Stop, dann überprüfen `status --json`.
 
-Ein getrennter Desktop bietet **Erneut verbinden** und **App beenden**. Reconnect aktualisiert das ursprüngliche Live-Backend und sendet keine Arbeit erneut; Wenn das Backend weg ist, beenden und wieder öffnen. Ein getrenntes beenden kann nur den client schließen, also überprüfen sie den status des ausgewählten profils, bevor sie annehmen, dass der dienst gestoppt wurde. Folgen Sie [Anschlusswiederherstellung](../guides/troubleshooting.md#connection-recovery), einschließlich der Überprüfung von Operationen, deren Antworten verloren gegangen sind.
+Ein getrenntes Desktop-Angebot **Reconnect** und **Quit app**. Reconnect sendet keine Arbeit erneut ein. Folgen [Anschlusswiederherstellung](../guides/troubleshooting.md#connection-recovery), und inspizieren Sie Operationen, deren Antworten vor dem erneuten Versuch verloren gegangen sind.
+
 ### Reconnect nach unterbrochenem Desktop-Shutdown {/* #desktop-service-recovery */}
 
-Wenn der Desktop unerwartet beendet wird, während sein Backend überlebt, kann das Wiedereröffnen eines Desktops mit gleicher Version diesen Desktop-gestarteten Dienst übernehmen, nachdem sich der alte Controller und das Teardown erledigt haben. Ein CLI-gestarteter Dienst bleibt ausgeliehen; Ein normaler Desktop Quit stoppt es nicht nur, weil der Desktop wieder verbunden ist.
+Öffnen Sie den Desktop der gleichen Version erneut und verbinden Sie sich erneut mit dem ursprünglichen Profil. App-Verbindungen und ein expliziter CLI-Hold bestimmen, ob dieser Dienst am Leben bleibt; ein Browser-Tab allein ersetzt auch nicht.
 
-Wenn die Vorbereitung fehlschlägt, bleibt das Fenster offen. Lesen Sie die Notiz, bewahren Sie die nicht gespeicherte Arbeit auf und warten Sie, bis sich die Konversation erholt hat, bevor Sie den ursprünglichen Ablauf und die Dateien überprüfen. Ein offenes Fenster bedeutet nicht, dass die Aufgabe abgebrochen wurde. Wenn ein Startup meldet, dass ein älterer eigenständiger Dienst ihn blockiert, überprüfen Sie das Profil und die Version, bevor Sie die explizite Stoppaktion auswählen. Abbrechen lässt diesen Dienst laufen; ein fehlgeschlagenes Stoppen kann wiederholt oder erneut überprüft werden, ohne Sperrdateien zu löschen.
+Wenn die Vorbereitung fehlschlägt, bleibt das Fenster offen. Bewahren Sie ungespeicherte Arbeit und überprüfen Sie die ursprüngliche Aufgabe nach der Wiederherstellung. Wenn ein Startup meldet, dass ein älterer Dienst ihn blockiert, überprüfen Sie das Profil, die Version und die aktiven Clients, bevor Sie die explizite Stoppaktion auswählen. Cancel lässt den Dienst laufen. Ein fehlgeschlagener Stop kann wiederholt oder erneut überprüft werden, ohne Sperrdateien zu löschen.
 
-## Anwendungs-Updateverhalten {/* #application-update-behavior */}
+## Anwendungsaktualisierungsverhalten {/* #application-update-behavior */}
 
-v1.0.0 entfernt den CLI-Anwendungs-Updater; Verwenden Sie `open-science update --json` nicht. Verwenden Sie die Desktop-Update-Steuerelemente oder den Original-Installationsprogramm- / Paketmanager und beobachten Sie [Aktuelle Release-Verfügbarkeit](../guides/installation.md#standalone-cli).
+Der CLI Application Updater bleibt entfernt; nicht verwenden `open-science update --json`. Verwendung [Desktop-Update-Steuerelemente oder der ursprüngliche Installationskanal](../guides/installation.md#manual-update).
 
-- **Desktop-App:** beendet aktive Recherchen, bevor Updates überprüft werden. Wenn die Aktualisierung, während sie an einen CLI-Dienst angeschlossen ist, darum bittet, sie zu stoppen und zur Desktop-Verwaltung zu wechseln, überprüfen Sie das Profil und die betroffenen Aufgaben, bevor Sie zustimmen. Cancel lässt den ursprünglichen Dienst laufen. Dieser Switch aktualisiert die ursprünglichen eigenständigen CLI-Programmdateien nicht.
-- **Standalone CLI Installation:** stoppt jedes Profil, das es verwendet, und installiert dann ein tatsächlich veröffentlichtes Paket über den ursprünglichen Kanal. Überschreiben Sie keine laufenden Dateien oder öffnen Sie ein Profil mit einem alten Backend erneut, nachdem ein neuerer Desktop darauf geschrieben hat.
-- **Belegungs- oder Wiedereinziehungsanzeige:** folgt den angezeigten Überprüfungen auf aktive Instanzen und Installationszustand. Löschen Sie keine Sperren, Konfigurations- oder Wiederherstellungsaufzeichnungen, um ein Update zu erzwingen, wenn das Herunterfahren unsicher ist.
+Vor dem Austausch der CLI-Dateien die Arbeit aller betroffenen Profile beenden. Verbundene Apps schließen und den dauerhaften Weiterbetrieb jedes Profils deaktivieren mit `stop --json`. Bestätigung `stopped` oder `already-stopped`; `keep-alive-revoked` bedeutet, dass eine App den Dienst weiterhin am Laufen hält. Verwendung `stop --force` nur wenn Sie beabsichtigen, die Arbeit aller Kunden einzustellen. Überschreiben Sie keine laufenden Programmdateien.
 
-Nach dem Upgrade bestätigen Sie die Version und die Originaldaten und verwenden dann `status --json` und `doctor --json`, um den Servicezustand und die Bereitschaft zu überprüfen. Bewahren Sie den Credential-Store-Modus. [1.x Kompatibilität](../guides/installation.md#version-compatibility) verspricht keine gemischten Desktop- / Backend-Versionen.
+Bei einem Desktop-Update wird möglicherweise aufgefordert, einen angehängten CLI-Dienst zu stoppen und zur Desktop-Verwaltung zu wechseln. Überprüfen Sie das Profil und die betroffenen Aufgaben, bevor Sie zustimmen; Abbrechen lässt es laufen. Dadurch werden die ursprünglichen eigenständigen CLI-Programmdateien nicht aktualisiert. Folgen Sie Belegungs- und Wiederherstellungshinweisen, ohne Sperren oder Konfiguration zu löschen.
 
-Siehe [Offizieller Runtime Guide](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md), [CLI](cli.md) und [Aufgabe SDK](api.md).
+Nach dem Upgrade bestätigen Sie die Version und die Originaldaten und überprüfen Sie dann `status --json` und `doctor --json`. Bewahren Sie den Credential-Store-Modus auf. [1.x Kompatibilität](../guides/installation.md#version-compatibility) verspricht keine gemischten Desktop / Backend-Versionen. Siehe: [Offizieller Runtime Guide](https://github.com/aipoch/open-science/blob/v1.0.5/docs/standalone-runtime.md), [CLI](cli.md) und [Task SDK](api.md).
 
 ## Compute im Web Workspace {/* #web-compute */}
 
@@ -122,4 +126,4 @@ Der Standalone Web Workspace zeigt **Compute** wenn sein Backend die erforderlic
 
 ## Pakete und externe Tool-Clients {/* #local-research-tools */}
 
-Authentifizierte lokale Web-Sitzungen können [Forschungspakete importieren und exportieren](../guides/research-packages.md#local-package-transfer); Remote-Web-Sitzungen können diese willkürlichen Pfadübertragungen nicht durchführen. Um Forschungswerkzeuge einem externen Client auf derselben Maschine auszusetzen, konfigurieren Sie die [Stdio MCP Adapter](cli.md#external-mcp). Es stellt eine Verbindung zu einem bereits laufenden lokalen Dienst her und verwendet die Berechtigungen dieses Profils; es erstellt keine entfernte MCP-URL.
+Authentifizierte lokale Web-Sitzungen können [Forschungspakete hoch- und herunterladen](../guides/research-packages.md#local-package-transfer)Remote-Web-Sitzungen erhalten diese Übertragungsfähigkeit nicht. Um einen externen Werkzeugclient an derselben Maschine anzuschließen, konfigurieren Sie die [Stdio MCP Adapter](cli.md#external-mcp). Es verwendet einen bereits laufenden lokalen Dienst und die Berechtigungen dieses Profils; es erstellt keine entfernte MCP-URL.

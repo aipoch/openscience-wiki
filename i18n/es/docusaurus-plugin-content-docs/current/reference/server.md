@@ -1,7 +1,7 @@
 ---
 title: "Servicio sin cabeza y acceso al navegador"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # Servicio sin cabeza y acceso al navegador {/* #headless-service-and-browser-access */}
@@ -29,28 +29,31 @@ Utilice `open-science init` para preparar el directorio de configuración predet
 
 Después de un `start --no-open` intencional, ejecute `open-science doctor --json`. Inspeccione el `ready` general, los cheques individuales y las siguientes acciones sugeridas; el código de salida del proceso por sí solo no es un veredicto de preparación. Mantenga el servicio en su interfaz local autenticada existente. Iniciar este servicio sin cabeza no configura Remote.It ni publica un endpoint público.
 
-## Comandos de ciclo de vida {/* #lifecycle-commands */}
+## Controles de ciclo de vida {/* #lifecycle-commands */}
 
-| Comando | Resultado | Opciones y límites |
-| --- | --- | --- |
-| `open-science start` | Iniciar el backend y abrir el navegador | Puerto predeterminado 44100 |
-| `open-science start --no-open` | Comenzar sin abrir un navegador | Uso para una sesión de servicio local intencional |
-| `open-science status --json` | Imprimir estado de servicio legible por máquina | Devuelve un servicio perdido `{"running":false}` y código de salida 1 |
-| `open-science url` | Imprima la URL del navegador autenticado | Contiene autoridad local de acceso; no pegar en ejemplos publicados |
-| `open-science stop` | Solicitud de apagado elegante autenticado | No señale ciegamente un PID de un archivo de estado de estancamiento |
-| `open-science stop --json` | Informe el resultado de la clausura | Véase el cuadro de resultados que figura a continuación |
+Desde v1.0.5, una conexión de App o un inicio explícito de CLI mantiene vivo el servicio. Use el mismo perfil absoluto para todos los comandos.
 
-Entre estos comandos, **status and stop support `--json`; empezar y url no**. El cheque `start --json` local devuelto `invalid_cli_usage` con código de salida 2 antes de comenzar cualquier cosa. Para un lanzamiento con scripts, ejecute `start --no-open`, luego `status --json`.
+| Comando | Resultado |
+| --- | --- |
+| `open-science start` | Iniciar o reutilizar el servicio, mantenerlo funcionando explícitamente, y abrir el navegador |
+| `open-science start --no-open --json` | Activar la misma ejecución persistente sin abrir el navegador; devuelve `started` o `already-running`, información de servicio y `lifetime` |
+| `open-science status --json` | Inspeccione el servicio seleccionado; un servicio perdido devuelve `{"running":false}` y código de salida 1 |
+| `open-science url` | Imprimir su URL del navegador autenticado; mantener este privado |
+| `open-science stop --json` | Desactivar la ejecución persistente; detener solo si no queda ninguna App conectada |
+| `open-science stop --force --json` | Solicitar una parada de servicio completo, incluyendo aplicaciones conectadas; puede interrumpir tareas activas |
 
-### Efectos de cierre {/* #shutdown-outcomes */}
+Repetidas `start` repetidos no acumulan solicitudes de ejecución persistente. **start**, **status** y **stop** apoyo `--json`; **url** no. La salida de lanzamiento de JSON no expone la URL del navegador autenticado. Los servicios más antiguos pueden reportar una vida desconocida; utilizar versiones iguales antes de confiar en el nuevo contrato.
+
+### Resultados de cierre
 
 | JSON `result` | Significado |
 | --- | --- |
 | `already-stopped` | No hay registro de servicio en vivo encontrado |
-| `daemon-stopped` | Authenticated Node backend salió; clientes adjuntos pierden su conexión de backend |
-| `web-service-stopped` | Legacy Electron resultado del servicio web, no el nuevo backend independiente Node |
+| `keep-alive-revoked` | Ejecución persistente desactivada; las Apps conectadas mantienen el servicio |
+| `stopped` | The requested service generation exited and released ownership |
+| `shutdown-requested` | Un servicio legado aceptó la solicitud pero la salida no está confirmada; el comando devuelve un código de salida no cero |
 
-Una solicitud rechazada o el plazo de cierre perdido devuelve un fracaso. Lea el error e inspeccione el estado de destino real. No reporte un servicio como se detuvo simplemente porque el comando regresó.
+Leer `result` y `lifetime`; un código de salida exitoso por sí solo no significa que el servicio se detuvo. El mayor `daemon-stopped` y `web-service-stopped` los nombres de los resultados ya no son emitidos. `--force` requiere el protocolo de vida moderno y falla explícitamente contra un servicio antiguo. Inspeccione errores y estado actual en lugar de borrar archivos estatales o matar un PID registrado.
 
 ## Autenticación y acceso al navegador {/* #authentication-and-browser-access */}
 
@@ -90,31 +93,32 @@ Utilice almacenamiento persistente cuando la configuración debe sobrevivir el r
 
 | Medida | Efecto en el backend |
 | --- | --- |
-| Cerrar una pestaña del navegador | Backend sigue corriendo |
-| Deja el escritorio que comenzó el backend | Su backend de propiedad se detiene con él |
-| Dejar un escritorio conectado a un backend CLI existente | Sólo ese cliente se separa; el backend CLI sigue funcionando |
-| `open-science stop` | Parar el backend seleccionado, afectando a todos los clientes que se adjuntan a él |
+| Dejar la última aplicación conectada sin un comienzo CLI explícito | Paradas de servicio |
+| Corre CLI `start`, luego dejar todas las aplicaciones | El servicio continúa por la ejecución persistente explícita |
+| Cerrar una pestaña de navegador o cliente SDK | No desactiva la ejecución persistente |
+| Ejecutar una tarea CLI común, Web o SDK | No mantiene el servicio con vida después de que todas las aplicaciones abandonen |
+| Corre `open-science stop` con una App conectada | Desactivar la ejecución persistente; continuar para la App conectada |
+| Corre `open-science stop --force` | Solicitud de cierre en todo el servicio, trabajo potencialmente interrumpido |
 
-Cerrar una ventana puede diferir de dejar la aplicación, especialmente cuando permanece en la bandeja. Terminar la investigación activa antes de detener un backend compartido, luego inspeccionar el estado actual con `status --json`.
+Si el navegador o el trabajo automatizado debe continuar después de dejar el escritorio, inicie explícitamente el mismo perfil primero. Cerrar una ventana a la bandeja no es renunciar. Terminar la investigación activa antes de una parada de servicio completo, luego comprobar `status --json`.
 
-Un escritorio desconectado ofrece **Volver a conectar** y **Cerrar la aplicación**. Reconectar refresca el backend original en vivo y no vuelve a presentar trabajo; Si ese backend se ha ido, renunció y reabrió. Un Quit desconectado puede cerrar sólo al cliente, así que inspeccione el estado del perfil seleccionado antes de asumir que el servicio se detuvo. Siga a [Recuperación de conexiones](../guides/troubleshooting.md#connection-recovery), incluyendo operaciones de verificación cuyas respuestas se perdieron.
-### Reconectar después de una interrupción del escritorio {/* #desktop-service-recovery */}
+Un escritorio desconectado ofrece **Reconnect** y **Quit app**. Reconnect no vuelve a presentar trabajo. Seguir [recuperación](../guides/troubleshooting.md#connection-recovery), e inspeccionar operaciones cuyas respuestas se perdieron antes de reintentar.
 
-Si el escritorio sale de forma inesperada mientras su backend sobrevive, la reapertura de un escritorio de la misma versión puede adoptar ese servicio de escritorio después del viejo controlador y el desgarro se resuelve. Se presta un servicio CLI sin asistencia; El escritorio ordinario Quit no lo detiene simplemente porque el escritorio se reconectó.
+### Reconectar después de un apagado de escritorio interrumpido {/* #desktop-service-recovery */}
 
-Si la preparación deja de funcionar, la ventana permanece abierta. Lea el aviso, mantenga el trabajo sin guardar y espere a que la conversación se recupere antes de comprobar la ejecución original y los archivos. Una ventana abierta no significa que la tarea fue cancelada. Si la startup reporta un servicio independiente más antiguo que lo bloquea, compruebe el perfil y la versión antes de elegir la acción explícita de la parada. Cancelar deja que funcione ese servicio; una parada fallida puede ser retried o rechecked sin borrar archivos de bloqueo.
+Abra el escritorio de la misma versión y vuelva a conectarse al perfil original. Las conexiones de aplicación y cualquier retención explícita de CLI determinan si ese servicio permanece vivo; una pestaña del navegador por sí sola no reemplaza ninguno.
 
-## Comportamiento de actualización de la aplicación {/* #application-update-behavior */}
+Si deja de prepararse fracasa, la ventana permanece abierta. Preserve trabajo sin salvar e inspeccionar la tarea original después de la recuperación. Si la puesta en marcha reporta un servicio antiguo que lo bloquea, compruebe el perfil, la versión y los clientes activos antes de elegir su acción explícita parada. Cancelar deja el servicio funcionando. Una parada fallida puede ser recortada o recortada sin borrar archivos de bloqueo.
 
-v1.0.0 elimina el actualizador de aplicaciones CLI; no use `open-science update --json`. Utilice los controles de actualización de escritorio o el administrador original del instalador/paquete, observando [disponibilidad de la versión actual](../guides/installation.md#standalone-cli).
+## Comportamiento de actualización de aplicaciones {/* #application-update-behavior */}
 
-- **Aplicación de escritorio:** termina la investigación activa antes de comprobar las actualizaciones. Si la actualización se adjunta a un servicio CLI pide detenerlo y cambiar a la gestión de escritorio, compruebe el perfil y las tareas afectadas antes de consentir. Cancelar deja el servicio original funcionando. Este conmutador no actualiza los archivos originales del programa independiente CLI.
-- **Instalación Standalone CLI:** detiene cada perfil usando él, luego instala un paquete publicado en realidad a través de su canal original. No sobreescribir archivos de funcionamiento o reabrir un perfil con un backend antiguo después de que un nuevo escritorio le haya escrito.
-- **Aviso de ocupación o recuperación:** sigue los cheques mostrados para casos activos y estado de instalación. No borre bloqueos, configuración o registros de recuperación para forzar una actualización cuando el cierre es incierto.
+El actualizador de aplicaciones CLI permanece eliminado; no utilizar `open-science update --json`. Uso [Controles de actualización de escritorio o el canal de instalación original](../guides/installation.md#manual-update).
 
-Después de actualizar, confirme la versión y los datos originales, luego utilice `status --json` y `doctor --json` para inspeccionar el estado de servicio y la preparación. Preserve el modo de tienda de credenciales. [Compatibilidad 1.x](../guides/installation.md#version-compatibility) no promete versiones mixtas de escritorio / backend.
+Antes de sustituir los archivos CLI, termine el trabajo de todos los perfiles afectados. Cierre las Apps conectadas y desactive la ejecución persistente de cada perfil con `stop --json`. Confirmación `stopped` o `already-stopped`; `keep-alive-revoked` significa que una aplicación todavía mantiene el servicio funcionando. Uso `stop --force` sólo cuando usted tiene la intención de detener el trabajo de todos los clientes. No sobreescribir los archivos del programa de ejecución.
 
-Vea el [guía oficial de horario de ejecución](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md), [CLI](cli.md) y [Task SDK](api.md).
+Una actualización de escritorio puede pedir parar un servicio CLI adjunto y cambiar a la gestión de escritorio. Revise el perfil y las tareas afectadas antes de consentir; cancelarlo deja correr. Esto no actualiza los archivos originales del programa independiente CLI. Siga los avisos de ocupación y recuperación sin borrar cerraduras o configuración.
+
+Después de actualizar, confirme la versión y los datos originales, luego inspeccione `status --json` y `doctor --json`. Preserve el modo credencial-store. [1.x compatibilidad](../guides/installation.md#version-compatibility) no promete versiones mixtas de escritorio / backend. Ver el [guía oficial de horario de ejecución](https://github.com/aipoch/open-science/blob/v1.0.5/docs/standalone-runtime.md), [CLI](cli.md) y [Task SDK](api.md).
 
 ## Computar en el espacio de trabajo web {/* #web-compute */}
 
@@ -122,4 +126,4 @@ El espacio de trabajo web independiente expone **Compute** cuando su backend pro
 
 ## Paquetes y clientes de herramientas externas {/* #local-research-tools */}
 
-Authenticated Web sesiones locales puede [paquetes de investigación de importación y exportación](../guides/research-packages.md#local-package-transfer); las sesiones web remotas no pueden realizar estas transferencias arbitrarias. Para exponer herramientas de investigación a un cliente externo en la misma máquina, configura el [adaptador stdio MCP](cli.md#external-mcp). Se conecta a un servicio local ya gestionado y utiliza los permisos de ese perfil; no crea una URL remota MCP.
+Authenticated local Web sesiones puede [subir y descargar paquetes de investigación](../guides/research-packages.md#local-package-transfer); las sesiones web remotas no obtienen esta capacidad de transferencia. Para conectar un cliente de herramienta externo en la misma máquina, configure el [adaptador stdio MCP](cli.md#external-mcp). Utiliza un servicio local ya gestionado y los permisos de ese perfil; no crea una URL remota de MCP.

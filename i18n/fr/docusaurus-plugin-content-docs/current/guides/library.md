@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -411,8 +411,23 @@ Suivez les progrès de téléchargement de chaque pièce jointe. Pour une archiv
 
 ## Vérifier les rétractations et les corrections {/* #publication-checks */}
 
-1. Ouvrez une référence avec un DOI valide. Sous **More actions → Retractions and corrections**, sélectionner **Check retractions and corrections**.
-2. L'action envoie cette DOI à Crossref. Lisez le type d'avis retourné, la source, la date et l'avis lié; vérifiez l'avis lui-même avant de modifier la façon dont vous utilisez le papier.
-3. Le résultat et la date **Last checked** sont enregistrés avec la référence. Réouvrir le panneau affiche l'observation sauvegardée; effectuez une autre vérification lorsque vous avez besoin de nouvelles informations.
+1. Ouvrez une référence avec un DOI valide. Choisir **More actions → Retractions and corrections**Alors **Check now**. Utilisation **Check again** pour actualiser un résultat enregistré, ou **Retry** après une erreur.
+2. La vérification envoie ce DOI à Crossref. Lisez le type, la source, la date et le lien DOI de chaque avis, puis consultez l’avis avant de décider comment utiliser l’article.
+3. Lire **Last checked** à côté du résultat enregistré. Réouvrir le panneau montre l'observation antérieure, pas une nouvelle requête.
 
-**No related notices found** signifie que la requête n’a renvoyé aucun avis, pas que l’article est exempt de problème. La couverture du Crossref est incomplète. Les vérifications ne réécrivent pas les métadonnées bibliographiques ni les décisions de présélection. Si un rafraîchissement échoue, le précédent résultat réussi reste: lire sa date et réessayer plus tard.
+**No related notices found** signifie que la requête n’a renvoyé aucun avis, sans garantir que l’article n’est pas concerné. La couverture de Crossref est incomplète. Ces vérifications ne modifient ni les métadonnées ni les décisions de sélection. En cas d’échec, consultez la date du dernier résultat réussi et réessayez plus tard.
+
+![Résultat Crossref enregistré et date Last checked](/img/open-science/v105/publication-check.webp)
+
+## Suivre vos progrès de lecture {/* #reading-status */}
+
+Le statut de lecture est votre propre annotation. Ouvrir un PDF, le joindre ou demander à l'agent de le lire ne marque pas le papier tel qu'il est lu.
+
+1. Dans la bibliothèque, utiliser **Customize** pour montrer le **Status** colonne si elle est cachée. Sélectionnez le statut d'une ligne, ou ouvrez les détails de la référence **Reading status** Le contrôle.
+2. Choisir **Unread**, **Reading** ou **Read**. Les enregistrements sans statut sauvegardé commencent comme **Unread**.
+3. Pour plusieurs papiers, sélectionnez les lignes prévues et choisissez **Set reading status** dans les actions en vrac. Vérifier le nombre sélectionné; utiliser [sélection de correspondances](#loaded-page-selection) seulement lorsque vous avez l'intention d'inclure des enregistrements au-delà de la page chargée.
+4. Utilisation **Filters → Reading status** trouver des papiers au même stade. Si un enregistrement modifié quitte la vue filtrée actuelle, effacez le filtre pour le retrouver.
+
+Le statut s'applique à la référence, y compris ses vues sur le projet et la collection. Il est distinct des décisions de sélection de collecte intelligente et de la qualité des preuves. Si l'enregistrement échoue, conservez le statut existant et réessayez après avoir vérifié l'enregistrement actuel.
+
+![Filtrer la bibliothèque par Reading status](/img/open-science/v105/reading-filter.webp)

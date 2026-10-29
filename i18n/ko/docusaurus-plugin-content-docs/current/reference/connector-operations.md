@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 1개의 연결관을 확장하십시오. 필수 필드가 표시됩니다. **\*필수**; 이 참고 및 다운로드 Open-Science 사용 **v1.0.4** 스키마. 한국어 `input.required` 목록은 권한이 있습니다; Legacy top-level `required` 목록은 absent 일 수 있습니다. 견적 요청 <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.4.json">완전한 다운로드 가능한 registry</ExampleDownload> 배열된 JSON schemas를 위해, 가득 차있는 반환 묘사 및 대리인 측 호출 예. 일반을 통과하지 마십시오 `id` 도구가 기대할 때 `accessions`, `cids`, `rs_id` 또는 다른 namespace-specific 필드.
+한 번에 1개의 연결관을 확장하십시오. 필수 필드가 표시됩니다. **\*필수**; 이 참고 및 다운로드 Open-Science 사용 **v1.0.5** 스키마. 한국어 `input.required` 목록은 권한이 있습니다; Legacy top-level `required` 목록은 absent 일 수 있습니다. 견적 요청 <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.5.json">완전한 다운로드 가능한 registry</ExampleDownload> 배열된 JSON schemas를 위해, 가득 차있는 반환 묘사 및 대리인 측 호출 예. 일반을 통과하지 마십시오 `id` 도구가 기대할 때 `accessions`, `cids`, `rs_id` 또는 다른 namespace-specific 필드.
 
 ## 뚱 베어 {/* #family-1 */}
 
@@ -813,6 +813,45 @@ HGNC에서 정확히 일치하는 인간 유전자 별칭을 찾습니다. 일�
 
 ```javascript
 const result = await host.mcp("genes", "resolve_hgnc_alias", {"symbol": "P53"})
+```
+
+### `get_hgnc_service_info` {/* #genes-get_hgnc_service_info */}
+
+HGNC 공식 REST 메타데이터, 검색 가능 필드와 저장 필드를 읽습니다. 기존 HGNC 조회와 요청 제한을 공유하며 키가 필요하지 않습니다.
+
+입력 필드가 없습니다. 빈 객체를 전달합니다.
+
+```javascript
+const result = await host.mcp("genes", "get_hgnc_service_info", {})
+```
+
+### `query_hgnc_field` {/* #genes-query_hgnc_field */}
+
+문서화된 HGNC 필드로 과거 기호와 외부 식별자를 검색하거나 가져옵니다. search는 색인 식별자, fetch는 저장 기록을 반환합니다. 모호함과 승인·철회 상태를 보존하며 하나의 유전자를 임의 선택하지 않습니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `mode` | string | 선택; default: &quot;fetch&quot;; enum: &#91;&quot;fetch&quot;, &quot;search&quot;&#93; |
+| `field` | string | **필수**; enum: &#91;&quot;symbol&quot;, &quot;alias_symbol&quot;, &quot;prev_symbol&quot;, &quot;name&quot;, &quot;hgnc_id&quot;, &quot;entrez_id&quot;, &quot;ensembl_gene_id&quot;&#93; |
+| `value` | string | **필수**; minLength: 1; maxLength: 300 |
+| `max_rows` | integer | 선택; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("genes", "query_hgnc_field", {"field": "entrez_id", "value": "7157", "mode": "fetch"})
+```
+
+### `list_hgnc_files` {/* #genes-list_hgnc_files */}
+
+HGNC 공식 공개 버킷의 객체, 크기, 식별·체크섬 메타데이터와 페이지 토큰을 반환합니다. URL 검색만 하며 파일 다운로드나 로컬 저장은 하지 않습니다. ETag는 SHA256이 아닙니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `prefix` | string | 선택; default: &quot;hgnc/tsv/tsv/&quot;; maxLength: 200; pattern: &quot;^hgnc/&#91;A-Za-z0-9_./-&#93;*$&quot; |
+| `cursor` | string | 선택; default: &quot;&quot;; maxLength: 4096 |
+| `limit` | integer | 선택; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("genes", "list_hgnc_files", {"prefix": "hgnc/tsv/tsv/", "limit": 5})
 ```
 
 </ToolOperationGroup>
@@ -2767,6 +2806,19 @@ const result = await host.mcp("drug-regulatory", "count_drug_adverse_events", {"
 
 ```javascript
 const result = await host.mcp("drug-regulatory", "search_drug_recalls", {"reason_for_recall": "contamination", "max_records": 10})
+```
+
+### `list_faers_bulk_files` {/* #drug-regulatory-list_faers_bulk_files */}
+
+openFDA 공식 drug/event 일괄 JSON 분할 목록을 읽습니다. 공식 URL만 제공하며 파일 다운로드, 로컬 작업, 분석 DB를 만들지 않습니다. 보고서는 발생률 추정치가 아닙니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `offset` | integer | 선택; default: 0; minimum: 0; maximum: 100000 |
+| `limit` | integer | 선택; default: 20; minimum: 1; maximum: 200 |
+
+```javascript
+const result = await host.mcp("drug-regulatory", "list_faers_bulk_files", {"offset": 0, "limit": 5})
 ```
 
 </ToolOperationGroup>
@@ -5596,6 +5648,60 @@ Cellosaurus CVCL 접속 또는 RRID:CVCL 식별자를 해결합니다. ID, 종, 
 const result = await host.mcp("cellosaurus", "get_cell_line", {"accession": "RRID:CVCL_1906"})
 ```
 
+### `get_cell_line_rdf` {/* #cellosaurus-get_cell_line_rdf */}
+
+하나의 Cellosaurus accession에 대한 RDF를 공식 서비스에서 가져옵니다. 텍스트는 응답에 포함되며 전용 파일 저장소나 온톨로지를 만들지 않습니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `accession` | string | **필수**; pattern: &quot;^CVCL_&#91;A-Z0-9&#93;&#123;4&#125;$&quot; |
+| `format` | string | 선택; default: &quot;ttl&quot;; enum: &#91;&quot;ttl&quot;, &quot;rdf&quot;, &quot;jsonld&quot;&#93; |
+
+```javascript
+const result = await host.mcp("cellosaurus", "get_cell_line_rdf", {"accession": "CVCL_0030", "format": "ttl"})
+```
+
+### `query_knowledge_graph` {/* #cellosaurus-query_knowledge_graph */}
+
+Cellosaurus 공식 그래프에 제한된 SPARQL SELECT를 실행합니다. SERVICE, FROM, 갱신이 없는 PREFIX/SELECT만 지원합니다. 쿼리를 중첩하고 행 수를 제한하며 결과가 없어도 범위를 넓히지 않습니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `query` | string | **필수**; minLength: 1; maxLength: 12000 |
+| `max_rows` | integer | 선택; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellosaurus", "query_knowledge_graph", {"query": "SELECT ?s WHERE { ?s a <http://www.w3.org/2002/07/owl#Class> }", "max_rows": 2})
+```
+
+### `search_str_similarity` {/* #cellosaurus-search_str_similarity */}
+
+지정된 세포주 STR을 공식 CLASTR에 전송하여 비교합니다. 유사도는 좌위와 채점 설정에 따라 달라지며 시료 정체성이나 오염 부재를 인증하지 않습니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `markers` | object | **필수** |
+| `species` | string | 선택; default: &quot;human&quot;; enum: &#91;&quot;human&quot;, &quot;mouse&quot;, &quot;dog&quot;&#93; |
+| `algorithm` | integer | 선택; default: 1; enum: &#91;1, 2, 3&#93; |
+| `scoring_mode` | integer | 선택; default: 1; enum: &#91;1, 2, 3&#93; |
+| `score_filter` | integer | 선택; default: 70; minimum: 0; maximum: 100 |
+| `min_markers` | integer | 선택; default: 8; minimum: 1; maximum: 50 |
+| `max_results` | integer | 선택; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("cellosaurus", "search_str_similarity", {"markers": {"D5S818": "12,13"}, "min_markers": 1, "max_results": 2})
+```
+
+### `list_cellosaurus_files` {/* #cellosaurus-list_cellosaurus_files */}
+
+Cellosaurus 공식 데이터 파일 링크를 찾습니다. 온톨로지, 파일 또는 데이터셋을 자동 다운로드하거나 영구 저장하지 않습니다.
+
+입력 필드가 없습니다. 빈 객체를 전달합니다.
+
+```javascript
+const result = await host.mcp("cellosaurus", "list_cellosaurus_files", {})
+```
+
 </ToolOperationGroup>
 
 ## PDC {/* #family-34 */}
@@ -6122,6 +6228,206 @@ WP ID로 현재 경로 메타데이터를 가져옵니다. 종, 개정 번호, �
 
 ```javascript
 const result = await host.mcp("wikipathways", "get_pathway", {"id": "WP534"})
+```
+
+</ToolOperationGroup>
+
+## Europe PMC {/* #family-43 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개변수 표시</summary>
+
+### `search_europepmc` {/* #europepmc-search_europepmc */}
+
+Europe PMC를 논리식, 필드, 날짜로 직접 검색하여 기록, 사용 가능한 초록, 페이지 커서를 반환합니다. NCBI 키나 연락처는 필요하지 않습니다. 전문 URL은 취득한 전문이 아니며 PMC 식별자로 기존 전문 도구를 사용합니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `query` | string | **필수**; minLength: 1; maxLength: 12000 |
+| `page_size` | integer | 선택; default: 20; minimum: 1; maximum: 100 |
+| `cursor` | string | 선택; default: &quot;*&quot;; minLength: 1; maxLength: 4096 |
+
+```javascript
+const result = await host.mcp("europepmc", "search_europepmc", {"query": "TP53 AND liver fibrosis", "page_size": 5})
+```
+
+</ToolOperationGroup>
+
+## Research Datasets {/* #family-44 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개변수 표시</summary>
+
+### `get_dataset_access` {/* #research-datasets-get_dataset_access */}
+
+NHANES, CHARLS, CHNS, SEER, MIMIC, eICU, FAERS, GBD의 공식 접근 조건과 경로를 안내합니다. 계정 권한 확인, 승인 또는 데이터 조회가 아닙니다. 취득 전에 최신 공식 조건을 확인합니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `dataset` | string | **필수**; enum: &#91;&quot;nhanes&quot;, &quot;charls&quot;, &quot;chns&quot;, &quot;seer&quot;, &quot;mimic&quot;, &quot;eicu&quot;, &quot;faers&quot;, &quot;gbd&quot;&#93; |
+
+```javascript
+const result = await host.mcp("research-datasets", "get_dataset_access", {"dataset": "seer"})
+```
+
+### `list_nhanes_files` {/* #research-datasets-list_nhanes_files */}
+
+주기와 분류에 맞는 NHANES 공식 XPT 및 설명 링크를 반환하고 다운로드하지 않습니다. 변경된 페이지나 인증 페이지는 빈 데이터로 처리하지 않고 오류를 반환합니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `cycle_begin_year` | integer | **필수**; minimum: 1999; maximum: 2100 |
+| `component` | string | 선택; default: &quot;Demographics&quot;; enum: &#91;&quot;Demographics&quot;, &quot;Dietary&quot;, &quot;Examination&quot;, &quot;Laboratory&quot;, &quot;Questionnaire&quot;&#93; |
+
+```javascript
+const result = await host.mcp("research-datasets", "list_nhanes_files", {"cycle_begin_year": 2017, "component": "Demographics"})
+```
+
+### `list_physionet_demo_files` {/* #research-datasets-list_physionet_demo_files */}
+
+공식 MIMIC-IV 2.2 또는 eICU 2.0 공개 데모 파일을 나열합니다. 고정 데모만 지원하며 제한 프로젝트, 임의 URL, 계정 인증 정보를 사용하지 않습니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `dataset` | string | **필수**; enum: &#91;&quot;mimic&quot;, &quot;eicu&quot;&#93; |
+| `directory` | string | 선택; default: &quot;root&quot;; enum: &#91;&quot;root&quot;, &quot;hosp&quot;, &quot;icu&quot;&#93; |
+
+```javascript
+const result = await host.mcp("research-datasets", "list_physionet_demo_files", {"dataset": "mimic", "directory": "hosp"})
+```
+
+</ToolOperationGroup>
+
+## ChEA3 {/* #family-45 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개변수 표시</summary>
+
+### `rank_transcription_factors` {/* #chea3-rank_transcription_factors */}
+
+공개 유전자 기호를 ChEA3에 한 번 제출하여 라이브러리별 순위를 반환합니다. 순위와 점수는 가설 근거이지 인과 검증이 아닙니다. 인식된 모든 입력 유전자를 표시하지는 않습니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `genes` | array | **필수**; minItems: 1; maxItems: 2000 |
+| `query_name` | string | 선택; default: &quot;query&quot;; minLength: 1; maxLength: 100 |
+| `top_n` | integer | 선택; default: 20; minimum: 1; maximum: 100 |
+
+```javascript
+const result = await host.mcp("chea3", "rank_transcription_factors", {"genes": ["FOXM1", "SMAD9", "MYC", "SMAD3", "STAT1", "STAT3"], "top_n": 5})
+```
+
+### `list_gmt_libraries` {/* #chea3-list_gmt_libraries */}
+
+ChEA3 공식 페이지의 GMT 링크를 찾습니다. 주요, 추가, 벤치마크 라이브러리가 다를 수 있으며 온라인 결과의 라이브러리와 같다고 단정하지 않습니다. 파일을 다운로드하지 않습니다.
+
+입력 필드가 없습니다. 빈 객체를 전달합니다.
+
+```javascript
+const result = await host.mcp("chea3", "list_gmt_libraries", {})
+```
+
+</ToolOperationGroup>
+
+## bioDBnet {/* #family-46 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개변수 표시</summary>
+
+### `list_input_types` {/* #biodbnet-list_input_types */}
+
+bioDBnet getinputs로 지원 입력 형식을 확인합니다. 변환 전 이름을 확인하고 미매핑 및 복수 결과를 보존합니다. 누락은 생물학적 대응이 없다는 증거가 아닙니다.
+
+입력 필드가 없습니다. 빈 객체를 전달합니다.
+
+```javascript
+const result = await host.mcp("biodbnet", "list_input_types", {})
+```
+
+### `list_output_types` {/* #biodbnet-list_output_types */}
+
+bioDBnet getoutputsforinput으로 입력에 지원되는 출력 형식을 확인합니다. 미매핑 및 복수 결과를 보존하고 누락을 생물학적 대응 부재로 해석하지 않습니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `input_type` | string | **필수**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+
+```javascript
+const result = await host.mcp("biodbnet", "list_output_types", {"input_type": "genesymbol"})
+```
+
+### `convert_ids` {/* #biodbnet-convert_ids */}
+
+bioDBnet db2db로 식별자를 변환합니다. 형식을 먼저 확인하고 미매핑 및 일대다 결과를 보존합니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `input_type` | string | **필수**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+| `values` | array | **필수**; minItems: 1; maxItems: 200 |
+| `outputs` | array | **필수**; minItems: 1; maxItems: 20 |
+| `taxon_id` | integer | 선택; default: 9606; minimum: 1; maximum: 100000000 |
+
+```javascript
+const result = await host.mcp("biodbnet", "convert_ids", {"input_type": "genesymbol", "values": ["TP53"], "outputs": ["geneid"], "taxon_id": 9606})
+```
+
+### `recognize_ids` {/* #biodbnet-recognize_ids */}
+
+bioDBnet dbfind로 식별자를 인식하고 지정 형식의 결과를 받습니다. 지원 형식을 확인하고 미매핑 및 복수 결과를 보존합니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `values` | array | **필수**; minItems: 1; maxItems: 200 |
+| `output_type` | string | **필수**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+| `taxon_id` | integer | 선택; default: 9606; minimum: 1; maximum: 100000000 |
+
+```javascript
+const result = await host.mcp("biodbnet", "recognize_ids", {"values": ["TP53"], "output_type": "geneid"})
+```
+
+### `map_orthologs` {/* #biodbnet-map_orthologs */}
+
+bioDBnet dbortho로 상동 유전자를 매핑합니다. 형식과 종을 확인하고 일대다 및 미매핑 결과를 보존하며 하나를 임의 선택하지 않습니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `input_type` | string | **필수**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+| `values` | array | **필수**; minItems: 1; maxItems: 200 |
+| `input_taxon` | integer | 선택; default: 9606; minimum: 1; maximum: 100000000 |
+| `output_taxon` | integer | 선택; default: 10090; minimum: 1; maximum: 100000000 |
+| `output_type` | string | **필수**; minLength: 1; maxLength: 80; pattern: &quot;^&#91;A-Za-z0-9 _-&#93;+$&quot; |
+
+```javascript
+const result = await host.mcp("biodbnet", "map_orthologs", {"input_type": "genesymbol", "values": ["TP53"], "output_type": "genesymbol", "input_taxon": 9606, "output_taxon": 10090})
+```
+
+### `list_pathways` {/* #biodbnet-list_pathways */}
+
+bioDBnet getpathways로 경로 목록을 받습니다. 종을 지정할 수 있으며 누락만으로 경로 부재를 증명하지 못합니다.
+
+| 필드 | 형식 | 필수 조건 및 제한 |
+| --- | --- | --- |
+| `taxon_id` | integer | 선택; default: 9606; minimum: 1; maximum: 100000000 |
+
+```javascript
+const result = await host.mcp("biodbnet", "list_pathways", {"taxon_id": 9606})
+```
+
+</ToolOperationGroup>
+
+## CTD {/* #family-47 */}
+
+<ToolOperationGroup>
+<summary>작업 및 매개변수 표시</summary>
+
+### `list_ctd_reports` {/* #ctd-list_ctd_reports */}
+
+관리되는 CTD 공식 공개 보고서 경로의 일부와 조건을 반환합니다. 정적 목록으로 현재 가용성을 검증하거나 CTD 웹 조회를 수행하지 않습니다. 공식 페이지에서 파일을 받고 사람의 확인을 요구하면 자동 접근을 멈춥니다.
+
+입력 필드가 없습니다. 빈 객체를 전달합니다.
+
+```javascript
+const result = await host.mcp("ctd", "list_ctd_reports", {})
 ```
 
 </ToolOperationGroup>

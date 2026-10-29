@@ -1,7 +1,7 @@
 ---
 title: "CLI и структурированный выход"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## Настройка из терминала {/* #terminal-setup */}
 
-Установите десктопную пусковую установку, используйте автономный архив v1.0.2 или следуйте [npm инсталляция](../guides/installation.md#npm-cli). Отдельный пакет архивов Node, бэкэнд и веб-интерфейс; этапы извлечения ниже применяются к этим архивам.
+Установите десктопную пусковую установку, используйте автономный архив v1.0.5 или следуйте [npm инсталляция](../guides/installation.md#npm-cli). Отдельный пакет архивов Node, бэкэнд и веб-интерфейс; этапы извлечения ниже применяются к этим архивам.
 
 1. Выберите macOS или Linux arm64/x64, или Windows x64, соответствующий хосту.
 2. Извлеките полный архив в письменное место. Держите пусковую установку, `backend` и `node-runtime` вместе. Копирование только пусковой установки сломает стартап.
@@ -215,9 +215,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL может включать `run.progress` и `stream.resync-required`. Если повторное воспроизведение недоступно после повторного подключения, перечитайте авторитетное состояние запуска; Не думайте, что поток событий — это постоянная история. Команды жизненного цикла имеют отдельные ограничения флага, описанные в [Безголовый сервис](./server.md).
 
-[Реализация CLI](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/cli.mjs), [командный гид](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
+[Реализация CLI](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/cli.mjs), [командный гид](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
 
-Технический справочник: [Контракт CLI](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
+Технический справочник: [Контракт CLI](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
 
 ## Без присмотра бегут {/* #unattended-runs */}
 
@@ -271,3 +271,7 @@ open-science mcp --help
 Клиент действует в соответствии с существующими разрешениями профиля. Он может создавать постоянные проекты, изменять конфигурацию и начинать работу, которая записывает файлы или несет расходы на модели. Одобрения могут по-прежнему требовать действий в Open-Science. Проверьте текущее состояние после тайм-аута перед повторением записи. Закрытие клиента или отмена его запроса не отменяет принятые исследования: явно вызовите **cancel_run**. См. [Официальный инструмент MCP и ссылка на разрешение](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp).
 
 Для команд пакетов следуйте [Импорт и экспорт CLI](../guides/research-packages.md#local-package-transfer).
+
+## Поддерживайте работу службы для автоматизации {/* #persistent-service */}
+
+Использовать `open-science start --no-open --json` для нужного профиля перед выходом из настольного приложения, если работа CLI, браузера или SDK должна продолжаться. С v1.0.5 это включает один постоянный режим; повторные запуски не суммируются. Обычная команда `stop` отключает постоянный режим, но при подключённом App сервис продолжает работать. Прочитайте [Результаты жизненного цикла](server.md#lifecycle-commands) Прежде чем рассматривать успешную команду остановки как остановленную службу.

@@ -1,7 +1,7 @@
 ---
 title: "無介面服務與瀏覽器訪問"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # 無介面服務與瀏覽器訪問 {/* #无界面服务与浏览器访问 */}
@@ -29,28 +29,31 @@ v0.37.0 起，共享後端在普通 Node 程序執行，桌面應用作為原生
 
 明確需要啟動服務時執行 `start --no-open`，之後執行 `open-science doctor --json`。檢視整體 `ready`、逐項檢查和建議操作，不能只憑退出碼判斷就緒。繼續使用已有的本地認證介面；啟動無介面服務不會配置 Remote.It，也不會發布公網入口。
 
-## 服務命令 {/* #服务命令 */}
+## 生命週期命令 {/* #lifecycle-commands */}
 
-| 命令 | 結果 | 選項與邊界 |
-| --- | --- | --- |
-| `open-science start` | 啟動後端並開啟瀏覽器 | 預設埠 44100 |
-| `open-science start --no-open` | 啟動但不開啟瀏覽器 | 用於有意開啟的本地服務 |
-| `open-science status --json` | 輸出結構化狀態 | 無服務時返回 `{"running":false}`，退出碼 1 |
-| `open-science url` | 輸出帶認證的瀏覽器 URL | 含本地訪問憑據，不放進公開示例 |
-| `open-science stop` | 請求經過認證的優雅停止 | 不盲目向陳舊狀態檔案裡的 PID 發訊號 |
-| `open-science stop --json` | 輸出停止結果 | 見下表 |
+從 v1.0.5 起，App 連接或顯式 CLI 啓動會保持服務運行。所有命令應使用同一個絕對配置路徑。
 
-這些命令中，**status 和 stop 支援 `--json`，start 和 url 不支援**。本地 `start --json` 檢查在啟動前返回 `invalid_cli_usage`、退出碼 2。指令碼應先執行 `start --no-open`，再執行 `status --json`。
+| 命令 | 結果 |
+| --- | --- |
+| `open-science start` | 啓動或複用服務，顯式保持其運行，並打開瀏覽器 |
+| `open-science start --no-open --json` | 設置相同的持續運行狀態但不打開瀏覽器；返回 `started` 或 `already-running`、服務信息和 `lifetime` |
+| `open-science status --json` | 檢查目標服務；沒有服務時返回 `{"running":false}`，退出碼爲 1 |
+| `open-science url` | 輸出帶認證信息的瀏覽器地址；不要公開分享 |
+| `open-science stop --json` | 解除顯式持續運行狀態；僅在沒有 App 連接時停止服務 |
+| `open-science stop --force --json` | 請求停止整個服務，包括仍連接 App 的情況；可能中斷任務 |
 
-### 停止結果 {/* #停止结果 */}
+重複執行 `start` 不會累加持續運行次數。**start**、**status**、**stop** 支持 `--json`，**url** 不支持。JSON 啓動結果不會暴露帶認證信息的瀏覽器地址。舊服務可能返回未知生命週期狀態；依賴新規則前先確保版本匹配。
+
+### 停止結果
 
 | JSON `result` | 含義 |
 | --- | --- |
-| `already-stopped` | 未找到活動服務記錄 |
-| `daemon-stopped` | 經過認證的 Node 後端已退出；連線它的客戶端失去後端連線 |
-| `web-service-stopped` | 舊版 Electron Web 服務結果，不適用於新版獨立 Node 後端 |
+| `already-stopped` | 沒有找到存活的服務記錄 |
+| `keep-alive-revoked` | 已解除顯式持續運行狀態，但仍連接的 App 使服務繼續運行 |
+| `stopped` | 本次請求對應的服務實例已退出並釋放所有權 |
+| `shutdown-requested` | 舊服務接受了請求，但尚未確認退出；命令返回非零退出碼 |
 
-停止請求被拒絕或超過截止時間時返回失敗。應檢查錯誤和實際狀態，不能僅憑命令返回就聲稱服務已停止。
+讀取 `result` 和 `lifetime`；僅憑成功退出碼無法判斷服務已停止。舊的 `daemon-stopped` 和 `web-service-stopped` 結果名稱不再輸出。`--force` 要求新版生命週期協議，面對舊服務會明確報錯。應檢查錯誤與當前狀態，不要通過刪除狀態文件或終止記錄中的 PID 強行處理。
 
 ## 認證與瀏覽器訪問 {/* #认证与浏览器访问 */}
 
@@ -86,35 +89,36 @@ open-science start --credential-store=file --no-open
 
 配置需要在更換容器後保留時，使用持久儲存。關閉應用會保留配置，但替換臨時容器檔案系統可能移除配置。參見[憑據儲存約定](https://github.com/aipoch/open-science/blob/v0.27.0/packages/open-science/CLI.md)。
 
-## 服務歸屬與關閉 {/* #backend-ownership */}
+## 後臺服務的保持與停止 {/* #backend-ownership */}
 
-| 操作 | 對後端的影響 |
+| 操作 | 對後臺服務的影響 |
 | --- | --- |
-| 僅關閉瀏覽器標籤頁 | 後端繼續執行 |
-| 退出啟動了後端的桌面應用 | 該桌面應用擁有的後端隨之停止 |
-| 退出連線到已有 CLI 後端的桌面應用 | 只斷開該客戶端，CLI 後端繼續執行 |
-| `open-science stop` | 停止目標配置的後端，所有連線它的客戶端都會受影響 |
+| 未顯式執行 CLI 啓動時，退出最後一個連接的 App | 服務停止 |
+| 執行 CLI `start` 後退出全部 App | 服務因顯式持續運行設置而保持運行 |
+| 關閉瀏覽器標籤頁或 SDK 客戶端 | 不會解除顯式持續運行設置 |
+| 執行普通 CLI、Web 或 SDK 任務 | 不會單獨讓服務在全部 App 退出後繼續運行 |
+| 仍有 App 連接時執行 `open-science stop` | 解除顯式持續運行設置；服務繼續供已連接 App 使用 |
+| 執行 `open-science stop --force` | 請求停止整個服務，可能中斷工作 |
 
-關閉視窗與退出應用可能不同，特別是在應用仍駐留托盤時。停止共享後端前先結束活動研究，再檢查 `status --json` 的實際狀態。
+若瀏覽器或自動化任務需要在退出桌面應用後繼續，請先顯式啓動同一配置的服務。將窗口關閉到托盤不等於退出。停止整個服務前結束活躍研究，之後用 `status --json` 檢查狀態。
 
-桌面斷線後提供 **Reconnect** 和 **Quit app**。重連重新整理原先仍在執行的後端，不會重新提交任務；原後端已停止時應退出並重新開啟。斷線時退出可能只關閉客戶端，因此不能直接認定服務已停，應檢查所選配置的狀態。按[連線恢復](../guides/troubleshooting.md#connection-recovery)操作，並檢查未收到響應的原操作。
-### 桌面退出異常後重新連線 {/* #desktop-service-recovery */}
+斷開連接的桌面應用提供 **Reconnect** 和 **Quit app**。Reconnect 不會重新提交工作。按[連接恢復](../guides/troubleshooting.md#connection-recovery)處理；重試前檢查那些響應丟失的操作是否已經完成。
 
-桌面意外退出、後端仍存活時，同版本桌面重新開啟後可以接管由桌面啟動的原服務；必須等待舊控制連線和關閉流程結束。接入 CLI 啟動的服務仍是借用關係，普通退出不會因此停止 CLI 服務。
+### 桌面退出中斷後重新連接 {/* #desktop-service-recovery */}
 
-關閉準備失敗時，桌面會保留視窗。檢查提示與未儲存內容，等待會話恢復，再確認原執行和檔案狀態；不要把視窗仍開著誤認為任務已取消。重新開啟時若提示舊版獨立服務阻止啟動，先核對配置和版本，再選擇明確的停止操作。取消會保留原服務；停止失敗時按提示重試或重新檢查，不要刪除鎖檔案。
+重新打開相同版本的桌面應用，連接原配置。App 連接與顯式 CLI 持續運行設置共同決定服務是否保留；瀏覽器標籤頁本身不能替代這兩者。
 
-## 應用更新 {/* #应用更新 */}
+退出準備失敗時，窗口會保留。保存未保存的工作，恢復後檢查原任務。若啓動提示舊服務阻塞，先確認配置、版本及活躍客戶端，再選擇明確的停止操作。取消會保留服務；停止失敗可以重試或重新檢查，不要刪除鎖文件。
 
-v1.0.0 已移除 CLI 的應用更新命令；不要再執行 `open-science update --json`。使用桌面更新控制元件或原安裝器／包管理器，並遵循[當前發行包範圍](../guides/installation.md#standalone-cli)。
+## 應用更新行爲 {/* #application-update-behavior */}
 
-- **桌面應用：** 結束活動研究後檢查更新。連線到 CLI 服務時，若更新請求停止服務並切換為桌面管理，先核對配置和受影響的任務，再決定是否同意；取消應保留原服務。該切換不會升級原獨立 CLI 的程式檔案。
-- **獨立 CLI 安裝：** 停止使用該安裝的所有配置例項，再透過其原渠道安裝實際已釋出的新包。不要覆蓋執行中的程式，也不要在新版桌面寫入資料後直接用舊後端開啟該配置。
-- **更新被佔用或恢復提示阻止：** 先按介面檢查活動例項和安裝狀態。停止狀態不明確時，不要刪除鎖、配置或恢復記錄來強行繼續。
+CLI 應用更新命令仍已移除，不要使用 `open-science update --json`。請通過[桌面更新控件或原安裝渠道](../guides/installation.md#manual-update)更新。
 
-升級後確認版本和原資料，執行 `status --json` 與 `doctor --json` 核對服務及就緒狀態。保留原憑據儲存方式。[1.x 相容範圍](../guides/installation.md#version-compatibility)不保證混用不同版本的桌面與後端。
+替換獨立 CLI 文件前，先結束使用該安裝的每個配置中的工作。退出連接的 App，並對各配置執行 `stop --json` 解除顯式持續運行設置。確認返回 `stopped` 或 `already-stopped`；`keep-alive-revoked` 表示仍有 App 保持服務運行。只有確實要停止全部客戶端工作時，才使用 `stop --force`。不要覆蓋正在運行的程序文件。
 
-參見[官方執行說明](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md)、[CLI](cli.md)與 [Task SDK](api.md)。
+桌面更新可能要求停止已連接的 CLI 服務並轉爲桌面管理。確認配置和受影響任務後再同意；取消會讓原服務繼續運行。這不會更新原獨立 CLI 程序文件。按佔用與恢復提示操作，不要刪除鎖或配置。
+
+升級後確認版本及原有數據，再檢查 `status --json` 和 `doctor --json`。保留憑據存儲模式。[1.x 兼容政策](../guides/installation.md#version-compatibility)不保證桌面與後臺混用不同版本。另見[官方運行說明](https://github.com/aipoch/open-science/blob/v1.0.5/docs/standalone-runtime.md)、[CLI](cli.md) 和 [Task SDK](api.md)。
 
 ## 網頁工作區中的 Compute {/* #web-compute */}
 
@@ -122,4 +126,4 @@ v1.0.0 已移除 CLI 的應用更新命令；不要再執行 `open-science updat
 
 ## 研究包與外部工具客戶端 {/* #local-research-tools */}
 
-已認證的本地網頁會話可以[導入與導出研究包](../guides/research-packages.md#local-package-transfer)，遠程網頁會話不能進行這種任意路徑傳輸。要向同機的外部客戶端提供科研工具，可配置 [stdio MCP 適配器](cli.md#external-mcp)。它連接已經運行的本地服務並使用該配置的權限，不會創建遠程 MCP URL。
+經過身份驗證的本地 Web 會話可以[上傳和下載研究包](../guides/research-packages.md#local-package-transfer)；遠程 Web 會話不因此獲得傳輸能力。同一臺機器上的外部工具客戶端可配置 [stdio MCP 適配器](cli.md#external-mcp)。它使用已運行的本地服務及該配置的權限，不會建立遠程 MCP 地址。

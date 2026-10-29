@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -409,10 +409,25 @@ API key 为可选项。遇到限流时可以稍后重试，或在本地桌面应
 
 逐个查看附件的下载进度。遇到压缩包时，选择需要解压的文件；下载完成后使用对应格式的预览打开，Word 文件也支持预览。区分正文与补充附件，重试前检查已保存的内容，只重试失败的下载。
 
-## 检查撤稿与更正通知 {/* #publication-checks */}
+## 检查撤稿与更正 {/* #publication-checks */}
 
-1. 打开具有一个有效 DOI 的文献。在 **More actions → Retractions and corrections** 中选择 **Check retractions and corrections**。
-2. 此操作会将该 DOI 发送给 Crossref。查看通知类型、来源、日期和通知链接；调整论文的使用方式前，先阅读通知原文。
-3. 结果及 **Last checked** 时间会保存在文献记录中。重新打开面板显示的是已保存的记录；需要最新信息时再次检查。
+1. 打开具有一个有效 DOI 的文献，选择 **More actions → Retractions and corrections**，再选择 **Check now**。刷新已保存结果用 **Check again**；出错后用 **Retry**。
+2. 检查会将这个 DOI 发送给 Crossref。逐项阅读通知类型、来源、日期和 DOI 链接；打开通知正文后，再决定如何使用这篇论文。
+3. 留意结果旁的 **Last checked**。重新打开面板显示的是之前保存的观察结果，不会自动重新查询。
 
-**No related notices found** 只表示本次查询没有返回通知，不代表论文不受影响。Crossref 的覆盖并不完整。检查不会改写文献元数据或筛选决定。刷新失败时会保留上一次成功结果，请查看日期并稍后重试。
+**No related notices found** 只表示本次查询没有返回通知，不代表论文不受影响。Crossref 覆盖并不完整。检查不会改写文献元数据或筛选结论。刷新失败时，查看上次成功结果的日期，稍后重试。
+
+![已保存的 Crossref 检查结果和 Last checked 时间](/img/open-science/v105/publication-check.webp)
+
+## 标记阅读进度 {/* #reading-status */}
+
+阅读状态由你手动维护。打开 PDF、添加附件或请 Agent 阅读，都不会自动把论文标成已读。
+
+1. 在文献库中，如未显示状态列，通过 **Customize** 显示 **Status**。点击行内状态，或打开文献详情中的 **Reading status** 控件。
+2. 选择 **Unread**、**Reading** 或 **Read**，分别表示未读、阅读中、已读。尚未保存状态的记录默认为 **Unread**。
+3. 批量修改时，选中目标记录，在批量操作中选择 **Set reading status**。确认选中数量；只有需要包含当前已加载页面之外的记录时，才使用[选中全部匹配项](#loaded-page-selection)。
+4. 使用 **Filters → Reading status** 筛选同一阅读阶段的论文。修改后的记录若离开当前筛选结果，清除筛选即可重新找到。
+
+状态属于文献记录，在项目和集合视图中共用；它与智能集合的筛选结论、证据质量是不同信息。保存失败时，先检查记录的现有状态再重试。
+
+![按 Reading status 筛选文献库](/img/open-science/v105/reading-filter.webp)

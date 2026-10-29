@@ -1,7 +1,7 @@
 ---
 title: "Python 与 R 运行环境"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -356,3 +356,9 @@ Windows x64 可在 **Settings → Runtimes** 使用可选的 **Local Shell · WS
 检查失败时保留原因，在处理期间继续使用 PowerShell。安装 WSL 组件可能需要 Windows 管理员批准。这项预览与选择 Python/R Notebook 解释器是不同设置。
 
 </PlatformContent>
+
+## 在 Windows 安装 Bioconductor 包 {/* #windows-bioconductor */}
+
+Bioconda 不提供 Windows 包。在应用管理的 Windows R 环境中，请让 Agent 使用 Notebook 包安装器，选择 `installer="biocmanager"`，保留 R 包名的大小写，例如 `DESeq2`。批准安装前确认目标环境。不要改成仅适用于 Linux 等平台的 `bioconductor-*` Conda 包名，也不要装进无关的系统 R 库。
+
+检查安装结果与该环境的 **Packages** 列表，再在同一个 R 环境中加载包。依赖或编译错误仍需处理；选择 BiocManager 不等于安装成功。已有外部 R 环境继续遵循其[库目录权限](#external-r-packages)。

@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -143,15 +143,33 @@ Pour les auteurs du site, [navigateur-importation SDK guide](https://github.com/
 
 ## Utiliser les paquets de l'application Web CLI ou locale {/* #local-package-transfer */}
 
-Depuis v1.0.3, le CLI et l'application web locale authentifiée peuvent utiliser des paquets de session. Dans l'application web locale, utilisez les contrôles d'exportation de session ou d'importation de projet et fournir un chemin sur l'ordinateur exécutant le service quand demandé. Les sessions Web distantes ne peuvent pas utiliser le transfert de paquets de chemins arbitraires. Le transfert du site Web au bureau ci-dessus est un flux séparé.
+De v1.0.5, l'authentifié **local Web** utilise les commandes du navigateur pour envoyer et télécharger les `.science` les colis. Les sessions Web distantes ne gagnent pas cette capacité. Les [mise à disposition du site Web vers le bureau](#browser-import) reste un flux séparé.
 
-Pour le CLI, commencez d'abord le profil local prévu et attendez que la session source soit inactive. Remplacer les ID et les chemins ci-dessous par les vôtres :
+### Télécharger ou télécharger sur le Web local {/* #web-package-transfer */}
+
+1. Ouvrez l’espace de travail local prévu et attendez que la session source soit inactive. Dans son menu, choisissez **Export → Export Session package**, sélectionnez le contenu, puis **Choose save location…** pour préparer le paquet.
+2. Attendez que le paquet finisse sa préparation. Sélectionner **Download** à côté du nom du paquet rempli, puis enregistrez-le dans le navigateur. Un paquet de backend préparé n'est pas encore un téléchargement de navigateur enregistré; vérifiez le téléchargement `.science` fichier avant de le partager.
+3. Pour importer, utilisez le contrôle d'importation du paquet du projet et sélectionnez un `.science` fichier de votre ordinateur. Attendez le téléchargement et la validation, examinez le paquet et le projet de destination, puis confirmez l'importation.
+4. Ouvrez la session importée et vérifiez ses fichiers. Le dossier de recherche est en lecture seule. Pour le poursuivre, ouvrez le même espace de travail dans l’application de bureau et choisissez **Fork to continue**. Fork n’est pas disponible dans Web.
+
+![Paquet préparé et bouton Download du navigateur](/img/open-science/v105/package-download.webp)
+
+Si le envoi, le téléchargement ou l'importation échoue, inspecter le résultat affiché et la destination avant de réessayer. Ne traitez pas un fichier reçu ou un téléchargement réussi comme une importation terminée.
+
+### Utiliser le CLI {/* #cli-package-transfer */}
+
+Commencez d'abord le profil local prévu et attendez que la session source soit inactive. Remplacer ces identifiants et chemins par les vôtres :
 
 ```bash
 open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
-open-science session import ./session.science --new-project "Restored research" --non-interactive --json
 ```
 
-L'exportation nécessite une `.science` chemin de sortie. Importation requise **--non-interactive**, qui confirme l'aperçu en votre nom : contrôlez d'abord l'origine du colis et la destination prévue. Choisir **--project** pour un projet existant ou **--new-project** pour un nouveau, jamais les deux. L'omission des deux crée un projet en utilisant le nom du projet du paquet. Le délai de demande par défaut est d'une heure; ajuster **--timeout-ms** pour un grand transfert.
+L’exportation exige un chemin de sortie `.science` explicite. Le délai par défaut est d’une heure ; utilisez **--timeout-ms** pour un transfert volumineux et vérifiez le chemin retourné. Dans **v1.0.5**, importez les fichiers locaux par [l’envoi dans Web local](#web-package-transfer) ou dans l’application de bureau. Le chemin fourni à `session import` dans le CLI peut être refusé avant la validation du paquet.
 
-Vérifiez le chemin enregistré ou la session importée dans le résultat. La recherche importée reste en lecture seule; utilisation **Fork** pour continuer. Dans v1.0.4, export corrige également une attente qui pourrait rester après avoir sélectionné l'emplacement de sauvegarde.
+## Commencer par un cas de recherche sur la page d'accueil {/* #use-case-gallery */}
+
+Sur la page d'accueil, choisissez **Details** sur une carte de cas pour lire sa page de cas officielle. Choisir **Import** pour télécharger son dossier de recherche. Suivre les progrès de préparation, de téléchargement et de vérification; **Cancel** arrête un transfert indésirable. Si le colis attend une destination, **Continue** rouvre la boîte de dialogue d'importation.
+
+Examiner le projet de destination et confirmer l'importation. Ouvrir le résultat, inspecter les entrées et les sorties, puis utiliser **Fork to continue** dans l’application de bureau pour votre propre question. Télécharger vérification vérifie le transfert de colis; il ne valide pas les conclusions scientifiques de l'affaire ou fournit ses modèles d'identification.
+
+![Vérifier un paquet de la galerie officielle avant son importation](/img/open-science/v105/package-preview.webp)

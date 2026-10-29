@@ -1,7 +1,7 @@
 ---
 title: "Service sans tête et accès au navigateur"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # Service sans tête et accès au navigateur {/* #headless-service-and-browser-access */}
@@ -31,26 +31,29 @@ Après un `start --no-open` intentionnel, lancez `open-science doctor --json`. I
 
 ## Commandes du cycle de vie {/* #lifecycle-commands */}
 
-| Commande | Résultat | Options et limites |
-| --- | --- | --- |
-| `open-science start` | Démarrez le moteur et ouvrez le navigateur | Port par défaut 44100 |
-| `open-science start --no-open` | Démarrer sans ouvrir un navigateur | Utilisation pour une session de service local intentionnel |
-| `open-science status --json` | État de service lisible par machine d'impression | Un service manquant revient `{"running":false}` et du code de sortie 1 |
-| `open-science url` | Imprimer l'URL du navigateur authentifié | Contient une autorité locale d'accès; ne pas coller dans des exemples publiés |
-| `open-science stop` | Demande authentifiée de fermeture gracieuse | Ne signale pas aveuglément un PID à partir d'un fichier d'état statique |
-| `open-science stop --json` | Signaler le résultat de l'arrêt | Voir le tableau des résultats ci-dessous. |
+Depuis v1.0.5, une connexion App ou un démarrage explicite CLI maintient le service en vie. Utilisez le même chemin de profil absolu pour toutes les commandes.
 
-Parmi ces commandes, **statut et arrêt du soutien `--json`; début et url ne**. La vérification locale `start --json` a renvoyé `invalid_cli_usage` avec le code de sortie 2 avant de commencer quoi que ce soit. Pour un lancement scripté, lancez `start --no-open`, puis `status --json`.
+| Commande | Résultat |
+| --- | --- |
+| `open-science start` | Démarrer ou réutiliser le service, le faire fonctionner explicitement et ouvrir le navigateur |
+| `open-science start --no-open --json` | Activer la même exécution persistante sans ouvrir le navigateur ; renvoyer `started` ou `already-running`, informations sur les services et `lifetime` |
+| `open-science status --json` | Inspecter le service sélectionné; un service manquant retourne `{"running":false}` et code de sortie 1 |
+| `open-science url` | Imprimez son URL du navigateur authentifié; gardez ce secret |
+| `open-science stop --json` | Désactiver l’exécution persistante ; arrêter seulement si aucune App n’est connectée |
+| `open-science stop --force --json` | Demander un arrêt de service complet, y compris les applications connectées; peut interrompre les tâches actives |
 
-### Résultats de l'arrêt {/* #shutdown-outcomes */}
+Répété `start` répétés ne cumulent pas les demandes de maintien. **start**, **status** et **stop** appui `--json`; **url** Pas du tout. La sortie de lancement JSON n'expose pas l'URL du navigateur authentifié. Les services plus anciens peuvent signaler une durée de vie inconnue; utiliser des versions correspondantes avant de se fier au nouveau contrat.
+
+### Résultats de l'arrêt
 
 | JSON `result` | Signification |
 | --- | --- |
 | `already-stopped` | Aucun dossier de service en direct trouvé |
-| `daemon-stopped` | Le moteur Node authentifié est sorti; les clients attachés perdent leur connexion de moteur |
-| `web-service-stopped` | Legacy Electron web-service résultat, pas le nouveau moteur autonome Node |
+| `keep-alive-revoked` | Exécution persistante désactivée, mais les Apps connectées maintiennent le service |
+| `stopped` | La génération de services demandée est sortie et a été libérée |
+| `shutdown-requested` | Un service historique a accepté la requête mais la sortie n'est pas confirmée; la commande retourne un code de sortie non nul |
 
-Une demande rejetée ou une date limite d'arrêt manquée renvoie un échec. Lisez l'erreur et inspectez l'état réel de la cible. Ne déclarez pas un service comme étant arrêté simplement parce que la commande est retournée.
+Lire `result` et `lifetime`; un code de sortie réussi ne signifie pas que le service a été arrêté. Plus vieux `daemon-stopped` et `web-service-stopped` les noms de résultats ne sont plus émis. `--force` exige le protocole à vie moderne et échoue explicitement contre un service plus ancien. Inspectez les erreurs et l'état actuel au lieu de supprimer les fichiers d'état ou de tuer un PID enregistré.
 
 ## Authentification et accès au navigateur {/* #authentication-and-browser-access */}
 
@@ -90,31 +93,32 @@ Utiliser un stockage persistant lorsque la configuration doit survivre au rempla
 
 | Décision | Effet sur le moteur |
 | --- | --- |
-| Fermer un onglet de navigateur | Le moteur continue de fonctionner |
-| Arrête le bureau qui a démarré le moteur | Son propre moteur s'arrête avec lui |
-| Quitter un bureau attaché à un moteur CLI existant | Seul ce client se détache; le moteur CLI continue à fonctionner |
-| `open-science stop` | Arrêter le moteur sélectionné, affectant tous les clients attachés à celui-ci |
+| Quitter la dernière application connectée sans démarrage explicite CLI | Arrêts de service |
+| Lancer CLI `start`, puis quitter toutes les Apps | Le service continue grâce à l’exécution persistante explicite |
+| Fermer un onglet de navigateur ou un client SDK | Ne désactive pas l’exécution persistante |
+| Exécuter une tâche ordinaire CLI, Web ou SDK | Ne garde pas le service en vie indépendamment après que toutes les Apps ont arrêté |
+| Cours `open-science stop` avec une application connectée | Désactiver l’exécution persistante ; continuer pour l’App connectée |
+| Cours `open-science stop --force` | Demander l'arrêt du service à l'échelle, ce qui pourrait interrompre le travail |
 
-Fermer une fenêtre peut différer de quitter l'application, surtout lorsqu'elle reste dans le plateau. Terminer la recherche active avant d'arrêter un moteur partagé, puis inspecter l'état réel avec `status --json`.
+Si le navigateur ou le travail automatisé doit continuer après avoir quitté le bureau, démarrez explicitement le même profil d'abord. Fermer une fenêtre sur le plateau n'est pas quitter. Terminer la recherche active avant un arrêt complet, puis vérifier `status --json`.
 
-Un bureau déconnecté offre **Reconnecter** et **Quitter l’application**. Reconnecter rafraîchit le moteur en direct original et ne soumet pas de nouveau le travail; Si ce moteur est parti, quittez et rouvrez. Un Quit déconnecté peut fermer seulement le client, donc inspecter l'état du profil sélectionné avant de supposer que le service s'est arrêté. Suivez [récupération de connexion](../guides/troubleshooting.md#connection-recovery), y compris les opérations de vérification des réponses perdues.
+Un bureau déconnecté offre **Reconnect** et **Quit app**. Reconnect ne soumet pas de nouveau le travail. Suivre [récupération de connexion](../guides/troubleshooting.md#connection-recovery), et d'inspecter les opérations dont les réponses ont été perdues avant de réessayer.
+
 ### Reconnecter après un arrêt de bureau interrompu {/* #desktop-service-recovery */}
 
-Si le bureau sort de façon inattendue pendant que son moteur de travail survit, la réouverture d'un bureau de même version peut adopter ce service de bureau lancé après l'ancien contrôleur et le démontage s'installe. Un service lancé par CLI reste emprunté; PC de bureau ordinaire Quit ne l'arrête pas simplement parce que le bureau reconnecté.
+Réouvrir le bureau de la même version et se reconnecter au profil original. Les connexions de l'application et toute prise explicite CLI déterminent si ce service reste en vie; un onglet de navigateur seul ne remplace pas non plus.
 
-Si la préparation échoue, la fenêtre reste ouverte. Lire l'avis, préserver le travail non sauvé et attendre que la conversation récupère avant de vérifier l'exécution originale et les fichiers. Une fenêtre ouverte ne signifie pas que la tâche a été annulée. Si le démarrage signale un ancien service autonome le bloquant, vérifiez le profil et la version avant de choisir l'action d'arrêt explicite. Annuler laisse ce service fonctionner; un stop échoué peut être réétudié ou revérifié sans supprimer les fichiers de verrouillage.
+Si la préparation échoue, la fenêtre reste ouverte. Préserver le travail non sauvé et inspecter la tâche originale après la récupération. Si le démarrage signale un ancien service de blocage, vérifiez le profil, la version et les clients actifs avant de choisir son action d'arrêt explicite. Annuler laisse le service en marche. Un arrêt échoué peut être revérifié ou revérifié sans supprimer les fichiers de verrouillage.
 
 ## Comportement de mise à jour de l'application {/* #application-update-behavior */}
 
-v1.0.0 supprime la mise à jour de l'application CLI; n'utilisez pas `open-science update --json`. Utilisez les commandes de mise à jour du bureau ou le gestionnaire d'installation/paquet d'origine, en observant [disponibilité de la version actuelle](../guides/installation.md#standalone-cli).
+La mise à jour de l'application CLI reste supprimée; ne pas utiliser `open-science update --json`. Utilisation [contrôles de mise à jour de bureau ou le canal d'installation original](../guides/installation.md#manual-update).
 
-- **Application bureautique :** terminer la recherche active avant de vérifier les mises à jour. Si la mise à jour lors d'une connexion à un service CLI demande de l'arrêter et de passer à la gestion de bureau, vérifier le profil et les tâches affectées avant de consentir. Annuler laisse le service d'origine fonctionner. Ce commutateur ne met pas à niveau les fichiers de programme autonomes d'origine CLI.
-- **Installation autonome CLI:** arrête chaque profil en l'utilisant, puis installe un paquet réellement publié par son canal d'origine. N'écrasez pas les fichiers en cours d'exécution ou rouvrez un profil avec un vieux moteur après qu'un bureau plus récent lui ait écrit.
-- **Avis d'occupation ou de récupération:** suit les vérifications affichées pour les instances actives et l'état d'installation. Ne supprimez pas les verrous, les enregistrements de configuration ou de récupération pour forcer une mise à jour lorsque l'arrêt est incertain.
+Avant de remplacer les fichiers CLI, terminez le travail de tous les profils concernés. Quittez leurs Apps connectées et désactivez l’exécution persistante de chaque profil avec `stop --json`. Confirmer `stopped` ou `already-stopped`; `keep-alive-revoked` signifie qu'une application maintient toujours le service en marche. Utilisation `stop --force` seulement quand vous avez l'intention d'arrêter le travail de tous les clients. N'écrasez pas les fichiers de programme en cours d'exécution.
 
-Après la mise à jour, confirmez la version et les données originales, puis utilisez `status --json` et `doctor --json` pour vérifier l'état de service et l'état de préparation. Préservez le mode de magasin des titres de compétences. [Compatibilité 1.x](../guides/installation.md#version-compatibility) ne promet pas des versions mixtes bureau/backend.
+Une mise à jour de bureau peut demander d'arrêter un service CLI attaché et de passer à la gestion de bureau. Vérifiez le profil et les tâches affectées avant de consentir; l'annulation laisse tourner. Ceci ne met pas à jour les fichiers du programme CLI autonome d'origine. Suivez les avis d'occupation et de récupération sans supprimer les verrous ou la configuration.
 
-Voir les [guide officiel des temps d'exécution](https://github.com/aipoch/open-science/blob/v1.0.0/docs/standalone-runtime.md), [CLI](cli.md) et [Tâche SDK](api.md).
+Après mise à jour, confirmer la version et les données originales, puis inspecter `status --json` et `doctor --json`. Préservez le mode de magasin des titres. [1.x compatibilité](../guides/installation.md#version-compatibility) ne promet pas des versions mixtes bureau / backend. Voir [guide officiel d'exécution](https://github.com/aipoch/open-science/blob/v1.0.5/docs/standalone-runtime.md), [CLI](cli.md) et [Tâche SDK](api.md).
 
 ## Calculer dans l'espace de travail web {/* #web-compute */}
 
@@ -122,4 +126,4 @@ L'espace de travail web autonome expose **Compute** lorsque son moteur fournit l
 
 ## Paquets et clients d'outils externes {/* #local-research-tools */}
 
-Les sessions Web locales authentifiées peuvent [Packages de recherche sur les importations et les exportations](../guides/research-packages.md#local-package-transfer); les sessions web distantes ne peuvent pas effectuer ces transferts arbitraires. Pour exposer des outils de recherche à un client externe sur la même machine, configurez le [adaptateur MCP stdio](cli.md#external-mcp). Il se connecte à un service local déjà en cours d'exécution et utilise les permissions de ce profil ; il ne crée pas une URL MCP distante.
+Les sessions Web locales authentifiées peuvent [envoyer et télécharger des paquets de recherche](../guides/research-packages.md#local-package-transfer); les sessions Web distantes ne gagnent pas cette capacité de transfert. Pour connecter un client d'outil externe sur la même machine, configurez [adaptateur MCP stdio](cli.md#external-mcp). Il utilise un service local déjà lancé et les permissions de ce profil; il ne crée pas une URL MCP distante.

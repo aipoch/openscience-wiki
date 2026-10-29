@@ -1822,5 +1822,11 @@
   },
   "docs.outline.reference.v104.scope": {
     "message": "외부 MCP 클라이언트, 출판 공지, 대화 접기 및 로컬 파일 가져오기."
+  },
+  "docs.outline.reference.v105.title": {
+    "message": "v1.0.5"
+  },
+  "docs.outline.reference.v105.scope": {
+    "message": "읽기 상태, 브라우저 연구 패키지, 서비스 실행 기간 및 과학 데이터 파일."
   }
 }

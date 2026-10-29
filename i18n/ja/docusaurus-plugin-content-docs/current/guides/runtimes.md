@@ -1,7 +1,7 @@
 ---
 title: "PythonとRのランタイム"
 last_update:
-  date: '2026-09-20'
+  date: '2026-10-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -356,3 +356,9 @@ WSL2分布とその完全非root **Linux user**を選択し、**Save and check**
 可読性が失敗した場合は、報告された理由を保ち、解決中にPowerShellを続行してください。 WSL コンポーネントをインストールするには、Windows 管理者の承認が必要です。 このプレビューは、Python/R Notebook インタープリターを選択すると別々です。
 
 </PlatformContent>
+
+## Windows に Bioconductor パッケージを追加する {/* #windows-bioconductor */}
+
+Bioconda は Windows パッケージを提供しません。アプリ管理の Windows R では Agent に Notebook パッケージインストーラーの `installer="biocmanager"` を指定させ、`DESeq2` のように大文字・小文字を維持します。承認前に対象環境を確認し、Linux 用の `bioconductor-*` Conda 名や無関係なシステム R ライブラリへ置き換えないでください。
+
+結果と対象環境の **Packages** を確認し、同じ R 環境でロードします。依存関係やコンパイルのエラーは別途解決が必要です。BiocManager の選択だけでは成功を保証しません。外部 R は従来の[ライブラリ権限](#external-r-packages)に従います。

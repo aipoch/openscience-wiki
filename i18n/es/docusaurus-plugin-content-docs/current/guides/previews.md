@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -252,3 +252,9 @@ v1.0.0 mejora aún más la propiedad de tablas y figuras nativas, incluyendo reg
 Si la búsqueda PDF indica cobertura incompleta, interprete las coincidencias solo como resultados del texto que pudo buscar. La ausencia de coincidencias no demuestra que la frase no aparezca en el artículo completo. Revise las páginas pertinentes del PDF original, especialmente páginas escaneadas, figuras, ecuaciones y tablas. Aunque la extracción y traducción conserven mejor la estructura, el PDF original sigue siendo la referencia.
 
 Para las previsiones DOCX, compruebe la numeración de lista continua y las fronteras de tabla contra el documento descargado antes de citar o compartir el resultado.
+
+## Preserve una plantilla de Word al generar DOCX {/* #docx-templates */}
+
+Adjuntar el `.docx` plantilla para la sesión y pedir al Agente que cree un informe separado preservando su diseño, formato de tabla, fronteras y estructura de página. El estado que el contenido para reemplazar y qué elementos de plantilla para retener. v1.0.5 mejora esta preservación; no hace que cada plantilla sea idéntica a todos los espectadores compatibles con Word.
+
+Abra el archivo generado en su vista previa, luego descarguelo e inspeccione en la aplicación Word que utilizará para la entrega. Compruebe los anchos de la tabla, las pausas de página, los encabezados, los pies y el texto largo antes de compartir. Mantenga la plantilla original para que la salida pueda ser comparada y revisada.

@@ -1,7 +1,7 @@
 ---
 title: "CLIと構造化された出力"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## ターミナルからセットアップ {/* #terminal-setup */}
 
-デスクトップランチャーをインストールし、v1.0.2スタンドアローンのアーカイブを使用して、またはフォローしてください。 [npmインストール手順](../guides/installation.md#npm-cli)お問い合わせ スタンドアローンは、バンドルノード、バックエンド、Web UI をアーカイブします。以下の抽出手順は、これらのアーカイブに適用されます。
+デスクトップランチャーをインストールし、v1.0.5スタンドアローンのアーカイブを使用して、またはフォローしてください。 [npmインストール手順](../guides/installation.md#npm-cli)お問い合わせ スタンドアローンは、バンドルノード、バックエンド、Web UI をアーカイブします。以下の抽出手順は、これらのアーカイブに適用されます。
 
 1. macOS または Linux アーム64/x64 または Windows x64 を選択し、ホストにマッチします。
 2. 完全なアーカイブを書き込み可能な場所に抽出します。 `backend`と`node-runtime`を一緒に保持してください。 起動者のみをコピーすると起動が解除されます。
@@ -215,9 +215,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 `run.progress` と `stream.resync-required` を含むことができます。 再接続後再再生が利用できなくなった場合、権限のある実行状態を再読み込みします。 イベントストリームは永続的な歴史であると仮定しません。 ライフサイクルコマンドは、[ヘッドレスサービス](./server.md) で説明されている別のフラグ制限を持っています。
 
-[CLI実装](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/cli.mjs), [上流コマンドガイド](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
+[CLI実装](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/cli.mjs), [上流コマンドガイド](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
 
-技術的な参照: [CLI契約](https://github.com/aipoch/open-science/blob/v1.0.2/packages/open-science/CLI.md).
+技術的な参照: [CLI契約](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
 
 ## 無人走行 {/* #unattended-runs */}
 
@@ -271,3 +271,7 @@ open-science mcp --help
 クライアントはプロファイルの既存権限で動作し、プロジェクトの保存、設定変更、ファイル書込みやモデル利用料を伴う研究を開始できます。Open-Science で承認が必要な場合もあります。タイムアウト後は状態を確認してから書込みを再試行します。クライアント終了や要求の取消しでは受理済み研究は止まりません。明示的に **cancel_run** を使ってください。[公式 MCP ツール・権限リファレンス](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp)も参照してください。
 
 パッケージの操作は [CLI インポート・エクスポート](../guides/research-packages.md#local-package-transfer)を参照してください。
+
+## 自動処理のためにサービスを維持する {/* #persistent-service */}
+
+デスクトップ終了後も CLI、ブラウザー、SDK の処理を続ける場合、対象プロファイルで `open-science start --no-open --json` を実行します。v1.0.5 では継続設定を一つ作り、繰り返しても増えません。通常の `stop` は設定を解除しますが、App 接続中はサービスが残ります。[ライフサイクルの結果](server.md#lifecycle-commands)を読み、成功終了コードだけで停止済みと判断しないでください。

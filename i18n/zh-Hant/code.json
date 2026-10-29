@@ -2689,5 +2689,11 @@
   },
   "docs.outline.reference.v104.scope": {
     "message": "外部 MCP 客戶端、出版通知、會話摺疊與本地文件導入。"
+  },
+  "docs.outline.reference.v105.title": {
+    "message": "v1.0.5"
+  },
+  "docs.outline.reference.v105.scope": {
+    "message": "閱讀狀態、瀏覽器研究包、服務生命週期與科研文件發現。"
   }
 }

@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -143,15 +143,33 @@ For website authors, the [browser-import SDK guide](https://github.com/aipoch/op
 
 ## Use packages from the CLI or local web app {/* #local-package-transfer */}
 
-From v1.0.3, the CLI and authenticated local web app can use session packages. In the local web app, use the session export or project import controls and supply a path on the computer running the service when asked. Remote web sessions cannot use arbitrary-path package transfer. The website-to-desktop handoff above is a separate flow.
+From v1.0.5, the authenticated **local Web** workspace uses browser upload and download controls for `.science` packages. Remote web sessions do not gain this capability. The [website-to-desktop handoff](#browser-import) remains a separate flow.
 
-For the CLI, start the intended local profile first and wait until the source session is idle. Replace the IDs and paths below with your own:
+### Upload or download in local Web {/* #web-package-transfer */}
+
+1. Open the intended local workspace. Wait until the source session is idle, then choose **Export → Export Session package** from its menu. Select the package contents and choose **Choose save location…** to prepare the package.
+2. Wait for the package to finish preparing. Select **Download** beside the completed package filename, then save it through the browser. A prepared backend package is not yet a saved browser download; check the downloaded `.science` file before sharing it.
+3. For import, use the project's package import control and select a `.science` file from your computer. Wait for upload and validation, review the package and destination project, then confirm the import.
+4. Open the imported session and inspect its files. The research record is read-only. To continue it, open the same workspace in the desktop app and choose **Fork to continue**; Fork is not available in Web.
+
+![A prepared research package with its browser Download button](/img/open-science/v105/package-download.webp)
+
+If upload, download or import fails, inspect the displayed result and destination before retrying. Do not treat a received file or successful upload as a completed import.
+
+### Use the CLI {/* #cli-package-transfer */}
+
+Start the intended local profile first and wait until the source session is idle. Replace these IDs and paths with your own:
 
 ```bash
 open-science session export SESSION_ID --project PROJECT_ID --output ./session.science --json
-open-science session import ./session.science --new-project "Restored research" --non-interactive --json
 ```
 
-Export requires an explicit `.science` output path. Import requires **--non-interactive**, which confirms the preview on your behalf: inspect the package's origin and intended destination first. Choose **--project** for an existing project or **--new-project** for a new one, never both. Omitting both creates a project using the package's project name. The default request deadline is one hour; adjust **--timeout-ms** for a large transfer.
+Export requires an explicit `.science` output path. The default deadline is one hour; use **--timeout-ms** for a large transfer and check the returned file path. In **v1.0.5**, use the [local Web upload](#web-package-transfer) or desktop import control to import a local file. The CLI `session import` path can be rejected before package validation.
 
-Check the saved path or imported session in the result. Imported research remains read-only; use **Fork** to continue. In v1.0.4, export also fixes a wait that could remain after selecting the save location.
+## Start from a home-page research case {/* #use-case-gallery */}
+
+On the home page, choose **Details** on a case card to read its official case page. Choose **Import** to download its research package. Follow preparation, download and verification progress; **Cancel** stops an unwanted transfer. If the package is waiting for a destination, **Continue** reopens the import dialog.
+
+Review the destination project and confirm import. Open the result, inspect the inputs and outputs, then use **Fork to continue** in the desktop app for your own question. Download verification checks the package transfer; it does not validate the case's scientific conclusions or supply its model credentials.
+
+![Reviewing an official gallery package before importing it](/img/open-science/v105/package-preview.webp)

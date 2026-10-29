@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -411,8 +411,23 @@ Folgen Sie dem Download-Fortschritt jedes Attachments. Wählen Sie für ein Arch
 
 ## Rückzieh- und Korrekturkontrollen {/* #publication-checks */}
 
-1. Öffnen Sie eine Referenz mit einem gültigen DOI. Unter **More actions → Retractions and corrections**, auswählen **Check retractions and corrections**.
-2. Die Aktion sendet diesen DOI an Crossref. Lesen Sie die zurückgegebene Mitteilung Art, Quelle, Datum und verknüpfte Mitteilung; Überprüfen Sie die Mitteilung selbst, bevor Sie ändern, wie Sie das Papier verwenden.
-3. Das Ergebnis und der Zeitpunkt **Last checked** werden mit der Referenz gespeichert. Das erneute Öffnen des Panels zeigt die gespeicherte Beobachtung an; führen Sie eine weitere Überprüfung aus, wenn Sie neue Informationen benötigen.
+1. Öffnen Sie eine Referenz mit einem gültigen DOI. Wählen **More actions → Retractions and corrections**, dann **Check now**. Verwendung **Check again** ein gespeichertes Ergebnis aufzufrischen oder **Retry** Nach einem Fehler.
+2. Die Prüfung sendet diesen DOI an Crossref. Lesen Sie Typ, Quelle, Datum und DOI jedes Hinweises und öffnen Sie den Hinweis, bevor Sie über die Verwendung des Artikels entscheiden.
+3. Lesen **Last checked** Neben dem gespeicherten Ergebnis. Das erneute Öffnen des Panels zeigt die frühere Beobachtung, keine neue Abfrage.
 
-**No related notices found** bedeutet, dass die Abfrage keine Benachrichtigungen zurückgegeben hat, nicht dass das Papier nicht betroffen ist. Die Crossref-Abdeckung ist unvollständig. Checks schreiben keine bibliographischen Metadaten oder Screening-Entscheidungen um. Wenn eine Aktualisierung fehlschlägt, bleibt das vorherige erfolgreiche Ergebnis erhalten: Lesen Sie das Datum und versuchen Sie es später erneut.
+**No related notices found** bedeutet, dass die Abfrage keine Hinweise lieferte, nicht dass der Artikel unbetroffen ist. Crossref ist nicht vollständig. Die Prüfung ändert weder Metadaten noch Auswahlentscheidungen. Bei einem Fehler das Datum des letzten erfolgreichen Ergebnisses prüfen und später erneut versuchen.
+
+![Gespeichertes Crossref-Ergebnis mit Last checked](/img/open-science/v105/publication-check.webp)
+
+## Verfolgen Sie Ihren Lesefortschritt {/* #reading-status */}
+
+Der Lesestatus ist Ihre eigene Anmerkung. Das Öffnen eines PDFs, das Anfügen oder das Bitten des Agenten, es zu lesen, markiert das Papier nicht als gelesen.
+
+1. In der Bibliothek, verwenden **Customize** um zu zeigen, **Status** Spalte, wenn sie versteckt ist. Wählen Sie den Status einer Zeile oder öffnen Sie die Details der Referenz und ihre **Reading status** Kontrolle.
+2. Wählen **Unread**, **Reading** oder **Read**. Datensätze ohne gespeicherten Status beginnen als **Unread**.
+3. Wählen Sie für mehrere Papiere die vorgesehenen Zeilen aus und wählen Sie **Set reading status** bei Massenaktionen. Überprüfen Sie die ausgewählte Anzahl; verwenden [Gesamtauswahl](#loaded-page-selection) nur wenn Sie beabsichtigen, Datensätze über die geladene Seite hinaus aufzunehmen.
+4. Verwendung **Filters → Reading status** Papiere in der gleichen Phase zu finden. Wenn ein geänderter Datensatz die aktuelle gefilterte Ansicht verlässt, löschen Sie den Filter, um ihn erneut zu finden.
+
+Der Status gilt für die Referenz, einschließlich der Projekt- und Sammlungsansichten. Es ist getrennt von Smart-Sammlung Screening-Entscheidungen und Beweisqualität. Wenn das Speichern fehlschlägt, behalten Sie den vorhandenen Status bei und versuchen Sie es erneut, nachdem Sie den aktuellen Datensatz überprüft haben.
+
+![Die Bibliothek nach Reading status filtern](/img/open-science/v105/reading-filter.webp)

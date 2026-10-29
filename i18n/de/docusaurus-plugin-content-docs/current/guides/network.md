@@ -1,7 +1,7 @@
 ---
 title: "Netzwerk, Proxies und Paketspiegel"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 # Netzwerk, Proxies und Paketspiegel {/* #network-proxies-and-package-mirrors */}
@@ -121,3 +121,9 @@ Nachdem Sie die Proxy-, Mirror- oder Notebook-Domäneneinstellungen geändert ha
 ## Eine R-Zelle wurde vor der Ausführung blockiert {/* #r-network-warning */}
 
 In v0.31.1 zeigt Notebook eine Inline-Warnung an, wenn der Netzwerkschutz einen R-Lauf blockiert. Folgen Sie dem Einstellungslink und prüfen Sie den angeforderten Zugriff. Die Warnung bedeutet, dass die Zelle nicht ausgeführt wurde; Es handelt sich nicht um ein wissenschaftliches Ergebnis oder einen abgeschlossenen Lauf. Nachdem Sie die spezifische Anforderung gelöst haben, führen Sie die Zelle erneut aus und überprüfen Sie ihre Ausgabe. Windows Standardmodus R Unterstützung ermöglicht nicht selbst Netzwerkschutz.
+
+## Netzwerkzugriff, wenn sich der Genehmigungsmodus ändert {/* #network-mode-changes */}
+
+Aus v1.0.5, **Full access** erlaubt öffentliche Netzwerkziele ohne individuelle Erlaubniskarten. Andere Authentifizierungs-, Quellenbeschränkungen und private Service-Checks gelten weiterhin. Der Wechsel in einen restriktiveren Modus schließt bestehende Verbindungen, so dass sie unter der alten Berechtigung nicht fortgesetzt werden können. Wiederholen Sie die beabsichtigte Anforderung im neuen Modus und überprüfen Sie die von ihr präsentierte Berechtigungskarte.
+
+Globale Netzwerkfreigaben erscheinen in **Settings → Network** sofort. Überprüfen Sie die aktuelle Domain- oder Private-Service-Liste, bevor Sie eine andere Regel hinzufügen. Ein globaler Zuschuss ist breiter als eine einmalige Genehmigung; halten Sie nur den Umfang, den Sie beabsichtigen. Siehe [Genehmigungsarten](approval-modes.md).

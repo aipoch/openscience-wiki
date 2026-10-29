@@ -2766,5 +2766,11 @@
   },
   "docs.outline.reference.v104.scope": {
     "message": "外部 MCP 客户端、出版通知、会话折叠与本地文件导入。"
+  },
+  "docs.outline.reference.v105.title": {
+    "message": "v1.0.5"
+  },
+  "docs.outline.reference.v105.scope": {
+    "message": "阅读状态、浏览器研究包、服务生命周期与科研文件发现。"
   }
 }

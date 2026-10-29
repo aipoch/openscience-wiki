@@ -1,7 +1,7 @@
 ---
 title: "文学ライブラリと引用"
 last_update:
-  date: '2026-10-27'
+  date: '2026-10-29'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -411,8 +411,23 @@ PDF または対応する文献目録ファイルを文献庫にドロップし�
 
 ## 撤回・訂正通知を確認する {/* #publication-checks */}
 
-1. 有効な DOI が一つある文献の詳細で **More actions → Retractions and corrections** を開き、**Check retractions and corrections** を選びます。
-2. DOI が Crossref に送信されます。通知の種類、出典、日付、リンクを確認し、論文の扱いを変える前に通知原文を読みます。
-3. 結果と **Last checked** の時刻が保存されます。再表示時は保存済みの結果が出るため、最新情報が必要なら再確認します。
+1. 有効な DOI が一つある文献で **More actions → Retractions and corrections** を開き、**Check now** を選びます。再確認は **Check again**、エラー後は **Retry** を使います。
+2. DOI が Crossref に送信されます。通知の種類、出典、日付、DOI リンクを読み、通知本文を確認してから文献の扱いを判断します。
+3. 保存結果の **Last checked** を確認します。パネルを開き直すだけでは新しい照会は行われません。
 
-**No related notices found** は通知が返されなかったという意味であり、問題がない保証ではありません。Crossref の収録範囲は不完全です。この確認で書誌情報や選定判断は変わりません。更新に失敗した場合、前回の成功結果が残るため日付を確認して再試行します。
+**No related notices found** は照会で通知が返らなかったという意味です。論文に問題がない保証ではありません。Crossref の収録範囲は不完全で、確認しても書誌情報や選別判定は書き換わりません。更新に失敗した場合は、前回成功時の日付を確認し、後で再試行します。
+
+![保存された Crossref の結果と Last checked の日時](/img/open-science/v105/publication-check.webp)
+
+## 読書状況を記録する {/* #reading-status */}
+
+読書状況は自分で設定します。PDF を開く、添付する、Agent に読ませるといった操作では、自動的に既読にはなりません。
+
+1. 列が非表示なら **Customize** で **Status** を表示します。行の状態、または文献詳細の **Reading status** を開きます。
+2. **Unread**、**Reading**、**Read** を選びます。未設定の記録は **Unread** です。
+3. 一括変更は対象行を選び、**Set reading status** を使います。選択件数を確認し、読み込み済みのページ以外も含める場合だけ[一致する全件を選択](#loaded-page-selection)します。
+4. **Filters → Reading status** で絞り込みます。状態変更後に行が消えた場合は、フィルターを解除して確認します。
+
+状態はプロジェクトやコレクションでも同じ文献に共有されます。スマートコレクションの判定や証拠の質とは別の情報です。保存に失敗した場合は、現在の状態を確認してから再試行してください。
+
+![Reading status による文献の絞り込み](/img/open-science/v105/reading-filter.webp)
