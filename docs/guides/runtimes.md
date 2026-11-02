@@ -1,7 +1,7 @@
 ---
 title: "Python and R runtimes"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -350,6 +350,8 @@ This environment variable is a development setup detail, not a field in the Runt
 ## Optional WSL2 Bash Preview {/* #wsl2-preview */}
 
 Windows x64 can use the optional **Local Shell · WSL2 Bash Preview** in **Settings → Runtimes**. Keep PowerShell unless your task needs a Linux shell; WSL2 is not required to use Open-Science on Windows.
+
+**Mirrored networking requires Windows 11 22H2 or later.** Windows 10 does not provide that mode. If the WSL2 setup instructions require it, check the Windows version first; keep PowerShell when the required configuration is unavailable.
 
 Select a WSL2 distribution and its exact non-root **Linux user**, then choose **Save and check**. Follow any platform/distribution setup instructions first. Readiness checks and matching preview resources must pass before **Use WSL2 Bash** becomes available; selecting a distribution alone does not activate it. Run a small shell command and inspect its result before starting a longer task. Use the PowerShell option to return to the default shell.
 

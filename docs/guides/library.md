@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -82,6 +82,7 @@ Select **Add** and choose the source. Selecting one PDF opens its metadata edito
 | Add reference | Manually entered bibliography | Required title, reference type and identifiers |
 | Import PDF | One or several local PDFs | Extracted metadata against each paper; multi-file selection uses the batch flow below |
 | Import references | BibTeX, RIS or NBIB | Valid/invalid entries, destination and identifier matches |
+| Import from Zotero | Local Zotero 10+ library or collection | Preview matches, collection scope and local PDFs; see [Zotero import](#zotero-import) |
 
 <ToolOperationGroup>
 <summary>Import a folder's selected PDFs</summary>
@@ -150,6 +151,35 @@ Click **Import references**, wait for **Import complete**, inspect Created/Reuse
 
 
 </ToolOperationGroup>
+
+## Import from Zotero {/* #zotero-import */}
+
+Use **Zotero 10 or later** on the same computer as the Open-Science service. In Zotero, open **Settings → Advanced** and enable **Allow other applications on this computer to communicate with Zotero**. Keep Zotero open. A Zotero account or cloud API key is not required for this local import; a Zotero window on a different browser device is not the source.
+
+### Preview and choose records {/* #zotero-preview */}
+
+1. Open **Library → All references → Add → Import from Zotero**.
+2. Choose **All references** or a collection. Selecting a parent collection includes its descendants. Use **Search collections** to narrow the list.
+3. Leave **Copy local PDF attachments** selected to copy files already available on this computer. Open the PDFs in Zotero first if they are stored only in the cloud. Clear the option for a metadata-only import.
+4. Select **Preview Zotero library**. Review titles, authors, dates and identifiers. **New reference** and **Reuse existing** identify the proposed handling; expand **Needs review** or **Identifier conflict** rows before selecting them.
+5. For a matched record, use **When identifiers match** to choose whether to reuse it, fill empty fields or keep a separate reference. Reusing retains existing metadata. Do not merge different papers just because one field matches.
+6. Check the selected count and choose **Import N references**. For large libraries, use collections to keep each import within 1,000 references. An empty selected collection can be imported with **Import collections**.
+
+<p className="example-label"><strong>Worked example</strong> Import two PRISMA records and their local PDFs</p>
+
+The preview below contains one new record and one existing record requiring a metadata comparison. Both were selected after reviewing the match; the existing record was reused.
+
+![Zotero preview with two selected PRISMA references and local PDF attachments](/img/open-science/v106/zotero-preview.webp)
+
+### Check the imported library {/* #zotero-result */}
+
+Wait for **Import complete**, inspect the reference, PDF and collection counts, then select **Done**. Open the imported collection and its attachments. Compare each PDF's title, DOI and publication with the record: import copies Zotero's file association, so a different publication version or an incorrectly associated PDF still needs your review.
+
+![Zotero import complete with two references, two PDFs and one collection](/img/open-science/v106/zotero-complete.webp)
+
+Metadata, tags, collection nesting and source links are carried over. Zotero notes and annotations are not imported, and later edits do not synchronize back to Zotero. To bring over later additions, preview another import and review the existing-reference matches.
+
+If a PDF cannot be copied, the saved references remain. Restore the missing file in Zotero and use **Retry PDFs**. If Zotero changes after the preview, refresh the preview before importing. A connection error calls for checking Zotero's version, running state and local communication setting; repeated imports will not fix that connection.
 
 ## Review Inbox evidence
 
@@ -431,3 +461,17 @@ Reading status is your own annotation. Opening a PDF, attaching it or asking the
 The status applies to the reference, including its project and collection views. It is separate from smart-collection screening decisions and evidence quality. If saving fails, keep the existing status and retry after checking the current record.
 
 ![Filtering the Library by Reading status](/img/open-science/v105/reading-filter.webp)
+
+## Find a paper by your own note {/* #personal-note-search */}
+
+1. In the full Library table, open **Customize** and show **Notes**.
+2. Enter a short reminder in the paper's **Notes** cell, then press **Enter** or leave the field to save it.
+3. Type a distinctive phrase from that note into **Search references**. Use **All references** to search beyond the current collection, and clear other filters if needed.
+
+<p className="example-label"><strong>Worked example</strong> Find a paper saved for the next lab meeting</p>
+
+The note **Discuss at next lab meeting.** makes the PRISMA 2020 record appear for **lab meeting**, although those words are absent from its title. Clear the search to return to the full list.
+
+![Library search finds the PRISMA record through its saved personal note](/img/open-science/v106/personal-note-search.webp)
+
+This searches saved Library notes. It does not search the web, import Zotero notes or replace [PDF annotation search](pdf-notes.md).

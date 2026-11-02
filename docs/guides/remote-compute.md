@@ -1,7 +1,7 @@
 ---
 title: "SSH hosts and Slurm setup"
 last_update:
-  date: '2026-09-10'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -181,19 +181,15 @@ Use your site's partition rather than copying `local` unconditionally. The job's
 
 ![Slurm selected explicitly in the host's execution mode](/img/open-science/remote-compute/10-slurm-execution-mode.webp)
 
-### When the server completes but the app keeps waiting
+### Check the job outcome before collecting files {/* #slurm-outcome-recovery */}
 
-If the app snapshot reports `last_poll_error`, retain the existing job ID and ask for the exact error. The observed accounting failure was:
+<span id="when-the-server-completes-but-the-app-keeps-waiting" />
 
-```text
-slurm_poll_failed: Slurm accounting storage is disabled
-```
+From v1.0.6, Slurm checks the queue, controller and accounting independently and saves a confirmed terminal outcome before collecting logs. A temporary failure in one source does not automatically erase a result obtained from another source. Cancellation returns one final result.
 
-If the scheduler shows **COMPLETED / ExitCode 0:0** but the app still shows **submitted**, **result_final false** or no collected files, keep both job IDs and inspect the polling error. Treat scheduler completion and application result collection as separate stages.
+Keep the existing Open-Science and Slurm job IDs. If the task has finished but logs or files are still unavailable, refresh the same job and check collection separately instead of submitting the workload again. A job disappearing from **squeue** alone does not confirm success; inspect the terminal state, exit status and expected outputs before using the result.
 
-![The application still awaiting terminal status for a completed Slurm workload](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
-
-Ask the cluster administrator to provide working `sacct` accounting for the account and job. A job disappearing from `squeue` does not confirm success. Keep the existing work directory and both job IDs, then refresh the same job after accounting is restored and check its final state and collected files.
+If neither the controller nor accounting provides a conclusive state, retain the reported polling error and ask the cluster administrator to check access and retention for that job. Restore the connection, refresh the original job, and confirm that its final state and collected files agree.
 
 <ToolOperationGroup>
 <summary>Run a small protein sequence design on GPU</summary>

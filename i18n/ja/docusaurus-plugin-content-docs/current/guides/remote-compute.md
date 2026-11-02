@@ -1,7 +1,7 @@
 ---
 title: "SSHホストとSlurmセットアップ"
 last_update:
-  date: '2026-09-10'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,19 +179,15 @@ Slurmでは、クラスターの所有者から正しいアカウント/パー�
 
 ![Slurm は、ホストの実行モードで明示的に選択した](/img/open-science/remote-compute/10-slurm-execution-mode.webp)
 
-### サーバが完了したが、アプリが待ち続けるとき {/* #when-the-server-completes-but-the-app-keeps-waiting */}
+### ファイル収集の前にジョブ結果を確認する {/* #slurm-outcome-recovery */}
 
-アプリのスナップショットが `last_poll_error` を報告する場合、既存のジョブ ID を保持し、正確なエラーを要求します。 観察された経理の失敗は:
+<span id="when-the-server-completes-but-the-app-keeps-waiting" />
 
-```text
-slurm_poll_failed: Slurm accounting storage is disabled
-```
+v1.0.6 以降、Slurm はキュー、コントローラー、ジョブ履歴を個別に確認し、確定した最終状態をログ収集より先に保存します。一つの情報源が一時的に失敗しても、別の情報源から得た結果を自動で消去しません。キャンセルの最終結果は一度だけ返されます。
 
-スケジューラが**完了 / 終了コード 0:0**を示しているが、アプリは**提出書類**、**result_final 偽物**、または収集されていないファイルが表示された場合は、ジョブIDの両方を保ち、ポーリングエラーを検査します。 スケジューラの完成と適用結果のコレクションを別々の段階として扱います。
+既存の Open-Science と Slurm のジョブ ID を保持してください。終了後もログやファイルが届かない場合は同じジョブを更新し、収集状態を別に確認します。同じ処理を再送信しないでください。**squeue** から消えただけでは成功とは判断できません。最終状態、終了ステータス、期待する出力を確認してから結果を使います。
 
-![アプリケーションはまだ完了したSlurmのワークロードのための末端の状態を待っています](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
-
-クラスター管理者にアカウントとジョブの `sacct` の会計機能を提供するように依頼してください。 `squeue`から消える仕事は成功を確認しません。 既存の作業ディレクトリとジョブ ID の両方を保持し、経理後に同じジョブを更新し、最終的な状態と収集されたファイルを確認します。
+コントローラーにも履歴にも確実な状態がなければ、ポーリングエラーを保持し、管理者にアクセス権限とジョブ記録の保持状況を確認してもらいます。接続復旧後に元のジョブを更新し、最終状態と収集ファイルが一致することを確認します。
 
 <ToolOperationGroup>
 <summary>GPUで小さなタンパク質シーケンスデザインを実行</summary>

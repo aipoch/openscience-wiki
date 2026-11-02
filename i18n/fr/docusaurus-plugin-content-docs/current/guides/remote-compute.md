@@ -1,7 +1,7 @@
 ---
 title: "Hôtes SSH et configuration Slurm"
 last_update:
-  date: '2026-09-10'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,19 +179,15 @@ Utilisez la partition de votre site plutôt que de copier `local` sans condition
 
 ![Slurm sélectionné explicitement en mode exécution de l'hôte](/img/open-science/remote-compute/10-slurm-execution-mode.webp)
 
-### Lorsque le serveur complète mais que l'application continue d'attendre {/* #when-the-server-completes-but-the-app-keeps-waiting */}
+### Vérifiez le résultat du travail avant de recueillir des fichiers {/* #slurm-outcome-recovery */}
 
-Si l'instantané de l'application rapporte `last_poll_error`, conservez l'identifiant de travail existant et demandez l'erreur exacte. La défaillance comptable observée était la suivante :
+<span id="when-the-server-completes-but-the-app-keeps-waiting" />
 
-```text
-slurm_poll_failed: Slurm accounting storage is disabled
-```
+À partir de v1.0.6, Slurm vérifie la file d'attente, le contrôleur et la comptabilité indépendamment et enregistre un résultat terminal confirmé avant de collecter les journaux. Une défaillance temporaire dans une source n'efface pas automatiquement un résultat obtenu d'une autre source. L'annulation renvoie un résultat final.
 
-Si le programmeur affiche **COMPLÈTE / Code de sortie 0:0** mais que l'application affiche toujours **présenté**, **result_final faux** ou aucun fichier collecté, conservez les deux ID de travail et inspectez l'erreur de vote. Traiter l'achèvement du calendrier et la collecte des résultats de l'application comme des étapes distinctes.
+Gardez les ID de travail Open-Science et Slurm existants. Si la tâche est terminée mais que les journaux ou les fichiers ne sont toujours pas disponibles, rafraîchir la même tâche et vérifier la collecte séparément au lieu de soumettre la charge de travail à nouveau. Une tâche qui disparaît **squeue** seul ne confirme pas le succès; inspecter l'état du terminal, l'état de sortie et les sorties attendues avant d'utiliser le résultat.
 
-![L'application attend toujours le statut de terminal pour une charge de travail complète de Slurm](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
-
-Demandez à l'administrateur du cluster de fournir la comptabilité de travail `sacct` pour le compte et l'emploi. Un emploi qui disparaît de `squeue` ne confirme pas son succès. Gardez le répertoire de travail existant et les deux ID de travail, puis rafraîchir le même travail après la comptabilité est rétabli et vérifier son état final et les fichiers collectés.
+Si ni le contrôleur ni la comptabilité ne fournissent un état concluant, conservez l'erreur de sondage signalée et demandez à l'administrateur du groupe de vérifier l'accès et la rétention pour cette tâche. Restaurer la connexion, rafraîchir le travail original, et confirmer que son état final et les fichiers collectés sont d'accord.
 
 <ToolOperationGroup>
 <summary>Exécuter une petite séquence protéique sur GPU</summary>

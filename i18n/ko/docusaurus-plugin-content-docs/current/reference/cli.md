@@ -1,7 +1,7 @@
 ---
 title: "CLI 및 구조 출력"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 터미널에서 설정 {/* #terminal-setup */}
 
-데스크톱 실행기를 설치하고 v1.0.5 독립 아카이브를 사용하거나 따라 [npm 설치 단계](../guides/installation.md#npm-cli)· 독립 아카이브 번들 노드, 백엔드 및 웹 UI; 아래의 추출 단계는 해당 아카이브에 적용됩니다.
+데스크톱 실행기를 설치하고 v1.0.6 독립 아카이브를 사용하거나 따라 [npm 설치 단계](../guides/installation.md#npm-cli)· 독립 아카이브 번들 노드, 백엔드 및 웹 UI; 아래의 추출 단계는 해당 아카이브에 적용됩니다.
 
 1. macOS 또는 Linux arm64/x64 또는 Windows x64를 선택하여 호스트와 일치합니다.
 2. 완전한 아카이브를 writable 위치로 추출하십시오. 발사기, `backend` 및 `node-runtime`를 함께 유지하십시오; 시작자만 복사하면 스타트가 시작됩니다.
@@ -215,9 +215,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL은 `run.progress` 및 `stream.resync-required`을 포함 할 수 있습니다. 재전송 후 재전송이 불가능한 경우, 재전송이 실행 상태; 이벤트 스트림은 영구적 인 역사를 가정하지 마십시오. Lifecycle 명령은 [Headless 서비스](./server.md)에 설명된 별도의 플래그 제한이 있습니다.
 
-[CLI 구현](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/cli.mjs), [upstream 명령 가이드](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
+[CLI 구현](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/cli.mjs), [upstream 명령 가이드](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md).
 
-기술적인 참고: [CLI 계약](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
+기술적인 참고: [CLI 계약](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md).
 
 ## 무력한 실행 {/* #unattended-runs */}
 
@@ -274,4 +274,4 @@ open-science mcp --help
 
 ## 자동화를 위해 서비스 유지 {/* #persistent-service */}
 
-데스크톱 종료 후에도 CLI, 브라우저 또는 SDK 작업을 계속하려면 대상 프로필에서 `open-science start --no-open --json`을 실행합니다. v1.0.5에서는 하나의 지속 실행 설정을 만들며 반복해도 늘지 않습니다. 일반 `stop`은 이를 해제하지만 App이 연결되어 있으면 서비스는 유지됩니다. [수명 주기 결과](server.md#lifecycle-commands)를 읽고 성공 종료 코드만으로 중지 완료를 판단하지 마세요.
+데스크톱 종료 후에도 CLI, 브라우저 또는 SDK 작업을 계속하려면 대상 프로필에서 `open-science start --no-open --json`을 실행합니다. v1.0.6에서는 하나의 지속 실행 설정을 만들며 반복해도 늘지 않습니다. 일반 `stop`은 이를 해제하지만 App이 연결되어 있으면 서비스는 유지됩니다. [수명 주기 결과](server.md#lifecycle-commands)를 읽고 성공 종료 코드만으로 중지 완료를 판단하지 마세요.

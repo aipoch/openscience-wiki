@@ -1,7 +1,7 @@
 ---
 title: "Python und R Laufzeiten"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -350,6 +350,8 @@ Diese Umgebungsvariable ist ein Entwicklungs-Setup-Detail, kein Feld auf der Lau
 ## Optionale WSL2 Bash Vorschau {/* #wsl2-preview */}
 
 Windows x64 kann das optionale **Local Shell · WSL2 Bash Preview** in **Settings → Runtimes** verwenden. Halten Sie PowerShell, es sei denn, Ihre Aufgabe benötigt eine Linux-Shell; WSL2 ist nicht verpflichtet, Open-Science auf Windows zu verwenden.
+
+**Mirrored networking requires Windows 11 22H2 or later.** Windows 10 bietet diesen Modus nicht an. Wenn die WSL2-Einstellungsanweisungen dies erfordern, überprüfen Sie zuerst die Windows-Version; halten Sie PowerShell bei Nichtverfügbarkeit der erforderlichen Konfiguration.
 
 Wählen Sie eine WSL2-Distribution und deren genaue Nicht-Root-**Linux user**, dann wählen Sie **Save and check**. Befolgen Sie zuerst alle Setup-Anweisungen für die Plattform/Verteilung. Readiness Checks und Matching Preview Ressourcen müssen durchlaufen werden, bevor **Use WSL2 Bash** verfügbar wird; Das Auswählen einer Verteilung allein aktiviert sie nicht. Führen Sie einen kleinen Shell-Befehl aus und prüfen Sie dessen Ergebnis, bevor Sie eine längere Aufgabe starten. Verwenden Sie die PowerShell-Option, um zur Standard-Shell zurückzukehren.
 

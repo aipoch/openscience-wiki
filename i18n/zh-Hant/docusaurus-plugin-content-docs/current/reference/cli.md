@@ -1,7 +1,7 @@
 ---
 title: "CLI 與結構化輸出"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 從終端完成首次設定 {/* #terminal-setup */}
 
-可安裝桌面版命令入口、使用 v1.0.5 獨立壓縮包，或按 [npm 安裝步驟](../guides/installation.md#npm-cli)操作。獨立壓縮包包含 Node、後端和 Web UI；下面的解壓步驟適用於這些壓縮包。
+可安裝桌面版命令入口、使用 v1.0.6 獨立壓縮包，或按 [npm 安裝步驟](../guides/installation.md#npm-cli)操作。獨立壓縮包包含 Node、後端和 Web UI；下面的解壓步驟適用於這些壓縮包。
 
 1. 選擇與主機匹配的 macOS／Linux arm64 或 x64 包，或 Windows x64 包。
 2. 完整解壓到可寫目錄，保留啟動器、`backend` 與 `node-runtime` 的相對位置；只複製啟動器會導致無法啟動。
@@ -213,9 +213,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL 可能包含 `run.progress` 和 `stream.resync-required`。重連後無法重放時，重新讀取權威 Run 狀態，不把事件流當作永久歷史。服務命令另有引數限制，見[無介面服務](./server.md)。
 
-[CLI 實現](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md)。
+[CLI 實現](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md)。
 
-技術參考：[CLI 約定](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
+技術參考：[CLI 約定](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md).
 
 ## 無人值守執行 {/* #unattended-runs */}
 
@@ -272,4 +272,4 @@ open-science mcp --help
 
 ## 讓服務持續運行以完成自動化 {/* #persistent-service */}
 
-若 CLI、瀏覽器或 SDK 工作需要在退出桌面應用後繼續，請先對目標配置執行 `open-science start --no-open --json`。從 v1.0.5 起，這會設置一次持續運行狀態；重複啓動不會累加。普通 `stop` 解除該設置，但仍有 App 連接時服務會保留。判斷服務是否停止前，請讀取[生命週期結果](server.md#lifecycle-commands)，不要只看命令成功與否。
+若 CLI、瀏覽器或 SDK 工作需要在退出桌面應用後繼續，請先對目標配置執行 `open-science start --no-open --json`。從 v1.0.6 起，這會設置一次持續運行狀態；重複啓動不會累加。普通 `stop` 解除該設置，但仍有 App 連接時服務會保留。判斷服務是否停止前，請讀取[生命週期結果](server.md#lifecycle-commands)，不要只看命令成功與否。

@@ -1,7 +1,7 @@
 ---
 title: "CLI und strukturierter Output"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ Verwenden Sie `open-science`, um den Anwendungsstatus zu überprüfen, Aufgaben 
 
 ## Aufgesetzt von einem Terminal {/* #terminal-setup */}
 
-Installieren Sie den Desktop Launcher, verwenden Sie ein v1.0.5-Standalone-Archiv oder folgen Sie dem [npm Installationsschritte](../guides/installation.md#npm-cli). Standalone-Archive bündeln Node, Backend und Web-UI; die folgenden Extraktionsschritte gelten für diese Archive.
+Installieren Sie den Desktop Launcher, verwenden Sie ein v1.0.6-Standalone-Archiv oder folgen Sie dem [npm Installationsschritte](../guides/installation.md#npm-cli). Standalone-Archive bündeln Node, Backend und Web-UI; die folgenden Extraktionsschritte gelten für diese Archive.
 
 1. Wählen Sie macOS oder Linux arm64/x64 oder Windows x64, die zum Host passen.
 2. Extrahieren Sie das komplette Archiv in einen beschreibbaren Ort. Halten Sie den Launcher, `backend` und `node-runtime` zusammen; Durch das Kopieren nur des Launchers wird der Start unterbrochen.
@@ -215,9 +215,9 @@ Die folgende Ungültig-Optionsantwort wurde lokal reproduziert:
 
 JSONL kann `run.progress` und `stream.resync-required` enthalten. Wenn die Wiedergabe nach der Wiederverbindung nicht verfügbar ist, lesen Sie den autoritativen Laufzustand erneut; Gehen Sie nicht davon aus, dass der Ereignisstrom eine permanente Geschichte ist. Lifecycle-Befehle haben separate Flaggenbeschränkungen, die in [Kopfloser Dienst](./server.md) beschrieben sind.
 
-[Umsetzung von CLI](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/cli.mjs), [Upstream Command Guide](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
+[Umsetzung von CLI](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/cli.mjs), [Upstream Command Guide](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md).
 
-Technische Referenz: [CLI-Vertrag](https://github.com/aipoch/open-science/blob/v1.0.5/packages/open-science/CLI.md).
+Technische Referenz: [CLI-Vertrag](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md).
 
 ## Unbeaufsichtigte Strecken {/* #unattended-runs */}
 
@@ -274,4 +274,4 @@ Für Paketbefehle, folgen [CLI Import und Export](../guides/research-packages.md
 
 ## Halten Sie einen Dienst für die Automatisierung am Laufen {/* #persistent-service */}
 
-Verwendung `open-science start --no-open --json` für das gewünschte Profil ausführen, bevor Sie den Desktop beenden, wenn CLI-, Browser- oder SDK-Arbeit weiterlaufen soll. Ab v1.0.5 aktiviert dies einen dauerhaften Weiterbetrieb; Wiederholungen werden nicht addiert. Der einfache Befehl `stop` deaktiviert diesen Weiterbetrieb; bei einer verbundenen App bleibt der Dienst aktiv. Lesen Sie die [Lebenszyklusergebnisse](server.md#lifecycle-commands) bevor ein erfolgreicher Stop-Befehl als gestoppter Dienst behandelt wird.
+Verwendung `open-science start --no-open --json` für das gewünschte Profil ausführen, bevor Sie den Desktop beenden, wenn CLI-, Browser- oder SDK-Arbeit weiterlaufen soll. Ab v1.0.6 aktiviert dies einen dauerhaften Weiterbetrieb; Wiederholungen werden nicht addiert. Der einfache Befehl `stop` deaktiviert diesen Weiterbetrieb; bei einer verbundenen App bleibt der Dienst aktiv. Lesen Sie die [Lebenszyklusergebnisse](server.md#lifecycle-commands) bevor ein erfolgreicher Stop-Befehl als gestoppter Dienst behandelt wird.

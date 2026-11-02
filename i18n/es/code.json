@@ -1824,5 +1824,11 @@
   },
   "docs.outline.reference.v105.scope": {
     "message": "Estado de lectura, paquetes de investigación en el navegador, duración del servicio y archivos científicos."
+  },
+  "docs.outline.reference.v106.title": {
+    "message": "v1.0.6"
+  },
+  "docs.outline.reference.v106.scope": {
+    "message": "Importación de Zotero, búsqueda en notas, orden automático de lectura de PDF y fiabilidad."
   }
 }

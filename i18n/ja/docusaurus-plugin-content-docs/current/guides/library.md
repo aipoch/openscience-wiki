@@ -1,7 +1,7 @@
 ---
 title: "文学ライブラリと引用"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -82,6 +82,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | 文献を追加 | 手動で入力された伝記 | 必須タイトル、参照タイプ、識別子 |
 | PDF を読み込む | ローカル PDF を 1 つまたは複数のローカル PDF | 各紙に対してメタデータを抽出する。 複数ファイル選択では、以下のバッチフローを使用します。 |
 | 参考文献を読み込む | BibTeX、RISまたはNBIB | 有効な/無効なエントリ、宛先、識別子のマッチ |
+| Import from Zotero | ローカルの Zotero 10 以降のライブラリーまたはコレクション | 一致する文献、対象コレクション、ローカル PDF を確認。[Zotero からのインポート](#zotero-import) |
 
 <ToolOperationGroup>
 <summary>フォルダの選択したPDFをインポートする</summary>
@@ -150,6 +151,35 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 
 </ToolOperationGroup>
+
+## Zotero からインポートする {/* #zotero-import */}
+
+Open-Science サービスと同じコンピューターで **Zotero 10 以降**を開きます。Zotero の **Settings → Advanced** で **Allow other applications on this computer to communicate with Zotero** を有効にし、Zotero を起動したままにします。ローカルインポートには Zotero アカウントやクラウド API キーは不要です。別の端末からブラウザーでアクセスしている場合、その端末の Zotero はインポート元になりません。
+
+### 文献をプレビューして選択する {/* #zotero-preview */}
+
+1. **Library → All references → Add → Import from Zotero** を開きます。
+2. **All references** またはコレクションを選びます。親コレクションを選ぶと子コレクションも含まれます。**Search collections** で候補を絞れます。
+3. このコンピューターに保存済みの PDF をコピーする場合は **Copy local PDF attachments** を選択します。クラウドにしかない PDF は先に Zotero で開いてダウンロードします。メタデータだけなら選択を外します。
+4. **Preview Zotero library** を押し、タイトル、著者、日付、識別子を確認します。**New reference** と **Reuse existing** は処理予定を示します。**Needs review** や **Identifier conflict** の行は展開して確認してから選択します。
+5. 一致する文献では **When identifiers match** から再利用、空欄の補完、別レコードとして保存を選べます。再利用では既存のメタデータを維持します。一つの項目が一致するだけで異なる論文を統合しないでください。
+6. 選択数を確認して **Import N references** を押します。大きなライブラリーはコレクションごとに分け、1 回を 1,000 件以内にします。空のコレクションは **Import collections** で取り込めます。
+
+<p className="example-label"><strong>操作例</strong> PRISMA の文献 2 件とローカル PDF を取り込む</p>
+
+次のプレビューには、新規文献 1 件とメタデータ比較が必要な既存文献 1 件があります。一致内容を確認して両方を選び、既存文献は再利用しました。
+
+![PRISMA 文献 2 件とローカル PDF を選択した Zotero インポートプレビュー](/img/open-science/v106/zotero-preview.webp)
+
+### インポート結果を確認する {/* #zotero-result */}
+
+**Import complete** を待ち、文献・PDF・コレクションの件数を確認して **Done** を押します。コレクションと添付ファイルを開き、PDF 内のタイトル、DOI、掲載情報を記録と照合します。Zotero のファイル関連付けをそのままコピーするため、別の掲載版や誤った PDF の関連付けは自分で確認する必要があります。
+
+![文献 2 件、PDF 2 件、コレクション 1 件のインポート完了](/img/open-science/v106/zotero-complete.webp)
+
+メタデータ、タグ、コレクション階層、出典リンクが取り込まれます。Zotero のメモや注釈は対象外で、後の変更も Zotero には同期されません。追加した文献を取り込むときは再度プレビューし、既存文献との一致を確認します。
+
+PDF をコピーできなくても保存済み文献は残ります。Zotero 側でファイルを復元して **Retry PDFs** を押します。プレビュー後に Zotero の内容が変わった場合はプレビューを更新します。接続できない場合はバージョン、起動状態、ローカル通信設定を確認してください。インポートの繰り返しでは接続問題は直りません。
 
 ## Inboxの証拠のレビュー {/* #review-inbox-evidence */}
 
@@ -431,3 +461,17 @@ PDF または対応する文献目録ファイルを文献庫にドロップし�
 状態はプロジェクトやコレクションでも同じ文献に共有されます。スマートコレクションの判定や証拠の質とは別の情報です。保存に失敗した場合は、現在の状態を確認してから再試行してください。
 
 ![Reading status による文献の絞り込み](/img/open-science/v105/reading-filter.webp)
+
+## 個人メモから論文を探す {/* #personal-note-search */}
+
+1. 文献一覧の **Customize** を開き、**Notes** 列を表示します。
+2. 論文の **Notes** セルに短いメモを入力し、**Enter** を押すか入力欄から移動して保存します。
+3. **Search references** にメモの特徴的な語句を入力します。現在のコレクション以外も探すには **All references** を選び、必要に応じて他のフィルターを解除します。
+
+<p className="example-label"><strong>操作例</strong> 次回の研究室ミーティングで読む論文を探す</p>
+
+PRISMA 2020 の文献に **Discuss at next lab meeting.** と保存すると、タイトルにない **lab meeting** で検索できます。検索欄を空にすると一覧に戻ります。
+
+![保存した個人メモから PRISMA 文献を検索した結果](/img/open-science/v106/personal-note-search.webp)
+
+対象は Library に保存した個人メモです。ウェブ検索や Zotero メモのインポートではなく、[PDF 注釈検索](pdf-notes.md)とも別の機能です。

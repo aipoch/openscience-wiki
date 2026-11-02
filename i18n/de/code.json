@@ -1838,5 +1838,11 @@
   },
   "docs.outline.reference.v105.scope": {
     "message": "Lesestatus, Forschungspakete im Browser, Dienstlaufzeit und wissenschaftliche Dateien."
+  },
+  "docs.outline.reference.v106.title": {
+    "message": "v1.0.6"
+  },
+  "docs.outline.reference.v106.scope": {
+    "message": "Zotero-Import, Notizensuche, automatische PDF-Lesereihenfolge und Zuverlässigkeit."
   }
 }

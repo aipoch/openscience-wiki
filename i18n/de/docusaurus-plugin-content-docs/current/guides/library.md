@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -82,6 +82,7 @@ Wählen Sie **Add** und wählen Sie die Quelle. Auswählen eines PDF öffnet sei
 | Literaturangabe hinzufügen | Manuell eingegebene Bibliographie | Erforderlicher Titel, Referenztyp und Kennungen |
 | PDF importieren | Eine oder mehrere lokale PDFs | Extrahierte Metadaten für jedes Papier; Multi-File-Auswahl verwendet den Batch-Flow unten |
 | Literaturangaben importieren | BibTeX, RIS oder NBIB | Gültige/ungültige Einträge, Ziel- und Kennung Übereinstimmungen |
+| Import from Zotero | Lokale Zotero-10+-Bibliothek oder Sammlung | Zuordnungen, Sammlungen und lokale PDFs prüfen; siehe [Zotero-Import](#zotero-import) |
 
 <ToolOperationGroup>
 <summary>Importieren der ausgewählten PDFs eines Ordners</summary>
@@ -150,6 +151,35 @@ Klicken Sie auf **Import references**, warten Sie auf **Import complete**, prüf
 
 
 </ToolOperationGroup>
+
+## Import aus Zotero {/* #zotero-import */}
+
+Verwenden Sie **Zotero 10 or later** auf dem gleichen Computer wie der Open-Science-Dienst. Öffnen Sie in Zotero **Settings → Advanced** und aktivieren Sie **Allow other applications on this computer to communicate with Zotero**. Lassen Sie Zotero geöffnet. Für diesen lokalen Import ist kein Zotero-Konto oder Cloud-API-Schlüssel erforderlich; ein Zotero-Fenster auf einem anderen Browsergerät ist nicht die Quelle.
+
+### Vorschau und Auswahl der Datensätze {/* #zotero-preview */}
+
+1. Öffnen Sie **Library → All references → Add → Import from Zotero**.
+2. Wählen **All references** oder eine Sammlung. Die Auswahl einer Elternsammlung umfasst ihre Nachkommen. Verwendung **Search collections** um die Liste einzugrenzen.
+3. Lassen Sie **Copy local PDF attachments** ausgewählt, um bereits auf diesem Computer verfügbare Dateien zu kopieren. Öffnen Sie die PDFs in Zotero zuerst, wenn sie nur in der Cloud gespeichert sind. Deaktivieren Sie die Option für einen Metadatenimport.
+4. Wählen **Preview Zotero library**. Überprüfen Sie Titel, Autoren, Daten und Identifikatoren. **New reference** und **Reuse existing** Ermittlung der vorgeschlagenen Handhabung; Erweiterung **Needs review** oder **Identifier conflict** Zeilen, bevor sie ausgewählt werden.
+5. Für einen Matched Record verwenden **When identifiers match** zu wählen, ob sie wiederverwendet, leere Felder ausgefüllt oder eine separate Referenz beibehalten werden soll. Die Wiederverwendung behält bestehende Metadaten bei. Fügen Sie nicht verschiedene Papiere zusammen, nur weil ein Feld übereinstimmt.
+6. Überprüfen Sie die ausgewählte Zählung und wählen Sie **Import N references**. Verwenden Sie für große Bibliotheken Sammlungen, um jeden Import innerhalb von 1.000 Referenzen zu halten. Eine leer ausgewählte Sammlung kann mit **Import collections**.
+
+<p className="example-label"><strong>Praxisbeispiel</strong> Zwei PRISMA-Datensätze und ihre lokalen PDFs importieren</p>
+
+Die folgende Vorschau enthält einen neuen und einen vorhandenen Datensatz, der einen Metadatenvergleich erfordert. Beide wurden nach Prüfung der Übereinstimmung ausgewählt; der bestehende Datensatz wurde wiederverwendet.
+
+![Zotero preview with two selected PRISMA references and local PDF attachments](/img/open-science/v106/zotero-preview.webp)
+
+### Überprüfen Sie die importierte Bibliothek {/* #zotero-result */}
+
+Warten auf **Import complete**, prüfen Sie die Referenz, PDF und Sammlung zählt, dann wählen **Done**. Öffnen Sie die importierte Sammlung und ihre Anhänge. Vergleichen Sie den Titel, den DOI und die Publikation jedes PDF mit dem Datensatz: Importieren Sie die Dateizuordnung von Zotero, sodass eine andere Publikationsversion oder eine falsch zugeordnete PDF-Version noch überprüft werden muss.
+
+![Zotero import complete with two references, two PDFs and one collection](/img/open-science/v106/zotero-complete.webp)
+
+Metadaten, Tags, Collection Nesting und Source Links werden übertragen. Zotero-Notizen und -Anmerkungen werden nicht importiert, und spätere Bearbeitungen werden nicht mit Zotero synchronisiert. Um spätere Ergänzungen zu erhalten, sehen Sie sich einen anderen Import an und überprüfen Sie die vorhandenen Referenzübereinstimmungen.
+
+Wenn ein PDF nicht kopiert werden kann, bleiben die gespeicherten Referenzen erhalten. Wiederherstellen der fehlenden Datei in Zotero und verwenden **Retry PDFs**. Wenn sich Zotero nach der Vorschau ändert, aktualisieren Sie die Vorschau vor dem Importieren. Ein Verbindungsfehler erfordert die Überprüfung der Zotero-Version, des Betriebszustands und der lokalen Kommunikationseinstellung; wiederholte Importe beheben diese Verbindung nicht.
 
 ## Überprüfen Sie Inbox-Beweise {/* #review-inbox-evidence */}
 
@@ -431,3 +461,17 @@ Der Lesestatus ist Ihre eigene Anmerkung. Das Öffnen eines PDFs, das Anfügen o
 Der Status gilt für die Referenz, einschließlich der Projekt- und Sammlungsansichten. Es ist getrennt von Smart-Sammlung Screening-Entscheidungen und Beweisqualität. Wenn das Speichern fehlschlägt, behalten Sie den vorhandenen Status bei und versuchen Sie es erneut, nachdem Sie den aktuellen Datensatz überprüft haben.
 
 ![Die Bibliothek nach Reading status filtern](/img/open-science/v105/reading-filter.webp)
+
+## Einen Artikel über eigene Notizen finden {/* #personal-note-search */}
+
+1. Öffnen Sie in der vollständigen Bibliothekstabelle **Customize** und blenden Sie **Notes** ein.
+2. Schreiben Sie eine kurze Erinnerung in die **Notes**-Zelle des Artikels. Drücken Sie **Enter** oder verlassen Sie das Feld, um zu speichern.
+3. Geben Sie eine charakteristische Formulierung der Notiz in **Search references** ein. Mit **All references** suchen Sie auch außerhalb der aktuellen Sammlung. Entfernen Sie bei Bedarf andere Filter.
+
+<p className="example-label"><strong>Praxisbeispiel</strong> Einen Artikel für die nächste Laborbesprechung finden</p>
+
+Die Notiz **Discuss at next lab meeting.** macht den PRISMA-2020-Datensatz über **lab meeting** auffindbar, obwohl diese Wörter nicht im Titel stehen. Leeren Sie die Suche, um zur vollständigen Liste zurückzukehren.
+
+![PRISMA-Datensatz über eine gespeicherte persönliche Notiz gefunden](/img/open-science/v106/personal-note-search.webp)
+
+Die Suche umfasst gespeicherte persönliche Bibliotheksnotizen. Sie durchsucht weder das Web noch importiert sie Zotero-Notizen und ersetzt nicht die [Suche in PDF-Anmerkungen](pdf-notes.md).

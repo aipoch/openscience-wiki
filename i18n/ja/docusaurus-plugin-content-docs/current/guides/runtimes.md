@@ -1,7 +1,7 @@
 ---
 title: "PythonとRのランタイム"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -350,6 +350,8 @@ v0.31.0 から、Windows R は保護されたモードを最初にセットア�
 ## オプション WSL2 バッシュプレビュー {/* #wsl2-preview */}
 
 Windows x64は**Settings → Runtimes**の任意**Local Shell · WSL2 Bash Preview**を使用できます。 タスクが Linux シェルを必要としない限り、PowerShell をキープします。 WSL2 は Open-Science を Windows で使用する必要はありません。
+
+**ミラーネットワークには Windows 11 22H2 以降が必要です。** Windows 10 にはこのモードがありません。WSL2 の手順がこのモードを要求する場合は OS バージョンを確認し、条件を満たせなければ PowerShell を使い続けます。
 
 WSL2分布とその完全非root **Linux user**を選択し、**Save and check**を選択します。 プラットフォーム/ディストリビューションのセットアップ手順を最初にフォローしてください。 **Use WSL2 Bash** が利用可能になる前に、Readiness チェックとマッチングプレビューリソースがパスしなければなりません。 配布のみを選択すると、アクティベートしません。 小さなシェルコマンドを実行し、長いタスクを開始する前に結果を調べます。 PowerShellオプションを使用して、デフォルトのシェルに戻します。
 

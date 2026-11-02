@@ -1828,5 +1828,11 @@
   },
   "docs.outline.reference.v105.scope": {
     "message": "읽기 상태, 브라우저 연구 패키지, 서비스 실행 기간 및 과학 데이터 파일."
+  },
+  "docs.outline.reference.v106.title": {
+    "message": "v1.0.6"
+  },
+  "docs.outline.reference.v106.scope": {
+    "message": "Zotero 가져오기, 개인 메모 검색, PDF 자동 읽기 순서 및 안정성 수정."
   }
 }

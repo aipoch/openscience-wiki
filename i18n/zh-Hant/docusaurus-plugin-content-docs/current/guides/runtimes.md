@@ -1,7 +1,7 @@
 ---
 title: "Python 與 R 執行環境"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -350,6 +350,8 @@ R.home()
 ## 可選的 WSL2 Bash Preview {/* #wsl2-preview */}
 
 Windows x64 可在 **Settings → Runtimes** 使用可選的 **Local Shell · WSL2 Bash Preview**。任務不需要 Linux Shell 時，繼續使用 PowerShell 即可；Windows 版 Open-Science 不要求先配置 WSL2。
+
+**鏡像網絡要求 Windows 11 22H2 或更高版本。** Windows 10 不提供此模式。如果 WSL2 設置說明要求鏡像網絡，先檢查 Windows 版本；無法滿足所需配置時，繼續使用 PowerShell。
 
 選擇 WSL2 發行版及其準確的非 root **Linux user**，再選擇 **Save and check**。如需設定平臺或發行版，先按提示完成。就緒檢查和匹配的預覽資源都透過後，才能使用 **Use WSL2 Bash**；只選擇發行版不會啟用。先執行一個簡單 Shell 命令並檢查結果，再開始長任務。需要恢復預設 Shell 時，選擇 PowerShell。
 

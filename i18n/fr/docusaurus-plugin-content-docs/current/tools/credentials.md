@@ -1,7 +1,7 @@
 ---
 title: "Pouvoirs de service"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-30'
 ---
 
 # Pouvoirs de service {/* #service-credentials */}
@@ -65,3 +65,9 @@ Référence de mise en œuvre: [PouvoirsPanel.tsx](https://github.com/aipoch/ope
 ## Ouvrir la page clé officielle API {/* #official-api-key-page */}
 
 Les formulaires d'attestation OpenAlex et NPCI sont reliés à leurs pages clés officielles. Remplissez les étapes du compte avec le service, retournez au formulaire, puis validez et enregistrez la clé prévue. Ouvrir un lien ne sauvegarde pas une clé ou n'exécute pas une requête; La question de savoir si une clé est nécessaire dépend du service et de l'exploitation.
+
+## Répondre à l'autorisation du système au démarrage {/* #system-authorization */}
+
+Lorsque Open-Science a besoin d'une autorisation pour lire le stockage système des identifiants, apportez l'invite d'autorisation du système d'exploitation au premier plan et confirmez qu'il nomme l'application attendue. L’opération interactive d’accès aux identifiants peut attendre jusqu'à cinq minutes de v1.0.6.
+
+Si les rapports de démarrage **System credential authorization timed out**, réessayer le démarrage et répondre à l'invite du système. Un timeout n'établit pas qu'une clé API est manquante. Gardez le profil existant et les identifiants stockés ; ne les réinitialisez pas simplement pour rejeter ce message. Si la récupération échoue toujours, utilisez le code de diagnostic affiché pour distinguer les erreurs d'autorisation, d'accès au stockage et de déchiffrement.

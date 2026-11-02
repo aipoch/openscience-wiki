@@ -1,7 +1,7 @@
 ---
 title: "Service credentials"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-30'
 ---
 
 # Service credentials
@@ -65,3 +65,9 @@ Implementation reference: [CredentialsPanel.tsx](https://github.com/aipoch/open-
 ## Open the official API key page {/* #official-api-key-page */}
 
 The OpenAlex and NCBI credential forms link to their official key pages. Complete account steps with the service, return to the form, then validate and save the intended key. Opening a link does not save a key or execute a query; whether a key is required depends on the service and operation.
+
+## Respond to system authorization at startup {/* #system-authorization */}
+
+When Open-Science needs permission to read the system credential store, bring the operating system's authorization prompt to the front and confirm that it names the expected application. The interactive credential operation can wait up to five minutes from v1.0.6.
+
+If startup reports **System credential authorization timed out**, retry startup and respond to the system prompt. A timeout does not establish that an API key is missing. Keep the existing profile and stored credentials; do not reset them just to dismiss this message. If recovery still fails, use the displayed diagnostic code to distinguish authorization, storage access and decryption errors.
