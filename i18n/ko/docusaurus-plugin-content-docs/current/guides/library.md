@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -82,6 +82,7 @@ Inbox는 **Inbox is clear**을 보여줍니다. **현재 프로젝트**로 전�
 | 문헌 추가 | 수동으로 bibliography 입력 | 필수 제목, 참조 유형 및 식별자 |
 | PDF 가져오기 | 1개 또는 몇몇 지역 PDF | 각 종이에 대한 추출 된 메타 데이터; Multi-file 선택은 아래에 배치 교류를 이용합니다 |
 | 문헌 가져오기 | BibTeX, RIS 또는 NBIB | 유효/무효한 항목, 목적지 및 식별자 일치 |
+| Import from Zotero | 로컬 Zotero 10 이상 라이브러리 또는 컬렉션 | 일치 항목, 컬렉션 범위와 로컬 PDF 확인. [Zotero 가져오기](#zotero-import) |
 
 <ToolOperationGroup>
 <summary>폴더의 선택된 PDF 가져 오기</summary>
@@ -150,6 +151,35 @@ Inbox는 **Inbox is clear**을 보여줍니다. **현재 프로젝트**로 전�
 
 
 </ToolOperationGroup>
+
+## Zotero에서 가져오기 {/* #zotero-import */}
+
+Open-Science 서비스와 같은 컴퓨터에서 **Zotero 10 이상**을 엽니다. Zotero의 **Settings → Advanced**에서 **Allow other applications on this computer to communicate with Zotero**를 켜고 Zotero를 실행 상태로 둡니다. 로컬 가져오기에는 Zotero 계정이나 클라우드 API 키가 필요하지 않습니다. 다른 장치의 브라우저로 접속한다면 그 장치의 Zotero는 가져오기 원본이 아닙니다.
+
+### 미리 보고 문헌 선택하기 {/* #zotero-preview */}
+
+1. **Library → All references → Add → Import from Zotero**를 엽니다.
+2. **All references** 또는 컬렉션을 선택합니다. 상위 컬렉션을 선택하면 하위 컬렉션도 포함됩니다. **Search collections**로 목록을 좁힐 수 있습니다.
+3. 이 컴퓨터에 저장된 PDF를 복사하려면 **Copy local PDF attachments**를 선택합니다. 클라우드에만 있는 PDF는 먼저 Zotero에서 열어 다운로드하세요. 메타데이터만 가져오려면 선택을 해제합니다.
+4. **Preview Zotero library**에서 제목, 저자, 날짜와 식별자를 확인합니다. **New reference**와 **Reuse existing**은 예정된 처리 방식을 나타냅니다. **Needs review**나 **Identifier conflict** 행은 펼쳐서 확인한 다음 선택합니다.
+5. 일치하는 기록은 **When identifiers match**에서 재사용, 빈 필드 채우기 또는 별도 기록 유지를 선택합니다. 재사용하면 기존 메타데이터를 유지합니다. 한 필드가 같다는 이유만으로 서로 다른 논문을 합치지 마세요.
+6. 선택 수를 확인하고 **Import N references**를 누릅니다. 큰 라이브러리는 컬렉션별로 나누어 한 번에 1,000건 이하로 가져옵니다. 빈 컬렉션은 **Import collections**로 가져올 수 있습니다.
+
+<p className="example-label"><strong>실습 예제</strong> PRISMA 문헌 2건과 로컬 PDF 가져오기</p>
+
+아래 미리보기에는 새 기록 1건과 메타데이터 비교가 필요한 기존 기록 1건이 있습니다. 일치 내용을 확인한 뒤 둘 다 선택하고 기존 기록을 재사용했습니다.
+
+![PRISMA 문헌 2건과 로컬 PDF를 선택한 Zotero 가져오기 미리보기](/img/open-science/v106/zotero-preview.webp)
+
+### 가져온 라이브러리 확인하기 {/* #zotero-result */}
+
+**Import complete**가 표시되면 문헌, PDF와 컬렉션 수를 확인하고 **Done**을 누릅니다. 가져온 컬렉션과 첨부파일을 열어 PDF의 제목, DOI와 출판 정보를 기록과 비교하세요. Zotero의 파일 연결을 그대로 복사하므로 다른 출판 버전이나 잘못 연결된 PDF는 직접 확인해야 합니다.
+
+![문헌 2건, PDF 2개와 컬렉션 1개 가져오기 완료](/img/open-science/v106/zotero-complete.webp)
+
+메타데이터, 태그, 컬렉션 계층과 출처 링크를 가져옵니다. Zotero의 메모와 주석은 가져오지 않으며, 이후 변경도 Zotero로 동기화되지 않습니다. 나중에 추가한 문헌은 다시 미리 보고 기존 기록과의 일치를 확인하여 가져옵니다.
+
+PDF 복사가 실패해도 저장된 문헌은 남습니다. Zotero에서 누락된 파일을 복원한 뒤 **Retry PDFs**를 사용하세요. 미리보기 후 Zotero 내용이 바뀌었다면 미리보기를 갱신합니다. 연결 오류는 Zotero 버전, 실행 상태와 로컬 통신 설정을 확인해야 합니다. 반복해서 가져오기를 시도해도 연결 문제는 해결되지 않습니다.
 
 ## Inbox 증거 검토 {/* #review-inbox-evidence */}
 
@@ -431,3 +461,17 @@ PDF나 지원되는 서지 파일을 라이브러리에 끌어 놓고 가져오�
 상태는 프로젝트와 컬렉션에서 같은 문헌에 공유됩니다. 스마트 컬렉션 판정이나 근거의 질과는 별개입니다. 저장에 실패하면 현재 상태를 확인한 뒤 다시 시도합니다.
 
 ![Reading status로 문헌 필터링](/img/open-science/v105/reading-filter.webp)
+
+## 개인 메모로 논문 찾기 {/* #personal-note-search */}
+
+1. 전체 문헌 표에서 **Customize**를 열고 **Notes** 열을 표시합니다.
+2. 논문의 **Notes** 셀에 짧은 메모를 입력하고 **Enter**를 누르거나 입력란을 벗어나 저장합니다.
+3. **Search references**에 메모의 특징적인 구절을 입력합니다. 현재 컬렉션 밖에서도 찾으려면 **All references**를 선택하고 필요한 경우 다른 필터를 해제합니다.
+
+<p className="example-label"><strong>실습 예제</strong> 다음 연구실 미팅에서 읽을 논문 찾기</p>
+
+PRISMA 2020 기록에 **Discuss at next lab meeting.**을 저장하면 제목에 없는 **lab meeting**으로도 찾을 수 있습니다. 검색을 지우면 전체 목록으로 돌아갑니다.
+
+![저장된 개인 메모로 PRISMA 문헌을 찾은 결과](/img/open-science/v106/personal-note-search.webp)
+
+Library에 저장된 개인 메모를 검색합니다. 웹 검색이나 Zotero 메모 가져오기가 아니며 [PDF 주석 검색](pdf-notes.md)과도 별개입니다.

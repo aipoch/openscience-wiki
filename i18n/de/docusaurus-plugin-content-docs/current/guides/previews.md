@@ -1,7 +1,7 @@
 ---
 title: "Öffnen und Vorschauen von Dateien"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -258,3 +258,11 @@ Bei unvollständiger PDF-Suchabdeckung beziehen sich die Treffer nur auf den tat
 Befestigen der `.docx` Vorlage für die Sitzung und bitten Sie den Agenten, einen separaten Bericht zu erstellen, während das Layout, die Tabellenformatierung, die Rahmen und die Seitenstruktur beibehalten werden. Geben Sie an, welche Inhalte ersetzt und welche Template-Elemente beibehalten werden sollen. v1.0.5 verbessert diese Erhaltung; es macht nicht jede Vorlage für Word-kompatible Zuschauer identisch.
 
 Öffnen Sie die generierte Datei in der Vorschau, laden Sie sie dann herunter und prüfen Sie sie in der Word-Anwendung, die Sie für die Lieferung verwenden. Überprüfen Sie Tabellenbreiten, Seitenumbrüche, Kopfzeilen, Fußzeilen und langen Text vor dem Teilen. Behalten Sie die Originalvorlage, damit die Ausgabe verglichen und überarbeitet werden kann.
+
+## Automatische PDF Lesereihenfolge {/* #automatic-pdf-reading-order */}
+
+Ab v1.0.6 verwenden verknüpfte PDFs eine automatische Textreihenfolge. Öffnen Sie die Anlage und verwenden Sie **Read with agent** wenn Sie danach fragen möchten; Sie müssen keine persistenten Regionen in Lesereihenfolge mehr über dem PDF konfigurieren. Ältere Nachrichten mit manuellen Regionen verwenden ebenfalls die automatische Reihenfolge.
+
+Vollständige, gültige logische Tags haben Priorität. Unmarkierte, unrotierte Links-zu-Rechts-Texte können eine Layout-basierte Reihenfolge verwenden; unvollständige Tags oder nicht unterstützte Layouts greifen auf die native Textreihenfolge des PDF zurück. Diese Fallbacks garantieren nicht, dass jede mehrspaltige Seite, Tabelle oder Formel korrekt gelesen wird.
+
+Halten Sie die Quelle offen, wenn Sie eine Antwort überprüfen. Überprüfen Sie die zitierte Seite, Spalte und Abbildung oder Tabelle mit dem PDF, insbesondere wenn Sätze ineinander verschachtelt erscheinen. Verwendung der [Abbildungs- und Tabellenextraktionswerkzeuge](#pdf-extraction) wenn das visuelle Material Gegenstand der Frage ist.

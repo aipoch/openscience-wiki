@@ -1,7 +1,7 @@
 ---
 title: "服务凭据"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-30'
 ---
 
 # 服务凭据
@@ -65,3 +65,9 @@ OpenAlex 密钥可选；OAuth Connector 仍需完成对应服务登录。处理�
 ## 打开官方 API Key 页面 {/* #official-api-key-page */}
 
 OpenAlex 和 NCBI 的凭据表单提供官方密钥页面入口。在服务方完成账户操作后，返回表单，验证并保存所需密钥。打开链接不会自动保存密钥或执行查询；是否需要密钥取决于服务与具体操作。
+
+## 处理启动时的系统授权 {/* #system-authorization */}
+
+Open-Science 需要读取系统凭据存储权限时，将操作系统的授权提示切到前台，并确认提示中的应用是预期的 Open-Science。从 v1.0.6 起，这类交互式凭据操作最多可以等待五分钟。
+
+如果启动时显示 **System credential authorization timed out**，重新启动并处理系统授权提示。超时并不说明 API Key 缺失，应保留现有配置和已存凭据，不要为了消除提示而重置它们。仍无法恢复时，按界面上的诊断代码区分授权、存储访问和解密问题。

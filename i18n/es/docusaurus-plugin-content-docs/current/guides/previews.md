@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -258,3 +258,11 @@ Para las previsiones DOCX, compruebe la numeración de lista continua y las fron
 Adjuntar el `.docx` plantilla para la sesión y pedir al Agente que cree un informe separado preservando su diseño, formato de tabla, fronteras y estructura de página. El estado que el contenido para reemplazar y qué elementos de plantilla para retener. v1.0.5 mejora esta preservación; no hace que cada plantilla sea idéntica a todos los espectadores compatibles con Word.
 
 Abra el archivo generado en su vista previa, luego descarguelo e inspeccione en la aplicación Word que utilizará para la entrega. Compruebe los anchos de la tabla, las pausas de página, los encabezados, los pies y el texto largo antes de compartir. Mantenga la plantilla original para que la salida pueda ser comparada y revisada.
+
+## Orden de lectura en PDF {/* #automatic-pdf-reading-order */}
+
+Desde v1.0.6, PDFs enlazados utilizan el orden de texto automático. Abrir el accesorio y el uso **Read with agent** cuando desea preguntar sobre ello; ya no necesita configurar regiones de lectura persistentes por encima del PDF. Los mensajes más antiguos con las regiones manuales también utilizan el orden automático.
+
+Las etiquetas lógicas completas y válidas tienen prioridad. El texto sin etiquetas, sin rotación y de izquierda a derecha puede usar el orden basado en el diseño; las etiquetas incompletas o los diseños sin soporte se remontan a la orden de texto nativa del PDF. Estas alternativas no garantizan que cada página, tabla o fórmula multicolumna lea correctamente.
+
+Mantenga la fuente abierta al revisar una respuesta. Compruebe la página citada, columna y figura o tabla contra el PDF, especialmente si las oraciones parecen entrelazadas. Usar el [herramientas de extracción de figuras y tablas](#pdf-extraction) cuando el material visual es el tema de la pregunta.

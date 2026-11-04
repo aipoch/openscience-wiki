@@ -1,7 +1,7 @@
 ---
 title: "Conectores y credenciales"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -118,6 +118,12 @@ Si el archivo de instrucción Connector no se puede leer, mantenga su error EPER
 ![Editor local de comandos y variables de entorno con límites credencial](/img/open-science/walkthrough-2026-09-08/67-connector-local-command.webp)
 
 Una entrada de lanzadores por sí sola no prueba que su ejecutable o servicio está operativo. Utilice la invocación a continuación para comprobar el comando local importado.
+
+#### Usar el runtime npm incluido {/* #bundled-npm */}
+
+Desde v1.0.6, un conector local cuyo comando es **npx** o **npm** puede utilizar el paquete de la aplicación Node/npm cuando ese comando no está disponible en el sistema. Un comando instalado sigue teniendo prioridad. Mantenga el nombre del paquete y los argumentos suministrados por el editor del servidor MCP, a continuación, guardar y probar una operación de herramienta destinada.
+
+Esta función no instala **uvx**, **Python** o **Docker**, y no repara una ruta explícita de ejecutable incorrecta. Las descargas de paquetes todavía requieren acceso a la red; las credenciales de servicio y las aprobaciones de herramientas permanecen separadas.
 
 ### Servidor remoto {/* #remote-server */}
 

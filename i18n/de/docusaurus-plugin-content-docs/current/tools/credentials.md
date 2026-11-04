@@ -1,7 +1,7 @@
 ---
 title: "Dienstanmeldeinformationen"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-30'
 ---
 
 # Dienstanmeldeinformationen {/* #service-credentials */}
@@ -65,3 +65,9 @@ Bezugsnummer der Durchführung: [CredentialsPanel.tsx](https://github.com/aipoch
 ## Öffnen Sie die offizielle API Key Page {/* #official-api-key-page */}
 
 Die Formulare OpenAlex und NCBI verlinken auf ihre offiziellen Schlüsselseiten. Schließen Sie die Kontoschritte mit dem Dienst ab, kehren Sie zum Formular zurück, validieren und speichern Sie dann den beabsichtigten Schlüssel. Durch das Öffnen eines Links wird kein Schlüssel gespeichert oder eine Abfrage ausgeführt; Ob ein Schlüssel benötigt wird, hängt vom Dienst und der Bedienung ab.
+
+## Reagieren Sie auf Systemautorisierung beim Start {/* #system-authorization */}
+
+Wenn Open-Science die Berechtigung zum Lesen des Systemspeichers für Anmeldeinformationen benötigt, bringen Sie die Autorisierungsaufforderung des Betriebssystems nach vorne und bestätigen Sie, dass die erwartete Anwendung benannt wird. Die interaktive Berechtigungsoperation kann ab v1.0.6 bis zu fünf Minuten warten.
+
+Wenn beim Start **System credential authorization timed out** erscheint, starten Sie erneut und reagieren Sie auf die Systemaufforderung. Ein Timeout stellt nicht fest, dass ein API-Schlüssel fehlt. Behalten Sie das vorhandene Profil und die gespeicherten Anmeldeinformationen; setzen Sie sie nicht zurück, nur um diese Nachricht zu verwerfen. Wenn die Wiederherstellung weiterhin fehlschlägt, verwenden Sie den angezeigten Diagnosecode, um Autorisierungs-, Speicherzugriffs- und Entschlüsselungsfehler zu unterscheiden.

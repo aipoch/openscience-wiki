@@ -1,7 +1,7 @@
 ---
 title: "Steckverbinder und Anmeldeinformationen"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -118,6 +118,12 @@ Wenn die Connector-Anweisungsdatei nicht gelesen werden kann, behalten Sie den E
 ![Lokaler Befehlseditor und Credential-gebundene Umgebungsvariablen](/img/open-science/walkthrough-2026-09-08/67-connector-local-command.webp)
 
 Ein Launcher-Eintrag allein beweist nicht, dass seine ausführbare Datei oder sein Dienst betriebsbereit ist. Verwenden Sie den Aufruf unten, um den importierten lokalen Befehl zu überprüfen.
+
+#### Mitgeliefertes npm als Ersatz {/* #bundled-npm */}
+
+Ab v1.0.6 ein lokaler Connector, dessen Befehl **npx** oder **npm** kann den gebündelten Node/npm der Anwendung verwenden, wenn dieser Befehl auf dem System nicht verfügbar ist. Ein installierter Befehl hat immer noch Priorität. Behalten Sie den Paketnamen und die Argumente, die vom Herausgeber des MCP-Servers geliefert werden, und speichern und testen Sie dann eine beabsichtigte Werkzeugoperation.
+
+Diese Funktion installiert weder **uvx**, **Python** oder **Docker**, und repariert keinen falsch eingegebenen explizit ausführbaren Pfad. Paket-Downloads erfordern weiterhin Netzwerkzugriff; Service-Anmeldeinformationen und Tool-Genehmigungen bleiben getrennt.
 
 ### Remote-Server {/* #remote-server */}
 

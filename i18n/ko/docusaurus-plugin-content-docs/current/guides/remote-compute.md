@@ -1,7 +1,7 @@
 ---
 title: "SSH 호스트 및 Slurm 설정"
 last_update:
-  date: '2026-09-10'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,19 +179,15 @@ Slurm의 경우, 올바른 계정/출입, 자원 요청, 벽 시간, 클러스�
 
 ![Slurm은 호스트의 실행 모드에서 명시적으로 선택](/img/open-science/remote-compute/10-slurm-execution-mode.webp)
 
-### 서버가 완료되면 앱이 대기 상태로 유지됩니다. {/* #when-the-server-completes-but-the-app-keeps-waiting */}
+### 파일 수집 전에 작업 결과 확인 {/* #slurm-outcome-recovery */}
 
-앱 스냅샷이 `last_poll_error`을 보고하면 기존의 작업 ID를 유지하고 정확한 오류를 요청합니다. 관찰된 회계 실패는:
+<span id="when-the-server-completes-but-the-app-keeps-waiting" />
 
-```text
-slurm_poll_failed: Slurm accounting storage is disabled
-```
+v1.0.6부터 Slurm은 큐, 컨트롤러와 작업 이력을 개별적으로 확인하고 로그 수집 전에 확정된 최종 상태를 저장합니다. 한 정보원이 일시적으로 실패해도 다른 정보원에서 얻은 결과를 자동으로 지우지 않습니다. 취소의 최종 결과는 한 번만 반환합니다.
 
-스케줄러가 **완료 / 종료 코드 0:0**을 보여주면 앱은 **제출하기**, **result_final 거짓** 또는 수집된 파일을 보여 주며 작업 ID를 유지하고 오염 오류를 검사합니다. 치료 스케줄러 완료 및 응용 프로그램 결과 수집 별도의 단계로.
+기존 Open-Science와 Slurm 작업 ID를 유지하세요. 작업이 끝났지만 로그나 파일을 아직 가져오지 못했다면 같은 작업을 새로고침하고 수집 상태를 별도로 확인합니다. 같은 작업을 다시 제출하지 마세요. **squeue**에서 사라진 것만으로는 성공을 확인할 수 없습니다. 최종 상태, 종료 상태와 예상 출력을 확인한 뒤 결과를 사용하세요.
 
-![응용 프로그램은 여전히 완료된 Slurm 작업 부하에 대한 터미널 상태를 기다립니다](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
-
-클러스터 관리자에게 계정과 작업에 대해 `sacct` 회계를 제공하도록 요청하십시오. `squeue`에서 사라지는 작업은 성공을 확인하지 않습니다. 기존의 작업 디렉토리 및 작업 ID 모두 유지, 다음 회계 후 동일한 작업을 새로 고침하고 최종 상태를 확인하고 수집 된 파일을 확인합니다.
+컨트롤러와 작업 이력에서 모두 확정 상태를 얻지 못하면 조회 오류를 보관하고 관리자에게 작업 접근 권한과 기록 보존을 확인해 달라고 요청합니다. 연결을 복구한 뒤 원래 작업을 새로고침하여 최종 상태와 수집 파일이 일치하는지 확인합니다.
 
 <ToolOperationGroup>
 <summary>GPU에 작은 단백질 시퀀스 디자인을 실행</summary>

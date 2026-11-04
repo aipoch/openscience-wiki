@@ -2,7 +2,7 @@
 title: "科學資料庫"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 # 科學資料庫 {/* #科学数据库 */}
@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支援哪些資料庫 {/* #supported-databases */}
 
-Open-Science v1.0.5 內建 **48 個 Connector，共提供 418 項操作**：其中 47 個資料來源 Connector 提供 416 項操作，1 個離線 Molecule Connector 提供 2 項操作。下表名稱對應 **Settings → Connectors** 中的項目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示涵蓋其網站的全部功能。
+Open-Science v1.0.6 內建 **48 個 Connector，共提供 418 項操作**：其中 47 個資料來源 Connector 提供 416 項操作，1 個離線 Molecule Connector 提供 2 項操作。下表名稱對應 **Settings → Connectors** 中的項目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示涵蓋其網站的全部功能。
 
 此處統計全部內建項目，包括未啟用的項目；使用者自行新增的 MCP Connector 另計。Connector 數量、涵蓋的資料庫數量和可呼叫的操作數量是不同的統計口徑。
 
@@ -268,7 +268,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作引數參考](../reference/connector-operations.md)列出必填輸入、可選值和準確呼叫方法。本頁用於選擇和連線資料來源，引數參考用於查詢某個具體工具的欄位。
 
-目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.5/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.5/src/main/connectors/registry.ts)。
+目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/registry.ts)。
 
 ## 序列檢索與多序列比對 {/* #sequence-tools */}
 

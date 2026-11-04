@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -82,6 +82,7 @@ Inbox 随后显示 **Inbox is clear**；切换到 **Current project** 可见 **2
 | Add reference | 手填书目 | 必填标题、文献类型和标识符 |
 | Import PDF | 一份或多份本地 PDF | 对照每篇论文检查提取的元数据；多文件走下面的批量流程 |
 | Import references | BibTeX、RIS、NBIB | 有效/无效记录、目标和标识符匹配 |
+| Import from Zotero | 本机 Zotero 10+ 文献库或集合 | 核对匹配、集合范围与本地 PDF，见 [Zotero 导入](#zotero-import) |
 
 <ToolOperationGroup>
 <summary>导入一批选定的 PDF</summary>
@@ -150,6 +151,35 @@ Inbox 随后显示 **Inbox is clear**；切换到 **Current project** 可见 **2
 
 
 </ToolOperationGroup>
+
+## 从 Zotero 导入 {/* #zotero-import */}
+
+在运行 Open-Science 服务的同一台电脑上打开 **Zotero 10 或更高版本**。进入 Zotero 的 **Settings → Advanced**，启用 **Allow other applications on this computer to communicate with Zotero**，并保持 Zotero 运行。这种本地导入不需要 Zotero 账号或云端 API Key；如果通过另一台设备的浏览器访问 Open-Science，那台设备上的 Zotero 不是导入源。
+
+### 预览并选择条目 {/* #zotero-preview */}
+
+1. 打开 **Library → All references → Add → Import from Zotero**。
+2. 选择 **All references** 或一个集合。选中父集合会包含其子集合，可用 **Search collections** 筛选列表。
+3. 需要复制本机已有的 PDF 时，保留 **Copy local PDF attachments**。若附件仅存于云端，先在 Zotero 中打开并下载；只导入元数据时取消勾选。
+4. 点击 **Preview Zotero library**，核对标题、作者、日期和标识。**New reference** 与 **Reuse existing** 表示拟采用的处理方式；遇到 **Needs review** 或 **Identifier conflict**，先展开核对再选择。
+5. 已匹配的记录可在 **When identifiers match** 中选择复用、补空字段或保留独立记录。复用会保留已有元数据，不要仅凭某个字段相同就合并不同论文。
+6. 核对选中数量，点击 **Import N references**。大文献库可按集合分批，每批不超过 1,000 条。选中的空集合可以通过 **Import collections** 导入。
+
+<p className="example-label"><strong>案例演示</strong> 导入两条 PRISMA 文献及其本地 PDF</p>
+
+下图预览包含一条新记录，以及一条需要比较元数据的已有记录。核对匹配后选中两条，已有记录采用复用方式。
+
+![Zotero 预览中选中的两条 PRISMA 文献及本地 PDF 附件](/img/open-science/v106/zotero-preview.webp)
+
+### 核对导入后的文献库 {/* #zotero-result */}
+
+等待 **Import complete**，检查文献、PDF 和集合数量，再点击 **Done**。打开导入的集合和附件，比较 PDF 中的标题、DOI 和发表信息：导入会沿用 Zotero 的文件关联，其他发表版本或关联错误的 PDF 仍需自己核对。
+
+![Zotero 导入完成：两条文献、两个 PDF 和一个集合](/img/open-science/v106/zotero-complete.webp)
+
+导入会带入元数据、标签、集合层级和来源链接，不包含 Zotero 的笔记与批注，也不会把后续修改同步回 Zotero。需要导入后来新增的条目时，再次预览并核对已有记录的匹配结果。
+
+PDF 复制不成功时，已保存的文献记录会保留。先在 Zotero 中恢复缺失文件，再点击 **Retry PDFs**。如果预览后 Zotero 内容发生变化，应重新预览后再导入。连接错误需要检查 Zotero 版本、运行状态和本地通信开关，反复导入无法解决连接问题。
 
 ## 审核 Inbox 来源
 
@@ -431,3 +461,17 @@ API key 为可选项。遇到限流时可以稍后重试，或在本地桌面应
 状态属于文献记录，在项目和集合视图中共用；它与智能集合的筛选结论、证据质量是不同信息。保存失败时，先检查记录的现有状态再重试。
 
 ![按 Reading status 筛选文献库](/img/open-science/v105/reading-filter.webp)
+
+## 按自己的笔记找回论文 {/* #personal-note-search */}
+
+1. 在完整文献库表格中打开 **Customize**，显示 **Notes** 列。
+2. 在论文的 **Notes** 单元格中写下简短提醒，按 **Enter** 或离开输入框保存。
+3. 在 **Search references** 中输入笔记里的独特词组。需要跨集合检索时切到 **All references**，必要时清除其他筛选条件。
+
+<p className="example-label"><strong>案例演示</strong> 找回准备在下次组会讨论的论文</p>
+
+给 PRISMA 2020 记录保存笔记 **Discuss at next lab meeting.** 后，搜索 **lab meeting** 就能找到它，即使标题中没有这些词。清空搜索可回到完整列表。
+
+![通过已保存的个人笔记检索到 PRISMA 文献](/img/open-science/v106/personal-note-search.webp)
+
+这里检索的是文献库内已保存的个人笔记，不会联网找文献、导入 Zotero 笔记，也不替代 [PDF 批注检索](pdf-notes.md)。

@@ -1,7 +1,7 @@
 ---
 title: "Connecteurs et identifiants"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -118,6 +118,12 @@ Si le fichier d'instructions Connector ne peut pas être lu, conservez son erreu
 ![Éditeur de commandes locales et variables d'environnement liées aux justificatifs](/img/open-science/walkthrough-2026-09-08/67-connector-local-command.webp)
 
 Une entrée de lanceur ne prouve pas à elle seule que son exécutable ou son service est opérationnel. Utilisez l'invocation ci-dessous pour vérifier la commande locale importée.
+
+#### Utiliser le runtime npm fourni {/* #bundled-npm */}
+
+Depuis v1.0.6, un connecteur local dont la commande est **npx** ou **npm** peut utiliser le Node/npm groupé de l'application lorsque cette commande n'est pas disponible sur le système. Une commande installée est toujours prioritaire. Gardez le nom du paquet et les arguments fournis par l'éditeur du serveur MCP, puis enregistrez et testez une opération d'outil prévue.
+
+Cette fonction n’installe pas **uvx**, **Python** ou **Docker**, et ne répare pas un chemin exécutable explicite mal typé. Les téléchargements de paquets nécessitent toujours un accès au réseau; les justificatifs de service et les approbations d'outils demeurent distincts.
 
 ### Serveur distant {/* #remote-server */}
 

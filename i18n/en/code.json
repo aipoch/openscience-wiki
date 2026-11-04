@@ -1905,5 +1905,11 @@
   },
   "docs.outline.reference.v105.scope": {
     "message": "Reading status, browser research packages, service lifetime and scientific file discovery."
+  },
+  "docs.outline.reference.v106.title": {
+    "message": "v1.0.6"
+  },
+  "docs.outline.reference.v106.scope": {
+    "message": "Zotero import, personal-note search, automatic PDF reading order and reliability fixes."
   }
 }

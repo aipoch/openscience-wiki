@@ -1,7 +1,7 @@
 ---
 title: "Connectors and credentials"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -118,6 +118,12 @@ If the Connector instruction file cannot be read, retain its EPERM error and che
 ![Local command editor and credential-bound environment variables](/img/open-science/walkthrough-2026-09-08/67-connector-local-command.webp)
 
 A launcher entry alone does not prove that its executable or service is operational. Use the invocation below to check the imported local command.
+
+#### Bundled npm fallback {/* #bundled-npm */}
+
+From v1.0.6, a local Connector whose command is **npx** or **npm** can use the application's bundled Node/npm when that command is unavailable on the system. An installed command still takes priority. Keep the package name and arguments supplied by the MCP server's publisher, then save and test one intended tool operation.
+
+This fallback does not install **uvx**, **Python** or **Docker**, and does not repair a mistyped explicit executable path. Package downloads still require network access; service credentials and tool approvals remain separate.
 
 ### Remote server
 

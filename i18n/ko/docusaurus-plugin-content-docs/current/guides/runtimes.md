@@ -1,7 +1,7 @@
 ---
 title: "Python 및 R 실행 시간"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -350,6 +350,8 @@ v0.31.0에서, Windows R는 첫번째 조정 보호한 형태 없이 표준 형�
 ## 옵션 WSL2 Bash 미리보기 {/* #wsl2-preview */}
 
 Windows x64는 **Settings → Runtimes**에 있는 선택적인 **Local Shell · WSL2 Bash Preview**를 이용할 수 있습니다. 작업이 Linux 쉘을 필요로하지 않는 PowerShell 유지; WSL2은 Windows에서 Open-Science을 사용하지 않아야 합니다.
+
+**미러링 네트워크에는 Windows 11 22H2 이상이 필요합니다.** Windows 10은 이 모드를 제공하지 않습니다. WSL2 절차에서 해당 모드가 필요하다면 Windows 버전을 먼저 확인하고, 조건을 충족할 수 없으면 PowerShell을 계속 사용하세요.
 
 WSL2 배포 및 정확한 비 루트 **Linux user**을 선택한 다음 **Save and check**를 선택하십시오. 플랫폼 / 분산 설정 지침을 먼저 따르십시오. Readiness checks and matching 미리보기 리소스는 **Use WSL2 Bash** 이전에 전달해야 합니다. 혼자 배포를 선택하면 활성화하지 않습니다. 작은 쉘 명령을 실행하고 더 긴 작업을 시작하기 전에 결과를 검사합니다. PowerShell 옵션을 사용하여 기본 쉘으로 반환합니다.
 

@@ -2695,5 +2695,11 @@
   },
   "docs.outline.reference.v105.scope": {
     "message": "閱讀狀態、瀏覽器研究包、服務生命週期與科研文件發現。"
+  },
+  "docs.outline.reference.v106.title": {
+    "message": "v1.0.6"
+  },
+  "docs.outline.reference.v106.scope": {
+    "message": "Zotero 導入、個人筆記檢索、PDF 自動讀取順序與穩定性修復。"
   }
 }

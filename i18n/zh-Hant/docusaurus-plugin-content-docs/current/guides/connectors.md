@@ -1,7 +1,7 @@
 ---
 title: "聯結器與憑據"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -117,6 +117,12 @@ Connector 讓服務工具可供 Agent 使用，Credential 在服務要求時提�
 ![本地命令與環境變數憑據繫結](/img/open-science/walkthrough-2026-09-08/67-connector-local-command.webp)
 
 選擇啟動器前確認對應可執行檔案、包、容器或服務已安裝。下方示例說明如何匯入並驗證本地 MCP 連線。
+
+#### 使用隨應用提供的 npm {/* #bundled-npm */}
+
+從 v1.0.6 起，本地 Connector 的命令爲 **npx** 或 **npm**、而系統找不到該命令時，可以使用應用自帶的 Node/npm；已安裝的命令仍然優先。按 MCP 服務發佈方的說明填寫包名和參數，保存後執行一次所需工具操作，檢查是否可用。
+
+此回退機制不會安裝 **uvx**、**Python** 或 **Docker**，也不會修正寫錯的可執行文件路徑。下載包仍需要網絡連接，服務憑據與工具授權也仍需分別配置。
 
 ### Remote server {/* #remote-server */}
 

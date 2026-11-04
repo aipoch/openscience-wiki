@@ -1,7 +1,7 @@
 ---
 title: "SSH hosts y Slurm setup"
 last_update:
-  date: '2026-09-10'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,19 +179,15 @@ Utilice la partición de su sitio en lugar de copiar `local` incondicionalmente.
 
 ![Slurm seleccionó explícitamente en el modo de ejecución del host](/img/open-science/remote-compute/10-slurm-execution-mode.webp)
 
-### Cuando el servidor se completa, pero la aplicación sigue esperando {/* #when-the-server-completes-but-the-app-keeps-waiting */}
+### Compruebe el resultado del trabajo antes de recoger archivos {/* #slurm-outcome-recovery */}
 
-Si la aplicación instantánea informa `last_poll_error`, mantenga el ID de trabajo existente y pida el error exacto. El fracaso contable observado fue:
+<span id="when-the-server-completes-but-the-app-keeps-waiting" />
 
-```text
-slurm_poll_failed: Slurm accounting storage is disabled
-```
+Desde v1.0.6, Slurm comprueba la cola, el controlador y la contabilidad independientemente y guarda un estado final confirmado antes de recoger los registros. Un fracaso temporal en una fuente no borra automáticamente un resultado obtenido de otra fuente. La cancelación devuelve un resultado final.
 
-Si el programador muestra **COMPLETED / ExitCode 0:0** pero la aplicación todavía muestra **presentado**, **result_final falso** o no archivos recopilados, mantenga ambos ID de trabajo e inspeccione el error de votación. Treat cronograma finalización y recogida de resultados de aplicación como etapas separadas.
+Mantenga los IDs de trabajo de Open-Science y Slurm existentes. Si la tarea ha terminado pero los registros o archivos todavía no están disponibles, refresque el mismo trabajo y revise la colección por separado en lugar de enviar la carga de trabajo de nuevo. Un trabajo que desaparece **squeue** solo no confirma el éxito; inspeccionar el estado terminal, estado de salida y salidas esperadas antes de utilizar el resultado.
 
-![La solicitud aún pendiente de estado terminal para un volumen de trabajo Slurm completado](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
-
-Pídale al administrador del grupo que proporcione la contabilidad `sacct` de trabajo para la cuenta y el trabajo. Un trabajo que desaparece de `squeue` no confirma el éxito. Mantenga el directorio de trabajo existente y ambos IDs de trabajo, luego refresque el mismo trabajo después de que se restablezca la contabilidad y compruebe su estado final y los archivos recogidos.
+Si ni el controlador ni la contabilidad proporciona un estado concluyente, retenga el error de consulta notificado y pida al administrador del grupo que compruebe el acceso y la retención para ese trabajo. Restaurar la conexión, refrescar el trabajo original y confirmar que su estado final y los archivos recogidos están de acuerdo.
 
 <ToolOperationGroup>
 <summary>Ejecutar un pequeño diseño de secuencia de proteínas en GPU</summary>

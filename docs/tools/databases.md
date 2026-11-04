@@ -2,7 +2,7 @@
 title: "Scientific databases"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 # Scientific databases
@@ -13,7 +13,7 @@ Use this page to choose a data source, understand what it can return, and make i
 
 ## Supported databases {/* #supported-databases */}
 
-Open-Science v1.0.5 includes **48 built-in Connectors with 418 operations**: 47 data-source Connectors provide 416 operations, and the offline Molecule Connector provides two. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+Open-Science v1.0.6 includes **48 built-in Connectors with 418 operations**: 47 data-source Connectors provide 416 operations, and the offline Molecule Connector provides two. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
 
 The count covers all built-in entries, including disabled ones; custom MCP Connectors are additional. Connector count, underlying database count and operation count measure different things.
 
@@ -268,7 +268,7 @@ From v0.31.0, `get_string_network.nodes` includes returned neighbors and isolate
 
 The [Connector operation reference](../reference/connector-operations.md) lists required inputs, allowed values and exact calls. Use this page to choose a source and connect it; use the reference for a particular tool's fields.
 
-Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.5/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.5/src/main/connectors/registry.ts).
+Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/registry.ts).
 
 ## Sequence searches and alignment {/* #sequence-tools */}
 

@@ -1,7 +1,7 @@
 ---
 title: "SSH 主机与 Slurm 配置"
 last_update:
-  date: '2026-09-10'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,19 +179,15 @@ Slurm 场景需要向集群负责人确认账号／分区、资源申请、时�
 
 ![在主机执行模式中明确选择 Slurm](/img/open-science/remote-compute/10-slurm-execution-mode.webp)
 
-### 服务器已完成，但应用仍在等待
+### 先确认任务结果，再检查文件收集 {/* #slurm-outcome-recovery */}
 
-如果应用状态快照包含 `last_poll_error`，保留原作业 ID，并要求显示完整错误。本例遇到的记账错误为：
+<span id="服务器已完成但应用仍在等待" />
 
-```text
-slurm_poll_failed: Slurm accounting storage is disabled
-```
+从 v1.0.6 起，Slurm 分别检查队列、控制器与记账信息，并先保存已确认的终态，再收集日志。某个来源暂时不可用，不会自动清除从其他来源取得的结果；取消操作只返回一次最终结果。
 
-调度器显示 **COMPLETED / ExitCode 0:0**，但应用仍为 **submitted**、**result_final false** 或没有已回收文件时，保留两个作业 ID 并检查轮询错误。调度器完成和应用结果回收是两个阶段。
+保留已有的 Open-Science 与 Slurm 任务 ID。任务已结束但日志或文件尚未收集时，刷新原任务并单独检查收集情况，不要重新提交同一负载。任务仅仅从 **squeue** 消失，不能证明执行成功；使用结果前，应核对终态、退出状态和预期输出。
 
-![Slurm 负载已完成，应用仍等待终态确认](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
-
-请集群管理员提供该账号与作业可用的 `sacct` 记账查询。任务从 `squeue` 中消失并不能确认成功。保留原工作目录与两个作业 ID，记账恢复后刷新同一个任务，检查终态和回收文件。
+如果控制器和记账都无法提供明确状态，保留轮询错误，请集群管理员检查该任务的访问权限与记录保留情况。恢复连接后刷新原任务，确认终态与收集到的文件一致。
 
 <ToolOperationGroup>
 <summary>在 GPU 上运行小型蛋白序列设计</summary>

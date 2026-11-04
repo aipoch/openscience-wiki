@@ -1433,6 +1433,17 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v106",
+            "title": "v1.0.6",
+            "scope": "Zotero import, personal-note search, automatic PDF reading order and reliability fixes.",
+            "currentDoc": "changelog/v1-0-6",
+            "proposedUrl": "/docs/changelog/v1-0-6/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-0-6"
+            ]
+          },
+          {
             "id": "v105",
             "title": "v1.0.5",
             "scope": "Reading status, browser research packages, service lifetime and scientific file discovery.",

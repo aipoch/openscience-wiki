@@ -1,7 +1,7 @@
 ---
 title: "커넥터 및 자격"
 last_update:
-  date: '2026-10-22'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -118,6 +118,12 @@ Connector 명령 파일이 읽을 수 없다면 EPERM 오류를 유지하고 활
 ![로컬 명령 편집기 및 credential-bound 환경 변수](/img/open-science/walkthrough-2026-09-08/67-connector-local-command.webp)
 
 실행자 항목은 실행할 수 없거나 서비스가 운영되는 것을 증명하지 않습니다. 수입한 로컬 명령을 확인하기 위해 아래의 invocation를 사용하십시오.
+
+#### 앱에 포함된 npm 런타임 사용 {/* #bundled-npm */}
+
+v1.0.6부터 **npx** 또는 **npm**을 명령으로 사용하는 로컬 Connector는 시스템에 해당 명령이 없으면 앱에 포함된 Node/npm을 사용할 수 있습니다. 설치된 명령이 우선합니다. MCP 서버 제공자가 안내한 패키지 이름과 인수를 입력하고 저장한 뒤 필요한 도구 작업을 한 번 실행해 확인하세요.
+
+이 기능은 **uvx**, **Python**, **Docker**를 설치하지 않고 잘못 입력한 실행 파일 경로도 수정하지 않습니다. 패키지 다운로드에는 네트워크가 필요하며, 서비스 자격 증명과 도구 승인은 별도로 설정해야 합니다.
 
 ### 원격 서버 {/* #remote-server */}
 

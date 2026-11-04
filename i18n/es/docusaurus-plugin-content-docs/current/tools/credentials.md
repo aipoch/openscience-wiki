@@ -1,7 +1,7 @@
 ---
 title: "Cátedras de servicio"
 last_update:
-  date: '2026-09-24'
+  date: '2026-10-30'
 ---
 
 # Cátedras de servicio {/* #service-credentials */}
@@ -65,3 +65,9 @@ Referencia de implementación: [CredencialesPanel.tsx](https://github.com/aipoch
 ## Abra la página oficial de teclas API {/* #official-api-key-page */}
 
 Las formas de OpenAlex y NCBI se vinculan a sus páginas clave oficiales. Pasos completos de cuenta con el servicio, volver al formulario, luego validar y guardar la clave deseada. Abrir un enlace no guarda una llave o ejecutar una consulta; si se requiere una llave depende del servicio y la operación.
+
+## Responder a la autorización del sistema al inicio {/* #system-authorization */}
+
+Cuando Open-Science necesita permiso para leer la almacén de credenciales del sistema, traiga el aviso de autorización del sistema operativo al frente y confirme que se llama la aplicación esperada. La operación credencial interactiva puede esperar hasta cinco minutos desde v1.0.6.
+
+Si al iniciar aparece **System credential authorization timed out**, vuelva a iniciar y responda a la solicitud del sistema. Un timeout no establece que falta una clave de API. Mantenga el perfil existente y las credenciales almacenadas; no reajuste sólo para desestimar este mensaje. Si la recuperación todavía falla, utilice el código de diagnóstico mostrado para distinguir los errores de autorización, acceso al almacenamiento y desciframiento.

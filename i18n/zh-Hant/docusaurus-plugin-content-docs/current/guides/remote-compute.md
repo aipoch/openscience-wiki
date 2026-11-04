@@ -1,7 +1,7 @@
 ---
 title: "SSH 主機與 Slurm 配置"
 last_update:
-  date: '2026-09-10'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,19 +179,15 @@ Slurm 場景需要向叢集負責人確認賬號／分割槽、資源申請、�
 
 ![在主機執行模式中明確選擇 Slurm](/img/open-science/remote-compute/10-slurm-execution-mode.webp)
 
-### 伺服器已完成，但應用仍在等待 {/* #服务器已完成但应用仍在等待 */}
+### 先確認任務結果，再檢查文件收集 {/* #slurm-outcome-recovery */}
 
-如果應用狀態快照包含 `last_poll_error`，保留原作業 ID，並要求顯示完整錯誤。本例遇到的記賬錯誤為：
+<span id="服务器已完成但应用仍在等待" />
 
-```text
-slurm_poll_failed: Slurm accounting storage is disabled
-```
+從 v1.0.6 起，Slurm 分別檢查隊列、控制器與記賬信息，並先保存已確認的終態，再收集日誌。某個來源暫時不可用，不會自動清除從其他來源取得的結果；取消操作只返回一次最終結果。
 
-排程器顯示 **COMPLETED / ExitCode 0:0**，但應用仍為 **submitted**、**result_final false** 或沒有已回收檔案時，保留兩個作業 ID 並檢查輪詢錯誤。排程器完成和應用結果回收是兩個階段。
+保留已有的 Open-Science 與 Slurm 任務 ID。任務已結束但日誌或文件尚未收集時，刷新原任務並單獨檢查收集情況，不要重新提交同一負載。任務僅僅從 **squeue** 消失，不能證明執行成功；使用結果前，應覈對終態、退出狀態和預期輸出。
 
-![Slurm 負載已完成，應用仍等待終態確認](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
-
-請叢集管理員提供該賬號與作業可用的 `sacct` 記賬查詢。任務從 `squeue` 中消失並不能確認成功。保留原工作目錄與兩個作業 ID，記賬恢復後重新整理同一個任務，檢查終態和回收檔案。
+如果控制器和記賬都無法提供明確狀態，保留輪詢錯誤，請集羣管理員檢查該任務的訪問權限與記錄保留情況。恢復連接後刷新原任務，確認終態與收集到的文件一致。
 
 <ToolOperationGroup>
 <summary>在 GPU 上執行小型蛋白序列設計</summary>

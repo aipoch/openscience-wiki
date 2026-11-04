@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-10-29'
+  date: '2026-10-30'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -258,3 +258,11 @@ For DOCX previews, check continuous list numbering and table borders against the
 Attach the `.docx` template to the session and ask the Agent to create a separate report while preserving its layout, table formatting, borders and page structure. State which content to replace and which template elements to retain. v1.0.5 improves this preservation; it does not make every template identical across Word-compatible viewers.
 
 Open the generated file in its preview, then download it and inspect it in the Word application you will use for delivery. Check table widths, page breaks, headers, footers and long text before sharing. Keep the original template so the output can be compared and revised.
+
+## Automatic PDF reading order {/* #automatic-pdf-reading-order */}
+
+From v1.0.6, linked PDFs use automatic text ordering. Open the attachment and use **Read with agent** when you want to ask about it; you no longer need to configure persistent reading-order regions above the PDF. Older messages with manual regions also use the automatic order.
+
+Complete, valid logical tags take priority. Untagged, unrotated left-to-right text can use layout-based ordering; incomplete tags or unsupported layouts fall back to the PDF's native text order. These fallbacks do not guarantee that every multi-column page, table or formula will read correctly.
+
+Keep the source open when reviewing an answer. Check the cited page, column and figure or table against the PDF, especially if sentences seem interleaved. Use the [figure and table extraction tools](#pdf-extraction) when the visual material is the subject of the question.

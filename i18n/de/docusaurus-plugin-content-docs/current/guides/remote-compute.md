@@ -1,7 +1,7 @@
 ---
 title: "SSH-Hosts und Slurm Setup"
 last_update:
-  date: '2026-09-10'
+  date: '2026-10-30'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -179,19 +179,15 @@ Verwenden Sie die Partition Ihrer Website, anstatt `local` bedingungslos zu kopi
 
 ![Slurm explizit im Ausführungsmodus des Hosts ausgewählt](/img/open-science/remote-compute/10-slurm-execution-mode.webp)
 
-### Wenn der Server fertig ist, aber die App wartet {/* #when-the-server-completes-but-the-app-keeps-waiting */}
+### Überprüfen Sie das Arbeitsergebnis, bevor Sie Dateien sammeln {/* #slurm-outcome-recovery */}
 
-Wenn der App-Snapshot `last_poll_error` meldet, behalten Sie die vorhandene Job-ID bei und fragen Sie nach dem genauen Fehler. Der beobachtete Buchhaltungsfehler war:
+<span id="when-the-server-completes-but-the-app-keeps-waiting" />
 
-```text
-slurm_poll_failed: Slurm accounting storage is disabled
-```
+Ab v1.0.6 überprüft Slurm die Warteschlange, den Controller und die Buchhaltung unabhängig und speichert ein bestätigtes Endzustand, bevor es Protokolle sammelt. Ein vorübergehender Fehler in einer Quelle löscht nicht automatisch ein Ergebnis, das von einer anderen Quelle erhalten wurde. Die Abbruch gibt ein Endergebnis zurück.
 
-Wenn der Scheduler **ABGESCHLOSSEN / ExitCode 0:0** anzeigt, die App jedoch weiterhin **Vorgelegt**, **result_final falsch** oder keine gesammelten Dateien anzeigt, behalten Sie beide Job-IDs bei und prüfen Sie den Abfragefehler. Behandeln Sie die Fertigstellung des Schedulers und die Sammlung der Anwendungsergebnisse als separate Phasen.
+Bewahren Sie die vorhandenen Open-Science und Slurm Job IDs auf. Wenn die Aufgabe abgeschlossen ist, Protokolle oder Dateien jedoch immer noch nicht verfügbar sind, aktualisieren Sie denselben Job und überprüfen Sie die Sammlung separat, anstatt den Workload erneut einzureichen. Ein Job verschwindet aus **squeue** allein den Erfolg nicht bestätigt; prüfen Sie den Endzustand, den Ausstiegsstatus und die erwarteten Ausgaben, bevor Sie das Ergebnis verwenden.
 
-![Die Anwendung wartet noch auf den Terminalstatus für eine abgeschlossene Slurm-Workload](/img/open-science/remote-compute/11-slurm-accounting-unavailable.webp)
-
-Bitten Sie den Cluster-Administrator, eine funktionierende `sacct`-Buchhaltung für das Konto und den Auftrag bereitzustellen. Ein Job, der aus `squeue` verschwindet, bestätigt den Erfolg nicht. Bewahren Sie das vorhandene Arbeitsverzeichnis und beide Job-IDs auf, aktualisieren Sie den gleichen Job, nachdem die Buchhaltung wiederhergestellt wurde, und überprüfen Sie den endgültigen Zustand und die gesammelten Dateien.
+Wenn weder der Controller noch die Buchhaltung einen abschließenden Zustand bereitstellen, behalten Sie den gemeldeten Abfragefehler bei und bitten Sie den Clusteradministrator, den Zugriff und die Aufbewahrung für diesen Job zu überprüfen. Stellen Sie die Verbindung wieder her, aktualisieren Sie den ursprünglichen Job und bestätigen Sie, dass der endgültige Zustand und die gesammelten Dateien übereinstimmen.
 
 <ToolOperationGroup>
 <summary>Führen Sie ein kleines Proteinsequenzdesign auf GPU aus</summary>
