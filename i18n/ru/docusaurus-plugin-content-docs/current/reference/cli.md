@@ -1,7 +1,7 @@
 ---
 title: "CLI и структурированный выход"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## Настройка из терминала {/* #terminal-setup */}
 
-Установите десктопную пусковую установку, используйте автономный архив v1.0.6 или следуйте [npm инсталляция](../guides/installation.md#npm-cli). Отдельный пакет архивов Node, бэкэнд и веб-интерфейс; этапы извлечения ниже применяются к этим архивам.
+Установите десктопную пусковую установку, используйте автономный архив v1.0.7 или следуйте [npm инсталляция](../guides/installation.md#npm-cli). Отдельный пакет архивов Node, бэкэнд и веб-интерфейс; этапы извлечения ниже применяются к этим архивам.
 
 1. Выберите macOS или Linux arm64/x64, или Windows x64, соответствующий хосту.
 2. Извлеките полный архив в письменное место. Держите пусковую установку, `backend` и `node-runtime` вместе. Копирование только пусковой установки сломает стартап.
@@ -215,9 +215,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL может включать `run.progress` и `stream.resync-required`. Если повторное воспроизведение недоступно после повторного подключения, перечитайте авторитетное состояние запуска; Не думайте, что поток событий — это постоянная история. Команды жизненного цикла имеют отдельные ограничения флага, описанные в [Безголовый сервис](./server.md).
 
-[Реализация CLI](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/cli.mjs), [командный гид](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md).
+[Реализация CLI](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/cli.mjs), [командный гид](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/CLI.md).
 
-Технический справочник: [Контракт CLI](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md).
+Технический справочник: [Контракт CLI](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/CLI.md).
 
 ## Без присмотра бегут {/* #unattended-runs */}
 

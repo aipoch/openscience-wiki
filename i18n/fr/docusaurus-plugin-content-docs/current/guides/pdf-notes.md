@@ -2,7 +2,7 @@
 title: "Annotations et notes de document PDF"
 description: "Marquer les passages, recueillir les notes de documents, les retrouver et exporter une copie de lecture."
 last_update:
-  date: '2026-10-14'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -76,3 +76,25 @@ Ces notes sont stockées localement et ne se synchronisent pas entre les machine
 ## Réveler une note sans couvrir la page {/* #reveal-note */}
 
 Dans v1.0.0, le bouton **Annotation note** d'une annotation sauvegardée s'affiche lorsque sa marque est sélectionnée, planée ou focalisée. Sélectionnez le point fort ou la région, puis ouvrez le bouton Note pour lire ou modifier le commentaire. Un bouton caché ne signifie pas que la note a été supprimée. Utilisez **Show notes sidebar** ou **Notes & Annotations** pour parcourir la liste complète, et **Show annotation source** pour revenir à l'emplacement marqué.
+
+## Demander à l’Agent d’annoter un PDF lié {/* #agent-annotations */}
+
+Dans une **Reading** session, l'Agent peut lister les annotations, localiser un passage ou une région, et créer un point fort persistant, une marque de zone ou une note. Lienez d'abord le PDF prévu et indiquez ce que vous voulez enregistrer; un résumé dans la conversation n'est pas une annotation sauvegardée.
+
+1. Ouvrir le PDF et choisir **Read with agent**, ou l'ajouter par le Compositeur **Reading** sélecteur. Utilisez une session modifiable; les dossiers de recherche importés doivent être fourrés avant de poursuivre les travaux.
+2. Demandez un passage, une page ou un document précis. Expliquez ce que la note devrait dire et demandez à l'agent de vérifier les annotations existantes avant d'en ajouter une autre.
+3. Élargir les résultats de l'outil de lecture. Vérifiez la citation et la page, puis le résultat de l'opération de sauvegarde. Trouver une cible seule ne signifie pas que quelque chose a été sauvé.
+4. Ouvrir **Notes & Annotations** dans le même PDF. Confirmez que la nouvelle entrée existe, suivez-la à l'emplacement de la source et lisez la note. Corriger les commentaires inexacts au moyen des contrôles d'annotation.
+5. Si la réponse est interrompue ou si l'opération signale une erreur, rouvrez la liste d'annotation avant de réessayer. Si aucune entrée n'existe, utilisez les commandes manuelles de mise en évidence ou de note décrites ci-dessus et collez le commentaire souhaité.
+
+<p className="example-label"><strong>Exemple</strong> PDF</p>
+
+```text
+In the linked PDF, find the sentence on page 2 explaining that the reporting
+checklist is not a quality assessment instrument. Check existing annotations
+first, then highlight the sentence and add an English reminder to assess
+reporting completeness and methodological quality separately. Reopen the
+annotation list and tell me whether the entry was saved.
+```
+
+Les outils d'annotation de l'Agent ajoutent des entrées; ils ne modifient ni ne suppriment les notes existantes ou ne modifient pas le PDF source. Plusieurs marques sont écrites séparément, de sorte qu'une requête interrompue peut laisser certaines entrées sauvegardées. Vérifiez la liste plutôt que de répéter l'ensemble de la demande aveuglément. Une annotation jointe à la même version PDF gérée est partagée partout où le PDF est ouvert; voir [annotations partagées](#where-notes-are-shared).

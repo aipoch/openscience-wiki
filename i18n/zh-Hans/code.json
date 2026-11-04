@@ -2778,5 +2778,11 @@
   },
   "docs.outline.reference.v106.scope": {
     "message": "Zotero 导入、个人笔记检索、PDF 自动读取顺序与稳定性修复。"
+  },
+  "docs.outline.reference.v107.title": {
+    "message": "v1.0.7"
+  },
+  "docs.outline.reference.v107.scope": {
+    "message": "DOI 与 arXiv 导入、PDF 批注、OCR、Pi 和研究案例市场。"
   }
 }

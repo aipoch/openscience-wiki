@@ -1,7 +1,7 @@
 ---
 title: "설치 및 전환 에이전트"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-04'
 ---
 
 # 설치 및 전환 에이전트 {/* #installing-and-switching-agents */}
@@ -24,7 +24,7 @@ last_update:
 | 로그 설치 / Retry | 그 원인을 해결 한 후 실패 단계와 재발을 읽으십시오. |
 | 복구 | 관리된 임명이 수리할 때 Appears; 확인하기 전에 영향을받는 실행 시간을 검사합니다. |
 
-검사된 페이지는 Codex, Claude Agent, OpenCode 및 CodeBuddy를 제안했습니다. 사용 가능한 소스 및 인증 요구 사항이 다릅니다. 모든 프레임 워크가 동일한 설치자 또는 로그인 방법을 제공하지 않습니다.
+Open-Science v1.0.7은 Codex, Claude Agent, OpenCode, CodeBuddy, Pi를 제공합니다. 사용 가능한 소스 및 인증 요구 사항이 다릅니다. 모든 프레임 워크가 동일한 설치자 또는 로그인 방법을 제공하지 않습니다.
 
 ## 설치 및 검증 {/* #install-and-verify */}
 
@@ -82,3 +82,15 @@ v0.33.0에서 **Claude Agent**은 Claude CLI **2.1.118 이상**를 요구합니�
 출처: [에이전트 패널](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentPanel.tsx), [프레임 워크 카드](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentFrameworkCard.tsx).
 
 범위와 스위치 동작: [설정 저장](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/settings/repository.ts), [런타임 전환](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/acp/runtime-coordinator.ts).
+
+## 다른 Agent 옵션으로 Pi 설치하기 {/* #pi-agent */}
+
+Pi는 첫 번째 설정에서 v1.0.7에서 사용할 수 있습니다 **Settings → Agent**· 모형 공급자에게서 따로따로 app-managed Pi ACP 접합기를 통해서 설치됩니다.
+
+1. 끝 활동 일. 내 계정 **Settings → Agent**, 찾기 **Pi** 선택하기 **Install → App-managed download (recommended)**.
+2. 설치와 감지가 끝날 때까지 기다린 뒤 버전과 준비 상태를 확인하세요. 패키지 다운로드만 끝났다고 Agent를 사용할 수 있는 것은 아닙니다.
+3. 준비된 Pi 카드를 선택하고 전환 확인 내용을 읽으세요. 활성 프레임워크는 프로젝트 간에 공유되며 이후 작업에 적용됩니다.
+4. 기타 **Settings → Model**에서 Pi를 지원하는 제공업체를 선택하고 연결 테스트를 완료하세요. 제공되는 경우 해당 제공업체의 구독 로그인 경로를 사용하세요. Pi를 설치해도 자동으로 로그인되지 않으며 다른 프레임워크의 로그인을 재사용할 수 있다고 보장하지 않습니다.
+5. 사용할 Main 모델을 선택하고 짧은 요청을 보내세요. 긴 작업을 시작하기 전에 응답과 실제 도구 결과를 확인하세요.
+
+Pi는 호환 Responses, Chat Completions 및 Messages 엔드포인트를 지원합니다. 제공업체, 구독 방식 및 모델 목록은 활성 프레임워크에 따라 필터링됩니다. Pi를 설치하면서 Codex를 계속 사용할 수 있으며 전환은 별도 작업입니다. 참고: [공급자 설정](providers.md).

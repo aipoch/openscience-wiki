@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -151,6 +151,22 @@ Inbox는 **Inbox is clear**을 보여줍니다. **현재 프로젝트**로 전�
 
 
 </ToolOperationGroup>
+
+## DOI 또는 arXiv 링크에서 참조 추가 {/* #doi-link-import */}
+
+1. 기타 **Library → All references → Add → Add from DOI or link**.
+2. 페이스 북 **doi.org** 링크, 또는 **arxiv.org/abs/** 또는 **arxiv.org/pdf/** 로그인 **DOI or arXiv link**, 다음 선택 **Find reference**· 정규 출판사 페이지 URL은 이 항목에 의해 지원되지 않습니다.
+3. 내 계정 **Review reference details**, 제목, 제작자, 년, 출판 및 식별자를 확인합니다. 제품 정보 **Edit details** 저장하기 전에 메타데이터를 수정합니다.
+4. 이름 * **When identifiers match**. **Reuse existing reference** 기존 메타데이터를 유지; 레코드를 비교한 후 다른 제안된 작업을 선택합니다. 제품정보 **Save**.
+5. 저장된 기록을 열고 식별자를 확인합니다. 제품 정보 **Find full-text PDF** 또는 **Add files** 종이를 필요로 할 때 별도로.
+
+<p className="example-label"><strong>실습 사례</strong> DOI: 10.1038/s41467-018-08136-3</p>
+
+이름 * `10.1038/s41467-018-08136-3`· 검색은 Lang과 동료의 2019 기사를 반환, **Non defect-stabilized thermally stable single-atom catalyst**, 자연 통신에서. 저장하기 전에이 세부 사항을 확인; 조회는 PDF를 첨부하지 않습니다.
+
+![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+
+버전 번호가 있는 arXiv 링크도 최신 메타데이터를 반환하므로 이전 수정본의 정보와 일치하지 않을 수 있습니다. 나중에 첨부하는 PDF의 버전을 확인하세요. 조회에 실패하면 식별자를 확인하고 다시 시도하거나 PDF 또는 서지 파일을 가져오세요. 조회 실패 시에는 문헌이 저장되지 않습니다.
 
 ## Zotero에서 가져오기 {/* #zotero-import */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Installations- und Vermittlungsstellen"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-04'
 ---
 
 # Installations- und Vermittlungsstellen {/* #installing-and-switching-agents */}
@@ -24,7 +24,7 @@ Wählen Sie ein Agent-Framework für Gespräche und Werkzeuge und richten Sie an
 | Log installieren / Retry | Lesen Sie den fehlgeschlagenen Schritt und versuchen Sie es erneut, nachdem Sie diese Ursache behoben haben. |
 | Reparieren | Erscheint, wenn die verwaltete Installation repariert werden muss; Überprüfen Sie die betroffene Laufzeit, bevor Sie bestätigen. |
 
-Die inspizierte Seite bot Codex, Claude Agent, OpenCode und CodeBuddy an. Verfügbare Quellen und Authentifizierungsanforderungen unterscheiden sich; Gehen Sie nicht davon aus, dass jedes Framework das gleiche Installationsprogramm oder die gleiche Anmeldemethode bietet.
+Open-Science v1.0.7 bietet Codex, Claude Agent, OpenCode, CodeBuddy und Pi. Verfügbare Quellen und Authentifizierungsanforderungen unterscheiden sich; Gehen Sie nicht davon aus, dass jedes Framework das gleiche Installationsprogramm oder die gleiche Anmeldemethode bietet.
 
 ## Installieren und Überprüfen {/* #install-and-verify */}
 
@@ -82,3 +82,15 @@ Wenn Installationsaktionen deaktiviert sind, überprüfen Sie auf eine andere In
 Quellen: [Bevollmächtigter](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentPanel.tsx), [Rahmenkarte](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentFrameworkCard.tsx).
 
 Umfang und Schaltverhalten: [Einstellungen Speicher](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/settings/repository.ts), [Laufzeitumschaltung](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/acp/runtime-coordinator.ts).
+
+## Pi als weitere Agent Option installieren {/* #pi-agent */}
+
+Pi ist ab v1.0.7 in der Ersteinrichtung und **Settings → Agent**. Es wird über den von der App verwalteten Pi ACP-Adapter separat vom Modellanbieter installiert.
+
+1. Beende die aktive Arbeit. In **Settings → Agent**, finden **Pi** und wählen **Install → App-managed download (recommended)**.
+2. Warten Sie, bis die Installation und Erkennung abgeschlossen ist. Überprüfen Sie die installierte Version und Bereitschaft; ein heruntergeladenes Paket allein ist kein fertiger Agent.
+3. Wählen Sie die bereite Pi-Karte und überprüfen Sie die Schalterbestätigung. Der aktive Rahmen wird projektübergreifend geteilt und wirkt sich auf nachfolgende Arbeiten aus.
+4. Offen **Settings → Model**Wählen Sie einen von Pi unterstützten Anbieter und absolvieren Sie den Verbindungstest. Verwenden Sie die von diesem Anbieter angebotene Abonnementanmeldung, wenn diese verfügbar ist; durch die Installation von Pi werden Sie nicht angemeldet oder es wird garantiert, dass das Login eines anderen Frameworks wiederverwendet werden kann.
+5. Wählen Sie das beabsichtigte Hauptmodell aus und senden Sie eine kleine Anfrage. Überprüfen Sie die Antwort und ein tatsächliches Werkzeugergebnis, bevor Sie eine lange Aufgabe beginnen.
+
+Pi unterstützt kompatible antworten, chat-abschlüsse und nachrichten-endpunkte. Verfügbare Anbieter, Abonnementoptionen und Modelle werden vom aktiven Framework gefiltert. Sie können Codex während der Installation von Pi aktiv halten; Der Wechsel ist eine separate Option. Siehe [Provider Setup](providers.md).

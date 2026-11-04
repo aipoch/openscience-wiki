@@ -2,7 +2,7 @@
 title: PDF 批注与文档笔记
 description: 标记文献段落，整理阅读笔记，搜索返回原文，并导出带批注的阅读副本。
 last_update:
-  date: '2026-10-14'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -76,3 +76,25 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 ## 按需显示笔记入口 {/* #reveal-note */}
 
 v1.0.0 中，选中、悬停或聚焦已保存的标记时才显示 **Annotation note** 按钮。先点选高亮或区域，再打开笔记按钮阅读或编辑评论。按钮暂时隐藏不代表笔记被删除。需要浏览全部笔记时用 **Show notes sidebar** 或 **Notes & Annotations**，再用 **Show annotation source** 返回标记位置。
+
+## 让 Agent 为关联 PDF 添加批注 {/* #agent-annotations */}
+
+在 **Reading** 会话中，Agent 可以列出已有批注、定位段落或区域，并创建持久保存的高亮、区域标记或笔记。先关联目标 PDF，再说明需要保存什么；会话中的摘要不等于已保存的批注。
+
+1. 打开 PDF 并选择 **Read with agent**，或通过 Composer 的 **Reading** 选择器关联 PDF。使用可编辑会话；导入的研究记录需要先 Fork，才能继续操作。
+2. 指定段落、页码或整篇文档笔记，说明笔记应写什么，并要求 Agent 先检查已有批注，避免重复添加。
+3. 展开 Reading 工具结果，核对定位出的原句、页码和保存结果。找到目标不代表已经保存。
+4. 在同一 PDF 中打开 **Notes & Annotations**，确认新条目存在，跳转到原文位置并阅读笔记。内容不准确时，通过批注控件修正。
+5. 回复中断或操作报错时，先重新打开批注列表，再决定是否重试。如果列表中没有新条目，可使用上文的手动高亮或笔记控件，粘贴要保留的评论。
+
+<p className="example-label"><strong>提示词示例</strong> 为原文添加阅读提醒</p>
+
+```text
+In the linked PDF, find the sentence on page 2 explaining that the reporting
+checklist is not a quality assessment instrument. Check existing annotations
+first, then highlight the sentence and add an English reminder to assess
+reporting completeness and methodological quality separately. Reopen the
+annotation list and tell me whether the entry was saved.
+```
+
+Agent 的批注工具用于新增条目，不会编辑、删除已有笔记或改写源 PDF。多个标记会分别保存，请求中断时可能已有部分条目写入；先检查列表，不要直接重复整段请求。同一托管 PDF 版本的批注会在打开它的各处共享，参见[共享批注](#笔记的共享范围)。

@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -266,3 +266,17 @@ Ouvrez le fichier généré dans son aperçu, puis téléchargez-le et inspectez
 Les étiquettes logiques complètes et valides sont prioritaires. Un texte sans balises, non pivoté et écrit de gauche à droite peut utiliser l'ordre de mise en page; les balises incomplètes ou les mises en page non prises en charge reviennent à l'ordre de texte natif du PDF. Ces replis ne garantissent pas que chaque page, table ou formule multicolonne sera lue correctement.
 
 Gardez la source ouverte lors de l'examen d'une réponse. Vérifiez la page, la colonne et la figure citées ou le tableau en regard du PDF, surtout si les phrases semblent intercalées. Utiliser [outils d'extraction de figures et de tableaux](#pdf-extraction) lorsque le matériel visuel fait l'objet de la question.
+
+## Lire un PDF numérisé avec OCR {/* #scanned-pdf-ocr */}
+
+OCR est un composant local optionnel pour les pages sans texte utilisable. Il reconnaît le texte des images de page; il ne traduit pas le papier, ne valide pas un tableau ou ne prouve pas que chaque page a été lue.
+
+1. Ouvrir **Settings → Model → Local parsing models** et trouver **Text recognition (OCR)**.
+2. Gardez **English**, qui est toujours sélectionné, et choisir les langues réellement utilisées dans le document. D'autres choix sont simplifiés chinois, chinois traditionnel, allemand, espagnol, français, japonais, coréen et russe.
+3. Sélectionner **Install** et attendre **Installed**. Après avoir ajouté une langue, utilisez l'offre **Install** ou **Update** l'action pour télécharger ses données de reconnaissance. Choisir une langue seule ne la télécharge pas.
+4. Ouvrir le PDF et choisir **Read with agent**. Demandez d'abord une petite plage de pages spécifiée. Si un outil de lecture offre l'installation d'OCR parce que le texte manque, remplissez-le et demandez à l'Agent de lire ces pages à nouveau.
+5. Élargir le résultat de lecture et inspecter **Pages with text** et tout avertissement de page manquante. **OCR was used. Verify recognized text against the PDF.** identifie le contenu reconnu. Comparer les noms, numéros, unités et citations avec l'image originale avant de les utiliser.
+
+![OCR language choices and installed local recognition component](/img/open-science/v107/ocr-settings.webp)
+
+L'OCR a des limites de page et de temps. Une page avec un texte reconnu peut encore contenir des figures non lues, des équations ou une structure de tableau, de sorte qu'une lecture réussie n'est pas la preuve d'une extraction complète. Si un téléchargement échoue, résoudre le problème de téléchargement/stockage affiché et utiliser **Retry**; texte ordinaire Les PDF peuvent encore être lus sans attendre indéfiniment l'OCR. Voir [Annotations PDF](pdf-notes.md) pour garder les notes à côté de la source.

@@ -1,7 +1,7 @@
 ---
 title: "Dépannage et questions communes"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-04'
 ---
 
 # Dépannage et questions communes {/* #troubleshooting-and-common-questions */}
@@ -253,3 +253,9 @@ Source: [champs de rapport de bogue](https://github.com/aipoch/open-science/blob
 ## Codex signale une version incompatible après une mise à niveau {/* #codex-version */}
 
 Si vous voyez **Le Codex CLI installé est incompatible ou sa version n'a pas pu être vérifiée**, ouvrez **Settings → Agent** et inspectez le chemin détecté et la version Codex CLI. v0.34.0 nécessite CLI 0.157.1 ou une version ultérieure. Mettre à jour l'installation gérée ou externe, puis **Re-detect**. Se connecter à nouveau au modèle ne remplace pas une mise à jour d'exécution. Suivez [Mettre à jour Codex](frameworks.md#update-codex).
+
+## Téléchargement en texte intégral via un proxy configuré {/* #full-text-proxy */}
+
+Si la récupération de texte complet échoue sur un hôte en utilisant Mihomo, Clash ou un autre proxy avec Fake-IP DNS, mettre à jour vers v1.0.7 ou une version ultérieure et réessayer la même source en utilisant le réglage prévu dans **Settings → Network**. Lorsque toutes les réponses DNS locales sont des placeholders, l'application permet au proxy configuré de résoudre la destination.
+
+Cela n'accorde pas l'accès à un papier payant ou ne fournit pas d'authentification institutionnelle. Confirmez que la source vous offre une copie que vous pouvez accéder, puis vérifiez que la pièce jointe téléchargée s'ouvre comme le PDF attendu. Si elle échoue toujours, conservez l'URL source et affichez l'erreur et vérifiez [configuration du réseau](network.md) avant d'ajouter des références en double.

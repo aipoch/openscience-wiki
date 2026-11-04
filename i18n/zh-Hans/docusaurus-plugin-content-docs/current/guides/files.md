@@ -1,7 +1,7 @@
 ---
 title: "文件、产物与版本"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-04'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -149,3 +149,7 @@ import Screenshot from '@site/src/components/Screenshot';
 ## 将已授权的本地文件保存为产物 {/* #import-local-artifact */}
 
 在 **This computer** 中打开已授权文件夹内的文件，在预览中选择 **… → Save as artifact**，等待完成后打开会话中生成的产物，检查内容。Open-Science 保存的是应用管理的不可变副本；之后编辑本地原文件不会更新此副本。仅预览文件夹内的文件并不等于导入。
+
+## 核对最新已发布版本 {/* #latest-published-version */}
+
+发布或恢复产物后，重新打开文件，检查当前选中的版本及其内容。v1.0.7 会把最新已发布版本带到前台；之前打开的历史预览仍是另一个版本。引用、下载或编辑前，通过版本控件和溯源面板核对当前版本与早期版本的关系。

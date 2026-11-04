@@ -1,7 +1,7 @@
 ---
 title: "Installing and switching agents"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-04'
 ---
 
 # Installing and switching agents
@@ -24,7 +24,7 @@ Open **Settings → Agent**. The page separates **Installed** from **Available**
 | Install log / Retry | Read the failed step and retry after resolving that cause. |
 | Repair | Appears when the managed installation needs repair; inspect the affected runtime before confirming. |
 
-The inspected page offered Codex, Claude Agent, OpenCode and CodeBuddy. Available sources and authentication requirements differ; do not assume every framework offers the same installer or sign-in method.
+Open-Science v1.0.7 offers Codex, Claude Agent, OpenCode, CodeBuddy and Pi. Available sources and authentication requirements differ; do not assume every framework offers the same installer or sign-in method.
 
 ## Install and verify
 
@@ -82,3 +82,15 @@ If install actions are disabled, check for another installation/switch in progre
 Sources: [Agent panel](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentPanel.tsx), [framework card](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentFrameworkCard.tsx).
 
 Scope and switch behavior: [settings storage](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/settings/repository.ts), [runtime switching](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/acp/runtime-coordinator.ts).
+
+## Install Pi as another Agent option {/* #pi-agent */}
+
+Pi is available from v1.0.7 in first-time setup and **Settings → Agent**. It is installed through the app-managed Pi ACP adapter, separately from the model provider.
+
+1. Finish active work. In **Settings → Agent**, find **Pi** and select **Install → App-managed download (recommended)**.
+2. Wait for installation and detection to finish. Check its installed version and readiness; a downloaded package alone is not a ready Agent.
+3. Select the ready Pi card and review the switch confirmation. The active framework is shared across projects and affects subsequent work.
+4. Open **Settings → Model**, choose a provider supported by Pi, and complete its connection test. Use the subscription sign-in offered by that provider when available; installing Pi does not sign you in or guarantee that another framework's login can be reused.
+5. Select the intended Main model and send a small request. Check the response and an actual tool result before starting a long task.
+
+Pi supports compatible Responses, Chat Completions and Messages endpoints. Available providers, subscription options and models are filtered by the active framework. You can keep Codex active while installing Pi; switching is a separate choice. See [provider setup](providers.md).

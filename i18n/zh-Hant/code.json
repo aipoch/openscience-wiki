@@ -2701,5 +2701,11 @@
   },
   "docs.outline.reference.v106.scope": {
     "message": "Zotero 導入、個人筆記檢索、PDF 自動讀取順序與穩定性修復。"
+  },
+  "docs.outline.reference.v107.title": {
+    "message": "v1.0.7"
+  },
+  "docs.outline.reference.v107.scope": {
+    "message": "DOI 與 arXiv 導入、PDF 批註、OCR、Pi 和研究案例市場。"
   }
 }

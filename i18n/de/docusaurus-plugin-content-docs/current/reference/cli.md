@@ -1,7 +1,7 @@
 ---
 title: "CLI und strukturierter Output"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ Verwenden Sie `open-science`, um den Anwendungsstatus zu überprüfen, Aufgaben 
 
 ## Aufgesetzt von einem Terminal {/* #terminal-setup */}
 
-Installieren Sie den Desktop Launcher, verwenden Sie ein v1.0.6-Standalone-Archiv oder folgen Sie dem [npm Installationsschritte](../guides/installation.md#npm-cli). Standalone-Archive bündeln Node, Backend und Web-UI; die folgenden Extraktionsschritte gelten für diese Archive.
+Installieren Sie den Desktop Launcher, verwenden Sie ein v1.0.7-Standalone-Archiv oder folgen Sie dem [npm Installationsschritte](../guides/installation.md#npm-cli). Standalone-Archive bündeln Node, Backend und Web-UI; die folgenden Extraktionsschritte gelten für diese Archive.
 
 1. Wählen Sie macOS oder Linux arm64/x64 oder Windows x64, die zum Host passen.
 2. Extrahieren Sie das komplette Archiv in einen beschreibbaren Ort. Halten Sie den Launcher, `backend` und `node-runtime` zusammen; Durch das Kopieren nur des Launchers wird der Start unterbrochen.
@@ -215,9 +215,9 @@ Die folgende Ungültig-Optionsantwort wurde lokal reproduziert:
 
 JSONL kann `run.progress` und `stream.resync-required` enthalten. Wenn die Wiedergabe nach der Wiederverbindung nicht verfügbar ist, lesen Sie den autoritativen Laufzustand erneut; Gehen Sie nicht davon aus, dass der Ereignisstrom eine permanente Geschichte ist. Lifecycle-Befehle haben separate Flaggenbeschränkungen, die in [Kopfloser Dienst](./server.md) beschrieben sind.
 
-[Umsetzung von CLI](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/cli.mjs), [Upstream Command Guide](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md).
+[Umsetzung von CLI](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/cli.mjs), [Upstream Command Guide](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/CLI.md).
 
-Technische Referenz: [CLI-Vertrag](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md).
+Technische Referenz: [CLI-Vertrag](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/CLI.md).
 
 ## Unbeaufsichtigte Strecken {/* #unattended-runs */}
 

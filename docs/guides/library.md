@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -151,6 +151,22 @@ Click **Import references**, wait for **Import complete**, inspect Created/Reuse
 
 
 </ToolOperationGroup>
+
+## Add a reference from a DOI or arXiv link {/* #doi-link-import */}
+
+1. Open **Library → All references → Add → Add from DOI or link**.
+2. Paste one DOI, a **doi.org** link, or an **arxiv.org/abs/** or **arxiv.org/pdf/** link into **DOI or arXiv link**, then select **Find reference**. Ordinary publisher page URLs are not supported by this entry.
+3. In **Review reference details**, check the title, creators, year, publication and identifiers. Use **Edit details** to correct metadata before saving.
+4. Review **When identifiers match**. **Reuse existing reference** retains existing metadata; choose another offered action only after comparing the records. Select **Save**.
+5. Reopen the saved record and verify its identifiers. Use **Find full-text PDF** or **Add files** separately when you need the paper itself.
+
+<p className="example-label"><strong>Worked example</strong> Add a single-atom catalysis paper by DOI</p>
+
+Enter `10.1038/s41467-018-08136-3`. The lookup returns Lang and colleagues' 2019 article, **Non defect-stabilized thermally stable single-atom catalyst**, in Nature Communications. Check these details before saving; the lookup does not attach a PDF.
+
+![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+
+A versioned arXiv link resolves to the latest metadata, not necessarily the metadata of that old revision. Compare the version of any PDF you later attach. If lookup fails, check the identifier and retry, or use a PDF or bibliography-file import; a failed lookup has not saved a reference.
 
 ## Import from Zotero {/* #zotero-import */}
 

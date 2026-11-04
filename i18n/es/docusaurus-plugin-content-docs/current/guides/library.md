@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -151,6 +151,22 @@ Haga clic en **Import references**, espere a **Import complete**, inspeccionar C
 
 
 </ToolOperationGroup>
+
+## Agregar una referencia de un enlace DOI o arXiv {/* #doi-link-import */}
+
+1. Abierto **Library → All references → Add → Add from DOI or link**.
+2. Pruebe un DOI, un **doi.org** o un enlace **arxiv.org/abs/** o **arxiv.org/pdf/** enlace **DOI or arXiv link**, entonces seleccione **Find reference**. Las URL de página de editor ordinario no son compatibles con esta entrada.
+3. In **Review reference details**, comprobar el título, creadores, año, publicación e identificadores. Uso **Edit details** para corregir los metadatos antes de ahorrar.
+4. Examen **When identifiers match**. **Reuse existing reference** conserva los metadatos existentes; elige otra acción ofrecida sólo después de comparar los registros. Seleccione **Save**.
+5. Abra el registro guardado y verifique sus identificadores. Uso **Find full-text PDF** o **Add files** por separado cuando usted necesita el papel en sí.
+
+<p className="example-label"><strong>Ejemplo práctico</strong> DOI: 10.1038/s41467-018-08136-3</p>
+
+Entra `10.1038/s41467-018-08136-3`. La búsqueda devuelve el artículo de Lang y colegas 2019, **Non defect-stabilized thermally stable single-atom catalyst**, en Nature Communications. Revise estos detalles antes de guardar; la búsqueda no adjunta un PDF.
+
+![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+
+Un enlace arXiv versionado resuelve los últimos metadatos, no necesariamente los metadatos de esa vieja revisión. Compare la versión de cualquier PDF que adjunta más tarde. Si la búsqueda falla, compruebe el identificador y reingrese, o utilice una importación de archivo PDF o bibliografía; una búsqueda fallida no ha guardado una referencia.
 
 ## Importar desde Zotero {/* #zotero-import */}
 

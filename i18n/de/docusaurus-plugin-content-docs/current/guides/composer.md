@@ -1,7 +1,7 @@
 ---
 title: "Unterhaltungen und wartende Anfragen"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-04'
 ---
 
 # Unterhaltungen und wartende Anfragen {/* #conversations-and-queued-requests */}
@@ -156,3 +156,9 @@ Folgen Sie bei einem abgelaufenen Modell oder Connector-Anmeldenachweis der für
 ## Überspringen Sie eine Klärungsfrage {/* #skip-question */}
 
 Verwendung **Skip** die aktuelle Frage unbeantwortet zu lassen, oder das Menü **Skip all** für die übrigen Fragen. **Let the agent decide** delegiert stattdessen die Wahl; es ist eine andere Antwort. Überprüfen Sie den gespeicherten Antwortverlauf und ob die Konversation wieder aufgenommen wird, bevor Sie nach einem Fehler eine weitere Antwort einreichen.
+
+## Wiederherstellen einer Anforderung aus ihrer Fehlermeldung {/* #request-recovery */}
+
+Lesen Sie den Hinweis neben dem Komponisten und verwenden Sie seine Wiederherstellungsaktion. Anbieterfehler erfordern die Überprüfung des ausgewählten Kontos oder Modells; Umgebungsfehler erfordern die Überprüfung der benannten Laufzeit; Eingabefehler erfordern die Überprüfung des Entwurfs oder der Anlage. Session und interne Fehler haben ihre eigenen Wiederherstellungsaktionen. Bewahren Sie den Entwurf auf und prüfen Sie den aktuellen Zug, bevor Sie ihn erneut senden.
+
+Wenn eine Hintergrundaufgabe noch abgeschlossen ist, kann ein Follow-up in der Warteschlange bleiben. Überprüfen Sie den sichtbaren Zustand, anstatt wiederholt Send zu drücken. Bestätigen Sie nach der Wiederherstellung die neue Anforderung und ihr Ergebnis in der beabsichtigten Sitzung.

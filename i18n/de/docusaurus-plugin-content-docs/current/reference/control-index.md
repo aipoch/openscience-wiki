@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Seite und Kontrollindex"
 description: "Finden Sie jede dokumentierte Open-Science-Taste, Eingabe, Switch und Ergebnis nach Seite."
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-04'
 ---
 
 # Seite und Kontrollindex {/* #page-and-control-index */}
@@ -168,7 +168,7 @@ Aktives Modell, Reasoning Radios und Subagent/Reviewer/Vision/Session-Details Mo
 
 ### Agent {/* #agent */}
 
-OpenCode/Claude/Codex/CodeBuddy-Rahmenkarte, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Deinstall confirmation.
+OpenCode/Claude/Codex/CodeBuddy/Pi-Rahmenkarte, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Deinstall confirmation.
 
 ### Berechtigungen {/* #permissions */}
 

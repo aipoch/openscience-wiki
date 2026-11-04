@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -151,6 +151,22 @@ Cliquez sur **Import references**, attendez **Import complete**, inspectez Creat
 
 
 </ToolOperationGroup>
+
+## Ajouter une référence depuis un lien DOI ou arXiv {/* #doi-link-import */}
+
+1. Ouvrir **Library → All references → Add → Add from DOI or link**.
+2. Coller un DOI, un **doi.org** lien, ou **arxiv.org/abs/** ou **arxiv.org/pdf/** lien vers **DOI or arXiv link**, puis sélectionner **Find reference**. Les URL des pages d'éditeur ordinaires ne sont pas prises en charge par cette entrée.
+3. Dans **Review reference details**, vérifier le titre, les créateurs, l'année, la publication et les identifiants. Utilisation **Edit details** corriger les métadonnées avant d'enregistrer.
+4. Révision **When identifiers match**. **Reuse existing reference** conserve les métadonnées existantes; choisit une autre action proposée seulement après avoir comparé les enregistrements. Sélectionner **Save**.
+5. Réouvrir l'enregistrement enregistré et vérifier ses identifiants. Utilisation **Find full-text PDF** ou **Add files** séparément quand vous avez besoin du papier lui-même.
+
+<p className="example-label"><strong>Exemple pratique</strong> DOI: 10.1038/s41467-018-08136-3</p>
+
+Entrez `10.1038/s41467-018-08136-3`. La recherche renvoie l'article 2019 de Lang et ses collègues, **Non defect-stabilized thermally stable single-atom catalyst**, dans Nature Communications. Vérifiez ces détails avant d'enregistrer ; la recherche ne joint pas de PDF.
+
+![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+
+Un lien arXiv en version résout les métadonnées les plus récentes, pas nécessairement les métadonnées de cette ancienne révision. Comparez la version de n'importe quel PDF que vous joindrez ultérieurement. Si la recherche échoue, vérifiez l'identificateur et réessayez, ou utilisez une importation PDF ou un fichier bibliographique; une recherche ratée n'a pas enregistré de référence.
 
 ## Importation de Zotero {/* #zotero-import */}
 

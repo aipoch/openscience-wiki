@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -166,10 +166,16 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 
 Export requires an explicit `.science` output path. The default deadline is one hour; use **--timeout-ms** for a large transfer and check the returned file path. In **v1.0.5**, use the [local Web upload](#web-package-transfer) or desktop import control to import a local file. The CLI `session import` path can be rejected before package validation.
 
-## Start from a home-page research case {/* #use-case-gallery */}
+## Find a research case in Sharing marketplace {/* #use-case-gallery */}
 
-On the home page, choose **Details** on a case card to read its official case page. Choose **Import** to download its research package. Follow preparation, download and verification progress; **Cancel** stops an unwanted transfer. If the package is waiting for a destination, **Continue** reopens the import dialog.
+1. Open **Sharing marketplace** from Home or the conversation workspace. In a workspace preview, choose **View in sharing marketplace** to open the full page. On Home, **Browse all examples** also opens the full **Use Case Marketplace**.
+2. Choose a category and enter a keyword in the search field. Clear the keyword or return to all categories when the result list is too narrow.
+3. Open a case to read its description and inspect the available package action. Review its topic, inputs and intended outputs before downloading or importing it.
+4. Use the package action offered in the case details. Follow preparation, download and verification progress; use **Cancel** to stop an unwanted transfer. Downloaded bytes are not yet an imported project.
+5. Review the import destination and confirm. Open the resulting research record, inspect its files and use **Fork to continue** in the desktop app when you want to run your own analysis.
 
-Review the destination project and confirm import. Open the result, inspect the inputs and outputs, then use **Fork to continue** in the desktop app for your own question. Download verification checks the package transfer; it does not validate the case's scientific conclusions or supply its model credentials.
+![Keyword search and category filters in the research-case marketplace](/img/open-science/v107/marketplace-search.webp)
 
-![Reviewing an official gallery package before importing it](/img/open-science/v105/package-preview.webp)
+**Back to Project** or **Back to Home** returns to your workspace. Returning to the marketplace retains its browsing state, including filters and scroll position. Research cases are different from the [Skill marketplace](../skills/marketplace.md): a `.science` package carries a recorded research session; a Skill supplies reusable instructions.
+
+If a package is waiting for a destination, **Continue** reopens the import dialog. Check any existing transfer before starting another. Download verification checks the transfer, not the case's scientific conclusions, and does not supply its model credentials.

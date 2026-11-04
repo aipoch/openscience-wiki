@@ -1,7 +1,7 @@
 ---
 title: "Solución de problemas y preguntas comunes"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-04'
 ---
 
 # Solución de problemas y preguntas comunes {/* #troubleshooting-and-common-questions */}
@@ -253,3 +253,9 @@ Fuente: [informe de fallos](https://github.com/aipoch/open-science/blob/v0.26.0/
 ## Codex reporta una versión incompatible después de una actualización {/* #codex-version */}
 
 Si ve **El Codex CLI instalado es incompatible o su versión no puede ser verificada**, abra **Settings → Agent** e inspeccione la ruta detectada y la versión Codex CLI. v0.34.0 requiere CLI 0.157.1 o posterior. Actualizar esa instalación gestionada o externa, luego **Re-detect**. La inscripción en el modelo de nuevo no reemplaza una actualización de tiempo de ejecución. Sigue a [Actualización Codex](frameworks.md#update-codex).
+
+## Descargas de texto completo a través de un proxy configurado {/* #full-text-proxy */}
+
+Si la recuperación de texto completo falla en un host usando Mihomo, Clash u otro proxy con Fake-IP DNS, actualizar a v1.0.7 o posterior y retratar la misma fuente utilizando el ajuste previsto en **Settings → Network**. Cuando todas las respuestas DNS locales son marcadores de posición, la aplicación permite que el proxy configurado resuelva el destino.
+
+Esto no otorga acceso a un papel recortado o proporciona autenticación institucional. Confirme que la fuente ofrece una copia que puede acceder, a continuación, compruebe que el adjunto descargado se abre como el PDF esperado. Si todavía falla, mantenga la URL de origen y muestre error y cheque [configuración de red](network.md) antes de añadir referencias duplicadas.

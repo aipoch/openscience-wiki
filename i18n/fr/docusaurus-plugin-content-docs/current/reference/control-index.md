@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Index de la page et du contrôle"
 description: "Trouvez chaque bouton Open-Science documenté, entrée, commutateur et résultat par page."
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-04'
 ---
 
 # Index de la page et du contrôle {/* #page-and-control-index */}
@@ -168,7 +168,7 @@ Modèle actif, Raisonnement des radios et politiques du modèle de sous-agent/ex
 
 ### Agent {/* #agent */}
 
-OpenCode/Claude/Codex/CodeBuddy framework card, Switch, Installer source, Installer/Annuler/Réessayer, Installer journal, Réparation, Se connecter/auth, Importer config/home, et Désinstaller confirmation.
+OpenCode/Claude/Codex/CodeBuddy/Pi framework card, Switch, Installer source, Installer/Annuler/Réessayer, Installer journal, Réparation, Se connecter/auth, Importer config/home, et Désinstaller confirmation.
 
 ### Autorisations {/* #permissions */}
 

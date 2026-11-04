@@ -1,7 +1,7 @@
 ---
 title: "Conversations et demandes en attente"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-04'
 ---
 
 # Conversations et demandes en attente {/* #conversations-and-queued-requests */}
@@ -156,3 +156,9 @@ Pour un modèle expiré ou un titre de connexion, suivez l'action de récupérat
 ## Passer une question de clarification {/* #skip-question */}
 
 Utilisation **Skip** pour laisser la question actuelle sans réponse, ou son menu **Skip all** pour les questions restantes. **Let the agent decide** c'est une réponse différente. Vérifiez l'historique des réponses enregistrées et si la conversation reprend avant de soumettre une autre réponse après une erreur.
+
+## Récupérer une requête à partir de son avis d'erreur {/* #request-recovery */}
+
+Lisez l'avis à côté du Compositeur et utilisez son action de récupération. Les défaillances du fournisseur appellent à la vérification du compte ou du modèle sélectionné; les défaillances d'environnement appellent à la vérification de l'exécution nommée; les défaillances d'entrée appellent à l'examen du projet ou de la pièce jointe. La session et les échecs internes ont leurs propres actions de récupération. Préservez l'ébauche et vérifiez le virage actuel avant de l'envoyer à nouveau.
+
+Si une tâche de fond est encore terminée, un suivi peut rester en attente. Vérifiez son état visible plutôt que d'appuyer à plusieurs reprises sur Envoyer. Après récupération, confirmer la nouvelle demande et son résultat à la session prévue.

@@ -1,7 +1,7 @@
 ---
 title: "权限与审批"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-04'
 ---
 
 # 权限与审批
@@ -26,7 +26,7 @@ last_update:
 
 打开输入框旁的 **Agent controls**，阅读当前模式和框架兼容性说明。Full access 控件有自己的确认流程。**Auto-review** 是另一个结果审核选项，不表示自动批准编辑。
 
-![实际英文权限模式选择器](/img/open-science/walkthrough-2026-09-08/57-permission-modes.webp)
+检查当前 Agent 显示的有效模式。不同框架支持的审批控件有所不同，允许操作前应阅读该请求的授权范围。
 
 检查当前 Agent 显示的实际模式，不同框架支持的审批行为可能不同。选择前阅读当前模式的说明。
 

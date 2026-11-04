@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -151,6 +151,22 @@ Klicken Sie auf **Import references**, warten Sie auf **Import complete**, prüf
 
 
 </ToolOperationGroup>
+
+## Fügen Sie eine Referenz aus einem DOI- oder arXiv-Link hinzu {/* #doi-link-import */}
+
+1. Offen **Library → All references → Add → Add from DOI or link**.
+2. Paste 1 DOI, a **doi.org** Link oder ein **arxiv.org/abs/** oder **arxiv.org/pdf/** Link in **DOI or arXiv link**, dann auswählen **Find reference**. Gewöhnliche URLs der Herausgeberseite werden von diesem Eintrag nicht unterstützt.
+3. In **Review reference details**Überprüfen Sie den Titel, die Schöpfer, das Jahr, die Veröffentlichung und die Identifikatoren. Verwendung **Edit details** Metadaten vor dem Speichern zu korrigieren.
+4. Überprüfung **When identifiers match**. **Reuse existing reference** behält vorhandene Metadaten; wählen Sie eine andere angebotene Aktion erst nach dem Vergleich der Datensätze. Wählen **Save**.
+5. Öffnen Sie den gespeicherten Datensatz erneut und überprüfen Sie seine Identifikatoren. Verwendung **Find full-text PDF** oder **Add files** separat, wenn Sie das Papier selbst benötigen.
+
+<p className="example-label"><strong>Praxisbeispiel</strong> DOI: 10.1038/s41467-018-08136-3</p>
+
+Eingang `10.1038/s41467-018-08136-3`. Der Lookup gibt den Artikel von Lang und Kollegen 2019 zurück, **Non defect-stabilized thermally stable single-atom catalyst**, in Nature Communications. Überprüfen Sie diese Details vor dem Speichern; das Lookup fügt kein PDF an.
+
+![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+
+Ein versionierter arXiv-Link löst sich zu den neuesten Metadaten auf, nicht unbedingt zu den Metadaten dieser alten Revision. Vergleichen Sie die Version eines PDF, das Sie später anhängen. Wenn die Suche fehlschlägt, überprüfen Sie den Bezeichner und versuchen Sie es erneut oder verwenden Sie einen PDF- oder Bibliographie-Dateiimport; eine fehlgeschlagene Suche hat keine Referenz gespeichert.
 
 ## Import aus Zotero {/* #zotero-import */}
 

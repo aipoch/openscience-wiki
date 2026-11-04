@@ -1,7 +1,7 @@
 ---
 title: "파일, artifacts 및 버전"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-04'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -147,3 +147,7 @@ Notepad에서 다운로드 된 `.md` 파일을 엽니 다. Notepad 디스플레�
 ## 승인된 로컬 파일을 산출물로 저장하기 {/* #import-local-artifact */}
 
 **This computer**의 승인된 폴더에서 파일을 열고 미리보기의 **… → Save as artifact**를 선택합니다. 완료 후 대화에 생성된 산출물을 열어 내용을 확인하세요. Open-Science는 변경 불가능한 관리 사본을 보관합니다. 나중에 원본 파일을 수정해도 사본은 바뀌지 않습니다. 미리보기만으로는 파일을 가져오지 않습니다.
+
+## 최신 게시 버전 확인 {/* #latest-published-version */}
+
+산출물을 게시하거나 복원한 뒤 다시 열어 선택한 버전과 내용을 확인하세요. v1.0.7은 최신 게시 버전을 우선 표시하지만 기록에서 연 이전 미리보기는 여전히 다른 버전입니다. 인용, 다운로드 또는 편집 전에 버전 컨트롤과 이력 패널에서 이전 버전과의 관계를 확인하세요.

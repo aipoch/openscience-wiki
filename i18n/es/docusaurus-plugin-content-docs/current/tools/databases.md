@@ -2,7 +2,7 @@
 title: "Bases de datos científicos"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 # Bases de datos científicos {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Utilice esta página para elegir una fuente de datos, entender lo que puede devo
 
 ## Bases de datos respaldadas {/* #supported-databases */}
 
-Open-Science v1.0.6 incluye **48 Connectors integrados con 418 operaciones**: 47 Connectors de fuentes de datos ofrecen 416 operaciones, y un Connector Molecule sin conexión ofrece dos. Los nombres siguientes corresponden a las entradas de **Settings → Connectors**. Un Connector puede abarcar varias bases de datos. Incluir una fuente no significa que estén disponibles todas las funciones de su sitio web.
+Open-Science v1.0.7 incluye **48 Connectors integrados con 418 operaciones**: 47 Connectors de fuentes de datos ofrecen 416 operaciones, y un Connector Molecule sin conexión ofrece dos. Los nombres siguientes corresponden a las entradas de **Settings → Connectors**. Un Connector puede abarcar varias bases de datos. Incluir una fuente no significa que estén disponibles todas las funciones de su sitio web.
 
 El total incluye todas las entradas integradas, incluso las desactivadas. Los Connectors MCP añadidos por el usuario se cuentan por separado. El número de Connectors, de bases de datos cubiertas y de operaciones disponibles son medidas distintas.
 
@@ -268,7 +268,7 @@ Desde v0.31.0, `get_string_network.nodes` incluye vecinos devueltos y entradas a
 
 Las listas [Referencia de operación Connector](../reference/connector-operations.md) requieren entradas, valores permitidos y llamadas exactas. Utilice esta página para elegir una fuente y conectarla; utilizar la referencia para los campos de una herramienta en particular.
 
-Fuente del catálogo: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/registry.ts).
+Fuente del catálogo: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts).
 
 ## Búsquedas de secuencia y alineación {/* #sequence-tools */}
 

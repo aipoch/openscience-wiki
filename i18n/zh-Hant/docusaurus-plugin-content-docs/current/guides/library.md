@@ -1,7 +1,7 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -151,6 +151,22 @@ Inbox 隨後顯示 **Inbox is clear**；切換到 **Current project** 可見 **2
 
 
 </ToolOperationGroup>
+
+## 用 DOI 或 arXiv 鏈接添加文獻 {/* #doi-link-import */}
+
+1. 打開 **Library → All references → Add → Add from DOI or link**。
+2. 在 **DOI or arXiv link** 中粘貼一個 DOI、**doi.org** 鏈接，或 **arxiv.org/abs/**、**arxiv.org/pdf/** 鏈接，點擊 **Find reference**。這個入口不支持普通出版方網頁鏈接。
+3. 在 **Review reference details** 中核對標題、作者、年份、期刊和標識。需要修正時，先用 **Edit details** 編輯。
+4. 查看 **When identifiers match**。**Reuse existing reference** 會保留已有元數據；選擇其他處理方式前應比較記錄。確認後點擊 **Save**。
+5. 重新打開保存的條目覈對標識。需要論文全文時，再使用 **Find full-text PDF** 或 **Add files**。
+
+<p className="example-label"><strong>案例演示</strong> 用 DOI 添加一篇單原子催化論文</p>
+
+輸入 `10.1038/s41467-018-08136-3`，查找結果爲 Lang 等人於 2019 年發表在 Nature Communications 的 **Non defect-stabilized thermally stable single-atom catalyst**。覈對這些信息後保存；這次查找不會自動附加 PDF。
+
+![保存前核對文獻標題、作者、年份與 DOI](/img/open-science/v107/doi-review.webp)
+
+帶版本號的 arXiv 鏈接會返回最新元數據，不一定對應舊修訂版；之後附加 PDF 時應比較其版本。查找失敗時，檢查標識後重試，或改用 PDF、參考文獻文件導入；查找失敗並不表示條目已保存。
 
 ## 從 Zotero 導入 {/* #zotero-import */}
 

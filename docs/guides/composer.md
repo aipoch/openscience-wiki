@@ -1,7 +1,7 @@
 ---
 title: "Conversations and queued requests"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-04'
 ---
 
 # Conversations and queued requests
@@ -156,3 +156,9 @@ For an expired model or Connector credential, follow the recovery action shown f
 ## Skip a clarification question {/* #skip-question */}
 
 Use **Skip** to leave the current question unanswered, or its menu's **Skip all** for the remaining questions. **Let the agent decide** delegates the choice instead; it is a different response. Check the saved answer history and whether the conversation resumes before submitting another answer after an error.
+
+## Recover a request from its error notice {/* #request-recovery */}
+
+Read the notice beside the Composer and use its recovery action. Provider failures call for checking the selected account or model; environment failures call for checking the named runtime; input failures call for reviewing the draft or attachment. Session and internal failures have their own recovery actions. Preserve the draft and inspect the current turn before sending it again.
+
+If a background task is still finishing, a follow-up can remain queued. Check its visible state rather than repeatedly pressing Send. After recovery, confirm the new request and its result in the intended session.

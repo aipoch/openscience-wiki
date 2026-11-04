@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -166,10 +166,16 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 
 L’exportation exige un chemin de sortie `.science` explicite. Le délai par défaut est d’une heure ; utilisez **--timeout-ms** pour un transfert volumineux et vérifiez le chemin retourné. Dans **v1.0.5**, importez les fichiers locaux par [l’envoi dans Web local](#web-package-transfer) ou dans l’application de bureau. Le chemin fourni à `session import` dans le CLI peut être refusé avant la validation du paquet.
 
-## Commencer par un cas de recherche sur la page d'accueil {/* #use-case-gallery */}
+## Trouver un cas de recherche dans Partage du marché {/* #use-case-gallery */}
 
-Sur la page d'accueil, choisissez **Details** sur une carte de cas pour lire sa page de cas officielle. Choisir **Import** pour télécharger son dossier de recherche. Suivre les progrès de préparation, de téléchargement et de vérification; **Cancel** arrête un transfert indésirable. Si le colis attend une destination, **Continue** rouvre la boîte de dialogue d'importation.
+1. Ouvrir **Sharing marketplace** de la maison ou de l'espace de travail de conversation. Dans un aperçu de l'espace de travail, choisissez **View in sharing marketplace** pour ouvrir la page complète. Sur la maison, **Browse all examples** ouvre également la totalité **Use Case Marketplace**.
+2. Choisissez une catégorie et entrez un mot-clé dans le champ de recherche. Effacer le mot-clé ou revenir à toutes les catégories lorsque la liste des résultats est trop étroite.
+3. Ouvrir un cas pour lire sa description et inspecter l'action du paquet disponible. Examiner le sujet, les intrants et les extrants prévus avant de le télécharger ou de l'importer.
+4. Utilisez l'action de paquet proposée dans les détails du cas. Suivre les progrès de la préparation, du téléchargement et de la vérification; utiliser **Cancel** pour arrêter un transfert indésirable. Les octets téléchargés ne sont pas encore un projet importé.
+5. Examiner la destination d'importation et confirmer. Ouvrir le dossier de recherche résultant, inspecter ses fichiers et utiliser **Fork to continue** dans l'application de bureau quand vous voulez exécuter votre propre analyse.
 
-Examiner le projet de destination et confirmer l'importation. Ouvrir le résultat, inspecter les entrées et les sorties, puis utiliser **Fork to continue** dans l’application de bureau pour votre propre question. Télécharger vérification vérifie le transfert de colis; il ne valide pas les conclusions scientifiques de l'affaire ou fournit ses modèles d'identification.
+![Keyword search and category filters in the research-case marketplace](/img/open-science/v107/marketplace-search.webp)
 
-![Vérifier un paquet de la galerie officielle avant son importation](/img/open-science/v105/package-preview.webp)
+**Back to Project** ou **Back to Home** Retourne dans ton espace de travail. Le retour sur le marché conserve son état de navigation, y compris les filtres et la position de défilement. Les cas de recherche sont différents de [Marché des compétences](../skills/marketplace.md): a `.science` un programme comporte une session de recherche enregistrée; une compétence fournit des instructions réutilisables.
+
+Si un colis attend une destination, **Continue** rouvre la boîte de dialogue d'importation. Vérifiez tout transfert existant avant de commencer un autre. Télécharger vérification vérifie le transfert, pas les conclusions scientifiques du cas, et ne fournit pas ses modèles d'identification.

@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "페이지 및 제어 색인"
 description: "모든 문서화 된 Open-Science 버튼, 입력, 스위치 및 페이지에 의해 결과."
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-04'
 ---
 
 # 페이지 및 제어 색인 {/* #page-and-control-index */}
@@ -168,7 +168,7 @@ Filter/Search, Add/Import, Enable, Detail, Test/Reconnect, Edit, Export 및 제�
 
 ### 에이전트 {/* #agent */}
 
-OpenCode/Claude/Codex/CodeBuddy 프레임 워크 카드, 스위치, 설치 소스, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, 그리고 제거 확인.
+OpenCode/Claude/Codex/CodeBuddy/Pi 프레임 워크 카드, 스위치, 설치 소스, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, 그리고 제거 확인.
 
 ### 권한 {/* #permissions */}
 

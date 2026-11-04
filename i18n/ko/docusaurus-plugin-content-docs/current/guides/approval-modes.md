@@ -1,7 +1,7 @@
 ---
 title: "권한 및 승인"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-04'
 ---
 
 # 권한 및 승인 {/* #permissions-and-approvals */}
@@ -26,7 +26,7 @@ last_update:
 
 ![실제 영어 권한 모드 선택기](/img/open-science/walkthrough-2026-09-08/57-permission-modes.webp)
 
-당신의 대리인을 위해 보이는 효과적인 형태를 검사하십시오; 지원된 승인 행위는 기구에 의해 다를 수 있습니다. 모든 모드가 모든 4개의 프레임워크를 통해 연습되지 않았습니다.
+Agent에 표시된 현재 모드를 확인하세요. 승인 기능은 프레임워크에 따라 다르므로 허용하기 전에 각 요청의 범위를 읽으세요.
 
 <span id="a-safe-approval-order" />
 

@@ -1829,5 +1829,11 @@
   },
   "docs.outline.reference.v106.scope": {
     "message": "Zotero インポート、個人メモ検索、PDF の自動読み取り順序、安定性の修正。"
+  },
+  "docs.outline.reference.v107.title": {
+    "message": "v1.0.7"
+  },
+  "docs.outline.reference.v107.scope": {
+    "message": "DOI・arXiv インポート、PDF 注釈、OCR、Pi、研究事例マーケット。"
   }
 }

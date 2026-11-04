@@ -1,7 +1,7 @@
 ---
 title: "Autorisations et agréments"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-04'
 ---
 
 # Autorisations et agréments {/* #permissions-and-approvals */}
@@ -26,7 +26,7 @@ Ouvrez **Agent controls** à côté du compositeur et lisez le mode sélectionn�
 
 ![Le sélecteur de mode d'autorisation en anglais](/img/open-science/walkthrough-2026-09-08/57-permission-modes.webp)
 
-Vérifiez le mode effectif affiché pour votre Agent; Le comportement d'approbation soutenu peut différer par cadre. Tous les modes n'ont pas été appliqués dans les quatre cadres.
+Vérifiez le mode actif de votre Agent. Les contrôles d’approbation dépendent du framework ; lisez la portée de chaque demande avant de l’autoriser.
 
 <span id="a-safe-approval-order" />
 

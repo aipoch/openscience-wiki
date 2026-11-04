@@ -2,7 +2,7 @@
 title: "PDFの注釈と文書のメモ"
 description: "マーク・パス、ドキュメント・ノートを収集し、それらを再度見つけ、読書のコピーをエクスポートします。"
 last_update:
-  date: '2026-10-14'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -76,3 +76,25 @@ v0.35.1から、同じPDFコンテンツとして検証された管理された�
 ## ページを覆うことなくメモを明らかにする {/* #reveal-note */}
 
 v1.0.0では、マークが選択されたとき、保存されたアノテーションの**Annotation note**ボタンが現れます。 ハイライトまたは領域を選択し、メモボタンを開き、コメントを読み込みまたは編集します。 隠しボタンは、ノートが削除されたという意味ではありません。 **Show notes sidebar** または **Notes & Annotations** を使用して、完全なリストを参照し、**Show annotation source** マークされた場所に戻ります。
+
+## リンクした PDF に Agent で注釈を付ける {/* #agent-annotations */}
+
+お問い合わせ **Reading** セッションでは Agent が注釈の一覧取得、段落・領域の特定、永続的なハイライト・領域マーク・メモの作成を行えます。対象 PDF を関連付けて保存内容を指示してください。会話の要約は保存済み注釈ではありません。
+
+1. PDFを開き、選択します **Read with agent**Composer's を通して、またはそれを加えて下さい **Reading** から関連付けます。編集可能なセッションを使用してください。インポートした研究記録で作業を続けるには、先に Fork が必要です。
+2. 段落、ページ、文書全体のどれにメモを付けるか、内容を具体的に指定します。重複を避けるため、作成前に既存の注釈を確認するよう依頼します。
+3. Reading ツールの結果を開き、引用文・ページと保存結果を確認します。対象の特定だけでは保存完了を意味しません。
+4. オープン **Notes & Annotations** を同じ PDF で開きます。新しい項目が存在することを確認し、原文に移動してメモを読みます。誤ったコメントは注釈の編集操作で修正してください。
+5. 応答が中断した場合やエラーが出た場合は、再試行の前に注釈一覧を開き直します。項目がなければ、上記の手動ハイライトやメモの操作でコメントを貼り付けてください。
+
+<p className="example-label"><strong>例</strong> PDF</p>
+
+```text
+In the linked PDF, find the sentence on page 2 explaining that the reporting
+checklist is not a quality assessment instrument. Check existing annotations
+first, then highlight the sentence and add an English reminder to assess
+reporting completeness and methodological quality separately. Reopen the
+annotation list and tell me whether the entry was saved.
+```
+
+Agent の注釈ツールは追加用です。既存のメモの編集・削除や元 PDF の変更は行いません。複数のマークは個別に保存され、中断時にも一部が残る場合があります。要求全体を繰り返す前に一覧を確認してください。同じ管理対象 PDF 版を開く場所では注釈が共有されます。参照： [共有注釈](#where-notes-are-shared).

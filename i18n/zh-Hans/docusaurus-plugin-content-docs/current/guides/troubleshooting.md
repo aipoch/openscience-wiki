@@ -1,7 +1,7 @@
 ---
 title: "故障排查与常见问题"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-04'
 ---
 
 # 故障排查与常见问题
@@ -254,3 +254,9 @@ Agent 框架 / Provider / 模型（如相关）：
 ## 升级后 Codex 提示版本不兼容 {/* #codex-version */}
 
 如果出现 **The installed Codex CLI is incompatible or its version could not be verified**，打开 **Settings → Agent** 查看实际检测到的路径和 Codex CLI 版本。v0.34.0 要求 CLI 至少 0.157.1；更新该托管或外部安装，再 **Re-detect**。模型重新登录不能代替运行时更新。完整步骤见[更新 Codex](frameworks.md#update-codex)。
+
+## 通过已配置代理下载全文 {/* #full-text-proxy */}
+
+如果电脑使用 Mihomo、Clash 等代理的 Fake-IP DNS 模式，全文获取失败时先更新到 v1.0.7 或更高版本，确认 **Settings → Network** 中选用了预期代理，再重试同一来源。当本地 DNS 返回的地址全部为占位地址时，应用会交给已配置的代理解析目标。
+
+这不会授予付费论文访问权，也不会提供机构登录。先确认来源提供自己有权访问的副本，再检查下载附件是否为预期 PDF、能否打开。仍有问题时，保留来源网址和显示的错误，按[网络配置](network.md)检查，避免重复添加文献。

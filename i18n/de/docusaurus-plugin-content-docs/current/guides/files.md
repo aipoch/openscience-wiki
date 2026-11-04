@@ -1,7 +1,7 @@
 ---
 title: "Dateien, Artefakte und Versionen"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-04'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -147,3 +147,7 @@ Quellen: [Projektdateibibliothek](https://github.com/aipoch/open-science/blob/v0
 ## Halten Sie eine autorisierte lokale Datei als Artefakt {/* #import-local-artifact */}
 
 Öffnen Sie eine Datei aus einem autorisierten Ordner unter **This computer**. In seiner Vorschau, verwenden **… → Save as artifact** und warten auf die Vollendung. Öffnen Sie das resultierende Gesprächsartefakt und überprüfen Sie dessen Inhalt. Open-Science behält eine unveränderliche verwaltete Kopie; spätere Änderungen der ursprünglichen lokalen Datei aktualisieren diese Kopie nicht. Die bloße Vorschau einer Ordnerdatei importiert sie nicht.
+
+## Überprüfen Sie die neueste veröffentlichte Version {/* #latest-published-version */}
+
+Nach der Veröffentlichung oder Wiederherstellung eines Artefakts öffnen Sie es erneut und überprüfen Sie die ausgewählte Version und den Inhalt. v1.0.7 bringt die neueste veröffentlichte Version voran; eine ältere historische Vorschau ist immer noch eine andere Version. Verwenden Sie die Versionssteuerelemente und das Provenienzfeld, um zu prüfen, wie sich die ausgewählte Version auf frühere bezieht, bevor Sie sie zitieren, herunterladen oder bearbeiten.

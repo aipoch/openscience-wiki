@@ -1,7 +1,7 @@
 ---
 title: "Instalación y conmutación de agentes"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-04'
 ---
 
 # Instalación y conmutación de agentes {/* #installing-and-switching-agents */}
@@ -24,7 +24,7 @@ Abre **Settings → Agent**. La página separa **Installed** de **Available**. L
 | Instalar el registro / Retry | Lea el paso fallido y vuelva a entrar después de resolver esa causa. |
 | Reparar | Aparece cuando la instalación gestionada necesita reparación; inspeccionar el tiempo de ejecución afectado antes de confirmar. |
 
-La página inspeccionada ofrece Codex, Claude Agent, OpenCode y CodeBuddy. Las fuentes disponibles y los requisitos de autenticación difieren; no asuma cada marco ofrece el mismo método de instalación o de inicio de sesión.
+Open-Science v1.0.7 ofrece Codex, Claude Agent, OpenCode, CodeBuddy y Pi. Las fuentes disponibles y los requisitos de autenticación difieren; no asuma cada marco ofrece el mismo método de instalación o de inicio de sesión.
 
 ## Instalar y verificar {/* #install-and-verify */}
 
@@ -82,3 +82,15 @@ Si las acciones de instalación son deshabilitadas, compruebe otra instalación/
 Fuentes: [Panel de Agentes](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentPanel.tsx), [tarjeta marco](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentFrameworkCard.tsx).
 
 Comportamiento de exploración y conmutación: [configuración de almacenamiento](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/settings/repository.ts), [conmutación de tiempo de ejecución](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/acp/runtime-coordinator.ts).
+
+## Instala Pi como otra opción Agente {/* #pi-agent */}
+
+Pi está disponible desde v1.0.7 en configuración y **Settings → Agent**. Se instala a través del adaptador Pi ACP gestionado por la aplicación, separado del proveedor del modelo.
+
+1. Terminar el trabajo activo. In **Settings → Agent**, encontrar **Pi** y seleccionar **Install → App-managed download (recommended)**.
+2. Espere a que la instalación y detección termine. Revise su versión instalada y su disponibilidad; un paquete descargado solo no es un agente listo.
+3. Seleccione la tarjeta Pi lista y revise la confirmación del interruptor. El marco activo se comparte en proyectos y afecta a trabajos posteriores.
+4. Abierto **Settings → Model**, elegir un proveedor apoyado por Pi, y completar su prueba de conexión. Utilice el registro de suscripción ofrecido por ese proveedor cuando esté disponible; instalar Pi no lo firma o garantizar que el login de otro marco puede ser reutilizado.
+5. Seleccione el modelo principal previsto y envíe una pequeña solicitud. Revise la respuesta y un resultado real de la herramienta antes de comenzar una tarea larga.
+
+Pi soporta los puntos finales de Respuestas, Compleciones de Chat y Mensajes compatibles. Los proveedores disponibles, las opciones de suscripción y los modelos son filtrados por el marco activo. Puede mantener a Codex activo mientras se instala Pi; cambiar es una opción separada. Véase [Configuración del proveedor](providers.md).

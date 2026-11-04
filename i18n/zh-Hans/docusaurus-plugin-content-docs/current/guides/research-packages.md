@@ -2,7 +2,7 @@
 title: .science 研究包
 description: 将会话、文件和证据一起导出，再导入项目查看与交接研究记录。
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -166,10 +166,16 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 
 导出必须指定 `.science` 输出路径。默认等待时限为一小时；大型传输可用 **--timeout-ms** 调整，完成后检查返回的文件路径。在 **v1.0.5** 中，导入本地文件请使用[本地 Web 上传](#web-package-transfer)或桌面版导入入口；CLI 的 `session import` 文件路径可能在研究包校验前被拒绝。
 
-## 从首页科研案例开始 {/* #use-case-gallery */}
+## 在 Sharing marketplace 中找研究案例 {/* #use-case-gallery */}
 
-在首页案例卡片中选择 **Details**，阅读对应的官方案例页面；选择 **Import** 下载研究包。留意准备、下载和校验进度；不需要的传输可用 **Cancel** 取消。若已下载的包正在等待选择目标，点击 **Continue** 重新打开导入对话框。
+1. 从首页或会话工作区打开 **Sharing marketplace**；工作区预览中点击 **View in sharing marketplace** 可进入完整页面。首页的 **Browse all examples** 也能进入完整的 **Use Case Marketplace**。
+2. 选择分类，在搜索框输入关键词。结果太少时，清除关键词或切回全部分类。
+3. 打开案例，阅读说明并查看提供的研究包操作；下载或导入前先核对主题、输入材料和预期输出。
+4. 使用详情页提供的研究包操作，跟踪准备、下载和校验进度。不需要时用 **Cancel** 停止；文件下载完成不代表已经导入项目。
+5. 核对导入目标并确认。打开研究记录检查文件；需要自行继续分析时，在桌面应用中使用 **Fork to continue**。
 
-确认目标项目后导入。打开结果，检查输入与产物，再用 桌面版的 **Fork to continue** 研究自己的问题。下载校验检查的是包的传输，不代表已经验证案例的科学结论，也不会提供其模型凭据。
+![研究案例市场中的关键词搜索和分类筛选](/img/open-science/v107/marketplace-search.webp)
 
-![导入前检查官方案例包和目标项目](/img/open-science/v105/package-preview.webp)
+通过 **Back to Project** 或 **Back to Home** 返回工作区，再次进入市场时会保留筛选条件、滚动位置等浏览状态。研究案例与 [Skill 市场](../skills/marketplace.md)不同：`.science` 包保存一次研究会话的记录，Skill 提供可复用的操作指令。
+
+研究包等待选择目标时，点击 **Continue** 重新打开导入窗口。开始第二次传输前先检查已有任务。下载校验检查的是传输完整性，不会验证案例的科学结论，也不会提供案例使用的模型凭据。

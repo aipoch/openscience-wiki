@@ -1844,5 +1844,11 @@
   },
   "docs.outline.reference.v106.scope": {
     "message": "Импорт Zotero, поиск по заметкам, автоматический порядок чтения PDF и исправления."
+  },
+  "docs.outline.reference.v107.title": {
+    "message": "v1.0.7"
+  },
+  "docs.outline.reference.v107.scope": {
+    "message": "Импорт DOI и arXiv, аннотации PDF, OCR, Pi и исследовательские примеры."
   }
 }

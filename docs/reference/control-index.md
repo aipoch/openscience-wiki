@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Page and control index
 description: Find every documented Open-Science button, input, switch, and result by page.
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-04'
 ---
 
 # Page and control index
@@ -168,7 +168,7 @@ Active model, Reasoning radios, and Subagent/Reviewer/Vision/Session-details mod
 
 ### Agent
 
-OpenCode/Claude/Codex/CodeBuddy framework card, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Uninstall confirmation.
+OpenCode/Claude/Codex/CodeBuddy/Pi framework card, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Uninstall confirmation.
 
 ### Permissions
 

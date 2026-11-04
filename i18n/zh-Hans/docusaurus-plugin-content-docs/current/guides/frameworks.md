@@ -1,7 +1,7 @@
 ---
 title: "安装与切换代理框架"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-04'
 ---
 
 # 安装与切换代理框架
@@ -24,7 +24,7 @@ last_update:
 | Install log / Retry | 先读失败步骤，解决原因后重试 |
 | Repair | 管理的安装需要修复时出现，先检查影响对象 |
 
-实查页面提供 Codex、Claude Agent、OpenCode、CodeBuddy。安装来源和认证方式随后端不同，不应把某一后端的流程套到所有后端。
+Open-Science v1.0.7 提供 Codex、Claude Agent、OpenCode、CodeBuddy 和 Pi。 安装来源和认证方式随后端不同，不应把某一后端的流程套到所有后端。
 
 ## 安装后的核验顺序
 
@@ -82,3 +82,15 @@ v0.33.0 的 **Claude Agent** 要求 Claude CLI **2.1.118 或更高版本**。若
 源码：[Agent 页面](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentPanel.tsx)、[后端卡片](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentFrameworkCard.tsx)。
 
 设置范围与切换行为：[设置存储](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/settings/repository.ts)、[运行时切换](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/acp/runtime-coordinator.ts)。
+
+## 安装 Pi，增加一种 Agent 选择 {/* #pi-agent */}
+
+从 v1.0.7 起，首次设置和 **Settings → Agent** 都提供 Pi。它通过应用管理的 Pi ACP 适配器单独安装，模型提供商需要另行配置。
+
+1. 先完成正在运行的任务。在 **Settings → Agent** 中找到 **Pi**，选择 **Install → App-managed download (recommended)**。
+2. 等待安装和检测结束，检查版本与就绪状态；安装包下载完成不代表 Agent 已就绪。
+3. 选择就绪的 Pi 卡片，阅读并确认切换提示。活动框架在项目之间共享，会影响后续任务。
+4. 打开 **Settings → Model**，选择 Pi 支持的提供商并完成连接测试。提供商支持订阅登录时，按显示的登录入口操作；安装 Pi 不会自动登录，也不保证可以复用其他框架的登录状态。
+5. 选择所需 Main 模型，发送一个小请求；开始长任务前，检查实际回复和一次工具结果。
+
+Pi 支持兼容的 Responses、Chat Completions 和 Messages 接口。可选提供商、订阅方式和模型会根据活动框架筛选。安装 Pi 时可以继续让 Codex 保持 Active，切换是另一步操作。参见[提供商设置](providers.md)。

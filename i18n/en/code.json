@@ -1911,5 +1911,11 @@
   },
   "docs.outline.reference.v106.scope": {
     "message": "Zotero import, personal-note search, automatic PDF reading order and reliability fixes."
+  },
+  "docs.outline.reference.v107.title": {
+    "message": "v1.0.7"
+  },
+  "docs.outline.reference.v107.scope": {
+    "message": "DOI and arXiv import, PDF annotations, OCR, Pi and the research-case marketplace."
   }
 }

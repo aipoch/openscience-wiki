@@ -1,7 +1,7 @@
 ---
 title: "Conversaciones y solicitudes en cola"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-04'
 ---
 
 # Conversaciones y solicitudes en cola {/* #conversations-and-queued-requests */}
@@ -156,3 +156,9 @@ Para un modelo expirado o Credencial Connector, siga la acción de recuperación
 ## Skip a clarification question {/* #skip-question */}
 
 Uso **Skip** para dejar la pregunta actual sin respuesta, o su menú **Skip all** para las preguntas restantes. **Let the agent decide** delegados la elección en su lugar; es una respuesta diferente. Compruebe la historia de la respuesta guardada y si la conversación se reanudará antes de enviar otra respuesta después de un error.
+
+## Recuperar una solicitud de su aviso de error {/* #request-recovery */}
+
+Lea el aviso junto al Compositor y use su acción de recuperación. Las fallas del proveedor exigen comprobar la cuenta o modelo seleccionados; las fallas ambientales requieren comprobar el tiempo de ejecución nombrado; las fallas de entrada requieren revisar el borrador o adjunto. La sesión y los fracasos internos tienen sus propias acciones de recuperación. Preserve el borrador e inspeccione el giro actual antes de enviarlo de nuevo.
+
+Si una tarea de fondo todavía está terminando, un seguimiento puede permanecer apagado. Compruebe su estado visible en lugar de presionar repetidamente Enviar. Después de la recuperación, confirme la nueva solicitud y su resultado en el período de sesiones previsto.

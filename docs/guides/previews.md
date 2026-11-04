@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -266,3 +266,17 @@ From v1.0.6, linked PDFs use automatic text ordering. Open the attachment and us
 Complete, valid logical tags take priority. Untagged, unrotated left-to-right text can use layout-based ordering; incomplete tags or unsupported layouts fall back to the PDF's native text order. These fallbacks do not guarantee that every multi-column page, table or formula will read correctly.
 
 Keep the source open when reviewing an answer. Check the cited page, column and figure or table against the PDF, especially if sentences seem interleaved. Use the [figure and table extraction tools](#pdf-extraction) when the visual material is the subject of the question.
+
+## Read a scanned PDF with OCR {/* #scanned-pdf-ocr */}
+
+OCR is an optional local component for pages without usable text. It recognizes text from page images; it does not translate the paper, validate a table or prove that every page was read.
+
+1. Open **Settings → Model → Local parsing models** and find **Text recognition (OCR)**.
+2. Keep **English**, which is always selected, and choose the languages actually used in the document. Additional choices are Simplified Chinese, Traditional Chinese, German, Spanish, French, Japanese, Korean and Russian.
+3. Select **Install** and wait for **Installed**. After adding a language, use the offered **Install** or **Update** action to download its recognition data. Choosing a language alone does not download it.
+4. Open the PDF and choose **Read with agent**. Ask about a small, specified page range first. If a reading tool offers OCR installation because text is missing, complete it and ask the Agent to read those pages again.
+5. Expand the reading result and inspect **Pages with text** and any missing-page warning. **OCR was used. Verify recognized text against the PDF.** identifies recognized content. Compare names, numbers, units and quotations with the original image before using them.
+
+![OCR language choices and installed local recognition component](/img/open-science/v107/ocr-settings.webp)
+
+OCR has page and time limits. A page with recognized text can still contain unread figures, equations or table structure, so a successful read is not evidence of complete extraction. If a download fails, resolve the displayed download/storage problem and use **Retry**; ordinary text PDFs can still be read without waiting indefinitely for OCR. See [PDF annotations](pdf-notes.md) for keeping reading notes beside the source.

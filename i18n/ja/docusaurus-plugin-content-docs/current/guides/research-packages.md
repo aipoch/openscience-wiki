@@ -2,7 +2,7 @@
 title: ".science 研究パッケージ"
 description: "そのファイルと証拠でセッションをエクスポートし、別のプロジェクトで研究記録をインポートし、検査します。"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -166,10 +166,16 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 
 エクスポートには明示的な `.science` 出力パスが必要です。既定の期限は1時間です。大きな転送では **--timeout-ms** で調整し、返されたファイルパスを確認します。**v1.0.5** でローカルファイルをインポートするには、[ローカル Web のアップロード](#web-package-transfer)またはデスクトップアプリを使ってください。CLI の `session import` は、パッケージ検証前にファイルパスが拒否される場合があります。
 
-## ホームの研究事例から始める {/* #use-case-gallery */}
+## マーケットプレースをシェアするリサーチケースを探す {/* #use-case-gallery */}
 
-事例カードの **Details** で公式の説明を読み、**Import** で研究パッケージをダウンロードします。準備・転送・検証の進行を確認し、不要なら **Cancel**。保存先の指定待ちなら **Continue** でインポート画面へ戻ります。
+1. オープン **Sharing marketplace** ホームまたは会話ワークスペースから。 ワークスペースのプレビューで、選択します **View in sharing marketplace** フルページを開く ホーム **Browse all examples** また、全体を開く **Use Case Marketplace**.
+2. カテゴリと検索語を指定します。結果が少なすぎる場合は検索語を消すか、すべてのカテゴリに戻します。
+3. 事例を開き、説明と研究パッケージの操作を確認します。ダウンロードやインポートの前に、テーマ、入力、想定する出力を読みます。
+4. ケースの詳細はパッケージアクションを使用します。 準備、ダウンロード、検証の進捗をフォローしてください。 **Cancel** で不要な転送を停止します。ダウンロードの完了だけではプロジェクトにインポートされていません。
+5. インポート先を確認し、確認します。 結果研究記録を開き、そのファイルを調べて使用してください **Fork to continue** 自分の分析を実行したいときにデスクトップアプリで。
 
-保存先プロジェクトを確認してインポートし、入力と出力を点検します。自分の問いは デスクトップアプリの **Fork to continue** で続けます。ダウンロード検証は転送の確認であり、科学的結論の検証やモデル認証情報の提供ではありません。
+![Keyword search and category filters in the research-case marketplace](/img/open-science/v107/marketplace-search.webp)
 
-![公式ギャラリーのパッケージと保存先の確認](/img/open-science/v105/package-preview.webp)
+**Back to Project** または **Back to Home** で作業画面に戻ります。マーケットに戻るとフィルターやスクロール位置が保持されます。研究事例と次のものは用途が異なります： [スキルマーケットプレイス](../skills/marketplace.md): a `.science` パッケージは研究セッションの記録を含み、Skill は再利用可能な指示を提供します。
+
+パッケージが目的地を待っていれば、 **Continue** でインポート画面を再度開きます。転送を追加する前に既存の処理を確認してください。ダウンロード検証は転送の整合性を確認するもので、科学的結論やモデルの認証情報を保証・提供するものではありません。

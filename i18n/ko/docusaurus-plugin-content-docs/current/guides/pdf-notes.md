@@ -2,7 +2,7 @@
 title: "PDF 주석 및 문서 노트"
 description: "마크 패스, 문서 노트를 수집, 다시 찾아 읽고 읽기 사본을 수출."
 last_update:
-  date: '2026-10-14'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -76,3 +76,25 @@ v0.35.1에서 동일한 PDF 콘텐츠로 확인된 관리 파일 버전은 라�
 ## 페이지를 덮지 않고 메모를 공개 {/* #reveal-note */}
 
 v1.0.0에서 저장된 annotation의 **Annotation note** 버튼은 마크가 선택되었을 때 나타납니다. hovered 또는 집중. 강조 또는 지역을 선택하면 메모 버튼을 열고 의견을 편집합니다. 숨겨진 버튼은 메모가 삭제되었습니다. **Show notes sidebar** 또는 **Notes & Annotations**을 사용하여 전체 목록 및 **Show annotation source**를 검색하여 표시된 위치로 돌아갑니다.
+
+## Agent에게 연결된 PDF 주석 요청하기 {/* #agent-annotations */}
+
+로그인 **Reading** 세션에서 Agent는 주석 목록 조회, 구절·영역 찾기, 영구 저장되는 하이라이트·영역 표시·메모 생성을 할 수 있습니다. 대상 PDF를 연결하고 저장할 내용을 지정하세요. 대화의 요약은 저장된 주석이 아닙니다.
+
+1. PDF를 열고 선택 **Read with agent**, 또는 Composer's를 통해 추가 **Reading** 로 연결하세요. 편집 가능한 세션을 사용해야 하며 가져온 연구 기록은 먼저 Fork한 뒤 작업을 계속해야 합니다.
+2. 구절, 페이지 또는 문서 전체 메모를 구체적으로 요청하세요. 내용을 설명하고 중복을 방지하도록 먼저 기존 주석을 확인해 달라고 하세요.
+3. Reading 도구 결과를 펼쳐 인용문, 페이지 및 저장 결과를 확인하세요. 대상을 찾는 것만으로는 저장된 것이 아닙니다.
+4. 기타 **Notes & Annotations** 를 같은 PDF에서 여세요. 새 항목이 있는지 확인하고 원문 위치로 이동하여 메모를 읽으세요. 잘못된 댓글은 주석 편집 기능으로 수정하세요.
+5. 응답이 중단되거나 오류가 발생하면 다시 시도하기 전에 주석 목록을 다시 여세요. 항목이 없다면 위의 수동 하이라이트나 메모 기능으로 원하는 댓글을 붙여 넣으세요.
+
+<p className="example-label"><strong>예시</strong> PDF</p>
+
+```text
+In the linked PDF, find the sentence on page 2 explaining that the reporting
+checklist is not a quality assessment instrument. Check existing annotations
+first, then highlight the sentence and add an English reminder to assess
+reporting completeness and methodological quality separately. Reopen the
+annotation list and tell me whether the entry was saved.
+```
+
+Agent 주석 도구는 항목을 추가합니다. 기존 메모를 편집·삭제하거나 원본 PDF를 변경하지 않습니다. 여러 표시는 개별적으로 저장되므로 요청이 중단되어도 일부가 남을 수 있습니다. 전체 요청을 반복하기 전에 목록을 확인하세요. 같은 관리 대상 PDF 버전을 여는 곳에서는 주석이 공유됩니다. 참고: [공유 annotations](#where-notes-are-shared).
