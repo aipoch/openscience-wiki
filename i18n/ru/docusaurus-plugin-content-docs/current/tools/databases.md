@@ -2,7 +2,7 @@
 title: "Научные базы данных"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 # Научные базы данных {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## Поддерживаемые базы данных {/* #supported-databases */}
 
-Open-Science v1.0.6 включает **48 встроенных коннекторов и 418 операций**: 47 коннекторов источников данных предоставляют 416 операций, а один автономный коннектор Molecule — ещё две. Названия ниже соответствуют пунктам **Settings → Connectors**. Один коннектор может охватывать несколько баз данных. Наличие источника в списке не означает поддержку всех функций его сайта.
+Open-Science v1.0.7 включает **48 встроенных коннекторов и 418 операций**: 47 коннекторов источников данных предоставляют 416 операций, а один автономный коннектор Molecule — ещё две. Названия ниже соответствуют пунктам **Settings → Connectors**. Один коннектор может охватывать несколько баз данных. Наличие источника в списке не означает поддержку всех функций его сайта.
 
 В общее число входят все встроенные коннекторы, включая отключённые. Коннекторы MCP, добавленные пользователем, учитываются отдельно. Число коннекторов, охваченных баз данных и доступных операций — разные показатели.
 
@@ -268,7 +268,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Операционный справочник Connector](../reference/connector-operations.md) перечисляет необходимые входы, допустимые значения и точные вызовы. Используйте эту страницу, чтобы выбрать источник и подключить его; Используйте ссылку для полей конкретного инструмента.
 
-Источник каталога: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/registry.ts).
+Источник каталога: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts).
 
 ## Поиск последовательности и выравнивание {/* #sequence-tools */}
 

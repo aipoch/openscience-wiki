@@ -2,7 +2,7 @@
 title: "Referenz"
 slug: /reference
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-04'
 ---
 
 # Referenz {/* #reference */}
@@ -27,4 +27,4 @@ Verwenden Sie **&lt;0xE2>&lt;0x8C>&lt;0x98>K / Strg + K**, um Titel, Überschrif
 
 ## Changelog {/* #changelog */}
 
-[Durchsuchen Sie die neuesten Release Notes](../changelog/v0.30.2.md).
+[Durchsuchen Sie die neuesten Release Notes](../changelog/v1.0.7.md).

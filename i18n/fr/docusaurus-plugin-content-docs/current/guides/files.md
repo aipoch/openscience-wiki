@@ -1,7 +1,7 @@
 ---
 title: "Fichiers, artefacts et versions"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-04'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -147,3 +147,7 @@ Sources: [bibliothèque de fichiers de projets](https://github.com/aipoch/open-s
 ## Conserver un fichier local autorisé comme artefact {/* #import-local-artifact */}
 
 Ouvrir un fichier depuis un dossier autorisé sous **This computer**. Dans son aperçu, utiliser **… → Save as artifact** et attendre l'achèvement. Ouvrez l'artefact de conversation résultant et vérifiez son contenu. Open-Science conserve une copie de gestion immuable; les modifications ultérieures au fichier local original ne mettent pas à jour cette copie. La simple prévisualisation d'un fichier de dossier ne l'importe pas.
+
+## Consultez la dernière version publiée {/* #latest-published-version */}
+
+Après la publication ou la restauration d'un artefact, rouvrez-le et vérifiez la version et le contenu sélectionnés. v1.0.7 apporte la dernière version publiée; un ancien aperçu historique est encore une version différente. Utilisez les commandes de la version et le panneau de provenance pour inspecter la relation entre la version sélectionnée et les versions précédentes avant de la citer, de la télécharger ou de l'éditer.

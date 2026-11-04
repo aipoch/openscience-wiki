@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v1.0.6 は **48 個の組み込み Connector と 418 操作**を提供します。内訳は、47 個のデータソース Connector の 416 操作と、オフラインの Molecule Connector 1 個の 2 操作です。以下の名前は **Settings → Connectors** の項目に対応します。1 個の Connector が複数のデータベースを扱う場合があります。掲載されたデータソースの Web サイトの全機能を利用できるとは限りません。
+Open-Science v1.0.7 は **48 個の組み込み Connector と 418 操作**を提供します。内訳は、47 個のデータソース Connector の 416 操作と、オフラインの Molecule Connector 1 個の 2 操作です。以下の名前は **Settings → Connectors** の項目に対応します。1 個の Connector が複数のデータベースを扱う場合があります。掲載されたデータソースの Web サイトの全機能を利用できるとは限りません。
 
 この数には無効なものを含む全組み込み項目が含まれます。独自に追加した MCP Connector は別途数えます。Connector 数、対象データベース数、呼び出せる操作数は異なる指標です。
 
@@ -268,7 +268,7 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログの出典： [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/registry.ts).
+カタログの出典： [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts).
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 

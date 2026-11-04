@@ -1834,5 +1834,11 @@
   },
   "docs.outline.reference.v106.scope": {
     "message": "Zotero 가져오기, 개인 메모 검색, PDF 자동 읽기 순서 및 안정성 수정."
+  },
+  "docs.outline.reference.v107.title": {
+    "message": "v1.0.7"
+  },
+  "docs.outline.reference.v107.scope": {
+    "message": "DOI 및 arXiv 가져오기, PDF 주석, OCR, Pi 및 연구 사례 마켓."
   }
 }

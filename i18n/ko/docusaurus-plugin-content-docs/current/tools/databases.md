@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v1.0.6는 **내장 Connector 48개와 작업 418개**를 제공합니다. 데이터 소스 Connector 47개가 작업 416개를, 오프라인 Molecule Connector 1개가 작업 2개를 제공합니다. 아래 이름은 **Settings → Connectors**의 항목과 일치합니다. 하나의 Connector가 여러 데이터베이스를 다룰 수 있지만, 해당 웹사이트의 모든 기능을 지원한다는 뜻은 아닙니다.
+Open-Science v1.0.7는 **내장 Connector 48개와 작업 418개**를 제공합니다. 데이터 소스 Connector 47개가 작업 416개를, 오프라인 Molecule Connector 1개가 작업 2개를 제공합니다. 아래 이름은 **Settings → Connectors**의 항목과 일치합니다. 하나의 Connector가 여러 데이터베이스를 다룰 수 있지만, 해당 웹사이트의 모든 기능을 지원한다는 뜻은 아닙니다.
 
 이 수에는 비활성화된 항목을 포함한 모든 내장 항목이 포함됩니다. 사용자가 추가한 MCP Connector는 별도입니다. Connector 수, 연결된 데이터베이스 수, 호출 가능한 작업 수는 서로 다른 기준입니다.
 
@@ -268,7 +268,7 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 출처: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/registry.ts).
+카탈로그 출처: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts).
 
 ## Sequence 검색 및 정렬 {/* #sequence-tools */}
 

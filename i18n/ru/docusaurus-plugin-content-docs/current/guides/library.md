@@ -1,7 +1,7 @@
 ---
 title: "Библиотека литературы и цитаты"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -151,6 +151,22 @@ Inbox показывает **Inbox is clear**. Переключитесь на *
 
 
 </ToolOperationGroup>
+
+## Добавить ссылку из ссылки DOI или arXiv {/* #doi-link-import */}
+
+1. Открыть **Library → All references → Add → Add from DOI or link**.
+2. Вставить один DOI, a **doi.org** ссылка, или **arxiv.org/abs/** или **arxiv.org/pdf/** связывать **DOI or arXiv link**затем выбрать **Find reference**. Обычные URL страницы издателя не поддерживаются этой записью.
+3. в **Review reference details**Проверьте название, создателей, год, публикацию и идентификаторы. Использовать **Edit details** Исправить метаданные перед сохранением.
+4. Обзор **When identifiers match**. **Reuse existing reference** сохраняет существующие метаданные; выберите другое предлагаемое действие только после сравнения записей. Выбрать **Save**.
+5. Откройте сохраненную запись и проверьте ее идентификаторы. Использовать **Find full-text PDF** или **Add files** Отдельно, когда нужна сама бумага.
+
+<p className="example-label"><strong>Практический пример</strong> DOI: 10.1038/s41467-018-08136-3</p>
+
+Входить `10.1038/s41467-018-08136-3`. Поиск возвращает статью Лэнга и его коллег 2019 года. **Non defect-stabilized thermally stable single-atom catalyst**В Nature Communications. Проверьте эти данные перед сохранением; поиск не прикрепляет PDF.
+
+![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+
+Версия ссылки arXiv разрешает последние метаданные, не обязательно метаданные этого старого пересмотра. Сравните версию любого PDF, который вы позже прикрепите. Если поиск не удается, проверьте идентификатор и повторите или используйте импорт PDF или библиографического файла; неудачный поиск не сохранил ссылку.
 
 ## Импорт из Zotero {/* #zotero-import */}
 

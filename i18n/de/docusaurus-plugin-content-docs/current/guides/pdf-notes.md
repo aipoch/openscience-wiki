@@ -2,7 +2,7 @@
 title: "PDF Anmerkungen und Dokumentnotizen"
 description: "Markieren Sie Passagen, sammeln Sie Dokumentnotizen, finden Sie sie wieder und exportieren Sie eine Lesekopie."
 last_update:
-  date: '2026-10-14'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -76,3 +76,25 @@ Diese Notizen werden lokal gespeichert und synchronisieren sich nicht über Masc
 ## Zeigen Sie eine Notiz, ohne die Seite zu bedecken {/* #reveal-note */}
 
 In v1.0.0 wird die **Annotation note**-Taste einer gespeicherten Annotation angezeigt, wenn ihre Markierung ausgewählt, bewegt oder fokussiert wird. Wählen Sie das Highlight oder die Region und öffnen Sie dann die Notiztaste, um den Kommentar zu lesen oder zu bearbeiten. Ein versteckter Button bedeutet nicht, dass die Notiz gelöscht wurde. Verwenden Sie **Show notes sidebar** oder **Notes & Annotations**, um die vollständige Liste zu durchsuchen, und **Show annotation source**, um zum markierten Speicherort zurückzukehren.
+
+## Bitten Sie den Agenten, ein verknüpftes PDF zu kommentieren {/* #agent-annotations */}
+
+In a **Reading** In einer Sitzung kann der Agent Anmerkungen auflisten, eine Passage oder Region lokalisieren und ein dauerhaftes Highlight, eine Bereichsmarke oder eine Notiz erstellen. Verknüpfen Sie zuerst das beabsichtigte PDF und geben Sie an, was Sie speichern möchten; eine Zusammenfassung in der Konversation ist keine gespeicherte Anmerkung.
+
+1. Öffnen Sie das PDF und wählen **Read with agent**, oder fügen Sie es durch den Komponisten **Reading** Selektor. Verwenden Sie eine editierbare Sitzung; importierte Forschungsaufzeichnungen müssen gegabelt werden, bevor Sie die Arbeit fortsetzen.
+2. Fragen Sie nach einer bestimmten Passage, Seite oder Dokument-Level-Notiz. Erklären Sie, was die Notiz sagen soll, und bitten Sie den Agenten, bestehende Anmerkungen zu überprüfen, bevor Sie eine weitere hinzufügen.
+3. Erweitern Sie die Ergebnisse des Lesewerkzeugs. Überprüfen Sie das gefundene Angebot und die Seite, dann das Ergebnis der Speicheroperation. Ein Ziel allein zu finden bedeutet nicht, dass etwas gerettet wurde.
+4. Offen **Notes & Annotations** im selben PDF. Bestätigen Sie, dass der neue Eintrag existiert, folgen Sie ihm zum Quellort und lesen Sie die Notiz. Korrigieren Sie ungenaue Kommentare durch die Annotationskontrollen.
+5. Wenn die Antwort unterbrochen wird oder die Operation einen Fehler meldet, öffnen Sie die Annotationsliste erneut, bevor Sie erneut versuchen. Wenn kein Eintrag vorhanden ist, verwenden Sie die oben beschriebenen manuellen Highlight- oder Notizsteuerelemente und fügen Sie den beabsichtigten Kommentar ein.
+
+<p className="example-label"><strong>Beispiel</strong> PDF</p>
+
+```text
+In the linked PDF, find the sentence on page 2 explaining that the reporting
+checklist is not a quality assessment instrument. Check existing annotations
+first, then highlight the sentence and add an English reminder to assess
+reporting completeness and methodological quality separately. Reopen the
+annotation list and tell me whether the entry was saved.
+```
+
+Die Annotationstools des Agenten fügen Einträge hinzu; sie bearbeiten oder löschen keine vorhandenen Notizen oder ändern das Quell-PDF. Mehrere Markierungen sind separate Schreibvorgänge, so dass eine unterbrochene Anforderung einige Einträge speichern kann. Überprüfen Sie die Liste, anstatt die gesamte Anforderung blind zu wiederholen. Eine Anmerkung, die der gleichen verwalteten PDF-Version beigefügt ist, wird überall dort freigegeben, wo diese PDF geöffnet wird; siehe [Gemeinsame Anmerkungen](#where-notes-are-shared).

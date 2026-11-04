@@ -1,7 +1,7 @@
 ---
 title: "Files, artifacts, and versions"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-04'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -147,3 +147,7 @@ Sources: [project file library](https://github.com/aipoch/open-science/blob/v0.2
 ## Keep an authorized local file as an artifact {/* #import-local-artifact */}
 
 Open a file from an authorized folder under **This computer**. In its preview, use **… → Save as artifact** and wait for completion. Open the resulting conversation artifact and check its contents. Open-Science keeps an immutable managed copy; later edits to the original local file do not update that copy. Merely previewing a folder file does not import it.
+
+## Check the latest published version {/* #latest-published-version */}
+
+After publishing or restoring an artifact, reopen it and check the selected version and contents. v1.0.7 brings the latest published version forward; an older historical preview is still a different version. Use the version controls and provenance panel to inspect how the selected version relates to earlier ones before quoting, downloading or editing it.

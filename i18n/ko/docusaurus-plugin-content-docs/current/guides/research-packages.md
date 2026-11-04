@@ -2,7 +2,7 @@
 title: ".science 연구 패키지"
 description: "파일 및 증거와 함께 세션을 내보내고 다른 프로젝트에 대한 연구 기록을 검사합니다."
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -166,10 +166,16 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 
 내보내기에는 명시적인 `.science` 출력 경로가 필요합니다. 기본 제한 시간은 1시간입니다. 대용량 전송은 **--timeout-ms**로 조정하고 반환된 파일 경로를 확인합니다. **v1.0.5**에서 로컬 파일을 가져올 때는 [로컬 Web 업로드](#web-package-transfer) 또는 데스크톱 앱을 사용하세요. CLI `session import`의 파일 경로는 패키지 검증 전에 거부될 수 있습니다.
 
-## 홈의 연구 사례에서 시작 {/* #use-case-gallery */}
+## 공유 마켓에서 연구 사례 찾기 {/* #use-case-gallery */}
 
-사례 카드의 **Details**에서 공식 설명을 읽고 **Import**로 연구 패키지를 다운로드합니다. 준비, 다운로드, 검증 진행을 확인하고 필요 없으면 **Cancel**로 취소합니다. 대상 선택을 기다리는 패키지는 **Continue**로 가져오기 창을 다시 엽니다.
+1. 기타 **Sharing marketplace** 홈 또는 대화 작업 공간에서. workspace 미리보기에서, 선택 **View in sharing marketplace** 전체 페이지를 엽니다. 홈으로 **Browse all examples** 또한 전체를 엽니 다 **Use Case Marketplace**.
+2. 범주를 선택하고 검색어를 입력하세요. 결과가 너무 적으면 검색어를 지우거나 모든 범주로 돌아가세요.
+3. 사례를 열어 설명과 패키지 동작을 확인하세요. 다운로드하거나 가져오기 전에 주제, 입력 자료 및 예상 출력을 검토하세요.
+4. 케이스 세부 사항에서 제공되는 패키지 동작을 사용합니다. 준비, 다운로드 및 검증 진행; 사용 **Cancel** 로 불필요한 전송을 중지하세요. 다운로드가 끝났다고 프로젝트에 가져온 것은 아닙니다.
+5. 수입 목적지를 검토하고 확인. 결과 연구 기록을 열고, 파일을 검사하고 사용 **Fork to continue** 데스크탑 앱에서 자신의 분석을 실행할 때.
 
-대상 프로젝트를 확인하고 가져온 뒤 입력과 출력을 점검합니다. 자신의 질문은 데스크톱 앱의 **Fork to continue**로 이어갑니다. 다운로드 검증은 전송을 확인하는 것이며, 과학적 결론을 검증하거나 모델 인증 정보를 제공하지 않습니다.
+![Keyword search and category filters in the research-case marketplace](/img/open-science/v107/marketplace-search.webp)
 
-![공식 갤러리 패키지와 대상 프로젝트 확인](/img/open-science/v105/package-preview.webp)
+**Back to Project** 또는 **Back to Home** 로 작업 화면에 돌아갑니다. 마켓에 다시 들어가면 필터와 스크롤 위치가 유지됩니다. 연구 사례는 다음과 용도가 다릅니다: [기술 시장](../skills/marketplace.md): 아 `.science` 패키지는 연구 세션 기록을 담고, Skill은 재사용할 수 있는 지침을 제공합니다.
+
+패키지가 목적지를 기다리고 있다면, **Continue** 로 가져오기 창을 다시 여세요. 새 전송을 시작하기 전에 기존 전송을 확인하세요. 다운로드 검증은 전송의 무결성을 확인하며 사례의 과학적 결론을 검증하거나 모델 자격 증명을 제공하지 않습니다.

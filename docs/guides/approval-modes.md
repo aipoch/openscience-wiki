@@ -1,7 +1,7 @@
 ---
 title: "Permissions and approvals"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-04'
 ---
 
 # Permissions and approvals
@@ -26,7 +26,7 @@ Open **Agent controls** beside the composer and read the selected mode. Check an
 
 ![The actual English permission-mode selector](/img/open-science/walkthrough-2026-09-08/57-permission-modes.webp)
 
-Check the effective mode shown for your Agent; supported approval behavior can differ by framework. Not every mode has been exercised across all four frameworks.
+Check the effective mode shown for your Agent. Supported approval controls differ by framework; read the scope of each request before allowing it.
 
 <span id="a-safe-approval-order" />
 

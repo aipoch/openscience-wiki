@@ -2,7 +2,7 @@
 title: PDF annotations and document notes
 description: Mark passages, collect document notes, find them again and export a reading copy.
 last_update:
-  date: '2026-10-14'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -76,3 +76,25 @@ These notes are stored locally and do not synchronize across machines. For a han
 ## Reveal a note without covering the page {/* #reveal-note */}
 
 In v1.0.0, a saved annotation's **Annotation note** button appears when its mark is selected, hovered or focused. Select the highlight or region, then open the note button to read or edit the comment. A hidden button does not mean the note was deleted. Use **Show notes sidebar** or **Notes & Annotations** to browse the complete list, and **Show annotation source** to return to the marked location.
+
+## Ask the Agent to annotate a linked PDF {/* #agent-annotations */}
+
+In a **Reading** session, the Agent can list annotations, locate a passage or region, and create a persistent highlight, area mark or note. Link the intended PDF first and state what you want saved; a summary in the conversation is not a saved annotation.
+
+1. Open the PDF and choose **Read with agent**, or add it through the Composer's **Reading** selector. Use an editable session; imported research records must be forked before continuing work.
+2. Ask for a specific passage, page or document-level note. Explain what the note should say and ask the Agent to check existing annotations before adding another.
+3. Expand the Reading tool results. Check the located quotation and page, then the result of the save operation. Finding a target alone does not mean that anything was saved.
+4. Open **Notes & Annotations** in the same PDF. Confirm that the new entry exists, follow it to the source location and read the note. Correct inaccurate comments through the annotation controls.
+5. If the reply is interrupted or the operation reports an error, reopen the annotation list before retrying. If no entry exists, use the manual highlight or note controls described above and paste the intended comment.
+
+<p className="example-label"><strong>Example</strong> A request for a source-linked reading reminder</p>
+
+```text
+In the linked PDF, find the sentence on page 2 explaining that the reporting
+checklist is not a quality assessment instrument. Check existing annotations
+first, then highlight the sentence and add an English reminder to assess
+reporting completeness and methodological quality separately. Reopen the
+annotation list and tell me whether the entry was saved.
+```
+
+The Agent's annotation tools add entries; they do not edit or delete existing notes or change the source PDF. Several marks are separate writes, so an interrupted request can leave some entries saved. Check the list rather than repeating the whole request blindly. An annotation attached to the same managed PDF version is shared wherever that PDF is opened; see [shared annotations](#where-notes-are-shared).

@@ -1,7 +1,7 @@
 ---
 title: "開啟與預覽檔案"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -268,3 +268,17 @@ PDF 搜索提示覆蓋不完整時，當前匹配僅來自可搜索的文本。�
 完整、有效的邏輯標籤優先。對於沒有標籤、未旋轉且從左向右排列的文本，可以按版面組織順序；標籤不完整或版面不適用時，回退到 PDF 原生文本順序。這些回退方式不保證每張多欄頁面、表格或公式都能被正確讀取。
 
 審閱回答時保持原文打開，覈對引用頁碼、分欄及圖表，尤其留意句子是否被交叉拼接。如果問題主要針對圖表，可使用[圖表提取工具](#pdf-extraction)。
+
+## 用 OCR 閱讀掃描版 PDF {/* #scanned-pdf-ocr */}
+
+OCR 是可選的本地組件，用於識別沒有可用文本的頁面。它從頁面圖像中識別文字，不會翻譯論文、驗證表格，也不代表整篇文檔已經讀完。
+
+1. 打開 **Settings → Model → Local parsing models**，找到 **Text recognition (OCR)**。
+2. 保留始終選中的 **English**，再勾選文檔實際使用的語言。其他選項包括簡體中文、繁體中文、德語、西班牙語、法語、日語、韓語和俄語。
+3. 點擊 **Install**，等待 **Installed**。新增語言後，通過顯示的 **Install** 或 **Update** 下載識別數據；勾選語言本身不等於完成下載。
+4. 打開 PDF，選擇 **Read with agent**，先詢問一個明確的小範圍頁面。若讀取工具因缺少文本提供 OCR 安裝入口，完成安裝後再讓 Agent 重新讀取這些頁面。
+5. 展開讀取結果，查看 **Pages with text** 和缺頁提示。**OCR was used. Verify recognized text against the PDF.** 表示內容使用了 OCR；採用姓名、數值、單位或引文前，應對照原圖覈查。
+
+![OCR 語言選項及已安裝的本地識別組件](/img/open-science/v107/ocr-settings.webp)
+
+OCR 有頁數和處理時間限制。有文字的頁面仍可能包含未讀出的圖形、公式或表格結構，因此一次讀取成功不代表完整提取。下載失敗時，根據提示處理下載或存儲問題，再點擊 **Retry**；普通文本 PDF 不需要無限等待 OCR 下載。需要在原文旁保存閱讀記錄時，參見 [PDF 批註](pdf-notes.md)。

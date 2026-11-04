@@ -1,7 +1,7 @@
 ---
 title: "文学ライブラリと引用"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -151,6 +151,22 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 
 </ToolOperationGroup>
+
+## DOI または arXiv リンクから参照を追加します。 {/* #doi-link-import */}
+
+1. オープン **Library → All references → Add → Add from DOI or link**.
+2. 1つのDOIを、 **doi.org** リンク、または **arxiv.org/abs/** または **arxiv.org/pdf/** リンクについて **DOI or arXiv link**、それから選ぶ **Find reference**お問い合わせ 通常のパブリッシャーページのURLは、このエントリではサポートされていません。
+3. お問い合わせ **Review reference details**, タイトルをチェック, クリエイター, 年, 出版物と識別子. 使用条件 **Edit details** 保存する前にメタデータを訂正します。
+4. レビュー **When identifiers match**. **Reuse existing reference** 既存のメタデータを保持します。 レコードを比較した後にのみ、別の提供されたアクションを選択します。 選択する **Save**.
+5. 保存したレコードを再オープンし、識別子を確認します。 使用条件 **Find full-text PDF** または **Add files** 紙自体が必要な場合は別途。
+
+<p className="example-label"><strong>実践例</strong> DOI: 10.1038/s41467-018-08136-3</p>
+
+お問い合わせ `10.1038/s41467-018-08136-3`お問い合わせ ルックアップは、Langと同僚の2019の記事を返します、 **Non defect-stabilized thermally stable single-atom catalyst**、自然通信で。 保存する前に、これらの詳細を確認してください。 外観はPDFを添付しません。
+
+![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+
+版番号付き arXiv リンクでも最新のメタデータを取得するため、古い版の情報と一致するとは限りません。後から添付する PDF の版を確認してください。検索に失敗した場合は識別子を確認して再試行するか、PDF・文献情報ファイルからインポートします。検索失敗時には文献は保存されていません。
 
 ## Zotero からインポートする {/* #zotero-import */}
 

@@ -1844,5 +1844,11 @@
   },
   "docs.outline.reference.v106.scope": {
     "message": "Zotero-Import, Notizensuche, automatische PDF-Lesereihenfolge und Zuverlässigkeit."
+  },
+  "docs.outline.reference.v107.title": {
+    "message": "v1.0.7"
+  },
+  "docs.outline.reference.v107.scope": {
+    "message": "DOI- und arXiv-Import, PDF-Anmerkungen, OCR, Pi und Forschungsbeispiele."
   }
 }

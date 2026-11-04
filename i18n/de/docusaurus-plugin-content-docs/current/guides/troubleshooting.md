@@ -1,7 +1,7 @@
 ---
 title: "Fehlerbehebung und häufige Fragen"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-04'
 ---
 
 # Fehlerbehebung und häufige Fragen {/* #troubleshooting-and-common-questions */}
@@ -253,3 +253,9 @@ Quelle: [Bug Report Felder](https://github.com/aipoch/open-science/blob/v0.26.0/
 ## Codex meldet eine inkompatible Version nach einem Upgrade {/* #codex-version */}
 
 Wenn Sie **Der installierte Codex CLI ist inkompatibel oder seine Version konnte nicht verifiziert werden** sehen, öffnen Sie **Settings → Agent** und prüfen Sie den erkannten Pfad und die Codex CLI Version. v0.34.0 erfordert CLI 0.157.1 oder höher. Aktualisieren Sie die verwaltete oder externe Installation, dann **Re-detect**. Die erneute Anmeldung beim Modell ersetzt kein Runtime-Update. Folgen Sie [Update Codex](frameworks.md#update-codex).
+
+## Volltext-Downloads über einen konfigurierten Proxy {/* #full-text-proxy */}
+
+Wenn der Volltextabruf auf einem Host mit Mihomo, Clash oder einem anderen Proxy mit Fake-IP-DNS fehlschlägt, aktualisieren Sie auf v1.0.7 oder höher und versuchen Sie die gleiche Quelle mit der beabsichtigten Einstellung in **Settings → Network**. Wenn alle lokalen DNS-Antworten Platzhalter sind, lässt die App den konfigurierten Proxy das Ziel auflösen.
+
+Dies gewährt keinen Zugriff auf ein Paywalled-Papier oder eine institutionelle Authentifizierung. Bestätigen Sie, dass die Quelle eine Kopie bietet, auf die Sie zugreifen können, und überprüfen Sie dann, ob sich der heruntergeladene Anhang als erwartetes PDF öffnet. Wenn es immer noch fehlschlägt, behalten Sie die Quell-URL und den angezeigten Fehler bei und überprüfen Sie [Netzwerkkonfiguration](network.md) bevor Duplikate hinzugefügt werden.

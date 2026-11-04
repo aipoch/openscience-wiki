@@ -1,7 +1,7 @@
 ---
 title: "Permisos y aprobaciones"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-04'
 ---
 
 # Permisos y aprobaciones {/* #permissions-and-approvals */}
@@ -26,7 +26,7 @@ Abra **Agent controls** junto al compositor y lea el modo seleccionado. Revise c
 
 ![El selector de permisos en inglés real](/img/open-science/walkthrough-2026-09-08/57-permission-modes.webp)
 
-Revise el modo efectivo mostrado para su agente; El comportamiento de aprobación soportado puede diferir por marco. No todos los modos se han ejercido en los cuatro marcos.
+Compruebe el modo activo de su Agent. Los controles de aprobación dependen del framework; revise el alcance de cada solicitud antes de autorizarla.
 
 <span id="a-safe-approval-order" />
 

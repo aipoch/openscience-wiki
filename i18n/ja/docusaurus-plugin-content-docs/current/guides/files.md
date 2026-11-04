@@ -1,7 +1,7 @@
 ---
 title: "ファイル、アーティファクト、バージョン"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-04'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -147,3 +147,7 @@ Windows **Attach files** ダイアログでは、中国語の文字やスペー�
 ## 許可済みローカルファイルを成果物として保存する {/* #import-local-artifact */}
 
 **This computer** の許可済みフォルダーからファイルを開き、プレビューの **… → Save as artifact** を選びます。完了後、会話の成果物を開いて内容を確認してください。Open-Science は変更不能な管理コピーを保持します。元ファイルを後で編集しても、このコピーは変わりません。プレビューするだけでは取り込まれません。
+
+## 最新の公開バージョンをチェック {/* #latest-published-version */}
+
+成果物の公開や復元後は開き直し、選択中の版と内容を確認します。v1.0.7 は最新の公開版を前面に表示しますが、履歴から開いた旧版は別の版です。引用、ダウンロード、編集の前に、版の操作と来歴パネルで以前の版との関係を確認してください。

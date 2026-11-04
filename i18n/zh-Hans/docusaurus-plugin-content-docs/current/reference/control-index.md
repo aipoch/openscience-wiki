@@ -3,7 +3,7 @@ sidebar_position: 1
 title: 完整页面与控件索引
 description: 按页面查找 Open-Science 的按钮、输入、开关和结果。
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-04'
 ---
 
 # 完整页面与控件索引
@@ -168,7 +168,7 @@ Active model、Reasoning radios、Subagent/Reviewer/Vision/Session-details model
 
 ### Agent
 
-OpenCode/Claude/Codex/CodeBuddy framework card、Switch、Install source、Install/Cancel/Retry、Install log、Repair、Sign in/auth、Import config/home、Uninstall confirmation。
+OpenCode/Claude/Codex/CodeBuddy/Pi framework card、Switch、Install source、Install/Cancel/Retry、Install log、Repair、Sign in/auth、Import config/home、Uninstall confirmation。
 
 ### Permissions
 

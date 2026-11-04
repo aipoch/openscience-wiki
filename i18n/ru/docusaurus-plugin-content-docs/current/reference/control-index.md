@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Страница и контрольный индекс"
 description: "Найдите каждую задокументированную кнопку Open-Science, ввод, переключение и результат по странице."
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-04'
 ---
 
 # Страница и контрольный индекс {/* #page-and-control-index */}
@@ -168,7 +168,7 @@ last_update:
 
 ### Агент {/* #agent */}
 
-Карта фреймворка OpenCode/Claude/Codex/CodeBuddy, Switch, источник установки, Install/Cancel/Retry, журнал установки, ремонт, вход/авт, импорт конфигураций/дома и подтверждение удаления.
+Карта фреймворка OpenCode/Claude/Codex/CodeBuddy/Pi, Switch, источник установки, Install/Cancel/Retry, журнал установки, ремонт, вход/авт, импорт конфигураций/дома и подтверждение удаления.
 
 ### Разрешения {/* #permissions */}
 

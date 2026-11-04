@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "ページと管理のインデックス"
 description: "文書化されたOpen-Scienceボタン、入力、スイッチ、および結果をすべてページで見つけて下さい。"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-04'
 ---
 
 # ページと管理のインデックス {/* #page-and-control-index */}
@@ -168,7 +168,7 @@ last_update:
 
 ### エージェント {/* #agent */}
 
-OpenCode/Claude/Codex/CodeBuddyフレームワークカード, スイッチ, インストール/キャンセル/リトリー, ログをインストール, 修理, サインイン/auth, インポートコンフィグ/ホーム, そして、確認をアンインストール.
+OpenCode/Claude/Codex/CodeBuddy/Piフレームワークカード, スイッチ, インストール/キャンセル/リトリー, ログをインストール, 修理, サインイン/auth, インポートコンフィグ/ホーム, そして、確認をアンインストール.
 
 ### 権限 {/* #permissions */}
 

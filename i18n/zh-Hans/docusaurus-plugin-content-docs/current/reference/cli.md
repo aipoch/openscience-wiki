@@ -1,7 +1,7 @@
 ---
 title: "CLI 与结构化输出"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 从终端完成首次设置 {/* #terminal-setup */}
 
-可安装桌面版命令入口、使用 v1.0.6 独立压缩包，或按 [npm 安装步骤](../guides/installation.md#npm-cli)操作。独立压缩包包含 Node、后端和 Web UI；下面的解压步骤适用于这些压缩包。
+可安装桌面版命令入口、使用 v1.0.7 独立压缩包，或按 [npm 安装步骤](../guides/installation.md#npm-cli)操作。独立压缩包包含 Node、后端和 Web UI；下面的解压步骤适用于这些压缩包。
 
 1. 选择与主机匹配的 macOS／Linux arm64 或 x64 包，或 Windows x64 包。
 2. 完整解压到可写目录，保留启动器、`backend` 与 `node-runtime` 的相对位置；只复制启动器会导致无法启动。
@@ -213,9 +213,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL 可能包含 `run.progress` 和 `stream.resync-required`。重连后无法重放时，重新读取权威 Run 状态，不把事件流当作永久历史。服务命令另有参数限制，见[无界面服务](./server.md)。
 
-[CLI 实现](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md)。
+[CLI 实现](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/CLI.md)。
 
-技术参考：[CLI 约定](https://github.com/aipoch/open-science/blob/v1.0.6/packages/open-science/CLI.md).
+技术参考：[CLI 约定](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/CLI.md).
 
 ## 无人值守运行 {/* #unattended-runs */}
 

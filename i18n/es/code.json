@@ -1830,5 +1830,11 @@
   },
   "docs.outline.reference.v106.scope": {
     "message": "Importación de Zotero, búsqueda en notas, orden automático de lectura de PDF y fiabilidad."
+  },
+  "docs.outline.reference.v107.title": {
+    "message": "v1.0.7"
+  },
+  "docs.outline.reference.v107.scope": {
+    "message": "Importación DOI y arXiv, anotaciones PDF, OCR, Pi y casos de investigación."
   }
 }

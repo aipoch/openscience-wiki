@@ -1,7 +1,7 @@
 ---
 title: "문제 해결 및 일반적인 질문"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-04'
 ---
 
 # 문제 해결 및 일반적인 질문 {/* #troubleshooting-and-common-questions */}
@@ -253,3 +253,9 @@ Relevant log excerpt or screenshot:
 ## Codex은 업그레이드 후 호환되는 버전을 보여줍니다. {/* #codex-version */}
 
 **설치된 Codex CLI는 호환이 되는 또는 그것의 버전은 확인될 수 없습니다**을 볼 경우 **Settings → Agent**을 열고 검출된 경로와 Codex CLI 버전을 검사합니다. v0.34.0은 CLI 0.157.1 이상을 요구합니다. 관리 또는 외부 설치를 업데이트 한 다음 **Re-detect**. 모델에 로그인하여 다시 실행 업데이트를 대체하지 않습니다. [Codex 업데이트](frameworks.md#update-codex)을 따르십시오.
+
+## 설정된 프록시를 통한 원문 다운로드 {/* #full-text-proxy */}
+
+Full-text retrieval이 Mihomo, Clash 또는 Fake-IP DNS와 다른 프록시를 사용하여 호스트에 실패하면 v1.0.7 이상으로 업데이트되고 의도 된 설정을 사용하여 동일한 소스를 다시 시도하십시오. **Settings → Network**· 모든 로컬 DNS 답변이 위주인 경우, 앱은 지정된 프록시가 목적지를 해결하도록 합니다.
+
+이 기능은 유료 논문 접근권이나 기관 인증을 제공하지 않습니다. 접근 가능한 사본인지 확인하고 다운로드한 첨부가 원하는 PDF로 열리는지 확인하세요. 계속 실패하면 원본 URL과 오류를 기록하고 중복 문헌을 추가하기 전에 다음을 확인하세요: [네트워크 구성](network.md) .

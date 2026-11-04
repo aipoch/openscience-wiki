@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "完整頁面與控制元件索引"
 description: "按頁面查詢 Open-Science 的按鈕、輸入、開關和結果。"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-04'
 ---
 
 # 完整頁面與控制元件索引 {/* #完整页面与控件索引 */}
@@ -168,7 +168,7 @@ Active model、Reasoning radios、Subagent/Reviewer/Vision/Session-details model
 
 ### Agent {/* #agent */}
 
-OpenCode/Claude/Codex/CodeBuddy framework card、Switch、Install source、Install/Cancel/Retry、Install log、Repair、Sign in/auth、Import config/home、Uninstall confirmation。
+OpenCode/Claude/Codex/CodeBuddy/Pi framework card、Switch、Install source、Install/Cancel/Retry、Install log、Repair、Sign in/auth、Import config/home、Uninstall confirmation。
 
 ### Permissions {/* #permissions */}
 

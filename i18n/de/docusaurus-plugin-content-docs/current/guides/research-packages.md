@@ -2,7 +2,7 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -166,10 +166,16 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 
 Der Export erfordert einen ausdrücklichen `.science`-Ausgabepfad. Das Zeitlimit beträgt standardmäßig eine Stunde; passen Sie es für große Übertragungen mit **--timeout-ms** an und prüfen Sie den zurückgegebenen Pfad. Importieren Sie lokale Dateien in **v1.0.5** über den [lokalen Web-Upload](#web-package-transfer) oder die Desktop-App. Der CLI-Pfad für `session import` kann vor der Paketprüfung abgewiesen werden.
 
-## Beginnen Sie mit einem Homepage Research Case {/* #use-case-gallery */}
+## Finden Sie einen Forschungsfall in Sharing Marketplace {/* #use-case-gallery */}
 
-Auf der Homepage wählen Sie **Details** auf einer Fallkarte, um ihre offizielle Fallseite zu lesen. Wählen **Import** um sein Forschungspaket herunterzuladen. Verfolgen Sie den Vorbereitungs-, Download- und Verifizierungsfortschritt; **Cancel** Stoppt eine unerwünschte Übertragung. Wenn das Paket auf ein Ziel wartet, **Continue** öffnet den Import-Dialog erneut.
+1. Offen **Sharing marketplace** von Home oder dem Conversation Workspace. In einer Workspace-Vorschau wählen **View in sharing marketplace** um die ganze Seite zu öffnen. Zu Hause, **Browse all examples** öffnet auch die volle **Use Case Marketplace**.
+2. Wählen Sie eine Kategorie aus und geben Sie ein Keyword in das Suchfeld ein. Löschen Sie das Keyword oder kehren Sie zu allen Kategorien zurück, wenn die Ergebnisliste zu eng ist.
+3. Öffnen Sie einen Fall, um seine Beschreibung zu lesen und die verfügbare Paketaktion zu überprüfen. Überprüfen Sie das Thema, die Eingaben und die beabsichtigten Ausgaben, bevor Sie es herunterladen oder importieren.
+4. Verwenden Sie die in den Falldetails angebotene Paketaktion. Verfolgen Sie den Vorbereitungs-, Download- und Verifizierungsfortschritt; Verwendung **Cancel** einen unerwünschten Transfer zu stoppen. Heruntergeladene Bytes sind noch kein importiertes Projekt.
+5. Überprüfen Sie das Einfuhrziel und bestätigen Sie es. Öffnen Sie die resultierende Forschungsaufzeichnung, inspizieren Sie ihre Dateien und verwenden Sie **Fork to continue** in der Desktop-App, wenn Sie Ihre eigene Analyse ausführen möchten.
 
-Überprüfen Sie das Zielprojekt und bestätigen Sie den Import. Öffnen Sie das Ergebnis, prüfen Sie die Ein- und Ausgänge und verwenden Sie **Fork to continue** in der Desktop-App für Ihre eigene Frage. Die Download-Verifizierung überprüft die Paketübertragung; sie validiert nicht die wissenschaftlichen Schlussfolgerungen des Falls oder liefert seine Modellanmeldeinformationen.
+![Keyword search and category filters in the research-case marketplace](/img/open-science/v107/marketplace-search.webp)
 
-![Ein Paket aus der offiziellen Galerie vor dem Import prüfen](/img/open-science/v105/package-preview.webp)
+**Back to Project** oder **Back to Home** kehrt zu Ihrem Workspace zurück. Die Rückkehr zum Markt behält seinen Browserzustand bei, einschließlich Filter und Scroll-Position. Forschungsfälle unterscheiden sich von den [Geschicklichkeitsmarkt](../skills/marketplace.md): a `.science` Paket führt eine aufgezeichnete Forschungssitzung; eine Fertigkeit liefert wiederverwendbare Anweisungen.
+
+Wenn ein Paket auf ein Ziel wartet, **Continue** öffnet den Import-Dialog erneut. Überprüfen Sie eine vorhandene Übertragung, bevor Sie eine andere starten. Die Download-Verifizierung überprüft die Übertragung, nicht die wissenschaftlichen Schlussfolgerungen des Falles, und liefert keine Modellnachweise.

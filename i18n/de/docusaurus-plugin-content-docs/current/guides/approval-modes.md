@@ -1,7 +1,7 @@
 ---
 title: "Genehmigungen und Genehmigungen"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-04'
 ---
 
 # Genehmigungen und Genehmigungen {/* #permissions-and-approvals */}
@@ -26,7 +26,7 @@ Verwenden Sie **Agent controls**, um auszuwählen, wie die aktuelle Konversation
 
 ![Der eigentliche englische permission-mode selector](/img/open-science/walkthrough-2026-09-08/57-permission-modes.webp)
 
-Überprüfen Sie den effektiven Modus, der für Ihren Agenten angezeigt wird; Das unterstützte Genehmigungsverhalten kann je nach Framework unterschiedlich sein. Nicht jeder Modus wurde in allen vier Frameworks ausgeübt.
+Prüfen Sie den aktiven Modus Ihres Agents. Die Freigabesteuerung hängt vom Framework ab; lesen Sie vor jeder Freigabe den Umfang der Anfrage.
 
 <span id="a-safe-approval-order" />
 

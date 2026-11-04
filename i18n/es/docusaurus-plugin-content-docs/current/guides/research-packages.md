@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-04'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -166,10 +166,16 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 
 La exportación requiere una ruta de salida `.science` explícita. El plazo predeterminado es de una hora; use **--timeout-ms** para transferencias grandes y compruebe la ruta devuelta. En **v1.0.5**, importe archivos locales mediante la [carga en Web local](#web-package-transfer) o la aplicación de escritorio. La ruta de `session import` del CLI puede rechazarse antes de validar el paquete.
 
-## Inicio de un caso de investigación de página principal {/* #use-case-gallery */}
+## Encontrar un caso de investigación en Compartir mercado {/* #use-case-gallery */}
 
-En la página principal, elija **Details** en una tarjeta de caso para leer su página de caso oficial. Elija **Import** para descargar su paquete de investigación. Seguir los progresos en la preparación, descarga y verificación; **Cancel** detiene una transferencia no deseada. Si el paquete está esperando un destino, **Continue** reabre el diálogo de importación.
+1. Abierto **Sharing marketplace** desde Home o el espacio de trabajo de conversación. En una vista previa del espacio de trabajo, elija **View in sharing marketplace** para abrir la página completa. En casa, **Browse all examples** también abre todo **Use Case Marketplace**.
+2. Elige una categoría e introduce una palabra clave en el campo de búsqueda. Limpiar la palabra clave o volver a todas las categorías cuando la lista de resultados es demasiado estrecha.
+3. Abrir un caso para leer su descripción e inspeccionar la acción de paquete disponible. Revise su tema, los insumos y los productos previstos antes de descargarlo o importarlo.
+4. Utilice la acción del paquete que se ofrece en los detalles del caso. Seguir los progresos en la preparación, descarga y verificación; utilizar **Cancel** para detener una transferencia no deseada. Los bytes descargados aún no son un proyecto importado.
+5. Revisa el destino de importación y confirma. Abrir el registro de investigación resultante, inspeccionar sus archivos y utilizar **Fork to continue** en la aplicación de escritorio cuando desea ejecutar su propio análisis.
 
-Revisa el proyecto de destino y confirma la importación. Abrir el resultado, inspeccionar las entradas y salidas, luego utilizar **Fork to continue** en la aplicación de escritorio para su propia pregunta. Descargar verificación comprueba la transferencia del paquete; no valida las conclusiones científicas del caso o suministra sus credenciales modelo.
+![Keyword search and category filters in the research-case marketplace](/img/open-science/v107/marketplace-search.webp)
 
-![Revisar un paquete de la galería oficial antes de importarlo](/img/open-science/v105/package-preview.webp)
+**Back to Project** o **Back to Home** regresa a su espacio de trabajo. Volver al mercado conserva su estado de navegación, incluyendo filtros y posición de desplazamiento. Los casos de investigación son diferentes de los [Mercado de habilidades](../skills/marketplace.md): a `.science` paquete lleva una sesión de investigación registrada; una Habilidad proporciona instrucciones reutilizables.
+
+Si un paquete está esperando un destino, **Continue** reabre el diálogo de importación. Revise cualquier transferencia existente antes de comenzar otra. Descargar verificación comprueba la transferencia, no las conclusiones científicas del caso, y no proporciona sus credenciales modelo.

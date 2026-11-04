@@ -1,7 +1,7 @@
 ---
 title: "エージェントのインストールと切り替え"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-04'
 ---
 
 # エージェントのインストールと切り替え {/* #installing-and-switching-agents */}
@@ -24,7 +24,7 @@ last_update:
 | ログ/リトライのインストール | その原因を解決した後に失敗したステップおよび再試行を読んで下さい。 |
 | 修復 | 管理された取付けが修理を必要とするとき出現; 確認する前に、影響を受けるランタイムを調べます。 |
 
-Codex、Claude Agent、OpenCode、CodeBuddyの検査ページ。 利用可能なソースと認証要件は異なります。 すべてのフレームワークが同じインストーラやサインインメソッドを提供していないと仮定しません。
+Open-Science v1.0.7 では Codex、Claude Agent、OpenCode、CodeBuddy、Pi を選べます。 利用可能なソースと認証要件は異なります。 すべてのフレームワークが同じインストーラやサインインメソッドを提供していないと仮定しません。
 
 ## インストールと検証 {/* #install-and-verify */}
 
@@ -82,3 +82,15 @@ app-managed update は、アプリ所有のランタイムを置き換えます�
 ソース: [エージェントパネル](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentPanel.tsx)、[フレームワークカード](https://github.com/aipoch/open-science/blob/v0.30.1/src/renderer/src/pages/settings/AgentFrameworkCard.tsx)。
 
 スコープとスイッチ動作:[設定ストレージ](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/settings/repository.ts)、[ランタイム スイッチング](https://github.com/aipoch/open-science/blob/v0.30.1/src/main/acp/runtime-coordinator.ts)。
+
+## Pi を別の Agent としてインストールする {/* #pi-agent */}
+
+Pi は v1.0.7 から初期設定で使用可能です。 **Settings → Agent**お問い合わせ モデルプロバイダとは別にアプリ管理のPi ACPアダプタを介してインストールされます。
+
+1. 活動的な仕事を終えて下さい。 お問い合わせ **Settings → Agent**, 見つける **Pi** 選択する **Install → App-managed download (recommended)**.
+2. インストールと検出の完了を待ち、版と利用可能な状態を確認します。パッケージのダウンロード完了だけでは Agent は利用可能になりません。
+3. 利用可能な Pi のカードを選び、切り替えの確認を読みます。使用中のフレームワークはプロジェクト間で共通で、以後の作業に適用されます。
+4. オープン **Settings → Model**で Pi に対応するプロバイダーを選び、接続テストを完了します。提供されている場合はサブスクリプションのサインインを使います。Pi のインストールだけではログインせず、別のフレームワークのログインを再利用できるとも限りません。
+5. 目的の Main モデルを選んで短いリクエストを送信します。長い作業の前に、応答と実際のツール結果を確認してください。
+
+Pi は互換性のある Responses、Chat Completions、Messages エンドポイントに対応します。プロバイダー、サブスクリプション、モデルの候補は使用中のフレームワークで絞り込まれます。Pi のインストール中も Codex を使用できます。切り替えは別の操作です。参照： [プロバイダーのセットアップ](providers.md).

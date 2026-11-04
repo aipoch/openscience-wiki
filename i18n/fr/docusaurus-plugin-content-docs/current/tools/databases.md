@@ -2,7 +2,7 @@
 title: "Bases de données scientifiques"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-04'
 ---
 
 # Bases de données scientifiques {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Utilisez cette page pour choisir une source de données, comprendre ce qu'elle p
 
 ## Bases de données prises en charge {/* #supported-databases */}
 
-Open-Science v1.0.6 comprend **48 Connectors intégrés et 418 opérations** : 47 Connectors de sources de données fournissent 416 opérations, et un Connector Molecule hors ligne en fournit deux. Les noms ci-dessous correspondent aux entrées de **Settings → Connectors**. Un Connector peut couvrir plusieurs bases de données. La présence d’une source ne signifie pas que toutes les fonctions de son site sont disponibles.
+Open-Science v1.0.7 comprend **48 Connectors intégrés et 418 opérations** : 47 Connectors de sources de données fournissent 416 opérations, et un Connector Molecule hors ligne en fournit deux. Les noms ci-dessous correspondent aux entrées de **Settings → Connectors**. Un Connector peut couvrir plusieurs bases de données. La présence d’une source ne signifie pas que toutes les fonctions de son site sont disponibles.
 
 Ce total comprend toutes les entrées intégrées, y compris celles qui sont désactivées. Les Connectors MCP ajoutés par l’utilisateur sont comptés séparément. Le nombre de Connectors, de bases de données couvertes et d’opérations disponibles correspond à des mesures différentes.
 
@@ -268,7 +268,7 @@ Pour `get_variant`, définissez `include_populations: true` uniquement lorsque l
 
 Les listes [Référence de fonctionnement Connector](../reference/connector-operations.md) contiennent les entrées requises, les valeurs autorisées et les appels exacts. Utilisez cette page pour choisir une source et la connecter; utiliser la référence pour les champs d'un outil particulier.
 
-Source du catalogue : [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.6/src/main/connectors/registry.ts).
+Source du catalogue : [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts).
 
 ## Recherches de séquences et alignement {/* #sequence-tools */}
 
