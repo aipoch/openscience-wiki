@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Page and control index
 description: Find every documented Open-Science button, input, switch, and result by page.
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # Page and control index
@@ -35,7 +35,7 @@ See [First-time setup](../guides/onboarding.md) and [Provider configuration](../
 | --- | --- | --- |
 | Home header | GitHub, Search, Library, Theme, Messages, Model settings | Open the repository, global search, literature library, appearance menu, notifications, or Model settings |
 | Home body | New project, project card, Recent session | Create or open a project or session |
-| Theme menu | System, Light, Dark | Set appearance and keep it in sync with General |
+| Theme menu | System, Light, Dark | Set appearance and keep it in sync with Appearance |
 | Search | Search input, category, Advanced filters, result detail, Esc | [Find messages, files and references](../guides/navigation.md) with the intended scope |
 | Messages | Notification item, read action, Close | Open the source and manage unread items |
 | Create project | Name, Description, Agent Context, Cancel, Create project | Create a project; Name is required |
@@ -116,6 +116,8 @@ See [First-time setup](../guides/onboarding.md) and [Provider configuration](../
 | Duplicates | Select groups, Compare, field choices, Merge | Review and merge records while preserving associations |
 | Background tasks | Pause, Resume, Review, Cancel | Control bulk metadata/full-text operations |
 
+Use **Add from DOI or link** for a reviewed batch of identifiers, and **Study overview → Generate overview / Regenerate** inside a reference to summarize its available source. See [library instructions](../guides/library.md#doi-link-import).
+
 ## Notebook and Provenance
 
 | Page | Controls | Result |
@@ -184,7 +186,15 @@ Application storage Reveal/Repair; Data location Change, Path, Browse, checks, M
 
 ### General
 
-Task notifications, Theme radios, App icon radios, close behavior, GitHub token Open/Input/Save/Clear, and About/Check updates/install update.
+App version, **Check now**, download and manual-install help, **Help Center**, **Release notes**, diagnostics **Reveal / Open**, command-line **Install command** and supported window behavior. Appearance and notifications have their own panels under **System**.
+
+### Appearance {/* #appearance */}
+
+**Theme**, **Language**, desktop **Interface scale** and supported app-icon choices. See [appearance settings](../guides/appearance.md).
+
+### Notifications {/* #notifications */}
+
+**Task notifications**, **Show task content in system notifications**, **System notification status** and **Send test notification**. See [notification setup](../guides/appearance.md).
 
 ### Remote control
 

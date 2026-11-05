@@ -1,7 +1,7 @@
 ---
 title: "Archivos, artefactos y versiones"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -151,3 +151,5 @@ Abra un archivo de una carpeta autorizada bajo **This computer**. En su vista pr
 ## Consulta la última versión publicada {/* #latest-published-version */}
 
 Después de publicar o restaurar un artefacto, vuelva a abrirlo y compruebe la versión y el contenido seleccionados. v1.0.7 trae la última versión publicada hacia adelante; una vista previa histórica anterior sigue siendo una versión diferente. Utilice los controles de versión y el panel de procedencia para inspeccionar cómo se relaciona la versión seleccionada con los anteriores antes de citar, descargar o editarla.
+
+Cuando un artefacto de Markdown más viejo se abre con una cabeza de probabilidad fija, v1.0.8 repara ese puntero de historia. Revise la versión mostrada y cualquier advertencia de ejecución incompleta antes de compartir el archivo. Reparar un puntero de historia no reimprime ni verifica un análisis.

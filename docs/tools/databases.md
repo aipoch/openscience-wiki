@@ -2,7 +2,7 @@
 title: "Scientific databases"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # Scientific databases
@@ -13,7 +13,7 @@ Use this page to choose a data source, understand what it can return, and make i
 
 ## Supported databases {/* #supported-databases */}
 
-Open-Science v1.0.7 includes **48 built-in Connectors with 418 operations**: 47 data-source Connectors provide 416 operations, and the offline Molecule Connector provides two. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+Open-Science v1.0.8 includes **48 built-in Connectors with 418 operations**: 47 data-source Connectors provide 416 operations, and the offline Molecule Connector provides two. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
 
 The count covers all built-in entries, including disabled ones; custom MCP Connectors are additional. Connector count, underlying database count and operation count measure different things.
 
@@ -268,7 +268,7 @@ From v0.31.0, `get_string_network.nodes` includes returned neighbors and isolate
 
 The [Connector operation reference](../reference/connector-operations.md) lists required inputs, allowed values and exact calls. Use this page to choose a source and connect it; use the reference for a particular tool's fields.
 
-Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts).
+Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/registry.ts).
 
 ## Sequence searches and alignment {/* #sequence-tools */}
 
@@ -413,3 +413,11 @@ In **Settings → Connectors**, enable only the entries needed for your question
 | Inspect cell-line evidence | **Cellosaurus** adds RDF, bounded SPARQL and STR similarity | Preserve accession and marker settings; similarity alone does not certify sample identity |
 
 File listings return official URLs and source metadata, not downloaded files or a ready analysis database. NHANES analysis still requires the correct survey design and weights. MIMIC/eICU demo access does not grant access to their full datasets. FAERS reports cannot be interpreted as incidence rates. For exact fields and examples, use the [operation reference](../reference/connector-operations.md).
+
+## Supply coordinates for eQTL Catalogue {/* #eqtl-coordinates */}
+
+Use **Human Genetics** to list eQTL Catalogue release-7 datasets, choose a study, tissue and quantification method, then query a small region. The retired REST API has been replaced with official indexed TSV files.
+
+For `eqtl_associations`, supply `dataset_id`, explicit `genome_build: "GRCh38"`, and either `pos` or `variant`. A gene ID or rsID is only an additional exact filter; it does not resolve coordinates. `pos` is a 1-based inclusive region such as `20:46120612-46120613`, with no `chr` prefix and a maximum span of 5 Mb. GRCh37 variants need an explicit, unique liftover to GRCh38 before querying.
+
+Preserve `reference_data`, the original `pvalue_text` and ALT as the effect allele. A metadata snapshot does not freeze the upstream files. Empty results mean no matching published rows in the tested cis window; they do not prove absence of an association. See the [operation parameters](../reference/connector-operations.md#eqtl_associations).

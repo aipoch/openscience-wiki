@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: Settings overview
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-05'
 ---
 
 # Settings overview
 
-Open **Settings** from the lower-left corner of the workspace. Its 17 panels are organized into four groups: **Intelligence**, **Connections**, **Workspace** and **System**. Choose a panel by purpose, or search from the header. In these guides, **Settings → Model**, for example, refers to the Model panel inside Intelligence.
+Open **Settings** from the lower-left corner of the workspace. Its **19 panels** are organized into four groups: **System**, **Intelligence**, **Connections** and **Workspace**. Appearance and Notifications are separate panels. Choose by purpose or search from the header; **Settings → Model**, for example, opens Model inside Intelligence.
 
 | Global control | Behavior |
 | --- | --- |
@@ -27,10 +27,13 @@ Open **Settings** from the lower-left corner of the workspace. Its 17 panels are
 
 This search covers representative settings across every panel, not every field or research document. If a term does not match, use the panel name or the navigation groups below. To search conversations or files, close Settings and use [global search](../guides/navigation.md).
 
-## The 17 main panels
+## The 19 main panels {/* #the-17-main-panels */}
 
 | Group | Panel | What it manages |
 | --- | --- | --- |
+| System | [General](../guides/appearance.md#help-center) | App version, updates, diagnostics, CLI installation, window behavior and help |
+|  | [Appearance](../guides/appearance.md) | Theme, language, desktop interface scale and supported app-icon choices |
+|  | [Notifications](../guides/appearance.md) | Task alerts, notification content, system status and test notification |
 | Intelligence | [Model](../guides/models.md) | Provider and scenario models |
 |  | [Agent](../guides/frameworks.md) | Agent framework installation, switching and repair |
 |  | [Skills](../skills/overview.md) | Reusable research methods and their availability |
@@ -47,7 +50,6 @@ This search covers representative settings across every panel, not every field o
 |  | [Compute](../guides/remote-compute.md) | Local and SSH compute resources |
 |  | [Usage](../guides/usage.md) | Token, call and research activity statistics |
 |  | [Archived](../guides/storage.md) | Restore or permanently delete archived work |
-| System | [General](../guides/appearance.md) | Appearance, notifications, diagnostics and version |
 
 **Feedback** remains a separate entry at the bottom of Settings.
 

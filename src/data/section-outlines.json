@@ -1433,6 +1433,17 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v108",
+            "title": "v1.0.8",
+            "scope": "Batch reference imports, study overviews, Settings and eQTL updates.",
+            "currentDoc": "changelog/v1-0-8",
+            "proposedUrl": "/docs/changelog/v1-0-8/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-0-8"
+            ]
+          },
+          {
             "id": "v107",
             "title": "v1.0.7",
             "scope": "DOI and arXiv import, PDF annotations, OCR, Pi and the research-case marketplace.",

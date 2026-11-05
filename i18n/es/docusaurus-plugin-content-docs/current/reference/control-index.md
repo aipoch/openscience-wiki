@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Índice de página y control"
 description: "Encontrar cada botón Open-Science documentado, entrada, cambio y resultado por página."
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # Índice de página y control {/* #page-and-control-index */}
@@ -116,6 +116,8 @@ Vea [Configuración de primera vez](../guides/onboarding.md) y [Configuración d
 | Duplicados | Seleccionar grupos, Comparar, opciones de campo, Combinar | Revisar y fusionar los registros mientras preserva las asociaciones |
 | Tareas en segundo plano | Pausa, Resumen, Comentario, Cancelar | Control de metadatos a granel/operaciones de texto completo |
 
+Uso **Add from DOI or link** para un lote revisado de identificadores, y **Study overview → Generate overview / Regenerate** dentro de una referencia para resumir su fuente disponible. Véase [Instrucciones de biblioteca](../guides/library.md#doi-link-import).
+
 ## Notebook y Provenance {/* #notebook-and-provenance */}
 
 | Página | Controles | Resultado |
@@ -184,7 +186,15 @@ Almacenamiento de aplicaciones Reveal/Repair; Localización de datos Cambiar, Se
 
 ### General {/* #general */}
 
-Notificaciones de tareas, radios de Theme, radios de icono de App, comportamiento cercano, GitHub token Open/Input/Save/Clear, y About/Check updates/install update.
+Versión de aplicación, **Check now**, descarga y ayuda manual de instalación, **Centro de ayuda**, **Notas de lanzamiento**, diagnóstico **Reveal / Open**, línea de comandos **Install command** y el comportamiento de ventana soportado. La apariencia y las notificaciones tienen sus propios paneles bajo **System**.
+
+### Appearance {/* #appearance */}
+
+**Theme**, **Language**, escritorio **Escala de interfaz** y las opciones de App-icon compatibles. Véase [configuración](../guides/appearance.md).
+
+### Notifications {/* #notifications */}
+
+**Task notifications**, **Show task content in system notifications**, **System notification status** y **Send test notification**. Véase [Notificación](../guides/appearance.md).
 
 ### Control remoto {/* #remote-control */}
 

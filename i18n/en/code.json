@@ -1917,5 +1917,11 @@
   },
   "docs.outline.reference.v107.scope": {
     "message": "DOI and arXiv import, PDF annotations, OCR, Pi and the research-case marketplace."
+  },
+  "docs.outline.reference.v108.title": {
+    "message": "v1.0.8"
+  },
+  "docs.outline.reference.v108.scope": {
+    "message": "Batch reference imports, study overviews, Settings and eQTL updates."
   }
 }

@@ -1,37 +1,24 @@
 ---
 title: "Aussehen und Meldungen"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
-import PreferenceScreenshot from '@site/src/components/PreferenceScreenshot';
-import Screenshot from '@site/src/components/Screenshot';
-
 # Aussehen und Meldungen {/* #appearance-and-notifications */}
 
-Wählen Sie ein komfortables Thema, legen Sie Ihre Benutzeroberflächensprache fest und erhalten Sie Aufgabenbenachrichtigungen, während Sie in einer anderen App arbeiten. Öffnen Sie **Settings → General**, um diese Einstellungen anzupassen. Open-Science erinnert sich an Ihre Aussehensauswahl auf diesem Gerät.
+Wählen Sie ein komfortables Thema, legen Sie Ihre Benutzeroberflächensprache fest und erhalten Sie Aufgabenbenachrichtigungen, während Sie in einer anderen App arbeiten. Offen **Settings → Appearance** für visuelle Präferenzen und **Settings → Notifications** für Ausschreibungen. Beide Panels sind in **System**; General enthält App-Wartung und Hilfe.
 
 <PlatformGuide />
 
 ## Change Theme und Interface Language {/* #change-theme-and-interface-language */}
 
-1. In **General → Appearance** finden Sie **Theme**.
+1. In **Appearance** finden Sie **Theme**.
 2. Wählen Sie **System**, um Ihrem Gerät zu folgen, oder wählen Sie **Light** oder **Dark**, um ein festes Erscheinungsbild beizubehalten. Sie können jederzeit wieder umschalten.
 3. Wählen Sie unter **Language** Ihre bevorzugte Schnittstellensprache oder **System**, um die Gerätesprache zu verwenden.
 
-<PlatformContent platform="macos">
-
-![Allgemeine Aussehenseinstellungen](/img/open-science/v0.27.0/07-general-appearance.webp)
-
-</PlatformContent>
-
-<PlatformContent platform="windows">
-
-<Screenshot src="/img/open-science/windows/general-settings.webp" alt="Themen- und Sprachsteuerungen in Windows Allgemeine Einstellungen" width={1920} height={1017} windowBounds={[480, 165, 960, 690]} href="/docs/img/open-science/windows/general-settings.webp" linkLabel="Öffnen Sie den kompletten Screenshot der Windows-Einstellungen" />
-
-</PlatformContent>
+![Open-Science: Appearance / Notifications](/img/open-science/v108/appearance.webp)
 
 | Wahlmöglichkeit | Was sich ändert |
 | --- | --- |
@@ -40,7 +27,7 @@ Wählen Sie ein komfortables Thema, legen Sie Ihre Benutzeroberflächensprache f
 | Sprache: System | Die App liest die Gerätesprache beim Start. Nachdem Sie die Systemsprache geändert haben, öffnen Sie die App erneut, um sie anzuwenden. |
 | Eine bestimmte Sprache | Die app verwendet diese schnittstellensprache. Gespeicherte Eingabeaufforderungen, Quelldateien und frühere Modellantworten behalten ihren Originaltext. |
 
-Sprach- und Theme-Präferenzen sind in **Settings → General → Appearance**. Die Dokumentations-Website verfügt über einen eigenen Sprachselektor; Ändern es lässt die sprache der app unverändert. Systemdateidialoge folgen Ihren Betriebssystemeinstellungen.
+Sprach- und Theme-Präferenzen sind in **Settings → Appearance**. Die Dokumentations-Website verfügt über einen eigenen Sprachselektor; Ändern es lässt die sprache der app unverändert. Systemdateidialoge folgen Ihren Betriebssystemeinstellungen.
 
 Um einen Bericht in einer anderen Sprache anzufordern, geben Sie dies in Ihrem Gespräch an. Zum Beispiel: "Schreiben Sie den Bericht auf Englisch und bewahren Sie die ursprünglichen Gen-Identifikatoren auf."
 
@@ -63,16 +50,10 @@ Der gleiche Bericht bleibt im größeren Maßstab lesbar. Verwenden Sie die hori
 
 Aktivieren Sie Benachrichtigungen, wenn Sie eine laufende Analyse verlassen und zurückkehren möchten, wenn sie Aufmerksamkeit benötigt.
 
-1. Schalten Sie in **General → Notifications** **Task notifications** ein.
+1. Schalten Sie in **Notifications** **Task notifications** ein.
 2. Wählen Sie, ob **Show task content in system notifications** aktiviert werden soll. Lassen Sie es aus, wenn Aufgabennamen oder Anforderungsdetails aus den Systembenachrichtigungen herausgehalten werden sollten.
 3. Lesen Sie **System notification status** und wählen Sie dann **Send test notification**, wenn verfügbar. Lassen Sie Benachrichtigungen im Betriebssystem zu, wenn Sie aufgefordert werden.
 4. Überprüfen Sie den zurückgegebenen Teststatus und die Benachrichtigungsoberfläche Ihres Systems. Wechseln Sie bei Aufgabenbenachrichtigungen zu einer anderen App, während die Aufgabe ausgeführt wird.
-
-<PlatformContent platform="macos">
-
-<PreferenceScreenshot notifications />
-
-</PlatformContent>
 
 | Kontrolle | Wirkung |
 | --- | --- |
@@ -127,22 +108,20 @@ Beginnen Sie mit dem Testergebnis und überprüfen Sie dann die geltende Bedingu
 
 ### Rückkehr aus dem Tablett nach dem Schließen des Fensters {/* #return-from-the-tray-after-closing-the-window */}
 
-Mit **General → Close button behaviour → Ask every time** öffnet das Schließen des Fensters **Minimize or quit?** Wählen Sie **Minimize to tray**, um das Fenster auszublenden, und verwenden Sie dann das Open-Science-Symbol im Windows-Tray, um zurückzukehren. Wählen Sie **Frag nicht noch einmal** nur, wenn Sie diese Option beibehalten möchten; Ändern Sie es später im Allgemeinen. Die Minimierung beendet die App nicht.
+Mit **General → Window behavior → When closing the window → Ask every time** öffnet das Schließen des Fensters **Minimize or quit?** Wählen Sie **Minimize to tray**, um das Fenster auszublenden, und verwenden Sie dann das Open-Science-Symbol im Windows-Tray, um zurückzukehren. Wählen Sie **Frag nicht noch einmal** nur, wenn Sie diese Option beibehalten möchten; Ändern Sie es später im Allgemeinen. Die Minimierung beendet die App nicht.
 
 </PlatformContent>
 
 ## Offenes Hilfezentrum {/* #help-center */}
 
-Öffnen Sie **Settings → General → About → Help Center**, um die Einrichtungs- und Fehlerbehebungsanleitung in Ihrem Browser zu lesen. Der Link folgt der aktuellen Sprache der App: Englisch öffnet die Dokumentationswurzel, während andere unterstützte Sprachen ihre eigene Edition öffnen. Sie können Einstellungen für **Hilfe-Center** auch mit dem übersetzten Label in Ihrer Benutzeroberfläche durchsuchen. Verwenden Sie **Versionshinweise** für die Release-Historie der Anwendung.
-
-![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
+Öffnen Sie **Settings → General → Help Center**, um die Einrichtungs- und Fehlerbehebungsanleitung in Ihrem Browser zu lesen. Der Link folgt der aktuellen Sprache der App: Englisch öffnet die Dokumentationswurzel, während andere unterstützte Sprachen ihre eigene Edition öffnen. Sie können Einstellungen für **Hilfe-Center** auch mit dem übersetzten Label in Ihrer Benutzeroberfläche durchsuchen. Verwenden Sie **Versionshinweise** für die Release-Historie der Anwendung.
 
 ## Finden Sie verwandte Einstellungen {/* #find-related-settings */}
 
 | Sie wollen... | Wohin zu gehen |
 | --- | --- |
-| Suchen Sie nach einem App Update | **General → About → Check now**; Folge [Installation und Aktualisierungen](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Versionsänderungen lesen oder Hilfe erhalten | **About → Release notes / Help Center** öffnet die entsprechende externe Seite. Dieses Wiki hat auch eine [Changelog](../changelog/v0.34.0.md). |
+| Suchen Sie nach einem App Update | **General → Check now**; Folge [Installation und Aktualisierungen](installation.md#choose-a-reproducible-version-and-update-deliberately). |
+| Versionsänderungen lesen oder Hilfe erhalten | **General → Release notes / Help Center** öffnet die entsprechende externe Seite. Dieses Wiki hat auch eine [Changelog](../changelog/v1.0.8.md). |
 | Suchen oder öffnen Sie das Diagnoseprotokoll | **General → Diagnostics → Reveal / Open**; siehe [Fehlerbehebung](troubleshooting.md). Logs bleiben lokal, bis Sie sie teilen. |
 | Installieren Sie den Befehlszeileneintrag | **General → Install command**; siehe [CLI Referenz](../reference/cli.md). Die Desktop-Nutzung erfordert diesen Befehl nicht. |
 | Verwalten des Datenstandorts oder der archivierten Arbeit | [Lagerung und archivierte Arbeiten](storage.md). |
@@ -153,16 +132,13 @@ Mit **General → Close button behaviour → Ask every time** öffnet das Schlie
 
 Die Benachrichtigungszustellung hängt auch von den Berechtigungen des Betriebssystems, dem Fokusmodus und den Einstellungen für die Bildschirmfreigabe ab. Verwenden Sie die oben genannten Prüfungen auf dem Gerät, auf dem Sie arbeiten.
 
-
-Quelle: [Allgemeine Einstellungen](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
+Quelle: [Allgemeine Einstellungen](https://github.com/aipoch/open-science/blob/v1.0.8/src/renderer/src/pages/settings/GeneralPanel.tsx).
 
 ## Passen Sie die Benutzeroberfläche der App an {/* #interface-scale */}
 
-1. Öffnen Sie **Settings → General → Appearance → Interface scale**.
+1. Öffnen Sie **Settings → Appearance → Interface scale**.
 2. Wählen Sie **90%**, **100%**, **110%** oder **125%**. Text und Steuerelemente ändern die Größe sofort, und die Auswahl wird auf diesem Gerät gespeichert.
 3. Wählen Sie **100%** oder drücken Sie &lt;0xE2>&lt;0x8C>&lt;0x98>0 (macOS) / Ctrl + 0 (Windows/Linux) zum Zurücksetzen. Verwenden Sie &lt;0xE2>&lt;0x8C>&lt;0x98>+ / Ctrl++, um die Skala zu erhöhen und &lt;0xE2>&lt;0x8C>&lt;0x98>− / Ctrl+−, um die Skala zu verringern.
-
-![Auswahl der Interface-Skalen in allgemeinen Einstellungen](/img/open-science/v0333/interface-scale.webp)
 
 Dies steuert die Benutzeroberfläche der Desktop-App. Der Bild- oder PDF-Vorschau-Zoom wirkt sich nur auf die Ansicht dieser Datei aus. Beim Zugriff auf Open-Science in einem Browser verwenden Sie den Zoom des Browsers. Die Windows-Display-Skalierung betrifft auch andere Apps; Verwenden Sie das Steuerelement oben, wenn Sie nur die Größe von Open-Science ändern möchten.
 

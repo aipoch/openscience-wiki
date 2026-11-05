@@ -1,8 +1,10 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
+
+import Screenshot from '@site/src/components/Screenshot';
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
@@ -152,21 +154,55 @@ Cliquez sur **Import references**, attendez **Import complete**, inspectez Creat
 
 </ToolOperationGroup>
 
-## Ajouter une référence depuis un lien DOI ou arXiv {/* #doi-link-import */}
+## Ajouter des références à partir des identifiants ou des liens {/* #doi-link-import */}
 
 1. Ouvrir **Library → All references → Add → Add from DOI or link**.
-2. Coller un DOI, un **doi.org** lien, ou **arxiv.org/abs/** ou **arxiv.org/pdf/** lien vers **DOI or arXiv link**, puis sélectionner **Find reference**. Les URL des pages d'éditeur ordinaires ne sont pas prises en charge par cette entrée.
-3. Dans **Review reference details**, vérifier le titre, les créateurs, l'année, la publication et les identifiants. Utilisation **Edit details** corriger les métadonnées avant d'enregistrer.
-4. Révision **When identifiers match**. **Reuse existing reference** conserve les métadonnées existantes; choisit une autre action proposée seulement après avoir comparé les enregistrements. Sélectionner **Save**.
-5. Réouvrir l'enregistrement enregistré et vérifier ses identifiants. Utilisation **Find full-text PDF** ou **Add files** séparément quand vous avez besoin du papier lui-même.
+2. Saisissez un identifiant ou un lien par ligne. Les entrées prises en charge comprennent les liens DOI, doi.org, arXiv IDs ou les liens abstraits/PDF, PMID, PMCID et les liens officiels de l'article PubMed/PMC. Utiliser des préfixes explicites comme `PMID: 19621072` pour une carte d'identité PubMed. Les URL des éditeurs ordinaires ne sont pas acceptées par cette entrée.
+3. Sélectionner **Find reference**. Chaque lot permet jusqu'à **100 non-empty lines**, compté avant la déduplication. Diviser une liste plus longue en petits lots. La recherche normalise les identifiants et combine des entrées équivalentes.
+4. Avec plusieurs entrées, inspecter les résultats et sélectionner **Review references**. Résoudre les recherches ratées ou les laisser dehors; ils n'ont pas été sauvés. Dans **Import references**, inspecter les dossiers sélectionnés et **When identifiers match**, puis sélectionner **Import references**.
+5. Pour une seule entrée, utiliser **Review reference details**, vérifiez ou modifiez les métadonnées, choisissez la politique dupliquée et sélectionnez **Save** à la place.
+6. Lire **Import complete** et ses comptes Created/Reused/Skipped/Failed, puis rouvrir les références sauvegardées. **Reuse existing reference** conserver les métadonnées existantes; utiliser une autre politique offerte seulement après avoir comparé les dossiers. Récupérer les PDF séparément avec **Find full-text PDF** ou **Ajouter des fichiers**.
 
-<p className="example-label"><strong>Exemple pratique</strong> DOI: 10.1038/s41467-018-08136-3</p>
+<p className="example-label"><strong>Exemple travaillé</strong> Importer deux déclarations PRISMA sans duplicata</p>
 
-Entrez `10.1038/s41467-018-08136-3`. La recherche renvoie l'article 2019 de Lang et ses collègues, **Non defect-stabilized thermally stable single-atom catalyst**, dans Nature Communications. Vérifiez ces détails avant d'enregistrer ; la recherche ne joint pas de PDF.
+Coller ces trois lignes :
 
-![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+```text
+10.1136/bmj.n71
+https://doi.org/10.1136/bmj.n71
+PMID: 19621072
+```
 
-Un lien arXiv en version résout les métadonnées les plus récentes, pas nécessairement les métadonnées de cette ancienne révision. Comparez la version de n'importe quel PDF que vous joindrez ultérieurement. Si la recherche échoue, vérifiez l'identificateur et réessayez, ou utilisez une importation PDF ou un fichier bibliographique; une recherche ratée n'a pas enregistré de référence.
+<Screenshot src="/img/open-science/v108/batch-input.webp" alt="Entrées DOI et PubMed mélangées dans la boîte de dialogue d'importation par lots" width={1280} height={720} windowBounds={[320, 206, 640, 310]} href="/docs/img/open-science/v108/batch-input.webp" linkLabel="Entrées DOI et PubMed mélangées dans la boîte de dialogue d'importation par lots" />
+
+Le lien DOI et DOI identifient le même document, de sorte que la recherche renvoie deux références : la déclaration PRISMA 2020 dans BMJ et la déclaration PRISMA 2009 dans PLoS Medicine. Vérifiez leurs titres et identifiants dans l'examen.
+
+<Screenshot src="/img/open-science/v108/batch-review.webp" alt="Examiner deux références de PRISMA résolues et choisir comment traiter les dossiers existants" width={1280} height={720} windowBounds={[270, 16, 740, 688]} href="/docs/img/open-science/v108/batch-review.webp" linkLabel="Examiner deux références de PRISMA résolues et choisir comment traiter les dossiers existants" />
+
+Dans cet exemple, les deux documents existaient déjà. Choix **Reuse existing reference** fini avec **0 Created, 2 Reused, 0 Skipped, 0 Failed**, laissant la bibliothèque sans copies supplémentaires. Une nouvelle bibliothèque créera plutôt les enregistrements sélectionnés.
+
+<Screenshot src="/img/open-science/v108/batch-complete.webp" alt="L'importation terminée réutilise deux références existantes" width={1280} height={720} windowBounds={[270, 124, 740, 474]} href="/docs/img/open-science/v108/batch-complete.webp" linkLabel="L'importation terminée réutilise deux références existantes" />
+
+Un lien arXiv en version résout les métadonnées actuelles, qui peuvent différer d'une ancienne révision PDF. Comparez le PDF que vous joignez. Pour un identifiant non résolu, corrigez l'entrée et réessayez, ou utilisez une importation de fichier bibliographique. La recherche de métadonnées à elle seule n'obtient pas le texte intégral.
+
+## Générer un aperçu de l'étude {/* #study-overview */}
+
+1. Configurer une version disponible **Main model** en **Settings → Model** et vérifiez la connexion du fournisseur. Ouvrez une référence avec un résumé ou un PDF lisible.
+2. Dans ses détails, trouver **Study overview** et sélectionner **Generate overview**. Gardez la référence ouverte pendant que la génération tourne.
+3. Lire l'étiquette source avant d'utiliser le résultat: **Based on abstract**, **Based on full text** ou **Based on selected passages**. Les cinq sections couvrent **Research question**, **Study population**, **Research methods**, **Main findings** et **Study limitations**. Les informations absentes de la source sont marquées **Not reported in the available source**.
+4. Vérifier les revendications importantes, les résultats numériques et les limites par rapport au papier original. Une vue d'ensemble abstraite n'établit pas que le document complet a été lu.
+5. Rouvrir la référence pour revenir à son aperçu sauvegardé. Utilisation **Regenerate** après avoir modifié la source ou lorsqu'un nouveau aperçu est nécessaire. Les résultats utilisent le langage d'interface actuel; changer ce langage ou la source sous-jacente peut nécessiter une autre génération.
+
+Si une source est demandée, ajoutez un résumé ou un PDF lisible. Dans le navigateur, une requête longue peut afficher un échec avant que l’aperçu soit enregistré. Patientez un peu, puis fermez et rouvrez la référence pour chercher le résultat avant de réessayer. Si aucun résultat n’apparaît, vérifiez le modèle principal et la connexion au fournisseur, puis relancez la génération. Un PDF enregistré mais illisible ne constitue pas une source de texte intégral exploitable.
+
+<p className="example-label"><strong>Exemple pratique</strong> Lire le résumé d’un article sur un catalyseur à atomes isolés</p>
+
+Ajoutez le DOI `10.1038/s41467-018-08136-3` avec **Add from DOI or link**. Ouvrez **Non defect-stabilized thermally stable single-atom catalyst**, vérifiez **Abstract**, puis sélectionnez **Generate overview**. Cet exemple utilise Codex avec `gpt-6-astra`, sans PDF joint.
+
+<Screenshot src="/img/open-science/v108/study-overview.webp" alt="Aperçu enregistré en anglais avec cinq rubriques, la source résumé et le modèle Codex" width={2082} height={1239} windowBounds={[661, 200, 760, 664]} href="/docs/img/open-science/v108/study-overview.webp" linkLabel="Aperçu enregistré en anglais avec cinq rubriques, la source résumé et le modèle Codex" />
+
+Le résultat enregistré porte la mention **Based on abstract**. **Study limitations** affiche **Not reported in the available source** : le résumé fourni ne précise pas les limites, ce qui ne signifie pas que l’étude n’en a aucune. Fermez et rouvrez la référence pour consulter l’aperçu enregistré sans le générer à nouveau.
+
 
 ## Importation de Zotero {/* #zotero-import */}
 
@@ -320,7 +356,7 @@ Une recherche en pause conserve ses dossiers vérifiés et en attente. Après av
 
 Pour **PDF could not be added**, vérifiez les exigences de connexion source, la validité du lien, la limite de taille affichée et la configuration actuelle proxy/DNS. Évitez de créer des références en double comme mécanisme de réessayer.
 
-Si une source PDF se résout à une adresse réservée telle que `198.18.x.x`, le téléchargeur la rejette. Suivez [Réseau](network.md) pour restaurer la résolution publique vérifiable, puis reessayez; ne pas désactiver la vérification de l'adresse. Si vous avez déjà un PDF téléchargé légitimement, utilisez **Add PDF** et vérifiez son titre, DOI et le nombre de pages.
+Si le téléchargement du texte intégral signale une erreur de validation d’adresse, consultez le [dépannage du proxy](troubleshooting.md#full-text-proxy). Les proxys configurés utilisant Fake-IP DNS sont pris en charge depuis v1.0.7 ; ne désactivez pas les contrôles d’adresse. Pour ajouter une copie obtenue légalement, utilisez **Add files**, puis vérifiez le titre, le DOI et le nombre de pages.
 
 
 </ToolOperationGroup>

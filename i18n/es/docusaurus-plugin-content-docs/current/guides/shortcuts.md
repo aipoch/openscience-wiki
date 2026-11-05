@@ -1,7 +1,7 @@
 ---
 title: "Atajos de teclado"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -90,4 +90,4 @@ En Ajustes, **. . .** (macOS) o **Ctrl+K** (Windows/Linux) centra la búsqueda d
 | Disminuir un paso | ⌘− | Ctrl+− |
 | Reiniciar a 100% | ⌘0 | Ctrl+0 |
 
-Estos atajos comparten los pasos 90%, 100%, 110% y 125% en **Settings → General → Appearance → Interface scale**. Ver [tamaño de la interfaz](appearance.md#interface-scale). Ampliar vista de archivos y escalar de aplicaciones enteras son controles separados.
+Estos atajos comparten los pasos 90%, 100%, 110% y 125% en **Settings → Appearance → Interface scale**. Ver [tamaño de la interfaz](appearance.md#interface-scale). Ampliar vista de archivos y escalar de aplicaciones enteras son controles separados.

@@ -1,37 +1,24 @@
 ---
 title: "외관 및 알림"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
-import PreferenceScreenshot from '@site/src/components/PreferenceScreenshot';
-import Screenshot from '@site/src/components/Screenshot';
-
 # 외관 및 알림 {/* #appearance-and-notifications */}
 
-편안한 테마를 선택하고 인터페이스 언어를 설정하고 다른 앱에서 작업하면서 작업 경고를받을 수 있습니다. **Settings → General**을 열고 이러한 설정을 조정합니다. Open-Science는 이 장치에 당신의 외관 선택을 기억합니다.
+편안한 테마를 선택하고 인터페이스 언어를 설정하고 다른 앱에서 작업하면서 작업 알림을받습니다. 기타 **Settings → Appearance** 시각적 선호도 및 **Settings → Notifications** 경고합니다. 둘 다 패널은 안으로 있습니다 **System**; 일반은 앱 유지 보수 및 도움을 포함합니다.
 
 <PlatformGuide />
 
 ## 테마 및 인터페이스 언어 변경 {/* #change-theme-and-interface-language */}
 
-1. **General → Appearance**에서 **Theme**을 찾습니다.
+1. **Appearance**에서 **Theme**을 찾습니다.
 2. 장치를 따르기 위하여 **System**를 선택하고, 또는 조정 외관을 지키기 위하여 **Light** 또는 **Dark**를 선택하십시오. 언제든지 전환 할 수 있습니다.
 3. **Language**의 밑에, 당신의 선호한 공용영역 언어, 또는 장치 언어를 사용하는 **System**를 선택하십시오.
 
-<PlatformContent platform="macos">
-
-![일반 외관 설정](/img/open-science/v0.27.0/07-general-appearance.webp)
-
-</PlatformContent>
-
-<PlatformContent platform="windows">
-
-<Screenshot src="/img/open-science/windows/general-settings.webp" alt="Windows 일반 설정에서 테마 및 언어 제어" width={1920} height={1017} windowBounds={[480, 165, 960, 690]} href="/docs/img/open-science/windows/general-settings.webp" linkLabel="완전한 Windows 일반 설정 스크린 샷을 엽니 다" />
-
-</PlatformContent>
+![Open-Science: Appearance / Notifications](/img/open-science/v108/appearance.webp)
 
 | 제품 정보 | 어떤 변화 |
 | --- | --- |
@@ -40,7 +27,7 @@ import Screenshot from '@site/src/components/Screenshot';
 | 언어 → 시스템 | 앱은 시작에서 장치 언어를 읽습니다. 시스템 언어를 변경한 후 앱을 다시 엽니다. |
 | 특정 언어 | 앱은 언어 인터페이스를 사용합니다. 저장 된 프롬프트, 소스 파일 및 이전 모델 답변은 원본 텍스트를 유지합니다. |
 
-언어 및 테마 선호도는 **Settings → General → Appearance**에 있습니다. 문서 웹 사이트는 자신의 언어 선택기를 가지고; 앱의 언어가 변경되지 않는 변경. 시스템 파일 대화 상자는 운영 체제 설정을 따릅니다.
+언어 및 테마 선호도는 **Settings → Appearance**에 있습니다. 문서 웹 사이트는 자신의 언어 선택기를 가지고; 앱의 언어가 변경되지 않는 변경. 시스템 파일 대화 상자는 운영 체제 설정을 따릅니다.
 
 다른 언어에 대한 보고서를 요청하려면 대화를 지정하십시오. 예를 들어: "영어 보고서를 작성하고 원본 유전자 식별자를 보존합니다."
 
@@ -63,16 +50,10 @@ import Screenshot from '@site/src/components/Screenshot';
 
 실행 분석을 떠나고주의해야 할 때 경고를 활성화하십시오.
 
-1. **General → Notifications**에서 **Task notifications**을 켜십시오.
+1. **Notifications**에서 **Task notifications**을 켜십시오.
 2. **Show task content in system notifications**을 사용할 수 있는지 확인하십시오. 작업 이름 또는 요청 세부 사항이 시스템 경고에서 유지해야하는 경우 삭제하십시오.
 3. **System notification status**을 읽으면 **Send test notification**을 선택하면 됩니다. 신속한 경우 운영 체제의 알림을 허용한다.
 4. 반환된 테스트 상태 및 시스템의 알림 표면 확인. 작업 경고를 위해, 다른 앱으로 전환하는 동안 작업이 실행됩니다.
-
-<PlatformContent platform="macos">
-
-<PreferenceScreenshot notifications />
-
-</PlatformContent>
 
 | (주) | 제품 정보 |
 | --- | --- |
@@ -127,22 +108,20 @@ import Screenshot from '@site/src/components/Screenshot';
 
 ### 창문을 닫은 후 트레이에서 반환 {/* #return-from-the-tray-after-closing-the-window */}
 
-**General → Close button behaviour → Ask every time**로 창을 닫아 **Minimize or quit?**을 열면 **Minimize to tray**를 선택하여 창을 숨기고 Open-Science 아이콘을 Windows 트레이에서 반환합니다. **자주 묻는 질문**을 선택하면 선택한 것을 유지할 수 있습니다. 나중에 일반으로 변경하십시오. Minimizing 앱을 종료하지 않습니다.
+**General → Window behavior → When closing the window → Ask every time**로 창을 닫아 **Minimize or quit?**을 열면 **Minimize to tray**를 선택하여 창을 숨기고 Open-Science 아이콘을 Windows 트레이에서 반환합니다. **자주 묻는 질문**을 선택하면 선택한 것을 유지할 수 있습니다. 나중에 일반으로 변경하십시오. Minimizing 앱을 종료하지 않습니다.
 
 </PlatformContent>
 
 ## 공지사항 {/* #help-center */}
 
-브라우저에서 설정 및 문제 해결 지침을 읽는 **Settings → General → About → Help Center**을 엽니 다. 이 링크는 앱의 현재 언어를 따릅니다: 영어는 문서 루트를 열고, 다른 지원 언어는 자신의 판을 엽니다. 인터페이스에서 번역된 라벨을 사용하여 **도움말 센터** 설정도 검색할 수 있습니다. 응용 프로그램의 릴리스 역사를 위해 **릴리스 노트**을 사용합니다.
-
-![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
+브라우저에서 설정 및 문제 해결 지침을 읽는 **Settings → General → Help Center**을 엽니 다. 이 링크는 앱의 현재 언어를 따릅니다: 영어는 문서 루트를 열고, 다른 지원 언어는 자신의 판을 엽니다. 인터페이스에서 번역된 라벨을 사용하여 **도움말 센터** 설정도 검색할 수 있습니다. 응용 프로그램의 릴리스 역사를 위해 **릴리스 노트**을 사용합니다.
 
 ## 관련 설정 찾기 {/* #find-related-settings */}
 
 | 당신은... | 오시는 길 |
 | --- | --- |
-| 앱 업데이트 확인 | **General → About → Check now**; 이름 &#42; [설치 및 업데이트](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| 버전 변경을 읽거나 도움을 받으십시오 | **About → Release notes / Help Center** 해당 외부 페이지를 엽니다. 이 위키는 또한 [관련 링크](../changelog/v0.34.0.md). |
+| 앱 업데이트 확인 | **General → Check now**; 이름 &#42; [설치 및 업데이트](installation.md#choose-a-reproducible-version-and-update-deliberately). |
+| 버전 변경을 읽거나 도움을 받으십시오 | **General → Release notes / Help Center** 해당 외부 페이지를 엽니다. 이 위키는 또한 [관련 링크](../changelog/v1.0.8.md). |
 | 진단 로그를 찾아내거나 엽니다 | **General → Diagnostics → Reveal / Open**; 은 은 [문제 해결](troubleshooting.md). 공유 할 때까지 로컬로 이동하십시오. |
 | 명령줄 입력 설치 | **General → Install command**; 은 은 [CLI 참조](../reference/cli.md). 데스크톱 사용은이 명령을 요구하지 않습니다. |
 | 데이터 위치 또는 아카이브 작업 관리 | [저장과 아카이브 작업](storage.md). |
@@ -153,16 +132,13 @@ import Screenshot from '@site/src/components/Screenshot';
 
 통보 납품은 또한 운영 체계의 허가, 초점 형태 및 스크린 모양 조정에 달려 있습니다. 당신이 일하는 장치 위에 체크를 사용하십시오.
 
-
-근원: [일반 설정](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
+근원: [일반 설정](https://github.com/aipoch/open-science/blob/v1.0.8/src/renderer/src/pages/settings/GeneralPanel.tsx).
 
 ## 앱의 인터페이스 크기를 조정 {/* #interface-scale */}
 
-1. **Settings → General → Appearance → Interface scale**을 엽니다.
+1. **Settings → Appearance → Interface scale**을 엽니다.
 2. **90%**, **100%**, **110%** 또는 **125%**를 선택하십시오. 텍스트와 컨트롤은 즉시 크기를 조정하고, 선택은이 장치에 기억됩니다.
 3. **100%**을 선택하거나 ⌘0 (macOS) / Ctrl + 0 (Windows / Linux)를 눌러 재설정하십시오. ⌘+ / Ctrl++를 사용하여 증가하고 ⌘− / Ctrl+− 스케일을 줄일 수 있습니다.
-
-![일반 설정에서 인터페이스 스케일 선택](/img/open-science/v0333/interface-scale.webp)
 
 데스크톱 앱의 인터페이스를 제어합니다. 이미지 또는 PDF 미리보기 급상승은 파일 보기만 영향을 미칩니다. 브라우저에서 Open-Science에 액세스할 때 브라우저의 줌을 사용하십시오. Windows 전시는 또한 다른 앱에 영향을 미칩니다; Open-Science 크기를 변경하려면 위의 컨트롤을 사용하십시오.
 

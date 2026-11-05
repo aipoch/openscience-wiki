@@ -2,7 +2,7 @@
 title: "Bases de datos científicos"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # Bases de datos científicos {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Utilice esta página para elegir una fuente de datos, entender lo que puede devo
 
 ## Bases de datos respaldadas {/* #supported-databases */}
 
-Open-Science v1.0.7 incluye **48 Connectors integrados con 418 operaciones**: 47 Connectors de fuentes de datos ofrecen 416 operaciones, y un Connector Molecule sin conexión ofrece dos. Los nombres siguientes corresponden a las entradas de **Settings → Connectors**. Un Connector puede abarcar varias bases de datos. Incluir una fuente no significa que estén disponibles todas las funciones de su sitio web.
+Open-Science v1.0.8 incluye **48 Connectors integrados con 418 operaciones**: 47 Connectors de fuentes de datos ofrecen 416 operaciones, y un Connector Molecule sin conexión ofrece dos. Los nombres siguientes corresponden a las entradas de **Settings → Connectors**. Un Connector puede abarcar varias bases de datos. Incluir una fuente no significa que estén disponibles todas las funciones de su sitio web.
 
 El total incluye todas las entradas integradas, incluso las desactivadas. Los Connectors MCP añadidos por el usuario se cuentan por separado. El número de Connectors, de bases de datos cubiertas y de operaciones disponibles son medidas distintas.
 
@@ -268,7 +268,7 @@ Desde v0.31.0, `get_string_network.nodes` incluye vecinos devueltos y entradas a
 
 Las listas [Referencia de operación Connector](../reference/connector-operations.md) requieren entradas, valores permitidos y llamadas exactas. Utilice esta página para elegir una fuente y conectarla; utilizar la referencia para los campos de una herramienta en particular.
 
-Fuente del catálogo: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts).
+Fuente del catálogo: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/registry.ts).
 
 ## Búsquedas de secuencia y alineación {/* #sequence-tools */}
 
@@ -413,3 +413,11 @@ In **Settings → Connectors**, habilitar sólo las entradas necesarias para su 
 | Inspeccionar evidencia de línea celular | **Cellosaurus** añade RDF, SPARQL consolidado y similitud de STR | Adhesión y configuración de marcadores; la similitud por sí sola no certifica la identidad de muestra |
 
 Los listados de archivos devuelven URLs oficiales y metadatos fuente, no archivos descargados o una base de datos de análisis lista. El análisis de NHANES todavía requiere el diseño correcto de la encuesta y pesos. El acceso demo MIMIC/eICU no otorga acceso a sus conjuntos de datos completos. Los informes de los FAERS no pueden interpretarse como tasas de incidencia. Para campos y ejemplos exactos, utilice el [referencia a la operación](../reference/connector-operations.md).
+
+## Coordenadas de suministro para eQTL Catalogue {/* #eqtl-coordinates */}
+
+Uso **Genética Humana** para listar eQTL Catalogue release-7 datasets, elegir un estudio, tejido y método de cuantificación, luego consulta una pequeña región. La API REST retirada ha sido reemplazada por archivos TSV indexados oficiales.
+
+Para `eqtl_associations`, suministro `dataset_id`, explícita `genome_build: "GRCh38"`, y `pos` o `variant`. Un ID de genes o rsID es sólo un filtro exacto adicional; no resuelve las coordenadas. `pos` es una región inclusiva basada en 1 `20:46120612-46120613`, sin `chr` prefijo y un lapso máximo de 5 Mb. Las variantes GRCh37 necesitan un traslado explícito y único a GRCh38 antes de la consulta.
+
+Preserve `reference_data`, el original `pvalue_text` y ALT como el efecto alelo. Una instantánea de metadatos no congela los archivos de arriba. Los resultados vacíos no significan filas publicadas en la ventana de cis probada; no prueban ausencia de una asociación. Ver el [parámetros de operación](../reference/connector-operations.md#eqtl_associations).

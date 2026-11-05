@@ -1,7 +1,7 @@
 ---
 title: "Ярлыки клавиатуры"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -90,4 +90,4 @@ import Screenshot from '@site/src/components/Screenshot';
 | Уменьшить один шаг | ⌘− | Ctrl+- |
 | Перезагрузка 100% | ⌘0 | Ctrl+0 |
 
-Эти ярлыки разделяют шаги 90%, 100%, 110% и 125% в **Settings → General → Appearance → Interface scale**. Смотрите [размер интерфейса](appearance.md#interface-scale). Масштабирование файлов и масштабирование всего приложения являются отдельными элементами управления.
+Эти ярлыки разделяют шаги 90%, 100%, 110% и 125% в **Settings → Appearance → Interface scale**. Смотрите [размер интерфейса](appearance.md#interface-scale). Масштабирование файлов и масштабирование всего приложения являются отдельными элементами управления.

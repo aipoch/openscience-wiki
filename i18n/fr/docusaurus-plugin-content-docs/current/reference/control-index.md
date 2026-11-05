@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Index de la page et du contrôle"
 description: "Trouvez chaque bouton Open-Science documenté, entrée, commutateur et résultat par page."
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # Index de la page et du contrôle {/* #page-and-control-index */}
@@ -116,6 +116,8 @@ Voir [Configuration pour la première fois](../guides/onboarding.md) et [Configu
 | Doublons | Sélection de groupes, Comparer, choix de champs, Fusionner | Examiner et fusionner les dossiers tout en préservant les associations |
 | Tâches en arrière-plan | Pause, Résumé, Avis, Annuler | Contrôler les métadonnées en vrac/opérations en texte intégral |
 
+Utilisation **Add from DOI or link** pour un lot examiné d'identificateurs, et **Study overview → Generate overview / Regenerate** à l'intérieur d'une référence pour résumer sa source disponible. Voir [instructions de bibliothèque](../guides/library.md#doi-link-import).
+
 ## Notebook et Provenance {/* #notebook-and-provenance */}
 
 | Page | Contrôles | Résultat |
@@ -182,9 +184,17 @@ Python/R; environnement Activer, Ajouter un interprète, Télécharger/setup, R�
 
 Stockage de l'application Reveal/Repair; Emplacement des données Changement, Chemin, Parcourir, Vérifications, Migrer/Adopter/Annuler; progrès de la migration Annuler/Reessayer/Redémarrer/Discard; les catégories d'utilisation du disque extensible.
 
-### Général {/* #general */}
+### General {/* #general */}
 
-Notifications de tâches, radios thématiques, radios d'icônes d'application, comportement de fermeture, jeton GitHub Open/Input/Save/Clear, et About/Check updates/install update.
+Version de l'application, **Check now**, aide au téléchargement et à l'installation manuelle, **Centre d'aide**, **Notes de publication**, diagnostics **Révélé / Ouvrir**, ligne de commande **Install command** et le comportement de la fenêtre supporté. L'apparence et les notifications ont leurs propres panneaux sous **System**.
+
+### Appearance {/* #appearance */}
+
+**Theme**, **Language**, bureau **Échelle d'interface** et soutenu les choix app-icon. Voir [Paramètres d'apparence](../guides/appearance.md).
+
+### Notifications {/* #notifications */}
+
+**Task notifications**, **Show task content in system notifications**, **System notification status** et **Send test notification**. Voir [configuration de notification](../guides/appearance.md).
 
 ### Télécommande {/* #remote-control */}
 

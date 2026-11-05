@@ -1850,5 +1850,11 @@
   },
   "docs.outline.reference.v107.scope": {
     "message": "Импорт DOI и arXiv, аннотации PDF, OCR, Pi и исследовательские примеры."
+  },
+  "docs.outline.reference.v108.title": {
+    "message": "v1.0.8"
+  },
+  "docs.outline.reference.v108.scope": {
+    "message": "Пакетный импорт литературы, обзоры исследований, настройки и eQTL."
   }
 }

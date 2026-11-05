@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: "Aperçu des paramètres"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-05'
 ---
 
 # Aperçu des paramètres {/* #settings-overview */}
 
-Ouvrez **Settings** à partir du coin inférieur gauche de l'espace de travail. Ses panneaux 17 sont organisés en quatre groupes : **Intelligence**, **Connections**, **Workspace** et **System**. Choisissez un panneau par but, ou recherchez dans l'en-tête. Dans ces guides, **Settings → Model**, par exemple, se réfère au panneau Modèle à l'intérieur de l'Intelligence.
+Ouvrir **Settings** du coin inférieur gauche de l'espace de travail. Ses **19 panneaux** sont organisés en quatre groupes: **System**, **Intelligence**, **Connections** et **Workspace**. L'apparence et les notifications sont des panneaux distincts. Choisissez par but ou par recherche dans l'en-tête; **Settings → Model**, par exemple, ouvre Modèle à l'intérieur Intelligence.
 
 | Contrôle mondial | Comportement |
 | --- | --- |
@@ -27,10 +27,13 @@ Ouvrez **Settings** à partir du coin inférieur gauche de l'espace de travail. 
 
 Cette recherche couvre les paramètres représentatifs de chaque panel, pas de chaque domaine ou document de recherche. Si un terme ne correspond pas, utilisez le nom du panneau ou les groupes de navigation ci-dessous. Pour rechercher des conversations ou des fichiers, fermez Paramètres et utilisez [recherche mondiale](../guides/navigation.md).
 
-## Les panneaux principaux 17 {/* #the-17-main-panels */}
+## Les panneaux principaux 19 {/* #the-17-main-panels */}
 
 | Groupe | Groupe | Ce qu'il gère |
 | --- | --- | --- |
+| System | [General](../guides/appearance.md#help-center) | Version, mises à jour, diagnostics, installation CLI, fenêtres et aide |
+|  | [Appearance](../guides/appearance.md) | Thème, langue, taille de l’interface du bureau et icône de l’application |
+|  | [Notifications](../guides/appearance.md) | Alertes des tâches, contenu, état système et notification de test |
 | Intelligence | [Modèle](../guides/models.md) | Modèles de fournisseurs et de scénarios |
 |  | [Agent](../guides/frameworks.md) | Installation, commutation et réparation du cadre de l'agent |
 |  | [Skills](../skills/overview.md) | Méthodes de recherche réutilisables et leur disponibilité |
@@ -47,7 +50,6 @@ Cette recherche couvre les paramètres représentatifs de chaque panel, pas de c
 |  | [Calculer](../guides/remote-compute.md) | Ressources de calcul locales et SSH |
 |  | [Utilisation](../guides/usage.md) | Statistiques des activités de recherche et d'appel |
 |  | [Archivé](../guides/storage.md) | Restaurer ou supprimer définitivement les travaux archivés |
-| Système | [Général](../guides/appearance.md) | Apparence, notifications, diagnostics et version |
 
 **Feedback** reste une entrée séparée au bas de Paramètres.
 

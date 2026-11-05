@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: "Einstellungen Übersicht"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-05'
 ---
 
 # Einstellungen Übersicht {/* #settings-overview */}
 
-Öffnen Sie **Settings** in der unteren linken Ecke des Arbeitsbereichs. Die 17-Panels sind in vier Gruppen unterteilt: **Intelligence**, **Connections**, **Workspace** und **System**. Wählen Sie ein Panel nach Zweck oder suchen Sie aus dem Header. In diesen Handbüchern bezieht sich **Settings → Model** zum Beispiel auf das Modellpanel innerhalb von Intelligence.
+Offen **Settings** aus der unteren linken Ecke des Arbeitsbereichs. Seine **19 Tafeln** sind in vier Gruppen unterteilt: **System**, **Intelligence**, **Connections** und **Workspace**. Aussehen und Benachrichtigungen sind separate Panels. Wählen Sie nach Zweck oder Suche aus dem Header; **Settings → Model**öffnet zum Beispiel Model inside Intelligence.
 
 | Globale Kontrolle | Verhalten |
 | --- | --- |
@@ -27,10 +27,13 @@ last_update:
 
 Diese Suche umfasst repräsentative Einstellungen in jedem Panel, nicht in jedem Feld oder Forschungsdokument. Wenn ein Begriff nicht übereinstimmt, verwenden Sie den Panelnamen oder die Navigationsgruppen unten. Um Gespräche oder Dateien zu durchsuchen, schließen Sie Einstellungen und verwenden Sie [Globale Suche](../guides/navigation.md).
 
-## Die 17 Hauptpanels {/* #the-17-main-panels */}
+## Die 19 Hauptpanels {/* #the-17-main-panels */}
 
 | Gruppe | Panel | Was sie verwaltet |
 | --- | --- | --- |
+| System | [General](../guides/appearance.md#help-center) | Version, Updates, Diagnose, CLI-Installation, Fensterverhalten und Hilfe |
+|  | [Appearance](../guides/appearance.md) | Design, Sprache, Desktop-Skalierung und unterstützte App-Symbole |
+|  | [Notifications](../guides/appearance.md) | Aufgabenmeldungen, Benachrichtigungsinhalt, Systemstatus und Testmeldung |
 | Intelligenz | [Modell](../guides/models.md) | Anbieter und Szenariomodelle |
 |  | [Agent](../guides/frameworks.md) | Installation, Umschaltung und Reparatur von Agenten-Frameworks |
 |  | [Skills](../skills/overview.md) | Wiederverwendbare Forschungsmethoden und deren Verfügbarkeit |
@@ -47,7 +50,6 @@ Diese Suche umfasst repräsentative Einstellungen in jedem Panel, nicht in jedem
 |  | [Rechenressourcen](../guides/remote-compute.md) | Lokale und SSH-Rechenressourcen |
 |  | [Verwendung](../guides/usage.md) | Token-, Call- und Research-Statistiken |
 |  | [Archiviert](../guides/storage.md) | Archivierte Arbeit wiederherstellen oder dauerhaft löschen |
-| System | [Allgemein](../guides/appearance.md) | Aussehen, Benachrichtigungen, Diagnose und Version |
 
 **Feedback** bleibt ein separater Eintrag am Ende der Einstellungen.
 

@@ -1,37 +1,24 @@
 ---
 title: "外观与通知"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
-import PreferenceScreenshot from '@site/src/components/PreferenceScreenshot';
-import Screenshot from '@site/src/components/Screenshot';
-
 # 外观与通知
 
-选择适合阅读的主题、设置界面语言，并在使用其他应用时接收任务提醒。打开 **Settings → General** 调整这些偏好。Open-Science 会在本设备记住外观选择。
+选择合适的主题、界面语言和任务提醒。外观选项位于 **Settings → Appearance**，提醒选项位于 **Settings → Notifications**；两个面板都在 **System** 分组中。General 主要管理应用维护和帮助。
 
 <PlatformGuide />
 
 ## 修改主题与界面语言
 
-1. 在 **General → Appearance** 找到 **Theme**。
+1. 在 **Appearance** 找到 **Theme**。
 2. 选择 **System** 跟随系统，或选择 **Light / Dark** 固定为浅色或深色，之后可随时切换。
 3. 在 **Language** 选择希望使用的界面语言，或选择 **System** 使用设备语言。
 
-<PlatformContent platform="macos">
-
-![General 中的外观与语言设置](/img/open-science/v0.27.0/07-general-appearance.webp)
-
-</PlatformContent>
-
-<PlatformContent platform="windows">
-
-<Screenshot src="/img/open-science/windows/general-settings.webp" alt="Windows 的 General 设置中的 Theme 与 Language 控件" width={1920} height={1017} windowBounds={[480, 165, 960, 690]} href="/docs/img/open-science/windows/general-settings.webp" linkLabel="打开完整的 Windows General 设置截图" />
-
-</PlatformContent>
+![Open-Science 的 Appearance 和 Notifications 已成为独立的 System 面板](/img/open-science/v108/appearance.webp)
 
 | 选择 | 生效范围 |
 | --- | --- |
@@ -40,7 +27,7 @@ import Screenshot from '@site/src/components/Screenshot';
 | Language → System | 应用启动时读取设备语言。修改系统语言后，重新打开应用使其生效 |
 | 指定一种语言 | 应用使用该界面语言。已保存的提问、源文件和历史模型回答保留原文 |
 
-语言和主题设置位于 **Settings → General → Appearance**。文档网站的语言选择器独立于应用，修改它不会改变应用语言。系统文件窗口遵循操作系统设置。
+语言和主题设置位于 **Settings → Appearance**。文档网站的语言选择器独立于应用，修改它不会改变应用语言。系统文件窗口遵循操作系统设置。
 
 需要模型用其他语言撰写报告时，在对话中说明即可，例如：“请用英文撰写报告，保留原始基因标识符。”
 
@@ -63,16 +50,10 @@ import Screenshot from '@site/src/components/Screenshot';
 
 如果希望在分析运行时处理其他工作，并在任务需要关注时收到提醒，可以开启通知。
 
-1. 在 **General → Notifications** 打开 **Task notifications**。
+1. 在 **Notifications** 打开 **Task notifications**。
 2. 决定是否开启 **Show task content in system notifications**。不希望系统提醒暴露任务名称或请求细节时，保持关闭。
 3. 阅读 **System notification status**，如果可用，点击 **Send test notification**。操作系统询问时，允许应用发送通知。
 4. 检查测试返回状态及系统通知。接收实际任务提醒时，切换到其他应用并让任务继续运行。
-
-<PlatformContent platform="macos">
-
-<PreferenceScreenshot notifications />
-
-</PlatformContent>
 
 | 控件 | 效果 |
 | --- | --- |
@@ -127,22 +108,20 @@ import Screenshot from '@site/src/components/Screenshot';
 
 ### 关闭窗口后从托盘返回
 
-在 **General → Close button behaviour** 选择 **Ask every time** 后，关闭窗口会显示 **Minimize or quit?**。选择 **Minimize to tray** 可隐藏窗口，再从 Windows 托盘中的 Open-Science 图标返回。只有希望记住选择时才勾选 **Don’t ask again**；需要改变行为时回到 General。最小化不等于退出应用。
+在 **General → Window behavior → When closing the window** 选择 **Ask every time** 后，关闭窗口会显示 **Minimize or quit?**。选择 **Minimize to tray** 可隐藏窗口，再从 Windows 托盘中的 Open-Science 图标返回。只有希望记住选择时才勾选 **Don’t ask again**；需要改变行为时回到 General。最小化不等于退出应用。
 
 </PlatformContent>
 
 ## 打开帮助中心 {/* #help-center */}
 
-进入 **Settings → General → About → Help Center**，在浏览器阅读设置和故障排查说明。链接跟随应用当前语言：英文打开文档根页，其他受支持语言打开对应版本。也可以在 Settings 搜索框中搜索界面对应的“帮助中心”名称。需要查看应用版本历史时，使用 **Release notes**。
-
-![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
+进入 **Settings → General → Help Center**，在浏览器阅读设置和故障排查说明。链接跟随应用当前语言：英文打开文档根页，其他受支持语言打开对应版本。也可以在 Settings 搜索框中搜索界面对应的“帮助中心”名称。需要查看应用版本历史时，使用 **Release notes**。
 
 ## 查找相关设置
 
 | 你想要… | 对应入口 |
 | --- | --- |
-| 检查应用更新 | **General → About → Check now**；后续步骤见[安装与更新](installation.md) |
-| 阅读版本变化或获取帮助 | **About → Release notes / Help Center** 打开相应外部页面；本 Wiki 另有 [Changelog](../changelog/v0.34.0.md) |
+| 检查应用更新 | **General → Check now**；后续步骤见[安装与更新](installation.md) |
+| 阅读版本变化或获取帮助 | **General → Release notes / Help Center** 打开相应外部页面；本 Wiki 另有 [Changelog](../changelog/v1.0.8.md) |
 | 定位或打开诊断日志 | **General → Diagnostics → Reveal / Open**；见[故障排查](troubleshooting.md)。日志在主动分享前保留于本地 |
 | 安装命令行入口 | **General → Install command**；见 [CLI 参考](../reference/cli.md)。使用桌面界面不需要安装此命令 |
 | 管理数据位置或归档工作 | [存储与归档](storage.md) |
@@ -153,16 +132,13 @@ import Screenshot from '@site/src/components/Screenshot';
 
 通知送达还取决于操作系统权限、专注模式及屏幕共享设置。请在实际使用的设备上按上表检查。
 
-
-源码：[General 设置](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx)。
+源码：[General 设置](https://github.com/aipoch/open-science/blob/v1.0.8/src/renderer/src/pages/settings/GeneralPanel.tsx)。
 
 ## 调整应用内界面大小 {/* #interface-scale */}
 
-1. 打开 **Settings → General → Appearance → Interface scale**。
+1. 打开 **Settings → Appearance → Interface scale**。
 2. 选择 **90%**、**100%**、**110%** 或 **125%**。文字和控件立即缩放，并在这台设备上记住选择。
 3. 需要恢复默认大小时选择 **100%**，或按 ⌘0（macOS）／Ctrl+0（Windows/Linux）。⌘+／Ctrl++ 放大，⌘−／Ctrl+− 缩小。
-
-![General 中的 Interface scale 选项](/img/open-science/v0333/interface-scale.webp)
 
 这是桌面应用的界面大小设置；图像或 PDF 预览里的缩放只影响当前文件。通过浏览器访问时使用浏览器自己的缩放。Windows 系统显示缩放影响其他应用，需要只调整 Open-Science 时优先使用上述入口。
 

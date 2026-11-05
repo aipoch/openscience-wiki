@@ -1,7 +1,7 @@
 ---
 title: "Navegación y búsqueda"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-05'
 ---
 
 # Navegación y búsqueda {/* #navigation-and-search */}
@@ -10,7 +10,7 @@ Use Home para elegir la investigación, la lista de sesiones para elegir su conv
 
 ## Comienzo de Inicio {/* #start-from-home */}
 
-Utilice **Settings → General → Appearance** para cambiar el idioma o tema de la aplicación. Los paneles de grupos [centro de configuración](../settings/overview.md) por propósito y proporciona su propia búsqueda.
+Utilice **Settings → Appearance** para cambiar el idioma o tema de la aplicación. Los paneles de grupos [centro de configuración](../settings/overview.md) por propósito y proporciona su propia búsqueda.
 
 ![Inicio con los proyectos de expresión genética y literatura](/img/open-science/v0.27.0/01-home.webp)
 

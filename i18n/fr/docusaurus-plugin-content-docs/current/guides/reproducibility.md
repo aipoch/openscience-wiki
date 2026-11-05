@@ -2,7 +2,7 @@
 title: "Reproductibilité"
 description: "Relancer les étapes de recherche capturées, comparer un résultat enregistré et conserver le dossier de vérification."
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-05'
 ---
 
 # Reproductibilité {/* #reproducibility */}
@@ -92,3 +92,9 @@ Si vous avez déjà un paquet de verrouillage supporté et avez besoin de restau
 ## Inspectez l'histoire avant de reprendre {/* #replay-vs-verification */}
 
 Utilisez [Rejouer la session](session-replay.md) pour inspecter l'ordre enregistré des messages, l'activité de l'outil et les versions de fichiers. Rejouer les affichages des preuves enregistrées avec le calendrier de présentation reconstruit; il ne réexécute pas le code, ne redemande pas les bases de données ou n'établit pas qu'un résultat se reproduit. Utilisez **Reproducibility** ci-dessus lorsque vous avez besoin d'une nouvelle comparaison d'exécution et de sortie.
+
+## Interpréter des preuves d'exécution incomplètes {/* #execution-evidence */}
+
+L'historique d'un dossier et une rediffusion réussie répondent à différentes questions. Ouvrir sa provenance et inspecter les entrées, le code, l'environnement et le résultat de vérification enregistrés avant de le décrire comme reproduit.
+
+Certains appels R peuvent évaluer des arguments retardés ou des méthodes d'expédition qui accèdent indirectement aux fichiers. Open-Science invalide les preuves antérieures lorsque ces opérations rendent les preuves incomplètes. Une seule sortie visible ne restaure pas cette preuve. Conserver le statut de preuve incomplète avec le résultat, rendre les entrées explicites, puis réutiliser et inspecter le nouveau dossier de vérification.

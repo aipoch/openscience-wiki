@@ -1,7 +1,7 @@
 ---
 title: "Navigation und Suche"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-05'
 ---
 
 # Navigation und Suche {/* #navigation-and-search */}
@@ -10,7 +10,7 @@ Verwenden Sie Home, um die Untersuchung auszuwählen, die Sitzungsliste, um die 
 
 ## Start von zu Hause aus {/* #start-from-home */}
 
-Verwenden Sie **Settings → General → Appearance**, um die Sprache oder das Thema der App zu ändern. Das [Einstellungen Center](../settings/overview.md) gruppiert Panels nach Zweck und bietet eine eigene Suche.
+Verwenden Sie **Settings → Appearance**, um die Sprache oder das Thema der App zu ändern. Das [Einstellungen Center](../settings/overview.md) gruppiert Panels nach Zweck und bietet eine eigene Suche.
 
 ![Home mit den Genexpressions- und Literaturprojekten](/img/open-science/v0.27.0/01-home.webp)
 

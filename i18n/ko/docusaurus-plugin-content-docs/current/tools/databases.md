@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v1.0.7는 **내장 Connector 48개와 작업 418개**를 제공합니다. 데이터 소스 Connector 47개가 작업 416개를, 오프라인 Molecule Connector 1개가 작업 2개를 제공합니다. 아래 이름은 **Settings → Connectors**의 항목과 일치합니다. 하나의 Connector가 여러 데이터베이스를 다룰 수 있지만, 해당 웹사이트의 모든 기능을 지원한다는 뜻은 아닙니다.
+Open-Science v1.0.8는 **내장 Connector 48개와 작업 418개**를 제공합니다. 데이터 소스 Connector 47개가 작업 416개를, 오프라인 Molecule Connector 1개가 작업 2개를 제공합니다. 아래 이름은 **Settings → Connectors**의 항목과 일치합니다. 하나의 Connector가 여러 데이터베이스를 다룰 수 있지만, 해당 웹사이트의 모든 기능을 지원한다는 뜻은 아닙니다.
 
 이 수에는 비활성화된 항목을 포함한 모든 내장 항목이 포함됩니다. 사용자가 추가한 MCP Connector는 별도입니다. Connector 수, 연결된 데이터베이스 수, 호출 가능한 작업 수는 서로 다른 기준입니다.
 
@@ -268,7 +268,7 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 [Connector 가동 참고](../reference/connector-operations.md) 목록은 입력, 허용된 값 및 정확한 통화를 나열합니다. 이 페이지를 사용하여 소스를 선택하고 연결; 특정 도구의 필드에 대한 참조를 사용합니다.
 
-카탈로그 출처: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts).
+카탈로그 출처: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/registry.ts).
 
 ## Sequence 검색 및 정렬 {/* #sequence-tools */}
 
@@ -413,3 +413,11 @@ v1.0.2는 현재 세션에서 거절한 OpenAlex 인증 정보 요청을 기억�
 | 세포주 근거 확인 | **Cellosaurus**의 RDF, 제한된 SPARQL 및 STR 유사도 | accession과 마커 설정 보존. 유사도만으로 시료 정체성을 인증하지 못함 |
 
 목록은 공식 URL과 메타데이터를 반환하며 파일이나 분석 DB를 자동으로 만들지 않습니다. NHANES에는 올바른 조사 설계와 가중치가 필요합니다. MIMIC/eICU 데모 권한은 전체 데이터 권한이 아니며 FAERS 보고서는 발생률이 아닙니다. 세부 필드는 [작업 참조](../reference/connector-operations.md)를 확인하세요.
+
+## eQTL 카탈로그에 대한 공급 좌표 {/* #eqtl-coordinates */}
+
+ **인간 유전학** eQTL 카탈로그 release-7 datasets를 목록으로 만들기 위하여, 학문, 조직 및 quantification 방법을 선택하십시오, 그 후에 작은 지역을 쿼리하십시오. 은퇴 한 REST API는 공식 색인 TSV 파일로 대체되었습니다.
+
+ `eqtl_associations`, 공급 `dataset_id`, 명시 `genome_build: "GRCh38"`· `pos` 또는 `variant`· 유전자 ID 또는 rsID 만 추가 정확한 필터입니다; 그것은 좌표를 해결하지 않습니다. `pos` 1기 기준의 포괄적 지역입니다. `20:46120612-46120613`, 없음 `chr` 접두사를 사용하지 않으며 범위는 최대 5 Mb입니다. GRCh37 변이는 쿼리 전에 GRCh38로 명시적으로 좌표를 변환하고 유일한 매핑인지 확인해야 합니다.
+
+예약안내 `reference_data`, 원래 `pvalue_text` 그리고 효력 allele로 ALT. metadata snapshot는 업스트림 파일을 동결하지 않습니다. 빈 결과는 시험된 창에서 일치하는 간행한 줄을 의미하지 않습니다; 그들은 협회의 부재를 증명하지 않습니다. 이름 * [작동 모수](../reference/connector-operations.md#eqtl_associations).

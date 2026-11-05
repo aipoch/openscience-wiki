@@ -1,7 +1,7 @@
 ---
 title: "鍵盤快捷鍵"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -92,4 +92,4 @@ import Screenshot from '@site/src/components/Screenshot';
 | 縮小一檔 | ⌘− | Ctrl+− |
 | 恢復 100% | ⌘0 | Ctrl+0 |
 
-快捷鍵與 **Settings → General → Appearance → Interface scale** 使用同一組 90%、100%、110%、125% 檔位。參見[介面大小](appearance.md#interface-scale)。檔案預覽的縮放與整個應用的縮放分別控制。
+快捷鍵與 **Settings → Appearance → Interface scale** 使用同一組 90%、100%、110%、125% 檔位。參見[介面大小](appearance.md#interface-scale)。檔案預覽的縮放與整個應用的縮放分別控制。

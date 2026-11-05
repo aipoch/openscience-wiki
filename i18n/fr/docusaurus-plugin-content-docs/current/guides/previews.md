@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -266,6 +266,8 @@ Ouvrez le fichier généré dans son aperçu, puis téléchargez-le et inspectez
 Les étiquettes logiques complètes et valides sont prioritaires. Un texte sans balises, non pivoté et écrit de gauche à droite peut utiliser l'ordre de mise en page; les balises incomplètes ou les mises en page non prises en charge reviennent à l'ordre de texte natif du PDF. Ces replis ne garantissent pas que chaque page, table ou formule multicolonne sera lue correctement.
 
 Gardez la source ouverte lors de l'examen d'une réponse. Vérifiez la page, la colonne et la figure citées ou le tableau en regard du PDF, surtout si les phrases semblent intercalées. Utiliser [outils d'extraction de figures et de tableaux](#pdf-extraction) lorsque le matériel visuel fait l'objet de la question.
+
+Dans v1.0.8, la commande automatique utilise également du texte positionné pour distinguer les colonnes de prose des lignes de table. L'extraction PDF vérifie les limites des cultures par rapport à la source native. Lorsqu'une cellule de table est ambiguë, gardez son texte original et son avertissement de fiabilité avec le résultat extrait; comparez-le avec l'image de la page avant d'utiliser la valeur dans une analyse.
 
 ## Lire un PDF numérisé avec OCR {/* #scanned-pdf-ocr */}
 

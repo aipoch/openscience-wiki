@@ -1,37 +1,24 @@
 ---
 title: "外観と通知"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
-import PreferenceScreenshot from '@site/src/components/PreferenceScreenshot';
-import Screenshot from '@site/src/components/Screenshot';
-
 # 外観と通知 {/* #appearance-and-notifications */}
 
-使いやすいテーマを選択し、インターフェイス言語を設定し、別のアプリで作業中にタスクアラートを受信します。 **Settings → General** を開き、これらの設定を調整します。 Open-Scienceはこの装置であなたの出現の選択を思い出させます。
+使いやすいテーマを選択し、インターフェイス言語を設定し、別のアプリで作業中にタスクアラートを受信します。 オープン **Settings → Appearance** 視覚的な好みのためおよび **Settings → Notifications** 警告のため。 パネルは両方あります **System**; 全般は、アプリのメンテナンスとヘルプが含まれています。
 
 <PlatformGuide />
 
 ## テーマとインターフェイス言語の変更 {/* #change-theme-and-interface-language */}
 
-1. **General → Appearance**では、**Theme**を見つけます。
+1. **Appearance**では、**Theme**を見つけます。
 2. **System** を選択してデバイスをフォローするか、**Light** または **Dark** を選択して、固定された外観を維持します。 いつでも戻すことができます。
 3. **Language** では、お好みのインターフェイス言語、または **System** を選択して、デバイス言語を使用します。
 
-<PlatformContent platform="macos">
-
-![一般的な外観設定](/img/open-science/v0.27.0/07-general-appearance.webp)
-
-</PlatformContent>
-
-<PlatformContent platform="windows">
-
-<Screenshot src="/img/open-science/windows/general-settings.webp" alt="Windowsのテーマと言語制御全般の設定" width={1920} height={1017} windowBounds={[480, 165, 960, 690]} href="/docs/img/open-science/windows/general-settings.webp" linkLabel="完全なWindowsの一般的な設定のスクリーンショットを開く" />
-
-</PlatformContent>
+![Open-Science: Appearance / Notifications](/img/open-science/v108/appearance.webp)
 
 | おすすめ商品 | 変更点 |
 | --- | --- |
@@ -40,7 +27,7 @@ import Screenshot from '@site/src/components/Screenshot';
 | 言語→システム | アプリは起動時にデバイス言語を読み取ります。 システム言語を変更した後、アプリを再オープンして適用します。 |
 | 特定の言語 | アプリは、そのインターフェイス言語を使用します。 保存されたプロンプト、ソースファイル、以前のモデルの回答は、元のテキストを保持します。 |
 
-**Settings → General → Appearance**では言語とテーマの好みが異なります。 ドキュメンテーションのウェブサイトには独自の言語セレクターがあります。 変更すると、アプリの言語は変更されません。 システムファイルダイアログは、オペレーティングシステムの設定に従います。
+**Settings → Appearance**では言語とテーマの好みが異なります。 ドキュメンテーションのウェブサイトには独自の言語セレクターがあります。 変更すると、アプリの言語は変更されません。 システムファイルダイアログは、オペレーティングシステムの設定に従います。
 
 異なる言語でのレポートリクエストには、会話で指定します。 例えば「英語でのレポートを記述し、元の遺伝子識別子を保存します。」
 
@@ -63,16 +50,10 @@ import Screenshot from '@site/src/components/Screenshot';
 
 実行中の解析を離れ、注意が必要なときに戻りたい場合は、アラートを有効にします。
 
-1. **General → Notifications**では、**Task notifications**をオンにします。
+1. **Notifications**では、**Task notifications**をオンにします。
 2. **Show task content in system notifications**を有効にするかどうかを選択します。 タスク名または詳細がシステムアラートから離れる場合は、オフにします。
 3. **System notification status** を読んで、利用可能な場合は **Send test notification** を選択します。 プロンプトが表示された場合、オペレーティングシステムで通知を許可します。
 4. 返されたテストステータスとシステムの通知面を確認します。 タスクアラートの場合、タスクが実行中に別のアプリに切り替えます。
-
-<PlatformContent platform="macos">
-
-<PreferenceScreenshot notifications />
-
-</PlatformContent>
 
 | コントロール | エフェクト |
 | --- | --- |
@@ -127,22 +108,20 @@ import Screenshot from '@site/src/components/Screenshot';
 
 ### ウィンドウを閉じた後にトレイから戻ります {/* #return-from-the-tray-after-closing-the-window */}
 
-**General → Close button behaviour → Ask every time** では、ウィンドウを閉じると **Minimize or quit?** ウィンドウを非表示に **Minimize to tray** を選択し、 Windows トレイの Open-Science アイコンを使用して戻ります。 その選択を保持したい場合は、**もう一度尋ねないでください**だけを選択します。 変更後、一般。 最小化はアプリを終了しません。
+**General → Window behavior → When closing the window → Ask every time** では、ウィンドウを閉じると **Minimize or quit?** ウィンドウを非表示に **Minimize to tray** を選択し、 Windows トレイの Open-Science アイコンを使用して戻ります。 その選択を保持したい場合は、**もう一度尋ねないでください**だけを選択します。 変更後、一般。 最小化はアプリを終了しません。
 
 </PlatformContent>
 
 ## オープンヘルプセンター {/* #help-center */}
 
-**Settings → General → About → Help Center** を開き、ブラウザのセットアップとトラブルシューティングガイダンスをお読みください。 このリンクは、アプリの現在の言語を次のようになります。英語はドキュメントのルートを開きますが、他のサポートされている言語は独自のエディションを開きます。 また、あなたのインターフェイスで翻訳されたラベルを使用して、**ヘルプセンター** の &#91;設定&#93; を検索することもできます。 アプリケーションのリリース履歴に**リリースノート**を使用します。
-
-![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
+**Settings → General → Help Center** を開き、ブラウザのセットアップとトラブルシューティングガイダンスをお読みください。 このリンクは、アプリの現在の言語を次のようになります。英語はドキュメントのルートを開きますが、他のサポートされている言語は独自のエディションを開きます。 また、あなたのインターフェイスで翻訳されたラベルを使用して、**ヘルプセンター** の &#91;設定&#93; を検索することもできます。 アプリケーションのリリース履歴に**リリースノート**を使用します。
 
 ## 関連する設定を探す {/* #find-related-settings */}
 
 | あなたは... | どこへ行くか |
 | --- | --- |
-| アプリの更新をチェックする | **General → About → Check now**; フォロー [インストールとアップデート](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| バージョン変更を読んで、ヘルプを入手 | **About → Release notes / Help Center** 対応する外部ページを開きます。 このwikiには、 [変更履歴](../changelog/v0.34.0.md). |
+| アプリの更新をチェックする | **General → Check now**; フォロー [インストールとアップデート](installation.md#choose-a-reproducible-version-and-update-deliberately). |
+| バージョン変更を読んで、ヘルプを入手 | **General → Release notes / Help Center** 対応する外部ページを開きます。 このwikiには、 [変更履歴](../changelog/v1.0.8.md). |
 | 診断ログの検索または開く | **General → Diagnostics → Reveal / Open**; 詳しくはこちら [トラブルシューティング](troubleshooting.md). ログは共有するまでローカルに滞在します。 |
 | コマンドラインエントリをインストールします。 | **General → Install command**; 詳しくはこちら [CLI リファレンス](../reference/cli.md). デスクトップの使用は、このコマンドを必要としません。 |
 | データの場所を管理するか、またはアーカイブされた仕事 | [貯蔵およびアーカイブされた仕事](storage.md). |
@@ -153,16 +132,13 @@ import Screenshot from '@site/src/components/Screenshot';
 
 通知配信は、オペレーティングシステムの許可、フォーカスモード、画面共有設定にも依存します。 動作するデバイス上のチェックを使用してください。
 
-
-ソース: [一般的な設定](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
+ソース: [一般的な設定](https://github.com/aipoch/open-science/blob/v1.0.8/src/renderer/src/pages/settings/GeneralPanel.tsx).
 
 ## アプリのインターフェイスサイズを調整する {/* #interface-scale */}
 
-1. **Settings → General → Appearance → Interface scale** を開きます。
+1. **Settings → Appearance → Interface scale** を開きます。
 2. **90%**、**100%**、**110%**、**125%**のいずれかを選択します。 テキストと制御はすぐにサイズを変更し、このデバイスで選択が記憶されます。
 3. **100%** または ⌘0 (macOS) / Ctrl+0 (Windows/Linux) を押してリセットします。 ⌘ + / Ctrl + を使用して、拡大および ⌘ - / Ctrl + - を使用して、スケールを削減します。
-
-![一般的な設定のインターフェイススケールの選択](/img/open-science/v0333/interface-scale.webp)
 
 デスクトップアプリのインターフェースをコントロールします。 画像または PDF プレビューズームは、そのファイルのビューにのみ影響します。 ブラウザでOpen-Scienceにアクセスする場合は、ブラウザのズームを使用してください。 Windowsディスプレイスケーリングは、他のアプリにも影響します。 Open-Science のサイズを変更したいだけなら、上記の制御を使用してください。
 

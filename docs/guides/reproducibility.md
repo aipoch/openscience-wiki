@@ -2,7 +2,7 @@
 title: Reproducibility
 description: Rerun captured research steps, compare a saved result and retain the verification record.
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-05'
 ---
 
 # Reproducibility
@@ -92,3 +92,9 @@ If you already have a supported lock bundle and need to restore packages outside
 ## Inspect the history before rerunning {/* #replay-vs-verification */}
 
 Use [Session replay](session-replay.md) to inspect the recorded order of messages, tool activity and file versions. Replay displays saved evidence with reconstructed presentation timing; it does not rerun code, query databases again or establish that a result reproduces. Use **Reproducibility** above when you need a new execution and output comparison.
+
+## Interpret incomplete execution evidence {/* #execution-evidence */}
+
+A file's history and a successful rerun answer different questions. Open its provenance and inspect the recorded inputs, code, environment and verification result before describing it as reproduced.
+
+Some R calls can evaluate delayed arguments or dispatch methods that access files indirectly. Open-Science invalidates earlier file proofs when those operations make the evidence incomplete. A visible output alone does not restore that proof. Keep the incomplete-evidence status with the result, make inputs explicit, then rerun and inspect the new verification record.

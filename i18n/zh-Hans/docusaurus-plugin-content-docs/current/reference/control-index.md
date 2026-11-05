@@ -3,7 +3,7 @@ sidebar_position: 1
 title: 完整页面与控件索引
 description: 按页面查找 Open-Science 的按钮、输入、开关和结果。
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # 完整页面与控件索引
@@ -116,6 +116,8 @@ last_update:
 | Duplicates | Select groups、Compare、字段选择、Merge | 复核并合并记录，同时保留关联 |
 | Background tasks | Pause、Resume、Review、Cancel | 控制批量元数据/全文任务 |
 
+通过 **Add from DOI or link** 审核并导入一批编号；在文献详情中，通过 **Study overview → Generate overview / Regenerate** 整理可用来源。详见[文献库操作](../guides/library.md#doi-link-import)。
+
 ## Notebook 与 Provenance
 
 | 页面 | 控件 | 结果 |
@@ -184,7 +186,15 @@ Application storage Reveal/Repair；Data location Change、Path、Browse、检�
 
 ### General
 
-Task notifications、Theme radios、App icon radios、close behavior、GitHub token Open/Input/Save/Clear、About/Check updates/安装更新。
+管理应用版本、**Check now**、下载与手动安装帮助、**Help Center**、**Release notes**、诊断 **Reveal / Open**、命令行 **Install command** 和支持的窗口行为。外观与通知分别位于 **System** 下的独立面板。
+
+### Appearance {/* #appearance */}
+
+管理 **Theme**、**Language**、桌面版 **Interface scale** 和支持的应用图标选项。详见[外观设置](../guides/appearance.md)。
+
+### Notifications {/* #notifications */}
+
+管理 **Task notifications**、**Show task content in system notifications**、**System notification status** 和 **Send test notification**。详见[通知设置](../guides/appearance.md)。
 
 ### Remote control
 

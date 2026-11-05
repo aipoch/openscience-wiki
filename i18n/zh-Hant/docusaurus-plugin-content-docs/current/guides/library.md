@@ -1,8 +1,10 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
+
+import Screenshot from '@site/src/components/Screenshot';
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
@@ -152,21 +154,55 @@ Inbox 隨後顯示 **Inbox is clear**；切換到 **Current project** 可見 **2
 
 </ToolOperationGroup>
 
-## 用 DOI 或 arXiv 鏈接添加文獻 {/* #doi-link-import */}
+## 從編號或鏈接添加文獻 {/* #doi-link-import */}
 
 1. 打開 **Library → All references → Add → Add from DOI or link**。
-2. 在 **DOI or arXiv link** 中粘貼一個 DOI、**doi.org** 鏈接，或 **arxiv.org/abs/**、**arxiv.org/pdf/** 鏈接，點擊 **Find reference**。這個入口不支持普通出版方網頁鏈接。
-3. 在 **Review reference details** 中核對標題、作者、年份、期刊和標識。需要修正時，先用 **Edit details** 編輯。
-4. 查看 **When identifiers match**。**Reuse existing reference** 會保留已有元數據；選擇其他處理方式前應比較記錄。確認後點擊 **Save**。
-5. 重新打開保存的條目覈對標識。需要論文全文時，再使用 **Find full-text PDF** 或 **Add files**。
+2. 每行填寫一個編號或鏈接，支持 DOI、doi.org 鏈接、arXiv ID 或摘要/PDF 鏈接、PMID、PMCID，以及官方 PubMed/PMC 論文鏈接。PubMed 編號建議明確寫成 `PMID: 19621072`。此入口不接受普通出版商頁面 URL。
+3. 選擇 **Find reference**。每批最多 **100 個非空行**，按去重前的輸入行數計算；更長的清單應分批處理。查找時會規範化編號，併合並指向同一文獻的等價輸入。
+4. 多條輸入時，檢查查找結果，選擇 **Review references**。修正失敗條目或將其排除，失敗的查找尚未保存。在 **Import references** 中核對所選文獻和 **When identifiers match**，再點擊 **Import references**。
+5. 只有一條輸入時，進入 **Review reference details**，檢查或編輯元數據，選擇重複記錄處理方式，最後點擊 **Save**。
+6. 查看 **Import complete** 的 Created/Reused/Skipped/Failed 數量，再重新打開文獻覈對。**Reuse existing reference** 保留已有元數據；選擇其他策略前應先比較記錄。全文需另用 **Find full-text PDF** 或 **Add files** 獲取。
 
-<p className="example-label"><strong>案例演示</strong> 用 DOI 添加一篇單原子催化論文</p>
+<p className="example-label"><strong>案例演示</strong> 導入兩篇 PRISMA 聲明，避免重複建檔</p>
 
-輸入 `10.1038/s41467-018-08136-3`，查找結果爲 Lang 等人於 2019 年發表在 Nature Communications 的 **Non defect-stabilized thermally stable single-atom catalyst**。覈對這些信息後保存；這次查找不會自動附加 PDF。
+粘貼以下三行：
 
-![保存前核對文獻標題、作者、年份與 DOI](/img/open-science/v107/doi-review.webp)
+```text
+10.1136/bmj.n71
+https://doi.org/10.1136/bmj.n71
+PMID: 19621072
+```
 
-帶版本號的 arXiv 鏈接會返回最新元數據，不一定對應舊修訂版；之後附加 PDF 時應比較其版本。查找失敗時，檢查標識後重試，或改用 PDF、參考文獻文件導入；查找失敗並不表示條目已保存。
+<Screenshot src="/img/open-science/v108/batch-input.webp" alt="批量導入窗口中的 DOI 與 PubMed 混合輸入" width={1280} height={720} windowBounds={[320, 206, 640, 310]} href="/docs/img/open-science/v108/batch-input.webp" linkLabel="批量導入窗口中的 DOI 與 PubMed 混合輸入" />
+
+DOI 和 DOI 鏈接指向同一篇論文，因此查找後得到兩條文獻：BMJ 的 PRISMA 2020 聲明，以及 PLoS Medicine 的 PRISMA 2009 聲明。在審覈窗口覈對標題和編號。
+
+<Screenshot src="/img/open-science/v108/batch-review.webp" alt="審覈兩篇 PRISMA 文獻，並選擇已有記錄的處理方式" width={1280} height={720} windowBounds={[270, 16, 740, 688]} href="/docs/img/open-science/v108/batch-review.webp" linkLabel="審覈兩篇 PRISMA 文獻，並選擇已有記錄的處理方式" />
+
+本例文獻庫中已有這兩條記錄。選擇 **Reuse existing reference** 後，結果爲 **0 Created、2 Reused、0 Skipped、0 Failed**，沒有產生額外副本。新文獻庫會創建所選記錄，數量會與本例不同。
+
+<Screenshot src="/img/open-science/v108/batch-complete.webp" alt="導入完成後複用兩條已有文獻" width={1280} height={720} windowBounds={[270, 124, 740, 474]} href="/docs/img/open-science/v108/batch-complete.webp" linkLabel="導入完成後複用兩條已有文獻" />
+
+帶版本號的 arXiv 鏈接返回當前元數據，可能與舊 PDF 版本不同，應覈對後來附加的 PDF。編號無法識別時，修正後重試，或使用書目文件導入。查到元數據不代表已取得全文。
+
+## 生成論文概覽 {/* #study-overview */}
+
+1. 在 **Settings → Model** 配置可用的 **Main model**，並檢查提供方連接。打開包含摘要或可讀取 PDF 附件的文獻。
+2. 在詳情中找到 **Study overview**，選擇 **Generate overview**，生成期間保持詳情打開。
+3. 使用結果前先看來源標籤：**Based on abstract**、**Based on full text** 或 **Based on selected passages**。五個部分分別是 **Research question**（研究問題）、**Study population**（研究對象）、**Research methods**（研究方法）、**Main findings**（主要發現）和 **Study limitations**（研究侷限）。來源沒有提供的信息會標爲 **Not reported in the available source**。
+4. 重要論斷、數值和侷限應回到原文覈對。基於摘要的概覽不能作爲已經閱讀全文的證據。
+5. 重新打開文獻可查看已保存的概覽；來源變化或需要重新生成時，使用 **Regenerate**。結果使用當前界面語言，切換語言或修改來源後可能需要重新生成。
+
+提示缺少來源時，補充摘要或可讀取的 PDF。瀏覽器中的較長請求可能先顯示失敗，概覽隨後才儲存完成。先稍等，再關閉並重新打開文獻檢查結果，避免立即重複生成。如果仍無結果，檢查主模型和提供方登入，再重新生成。已儲存但無法讀取的 PDF 不能作為可用的全文證據。
+
+<p className="example-label"><strong>案例演示</strong> 從摘要了解一篇單原子催化論文</p>
+
+透過 **Add from DOI or link** 添加 DOI `10.1038/s41467-018-08136-3`。打開 **Non defect-stabilized thermally stable single-atom catalyst**，核對 **Abstract**，再選擇 **Generate overview**。本例使用 Codex 的 `gpt-6-astra`，沒有附加 PDF。
+
+<Screenshot src="/img/open-science/v108/study-overview.webp" alt="已儲存的英文論文概覽：五項內容、基於摘要的來源標籤和 Codex 模型" width={2082} height={1239} windowBounds={[661, 200, 760, 664]} href="/docs/img/open-science/v108/study-overview.webp" linkLabel="已儲存的英文論文概覽：五項內容、基於摘要的來源標籤和 Codex 模型" />
+
+儲存的結果標註為 **Based on abstract**。**Study limitations** 顯示 **Not reported in the available source**，表示這份摘要沒有說明研究局限，並不代表研究沒有局限。關閉並重新打開文獻，即可查看已儲存的概覽，無需再次生成。
+
 
 ## 從 Zotero 導入 {/* #zotero-import */}
 
@@ -320,7 +356,7 @@ v0.30.2 更正了 PubMed 作者姓名的解析，包括姓氏、名字縮寫和�
 
 若出現 **PDF could not be added**，檢查來源是否要求登入、連結是否有效、檔案是否超過提示的大小限制，以及當前代理/DNS。不要反覆建立同一文獻。
 
-如果 PDF 來源被解析為 `198.18.x.x` 等保留地址，下載模組會拒絕它。按[網路](network.md)恢復可驗證的公網解析後重試，不要關閉地址檢查。若已有合法下載的 PDF，可用 **Add PDF**，然後核對標題、DOI 和頁數。
+全文下載提示位址檢查錯誤時，見[全文代理排查](troubleshooting.md#full-text-proxy)。v1.0.7 起支援透過已設定的代理處理 Fake-IP DNS，不要關閉位址檢查。若已有合法取得的副本，可用 **Add files** 新增，再核對標題、DOI 和頁數。
 
 
 </ToolOperationGroup>

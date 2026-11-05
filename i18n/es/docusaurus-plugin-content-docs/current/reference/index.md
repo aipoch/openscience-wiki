@@ -2,7 +2,7 @@
 title: "Referencia"
 slug: /reference
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # Referencia {/* #reference */}
@@ -27,4 +27,4 @@ Utilice **XXXK / Ctrl+K** para buscar títulos, títulos y texto corporal en el 
 
 ## Cambio {/* #changelog */}
 
-[Examine las últimas notas de lanzamiento](../changelog/v1.0.7.md).
+[Examine las últimas notas de lanzamiento](../changelog/v1.0.8.md).

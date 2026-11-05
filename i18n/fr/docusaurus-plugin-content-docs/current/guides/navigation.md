@@ -1,7 +1,7 @@
 ---
 title: "Navigation et recherche"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-05'
 ---
 
 # Navigation et recherche {/* #navigation-and-search */}
@@ -10,7 +10,7 @@ Utilisez Home pour choisir l'enquête, la liste de sessions pour choisir sa conv
 
 ## Départ de la maison {/* #start-from-home */}
 
-Utilisez **Settings → General → Appearance** pour modifier le langage ou le thème de l'application. Le [paramètres centre](../settings/overview.md) regroupe les panneaux par but et fournit sa propre recherche.
+Utilisez **Settings → Appearance** pour modifier le langage ou le thème de l'application. Le [paramètres centre](../settings/overview.md) regroupe les panneaux par but et fournit sa propre recherche.
 
 ![Accueil avec les projets d'expression génétique et de littérature](/img/open-science/v0.27.0/01-home.webp)
 

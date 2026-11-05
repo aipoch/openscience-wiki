@@ -1,7 +1,7 @@
 ---
 title: "CLI and structured output"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ Use `open-science` to inspect application status, run tasks, manage Connectors a
 
 ## Set up from a terminal {/* #terminal-setup */}
 
-Install the desktop launcher, use a v1.0.7 standalone archive, or follow the [npm installation steps](../guides/installation.md#npm-cli). Standalone archives bundle Node, the backend and Web UI; the extraction steps below apply to those archives.
+Install the desktop launcher, use a v1.0.8 standalone archive, or follow the [npm installation steps](../guides/installation.md#npm-cli). Standalone archives bundle Node, the backend and Web UI; the extraction steps below apply to those archives.
 
 1. Choose macOS or Linux arm64/x64, or Windows x64, matching the host.
 2. Extract the complete archive into a writable location. Keep the launcher, `backend` and `node-runtime` together; copying only the launcher will break startup.
@@ -215,9 +215,9 @@ The following invalid-option response was reproduced locally:
 
 JSONL can include `run.progress` and `stream.resync-required`. If replay is unavailable after reconnection, reread authoritative run state; do not assume the event stream is a permanent history. Lifecycle commands have separate flag restrictions described in [Headless service](./server.md).
 
-[CLI implementation](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/cli.mjs), [upstream command guide](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/CLI.md).
+[CLI implementation](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/cli.mjs), [upstream command guide](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md).
 
-Technical reference: [CLI contract](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/CLI.md).
+Technical reference: [CLI contract](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md).
 
 ## Unattended runs {/* #unattended-runs */}
 

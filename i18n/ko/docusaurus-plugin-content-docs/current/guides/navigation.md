@@ -1,7 +1,7 @@
 ---
 title: "탐색 및 검색"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-05'
 ---
 
 # 탐색 및 검색 {/* #navigation-and-search */}
@@ -10,7 +10,7 @@ last_update:
 
 ## 홈에서 시작 {/* #start-from-home */}
 
-**Settings → General → Appearance**을 사용하여 앱 언어 또는 테마를 변경하십시오. [설정 센터](../settings/overview.md) 그룹 패널은 목적에 따라 자신의 검색을 제공합니다.
+**Settings → Appearance**을 사용하여 앱 언어 또는 테마를 변경하십시오. [설정 센터](../settings/overview.md) 그룹 패널은 목적에 따라 자신의 검색을 제공합니다.
 
 ![Home with the gene-expression and 문학 프로젝트](/img/open-science/v0.27.0/01-home.webp)
 

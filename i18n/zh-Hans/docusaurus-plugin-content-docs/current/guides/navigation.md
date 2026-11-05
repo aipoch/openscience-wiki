@@ -1,7 +1,7 @@
 ---
 title: "导航与搜索"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-05'
 ---
 
 # 导航与搜索
@@ -10,7 +10,7 @@ last_update:
 
 ## 从 Home 进入
 
-更改应用语言或主题，请打开 **Settings → General → Appearance**。[设置中心](../settings/overview.md) 按用途分组，也提供独立搜索。
+更改应用语言或主题，请打开 **Settings → Appearance**。[设置中心](../settings/overview.md) 按用途分组，也提供独立搜索。
 
 ![包含基因表达与文献项目的 Home](/img/open-science/v0.27.0/01-home.webp)
 
@@ -22,7 +22,7 @@ last_update:
 | Search | 打开全局搜索 | 查找项目、消息、文件和文献；Wiki 搜索是另一个入口 |
 | Library | 打开共享文献库 | 项目和集合视图引用同一份条目 |
 | Model settings | 配置模型 | 账号已连接与研究任务成功是两种状态 |
-| Settings → General → Appearance | 更改 Language / Theme | 切换语言不会翻译历史任务内容 |
+| Settings → Appearance | 更改 Language / Theme | 切换语言不会翻译历史任务内容 |
 | Messages | 查看应用消息 | 未读数量不等于任务失败数量 |
 
 工作区的 **All projects** 返回 Home。项目名菜单操作项目，会话旁菜单操作对应会话。Sessions 下的 **New** 在当前项目中新建对话，不会新建项目或复制源目录。

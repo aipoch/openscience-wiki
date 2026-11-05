@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: 设置中心总览
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-05'
 ---
 
 # 设置中心总览
 
-从工作区左下打开 **Settings**。17 个面板按用途分为 **Intelligence、Connections、Workspace、System** 四组，也可以通过顶部搜索定位。本教程中的 **Settings → Model** 等路径，指对应分组内的面板；例如 Model 位于 Intelligence 中。
+从工作区左下打开 **Settings**。**19 个面板**按用途分为 **System、Intelligence、Connections、Workspace** 四组，Appearance 和 Notifications 已成为独立面板。可按用途选择或通过顶部搜索定位；例如 **Settings → Model** 指 Intelligence 分组内的 Model 面板。
 
 | 全局控件 | 行为 |
 | --- | --- |
@@ -27,10 +27,13 @@ last_update:
 
 搜索覆盖各面板中的代表性设置，不包含每个字段或研究文档。找不到某个词时，改用面板名称或下方导航分组。查找对话或文件，应关闭设置后使用[全局搜索](../guides/navigation.md)。
 
-## 17 个主面板
+## 19 个主面板 {/* #17-个主面板 */}
 
 | 分组 | 面板 | 管理内容 |
 | --- | --- | --- |
+| System | [General](../guides/appearance.md#help-center) | 版本、更新、诊断、CLI 安装、窗口行为和帮助 |
+|  | [Appearance](../guides/appearance.md) | 主题、语言、桌面界面缩放和支持的应用图标选项 |
+|  | [Notifications](../guides/appearance.md) | 任务提醒、通知内容、系统状态和测试通知 |
 | Intelligence | [Model](../guides/models.md) | 提供商与各任务场景的模型 |
 |  | [Agent](../guides/frameworks.md) | 代理框架的安装、切换与修复 |
 |  | [Skills](../skills/overview.md) | 可复用科研方法及其可用状态 |
@@ -47,7 +50,6 @@ last_update:
 |  | [Compute](../guides/remote-compute.md) | 本地与 SSH 计算资源 |
 |  | [Usage](../guides/usage.md) | Token、调用与研究活动统计 |
 |  | [Archived](../guides/storage.md) | 恢复或永久删除归档内容 |
-| System | [General](../guides/appearance.md) | 外观、通知、诊断与版本 |
 
 **Feedback** 保留在设置底部，作为独立反馈入口。
 

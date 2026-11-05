@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "페이지 및 제어 색인"
 description: "모든 문서화 된 Open-Science 버튼, 입력, 스위치 및 페이지에 의해 결과."
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # 페이지 및 제어 색인 {/* #page-and-control-index */}
@@ -116,6 +116,8 @@ last_update:
 | 중복 문헌 | 그룹 선택, 비교, 필드 선택, Merge | 예약 협회가 있는 동안 검토 및 합병 기록 |
 | 백그라운드 작업 | Pause, Resume, 리뷰, 취소 | 대량 metadata/full-text 가동을 통제하십시오 |
 
+ **Add from DOI or link** 식별자의 검토 배치에 대한, 그리고 **Study overview → Generate overview / Regenerate** 유효한 근원을 요약하는 참고 안쪽에. 이름 * [도서관 지침](../guides/library.md#doi-link-import).
+
 ## Notebook 및 Provenance {/* #notebook-and-provenance */}
 
 | 이름 &#42; | 제품정보 | 결과 |
@@ -182,9 +184,17 @@ Python/R; 환경 Enable, 해석기 추가, 다운로드/설정, 수리, 패키�
 
 신청 저장 Reveal/Repair; 데이터 위치 변경, 경로, 검색, 체크, 마이그레이션/Adopt/Cancel; 이동 진행 취소/재/재시작/Discard; 확장 가능한 디스크 사용 범주.
 
-### 일반 {/* #general */}
+### General {/* #general */}
 
-작업 알림, 테마 라디오, 앱 아이콘 라디오, 가까운 동작, GitHub 토큰 오픈 / 입력 / 저장 / 계정, 및 About/Check 업데이트 / 설치 업데이트.
+앱 버전, **Check now**, 다운로드 및 수동 설치 도움, **도움말 센터**, **공지사항**, 진단 **공지사항**, 명령행 **Install command** 지원되는 창 행동. 외관 및 알림에는 자체 패널이 있습니다. **System**.
+
+### Appearance {/* #appearance */}
+
+**Theme**, **Language**, 데스크탑 **공용영역 가늠자** 앱 아이콘 선택 이름 * [외관 설정](../guides/appearance.md).
+
+### Notifications {/* #notifications */}
+
+**Task notifications**, **Show task content in system notifications**, **System notification status** · **Send test notification**· 이름 * [공지사항](../guides/appearance.md).
 
 ### 원격 제어 {/* #remote-control */}
 

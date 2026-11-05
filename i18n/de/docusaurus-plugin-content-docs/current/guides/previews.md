@@ -1,7 +1,7 @@
 ---
 title: "Öffnen und Vorschauen von Dateien"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -266,6 +266,8 @@ Ab v1.0.6 verwenden verknüpfte PDFs eine automatische Textreihenfolge. Öffnen 
 Vollständige, gültige logische Tags haben Priorität. Unmarkierte, unrotierte Links-zu-Rechts-Texte können eine Layout-basierte Reihenfolge verwenden; unvollständige Tags oder nicht unterstützte Layouts greifen auf die native Textreihenfolge des PDF zurück. Diese Fallbacks garantieren nicht, dass jede mehrspaltige Seite, Tabelle oder Formel korrekt gelesen wird.
 
 Halten Sie die Quelle offen, wenn Sie eine Antwort überprüfen. Überprüfen Sie die zitierte Seite, Spalte und Abbildung oder Tabelle mit dem PDF, insbesondere wenn Sätze ineinander verschachtelt erscheinen. Verwendung der [Abbildungs- und Tabellenextraktionswerkzeuge](#pdf-extraction) wenn das visuelle Material Gegenstand der Frage ist.
+
+In v1.0.8 verwendet die automatische Bestellung auch Positionstext, um Prosaspalten von Tabellenzeilen zu unterscheiden. PDF-Extraktion überprüft die Erntegrenzen mit der nativen Quelle. Wenn eine Tabellenzelle mehrdeutig ist, behalten Sie ihre Originaltext- und Zuverlässigkeitswarnung mit dem extrahierten Ergebnis bei; vergleichen Sie sie mit dem Seitenbild, bevor Sie den Wert in einer Analyse verwenden.
 
 ## Lesen Sie ein gescanntes PDF mit OCR {/* #scanned-pdf-ocr */}
 

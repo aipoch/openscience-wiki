@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -266,6 +266,8 @@ Desde v1.0.6, PDFs enlazados utilizan el orden de texto automático. Abrir el ac
 Las etiquetas lógicas completas y válidas tienen prioridad. El texto sin etiquetas, sin rotación y de izquierda a derecha puede usar el orden basado en el diseño; las etiquetas incompletas o los diseños sin soporte se remontan a la orden de texto nativa del PDF. Estas alternativas no garantizan que cada página, tabla o fórmula multicolumna lea correctamente.
 
 Mantenga la fuente abierta al revisar una respuesta. Compruebe la página citada, columna y figura o tabla contra el PDF, especialmente si las oraciones parecen entrelazadas. Usar el [herramientas de extracción de figuras y tablas](#pdf-extraction) cuando el material visual es el tema de la pregunta.
+
+En v1.0.8, el orden automático también utiliza texto posicionado para distinguir las columnas de prosa de las filas de mesa. Los cheques de extracción de PDF recortan fronteras contra la fuente nativa. Cuando una célula de mesa es ambigua, mantenga su texto original y advertencia de fiabilidad con el resultado extraído; compare con la imagen de la página antes de utilizar el valor en un análisis.
 
 ## Lea un PDF escaneado con OCR {/* #scanned-pdf-ocr */}
 

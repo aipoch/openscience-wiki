@@ -1,7 +1,7 @@
 ---
 title: "Tastenkürzel"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -90,4 +90,4 @@ In den Einstellungen konzentriert **&lt;0xE2>&lt;0x8C>&lt;0x98>K** (macOS) oder 
 | Verringern Sie einen Schritt | ⌘− | Ctrl+- |
 | Zurücksetzen auf 100% | ⌘0 | Strg+0 |
 
-Diese Abkürzungen teilen sich die Schritte 90%, 100%, 110% und 125% in **Settings → General → Appearance → Interface scale**. Siehe [Schnittstellengröße](appearance.md#interface-scale). File-Preview-Zoom und Whole-App-Skalierung sind separate Steuerelemente.
+Diese Abkürzungen teilen sich die Schritte 90%, 100%, 110% und 125% in **Settings → Appearance → Interface scale**. Siehe [Schnittstellengröße](appearance.md#interface-scale). File-Preview-Zoom und Whole-App-Skalierung sind separate Steuerelemente.

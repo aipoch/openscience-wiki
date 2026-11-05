@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "ページと管理のインデックス"
 description: "文書化されたOpen-Scienceボタン、入力、スイッチ、および結果をすべてページで見つけて下さい。"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # ページと管理のインデックス {/* #page-and-control-index */}
@@ -116,6 +116,8 @@ last_update:
 | 重複文献 | グループを選択, 比較, フィールドの選択肢, マージ | 協会を維持しながらレコードを見直し、マージする |
 | バックグラウンドタスク | Pause, Resume, レビュー, キャンセル | 一括メタデータ/全文操作の制御 |
 
+ **Add from DOI or link** 識別子の検討されたバッチのため、 **Study overview → Generate overview / Regenerate** 利用可能なソースを要約する参照内。 。 [ライブラリの指示](../guides/library.md#doi-link-import).
+
 ## NotebookとProvenance {/* #notebook-and-provenance */}
 
 | ページトップ | コントロール | 結果 |
@@ -182,9 +184,17 @@ Python/R; 環境 有効化, 通訳者を追加, ダウンロード/セットア�
 
 応用貯蔵のReveal/修理; データの場所 変更、パス、ブラウズ、チェック、マイグレート/アドプト/キャンセル; 移行の進行 キャンセル/再試行/再起動/無効; 拡張可能なディスク使用カテゴリ。
 
-### 一般 {/* #general */}
+### General {/* #general */}
 
-タスク通知、テーマラジオ、アプリのアイコンラジオ、クローズ動作、GitHubトークンオープン/インプット/セーブ/クリア、およびAbout/Checkの更新/インストール更新。
+アプリ版, **Check now**, ダウンロードと手動インストールヘルプ, **ヘルプセンター**, **リリースノート**、診断 **リード/オープン**, コマンドライン **Install command** ウィンドウの動作をサポートしました。 出現および通知は自身のパネルを下にあります **System**.
+
+### Appearance {/* #appearance */}
+
+**Theme**, **Language**デスクトップ **インターフェイススケール** そしてサポートされたapp-iconの選択。 。 [外観設定](../guides/appearance.md).
+
+### Notifications {/* #notifications */}
+
+**Task notifications**, **Show task content in system notifications**, **System notification status** そして、 **Send test notification**。 。 [通知設定](../guides/appearance.md).
 
 ### リモート・コントロール {/* #remote-control */}
 

@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v1.0.7 は **48 個の組み込み Connector と 418 操作**を提供します。内訳は、47 個のデータソース Connector の 416 操作と、オフラインの Molecule Connector 1 個の 2 操作です。以下の名前は **Settings → Connectors** の項目に対応します。1 個の Connector が複数のデータベースを扱う場合があります。掲載されたデータソースの Web サイトの全機能を利用できるとは限りません。
+Open-Science v1.0.8 は **48 個の組み込み Connector と 418 操作**を提供します。内訳は、47 個のデータソース Connector の 416 操作と、オフラインの Molecule Connector 1 個の 2 操作です。以下の名前は **Settings → Connectors** の項目に対応します。1 個の Connector が複数のデータベースを扱う場合があります。掲載されたデータソースの Web サイトの全機能を利用できるとは限りません。
 
 この数には無効なものを含む全組み込み項目が含まれます。独自に追加した MCP Connector は別途数えます。Connector 数、対象データベース数、呼び出せる操作数は異なる指標です。
 
@@ -268,7 +268,7 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 [Connectorの操作の参照](../reference/connector-operations.md) は、入力、許可された値、および正確な呼び出しを要求するリストです。 このページを使用してソースを選択し、それを接続します。 特定のツールのフィールドの参照を使用してください。
 
-カタログの出典： [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts).
+カタログの出典： [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/registry.ts).
 
 ## シーケンス検索とアライメント {/* #sequence-tools */}
 
@@ -413,3 +413,11 @@ v1.0.2 は、現在のセッションで拒否した OpenAlex 認証情報の要
 | 細胞株の証拠を確認 | **Cellosaurus** の RDF、制限付き SPARQL、STR 類似性 | accession とマーカー設定を保持。類似度だけでは試料同一性を認証できない |
 
 一覧は公式 URL とメタデータを返し、ファイルや分析 DB を自動取得しません。NHANES には正しい調査設計と重みが必要です。MIMIC/eICU デモの利用権は全データへの権限ではなく、FAERS 報告は発生率ではありません。詳細は[操作リファレンス](../reference/connector-operations.md)を参照してください。
+
+## eQTLカタログ用サプライ座標 {/* #eqtl-coordinates */}
+
+ **ヒト遺伝学** eQTLカタログリリース7のデータセットをリストするには、研究、組織、定量方法を選択し、小さな領域をクエリします。 退職したREST APIは、公式のインデックス付きTSVファイルと置換されています。
+
+。 `eqtl_associations`、供給 `dataset_id`, 明示的 `genome_build: "GRCh38"`, いずれか `pos` または `variant`。 遺伝子 ID または rsID は、追加の正確なフィルタのみで、座標を解決しません。 `pos` 1 種類の包括的な地域です。 `20:46120612-46120613`いいえ、 `chr` の接頭辞を付けず、範囲は最大 5 Mb です。GRCh37 の変異は、問い合わせ前に GRCh38 への一意な座標変換を明示的に行う必要があります。
+
+プレザーブ `reference_data`、元の `pvalue_text` そして効果のalleleとしてALT。 メタデータのスナップショットは、上流ファイルを凍結しません。 空の結果は、テストされたcisウィンドウで一致する公開された行を意味しません。彼らは協会の不在を証明しません。 詳細はこちら [操作パラメータ](../reference/connector-operations.md#eqtl_associations).

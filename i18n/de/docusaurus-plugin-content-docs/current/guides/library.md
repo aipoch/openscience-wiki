@@ -1,8 +1,10 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
+
+import Screenshot from '@site/src/components/Screenshot';
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
@@ -152,21 +154,55 @@ Klicken Sie auf **Import references**, warten Sie auf **Import complete**, prüf
 
 </ToolOperationGroup>
 
-## Fügen Sie eine Referenz aus einem DOI- oder arXiv-Link hinzu {/* #doi-link-import */}
+## Referenzen von Identifiern oder Links hinzufügen {/* #doi-link-import */}
 
 1. Offen **Library → All references → Add → Add from DOI or link**.
-2. Paste 1 DOI, a **doi.org** Link oder ein **arxiv.org/abs/** oder **arxiv.org/pdf/** Link in **DOI or arXiv link**, dann auswählen **Find reference**. Gewöhnliche URLs der Herausgeberseite werden von diesem Eintrag nicht unterstützt.
-3. In **Review reference details**Überprüfen Sie den Titel, die Schöpfer, das Jahr, die Veröffentlichung und die Identifikatoren. Verwendung **Edit details** Metadaten vor dem Speichern zu korrigieren.
-4. Überprüfung **When identifiers match**. **Reuse existing reference** behält vorhandene Metadaten; wählen Sie eine andere angebotene Aktion erst nach dem Vergleich der Datensätze. Wählen **Save**.
-5. Öffnen Sie den gespeicherten Datensatz erneut und überprüfen Sie seine Identifikatoren. Verwendung **Find full-text PDF** oder **Add files** separat, wenn Sie das Papier selbst benötigen.
+2. Geben Sie eine Kennung oder einen Link pro Zeile ein. Unterstützte Inputs sind DOI, doi.org Links, arXiv IDs oder abstract/PDF Links, PMID, PMCID und offizielle PubMed/PMC Artikel Links. Verwenden Sie explizite Präfixe wie `PMID: 19621072` für eine PubMed ID. Gewöhnliche Publisher-URLs werden von diesem Eintrag nicht akzeptiert.
+3. Wählen **Find reference**. Jede Charge erlaubt bis zu **100 non-empty lines**, vor der Deduplizierung gezählt. Teilen Sie eine längere Liste in kleinere Chargen. Der Lookup normalisiert Bezeichner und kombiniert äquivalente Einträge.
+4. Mit mehreren Eingaben, überprüfen Sie die Ergebnisse und wählen **Review references**. Lösen Sie fehlgeschlagene Lookups oder lassen Sie sie aus; Sie wurden nicht gespeichert. In **Import references**, inspizieren ausgewählte Aufzeichnungen und **When identifiers match**, dann auswählen **Import references**.
+5. Für eine einzelne Eingabe, Verwendung **Review reference details**, die Metadaten überprüfen oder bearbeiten, die doppelte Richtlinie auswählen und **Save** Stattdessen.
+6. Lesen **Import complete** und deren Created/Reused/Skipped/Failed zählt, dann öffnen Sie die gespeicherten Referenzen erneut. **Reuse existing reference** behält vorhandene Metadaten; verwenden Sie eine andere angebotene Richtlinie nur nach dem Vergleich von Datensätzen. PDF separat abrufen mit **Find full-text PDF** oder **Dateien hinzufügen**.
 
-<p className="example-label"><strong>Praxisbeispiel</strong> DOI: 10.1038/s41467-018-08136-3</p>
+<p className="example-label"><strong>Bearbeitetes Beispiel</strong> Importieren Sie zwei PRISMA-Anweisungen ohne doppelte Datensätze</p>
 
-Eingang `10.1038/s41467-018-08136-3`. Der Lookup gibt den Artikel von Lang und Kollegen 2019 zurück, **Non defect-stabilized thermally stable single-atom catalyst**, in Nature Communications. Überprüfen Sie diese Details vor dem Speichern; das Lookup fügt kein PDF an.
+Fügen Sie diese drei Zeilen ein:
 
-![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+```text
+10.1136/bmj.n71
+https://doi.org/10.1136/bmj.n71
+PMID: 19621072
+```
 
-Ein versionierter arXiv-Link löst sich zu den neuesten Metadaten auf, nicht unbedingt zu den Metadaten dieser alten Revision. Vergleichen Sie die Version eines PDF, das Sie später anhängen. Wenn die Suche fehlschlägt, überprüfen Sie den Bezeichner und versuchen Sie es erneut oder verwenden Sie einen PDF- oder Bibliographie-Dateiimport; eine fehlgeschlagene Suche hat keine Referenz gespeichert.
+<Screenshot src="/img/open-science/v108/batch-input.webp" alt="Gemischte DOI- und PubMed-Eingaben im Batch-Importdialog" width={1280} height={720} windowBounds={[320, 206, 640, 310]} href="/docs/img/open-science/v108/batch-input.webp" linkLabel="Gemischte DOI- und PubMed-Eingaben im Batch-Importdialog" />
+
+Der DOI- und DOI-Link identifizieren das gleiche Papier, so dass das Lookup zwei Referenzen zurückgibt: die PRISMA 2020-Erklärung in BMJ und die PRISMA 2009-Erklärung in PLoS Medicine. Überprüfen Sie ihre Titel und Identifikatoren in der Überprüfung.
+
+<Screenshot src="/img/open-science/v108/batch-review.webp" alt="Überprüfen Sie zwei aufgelöste PRISMA-Referenzen und wählen Sie, wie Sie mit vorhandenen Datensätzen umgehen" width={1280} height={720} windowBounds={[270, 16, 740, 688]} href="/docs/img/open-science/v108/batch-review.webp" linkLabel="Überprüfen Sie zwei aufgelöste PRISMA-Referenzen und wählen Sie, wie Sie mit vorhandenen Datensätzen umgehen" />
+
+In diesem Beispiel existierten beide Aufzeichnungen bereits. Auswahl **Reuse existing reference** fertig mit **0 Created, 2 Reused, 0 Skipped, 0 Failed**die Bibliothek ohne zusätzliche Kopien zu verlassen. Eine neue Bibliothek erstellt stattdessen die ausgewählten Datensätze.
+
+<Screenshot src="/img/open-science/v108/batch-complete.webp" alt="Abgeschlossene Einfuhr verwendet zwei bestehende Referenzen wieder" width={1280} height={720} windowBounds={[270, 124, 740, 474]} href="/docs/img/open-science/v108/batch-complete.webp" linkLabel="Abgeschlossene Einfuhr verwendet zwei bestehende Referenzen wieder" />
+
+Ein versionierter arXiv-Link löst aktuelle Metadaten auf, die von einer älteren PDF-Revision abweichen können. Vergleichen Sie das PDF, das Sie anhängen. Für einen ungelösten Bezeichner korrigieren Sie die Eingabe und versuchen Sie es erneut oder verwenden Sie einen Bibliographie-Dateiimport. Metadaten-Lookup allein erhält nicht den Volltext.
+
+## Generieren einer Studienübersicht {/* #study-overview */}
+
+1. Konfigurieren eines verfügbaren **Main model** in **Settings → Model** Überprüfen Sie die Provider-Verbindung. Öffnen Sie eine Referenz mit einem Abstract oder einem lesbaren beigefügten PDF.
+2. In seinen Details, finden **Study overview** und wählen **Generate overview**. Halten Sie die Referenz offen, während die Generation läuft.
+3. Lesen Sie das Source Label, bevor Sie das Ergebnis verwenden: **Based on abstract**, **Based on full text** oder **Based on selected passages**. Die fünf Abschnitte decken **Research question**, **Study population**, **Research methods**, **Main findings** und **Study limitations**. Informationen, die in der Quelle fehlen, sind markiert **Not reported in the available source**.
+4. Überprüfen Sie wichtige Ansprüche, numerische Ergebnisse und Einschränkungen gegenüber dem Originalpapier. Eine abstrakte Übersicht stellt nicht fest, dass das gesamte Papier gelesen wurde.
+5. Öffnen Sie den Verweis erneut, um zu seiner gespeicherten Übersicht zurückzukehren. Verwendung **Regenerate** nach Änderung der Quelle oder wenn eine neue Übersicht benötigt wird. Die Ergebnisse verwenden die aktuelle Schnittstellensprache; das Ändern dieser Sprache oder der zugrunde liegenden Quelle kann eine andere Generation erfordern.
+
+Wenn eine Quelle fehlt, fügen Sie eine Zusammenfassung oder eine lesbare PDF hinzu. Im Browser kann eine längere Anfrage einen Fehler anzeigen, bevor die Übersicht gespeichert wird. Warten Sie kurz und öffnen Sie den Eintrag erneut, um nach dem Ergebnis zu sehen, bevor Sie die Generierung wiederholen. Falls kein Ergebnis erscheint, prüfen Sie das Hauptmodell und die Anmeldung beim Anbieter. Eine gespeicherte, aber nicht lesbare PDF ist keine nutzbare Volltextquelle.
+
+<p className="example-label"><strong>Praxisbeispiel</strong> Die Zusammenfassung einer Arbeit über einen Einzelatomkatalysator lesen</p>
+
+Fügen Sie die DOI `10.1038/s41467-018-08136-3` über **Add from DOI or link** hinzu. Öffnen Sie **Non defect-stabilized thermally stable single-atom catalyst**, prüfen Sie **Abstract** und wählen Sie **Generate overview**. Dieses Beispiel verwendet Codex mit `gpt-6-astra` ohne PDF-Anhang.
+
+<Screenshot src="/img/open-science/v108/study-overview.webp" alt="Gespeicherte englische Studienübersicht mit fünf Feldern, Abstract-Quellenangabe und Codex-Modell" width={2082} height={1239} windowBounds={[661, 200, 760, 664]} href="/docs/img/open-science/v108/study-overview.webp" linkLabel="Gespeicherte englische Studienübersicht mit fünf Feldern, Abstract-Quellenangabe und Codex-Modell" />
+
+Das gespeicherte Ergebnis trägt die Kennzeichnung **Based on abstract**. Unter **Study limitations** steht **Not reported in the available source**, weil die bereitgestellte Zusammenfassung keine Einschränkungen nennt. Das bedeutet nicht, dass die Studie keine hat. Schließen und öffnen Sie den Eintrag erneut, um die gespeicherte Übersicht ohne erneute Generierung zu lesen.
+
 
 ## Import aus Zotero {/* #zotero-import */}
 
@@ -320,7 +356,7 @@ Eine pausierte Suche behält ihre überprüften und ausstehenden Datensätze. Na
 
 Prüfen Sie für **PDF could not be added** die Anforderungen an die Quellanmeldung, die Linkvalidität, die angezeigte Größenbegrenzung und die aktuelle Proxy/DNS-Konfiguration. Vermeiden Sie es, doppelte Referenzen als Retry-Mechanismus zu erstellen.
 
-Wenn eine PDF-Quelle zu einer reservierten Adresse wie `198.18.x.x` aufgelöst wird, lehnt der Downloader sie ab. Folgen Sie [Netzwerk](network.md), um die überprüfbare öffentliche Auflösung wiederherzustellen, und versuchen Sie es dann erneut. Deaktivieren Sie die Adressprüfung nicht. Wenn Sie bereits ein rechtmäßig heruntergeladenes PDF haben, verwenden Sie **Add PDF** und überprüfen Sie dessen Titel, DOI und Seitenanzahl.
+Meldet der Volltext-Download einen Fehler bei der Adressprüfung, folgen Sie der [Proxy-Fehlerbehebung](troubleshooting.md#full-text-proxy). Konfigurierte Proxys mit Fake-IP-DNS werden seit v1.0.7 unterstützt; deaktivieren Sie die Adressprüfung nicht. Eine berechtigt erhaltene Kopie können Sie mit **Add files** hinzufügen. Prüfen Sie danach Titel, DOI und Seitenzahl.
 
 
 </ToolOperationGroup>

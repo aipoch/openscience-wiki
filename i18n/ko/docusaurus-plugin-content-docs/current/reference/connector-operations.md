@@ -2,7 +2,7 @@
 title: "Connector 가동 참고"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-05'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 작업 입력 {/* #operation-inputs */}
 
-한 번에 1개의 연결관을 확장하십시오. 필수 필드가 표시됩니다. **\*필수**; 이 참고 및 다운로드 Open-Science 사용 **v1.0.5** 스키마. 한국어 `input.required` 목록은 권한이 있습니다; Legacy top-level `required` 목록은 absent 일 수 있습니다. 견적 요청 <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.5.json">완전한 다운로드 가능한 registry</ExampleDownload> 배열된 JSON schemas를 위해, 가득 차있는 반환 묘사 및 대리인 측 호출 예. 일반을 통과하지 마십시오 `id` 도구가 기대할 때 `accessions`, `cids`, `rs_id` 또는 다른 namespace-specific 필드.
+한 번에 1개의 연결관을 확장하십시오. 필수 필드가 표시됩니다. **\*필수**; 이 참고 및 다운로드 Open-Science 사용 **v1.0.8** 스키마. 한국어 `input.required` 목록은 권한이 있습니다; Legacy top-level `required` 목록은 absent 일 수 있습니다. 견적 요청 <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.8.json">완전한 다운로드 가능한 registry</ExampleDownload> 배열된 JSON schemas를 위해, 가득 차있는 반환 묘사 및 대리인 측 호출 예. 일반을 통과하지 마십시오 `id` 도구가 기대할 때 `accessions`, `cids`, `rs_id` 또는 다른 namespace-specific 필드.
 
 ## 뚱 베어 {/* #family-1 */}
 
@@ -2922,14 +2922,14 @@ const result = await host.mcp("human-genetics", "gwas_get_variant", {"rs_id": "r
 
 ### `eqtl_list_datasets` {/* #eqtl_list_datasets */}
 
-eQTL 카탈로그 데이터셋 리스트(one dataset = one study xissue/cell type x quantification method). Args: study_label (확실한 연구 이름, 예를들면. GTEx, Alasoo_2018, BLUEPRINT; _ 에이치엘슈 tissue_label (확장 조직/cell 유형 상표, 예를들면. 간, macrophage, LCL — 카탈로그에 있는 더 낮은 케이스); quant_method (ge=gene expression, exon, tx, txrev, microarray, leafcutter, aptamer=plasma 단백질; 기존 유전자 수준 eQTLs 사용 ge에 대 한); max_records (캡 기본 1000; 완전 필터링 카탈로그는 ~760 데이터 세트입니다. &#123;filters, 반환, truncated, datasets&#125; 반환 정렬 dataset_id; 각 &#123;dataset_id (QTD...), study_id (QTS...), study_label, sample_group, tissue_id, tissue_label, condition_label, quant_method, sample_size&#125;. API는 총 수를 게시하지 않습니다; truncated=false는 목록이 완료됩니다.
+전체 REST API를 대체하는 pinned 공식 TSV 카탈로그에서 eQTL 카탈로그 release-7 데이터 세트를 나열하십시오. 정확한 필터 선택 연구, 조직 및 정량 방법. 결과 포함 `total`, `returned`, `truncated`, dataset 메타데이터, 공식 `file_url` 가치와 `reference_data`· 유전자 압축 `.all` 파일은 전체 명목상 통계를 포함합니다; `.cc` 파일이 필터링됩니다. Metadata pinning는 업스트림 데이터 파일을 동결하지 않습니다.
 
-| (주) | 유형 | 필요조건 및 constraints |
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
 | --- | --- | --- |
-| `study_label` | 문자열 | 옵션 정보 |
-| `tissue_label` | 문자열 | 옵션 정보 |
-| `quant_method` | 문자열 | 옵션 정보 |
-| `max_records` | 정수 | 선택 사항; 기본: 1000 |
+| `study_label` | 이름 * | 선택 사항; 정확한 연구 이름 |
+| `tissue_label` | 이름 * | 선택적인; 정확한 조직 상표 |
+| `quant_method` | 이름 * | 선택 사항; ge, exon, tx, txrev, microarray, leafcutter 또는 aptamer와 같은 정확한 방법 |
+| `max_records` | 뚱 베어 | 선택; 1–1000; 기본: 1000 |
 
 ```javascript
 const result = await host.mcp("human-genetics", "eqtl_list_datasets", {"study_label": "Alasoo_2018", "quant_method": "ge"})
@@ -2937,21 +2937,24 @@ const result = await host.mcp("human-genetics", "eqtl_list_datasets", {"study_la
 
 ### `eqtl_associations` {/* #eqtl_associations */}
 
-분자 QTL 협회는 하나의 eQTL 카탈로그 데이터 세트에서 열리고, 유전자, 변형 또는 지역으로 필터링합니다. Args: dataset_id (eqtl_list_datasets, e.g.에서 QTD 액세스. QTD000266; gene_id (unversioned Ensembl 유전자 ID e.g. ENSG00000130203 APOE; gene_id/rsid/variant/pos의 적어도 하나는 요구됩니다; rsid (dbSNP rsID); 변형 (eQTL 카탈로그 변형 문자열 chr19_44908822_C_T, chr-prefixed underscore GRCh38); pos (genomic 창 크롬:start-end GRCh38 chr prefix, e.g. 19:44900000-44920000); nlog10p_min (신호층: -log10(p) >=이로만 행할 수 있으며, 업스트림을 적용할 수 있습니다); max_records (캡 기본 1000 = 한 페이지). &#123;dataset_id, 필터, 리턴, truncated, 협회&#125;; 각 행 &#123;molecular_trait_id, gene_id, 변종, rsid, 염색, 위치, ref, alt, 유형, 베타, se, pvalue, nlog10p, maf, ac, an, r2, median_tpm&#125;. 줄은 즉시 창을 만듭니다 (각 유전자의 ±1 Mb); 빈은 "not 테스트 / Not Present"을 의미한다. 총 카운트가 게시되지 않습니다 : truncated = false는 소진을 입증, truncated = true는 캡이 히트를 의미한다.
+Query 공식 색인된 eQTL 카탈로그 release-7 TSV 파일. dataset, 명시된 GRCh38 어셈블리 및 좌표 또는 변종을 제공합니다. Gene ID와 rsIDs만 필터 행은 이미 위치에 의해 검색. GRCh37를 위해, 사용 `liftover_variant` 이름 * `source_build: "GRCh37"` 를 먼저 실행하고 GRCh38 매핑이 유일한 경우에만 계속하세요. 원래 변이와 매핑 증거를 보존하세요. 변이나 영역의 좌표는 자동으로 변환되지 않습니다.
 
-| (주) | 유형 | 필요조건 및 constraints |
+| 제품정보 | 제품정보 | 요구 사항 및 제약 |
 | --- | --- | --- |
-| `dataset_id` | 문자열 | **필수** |
-| `gene_id` | 문자열 | 옵션 정보 |
-| `rsid` | 문자열 | 옵션 정보 |
-| `variant` | 문자열 | 옵션 정보 |
-| `pos` | 문자열 | 옵션 정보 |
-| `nlog10p_min` | 숫자 | 옵션 정보 |
-| `max_records` | 정수 | 선택 사항; 기본: 1000 |
+| `dataset_id` | 이름 * | ***필수**; QTD는 6개의 손가락에 의해 뒤에 |
+| `genome_build` | 이름 * | ***필수**; GRCh38을 명시해야 하며 기본값 없음 |
+| `gene_id` | 이름 * | 선택적; 정확한 변하지 않는 인간적인 Ensembl ID, ENSG는 eleven 손가락에 의해 따릅니다 |
+| `rsid` | 이름 * | 선택; 손가락에 의해 뒤에 정확한 rs |
+| `variant` | 이름 * | pos가 없으면 필수; GRCh38의 chrN_position_ref_alt |
+| `pos` | 이름 * | 변종이 absent 때 요구; 1 기반 포함 된 크로노섬 : 스타트 엔드, chr 접두사, 크롬 1 - 22 / X / Y, 최대 경간 5 메가 |
+| `nlog10p_min` | 이름 * | 옵션; 비 부정; 필터는 로컬로 −log10 (p) −log10 |
+| `max_records` | 뚱 베어 | 선택; 1–1000; 기본: 1000 |
 
 ```javascript
-const result = await host.mcp("human-genetics", "eqtl_associations", {"dataset_id": "QTD000266", "gene_id": "ENSG00000130203", "nlog10p_min": 2})
+const result = await host.mcp("human-genetics", "eqtl_associations", {"dataset_id": "QTD000021", "genome_build": "GRCh38", "pos": "20:46120612-46120613", "max_records": 25})
 ```
+
+결과 유지 `region`, `coordinate_source`, `returned`, `truncated`, `associations` · `reference_data`· 예약안내 `pvalue_text` 그리고 효력 allele로 ALT. 추가 필터는 정확히 맞습니다. 빈 결과는 시험된 창 내의 일치하는 간행한 행을, 협회의 부재하지 않습니다 의미하지 않습니다. Oversize는 실패합니다; 지역 좁은 또는 대량 일을 위한 국부적으로 Tabix를 사용하십시오.
 
 ### `phewas_instances` {/* #phewas_instances */}
 

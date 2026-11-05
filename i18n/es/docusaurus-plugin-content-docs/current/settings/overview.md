@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: "Sinopsis de la configuración"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-05'
 ---
 
 # Sinopsis de la configuración {/* #settings-overview */}
 
-Abra **Settings** desde la esquina inferior izquierda del espacio de trabajo. Sus paneles 17 se organizan en cuatro grupos: **Intelligence**, **Connections**, **Workspace** y **System**. Elija un panel por propósito, o busque en el encabezado. En estas guías, **Settings → Model**, por ejemplo, se refiere al panel Modelo dentro de Inteligencia.
+Abierto **Settings** desde la esquina inferior izquierda del espacio de trabajo. Es... **19 paneles** se organizan en cuatro grupos: **System**, **Intelligence**, **Connections** y **Workspace**. La apariencia y las notificaciones son paneles separados. Elija por propósito o búsqueda desde el encabezado; **Settings → Model**, por ejemplo, abre Modelo dentro de Inteligencia.
 
 | Fiscalización mundial | Comportamiento |
 | --- | --- |
@@ -27,10 +27,13 @@ Abra **Settings** desde la esquina inferior izquierda del espacio de trabajo. Su
 
 Esta búsqueda cubre los ajustes representativos en cada panel, no en cada campo o documento de investigación. Si un término no coincide, utilice el nombre del panel o los grupos de navegación a continuación. Para buscar conversaciones o archivos, cerrar Ajustes y utilizar [búsqueda mundial](../guides/navigation.md).
 
-## Los paneles principales 17 {/* #the-17-main-panels */}
+## Los paneles principales 19 {/* #the-17-main-panels */}
 
 | Grupo | Panel | Lo que maneja |
 | --- | --- | --- |
+| System | [General](../guides/appearance.md#help-center) | Versión, actualizaciones, diagnóstico, instalación CLI, ventanas y ayuda |
+|  | [Appearance](../guides/appearance.md) | Tema, idioma, escala de la interfaz e iconos compatibles |
+|  | [Notifications](../guides/appearance.md) | Avisos de tareas, contenido, estado del sistema y notificación de prueba |
 | Inteligencia | [Modelo](../guides/models.md) | Proveedor y modelos de escenarios |
 |  | [Agente](../guides/frameworks.md) | Instalación, conmutación y reparación del marco del agente |
 |  | [Skills](../skills/overview.md) | Métodos de investigación reutilizables y su disponibilidad |
@@ -47,7 +50,6 @@ Esta búsqueda cubre los ajustes representativos en cada panel, no en cada campo
 |  | [Cálculo](../guides/remote-compute.md) | Recursos de computación locales y SSH |
 |  | [Uso](../guides/usage.md) | Estadísticas de actividad de investigación, llamadas e investigación |
 |  | [Archivado](../guides/storage.md) | Restaurar o eliminar permanentemente el trabajo archivado |
-| Sistema | [General](../guides/appearance.md) | Apariencia, notificaciones, diagnóstico y versión |
 
 **Feedback** sigue siendo una entrada separada en la parte inferior de Ajustes.
 

@@ -2,7 +2,7 @@
 title: "Reproduzierbarkeit"
 description: "Führen Sie die erfassten Forschungsschritte erneut aus, vergleichen Sie ein gespeichertes Ergebnis und behalten Sie den Verifizierungsprotokoll."
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-05'
 ---
 
 # Reproduzierbarkeit {/* #reproducibility */}
@@ -92,3 +92,9 @@ Wenn Sie bereits ein unterstütztes Lock-Bundle haben und Pakete außerhalb der 
 ## Überprüfen Sie die Geschichte vor dem Wiederholen {/* #replay-vs-verification */}
 
 Verwenden Sie [Session Replay](session-replay.md), um die aufgezeichnete Reihenfolge der Nachrichten, die Tool-Aktivität und die Dateiversionen zu überprüfen. Replay zeigt gespeicherte Beweise mit rekonstruiertem Präsentations-Timing; es führt keinen Code erneut aus, fragt Datenbanken erneut ab oder stellt fest, dass ein Ergebnis reproduziert wird. Verwenden Sie **Reproducibility** oben, wenn Sie einen neuen Ausführungs- und Ausgabevergleich benötigen.
+
+## Interpretation unvollständiger Ausführungsnachweise {/* #execution-evidence */}
+
+Der Verlauf einer Datei und eine erfolgreiche Wiederholung beantworten verschiedene Fragen. Öffnen Sie seine Herkunft und prüfen Sie die aufgezeichneten Eingaben, den Code, die Umgebung und das Verifizierungsergebnis, bevor Sie es als reproduziert beschreiben.
+
+Einige R-Aufrufe können verzögerte Argumente oder Versandmethoden auswerten, die indirekt auf Dateien zugreifen. Open-Science macht frühere Dateinachweise ungültig, wenn diese Operationen die Beweise unvollständig machen. Eine sichtbare Ausgabe allein stellt diesen Beweis nicht wieder her. Behalten Sie den Status der unvollständigen Beweise mit dem Ergebnis bei, machen Sie Eingaben explizit, führen Sie dann erneut aus und inspizieren Sie den neuen Verifizierungsrekord.

@@ -1,37 +1,24 @@
 ---
 title: "外觀與通知"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
-import PreferenceScreenshot from '@site/src/components/PreferenceScreenshot';
-import Screenshot from '@site/src/components/Screenshot';
-
 # 外觀與通知 {/* #外观与通知 */}
 
-選擇適合閱讀的主題、設定介面語言，並在使用其他應用時接收任務提醒。開啟 **Settings → General** 調整這些偏好。Open-Science 會在本裝置記住外觀選擇。
+選擇合適的主題、界面語言和任務提醒。外觀選項位於 **Settings → Appearance**，提醒選項位於 **Settings → Notifications**；兩個面板都在 **System** 分組中。General 主要管理應用維護和幫助。
 
 <PlatformGuide />
 
 ## 修改主題與介面語言 {/* #修改主题与界面语言 */}
 
-1. 在 **General → Appearance** 找到 **Theme**。
+1. 在 **Appearance** 找到 **Theme**。
 2. 選擇 **System** 跟隨系統，或選擇 **Light / Dark** 固定為淺色或深色，之後可隨時切換。
 3. 在 **Language** 選擇希望使用的介面語言，或選擇 **System** 使用裝置語言。
 
-<PlatformContent platform="macos">
-
-![General 中的外觀與語言設定](/img/open-science/v0.27.0/07-general-appearance.webp)
-
-</PlatformContent>
-
-<PlatformContent platform="windows">
-
-<Screenshot src="/img/open-science/windows/general-settings.webp" alt="Windows 的 General 設定中的 Theme 與 Language 控制元件" width={1920} height={1017} windowBounds={[480, 165, 960, 690]} href="/docs/img/open-science/windows/general-settings.webp" linkLabel="開啟完整的 Windows General 設定截圖" />
-
-</PlatformContent>
+![Open-Science 的 Appearance 和 Notifications 已成爲獨立的 System 面板](/img/open-science/v108/appearance.webp)
 
 | 選擇 | 生效範圍 |
 | --- | --- |
@@ -40,7 +27,7 @@ import Screenshot from '@site/src/components/Screenshot';
 | Language → System | 應用啟動時讀取裝置語言。修改系統語言後，重新開啟應用使其生效 |
 | 指定一種語言 | 應用使用該介面語言。已儲存的提問、原始檔和歷史模型回答保留原文 |
 
-語言和主題設定位於 **Settings → General → Appearance**。文件網站的語言選擇器獨立於應用，修改它不會改變應用語言。系統檔案視窗遵循作業系統設定。
+語言和主題設定位於 **Settings → Appearance**。文件網站的語言選擇器獨立於應用，修改它不會改變應用語言。系統檔案視窗遵循作業系統設定。
 
 需要模型用其他語言撰寫報告時，在對話中說明即可，例如：“請用英文撰寫報告，保留原始基因識別符號。”
 
@@ -63,16 +50,10 @@ import Screenshot from '@site/src/components/Screenshot';
 
 如果希望在分析執行時處理其他工作，並在任務需要關注時收到提醒，可以開啟通知。
 
-1. 在 **General → Notifications** 開啟 **Task notifications**。
+1. 在 **Notifications** 開啟 **Task notifications**。
 2. 決定是否開啟 **Show task content in system notifications**。不希望系統提醒暴露任務名稱或請求細節時，保持關閉。
 3. 閱讀 **System notification status**，如果可用，點選 **Send test notification**。作業系統詢問時，允許應用傳送通知。
 4. 檢查測試返回狀態及系統通知。接收實際任務提醒時，切換到其他應用並讓任務繼續執行。
-
-<PlatformContent platform="macos">
-
-<PreferenceScreenshot notifications />
-
-</PlatformContent>
 
 | 控制元件 | 效果 |
 | --- | --- |
@@ -127,22 +108,20 @@ import Screenshot from '@site/src/components/Screenshot';
 
 ### 關閉視窗後從托盤返回 {/* #关闭窗口后从托盘返回 */}
 
-在 **General → Close button behaviour** 選擇 **Ask every time** 後，關閉視窗會顯示 **Minimize or quit?**。選擇 **Minimize to tray** 可隱藏視窗，再從 Windows 托盤中的 Open-Science 圖示返回。只有希望記住選擇時才勾選 **Don’t ask again**；需要改變行為時回到 General。最小化不等於退出應用。
+在 **General → Window behavior → When closing the window** 選擇 **Ask every time** 後，關閉視窗會顯示 **Minimize or quit?**。選擇 **Minimize to tray** 可隱藏視窗，再從 Windows 托盤中的 Open-Science 圖示返回。只有希望記住選擇時才勾選 **Don’t ask again**；需要改變行為時回到 General。最小化不等於退出應用。
 
 </PlatformContent>
 
 ## 開啟幫助中心 {/* #help-center */}
 
-進入 **Settings → General → About → Help Center**，在瀏覽器閱讀設定和故障排查說明。連結跟隨應用當前語言：英文開啟文件根頁，其他受支援語言開啟對應版本。也可以在 Settings 搜尋框中搜尋介面對應的“幫助中心”名稱。需要檢視應用版本歷史時，使用 **Release notes**。
-
-![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
+進入 **Settings → General → Help Center**，在瀏覽器閱讀設定和故障排查說明。連結跟隨應用當前語言：英文開啟文件根頁，其他受支援語言開啟對應版本。也可以在 Settings 搜尋框中搜尋介面對應的“幫助中心”名稱。需要檢視應用版本歷史時，使用 **Release notes**。
 
 ## 查詢相關設定 {/* #查找相关设置 */}
 
 | 你想要… | 對應入口 |
 | --- | --- |
-| 檢查應用更新 | **General → About → Check now**；後續步驟見[安裝與更新](installation.md) |
-| 閱讀版本變化或獲取幫助 | **About → Release notes / Help Center** 開啟相應外部頁面；本 Wiki 另有 [Changelog](../changelog/v0.34.0.md) |
+| 檢查應用更新 | **General → Check now**；後續步驟見[安裝與更新](installation.md) |
+| 閱讀版本變化或獲取幫助 | **General → Release notes / Help Center** 開啟相應外部頁面；本 Wiki 另有 [Changelog](../changelog/v1.0.8.md) |
 | 定位或開啟診斷日誌 | **General → Diagnostics → Reveal / Open**；見[故障排查](troubleshooting.md)。日誌在主動分享前保留於本地 |
 | 安裝命令列入口 | **General → Install command**；見 [CLI 參考](../reference/cli.md)。使用桌面介面不需要安裝此命令 |
 | 管理資料位置或歸檔工作 | [儲存與歸檔](storage.md) |
@@ -153,16 +132,13 @@ import Screenshot from '@site/src/components/Screenshot';
 
 通知送達還取決於作業系統權限、專注模式及螢幕共享設定。請在實際使用的裝置上按上表檢查。
 
-
-原始碼：[General 設定](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx)。
+原始碼：[General 設定](https://github.com/aipoch/open-science/blob/v1.0.8/src/renderer/src/pages/settings/GeneralPanel.tsx)。
 
 ## 調整應用內介面大小 {/* #interface-scale */}
 
-1. 開啟 **Settings → General → Appearance → Interface scale**。
+1. 開啟 **Settings → Appearance → Interface scale**。
 2. 選擇 **90%**、**100%**、**110%** 或 **125%**。文字和控制元件立即縮放，並在這臺裝置上記住選擇。
 3. 需要恢復預設大小時選擇 **100%**，或按 ⌘0（macOS）／Ctrl+0（Windows/Linux）。⌘+／Ctrl++ 放大，⌘−／Ctrl+− 縮小。
-
-![General 中的 Interface scale 選項](/img/open-science/v0333/interface-scale.webp)
 
 這是桌面應用的介面大小設定；影象或 PDF 預覽裡的縮放隻影響當前檔案。透過瀏覽器訪問時使用瀏覽器自己的縮放。Windows 系統顯示縮放影響其他應用，需要只調整 Open-Science 時優先使用上述入口。
 

@@ -2707,5 +2707,11 @@
   },
   "docs.outline.reference.v107.scope": {
     "message": "DOI 與 arXiv 導入、PDF 批註、OCR、Pi 和研究案例市場。"
+  },
+  "docs.outline.reference.v108.title": {
+    "message": "v1.0.8"
+  },
+  "docs.outline.reference.v108.scope": {
+    "message": "文獻批量匯入、論文概覽、設定與 eQTL 更新。"
   }
 }

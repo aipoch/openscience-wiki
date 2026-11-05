@@ -1835,5 +1835,11 @@
   },
   "docs.outline.reference.v107.scope": {
     "message": "DOI・arXiv インポート、PDF 注釈、OCR、Pi、研究事例マーケット。"
+  },
+  "docs.outline.reference.v108.title": {
+    "message": "v1.0.8"
+  },
+  "docs.outline.reference.v108.scope": {
+    "message": "文献の一括インポート、研究概要、設定と eQTL の更新。"
   }
 }

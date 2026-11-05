@@ -1,7 +1,7 @@
 ---
 title: "Installation and updates"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,7 +12,7 @@ Most users should install the desktop package from GitHub Releases. Contributors
 
 <PlatformGuide />
 
-**Current packages:** [v1.0.7 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.7) include desktop installers, standalone CLI archives and Linux CLI `.deb`/`.rpm` packages. Choose the intended installation type and architecture, then verify the checksum from the same release. The desktop launcher remains available through **Settings → General → Command line tool → Install command**.
+**Current packages:** [v1.0.8 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.8) include desktop installers, standalone CLI archives and Linux CLI `.deb`/`.rpm` packages. Choose the intended installation type and architecture, then verify the checksum from the same release. The desktop launcher remains available through **Settings → General → Command line tool → Install command**.
 
 ## Choose an installation method
 
@@ -40,7 +40,7 @@ You can also install with Homebrew:
 brew install --cask open-science
 ~~~
 
-Homebrew selects Apple Silicon or Intel automatically. After installation, open **Settings → General → About** and confirm the installed version; a package manager can resolve a newer release than the documentation baseline. [Tagged installation instructions](https://github.com/aipoch/open-science/blob/v0.27.0/README.md).
+Homebrew selects Apple Silicon or Intel automatically. After installation, open **Settings → General** and confirm the installed version; a package manager can resolve a newer release than the documentation baseline. [Tagged installation instructions](https://github.com/aipoch/open-science/blob/v0.27.0/README.md).
 
 </PlatformContent>
 
@@ -67,7 +67,7 @@ Official Windows installers are code-signed from v0.33.2; v0.33.3 extends signin
 | Ubuntu / Debian | `uname -m`: `x86_64` means x64, `aarch64` means ARM64 | Choose the matching `.deb`, open it with the system package installer, then launch from the application menu |
 | Other supported Linux distributions | Check `uname -m` | Choose the matching `.AppImage`, allow execution in the file's permissions, then open it; resolve any dependency error reported by the distribution |
 
-v1.0.7 provides Linux **x64 and ARM64** packages. For ARM64, select `aipoch-open-science-1.0.7-linux-arm64.AppImage` or `aipoch-open-science_1.0.7_arm64.deb`. The x64 counterparts are `aipoch-open-science-1.0.7-linux-x86_64.AppImage` and `aipoch-open-science_1.0.7_amd64.deb`. Download from the selected release's official Assets and match the result of `uname -m`.
+v1.0.8 provides Linux **x64 and ARM64** packages. For ARM64, select `aipoch-open-science-1.0.8-linux-arm64.AppImage` or `aipoch-open-science_1.0.8_arm64.deb`. The x64 counterparts are `aipoch-open-science-1.0.8-linux-x86_64.AppImage` and `aipoch-open-science_1.0.8_amd64.deb`. Download from the selected release's official Assets and match the result of `uname -m`.
 
 </PlatformContent>
 
@@ -75,7 +75,7 @@ The installation location stores the application; **Data location** in the setup
 
 ### Use the standalone CLI {/* #standalone-cli */}
 
-For a terminal/browser installation, download a matching standalone CLI archive from [v1.0.7](https://github.com/aipoch/open-science/releases/tag/v1.0.7). It bundles Node, the backend and Web UI. Extract the complete directory, then follow [CLI setup](../reference/cli.md#terminal-setup). Keep the CLI and backend from the same installation together.
+For a terminal/browser installation, download a matching standalone CLI archive from [v1.0.8](https://github.com/aipoch/open-science/releases/tag/v1.0.8). It bundles Node, the backend and Web UI. Extract the complete directory, then follow [CLI setup](../reference/cli.md#terminal-setup). Keep the CLI and backend from the same installation together.
 
 #### Homebrew CLI {/* #homebrew-cli */}
 
@@ -83,35 +83,35 @@ Install or manage the Homebrew CLI with `brew install aipoch/tap/open-science`, 
 
 #### Linux CLI packages {/* #linux-cli-packages */}
 
-For Linux terminal/browser use, choose **open-science-cli**, separately from the **aipoch-open-science** desktop package. Download the matching package and `CLI-PACKAGE-SHA256SUMS.txt` from [v1.0.7 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.7), then verify before installing.
+For Linux terminal/browser use, choose **open-science-cli**, separately from the **aipoch-open-science** desktop package. Download the matching package and `CLI-PACKAGE-SHA256SUMS.txt` from [v1.0.8 Assets](https://github.com/aipoch/open-science/releases/tag/v1.0.8), then verify before installing.
 
-| Distribution / architecture | v1.0.7 CLI asset |
+| Distribution / architecture | v1.0.8 CLI asset |
 | --- | --- |
-| Debian / Ubuntu, x64 | `open-science-cli_1.0.7_amd64.deb` |
-| Debian / Ubuntu, ARM64 | `open-science-cli_1.0.7_arm64.deb` |
-| Fedora, x64 | `open-science-cli-1.0.7-1.x86_64.rpm` |
-| Fedora, ARM64 | `open-science-cli-1.0.7-1.aarch64.rpm` |
+| Debian / Ubuntu, x64 | `open-science-cli_1.0.8_amd64.deb` |
+| Debian / Ubuntu, ARM64 | `open-science-cli_1.0.8_arm64.deb` |
+| Fedora, x64 | `open-science-cli-1.0.8-1.x86_64.rpm` |
+| Fedora, ARM64 | `open-science-cli-1.0.8-1.aarch64.rpm` |
 
 Install the downloaded file with the appropriate package manager. These examples use x64; use the ARM64 filename when appropriate.
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ./open-science-cli_1.0.7_amd64.deb
+sudo apt install ./open-science-cli_1.0.8_amd64.deb
 # Fedora: use this instead of the apt command
-sudo dnf install ./open-science-cli-1.0.7-1.x86_64.rpm
+sudo dnf install ./open-science-cli-1.0.8-1.x86_64.rpm
 ```
 
 Run `open-science-cli start --no-open`, then `open-science-cli status --json`. Once running, use `open-science-cli url` to open the authenticated local Web interface; keep that URL private. Continue with [CLI setup](../reference/cli.md#terminal-setup) for model configuration and `doctor` checks, replacing `open-science` with `open-science-cli` in those commands.
 
 The package bundles Node, the backend and Web UI. It does not install Python/R or create an automatically started system service. The OS credential store and sandbox prerequisites still apply; see [headless Linux credentials](../reference/server.md). Use `open-science-cli` explicitly when a desktop launcher is also installed.
 
-Before upgrading or removing the package, finish work and stop **every profile started by that package**. Install the next downloaded package through apt/dnf; there is no AIPOCH apt/dnf repository configured by this installation. Package removal preserves research data and credentials. The [official package guide](https://github.com/aipoch/open-science/blob/v1.0.7/docs/standalone-runtime.md#linux-cli-distribution-packages) describes command conflicts and platform requirements.
+Before upgrading or removing the package, finish work and stop **every profile started by that package**. Install the next downloaded package through apt/dnf; there is no AIPOCH apt/dnf repository configured by this installation. Package removal preserves research data and credentials. The [official package guide](https://github.com/aipoch/open-science/blob/v1.0.8/docs/standalone-runtime.md#linux-cli-distribution-packages) describes command conflicts and platform requirements.
 
 ### Run from source
 
 You need Git, Node.js 24, npm, and the platform build prerequisites for Electron. Install or select an agent framework in the application. During installation, the repository generates the Prisma Client, applies app patches, and prepares Electron native dependencies.
 
-For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v1.0.7.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
+For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v1.0.8.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
 
 Replace `RELEASE_TAG` below with the exact tag shown on the selected release (including its leading `v`). To follow ongoing development instead, omit `--branch RELEASE_TAG --depth 1`; that checkout will follow the default branch.
 
@@ -128,7 +128,7 @@ Before packaging a production build, run:
 npm run build
 ```
 
-Use the selected tag's package.json and [standalone runtime guide](https://github.com/aipoch/open-science/blob/v1.0.7/docs/standalone-runtime.md) for its build targets and dependencies. `npm run dev:web` develops the Node/Web entry point; `npm run dev` also prepares the desktop client. Use an isolated configuration directory to keep test data separate.
+Use the selected tag's package.json and [standalone runtime guide](https://github.com/aipoch/open-science/blob/v1.0.8/docs/standalone-runtime.md) for its build targets and dependencies. `npm run dev:web` develops the Node/Web entry point; `npm run dev` also prepares the desktop client. Use an isolated configuration directory to keep test data separate.
 
 ## Complete first-time setup
 
@@ -152,7 +152,7 @@ The application opens, the required Environment checks pass, an agent is install
 
 ## Check for application updates {/* #choose-a-reproducible-version-and-update-deliberately */}
 
-In **Settings → General → About**, read the installed version and use **Check now** to check update availability. Inspect the listed version before installing it, and finish active work first. A development source build may report updates differently from a packaged installation. Keep a copy of important exported results before an update; do not rename the application's internal data directories.
+In **Settings → General**, read the installed version and use **Check now** to check update availability. Inspect the listed version before installing it, and finish active work first. A development source build may report updates differently from a packaged installation. Keep a copy of important exported results before an update; do not rename the application's internal data directories.
 
 From 1.0, `open-science update` is removed. Update the app through its desktop controls or official installer, and update a CLI installation through the installer/package manager that owns it. If **Check now** does not yet offer a published release, check the official release page; deleting configuration or resetting the app will not promote an update channel.
 
@@ -188,14 +188,14 @@ The current interface and new packages use **Open-Science** consistently. Upgrad
 2. Close desktop/backend instances using the installation, then upgrade through the official installer. Preserve the original profile, data and OS credential store.
 3. Reopen and check the version, projects, sessions, files, model and runtimes before continuing. A binary downgrade does not roll back data; older binaries may not read newer saved data.
 
-1.0 retains existing historical upgrade and import paths; the version number does not require a profile reset. The [1.x compatibility policy](https://github.com/aipoch/open-science/blob/v1.0.7/docs/compatibility.md) covers documented CLI/SDK and Task automation interfaces, forward imports of valid `.science` packages, and supported profile upgrades. It does not guarantee identical model answers, third-party availability or deterministic reproduction of a whole research session, or cross-platform transfer of OS-protected credentials. Security fixes target the latest stable release.
+1.0 retains existing historical upgrade and import paths; the version number does not require a profile reset. The [1.x compatibility policy](https://github.com/aipoch/open-science/blob/v1.0.8/docs/compatibility.md) covers documented CLI/SDK and Task automation interfaces, forward imports of valid `.science` packages, and supported profile upgrades. It does not guarantee identical model answers, third-party availability or deterministic reproduction of a whole research session, or cross-platform transfer of OS-protected credentials. Security fixes target the latest stable release.
 
 ## Install the CLI with npm {/* #npm-cli */}
 
 Use Node.js **22.13 or later** for the published CLI/backend package. In a terminal, install and inspect the invoked version:
 
 ```bash
-npm install --global @aipoch/open-science@1.0.7
+npm install --global @aipoch/open-science@1.0.8
 open-science version --json
 open-science help
 ```
@@ -204,9 +204,9 @@ Then follow [terminal setup](../reference/cli.md#terminal-setup) to initialize a
 
 ## Follow an update through to installation {/* #update-progress */}
 
-In **Settings → General → About**, choose **Check now** and review the offered release. The update dialog keeps download progress, release notes and installation preparation together. Download completion is not installation completion: check the installed version after relaunch.
+In **Settings → General**, choose **Check now** and review the offered release. The update dialog keeps download progress, release notes and installation preparation together. Download completion is not installation completion: check the installed version after relaunch.
 
-If the app says automatic installation is unavailable for this channel, keep the downloaded package and use the official installer after finishing active work. The v1.0.7 installation channels still restrict automatic replacement; an improved Windows progress dialog does not remove that restriction. Do not force the app closed while notebook cleanup is in progress.
+If the app says automatic installation is unavailable for this channel, keep the downloaded package and use the official installer after finishing active work. The v1.0.8 installation channels still restrict automatic replacement; an improved Windows progress dialog does not remove that restriction. Do not force the app closed while notebook cleanup is in progress.
 
 ## Install an update manually {/* #manual-update */}
 
@@ -214,10 +214,16 @@ In the update dialog, open **Installation instructions**. Use **Download from we
 
 Save work and wait for active installation or cleanup to finish before starting another installer. On macOS, open the DMG or unzip the package and replace Open-Science in Applications. On Windows, run the installer using the existing installation folder. On Linux, install the matching DEB or replace the AppImage and retain executable permission. Follow the instructions for your actual package format.
 
-If the installer is missing or has changed, download it again; revealing a package does not run it. Reopen Open-Science and check **Settings → General → About**, then confirm your original projects and data. When upgrading standalone CLI files, first [verify that all affected services have stopped](../reference/server.md#application-update-behavior).
+If the installer is missing or has changed, download it again; revealing a package does not run it. Reopen Open-Science and check **Settings → General**, then confirm your original projects and data. When upgrading standalone CLI files, first [verify that all affected services have stopped](../reference/server.md#application-update-behavior).
 
 ## Check research data after a Windows update {/* #windows-update-data */}
 
 The v1.0.6 Windows installer preserves research data stored beside the application and fixes installation into deep folder paths. Finish active work, keep a backup of important projects, then use the official installer for the update. After reopening, check **Settings → Storage**, open an existing project and confirm that its files are available before resuming a task.
 
 The preservation fix is not a backup or permission to move managed data by hand. Use the [storage controls](storage.md) when changing its location.
+
+## Handle update preparation blockers {/* #update-preparation */}
+
+Finish active work before installing an update. If preparation names a blocking process, close the relevant program normally and retry. Avoid forcing unrelated processes to quit. v1.0.8 corrects several macOS and Windows occupancy checks; the dialog's remaining blocker still needs attention.
+
+If automatic installation is unavailable, use the manual-install help link in **Settings → General**, download the matching official package and check its checksum. After relaunch, confirm the installed version and original projects. If recovery fails, collect the diagnostic log from General; it retains the underlying error for troubleshooting.

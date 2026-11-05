@@ -2,7 +2,7 @@
 title: "Bases de données scientifiques"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # Bases de données scientifiques {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Utilisez cette page pour choisir une source de données, comprendre ce qu'elle p
 
 ## Bases de données prises en charge {/* #supported-databases */}
 
-Open-Science v1.0.7 comprend **48 Connectors intégrés et 418 opérations** : 47 Connectors de sources de données fournissent 416 opérations, et un Connector Molecule hors ligne en fournit deux. Les noms ci-dessous correspondent aux entrées de **Settings → Connectors**. Un Connector peut couvrir plusieurs bases de données. La présence d’une source ne signifie pas que toutes les fonctions de son site sont disponibles.
+Open-Science v1.0.8 comprend **48 Connectors intégrés et 418 opérations** : 47 Connectors de sources de données fournissent 416 opérations, et un Connector Molecule hors ligne en fournit deux. Les noms ci-dessous correspondent aux entrées de **Settings → Connectors**. Un Connector peut couvrir plusieurs bases de données. La présence d’une source ne signifie pas que toutes les fonctions de son site sont disponibles.
 
 Ce total comprend toutes les entrées intégrées, y compris celles qui sont désactivées. Les Connectors MCP ajoutés par l’utilisateur sont comptés séparément. Le nombre de Connectors, de bases de données couvertes et d’opérations disponibles correspond à des mesures différentes.
 
@@ -268,7 +268,7 @@ Pour `get_variant`, définissez `include_populations: true` uniquement lorsque l
 
 Les listes [Référence de fonctionnement Connector](../reference/connector-operations.md) contiennent les entrées requises, les valeurs autorisées et les appels exacts. Utilisez cette page pour choisir une source et la connecter; utiliser la référence pour les champs d'un outil particulier.
 
-Source du catalogue : [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts).
+Source du catalogue : [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/catalog.ts), [registry.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/registry.ts).
 
 ## Recherches de séquences et alignement {/* #sequence-tools */}
 
@@ -413,3 +413,11 @@ Dans **Settings → Connectors**, activez uniquement les entrées nécessaires p
 | Inspecter les preuves de la ligne cellulaire | **Cellosaurus** ajoute RDF, limited SPARQL et STR similarité | Préserver les paramètres d'adhésion et de marquage; la similarité seule ne certifie pas l'identité de l'échantillon |
 
 Les listes de fichiers renvoient les URLs officielles et les métadonnées sources, pas les fichiers téléchargés ou une base de données d'analyse prête. L'analyse NHANES exige toujours la conception et les poids corrects de l'enquête. L'accès à la démo MIMIC/eICU ne permet pas l'accès à leurs ensembles de données complets. Les rapports FAERS ne peuvent être interprétés comme des taux d'incidence. Pour des champs et des exemples exacts, utilisez la [référence de l'opération](../reference/connector-operations.md).
+
+## Coordonnées d'approvisionnement pour le catalogue eQTL {/* #eqtl-coordinates */}
+
+Utilisation **Génétique humaine** pour lister les ensembles de données eQTL Catalogue release-7, choisir une méthode d'étude, de tissu et de quantification, puis interroger une petite région. L'API REST retraitée a été remplacée par des fichiers officiels TSV indexés.
+
+Pour `eqtl_associations`, fourniture `dataset_id`, explicite `genome_build: "GRCh38"`, et soit `pos` ou `variant`. Un ID de gène ou rsID n'est qu'un filtre supplémentaire exact; il ne résout pas les coordonnées. `pos` est une région inclusive fondée sur 1 `20:46120612-46120613`, avec `chr` Préfixe et portée maximale de 5 Mb. Les variantes GRCh37 ont besoin d'un renvoi explicite et unique vers GRCh38 avant de demander.
+
+Préserver `reference_data`, l'original `pvalue_text` et ALT comme allèle d'effet. Un instantané de métadonnées ne bloque pas les fichiers en amont. Les résultats vides ne signifient pas de lignes de correspondance publiées dans la fenêtre cis testée; ils ne prouvent pas l'absence d'une association. Voir [paramètres de fonctionnement](../reference/connector-operations.md#eqtl_associations).

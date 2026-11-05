@@ -2784,5 +2784,11 @@
   },
   "docs.outline.reference.v107.scope": {
     "message": "DOI 与 arXiv 导入、PDF 批注、OCR、Pi 和研究案例市场。"
+  },
+  "docs.outline.reference.v108.title": {
+    "message": "v1.0.8"
+  },
+  "docs.outline.reference.v108.scope": {
+    "message": "文献批量导入、论文概览、设置与 eQTL 更新。"
   }
 }

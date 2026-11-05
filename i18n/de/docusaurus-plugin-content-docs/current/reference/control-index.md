@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Seite und Kontrollindex"
 description: "Finden Sie jede dokumentierte Open-Science-Taste, Eingabe, Switch und Ergebnis nach Seite."
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # Seite und Kontrollindex {/* #page-and-control-index */}
@@ -116,6 +116,8 @@ Siehe [Ersteinrichtung](../guides/onboarding.md) und [Anbieterkonfiguration](../
 | Duplikate | Gruppen auswählen, vergleichen, Feldauswahl, Merge | Überprüfen und Zusammenführen von Datensätzen unter Beibehaltung von Assoziationen |
 | Hintergrundaufgaben | Pause, Resume, Review, Abbrechen | Kontroll-Massen-Metadaten/Volltext-Operationen |
 
+Verwendung **Add from DOI or link** für eine überprüfte Charge von Kennzeichen und **Study overview → Generate overview / Regenerate** In einem Verweis, um seine verfügbare Quelle zusammenzufassen. Siehe [Bibliotheksanweisungen](../guides/library.md#doi-link-import).
+
 ## Notebook und Provenance {/* #notebook-and-provenance */}
 
 | Seite | Kontrollen | Ergebnis |
@@ -182,9 +184,17 @@ Python/R; Umgebung Aktivieren, Interpreter hinzufügen, Herunterladen/Einrichten
 
 Appliance Storage Reveal/Repair; Datenstandortänderung, Pfad, Browse, Checks, Migration/Adopt/Cancel; Migrationsfortschritt Cancel/Retry/Restart/Discard; erweiterbare Festplattennutzungskategorien.
 
-### Allgemein {/* #general */}
+### General {/* #general */}
 
-Aufgabenbenachrichtigungen, Themenradios, App-Symbolradios, enges Verhalten, GitHub-Token Open/Input/Save/Clear und About/Check Updates/Installationsupdates.
+App-Version, **Check now**, Download und manuelle Installation Hilfe, **Help Center**, **Release Notes**, Diagnose **Reveal / Open**, Kommandozeile **Install command** Unterstütztes Fensterverhalten. Aussehen und Benachrichtigungen haben ihre eigenen Panels unter **System**.
+
+### Appearance {/* #appearance */}
+
+**Theme**, **Language**Desktop **Schnittstellenmaßstab** und unterstützte App-Icon-Auswahl. Siehe [Erscheinungsbildeinstellungen](../guides/appearance.md).
+
+### Notifications {/* #notifications */}
+
+**Task notifications**, **Show task content in system notifications**, **System notification status** und **Send test notification**. Siehe [Benachrichtigungsaufbau](../guides/appearance.md).
 
 ### Fernbedienung {/* #remote-control */}
 

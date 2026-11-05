@@ -1,7 +1,7 @@
 ---
 title: "ナビゲーションと検索"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-05'
 ---
 
 # ナビゲーションと検索 {/* #navigation-and-search */}
@@ -10,7 +10,7 @@ last_update:
 
 ## 自宅からスタート {/* #start-from-home */}
 
-**Settings → General → Appearance** を使用して、アプリの言語やテーマを変更します。 [設定センター](../settings/overview.md)グループは、目的に応じてパネルを置き、独自の検索を行います。
+**Settings → Appearance** を使用して、アプリの言語やテーマを変更します。 [設定センター](../settings/overview.md)グループは、目的に応じてパネルを置き、独自の検索を行います。
 
 ![遺伝子発現と文献プロジェクト](/img/open-science/v0.27.0/01-home.webp)
 

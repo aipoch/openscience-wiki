@@ -1851,5 +1851,11 @@
   },
   "docs.outline.reference.v107.scope": {
     "message": "Import DOI et arXiv, annotations PDF, OCR, Pi et marché des cas de recherche."
+  },
+  "docs.outline.reference.v108.title": {
+    "message": "v1.0.8"
+  },
+  "docs.outline.reference.v108.scope": {
+    "message": "Import de références par lots, aperçus des études, paramètres et eQTL."
   }
 }
