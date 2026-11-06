@@ -2,7 +2,7 @@
 title: "科学数据库"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # 科学数据库
@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支持哪些数据库 {/* #supported-databases */}
 
-Open-Science v1.0.7 内置 **48 个 Connector，共提供 418 项操作**：其中 47 个数据源 Connector 提供 416 项操作，1 个离线 Molecule Connector 提供 2 项操作。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
+Open-Science v1.0.8 内置 **48 个 Connector，共提供 418 项操作**：其中 47 个数据源 Connector 提供 416 项操作，1 个离线 Molecule Connector 提供 2 项操作。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
 
 这里统计全部内置条目，包括未启用的条目；用户自行添加的 MCP Connector 另计。Connector 数量、所覆盖的数据库数量和可调用的操作数量是不同的统计口径。
 
@@ -268,7 +268,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作参数参考](../reference/connector-operations.md)列出必填输入、可选值和准确调用方法。本页用于选择和连接数据源，参数参考用于查询某个具体工具的字段。
 
-目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts)。
+目录来源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/registry.ts)。
 
 ## 序列检索与多序列比对 {/* #sequence-tools */}
 
@@ -413,3 +413,11 @@ v1.0.2 会在当前会话中记住对 OpenAlex 凭据提示的拒绝，避免重
 | 检查细胞系证据 | **Cellosaurus** 补充 RDF、有边界的 SPARQL 查询和 STR 相似度 | 保留 accession 和标记设置；仅凭相似度不能认证样本身份 |
 
 文件列表返回官方 URL 与来源元数据，不会自动下载文件或建立分析数据库。NHANES 分析仍需正确的调查设计和权重；MIMIC/eICU 演示数据权限不等于完整数据集权限；FAERS 报告不能直接解释为发生率。具体字段和示例见[操作参考](../reference/connector-operations.md)。
+
+## 为 eQTL Catalogue 提供坐标 {/* #eqtl-coordinates */}
+
+通过 **Human Genetics** 列出 eQTL Catalogue release-7 数据集，选择研究、组织和定量方法后，再查询一个较小区域。已停用的 REST API 现由官方索引 TSV 文件替代。
+
+`eqtl_associations` 必须提供 `dataset_id`、明确的 `genome_build: "GRCh38"`，以及 `pos` 或 `variant`。基因 ID 或 rsID 只是附加的精确筛选条件，不能代替坐标解析。`pos` 使用从 1 开始、包含两端的区域，例如 `20:46120612-46120613`，不带 `chr` 前缀，跨度最多 5 Mb。GRCh37 变异须先明确转换为唯一的 GRCh38 映射，再继续查询。
+
+保留 `reference_data`、原始 `pvalue_text`，并以 ALT 作为效应等位基因。元数据快照不代表上游文件被固定；空结果只表示已测试的顺式窗口内没有匹配的公开记录，不证明不存在关联。详见[接口参数](../reference/connector-operations.md#eqtl_associations)。

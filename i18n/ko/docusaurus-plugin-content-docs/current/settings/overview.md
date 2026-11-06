@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: "설정 개요"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-05'
 ---
 
 # 설정 개요 {/* #settings-overview */}
 
-작업 공간의 왼쪽 모서리에서 **Settings**을 엽니 다. 17 패널은 4개 그룹으로 구성됩니다: **Intelligence**, **Connections**, **Workspace** 및 **System**. 목적에 의해 패널을 선택, 또는 헤더에서 검색. 이 가이드에서 **Settings → Model**, 예를 들어, 인텔리전스 내부 모델 패널을 참조합니다.
+기타 **Settings** 작업 공간의 왼쪽 모서리에서. 이름 * **19 패널** 4개 그룹으로 구성되어 있습니다: **System**, **Intelligence**, **Connections** · **Workspace**· 외관 및 알림은 별도의 패널입니다. 목적 또는 헤더에서 검색; **Settings → Model**, 예를 들면, 열린 모형 안쪽 지능.
 
 | 글로벌 제어 | 뚱 베어 |
 | --- | --- |
@@ -27,10 +27,13 @@ last_update:
 
 이 검색은 각 패널의 대표 설정을 다루고, 모든 필드 또는 연구 문서가 아닙니다. 용어가 일치하지 않는 경우, 패널 이름 또는 내비게이션 그룹을 사용하십시오. 대화 또는 파일을 검색하려면 설정 및 [글로벌 검색](../guides/navigation.md)을 사용하십시오.
 
-## 17 메인 패널 {/* #the-17-main-panels */}
+## 19 메인 패널 {/* #the-17-main-panels */}
 
 | 이름 &#42; | 회사연혁 | 어떻게 관리합니까? |
 | --- | --- | --- |
+| System | [General](../guides/appearance.md#help-center) | 버전, 업데이트, 진단, CLI 설치, 창 동작 및 도움말 |
+|  | [Appearance](../guides/appearance.md) | 테마, 언어, 데스크톱 표시 배율 및 지원 앱 아이콘 |
+|  | [Notifications](../guides/appearance.md) | 작업 알림, 알림 내용, 시스템 상태 및 테스트 알림 |
 | 인텔리전스 | [모델](../guides/models.md) | 공급자 및 시나리오 모델 |
 |  | [에이전트](../guides/frameworks.md) | Agent Framework 설치, 전환 및 수리 |
 |  | [Skills](../skills/overview.md) | 재사용 가능한 연구 방법 및 그 가용성 |
@@ -47,7 +50,6 @@ last_update:
 |  | [컴퓨팅](../guides/remote-compute.md) | 지역 및 SSH compute 자원 |
 |  | [사용량](../guides/usage.md) | 토큰, 통화 및 연구 활동 통계 |
 |  | [보관됨](../guides/storage.md) | 저장소 또는 영구적으로 archived 작업을 삭제 |
-| 시스템 | [일반](../guides/appearance.md) | 외관, 알림, 진단 및 버전 |
 
 **Feedback**은 설정의 하단에 별도의 항목이 남아 있습니다.
 

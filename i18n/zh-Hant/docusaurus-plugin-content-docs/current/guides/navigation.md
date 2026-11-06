@@ -1,7 +1,7 @@
 ---
 title: "導航與搜尋"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-05'
 ---
 
 # 導航與搜尋 {/* #导航与搜索 */}
@@ -10,7 +10,7 @@ last_update:
 
 ## 從 Home 進入 {/* #从-home-进入 */}
 
-更改應用語言或主題，請開啟 **Settings → General → Appearance**。[設定中心](../settings/overview.md) 按用途分組，也提供獨立搜尋。
+更改應用語言或主題，請開啟 **Settings → Appearance**。[設定中心](../settings/overview.md) 按用途分組，也提供獨立搜尋。
 
 ![包含基因表達與文獻專案的 Home](/img/open-science/v0.27.0/01-home.webp)
 
@@ -22,7 +22,7 @@ last_update:
 | Search | 開啟全域搜尋 | 查詢專案、訊息、檔案和文獻；Wiki 搜尋是另一個入口 |
 | Library | 開啟共享文獻庫 | 專案和集合檢視引用同一份條目 |
 | Model settings | 配置模型 | 賬號已連線與研究任務成功是兩種狀態 |
-| Settings → General → Appearance | 更改 Language / Theme | 切換語言不會翻譯歷史任務內容 |
+| Settings → Appearance | 更改 Language / Theme | 切換語言不會翻譯歷史任務內容 |
 | Messages | 檢視應用訊息 | 未讀數量不等於任務失敗數量 |
 
 工作區的 **All projects** 返回 Home。專案名選單操作專案，會話旁選單操作對應會話。Sessions 下的 **New** 在當前專案中新建對話，不會新建專案或複製源目錄。

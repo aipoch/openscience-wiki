@@ -1850,5 +1850,11 @@
   },
   "docs.outline.reference.v107.scope": {
     "message": "DOI- und arXiv-Import, PDF-Anmerkungen, OCR, Pi und Forschungsbeispiele."
+  },
+  "docs.outline.reference.v108.title": {
+    "message": "v1.0.8"
+  },
+  "docs.outline.reference.v108.scope": {
+    "message": "Literaturimport in Stapeln, Studienübersichten, Einstellungen und eQTL."
   }
 }

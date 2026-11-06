@@ -1,7 +1,7 @@
 ---
 title: "파일, artifacts 및 버전"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -151,3 +151,5 @@ Notepad에서 다운로드 된 `.md` 파일을 엽니 다. Notepad 디스플레�
 ## 최신 게시 버전 확인 {/* #latest-published-version */}
 
 산출물을 게시하거나 복원한 뒤 다시 열어 선택한 버전과 내용을 확인하세요. v1.0.7은 최신 게시 버전을 우선 표시하지만 기록에서 연 이전 미리보기는 여전히 다른 버전입니다. 인용, 다운로드 또는 편집 전에 버전 컨트롤과 이력 패널에서 이전 버전과의 관계를 확인하세요.
+
+이전 Markdown 산출물의 이력이 오래된 버전을 가리키면 v1.0.8은 파일을 열 때 해당 참조를 복구합니다. 공유하기 전에 표시된 버전과 실행 증거 경고를 확인하세요. 이력 참조를 복구하는 것은 분석을 다시 실행하거나 검증하는 작업이 아닙니다.

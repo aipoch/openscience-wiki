@@ -2,7 +2,7 @@
 title: "Connectorの操作の参照"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-05'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作の入力 {/* #operation-inputs */}
 
-1つのコネクターを一度に拡大して下さい。 必須項目は必須項目です **お問い合わせ**; この参照およびダウンロードは開いた科学を使用します **v1.0.5** スキーマ。 ネスト `input.required` リストは権威的です。レガシートップレベル `required` リストが存在しない可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.5.json">ダウンロード可能なレジストリ</ExampleDownload> ネストされた JSON スキーマ、完全なリターン 説明およびエージェント・サイド・コールの例のため。 ジェネリックを通さない `id` ツールが期待したときに `accessions`, `cids`, `rs_id` または別の名前空間固有のフィールド。
+1つのコネクターを一度に拡大して下さい。 必須項目は必須項目です **お問い合わせ**; この参照およびダウンロードは開いた科学を使用します **v1.0.8** スキーマ。 ネスト `input.required` リストは権威的です。レガシートップレベル `required` リストが存在しない可能性があります。 コンサルティング <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.8.json">ダウンロード可能なレジストリ</ExampleDownload> ネストされた JSON スキーマ、完全なリターン 説明およびエージェント・サイド・コールの例のため。 ジェネリックを通さない `id` ツールが期待したときに `accessions`, `cids`, `rs_id` または別の名前空間固有のフィールド。
 
 ## 化学化学品 {/* #family-1 */}
 
@@ -2922,14 +2922,14 @@ const result = await host.mcp("human-genetics", "gwas_get_variant", {"rs_id": "r
 
 ### `eqtl_list_datasets` {/* #eqtl_list_datasets */}
 
-eQTLカタログデータセット(1つのデータセット=1つの研究x組織/セルタイプx定量化方法)をリストします。 アーグ: study_label (例:例:例) GTEx、Alasoo_2018、BLUEPRINT。 tissue_label(正確な組織/細胞型ラベル、例えば。 肝臓、マクロファージ、LCL — カタログの小文字。 quant_method (ge=gene式、exon、tx、txrev、microarray、リーフカッター、aptamer=プラズマタンパク質; 従来の遺伝子レベルの eQTLs では、ge を使用します。 max_records (標準的なデフォルト1000をおおって下さい; 完全無濾過カタログは ~760 データセット) &#123;filters、返された、truncated、datasets&#125;を返す dataset_idでソート。 &#123;dataset_id (QTD...)、study_id (QTS...)、study_label、sample_group、tissue_id、tissue_label、condition_label、quant_method、sample_size&#125;。 API は合計数を発行しません。 truncated=false はリストが完成していることを証明します。
+ピン留めされた公式TSVカタログからeQTLカタログリリース-7データセットを一覧表示し、定形REST APIを置き換えます。 正確なフィルタは、研究、組織、定量方法を選択します。 結果は含まれます `total`, `returned`, `truncated`, データセットメタデータ, 公式 `file_url` 値と値 `reference_data`。 遺伝子発現 `.all` ファイルには、完全な公称統計が含まれています。 `.cc` ファイルがフィルタリングされます。 メタデータのピンニングは、上流データファイルを凍結しません。
 
-| フィールド | 型 | 要件と制約 |
+| フィールド | タイプ: | 要件と制約 |
 | --- | --- | --- |
-| `study_label` | 文字列 | オプション |
-| `tissue_label` | 文字列 | オプション |
-| `quant_method` | 文字列 | オプション |
-| `max_records` | 整数 | 任意; デフォルト: 1000 |
+| `study_label` | キーワード | 任意;厳密な調査の名前 |
+| `tissue_label` | キーワード | 任意;厳密なティッシュのラベル |
+| `quant_method` | キーワード | 任意;ge、exon、tx、txrev、microarray、リーフカッターまたはaptamerのような厳密な方法、 |
+| `max_records` | インテガー | 任意; 1–1000; デフォルト: 1000 |
 
 ```javascript
 const result = await host.mcp("human-genetics", "eqtl_list_datasets", {"study_label": "Alasoo_2018", "quant_method": "ge"})
@@ -2937,21 +2937,24 @@ const result = await host.mcp("human-genetics", "eqtl_list_datasets", {"study_la
 
 ### `eqtl_associations` {/* #eqtl_associations */}
 
-遺伝子、変異体または領域でフィルタリングされた1つのeQTLカタログデータセットから分子QTLの関連付け行。 Args: dataset_id (eqtl_list_datasetsからのQTDアクセス)、例えば。 QTD000266; gene_id (非バージョン化 遺伝子 ID を組み立てるなど) ENSG00000130203 APOE; gene_id/rsid/variant/pos の少なくとも 1 つは要求されます; rsid (dbSNP rsID); バリアント(eQTLカタログバリアント文字列chr19_44908822_C_T、chrプレフィックスアンダースコアGRCh38); pos (ゲノムウィンドウ染色体:start-end GRCh38 no chr 接頭辞、例えば。 19:44900000-44920000); nlog10p_min (重要なフロア: -log10(p) の行のみ、>=これに適用され、上流); max_records (標準の1000 = 1ページ)。 &#123;dataset_id、フィルター、返された、truncated、関連付け&#125;を返します。 各行 &#123;molecular_trait_id, gene_id, 変種, rid, 染色体, 位置, 参照, alt, タイプ, β, s, pvalue, nlog10p, maf, ac, an, r2, median_tpm&#125;. 行は、cisウィンドウのみをカバーします。 検証されたデータセット (各遺伝子の±1 Mb)。 空の手段は、"not のテスト/未発表" を意味します。 総数が公開されていません: truncated=false は排気を証明します, truncated=true は、キャップがヒットしたことを意味します.
+公式のインデックス付きeQTLカタログリリース7 TSVファイル。 データセット、明示的な GRCh38 アセンブリを提供し、いずれかの座標または variant を指定します。 Gene ID と rsID は、既に位置によって取得された行のみをフィルタリングします。 GRCh37のために、使用して下さい `liftover_variant` 。 `source_build: "GRCh37"` を先に実行し、GRCh38 への対応が一意な場合だけ続けてください。元の変異と座標変換の証拠を保管します。変異や領域の座標変換は自動では行われません。
 
-| フィールド | 型 | 要件と制約 |
+| フィールド | タイプ: | 要件と制約 |
 | --- | --- | --- |
-| `dataset_id` | 文字列 | **必須** |
-| `gene_id` | 文字列 | オプション |
-| `rsid` | 文字列 | オプション |
-| `variant` | 文字列 | オプション |
-| `pos` | 文字列 | オプション |
-| `nlog10p_min` | 数値 | オプション |
-| `max_records` | 整数 | 任意; デフォルト: 1000 |
+| `dataset_id` | キーワード | **。**; QTD は 6 つのディジットによって続きます |
+| `genome_build` | キーワード | **。**；GRCh38 を明示指定。デフォルト値なし |
+| `gene_id` | キーワード | 任意; 正確な非バージョン化された人間の組み立てID、ENSGは11桁続きます |
+| `rsid` | キーワード | 任意;厳密な rs はディジットによって続きます |
+| `variant` | キーワード | pos がない場合は必須；GRCh38 の chrN_position_ref_alt |
+| `pos` | キーワード | 多様体が不在であるとき要求される;1ベースの包括的な染色体:開始端、chrの接頭辞無し、染色体1–22/X/Yの最高のスパン5 Mb |
+| `nlog10p_min` | 電話番号 | オプション; 非ネガティブ; ローカルに派生するフィルタ −log10(p) |
+| `max_records` | インテガー | 任意; 1–1000; デフォルト: 1000 |
 
 ```javascript
-const result = await host.mcp("human-genetics", "eqtl_associations", {"dataset_id": "QTD000266", "gene_id": "ENSG00000130203", "nlog10p_min": 2})
+const result = await host.mcp("human-genetics", "eqtl_associations", {"dataset_id": "QTD000021", "genome_build": "GRCh38", "pos": "20:46120612-46120613", "max_records": 25})
 ```
+
+結果の保持 `region`, `coordinate_source`, `returned`, `truncated`, `associations` そして、 `reference_data`。 プレザーブ `pvalue_text` そして効果のalleleとしてALT。 追加フィルタは正確に交差します。 空の結果は、テストされたcisウィンドウ内の一致の公開された行を意味し、関連付けが欠如しません。 特大の読み込みが失敗する; 地域を狭くするか、またはバルクワークのローカルタビックスを使用する。
 
 ### `phewas_instances` {/* #phewas_instances */}
 

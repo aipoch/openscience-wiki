@@ -1,7 +1,7 @@
 ---
 title: "キーボードショートカット"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -90,4 +90,4 @@ Windowsデスクトップアプリでは、**Ctrl+Zの** を undo または **Ct
 | 1つのステップを飾る | ⌘− | Ctrl+− |
 | 100%へのリセット | ⌘0 | Ctrl+0の特長 |
 
-これらのショートカットは、90%、100%、110%、125%のステップを**Settings → General → Appearance → Interface scale**で共有します。 [インターフェイス サイズ](appearance.md#interface-scale) を参照してください。 ファイルプレビューズームとアプリ全体のスケーリングは、別々の制御です。
+これらのショートカットは、90%、100%、110%、125%のステップを**Settings → Appearance → Interface scale**で共有します。 [インターフェイス サイズ](appearance.md#interface-scale) を参照してください。 ファイルプレビューズームとアプリ全体のスケーリングは、別々の制御です。

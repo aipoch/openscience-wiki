@@ -1,7 +1,7 @@
 ---
 title: "键盘快捷键"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -92,4 +92,4 @@ import Screenshot from '@site/src/components/Screenshot';
 | 缩小一档 | ⌘− | Ctrl+− |
 | 恢复 100% | ⌘0 | Ctrl+0 |
 
-快捷键与 **Settings → General → Appearance → Interface scale** 使用同一组 90%、100%、110%、125% 档位。参见[界面大小](appearance.md#interface-scale)。文件预览的缩放与整个应用的缩放分别控制。
+快捷键与 **Settings → Appearance → Interface scale** 使用同一组 90%、100%、110%、125% 档位。参见[界面大小](appearance.md#interface-scale)。文件预览的缩放与整个应用的缩放分别控制。

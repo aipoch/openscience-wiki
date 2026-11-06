@@ -1,7 +1,7 @@
 ---
 title: "文件、产物与版本"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -153,3 +153,5 @@ import Screenshot from '@site/src/components/Screenshot';
 ## 核对最新已发布版本 {/* #latest-published-version */}
 
 发布或恢复产物后，重新打开文件，检查当前选中的版本及其内容。v1.0.7 会把最新已发布版本带到前台；之前打开的历史预览仍是另一个版本。引用、下载或编辑前，通过版本控件和溯源面板核对当前版本与早期版本的关系。
+
+旧 Markdown 产物的溯源历史指向过期时，v1.0.8 会在打开时修复。分享前仍应检查显示的版本和执行证据不完整提示；修复历史指向不等于重新运行或验证了分析。

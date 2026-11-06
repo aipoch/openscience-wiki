@@ -2,7 +2,7 @@
 title: "科學資料庫"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # 科學資料庫 {/* #科学数据库 */}
@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支援哪些資料庫 {/* #supported-databases */}
 
-Open-Science v1.0.7 內建 **48 個 Connector，共提供 418 項操作**：其中 47 個資料來源 Connector 提供 416 項操作，1 個離線 Molecule Connector 提供 2 項操作。下表名稱對應 **Settings → Connectors** 中的項目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示涵蓋其網站的全部功能。
+Open-Science v1.0.8 內建 **48 個 Connector，共提供 418 項操作**：其中 47 個資料來源 Connector 提供 416 項操作，1 個離線 Molecule Connector 提供 2 項操作。下表名稱對應 **Settings → Connectors** 中的項目，一個 Connector 可以包含多個資料庫。支援某個資料來源不表示涵蓋其網站的全部功能。
 
 此處統計全部內建項目，包括未啟用的項目；使用者自行新增的 MCP Connector 另計。Connector 數量、涵蓋的資料庫數量和可呼叫的操作數量是不同的統計口徑。
 
@@ -268,7 +268,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 [Connector 操作引數參考](../reference/connector-operations.md)列出必填輸入、可選值和準確呼叫方法。本頁用於選擇和連線資料來源，引數參考用於查詢某個具體工具的欄位。
 
-目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.7/src/main/connectors/registry.ts)。
+目錄來源：[catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/catalog.ts)、[registry.ts](https://github.com/aipoch/open-science/blob/v1.0.8/src/main/connectors/registry.ts)。
 
 ## 序列檢索與多序列比對 {/* #sequence-tools */}
 
@@ -413,3 +413,11 @@ v1.0.2 會在當前會話中記住對 OpenAlex 憑據提示的拒絕，避免重
 | 檢查細胞系證據 | **Cellosaurus** 補充 RDF、有邊界的 SPARQL 查詢和 STR 相似度 | 保留 accession 和標記設置；僅憑相似度不能認證樣本身份 |
 
 文件列表返回官方 URL 與來源元數據，不會自動下載文件或建立分析數據庫。NHANES 分析仍需正確的調查設計和權重；MIMIC/eICU 演示數據權限不等於完整數據集權限；FAERS 報告不能直接解釋爲發生率。具體字段和示例見[操作參考](../reference/connector-operations.md)。
+
+## 爲 eQTL Catalogue 提供座標 {/* #eqtl-coordinates */}
+
+通過 **Human Genetics** 列出 eQTL Catalogue release-7 數據集，選擇研究、組織和定量方法後，再查詢一個較小區域。已停用的 REST API 現由官方索引 TSV 文件替代。
+
+`eqtl_associations` 必須提供 `dataset_id`、明確的 `genome_build: "GRCh38"`，以及 `pos` 或 `variant`。基因 ID 或 rsID 只是附加的精確篩選條件，不能代替座標解析。`pos` 使用從 1 開始、包含兩端的區域，例如 `20:46120612-46120613`，不帶 `chr` 前綴，跨度最多 5 Mb。GRCh37 變異須先明確轉換爲唯一的 GRCh38 映射，再繼續查詢。
+
+保留 `reference_data`、原始 `pvalue_text`，並以 ALT 作爲效應等位基因。元數據快照不代表上游文件被固定；空結果只表示已測試的順式窗口內沒有匹配的公開記錄，不證明不存在關聯。詳見[接口參數](../reference/connector-operations.md#eqtl_associations)。

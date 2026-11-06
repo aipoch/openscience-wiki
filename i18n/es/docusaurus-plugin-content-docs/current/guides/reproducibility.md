@@ -2,7 +2,7 @@
 title: "Reproducibilidad"
 description: "Realizar los pasos de investigación capturados, comparar un resultado ahorrado y conservar el registro de verificación."
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-05'
 ---
 
 # Reproducibilidad {/* #reproducibility */}
@@ -92,3 +92,9 @@ Si ya tiene un paquete de bloqueo compatible y necesita restaurar paquetes fuera
 ## Inspecciona la historia antes de rehacer {/* #replay-vs-verification */}
 
 Utilice [Repetición de sesión](session-replay.md) para inspeccionar el orden grabado de mensajes, la actividad de la herramienta y las versiones de archivos. Replay muestra evidencia guardada con tiempo de presentación reconstruido; no reimprime código, consulta bases de datos de nuevo o establece que un resultado se reproduce. Utilice **Reproducibility** arriba cuando necesite una nueva comparación de ejecución y salida.
+
+## Interpretar pruebas de ejecución incompleta {/* #execution-evidence */}
+
+La historia de un archivo y una repetición exitosa responden a diferentes preguntas. Abra su procedencia e inspeccione los resultados de entrada, código, medio ambiente y verificación registrados antes de describirlo como reproducido.
+
+Algunas llamadas R pueden evaluar los argumentos retardados o los métodos de envío que accedan a archivos indirectamente. Open-Science invalida pruebas de archivos anteriores cuando esas operaciones hacen que la evidencia incompleta. Una salida visible por sí sola no restaura esa prueba. Mantenga el estado de incompleto-evidencia con el resultado, haga los insumos explícitos, luego vuelva a correr e inspeccione el nuevo registro de verificación.

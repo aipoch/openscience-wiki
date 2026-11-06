@@ -1,8 +1,10 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
+
+import Screenshot from '@site/src/components/Screenshot';
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
@@ -152,21 +154,55 @@ Click **Import references**, wait for **Import complete**, inspect Created/Reuse
 
 </ToolOperationGroup>
 
-## Add a reference from a DOI or arXiv link {/* #doi-link-import */}
+## Add references from identifiers or links {/* #doi-link-import */}
 
 1. Open **Library → All references → Add → Add from DOI or link**.
-2. Paste one DOI, a **doi.org** link, or an **arxiv.org/abs/** or **arxiv.org/pdf/** link into **DOI or arXiv link**, then select **Find reference**. Ordinary publisher page URLs are not supported by this entry.
-3. In **Review reference details**, check the title, creators, year, publication and identifiers. Use **Edit details** to correct metadata before saving.
-4. Review **When identifiers match**. **Reuse existing reference** retains existing metadata; choose another offered action only after comparing the records. Select **Save**.
-5. Reopen the saved record and verify its identifiers. Use **Find full-text PDF** or **Add files** separately when you need the paper itself.
+2. Enter one identifier or link per line. Supported inputs include DOI, doi.org links, arXiv IDs or abstract/PDF links, PMID, PMCID and official PubMed/PMC article links. Use explicit prefixes such as `PMID: 19621072` for a PubMed ID. Ordinary publisher URLs are not accepted by this entry.
+3. Select **Find reference**. Each batch allows up to **100 non-empty lines**, counted before deduplication. Split a longer list into smaller batches. The lookup normalizes identifiers and combines equivalent entries.
+4. With several inputs, inspect the results and select **Review references**. Resolve failed lookups or leave them out; they have not been saved. In **Import references**, inspect selected records and **When identifiers match**, then select **Import references**.
+5. For a single input, use **Review reference details**, check or edit the metadata, choose the duplicate policy and select **Save** instead.
+6. Read **Import complete** and its Created/Reused/Skipped/Failed counts, then reopen the saved references. **Reuse existing reference** keeps existing metadata; use another offered policy only after comparing records. Retrieve PDFs separately with **Find full-text PDF** or **Add files**.
 
-<p className="example-label"><strong>Worked example</strong> Add a single-atom catalysis paper by DOI</p>
+<p className="example-label"><strong>Worked example</strong> Import two PRISMA statements without duplicate records</p>
 
-Enter `10.1038/s41467-018-08136-3`. The lookup returns Lang and colleagues' 2019 article, **Non defect-stabilized thermally stable single-atom catalyst**, in Nature Communications. Check these details before saving; the lookup does not attach a PDF.
+Paste these three lines:
 
-![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+```text
+10.1136/bmj.n71
+https://doi.org/10.1136/bmj.n71
+PMID: 19621072
+```
 
-A versioned arXiv link resolves to the latest metadata, not necessarily the metadata of that old revision. Compare the version of any PDF you later attach. If lookup fails, check the identifier and retry, or use a PDF or bibliography-file import; a failed lookup has not saved a reference.
+<Screenshot src="/img/open-science/v108/batch-input.webp" alt="Mixed DOI and PubMed inputs in the batch import dialog" width={1280} height={720} windowBounds={[320, 206, 640, 310]} href="/docs/img/open-science/v108/batch-input.webp" linkLabel="Mixed DOI and PubMed inputs in the batch import dialog" />
+
+The DOI and DOI link identify the same paper, so the lookup returns two references: the PRISMA 2020 statement in BMJ and the PRISMA 2009 statement in PLoS Medicine. Check their titles and identifiers in the review.
+
+<Screenshot src="/img/open-science/v108/batch-review.webp" alt="Review two resolved PRISMA references and choose how to handle existing records" width={1280} height={720} windowBounds={[270, 16, 740, 688]} href="/docs/img/open-science/v108/batch-review.webp" linkLabel="Review two resolved PRISMA references and choose how to handle existing records" />
+
+In this example both records already existed. Choosing **Reuse existing reference** finished with **0 Created, 2 Reused, 0 Skipped, 0 Failed**, leaving the library without extra copies. A new library will instead create the selected records.
+
+<Screenshot src="/img/open-science/v108/batch-complete.webp" alt="Completed import reuses two existing references" width={1280} height={720} windowBounds={[270, 124, 740, 474]} href="/docs/img/open-science/v108/batch-complete.webp" linkLabel="Completed import reuses two existing references" />
+
+A versioned arXiv link resolves current metadata, which may differ from an older PDF revision. Compare the PDF you attach. For an unresolved identifier, correct the input and retry, or use a bibliography-file import. Metadata lookup alone does not obtain the full text.
+
+## Generate a study overview {/* #study-overview */}
+
+1. Configure an available **Main model** in **Settings → Model** and check the provider connection. Open a reference with an abstract or a readable attached PDF.
+2. In its details, find **Study overview** and select **Generate overview**. Keep the reference open while generation runs.
+3. Read the source label before using the result: **Based on abstract**, **Based on full text** or **Based on selected passages**. The five sections cover **Research question**, **Study population**, **Research methods**, **Main findings** and **Study limitations**. Information absent from the source is marked **Not reported in the available source**.
+4. Check important claims, numerical results and limitations against the original paper. An abstract-based overview does not establish that the full paper was read.
+5. Reopen the reference to return to its saved overview. Use **Regenerate** after changing the source or when a new overview is needed. Results use the current interface language; changing that language or the underlying source can require another generation.
+
+If generation asks for a source, add an abstract or readable PDF. In the browser, a long request can report a failure before the overview is saved. Wait briefly, then close and reopen the reference to check for a result before retrying. If none appears, check the main model and provider login, then generate again. A stored PDF that cannot be read is not usable full-text evidence.
+
+<p className="example-label"><strong>Worked example</strong> Read a single-atom catalyst paper’s abstract</p>
+
+Add DOI `10.1038/s41467-018-08136-3` with **Add from DOI or link**. Open **Non defect-stabilized thermally stable single-atom catalyst**, check its **Abstract**, then select **Generate overview**. This example uses Codex with `gpt-6-astra` and has no PDF attachment.
+
+<Screenshot src="/img/open-science/v108/study-overview.webp" alt="Saved English study overview with five fields, an abstract source label and Codex model" width={2082} height={1239} windowBounds={[661, 200, 760, 664]} href="/docs/img/open-science/v108/study-overview.webp" linkLabel="Saved English study overview with five fields, an abstract source label and Codex model" />
+
+The saved result is labeled **Based on abstract**. **Study limitations** reads **Not reported in the available source** because the supplied abstract does not state limitations; this does not mean the study has none. Close and reopen the reference to read the saved overview without generating it again.
+
 
 ## Import from Zotero {/* #zotero-import */}
 
@@ -320,7 +356,7 @@ A paused search retains its checked and pending records. After continuing or reo
 
 For **PDF could not be added**, check source sign-in requirements, link validity, the displayed size limit and the current proxy/DNS configuration. Avoid creating duplicate references as a retry mechanism.
 
-If a PDF source resolves to a reserved address such as `198.18.x.x`, the downloader rejects it. Follow [Network](network.md) to restore verifiable public resolution, then retry; do not disable the address check. If you already have a legitimately downloaded PDF, use **Add PDF** and verify its title, DOI and page count.
+If a full-text download reports an address-validation error, follow [full-text proxy troubleshooting](troubleshooting.md#full-text-proxy). Configured proxies using Fake-IP DNS are supported from v1.0.7; do not disable address checks. If you already have an authorized copy, use **Add files**, then verify the title, DOI and page count.
 
 
 </ToolOperationGroup>

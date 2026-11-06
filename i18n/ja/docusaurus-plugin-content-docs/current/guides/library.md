@@ -1,8 +1,10 @@
 ---
 title: "文学ライブラリと引用"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
+
+import Screenshot from '@site/src/components/Screenshot';
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
@@ -152,21 +154,55 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 </ToolOperationGroup>
 
-## DOI または arXiv リンクから参照を追加します。 {/* #doi-link-import */}
+## 識別子またはリンクから参照を追加する {/* #doi-link-import */}
 
 1. オープン **Library → All references → Add → Add from DOI or link**.
-2. 1つのDOIを、 **doi.org** リンク、または **arxiv.org/abs/** または **arxiv.org/pdf/** リンクについて **DOI or arXiv link**、それから選ぶ **Find reference**お問い合わせ 通常のパブリッシャーページのURLは、このエントリではサポートされていません。
-3. お問い合わせ **Review reference details**, タイトルをチェック, クリエイター, 年, 出版物と識別子. 使用条件 **Edit details** 保存する前にメタデータを訂正します。
-4. レビュー **When identifiers match**. **Reuse existing reference** 既存のメタデータを保持します。 レコードを比較した後にのみ、別の提供されたアクションを選択します。 選択する **Save**.
-5. 保存したレコードを再オープンし、識別子を確認します。 使用条件 **Find full-text PDF** または **Add files** 紙自体が必要な場合は別途。
+2. 1行ごとに1つの識別子またはリンクを入力します。 サポートされている入力には、DOI、doi.orgリンク、arXiv ID、または抄録/PDFリンク、PMID、PMCID、公式PubMed/PMCの記事リンクが含まれます。 などの明示的な接頭辞を使用する `PMID: 19621072` パブフィードID 普通の出版社のURLは、このエントリでは受け付けていません。
+3. 選択する **Find reference**。 各バッチは最大 **100 non-empty lines**です。行数は重複を除く前に数えます。長いリストは分割してください。検索時に識別子が正規化され、同じ文献を示す入力がまとめられます。
+4. 複数の入力で、結果を点検し、選ぶ **Review references**。 失敗したルックアップを解決したり、それらを残したりする。彼らは保存されていない。 。 **Import references**選択されたレコードを点検し、 **When identifiers match**、それから選ぶ **Import references**.
+5. 単一の入力のために、使用して下さい **Review reference details**メタデータのチェックや編集、重複ポリシーを選択し、選択する **Save** 代わりに。
+6. 採用情報 **Import complete** そして、その作成/再利用/スキップ/失敗したカウントは、保存された参照を再開します。 **Reuse existing reference** 既存のメタデータを保持します。 レコードを比較した後にのみ、提供された別のポリシーを使用します。 PDFを別々に取得する **Find full-text PDF** または **ファイルを追加**.
 
-<p className="example-label"><strong>実践例</strong> DOI: 10.1038/s41467-018-08136-3</p>
+<p className="example-label"><strong>作業例</strong> 重複レコードなしで2つのPRISMAステートメントをインポート</p>
 
-お問い合わせ `10.1038/s41467-018-08136-3`お問い合わせ ルックアップは、Langと同僚の2019の記事を返します、 **Non defect-stabilized thermally stable single-atom catalyst**、自然通信で。 保存する前に、これらの詳細を確認してください。 外観はPDFを添付しません。
+これらの3行を貼り付けます。
 
-![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+```text
+10.1136/bmj.n71
+https://doi.org/10.1136/bmj.n71
+PMID: 19621072
+```
 
-版番号付き arXiv リンクでも最新のメタデータを取得するため、古い版の情報と一致するとは限りません。後から添付する PDF の版を確認してください。検索に失敗した場合は識別子を確認して再試行するか、PDF・文献情報ファイルからインポートします。検索失敗時には文献は保存されていません。
+<Screenshot src="/img/open-science/v108/batch-input.webp" alt="バッチインポートダイアログでDUIとPubMedの入力をミックス" width={1280} height={720} windowBounds={[320, 206, 640, 310]} href="/docs/img/open-science/v108/batch-input.webp" linkLabel="バッチインポートダイアログでDUIとPubMedの入力をミックス" />
+
+DOI と DOI のリンクは同じ論文を識別するので、ルックアップは BMJ の PRISMA 2020 ステートメントと PLoS の PRISMA 2009 ステートメントの 2 つの参照を返します。 タイトルと識別子をレビューでチェックします。
+
+<Screenshot src="/img/open-science/v108/batch-review.webp" alt="2 件の PRISMA リファレンスを見直し、既存のレコードを処理する方法を選択します。" width={1280} height={720} windowBounds={[270, 16, 740, 688]} href="/docs/img/open-science/v108/batch-review.webp" linkLabel="2 件の PRISMA リファレンスを見直し、既存のレコードを処理する方法を選択します。" />
+
+この例では、両方のレコードが既に存在しています。 チョイス **Reuse existing reference** 終了すると **0 Created, 2 Reused, 0 Skipped, 0 Failed**, 追加のコピーなしでライブラリを残します. 新しいライブラリは、選択したレコードを生成します。
+
+<Screenshot src="/img/open-science/v108/batch-complete.webp" alt="完了したインポートは、2つの既存の参照を再利用します" width={1280} height={720} windowBounds={[270, 124, 740, 474]} href="/docs/img/open-science/v108/batch-complete.webp" linkLabel="完了したインポートは、2つの既存の参照を再利用します" />
+
+バージョン付き arXiv リンクは、古いPDFリビジョンと異なる可能性のある現在のメタデータを解決します。 添付するPDFを比較します。 未解決の識別子については、入力と再試行を修正するか、bibliography-fileインポートを使用します。 メタデータの検索だけで、完全なテキストは取得しません。
+
+## 研究概要を生成 {/* #study-overview */}
+
+1. 利用可能な設定 **Main model** 。 **Settings → Model** プロバイダーの接続を確認してください。 抄録や読みやすいPDFで参照してください。
+2. 詳細を見る **Study overview** 選択する **Generate overview**。 世代が走る間参照を開いたまま保って下さい。
+3. 結果を使用する前にソースラベルを読みます: **Based on abstract**, **Based on full text** または **Based on selected passages**。 5つのセクション カバー **Research question**, **Study population**, **Research methods**, **Main findings** そして、 **Study limitations**。 ソースからの不在情報はマークされます **Not reported in the available source**.
+4. 原紙に対する重要なクレーム、数値結果、制限をチェックします。 抄録ベースの概観では、フルペーパーが読み込まれているとは限りません。
+5. 文献を開き直すと、保存された概要を表示できます。 **Regenerate** ソースを変更するか、新しい概要が必要な場合。 結果は、現在のインターフェイス言語を使用します。その言語または根本的なソースの変更は、別の世代を必要とすることができます。
+
+ソースを求められた場合は、要旨または読み取り可能な PDF を追加します。ブラウザーでは、処理に時間がかかると、概要の保存が完了する前にエラーが表示されることがあります。少し待ってから文献を閉じて開き直し、結果を確認してから再生成してください。結果がなければ、主モデルと提供元へのログインを確認します。保存済みでも読み取れない PDF は、利用可能な全文ソースにはなりません。
+
+<p className="example-label"><strong>実例</strong> 単原子触媒の論文を要旨から読む</p>
+
+**Add from DOI or link** で DOI `10.1038/s41467-018-08136-3` を追加します。**Non defect-stabilized thermally stable single-atom catalyst** を開いて **Abstract** を確認し、**Generate overview** を選びます。この例では Codex の `gpt-6-astra` を使用し、PDF は添付していません。
+
+<Screenshot src="/img/open-science/v108/study-overview.webp" alt="5項目、要旨に基づくソース表示、Codex モデルを含む保存済みの英語概要" width={2082} height={1239} windowBounds={[661, 200, 760, 664]} href="/docs/img/open-science/v108/study-overview.webp" linkLabel="5項目、要旨に基づくソース表示、Codex モデルを含む保存済みの英語概要" />
+
+保存された結果には **Based on abstract** と表示されます。**Study limitations** の **Not reported in the available source** は、提供された要旨に研究の限界が記載されていないことを示します。研究に限界がないという意味ではありません。文献を閉じて開き直すと、再生成せずに保存済みの概要を読めます。
+
 
 ## Zotero からインポートする {/* #zotero-import */}
 
@@ -320,7 +356,7 @@ v0.30.2 は、PubMed の作者の名前の解析を修正しました。例え�
 
 **PDF could not be added**では、ソースのサインイン要件、リンクの有効性、表示サイズ制限、および現在のプロキシ/DNS構成を確認します。 再試行メカニズムとして重複する参照を作成することを避けて下さい。
 
-PDF ソースが `198.18.x.x` などの予約アドレスに解決した場合、ダウンローダーは拒否します。 [ネットワーク](network.md)をフォローして、検証可能なパブリックリゾリューションを復元し、再試行します。 アドレスチェックを無効にしない。 PDF を既にダウンロードしている場合は、**Add PDF** を使用して、タイトル、DOI およびページ数を確認します。
+全文のダウンロードでアドレス検証エラーが出た場合は、[プロキシのトラブルシューティング](troubleshooting.md#full-text-proxy)を参照してください。v1.0.7 以降は設定済みのプロキシによる Fake-IP DNS に対応しています。アドレス検証は無効にしないでください。正当に入手したコピーがある場合は **Add files** で追加し、タイトル、DOI、ページ数を確認します。
 
 
 </ToolOperationGroup>

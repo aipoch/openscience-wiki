@@ -1,37 +1,24 @@
 ---
 title: "Appearance and notifications"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
 
-import PreferenceScreenshot from '@site/src/components/PreferenceScreenshot';
-import Screenshot from '@site/src/components/Screenshot';
-
 # Appearance and notifications
 
-Choose a comfortable theme, set your interface language and receive task alerts while you work in another app. Open **Settings → General** to adjust these preferences. Open-Science remembers your appearance choices on this device.
+Choose a comfortable theme, set your interface language and receive task alerts while you work in another app. Open **Settings → Appearance** for visual preferences and **Settings → Notifications** for alerts. Both panels are in **System**; General contains app maintenance and help.
 
 <PlatformGuide />
 
 ## Change theme and interface language
 
-1. In **General → Appearance**, find **Theme**.
+1. In **Appearance**, find **Theme**.
 2. Choose **System** to follow your device, or select **Light** or **Dark** to keep a fixed appearance. You can switch back at any time.
 3. Under **Language**, choose your preferred interface language, or **System** to use the device language.
 
-<PlatformContent platform="macos">
-
-![General appearance settings](/img/open-science/v0.27.0/07-general-appearance.webp)
-
-</PlatformContent>
-
-<PlatformContent platform="windows">
-
-<Screenshot src="/img/open-science/windows/general-settings.webp" alt="Theme and Language controls in Windows General settings" width={1920} height={1017} windowBounds={[480, 165, 960, 690]} href="/docs/img/open-science/windows/general-settings.webp" linkLabel="Open the complete Windows General settings screenshot" />
-
-</PlatformContent>
+![Appearance and Notifications are separate System panels in Open-Science](/img/open-science/v108/appearance.webp)
 
 | Choice | What changes |
 | --- | --- |
@@ -40,7 +27,7 @@ Choose a comfortable theme, set your interface language and receive task alerts 
 | Language → System | The app reads the device language at startup. After changing the system language, reopen the app to apply it. |
 | A specific language | The app uses that interface language. Saved prompts, source files and earlier model answers keep their original text. |
 
-Language and theme preferences are in **Settings → General → Appearance**. The documentation website has its own language selector; changing it leaves the app's language unchanged. System file dialogs follow your operating-system settings.
+Language and theme preferences are in **Settings → Appearance**. The documentation website has its own language selector; changing it leaves the app's language unchanged. System file dialogs follow your operating-system settings.
 
 To request a report in a different language, specify that in your conversation. For example: “Write the report in English and preserve the original gene identifiers.”
 
@@ -63,16 +50,10 @@ The same report remains readable at the larger scale. Use the horizontal scrollb
 
 Enable alerts if you want to leave a running analysis and return when it needs attention.
 
-1. In **General → Notifications**, turn on **Task notifications**.
+1. In **Notifications**, turn on **Task notifications**.
 2. Choose whether to enable **Show task content in system notifications**. Leave it off if task names or request details should stay out of system alerts.
 3. Read **System notification status**, then select **Send test notification** if available. Allow notifications in the operating system when prompted.
 4. Check the returned test status and your system's notification surface. For task alerts, switch to another app while the task runs.
-
-<PlatformContent platform="macos">
-
-<PreferenceScreenshot notifications />
-
-</PlatformContent>
 
 | Control | Effect |
 | --- | --- |
@@ -127,22 +108,20 @@ Start with the test result, then check the condition that applies.
 
 ### Return from the tray after closing the window
 
-With **General → Close button behaviour → Ask every time**, closing the window opens **Minimize or quit?** Choose **Minimize to tray** to hide the window, then use the Open-Science icon in the Windows tray to return. Select **Don’t ask again** only if you want to retain that choice; change it later in General. Minimizing does not quit the app.
+With **General → Window behavior → When closing the window → Ask every time**, closing the window opens **Minimize or quit?** Choose **Minimize to tray** to hide the window, then use the Open-Science icon in the Windows tray to return. Select **Don’t ask again** only if you want to retain that choice; change it later in General. Minimizing does not quit the app.
 
 </PlatformContent>
 
 ## Open Help Center {/* #help-center */}
 
-Open **Settings → General → About → Help Center** to read setup and troubleshooting guidance in your browser. The link follows the app's current language: English opens the documentation root, while other supported languages open their own edition. You can also search Settings for **Help Center** using its translated label in your interface. Use **Release notes** for the application's release history.
-
-![Open-Science v0.37.2 Help Center in General settings](/img/open-science/v0372/help-center.webp)
+Open **Settings → General → Help Center** to read setup and troubleshooting guidance in your browser. The link follows the app's current language: English opens the documentation root, while other supported languages open their own edition. You can also search Settings for **Help Center** using its translated label in your interface. Use **Release notes** for the application's release history.
 
 ## Find related settings
 
 | You want to… | Where to go |
 | --- | --- |
-| Check for an app update | **General → About → Check now**; follow [Installation and updates](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Read version changes or get help | **About → Release notes / Help Center** opens the corresponding external page. This wiki also has a [Changelog](../changelog/v0.34.0.md). |
+| Check for an app update | **General → Check now**; follow [Installation and updates](installation.md#choose-a-reproducible-version-and-update-deliberately). |
+| Read version changes or get help | **General → Release notes / Help Center** opens the corresponding external page. This wiki also has a [Changelog](../changelog/v1.0.8.md). |
 | Locate or open the diagnostic log | **General → Diagnostics → Reveal / Open**; see [Troubleshooting](troubleshooting.md). Logs stay local until you share them. |
 | Install the command-line entry | **General → Install command**; see [CLI reference](../reference/cli.md). Desktop use does not require this command. |
 | Manage data location or archived work | [Storage and archived work](storage.md). |
@@ -153,16 +132,13 @@ Open **Settings → General → About → Help Center** to read setup and troubl
 
 Notification delivery also depends on the operating system's permissions, Focus mode and screen-sharing settings. Use the checks above on the device where you work.
 
-
-Source: [General settings](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
+Source: [General settings](https://github.com/aipoch/open-science/blob/v1.0.8/src/renderer/src/pages/settings/GeneralPanel.tsx).
 
 ## Adjust the app's interface size {/* #interface-scale */}
 
-1. Open **Settings → General → Appearance → Interface scale**.
+1. Open **Settings → Appearance → Interface scale**.
 2. Choose **90%**, **100%**, **110%** or **125%**. Text and controls resize immediately, and the choice is remembered on this device.
 3. Choose **100%** or press ⌘0 (macOS) / Ctrl+0 (Windows/Linux) to reset. Use ⌘+ / Ctrl++ to increase and ⌘− / Ctrl+− to decrease the scale.
-
-![Interface scale choices in General settings](/img/open-science/v0333/interface-scale.webp)
 
 This controls the desktop app's interface. Image or PDF preview zoom affects only that file's view. When accessing Open-Science in a browser, use the browser's zoom. Windows display scaling also affects other apps; use the control above when you only want to resize Open-Science.
 

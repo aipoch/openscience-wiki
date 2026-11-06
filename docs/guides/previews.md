@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -266,6 +266,8 @@ From v1.0.6, linked PDFs use automatic text ordering. Open the attachment and us
 Complete, valid logical tags take priority. Untagged, unrotated left-to-right text can use layout-based ordering; incomplete tags or unsupported layouts fall back to the PDF's native text order. These fallbacks do not guarantee that every multi-column page, table or formula will read correctly.
 
 Keep the source open when reviewing an answer. Check the cited page, column and figure or table against the PDF, especially if sentences seem interleaved. Use the [figure and table extraction tools](#pdf-extraction) when the visual material is the subject of the question.
+
+In v1.0.8, automatic ordering also uses positioned text to distinguish prose columns from table rows. PDF extraction checks crop boundaries against the native source. When a table cell is ambiguous, keep its original text and reliability warning with the extracted result; compare it with the page image before using the value in an analysis.
 
 ## Read a scanned PDF with OCR {/* #scanned-pdf-ocr */}
 

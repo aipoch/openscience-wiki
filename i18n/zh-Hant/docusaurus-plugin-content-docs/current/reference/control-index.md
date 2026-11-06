@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "完整頁面與控制元件索引"
 description: "按頁面查詢 Open-Science 的按鈕、輸入、開關和結果。"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # 完整頁面與控制元件索引 {/* #完整页面与控件索引 */}
@@ -116,6 +116,8 @@ last_update:
 | Duplicates | Select groups、Compare、欄位選擇、Merge | 複核併合並記錄，同時保留關聯 |
 | Background tasks | Pause、Resume、Review、Cancel | 控制批次後設資料/全文任務 |
 
+通過 **Add from DOI or link** 審覈並導入一批編號；在文獻詳情中，通過 **Study overview → Generate overview / Regenerate** 整理可用來源。詳見[文獻庫操作](../guides/library.md#doi-link-import)。
+
 ## Notebook 與 Provenance {/* #notebook-与-provenance */}
 
 | 頁面 | 控制元件 | 結果 |
@@ -184,7 +186,15 @@ Application storage Reveal/Repair；Data location Change、Path、Browse、檢�
 
 ### General {/* #general */}
 
-Task notifications、Theme radios、App icon radios、close behavior、GitHub token Open/Input/Save/Clear、About/Check updates/安裝更新。
+管理應用版本、**Check now**、下載與手動安裝幫助、**Help Center**、**Release notes**、診斷 **Reveal / Open**、命令行 **Install command** 和支持的窗口行爲。外觀與通知分別位於 **System** 下的獨立面板。
+
+### Appearance {/* #appearance */}
+
+管理 **Theme**、**Language**、桌面版 **Interface scale** 和支持的應用圖標選項。詳見[外觀設置](../guides/appearance.md)。
+
+### Notifications {/* #notifications */}
+
+管理 **Task notifications**、**Show task content in system notifications**、**System notification status** 和 **Send test notification**。詳見[通知設置](../guides/appearance.md)。
 
 ### Remote control {/* #remote-control */}
 

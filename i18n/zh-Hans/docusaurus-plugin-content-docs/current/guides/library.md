@@ -1,8 +1,10 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
+
+import Screenshot from '@site/src/components/Screenshot';
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
@@ -152,21 +154,55 @@ Inbox 随后显示 **Inbox is clear**；切换到 **Current project** 可见 **2
 
 </ToolOperationGroup>
 
-## 用 DOI 或 arXiv 链接添加文献 {/* #doi-link-import */}
+## 从编号或链接添加文献 {/* #doi-link-import */}
 
 1. 打开 **Library → All references → Add → Add from DOI or link**。
-2. 在 **DOI or arXiv link** 中粘贴一个 DOI、**doi.org** 链接，或 **arxiv.org/abs/**、**arxiv.org/pdf/** 链接，点击 **Find reference**。这个入口不支持普通出版方网页链接。
-3. 在 **Review reference details** 中核对标题、作者、年份、期刊和标识。需要修正时，先用 **Edit details** 编辑。
-4. 查看 **When identifiers match**。**Reuse existing reference** 会保留已有元数据；选择其他处理方式前应比较记录。确认后点击 **Save**。
-5. 重新打开保存的条目核对标识。需要论文全文时，再使用 **Find full-text PDF** 或 **Add files**。
+2. 每行填写一个编号或链接，支持 DOI、doi.org 链接、arXiv ID 或摘要/PDF 链接、PMID、PMCID，以及官方 PubMed/PMC 论文链接。PubMed 编号建议明确写成 `PMID: 19621072`。此入口不接受普通出版商页面 URL。
+3. 选择 **Find reference**。每批最多 **100 个非空行**，按去重前的输入行数计算；更长的清单应分批处理。查找时会规范化编号，并合并指向同一文献的等价输入。
+4. 多条输入时，检查查找结果，选择 **Review references**。修正失败条目或将其排除，失败的查找尚未保存。在 **Import references** 中核对所选文献和 **When identifiers match**，再点击 **Import references**。
+5. 只有一条输入时，进入 **Review reference details**，检查或编辑元数据，选择重复记录处理方式，最后点击 **Save**。
+6. 查看 **Import complete** 的 Created/Reused/Skipped/Failed 数量，再重新打开文献核对。**Reuse existing reference** 保留已有元数据；选择其他策略前应先比较记录。全文需另用 **Find full-text PDF** 或 **Add files** 获取。
 
-<p className="example-label"><strong>案例演示</strong> 用 DOI 添加一篇单原子催化论文</p>
+<p className="example-label"><strong>案例演示</strong> 导入两篇 PRISMA 声明，避免重复建档</p>
 
-输入 `10.1038/s41467-018-08136-3`，查找结果为 Lang 等人于 2019 年发表在 Nature Communications 的 **Non defect-stabilized thermally stable single-atom catalyst**。核对这些信息后保存；这次查找不会自动附加 PDF。
+粘贴以下三行：
 
-![保存前核对文献标题、作者、年份与 DOI](/img/open-science/v107/doi-review.webp)
+```text
+10.1136/bmj.n71
+https://doi.org/10.1136/bmj.n71
+PMID: 19621072
+```
 
-带版本号的 arXiv 链接会返回最新元数据，不一定对应旧修订版；之后附加 PDF 时应比较其版本。查找失败时，检查标识后重试，或改用 PDF、参考文献文件导入；查找失败并不表示条目已保存。
+<Screenshot src="/img/open-science/v108/batch-input.webp" alt="批量导入窗口中的 DOI 与 PubMed 混合输入" width={1280} height={720} windowBounds={[320, 206, 640, 310]} href="/docs/img/open-science/v108/batch-input.webp" linkLabel="批量导入窗口中的 DOI 与 PubMed 混合输入" />
+
+DOI 和 DOI 链接指向同一篇论文，因此查找后得到两条文献：BMJ 的 PRISMA 2020 声明，以及 PLoS Medicine 的 PRISMA 2009 声明。在审核窗口核对标题和编号。
+
+<Screenshot src="/img/open-science/v108/batch-review.webp" alt="审核两篇 PRISMA 文献，并选择已有记录的处理方式" width={1280} height={720} windowBounds={[270, 16, 740, 688]} href="/docs/img/open-science/v108/batch-review.webp" linkLabel="审核两篇 PRISMA 文献，并选择已有记录的处理方式" />
+
+本例文献库中已有这两条记录。选择 **Reuse existing reference** 后，结果为 **0 Created、2 Reused、0 Skipped、0 Failed**，没有产生额外副本。新文献库会创建所选记录，数量会与本例不同。
+
+<Screenshot src="/img/open-science/v108/batch-complete.webp" alt="导入完成后复用两条已有文献" width={1280} height={720} windowBounds={[270, 124, 740, 474]} href="/docs/img/open-science/v108/batch-complete.webp" linkLabel="导入完成后复用两条已有文献" />
+
+带版本号的 arXiv 链接返回当前元数据，可能与旧 PDF 版本不同，应核对后来附加的 PDF。编号无法识别时，修正后重试，或使用书目文件导入。查到元数据不代表已取得全文。
+
+## 生成论文概览 {/* #study-overview */}
+
+1. 在 **Settings → Model** 配置可用的 **Main model**，并检查提供方连接。打开包含摘要或可读取 PDF 附件的文献。
+2. 在详情中找到 **Study overview**，选择 **Generate overview**，生成期间保持详情打开。
+3. 使用结果前先看来源标签：**Based on abstract**、**Based on full text** 或 **Based on selected passages**。五个部分分别是 **Research question**（研究问题）、**Study population**（研究对象）、**Research methods**（研究方法）、**Main findings**（主要发现）和 **Study limitations**（研究局限）。来源没有提供的信息会标为 **Not reported in the available source**。
+4. 重要论断、数值和局限应回到原文核对。基于摘要的概览不能作为已经阅读全文的证据。
+5. 重新打开文献可查看已保存的概览；来源变化或需要重新生成时，使用 **Regenerate**。结果使用当前界面语言，切换语言或修改来源后可能需要重新生成。
+
+提示缺少来源时，补充摘要或可读取的 PDF。浏览器中的较长请求可能先显示失败，概览随后才保存完成。先稍等，再关闭并重新打开文献检查结果，避免立即重复生成。如果仍无结果，检查主模型和提供方登录，再重新生成。已保存但无法读取的 PDF 不能作为可用的全文证据。
+
+<p className="example-label"><strong>案例演示</strong> 从摘要了解一篇单原子催化论文</p>
+
+通过 **Add from DOI or link** 添加 DOI `10.1038/s41467-018-08136-3`。打开 **Non defect-stabilized thermally stable single-atom catalyst**，核对 **Abstract**，再选择 **Generate overview**。本例使用 Codex 的 `gpt-6-astra`，没有附加 PDF。
+
+<Screenshot src="/img/open-science/v108/study-overview.webp" alt="已保存的英文论文概览：五项内容、基于摘要的来源标签和 Codex 模型" width={2082} height={1239} windowBounds={[661, 200, 760, 664]} href="/docs/img/open-science/v108/study-overview.webp" linkLabel="已保存的英文论文概览：五项内容、基于摘要的来源标签和 Codex 模型" />
+
+保存的结果标注为 **Based on abstract**。**Study limitations** 显示 **Not reported in the available source**，表示这份摘要没有说明研究局限，并不代表研究没有局限。关闭并重新打开文献，即可查看已保存的概览，无需再次生成。
+
 
 ## 从 Zotero 导入 {/* #zotero-import */}
 
@@ -320,7 +356,7 @@ v0.30.2 更正了 PubMed 作者姓名的解析，包括姓氏、名字缩写和�
 
 若出现 **PDF could not be added**，检查来源是否要求登录、链接是否有效、文件是否超过提示的大小限制，以及当前代理/DNS。不要反复创建同一文献。
 
-如果 PDF 来源被解析为 `198.18.x.x` 等保留地址，下载模块会拒绝它。按[网络](network.md)恢复可验证的公网解析后重试，不要关闭地址检查。若已有合法下载的 PDF，可用 **Add PDF**，然后核对标题、DOI 和页数。
+全文下载提示地址检查错误时，见[全文代理排查](troubleshooting.md#full-text-proxy)。v1.0.7 起支持通过已配置的代理处理 Fake-IP DNS，不要关闭地址检查。若已有合法取得的副本，可用 **Add files** 添加，再核对标题、DOI 和页数。
 
 
 </ToolOperationGroup>

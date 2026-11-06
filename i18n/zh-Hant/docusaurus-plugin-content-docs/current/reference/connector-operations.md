@@ -2,7 +2,7 @@
 title: "Connector 操作引數參考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-05'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 ## 操作輸入 {/* #操作输入 */}
 
-每次展開一個 Connector。必填項標爲 **必填**，本頁與下載目錄依據 Open-Science **v1.0.5** 的結構定義。以嵌套的 `input.required` 爲準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.5.json">完整註冊表下載</ExampleDownload>提供嵌套 JSON、完整返回說明和準確 Agent 側調用示例。工具要求 `accessions`、`cids`、`rs_id` 等專用字段時，不要統一改爲 `id`。
+每次展開一個 Connector。必填項標爲 **必填**，本頁與下載目錄依據 Open-Science **v1.0.8** 的結構定義。以嵌套的 `input.required` 爲準；舊式頂層 `required` 可能不存在。<ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.8.json">完整註冊表下載</ExampleDownload>提供嵌套 JSON、完整返回說明和準確 Agent 側調用示例。工具要求 `accessions`、`cids`、`rs_id` 等專用字段時，不要統一改爲 `id`。
 
 ## 化學 {/* #family-1 */}
 
@@ -2924,14 +2924,14 @@ const result = await host.mcp("human-genetics", "gwas_get_variant", {"rs_id": "r
 
 ### `eqtl_list_datasets` {/* #eqtl_list_datasets */}
 
-列出 eQTL Catalogue 資料集，每項對應研究、組織/細胞型別及定量方法。可按精確研究名、組織標籤或 quant_method 篩選。返回 QTD ID 及後設資料；上游不提供總數，truncated 為 false 表示已遍歷完畢。
+從固定版本的官方 TSV 目錄列出 eQTL Catalogue release-7 數據集，替代已停用的 REST API。可按研究、組織和定量方法精確篩選。結果包括 `total`、`returned`、`truncated`、數據集元數據、官方 `file_url` 和 `reference_data`。基因表達 `.all` 文件包含完整名義統計結果，`.cc` 文件經過篩選；固定元數據版本不代表上游數據文件被凍結。
 
-| 欄位 | 型別 | 要求與約束 |
+| 字段 | 類型 | 要求與限制 |
 | --- | --- | --- |
-| `study_label` | 字串 | 可選 |
-| `tissue_label` | 字串 | 可選 |
-| `quant_method` | 字串 | 可選 |
-| `max_records` | 整數 | 可選; 預設值： 1000 |
+| `study_label` | string | 可選；精確研究名稱 |
+| `tissue_label` | string | 可選；精確組織標籤 |
+| `quant_method` | string | 可選；精確定量方法，例如 ge、exon、tx、txrev、microarray、leafcutter 或 aptamer |
+| `max_records` | integer | 可選；1–1000；默認：1000 |
 
 ```javascript
 const result = await host.mcp("human-genetics", "eqtl_list_datasets", {"study_label": "Alasoo_2018", "quant_method": "ge"})
@@ -2939,21 +2939,24 @@ const result = await host.mcp("human-genetics", "eqtl_list_datasets", {"study_la
 
 ### `eqtl_associations` {/* #eqtl_associations */}
 
-查詢一個 QTD 資料集的分子 QTL，至少指定 gene_id、rsid、variant 或 pos。使用 GRCh38；variant 含 chr 字首和下劃線，pos 區域不帶 chr 字首。僅覆蓋資料集實際檢驗的 cis 視窗；空結果可表示未檢驗或未收錄。檢查 truncated 後再判斷完整性。
+查詢官方帶索引的 eQTL Catalogue release-7 TSV 文件。必須提供數據集、明確的 GRCh38 組裝，以及座標或變異。基因 ID 和 rsID 僅用於篩選按位置取回的行。GRCh37 變異應先通過 `liftover_variant` 和 `source_build: "GRCh37"` 轉換，僅在得到唯一 GRCh38 映射後繼續；保留原始變異和映射證據，此接口不自動轉換變異或區域。
 
-| 欄位 | 型別 | 要求與約束 |
+| 字段 | 類型 | 要求與限制 |
 | --- | --- | --- |
-| `dataset_id` | 字串 | **必填** |
-| `gene_id` | 字串 | 可選 |
-| `rsid` | 字串 | 可選 |
-| `variant` | 字串 | 可選 |
-| `pos` | 字串 | 可選 |
-| `nlog10p_min` | 數值 | 可選 |
-| `max_records` | 整數 | 可選; 預設值： 1000 |
+| `dataset_id` | string | **必填**；QTD 後跟六位數字 |
+| `genome_build` | string | **必填**；GRCh38，無默認值 |
+| `gene_id` | string | 可選；精確匹配不帶版本的人類 Ensembl ID，ENSG 後跟十一位數字 |
+| `rsid` | string | 可選；精確匹配 rs 後跟數字 |
+| `variant` | string | 未提供 pos 時必填；GRCh38 的 chrN_position_ref_alt |
+| `pos` | string | 未提供 variant 時必填；從 1 開始且包含兩端的 chromosome:start-end，不帶 chr 前綴，染色體爲 1–22/X/Y，跨度最多 5 Mb |
+| `nlog10p_min` | number | 可選；非負；在本地按計算出的 −log10(p) 篩選 |
+| `max_records` | integer | 可選；1–1000；默認：1000 |
 
 ```javascript
-const result = await host.mcp("human-genetics", "eqtl_associations", {"dataset_id": "QTD000266", "gene_id": "ENSG00000130203", "nlog10p_min": 2})
+const result = await host.mcp("human-genetics", "eqtl_associations", {"dataset_id": "QTD000021", "genome_build": "GRCh38", "pos": "20:46120612-46120613", "max_records": 25})
 ```
+
+結果保留 `region`、`coordinate_source`、`returned`、`truncated`、`associations` 和 `reference_data`。保留 `pvalue_text`，並以 ALT 作爲效應等位基因。附加條件按精確交集篩選；空結果只表示已測試順式窗口內沒有匹配的公開記錄，不證明不存在關聯。讀取範圍過大時會報錯，應縮小區域，或使用本地 Tabix 進行批量處理。
 
 ### `phewas_instances` {/* #phewas_instances */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Raccourcis clavier"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -90,4 +90,4 @@ Dans les paramètres, **- Oui.** (macOS) ou **Ctrl+K** (Windows/Linux) focalise 
 | Diminution d'une étape | ⌘− | Ctrl+− |
 | Réinitialiser à 100% | ⌘0 | Ctrl+0 |
 
-Ces raccourcis partagent les étapes 90%, 100%, 110% et 125% dans **Settings → General → Appearance → Interface scale**. Voir [taille de l'interface](appearance.md#interface-scale). Le zoom avant-fichier et la mise à l'échelle de l'application entière sont des commandes séparées.
+Ces raccourcis partagent les étapes 90%, 100%, 110% et 125% dans **Settings → Appearance → Interface scale**. Voir [taille de l'interface](appearance.md#interface-scale). Le zoom avant-fichier et la mise à l'échelle de l'application entière sont des commandes séparées.

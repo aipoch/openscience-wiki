@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: "設定の概要"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-05'
 ---
 
 # 設定の概要 {/* #settings-overview */}
 
-ワークスペースの左下隅から **Settings** を開きます。 **Intelligence**、**Connections**、**Workspace**、**System**の4つのグループに、17のパネルが編成されています。 目的別にパネルを選択し、ヘッダーから検索します。 これらのガイドでは、例えば、**Settings → Model**は、インテリジェンス内のモデルパネルを参照します。
+オープン **Settings** ワークスペースの左下隅から。 コンセプト **19パネル** 4つのグループに分かれています。 **System**, **Intelligence**, **Connections** そして、 **Workspace**。 出現および通知は別のパネルです。 目的から選択するか、ヘッダーから検索します。 **Settings → Model**たとえば、モデル内部インテリジェンスを開きます。
 
 | グローバル・コントロール | ビーキャビター |
 | --- | --- |
@@ -27,10 +27,13 @@ last_update:
 
 この検索は、すべてのフィールドや研究文書ではなく、すべてのパネル全体に代表的な設定をカバーします。 用語が一致しない場合は、以下のパネル名またはナビゲーショングループを使用します。 会話やファイルを検索するには、設定を閉じて、[グローバル検索](../guides/navigation.md)を使用します。
 
-## 17メインパネル {/* #the-17-main-panels */}
+## 19メインパネル {/* #the-17-main-panels */}
 
 | グループ | パネル | それが管理するもの |
 | --- | --- | --- |
+| System | [General](../guides/appearance.md#help-center) | バージョン、更新、診断、CLI のインストール、ウィンドウの動作、ヘルプ |
+|  | [Appearance](../guides/appearance.md) | テーマ、言語、デスクトップの表示倍率、対応するアプリアイコン |
+|  | [Notifications](../guides/appearance.md) | タスク通知、通知内容、システムの状態、テスト通知 |
 | インテリジェンス | [モデル](../guides/models.md) | プロバイダーとシナリオモデル |
 |  | [エージェント](../guides/frameworks.md) | エージェントフレームワークのインストール、スイッチおよび修理 |
 |  | [Skills](../skills/overview.md) | 再利用可能な研究方法と可用性 |
@@ -47,7 +50,6 @@ last_update:
 |  | [コンピュート](../guides/remote-compute.md) | ローカルおよびSSHの計算リソース |
 |  | [使用量](../guides/usage.md) | トークン、コールおよび研究活動統計 |
 |  | [アーカイブ済み](../guides/storage.md) | アーカイブされた作品の復元または永久削除 |
-| システム | [一般](../guides/appearance.md) | 出現、通知、診断および版 |
 
 **Feedback** は、設定の下部にある別のエントリのままです。
 

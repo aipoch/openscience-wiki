@@ -1840,5 +1840,11 @@
   },
   "docs.outline.reference.v107.scope": {
     "message": "DOI 및 arXiv 가져오기, PDF 주석, OCR, Pi 및 연구 사례 마켓."
+  },
+  "docs.outline.reference.v108.title": {
+    "message": "v1.0.8"
+  },
+  "docs.outline.reference.v108.scope": {
+    "message": "문헌 일괄 가져오기, 연구 개요, 설정 및 eQTL 업데이트."
   }
 }

@@ -1,7 +1,7 @@
 ---
 title: "Navigation and search"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-05'
 ---
 
 # Navigation and search
@@ -10,7 +10,7 @@ Use Home to choose the investigation, the session list to choose its conversatio
 
 ## Start from Home
 
-Use **Settings → General → Appearance** to change the app language or theme. The [settings center](../settings/overview.md) groups panels by purpose and provides its own search.
+Use **Settings → Appearance** to change the app language or theme. The [settings center](../settings/overview.md) groups panels by purpose and provides its own search.
 
 ![Home with the gene-expression and literature projects](/img/open-science/v0.27.0/01-home.webp)
 
@@ -22,7 +22,7 @@ Use **Settings → General → Appearance** to change the app language or theme.
 | Search | Open global search | Find projects, messages, files and literature; Wiki search is separate |
 | Library | Open shared references | Project and collection views are links into the same library |
 | Model settings | Configure model access | A connected account and a successful research run are separate states |
-| Settings → General → Appearance | Change Language / Theme | interface language does not translate task content |
+| Settings → Appearance | Change Language / Theme | interface language does not translate task content |
 | Messages | Inspect application messages | Read the actual event; an unread counter is not a task-failure count |
 
 In a workspace, **All projects** returns to Home. The project-name menu contains project actions; the menu beside a session affects that session. **New** under Sessions starts another conversation in the current project. It does not create another project or copy its source folders.

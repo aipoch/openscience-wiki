@@ -1836,5 +1836,11 @@
   },
   "docs.outline.reference.v107.scope": {
     "message": "Importación DOI y arXiv, anotaciones PDF, OCR, Pi y casos de investigación."
+  },
+  "docs.outline.reference.v108.title": {
+    "message": "v1.0.8"
+  },
+  "docs.outline.reference.v108.scope": {
+    "message": "Importación por lotes, resúmenes de estudios, ajustes y eQTL."
   }
 }

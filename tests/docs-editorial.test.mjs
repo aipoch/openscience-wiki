@@ -19,7 +19,7 @@ const operations = (text) => [...text.matchAll(/^### `([^`]+)`(?: \{\/\* #[^ ]+ 
 
 test('translated operation explanations preserve all callable names and example arguments', () => {
   const original = operations(en), translated = operations(zh);
-  const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v1.0.5.json', 'utf8'));
+  const registry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v1.0.8.json', 'utf8'));
   const dataTools = registry.filter((c) => c.id !== 'molecule').flatMap((c) => c.tools);
   assert.equal(original.length, 416);
   assert.deepEqual(original.map((t) => t.name).sort(), dataTools.map((t) => t.id).sort());
@@ -51,13 +51,13 @@ for (const prefix of locales.map((locale) => locale === 'en' ? '' : `${locale}/`
   });
 }
 
-const currentRegistry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v1.0.5.json', 'utf8'));
+const currentRegistry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v1.0.8.json', 'utf8'));
 for (const prefix of ['', 'zh-Hans/']) {
   test(`${prefix || 'en/'} latest release belongs to the documentation sidebar`, () => {
-    const html = readFileSync(`${buildDir}/${prefix}changelog/v1-0-7/index.html`, 'utf8');
+    const html = readFileSync(`${buildDir}/${prefix}changelog/v1-0-8/index.html`, 'utf8');
     const aside = html.match(/<aside\b[\s\S]*?<\/aside>/)?.[0];
     assert.ok(aside, 'the new release must not become a standalone page without chapter navigation');
-    assert.ok(aside.includes(`/docs/${prefix}changelog/v1-0-7/`));
+    assert.ok(aside.includes(`/docs/${prefix}changelog/v1-0-8/`));
   });
 }
 const currentTools = currentRegistry.filter((c) => c.id !== 'molecule').flatMap((c) => c.tools);
@@ -73,7 +73,7 @@ for (const [locale, prose, marker] of [['en', en, '**required**'], ['zh-Hans', z
         const row = body.split('\n').find((line) => line.startsWith(`| \`${field}\` |`));
         assert.ok(row?.includes(marker), `${tool.connector}/${tool.id}: ${field} must be marked required`);
       }
-      const groups = tool.id.startsWith('clinpgx_') ? [tool.input, ...(tool.input.allOf ?? [])] : [];
+      const groups = (tool.id.startsWith('clinpgx_') || tool.id === 'eqtl_associations') ? [tool.input, ...(tool.input.allOf ?? [])] : [];
       for (const group of groups) {
         for (const branch of group.anyOf ?? []) {
           for (const field of branch.required ?? []) {

@@ -1,7 +1,7 @@
 ---
 title: "키보드 단축키"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -90,4 +90,4 @@ A 초점 **Side Chat** 탭에는 destructive-close 확인이 있습니다. 채�
 | 1 단계 결정 | ⌘− | Ctrl + - |
 | 100%로 재설정 | ⌘0 | Ctrl + 0 |
 
-이 단축키는 공유 90%, 100%, 110% 및 125% 단계 **Settings → General → Appearance → Interface scale**... [공용영역 크기](appearance.md#interface-scale) 참조. 파일-preview 급상승 및 전체 앱 스케일링은 별도의 컨트롤입니다.
+이 단축키는 공유 90%, 100%, 110% 및 125% 단계 **Settings → Appearance → Interface scale**... [공용영역 크기](appearance.md#interface-scale) 참조. 파일-preview 급상승 및 전체 앱 스케일링은 별도의 컨트롤입니다.

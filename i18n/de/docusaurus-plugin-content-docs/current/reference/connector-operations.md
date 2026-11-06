@@ -2,7 +2,7 @@
 title: "Connector Betriebsnummer"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-05'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Die Namen der Rückgabefelder unterscheiden sich je nach Operation. Die folgende
 
 ## Betriebsinputs {/* #operation-inputs */}
 
-Erweitern Sie einen Connector auf einmal. Erforderliche Felder werden markiert **erforderlich**; diese Referenz und Download verwenden Sie die Open-Science **v1.0.5** Schema. A verschachtelt `input.required` Liste ist autoritativ; eine Legacy-Top-Level `required` Liste kann fehlen. Konsultation der <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.5.json">vollständige herunterladbare Registry</ExampleDownload> für verschachtelte JSON-Schemata, vollständige Rückgabebeschreibungen und agentenseitige Aufrufbeispiele. Passieren Sie kein Generikum `id` Wenn ein Tool erwartet `accessions`, `cids`, `rs_id` oder ein anderes Namespace-spezifisches Feld.
+Erweitern Sie einen Connector auf einmal. Erforderliche Felder werden markiert **erforderlich**; diese Referenz und Download verwenden Sie die Open-Science **v1.0.8** Schema. A verschachtelt `input.required` Liste ist autoritativ; eine Legacy-Top-Level `required` Liste kann fehlen. Konsultation der <ExampleDownload path="/examples/capabilities/connector-catalog-v1.0.8.json">vollständige herunterladbare Registry</ExampleDownload> für verschachtelte JSON-Schemata, vollständige Rückgabebeschreibungen und agentenseitige Aufrufbeispiele. Passieren Sie kein Generikum `id` Wenn ein Tool erwartet `accessions`, `cids`, `rs_id` oder ein anderes Namespace-spezifisches Feld.
 
 ## Chemie {/* #family-1 */}
 
@@ -2922,14 +2922,14 @@ const result = await host.mcp("human-genetics", "gwas_get_variant", {"rs_id": "r
 
 ### `eqtl_list_datasets` {/* #eqtl_list_datasets */}
 
-Liste der eQTL-Katalogdatensätze (ein Datensatz = eine Studie x Gewebe-/Zelltyp x Quantifizierungsmethode). Args: study_label (genauer Studienname, z.B. GTEx, Alasoo_2018, BLUEPRINT tissue_label (genaue Gewebe/Zell-Typ-Etikette, z.B. Leber, Makrophagen, LCL — Kleinbuchstaben im Katalog; quant_method (ge = Genexpression, Exon, tx, txrev, Microarray, Blattschneider, Aptamer = Plasmaprotein); für konventionelle Gen-Level-eQTLs ge verwenden; max_records (Cap Default 1000) Der vollständige ungefilterte Katalog ist ~ 760 Datensätze. Gibt &#123;filters zurück, zurückgegeben, abgeschnitten, datasets&#125; sortiert nach dataset_id; &#123;dataset_id (QTD...), study_id (QTS...), study_label, sample_group, tissue_id, tissue_label, condition_label, quant_method, sample_size&#125;. Der API veröffentlicht keine Gesamtzählung; truncated=false beweist, dass die Auflistung vollständig ist.
+Liste eQTL Catalogue Release-7-Datensätze aus einem angehefteten offiziellen TSV-Katalog, der die pensionierte REST-API ersetzt. Genaue Filter wählen Studie, Gewebe und Quantifizierungsmethode. Die Ergebnisse umfassen `total`, `returned`, `truncated`, Metadaten des Datensatzes, offiziell `file_url` Werte und `reference_data`. Genexpression `.all` Dateien enthalten vollständige nominale Statistiken; `.cc` Dateien werden gefiltert. Metadaten-Pinning friert keine Upstream-Datendateien ein.
 
 | Feld | Typ | Anforderungen und Beschränkungen |
 | --- | --- | --- |
-| `study_label` | Zeichenfolge | fakultativ |
-| `tissue_label` | Zeichenfolge | fakultativ |
-| `quant_method` | Zeichenfolge | fakultativ |
-| `max_records` | Ganzzahl | fakultativ; Standard: 1000 |
+| `study_label` | Schnur | fakultativ; genaue Studienbezeichnung |
+| `tissue_label` | Schnur | fakultativ; genaues Gewebeetikett |
+| `quant_method` | Schnur | fakultativ; genaue Methode wie ge, exon, tx, txrev, microarray, leafcutter oder aptamer |
+| `max_records` | Ganzzahl | fakultativ; 1–1000; Standard: 1000 |
 
 ```javascript
 const result = await host.mcp("human-genetics", "eqtl_list_datasets", {"study_label": "Alasoo_2018", "quant_method": "ge"})
@@ -2937,21 +2937,24 @@ const result = await host.mcp("human-genetics", "eqtl_list_datasets", {"study_la
 
 ### `eqtl_associations` {/* #eqtl_associations */}
 
-Molekular-QTL-Assoziationszeilen aus einem eQTL-Katalogdatensatz, gefiltert nach Gen, Variante oder Region. Args: dataset_id (QTD-Zugang aus eqtl_list_datasets, z.B. QTD000266; gene_id (unversionierte Ensembl-Gen-ID z.B.) ENSG00000130203 APOE; mindestens eines von gene_id/Rsid/Variante/pos erforderlich ist; rsid (dbSNP rsID); Variante (eQTL Catalogue variant string chr19_44908822_C_T, chr-präfixiertes Unterstrich GRCh38); Pos (genomisches Fensterchromosom:Start-Ende GRCh38 no chr Präfix, z.B. 19:44900000-44920000); nlog10p_min (significance floor: only rows with -log10(p) >= this, applied upstream); max_records (Cap Default 1000 = eine Seite). Rückgabe &#123;dataset_id, Filter, zurückgeführt, abgeschnitten, Assoziationen&#125;; jede Zeile &#123;molecular_trait_id, gene_id, Variante, rsid, Chromosom, Position, ref, alt, Typ, beta, se, pvalue, nlog10p, maf, ac, an, r2, median_tpm&#125;. Zeilen umfassen NUR das cis-Fenster des getesteten Datensatzes (±1 Mb jedes Gens); leer bedeutet "nicht getestet / nicht vorhanden". Es wird keine Gesamtzählung veröffentlicht: truncated=false beweist Erschöpfung, truncated=true bedeutet, dass die Kappe getroffen wurde.
+Abfrage offiziellen indizierten eQTL Katalog Release-7 TSV-Dateien. Geben Sie einen Datensatz, eine explizite GRCh38-Assembler und entweder Koordinaten oder eine Variante. Gene IDs und rsIDs filtern nur Zeilen, die bereits nach Position abgerufen wurden. Für GRCh37 verwenden `liftover_variant` mit `source_build: "GRCh37"` zuerst und nur mit einem einzigartigen GRCh38-Mapping fortfahren. Bewahren Sie die ursprüngliche Variante und die Abbildungsnachweise auf; es findet keine automatische Liftover- oder Regionsumwandlung statt.
 
 | Feld | Typ | Anforderungen und Beschränkungen |
 | --- | --- | --- |
-| `dataset_id` | Zeichenfolge | **erforderlich** |
-| `gene_id` | Zeichenfolge | fakultativ |
-| `rsid` | Zeichenfolge | fakultativ |
-| `variant` | Zeichenfolge | fakultativ |
-| `pos` | Zeichenfolge | fakultativ |
-| `nlog10p_min` | Zahl | fakultativ |
-| `max_records` | Ganzzahl | fakultativ; Standard: 1000 |
+| `dataset_id` | Schnur | **erforderlich**; QTD gefolgt von sechs Ziffern |
+| `genome_build` | Schnur | **erforderlich**; GRCh38 ohne Standard |
+| `gene_id` | Schnur | optional; genaue unversionierte menschliche Ensembl ID, ENSG gefolgt von elf Ziffern |
+| `rsid` | Schnur | fakultativ; genaue rs gefolgt von Ziffern |
+| `variant` | Schnur | erforderlich, wenn pos fehlt; GRCh38 chrN position ref alt |
+| `pos` | Schnur | bei fehlender Variante erforderlich; 1-basiertes inklusives Chromosom:start-end, kein chr-Präfix, Chromosomen 1–22/X/Y, maximale Spannweite 5 Mb |
+| `nlog10p_min` | Nummer | optional; nicht negativ; abgeleitete Filter -log10(p) lokal |
+| `max_records` | Ganzzahl | fakultativ; 1–1000; Standard: 1000 |
 
 ```javascript
-const result = await host.mcp("human-genetics", "eqtl_associations", {"dataset_id": "QTD000266", "gene_id": "ENSG00000130203", "nlog10p_min": 2})
+const result = await host.mcp("human-genetics", "eqtl_associations", {"dataset_id": "QTD000021", "genome_build": "GRCh38", "pos": "20:46120612-46120613", "max_records": 25})
 ```
+
+Ergebnisse behalten `region`, `coordinate_source`, `returned`, `truncated`, `associations` und `reference_data`. Konserve `pvalue_text` und ALT als Effekt-Allel. Zusätzliche Filter schneiden sich genau. Leere Ergebnisse bedeuten keine übereinstimmenden veröffentlichten Zeilen innerhalb der getesteten cis-Fenster, keine Abwesenheit von Assoziation. Übergroße Lesevorgänge scheitern; verengen Sie die Region oder verwenden Sie lokale Tabix für Massenarbeit.
 
 ### `phewas_instances` {/* #phewas_instances */}
 

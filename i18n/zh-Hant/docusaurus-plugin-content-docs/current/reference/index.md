@@ -2,7 +2,7 @@
 title: "參考"
 slug: /reference
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 # 參考 {/* #参考 */}
@@ -27,4 +27,4 @@ last_update:
 
 ## Changelog {/* #changelog */}
 
-[檢視最新版本更新](../changelog/v1.0.7.md)。
+[檢視最新版本更新](../changelog/v1.0.8.md)。

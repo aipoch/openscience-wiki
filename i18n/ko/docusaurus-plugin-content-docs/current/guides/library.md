@@ -1,8 +1,10 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
+
+import Screenshot from '@site/src/components/Screenshot';
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
@@ -152,21 +154,55 @@ Inbox는 **Inbox is clear**을 보여줍니다. **현재 프로젝트**로 전�
 
 </ToolOperationGroup>
 
-## DOI 또는 arXiv 링크에서 참조 추가 {/* #doi-link-import */}
+## 식별자 또는 링크에서 참조 추가 {/* #doi-link-import */}
 
 1. 기타 **Library → All references → Add → Add from DOI or link**.
-2. 페이스 북 **doi.org** 링크, 또는 **arxiv.org/abs/** 또는 **arxiv.org/pdf/** 로그인 **DOI or arXiv link**, 다음 선택 **Find reference**· 정규 출판사 페이지 URL은 이 항목에 의해 지원되지 않습니다.
-3. 내 계정 **Review reference details**, 제목, 제작자, 년, 출판 및 식별자를 확인합니다. 제품 정보 **Edit details** 저장하기 전에 메타데이터를 수정합니다.
-4. 이름 * **When identifiers match**. **Reuse existing reference** 기존 메타데이터를 유지; 레코드를 비교한 후 다른 제안된 작업을 선택합니다. 제품정보 **Save**.
-5. 저장된 기록을 열고 식별자를 확인합니다. 제품 정보 **Find full-text PDF** 또는 **Add files** 종이를 필요로 할 때 별도로.
+2. 행당 하나의 식별자 또는 링크 입력. 지원된 입력에는 DOI, doi.org 링크, arXiv ID 또는 요약/PDF 링크, PMID, PMCID 및 공식 PubMed/PMC 기사 링크가 포함되어 있습니다. 같은 명시된 접두사 사용 `PMID: 19621072` PubMed ID를 위해. 정규 출판사 URL은 이 항목에 의해 허용되지 않습니다.
+3. 제품정보 **Find reference**· 각 배치는 까지 허용합니다 **100 non-empty lines**입니다. 중복을 제거하기 전의 줄 수를 기준으로 합니다. 긴 목록은 여러 번에 나누어 가져오세요. 검색 시 식별자를 정규화하고 동일 문헌을 가리키는 입력을 합칩니다.
+4. 몇몇 입력으로, 결과를 검열하고 선정하십시오 **Review references**· 해결 실패한 조회 또는 떠나; 그들은 저장되지 않았습니다. 내 계정 **Import references**, 선택된 기록 및 검사 **When identifiers match**, 다음 선택 **Import references**.
+5. 단일 입력을 위해, 사용 **Review reference details**, 체크 또는 메타 데이터를 편집, 중복 정책을 선택하고 선택 **Save** 대신.
+6. ...에서 **Import complete** 그리고 그것의 창조한/Reused/Skipped/Failed 조사는, 그 후에 저장된 참고를 다시 엽니다. **Reuse existing reference** 기존 메타데이터를 유지; 레코드를 비교한 후 다른 제안 된 정책을 사용하십시오. PDF를 별도로 검색 **Find full-text PDF** 또는 **파일 추가**.
 
-<p className="example-label"><strong>실습 사례</strong> DOI: 10.1038/s41467-018-08136-3</p>
+<p className="example-label"><strong>작업 예</strong> 중복 레코드없이 두 PRISMA 문 가져 오기</p>
 
-이름 * `10.1038/s41467-018-08136-3`· 검색은 Lang과 동료의 2019 기사를 반환, **Non defect-stabilized thermally stable single-atom catalyst**, 자연 통신에서. 저장하기 전에이 세부 사항을 확인; 조회는 PDF를 첨부하지 않습니다.
+이 세 줄을 붙여:
 
-![Reviewing the title, authors, year and DOI before saving a reference](/img/open-science/v107/doi-review.webp)
+```text
+10.1136/bmj.n71
+https://doi.org/10.1136/bmj.n71
+PMID: 19621072
+```
 
-버전 번호가 있는 arXiv 링크도 최신 메타데이터를 반환하므로 이전 수정본의 정보와 일치하지 않을 수 있습니다. 나중에 첨부하는 PDF의 버전을 확인하세요. 조회에 실패하면 식별자를 확인하고 다시 시도하거나 PDF 또는 서지 파일을 가져오세요. 조회 실패 시에는 문헌이 저장되지 않습니다.
+<Screenshot src="/img/open-science/v108/batch-input.webp" alt="DOI 및 PubMed 입력을 일괄 가져오기 대화 상자에서 혼합" width={1280} height={720} windowBounds={[320, 206, 640, 310]} href="/docs/img/open-science/v108/batch-input.webp" linkLabel="DOI 및 PubMed 입력을 일괄 가져오기 대화 상자에서 혼합" />
+
+DOI 및 DOI 링크는 동일한 종이를 식별하므로, 검색은 두 개의 참조를 반환합니다. BMJ의 PRISMA 2020 성명 및 PLoS 의학의 PRISMA 2009 성명. 리뷰에서 제목과 식별자를 확인합니다.
+
+<Screenshot src="/img/open-science/v108/batch-review.webp" alt="두 개의 해결 PRISMA 참조를 검토하고 기존 기록을 처리하는 방법을 선택" width={1280} height={720} windowBounds={[270, 16, 740, 688]} href="/docs/img/open-science/v108/batch-review.webp" linkLabel="두 개의 해결 PRISMA 참조를 검토하고 기존 기록을 처리하는 방법을 선택" />
+
+이 예제 모두는 이미 존재했습니다. 채용 정보 **Reuse existing reference** 끝으로 **0 Created, 2 Reused, 0 Skipped, 0 Failed**, 추가 사본없이 라이브러리를 떠나. 새로운 라이브러리는 선택한 레코드를 만듭니다.
+
+<Screenshot src="/img/open-science/v108/batch-complete.webp" alt="완료된 수입은 2개의 기존의 참고를 재사용합니다" width={1280} height={720} windowBounds={[270, 124, 740, 474]} href="/docs/img/open-science/v108/batch-complete.webp" linkLabel="완료된 수입은 2개의 기존의 참고를 재사용합니다" />
+
+버전의 arXiv 링크는 이전 PDF 버전과 다른 현재 메타 데이터를 해결합니다. PDF를 비교하세요. 해결되지 않은 식별자를 위해 입력 및 재발을 수정하거나 bibliography-file 가져 오기를 사용하십시오. Metadata는 전체 텍스트를 얻지 못합니다.
+
+## 연구 개요 생성 {/* #study-overview */}
+
+1. 자주 묻는 질문 **Main model** 내 계정 **Settings → Model** 그리고 공급자 연결을 확인합니다. 추상 또는 읽기 쉬운 첨부 PDF로 참조를 엽니 다.
+2. 상세 정보 **Study overview** 선택하기 **Generate overview**· 생성이 실행되는 동안 참조가 열립니다.
+3. 결과를 사용하기 전에 소스 라벨을 읽으십시오 : **Based on abstract**, **Based on full text** 또는 **Based on selected passages**· 5개의 단면도 덮개 **Research question**, **Study population**, **Research methods**, **Main findings** · **Study limitations**· 소스의 정보 absent 표시 **Not reported in the available source**.
+4. 중요한 주장, 숫자 결과 및 원래 종이에 대한 제한을 확인하십시오. 요약 기반 개요는 전체 종이가 읽은 것을 설정하지 않습니다.
+5. 문헌을 다시 열면 저장된 개요를 확인할 수 있습니다. 다음을 사용하세요:  **Regenerate** 소스를 변경하거나 새로운 개요가 필요할 때. 결과 사용 현재 인터페이스 언어; 그 언어 또는 underlying 소스 다른 세대를 요구할 수 있습니다 변경.
+
+출처를 요청하면 초록이나 읽을 수 있는 PDF를 추가하세요. 브라우저에서 요청이 오래 걸리면 개요가 저장되기 전에 오류가 표시될 수 있습니다. 잠시 기다린 뒤 문헌을 닫았다가 다시 열어 결과를 확인하고, 결과가 없을 때 다시 생성하세요. 그래도 결과가 없으면 주 모델과 제공업체 로그인 상태를 확인하세요. 저장되어 있어도 읽을 수 없는 PDF는 사용 가능한 전문 근거가 아닙니다.
+
+<p className="example-label"><strong>실습 예제</strong> 단일 원자 촉매 논문의 초록 읽기</p>
+
+**Add from DOI or link**에서 DOI `10.1038/s41467-018-08136-3`을 추가하세요. **Non defect-stabilized thermally stable single-atom catalyst**를 열어 **Abstract**를 확인한 다음 **Generate overview**를 선택하세요. 이 예제는 Codex의 `gpt-6-astra`를 사용하며 PDF는 첨부하지 않았습니다.
+
+<Screenshot src="/img/open-science/v108/study-overview.webp" alt="다섯 항목, 초록 기반 출처 표시, Codex 모델이 포함된 저장된 영어 개요" width={2082} height={1239} windowBounds={[661, 200, 760, 664]} href="/docs/img/open-science/v108/study-overview.webp" linkLabel="다섯 항목, 초록 기반 출처 표시, Codex 모델이 포함된 저장된 영어 개요" />
+
+저장된 결과에는 **Based on abstract**가 표시됩니다. **Study limitations**의 **Not reported in the available source**는 제공된 초록에 연구 한계가 명시되지 않았다는 뜻이며, 연구에 한계가 없다는 뜻은 아닙니다. 문헌을 닫았다가 다시 열면 재생성 없이 저장된 개요를 읽을 수 있습니다.
+
 
 ## Zotero에서 가져오기 {/* #zotero-import */}
 
@@ -320,7 +356,7 @@ v0.30.2는 PubMed 저자 이름 파싱을 수정하여 성, 초기 및 suffixes�
 
 **PDF could not be added**의 경우, 소스 서명 조건, 링크 유효성, 표시된 크기 제한 및 현재 프록시 / DNS 구성을 확인하십시오. retry 기계장치로 duplicate 참고를 창조하지 마십시오.
 
-PDF 소스가 `198.18.x.x`과 같은 예약 된 주소로 해결되면 다운로드자는 그것을 거부합니다. [네트워크](network.md)을 따르고 검증 가능한 공개 해상도를 복원하십시오. 주소 확인을 비활성화하지 마십시오. 이미 합법적으로 다운로드 한 PDF이 있다면 **Add PDF**을 사용하며 제목, DOI 및 페이지 수를 확인합니다.
+전문 다운로드 중 주소 검증 오류가 발생하면 [프록시 문제 해결](troubleshooting.md#full-text-proxy)을 참고하세요. v1.0.7부터 설정된 프록시의 Fake-IP DNS를 지원합니다. 주소 검사를 비활성화하지 마세요. 정당하게 받은 사본이 있다면 **Add files**로 추가하고 제목, DOI, 페이지 수를 확인하세요.
 
 
 </ToolOperationGroup>

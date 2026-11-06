@@ -1,7 +1,7 @@
 ---
 title: "CLI et sortie structurée"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -17,7 +17,7 @@ Utilisez `open-science` pour inspecter l'état de l'application, exécuter les t
 
 ## Mise en place depuis un terminal {/* #terminal-setup */}
 
-Installez le lanceur de bureau, utilisez une archive autonome v1.0.7 ou suivez le [npm étapes d'installation](../guides/installation.md#npm-cli). Les archives autonomes regroupent Node, le moteur et l'interface utilisateur Web; les étapes d'extraction ci-dessous s'appliquent à ces archives.
+Installez le lanceur de bureau, utilisez une archive autonome v1.0.8 ou suivez le [npm étapes d'installation](../guides/installation.md#npm-cli). Les archives autonomes regroupent Node, le moteur et l'interface utilisateur Web; les étapes d'extraction ci-dessous s'appliquent à ces archives.
 
 1. Choisissez macOS ou Linux arm64/x64, ou Windows x64, correspondant à l'hôte.
 2. Extraire l'archive complète dans un emplacement enregistrable. Conserver le lanceur, `backend` et `node-runtime` ensemble; copier seulement le lanceur va casser le démarrage.
@@ -215,9 +215,9 @@ La réponse ci-après a été reproduite localement :
 
 JSONL peut inclure `run.progress` et `stream.resync-required`. Si le replay n'est pas disponible après la reconnection, relisez l'état d'exécution faisant autorité; ne présumez pas que le flux d'événements est une histoire permanente. Les commandes du cycle de vie ont des restrictions de drapeau distinctes décrites dans [Service sans tête](./server.md).
 
-[Mise en œuvre de la CLI](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/cli.mjs), [guide de commande en amont](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/CLI.md).
+[Mise en œuvre de la CLI](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/cli.mjs), [guide de commande en amont](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md).
 
-Référence technique: [Contrat CLI](https://github.com/aipoch/open-science/blob/v1.0.7/packages/open-science/CLI.md).
+Référence technique: [Contrat CLI](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md).
 
 ## Courses sans surveillance {/* #unattended-runs */}
 

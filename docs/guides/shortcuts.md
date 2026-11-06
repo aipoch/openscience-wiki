@@ -1,7 +1,7 @@
 ---
 title: "Keyboard shortcuts"
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-05'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -90,4 +90,4 @@ In Settings, **⌘K** (macOS) or **Ctrl+K** (Windows/Linux) focuses the header s
 | Decrease one step | ⌘− | Ctrl+− |
 | Reset to 100% | ⌘0 | Ctrl+0 |
 
-These shortcuts share the 90%, 100%, 110% and 125% steps in **Settings → General → Appearance → Interface scale**. See [interface size](appearance.md#interface-scale). File-preview zoom and whole-app scaling are separate controls.
+These shortcuts share the 90%, 100%, 110% and 125% steps in **Settings → Appearance → Interface scale**. See [interface size](appearance.md#interface-scale). File-preview zoom and whole-app scaling are separate controls.
