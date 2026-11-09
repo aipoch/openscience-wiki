@@ -1,7 +1,7 @@
 ---
 title: "Instalación y conmutación de agentes"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 # Instalación y conmutación de agentes {/* #installing-and-switching-agents */}
@@ -24,7 +24,19 @@ Abre **Settings → Agent**. La página separa **Installed** de **Available**. L
 | Instalar el registro / Retry | Lea el paso fallido y vuelva a entrar después de resolver esa causa. |
 | Reparar | Aparece cuando la instalación gestionada necesita reparación; inspeccionar el tiempo de ejecución afectado antes de confirmar. |
 
-Open-Science v1.0.7 ofrece Codex, Claude Agent, OpenCode, CodeBuddy y Pi. Las fuentes disponibles y los requisitos de autenticación difieren; no asuma cada marco ofrece el mismo método de instalación o de inicio de sesión.
+Open-Science v1.2.0: Open-Science Agent, Codex, Claude Agent, OpenCode, CodeBuddy, Pi.
+
+## Utilice el agente incorporado {/* #built-in-agent */}
+
+De v1.2.0, **Open-Science Agent** barcos con la aplicación y es el predeterminado para una nueva configuración. No necesita una descarga separada del Agente. La tarjeta lo etiqueta experimentalmente. Necesita un proveedor de API compatible; la suscripción a Codex sigue vinculada al marco Codex y la suscripción a Claude Agent. Un tiempo de ejecución listo no incluye el acceso modelo.
+
+1. Abierto **Settings → Agent** e inspección **Open-Science Agent** junto con los marcos externos.
+2. Para cambiar el tiempo de funcionamiento activo, seleccione su tarjeta y confirme el interruptor. La elección se aplica en todos los proyectos a las solicitudes posteriores.
+3. Check **Settings → Model**, seleccione un modelo compatible y envíe una pequeña solicitud antes de comenzar una tarea más larga.
+
+Puede mantener activo el Codex u otro marco externo. Utilice los pasos de instalación abajo sólo para un marco que necesita un tiempo de ejecución separado.
+
+![Agente Open-Science integrado y opciones externas de tiempo de ejecución](/img/open-science/v120/agents.webp)
 
 ## Instalar y verificar {/* #install-and-verify */}
 

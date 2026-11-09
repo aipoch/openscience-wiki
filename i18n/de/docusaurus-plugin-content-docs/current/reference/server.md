@@ -1,12 +1,12 @@
 ---
 title: "Headless Service und Browserzugriff"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-09'
 ---
 
 # Headless Service und Browserzugriff {/* #headless-service-and-browser-access */}
 
-Der lokale Dienst bietet ein Headless-Backend und eine Localhost-Browser-Schnittstelle. Es unterscheidet sich von einem SSH Compute-Host und von der Remote.It-Browserpaarung. Wählen Sie die Authentifizierungs- und Credential-Storage-Einstellungen für den Host aus, bevor Sie einen Client verbinden.
+Der lokale Dienst bietet ein Headless-Backend und eine authentifizierte Localhost-Browser-Schnittstelle. Es ist getrennt von [Ferngerätepaarung](../guides/remote-access.md) und [Remote Computation Ziele](../guides/remote-compute.md). Wählen Sie die Authentifizierung und den Anmeldedatenspeicher für den Host, bevor Sie einen Client verbinden.
 
 ## Zielauswahl und -entdeckung {/* #target-selection-and-discovery */}
 
@@ -61,7 +61,7 @@ Der SDK entdeckt den lokalen Dienst und liest sein lokales Authentifizierungstok
 
 Ein localhost-dienst ist nicht automatisch von einem anderen computer aus zugänglich. Der Remote-Browserzugriff verwendet einen eigenen konfigurierten Zugriffsmodus, eine Pairing- und vertrauenswürdige Browser-Lebenszyklus. SSH Compute sendet stattdessen Jobs an konfigurierte Remoteausführungs-Hosts.
 
-Verwenden Sie [Remote-Browserzugriff](../guides/remote-access.md) für Remote.It-Paarung und [Remote Compute](../guides/remote-compute.md) für SSH-Jobs. Kein Flow wird konfiguriert, indem die Dokumentations-URL des lokalen Dienstes geändert wird.
+Verwendung [Remote-Browserzugang](../guides/remote-access.md) für WiFi, Internet und Remote.It Pairing und [Remote Compute](../guides/remote-compute.md) für SSH, Cluster und Cloud Jobs. Beides wird nicht durch Ändern der lokalen Dokumentations-URL konfiguriert.
 
 ### Credential Storage auf Headless Linux {/* #credential-storage-on-headless-linux */}
 
@@ -122,7 +122,7 @@ Nach dem Upgrade bestätigen Sie die Version und die Originaldaten und überprü
 
 ## Compute im Web Workspace {/* #web-compute */}
 
-Der Standalone Web Workspace zeigt **Compute** wenn sein Backend die erforderlichen Notebook- und Compute-APIs bereitstellt. Öffnen Sie den verbundenen Arbeitsbereich, überprüfen Sie, ob das Panel verfügbar ist, und verwenden Sie dann die vorhandenen SSH/Slurm-Konfigurationsschritte. Ein verfügbares Panel liefert keine Remote-Anmeldeinformationen oder bestätigt, dass ein Job ausgeführt werden kann.
+Der Standalone Web Workspace zeigt **Compute** wenn sein Backend die erforderlichen Notebook- und Compute-APIs bereitstellt. Öffnen Sie den verbundenen Arbeitsbereich, überprüfen Sie, ob das Panel verfügbar ist, und folgen Sie [Berechnungszieleinrichtung](../guides/remote-compute.md#compute-backends). Das Backend führt Jobs mit seinen konfigurierten Konten und der Infrastruktur aus; ein Browser-Panel liefert keine Anmeldeinformationen oder beweist die Ausführung. Verwalten Sie Zielanmeldeinformationen von einer autorisierten lokalen Oberfläche.
 
 ## Pakete und externe Tool-Clients {/* #local-research-tools */}
 

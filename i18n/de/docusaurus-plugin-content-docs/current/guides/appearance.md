@@ -1,7 +1,7 @@
 ---
 title: "Aussehen und Meldungen"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -121,7 +121,7 @@ Mit **General → Window behavior → When closing the window → Ask every time
 | Sie wollen... | Wohin zu gehen |
 | --- | --- |
 | Suchen Sie nach einem App Update | **General → Check now**; Folge [Installation und Aktualisierungen](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Versionsänderungen lesen oder Hilfe erhalten | **General → Release notes / Help Center** öffnet die entsprechende externe Seite. Dieses Wiki hat auch eine [Changelog](../changelog/v1.0.8.md). |
+| Versionsänderungen lesen oder Hilfe erhalten | **General → Release notes / Help Center** öffnet die entsprechende externe Seite. Dieses Wiki hat auch eine [Changelog](../changelog/v1.2.0.md). |
 | Suchen oder öffnen Sie das Diagnoseprotokoll | **General → Diagnostics → Reveal / Open**; siehe [Fehlerbehebung](troubleshooting.md). Logs bleiben lokal, bis Sie sie teilen. |
 | Installieren Sie den Befehlszeileneintrag | **General → Install command**; siehe [CLI Referenz](../reference/cli.md). Die Desktop-Nutzung erfordert diesen Befehl nicht. |
 | Verwalten des Datenstandorts oder der archivierten Arbeit | [Lagerung und archivierte Arbeiten](storage.md). |
@@ -132,7 +132,7 @@ Mit **General → Window behavior → When closing the window → Ask every time
 
 Die Benachrichtigungszustellung hängt auch von den Berechtigungen des Betriebssystems, dem Fokusmodus und den Einstellungen für die Bildschirmfreigabe ab. Verwenden Sie die oben genannten Prüfungen auf dem Gerät, auf dem Sie arbeiten.
 
-Quelle: [Allgemeine Einstellungen](https://github.com/aipoch/open-science/blob/v1.0.8/src/renderer/src/pages/settings/GeneralPanel.tsx).
+Quelle: [Allgemeine Einstellungen](https://github.com/aipoch/open-science/blob/v1.2.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
 
 ## Passen Sie die Benutzeroberfläche der App an {/* #interface-scale */}
 

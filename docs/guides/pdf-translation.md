@@ -1,7 +1,7 @@
 ---
 title: "Translate a full PDF"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 # Translate a full PDF
@@ -63,3 +63,7 @@ In v1.0.0, **New translation** prepares fresh source text before starting the ne
 Before starting **New translation**, expand **Advanced** and enable **Content first** if you prefer a single-column reading layout. It is off by default and saved with that translation edition; its settings are locked while translating. To change the layout, create a new edition rather than treating Retry as a settings change.
 
 This layout reflows translated body text and captions while preserving original images, tables, formulas and bibliography. Compare the source-to-output page mapping, then reopen the exported PDF and inspect figures and captions. Output page numbers can differ from the original: cite and verify claims against the source PDF.
+
+### When one page cannot be rendered {/* #partial-page-recovery */}
+
+Fixed-layout translation in v1.2.0 keeps successfully rendered pages when another page fails. Review **Translation issues**, identify the affected page and compare it with the original. Keep any untranslated text visible as such; do not describe a partially rendered PDF as a complete translation. Retry the affected work when the reader offers it, then reopen the exported file and check that page again. A healthy page being retained does not verify its terminology or scientific interpretation.

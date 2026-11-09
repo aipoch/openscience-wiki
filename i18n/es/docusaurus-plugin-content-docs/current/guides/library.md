@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -81,7 +81,7 @@ Seleccione **Add** y elija la fuente. Seleccionar un PDF abre su editor de metad
 
 | Entrada | Entrada | Compruebe antes de guardar |
 | --- | --- | --- |
-| Añadir referencia | Bibliografía manualmente introducida | Título requerido, tipo de referencia e identificadores |
+TENIDO Añádase la referencia ¦ Campos bibliográficos o un identificador como DOI o PMID TEN En v1.2.0 se puede omitir un título cuando se suministra un identificador; revise el título generado y complete los metadatos antes de citar TEN
 | Importar PDF | Uno o varios PDF locales | - Metadatos extraídos en cada documento; selección multi-file utiliza el flujo de lotes debajo |
 | Importar referencias | BibTeX, RIS o NBIB | Entradas válidas/inválidas, destino y coincidencias de identificador |
 | Import from Zotero | Biblioteca o colección local de Zotero 10+ | Revisar coincidencias, colecciones y PDF locales; véase [Importar desde Zotero](#zotero-import) |
@@ -156,6 +156,9 @@ Haga clic en **Import references**, espere a **Import complete**, inspeccionar C
 
 ## Añadir referencias de identificadores o enlaces {/* #doi-link-import */}
 
+La entrada identificador-import se llama **Añadir de identificadores o enlaces** en v1.1.0 y más tarde; las imágenes más antiguas pueden mostrar **Add from DOI or link**. Los identificadores apoyados y los pasos de revisión a continuación todavía se aplican.
+
+
 1. Abierto **Library → All references → Add → Add from DOI or link**.
 2. Introduzca un identificador o enlace por línea. Las entradas soportadas incluyen enlaces DOI, doi.org, IDs arXiv o enlaces abstractos/PDF, PMID, PMCID y enlaces oficiales de artículo PubMed/PMC. Use prefijos explícitos como `PMID: 19621072` para una identificación PubMed. Las URLs comunes de editor no son aceptadas por esta entrada.
 3. Seleccione **Find reference**. Cada lote permite hasta **100 non-empty lines**, contado antes de la deduplicación. Dividir una lista más larga en lotes más pequeños. La búsqueda normaliza los identificadores y combina entradas equivalentes.
@@ -203,6 +206,18 @@ Añada el DOI `10.1038/s41467-018-08136-3` mediante **Add from DOI or link**. Ab
 
 El resultado guardado lleva la etiqueta **Based on abstract**. **Study limitations** muestra **Not reported in the available source** porque el resumen proporcionado no describe limitaciones; eso no significa que el estudio no las tenga. Cierre y vuelva a abrir la referencia para leer la síntesis guardada sin generarla de nuevo.
 
+
+## Generar varios panoramas juntos {/* #batch-overviews */}
+
+1. En la Biblioteca, seleccione **1 a 5 referencias** con un texto completo abstracto o legible. Configure Main antes de comenzar; la generación de visión general utiliza ese modelo.
+2. Seleccione **More actions → Generate overviews** y seguir **Batch overviews**. Inspeccione cada fila, no sólo el recuento terminado.
+3. Seleccione **Pause** cuando sea necesario. Permitir solicitudes en el progreso para resolver; el lote guardado conserva el trabajo completado.
+4. Volver a **Batch overviews** y elegir **Continue remaining** después de una interrupción, o **Retry failed overviews** después de resolver el problema denunciado. Se mantienen los resultados completados.
+5. Abierto **View details** para una fila guardada, comprueba su etiqueta de origen y compara importantes afirmaciones con el original. Una descripción abstracta terminada no es evidencia de lectura de texto completo.
+
+Mantenga la Biblioteca abierta mientras el lote avanza. Cierre su vista se detiene más programación; el trabajo completado permanece disponible cuando regresa. Si un artículo carece de evidencia usable, agregue el resumen o un PDF legible antes de reintentar. Una fuente modificada puede requerir una nueva visión general.
+
+![Reseñas completas de lotes y una visión general de estudio basada en abstractos](/img/open-science/v120/batch-overviews.webp)
 
 ## Importar desde Zotero {/* #zotero-import */}
 

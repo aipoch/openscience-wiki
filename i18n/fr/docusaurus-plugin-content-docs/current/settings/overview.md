@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Aperçu des paramètres"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 # Aperçu des paramètres {/* #settings-overview */}
@@ -43,11 +43,11 @@ Cette recherche couvre les paramètres représentatifs de chaque panel, pas de c
 |  | [Réseau](../guides/network.md) | Proxy, miroirs de paquets et accès au domaine Notebook |
 |  | [À distance](../guides/remote-access.md) | Accès au navigateur, appariement et dispositifs de confiance |
 |  | [Informations d'identification](../tools/credentials.md) | Clés, jetons, OAuth et récupération des titres de compétence |
+|  | [Calculer](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Espace de travail | [Balises](../guides/tags.md) | Mots-clés et Favoris commande |
 |  | [Autorisations](../guides/approval-modes.md) | Mode par défaut et subventions enregistrées |
 |  | [Environnements d'exécution](../guides/runtimes.md) | Environnements et paquets Python/R |
 |  | [Stockage](../guides/storage.md) | Emplacement des données, accès écrit et utilisation du disque |
-|  | [Calculer](../guides/remote-compute.md) | Ressources de calcul locales et SSH |
 |  | [Utilisation](../guides/usage.md) | Statistiques des activités de recherche et d'appel |
 |  | [Archivé](../guides/storage.md) | Restaurer ou supprimer définitivement les travaux archivés |
 
@@ -57,6 +57,6 @@ Cette recherche couvre les paramètres représentatifs de chaque panel, pas de c
 
 ## Les onglets de paramètres du modèle {/* #model-tabs */}
 
-Dans **Model**, utilisez **Conversation models** pour les fournisseurs et les modèles de tâches, **Classification models** pour la sélection optionnelle de Skill/Connector et **Local parsing models** pour les ressources d'analyse locales. La classification est un onglet dans les paramètres du modèle, pas un panneau de paramètres de haut niveau supplémentaire. Voir [la configuration du classement](../guides/models.md#classification-models).
+Dans **Model**, utilisation **Conversation models** pour les fournisseurs et les modèles de tâches, **Classification models** pour la sélection des capacités optionnelles et les collections intelligentes, **Local capabilities** pour l'extraction de PDF, le ROC et la narration de recherche. Ce sont des onglets dans Model, pas des panneaux de paramètres supplémentaires. Voir [ressources locales](../guides/models.md#local-capabilities).
 
 La recherche d'en-tête utilise **Ctrl+K**. Pour focaliser la recherche du panneau ou de la boîte de dialogue, utilisez **Ctrl+Alt+K** lorsque ce champ est disponible. Voir [raccourcis de recherche](../guides/shortcuts.md#local-settings-search).

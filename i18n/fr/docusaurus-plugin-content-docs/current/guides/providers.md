@@ -1,7 +1,7 @@
 ---
 title: "Configuration du fournisseur et du modèle local"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -211,7 +211,7 @@ Source: [PrestataireForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.
 
 ## Enregistrer un changement de fournisseur dans v0.31.0 et plus tard {/* #validated-provider-save */}
 
-Les modifications des fournisseurs sont testées avant qu'ils ne soient engagés. Sélectionnez **Save**, attendez le résultat de la connexion et confirmez le succès avant de fermer le formulaire. Un test échoué ne remplace pas une configuration sauvegardée de travail. Si une connexion précédemment enregistrée est rejetée lors d'une demande, sa disponibilité est mise à jour; vérifier le titre de compétence et le point final, puis tester à nouveau. **Conversation models**, **Classification models** et **Local parsing models** ont des objectifs différents; Voir [paramètres du modèle](models.md#classification-models).
+Les modifications des fournisseurs sont testées avant qu'ils ne soient engagés. Sélectionnez **Save**, attendez le résultat de la connexion et confirmez le succès avant de fermer le formulaire. Un test échoué ne remplace pas une configuration sauvegardée de travail. Si une connexion précédemment enregistrée est rejetée lors d'une demande, sa disponibilité est mise à jour; vérifier le titre de compétence et le point final, puis tester à nouveau. **Conversation models**, **Classification models** et **Local capabilities** ont des objectifs différents; Voir [paramètres du modèle](models.md#classification-models).
 
 ## Sélection StepFun et région {/* #stepfun-regions */}
 

@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,14 @@ Por este ejemplo, seleccione el proyecto de destino **Public Genomics Examples**
 Abra la sesión importada y su resumen CSV. El aviso **Imported research history** confirma que esta copia es sólo de lectura y no puede ejecutar código o continuar una conversación directamente.
 
 ![Registro QC importado con su resumen heredado y Fork para continuar botón](/img/open-science/v0311/package-import-readonly.webp)
+
+## Discuta un paso importado sin cambiar el registro {/* #linked-discussions */}
+
+Uso **Ask about this research** o una repetición **Ask about this step** iniciar una discusión relacionada con el padre importado. Inspeccione la evidencia adjunta y envíe su pregunta con un modelo disponible. La discusión infantil conserva la identidad del padre mientras que el registro importado permanece solo leído.
+
+La barra lateral coloca las sesiones importadas bajo **Imported research** y muestra sus discusiones relacionadas. Archivar al padre conserva la relación. Eliminar a los padres deja sus discusiones infantiles como conversaciones ordinarias; no depender de ellos como sustituto de un paquete completo de fuente retenida.
+
+Para un nuevo análisis, elija el prominente **Fork to continue** acción. **View replay**, **Ask about this research** y **Ver archivos** quedan disponibles para inspeccionar el registro recibido. Una discusión vinculada no es un tenedor y no reedita su Notebook.
 
 ## Use el registro de investigación recibido {/* #use-the-received-research-record */}
 
@@ -168,7 +176,7 @@ La exportación requiere una ruta de salida `.science` explícita. El plazo pred
 
 ## Encontrar un caso de investigación en Compartir mercado {/* #use-case-gallery */}
 
-1. Abierto **Sharing marketplace** desde Home o el espacio de trabajo de conversación. En una vista previa del espacio de trabajo, elija **View in sharing marketplace** para abrir la página completa. En casa, **Browse all examples** también abre todo **Use Case Marketplace**.
+1. Abierto **Centro de recursos** desde Home o el espacio de trabajo de conversación, luego abre su biblioteca de casos de investigación. El hogar también proporciona **Use Case Gallery → Browse all examples**. Versiones más antiguas llamadas el navegador de caso **Compartir el mercado**.
 2. Elige una categoría e introduce una palabra clave en el campo de búsqueda. Limpiar la palabra clave o volver a todas las categorías cuando la lista de resultados es demasiado estrecha.
 3. Abrir un caso para leer su descripción e inspeccionar la acción de paquete disponible. Revise su tema, los insumos y los productos previstos antes de descargarlo o importarlo.
 4. Utilice la acción del paquete que se ofrece en los detalles del caso. Seguir los progresos en la preparación, descarga y verificación; utilizar **Cancel** para detener una transferencia no deseada. Los bytes descargados aún no son un proyecto importado.

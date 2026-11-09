@@ -1,7 +1,7 @@
 ---
 title: "Períodos de sesiones y ramas"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -190,3 +190,9 @@ Para las exportaciones de diagnóstico, lea el resumen de la terminación: una e
 ## Ampliar una conversación compacta {/* #collapsed-conversation */}
 
 En v1.0.4, los cambios completados colapsan mensajes intermedios y la actividad de la herramienta de grupo en resúmenes. Ampliar un grupo para inspeccionar sus detalles; correr, esperar y interrumpir el trabajo sigue siendo visible. Búsqueda de conversación, anotaciones y hallazgos nativos revelan contenido oculto coincidente. Presentación de cambios de fusión, no el registro de investigación guardado o si una tarea completada.
+
+## Encontrar sesiones en la barra lateral {/* #sidebar-groups */}
+
+Las sesiones de grupos laterales v1.2.0 en este orden: **Pinned**, **Imported research**, **Active**, **Recents**. Los grupos vacíos pueden no aparecer. Pin una sesión de uso frecuente para mantenerlo fácil de encontrar. Los registros importados siguen siendo sólo leídos y pueden mostrar discusiones infantiles vinculadas; seleccione al padre para volver a sus pruebas. Una etiqueta de sesión activa o reciente describe el estado de navegación, no la validación científica.
+
+Enviar un mensaje mientras lee un giro anterior preserva esa posición de lectura. Desplazarse a los mensajes más recientes para seguir la nueva respuesta cuando esté listo.

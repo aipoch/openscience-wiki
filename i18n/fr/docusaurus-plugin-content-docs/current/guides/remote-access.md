@@ -1,14 +1,26 @@
 ---
 title: "Accès au navigateur à distance"
 last_update:
-  date: '2026-09-20'
+  date: '2026-11-09'
 ---
 
 # Accès au navigateur à distance {/* #remote-browser-access */}
 
-L'accès au navigateur à distance permet à un autre appareil de faire fonctionner l'espace de travail de cet ordinateur. Les projets, les agents, les fichiers et les runtimes Notebook continuent à fonctionner sur cet ordinateur. Il est séparé de [Calcul SSH/Slurm](./remote-compute.md), qui envoie le calcul à un hôte.
+L'accès au navigateur à distance permet à un autre appareil de faire fonctionner l'espace de travail de cet ordinateur. Les projets, les agents, les fichiers et les runtimes de carnet continuent à fonctionner sur cet ordinateur. Il est séparé de [calcul à distance](./remote-compute.md), qui envoie des tâches à une cible d'exécution.
 
-:::caution&#91;Status de connexion&#93; Remote.It peut accepter des changements de service avant que son agent de référence ne les déclare prêts. L'appariement complet du navigateur et l'accès à l'espace de travail doivent encore réussir sur vos appareils. La capture d'écran Off-state ci-dessous illustre les commandes, pas une session distante connectée. :::
+## Paire un téléphone ou une tablette {/* #mobile-pairing */}
+
+Les **Connect mobile device** section dans le bureau **Settings → Remote** offres **WiFi** et **Internet**. Ceci est séparé de la Remote.Il modes décrits ci-dessous; la route QR ne nécessite pas de compte Remote.It.
+
+L'ouverture de cette section pendant que l'accès à distance est désactivé démarre le flux de connexion WiFi. Utilisez-le sur un réseau de confiance lorsque vous comptez permettre à un autre appareil d'atteindre l'espace de travail. L'hôte doit rester éveillé et courir.
+
+1. Choisir **WiFi** pour les appareils sur le même réseau local. Si plusieurs adresses hôtes apparaissent, sélectionnez l'adresse accessible depuis le téléphone. Un réseau invité isolé peut empêcher l'accès même lorsque les deux appareils affichent le même nom WiFi.
+2. Pour accéder à l'extérieur du réseau local, choisissez **Internet**. Lisez l'avis de connexion Pinggy et attendez qu'un lien de travail et le code QR apparaissent. Trafic utilise le tunnel tiers; examinez le mot de passe affiché et les exigences de connexion.
+3. Scannez le code QR actuel avec le téléphone ou la tablette. Pour le mode Internet, entrez le **Connection password** sur demande. Suivez les instructions d'appariement et vérifiez que l'espace de travail prévu s'ouvre.
+4. Si le code expire ou que le tunnel se reconnecte, utilisez **Refresh QR code** et scanner le nouveau code. Free Pinggy tunnels changer d'adresse toutes les 60 minutes; un vieux lien enregistré peut arrêter de fonctionner.
+5. Vérifier **Connected devices**. Utilisation **Revoke all** pour supprimer ces autorisations de dispositifs une fois terminés, et sélectionner **Off** dans les paramètres distants pour arrêter l'accès à distance. La révocation et l'arrêt de la connexion sont des actions distinctes.
+
+Gardez les liens d'appariement, les codes QR et les mots de passe privés. Un code QR étant visible seulement signifie qu'une offre est disponible; il n'établit pas que l'autre appareil est connecté. Si une connexion échoue, vérifiez l'état d'exécution de l'hôte, l'adresse réseau sélectionnée et la permission du pare-feu avant de générer une autre offre.
 
 ## Prérequis et modes {/* #prerequisites-and-modes */}
 

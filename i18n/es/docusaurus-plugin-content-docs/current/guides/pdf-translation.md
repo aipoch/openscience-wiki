@@ -1,7 +1,7 @@
 ---
 title: "Traducir un PDF completo"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 # Traducir un PDF completo {/* #translate-a-full-pdf */}
@@ -63,3 +63,7 @@ En v1.0.0, **New translation** prepara texto de fuente nueva antes de comenzar l
 Antes de empezar **New translation**, ampliar **Advanced** y permitir **Content first** si prefiere un diseño de lectura de un solo alumno. Está apagado por defecto y guardado con esa edición de traducción; sus ajustes se bloquean al traducir. Para cambiar el diseño, crear una nueva edición en lugar de tratar Retry como un cambio de configuración.
 
 Este diseño refluye texto corporal traducido y capciones preservando imágenes originales, tablas, fórmulas y bibliografía. Compare el mapeo de la página fuente a salida, y luego vuelva a abrir el PDF exportado e inspeccionar las figuras y leyendas. Los números de página de salida pueden diferir del original: cite y verifique reclamaciones contra el PDF fuente.
+
+### Cuando una página no puede ser renderizada {/* #partial-page-recovery */}
+
+La traducción de la copia fija en v1.2.0 se mantiene con éxito en las páginas cuando otra página falla. Examen **Translation issues**, identificar la página afectada y compararla con el original. Mantenga cualquier texto no traducido visible como tal; no describir un PDF parcialmente renderizado como una traducción completa. Retratar el trabajo afectado cuando el lector lo ofrece, luego volver a abrir el archivo exportado y volver a comprobar esa página. Una página sana que se mantiene no verifica su terminología o interpretación científica.

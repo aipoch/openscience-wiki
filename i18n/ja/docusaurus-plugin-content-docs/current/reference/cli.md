@@ -1,7 +1,7 @@
 ---
 title: "CLIと構造化された出力"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -275,3 +275,28 @@ open-science mcp --help
 ## 自動処理のためにサービスを維持する {/* #persistent-service */}
 
 デスクトップ終了後も CLI、ブラウザー、SDK の処理を続ける場合、対象プロファイルで `open-science start --no-open --json` を実行します。v1.0.6 では継続設定を一つ作り、繰り返しても増えません。通常の `stop` は設定を解除しますが、App 接続中はサービスが残ります。[ライフサイクルの結果](server.md#lifecycle-commands)を読み、成功終了コードだけで停止済みと判断しないでください。
+
+## 文献ライブラリと連携 {/* #literature-library */}
+
+デスクトップアプリと同じ実行中のプロファイルに対してCLIを使用します。 `literature search` すでにそのライブラリで参照を検索します。オンラインペーパーディスカバリークエリではありません。
+
+```bash
+open-science literature search "single-atom catalyst" --limit 20 --json
+open-science literature show <item-id> --json
+open-science literature styles
+open-science literature format <item-id> --style apa --locale en-US
+open-science literature lookup 10.1038/s41467-018-08136-3 --json
+```
+
+`lookup` メタデータソースに連絡します。レコードをインポートしたり、PDFをダウンロードしたりすることはありません。 使用条件 `literature add <identifier>` 解決された参照を保存します。 bibliographyファイルの場合、コミットする前にプレビューします。
+
+```bash
+open-science literature import ./references.bib --json
+open-science literature import ./references.bib --commit --duplicates reuse --json
+open-science literature link <item-id> --project "My project"
+open-science literature status read <item-id>
+```
+
+なし **コンテンツ**, `import` プレビューのみ。 サポートされているファイルは、BibTeX、RIS、NBIB を含む。 重複ポリシーは `reuse`, `separate` そして、 `fill-missing`. `link` プロジェクトの既存の参照を関連付ける。PDFをコピーしない。 インポートが参照を保存しますが、プロジェクト linking が失敗した場合は、再度インポートするのではなく、返された ID をリトライしてください。
+
+使用条件 `literature collection create`, `collection add` そして、 `collection remove` レコードを整理する。 `literature trash` 参照をゴミ箱に移動します。 `literature restore` それらを回復. 選択したIDを書き込み前にチェックします。 ライブラリツールの読み込み/書き込みも [MCPの特長](#external-mcp); 権限と入力スキーマはまだ適用されます。

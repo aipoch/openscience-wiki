@@ -1,7 +1,7 @@
 ---
 title: "CLI y salida estructurada"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -275,3 +275,28 @@ Para los comandos del paquete, siga [Importación y exportación de CLI](../guid
 ## Mantenga un servicio funcionando para la automatización {/* #persistent-service */}
 
 Uso `open-science start --no-open --json` en el perfil previsto antes de cerrar el escritorio si el trabajo CLI, navegador o SDK debe continuar. Desde v1.0.6 activa una sola ejecución persistente; las repeticiones no se acumulan. El comando simple `stop` desactiva esa ejecución persistente, pero el servicio continúa mientras haya una App conectada. Consulte los [resultados del ciclo de vida](server.md#lifecycle-commands) antes de tratar un exitoso comando stop como un servicio detenido.
+
+## Trabajar con la biblioteca de literatura {/* #literature-library */}
+
+Utilice el CLI contra el mismo perfil de funcionamiento que la aplicación de escritorio. `literature search` busca referencias ya en esa biblioteca; no es una consulta en línea de descubrimiento de papel.
+
+```bash
+open-science literature search "single-atom catalyst" --limit 20 --json
+open-science literature show <item-id> --json
+open-science literature styles
+open-science literature format <item-id> --style apa --locale en-US
+open-science literature lookup 10.1038/s41467-018-08136-3 --json
+```
+
+`lookup` contactos fuentes de metadatos; no importa un registro o descarga su PDF. Uso `literature add <identifier>` para guardar una referencia resuelta. Para archivos de bibliografía, previsualizar antes de comprometer:
+
+```bash
+open-science literature import ./references.bib --json
+open-science literature import ./references.bib --commit --duplicates reuse --json
+open-science literature link <item-id> --project "My project"
+open-science literature status read <item-id>
+```
+
+Sin **--commit**, `import` sólo previsualizaciones. Los archivos compatibles incluyen BibTeX, RIS y NBIB. Las políticas duplicadas son `reuse`, `separate` y `fill-missing`. `link` asocia una referencia existente con un proyecto; no copia su PDF. Si una importación ahorra referencias pero la vinculación del proyecto falla, utilice los ID devueltos para volver a conectar en lugar de importar de nuevo.
+
+Uso `literature collection create`, `collection add` y `collection remove` para organizar registros. `literature trash` mueve referencias a la basura; `literature restore` Los recupera. Compruebe los ID seleccionados antes de escribir. Las herramientas de biblioteca de lectura/escritura también están expuestas [MCP](#external-mcp); sus permisos y esquemas de entrada todavía se aplican.

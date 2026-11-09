@@ -1,7 +1,7 @@
 ---
 title: "Installations- und Vermittlungsstellen"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 # Installations- und Vermittlungsstellen {/* #installing-and-switching-agents */}
@@ -24,7 +24,19 @@ Wählen Sie ein Agent-Framework für Gespräche und Werkzeuge und richten Sie an
 | Log installieren / Retry | Lesen Sie den fehlgeschlagenen Schritt und versuchen Sie es erneut, nachdem Sie diese Ursache behoben haben. |
 | Reparieren | Erscheint, wenn die verwaltete Installation repariert werden muss; Überprüfen Sie die betroffene Laufzeit, bevor Sie bestätigen. |
 
-Open-Science v1.0.7 bietet Codex, Claude Agent, OpenCode, CodeBuddy und Pi. Verfügbare Quellen und Authentifizierungsanforderungen unterscheiden sich; Gehen Sie nicht davon aus, dass jedes Framework das gleiche Installationsprogramm oder die gleiche Anmeldemethode bietet.
+Open-Science v1.2.0: Open-Science Agent, Codex, Claude Agent, OpenCode, CodeBuddy, Pi.
+
+## Verwenden Sie den eingebauten Agent {/* #built-in-agent */}
+
+aus v1.2.0, **Open-Science Agent** Schiffe mit der app und ist der standard für ein neues setup. Es ist kein separater Agent-Download erforderlich. Die Karte etikettiert es experimentell. Es benötigt einen kompatiblen API-Provider; das Codex-Abonnement bleibt an das Codex-Framework gebunden und das Claude-Abonnement für Claude Agent. Eine ready runtime beinhaltet keinen Modellzugriff.
+
+1. Offen **Settings → Agent** und Inspektion **Open-Science Agent** neben den externen Rahmenbedingungen.
+2. Um die aktive Laufzeit zu ändern, wählen Sie die Karte aus und bestätigen Sie den Wechsel. Die Auswahl gilt projektübergreifend für nachfolgende Anfragen.
+3. Überprüfung **Settings → Model**Wählen Sie ein kompatibles Modell aus und senden Sie eine kleine Anfrage, bevor Sie eine längere Aufgabe starten.
+
+Sie können Codex oder ein anderes externes Framework aktiv halten. Verwenden Sie die folgenden Installationsschritte nur für ein Framework, das eine separate Laufzeit benötigt.
+
+![Eingebauter Open-Science Agent und externe Laufzeitoptionen](/img/open-science/v120/agents.webp)
 
 ## Installieren und Überprüfen {/* #install-and-verify */}
 

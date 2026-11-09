@@ -1,16 +1,40 @@
 ---
-title: "Hôtes SSH et configuration Slurm"
+title: "Calcul à distance : emplois SSH, clusters et cloud"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
-# Hôtes SSH et configuration Slurm {/* #ssh-hosts-and-slurm-setup */}
+# Calcul à distance : emplois SSH, clusters et cloud
 
-:::info&#91;Avant de soumettre un travail&#93; Configurez un hôte SSH et choisissez Direct SSH ou Slurm avant de soumettre un travail à distance. Un profil d'hôte sauvegardé n'établit pas l'authentification ou l'exécution réussie. :::
+<span id="ssh-hosts-and-slurm-setup" />
 
-Utilisez **Settings → Compute** pour enregistrer un serveur ou un groupe. L'enregistrement de l'hôte, sa mise à la disposition d'une conversation et l'achèvement d'un travail sont des étapes distinctes. Conservez les règles de connexion-noeud du site et les exigences de calendrier avec les notes d'hôte.
+Utilisation **Settings → Connections → Compute** pour enregistrer un serveur, un cluster ou une cible cloud. L'aperçu de l'arrière-plan ci-dessous couvre toutes les cibles supportées; les passages restants couvrent SSH et Slurm. Sauver une cible, lui permettre de tenir une session et de remplir un emploi sont des étapes distinctes.
+
+## Choisir un moteur de calcul {/* #compute-backends */}
+
+Ouvrir **Settings → Connections → Compute**. v1.2.0 supporte les six options d'exécution ci-dessous. Une cible identifie l'emplacement d'un travail; elle ne crée pas d'abonnement cloud, ne fournit pas de cluster ou n'installe pas le logiciel scientifique pour vous.
+
+| Moteur | Quoi préparer | Configuration à vérifier |
+| --- | --- | --- |
+| Direct SSH | Un hôte SSH accessible | Authentification, espace de travail à distance et outils requis |
+| Slurme | Un cluster accessible SSH avec Slurm | Authentification de l'hôte, outils de planification et ressources de travail |
+| Kubernetes | Un contexte de cluster et un espace de noms existants | **Contexte**, **Espace de noms**, **Image du conteneur**, **Transférer l'image**, **Volume (MiB)** |
+| Emplois face à face | Un compte connecté avec Jobs et un seau privé | **Seau privé (propriétaire/nom)**, **Espace de facturation des noms**, **Image du conteneur**, **Saveur matérielle**, **Délai (secondes)** |
+| Modale | Un compte Modal connecté et un environnement | **Environnement modal**, **Application modale**, **Image du conteneur**, **CPU**, **Mémoire (MiB)** et GPU facultatif |
+| Rayon | Un cluster Ray accessible et un répertoire partagé | **URL du tableau de bord de Ray**, **Répertoire local partagé**, **Répertoire partagé du pilote**, **CPU**, **GPU** |
+
+1. Utilisez l'action ajouter pour le moteur requis. Hugging Face et Modal vous demandent d'abord de connecter le compte pertinent. Fournir des références par le biais de leurs contrôles de connexion, pas une invitation à la conversation.
+2. Saisissez les paramètres de votre cible, enregistrez et vérifiez son état de préparation ou son résultat de connexion. Utilisez les valeurs d'image et de ressource approuvées pour votre environnement.
+3. Activer et sélectionner la cible pour la session. Demandez un petit travail avec des entrées, commandes et sorties explicites.
+4. Examiner l'approbation avant la soumission : destination, fichiers d'entrée gelés, commande, demandes de ressources et chemins de sortie. L'utilisation du cloud est facturée au compte connecté. N'approuver que le travail prévu.
+5. Suivre l'avancement du travail dans Compute. Après achèvement et collecte des résultats, ouvrir les résultats publiés en **Compute Preview**. Une finition à distance ne signifie pas en soi que ses sorties ont été recueillies.
+6. Après un redémarrage, inspecter le travail conservé et reprendre la récupération ou la collecte lorsque offert. Vérifiez un emploi à distance existant avant de soumettre le même travail à nouveau.
+
+Les deux champs de répertoire de Ray décrivent le même stockage partagé vu par l'hôte local et le pilote distant; un chemin local seul ne transfère pas les données à une machine distante. Les emplois Kubernetes ont besoin d'une autorisation pour créer la charge de travail et le stockage temporaire. Les étapes de la SSH et l'exemple travaillé ci-dessous restent applicables à la SSH directe et au Slurm.
+
+![Paramètres de calcul avec les cibles SSH, Kubernetes, Hugging Face Jobs, Modal et Ray](/img/open-science/v120/compute.webp)
 
 ## Choisissez où exécuter les tâches {/* #choose-where-jobs-execute */}
 

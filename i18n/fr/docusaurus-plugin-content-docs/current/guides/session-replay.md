@@ -1,7 +1,7 @@
 ---
 title: "Rejouer et discuter d'une session enregistrée"
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-09'
 ---
 
 # Rejouer et discuter d'une session enregistrée {/* #replay-and-discuss-a-recorded-session */}
@@ -40,10 +40,13 @@ Dans **Browse steps**, localisez le réseau exporté, les réponses originales, 
 
 ## Demandez un pas {/* #discuss-replay */}
 
-1. Pause à l'étape pertinente et sélectionnez **Ask about this step**. Pour une discussion plus large, utilisez **Ask about this research** dans l'en-tête.
-2. Dans **Ask in a conversation**, choisissez une conversation en écriture ou **New conversation**. Cette mesure ajoute un contexte à un projet; il n'envoie pas une question en soi.
-3. Vérifiez la pièce jointe **Discuss** et son étiquette session/étape. Entrez votre question, choisissez un modèle connecté et sélectionnez **Send**. L'exemple utilise **Codex subscription**.
-4. Si une approbation d'outil est demandée, inspecter l'accès proposé avant de permettre l'opération nécessaire. Ensuite, comparez la réponse avec la preuve sauvegardée et son contexte source.
+1. Pause à l'étape pertinente et sélectionnez **Ask about this step**. Pour une question plus large, choisissez **Ask about this research**.
+2. Vérifier le projet de discussion et **Discuss** pièce jointe. La séance, la section et l'étape choisies identifient les éléments de preuve discutés. Un jeu de carnet de notes sélectionné inclut son contexte enregistré même lorsque certaines cellules sont à l'extérieur du port de vue actuel.
+3. Saisissez une question ciblée, choisissez un modèle connecté et sélectionnez **Send**. Ouvrir une discussion ou ajouter un contexte n'envoie pas la question automatiquement.
+4. Pour la recherche importée, la discussion est une conversation d'enfant liée. Retournez au dossier parent pour vérifier l'étape originale; la discussion ne rend pas cette histoire en lecture seule en écriture. Utilisation **Fork to continue** pour une suite plutôt.
+5. Inspecter toute approbation d'outil et comparer la réponse avec les preuves enregistrées. Une explication de modèle peut contenir des erreurs même lorsque le lien source est correct.
+
+Pour l'exemple TP53 ci-dessus, demandez :
 
 ```text
 From the recorded TP53 pathway analysis, explain why the missing direct
@@ -52,9 +55,11 @@ saved evidence and separate the recorded result from a new biological
 claim. Keep the response in English.
 ```
 
-La réponse identifie `tp53_mdm2_cdkn1a_readable_interactions.tsv` et distingue ce que l'exportation aplatie contient d'une conclusion biologique. Il indique la session source, la branche et l'étape sélectionnée. Lire à nouveau cette source avant d'adopter l'interprétation; un enregistrement lié ne rend pas chaque revendication modèle correcte.
+L'exemple de réponse identifie `tp53_mdm2_cdkn1a_readable_interactions.tsv` et sépare l'exportation aplatie d'une conclusion biologique. La capture d'écran montre que la discussion enregistrée; les contrôles actuels liés-discussion peuvent différer.
 
-![La discussion Codex terminée à côté de l'analyse TP53 enregistrée](/img/open-science/v0350/replay-answer.webp)
+![La discussion du Codex terminée à côté de l'analyse TP53 enregistrée](/img/open-science/v0350/replay-answer.webp)
+
+Pour faire une présentation narrative d'une session terminée, suivez [Films de recherche](research-films.md). Rejouer, discuter et filmer chaque fois réutiliser des preuves enregistrées; aucun d'eux ne réamorce l'analyse.
 
 ## Lorsque les preuves ne sont pas disponibles {/* #replay-evidence */}
 

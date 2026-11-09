@@ -1,7 +1,7 @@
 ---
 title: "Configuración de primera vez"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -112,7 +112,7 @@ Si reiniciar falla antes de que cambie la ubicación, restaurar la configuració
 
 ## 3. Entorno de ejecución del agente {/* #3-agent-runtime */}
 
-Elija el backend de codificación-agente que se llevará a cabo sesiones. Seleccione un marco instalado detectado o instale una copia gestionada por la aplicación. Continuar después de que sus informes de estado estén listos.
+Elija el tiempo de ejecución del Agente que llevará a cabo sesiones. Un nuevo v1.2.0 predeterminado de configuración para el incorporado **Open-Science Agent**, por lo que no se necesita instalación independiente del Agente para esa elección. Requiere un proveedor de API compatible. Si usas **Codex subscription**, seleccionar y preparar **Codex** en su lugar; los pasos del Codex abajo muestran esa opción. Continúe una vez que el tiempo de ejecución previsto esté listo.
 
 <PlatformContent platform="macos">
 

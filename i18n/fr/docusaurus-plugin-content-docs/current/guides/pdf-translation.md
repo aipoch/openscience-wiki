@@ -1,7 +1,7 @@
 ---
 title: "Traduire un PDF complet"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 # Traduire un PDF complet {/* #translate-a-full-pdf */}
@@ -63,3 +63,7 @@ Dans v1.0.0, **New translation** prépare un nouveau texte source avant de lance
 Avant le début **New translation**, élargir **Advanced** et permettre **Content first** si vous préférez une mise en page de lecture à une colonne. Il est désactivé par défaut et sauvegardé avec cette édition de traduction; ses paramètres sont verrouillés lors de la traduction. Pour modifier la mise en page, créez une nouvelle édition plutôt que de traiter Retry comme un changement de paramètres.
 
 Cette mise en page retransmet le texte du corps traduit et les légendes tout en préservant les images originales, les tableaux, les formules et la bibliographie. Comparer la cartographie source-sortie, puis rouvrir le PDF exporté et inspecter les figures et les légendes. Les numéros de page de sortie peuvent différer de l'original : citer et vérifier les revendications par rapport au PDF source.
+
+### Quand une page ne peut pas être rendue {/* #partial-page-recovery */}
+
+La traduction fixe dans v1.2.0 conserve les pages rendues avec succès quand une autre page échoue. Révision **Translation issues**, identifiez la page touchée et comparez-la à l'original. Garder tout texte non traduit visible en tant que tel; ne pas décrire un PDF partiellement rendu comme une traduction complète. Essayez de nouveau le travail affecté lorsque le lecteur l'offre, puis rouvrez le fichier exporté et vérifiez à nouveau cette page. Une page saine conservée ne vérifie pas sa terminologie ou son interprétation scientifique.

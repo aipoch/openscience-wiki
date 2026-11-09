@@ -1,7 +1,7 @@
 ---
 title: "模型与任务策略"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-09'
 ---
 
 # 模型与任务策略
@@ -96,7 +96,7 @@ Session details 选择器不接受 Codex 订阅模型；Main 或 Vision 中能�
 
 删除服务会让自动能力选择恢复默认方式，并清空指向该服务的 Smart collections 绑定。单独保存的服务密钥会一并移除；复用已有账户的服务被移除时，不会删除该账户或其密钥。
 
-聊天模型配置见[提供方设置](providers.md)。本地 PDF 解析资源由另一个 **Local parsing models** 标签页管理。
+聊天模型配置见[提供方设置](providers.md)。本地 PDF 解析资源由另一个 **Local capabilities** 标签页管理。
 
 ![分类服务表单，API key 尚未填写](/img/open-science/v0311/classification-add-service.webp)
 
@@ -133,3 +133,15 @@ Session details 选择器不接受 Codex 订阅模型；Main 或 Vision 中能�
 PDF 阅读器提供独立的 **Translation method** 和 **Model** 控件。**Agent** 可使用可用的兼容模型；**Direct API** 需要 API 提供商。v0.37.1 的这项操作不支持 Codex 订阅模型。选择翻译模型无需替换 Main，见 [PDF 翻译](pdf-translation.md#prepare-translation)。
 
 官方 Anthropic 目录包含 **Claude Haiku 5.5**。模型是否可见、能否调用取决于选定的 Agent 和账号。应使用当前目录条目，不要自行在旧模型 ID 后附加上下文大小后缀。
+
+## 管理本地能力 {/* #local-capabilities */}
+
+打开 **Settings → Model → Local capabilities**。v1.2.0 中，这个标签页取代 **Local parsing models**。这里的资源在主机上运行，不会替换会话主模型。
+
+| 资源 | 用途 | 使用前 |
+| --- | --- | --- |
+| PDF figures and tables | 查找候选图片、图注和可复制表格 | 安装资源，并将提取结果与原 PDF 核对 |
+| Text recognition (OCR) | 识别扫描页面中的文字 | 选择需要的语言包，等待下载完成 |
+| Research narration | 为研究影片生成英文旁白 | 安装语音引擎和模型，等待显示 **Installed** |
+
+按任务需要安装资源。查看下载进度；**Cancel download** 停止下载，**Retry** 按下载源的支持情况续传或重新下载。重新打开标签页确认安装状态。资源正在使用时不能 **Uninstall**。另见[研究影片](research-films.md)和 [PDF 提取](previews.md#pdf-extraction)。

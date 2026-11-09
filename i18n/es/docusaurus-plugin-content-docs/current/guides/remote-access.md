@@ -1,14 +1,26 @@
 ---
 title: "Acceso remoto al navegador"
 last_update:
-  date: '2026-09-20'
+  date: '2026-11-09'
 ---
 
 # Acceso remoto al navegador {/* #remote-browser-access */}
 
-El acceso remoto del navegador permite que otro dispositivo opere el espacio de trabajo de este ordenador. Proyectos, agentes, archivos y tiempos de ejecución Notebook siguen funcionando en este equipo. Está separado de [Computación SSH/Slurm](./remote-compute.md), que envía computación a un anfitrión.
+El acceso remoto del navegador permite que otro dispositivo opere el espacio de trabajo de este ordenador. Proyectos, agentes, archivos y tiempos de ejecución de Notebook siguen funcionando en este ordenador. Está separado [computación remota](./remote-compute.md), que envía empleo a un objetivo de ejecución.
 
-:::caución&#91;Estado de adhesión&#93; Remote.It puede aceptar cambios de servicio antes de que su agente de antecedentes los informe como listos. El emparejamiento completo del navegador y el acceso al espacio de trabajo todavía necesitan tener éxito en sus dispositivos. La captura de pantalla Off-state a continuación ilustra los controles, no una sesión remota conectada. :::
+## Pare un teléfono o una tableta {/* #mobile-pairing */}
+
+El **Connect mobile device** sección en el escritorio **Settings → Remote** ofertas **WiFi** y **Internet**. Esto está separado de la Remota.Es modos descritos a continuación; la ruta QR no requiere una cuenta remota.
+
+Abrir esta sección mientras el acceso remoto está apagado comienza el flujo de conexión WiFi. Úsalo en una red de confianza cuando quieras permitir que otro dispositivo llegue al espacio de trabajo. El anfitrión debe permanecer despierto y funcionando.
+
+1. Elija **WiFi** para dispositivos en la misma red local. Si aparecen varias direcciones de host, seleccione la dirección accesible desde el teléfono. Una red de invitados aislada puede evitar el acceso incluso cuando ambos dispositivos muestran el mismo nombre WiFi.
+2. Para el acceso fuera de la red local, elija **Internet**. Lea el aviso de conexión de Pinggy y espere hasta que aparezca un enlace de trabajo y código QR. El tráfico utiliza el túnel de terceros; revise los requisitos de contraseña y conexión mostrados.
+3. Escanee el código QR actual con el teléfono o tableta. Para el modo Internet, introduzca el **Connection password** si se solicita. Siga las indicaciones de emparejamiento y compruebe que el espacio de trabajo previsto se abre.
+4. Si el código expira o el túnel vuelve a conectarse, use **Refresh QR code** y escanear el nuevo código. Los túneles Pinggy gratis cambian de dirección cada 60 minutos; un antiguo enlace guardado puede dejar de funcionar.
+5. Check **Connected devices**. Uso **Revoke all** para eliminar las autorizaciones del dispositivo cuando haya terminado, y seleccionar **Off** en Ajustes remotos para detener el acceso remoto. La revocación y la interrupción de la conexión son acciones separadas.
+
+Mantenga enlaces de pareado, códigos QR y contraseñas privadas. Un código QR visible sólo significa que una oferta está disponible; no establece que el otro dispositivo conectado. Si una conexión falla, compruebe el estado de funcionamiento del host, dirección de red seleccionada y permiso de firewall antes de generar otra oferta.
 
 ## Prerrequisitos y modos {/* #prerequisites-and-modes */}
 

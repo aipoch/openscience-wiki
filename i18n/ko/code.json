@@ -744,10 +744,10 @@
     "message": "Network checks, Notebook allowed domains, proxy modes, package mirrors, and certificate bundles."
   },
   "docs.guides.outline.remote-compute.title": {
-    "message": "SSH hosts and Slurm setup"
+    "message": "먼 compute"
   },
   "docs.guides.outline.remote-compute.scope": {
-    "message": "Host authentication, direct versus scheduler mode, resource discovery, scratch paths, and concurrency."
+    "message": "SSH, 클러스터 및 클라우드 대상 구성; 승인 및 외부 작업을 수집합니다."
   },
   "docs.guides.outline.remote-access.title": {
     "message": "Remote browser access"
@@ -1846,5 +1846,23 @@
   },
   "docs.outline.reference.v108.scope": {
     "message": "문헌 일괄 가져오기, 연구 개요, 설정 및 eQTL 업데이트."
+  },
+  "docs.guides.outline.research-films.title": {
+    "message": "연구 필름"
+  },
+  "docs.guides.outline.research-films.scope": {
+    "message": "완료된 세션에서 narrated 프레젠테이션을 생성, 검토 및 내보내기."
+  },
+  "docs.outline.reference.v120.title": {
+    "message": "v1.2.0"
+  },
+  "docs.outline.reference.v120.scope": {
+    "message": "Cloud compute 대상, 내장 에이전트 및 연결 연구 토론."
+  },
+  "docs.outline.reference.v110.title": {
+    "message": "v1.1.0"
+  },
+  "docs.outline.reference.v110.scope": {
+    "message": "연구 영화, 배치 종이 개요, 모바일 액세스 및 문학 명령."
   }
 }

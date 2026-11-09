@@ -1,7 +1,7 @@
 ---
 title: "Models and task policies"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-09'
 ---
 
 # Models and task policies
@@ -95,7 +95,7 @@ Automatic capability selection through this service is supported in main convers
 
 Removing a service returns automatic capability selection to the default method and leaves any Smart collections binding to that service unconfigured. A separately stored service key is removed with it; removing a service that shares an account does not delete that account or its key.
 
-See [provider setup](providers.md) for conversation models. Local PDF parsing resources are managed under **Local parsing models**, a separate tab.
+See [provider setup](providers.md) for conversation models. Local PDF parsing resources are managed under **Local capabilities**, a separate tab.
 
 ![Classification service form with the API key still empty](/img/open-science/v0311/classification-add-service.webp)
 
@@ -132,3 +132,15 @@ The form below illustrates the fields. Replace the sample endpoint and `your-mod
 PDF translation has its own **Translation method** and **Model** controls in the reader. **Agent** can use an available compatible model; **Direct API** requires an API provider. Codex subscription models are unavailable for this operation in v0.37.1. Selecting a translation model does not require replacing Main. See [PDF translation](pdf-translation.md#prepare-translation).
 
 The official Anthropic catalog includes **Claude Haiku 5.5**. Model visibility and access depend on the selected Agent and account. Pick the current catalog entry rather than appending a context-size suffix to an old model ID.
+
+## Manage local capabilities {/* #local-capabilities */}
+
+Open **Settings → Model → Local capabilities**. In v1.2.0 this replaces the **Local parsing models** tab. These resources run on the host computer and do not replace the main conversation model.
+
+| Resource | Purpose | Before using it |
+| --- | --- | --- |
+| PDF figures and tables | Find candidate figures, captions and copyable tables | Install the resource, then inspect extraction results against the PDF |
+| Text recognition (OCR) | Recognize text in scanned pages | Select the needed language packs and finish their download |
+| Research narration | Produce English speech for research films | Install the speech engine and model; wait for **Installed** |
+
+Install only the resources needed for your task. Follow download progress; **Cancel download** stops the transfer, and **Retry** resumes or repeats a failed download as supported. Reopen the tab to confirm the installed state. **Uninstall** is unavailable while a resource is in use. See [research films](research-films.md) and [PDF extraction](previews.md#pdf-extraction).

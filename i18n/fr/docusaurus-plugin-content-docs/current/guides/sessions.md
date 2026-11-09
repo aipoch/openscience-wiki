@@ -1,7 +1,7 @@
 ---
 title: "Sessions et sections"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -190,3 +190,9 @@ Pour les exportations de diagnostic, lisez le résumé d'achèvement : une expor
 ## Étendre une conversation compacte {/* #collapsed-conversation */}
 
 Dans v1.0.4, complété transforme les messages intermédiaires d'effondrement et l'activité d'outil de groupe en résumés. Étendre un groupe pour en vérifier les détails; les travaux en cours, en attente et interrompus restent visibles. Recherche de conversation, annotations et recherche native révèlent des contenus cachés correspondants. Collapsing change la présentation, pas le dossier de recherche sauvegardé ou si une tâche terminée.
+
+## Trouver des sessions dans la barre latérale {/* #sidebar-groups */}
+
+La barre latérale v1.2.0 regroupe les sessions dans cet ordre : **Pinned**, **Imported research**, **Active**, **Recents**. Les groupes vides peuvent ne pas apparaître. Épinglez une session fréquemment utilisée pour la garder facile à trouver. Les documents importés restent en lecture seule et peuvent montrer des discussions d'enfants liées; sélectionnez le parent pour revenir à sa preuve. Une étiquette de session active ou récente décrit l'état de navigation et non la validation scientifique.
+
+L'envoi d'un message en lisant un tour plus tôt préserve cette position de lecture. Faites défiler vers les derniers messages pour suivre la nouvelle réponse quand vous êtes prêt.

@@ -1,7 +1,7 @@
 ---
 title: "First-time setup"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -112,7 +112,7 @@ If restart fails before the location changes, restore configuration write access
 
 ## 3. Agent runtime
 
-Choose the coding-agent backend that will run sessions. Select a detected installed framework or install an app-managed copy. Continue after its status reports ready.
+Choose the Agent runtime that will run sessions. A new v1.2.0 setup defaults to the built-in **Open-Science Agent**, so no separate Agent installation is needed for that choice. It requires a compatible API provider. If you use **Codex subscription**, select and prepare **Codex** instead; the Codex steps below show that option. Continue once the intended runtime is ready.
 
 <PlatformContent platform="macos">
 

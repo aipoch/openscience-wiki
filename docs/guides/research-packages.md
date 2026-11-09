@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,14 @@ For this example, select the destination project **Public Genomics Examples**. T
 Open the imported session and its summary CSV. The **Imported research history** notice confirms that this copy is read-only and cannot execute code or continue a conversation directly.
 
 ![Imported QC record with its inherited summary and Fork to continue button](/img/open-science/v0311/package-import-readonly.webp)
+
+## Discuss an imported step without changing the record {/* #linked-discussions */}
+
+Use **Ask about this research** or a replay's **Ask about this step** to start a discussion linked to the imported parent. Inspect the attached evidence and send your question with an available model. The child discussion retains the parent's identity while the imported record stays read-only.
+
+The sidebar places imported sessions under **Imported research** and shows their related discussions. Archiving the parent retains the relationship. Deleting the parent leaves its child discussions as ordinary conversations; do not rely on them as a replacement for a complete retained source package.
+
+For new analysis, choose the prominent **Fork to continue** action. **View replay**, **Ask about this research** and **View files** remain available for inspecting the received record. A linked discussion is not a Fork and does not rerun its Notebook.
 
 ## Use the received research record
 
@@ -168,7 +176,7 @@ Export requires an explicit `.science` output path. The default deadline is one 
 
 ## Find a research case in Sharing marketplace {/* #use-case-gallery */}
 
-1. Open **Sharing marketplace** from Home or the conversation workspace. In a workspace preview, choose **View in sharing marketplace** to open the full page. On Home, **Browse all examples** also opens the full **Use Case Marketplace**.
+1. Open **Resource center** from Home or the conversation workspace, then open its research-case library. Home also provides **Use Case Gallery → Browse all examples**. Older versions called the case browser **Sharing marketplace**.
 2. Choose a category and enter a keyword in the search field. Clear the keyword or return to all categories when the result list is too narrow.
 3. Open a case to read its description and inspect the available package action. Review its topic, inputs and intended outputs before downloading or importing it.
 4. Use the package action offered in the case details. Follow preparation, download and verification progress; use **Cancel** to stop an unwanted transfer. Downloaded bytes are not yet an imported project.

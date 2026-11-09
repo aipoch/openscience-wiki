@@ -1,7 +1,7 @@
 ---
 title: "Öffnen und Vorschauen von Dateien"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -273,7 +273,7 @@ In v1.0.8 verwendet die automatische Bestellung auch Positionstext, um Prosaspal
 
 OCR ist eine optionale lokale Komponente für Seiten ohne nutzbaren Text. Es erkennt Text aus Seitenbildern; es übersetzt nicht das Papier, validiert eine Tabelle oder beweist, dass jede Seite gelesen wurde.
 
-1. Offen **Settings → Model → Local parsing models** und finden **Text recognition (OCR)**.
+1. Offen **Settings → Model → Local capabilities** und finden **Text recognition (OCR)**.
 2. Bleiben **English**, die immer ausgewählt ist, und wählen Sie die im Dokument tatsächlich verwendeten Sprachen aus. Zusätzliche Optionen sind vereinfachtes Chinesisch, Traditionelles Chinesisch, Deutsch, Spanisch, Französisch, Japanisch, Koreanisch und Russisch.
 3. Wählen **Install** und warten auf **Installed**. Nach dem Hinzufügen einer Sprache, verwenden Sie die angebotene **Install** oder **Update** Maßnahmen zum Herunterladen seiner Erkennungsdaten. Die Wahl einer Sprache allein lädt sie nicht herunter.
 4. Öffnen Sie das PDF und wählen **Read with agent**. Fragen Sie zuerst nach einem kleinen, angegebenen Seitenbereich. Wenn ein Lesetool OCR-Installation anbietet, weil Text fehlt, füllen Sie es aus und bitten Sie den Agenten, diese Seiten erneut zu lesen.

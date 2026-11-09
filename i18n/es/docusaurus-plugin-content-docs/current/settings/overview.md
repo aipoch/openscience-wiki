@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Sinopsis de la configuración"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 # Sinopsis de la configuración {/* #settings-overview */}
@@ -43,11 +43,11 @@ Esta búsqueda cubre los ajustes representativos en cada panel, no en cada campo
 |  | [Red](../guides/network.md) | Proxy, espejos de paquete y acceso de dominio Notebook |
 |  | [Remoto](../guides/remote-access.md) | Acceso del navegador, emparejamiento y dispositivos de confianza |
 |  | [Credenciales](../tools/credentials.md) | Llaves, fichas, OAuth y recuperación credencial |
+|  | [Cálculo](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Espacio de trabajo | [Etiquetas](../guides/tags.md) | Etiquetas y Favoritos Ordenación |
 |  | [Permisos](../guides/approval-modes.md) | Modo predeterminado y subsidios guardados |
 |  | [Entornos de ejecución](../guides/runtimes.md) | entornos y paquetes Python/R |
 |  | [Almacenamiento](../guides/storage.md) | Localización de datos, acceso de escritura y uso de disco |
-|  | [Cálculo](../guides/remote-compute.md) | Recursos de computación locales y SSH |
 |  | [Uso](../guides/usage.md) | Estadísticas de actividad de investigación, llamadas e investigación |
 |  | [Archivado](../guides/storage.md) | Restaurar o eliminar permanentemente el trabajo archivado |
 
@@ -57,6 +57,6 @@ Esta búsqueda cubre los ajustes representativos en cada panel, no en cada campo
 
 ## Fichas de configuración modelo {/* #model-tabs */}
 
-Dentro de **Model**, utilice **Conversation models** para proveedores y modelos de tareas, **Classification models** para la selección opcional Skill/Connector y **Local parsing models** para recursos locales de persiana. La clasificación es una pestaña dentro de la configuración del modelo, no un panel adicional de configuración de nivel superior. Ver [Clasificación](../guides/models.md#classification-models).
+Dentro **Model**, uso **Conversation models** para proveedores y modelos de tareas, **Classification models** para la selección de capacidades opcionales y colecciones inteligentes, y **Local capabilities** para extracción de PDF, OCR y narración de investigación. Estas son pestañas dentro de los paneles Modelo, no de Ajustes adicionales. Véase [recursos locales](../guides/models.md#local-capabilities).
 
 La búsqueda del encabezado utiliza **XXXK / Ctrl+K**. Para enfocar el panel actual o la propia búsqueda del diálogo, utilice **XXXK / Ctrl+Alt+K** cuando ese campo esté disponible. Ver [búsqueda atajos](../guides/shortcuts.md#local-settings-search).

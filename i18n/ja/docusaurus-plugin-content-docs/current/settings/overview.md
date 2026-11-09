@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "設定の概要"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 # 設定の概要 {/* #settings-overview */}
@@ -43,11 +43,11 @@ last_update:
 |  | [ネットワーク](../guides/network.md) | プロキシ、パッケージミラー、Notebookドメインアクセス |
 |  | [リモート](../guides/remote-access.md) | ブラウザアクセス、ペアリング、信頼できるデバイス |
 |  | [資格情報](../tools/credentials.md) | キー、トークン、OAuth、クレデンシャルリカバリ |
+|  | [コンピュート](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | ワークスペース | [タグ](../guides/tags.md) | タグとお気に入り 注文 |
 |  | [権限](../guides/approval-modes.md) | デフォルトモードと保存された付与 |
 |  | [ランタイム](../guides/runtimes.md) | Python/R環境とパッケージ |
 |  | [ストレージ](../guides/storage.md) | データの場所、書き込みアクセスおよびディスク使用 |
-|  | [コンピュート](../guides/remote-compute.md) | ローカルおよびSSHの計算リソース |
 |  | [使用量](../guides/usage.md) | トークン、コールおよび研究活動統計 |
 |  | [アーカイブ済み](../guides/storage.md) | アーカイブされた作品の復元または永久削除 |
 
@@ -57,6 +57,6 @@ last_update:
 
 ## モデル設定タブ {/* #model-tabs */}
 
-内置: **Model**, 使用 **Conversation models** プロバイダーとタスクモデルのため、 **Classification models** 任意のため Skill///////////////////////Connector 選択、および **Local parsing models** ローカルの解析リソース 分類は、モデル設定内のタブで、追加のトップレベルの設定パネルではありません。 [分類のセットアップ](../guides/models.md#classification-models) を参照してください。
+内径 **Model**, 使用 **Conversation models** 提供者およびタスク モデルのため、 **Classification models** 任意機能選択およびスマートなコレクションのために、および **Local capabilities** PDF抽出、OCRおよび研究のナレーションのため。 これらは、追加の設定パネルではなく、モデル内のタブです。 お問い合わせ [ローカルリソース](../guides/models.md#local-capabilities).
 
 ヘッダ検索では、**⌘K / Ctrl+K** を使用します。 現在のパネルやダイアログの検索を集中するには、そのフィールドが利用可能になったときに **&lt;unk>K / Ctrl+Alt+K** を使用します。 [検索ショートカット](../guides/shortcuts.md#local-settings-search) を参照してください。

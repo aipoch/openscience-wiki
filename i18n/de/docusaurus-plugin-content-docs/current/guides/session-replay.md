@@ -1,7 +1,7 @@
 ---
 title: "Wiedergabe und Besprechen einer aufgezeichneten Sitzung"
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-09'
 ---
 
 # Wiedergabe und Besprechen einer aufgezeichneten Sitzung {/* #replay-and-discuss-a-recorded-session */}
@@ -40,10 +40,13 @@ Suchen Sie in **Browse steps** das exportierte Netzwerk, die ursprünglichen Ant
 
 ## Fragen Sie nach einem Schritt {/* #discuss-replay */}
 
-1. Halten Sie bei dem entsprechenden Schritt an und wählen Sie **Ask about this step**. Für eine breitere Diskussion verwenden Sie **Ask about this research** im Header.
-2. Wählen Sie in **Ask in a conversation** eine beschreibbare Konversation oder **New conversation** aus. Die Aktion fügt einem Entwurf einen Kontext hinzu; Sie stellt keine Frage von sich aus.
-3. Überprüfen Sie den **Discuss**-Anhang und sein Sitzungs- / Schritt-Etikett. Geben Sie Ihre Frage ein, wählen Sie ein verbundenes Modell und wählen Sie **Send**. Das Beispiel verwendet **Codex subscription**.
-4. Wenn eine Werkzeuggenehmigung beantragt wird, prüfen Sie den vorgeschlagenen Zugriff, bevor Sie den erforderlichen Vorgang zulassen. Dann vergleichen Sie die Antwort mit dem gespeicherten Beweis und seinem Quellkontext.
+1. Pause beim entsprechenden Schritt und wählen **Ask about this step**. Für eine breitere Frage, wählen Sie **Ask about this research**.
+2. Überprüfen Sie den Diskussionsentwurf und seine **Discuss** Befestigung. Die ausgewählte Sitzung, der Zweig und der Schritt identifizieren die diskutierten Beweise. Ein ausgewählter Notebook-Lauf enthält den aufgezeichneten Kontext, auch wenn sich einige Zellen außerhalb des aktuellen Viewports befinden.
+3. Geben Sie eine fokussierte Frage ein, wählen Sie ein verbundenes Modell und wählen Sie **Send**. Das Öffnen einer Diskussion oder das Hinzufügen von Kontext sendet die Frage nicht automatisch.
+4. Für importierte Forschung ist die Diskussion ein verknüpftes Kindergespräch. Kehren sie zum elterndatensatz zurück, um den ursprünglichen schritt zu überprüfen; die diskussion macht diese schreibgeschützte geschichte nicht beschreibbar. Verwendung **Fork to continue** Stattdessen für eine Fortsetzung.
+5. Überprüfen Sie jede Werkzeuggenehmigung und vergleichen Sie die Antwort mit den aufgezeichneten Beweisen. Eine Modellerklärung kann Fehler enthalten, selbst wenn der Quelllink korrekt ist.
+
+Fragen Sie für das TP53-Beispiel oben:
 
 ```text
 From the recorded TP53 pathway analysis, explain why the missing direct
@@ -52,9 +55,11 @@ saved evidence and separate the recorded result from a new biological
 claim. Keep the response in English.
 ```
 
-Die Antwort identifiziert `tp53_mdm2_cdkn1a_readable_interactions.tsv` und unterscheidet, was der abgeflachte Export von einer biologischen Schlussfolgerung enthält. Es zeigt auf die ausgewählte Quellsitzung, Branch und Step. Lesen Sie diese Quelle noch einmal, bevor Sie die Interpretation übernehmen; Ein verknüpfter Datensatz macht nicht jeden Modellanspruch korrekt.
+Die Beispielantwort identifiziert `tp53_mdm2_cdkn1a_readable_interactions.tsv` und trennt den abgeflachten Export von einer biologischen Schlussfolgerung. Der Screenshot zeigt, dass aufgezeichnete Diskussion; aktuelle Linked-Diskussion Kontrollen können sich unterscheiden.
 
-![Die abgeschlossene Codex Diskussion neben der aufgezeichneten TP53 Analyse](/img/open-science/v0350/replay-answer.webp)
+![Die abgeschlossene Codex-Diskussion neben der aufgezeichneten TP53 Analyse](/img/open-science/v0350/replay-answer.webp)
+
+Um eine kommentierte Präsentation einer abgeschlossenen Sitzung zu erstellen, folgen Sie [Forschungsfilme](research-films.md). Wiedergabe, eine Diskussion und ein Film jede Wiederverwendung aufgezeichnet Beweise; keiner von ihnen wiederholt die Analyse.
 
 ## Wenn Beweise nicht verfügbar sind {/* #replay-evidence */}
 

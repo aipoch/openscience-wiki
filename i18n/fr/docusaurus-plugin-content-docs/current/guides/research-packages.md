@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,14 @@ Pour cet exemple, sélectionnez le projet de destination **Public Genomics Examp
 Ouvrez la session importée et son résumé CSV. L'avis **Imported research history** confirme que cette copie est en lecture seule et ne peut pas exécuter de code ou poursuivre une conversation directement.
 
 ![Importé QC record avec son résumé hérité et Fork pour continuer bouton](/img/open-science/v0311/package-import-readonly.webp)
+
+## Discutez d'une étape importée sans changer le dossier {/* #linked-discussions */}
+
+Utilisation **Ask about this research** ou d'un replay **Ask about this step** commencer une discussion liée au parent importé. Inspectez la preuve ci-jointe et envoyez votre question avec un modèle disponible. La discussion sur l'enfant conserve l'identité du parent pendant que le dossier importé reste en lecture seule.
+
+Les places latérales importées sessions sous **Imported research** et montre leurs discussions connexes. L'archivage du parent conserve la relation. Supprimer le parent laisse ses discussions d'enfants comme des conversations ordinaires; ne comptez pas sur eux comme un remplacement d'un paquet source complet conservé.
+
+Pour une nouvelle analyse, choisissez le **Fork to continue** d'action. **View replay**, **Ask about this research** et **Affichage des fichiers** demeure disponible pour l'inspection du dossier reçu. Une discussion liée n'est pas une Fourche et ne réexécute pas son Carnet.
 
 ## Utiliser le dossier de recherche reçu {/* #use-the-received-research-record */}
 
@@ -168,7 +176,7 @@ L’exportation exige un chemin de sortie `.science` explicite. Le délai par d�
 
 ## Trouver un cas de recherche dans Partage du marché {/* #use-case-gallery */}
 
-1. Ouvrir **Sharing marketplace** de la maison ou de l'espace de travail de conversation. Dans un aperçu de l'espace de travail, choisissez **View in sharing marketplace** pour ouvrir la page complète. Sur la maison, **Browse all examples** ouvre également la totalité **Use Case Marketplace**.
+1. Ouvrir **Centre de ressources** de la maison ou de l'espace de travail de conversation, puis ouvrir sa bibliothèque de recherche-case. Home fournit également **Use Case Gallery → Browse all examples**. Anciennes versions appelées navigateur de cas **Partage du marché**.
 2. Choisissez une catégorie et entrez un mot-clé dans le champ de recherche. Effacer le mot-clé ou revenir à toutes les catégories lorsque la liste des résultats est trop étroite.
 3. Ouvrir un cas pour lire sa description et inspecter l'action du paquet disponible. Examiner le sujet, les intrants et les extrants prévus avant de le télécharger ou de l'importer.
 4. Utilisez l'action de paquet proposée dans les détails du cas. Suivre les progrès de la préparation, du téléchargement et de la vérification; utiliser **Cancel** pour arrêter un transfert indésirable. Les octets téléchargés ne sont pas encore un projet importé.

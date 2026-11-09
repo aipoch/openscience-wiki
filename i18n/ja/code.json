@@ -739,10 +739,10 @@
     "message": "Network checks, Notebook allowed domains, proxy modes, package mirrors, and certificate bundles."
   },
   "docs.guides.outline.remote-compute.title": {
-    "message": "SSH hosts and Slurm setup"
+    "message": "遠隔計算"
   },
   "docs.guides.outline.remote-compute.scope": {
-    "message": "Host authentication, direct versus scheduler mode, resource discovery, scratch paths, and concurrency."
+    "message": "SSH、クラスター、クラウドターゲットの設定、外部ジョブの承認と収集"
   },
   "docs.guides.outline.remote-access.title": {
     "message": "Remote browser access"
@@ -1841,5 +1841,23 @@
   },
   "docs.outline.reference.v108.scope": {
     "message": "文献の一括インポート、研究概要、設定と eQTL の更新。"
+  },
+  "docs.guides.outline.research-films.title": {
+    "message": "研究フィルム"
+  },
+  "docs.guides.outline.research-films.scope": {
+    "message": "完成したセッションからナレーションされたプレゼンテーションを生成、見直し、エクスポートします。"
+  },
+  "docs.outline.reference.v120.title": {
+    "message": "v1.2.0"
+  },
+  "docs.outline.reference.v120.scope": {
+    "message": "クラウドコンピュートターゲット、組み込みエージェント、およびリンクされたリサーチディスカッション。"
+  },
+  "docs.outline.reference.v110.title": {
+    "message": "v1.1.0"
+  },
+  "docs.outline.reference.v110.scope": {
+    "message": "研究映画、バッチペーパー概要、モバイルアクセスと文献コマンド。"
   }
 }

@@ -1,12 +1,12 @@
 ---
 title: "无界面服务与浏览器访问"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-09'
 ---
 
 # 无界面服务与浏览器访问
 
-本地服务提供无界面后端和 localhost 浏览器入口，与 SSH Compute 主机、Remote.It 浏览器配对不同。连接客户端前，应配置主机所需的认证与凭据存储方式。
+本地服务提供无界面后端和经过认证的 localhost 浏览器界面。它与[远程设备配对](../guides/remote-access.md)、[远程计算目标](../guides/remote-compute.md)是不同的入口。连接客户端之前，先确定主机的认证和凭据存储方式。
 
 ## 目标和发现规则
 
@@ -61,7 +61,7 @@ SDK 发现本地服务并读取其本地 token，通过请求头发送。普通�
 
 localhost 服务不会自动让其他电脑访问。远程浏览器功能有独立访问模式、配对和可信浏览器管理；SSH Compute 则向配置过的远程主机提交任务。
 
-Remote.It 配对见[远程浏览器访问](../guides/remote-access.md)，SSH 作业见[远程计算](../guides/remote-compute.md)。按对应功能的设置流程配置连接。
+通过[远程浏览器访问](../guides/remote-access.md)配置 WiFi、Internet 或 Remote.It 配对；通过[远程计算](../guides/remote-compute.md)配置 SSH、集群和云任务。修改本地文档网址不会配置这些连接。
 
 ### Linux 无界面服务的凭据存储
 
@@ -122,7 +122,7 @@ CLI 应用更新命令仍已移除，不要使用 `open-science update --json`�
 
 ## 网页工作区中的 Compute {/* #web-compute */}
 
-独立网页工作区的后端具备所需 Notebook 和 Compute API 时，会开放 **Compute**。打开已连接的工作区，确认面板可用，再按原有 SSH／Slurm 配置步骤操作。面板可用不代表已提供远程凭据，也不证明作业能够执行。
+独立 Web 工作区在后端提供所需 Notebook 与 Compute API 时显示 **Compute**。打开已连接的工作区，确认面板可用，再按[计算目标配置](../guides/remote-compute.md#compute-backends)操作。任务使用后端配置的账户和基础设施运行；浏览器显示面板不代表已经具备凭据或完成执行。请从获授权的本地入口管理目标凭据。
 
 ## 研究包与外部工具客户端 {/* #local-research-tools */}
 

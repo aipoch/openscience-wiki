@@ -1,7 +1,7 @@
 ---
 title: "首次设置"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -112,7 +112,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 3. Agent runtime
 
-选择运行会话的 Agent 后端。可使用检测到的已安装框架，也可下载由应用管理的副本。状态就绪后继续。
+选择运行会话的 Agent。全新的 v1.2.0 配置默认使用内置 **Open-Science Agent**，选择它时无需另行安装 Agent，但需要兼容的 API 提供方。如果使用 **Codex subscription**，则应选择并准备 **Codex**；下方演示的是这条路径。确认预期运行时就绪后继续。
 
 <PlatformContent platform="macos">
 

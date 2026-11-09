@@ -1,7 +1,7 @@
 ---
 title: "Provider and local model setup"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -211,7 +211,7 @@ Source: [ProviderForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/s
 
 ## Save a provider change in v0.31.0 and later {/* #validated-provider-save */}
 
-Provider edits are tested before they are committed. Select **Save**, wait for the connection result, and confirm success before closing the form. A failed test does not replace a working saved configuration. If a previously saved connection is rejected during a request, its availability is updated; check the credential and endpoint, then test again. **Conversation models**, **Classification models** and **Local parsing models** have different purposes; see [model settings](models.md#classification-models).
+Provider edits are tested before they are committed. Select **Save**, wait for the connection result, and confirm success before closing the form. A failed test does not replace a working saved configuration. If a previously saved connection is rejected during a request, its availability is updated; check the credential and endpoint, then test again. **Conversation models**, **Classification models** and **Local capabilities** have different purposes; see [model settings](models.md#classification-models).
 
 ## StepFun and region selection {/* #stepfun-regions */}
 

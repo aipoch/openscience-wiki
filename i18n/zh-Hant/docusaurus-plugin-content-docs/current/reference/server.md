@@ -1,12 +1,12 @@
 ---
 title: "無介面服務與瀏覽器訪問"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-09'
 ---
 
 # 無介面服務與瀏覽器訪問 {/* #无界面服务与浏览器访问 */}
 
-本地服務提供無介面後端和 localhost 瀏覽器入口，與 SSH Compute 主機、Remote.It 瀏覽器配對不同。連線客戶端前，應配置主機所需的認證與憑據儲存方式。
+本地服務提供無界面後端和經過認證的 localhost 瀏覽器界面。它與[遠程設備配對](../guides/remote-access.md)、[遠程計算目標](../guides/remote-compute.md)是不同的入口。連接客戶端之前，先確定主機的認證和憑據存儲方式。
 
 ## 目標和發現規則 {/* #目标和发现规则 */}
 
@@ -61,7 +61,7 @@ SDK 發現本地服務並讀取其本地 token，透過請求頭髮送。普通�
 
 localhost 服務不會自動讓其他電腦訪問。遠端瀏覽器功能有獨立訪問模式、配對和可信瀏覽器管理；SSH Compute 則向配置過的遠端主機提交任務。
 
-Remote.It 配對見[遠端瀏覽器訪問](../guides/remote-access.md)，SSH 作業見[遠端計算](../guides/remote-compute.md)。按對應功能的設定流程配置連線。
+通過[遠程瀏覽器訪問](../guides/remote-access.md)配置 WiFi、Internet 或 Remote.It 配對；通過[遠程計算](../guides/remote-compute.md)配置 SSH、集羣和雲任務。修改本地文檔網址不會配置這些連接。
 
 ### Linux 無介面服務的憑據儲存 {/* #linux-无界面服务的凭据存储 */}
 
@@ -122,7 +122,7 @@ CLI 應用更新命令仍已移除，不要使用 `open-science update --json`�
 
 ## 網頁工作區中的 Compute {/* #web-compute */}
 
-獨立網頁工作區的後端具備所需 Notebook 和 Compute API 時，會開放 **Compute**。打開已連接的工作區，確認面板可用，再按原有 SSH／Slurm 配置步驟操作。面板可用不代表已提供遠程憑據，也不證明作業能夠執行。
+獨立 Web 工作區在後端提供所需 Notebook 與 Compute API 時顯示 **Compute**。打開已連接的工作區，確認面板可用，再按[計算目標配置](../guides/remote-compute.md#compute-backends)操作。任務使用後端配置的賬戶和基礎設施運行；瀏覽器顯示面板不代表已經具備憑據或完成執行。請從獲授權的本地入口管理目標憑據。
 
 ## 研究包與外部工具客戶端 {/* #local-research-tools */}
 

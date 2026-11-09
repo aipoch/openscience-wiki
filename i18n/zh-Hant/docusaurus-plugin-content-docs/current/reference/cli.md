@@ -1,7 +1,7 @@
 ---
 title: "CLI 與結構化輸出"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -273,3 +273,28 @@ open-science mcp --help
 ## 讓服務持續運行以完成自動化 {/* #persistent-service */}
 
 若 CLI、瀏覽器或 SDK 工作需要在退出桌面應用後繼續，請先對目標配置執行 `open-science start --no-open --json`。從 v1.0.6 起，這會設置一次持續運行狀態；重複啓動不會累加。普通 `stop` 解除該設置，但仍有 App 連接時服務會保留。判斷服務是否停止前，請讀取[生命週期結果](server.md#lifecycle-commands)，不要只看命令成功與否。
+
+## 從命令行操作文獻庫 {/* #literature-library */}
+
+讓 CLI 使用與桌面應用相同的運行配置。`literature search` 搜索該文獻庫裏已經存在的記錄，不是在線找論文的查詢。
+
+```bash
+open-science literature search "single-atom catalyst" --limit 20 --json
+open-science literature show <item-id> --json
+open-science literature styles
+open-science literature format <item-id> --style apa --locale en-US
+open-science literature lookup 10.1038/s41467-018-08136-3 --json
+```
+
+`lookup` 聯繫元數據來源，不會導入記錄或下載 PDF。使用 `literature add <identifier>` 保存解析後的文獻。導入書目文件時，先預覽再提交：
+
+```bash
+open-science literature import ./references.bib --json
+open-science literature import ./references.bib --commit --duplicates reuse --json
+open-science literature link <item-id> --project "My project"
+open-science literature status read <item-id>
+```
+
+不加 **--commit** 時，`import` 只預覽。支持 BibTeX、RIS 和 NBIB；重複處理策略爲 `reuse`、`separate`、`fill-missing`。`link` 把已有文獻關聯到項目，不會複製 PDF。如果導入已保存文獻但項目關聯失敗，使用返回的 ID 重試關聯，不要重複導入。
+
+使用 `literature collection create`、`collection add`、`collection remove` 管理集合。`literature trash` 將文獻移入回收站，`literature restore` 恢復記錄。寫入前檢查選中的 ID。文獻讀寫工具也通過 [MCP](#external-mcp) 提供，仍需遵循相應權限和輸入參數。

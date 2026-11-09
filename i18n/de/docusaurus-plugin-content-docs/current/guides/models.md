@@ -1,7 +1,7 @@
 ---
 title: "Modelle und Aufgabenrichtlinien"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-09'
 ---
 
 # Modelle und Aufgabenrichtlinien {/* #models-and-task-policies */}
@@ -95,7 +95,7 @@ Die automatische Auswahl von Fähigkeiten über diesen Dienst wird in Hauptgespr
 
 Durch Entfernen eines Dienstes wird die automatische Auswahl der Funktionen auf die Standardmethode zurückgeführt und alle Smart-Sammlungen, die an diesen Dienst gebunden sind, sind unkonfiguriert. Ein separat gespeicherter Dienstschlüssel wird mit ihm entfernt; Das Entfernen eines Dienstes, der ein Konto teilt, löscht dieses Konto oder seinen Schlüssel nicht.
 
-Siehe [Provider-Setup](providers.md) für konversationsmodelle. Lokale PDF-Parsing-Ressourcen werden unter **Local parsing models**, einem separaten Tab, verwaltet.
+Siehe [Provider-Setup](providers.md) für konversationsmodelle. Lokale PDF-Parsing-Ressourcen werden unter **Local capabilities**, einem separaten Tab, verwaltet.
 
 ![Klassifikationsdienstformular mit dem API-Schlüssel noch leer](/img/open-science/v0311/classification-add-service.webp)
 
@@ -132,3 +132,15 @@ Das Formular unten veranschaulicht die Felder. Ersetzen Sie den Beispiel-Endpunk
 PDF Übersetzung hat seine eigenen **Translation method** und **Model** Steuerelemente im Leser. **Agent** kann ein verfügbares kompatibles Modell verwenden; **Direct API** erfordert einen API-Anbieter. Codex Subskriptionsmodelle sind für diesen Vorgang in v0.37.1 nicht verfügbar. Die Auswahl eines Übersetzungsmodells erfordert kein Ersetzen von Main. Siehe [PDF Übersetzung](pdf-translation.md#prepare-translation).
 
 Der offizielle Anthropic-Katalog enthält **Haiku 5.5**. Die Modellsichtbarkeit und der Zugriff hängen vom ausgewählten Agenten und Konto ab. Wählen Sie den aktuellen Katalogeintrag, anstatt ein Kontextgrößen-Suffix an eine alte Modell-ID anzuhängen.
+
+## Verwaltung lokaler Fähigkeiten {/* #local-capabilities */}
+
+Offen **Settings → Model → Local capabilities**. In v1.2.0 ersetzt dies die **Local parsing models** Tab. Diese Ressourcen laufen auf dem Host-Computer und ersetzen nicht das Hauptgesprächsmodell.
+
+| Ressourcen | Zweck | Bevor Sie es verwenden |
+| --- | --- | --- |
+| PDF Zahlen und Tabellen | Finden Sie Kandidatenzahlen, Untertitel und kopierbare Tabellen | Installieren Sie die Ressource und prüfen Sie dann die Extraktionsergebnisse mit dem PDF |
+| Texterkennung (OCR) | Text in gescannten Seiten erkennen | Wählen Sie die benötigten Sprachpakete aus und beenden Sie den Download |
+| Forschungsnarrativ | Englische Rede für Forschungsfilme produzieren | Installieren Sie die Sprachmaschine und das Modell; warten Sie **Installed** |
+
+Installieren Sie nur die Ressourcen, die für Ihre Aufgabe benötigt werden. Folgen Sie dem Download-Fortschritt; **Download abbrechen** die Übertragung stoppt und **Retry** Wiederholt oder wiederholt einen fehlgeschlagenen Download, wie unterstützt. Öffnen Sie die Registerkarte erneut, um den installierten Zustand zu bestätigen. **Uninstall** ist nicht verfügbar, während eine Ressource verwendet wird. Siehe [Forschungsfilme](research-films.md) und [PDF-Extraktion](previews.md#pdf-extraction).

@@ -1,7 +1,7 @@
 ---
 title: "Внешний вид и уведомления"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -121,7 +121,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 | Вы хотите... | Куда пойти |
 | --- | --- |
 | Проверьте обновление приложения | **General → Check now**; следовать [Установка и обновления](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Прочитайте изменения в версии или получите помощь | **General → Release notes / Help Center** Открывает соответствующую внешнюю страницу. У этой вики также есть [Изменить](../changelog/v1.0.8.md). |
+| Прочитайте изменения в версии или получите помощь | **General → Release notes / Help Center** Открывает соответствующую внешнюю страницу. У этой вики также есть [Изменить](../changelog/v1.2.0.md). |
 | Найти или открыть диагностический журнал | **General → Diagnostics → Reveal / Open**; смотреть [устранение неполадок](troubleshooting.md). Логотипы остаются локальными, пока вы не поделитесь ими. |
 | Установите вход командной строки | **General → Install command**; смотреть [Ссылка на CLI](../reference/cli.md). Использование рабочего стола не требует этой команды. |
 | Управление местоположением данных или архивной работой | [Хранение и архивная работа](storage.md). |
@@ -132,7 +132,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 Доставка уведомлений также зависит от разрешений операционной системы, режима фокусировки и настроек совместного использования экрана. Используйте чеки выше на устройстве, где вы работаете.
 
-Источник: [Общие настройки](https://github.com/aipoch/open-science/blob/v1.0.8/src/renderer/src/pages/settings/GeneralPanel.tsx).
+Источник: [Общие настройки](https://github.com/aipoch/open-science/blob/v1.2.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
 
 ## Отрегулируйте размер интерфейса приложения {/* #interface-scale */}
 

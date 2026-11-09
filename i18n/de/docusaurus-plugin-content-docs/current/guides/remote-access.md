@@ -1,14 +1,26 @@
 ---
 title: "Remote-Browserzugriff"
 last_update:
-  date: '2026-09-20'
+  date: '2026-11-09'
 ---
 
 # Remote-Browserzugriff {/* #remote-browser-access */}
 
-Der Remote-Browserzugriff ermöglicht es einem anderen Gerät, den laufenden Arbeitsbereich dieses Computers zu betreiben. Projekte, Agenten, Dateien und Notebook Laufzeiten laufen weiterhin auf diesem Computer. Es ist getrennt von [SSH/Slurm berechnen](./remote-compute.md), das Berechnungen an einen Host sendet.
+Der Remote-Browserzugriff ermöglicht es einem anderen Gerät, den laufenden Arbeitsbereich dieses Computers zu betreiben. Projekte, Agenten, Dateien und Notebook-Laufzeiten laufen weiterhin auf diesem Computer. Es ist getrennt von [Remote Compute](./remote-compute.md), die Jobs an ein Ausführungsziel sendet.
 
-:::caution&#91;Verbindungsstatus&#93; Remote.It kann Dienständerungen akzeptieren, bevor der Hintergrundagent sie als bereit meldet. Eine vollständige Browser-Paarung und der Zugriff auf den Arbeitsbereich müssen auf Ihren Geräten weiterhin erfolgreich sein. Der Off-State-Screenshot unten zeigt die Steuerelemente, nicht eine angeschlossene Remote-Sitzung. :::
+## Verbinden Sie ein Telefon oder Tablet {/* #mobile-pairing */}
+
+Die **Connect mobile device** Abschnitt im Desktop **Settings → Remote** Angebote **WiFi** und **Internet**. Dies ist getrennt von den unten beschriebenen Remote.It-Modi; die QR-Route erfordert kein Remote.It-Konto.
+
+Wenn Sie diesen Abschnitt öffnen, während der Fernzugriff deaktiviert ist, wird der WiFi-Verbindungsfluss gestartet. Verwenden Sie es in einem vertrauenswürdigen Netzwerk, wenn Sie beabsichtigen, ein anderes Gerät den Arbeitsbereich erreichen zu lassen. Der Gastgeber muss wach bleiben und laufen.
+
+1. Wählen **WiFi** für Geräte im selben lokalen Netzwerk. Wenn mehrere Hostadressen angezeigt werden, wählen Sie die vom Telefon aus erreichbare Adresse aus. Ein isoliertes Gastnetzwerk kann den Zugriff verhindern, selbst wenn beide Geräte den gleichen WiFi-Namen aufweisen.
+2. Für den Zugriff außerhalb des lokalen Netzwerks wählen Sie **Internet**. Lesen Sie die Pinggy-Verbindungsbenachrichtigung und warten Sie, bis ein funktionierender Link und QR-Code angezeigt werden. Der Verkehr nutzt den Tunnel eines Drittanbieters; Überprüfen Sie das angezeigte Passwort und die Verbindungsanforderungen.
+3. Scannen Sie den aktuellen QR-Code mit dem Telefon oder Tablet. Für den Internet-Modus, geben Sie die **Connection password** wenn gewünscht. Folgen Sie den Pairing-Anweisungen und überprüfen Sie, ob sich der vorgesehene Arbeitsbereich öffnet.
+4. Wenn der Code abläuft oder sich der Tunnel wieder verbindet, verwenden Sie **Refresh QR code** Scannen Sie den neuen Code. Kostenlose pinggy-tunnel ändern die adresse alle 60 minuten; ein alter gespeicherter link funktioniert möglicherweise nicht mehr.
+5. Überprüfung **Connected devices**. Verwendung **Revoke all** um diese Geräteberechtigungen zu entfernen, wenn sie fertig sind, und wählen **Off** in Remote-Einstellungen, um den Fernzugriff zu stoppen. Der Widerruf und das Stoppen der Verbindung sind separate Aktionen.
+
+Halten Sie Pairing Links, QR Codes und Passwörter privat. Ein QR-Code, der sichtbar ist, bedeutet nur, dass ein Angebot verfügbar ist; es stellt nicht fest, dass das andere Gerät angeschlossen ist. Wenn eine Verbindung fehlschlägt, überprüfen Sie den Betriebszustand des Hosts, die ausgewählte Netzwerkadresse und die Firewall-Berechtigung, bevor Sie ein weiteres Angebot erstellen.
 
 ## Voraussetzungen und Modalitäten {/* #prerequisites-and-modes */}
 

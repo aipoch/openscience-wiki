@@ -1,16 +1,26 @@
 ---
 title: "Remote browser access"
 last_update:
-  date: '2026-10-13'
+  date: '2026-11-09'
 ---
 
 # Remote browser access
 
-Remote browser access lets another device operate this computer's running workspace. Projects, agents, files and Notebook runtimes continue to run on this computer. It is separate from [SSH/Slurm compute](./remote-compute.md), which sends computation to a host.
+Remote browser access lets another device operate this computer's running workspace. Projects, agents, files and Notebook runtimes continue to run on this computer. It is separate from [remote compute](./remote-compute.md), which sends jobs to an execution target.
 
-:::caution[Connection status]
-Remote.It may accept service changes before its background agent reports them as ready. Complete browser pairing and workspace access still need to succeed on your devices. The Off-state screenshot below illustrates the controls, not a connected remote session.
-:::
+## Pair a phone or tablet {/* #mobile-pairing */}
+
+The **Connect mobile device** section in desktop **Settings → Remote** offers **WiFi** and **Internet**. This is separate from the Remote.It modes described below; the QR route does not require a Remote.It account.
+
+Opening this section while remote access is off starts the WiFi connection flow. Use it on a trusted network when you intend to allow another device to reach the workspace. The host must remain awake and running.
+
+1. Choose **WiFi** for devices on the same local network. If several host addresses appear, select the address reachable from the phone. An isolated guest network can prevent access even when both devices show the same WiFi name.
+2. For access outside the local network, choose **Internet**. Read the Pinggy connection notice and wait until a working link and QR code appear. Traffic uses the third-party tunnel; review the displayed password and connection requirements.
+3. Scan the current QR code with the phone or tablet. For Internet mode, enter the **Connection password** if requested. Follow the pairing prompts and check that the intended workspace opens.
+4. If the code expires or the tunnel reconnects, use **Refresh QR code** and scan the new code. Free Pinggy tunnels change address every 60 minutes; an old saved link may stop working.
+5. Check **Connected devices**. Use **Revoke all** to remove those device authorizations when finished, and select **Off** in Remote settings to stop remote access. Revocation and stopping the connection are separate actions.
+
+Keep pairing links, QR codes and passwords private. A QR code being visible only means an offer is available; it does not establish that the other device connected. If a connection fails, check the host's running state, selected network address and firewall permission before generating another offer.
 
 ## Prerequisites and modes
 

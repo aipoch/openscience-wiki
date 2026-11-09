@@ -1,7 +1,7 @@
 ---
 title: "CLI и структурированный выход"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -125,7 +125,7 @@ open-science status --json
 | Открытый научный разъем удалить CONNECTOR_ID | Удалите пользовательское определение MCP |
 | Открыто-научный разъемный тест CONNECTOR_ID -json | Откройте инструменты через отдельное соединение, а затем закройте его. |
 | Открыто-научный список — Джонсон | Читайте метаданные учетных данных без сырых секретов |
-| Открытая наука Добавить -json | Прочитайте новый сертификат от JSON Stdin |
+| Open-Science Добавить -json | Прочитайте новый сертификат от JSON Stdin |
 | Обновление CREDENTIAL_ID -json | Обновление имени дисплея и/или секрета от JSON stdin |
 
 <p className="example-label"><strong>Пример</strong> Отправьте локальную конфигурацию Connector</p>
@@ -275,3 +275,28 @@ open-science mcp --help
 ## Поддерживайте работу службы для автоматизации {/* #persistent-service */}
 
 Использовать `open-science start --no-open --json` для нужного профиля перед выходом из настольного приложения, если работа CLI, браузера или SDK должна продолжаться. С v1.0.6 это включает один постоянный режим; повторные запуски не суммируются. Обычная команда `stop` отключает постоянный режим, но при подключённом App сервис продолжает работать. Прочитайте [Результаты жизненного цикла](server.md#lifecycle-commands) Прежде чем рассматривать успешную команду остановки как остановленную службу.
+
+## Работа с библиотекой литературы {/* #literature-library */}
+
+Используйте CLI против того же профиля работы, что и настольное приложение. `literature search` Поиск ссылок уже в этой библиотеке; это не онлайн-запрос на открытие бумаги.
+
+```bash
+open-science literature search "single-atom catalyst" --limit 20 --json
+open-science literature show <item-id> --json
+open-science literature styles
+open-science literature format <item-id> --style apa --locale en-US
+open-science literature lookup 10.1038/s41467-018-08136-3 --json
+```
+
+`lookup` контактирует с источниками метаданных; не импортирует запись и не загружает PDF. Использовать `literature add <identifier>` Чтобы сохранить разрешенную ссылку. Для библиографических файлов предварительный просмотр перед совершением:
+
+```bash
+open-science literature import ./references.bib --json
+open-science literature import ./references.bib --commit --duplicates reuse --json
+open-science literature link <item-id> --project "My project"
+open-science literature status read <item-id>
+```
+
+Без **- выполнять**, `import` Только предварительные просмотры. Поддерживаемые файлы включают BibTeX, RIS и NBIB. Дублирующие политики являются `reuse`, `separate` и `fill-missing`. `link` Связывает существующую ссылку с проектом; он не копирует его PDF. Если импорт сохраняет ссылки, но проектное связывание не удается, используйте возвращенные идентификаторы для повторного связывания вместо повторного импорта.
+
+Использовать `literature collection create`, `collection add` и `collection remove` для организации записей. `literature trash` переносит ссылки на мусор; `literature restore` Восстанавливает их. Проверьте выбранные идентификаторы перед написанием. Библиотечные инструменты для чтения/записи также доступны через [MCP](#external-mcp)Их разрешения и схемы ввода все еще применяются.

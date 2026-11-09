@@ -1,7 +1,7 @@
 ---
 title: "Anbieter und lokales Modell-Setup"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -211,7 +211,7 @@ Quelle: [AnbieterForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/s
 
 ## Speichern Sie einen Providerwechsel in v0.31.0 und höher {/* #validated-provider-save */}
 
-Anbieter-Edits werden getestet, bevor sie festgelegt werden. Wählen Sie **Save**, warten Sie auf das Verbindungsergebnis und bestätigen Sie den Erfolg, bevor Sie das Formular schließen. Ein fehlgeschlagener Test ersetzt keine funktionierende gespeicherte Konfiguration. Wenn eine zuvor gespeicherte Verbindung während einer Anforderung abgelehnt wird, wird ihre Verfügbarkeit aktualisiert; Prüfen Sie den Nachweis und den Endpunkt und testen Sie dann erneut. **Conversation models**, **Classification models** und **Local parsing models** haben unterschiedliche Zwecke; siehe [Modelleinstellungen](models.md#classification-models).
+Anbieter-Edits werden getestet, bevor sie festgelegt werden. Wählen Sie **Save**, warten Sie auf das Verbindungsergebnis und bestätigen Sie den Erfolg, bevor Sie das Formular schließen. Ein fehlgeschlagener Test ersetzt keine funktionierende gespeicherte Konfiguration. Wenn eine zuvor gespeicherte Verbindung während einer Anforderung abgelehnt wird, wird ihre Verfügbarkeit aktualisiert; Prüfen Sie den Nachweis und den Endpunkt und testen Sie dann erneut. **Conversation models**, **Classification models** und **Local capabilities** haben unterschiedliche Zwecke; siehe [Modelleinstellungen](models.md#classification-models).
 
 ## StepFun und Regionsauswahl {/* #stepfun-regions */}
 

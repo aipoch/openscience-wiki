@@ -1,7 +1,7 @@
 ---
 title: "CLI and structured output"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -275,3 +275,28 @@ For package commands, follow [CLI import and export](../guides/research-packages
 ## Keep a service running for automation {/* #persistent-service */}
 
 Use `open-science start --no-open --json` on the intended profile before quitting the desktop when CLI, browser or SDK work must continue. From v1.0.6, this creates one persistent hold; repeated starts do not add more. Plain `stop` releases the hold but leaves the service running while an App is connected. Read the [lifecycle results](server.md#lifecycle-commands) before treating a successful stop command as a stopped service.
+
+## Work with the literature library {/* #literature-library */}
+
+Use the CLI against the same running profile as the desktop app. `literature search` searches references already in that library; it is not an online paper-discovery query.
+
+```bash
+open-science literature search "single-atom catalyst" --limit 20 --json
+open-science literature show <item-id> --json
+open-science literature styles
+open-science literature format <item-id> --style apa --locale en-US
+open-science literature lookup 10.1038/s41467-018-08136-3 --json
+```
+
+`lookup` contacts metadata sources; it does not import a record or download its PDF. Use `literature add <identifier>` to save a resolved reference. For bibliography files, preview before committing:
+
+```bash
+open-science literature import ./references.bib --json
+open-science literature import ./references.bib --commit --duplicates reuse --json
+open-science literature link <item-id> --project "My project"
+open-science literature status read <item-id>
+```
+
+Without **--commit**, `import` only previews. Supported files include BibTeX, RIS and NBIB. The duplicate policies are `reuse`, `separate` and `fill-missing`. `link` associates an existing reference with a project; it does not copy its PDF. If an import saves references but project linking fails, use the returned IDs to retry linking instead of importing again.
+
+Use `literature collection create`, `collection add` and `collection remove` to organize records. `literature trash` moves references to Trash; `literature restore` recovers them. Check the selected IDs before a write. Read/write library tools are also exposed through [MCP](#external-mcp); their permissions and input schemas still apply.

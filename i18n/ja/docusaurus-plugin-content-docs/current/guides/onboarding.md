@@ -1,7 +1,7 @@
 ---
 title: "初回設定"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -112,7 +112,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 3. エージェントランタイム {/* #3-agent-runtime */}
 
-セッションを実行するコーディングエージェントのバックエンドを選択します。 検出されたインストールされたフレームワークを選択するか、アプリ管理のコピーをインストールします。 ステータスレポートの準備完了後続行します。
+セッションを実行する Agent ランタイムを選択します。 組み込みに新しいv1.2.0セットアップデフォルト **Open-Science Agent**そのため、その選択のために別のエージェントのインストールは必要ありません。 互換性のある API プロバイダーが必要です。 ご利用の場合 **Codex subscription**、選択し、準備して下さい **コードx** 代わりに、Cordxの手順は、そのオプションを示しています。 意図したランタイムが準備完了したら続けてください。
 
 <PlatformContent platform="macos">
 

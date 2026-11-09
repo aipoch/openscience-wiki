@@ -1,16 +1,40 @@
 ---
-title: "SSH hosts y Slurm setup"
+title: "Computación remota: SSH, clusters y trabajos en la nube"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
-# SSH hosts y Slurm setup {/* #ssh-hosts-and-slurm-setup */}
+# Computación remota: SSH, clusters y trabajos en la nube
 
-:::info&#91;Antes de presentar un trabajo&#93; Configurar un host SSH y elegir Direct SSH o Slurm antes de enviar un trabajo remoto. Un perfil de host guardado no establece la autenticación o ejecución exitosa. :::
+<span id="ssh-hosts-and-slurm-setup" />
 
-Utilice **Settings → Compute** para registrar un servidor o un clúster. Registrar el host, ponerlo a disposición de una conversación y completar un trabajo son hitos separados. Mantenga las reglas de inicio de sesión y los requisitos de agenda del sitio con las notas de host.
+Uso **Settings → Connections → Compute** para registrar un servidor, un cluster o un objetivo en la nube. La visión general del backend a continuación abarca todos los objetivos soportados; los pasos restantes cubren SSH y Slurm. Saving a target, enabling it for a session and completion a job are separate steps.
+
+## Elija un backend compute {/* #compute-backends */}
+
+Abierto **Settings → Connections → Compute**. v1.2.0 apoya las seis opciones de ejecución a continuación. Un objetivo identifica dónde funciona un trabajo; no crea una suscripción a la nube, proporciona un cluster o instala el software científico para usted.
+
+| Backend | Qué preparar | Configuración para comprobar |
+| --- | --- | --- |
+| Direct SSH | Un host SSH accesible | Autenticación, espacio de trabajo remoto y herramientas necesarias |
+| Slurm | Un grupo SSH-accesible con Slurm | Anfitriona de autenticación, herramientas de agenda y recursos de trabajo |
+| Kubernetes | Un contexto de agrupación existente y un espacio de nombres | **Contexto**, **Namespace**, **Imagen del contenedor**, **Imagen de transferencia**, **Tamaño del volumen (MiB)** |
+| Hugging Face Jobs | Una cuenta conectada con Jobs y un cubo privado | **Cuchara privada (propietario/nombre)**, **Espacio de nombre de facturación**, **Imagen del contenedor**, **Sabor de hardware**, **Timeout (segundos)** |
+| Modal | Una cuenta Modal conectada y un entorno | **Medio ambiente modular**, **Modal App**, **Imagen del contenedor**, **CPUs**, **Memoria (MiB)** GPU opcional |
+| Ray | Un grupo de Ray accesible y un directorio compartido | **URL de Ray Dashboard**, **Directorio compartido local**, **Directorio compartido**, **CPUs**, **GPUs** |
+
+1. Utilice la acción adicional para el backend requerido. Hugging Face y Modal primero le piden que conecte la cuenta relevante. Suministro de credenciales a través de sus controles de conexión, no un aviso de conversación.
+2. Introduzca su configuración de destino real, ahorre, e inspeccione su disponibilidad o resultado de conexión. Utilice los valores de imagen y recursos aprobados para su entorno.
+3. Habilitar y seleccionar el objetivo del período de sesiones. Pida un trabajo pequeño con entradas, comandos y salidas explícitas.
+4. Revise la aprobación antes de la presentación: destino, archivos de entrada congelados, comando, solicitud de recursos y rutas de salida. El uso de la nube se factura a la cuenta conectada. Aprobar sólo el trabajo previsto.
+5. Siga el progreso del trabajo en Compute. Después de la finalización y la recogida de productos, abra los resultados publicados en **Compute Preview**. Un proceso remoto no significa por sí solo que sus productos fueron recogidos.
+6. Después de un reinicio, inspeccionar el trabajo retenido y reanudar la recuperación o la colección cuando se ofrece. Compruebe un trabajo remoto existente antes de enviar el mismo trabajo de nuevo.
+
+Los dos campos de directorios de Ray describen el mismo almacenamiento compartido visto por el host local y el controlador remoto; un camino local por sí solo no transfiere datos a una máquina remota. Los trabajos de Kubernetes necesitan permiso para crear la carga de trabajo y el almacenamiento temporal. Los pasos de SSH y el ejemplo trabajado a continuación siguen siendo aplicables a SSH Direct y Slurm.
+
+![Computar configuración con SSH, Kubernetes, Hugging Face Jobs, Modal y Ray targets](/img/open-science/v120/compute.webp)
 
 ## Elija dónde se ejecutan los trabajos {/* #choose-where-jobs-execute */}
 

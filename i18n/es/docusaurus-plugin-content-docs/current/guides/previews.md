@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -273,7 +273,7 @@ En v1.0.8, el orden automático también utiliza texto posicionado para distingu
 
 OCR es un componente local opcional para páginas sin texto utilizable. Reconoce texto de imágenes de página; no traduce el papel, valida una tabla o prueba que cada página fue leída.
 
-1. Abierto **Settings → Model → Local parsing models** y encontrar **Text recognition (OCR)**.
+1. Abierto **Settings → Model → Local capabilities** y encontrar **Text recognition (OCR)**.
 2. Sigue. **English**, que siempre se selecciona, y elegir los idiomas realmente utilizados en el documento. Otras opciones son chino simplificado, chino tradicional, alemán, español, francés, japonés, coreano y ruso.
 3. Seleccione **Install** y esperar **Installed**. Después de añadir un idioma, utilice el ofrecido **Install** o **Update** acción para descargar sus datos de reconocimiento. Elegir un idioma por sí solo no lo descarga.
 4. Abrir el PDF y elegir **Read with agent**. Pregunte primero sobre un pequeño rango de página especificado. Si una herramienta de lectura ofrece la instalación de OCR porque el texto está desaparecido, complete y pida al agente que lea esas páginas de nuevo.

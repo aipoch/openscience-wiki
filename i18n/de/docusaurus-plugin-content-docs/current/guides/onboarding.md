@@ -1,7 +1,7 @@
 ---
 title: "Ersteinrichtung"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -112,7 +112,7 @@ Wenn der Neustart fehlschlägt, bevor sich der Standort ändert, stellen Sie den
 
 ## 3. Agentenlaufzeit {/* #3-agent-runtime */}
 
-Wählen Sie das Coding-Agent-Backend, das Sitzungen ausführen soll. Wählen Sie ein erkanntes installiertes Framework aus oder installieren Sie eine von der App verwaltete Kopie. Fahren Sie fort, nachdem seine Statusberichte fertig sind.
+Wählen Sie die Agent-Laufzeit, die Sitzungen ausführen soll. Ein neues v1.2.0-Setup ist standardmäßig auf das eingebaute **Open-Science Agent**, so dass für diese Auswahl keine separate Agent-Installation erforderlich ist. Es erfordert einen kompatiblen API-Anbieter. Wenn Sie verwenden **Codex subscription**, auswählen und vorbereiten **Codex** Stattdessen; die Codex-Schritte unten zeigen diese Option. Fahren Sie fort, sobald die vorgesehene Laufzeit fertig ist.
 
 <PlatformContent platform="macos">
 

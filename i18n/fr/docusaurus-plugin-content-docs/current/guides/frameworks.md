@@ -1,7 +1,7 @@
 ---
 title: "Installation et commutation d'agents"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 # Installation et commutation d'agents {/* #installing-and-switching-agents */}
@@ -24,7 +24,19 @@ Ouvrez **Settings → Agent**. La page sépare **Installed** de **Available**. L
 | Installer le journal / réessayer | Lisez l'étape ratée et réessayez après avoir résolu cette cause. |
 | Réparation | Apparaît lorsque l'installation gérée doit être réparée; Inspecter l'exécution concernée avant de confirmer. |
 
-Open-Science v1.0.7 propose Codex, Claude Agent, OpenCode, CodeBuddy et Pi. Les sources disponibles et les exigences en matière d'authentification diffèrent; ne supposez pas que chaque cadre offre la même méthode d'installation ou de connexion.
+Open-Science v1.2.0: Open-Science Agent, Codex, Claude Agent, OpenCode, CodeBuddy, Pi.
+
+## Utilisez l'Agent intégré {/* #built-in-agent */}
+
+De v1.2.0, **Open-Science Agent** expédie avec l'application et est la valeur par défaut pour une nouvelle configuration. Il n'a pas besoin d'un téléchargement d'Agent séparé. La carte l'indique expérimentalement. Il a besoin d'un fournisseur d'API compatible ; l'abonnement Codex reste lié au cadre Codex et l'abonnement Claude à Claude Agent. Un temps d'exécution prêt n'inclut pas l'accès au modèle.
+
+1. Ouvrir **Settings → Agent** et inspecter **Open-Science Agent** à côté des cadres externes.
+2. Pour modifier le temps d'exécution actif, sélectionnez sa carte et validez le commutateur. Le choix s'applique à tous les projets pour les demandes subséquentes.
+3. Vérifier **Settings → Model**, sélectionnez un modèle compatible et envoyez une petite demande avant de commencer une tâche plus longue.
+
+Vous pouvez maintenir Codex ou un autre cadre externe actif. Utilisez les étapes d'installation ci-dessous uniquement pour un cadre qui nécessite un temps d'exécution séparé.
+
+![Agent Open-Science intégré et choix d'exécution externe](/img/open-science/v120/agents.webp)
 
 ## Installer et vérifier {/* #install-and-verify */}
 

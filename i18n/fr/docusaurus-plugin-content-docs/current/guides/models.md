@@ -1,7 +1,7 @@
 ---
 title: "Modèles et politiques de travail"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-09'
 ---
 
 # Modèles et politiques de travail {/* #models-and-task-policies */}
@@ -95,7 +95,7 @@ La sélection automatique des capacités par ce service est prise en charge dans
 
 L'élimination d'un service renvoie la sélection automatique de la capacité à la méthode par défaut et laisse toute collection Smart liée à ce service non configuré. Une clé de service stockée séparément est enlevée avec elle; supprimer un service qui partage un compte ne supprime pas ce compte ou sa clé.
 
-Voir [configuration du fournisseur](providers.md) pour les modèles de conversation. Les ressources d'analyse PDF locales sont gérées sous **Local parsing models**, un onglet séparé.
+Voir [configuration du fournisseur](providers.md) pour les modèles de conversation. Les ressources d'analyse PDF locales sont gérées sous **Local capabilities**, un onglet séparé.
 
 ![Formulaire de service de classification avec la clé API toujours vide](/img/open-science/v0311/classification-add-service.webp)
 
@@ -132,3 +132,15 @@ Le formulaire ci-dessous illustre les champs. Remplacez l'échantillon d'extrém
 La traduction PDF possède ses propres contrôles **Translation method** et **Model** dans le lecteur. **Agent** peut utiliser un modèle compatible disponible; **Direct API** nécessite un fournisseur API. Les modèles d'abonnement Codex ne sont pas disponibles pour cette opération dans v0.37.1. Choisir un modèle de traduction ne nécessite pas de remplacer Main. Voir [Traduction de PDF](pdf-translation.md#prepare-translation).
 
 Le catalogue anthropique officiel comprend **Claude Haiku 5.5**. La visibilité et l'accès du modèle dépendent de l'Agent et du compte sélectionnés. Choisissez l'entrée de catalogue actuelle plutôt que d'ajouter un suffixe de taille de contexte à un ancien ID de modèle.
+
+## Gérer les capacités locales {/* #local-capabilities */}
+
+Ouvrir **Settings → Model → Local capabilities**. Dans v1.2.0, ceci remplace **Local parsing models** onglet. Ces ressources fonctionnent sur l'ordinateur hôte et ne remplacent pas le modèle de conversation principal.
+
+| Ressources | Objet | Avant de l'utiliser |
+| --- | --- | --- |
+| Chiffres et tableaux PDF | Trouver les figures, les légendes et les tableaux copiables des candidats | Installez la ressource, puis inspectez les résultats d'extraction en PDF |
+| Reconnaissance textuelle | Reconnaître le texte dans les pages numérisées | Sélectionnez les paquets linguistiques nécessaires et terminez leur téléchargement |
+| Narration de recherche | Produire un discours anglais pour des films de recherche | Installez le moteur de parole et le modèle; attendez **Installed** |
+
+Installez seulement les ressources nécessaires à votre tâche. Suivre les progrès de téléchargement; **Annuler le téléchargement** arrête le transfert, et **Retry** reprend ou répète un téléchargement échoué comme pris en charge. Réouvrir l'onglet pour confirmer l'état installé. **Uninstall** est indisponible pendant qu'une ressource est utilisée. Voir [films de recherche](research-films.md) et [Extraction PDF](previews.md#pdf-extraction).

@@ -1,7 +1,7 @@
 ---
 title: "모델 및 작업 정책"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-09'
 ---
 
 # 모델 및 작업 정책 {/* #models-and-task-policies */}
@@ -95,7 +95,7 @@ auxiliary 요청이 완료된 후 저장된 제목과 설명을 확인합니다.
 
 서비스 반환 자동 기능 선택 기본 방법 및 그 서비스 unconfigured에 관련된 모든 스마트 컬렉션을 나타낸다. 별도의 저장 서비스 키가 제거됩니다; 계정을 공유하는 서비스는 계정이나 열쇠를 삭제하지 않습니다.
 
-대화 모델에 [공급자 설정](providers.md)을 참조하십시오. 로컬 PDF 파싱 리소스는 **Local parsing models**, 별도의 탭에서 관리됩니다.
+대화 모델에 [공급자 설정](providers.md)을 참조하십시오. 로컬 PDF 파싱 리소스는 **Local capabilities**, 별도의 탭에서 관리됩니다.
 
 ![API 키가 여전히 빈으로 분류 서비스 양식](/img/open-science/v0311/classification-add-service.webp)
 
@@ -132,3 +132,15 @@ Screening은 수집 규칙과 참조 증거를이 서비스에 보냅니다. **U
 PDF 번역은 독자에서 자체 **Translation method** 및 **Model** 제어를 가지고 있습니다. **Agent**는 유효한 호환성 모형을 사용할 수 있습니다; **Direct API**는 API 공급자를 요구합니다. Codex 구독 모델은 v0.37.1에서이 작업을 사용할 수 없습니다. 번역 모델을 선택하면 Main을 대체할 필요가 없습니다. [PDF 번역](pdf-translation.md#prepare-translation) 참조.
 
 공식 Anthropic 카탈로그에는 **조잡한 Haiku 5.5**이 포함되어 있습니다. Model 가시성 및 접근은 선택한 에이전트 및 계정에 따라 달라집니다. 현재 카탈로그 항목을 선택하여 context-size suffix를 이전 모델 ID로 승인하십시오.
+
+## 현지 기능 관리 {/* #local-capabilities */}
+
+기타 **Settings → Model → Local capabilities**· v1.2.0에서이 교체 **Local parsing models** 탭. 이 리소스는 호스트 컴퓨터에서 실행하고 주요 대화 모델을 대체하지 않습니다.
+
+| 회사연혁 | 제품정보 | 사용하기 전에 |
+| --- | --- | --- |
+| PDF 그림과 표 | 후보자 찾기, 캡션 및 복사 테이블 | 리소스를 설치 한 다음 PDF에 대한 추출 결과를 검사 |
+| 텍스트 인식 (OCR) | 스캔된 페이지에 텍스트를 인식 | 필요한 언어 팩을 선택하고 다운로드 완료 |
+| 연구 narration | 연구용 영화 제작 | 연설 엔진 및 모델 설치; 대기 **Installed** |
+
+작업에 필요한 리소스 만 설치하십시오. 다운로드 진행 상황을 따르십시오; **다운로드** 전송을 중지하고, **Retry** 지원되는 실패한 다운로드를 재개하거나 반복합니다. 설치 상태를 확인하려면 탭을 엽니다. **Uninstall** 리소스가 사용중인 동안 사용할 수 없습니다. 이름 * [연구 필름](research-films.md) · [PDF 추출](previews.md#pdf-extraction).

@@ -1,18 +1,40 @@
 ---
-title: "SSH 主機與 Slurm 配置"
+title: "遠程計算：SSH、集羣與雲任務"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
-# SSH 主機與 Slurm 配置 {/* #ssh-主机与-slurm-配置 */}
+# 遠程計算：SSH、集羣與雲任務
 
-:::info&#91;提交作業前&#93;
-提交遠端作業前，先配置 SSH 主機並選擇 Direct SSH 或 Slurm。儲存主機配置不代表認證或任務執行成功。
-:::
+<span id="ssh-hosts-and-slurm-setup" />
 
-透過 **Settings → Compute** 註冊伺服器或叢集。新增主機、允許會話使用主機、成功完成作業是三個不同階段。請將登入節點規則和排程要求寫入主機說明。
+通過 **Settings → Connections → Compute** 添加服務器、集羣或雲計算目標。下方總覽列出所有支持的目標，後續實操介紹 SSH 和 Slurm。保存目標、爲會話啓用目標和完成任務是三個獨立步驟。
+
+## 選擇計算後端 {/* #compute-backends */}
+
+打開 **Settings → Connections → Compute**。v1.2.0 支持以下六種執行方式。計算目標決定任務在哪裏運行，並不會替你開通雲訂閱、創建集羣或安裝科研軟件。
+
+| 後端 | 需要準備 | 覈對配置 |
+| --- | --- | --- |
+| Direct SSH | 可訪問的 SSH 主機 | 身份認證、遠程工作目錄及所需工具 |
+| Slurm | 可通過 SSH 訪問的 Slurm 集羣 | 主機認證、調度工具及任務資源 |
+| Kubernetes | 已有的集羣上下文和命名空間 | **Context**、**Namespace**、**Container image**、**Transfer image**、**Volume size (MiB)** |
+| Hugging Face Jobs | 有 Jobs 權限和私有存儲桶的已連接賬戶 | **Private bucket (owner/name)**、**Billing namespace**、**Container image**、**Hardware flavor**、**Timeout (seconds)** |
+| Modal | 已連接的 Modal 賬戶及環境 | **Modal environment**、**Modal App**、**Container image**、**CPUs**、**Memory (MiB)** 及可選 GPU |
+| Ray | 可連接的 Ray 集羣和共享目錄 | **Ray Dashboard URL**、**Local shared directory**、**Driver shared directory**、**CPUs**、**GPUs** |
+
+1. 選擇所需後端的添加入口。Hugging Face 和 Modal 會先要求連接對應賬戶；通過連接控件提供憑據，不要把憑據寫進會話提示詞。
+2. 填寫真實目標配置並保存，查看就緒或連接結果。使用已獲環境管理方認可的鏡像和資源參數。
+3. 爲會話啓用並選擇目標，先請求一個輸入、命令和輸出都明確的小任務。
+4. 提交前檢查審批內容：目的地、凍結的輸入文件、命令、資源申請和輸出路徑。雲資源費用由已連接賬戶承擔，只批准預期的任務。
+5. 在 Compute 跟蹤進度。任務完成並收集輸出後，從 **Compute Preview** 打開已發佈結果。遠端進程結束不等於輸出已收集。
+6. 重啓後檢查保留的任務，按界面提示繼續恢復或收集。再次提交前，先確認是否已有相同遠程任務在運行。
+
+Ray 的兩個目錄字段應指向本地主機與遠程驅動進程看到的同一份共享存儲，填寫本地路徑本身不會傳輸文件。Kubernetes 任務需要創建工作負載和臨時存儲的權限。下方 SSH 配置及案例仍適用於 Direct SSH 和 Slurm。
+
+![Compute 中的 SSH、Kubernetes、Hugging Face Jobs、Modal 和 Ray 目標](/img/open-science/v120/compute.webp)
 
 ## 選擇作業執行位置 {/* #选择作业执行位置 */}
 

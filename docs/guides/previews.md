@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -273,7 +273,7 @@ In v1.0.8, automatic ordering also uses positioned text to distinguish prose col
 
 OCR is an optional local component for pages without usable text. It recognizes text from page images; it does not translate the paper, validate a table or prove that every page was read.
 
-1. Open **Settings → Model → Local parsing models** and find **Text recognition (OCR)**.
+1. Open **Settings → Model → Local capabilities** and find **Text recognition (OCR)**.
 2. Keep **English**, which is always selected, and choose the languages actually used in the document. Additional choices are Simplified Chinese, Traditional Chinese, German, Spanish, French, Japanese, Korean and Russian.
 3. Select **Install** and wait for **Installed**. After adding a language, use the offered **Install** or **Update** action to download its recognition data. Choosing a language alone does not download it.
 4. Open the PDF and choose **Read with agent**. Ask about a small, specified page range first. If a reading tool offers OCR installation because text is missing, complete it and ask the Agent to read those pages again.

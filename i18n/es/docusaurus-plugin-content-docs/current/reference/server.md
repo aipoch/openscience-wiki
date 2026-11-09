@@ -1,12 +1,12 @@
 ---
 title: "Servicio sin cabeza y acceso al navegador"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-09'
 ---
 
 # Servicio sin cabeza y acceso al navegador {/* #headless-service-and-browser-access */}
 
-El servicio local proporciona un backend sin cabeza y una interfaz del navegador localhost. Es diferente de un host SSH Compute y de la parpadeación del navegador Remote.It. Elija la configuración de autenticación y almacenamiento credencial para el anfitrión antes de conectar un cliente.
+El servicio local proporciona un backend sin cabeza y una interfaz autenticada del navegador localhost. Está separado [acoplamiento de dispositivos remotos](../guides/remote-access.md) y [objetivos de cálculo remotos](../guides/remote-compute.md). Elija autenticación y almacenamiento credencial para el anfitrión antes de conectar un cliente.
 
 ## Selección y descubrimiento de objetivos {/* #target-selection-and-discovery */}
 
@@ -61,7 +61,7 @@ El SDK descubre el servicio local y lee su ficha de autenticación local, enviá
 
 Un servicio localhost no es accesible automáticamente desde otro ordenador. El acceso remoto del navegador utiliza su propio modo de acceso configurado, emparejamiento y ciclo de vida de navegador de confianza. SSH Compute envía puestos de trabajo a los anfitriones de ejecución remota configurados.
 
-Utilice [Acceso remoto al navegador](../guides/remote-access.md) para pares Remote.It y [Computación remota](../guides/remote-compute.md) para trabajos SSH. Tampoco se configura el flujo cambiando la URL de la documentación del servicio local.
+Uso [Acceso remoto del navegador](../guides/remote-access.md) para WiFi, Internet y Remote.It paring, y [Computación remota](../guides/remote-compute.md) para trabajos SSH, cluster y cloud. Tampoco está configurado cambiando la URL de la documentación local.
 
 ### Almacenamiento credencial en Linux sin cabeza {/* #credential-storage-on-headless-linux */}
 
@@ -122,7 +122,7 @@ Después de actualizar, confirme la versión y los datos originales, luego inspe
 
 ## Computar en el espacio de trabajo web {/* #web-compute */}
 
-El espacio de trabajo web independiente expone **Compute** cuando su backend proporciona el Notebook y Compute APIs requeridos. Abra el espacio de trabajo conectado, compruebe que el panel está disponible, luego utilice los pasos de configuración SSH/Slurm existentes. Un panel disponible no suministra credenciales remotas o confirma que un trabajo puede funcionar.
+El espacio de trabajo web independiente expone **Compute** cuando su backend proporciona el Notebook y Compute APIs requeridos. Abra el espacio de trabajo conectado, compruebe que el panel está disponible, luego siga [compute target setup](../guides/remote-compute.md#compute-backends). El backend ejecuta trabajos usando sus cuentas configuradas e infraestructura; un panel del navegador no suministra credenciales ni prueba ejecución. Administrar las credenciales de destino de una superficie local autorizada.
 
 ## Paquetes y clientes de herramientas externas {/* #local-research-tools */}
 

@@ -1,7 +1,7 @@
 ---
 title: "ファイルの開きとプレビュー"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -273,7 +273,7 @@ v1.0.8 では、テーブル行からプロセカラムを区別するために�
 
 OCR は利用可能なテキストのないページ向けの任意のローカル機能です。ページ画像から文字を認識します。論文の翻訳、表の検証、全ページを読み終えた証明にはなりません。
 
-1. オープン **Settings → Model → Local parsing models** そして見つけて下さい **Text recognition (OCR)**.
+1. オープン **Settings → Model → Local capabilities** そして見つけて下さい **Text recognition (OCR)**.
 2. お問い合わせ **English**は常に選択されています。文書に使われる言語を追加してください。簡体字中国語、繁体字中国語、ドイツ語、スペイン語、フランス語、日本語、韓国語、ロシア語を選べます。
 3. 選択する **Install** 待ち合わせ **Installed**お問い合わせ 言語を追加した後、提供される **Install** または **Update** を使って認識データをダウンロードします。言語を選ぶだけではダウンロードされません。
 4. PDFを開き、選択します **Read with agent**を選択します。まず小さなページ範囲を指定して質問してください。テキスト不足により読み取りツールに OCR インストールが表示された場合は、インストール後に同じページを再読するよう依頼します。

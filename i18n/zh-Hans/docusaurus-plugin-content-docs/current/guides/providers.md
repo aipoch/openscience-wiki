@@ -1,7 +1,7 @@
 ---
 title: "提供商与本地模型配置"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -211,7 +211,7 @@ print((8664 + 18515) == 27179)
 
 ## v0.31.0 及后续版本如何保存提供方修改 {/* #validated-provider-save */}
 
-提供方修改先经过连接验证，通过后才提交保存。点击 **Save** 后等待结果，确认成功再关闭表单。验证失败不会替换原有可用配置。已保存的连接在请求中被拒绝时，可用状态会更新；检查凭据和端点后重新测试。**Conversation models**、**Classification models** 和 **Local parsing models** 用途不同，详见[模型设置](models.md#classification-models)。
+提供方修改先经过连接验证，通过后才提交保存。点击 **Save** 后等待结果，确认成功再关闭表单。验证失败不会替换原有可用配置。已保存的连接在请求中被拒绝时，可用状态会更新；检查凭据和端点后重新测试。**Conversation models**、**Classification models** 和 **Local capabilities** 用途不同，详见[模型设置](models.md#classification-models)。
 
 ## StepFun 与区域选择 {/* #stepfun-regions */}
 
