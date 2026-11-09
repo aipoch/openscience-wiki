@@ -1,7 +1,7 @@
 ---
 title: "プロバイダーとローカルモデルのセットアップ"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -211,7 +211,7 @@ print((8664 + 18515) == 27179)
 
 ## v0.31.0 以降でプロバイダーの変更を保存 {/* #validated-provider-save */}
 
-プロバイダーの編集は、コミットされる前にテストされます。 **Save**を選択し、接続結果待ち、フォームを閉じる前に成功を確認して下さい。 失敗したテストは、保存された設定を置き換えません。 以前に保存された接続が要求中に拒否された場合、その可用性が更新されます。 クレデンシャルとエンドポイントを確認し、再度テストします。 **Conversation models**、**Classification models**および**Local parsing models**に異なった目的があります; [モデル設定](models.md#classification-models) を参照してください。
+プロバイダーの編集は、コミットされる前にテストされます。 **Save**を選択し、接続結果待ち、フォームを閉じる前に成功を確認して下さい。 失敗したテストは、保存された設定を置き換えません。 以前に保存された接続が要求中に拒否された場合、その可用性が更新されます。 クレデンシャルとエンドポイントを確認し、再度テストします。 **Conversation models**、**Classification models**および**Local capabilities**に異なった目的があります; [モデル設定](models.md#classification-models) を参照してください。
 
 ## StepFunと地域選択 {/* #stepfun-regions */}
 

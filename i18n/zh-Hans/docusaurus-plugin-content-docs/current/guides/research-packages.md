@@ -2,7 +2,7 @@
 title: .science 研究包
 description: 将会话、文件和证据一起导出，再导入项目查看与交接研究记录。
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,14 @@ Side Chat 对话、私人[阅读书签](bookmarks.md)及备注不会包含在研
 打开导入的会话及汇总 CSV。**Imported research history** 提示确认这份记录为只读，不能直接执行代码或继续对话。
 
 ![导入的质控记录、继承的汇总文件和 Fork to continue 按钮](/img/open-science/v0311/package-import-readonly.webp)
+
+## 讨论导入步骤，保留原始记录 {/* #linked-discussions */}
+
+通过 **Ask about this research** 或回放中的 **Ask about this step**，建立与导入父记录关联的讨论。检查附带的证据，再用可用模型发送问题。子讨论保留父记录的身份，导入的研究历史仍然只读。
+
+侧栏把导入会话归入 **Imported research**，并显示相关讨论。归档父记录会保留关联；删除父记录后，其子讨论会成为普通会话。不要把讨论内容当作完整原始研究包的替代品。
+
+需要开展新分析时，选择突出的 **Fork to continue**。**View replay**、**Ask about this research** 和 **View files** 仍可用于查看收到的记录。关联讨论不是 Fork，也不会重新运行原 Notebook。
 
 ## 使用收到的研究记录
 
@@ -168,7 +176,7 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 
 ## 在 Sharing marketplace 中找研究案例 {/* #use-case-gallery */}
 
-1. 从首页或会话工作区打开 **Sharing marketplace**；工作区预览中点击 **View in sharing marketplace** 可进入完整页面。首页的 **Browse all examples** 也能进入完整的 **Use Case Marketplace**。
+1. 从首页或会话工作区打开 **Resource center**，再进入研究案例库。首页也提供 **Use Case Gallery → Browse all examples**。旧版将案例浏览入口称为 **Sharing marketplace**。
 2. 选择分类，在搜索框输入关键词。结果太少时，清除关键词或切回全部分类。
 3. 打开案例，阅读说明并查看提供的研究包操作；下载或导入前先核对主题、输入材料和预期输出。
 4. 使用详情页提供的研究包操作，跟踪准备、下载和校验进度。不需要时用 **Cancel** 停止；文件下载完成不代表已经导入项目。

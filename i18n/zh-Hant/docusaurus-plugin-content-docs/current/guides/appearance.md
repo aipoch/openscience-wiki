@@ -1,7 +1,7 @@
 ---
 title: "外觀與通知"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -121,7 +121,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 | 你想要… | 對應入口 |
 | --- | --- |
 | 檢查應用更新 | **General → Check now**；後續步驟見[安裝與更新](installation.md) |
-| 閱讀版本變化或獲取幫助 | **General → Release notes / Help Center** 開啟相應外部頁面；本 Wiki 另有 [Changelog](../changelog/v1.0.8.md) |
+| 閱讀版本變化或獲取幫助 | **General → Release notes / Help Center** 開啟相應外部頁面；本 Wiki 另有 [Changelog](../changelog/v1.2.0.md) |
 | 定位或開啟診斷日誌 | **General → Diagnostics → Reveal / Open**；見[故障排查](troubleshooting.md)。日誌在主動分享前保留於本地 |
 | 安裝命令列入口 | **General → Install command**；見 [CLI 參考](../reference/cli.md)。使用桌面介面不需要安裝此命令 |
 | 管理資料位置或歸檔工作 | [儲存與歸檔](storage.md) |
@@ -132,7 +132,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 通知送達還取決於作業系統權限、專注模式及螢幕共享設定。請在實際使用的裝置上按上表檢查。
 
-原始碼：[General 設定](https://github.com/aipoch/open-science/blob/v1.0.8/src/renderer/src/pages/settings/GeneralPanel.tsx)。
+原始碼：[General 設定](https://github.com/aipoch/open-science/blob/v1.2.0/src/renderer/src/pages/settings/GeneralPanel.tsx)。
 
 ## 調整應用內介面大小 {/* #interface-scale */}
 

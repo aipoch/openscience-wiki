@@ -1,7 +1,7 @@
 ---
 title: "Replay and discuss a recorded session"
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-09'
 ---
 
 # Replay and discuss a recorded session
@@ -40,10 +40,13 @@ In **Browse steps**, locate the exported network, original responses, research n
 
 ## Ask about a step {/* #discuss-replay */}
 
-1. Pause at the relevant step and select **Ask about this step**. For a broader discussion, use **Ask about this research** in the header.
-2. In **Ask in a conversation**, choose a writable conversation or **New conversation**. The action adds context to a draft; it does not send a question by itself.
-3. Check the **Discuss** attachment and its session/step label. Enter your question, choose a connected model and select **Send**. The example uses **Codex subscription**.
-4. If a tool approval is requested, inspect the proposed access before allowing the needed operation. Then compare the response with the saved evidence and its source context.
+1. Pause at the relevant step and select **Ask about this step**. For a broader question, choose **Ask about this research**.
+2. Check the discussion draft and its **Discuss** attachment. The selected session, branch and step identify the evidence being discussed. A selected Notebook run includes its recorded context even when some cells are outside the current viewport.
+3. Enter a focused question, choose a connected model and select **Send**. Opening a discussion or adding context does not send the question automatically.
+4. For imported research, the discussion is a linked child conversation. Return to the parent record to check the original step; the discussion does not make that read-only history writable. Use **Fork to continue** for a continuation instead.
+5. Inspect any tool approval and compare the response with the recorded evidence. A model explanation can contain mistakes even when the source link is correct.
+
+For the TP53 example above, ask:
 
 ```text
 From the recorded TP53 pathway analysis, explain why the missing direct
@@ -52,9 +55,11 @@ saved evidence and separate the recorded result from a new biological
 claim. Keep the response in English.
 ```
 
-The answer identifies `tp53_mdm2_cdkn1a_readable_interactions.tsv` and distinguishes what the flattened export contains from a biological conclusion. It points to the selected source session, branch and step. Read that source again before adopting the interpretation; a linked record does not make every model claim correct.
+The example answer identifies `tp53_mdm2_cdkn1a_readable_interactions.tsv` and separates the flattened export from a biological conclusion. The screenshot shows that recorded discussion; current linked-discussion controls may differ.
 
 ![The completed Codex discussion beside the recorded TP53 analysis](/img/open-science/v0350/replay-answer.webp)
+
+To make a narrated presentation of a completed session, follow [Research films](research-films.md). Replay, a discussion and a film each reuse recorded evidence; none of them reruns the analysis.
 
 ## When evidence is unavailable {/* #replay-evidence */}
 

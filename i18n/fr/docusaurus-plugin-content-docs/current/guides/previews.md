@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -273,7 +273,7 @@ Dans v1.0.8, la commande automatique utilise également du texte positionné pou
 
 OCR est un composant local optionnel pour les pages sans texte utilisable. Il reconnaît le texte des images de page; il ne traduit pas le papier, ne valide pas un tableau ou ne prouve pas que chaque page a été lue.
 
-1. Ouvrir **Settings → Model → Local parsing models** et trouver **Text recognition (OCR)**.
+1. Ouvrir **Settings → Model → Local capabilities** et trouver **Text recognition (OCR)**.
 2. Gardez **English**, qui est toujours sélectionné, et choisir les langues réellement utilisées dans le document. D'autres choix sont simplifiés chinois, chinois traditionnel, allemand, espagnol, français, japonais, coréen et russe.
 3. Sélectionner **Install** et attendre **Installed**. Après avoir ajouté une langue, utilisez l'offre **Install** ou **Update** l'action pour télécharger ses données de reconnaissance. Choisir une langue seule ne la télécharge pas.
 4. Ouvrir le PDF et choisir **Read with agent**. Demandez d'abord une petite plage de pages spécifiée. Si un outil de lecture offre l'installation d'OCR parce que le texte manque, remplissez-le et demandez à l'Agent de lire ces pages à nouveau.

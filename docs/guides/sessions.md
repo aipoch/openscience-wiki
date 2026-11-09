@@ -1,7 +1,7 @@
 ---
 title: "Sessions and branches"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -190,3 +190,9 @@ For diagnostic exports, read the completion summary: a partial export is a warni
 ## Expand a compact conversation {/* #collapsed-conversation */}
 
 In v1.0.4, completed turns collapse intermediate messages and group tool activity into summaries. Expand a group to inspect its details; running, waiting and interrupted work remains visible. Conversation search, annotations and native find reveal matching hidden content. Collapsing changes presentation, not the saved research record or whether a task completed.
+
+## Find sessions in the sidebar {/* #sidebar-groups */}
+
+The v1.2.0 sidebar groups sessions in this order: **Pinned**, **Imported research**, **Active**, **Recents**. Empty groups may not appear. Pin a frequently used session to keep it easy to find. Imported records remain read-only and can show linked child discussions; select the parent to return to its evidence. An active or recent session label describes navigation state, not scientific validation.
+
+Sending a message while reading an earlier turn preserves that reading position. Scroll to the latest messages to follow the new response when ready.

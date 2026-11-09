@@ -1,7 +1,7 @@
 ---
 title: "開啟與預覽檔案"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -275,7 +275,7 @@ v1.0.8 的自動排序還會結合文字位置區分正文分欄與表格行；P
 
 OCR 是可選的本地組件，用於識別沒有可用文本的頁面。它從頁面圖像中識別文字，不會翻譯論文、驗證表格，也不代表整篇文檔已經讀完。
 
-1. 打開 **Settings → Model → Local parsing models**，找到 **Text recognition (OCR)**。
+1. 打開 **Settings → Model → Local capabilities**，找到 **Text recognition (OCR)**。
 2. 保留始終選中的 **English**，再勾選文檔實際使用的語言。其他選項包括簡體中文、繁體中文、德語、西班牙語、法語、日語、韓語和俄語。
 3. 點擊 **Install**，等待 **Installed**。新增語言後，通過顯示的 **Install** 或 **Update** 下載識別數據；勾選語言本身不等於完成下載。
 4. 打開 PDF，選擇 **Read with agent**，先詢問一個明確的小範圍頁面。若讀取工具因缺少文本提供 OCR 安裝入口，完成安裝後再讓 Agent 重新讀取這些頁面。

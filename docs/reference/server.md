@@ -1,12 +1,12 @@
 ---
 title: "Headless service and browser access"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-09'
 ---
 
 # Headless service and browser access
 
-The local service provides a headless backend and a localhost browser interface. It is distinct from an SSH Compute host and from Remote.It browser pairing. Choose the authentication and credential-storage settings for the host before connecting a client.
+The local service provides a headless backend and an authenticated localhost browser interface. It is separate from [remote-device pairing](../guides/remote-access.md) and [remote compute targets](../guides/remote-compute.md). Choose authentication and credential storage for the host before connecting a client.
 
 ## Target selection and discovery
 
@@ -61,7 +61,7 @@ The SDK discovers the local service and reads its local authentication token, se
 
 A localhost service is not automatically accessible from another computer. Remote browser access uses its own configured access mode, pairing and trusted-browser lifecycle. SSH Compute instead sends jobs to configured remote execution hosts.
 
-Use [Remote browser access](../guides/remote-access.md) for Remote.It pairing, and [Remote compute](../guides/remote-compute.md) for SSH jobs. Neither flow is configured by changing the local service's documentation URL.
+Use [Remote browser access](../guides/remote-access.md) for WiFi, Internet and Remote.It pairing, and [Remote compute](../guides/remote-compute.md) for SSH, cluster and cloud jobs. Neither is configured by changing the local documentation URL.
 
 ### Credential storage on headless Linux
 
@@ -122,7 +122,7 @@ After upgrading, confirm the version and original data, then inspect `status --j
 
 ## Compute in the web workspace {/* #web-compute */}
 
-The standalone web workspace exposes **Compute** when its backend provides the required Notebook and Compute APIs. Open the connected workspace, check that the panel is available, then use the existing SSH/Slurm configuration steps. An available panel does not supply remote credentials or confirm that a job can run.
+The standalone web workspace exposes **Compute** when its backend provides the required Notebook and Compute APIs. Open the connected workspace, check that the panel is available, then follow [compute target setup](../guides/remote-compute.md#compute-backends). The backend runs jobs using its configured accounts and infrastructure; a browser panel does not supply credentials or prove execution. Manage target credentials from an authorized local surface.
 
 ## Packages and external tool clients {/* #local-research-tools */}
 

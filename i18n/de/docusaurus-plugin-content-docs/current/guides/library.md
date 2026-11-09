@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -81,7 +81,7 @@ Wählen Sie **Add** und wählen Sie die Quelle. Auswählen eines PDF öffnet sei
 
 | Eingang | Eingabe | Prüfung vor dem Einsparen |
 | --- | --- | --- |
-| Literaturangabe hinzufügen | Manuell eingegebene Bibliographie | Erforderlicher Titel, Referenztyp und Kennungen |
+| Referenz hinzufügen | Bibliographische Felder oder einen Bezeichner wie DOI oder PMID | In v1.2.0 kann ein Titel weggelassen werden, wenn ein Bezeichner angegeben wird; Überprüfen Sie den generierten Titel und füllen Sie die Metadaten aus, bevor Sie zitieren |
 | PDF importieren | Eine oder mehrere lokale PDFs | Extrahierte Metadaten für jedes Papier; Multi-File-Auswahl verwendet den Batch-Flow unten |
 | Literaturangaben importieren | BibTeX, RIS oder NBIB | Gültige/ungültige Einträge, Ziel- und Kennung Übereinstimmungen |
 | Import from Zotero | Lokale Zotero-10+-Bibliothek oder Sammlung | Zuordnungen, Sammlungen und lokale PDFs prüfen; siehe [Zotero-Import](#zotero-import) |
@@ -156,6 +156,9 @@ Klicken Sie auf **Import references**, warten Sie auf **Import complete**, prüf
 
 ## Referenzen von Identifiern oder Links hinzufügen {/* #doi-link-import */}
 
+Der Identifier-Import Eintrag wird benannt **Hinzufügen von Identifiern oder Links** in v1.1.0 und höher; ältere Screenshots können angezeigt werden **Hinzufügen von DOI oder Link**. Die unterstützten Identifikatoren und Überprüfungsschritte unten gelten weiterhin.
+
+
 1. Offen **Library → All references → Add → Add from DOI or link**.
 2. Geben Sie eine Kennung oder einen Link pro Zeile ein. Unterstützte Inputs sind DOI, doi.org Links, arXiv IDs oder abstract/PDF Links, PMID, PMCID und offizielle PubMed/PMC Artikel Links. Verwenden Sie explizite Präfixe wie `PMID: 19621072` für eine PubMed ID. Gewöhnliche Publisher-URLs werden von diesem Eintrag nicht akzeptiert.
 3. Wählen **Find reference**. Jede Charge erlaubt bis zu **100 non-empty lines**, vor der Deduplizierung gezählt. Teilen Sie eine längere Liste in kleinere Chargen. Der Lookup normalisiert Bezeichner und kombiniert äquivalente Einträge.
@@ -203,6 +206,18 @@ Fügen Sie die DOI `10.1038/s41467-018-08136-3` über **Add from DOI or link** h
 
 Das gespeicherte Ergebnis trägt die Kennzeichnung **Based on abstract**. Unter **Study limitations** steht **Not reported in the available source**, weil die bereitgestellte Zusammenfassung keine Einschränkungen nennt. Das bedeutet nicht, dass die Studie keine hat. Schließen und öffnen Sie den Eintrag erneut, um die gespeicherte Übersicht ohne erneute Generierung zu lesen.
 
+
+## Mehrere Übersichten gemeinsam generieren {/* #batch-overviews */}
+
+1. In der Bibliothek auswählen **1 bis 5 Referenzen** mit einem abstrakten oder lesbaren Volltext. Konfigurieren Sie Main vor dem Start; die Übersichtsgenerierung verwendet dieses Modell.
+2. Wählen **More actions → Generate overviews** und folgen **Batch overviews**. Überprüfen Sie jede Zeile, nicht nur die fertige Zählung.
+3. Wählen **Pause** wenn nötig. Lassen Sie laufende Anfragen abwickeln; die gespeicherte Charge behält die abgeschlossene Arbeit.
+4. Zurück zum **Batch overviews** und wählen **Continue remaining** nach einer Unterbrechung oder **Retry failed overviews** nach Behebung des gemeldeten Problems. Die abgeschlossenen Ergebnisse werden beibehalten.
+5. Offen **View details** Überprüfen Sie für eine gespeicherte Zeile das Quelletikett und vergleichen Sie wichtige Ansprüche mit dem Original. Eine fertige abstrakte Übersicht ist kein Beweis für Volltextlesen.
+
+Halten Sie die Bibliothek geöffnet, während der Batch voranschreitet. Das Schließen der Ansicht unterbricht die weitere Planung; abgeschlossene Arbeiten bleiben bei Ihrer Rückkehr verfügbar. Wenn ein Element keine verwendbaren Beweise enthält, fügen Sie das Abstract oder eine lesbare PDF hinzu, bevor Sie es erneut versuchen. Eine geänderte Quelle kann eine neue Übersicht erfordern.
+
+![Abgeschlossene Chargenübersichten und eine abstraktbasierte Studienübersicht](/img/open-science/v120/batch-overviews.webp)
 
 ## Import aus Zotero {/* #zotero-import */}
 

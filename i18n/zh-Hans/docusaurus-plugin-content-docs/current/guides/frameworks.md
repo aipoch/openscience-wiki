@@ -1,7 +1,7 @@
 ---
 title: "安装与切换代理框架"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 # 安装与切换代理框架
@@ -24,7 +24,19 @@ last_update:
 | Install log / Retry | 先读失败步骤，解决原因后重试 |
 | Repair | 管理的安装需要修复时出现，先检查影响对象 |
 
-Open-Science v1.0.7 提供 Codex、Claude Agent、OpenCode、CodeBuddy 和 Pi。 安装来源和认证方式随后端不同，不应把某一后端的流程套到所有后端。
+Open-Science v1.2.0 提供 Open-Science Agent、Codex、Claude Agent、OpenCode、CodeBuddy 和 Pi，各框架的安装及认证方式不同。
+
+## 使用内置 Agent {/* #built-in-agent */}
+
+从 v1.2.0 起，**Open-Science Agent** 随应用提供，并成为全新配置的默认选择，无需单独下载 Agent。卡片标注其为实验性功能，需配置兼容的 API 提供方。Codex 订阅仍需搭配 Codex 框架，Claude 订阅需搭配 Claude Agent。运行时就绪不代表已经拥有模型访问权限。
+
+1. 打开 **Settings → Agent**，查看 **Open-Science Agent** 及其他外部框架。
+2. 如需切换，选择对应卡片并确认。该选择跨项目生效，应用于后续请求。
+3. 检查 **Settings → Model**，选择兼容模型，先完成一个小请求再开始较长任务。
+
+可以继续让 Codex 或其他外部框架保持活动状态。下面的安装步骤只适用于需要独立运行时的框架。
+
+![内置 Open-Science Agent 与外部运行时选项](/img/open-science/v120/agents.webp)
 
 ## 安装后的核验顺序
 

@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -81,7 +81,7 @@ Inbox는 **Inbox is clear**을 보여줍니다. **현재 프로젝트**로 전�
 
 | 이름 &#42; | 입력 | 자주 묻는 질문 |
 | --- | --- | --- |
-| 문헌 추가 | 수동으로 bibliography 입력 | 필수 제목, 참조 유형 및 식별자 |
+| 참고 사항 추가 | Bibliographic 필드 또는 DOI 또는 PMID와 같은 식별자 | ID1.2.0에서 식별자가 공급될 때 제목이 생길 수 있습니다. 생성 된 제목을 검토하고 인용하기 전에 메타 데이터를 완료 |
 | PDF 가져오기 | 1개 또는 몇몇 지역 PDF | 각 종이에 대한 추출 된 메타 데이터; Multi-file 선택은 아래에 배치 교류를 이용합니다 |
 | 문헌 가져오기 | BibTeX, RIS 또는 NBIB | 유효/무효한 항목, 목적지 및 식별자 일치 |
 | Import from Zotero | 로컬 Zotero 10 이상 라이브러리 또는 컬렉션 | 일치 항목, 컬렉션 범위와 로컬 PDF 확인. [Zotero 가져오기](#zotero-import) |
@@ -156,6 +156,9 @@ Inbox는 **Inbox is clear**을 보여줍니다. **현재 프로젝트**로 전�
 
 ## 식별자 또는 링크에서 참조 추가 {/* #doi-link-import */}
 
+식별자-import 항목은 이름입니다. **식별자 또는 링크에서 추가** v1.1.0 이상; 이전 스크린 샷을 표시 할 수 있습니다 **DOI 또는 링크에서 추가**· 지원되는 식별자 및 검토 단계는 여전히 적용됩니다.
+
+
 1. 기타 **Library → All references → Add → Add from DOI or link**.
 2. 행당 하나의 식별자 또는 링크 입력. 지원된 입력에는 DOI, doi.org 링크, arXiv ID 또는 요약/PDF 링크, PMID, PMCID 및 공식 PubMed/PMC 기사 링크가 포함되어 있습니다. 같은 명시된 접두사 사용 `PMID: 19621072` PubMed ID를 위해. 정규 출판사 URL은 이 항목에 의해 허용되지 않습니다.
 3. 제품정보 **Find reference**· 각 배치는 까지 허용합니다 **100 non-empty lines**입니다. 중복을 제거하기 전의 줄 수를 기준으로 합니다. 긴 목록은 여러 번에 나누어 가져오세요. 검색 시 식별자를 정규화하고 동일 문헌을 가리키는 입력을 합칩니다.
@@ -203,6 +206,18 @@ DOI 및 DOI 링크는 동일한 종이를 식별하므로, 검색은 두 개의 
 
 저장된 결과에는 **Based on abstract**가 표시됩니다. **Study limitations**의 **Not reported in the available source**는 제공된 초록에 연구 한계가 명시되지 않았다는 뜻이며, 연구에 한계가 없다는 뜻은 아닙니다. 문헌을 닫았다가 다시 열면 재생성 없이 저장된 개요를 읽을 수 있습니다.
 
+
+## 함께 몇 가지 개요 생성 {/* #batch-overviews */}
+
+1. 도서관에서, 선택 **5개의 참고에 1** 요약 또는 읽기 쉬운 전체 텍스트. 시작 전에 주요 구성; 개요 생성은 그 모델을 사용합니다.
+2. 제품정보 **More actions → Generate overviews** 그리고 따라 **Batch overviews**· 각 행을 검사하고, 완성된 조사만 아닙니다.
+3. 제품정보 **Pause** 필요한 경우. 침입 요청을 허용; 저장된 배치 완료 작업을 유지.
+4. 관련 기사 **Batch overviews** 그리고 선택 **Continue remaining** 중단 후, 또는 **Retry failed overviews** 보고된 문제를 해결한 후에. 완료된 결과가 유지됩니다.
+5. 기타 **View details** 저장된 행을 위해, 그것의 근원 상표를 확인하고 본래와 중요한 주장을 비교하십시오. 완성 된 요약 개요는 전체 텍스트 읽기의 증거가 아닙니다.
+
+배치 전진 동안 라이브러리를 엽니다. 더 많은 스케줄링을 일시 중지; 완료된 작업은 반환 할 때 사용할 수 있습니다. 아이템이 사용 가능한 증거가 부족한 경우 재발급하기 전에 추상 또는 읽기 쉬운 PDF를 추가하십시오. 변경된 소스는 신선한 개요를 요구할 수 있습니다.
+
+![완료 배치 개요 및 요약 기반 연구 개요](/img/open-science/v120/batch-overviews.webp)
 
 ## Zotero에서 가져오기 {/* #zotero-import */}
 

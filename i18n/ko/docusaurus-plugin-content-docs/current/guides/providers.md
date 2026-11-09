@@ -1,7 +1,7 @@
 ---
 title: "공급자 및 지역 모델 설정"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -211,7 +211,7 @@ print((8664 + 18515) == 27179)
 
 ## v0.31.0과 나중에의 공급자 변경을 저장하십시오. {/* #validated-provider-save */}
 
-공급자는 그들이 투입되기 전에 시험됩니다. **Save** 선택, 연결 결과를 기다립니다, 양식을 닫기 전에 성공을 확인합니다. 실패한 시험은 작업 저장된 윤곽을 대체하지 않습니다. 이전에 저장된 연결이 요청 중에 거부되면, 그 가용성이 업데이트됩니다. credential 및 endpoint를 확인한 다음 다시 테스트하십시오. **Conversation models**, **Classification models** 및 **Local parsing models**에는 다른 목적이 있습니다; [모델 설정](models.md#classification-models) 참조.
+공급자는 그들이 투입되기 전에 시험됩니다. **Save** 선택, 연결 결과를 기다립니다, 양식을 닫기 전에 성공을 확인합니다. 실패한 시험은 작업 저장된 윤곽을 대체하지 않습니다. 이전에 저장된 연결이 요청 중에 거부되면, 그 가용성이 업데이트됩니다. credential 및 endpoint를 확인한 다음 다시 테스트하십시오. **Conversation models**, **Classification models** 및 **Local capabilities**에는 다른 목적이 있습니다; [모델 설정](models.md#classification-models) 참조.
 
 ## StepFun 및 지역 선택 {/* #stepfun-regions */}
 

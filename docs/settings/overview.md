@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: Settings overview
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 # Settings overview
@@ -43,11 +43,11 @@ This search covers representative settings across every panel, not every field o
 |  | [Network](../guides/network.md) | Proxy, package mirrors and Notebook domain access |
 |  | [Remote](../guides/remote-access.md) | Browser access, pairing and trusted devices |
 |  | [Credentials](../tools/credentials.md) | Keys, tokens, OAuth and credential recovery |
+|  | [Compute](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Workspace | [Tags](../guides/tags.md) | Tags and Favorites ordering |
 |  | [Permissions](../guides/approval-modes.md) | Default mode and saved grants |
 |  | [Runtimes](../guides/runtimes.md) | Python/R environments and packages |
 |  | [Storage](../guides/storage.md) | Data location, write access and disk usage |
-|  | [Compute](../guides/remote-compute.md) | Local and SSH compute resources |
 |  | [Usage](../guides/usage.md) | Token, call and research activity statistics |
 |  | [Archived](../guides/storage.md) | Restore or permanently delete archived work |
 
@@ -59,6 +59,6 @@ Some switches are saved immediately. Longer forms use `Save`, `Add`, or `Import`
 
 ## Model settings tabs {/* #model-tabs */}
 
-Within **Model**, use **Conversation models** for providers and task models, **Classification models** for optional Skill/Connector selection, and **Local parsing models** for local parsing resources. Classification is a tab within model settings, not an additional top-level Settings panel. See [classification setup](../guides/models.md#classification-models).
+Within **Model**, use **Conversation models** for providers and task models, **Classification models** for optional capability selection and Smart collections, and **Local capabilities** for PDF extraction, OCR and research narration. These are tabs within Model, not additional Settings panels. See [local resources](../guides/models.md#local-capabilities).
 
 The header search uses **⌘K / Ctrl+K**. To focus the current panel or dialog's own search, use **⌘⌥K / Ctrl+Alt+K** when that field is available. See [search shortcuts](../guides/shortcuts.md#local-settings-search).

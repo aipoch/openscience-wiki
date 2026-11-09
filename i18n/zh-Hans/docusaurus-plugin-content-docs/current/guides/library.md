@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -81,7 +81,7 @@ Inbox 随后显示 **Inbox is clear**；切换到 **Current project** 可见 **2
 
 | 入口 | 输入 | 保存前检查 |
 | --- | --- | --- |
-| Add reference | 手填书目 | 必填标题、文献类型和标识符 |
+| Add reference | 书目字段或 DOI、PMID 等标识符 | v1.2.0 允许提供标识符时不填标题；引用前检查生成的标题并补全元数据 |
 | Import PDF | 一份或多份本地 PDF | 对照每篇论文检查提取的元数据；多文件走下面的批量流程 |
 | Import references | BibTeX、RIS、NBIB | 有效/无效记录、目标和标识符匹配 |
 | Import from Zotero | 本机 Zotero 10+ 文献库或集合 | 核对匹配、集合范围与本地 PDF，见 [Zotero 导入](#zotero-import) |
@@ -156,6 +156,9 @@ Inbox 随后显示 **Inbox is clear**；切换到 **Current project** 可见 **2
 
 ## 从编号或链接添加文献 {/* #doi-link-import */}
 
+v1.1.0 及之后，标识符导入入口名为 **Add from identifiers or links**，旧截图中可能显示 **Add from DOI or link**。下方支持的标识符和检查步骤仍然适用。
+
+
 1. 打开 **Library → All references → Add → Add from DOI or link**。
 2. 每行填写一个编号或链接，支持 DOI、doi.org 链接、arXiv ID 或摘要/PDF 链接、PMID、PMCID，以及官方 PubMed/PMC 论文链接。PubMed 编号建议明确写成 `PMID: 19621072`。此入口不接受普通出版商页面 URL。
 3. 选择 **Find reference**。每批最多 **100 个非空行**，按去重前的输入行数计算；更长的清单应分批处理。查找时会规范化编号，并合并指向同一文献的等价输入。
@@ -203,6 +206,18 @@ DOI 和 DOI 链接指向同一篇论文，因此查找后得到两条文献：BM
 
 保存的结果标注为 **Based on abstract**。**Study limitations** 显示 **Not reported in the available source**，表示这份摘要没有说明研究局限，并不代表研究没有局限。关闭并重新打开文献，即可查看已保存的概览，无需再次生成。
 
+
+## 批量生成论文概览 {/* #batch-overviews */}
+
+1. 在文献库选择 **一至五篇文献**，确保有摘要或可读取的全文。先配置 Main，概览生成使用该主模型。
+2. 选择 **More actions → Generate overviews**，在 **Batch overviews** 查看进度。逐行检查结果，不只看完成数量。
+3. 需要暂停时选择 **Pause**，等待正在进行的请求结束；已保存的批次会保留完成结果。
+4. 中断后重新打开 **Batch overviews**，选择 **Continue remaining**；修复具体问题后，可选择 **Retry failed overviews**。已经完成的概览会保留。
+5. 对已保存的条目打开 **View details**，检查来源标签，并将重要论断与原文核对。摘要概览完成不等于已经阅读全文。
+
+批次推进时保持文献库视图打开。关闭视图后不再安排后续项目，返回时仍可继续已保存的进度。条目缺少可用证据时，先补充摘要或可读取的 PDF 再重试；来源变化后可能需要重新生成概览。
+
+![批量概览完成状态与基于摘要的论文概览](/img/open-science/v120/batch-overviews.webp)
 
 ## 从 Zotero 导入 {/* #zotero-import */}
 

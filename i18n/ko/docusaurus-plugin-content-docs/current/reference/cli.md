@@ -1,7 +1,7 @@
 ---
 title: "CLI 및 구조 출력"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -275,3 +275,28 @@ open-science mcp --help
 ## 자동화를 위해 서비스 유지 {/* #persistent-service */}
 
 데스크톱 종료 후에도 CLI, 브라우저 또는 SDK 작업을 계속하려면 대상 프로필에서 `open-science start --no-open --json`을 실행합니다. v1.0.6에서는 하나의 지속 실행 설정을 만들며 반복해도 늘지 않습니다. 일반 `stop`은 이를 해제하지만 App이 연결되어 있으면 서비스는 유지됩니다. [수명 주기 결과](server.md#lifecycle-commands)를 읽고 성공 종료 코드만으로 중지 완료를 판단하지 마세요.
+
+## 문학 도서관 작업 {/* #literature-library */}
+
+데스크탑 앱과 같은 실행 프로파일에 대해 CLI를 사용합니다. `literature search` 그 라이브러리에서 이미 참조를 검색; 그것은 온라인 종이 발견 쿼리가 아닙니다.
+
+```bash
+open-science literature search "single-atom catalyst" --limit 20 --json
+open-science literature show <item-id> --json
+open-science literature styles
+open-science literature format <item-id> --style apa --locale en-US
+open-science literature lookup 10.1038/s41467-018-08136-3 --json
+```
+
+`lookup` metadata 소스에 문의; 그것은 기록 또는 PDF를 다운로드하지 않습니다. 제품 정보 `literature add <identifier>` 해결 된 참조를 저장합니다. bibliography 파일에 대 한, 커밋 하기 전에 미리보기:
+
+```bash
+open-science literature import ./references.bib --json
+open-science literature import ./references.bib --commit --duplicates reuse --json
+open-science literature link <item-id> --project "My project"
+open-science literature status read <item-id>
+```
+
+없음 **--조금**, `import` 단지 미리보기. 지원된 파일은 BibTeX, RIS 및 NBIB를 포함합니다. 중복 정책은 `reuse`, `separate` · `fill-missing`. `link` 프로젝트와 기존 참조를 연결; 그것은 PDF를 복사하지 않습니다. 수입은 참고를 저장하지만 프로젝트 연결이 실패하면 다시 수입 대신 다시 링크하는 반환 ID를 사용합니다.
+
+제품 정보 `literature collection create`, `collection add` · `collection remove` 레코드를 구성합니다. `literature trash` 쓰레기에 참조 이동; `literature restore` 그들을 복구. 작성하기 전에 선택한 ID를 확인합니다. 읽기 / 쓰기 라이브러리 도구도 통해 노출 [사이트맵](#external-mcp); 그들의 권한 및 입력 schemas 여전히 적용.

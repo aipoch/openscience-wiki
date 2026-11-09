@@ -1,7 +1,7 @@
 ---
 title: "回放與討論歷史會話"
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-09'
 ---
 
 # 回放與討論歷史會話 {/* #回放与讨论历史会话 */}
@@ -38,12 +38,15 @@ last_update:
 
 ![TP53 實際回放中的步驟列表、檔案版本與播放控制元件](/img/open-science/v0350/replay-step-list.webp)
 
-## 針對步驟提問 {/* #discuss-replay */}
+## 針對某一步提問 {/* #discuss-replay */}
 
-1. 暫停在相關步驟，選擇 **Ask about this step**；需要討論整體研究時，使用頂部的 **Ask about this research**。
-2. 在 **Ask in a conversation** 中選擇一個可寫會話，或選擇 **New conversation**。該操作把上下文加入草稿，不會自動傳送問題。
-3. 核對 **Discuss** 附件中的會話和步驟標籤，填寫問題，選擇已連線的模型，再點 **Send**。本例使用 **Codex subscription**。
-4. 遇到工具審批時，先檢查申請的訪問內容，再允許任務需要的操作。回答完成後，對照儲存的證據及來源上下文。
+1. 暫停在相關步驟，選擇 **Ask about this step**；針對整體研究的問題可使用 **Ask about this research**。
+2. 檢查討論草稿及其 **Discuss** 附件。會話、分支和步驟標籤標明正在討論哪份證據。選中 Notebook 運行時，即使部分單元格不在當前視口內，也會攜帶已記錄的上下文。
+3. 輸入明確的問題，選擇已連接的模型並 **Send**。打開討論或添加上下文本身不會自動發送問題。
+4. 導入研究的討論會成爲關聯的子會話。回到父研究記錄覈對原始步驟；討論不會讓只讀歷史變爲可編輯狀態。需要繼續執行時使用 **Fork to continue**。
+5. 檢查工具審批，並將回答與記錄的證據比較。來源鏈接正確不代表模型解釋一定正確。
+
+對於上面的 TP53 案例，可以提問：
 
 ```text
 From the recorded TP53 pathway analysis, explain why the missing direct
@@ -52,9 +55,11 @@ saved evidence and separate the recorded result from a new biological
 claim. Keep the response in English.
 ```
 
-回答定位到 `tp53_mdm2_cdkn1a_readable_interactions.tsv`，區分扁平化匯出表中的記錄與生物學結論，並指出來源會話、分支和步驟。採用解釋前再次閱讀來源；附帶記錄不代表模型的每項判斷都正確。
+案例回答指出 `tp53_mdm2_cdkn1a_readable_interactions.tsv`，並區分扁平化導出的內容與生物學結論。下圖保留了這次已記錄的討論，當前關聯討論的控件可能有所不同。
 
-![Codex 完成討論，右側保留 TP53 原始分析回放](/img/open-science/v0350/replay-answer.webp)
+![Codex 完成的討論及旁邊的 TP53 研究回放](/img/open-science/v0350/replay-answer.webp)
+
+如需把已完成的會話做成帶旁白的演示，參閱[研究影片](research-films.md)。回放、討論和影片都會使用已有證據，但都不會重新執行分析。
 
 ## 證據無法開啟時 {/* #replay-evidence */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Modelos y políticas de tareas"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-09'
 ---
 
 # Modelos y políticas de tareas {/* #models-and-task-policies */}
@@ -95,7 +95,7 @@ La selección automática de capacidades mediante este servicio se admite en con
 
 La eliminación de un servicio devuelve la selección automática de la capacidad al método predeterminado y deja que cualquier colección Smart se encuadernen a ese servicio no configurado. Una llave de servicio almacenada separadamente se elimina con ella; eliminar un servicio que comparte una cuenta no elimina esa cuenta o su clave.
 
-Vea [Configuración del proveedor](providers.md) para modelos de conversación. Los recursos locales de persing PDF se gestionan bajo **Local parsing models**, una pestaña separada.
+Vea [Configuración del proveedor](providers.md) para modelos de conversación. Los recursos locales de persing PDF se gestionan bajo **Local capabilities**, una pestaña separada.
 
 ![Formulario de servicio de clasificación con la tecla API aún vacía](/img/open-science/v0311/classification-add-service.webp)
 
@@ -132,3 +132,15 @@ El siguiente formulario ilustra los campos. Reemplaza el punto final de la muest
 La traducción PDF tiene sus propios controles **Translation method** y **Model** en el lector. **Agent** puede utilizar un modelo compatible disponible; **Direct API** requiere un proveedor de API. Los modelos de suscripción Codex no están disponibles para esta operación en v0.37.1. La selección de un modelo de traducción no requiere reemplazar Main. Ver [PDF traducción](pdf-translation.md#prepare-translation).
 
 El catálogo Antrópico oficial incluye **Claude Haiku 5.5**. La visibilidad del modelo y el acceso dependen del agente y cuenta seleccionados. Elija la entrada actual del catálogo en lugar de gastar un sufijo de tamaño de contexto a un viejo modelo de identificación.
+
+## Gestión de las capacidades locales {/* #local-capabilities */}
+
+Abierto **Settings → Model → Local capabilities**. En v1.2.0 esto reemplaza al **Local parsing models** tab. Estos recursos funcionan en el ordenador anfitrión y no reemplazan el modelo de conversación principal.
+
+| Recursos | Propósito | Antes de usarlo |
+| --- | --- | --- |
+| Figuras y tablas PDF | Encontrar figuras, títulos y tablas copiables | Instalar el recurso, luego inspeccionar los resultados de extracción contra el PDF |
+| Reconocimiento de texto (OCR) | Reconocer texto en páginas escaneadas | Seleccione los paquetes de idiomas necesarios y termine su descarga |
+| La narración de investigación | Producir el discurso inglés para películas de investigación | Instalar el motor del discurso y el modelo; esperar **Installed** |
+
+Instale sólo los recursos necesarios para su tarea. Seguir el progreso de la descarga; **Cancelar descarga** detiene la transferencia, y **Retry** reanudar o repetir una descarga fallida como compatible. Abra la pestaña para confirmar el estado instalado. **Uninstall** no está disponible mientras un recurso está en uso. Véase [películas de investigación](research-films.md) y [Extracción en PDF](previews.md#pdf-extraction).

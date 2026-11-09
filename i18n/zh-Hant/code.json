@@ -594,10 +594,10 @@
     "message": "网络检查、Notebook 域名、代理模式、软件包镜像和证书包。"
   },
   "docs.guides.outline.remote-compute.title": {
-    "message": "SSH 主机与 Slurm 配置"
+    "message": "遠程計算"
   },
   "docs.guides.outline.remote-compute.scope": {
-    "message": "主机认证、直接执行与调度模式、资源检测、临时目录和并发配置。"
+    "message": "配置 SSH、集羣和雲端計算目標，審批任務並取回結果。"
   },
   "docs.guides.outline.remote-access.title": {
     "message": "远程浏览器访问"
@@ -2713,5 +2713,23 @@
   },
   "docs.outline.reference.v108.scope": {
     "message": "文獻批量匯入、論文概覽、設定與 eQTL 更新。"
+  },
+  "docs.guides.outline.research-films.title": {
+    "message": "研究影片"
+  },
+  "docs.guides.outline.research-films.scope": {
+    "message": "從已完成的會話生成帶旁白的影片，覈對內容並導出。"
+  },
+  "docs.outline.reference.v120.title": {
+    "message": "v1.2.0"
+  },
+  "docs.outline.reference.v120.scope": {
+    "message": "雲端計算目標、內置 Agent 與關聯研究討論。"
+  },
+  "docs.outline.reference.v110.title": {
+    "message": "v1.1.0"
+  },
+  "docs.outline.reference.v110.scope": {
+    "message": "研究影片、批量論文概覽、移動設備訪問與文獻命令。"
   }
 }

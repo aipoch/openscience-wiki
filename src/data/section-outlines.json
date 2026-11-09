@@ -1433,6 +1433,28 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v120",
+            "title": "v1.2.0",
+            "scope": "Cloud compute targets, built-in Agent and linked research discussions.",
+            "currentDoc": "changelog/v1-2-0",
+            "proposedUrl": "/docs/changelog/v1-2-0/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-2-0"
+            ]
+          },
+          {
+            "id": "v110",
+            "title": "v1.1.0",
+            "scope": "Research films, batch paper overviews, mobile access and literature commands.",
+            "currentDoc": "changelog/v1-1-0",
+            "proposedUrl": "/docs/changelog/v1-1-0/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-1-0"
+            ]
+          },
+          {
             "id": "v108",
             "title": "v1.0.8",
             "scope": "Batch reference imports, study overviews, Settings and eQTL updates.",

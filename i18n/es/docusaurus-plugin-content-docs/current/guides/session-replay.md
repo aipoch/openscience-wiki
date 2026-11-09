@@ -1,7 +1,7 @@
 ---
 title: "Repetir y discutir una sesión grabada"
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-09'
 ---
 
 # Repetir y discutir una sesión grabada {/* #replay-and-discuss-a-recorded-session */}
@@ -40,10 +40,13 @@ En **Browse steps**, localice la red exportada, las respuestas originales, la no
 
 ## Pregunte por un paso {/* #discuss-replay */}
 
-1. Pausa en el paso correspondiente y seleccione **Ask about this step**. Para una discusión más amplia, use **Ask about this research** en el encabezado.
-2. En **Ask in a conversation**, elija una conversación magistral o **New conversation**. La acción añade contexto a un proyecto; no envía una pregunta por sí misma.
-3. Compruebe el accesorio **Discuss** y su etiqueta de sesión/paso. Introduzca su pregunta, elija un modelo conectado y seleccione **Send**. El ejemplo utiliza **Codex subscription**.
-4. Si se solicita la aprobación de una herramienta, inspeccione el acceso propuesto antes de permitir la operación necesaria. Luego compare la respuesta con la evidencia guardada y su contexto fuente.
+1. Pausa en el paso pertinente y seleccione **Ask about this step**. Para una pregunta más amplia, elija **Ask about this research**.
+2. Revisar el proyecto de discusión y su **Discuss** Apego. En la sesión, rama y paso seleccionados se identifican las pruebas que se están discutiendo. Una carrera de Notebook seleccionada incluye su contexto registrado incluso cuando algunas células están fuera del puerto de visión actual.
+3. Introduzca una pregunta enfocada, elija un modelo conectado y seleccione **Send**. Abrir una discusión o agregar contexto no envía la pregunta automáticamente.
+4. Para la investigación importada, la discusión es una conversación infantil vinculada. Regrese al registro de padres para comprobar el paso original; la discusión no hace que la historia de sólo lectura sea obligatoria. Uso **Fork to continue** para una continuación en su lugar.
+5. Inspeccione cualquier aprobación de la herramienta y compare la respuesta con las pruebas registradas. Una explicación modelo puede contener errores incluso cuando el enlace fuente es correcto.
+
+Para el ejemplo TP53 arriba, pregunte:
 
 ```text
 From the recorded TP53 pathway analysis, explain why the missing direct
@@ -52,9 +55,11 @@ saved evidence and separate the recorded result from a new biological
 claim. Keep the response in English.
 ```
 
-La respuesta identifica `tp53_mdm2_cdkn1a_readable_interactions.tsv` y distingue lo que la exportación aplanada contiene de una conclusión biológica. Señala la sesión, rama y paso de la fuente seleccionada. Lea esa fuente de nuevo antes de adoptar la interpretación; un registro vinculado no hace que cada reclamación modelo sea correcta.
+La respuesta del ejemplo identifica `tp53_mdm2_cdkn1a_readable_interactions.tsv` y separa la exportación aplanada de una conclusión biológica. La captura de pantalla muestra que la discusión registrada; los controles actuales de discusión enlazada pueden diferir.
 
-![La discusión Codex completada junto al análisis TP53 registrado](/img/open-science/v0350/replay-answer.webp)
+![The completed Codex discussion along with the recorded TP53 analysis](/img/open-science/v0350/replay-answer.webp)
+
+Para hacer una presentación narrada de una sesión completa, siga [Películas de investigación](research-films.md). Repetir, una discusión y una película cada reutilización de evidencia registrada; ninguno de ellos reedita el análisis.
 
 ## Cuando la evidencia no está disponible {/* #replay-evidence */}
 

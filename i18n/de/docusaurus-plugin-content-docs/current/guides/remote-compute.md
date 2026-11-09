@@ -1,16 +1,40 @@
 ---
-title: "SSH-Hosts und Slurm Setup"
+title: "Remote Compute: SSH, Cluster und Cloud Jobs"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
-# SSH-Hosts und Slurm Setup {/* #ssh-hosts-and-slurm-setup */}
+# Remote Compute: SSH, Cluster und Cloud Jobs
 
-:::info&#91;Bevor Sie einen Job einreichen&#93; Konfigurieren Sie einen SSH-Host und wählen Sie Direct SSH oder Slurm, bevor Sie einen Remote-Job einreichen. Ein gespeichertes Hostprofil führt nicht zu einer erfolgreichen Authentifizierung oder Ausführung. :::
+<span id="ssh-hosts-and-slurm-setup" />
 
-Verwenden Sie **Settings → Compute**, um einen Server oder Cluster zu registrieren. Die Registrierung des Gastgebers, die Bereitstellung für ein Gespräch und der Abschluss eines Auftrags sind separate Meilensteine. Behalten Sie die Login-Node-Regeln und Scheduler-Anforderungen der Website mit den Host-Notizen.
+Verwendung **Settings → Connections → Compute** ein Server-, Cluster- oder Cloud-Ziel zu registrieren. Die folgende Backend-Übersicht deckt alle unterstützten Ziele ab; die verbleibenden Walkthroughs decken SSH und Slurm ab. Ein Ziel zu speichern, es für eine Sitzung zu aktivieren und einen Job abzuschließen, sind separate Schritte.
+
+## Wählen Sie ein Compute Backend {/* #compute-backends */}
+
+Offen **Settings → Connections → Compute**v1.2.0 unterstützt die sechs folgenden Ausführungsoptionen. Ein Ziel identifiziert, wo ein Job läuft; es erstellt kein Cloud-Abonnement, stellt kein Cluster bereit oder installiert die wissenschaftliche Software für Sie.
+
+| Backend | Was ist vorzubereiten | Konfiguration zur Überprüfung |
+| --- | --- | --- |
+| Direkte SSH | Ein zugänglicher SSH-Host | Authentifizierung, Remote Workspace und erforderliche Tools |
+| Slurm | Ein SSH-zugänglicher Cluster mit Slurm | Host-Authentifizierung, Scheduler-Tools und Jobressourcen |
+| Kubernets | Ein bestehender Clusterkontext und Namespace | **Kontext**, **Namespace**, **Containerbild**, **Transferbild**, **Volumengröße (MiB)** |
+| Hugging Face Jobs | Ein verbundenes Konto mit Jobs und einem privaten Bucket | **Private Bucket (Eigentümer/Name)**, **Abrechnungs-Namespace**, **Containerbild**, **Hardware-Aroma**, **Timeout (Sekunden)** |
+| Modal | Ein verbundenes Modal-Konto und Umgebung | **Modale Umgebung**, **Modale App**, **Containerbild**, **CPUs**, **Speicher (MiB)** und optionale GPU |
+| Strahl | Ein erreichbarer Ray-Cluster und ein gemeinsames Verzeichnis | **Ray Dashboard URL**, **Gemeinsames lokales Verzeichnis**, **Fahrer-Shared-Verzeichnis**, **CPUs**, **GPUs** |
+
+1. Verwenden Sie die Add-Aktion für das erforderliche Backend. Hugging face und modal bitten sie zuerst, das entsprechende konto zu verbinden. Anmeldeinformationen durch ihre verbindungskontrollen bereitstellen, keine konversationsaufforderung.
+2. Geben Sie Ihre tatsächlichen Zieleinstellungen ein, speichern und überprüfen Sie deren Bereitschaft oder das Verbindungsergebnis. Verwenden Sie die für Ihre Umgebung genehmigten Bild- und Ressourcenwerte.
+3. Aktivieren und wählen Sie das Ziel für die Sitzung. Fragen Sie nach einem kleinen Job mit expliziten Eingaben, Befehlen und Ausgaben.
+4. Überprüfen Sie die Genehmigung vor der Übermittlung: Ziel, eingefrorene Eingabedateien, Befehl, Ressourcenanforderung und Ausgabepfade. Die Cloud-Nutzung wird dem verbundenen Konto in Rechnung gestellt. Genehmigen Sie nur den beabsichtigten Job.
+5. Verfolgen Sie den Jobfortschritt in Compute. Nach Abschluss und Ausgabesammlung öffnen Sie die veröffentlichten Ergebnisse in **Compute Preview**. Ein Remote-Prozess-Finishing bedeutet nicht, dass seine Outputs gesammelt wurden.
+6. Überprüfen Sie nach einem Neustart den behaltenen Job und setzen Sie die Wiederherstellung oder Sammlung fort, wenn Sie angeboten werden. Überprüfen Sie nach einem vorhandenen Remote-Job, bevor Sie die gleiche Arbeit erneut einreichen.
+
+Die beiden Verzeichnisfelder von Ray beschreiben den gleichen gemeinsamen Speicher, den der lokale Host und der entfernte Treiber sehen; ein lokaler Pfad allein überträgt keine Daten an einen entfernten Computer. Kubernetes-Jobs benötigen die Berechtigung zum Erstellen des Workloads und zum Zwischenspeichern. Die folgenden SSH-Schritte und Arbeitsbeispiele gelten weiterhin für Direct SSH und Slurm.
+
+![Berechnen Sie Einstellungen mit SSH, Kubernetes, Hugging Face Jobs, Modal und Ray Zielen](/img/open-science/v120/compute.webp)
 
 ## Wählen Sie, wo Jobs ausgeführt werden {/* #choose-where-jobs-execute */}
 

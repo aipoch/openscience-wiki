@@ -1,12 +1,12 @@
 ---
 title: "서비스 및 브라우저 액세스"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-09'
 ---
 
 # 서비스 및 브라우저 액세스 {/* #headless-service-and-browser-access */}
 
-로컬 서비스는 headless backend와 localhost 브라우저 인터페이스를 제공합니다. SSH Compute 호스트와 Remote.It 브라우저 페어링과 구별됩니다. 클라이언트를 연결하기 전에 호스트에 대한 인증 및 자격 증명 설정을 선택하십시오.
+로컬 서비스는 headless backend와 정통 로컬 호스트 브라우저 인터페이스를 제공합니다. 그것은 분리됩니다 [원격 장치 페어링](../guides/remote-access.md) · [먼 compute 표적](../guides/remote-compute.md)· 클라이언트를 연결하기 전에 호스트에 대한 인증 및 자격 저장을 선택하십시오.
 
 ## 대상 선택 및 발견 {/* #target-selection-and-discovery */}
 
@@ -61,7 +61,7 @@ SDK은 로컬 서비스를 발견하고 로컬 인증 토큰을 읽고 요청 �
 
 localhost 서비스는 다른 컴퓨터에서 자동으로 액세스 할 수 없습니다. 원격 브라우저 액세스는 자체 설정된 액세스 모드, 페어링 및 신뢰할 수 있는 브라우져 수명주기를 사용합니다. SSH Compute 대신 원격 실행 호스트를 구성하기 위해 작업을 보냅니다.
 
-Remote.It 쌍용 [원격 브라우저 액세스](../guides/remote-access.md), SSH 작업용 [먼 compute](../guides/remote-compute.md)를 사용하십시오. Neither Flow는 로컬 서비스 문서 URL을 변경하여 구성됩니다.
+제품 정보 [원격 브라우저 접근](../guides/remote-access.md) 와이파이, 인터넷 및 리모트를 위해. 그것은 페어링, 그리고 [먼 compute](../guides/remote-compute.md) SSH, 클러스터 및 클라우드 작업을 위해. Neither는 로컬 문서 URL을 변경하여 구성됩니다.
 
 ### 헤드리스 Linux에 대한 Credential 저장 {/* #credential-storage-on-headless-linux */}
 
@@ -122,7 +122,7 @@ CLI 앱 업데이터는 제거된 상태입니다. `open-science update --json` 
 
 ## 웹 작업공간의 Compute {/* #web-compute */}
 
-독립 실행 웹 작업공간은 **Compute** 를 제공합니다. 단, 백엔드가 필요한 Notebook·Compute API를 지원해야 합니다. 연결된 작업공간에서 패널을 확인하고 기존 SSH/Slurm 설정 절차를 따르세요. 패널이 보인다고 원격 인증 정보가 제공되거나 작업 실행이 보장되지는 않습니다.
+독립 웹 작업 공간 노출 **Compute** 백엔드가 필요한 노트북과 Compute API를 제공합니다. 연결된 작업 공간 열기, 패널이 사용할 수 있는지 확인, 다음을 따르십시오 [compute 대상 설정](../guides/remote-compute.md#compute-backends)· 백엔드는 구성된 계정과 인프라를 사용하여 작업을 실행합니다. 브라우저 패널은 자격 증명을 제공하지 않거나 실행을 증명하지 않습니다. 지정된 지역 표면에서 대상 자격 관리.
 
 ## 패키지 및 외부 도구 클라이언트 {/* #local-research-tools */}
 

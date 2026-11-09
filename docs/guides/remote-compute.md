@@ -1,18 +1,40 @@
 ---
-title: "SSH hosts and Slurm setup"
+title: "Remote compute: SSH, clusters and cloud jobs"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
-# SSH hosts and Slurm setup
+# Remote compute: SSH, clusters and cloud jobs
 
-:::info[Before submitting a job]
-Configure an SSH host and choose Direct SSH or Slurm before submitting a remote job. A saved host profile does not establish successful authentication or execution.
-:::
+<span id="ssh-hosts-and-slurm-setup" />
 
-Use **Settings → Compute** to register a server or cluster. Registering the host, making it available to a conversation and completing a job are separate milestones. Keep the site's login-node rules and scheduler requirements with the host notes.
+Use **Settings → Connections → Compute** to register a server, cluster or cloud target. The backend overview below covers all supported targets; the remaining walkthroughs cover SSH and Slurm. Saving a target, enabling it for a session and completing a job are separate steps.
+
+## Choose a compute backend {/* #compute-backends */}
+
+Open **Settings → Connections → Compute**. v1.2.0 supports the six execution options below. A target identifies where a job runs; it does not create a cloud subscription, provision a cluster or install the scientific software for you.
+
+| Backend | What to prepare | Configuration to check |
+| --- | --- | --- |
+| Direct SSH | An accessible SSH host | Authentication, remote workspace and required tools |
+| Slurm | An SSH-accessible cluster with Slurm | Host authentication, scheduler tools and job resources |
+| Kubernetes | An existing cluster context and namespace | **Context**, **Namespace**, **Container image**, **Transfer image**, **Volume size (MiB)** |
+| Hugging Face Jobs | A connected account with Jobs and a private bucket | **Private bucket (owner/name)**, **Billing namespace**, **Container image**, **Hardware flavor**, **Timeout (seconds)** |
+| Modal | A connected Modal account and environment | **Modal environment**, **Modal App**, **Container image**, **CPUs**, **Memory (MiB)** and optional GPU |
+| Ray | A reachable Ray cluster and a shared directory | **Ray Dashboard URL**, **Local shared directory**, **Driver shared directory**, **CPUs**, **GPUs** |
+
+1. Use the add action for the required backend. Hugging Face and Modal first ask you to connect the relevant account. Supply credentials through their connection controls, not a conversation prompt.
+2. Enter your actual target settings, save, and inspect its readiness or connection result. Use the image and resource values approved for your environment.
+3. Enable and select the target for the session. Ask for a small job with explicit inputs, command and outputs.
+4. Review the approval before submission: destination, frozen input files, command, resource request and output paths. Cloud use is billed to the connected account. Approve only the intended job.
+5. Follow job progress in Compute. After completion and output collection, open the published results in **Compute Preview**. A remote process finishing does not by itself mean its outputs were collected.
+6. After a restart, inspect the retained job and resume recovery or collection when offered. Check for an existing remote job before submitting the same work again.
+
+Ray's two directory fields describe the same shared storage as seen by the local host and remote driver; a local path alone does not transfer data to a remote machine. Kubernetes jobs need permission to create the workload and temporary storage. The SSH steps and worked example below remain applicable to Direct SSH and Slurm.
+
+![Compute settings with SSH, Kubernetes, Hugging Face Jobs, Modal and Ray targets](/img/open-science/v120/compute.webp)
 
 ## Choose where jobs execute
 

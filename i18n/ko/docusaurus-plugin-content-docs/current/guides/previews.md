@@ -1,7 +1,7 @@
 ---
 title: "파일 열기 및 미리보기"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -273,7 +273,7 @@ v1.0.8에서는, 자동적인 주문은 또한 테이블 줄에서 prose 란을 
 
 OCR은 사용할 수 있는 텍스트가 없는 페이지를 위한 선택적 로컬 기능입니다. 페이지 이미지에서 글자를 인식하며 논문 번역, 표 검증 또는 전체 페이지를 읽었다는 증거를 제공하지는 않습니다.
 
-1. 기타 **Settings → Model → Local parsing models** 자주 묻는 질문 **Text recognition (OCR)**.
+1. 기타 **Settings → Model → Local capabilities** 자주 묻는 질문 **Text recognition (OCR)**.
 2. 제품 정보 **English**는 항상 선택됩니다. 문서에서 실제로 사용하는 언어를 추가하세요. 중국어 간체, 중국어 번체, 독일어, 스페인어, 프랑스어, 일본어, 한국어 및 러시아어를 선택할 수 있습니다.
 3. 제품정보 **Install** 자주 묻는 질문 **Installed**· 언어 추가 후, 제안을 사용 **Install** 또는 **Update** 동작으로 인식 데이터를 다운로드하세요. 언어를 선택하는 것만으로는 다운로드되지 않습니다.
 4. PDF를 열고 선택 **Read with agent**를 선택하세요. 먼저 작은 페이지 범위를 지정하여 질문하세요. 텍스트 부족으로 읽기 도구에 OCR 설치가 표시되면 설치를 마치고 같은 페이지를 다시 읽도록 요청하세요.

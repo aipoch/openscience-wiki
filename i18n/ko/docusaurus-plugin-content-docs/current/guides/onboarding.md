@@ -1,7 +1,7 @@
 ---
 title: "첫 번째 시간 설정"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -112,7 +112,7 @@ runtimes를 설치하기 전에 큰 파일에 대한 위치를 선택하십시�
 
 ## 3. 에이전트 런타임 {/* #3-agent-runtime */}
 
-세션을 실행하는 코딩 시약 백엔드를 선택합니다. 감지 된 설치 프레임 워크를 선택하거나 앱 관리 사본을 설치하십시오. Continue after its status 보고서 준비.
+세션을 실행할 에이전트 실행 시간을 선택합니다. 새로운 v1.2.0 설정 기본값은 내장 **Open-Science Agent**, 그래서 별도의 대리인 임명은 그 선택을 위해 필요합니다. 호환 API 공급자가 필요합니다. 이용안내 **Codex subscription**, 선택 및 준비 **프로젝트** 대신; 아래 Codex 단계는 그 옵션을 보여줍니다. 예정된 실행시간이 준비되어 있습니다.
 
 <PlatformContent platform="macos">
 

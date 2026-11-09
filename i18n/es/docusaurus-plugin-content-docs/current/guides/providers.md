@@ -1,7 +1,7 @@
 ---
 title: "Proveedor y configuración del modelo local"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -211,7 +211,7 @@ Fuente: [ProveedorForm.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/
 
 ## Guardar un cambio de proveedor en v0.31.0 y más tarde {/* #validated-provider-save */}
 
-Las ediciones del proveedor se prueban antes de que se cometan. Seleccione **Save**, espere el resultado de la conexión y confirme el éxito antes de cerrar el formulario. Una prueba fallida no reemplaza una configuración ahorrada de trabajo. Si se rechaza una conexión previamente guardada durante una solicitud, se actualiza su disponibilidad; verifique el punto final y credencial, y luego vuelva a probar. **Conversation models**, **Classification models** y **Local parsing models** tienen diferentes propósitos; ver [configuración del modelo](models.md#classification-models).
+Las ediciones del proveedor se prueban antes de que se cometan. Seleccione **Save**, espere el resultado de la conexión y confirme el éxito antes de cerrar el formulario. Una prueba fallida no reemplaza una configuración ahorrada de trabajo. Si se rechaza una conexión previamente guardada durante una solicitud, se actualiza su disponibilidad; verifique el punto final y credencial, y luego vuelva a probar. **Conversation models**, **Classification models** y **Local capabilities** tienen diferentes propósitos; ver [configuración del modelo](models.md#classification-models).
 
 ## StepFun y selección de la región {/* #stepfun-regions */}
 

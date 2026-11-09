@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Einstellungen Übersicht"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 # Einstellungen Übersicht {/* #settings-overview */}
@@ -43,11 +43,11 @@ Diese Suche umfasst repräsentative Einstellungen in jedem Panel, nicht in jedem
 |  | [Netzwerk](../guides/network.md) | Proxy, Paketspiegel und Notebook-Domänenzugriff |
 |  | [Remote](../guides/remote-access.md) | Browserzugriff, Kopplung und vertrauenswürdige Geräte |
 |  | [Anmeldeinformationen](../tools/credentials.md) | Schlüssel, Token, OAuth und Credential Recovery |
+|  | [Rechenressourcen](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Arbeitsbereich | [Tags](../guides/tags.md) | Tags und Favoriten bestellen |
 |  | [Berechtigungen](../guides/approval-modes.md) | Default-Modus und eingesparte Zuschüsse |
 |  | [Laufzeiten](../guides/runtimes.md) | Python/R Umgebungen und Pakete |
 |  | [Speicher](../guides/storage.md) | Datenortung, Schreibzugriff und Festplattennutzung |
-|  | [Rechenressourcen](../guides/remote-compute.md) | Lokale und SSH-Rechenressourcen |
 |  | [Verwendung](../guides/usage.md) | Token-, Call- und Research-Statistiken |
 |  | [Archiviert](../guides/storage.md) | Archivierte Arbeit wiederherstellen oder dauerhaft löschen |
 
@@ -57,6 +57,6 @@ Diese Suche umfasst repräsentative Einstellungen in jedem Panel, nicht in jedem
 
 ## Tabs für Modelleinstellungen {/* #model-tabs */}
 
-Verwenden Sie in **Model** **Conversation models** für Anbieter und Aufgabenmodelle, **Classification models** für die optionale Skill/Connector-Auswahl und **Local parsing models** für lokale Parsing-Ressourcen. Die Klassifizierung ist eine Registerkarte in den Modelleinstellungen, nicht ein zusätzliches Top-Level-Einstellungen-Panel. Siehe [Einstufungsaufbau](../guides/models.md#classification-models).
+innerhalb **Model**, Verwendung **Conversation models** für Anbieter und Aufgabenmodelle, **Classification models** für optionale Fähigkeitsauswahl und intelligente Sammlungen und **Local capabilities** für PDF-Extraktion, OCR und Research Narration. Dies sind Registerkarten in Modell, nicht zusätzliche Einstellungen Panels. Siehe [Lokale Ressourcen](../guides/models.md#local-capabilities).
 
 Die Header-Suche verwendet **&lt;0xE2>&lt;0x8C>&lt;0x98>K / Strg + K**. Um die Suche des aktuellen Panels oder Dialogs zu fokussieren, verwenden Sie **&lt;0xE2>&lt;0x8C>&lt;0x98>&lt;0xE2>&lt;0x8C>&lt;0xA5>K / Strg + Alt + K**, wenn dieses Feld verfügbar ist. Siehe [Suchabkürzungen](../guides/shortcuts.md#local-settings-search).

@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "설정 개요"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 # 설정 개요 {/* #settings-overview */}
@@ -43,11 +43,11 @@ last_update:
 |  | [네트워크](../guides/network.md) | 프록시, 패키지 미러 및 Notebook 도메인 액세스 |
 |  | [원격](../guides/remote-access.md) | 브라우저 액세스, 페어링 및 신뢰할 수있는 장치 |
 |  | [자격 증명](../tools/credentials.md) | 열쇠, 토큰, OAuth 및 credential 회복 |
+|  | [컴퓨팅](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | 워크스페이스 | [태그](../guides/tags.md) | 태그 및 즐겨찾기 주문 |
 |  | [권한](../guides/approval-modes.md) | 기본 모드 및 저장된 보조금 |
 |  | [런타임](../guides/runtimes.md) | Python/R 환경 및 패키지 |
 |  | [저장소](../guides/storage.md) | 데이터 위치, 액세스 및 디스크 사용 쓰기 |
-|  | [컴퓨팅](../guides/remote-compute.md) | 지역 및 SSH compute 자원 |
 |  | [사용량](../guides/usage.md) | 토큰, 통화 및 연구 활동 통계 |
 |  | [보관됨](../guides/storage.md) | 저장소 또는 영구적으로 archived 작업을 삭제 |
 
@@ -57,6 +57,6 @@ last_update:
 
 ## 모델 설정 탭 {/* #model-tabs */}
 
-**Model** 내에서, 공급자 및 작업 모델에 대한 **Conversation models**을 사용, **Classification models** 옵션 Skill/Connector 선택, 및 **Local parsing models** 로컬 파싱 리소스. Classification는 모델 설정 내에서 탭이며, 추가 최상위 설정 패널이 아닙니다. [분류 설정](../guides/models.md#classification-models) 참조.
+내 계정 **Model**, 사용 **Conversation models** 공급자와 업무 모형을 위해, **Classification models** 옵션 기능 선택 및 스마트 컬렉션 및 **Local capabilities** PDF 추출, OCR 및 연구 narration에 대 한. 이 모델 내에서 탭, 추가 설정 패널이 없습니다. 이름 * [지역 자원](../guides/models.md#local-capabilities).
 
 헤더 검색은 **⌘K / Ctrl + K**을 사용합니다. 현재 패널 또는 대화 상자의 자신의 검색에 초점을 맞추려면 필드가 사용할 때 **&lt;unk>K/Ctrl+Alt+K**을 사용하십시오. [검색 단축키](../guides/shortcuts.md#local-settings-search) 참조.

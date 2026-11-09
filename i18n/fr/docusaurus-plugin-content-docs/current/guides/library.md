@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -81,7 +81,7 @@ Sélectionnez **Add** et choisissez la source. Sélection d'un PDF ouvre son éd
 
 | Entrée | Entrée | Vérifier avant d'enregistrer |
 | --- | --- | --- |
-| Ajouter une référence | Bibliographie saisie manuellement | Titre, type de référence et identifiants requis |
+Ajouter des champs bibliographiques ou un identificateur tel que DOI ou PMID.
 | Importer un PDF | Un ou plusieurs PDF locaux | les métadonnées extraites sur chaque papier; sélection multi-fichier utilise le flux de lot ci-dessous |
 | Importer les références | BibTeX, RIS ou NBIB | Entrées valides/invalides, correspondances de destination et d'identificateur |
 | Import from Zotero | Bibliothèque ou collection Zotero 10+ locale | Vérifier les correspondances, les collections et les PDF locaux ; voir [Import Zotero](#zotero-import) |
@@ -156,6 +156,9 @@ Cliquez sur **Import references**, attendez **Import complete**, inspectez Creat
 
 ## Ajouter des références à partir des identifiants ou des liens {/* #doi-link-import */}
 
+L'entrée identifiant-importation est nommée **Ajouter des identifiants ou des liens** dans v1.1.0 et plus tard; des captures d'écran plus anciennes peuvent apparaître **Ajouter à partir de la DOI ou du lien**. Les identifiants pris en charge et les étapes d'examen ci-dessous s'appliquent toujours.
+
+
 1. Ouvrir **Library → All references → Add → Add from DOI or link**.
 2. Saisissez un identifiant ou un lien par ligne. Les entrées prises en charge comprennent les liens DOI, doi.org, arXiv IDs ou les liens abstraits/PDF, PMID, PMCID et les liens officiels de l'article PubMed/PMC. Utiliser des préfixes explicites comme `PMID: 19621072` pour une carte d'identité PubMed. Les URL des éditeurs ordinaires ne sont pas acceptées par cette entrée.
 3. Sélectionner **Find reference**. Chaque lot permet jusqu'à **100 non-empty lines**, compté avant la déduplication. Diviser une liste plus longue en petits lots. La recherche normalise les identifiants et combine des entrées équivalentes.
@@ -203,6 +206,18 @@ Ajoutez le DOI `10.1038/s41467-018-08136-3` avec **Add from DOI or link**. Ouvre
 
 Le résultat enregistré porte la mention **Based on abstract**. **Study limitations** affiche **Not reported in the available source** : le résumé fourni ne précise pas les limites, ce qui ne signifie pas que l’étude n’en a aucune. Fermez et rouvrez la référence pour consulter l’aperçu enregistré sans le générer à nouveau.
 
+
+## Générer plusieurs aperçus ensemble {/* #batch-overviews */}
+
+1. Dans la bibliothèque, sélectionnez **une à cinq références** avec un texte intégral abstrait ou lisible. Configurer Main avant de commencer; la génération d'aperçu utilise ce modèle.
+2. Sélectionner **More actions → Generate overviews** et suivre **Batch overviews**. Inspectez chaque rangée, pas seulement le nombre fini.
+3. Sélectionner **Pause** au besoin. Autoriser les demandes en cours de règlement; le lot enregistré conserve le travail terminé.
+4. Retour à **Batch overviews** et choisir **Continue remaining** après une interruption, ou **Retry failed overviews** après avoir résolu le problème signalé. Les résultats sont conservés.
+5. Ouvrir **View details** pour une ligne sauvegardée, vérifiez son étiquette source et comparez les revendications importantes avec l'original. Un résumé terminé n'est pas une preuve de lecture en texte intégral.
+
+Gardez la bibliothèque ouverte pendant que le lot avance. La fermeture de sa vue fait une pause dans l'horaire; le travail terminé reste disponible à votre retour. Si un élément manque de preuves utilisables, ajoutez le résumé ou un PDF lisible avant de réessayer. Une source modifiée peut nécessiter une nouvelle vue d'ensemble.
+
+![Aperçus des lots complétés et aperçu d'une étude abstraite](/img/open-science/v120/batch-overviews.webp)
 
 ## Importation de Zotero {/* #zotero-import */}
 

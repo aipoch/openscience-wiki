@@ -1,12 +1,12 @@
 ---
 title: "Service sans tête et accès au navigateur"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-09'
 ---
 
 # Service sans tête et accès au navigateur {/* #headless-service-and-browser-access */}
 
-Le service local fournit un moteur sans tête et une interface de navigateur local hôte. Il est distinct d'un hôte SSH Compute et de l'appariement du navigateur Remote.It. Choisissez les paramètres d'authentification et de stockage des justificatifs pour l'hôte avant de connecter un client.
+Le service local fournit un moteur sans tête et une interface de navigateur local hôte authentifié. Il est séparé de [appariement de dispositifs à distance](../guides/remote-access.md) et [cibles de calcul à distance](../guides/remote-compute.md). Choisissez l'authentification et le stockage des justificatifs pour l'hôte avant de connecter un client.
 
 ## Sélection des cibles et découverte {/* #target-selection-and-discovery */}
 
@@ -61,7 +61,7 @@ Le SDK découvre le service local et lit son jeton d'authentification locale, l'
 
 Un service local hôte n'est pas automatiquement accessible à partir d'un autre ordinateur. L'accès au navigateur à distance utilise son propre mode d'accès configuré, l'appariement et le cycle de vie du navigateur fiable. SSH Compute envoie plutôt des tâches aux hôtes d'exécution distants configurés.
 
-Utilisez [Accès au navigateur à distance](../guides/remote-access.md) pour l'appariement Remote.It et [Calcul à distance](../guides/remote-compute.md) pour les emplois SSH. Aucun des flux n'est configuré en modifiant l'URL de documentation du service local.
+Utilisation [Accès au navigateur à distance](../guides/remote-access.md) pour WiFi, Internet et Remote.It appairing, et [Calcul à distance](../guides/remote-compute.md) pour les emplois SSH, cluster et cloud. Il n'est pas non plus configuré en modifiant l'URL de la documentation locale.
 
 ### Stockage des titres de créance sur Linux sans tête {/* #credential-storage-on-headless-linux */}
 
@@ -122,7 +122,7 @@ Après mise à jour, confirmer la version et les données originales, puis inspe
 
 ## Calculer dans l'espace de travail web {/* #web-compute */}
 
-L'espace de travail web autonome expose **Compute** lorsque son moteur fournit le carnet de notes et les API de calcul nécessaires. Ouvrez l'espace de travail connecté, vérifiez que le panneau est disponible, puis utilisez les étapes de configuration SSH/Slurm existantes. Un panneau disponible ne fournit pas d'identifiants à distance ou ne confirme pas qu'un travail peut fonctionner.
+L'espace de travail web autonome expose **Compute** lorsque son moteur fournit le carnet de notes et les API de calcul nécessaires. Ouvrez l'espace de travail connecté, vérifiez que le panneau est disponible, puis suivez [Calculer la configuration de la cible](../guides/remote-compute.md#compute-backends). Le moteur exécute des tâches en utilisant ses comptes et son infrastructure configurés; un panneau de navigateur ne fournit pas d'identifiants ni ne prouve l'exécution. Gérer les identifiants cibles à partir d'une surface locale autorisée.
 
 ## Paquets et clients d'outils externes {/* #local-research-tools */}
 

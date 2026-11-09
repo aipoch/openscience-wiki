@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -81,7 +81,7 @@ Select **Add** and choose the source. Selecting one PDF opens its metadata edito
 
 | Entry | Input | Check before saving |
 | --- | --- | --- |
-| Add reference | Manually entered bibliography | Required title, reference type and identifiers |
+| Add reference | Bibliographic fields or an identifier such as DOI or PMID | In v1.2.0 a title may be omitted when an identifier is supplied; review the generated title and complete the metadata before citing |
 | Import PDF | One or several local PDFs | Extracted metadata against each paper; multi-file selection uses the batch flow below |
 | Import references | BibTeX, RIS or NBIB | Valid/invalid entries, destination and identifier matches |
 | Import from Zotero | Local Zotero 10+ library or collection | Preview matches, collection scope and local PDFs; see [Zotero import](#zotero-import) |
@@ -156,6 +156,9 @@ Click **Import references**, wait for **Import complete**, inspect Created/Reuse
 
 ## Add references from identifiers or links {/* #doi-link-import */}
 
+The identifier-import entry is named **Add from identifiers or links** in v1.1.0 and later; older screenshots may show **Add from DOI or link**. The supported identifiers and review steps below still apply.
+
+
 1. Open **Library → All references → Add → Add from DOI or link**.
 2. Enter one identifier or link per line. Supported inputs include DOI, doi.org links, arXiv IDs or abstract/PDF links, PMID, PMCID and official PubMed/PMC article links. Use explicit prefixes such as `PMID: 19621072` for a PubMed ID. Ordinary publisher URLs are not accepted by this entry.
 3. Select **Find reference**. Each batch allows up to **100 non-empty lines**, counted before deduplication. Split a longer list into smaller batches. The lookup normalizes identifiers and combines equivalent entries.
@@ -197,12 +200,24 @@ If generation asks for a source, add an abstract or readable PDF. In the browser
 
 <p className="example-label"><strong>Worked example</strong> Read a single-atom catalyst paper’s abstract</p>
 
-Add DOI `10.1038/s41467-018-08136-3` with **Add from DOI or link**. Open **Non defect-stabilized thermally stable single-atom catalyst**, check its **Abstract**, then select **Generate overview**. This example uses Codex with `gpt-6-astra` and has no PDF attachment.
+Add DOI `10.1038/s41467-018-08136-3` with **Add from identifiers or links**. Open **Non defect-stabilized thermally stable single-atom catalyst**, check its **Abstract**, then select **Generate overview**. This example uses Codex with `gpt-6-astra` and has no PDF attachment.
 
 <Screenshot src="/img/open-science/v108/study-overview.webp" alt="Saved English study overview with five fields, an abstract source label and Codex model" width={2082} height={1239} windowBounds={[661, 200, 760, 664]} href="/docs/img/open-science/v108/study-overview.webp" linkLabel="Saved English study overview with five fields, an abstract source label and Codex model" />
 
 The saved result is labeled **Based on abstract**. **Study limitations** reads **Not reported in the available source** because the supplied abstract does not state limitations; this does not mean the study has none. Close and reopen the reference to read the saved overview without generating it again.
 
+
+## Generate several overviews together {/* #batch-overviews */}
+
+1. In the Library, select **one to five references** with an abstract or readable full text. Configure Main before starting; overview generation uses that model.
+2. Select **More actions → Generate overviews** and follow **Batch overviews**. Inspect each row, not only the finished count.
+3. Select **Pause** when needed. Allow in-progress requests to settle; the saved batch retains completed work.
+4. Return to **Batch overviews** and choose **Continue remaining** after an interruption, or **Retry failed overviews** after resolving the reported problem. Completed results are kept.
+5. Open **View details** for a saved row, check its source label and compare important claims with the original. A finished abstract overview is not evidence of full-text reading.
+
+Keep the Library open while the batch advances. Closing its view pauses further scheduling; completed work remains available when you return. If an item lacks usable evidence, add the abstract or a readable PDF before retrying. A changed source can require a fresh overview.
+
+![Completed batch overviews and an abstract-based study overview](/img/open-science/v120/batch-overviews.webp)
 
 ## Import from Zotero {/* #zotero-import */}
 

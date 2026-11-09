@@ -1,7 +1,7 @@
 ---
 title: "설치 및 전환 에이전트"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 # 설치 및 전환 에이전트 {/* #installing-and-switching-agents */}
@@ -24,7 +24,19 @@ last_update:
 | 로그 설치 / Retry | 그 원인을 해결 한 후 실패 단계와 재발을 읽으십시오. |
 | 복구 | 관리된 임명이 수리할 때 Appears; 확인하기 전에 영향을받는 실행 시간을 검사합니다. |
 
-Open-Science v1.0.7은 Codex, Claude Agent, OpenCode, CodeBuddy, Pi를 제공합니다. 사용 가능한 소스 및 인증 요구 사항이 다릅니다. 모든 프레임 워크가 동일한 설치자 또는 로그인 방법을 제공하지 않습니다.
+Open-Science v1.2.0: Open-Science Agent, Codex, Claude Agent, OpenCode, CodeBuddy, Pi.
+
+## 내장 에이전트 사용 {/* #built-in-agent */}
+
+v1.2.0에서, **Open-Science Agent** 앱으로 배송하고 새로운 설정의 기본입니다. 별도의 에이전트 다운로드가 필요하지 않습니다. 카드 라벨 실험. 호환 API 공급자가 필요합니다. Codex 구독은 Codex 프레임 워크와 Claude 구독을 Claude Agent에 연결됩니다. 준비되어 있는 런타임은 모델 접근을 포함하지 않습니다.
+
+1. 기타 **Settings → Agent** 및 검사 **Open-Science Agent** 외부 프레임워크와 함께.
+2. Active runtime을 변경하려면 카드를 선택하고 스위치를 확인합니다. 선택은 프로젝트 전반에 걸쳐 다음과 같은 요청에 적용됩니다.
+3. 기타 **Settings → Model**, 호환 모델을 선택하고 더 긴 작업을 시작하기 전에 작은 요청을 보냅니다.
+
+Codex 또는 다른 외부 프레임 워크를 활성화 할 수 있습니다. 별도의 런타임을 필요로 하는 프레임워크를 위해 아래 설치 단계를 사용하십시오.
+
+![내장 Open-Science 에이전트 및 외부 런타임 선택](/img/open-science/v120/agents.webp)
 
 ## 설치 및 검증 {/* #install-and-verify */}
 

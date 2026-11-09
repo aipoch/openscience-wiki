@@ -755,10 +755,10 @@
     "message": "Network checks, Notebook allowed domains, proxy modes, package mirrors, and certificate bundles."
   },
   "docs.guides.outline.remote-compute.title": {
-    "message": "SSH hosts and Slurm setup"
+    "message": "Calcul à distance"
   },
   "docs.guides.outline.remote-compute.scope": {
-    "message": "Host authentication, direct versus scheduler mode, resource discovery, scratch paths, and concurrency."
+    "message": "Configurer les cibles SSH, cluster et cloud; approuver et collecter des emplois externes."
   },
   "docs.guides.outline.remote-access.title": {
     "message": "Remote browser access"
@@ -1857,5 +1857,23 @@
   },
   "docs.outline.reference.v108.scope": {
     "message": "Import de références par lots, aperçus des études, paramètres et eQTL."
+  },
+  "docs.guides.outline.research-films.title": {
+    "message": "Films de recherche"
+  },
+  "docs.guides.outline.research-films.scope": {
+    "message": "Générer, examiner et exporter une présentation narrative d'une séance terminée."
+  },
+  "docs.outline.reference.v120.title": {
+    "message": "v1.2.0"
+  },
+  "docs.outline.reference.v120.scope": {
+    "message": "Cibles de calcul en nuage, agents intégrés et discussions de recherche liées."
+  },
+  "docs.outline.reference.v110.title": {
+    "message": "v1.1.0"
+  },
+  "docs.outline.reference.v110.scope": {
+    "message": "Recherche films, batch paper panoramas, accès mobile et commandes de littérature."
   }
 }

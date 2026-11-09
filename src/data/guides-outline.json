@@ -344,6 +344,17 @@
             "guides/research-packages"
           ],
           "contentStatus": "written"
+        },
+        {
+          "id": "research-films",
+          "title": "Research films",
+          "scope": "Generate, review and export a narrated presentation from a completed session.",
+          "currentDoc": "guides/research-films",
+          "proposedUrl": "/docs/guides/research-films/",
+          "relatedDocs": [
+            "guides/research-films"
+          ],
+          "contentStatus": "written"
         }
       ]
     },
@@ -569,8 +580,8 @@
         },
         {
           "id": "remote-compute",
-          "title": "SSH hosts and Slurm setup",
-          "scope": "Host authentication, direct versus scheduler mode, resource discovery, scratch paths, and concurrency.",
+          "title": "Remote compute",
+          "scope": "Configure SSH, cluster and cloud targets; approve and collect external jobs.",
           "currentDoc": "guides/remote-compute",
           "proposedUrl": "/docs/guides/remote-compute/",
           "relatedDocs": [

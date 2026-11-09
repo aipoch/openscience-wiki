@@ -2,7 +2,7 @@
 title: ".science 연구 패키지"
 description: "파일 및 증거와 함께 세션을 내보내고 다른 프로젝트에 대한 연구 기록을 검사합니다."
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,14 @@ Open-Science v0.31.1의 이 예는 [GSE60450 샘플 QC 테이블](../reference/e
 수입된 세션을 열고 요약 CSV. **Imported research history** 통지는 이 복사본이 읽기 전용이며 코드를 실행하거나 직접 대화를 계속할 수 없다는 것을 확인합니다.
 
 ![그 상속 요약과 Fork를 가진 수입된 QC 기록은 단추를 계속합니다](/img/open-science/v0311/package-import-readonly.webp)
+
+## 기록 변경 없이 수입된 단계 토론 {/* #linked-discussions */}
+
+제품 정보 **Ask about this research** 또는 재생 **Ask about this step** 수입된 부모와 관련된 토론을 시작합니다. 첨부된 증거를 검사하고 유효한 모형을 가진 당신의 질문을 보내십시오. 아이 토론은 부모의 정체성을 유지하면서 수입 된 기록은 읽기 전용을 유지합니다.
+
+사이드바는 아래 세션을 수입 **Imported research** 그리고 관련 토론을 보여줍니다. 부모는 관계를 유지. 부모가 일반 대화로 자녀 토론을 나타낸다. 완전한 유지 소스 패키지에 대한 교체로 그들에 의존하지 마십시오.
+
+새로운 분석을 위해, 눈에 띄는 것을 선택하십시오 **Fork to continue** 활동. **View replay**, **Ask about this research** · **파일 보기** 수신된 기록 검사를 위해 유효한 남아 있습니다. 연결된 토론은 포크가 아니며 노트북을 다시 실행하지 않습니다.
 
 ## 수신된 연구 기록 사용 {/* #use-the-received-research-record */}
 
@@ -168,7 +176,7 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 
 ## 공유 마켓에서 연구 사례 찾기 {/* #use-case-gallery */}
 
-1. 기타 **Sharing marketplace** 홈 또는 대화 작업 공간에서. workspace 미리보기에서, 선택 **View in sharing marketplace** 전체 페이지를 엽니다. 홈으로 **Browse all examples** 또한 전체를 엽니 다 **Use Case Marketplace**.
+1. 기타 **회사연혁** 홈 또는 대화 작업 공간에서 다음 연구 사례 라이브러리를 엽니다. 홈 또한 제공 **Use Case Gallery → Browse all examples**· 브라우저의 이전 버전 **공유 시장**.
 2. 범주를 선택하고 검색어를 입력하세요. 결과가 너무 적으면 검색어를 지우거나 모든 범주로 돌아가세요.
 3. 사례를 열어 설명과 패키지 동작을 확인하세요. 다운로드하거나 가져오기 전에 주제, 입력 자료 및 예상 출력을 검토하세요.
 4. 케이스 세부 사항에서 제공되는 패키지 동작을 사용합니다. 준비, 다운로드 및 검증 진행; 사용 **Cancel** 로 불필요한 전송을 중지하세요. 다운로드가 끝났다고 프로젝트에 가져온 것은 아닙니다.

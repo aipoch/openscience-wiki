@@ -1,7 +1,7 @@
 ---
 title: "재생 및 기록 된 세션에 대해"
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-09'
 ---
 
 # 재생 및 기록 된 세션에 대해 {/* #replay-and-discuss-a-recorded-session */}
@@ -40,10 +40,13 @@ last_update:
 
 ## 자주 묻는 질문 {/* #discuss-replay */}
 
-1. 관련 단계에서 일시 중지하고 **Ask about this step**을 선택합니다. 더 넓은 토론을 위해, 헤더에 **Ask about this research**을 사용합니다.
-2. **Ask in a conversation**에서, 쓸 수 있는 대화 또는 **New conversation**를 선택하십시오. 행동은 초안에 대한 맥락을 추가합니다; 그것은 스스로 질문을 보내지 않습니다.
-3. **Discuss** 첨부 파일과 세션/단계 라벨을 확인합니다. 귀하의 질문을 입력하고 연결 된 모델을 선택하고 **Send**을 선택하십시오. 예를 들어 **Codex subscription**을 사용합니다.
-4. 도구 승인이 요청되면 필요한 작업을 허용하기 전에 제안 된 액세스를 검사합니다. 그런 다음 저장된 증거와 소스 컨텍스트와 응답을 비교합니다.
+1. 관련 단계에 일시 및 선택 **Ask about this step**· 더 넓은 질문을 위해, 선택하십시오 **Ask about this research**.
+2. 토론 초안을 확인하고 **Discuss** 첨부파일 선택한 세션, 지점 및 단계는 논의 된 증거를 확인합니다. 선택한 노트북은 현재 뷰포트 밖에 있을 때도 기록된 컨텍스트를 포함합니다.
+3. 집중된 질문을 입력하고 연결된 모델을 선택하고 선택 **Send**· 토론을 열거나 컨텍스트 추가는 자동으로 질문을 보내지 않습니다.
+4. 수입 연구의 경우 토론은 연결된 어린이 대화입니다. 부모 기록으로 돌아가 원본 단계 확인; 토론은 읽기 전용 역사 writable하지 않습니다. 제품 정보 **Fork to continue** 대신 continuation를 위해.
+5. 모든 도구 승인 검사 및 기록 된 증거와 응답 비교. 모델 설명은 소스 링크가 정확 할 때 실수를 포함 할 수 있습니다.
+
+위의 TP53 예제의 경우:
 
 ```text
 From the recorded TP53 pathway analysis, explain why the missing direct
@@ -52,9 +55,11 @@ saved evidence and separate the recorded result from a new biological
 claim. Keep the response in English.
 ```
 
-대답은 `tp53_mdm2_cdkn1a_readable_interactions.tsv`을 식별하고 평평한 수출이 생물학적 결론에서 포함되는 것을 구별합니다. 선택된 소스 세션, 지점 및 단계로 포인트. 해석을 채택하기 전에 그 소스를 다시 읽으십시오; 연결된 기록은 모든 모델의 청구를 수정하지 않습니다.
+예 답변은 식별 `tp53_mdm2_cdkn1a_readable_interactions.tsv` 그리고 생물 결론에서 평평한 수출을 분리하십시오. 스크린 샷은 기록 된 토론을 보여줍니다. 현재 링크 된 처리 제어는 다를 수 있습니다.
 
-![완료된 Codex 토론은 기록된 TP53 분석 옆에](/img/open-science/v0350/replay-answer.webp)
+![기록된 TP53 분석 옆에 완료된 Codex 토론](/img/open-science/v0350/replay-answer.webp)
+
+완료된 세션의 narrated 프레젠테이션을 만들기 위해, 따르십시오 [연구 필름](research-films.md)· 재생, 토론 및 영화 각 재사용 기록; 그들 중 아무도 분석을 중단.
 
 ## 증거는 사용할 수 없습니다 {/* #replay-evidence */}
 

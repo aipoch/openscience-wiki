@@ -754,10 +754,10 @@
     "message": "Network checks, Notebook allowed domains, proxy modes, package mirrors, and certificate bundles."
   },
   "docs.guides.outline.remote-compute.title": {
-    "message": "SSH hosts and Slurm setup"
+    "message": "Дистанционные вычисления"
   },
   "docs.guides.outline.remote-compute.scope": {
-    "message": "Host authentication, direct versus scheduler mode, resource discovery, scratch paths, and concurrency."
+    "message": "Настройка SSH, кластерных и облачных целей; утверждение и сбор внешних рабочих мест."
   },
   "docs.guides.outline.remote-access.title": {
     "message": "Remote browser access"
@@ -1856,5 +1856,23 @@
   },
   "docs.outline.reference.v108.scope": {
     "message": "Пакетный импорт литературы, обзоры исследований, настройки и eQTL."
+  },
+  "docs.guides.outline.research-films.title": {
+    "message": "Исследовательские фильмы"
+  },
+  "docs.guides.outline.research-films.scope": {
+    "message": "Создавать, просматривать и экспортировать рассказанную презентацию из завершенной сессии."
+  },
+  "docs.outline.reference.v120.title": {
+    "message": "v1.2.0"
+  },
+  "docs.outline.reference.v120.scope": {
+    "message": "Облачные вычисления целей, встроенный агент и связанные с ним исследовательские дискуссии."
+  },
+  "docs.outline.reference.v110.title": {
+    "message": "v1.1.0"
+  },
+  "docs.outline.reference.v110.scope": {
+    "message": "Исследовательские фильмы, обзоры партийной бумаги, мобильный доступ и команды литературы."
   }
 }

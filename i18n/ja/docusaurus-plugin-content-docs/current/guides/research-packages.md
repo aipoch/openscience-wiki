@@ -2,7 +2,7 @@
 title: ".science 研究パッケージ"
 description: "そのファイルと証拠でセッションをエクスポートし、別のプロジェクトで研究記録をインポートし、検査します。"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,14 @@ Open-Science v0.31.1 では、[GSE60450サンプルQCテーブル](../reference/
 インポートされたセッションとそのサマリーCSVを開きます。 **Imported research history** 通知は、このコピーは読み取り専用であり、コードを実行したり、直接会話を続行したりできないことを確認します。
 
 ![継承されたサマリーとフォークでQCレコードをインポートし、ボタンを続行](/img/open-science/v0311/package-import-readonly.webp)
+
+## レコードを変更せずにインポートされたステップをディスク {/* #linked-discussions */}
+
+使用条件 **Ask about this research** またはリプレイの **Ask about this step** インポートされた親にリンクされた議論を開始する。 添付された証拠を点検し、利用できるモデルとあなたの質問を送って下さい。 インポートされたレコードが読み取り専用にとどまりながら、子供の議論は親のアイデンティティを保持します。
+
+サイドバーがインポートされたセッションを下に配置 **Imported research** 関連する議論を披露します。 親が関係を保ちます。 親は、子供のディスカッションを通常の会話として残します。 完全に保持されたソースパッケージの代替としてそれらに依存しません。
+
+新しい分析のために、顕著な選択して下さい **Fork to continue** アクション。 **View replay**, **Ask about this research** そして、 **ファイルを見る** 受取された記録を点検するために利用できます残して下さい。 リンクされた議論はフォークではなく、ノートブックを再実行しません。
 
 ## 受領した研究記録を使用する {/* #use-the-received-research-record */}
 
@@ -168,7 +176,7 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 
 ## マーケットプレースをシェアするリサーチケースを探す {/* #use-case-gallery */}
 
-1. オープン **Sharing marketplace** ホームまたは会話ワークスペースから。 ワークスペースのプレビューで、選択します **View in sharing marketplace** フルページを開く ホーム **Browse all examples** また、全体を開く **Use Case Marketplace**.
+1. オープン **リソースセンター** 家や会話のワークスペースから、研究ケースライブラリを開きます。 ホームも提供 **Use Case Gallery → Browse all examples**お問い合わせ ケースブラウザと呼ばれる古いバージョン **市場シェアリング**.
 2. カテゴリと検索語を指定します。結果が少なすぎる場合は検索語を消すか、すべてのカテゴリに戻します。
 3. 事例を開き、説明と研究パッケージの操作を確認します。ダウンロードやインポートの前に、テーマ、入力、想定する出力を読みます。
 4. ケースの詳細はパッケージアクションを使用します。 準備、ダウンロード、検証の進捗をフォローしてください。 **Cancel** で不要な転送を停止します。ダウンロードの完了だけではプロジェクトにインポートされていません。

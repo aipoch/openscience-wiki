@@ -1,7 +1,7 @@
 ---
 title: "Appearance and notifications"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -121,7 +121,7 @@ Open **Settings → General → Help Center** to read setup and troubleshooting 
 | You want to… | Where to go |
 | --- | --- |
 | Check for an app update | **General → Check now**; follow [Installation and updates](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Read version changes or get help | **General → Release notes / Help Center** opens the corresponding external page. This wiki also has a [Changelog](../changelog/v1.0.8.md). |
+| Read version changes or get help | **General → Release notes / Help Center** opens the corresponding external page. This wiki also has a [Changelog](../changelog/v1.2.0.md). |
 | Locate or open the diagnostic log | **General → Diagnostics → Reveal / Open**; see [Troubleshooting](troubleshooting.md). Logs stay local until you share them. |
 | Install the command-line entry | **General → Install command**; see [CLI reference](../reference/cli.md). Desktop use does not require this command. |
 | Manage data location or archived work | [Storage and archived work](storage.md). |
@@ -132,7 +132,7 @@ Open **Settings → General → Help Center** to read setup and troubleshooting 
 
 Notification delivery also depends on the operating system's permissions, Focus mode and screen-sharing settings. Use the checks above on the device where you work.
 
-Source: [General settings](https://github.com/aipoch/open-science/blob/v1.0.8/src/renderer/src/pages/settings/GeneralPanel.tsx).
+Source: [General settings](https://github.com/aipoch/open-science/blob/v1.2.0/src/renderer/src/pages/settings/GeneralPanel.tsx).
 
 ## Adjust the app's interface size {/* #interface-scale */}
 

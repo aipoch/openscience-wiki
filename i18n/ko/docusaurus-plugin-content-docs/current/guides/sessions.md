@@ -1,7 +1,7 @@
 ---
 title: "세션 및 지점"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -190,3 +190,9 @@ Header에서 **Session actions → Export → Export diagnostics…**을 사용�
 ## 접힌 대화 펼치기 {/* #collapsed-conversation */}
 
 v1.0.4는 한 차례가 완료되면 중간 메시지와 도구 활동을 요약 그룹으로 접습니다. 그룹을 펼쳐 상세 내용을 볼 수 있으며 실행·대기·중단 상태의 작업은 계속 표시됩니다. 대화 검색, 주석, 기본 찾기는 일치하는 숨겨진 내용을 펼칩니다. 접기는 표시 방식만 바꾸며 저장된 연구 기록이나 작업 완료 상태를 바꾸지 않습니다.
+
+## 사이드바에서 세션 찾기 {/* #sidebar-groups */}
+
+이 순서에 있는 v1.2.0 sidebar 그룹 회의: **Pinned**, **Imported research**, **Active**, **Recents**· 빈 그룹이 나타날 수 없습니다. 자주 사용되는 세션을 핀으로 쉽게 찾을 수 있습니다. 수입된 기록은 읽기 전용 남아 있으며 연결된 어린이 토론을 보여줄 수 있습니다. 증거로 돌아가는 부모를 선택하십시오. Active 또는 최근 세션 라벨은 내비게이션 상태, 과학적 검증을 설명합니다.
+
+이전의 턴을 읽는 동안 메시지를 보내기 최신 메시지로 스크롤하여 준비 할 때 새로운 응답을 따르십시오.

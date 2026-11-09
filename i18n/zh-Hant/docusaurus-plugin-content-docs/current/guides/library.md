@@ -1,7 +1,7 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -81,7 +81,7 @@ Inbox 隨後顯示 **Inbox is clear**；切換到 **Current project** 可見 **2
 
 | 入口 | 輸入 | 儲存前檢查 |
 | --- | --- | --- |
-| Add reference | 手填書目 | 必填標題、文獻型別和識別符號 |
+| Add reference | 書目字段或 DOI、PMID 等標識符 | v1.2.0 允許提供標識符時不填標題；引用前檢查生成的標題並補全元數據 |
 | Import PDF | 一份或多份本地 PDF | 對照每篇論文檢查提取的後設資料；多檔案走下面的批次流程 |
 | Import references | BibTeX、RIS、NBIB | 有效/無效記錄、目標和識別符號匹配 |
 | Import from Zotero | 本機 Zotero 10+ 文獻庫或集合 | 覈對匹配、集合範圍與本地 PDF，見 [Zotero 導入](#zotero-import) |
@@ -156,6 +156,9 @@ Inbox 隨後顯示 **Inbox is clear**；切換到 **Current project** 可見 **2
 
 ## 從編號或鏈接添加文獻 {/* #doi-link-import */}
 
+v1.1.0 及之後，標識符導入入口名爲 **Add from identifiers or links**，舊截圖中可能顯示 **Add from DOI or link**。下方支持的標識符和檢查步驟仍然適用。
+
+
 1. 打開 **Library → All references → Add → Add from DOI or link**。
 2. 每行填寫一個編號或鏈接，支持 DOI、doi.org 鏈接、arXiv ID 或摘要/PDF 鏈接、PMID、PMCID，以及官方 PubMed/PMC 論文鏈接。PubMed 編號建議明確寫成 `PMID: 19621072`。此入口不接受普通出版商頁面 URL。
 3. 選擇 **Find reference**。每批最多 **100 個非空行**，按去重前的輸入行數計算；更長的清單應分批處理。查找時會規範化編號，併合並指向同一文獻的等價輸入。
@@ -203,6 +206,18 @@ DOI 和 DOI 鏈接指向同一篇論文，因此查找後得到兩條文獻：BM
 
 儲存的結果標註為 **Based on abstract**。**Study limitations** 顯示 **Not reported in the available source**，表示這份摘要沒有說明研究局限，並不代表研究沒有局限。關閉並重新打開文獻，即可查看已儲存的概覽，無需再次生成。
 
+
+## 批量生成論文概覽 {/* #batch-overviews */}
+
+1. 在文獻庫選擇 **一至五篇文獻**，確保有摘要或可讀取的全文。先配置 Main，概覽生成使用該主模型。
+2. 選擇 **More actions → Generate overviews**，在 **Batch overviews** 查看進度。逐行檢查結果，不只看完成數量。
+3. 需要暫停時選擇 **Pause**，等待正在進行的請求結束；已保存的批次會保留完成結果。
+4. 中斷後重新打開 **Batch overviews**，選擇 **Continue remaining**；修復具體問題後，可選擇 **Retry failed overviews**。已經完成的概覽會保留。
+5. 對已保存的條目打開 **View details**，檢查來源標籤，並將重要論斷與原文覈對。摘要概覽完成不等於已經閱讀全文。
+
+批次推進時保持文獻庫視圖打開。關閉視圖後不再安排後續項目，返回時仍可繼續已保存的進度。條目缺少可用證據時，先補充摘要或可讀取的 PDF 再重試；來源變化後可能需要重新生成概覽。
+
+![批量概覽完成狀態與基於摘要的論文概覽](/img/open-science/v120/batch-overviews.webp)
 
 ## 從 Zotero 導入 {/* #zotero-import */}
 

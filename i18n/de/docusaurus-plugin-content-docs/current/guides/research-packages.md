@@ -2,7 +2,7 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -72,6 +72,14 @@ Wählen Sie in diesem Beispiel das Zielprojekt **Public Genomics Examples** aus.
 Öffnen Sie die importierte Sitzung und die Zusammenfassung CSV. Der **Imported research history**-Hinweis bestätigt, dass diese Kopie schreibgeschützt ist und keinen Code ausführen oder eine Konversation direkt fortsetzen kann.
 
 ![Importierter QC-Record mit geerbter Zusammenfassung und Fork to Continue-Button](/img/open-science/v0311/package-import-readonly.webp)
+
+## Besprechen Sie einen importierten Schritt, ohne den Datensatz zu ändern {/* #linked-discussions */}
+
+Verwendung **Ask about this research** oder eine Wiederholung **Ask about this step** eine Diskussion im Zusammenhang mit dem importierten Elternteil zu beginnen. Überprüfen Sie die beigefügten Beweise und senden Sie Ihre Frage mit einem verfügbaren Modell. Die Child-Diskussion behält die Identität der Eltern, während der importierte Datensatz schreibgeschützt bleibt.
+
+Die Sidebar ordnet importierte Sessions unter **Imported research** und zeigt ihre damit verbundenen Diskussionen. Die archivierung des elternteils behält die beziehung. Das Löschen des Elternteils lässt seine Kindergespräche als gewöhnliche Gespräche; Verlassen Sie sich nicht auf sie als Ersatz für ein vollständiges zurückbehaltenes Quellpaket.
+
+Für eine neue Analyse wählen Sie die prominente **Fork to continue** Maßnahmen. **View replay**, **Ask about this research** und **View-Dateien** für die Überprüfung der empfangenen Aufzeichnung verfügbar bleiben. Eine verknüpfte Diskussion ist keine Gabel und führt ihr Notebook nicht erneut aus.
 
 ## Verwenden Sie die erhaltene Forschungsaufzeichnung {/* #use-the-received-research-record */}
 
@@ -168,7 +176,7 @@ Der Export erfordert einen ausdrücklichen `.science`-Ausgabepfad. Das Zeitlimit
 
 ## Finden Sie einen Forschungsfall in Sharing Marketplace {/* #use-case-gallery */}
 
-1. Offen **Sharing marketplace** von Home oder dem Conversation Workspace. In einer Workspace-Vorschau wählen **View in sharing marketplace** um die ganze Seite zu öffnen. Zu Hause, **Browse all examples** öffnet auch die volle **Use Case Marketplace**.
+1. Offen **Ressourcenzentrum** von Home oder dem Conversation Workspace, dann öffnen Sie seine Forschungsfallbibliothek. Home bietet auch **Use Case Gallery → Browse all examples**. Ältere Versionen nannten den Fall Browser **Sharing Marktplatz**.
 2. Wählen Sie eine Kategorie aus und geben Sie ein Keyword in das Suchfeld ein. Löschen Sie das Keyword oder kehren Sie zu allen Kategorien zurück, wenn die Ergebnisliste zu eng ist.
 3. Öffnen Sie einen Fall, um seine Beschreibung zu lesen und die verfügbare Paketaktion zu überprüfen. Überprüfen Sie das Thema, die Eingaben und die beabsichtigten Ausgaben, bevor Sie es herunterladen oder importieren.
 4. Verwenden Sie die in den Falldetails angebotene Paketaktion. Verfolgen Sie den Vorbereitungs-, Download- und Verifizierungsfortschritt; Verwendung **Cancel** einen unerwünschten Transfer zu stoppen. Heruntergeladene Bytes sind noch kein importiertes Projekt.

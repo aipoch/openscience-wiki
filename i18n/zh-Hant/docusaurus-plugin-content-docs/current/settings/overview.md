@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "設定中心總覽"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-09'
 ---
 
 # 設定中心總覽 {/* #设置中心总览 */}
@@ -43,11 +43,11 @@ last_update:
 |  | [Network](../guides/network.md) | 代理、軟體包映象與 Notebook 域名訪問 |
 |  | [Remote](../guides/remote-access.md) | 瀏覽器訪問、配對與可信裝置 |
 |  | [Credentials](../tools/credentials.md) | 金鑰、令牌、OAuth 與憑據恢復 |
+|  | [Compute](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Workspace | [Tags](../guides/tags.md) | 標籤與收藏排序 |
 |  | [Permissions](../guides/approval-modes.md) | 預設模式與已儲存授權 |
 |  | [Runtimes](../guides/runtimes.md) | Python/R 環境與軟體包 |
 |  | [Storage](../guides/storage.md) | 資料位置、寫入權限與磁碟用量 |
-|  | [Compute](../guides/remote-compute.md) | 本地與 SSH 計算資源 |
 |  | [Usage](../guides/usage.md) | Token、呼叫與研究活動統計 |
 |  | [Archived](../guides/storage.md) | 恢復或永久刪除歸檔內容 |
 
@@ -59,6 +59,6 @@ last_update:
 
 ## 模型設定中的標籤頁 {/* #model-tabs */}
 
-在 **Model** 內，**Conversation models** 管理提供方與任務模型，**Classification models** 配置可選的 Skill/Connector 選擇服務，**Local parsing models** 管理本地解析資源。分類模型是模型設定中的標籤頁，不是新增的頂層設定面板。詳見[分類模型配置](../guides/models.md#classification-models)。
+在 **Model** 中，**Conversation models** 管理提供方和任務模型，**Classification models** 管理可選的能力選擇與智能集合，**Local capabilities** 管理 PDF 提取、OCR 和研究旁白。它們都是 Model 內部的標籤頁，不是額外的設置面板。參閱[本地資源](../guides/models.md#local-capabilities)。
 
 頁頭搜尋使用 **⌘K / Ctrl+K**。當前面板或對話方塊內有區域性搜尋框時，使用 **⌘⌥K / Ctrl+Alt+K** 聚焦該框，見[搜尋快捷鍵](../guides/shortcuts.md#local-settings-search)。

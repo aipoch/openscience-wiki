@@ -1,7 +1,7 @@
 ---
 title: "Sitzungen und Verzweigungen"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -190,3 +190,9 @@ Lesen Sie für Diagnoseexporte die Zusammenfassung des Abschlusses: Ein Teilexpo
 ## Erweitern Sie ein kompaktes Gespräch {/* #collapsed-conversation */}
 
 In v1.0.4 zerlegen abgeschlossene Runden Zwischennachrichten und Gruppenwerkzeugaktivitäten in Zusammenfassungen. Erweitern Sie eine Gruppe, um ihre Details zu überprüfen; Laufen, Warten und unterbrochene Arbeit bleibt sichtbar. Konversationssuche, annotationen und native find enthüllen übereinstimmende versteckte inhalte. Kollapsing verändert die Präsentation, nicht die gespeicherte Forschungsaufzeichnung oder ob eine Aufgabe abgeschlossen wurde.
+
+## Finden Sie Sitzungen in der Sidebar {/* #sidebar-groups */}
+
+Die Seitenleiste v1.2.0 gruppiert Sitzungen in dieser Reihenfolge: **Pinned**, **Imported research**, **Active**, **Recents**. Leere Gruppen dürfen nicht erscheinen. Pin eine häufig verwendete Sitzung, um es leicht zu finden. Importierte Datensätze bleiben schreibgeschützt und können verknüpfte Kinderdiskussionen anzeigen; Wählen Sie den Elternteil aus, um zu seinen Beweisen zurückzukehren. Ein aktives oder aktuelles Sitzungslabel beschreibt den Navigationszustand, nicht die wissenschaftliche Validierung.
+
+Das Senden einer Nachricht beim Lesen einer früheren Runde bewahrt diese Leseposition. Scrollen Sie zu den neuesten Nachrichten, um der neuen Antwort zu folgen, wenn Sie bereit sind.

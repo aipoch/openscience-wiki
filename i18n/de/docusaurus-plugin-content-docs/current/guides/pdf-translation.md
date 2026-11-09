@@ -1,7 +1,7 @@
 ---
 title: "Übersetzen eines vollständigen PDF"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-09'
 ---
 
 # Übersetzen eines vollständigen PDF {/* #translate-a-full-pdf */}
@@ -63,3 +63,7 @@ In v1.0.0 bereitet **New translation** frischen Quelltext vor, bevor die neue Au
 Vor Beginn **New translation**, expandieren **Advanced** und ermöglichen **Content first** Wenn Sie ein einspaltiges Leselayout bevorzugen. Es ist standardmäßig deaktiviert und mit dieser Übersetzungsedition gespeichert; seine Einstellungen sind beim Übersetzen gesperrt. Um das Layout zu ändern, erstellen Sie eine neue Edition, anstatt Retry als Einstellungsänderung zu behandeln.
 
 In diesem Layout werden übersetzte Texttexte und Bildunterschriften wiedergegeben, während Originalbilder, Tabellen, Formeln und Bibliographie beibehalten werden. Vergleichen Sie das Source-to-Output-Seiten-Mapping, öffnen Sie dann das exportierte PDF erneut und prüfen Sie Zahlen und Bildunterschriften. Ausgabeseitenzahlen können vom Original abweichen: zitieren und überprüfen Sie Ansprüche gegen das Quell-PDF.
+
+### Wenn eine Seite nicht dargestellt werden kann {/* #partial-page-recovery */}
+
+Fixed-Layout-Übersetzung in v1.2.0 hält erfolgreich gerenderte Seiten, wenn eine andere Seite ausfällt. Überprüfung **Translation issues**Identifizieren Sie die betroffene Seite und vergleichen Sie sie mit dem Original. Halten Sie unübersetzten Text als solchen sichtbar; beschreiben Sie ein teilweise gerendertes PDF nicht als vollständige Übersetzung. Versuchen Sie die betroffene Arbeit erneut, wenn der Leser sie anbietet, öffnen Sie dann die exportierte Datei erneut und überprüfen Sie diese Seite erneut. Eine gesunde Seite, die beibehalten wird, überprüft nicht ihre Terminologie oder wissenschaftliche Interpretation.
