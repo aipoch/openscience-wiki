@@ -1,7 +1,7 @@
 ---
 title: "Управлять и делиться специалистами"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -69,7 +69,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## Просмотреть маркетплейс {/* #browse-the-marketplace */}
 
-Откройте **Browse Marketplace**, найдите роль и выберите **View details**. Проверьте издателя, источник, версию, лицензию, размер загрузки и включите Skills / Connectors. **Refresh Marketplace** обновляет каталог **Manage Marketplace sources** управляет настроенными источниками. Фильтры All/Official/Community касаются происхождения каталога, а не готовности к работе.
+Откройте **Marketplace**, найдите роль и выберите **View details**. Проверьте издателя, источник, версию, лицензию, размер загрузки и включите Skills / Connectors. **Refresh Marketplace** обновляет каталог **Manage Marketplace sources** управляет настроенными источниками. Фильтры All/Official/Community касаются происхождения каталога, а не готовности к работе.
 
 ![Детали пакета Auto Research Specialist](/img/open-science/capabilities-walkthrough/22-marketplace-package-detail.webp)
 

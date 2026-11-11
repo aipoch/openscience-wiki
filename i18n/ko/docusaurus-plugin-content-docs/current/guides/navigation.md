@@ -1,7 +1,7 @@
 ---
 title: "탐색 및 검색"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # 탐색 및 검색 {/* #navigation-and-search */}
@@ -67,3 +67,17 @@ Global search finds message text, 업로드 파일 이름 및 색인된 업로�
 macOS 메뉴 바, Windows 트레이 또는 트레이 지원이있는 Linux 데스크톱에서 **Open-Science** 아이콘 메뉴를 엽니다. **Running sessions**을 사용하여 활성 작업, **Pinned sessions** 핀 대화, 또는 최근 콘텐츠 **Recent items**를 찾습니다. 더 긴 목록은 **더 많은 항목**의 밑에 계속합니다. 참여를 선택한 후, 열린 프로젝트 및 대화 제목을 확인하십시오.
 
 대화 제목 옆에 **Pin**을 사용하여 손을 유지하십시오. **쇼 / 숨기기** 변경 창 가시성; **Quit** 앱 종료. 전환 대화는 작업을 멈추지 않습니다. Linux 아이콘 가용성은 데스크톱의 트레이 지원에 따라 다릅니다. [외관 및 알림](appearance.md) for window-close 동작 및 경고를 참조하십시오.
+
+## 리소스 센터 열기 {/* #resource-center */}
+
+제품 정보 **Resource center** 홈 또는 프로젝트 sidebar에서. 제품 정보 **Skills**, **Connectors**, **Specialists** 또는 **Use Cases**· 이 리소스는 이제 자체 작업 공간이 있지만 설정 내부 패널보다; 이전 스크린 샷은 이전 설정 항목을 표시 할 수 있습니다.
+
+1. 리소스 유형 선택. 제품 정보 **Installed** 지역 자원 및 **Marketplace** 제공된 패키지에 대한.
+2. 이름 및 연락처 **Filters** 리스트를 축소합니다. 예상 품목이 사라지면 검색 또는 재설정 필터를 취소하십시오.
+3. 기타 **View details** 자원 검사. 설치 또는 활성화하기 전에 소스, 버전, 요구 사항 및 가용성을 확인하십시오.
+4. 제품 정보 **Manage access** 또는 해당 에이전트가 사용할 수 있는지 확인하는 리소스의 가용성 제어. 특정 작업에 대한 설치, 에이전트 액세스 및 승인은 별도의 결정입니다.
+5. 대화 intact로 프로젝트로 돌아갑니다. Composer 또는 보낸 메시지의 기술 참조를 열어 프로젝트에 리소스 세부 사항을 엽니다.
+
+![기술, 연결관, 자원 센터에 있는 전문가 및 사용 케이스](/img/open-science/v121/resource-center.webp)
+
+이름 * [기술 설치](../skills/marketplace.md), [연결관 설정](connectors.md) · [특수 역할](../specialists/overview.md).

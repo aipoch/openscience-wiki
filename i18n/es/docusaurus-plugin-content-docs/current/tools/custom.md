@@ -1,7 +1,7 @@
 ---
 title: "Conecte una herramienta MCP personalizada"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -26,7 +26,7 @@ Guarda ambos archivos localmente y nota sus caminos completos. El servidor utili
 
 ## Añádalo en Open-Science {/* #add-it-in-open-science */}
 
-1. Abre **Settings → Connectors → Add connector → Local command**.
+1. Abre **Resource center → Connectors → Add connector → Local command**.
 2. Establecer **Display name** a `GSE60450 QC`.
 3. Elija **python3 — script file** como **Command**, o **Other…** con el camino ejecutable Python real en Windows.
 4. Abre **Advanced settings**. Establecer el nombre de conector/ID a `gse60450-qc` y describirlo como acceso sólo lectura a la tabla QC guardada.

@@ -1,7 +1,7 @@
 ---
 title: "Navigation et recherche"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # Navigation et recherche {/* #navigation-and-search */}
@@ -67,3 +67,17 @@ Effacer la catégorie et les autres filtres, vérifier le projet propriétaire e
 Ouvrez le menu de l'icône **Open-Science** dans la barre de menu macOS, le plateau Windows ou un bureau Linux avec support de plateau. Utilisez **Running sessions** pour trouver du travail actif, **Pinned sessions** pour les conversations épinglées, ou **Recent items** pour le contenu récent. Les listes plus longues continuent sous **Autres éléments**. Après avoir choisi une entrée, vérifiez le titre du projet et de la conversation qui s'ouvre.
 
 Utilisez **Pin** à côté d'un titre de conversation pour le garder à portée de main. **Afficher / masquer** modifie la visibilité de la fenêtre; **Quit** sort de l'application. Changer de conversation n'arrête pas une tâche. La disponibilité de l'icône Linux dépend du support du plateau du bureau. Voir [apparence et notifications](appearance.md) pour le comportement et les alertes de fermeture de fenêtre.
+
+## Ouvrir le centre de ressources {/* #resource-center */}
+
+Utilisation **Resource center** sur la maison ou dans la barre latérale du projet. Choisir **Skills**, **Connectors**, **Specialists** ou **Use Cases**. Ces ressources ont maintenant leur propre espace de travail plutôt que des panneaux à l'intérieur de Paramètres; des captures d'écran plus anciennes peuvent afficher l'entrée de Paramètres précédente.
+
+1. Choisissez un type de ressource. Utilisation **Installed** ressources locales et **Marketplace** pour les paquets publiés lorsqu'ils sont proposés.
+2. Rechercher par nom et ouvrir **Filters** pour réduire la liste. Effacer la recherche ou réinitialiser les filtres si un élément attendu disparaît.
+3. Ouvrir **View details** pour inspecter la ressource. Vérifiez sa source, sa version, ses exigences et sa disponibilité avant de l'installer ou de l'activer.
+4. Utilisation **Manage access** ou les contrôles de disponibilité de la ressource pour vérifier quels agents peuvent l'utiliser. L'installation, l'accès des agents et l'approbation d'une opération particulière sont des décisions distinctes.
+5. Retourner au projet avec sa conversation intacte. Ouvrir une référence de compétence dans le Compositeur ou un message envoyé ouvre le détail de la ressource dans le volet du projet.
+
+![Compétences, connecteurs, spécialistes et cas d'utilisation dans le centre de ressources](/img/open-science/v121/resource-center.webp)
+
+Voir [Installation des compétences](../skills/marketplace.md), [Configuration du connecteur](connectors.md) et [Rôles de spécialistes](../specialists/overview.md).

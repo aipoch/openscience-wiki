@@ -1,7 +1,7 @@
 ---
 title: "Remote compute: SSH, clusters and cloud jobs"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -279,3 +279,9 @@ A successful recovery should show the intended job's final state, an interpretab
 For SSH key/config authentication, supply a usable key or host alias and verify the connection before submitting. Slurm result collection requires working accounting for the selected account; follow the checks above if the app cannot settle the job.
 
 Sources: [compute job codes and record fields](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/compute.ts), [SSH/file error classification](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/remote-fs.ts), [Slurm submission validation](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/compute/slurm-driver.ts).
+
+### Prepare Python for cloud-account sign-in {/* #cloud-account-runtime */}
+
+For **Hugging Face** and **Modal**, the connection flow prepares a compatible Python runtime before opening browser authorization. Follow the preparation status, then finish sign-in and wait for the account check. The selected interpreter is checked without installing into it; authorization and subsequent SDK calls remain bound to the prepared runtime.
+
+If preparation or authorization fails, inspect that stage's message before starting another login. Account verification follows the system proxy. Do not treat a browser success page alone as a connected compute target: return to Compute and confirm the account state before adding a target or approving a job.

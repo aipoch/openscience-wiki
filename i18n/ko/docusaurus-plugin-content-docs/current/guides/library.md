@@ -1,7 +1,7 @@
 ---
 title: "문학 도서관 및 인용"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -420,6 +420,24 @@ BibTeX 상점 년과 달 여기에서, 그래서 그것의 둥근 여행은 `200
 
 
 </ToolOperationGroup>
+
+## 내보내기 bibliographic 메타데이터를 CSV로 {/* #bibliography-csv */}
+
+CSV를 사용하여 스프레드 시트의 참조 목록을 검토하거나 공유합니다. 그것은 bibliographic 분야만 수출합니다: 부착, 검열 결정 및 개인적인 주는 제외됩니다. 인용 관리 상호 교환 파일을 필요로 할 때 BibTeX 또는 RIS를 사용하십시오.
+
+1. 기타 **Library**, 그 후에 예정된 프로젝트 또는 수집. 필수 참고를 선택하십시오. Cross-page 선택은 눈에 보이는 페이지 보다는 더 많은 것을 포함할 수 있습니다; 선택된 수를 확인하고 원치 않는 기록을 제외하십시오.
+2. 제품정보 **More actions → Export → CSV**· 전체적인 프로젝트를 위해 또는 수집은, 그것의 수출 활동을 이용하고 선택합니다 **CSV**.
+3. 데스크탑 저장 대화 상자 또는 브라우저의 다운로드 흐름을 통해 파일을 저장합니다. 수출을 위해 기다리십시오. 취소 된 저장은 파일을 생성하지 않습니다.
+4. 스프레드 시트에서 UTF-8로 CSV를 엽니다. 선택과 Spot-check 제목, 저자 및 식별자를 가진 행 수를 비교하십시오. 빈 필드는 확인 된 부재가없는 메타 데이터가 의미한다.
+
+16 열 이름은 인터페이스 언어에서 영어 체재:
+
+```text
+item_id, title, authors, year, item_type, publication, volume, issue,
+pages, doi, pmid, pmcid, arxiv_id, url, abstract, language
+```
+
+![라이브러리의 BibTeX 및 RIS와 함께 제공되는 CSV 수출](/img/open-science/v121/library-csv.webp)
 
 ## 중복을 해결하고 참조를 복구 {/* #resolve-duplicates-and-recover-references */}
 

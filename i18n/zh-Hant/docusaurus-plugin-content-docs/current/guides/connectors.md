@@ -1,7 +1,7 @@
 ---
 title: "聯結器與憑據"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,7 @@ Connector 讓服務工具可供 Agent 使用，Credential 在服務要求時提�
 
 ### 為基因表達專案尋找工具 {/* #为基因表达项目寻找工具 */}
 
-開啟 **Settings → Connectors**，搜尋 **Omics Archives** 並進入詳情。該內建分類包含 GEO、ArrayExpress、MetaboLights、MGnify 和 PRIDE，使用前展開工具說明。
+開啟 **Resource center → Connectors**，搜尋 **Omics Archives** 並進入詳情。該內建分類包含 GEO、ArrayExpress、MetaboLights、MGnify 和 PRIDE，使用前展開工具說明。
 
 ![GEO 後設資料工具及明確的下載邊界](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -36,11 +36,11 @@ Connector 讓服務工具可供 Agent 使用，Credential 在服務要求時提�
 
 **Search connectors** 搜尋 PubMed 後在 **Directory** 組找到結果；列表還包含 **Featured**、**Custom**。搜尋按組顯示結果，因此其他分組可能顯示 **No connectors match your search**，下方仍有匹配項。
 
-組合使用 **Filter connectors by group**、**Filter Connectors by agent**、**Filter by Tag** 和搜尋。**Manage credentials** 開啟共享的聯絡郵箱與憑證設定。**Used by** 顯示關聯的代理；**Manage Tags** 用於整理標籤。使用資源旁的 **Manage access** 統一檢視和調整 Main Agent 與 Specialist 的訪問。
+組合使用 **Filters → Filter connectors by group**、**Filter Connectors by agent**、**Filter by Tag** 和搜尋。**Manage credentials** 開啟共享的聯絡郵箱與憑證設定。**Used by** 顯示關聯的代理；**Manage Tags** 用於整理標籤。使用資源旁的 **Manage access** 統一檢視和調整 Main Agent 與 Specialist 的訪問。
 
 #### 按代理管理資源訪問 {/* #resource-access */}
 
-1. 在 **Settings → Connectors** 找到 Connector，開啟它的 **Manage access** 控制元件。
+1. 在 **Resource center → Connectors** 找到 Connector，開啟它的 **Manage access** 控制元件。
 2. 檢視 **Main Agent** 和列出的 Specialist；列表支援搜尋時，可按角色名稱篩選。只調整所需關聯；角色編輯器仍可管理該角色的能力列表。
 3. 重新開啟彈窗並檢查 **Used by**。已禁用的 Specialist 仍可能保留繫結；分配資源不會啟用該角色。
 
@@ -50,7 +50,7 @@ Connector 讓服務工具可供 Agent 使用，Credential 在服務要求時提�
 
 #### 批次啟用或禁用 Connectors {/* #批量启用或禁用-connectors */}
 
-開啟 **Settings → Connectors**，篩選列表，在相應組選擇 **Select multiple** 並勾選需要操作的 Connector。啟用或禁用前檢查選中數量，完成後核對各項狀態，只保留當前工作需要的服務。批次切換可用性不會補充憑據、更改各工具的審批策略，也不會授予 Specialist 訪問權限，這些設定需分別配置。
+開啟 **Resource center → Connectors**，篩選列表，在相應組選擇 **Select multiple** 並勾選需要操作的 Connector。啟用或禁用前檢查選中數量，完成後核對各項狀態，只保留當前工作需要的服務。批次切換可用性不會補充憑據、更改各工具的審批策略，也不會授予 Specialist 訪問權限，這些設定需分別配置。
 
 #### PubMed：可用性、工具與審批 {/* #pubmed可用性工具与审批 */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skills {/* #skills */}
@@ -22,9 +22,9 @@ Comience con [directorio Skill](./directory.md) para encontrar un método, o [re
 
 ## Encontrar e inspeccionar un Skill {/* #find-and-inspect-a-skill */}
 
-1. Abre **Settings → Skills**.
+1. Abre **Resource center → Skills**.
 2. Utilice **Search skills** para buscar su nombre o descripción. Ingrese `rnaseq-count-qc` después de [crear el ejemplo](./create.md).
-3. Narrow **Filter skills by source**, **Filter Skills by agent**, o **Filter by Tag** si la lista permanece larga.
+3. Narrow **Filters → Filter skills by source**, **Filter Skills by agent**, o **Filter by Tag** si la lista permanece larga.
 4. Abre el resultado. Lea la descripción, instrucciones, **Files**, licencia y **Availability**. Un nombre de pantalla puede diferir del ID del paquete.
 5. Volver a la lista e inspeccionar **Used by**. Identifica qué agentes pueden utilizar el paquete; no lista las carreras completadas.
 
@@ -47,7 +47,7 @@ Comience con [directorio Skill](./directory.md) para encontrar un método, o [re
 
 Esta regla de activación no instala dependencias, ofrece credenciales o autorizaciones de operación de concesión. La asignación Specialist es un alcance separado: inspeccionar **Used by** y la lista de capacidades del rol.
 
-El directorio todavía contiene 23 public packd Skills. El soporte interno Skills no son métodos adicionales para seleccionar. [Aplicación del conmutador necesario](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
+El directorio todavía contiene 24 public packd Skills. El soporte interno Skills no son métodos adicionales para seleccionar. [Aplicación del conmutador necesario](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
 
 La captura muestra la explicación para **Customize**. Estos Skills requeridos permanecen habilitados incluso cuando usted deshabilita otros métodos opcionales.
 

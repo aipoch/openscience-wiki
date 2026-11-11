@@ -2,7 +2,7 @@
 title: "對候選基因集進行功能富集分析"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -19,7 +19,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 確定基因列表和分析設定 {/* #gene-set-enrichment */}
 
-1. 在 **Settings → Connectors** 中確認 **Genes & Ontologies** 對 Agent 可用，開啟已連線模型且 Notebook 執行環境可用的會話。
+1. 在 **Resource center → Connectors** 中確認 **Genes & Ontologies** 對 Agent 可用，開啟已連線模型且 Notebook 執行環境可用的會話。
 2. 指定物種、基因標識、資料來源和統計背景。真實實驗應根據哪些基因有機會被實驗篩選來確定背景；本例明確使用全部已註釋基因，沒有提交自定義的實測基因背景。
 3. 傳送下方提示詞，在同一會話中查詢來源版本並執行富集，儲存實際結果。
 
@@ -59,7 +59,7 @@ This is not differential-expression evidence or evidence of regulation direction
 
 Enrichr 檢查提交的基因在哪些註釋集合中過度出現；STRING PPI 富集檢查這些蛋白之間的網路互作是否多於預期。這是兩個不同的檢驗，結果一致也不等於獨立重複驗證了某個生物學結論。
 
-1. 在 **Settings → Connectors** 中啟用 **Genes & Ontologies** 和 **Protein Annotation**，供 Agent 使用。
+1. 在 **Resource center → Connectors** 中啟用 **Genes & Ontologies** 和 **Protein Annotation**，供 Agent 使用。
 2. 建立 **DNA Damage Gene Set** 專案並開啟新會話。本例使用 Codex 和 Session Notebook。
 3. 先查詢可用的 Enrichr 庫。本次固定選擇 **GO_Biological_Process_2025**，讓儲存的結果有明確的註釋版本；改用較新的庫可能得到不同結果。
 4. 傳送下方提示詞，執行完成後開啟生成的說明：

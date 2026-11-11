@@ -1,7 +1,7 @@
 ---
 title: "Specialistの作成と指示"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Specialistの作成と指示 {/* #create-and-instruct-a-specialist */}
@@ -18,7 +18,7 @@ last_update:
 
 ## ロールを作成する {/* #create-the-role */}
 
-1. **Settings → Specialists → Add specialist → Write from scratch** を開きます。
+1. **Resource center → Specialists → Add specialist → Write from scratch** を開きます。
 2. 説明として名前と**追跡可能な公共の生物医学の入力を使用して未加工計算の完全性およびサンプルのメートルを点検して下さい。**として**RNA-seq QCの査読器**を入力してください。
 3. アイコンと色を選択します。 たとえば、**脳/紫色** を使用します。 ライブプレビューはリスト/ピッカーの外観を示しています。
 4. **Advanced settings** を拡張し、生成された ID `rna-seq-qc-reviewer` を生成する前に検査します。

@@ -1,7 +1,7 @@
 ---
 title: "Recherche dans des revues et des dates spécifiées"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Une recherche ciblée nécessite des limites explicites et un relevé de ce qui 
 
 ## 1. Définir la question et la règle d'éligibilité {/* #1-set-the-question-and-eligibility-rule */}
 
-Ouvrez un projet et sélectionnez un modèle connecté. Confirmer que **PubMed** Connector est disponible dans **Settings → Connectors**; configurer les informations de contact là-bas si demandé. Aucun document téléchargé n'est nécessaire pour démarrer cet exemple.
+Ouvrez un projet et sélectionnez un modèle connecté. Confirmer que **PubMed** Connector est disponible dans **Resource center → Connectors**; configurer les informations de contact là-bas si demandé. Aucun document téléchargé n'est nécessaire pour démarrer cet exemple.
 
 Utilisez les dates de publication **2019-01-01 par 2025-12-31**, et non la date à laquelle un enregistrement de base de données a été ajouté. Inclure les rapports randomisés primaires avec un bras d'intervention de pleine conscience défini et les résultats déclarés des participants. Conserver une catégorie **incertain** distincte pour les interventions mixtes, l'état de publication imprécis ou les dates contradictoires. Les résultats mécanistes à eux seuls ne font pas d'un rapport une analyse secondaire.
 

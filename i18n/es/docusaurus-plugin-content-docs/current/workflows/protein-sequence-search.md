@@ -2,7 +2,7 @@
 title: "Encuentra una secuencia de proteínas y completa una búsqueda BLAST"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -93,7 +93,7 @@ Para comparar tres o más secuencias conocidas, continúe con [alineación de se
 
 <p className="example-label"><strong>Ejemplo práctico</strong> Escáner humano P69905 contra Pfam</p>
 
-Después de recuperar la secuencia de proteínas P69905 canónica, active **HMMER** para Main en **Settings → Connectors**. En la misma conversación, pregunte:
+Después de recuperar la secuencia de proteínas P69905 canónica, active **HMMER** para Main en **Resource center → Connectors**. En la misma conversación, pregunte:
 
 ```text
 Use the HMMER Connector to scan the same human P69905 sequence against

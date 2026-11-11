@@ -1,7 +1,7 @@
 ---
 title: "Créer et instruire un Specialist"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Créer et instruire un Specialist {/* #create-and-instruct-a-specialist */}
@@ -18,7 +18,7 @@ Le rôle sauvegardé a été créé, rouvert, exporté, dupliqué et utilisé da
 
 ## Créer le rôle {/* #create-the-role */}
 
-1. Ouvrez **Settings → Specialists → Add specialist → Write from scratch**.
+1. Ouvrez **Resource center → Specialists → Add specialist → Write from scratch**.
 2. Entrez **RNA-seq QC examinateur** comme nom et **Vérifier l'intégrité des comptes bruts et les mesures des échantillons à l'aide d'intrants biomédicaux publics traçables.** comme description.
 3. Choisissez une icône et une couleur. L'exemple utilise **Cerveau / violet**. L'aperçu en direct montre l'apparence list/picker.
 4. Expandez **Advanced settings** et inspectez l'ID `rna-seq-qc-reviewer` généré avant la création.

@@ -1,7 +1,7 @@
 ---
 title: "会話と送信待ちのリクエスト"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-11'
 ---
 
 # 会話と送信待ちのリクエスト {/* #conversations-and-queued-requests */}
@@ -52,6 +52,30 @@ Composer は、指示を送信し、現在のセッションに参照を入力�
 | 営業部 | 利用できる独立した継続 | 継承された履歴/ファイルをチェックする。 詳しくはこちら [セッション](sessions.md) |
 | メッセージをキューに追加 | 実行中にフォローアップの準備 | 保留中のリクエスト 納品まで保存不可 |
 | 実行をキャンセル | 現在の実行を停止する | キャンセル待ち 既に保存された結果は自動的に元に戻りません |
+
+## ドラフト質問の削除 {/* #optimize-question */}
+
+プロジェクトでは、ドラフトを書く **Ask anything**、それから選ぶ **Optimize question** エージェントコントロールの横にある。 設定されたモデルが必要です。 アクションはタスクモデルを下で使用する **Settings → Model → Conversation models → Prompt optimization**; **Same as main model** メインページ
+
+1. 研究の質問、実際の入力、および草案の重要な制約を保って下さい。 クリック **Optimize question** 起動する; 単独で入力することは、最適化を呼び出しません。
+2. 書き方ドラフトを待ちます。 使用条件 **Cancel optimization** 停止する。 リクエストが実行中のときにドラフトを変更した場合、そのレイト結果は編集上に適用されません。
+3. 送信前に結果を読みます。 数値、識別子、スコープ、および新しく提案された要件を確認してください。 書き換えテキストはドラフトを置き換えます。それは会話メッセージとして送信されていません。
+4. 選択する **Undo optimization** 元の草案を復元したり、結果を自分で編集したりします。 マニュアル編集は、ワンステップUndo機会を終了します。 貼り付けられたテキストの添付ファイルを削除すると、添付ファイルリンクが不足しているのではなく、インラインテキストとして復元できます。
+5. 選択する **Send message** 質問の準備が整ったらだけ。 最適化が失敗した場合は、元のドラフトを保持し、適切なタイミングで選択したモデルと再試行を確認してください。
+
+<p className="example-label"><strong>作業例</strong> 証拠の中で質問を教え続ける</p>
+
+選択されたCodexでは、このドラフトはすべての5つの値と仮説スコープを保持しながら洗練されました。
+
+```text
+Explain the mean and median of 2, 4, 6, 8, 10 for a hypothetical
+teaching example. Why can we not generalize to a population?
+Keep it concise.
+```
+
+変更された草案は、発明された参加者、測定または引用なしに明示的に要求の制限を要求します。 **Undo optimization** オリジナルの質問を復元します。 例の [プロジェクトテンプレート](projects.md#optimization-template) それらの制約を供給します。最適化は、最終的な回答を検証しません。
+
+![利用可能なUndo最適化を備えたComposerで洗練された英語の質問](/img/open-science/v121/optimized-question.webp)
 
 ## 精密なフィードバックを送って下さい {/* #send-precise-feedback */}
 

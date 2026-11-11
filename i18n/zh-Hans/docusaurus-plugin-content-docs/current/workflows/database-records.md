@@ -1,7 +1,7 @@
 ---
 title: 检索科学数据库并下载结构化记录
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 明确化合物范围和所需属性
 
-在 **Settings → Connectors** 中确认 **Chemistry** 可用。打开项目，新建会话并选择已连接的模型。本例使用 Open-Science 0.30.1 的 Chemistry/PubChem Connector，不需要预先准备输入表格。
+在 **Resource center → Connectors** 中确认 **Chemistry** 可用。打开项目，新建会话并选择已连接的模型。本例使用 Open-Science 0.30.1 的 Chemistry/PubChem Connector，不需要预先准备输入表格。
 
 明确限定为**中性、直链、饱和一元羧酸**。相近名称可能指向支链异构体、盐或共轭碱，仅凭分子式不能区分所有结构。
 

@@ -2,7 +2,7 @@
 title: "참고 자료"
 slug: /reference
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # 참고 자료 {/* #reference */}
@@ -27,4 +27,4 @@ last_update:
 
 ## 관련 링크 {/* #changelog */}
 
-[최신 릴리스 노트를 찾아](../changelog/v1.2.0.md).
+[최신 릴리스 노트를 찾아](../changelog/v1.2.1.md).

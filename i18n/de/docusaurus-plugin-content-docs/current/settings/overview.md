@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: "Einstellungen Übersicht"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Einstellungen Übersicht {/* #settings-overview */}
 
-Offen **Settings** aus der unteren linken Ecke des Arbeitsbereichs. Seine **19 Tafeln** sind in vier Gruppen unterteilt: **System**, **Intelligence**, **Connections** und **Workspace**. Aussehen und Benachrichtigungen sind separate Panels. Wählen Sie nach Zweck oder Suche aus dem Header; **Settings → Model**öffnet zum Beispiel Model inside Intelligence.
+Offen **Settings** aus der unteren linken Ecke des Arbeitsbereichs. Seine **16 Tafeln** organisiert in **System**, **Intelligence**, **Connections** und **Workspace**. Fähigkeiten, Konnektoren und Spezialisten werden getrennt verwaltet [Ressourcenzentrum](../guides/navigation.md#resource-center). Wählen Sie ein Einstellungsfeld nach Zweck oder verwenden Sie die Header-Suche.
 
 | Globale Kontrolle | Verhalten |
 | --- | --- |
@@ -27,7 +27,7 @@ Offen **Settings** aus der unteren linken Ecke des Arbeitsbereichs. Seine **19 T
 
 Diese Suche umfasst repräsentative Einstellungen in jedem Panel, nicht in jedem Feld oder Forschungsdokument. Wenn ein Begriff nicht übereinstimmt, verwenden Sie den Panelnamen oder die Navigationsgruppen unten. Um Gespräche oder Dateien zu durchsuchen, schließen Sie Einstellungen und verwenden Sie [Globale Suche](../guides/navigation.md).
 
-## Die 19 Hauptpanels {/* #the-17-main-panels */}
+## Die 16 Hauptpanels {/* #the-17-main-panels */}
 
 | Gruppe | Panel | Was sie verwaltet |
 | --- | --- | --- |
@@ -36,11 +36,8 @@ Diese Suche umfasst repräsentative Einstellungen in jedem Panel, nicht in jedem
 |  | [Notifications](../guides/appearance.md) | Aufgabenmeldungen, Benachrichtigungsinhalt, Systemstatus und Testmeldung |
 | Intelligenz | [Modell](../guides/models.md) | Anbieter und Szenariomodelle |
 |  | [Agent](../guides/frameworks.md) | Installation, Umschaltung und Reparatur von Agenten-Frameworks |
-|  | [Skills](../skills/overview.md) | Wiederverwendbare Forschungsmethoden und deren Verfügbarkeit |
-|  | [Spezialisten](../specialists/overview.md) | Specialist Rollen und Zugang zu Fähigkeiten |
 |  | [Erinnerungen](../guides/memory.md) | Opt-in Global- und Projektnotizen |
-| Verbindungen | [Konnektoren](../guides/connectors.md) | Datendienste, benutzerdefinierte MCP-Verbindungen und Importe |
-|  | [Netzwerk](../guides/network.md) | Proxy, Paketspiegel und Notebook-Domänenzugriff |
+| Verbindungen | [Netzwerk](../guides/network.md) | Proxy, Paketspiegel und Notebook-Domänenzugriff |
 |  | [Remote](../guides/remote-access.md) | Browserzugriff, Kopplung und vertrauenswürdige Geräte |
 |  | [Anmeldeinformationen](../tools/credentials.md) | Schlüssel, Token, OAuth und Credential Recovery |
 |  | [Rechenressourcen](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |

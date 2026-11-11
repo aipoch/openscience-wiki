@@ -1,7 +1,7 @@
 ---
 title: "模型与任务策略"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # 模型与任务策略
@@ -31,6 +31,7 @@ Main、Subagent、Reviewer、Vision 和 Session details 需要不同模型时，
 | Reviewer | Follow main model 或指定模型 | 设置模型不等于开启 Auto-review，也不等于已有审查记录 |
 | Vision | 支持图像输入的已配置模型 | Not configured 表示未指定专用 Vision 模型；是否需要转交图像取决于当前后端能力 |
 | Session details | 跟随主模型或指定兼容模型；检查强度与启用状态 | 用受限调用生成会话标题和说明，与科研任务和产物分开 |
+| **Prompt optimization** | 跟随主模型，或兼容的固定模型 | 仅在项目中点击 **Optimize question** 时运行；发送前检查改写草稿，参阅[优化问题](composer.md#optimize-question) |
 
 ![Subagent 继承与禁用的独立强度控件](/img/open-science/guides-walkthrough/11-model-scenarios.webp)
 

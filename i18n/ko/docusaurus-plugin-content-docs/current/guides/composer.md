@@ -1,7 +1,7 @@
 ---
 title: "대화와 대기 중인 요청"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-11'
 ---
 
 # 대화와 대기 중인 요청 {/* #conversations-and-queued-requests */}
@@ -52,6 +52,30 @@ Composer는 현재 세션에 대한 지침 및 입력 참조를 보내고 실행
 | 팟캐스트 | 자주 묻는 질문 | 상속된 역사/파일을 검사하십시오; 은 은 [세션](sessions.md) |
 | 대기열에 메시지 추가 | 실행 중에 후속을 준비하십시오. | 대출 요청은 배달 될 때까지 저장되지 않습니다 |
 | 실행 취소 | 현재 실행 중지 | 취소에 대 한 대기; 이미 저장된 결과는 자동으로 undone이 아닙니다. |
+
+## 질문의 정의 {/* #optimize-question */}
+
+프로젝트에서 초안을 작성 **Ask anything**, 다음 선택 **Optimize question** 에이전트 제어 옆에. 구성 가능한 모델이 필요합니다. 작업은 아래의 작업 모델을 사용합니다. **Settings → Model → Conversation models → Prompt optimization**; **Same as main model** 현재 위치
+
+1. 연구 질문, 실제 입력 및 중요한 제약을 초안에서 유지하십시오. 이름 * **Optimize question** 시작; 혼자 입력 하지 invoke 최적화.
+2. rewritten 초안을 기다립니다. 제품 정보 **Cancel optimization** 관련 기사 요청이 실행되는 동안 초안을 변경하면 늦은 결과는 편집에 적용되지 않습니다.
+3. 전송하기 전에 결과를 읽으십시오. 번호, 식별자, 범위 및 새로 제안 된 요구 사항을 확인하십시오. Rewritten 텍스트는 초안을 대체합니다. 대화 메시지로 전송되지 않았습니다.
+4. 제품정보 **Undo optimization** 원본 초안을 복원하거나 결과를 직접 편집합니다. 수동 편집은 한 단계 Undo 기회를 종료합니다. 제거 된 붙여 넣기 텍스트 첨부는 누락 된 첨부 링크보다 인라인 텍스트로 복원 할 수 있습니다.
+5. 제품정보 **Send message** 자주 묻는 질문 최적화가 실패하면 원본 초안을 유지하고 적절한 경우 선택한 모델과 재스트를 확인하십시오.
+
+<p className="example-label"><strong>작업 예</strong> 그 증거 내에서 가르침을 지키십시오.</p>
+
+선택된 Codex로, 이 초안은 모든 5개의 값과 hypothetical 범위를 유지하면서 세련되었습니다.
+
+```text
+Explain the mean and median of 2, 4, 6, 8, 10 for a hypothetical
+teaching example. Why can we not generalize to a population?
+Keep it concise.
+```
+
+수정 된 초안은 참가자, 측정 또는 인용없이 제한을 명시적으로 요청합니다. **Undo optimization** 원래 질문을 복원합니다. 예의 [프로젝트 템플릿](projects.md#optimization-template) 이러한 제약을 공급; 최적화는 eventual 응답을 확인하지 않습니다.
+
+![Composer의 세련된 영어 질문은 Undo 최적화를 제공합니다.](/img/open-science/v121/optimized-question.webp)
 
 ## 정확한 의견 보내기 {/* #send-precise-feedback */}
 

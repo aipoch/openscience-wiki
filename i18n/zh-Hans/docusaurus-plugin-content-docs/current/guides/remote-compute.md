@@ -1,7 +1,7 @@
 ---
 title: "远程计算：SSH、集群与云任务"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -277,3 +277,9 @@ Slurm 场景需要向集群负责人确认账号／分区、资源申请、时�
 使用 SSH 密钥/配置认证时，提供可用密钥或主机别名，先验证连接再提交。Slurm 结果回收需要所选账号具备可用记账查询；应用无法确认作业终态时，按上方步骤检查。
 
 源码：[计算错误码与记录字段](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/compute.ts)、[SSH/文件错误分类](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/remote-fs.ts)、[Slurm 提交校验](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/compute/slurm-driver.ts)。
+
+### 先准备云账户登录所需的 Python {/* #cloud-account-runtime */}
+
+连接 **Hugging Face** 或 **Modal** 时，应用会在打开浏览器授权前准备兼容的 Python 运行环境。按准备状态继续，再完成登录并等待账户检查。所选解释器会先接受检查，不会在其中安装依赖；授权和后续 SDK 调用保持使用准备好的运行环境。
+
+准备或授权失败时，先检查对应阶段的提示，再决定是否重新登录。账户验证遵循系统代理。浏览器显示成功不等于计算目标已经连接：返回 Compute 确认账户状态后，再添加目标或审批任务。

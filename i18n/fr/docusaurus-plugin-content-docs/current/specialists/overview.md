@@ -1,7 +1,7 @@
 ---
 title: "Spécialistes et rôles disponibles"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Spécialistes et rôles disponibles {/* #specialists-and-available-roles */}
@@ -17,11 +17,11 @@ Un Specialist est un rôle de recherche sauvegardé : identité, instructions et
 | Importé / Marché Specialist | Installé à partir d'un paquet, puis configuré sur ce périphérique | Configuration locale et capacités autorisées; Inspecter l'éditeur et la version du paquet |
 | Évaluateur intégré | Effectue le flux de travail d'examen de l'application | Réexamen déclencheur au cours de la conversation; ce n'est pas un Specialist normal modifiable/délégable |
 
-Ouvrez **Browse Marketplace** pour trouver les rôles publiés. Le catalogue en ligne peut changer indépendamment de votre application installée. Inspecter l'éditeur, les instructions et les dépendances de chaque rôle avant d'importer.
+Ouvrez **Marketplace** pour trouver les rôles publiés. Le catalogue en ligne peut changer indépendamment de votre application installée. Inspecter l'éditeur, les instructions et les dépendances de chaque rôle avant d'importer.
 
 ## Trouver un rôle {/* #find-a-role */}
 
-Ouvrez **Settings → Specialists**. **Installed** compte les rôles enregistrés localement, y compris l'examinateur. Utilisez **Search specialists** et **Filter specialists by category**, puis ouvrez une ligne pour l'inspecter. **Browse Marketplace** ouvre un catalogue différent; une entrée de marché cotée n'est pas installée tant que vous n'avez pas terminé son flux de paquetage/configuration.
+Ouvrez **Resource center → Specialists**. **Installed** compte les rôles enregistrés localement, y compris l'examinateur. Utilisez **Search specialists** et **Filters → Filter specialists by category**, puis ouvrez une ligne pour l'inspecter. **Marketplace** ouvre un catalogue différent; une entrée de marché cotée n'est pas installée tant que vous n'avez pas terminé son flux de paquetage/configuration.
 
 ![Le RNA-seq QC Reviewer installé localement](/img/open-science/capabilities-walkthrough/06-specialist-list.webp)
 

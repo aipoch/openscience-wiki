@@ -2,7 +2,7 @@
 title: "タンパク質シーケンスを見つけてBLAST検索を完了"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -93,7 +93,7 @@ preserve actual errors or empty results. Never invent alignments.
 
 <p className="example-label"><strong>実践例</strong> Pfam から人間の P69905 をスキャンして下さい</p>
 
-キャノンP69905タンパク質シーケンスを取得した後、有効 **ムマー** のための Main でん **Settings → Connectors**. . . . 同じ会話で、次のことを尋ねます:
+キャノンP69905タンパク質シーケンスを取得した後、有効 **ムマー** のための Main でん **Resource center → Connectors**. . . . 同じ会話で、次のことを尋ねます:
 
 ```text
 Use the HMMER Connector to scan the same human P69905 sequence against

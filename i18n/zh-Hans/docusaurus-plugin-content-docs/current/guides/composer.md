@@ -1,7 +1,7 @@
 ---
 title: "对话与排队请求"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-11'
 ---
 
 # 对话与排队请求
@@ -52,6 +52,30 @@ Composer 向当前会话发送指令与输入引用，并允许在执行期间�
 | Branch | 支持时独立延续 | 核对继承历史与文件，见[会话](sessions.md) |
 | Add message to queue | 运行中准备后续指令 | 送达前仍是 Not saved |
 | Cancel run | 停止当前执行 | 等待停止，已保存结果不自动撤销 |
+
+## 优化问题草稿 {/* #optimize-question */}
+
+在项目的 **Ask anything** 中写好草稿，点击 Agent 控制旁的 **Optimize question**。此操作需要已配置且可用的模型，使用 **Settings → Model → Conversation models → Prompt optimization** 中的任务模型；**Same as main model** 表示跟随 Main。
+
+1. 在草稿中保留研究问题、真实输入和重要约束。点击 **Optimize question** 才会开始，单纯输入文字不会调用优化。
+2. 等待改写结果，也可用 **Cancel optimization** 停止。如果等待期间修改了草稿，较晚返回的结果不会覆盖你的编辑。
+3. 发送前检查数值、标识符、研究范围和新增要求。改写结果会替换输入框中的草稿，但尚未作为会话消息发送。
+4. 点击 **Undo optimization** 恢复原文，或直接编辑结果。手动编辑后不再提供这次一键撤销。已移除的粘贴文本附件可能恢复为行内文字，避免恢复无效的附件链接。
+5. 确认问题合适后再点 **Send message**。优化失败时保留原草稿，检查所选模型，处理后再重试。
+
+<p className="example-label"><strong>案例演示</strong> 保留教学问题的证据边界</p>
+
+选择 Codex 后，输入下面的问题，优化结果保留了五个数值与假设教学场景：
+
+```text
+Explain the mean and median of 2, 4, 6, 8, 10 for a hypothetical
+teaching example. Why can we not generalize to a population?
+Keep it concise.
+```
+
+改写后的问题明确要求说明局限，不编造参与者、测量值或引用。**Undo optimization** 可恢复原始问题。本例的[项目模板](projects.md#optimization-template)提供了这些约束；问题优化本身不验证后续答案。
+
+![输入框中的英文优化结果与 Undo optimization 操作](/img/open-science/v121/optimized-question.webp)
 
 ## 发送明确反馈
 

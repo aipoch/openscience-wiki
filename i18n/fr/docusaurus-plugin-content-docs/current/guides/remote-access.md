@@ -1,7 +1,7 @@
 ---
 title: "Accès au navigateur à distance"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Accès au navigateur à distance {/* #remote-browser-access */}
@@ -12,7 +12,7 @@ L'accès au navigateur à distance permet à un autre appareil de faire fonction
 
 Les **Connect mobile device** section dans le bureau **Settings → Remote** offres **WiFi** et **Internet**. Ceci est séparé de la Remote.Il modes décrits ci-dessous; la route QR ne nécessite pas de compte Remote.It.
 
-L'ouverture de cette section pendant que l'accès à distance est désactivé démarre le flux de connexion WiFi. Utilisez-le sur un réseau de confiance lorsque vous comptez permettre à un autre appareil d'atteindre l'espace de travail. L'hôte doit rester éveillé et courir.
+Ouvrir le panneau d'appariement laisse l'accès à distance **Off** jusqu'à ce que vous choisissiez explicitement **WiFi** ou **Internet**. Une connexion déjà active conserve son état actuel. Choisissez un mode seulement lorsque vous avez l'intention de connecter un autre périphérique, et gardez l'hôte éveillé et en marche.
 
 1. Choisir **WiFi** pour les appareils sur le même réseau local. Si plusieurs adresses hôtes apparaissent, sélectionnez l'adresse accessible depuis le téléphone. Un réseau invité isolé peut empêcher l'accès même lorsque les deux appareils affichent le même nom WiFi.
 2. Pour accéder à l'extérieur du réseau local, choisissez **Internet**. Lisez l'avis de connexion Pinggy et attendez qu'un lien de travail et le code QR apparaissent. Trafic utilise le tunnel tiers; examinez le mot de passe affiché et les exigences de connexion.

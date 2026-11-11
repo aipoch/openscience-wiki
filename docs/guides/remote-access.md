@@ -1,7 +1,7 @@
 ---
 title: "Remote browser access"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Remote browser access
@@ -12,7 +12,7 @@ Remote browser access lets another device operate this computer's running worksp
 
 The **Connect mobile device** section in desktop **Settings → Remote** offers **WiFi** and **Internet**. This is separate from the Remote.It modes described below; the QR route does not require a Remote.It account.
 
-Opening this section while remote access is off starts the WiFi connection flow. Use it on a trusted network when you intend to allow another device to reach the workspace. The host must remain awake and running.
+Opening the pairing panel leaves remote access **Off** until you explicitly choose **WiFi** or **Internet**. An already active connection retains its current state. Choose a mode only when you intend to connect another device, and keep the host awake and running.
 
 1. Choose **WiFi** for devices on the same local network. If several host addresses appear, select the address reachable from the phone. An isolated guest network can prevent access even when both devices show the same WiFi name.
 2. For access outside the local network, choose **Internet**. Read the Pinggy connection notice and wait until a working link and QR code appear. Traffic uses the third-party tunnel; review the displayed password and connection requirements.

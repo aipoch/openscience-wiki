@@ -1,7 +1,7 @@
 ---
 title: "Создайте Skill и поддерживающие его файлы"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 4. Изделие изменяется на **Saving as skill…**, пока агент работает. Это запускает модельную операцию в разговоре. Он не открывает ручной редактор Name/Description или мгновенно сохраняет ZIP.
 5. Осмотрите имя Skill, инициируя описание, шаги, вспомогательные файлы и результат проверки. Отвечать на уточнения или разрешения на эксплуатацию, если они показаны. **Customize** остается включенным; Активная роль должна иметь соответствующий доступ к возможностям.
 6. Просмотрите проект до принятия публикации. Удалить специфичные для исследования пути, временные идентификаторы, учетные данные и неподтвержденные выводы; Сохранение требований к многоразовым входам и проверкам. Существующий персональный Skill не должен быть перезаписан без явного решения о замене.
-7. После публикации, откройте **Settings → Skills**, просмотрите имя и проверьте **Files**, сохраненную доступность SKILL.md и Main Agent. Экспортируйте его, если вам нужно проверить полный пакет.
+7. После публикации, откройте **Resource center → Skills**, просмотрите имя и проверьте **Files**, сохраненную доступность SKILL.md и Main Agent. Экспортируйте его, если вам нужно проверить полный пакет.
 8. Запустите отдельный ограниченный запрос с сохраненным Skill. Успешно сохраненный пакет не является доказательством того, что второй набор данных или более поздний вызов прошли.
 
 ### Сохранить метод исследования {/* #save-the-research-method */}
@@ -49,7 +49,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ![Нативный проект Skill и результат проверки](/img/open-science/v0.27.0/16-native-skill-draft-validated.webp)
 
-Проверьте имя, описание запуска, входы, метрические определения и условия остановки перед подтверждением публикации в Personal Skills. Затем используйте **Settings → Skills → Search skills**, откройте сохраненные инструкции и проверьте **Availability** и **Files**. Скачайте фактически опубликованный <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.md</ExampleDownload>.
+Проверьте имя, описание запуска, входы, метрические определения и условия остановки перед подтверждением публикации в Personal Skills. Затем используйте **Resource center → Skills → Search skills**, откройте сохраненные инструкции и проверьте **Availability** и **Files**. Скачайте фактически опубликованный <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.md</ExampleDownload>.
 
 ![Родная публикация найдена в Личном](/img/open-science/v0.27.0/17-native-skill-published.webp)
 
@@ -98,7 +98,7 @@ rnaseq-count-qc/
 
 ### Заполните поля и опубликуйте {/* #complete-the-fields-and-publish */}
 
-1. Открыть **Settings → Skills → Add skill → Write from scratch**.
+1. Открыть **Resource center → Skills → Add skill → Write from scratch**.
 2. Загрузите SKILL.md в **Skill body**. Его фронтматер YAML заполняет **Name** и **Description**.
 3. Подтвердите, что имя `rnaseq-count-qc`. Прочитайте отредактированный/тело контент перед сохранением; Одно только действительное название не подтверждает научный метод.
 4. Откройте **Advanced settings → Add reference files** и выберите `sample-metric-schema.md`. Редактор размещает этот ресурс под `references/`.

@@ -1,7 +1,7 @@
 ---
 title: "Scientific tool catalog"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # Scientific tool catalog
@@ -21,7 +21,7 @@ Use this catalog to find the Open-Science entry point and runtime requirements f
 | File renderers | File preview | Supported extension and preview-size limits | Open the actual downloaded file |
 | Remote batch software | Compute Host and remote-compute Skills | Host access, scheduler and named environment | Host probe followed by a bounded job |
 
-See [Skill directory](../skills/directory.md) for the complete 23-Skill method table. This page explains software readiness; it does not duplicate every Skill's procedure.
+See [Skill directory](../skills/directory.md) for the complete 24-Skill method table. This page explains software readiness; it does not duplicate every Skill's procedure.
 
 ## Inspect the selected environment
 

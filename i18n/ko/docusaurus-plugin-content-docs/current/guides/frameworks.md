@@ -1,7 +1,7 @@
 ---
 title: "설치 및 전환 에이전트"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # 설치 및 전환 에이전트 {/* #installing-and-switching-agents */}
@@ -28,7 +28,7 @@ Open-Science v1.2.0: Open-Science Agent, Codex, Claude Agent, OpenCode, CodeBudd
 
 ## 내장 에이전트 사용 {/* #built-in-agent */}
 
-v1.2.0에서, **Open-Science Agent** 앱으로 배송하고 새로운 설정의 기본입니다. 별도의 에이전트 다운로드가 필요하지 않습니다. 카드 라벨 실험. 호환 API 공급자가 필요합니다. Codex 구독은 Codex 프레임 워크와 Claude 구독을 Claude Agent에 연결됩니다. 준비되어 있는 런타임은 모델 접근을 포함하지 않습니다.
+v1.2.0에서, **Open-Science Agent** 앱으로 배송하고 새로운 설정의 기본입니다. 별도의 에이전트 다운로드가 필요하지 않습니다. 카드 라벨 실험. v1.2.1에서 호환되는 API 제공 업체 및 **Codex subscription** 메인 및 Subagent 계정. Claude 구독은 Claude Agent에 묶여 있습니다. 준비되어 있는 런타임은 모델 접근을 포함하지 않습니다.
 
 1. 기타 **Settings → Agent** 및 검사 **Open-Science Agent** 외부 프레임워크와 함께.
 2. Active runtime을 변경하려면 카드를 선택하고 스위치를 확인합니다. 선택은 프로젝트 전반에 걸쳐 다음과 같은 요청에 적용됩니다.

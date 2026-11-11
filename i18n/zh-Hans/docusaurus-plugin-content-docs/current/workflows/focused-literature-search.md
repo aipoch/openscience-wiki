@@ -1,7 +1,7 @@
 ---
 title: 限定期刊与时间范围检索文献
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 确定问题与纳入规则
 
-打开项目并选择已连接的模型。在 **Settings → Connectors** 中确认 **PubMed** 可用；如提示需要联系信息，在该设置中填写。开始本例前不需要下载论文。
+打开项目并选择已连接的模型。在 **Resource center → Connectors** 中确认 **PubMed** 可用；如提示需要联系信息，在该设置中填写。开始本例前不需要下载论文。
 
 日期范围使用**发表日期 2019-01-01 至 2025-12-31**，不是数据库收录日期。纳入设有明确正念干预组、报告参与者结果的原始随机研究。对混合干预、原始或二次发表身份不清、日期冲突的记录，单列为 **uncertain**。研究机制性结局本身不代表论文是二次分析。
 

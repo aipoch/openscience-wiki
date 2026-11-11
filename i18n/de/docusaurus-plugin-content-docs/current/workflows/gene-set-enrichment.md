@@ -2,7 +2,7 @@
 title: "Laufen funktionelle Anreicherung für einen Kandidaten-Gen-Set"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -19,7 +19,7 @@ Das erste Beispiel verwendet g:Profiler; [Enrichr und STRING Vergleich](#enrichr
 
 ## 1. Definieren Sie die Genliste und Analyseeinstellungen {/* #gene-set-enrichment */}
 
-1. Machen Sie in **Settings → Connectors** **Gene & Ontologien** für den Agenten verfügbar. Öffnen Sie eine Sitzung mit einem verbundenen Modell und einer verfügbaren Notebook Laufzeit.
+1. Machen Sie in **Resource center → Connectors** **Gene & Ontologien** für den Agenten verfügbar. Öffnen Sie eine Sitzung mit einem verbundenen Modell und einer verfügbaren Notebook Laufzeit.
 2. Geben Sie den Organismus, die Genidentifikatoren, die Datenquellen und den statistischen Hintergrund an. Für reale experimentelle Daten ist der Hintergrund anhand von Genen zu begründen, die durch das Experiment hätten ausgewählt werden können. Dieses Tutorial verwendet explizit alle annotierten Gene, nicht ein benutzerdefiniertes Messgen-Universum.
 3. Senden Sie die folgende Aufforderung. Behalten Sie die Quellversionsabfrage und den Anreicherungsaufruf in derselben Sitzung und speichern Sie ihre tatsächlichen Ergebnisse.
 
@@ -59,7 +59,7 @@ This is not differential-expression evidence or evidence of regulation direction
 
 Enrichr fragt, welche Annotationssätze in den eingereichten Genen überrepräsentiert sind. Die Anreicherung von STRING PPI fragt, ob die Proteine mehr Netzwerkinteraktionen haben als erwartet. Dies sind unterschiedliche Tests; Eine Vereinbarung ist keine unabhängige Replikation eines biologischen Ergebnisses.
 
-1. Aktivieren Sie in **Settings → Connectors** **Gene & Ontologien** und **Protein-Annotation** für den Agenten.
+1. Aktivieren Sie in **Resource center → Connectors** **Gene & Ontologien** und **Protein-Annotation** für den Agenten.
 2. Erstellen Sie ein Projekt namens **DNA Damage Gene Set** und öffnen Sie eine neue Sitzung. Dieses Beispiel verwendet Codex und Session Notebook.
 3. Listen Sie die verfügbaren Enrichr-Bibliotheken auf, bevor Sie eine auswählen. Verwenden Sie für diesen Vergleich die feste **GO_Biological_Process_2025**-Bibliothek, damit die gespeicherten Ergebnisse eine identifizierbare Annotationsversion haben. Eine neuere Bibliothek kann unterschiedliche Ergebnisse liefern.
 4. Senden Sie diese Eingabeaufforderung und öffnen Sie die generierten Notizen nach dem Laufende:

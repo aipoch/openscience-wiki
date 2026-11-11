@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -420,6 +420,24 @@ BibTeX almacena año y mes aquí, por lo que su viaje de ida y vuelta regresó `
 
 
 </ToolOperationGroup>
+
+## Exportar metadatos bibliográficos a CSV {/* #bibliography-csv */}
+
+Use CSV para revisar o compartir una lista de referencia en una hoja de cálculo. Exporta únicamente campos bibliográficos: se excluyen los apegos, las decisiones de selección y las notas personales. Use BibTeX o RIS cuando necesite un archivo de intercambio de citación-administrador.
+
+1. Abierto **Library**, entonces el proyecto o colección previsto. Seleccione las referencias requeridas. La selección de páginas cruzadas puede incluir más que la página visible; comprobar el recuento seleccionado y excluir registros no deseados.
+2. Seleccione **More actions → Export → CSV**. Para todo un proyecto o colección, utilice su acción de exportación y elija **CSV**.
+3. Guardar el archivo a través del diálogo de escritorio o el flujo de descarga del navegador. Espera a que la exportación termine; un ahorro cancelado no produce un archivo.
+4. Abra el CSV como UTF-8 en una hoja de cálculo. Compare el recuento con la selección y marcar títulos, autores e identificadores contra la Biblioteca. Un campo vacío significa metadatos desaparecidos, no una ausencia verificada.
+
+Los 16 nombres de las columnas permanecen en inglés a través de los idiomas de la interfaz:
+
+```text
+item_id, title, authors, year, item_type, publication, volume, issue,
+pages, doi, pmid, pmcid, arxiv_id, url, abstract, language
+```
+
+![Exportación CSV ofrecida junto a BibTeX y RIS en la Biblioteca](/img/open-science/v121/library-csv.webp)
 
 ## Resolver duplicados y recuperar referencias {/* #resolve-duplicates-and-recover-references */}
 

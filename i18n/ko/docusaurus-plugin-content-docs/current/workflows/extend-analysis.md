@@ -1,7 +1,7 @@
 ---
 title: "설치 된 Specialist 분석 확장"
 last_update:
-  date: '2026-09-17'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -16,7 +16,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. Specialist 설치 및 선택 {/* #1-install-and-select-the-specialist */}
 
-1. **Settings → Specialists → Browse Marketplace**을 엽니다. **Pharmacometrics PK/PD 디자인 Specialist** 찾기, 그것의 기능을 검사, 그것을 설치. 이 예제는 Open-Science **0.30.1**의 패키지 **1.0.0**을 사용합니다.
+1. **Resource center → Specialists → Marketplace**을 엽니다. **Pharmacometrics PK/PD 디자인 Specialist** 찾기, 그것의 기능을 검사, 그것을 설치. 이 예제는 Open-Science **0.30.1**의 패키지 **1.0.0**을 사용합니다.
 2. **Settings → Runtimes**에서 R이 **Ready**이고 활성화된다는 것을 확인합니다. 기록 된 실행은 R **4.4.3**을 사용했습니다.
 3. 연구 프로젝트에 새로운 대화를 엽니다. 유효한 모형을, 그 후에 **Agent controls → Specialist → pharmacometrics-pkpd-designer** 선택하십시오. 기록된 실행은 **Codex 구독 / gpt-5.6-sol**을 사용했습니다.
 4. **각 분석 메시지**의 시작에서 `/pkpd`을 입력한 다음 제안에서 **pkpd 모델**를 선택하십시오. 프롬프트를 지나기 전에 Skill 칩이 됩니다.

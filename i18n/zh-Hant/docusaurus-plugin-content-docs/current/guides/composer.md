@@ -1,7 +1,7 @@
 ---
 title: "對話與排隊請求"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-11'
 ---
 
 # 對話與排隊請求 {/* #对话与排队请求 */}
@@ -52,6 +52,30 @@ Composer 向當前會話傳送指令與輸入引用，並允許在執行期間�
 | Branch | 支援時獨立延續 | 核對繼承歷史與檔案，見[會話](sessions.md) |
 | Add message to queue | 執行中準備後續指令 | 送達前仍是 Not saved |
 | Cancel run | 停止當前執行 | 等待停止，已儲存結果不自動撤銷 |
+
+## 優化問題草稿 {/* #optimize-question */}
+
+在項目的 **Ask anything** 中寫好草稿，點擊 Agent 控制旁的 **Optimize question**。此操作需要已配置且可用的模型，使用 **Settings → Model → Conversation models → Prompt optimization** 中的任務模型；**Same as main model** 表示跟隨 Main。
+
+1. 在草稿中保留研究問題、真實輸入和重要約束。點擊 **Optimize question** 纔會開始，單純輸入文字不會調用優化。
+2. 等待改寫結果，也可用 **Cancel optimization** 停止。如果等待期間修改了草稿，較晚返回的結果不會覆蓋你的編輯。
+3. 發送前檢查數值、標識符、研究範圍和新增要求。改寫結果會替換輸入框中的草稿，但尚未作爲會話消息發送。
+4. 點擊 **Undo optimization** 恢復原文，或直接編輯結果。手動編輯後不再提供這次一鍵撤銷。已移除的粘貼文本附件可能恢復爲行內文字，避免恢復無效的附件鏈接。
+5. 確認問題合適後再點 **Send message**。優化失敗時保留原草稿，檢查所選模型，處理後再重試。
+
+<p className="example-label"><strong>案例演示</strong> 保留教學問題的證據邊界</p>
+
+選擇 Codex 後，輸入下面的問題，優化結果保留了五個數值與假設教學場景：
+
+```text
+Explain the mean and median of 2, 4, 6, 8, 10 for a hypothetical
+teaching example. Why can we not generalize to a population?
+Keep it concise.
+```
+
+改寫後的問題明確要求說明侷限，不編造參與者、測量值或引用。**Undo optimization** 可恢復原始問題。本例的[項目模板](projects.md#optimization-template)提供了這些約束；問題優化本身不驗證後續答案。
+
+![輸入框中的英文優化結果與 Undo optimization 操作](/img/open-science/v121/optimized-question.webp)
 
 ## 傳送明確反饋 {/* #发送明确反馈 */}
 

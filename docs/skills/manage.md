@@ -1,7 +1,7 @@
 ---
 title: "Manage and validate Skills"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-11'
 ---
 
 # Manage and validate Skills
@@ -18,7 +18,7 @@ For catalog browsing, installation and updates, follow the [Skill marketplace gu
 
 <p className="example-label"><strong>Example</strong> Export and reimport an RNA-seq Skill</p>
 
-1. Find `rnaseq-count-qc` in **Settings → Skills** and choose **Actions → Export**. Save the ZIP.
+1. Find `rnaseq-count-qc` in **Resource center → Skills** and choose **Actions → Export**. Save the ZIP.
 2. Select **Add skill → Upload skills → Upload skill files** and choose that ZIP.
 3. In **Confirm import**, inspect the source filename and diagnostics. Candidates are unchecked initially.
 4. Open **Preview rnaseq-count-qc**. Read SKILL.md and the file list. The actual export preserved `references/sample-metric-schema.md`.

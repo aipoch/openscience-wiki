@@ -1,7 +1,7 @@
 ---
 title: "Conversations et demandes en attente"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-11'
 ---
 
 # Conversations et demandes en attente {/* #conversations-and-queued-requests */}
@@ -52,6 +52,30 @@ Le sélecteur de modèle choisit parmi les modèles configurés. Ses options de 
 | Branche | Poursuite indépendante, le cas échéant | Vérifier l'historique/fichiers hérités; voir [Sessions](sessions.md) |
 | Ajouter un message à la file d'attente | Préparer un suivi en cours d'exécution | En attente de la demande reste Non sauvegardé jusqu'à la livraison |
 | Annuler l'exécution | Arrêter l'exécution en cours | Attendre l'annulation; les résultats déjà enregistrés ne sont pas automatiquement annulés |
+
+## Raffiner un projet de question {/* #optimize-question */}
+
+Dans un projet, rédiger un projet **Ask anything**, puis sélectionner **Optimize question** à côté des contrôles de l'agent. Un modèle configuré et disponible est requis. L'action utilise le modèle de tâche **Settings → Model → Conversation models → Prompt optimization**; **Same as main model** suit Main.
+
+1. Gardez la question de recherche, les apports réels et les contraintes importantes dans le projet. Cliquez sur **Optimize question** pour commencer; taper seul n'invoque pas l'optimisation.
+2. Attendez le repêchage. Utilisation **Cancel optimization** pour arrêter. Si vous modifiez le brouillon pendant que la requête est en cours d'exécution, son résultat tardif n'est pas appliqué sur vos modifications.
+3. Lire le résultat avant d'envoyer. Vérifier les numéros, les identifiants, la portée et toute nouvelle exigence suggérée. Le texte réécrit remplace le projet; il n'a pas été envoyé comme message de conversation.
+4. Sélectionner **Undo optimization** pour restaurer l'ébauche originale, ou modifier le résultat vous-même. L'édition manuelle met fin à l'occasion d'annulation en une seule étape. Les pièces jointes en texte collé supprimées peuvent être restaurées comme du texte en ligne plutôt que comme des liens manquants.
+5. Sélectionner **Send message** seulement lorsque la question est prête. Si l'optimisation échoue, conservez l'ébauche originale, vérifiez le modèle sélectionné et essayez à nouveau le cas échéant.
+
+<p className="example-label"><strong>Exemple travaillé</strong> Gardez une question d'enseignement dans ses preuves</p>
+
+Avec la sélection de Codex, cette ébauche a été affinée tout en conservant les cinq valeurs et la portée hypothétique :
+
+```text
+Explain the mean and median of 2, 4, 6, 8, 10 for a hypothetical
+teaching example. Why can we not generalize to a population?
+Keep it concise.
+```
+
+Le projet révisé demande explicitement des limites sans avoir inventé les participants, les mesures ou les citations. **Undo optimization** restaure la question originale. L'exemple [Modèle de projet](projects.md#optimization-template) fournit ces contraintes; l'optimisation ne vérifie pas la réponse éventuelle.
+
+![Une question anglaise raffinée dans le Compositeur avec l'optimisation Undo disponible](/img/open-science/v121/optimized-question.webp)
 
 ## Envoyer des commentaires précis {/* #send-precise-feedback */}
 

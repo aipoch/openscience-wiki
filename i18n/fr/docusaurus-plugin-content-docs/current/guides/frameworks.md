@@ -1,7 +1,7 @@
 ---
 title: "Installation et commutation d'agents"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Installation et commutation d'agents {/* #installing-and-switching-agents */}
@@ -28,7 +28,7 @@ Open-Science v1.2.0: Open-Science Agent, Codex, Claude Agent, OpenCode, CodeBudd
 
 ## Utilisez l'Agent intégré {/* #built-in-agent */}
 
-De v1.2.0, **Open-Science Agent** expédie avec l'application et est la valeur par défaut pour une nouvelle configuration. Il n'a pas besoin d'un téléchargement d'Agent séparé. La carte l'indique expérimentalement. Il a besoin d'un fournisseur d'API compatible ; l'abonnement Codex reste lié au cadre Codex et l'abonnement Claude à Claude Agent. Un temps d'exécution prêt n'inclut pas l'accès au modèle.
+De v1.2.0, **Open-Science Agent** expédie avec l'application et est la valeur par défaut pour une nouvelle configuration. Il n'a pas besoin d'un téléchargement d'Agent séparé. La carte l'indique expérimentalement. Dans v1.2.1 il accepte les fournisseurs d'API compatibles et **Codex subscription** comptes pour Main et Subagent. L'abonnement Claude reste lié à Claude Agent. Un temps d'exécution prêt n'inclut pas l'accès au modèle.
 
 1. Ouvrir **Settings → Agent** et inspecter **Open-Science Agent** à côté des cadres externes.
 2. Pour modifier le temps d'exécution actif, sélectionnez sa carte et validez le commutateur. Le choix s'applique à tous les projets pour les demandes subséquentes.

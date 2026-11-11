@@ -2,7 +2,7 @@
 title: "パブリックオミクスデータを見つけてファイル在庫をビルドする"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 既知の実行を解決し、ファイルを検査する {/* #ena-runs */}
 
-1. **Omics アーカイブ** で **Settings → Connectors** を有効にします。 PRJ の勉強や SRR の実行など、`ena_search_runs` への公開 ENA/INSDC へのアクセスを提供します。 GEO `GSE` 識別子は、最初に INSDC の勉強にリンクする必要があります。 キーワードは受け付けていません。
+1. **Omics アーカイブ** で **Resource center → Connectors** を有効にします。 PRJ の勉強や SRR の実行など、`ena_search_runs` への公開 ENA/INSDC へのアクセスを提供します。 GEO `GSE` 識別子は、最初に INSDC の勉強にリンクする必要があります。 キーワードは受け付けていません。
 2. `run_accession`、生物、図書館戦略/レイアウトおよび`truncated`を点検して下さい。 1,000 は最大です。 オフセットや継続トークンはありません。 応答が中断されている場合、アクセスが狭くなります。
 3. `ena_get_run_files` に返された実行を 1 つ渡して下さい。 `found`、`fastq_available`、`fastq_files`の各エントリをチェックします。 在庫はURL、圧縮ファイルサイズ、および上流MD5を供給します; ファイルをダウンロードしたり、コンテンツを検証したりしません。
 4. 別のダウンロードの前に、ストレージを確認し、マニフェストを保持します。 ダウンロードしたバイトをリストされたチェックサムに対して確認します。 ペアリングされたライブラリは、まったく2つのファイルを必要としません。 `file_index` から読み取りメイトの ID を差し込みません。
@@ -53,7 +53,7 @@ CSV を開き、`ena-files.json` で比較します。 この実行には `found
 
 <p className="example-label"><strong>実践例</strong> 人間RNA-Seqが5台を走らせ、ENAとPRIDEのファイル在庫を調べる</p>
 
-1. **Settings → Connectors**で**Omics アーカイブ**を有効にし、接続されたモデルと利用可能なNotebookランタイムでセッションを開きます。 この例では、**Codex subscription** を使用します。
+1. **Resource center → Connectors**で**Omics アーカイブ**を有効にし、接続されたモデルと利用可能なNotebookランタイムでセッションを開きます。 この例では、**Codex subscription** を使用します。
 2. メタデータをリクエストするには、以下のプロンプトを使用します。 ENA クエリと PRIDE プロジェクトは別々の例です。 1つの研究からサンプルと一致していません。
 3. `ena-discovery.json` を開き、ファイルを選択する前に、クエリ、生物、アクセスを実行し、`truncated` を検査します。
 

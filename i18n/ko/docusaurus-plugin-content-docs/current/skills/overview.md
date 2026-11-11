@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skills {/* #skills */}
@@ -22,9 +22,9 @@ Skill는 에이전트를 반복 가능한 방법을 제공합니다: 그것을 �
 
 ## Skill 찾기 및 검사 {/* #find-and-inspect-a-skill */}
 
-1. **Settings → Skills**을 엽니다.
+1. **Resource center → Skills**을 엽니다.
 2. **Search skills**을 사용하여 이름을 검색하거나 설명합니다. [예제 만들기](./create.md) 후 `rnaseq-count-qc`을 입력하십시오.
-3. 좁은 **Filter skills by source**, **Filter Skills by agent**, 또는 **Filter by Tag** 목록이 오래 유지되면.
+3. 좁은 **Filters → Filter skills by source**, **Filter Skills by agent**, 또는 **Filter by Tag** 목록이 오래 유지되면.
 4. 결과 열기. 설명, 지침, **Files**, 라이센스 및 **Availability**을 읽으십시오. 표시 이름은 패키지 ID와 다를 수 있습니다.
 5. 목록으로 돌아와 **Used by**을 검사합니다. 그것은 어떤 대리인이 포장을 사용할 수 있는지 식별합니다; 완료된 실행을 나열하지 않습니다.
 
@@ -47,7 +47,7 @@ Skill는 에이전트를 반복 가능한 방법을 제공합니다: 그것을 �
 
 이 활성화 규칙은 종속을 설치하지 않으며, 자격 증명 또는 보조 작업 권한을 제공합니다. Specialist 할당은 별도의 범위입니다: **Used by**과 역할의 기능 목록을 검사합니다.
 
-디렉토리는 여전히 23 공개 번들 Skills이 포함되어 있습니다. 내부 지원 Skills은 추가 방법을 선택하지 않습니다. [필수 스위치 구현](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
+디렉토리는 여전히 24 공개 번들 Skills이 포함되어 있습니다. 내부 지원 Skills은 추가 방법을 선택하지 않습니다. [필수 스위치 구현](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
 
 스크린 샷은 **Customize**에 대한 설명을 보여줍니다. 이 필요한 Skills은 다른 옵션 방법을 비활성화 할 때도 활성화됩니다.
 

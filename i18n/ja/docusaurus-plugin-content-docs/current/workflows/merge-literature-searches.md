@@ -1,7 +1,7 @@
 ---
 title: "文献検索バッチを結合"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 両方の検索を実行し、記録する {/* #1-run-and-record-both-searches */}
 
-**Settings → Connectors** では、**文献グラフ** を有効にして、リクエストした場合には OpenAlex の認証を構成します。 プロジェクトを開き、会話を開始し、コネクティッドモデルを選択します。 記録された操業はOpen-Science **0.30.1**、**Codexサブスクリプション/gpt-5.6-sol**を使用しました。 ソースPDFは必要ありません。
+**Resource center → Connectors** では、**文献グラフ** を有効にして、リクエストした場合には OpenAlex の認証を構成します。 プロジェクトを開き、会話を開始し、コネクティッドモデルを選択します。 記録された操業はOpen-Science **0.30.1**、**Codexサブスクリプション/gpt-5.6-sol**を使用しました。 ソースPDFは必要ありません。
 
 ```text
 Use OpenAlex through Literature Graph to build two search batches:

@@ -1,7 +1,7 @@
 ---
 title: "コネクターおよび資格情報"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,7 @@ Connector は、サービスのツールをエージェントに利用できる�
 
 ### 遺伝子発現プロジェクトのためのツールを探す {/* #find-tools-for-a-gene-expression-project */}
 
-**Settings → Connectors**を開き、**Omics アーカイブ**を検索し、詳細を開きます。 このビルトインファミリーには、GEO、ArrayExpress、MetaboLights、MGnify、PRIDEツールが含まれています。 選択する前にツールの行を拡大します。
+**Resource center → Connectors**を開き、**Omics アーカイブ**を検索し、詳細を開きます。 このビルトインファミリーには、GEO、ArrayExpress、MetaboLights、MGnify、PRIDEツールが含まれています。 選択する前にツールの行を拡大します。
 
 ![GEOメタデータツールとその明示的なダウンロード境界](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -37,11 +37,11 @@ Connector は、サービスのツールをエージェントに利用できる�
 
 **Search connectors** を使用して、**Directory** の下で PubMed を検索します。 リストには、**Featured** と **Custom** のグループも含まれています。 マッチング結果が下に見える間、フィルタリングはグループごとに適用されますので、別のグループは**コネクターがあなたの検索に一致しません**を言うことができます。
 
-**Filter connectors by group**、**Filter Connectors by agent**、**Filter by Tag**を一緒に検索して使用してください。 **Manage credentials** は、共有の連絡先メール/認証設定を開きます。 **Used by** は空室状況を表示します。 **Manage Tags**はConnectorを整理します。 リソースの**Manage access**制御を使用して、Mainエージェントとスペシャリストへのアクセスを1か所で確認し、調整します。
+**Filters → Filter connectors by group**、**Filter Connectors by agent**、**Filter by Tag**を一緒に検索して使用してください。 **Manage credentials** は、共有の連絡先メール/認証設定を開きます。 **Used by** は空室状況を表示します。 **Manage Tags**はConnectorを整理します。 リソースの**Manage access**制御を使用して、Mainエージェントとスペシャリストへのアクセスを1か所で確認し、調整します。
 
 #### 各エージェントへのアクセスの管理 {/* #resource-access */}
 
-1. **Settings → Connectors**でConnectorを見つけ、**Manage access**コントロールを選択します。
+1. **Resource center → Connectors**でConnectorを見つけ、**Manage access**コントロールを選択します。
 2. **メインエージェント**とリストされているスペシャリストのレビュー。 利用可能な場合、ロールリストを検索します。 目的の関連付けだけを変更します。 ロールエディタは、その機能リストを管理するための別の方法を残します。
 3. ポップアップを開き、**Used by**を確認してください。 結合は無効なSpecialistに割り当てることができます; そのロールを有効にしないと割り当てる。
 
@@ -51,7 +51,7 @@ Connector は、サービスのツールをエージェントに利用できる�
 
 #### 複数のコネクタの有効または無効化 {/* #enable-or-disable-several-connectors */}
 
-**Settings → Connectors** を開き、リストをフィルタリングし、関連するグループで **Select multiple** を選択し、意図したコネクタを選択します。 選択されたカウントを有効または無効にする前に確認し、各返された状態を確認します。 作業に必要なサービスのみを有効にしてください。 バルク可用性の変更は、資格情報を提供していません。, パーツールの承認ポリシーを変更したり、Specialistアクセスを許可します。; それぞれ設定します。
+**Resource center → Connectors** を開き、リストをフィルタリングし、関連するグループで **Select multiple** を選択し、意図したコネクタを選択します。 選択されたカウントを有効または無効にする前に確認し、各返された状態を確認します。 作業に必要なサービスのみを有効にしてください。 バルク可用性の変更は、資格情報を提供していません。, パーツールの承認ポリシーを変更したり、Specialistアクセスを許可します。; それぞれ設定します。
 
 #### PubMed: 可用性、ツール、および承認ポリシー {/* #pubmed-availability-tools-and-approval-policy */}
 

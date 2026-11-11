@@ -1,25 +1,25 @@
 ---
 title: "Skill 디렉토리"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skill 디렉토리 {/* #skill-directory */}
 
-응용 프로그램은 **23 번들 Skills**을 제공합니다. 이 디렉토리 그룹에 의해 작동 그들은 지원. Entries는 선적 방법을 설명합니다; 그들은 모든 외부 모델, 의존성 또는 서비스가 설치되지 않습니다.
+응용 프로그램은 **24 번들 Skills**을 제공합니다. 이 디렉토리 그룹에 의해 작동 그들은 지원. Entries는 선적 방법을 설명합니다; 그들은 모든 외부 모델, 의존성 또는 서비스가 설치되지 않습니다.
 
 앱을 통해 배포되는 방법에 대해서는 [시장 설치 가이드](marketplace.md)을 사용합니다. 아래의 디렉토리는 연구 방법을 선택할 수 있습니다; 그것은 시장 버전의 살아있는 재고가 아닙니다.
 
 ## 방법을 선택하기 전에 readiness를 확인 {/* #check-readiness-before-selecting-a-method */}
 
-1. 설정에서 Skill을 열고 완전한 요구 사항과 제 3 자 통지를 읽으십시오.
+1. **Resource center → Skills → Installed**에서 Skill을 열고 완전한 요구 사항과 제 3 자 통지를 읽으십시오.
 2. 입력 유형과 실제 데이터를 비교합니다. 대량 RNA-seq 테이블은 단일 셀 AnnData 객체가 아닙니다. 분자 도면은 도킹 결과가 아닙니다.
 3. 선택한 런타임 및 패키지를 검사합니다. 원격 작업을 위해, usable Compute Host를 선택하고 제출하기 전에 환경을 검사합니다.
 4. 1개의 경계선을 요구하고, 실제적인 산출을 검열하고, 위로 스케일링하기 전에 입력/버전 참조를 유지합니다.
 
 두 개의 추가 표시 항목, 자기 인식 및 기술 측정, 내부 프레임 워크 리소스입니다. user-facing 디렉토리 항목이 없습니다. rnaseq-count-qc를 포함하여 개인 또는 수입된 Skills는 23의 조사에서, 분리됩니다.
 
-세 가지 환경 응용 프로그램 Skills 및 사용자 정의 숙박 활성화; [활성화 규칙](overview.md#why-some-switches-cannot-be-turned-off) 참조. [묶인 표시](https://github.com/aipoch/open-science/blob/v0.27.0/resources/skills/manifest.json)을 사용하여 배송 방법 및 [먼 compute](../guides/remote-compute.md)을 확인하여 호스트 설정 및 결과 전달을 확인합니다.
+세 가지 환경 응용 프로그램 Skills 및 사용자 정의 숙박 활성화; [활성화 규칙](overview.md#why-some-switches-cannot-be-turned-off) 참조. [묶인 표시](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json)을 사용하여 배송 방법 및 [먼 compute](../guides/remote-compute.md)을 확인하여 호스트 설정 및 결과 전달을 확인합니다.
 
 ## 연구 작업에 의해 검색 {/* #browse-by-research-task */}
 
@@ -75,7 +75,8 @@ last_update:
 | [그림 작풍](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-style/SKILL.md) · `figure-style` | 실제 데이터와 1개의 최종 수치 | Notebook 기능 및 플로팅 의존성 | 가능한 라벨과 충실한 데이터로 검사된 도형 |
 | [그림 Composer](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-composer/SKILL.md) · `figure-composer` | 1개의 청구 및 immutable 자료 버전 참고 | Main 에이전트, 위임, 플로팅 및 리뷰 | Multi-panel 수치 및 리뷰 결과 |
 | [종이 Narrative](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/paper-narrative/SKILL.md) · `paper-narrative` | Manuscript/abstract, 캡션 및 주문 그림 데크 | Grounded Artifact 버전 및 리뷰 도구 | Paper Short 및 주문된 그림 인수 |
+| [DOCX Generation](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/docx-generation/SKILL.md) · `docx-generation` | Markdown 보고서 또는 기존 DOCX | Python 3.9+, Pandoc 3.12.1 및 내장 변환기. 의존성을 먼저 준비 | 기본 제목, 표 및 목록이 포함된 DOCX. 내용과 레이아웃 확인 |
 
 
 
-구현 참조 : [나.json](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/manifest.json).
+구현 참조 : [나.json](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json).

@@ -1,7 +1,7 @@
 ---
 title: "Recuperar registros estructurados de una base de datos científica"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Comience con nombres compuestos y termine con una tabla de identificadores y pro
 
 ## 1. Define los compuestos y propiedades {/* #1-define-the-compounds-and-properties */}
 
-En **Settings → Connectors**, asegúrese de que **Química** esté disponible. Abrir un proyecto, iniciar una conversación y seleccionar un modelo conectado. Esta ejecución utilizó Open-Science 0.30.1 y la Química/PubChem Connector; no requirió una hoja de cálculo de entrada.
+En **Resource center → Connectors**, asegúrese de que **Química** esté disponible. Abrir un proyecto, iniciar una conversación y seleccionar un modelo conectado. Esta ejecución utilizó Open-Science 0.30.1 y la Química/PubChem Connector; no requirió una hoja de cálculo de entrada.
 
 Especifique **ácidos monocarboxílicos neutros, de cadena recta**. Un nombre similar puede referirse a un isómero ramificado, una sal o una base conjugada. Una fórmula por sí sola no puede distinguir todas esas estructuras.
 

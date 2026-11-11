@@ -1,7 +1,7 @@
 ---
 title: "Suchen Sie innerhalb bestimmter Zeitschriften und Termine"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Eine fokussierte Suche erfordert explizite Grenzen und eine Aufzeichnung dessen,
 
 ## 1. Legen Sie die Frage- und Förderregel fest {/* #1-set-the-question-and-eligibility-rule */}
 
-Öffnen Sie ein Projekt und wählen Sie ein verbundenes Modell aus. Bestätigen Sie, dass **PubMed** Connector in **Settings → Connectors** verfügbar ist; Kontaktinformationen dort konfigurieren, falls gewünscht. Es sind keine heruntergeladenen Papiere erforderlich, um dieses Beispiel zu starten.
+Öffnen Sie ein Projekt und wählen Sie ein verbundenes Modell aus. Bestätigen Sie, dass **PubMed** Connector in **Resource center → Connectors** verfügbar ist; Kontaktinformationen dort konfigurieren, falls gewünscht. Es sind keine heruntergeladenen Papiere erforderlich, um dieses Beispiel zu starten.
 
 Verwenden Sie die Veröffentlichungsdaten **2019-01-01 bis 2025-12-31**, nicht das Datum, an dem ein Datenbankdatensatz hinzugefügt wurde. Fügen Sie primäre randomisierte Berichte mit einem definierten Achtsamkeitsinterventionsarm und berichteten Teilnehmerergebnissen hinzu. Halten Sie eine separate **unsicher**-Kategorie für gemischte Interventionen, unklaren Veröffentlichungsstatus oder widersprüchliche Daten bereit. Mechanistische Ergebnisse allein machen einen Bericht nicht zu einer sekundären Analyse.
 

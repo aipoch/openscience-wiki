@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skills
@@ -22,9 +22,9 @@ Start with [Skill directory](./directory.md) to find a method, or [recipes](./re
 
 ## Find and inspect a Skill
 
-1. Open **Settings → Skills**.
+1. Open **Resource center → Skills**.
 2. Use **Search skills** to search its name or description. Enter `rnaseq-count-qc` after [creating the example](./create.md).
-3. Narrow **Filter skills by source**, **Filter Skills by agent**, or **Filter by Tag** if the list remains long.
+3. Narrow **Filters → Filter skills by source**, **Filter Skills by agent**, or **Filter by Tag** if the list remains long.
 4. Open the result. Read the description, instructions, **Files**, license and **Availability**. A display name can differ from the package ID.
 5. Return to the list and inspect **Used by**. It identifies which agents can use the package; it does not list completed runs.
 
@@ -47,7 +47,7 @@ Start with [Skill directory](./directory.md) to find a method, or [recipes](./re
 
 This activation rule does not install dependencies, provide credentials or grant operation permissions. Specialist assignment is a separate scope: inspect **Used by** and the role's capability list.
 
-The directory still contains 23 public bundled Skills. Internal supporting Skills are not extra methods to select. [Required switch implementation](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
+The directory still contains 24 public bundled Skills. Internal supporting Skills are not extra methods to select. [Required switch implementation](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
 
 The screenshot shows the explanation for **Customize**. These required Skills remain enabled even when you disable other optional methods.
 

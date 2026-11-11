@@ -1,7 +1,7 @@
 ---
 title: "Ersteinrichtung"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,18 +12,18 @@ Der First-Run-Assistent hat fünf Seiten in dieser Reihenfolge: Umgebung, Datens
 
 <PlatformGuide />
 
-Nach der Ersteinrichtung kann eine ältere App-verwaltete Codex-Laufzeit in [Agenteneinstellungen](frameworks.md#update-codex) aktualisiert werden. Dies ist unabhängig von der auswahl eines modellanbieters.
+Externe Agents können später in den [Agent-Einstellungen](frameworks.md) verwaltet und aktualisiert werden. Der integrierte **Open-Science Agent** ist in der App enthalten.
 
 ## 1. Umgebung {/* #1-environment */}
 
-Starten Sie auf **Prepare environment**. Die App überprüft den Host, bevor Sie aufgefordert werden, einen Agenten zu installieren oder ein Modell anzuschließen. Jede Zeile enthält einen Status und eine Erklärung; Verwenden Sie die Erklärung, um die Anforderung zu identifizieren, die Aufmerksamkeit erfordert.
+Beginnen Sie mit **Prepare environment**. Die App prüft Ihren Computer vor der Agent-Auswahl und der Modellverbindung. Lesen Sie Status und Erläuterung jeder Prüfung.
 
 | Kontrolle oder Kontrolle | Was es bedeutet | Was zu tun ist |
 | --- | --- | --- |
 | Systemkompatibilität | Prüft das Betriebssystem und die Architektur | Bestätigen Sie, dass die erkannte Plattform mit Ihrem Computer übereinstimmt |
 | App-Speicherberechtigung | Prüft den Schreibzugriff auf den Konfigurationsordner der App | Wenn es fehlschlägt, lösen Sie den Zugriff auf den angezeigten Pfad und überprüfen Sie erneut |
 | Sichere Speicherung von Anmeldeinformationen | Prüft, ob das Betriebssystem-Zeugnis verfügbar ist | Beheben Sie das Problem mit dem Tresor, bevor Sie Anmeldeinformationen eingeben |
-| Installationsnetzwerk | Prüft unterstützte Paketquellen und meldet eine erreichbare Quelle | Lesen Sie die ausgewählte Quelle und Latenz; Ergebnisse hängen von Ihrem Netzwerk ab |
+| Installationsnetzwerk | Prüft, ob der ausgewählte Agent einen Download benötigt und prüft bei Bedarf Paketquellen | Mit dem eingebauten Agent kann dieser melden, dass kein Download erforderlich ist; es testet Ihre Modellverbindung nicht |
 | `Check again` | Wiederholt die Umweltprüfungen | Verwendung nach Festlegung einer Vorschrift; Das Etikett wird `Checking…` und der Button ist während der Überprüfung deaktiviert |
 | `Continue` | Öffnet Datenstandort | Verfügbar nach dem erforderlichen Host-Checks bestanden; Es ist deaktiviert, während die Überprüfungen ausgeführt werden |
 
@@ -35,7 +35,7 @@ Lesen Sie die Erklärung jedes Schecks neben seinem Status. Wenn ein Agent berei
 
 <PlatformContent platform="macos">
 
-![Umweltprüfungen, die während der erstmaligen Einrichtung von macOS abgeschlossen wurden](/img/open-science/macos/setup-environment.webp)
+![Umweltprüfungen, die während der erstmaligen Einrichtung von macOS abgeschlossen wurden](/img/open-science/v121/onboarding-environment.webp)
 
 </PlatformContent>
 
@@ -112,53 +112,36 @@ Wenn der Neustart fehlschlägt, bevor sich der Standort ändert, stellen Sie den
 
 ## 3. Agentenlaufzeit {/* #3-agent-runtime */}
 
-Wählen Sie die Agent-Laufzeit, die Sitzungen ausführen soll. Ein neues v1.2.0-Setup ist standardmäßig auf das eingebaute **Open-Science Agent**, so dass für diese Auswahl keine separate Agent-Installation erforderlich ist. Es erfordert einen kompatiblen API-Anbieter. Wenn Sie verwenden **Codex subscription**, auswählen und vorbereiten **Codex** Stattdessen; die Codex-Schritte unten zeigen diese Option. Fahren Sie fort, sobald die vorgesehene Laufzeit fertig ist.
+Neue Einrichtungen verwenden standardmäßig den integrierten **Open-Science Agent**. Er ist in der App enthalten und unterstützt kompatible API-Anbieter sowie **Codex subscription**. Ein weiterer Agent muss für diesen Schritt nicht installiert werden.
+
+1. Suchen Sie unter **Installed** nach **Open-Science Agent** und prüfen Sie, ob die Karte **Active** anzeigt.
+2. Warten Sie auf **All required environment checks passed.** Beheben Sie bei einem Fehler die angezeigte Ursache und wählen Sie anschließend **Re-detect**.
+3. Wählen Sie **Continue**, um **Model provider** zu öffnen. Verbinden und testen Sie dort das Modell, bevor Sie Anfragen senden.
 
 <PlatformContent platform="macos">
 
-![Codex Installationsquellmenü](/img/open-science/walkthrough-2026-09-08/05-agent-install-menu.webp)
-
-</PlatformContent>
-1. Öffnen Sie **Installieren Codex**.
-2. Wählen Sie die von der App verwaltete Installationsquelle, die im Menü empfohlen wird. Die Alternative verwendet eine globale npm-Installation.
-3. Warten Sie, bis die Installation abgeschlossen ist. Vermeiden Sie es, eine weitere Installation zu starten, während der Installer läuft.
-4. Bestätigen Sie, dass Codex jetzt seine Version und **Active** zeigt.
-5. Wählen Sie **Continue**, um den Model-Anbieter zu öffnen.
-
-<PlatformContent platform="macos">
-
-![Codex installiert und als aktive Laufzeit ausgewählt](/img/open-science/walkthrough-2026-09-08/06-agent-codex-ready.webp)
-
-</PlatformContent>
-Die Versionsetiketten identifizieren den installierten Agent oder Adapter, nicht das ausgewählte Modell. Überprüfen Sie die installierten Werte, anstatt die genauen Versionen des Screenshots zu erwarten.
-
-<PlatformContent platform="windows">
-
-Wenn bereits ein kompatibler Agent installiert ist, wählen Sie seine Karte aus und bestätigen Sie **Active**, bevor Sie fortfahren. Der Windows-Bildschirm unten verwendet eine bestehende Codex-Installation; Es ist unnötig, es neu zu installieren, nur um durch den zauberer zu gehen.
-
-![Ein vorhandener Codex-Agent, der im Windows-Setup-Assistenten als aktiv ausgewählt wurde](/img/open-science/windows/setup-agent-active.webp)
+![Integrierter Open-Science Agent mit Active; Continue ist verfügbar, die fünf externen Laufzeiten sind nicht installiert](/img/open-science/v121/onboarding-builtin-agent.webp)
 
 </PlatformContent>
 
-| Kontrolle oder Staat | Verhalten |
-| --- | --- |
-| Rahmenkarte | Zeigt Installationsstatus, Version, Laufzeitpfad und ob das Framework aktiv ist. |
-| **Install…** | Öffnet die unterstützten Installationsquellen dieses Frameworks. |
-| Installationsfortschritt | Einrichtung von Berichten; Inkonsistente Installationssteuerungen und Wiedererkennung stehen während des Betriebs nicht zur Verfügung. |
-| **Re-detect** | Aktualisiert installierte Laufzeitinformationen. Das Label wird **Detecting…** bis die Kontrollen abgeschlossen sind. Sie können auch aus Settings → Agent neu erkennen. |
-| **Uninstall** | Nicht verfügbar für die aktive Laufzeit. Wechsel zu einem anderen installierten Framework, bevor Sie es entfernen. |
-| **Back** | Kehren Sie zum Datenspeicherort zurück, wenn kein Blockierungsvorgang ausgeführt wird. |
-| **Continue** | Fahren Sie fort, sobald eine aktive Laufzeit bereit ist. |
+Die Versionsnummer gehört zur Laufzeit oder zum Adapter, nicht zum Modell. **Active** kennzeichnet die ausgewählte Laufzeit und bestätigt keine Modellverbindung. Für **Codex subscription** auf der nächsten Seite ist die separate **Codex**-Laufzeit nicht erforderlich.
 
-Siehe [Agent Frameworks](frameworks.md) für rahmenspezifische Installation, Umschaltung, Reparatur und Demontage.
+<details>
+<summary>Externen Agent wählen (optional)</summary>
+
+Wenn Sie die Anbieterunterstützung oder das Verhalten von **Codex**, **Claude Agent**, **OpenCode**, **CodeBuddy** oder **Pi** benötigen, wählen Sie die entsprechende Laufzeit. Bei einer vorhandenen Installation wählen Sie **Re-detect** und dann deren Karte. Andernfalls öffnen Sie **Install**, wählen eine unterstützte Quelle und warten auf den Abschluss. Fahren Sie fort, sobald die Laufzeit **Active** ist und die erforderlichen Prüfungen bestanden sind.
+
+Installationsquellen, Wechsel und Reparatur sind unter [Agent-Frameworks](frameworks.md) beschrieben. Die Laufzeit lässt sich auch nach der Einrichtung unter **Settings → Agent** ändern.
+
+</details>
 
 ## 4. Modellanbieter {/* #4-model-provider */}
 
-Das Formular ändert sich gemäß **Provider type**, dem ausgewählten Agenten und der Authentifizierungsmethode. Für ein Codex-Abonnement kopiert **Import existing Codex sign-in** eine bestehende lokale Anmeldung bei Open-Science. Verwenden Sie es, wenn Sie dieses Konto verbinden möchten, und warten Sie dann auf die Verbindungsüberprüfung.
+Das Formular hängt von **Provider type**, dem gewählten Agent und der Authentifizierungsmethode ab. Für ein Codex-Abonnement mit dem integrierten Agent wählen Sie **Codex subscription**. Ist auf diesem Computer bereits eine Codex-Anmeldung vorhanden, wählen Sie unter **Codex authentication** die Option **Import existing Codex sign-in** und anschließend **Test & continue**. Andernfalls wählen Sie eine unterstützte Anmeldemethode und folgen den Anweisungen; siehe [Anbietereinrichtung](providers.md#builtin-codex-subscription). Fahren Sie nach erfolgreicher Verbindungsprüfung fort.
 
 <PlatformContent platform="macos">
 
-![Englisches Codex-Abonnementformular vor Authentifizierung](/img/open-science/walkthrough-2026-09-08/07-model-codex-subscription.webp)
+![Englisches Codex-Abonnementformular vor Authentifizierung](/img/open-science/v121/onboarding-codex-provider.webp)
 
 </PlatformContent>
 Wählen Sie für einen API-Provider dessen Typ aus, geben Sie die von diesem Provider benötigten Endpunkt- und Modelldetails ein und verwenden Sie **Test & continue**. Der Wizard validiert die erforderlichen Felder, bevor er einen Test sendet. Ein erfolgreicher Test bringt den Assistenten voran; ein Validierungs- oder Verbindungsfehler zur Korrektur sichtbar bleibt.
@@ -199,7 +182,7 @@ Die Windows **Notebook runtime** Seite kann auch **Local Shell · WSL2 Bash Prev
 | --- | --- | --- |
 | Umgebung | Erforderliche Kontrollen bestanden. | Überprüfen Sie erneut, nachdem Sie die angezeigte Anforderung behoben haben. |
 | Datenspeicherort | Der endgültige verwaltete Pfad ist der beabsichtigte Standort. | Zurück zur Standortseite; Den endgültigen Pfad schlussfolgern Sie nicht allein vom Picker. |
-| Agent | Installierte Version und aktiver Status. | Prüfen Sie die Installationsprotokolle und wiederholen Sie sie. |
+| Agent | Die gewählte Laufzeit ist bereit und **Active**; der integrierte Agent benötigt keine separate Installation. | Beheben Sie die angezeigte Ursache und wählen Sie **Re-detect**. |
 | Anbieter | Verifizierte Verbindung und ein ausgewähltes Hauptmodell. | Überprüfen Sie erneut die Anmelde- oder anbieterspezifischen Felder. |
 | Notebook | Bereit und aktiviert, wenn Codeausführung erforderlich ist. | Konfigurieren **Settings → Runtimes** bevor eine Analyse angefordert wird. |
 | Erste Aufgabe | Agent Response und inspizierbare gespeicherte Ausgabe. | Überprüfen Sie Berechtigungen und Toolfehler getrennt von der Modellverbindung. |

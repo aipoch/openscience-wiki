@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -420,6 +420,24 @@ BibTeX stores year and month here, so its round trip returned `2009-7`; RIS reta
 
 
 </ToolOperationGroup>
+
+## Export bibliographic metadata to CSV {/* #bibliography-csv */}
+
+Use CSV to review or share a reference list in a spreadsheet. It exports bibliographic fields only: attachments, screening decisions and personal notes are excluded. Use BibTeX or RIS when you need a citation-manager interchange file.
+
+1. Open **Library**, then the intended project or collection. Select the required references. Cross-page selection can include more than the visible page; check the selected count and exclude unwanted records.
+2. Select **More actions → Export → CSV**. For a whole project or collection, use its export action and choose **CSV**.
+3. Save the file through the desktop save dialog or the browser's download flow. Wait for export to finish; a cancelled save does not produce a file.
+4. Open the CSV as UTF-8 in a spreadsheet. Compare the row count with the selection and spot-check titles, authors and identifiers against Library. An empty field means missing metadata, not a verified absence.
+
+The 16 column names stay in English across interface languages:
+
+```text
+item_id, title, authors, year, item_type, publication, volume, issue,
+pages, doi, pmid, pmcid, arxiv_id, url, abstract, language
+```
+
+![CSV export offered alongside BibTeX and RIS in Library](/img/open-science/v121/library-csv.webp)
 
 ## Resolve duplicates and recover references
 

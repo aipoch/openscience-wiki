@@ -1,7 +1,7 @@
 ---
 title: "첫 번째 시간 설정"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,18 +12,18 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformGuide />
 
-초기 설정 후, 이전 앱 관리 Codex 실행 시간은 [에이전트 설정](frameworks.md#update-codex)에서 업데이트 될 수 있습니다. 이것은 모형 공급자 선택에서 분리됩니다.
+외부 Agent는 [Agent 설정](frameworks.md)에서 관리하고 업데이트할 수 있습니다. 내장 **Open-Science Agent**는 앱에 포함됩니다.
 
 ## 1. 환경 {/* #1-environment */}
 
-**Prepare environment**에서 시작. 앱은 에이전트를 설치하거나 모델을 연결하기 전에 호스트를 확인합니다. 각 행은 상태와 설명을 포함합니다; 주의해야 할 요구 사항을 식별하는 설명을 사용합니다.
+**Prepare environment**에서 시작합니다. 앱은 Agent를 선택하고 모델을 연결하기 전에 컴퓨터를 검사합니다. 각 항목의 상태와 설명을 읽고 필요한 조치를 확인합니다.
 
 | 자주 묻는 질문 | 무엇을 의미합니까? | 무엇을 할 것인가? |
 | --- | --- | --- |
 | 시스템 호환성 | 운영 체제 및 아키텍처 확인 | 감지 된 플랫폼이 컴퓨터와 일치하도록 확인 |
 | 앱 저장소 권한 | 앱의 구성 폴더에 액세스 쓰기 | 실패하면 표시된 경로에 액세스하고 다시 확인 |
 | 보안 자격 증명 저장소 | 운영 시스템 자격 증명 취약점 확인 가능 | credentials를 입력하기 전에 vault 문제를 해결 |
-| 설치 네트워크 | 지원된 패키지 소스를 확인하고 도달 가능한 소스를 보고 | 선택된 소스와 대기 시간을 읽으십시오; 결과가 네트워크에 달려 있습니다. |
+| 설치 네트워크 | 선택된 에이전트가 다운로드를 필요로 하는지 확인, 필요한 경우, 패키지 소스를 확인| 내장 에이전트를 사용하면 다운로드가 필요하지 않다는 것을 보고할 수 있습니다. 모델 연결을 테스트하지 않습니다 |
 | `Check again` | 환경 체크를 반복합니다 | 필요조건을 고치기 후에 사용; 상표가 된다 `Checking…` 그리고 버튼은 체크 중에 비활성화됩니다. |
 | `Continue` | 데이터 위치 열기 | 필요한 호스트 체크 패스 후 사용 가능; 체크가 실행되는 동안 비활성화됩니다. |
 
@@ -35,7 +35,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformContent platform="macos">
 
-![macOS 첫 번째 설정에서 완료된 환경 체크](/img/open-science/macos/setup-environment.webp)
+![macOS 첫 번째 설정에서 완료된 환경 체크](/img/open-science/v121/onboarding-environment.webp)
 
 </PlatformContent>
 
@@ -112,53 +112,36 @@ runtimes를 설치하기 전에 큰 파일에 대한 위치를 선택하십시�
 
 ## 3. 에이전트 런타임 {/* #3-agent-runtime */}
 
-세션을 실행할 에이전트 실행 시간을 선택합니다. 새로운 v1.2.0 설정 기본값은 내장 **Open-Science Agent**, 그래서 별도의 대리인 임명은 그 선택을 위해 필요합니다. 호환 API 공급자가 필요합니다. 이용안내 **Codex subscription**, 선택 및 준비 **프로젝트** 대신; 아래 Codex 단계는 그 옵션을 보여줍니다. 예정된 실행시간이 준비되어 있습니다.
+새 설정에서는 앱에 포함된 **Open-Science Agent**를 기본으로 사용합니다. 호환되는 API 제공자와 **Codex subscription**을 지원하며, 이 단계를 완료하기 위해 다른 Agent를 설치할 필요는 없습니다.
+
+1. **Installed**에서 **Open-Science Agent**를 찾아 카드에 **Active**가 표시되는지 확인합니다.
+2. **All required environment checks passed.**가 표시될 때까지 기다립니다. 검사에 실패하면 화면에 표시된 문제를 해결한 뒤 **Re-detect**를 선택합니다.
+3. **Continue**를 선택하여 **Model provider**로 이동합니다. 요청을 보내기 전에 다음 단계에서 모델을 연결하고 테스트합니다.
 
 <PlatformContent platform="macos">
 
-![Codex 설치 소스 메뉴](/img/open-science/walkthrough-2026-09-08/05-agent-install-menu.webp)
-
-</PlatformContent>
-1. **Codex 설치**을 엽니다.
-2. 메뉴에서 권장되는 앱 관리 설치 소스를 선택하십시오. 대안은 글로벌 npm 설치를 사용합니다.
-3. 끝에 임명을 위해 대기. installer가 실행되는 동안 다른 임명을 시작하는 것을 피하십시오.
-4. Codex이 이제 버전과 **Active**을 보여줍니다.
-5. **Continue**을 선택하여 모델 공급자를 엽니다.
-
-<PlatformContent platform="macos">
-
-![Codex 설치 및 활성 런타임으로 선택](/img/open-science/walkthrough-2026-09-08/06-agent-codex-ready.webp)
-
-</PlatformContent>
-버전 상표는 설치된 대리인 또는 접합기, 선정한 모형을 확인합니다. 스크린 샷의 정확한 버전을 기대하는 대신 설치된 값을 검사합니다.
-
-<PlatformContent platform="windows">
-
-호환 에이전트가 이미 설치되면 카드를 선택하고 **Active**을 계속 확인하십시오. 아래 Windows 화면은 기존 Codex 설치를 사용합니다. 재설치는 마법사를 통해 진행할 필요는 없습니다.
-
-![Windows 설정 마법사에서 Active로 선택한 기존 Codex 에이전트](/img/open-science/windows/setup-agent-active.webp)
+![내장 Open-Science Agent가 Active이며 외부 런타임 다섯 개가 설치되지 않은 상태에서 Continue가 활성화된 화면](/img/open-science/v121/onboarding-builtin-agent.webp)
 
 </PlatformContent>
 
-| 통제 또는 국가 | 뚱 베어 |
-| --- | --- |
-| Framework 카드 | 설치 상태, 버전, 런타임 경로 및 프레임 워크가 활성화되는지 여부를 보여줍니다. |
-| **Install…** | 프레임 워크의 지원된 설치 소스를 엽니다. |
-| 설치 진도 | 설정 활동 보고; 분쟁 해결 설치 제어 및 재검출은 실행 중에 사용할 수 없습니다. |
-| **Re-detect** | 런타임 정보의 새로 고침 라벨이 됩니다. **Detecting…** 체크 끝까지. 설정 → 에이전트에서 다시 감지 할 수 있습니다. |
-| **Uninstall** | Active runtime을 사용할 수 없습니다. 제거하기 전에 다른 설치 프레임 워크로 전환하십시오. |
-| **Back** | 설정 작동을 차단하지 않을 때 데이터 위치에 반환합니다. |
-| **Continue** | 한 번 활성화된 런타임이 준비되어 있습니다. |
+카드의 버전은 런타임 또는 어댑터 버전이며 모델 버전이 아닙니다. **Active**는 선택된 런타임을 뜻하며 모델 연결을 확인해 주지는 않습니다. 다음 페이지에서 **Codex subscription**을 선택해도 별도의 **Codex** 런타임을 설치할 필요가 없습니다.
 
-프레임 워크 별 설치, 스위칭, 수리 및 제거에 대한 [에이전트 프레임 워크](frameworks.md) 참조.
+<details>
+<summary>외부 Agent 선택하기(선택 사항)</summary>
+
+**Codex**, **Claude Agent**, **OpenCode**, **CodeBuddy** 또는 **Pi**의 제공자 지원이나 동작이 필요하면 해당 런타임을 선택합니다. 이미 설치했다면 **Re-detect**를 선택한 뒤 해당 카드를 선택합니다. 설치하지 않았다면 **Install**을 열고 지원되는 설치 원본을 선택한 후 완료될 때까지 기다립니다. **Active** 상태와 필수 검사 통과를 확인한 후 계속합니다.
+
+설치 원본, 전환 및 복구 방법은 [Agent 프레임워크](frameworks.md)를 참조하세요. 설정을 마친 후에도 **Settings → Agent**에서 런타임을 변경할 수 있습니다.
+
+</details>
 
 ## 4. 모델 제공업체 {/* #4-model-provider */}
 
-**Provider type**, 선택한 에이전트 및 인증 방법에 따라 형태 변경. Codex 구독을 위해 **Import existing Codex sign-in**은 기존 로컬 서명인 Open-Science에 복사합니다. 계정을 연결하고 싶을 때, 연결 확인을 기다립니다.
+양식은 **Provider type**, 선택한 Agent 및 인증 방식에 따라 달라집니다. 내장 Agent에서 Codex 구독을 사용하려면 **Codex subscription**을 선택합니다. 이 컴퓨터에 기존 Codex 로그인이 있으면 **Codex authentication**에서 **Import existing Codex sign-in**을 선택하고 **Test & continue**를 누릅니다. 사용할 수 있는 로그인이 없으면 지원되는 로그인 방식을 선택하고 안내를 따릅니다. [제공자 설정](providers.md#builtin-codex-subscription)도 참조하세요. 연결 검사를 통과한 후 계속합니다.
 
 <PlatformContent platform="macos">
 
-![인증하기 전에 영어 Codex 구독 양식](/img/open-science/walkthrough-2026-09-08/07-model-codex-subscription.webp)
+![인증하기 전에 영어 Codex 구독 양식](/img/open-science/v121/onboarding-codex-provider.webp)
 
 </PlatformContent>
 API 공급자를 위해, 그것의 유형을 선정하고, 그 공급자에 의해 요구된 endpoint와 모형 세부사항을 입력하고, **Test & continue**를 이용합니다. 테스트 보내기 전에 wizard validates 필수 필드. 성공적인 시험은 마법사를 전진합니다; 유효성 또는 연결 오류가 보정을 위해 볼 수 있습니다.
@@ -199,7 +182,7 @@ Windows **Notebook runtime** 페이지는 **Local Shell · WSL2 Bash Preview**�
 | --- | --- | --- |
 | 환경 | 자주 묻는 질문 | 표시된 필요조건을 해결한 후에 Recheck. |
 | 데이터 위치 | 최종 관리 경로는 예정된 위치입니다. | 위치 페이지로 돌아가기; 픽업에서 최종 경로는 없습니다. |
-| 에이전트 | 설치된 버전 및 Active 상태. | 설치 로그 및 검색을 검사합니다. |
+| Agent | 선택한 런타임이 준비되어 있고 **Active**로 표시됨. 내장 Agent는 별도 설치 불필요 | 표시된 문제를 해결하고 **Re-detect** 선택 |
 | 모델 제공업체 | 검증된 연결 및 선택된 메인 모델. | Recheck sign-in 또는 공급자 특정한 분야. |
 | Notebook | 코드 실행이 필요한 경우 준비 및 활성화. | 구성 **Settings → Runtimes** 요청 분석하기 전에. |
 | 첫 번째 작업 | 대리인 응답 및 inspectable 저장된 산출. | Inspect 권한 및 도구 오류는 모델 연결에서 별도로. |

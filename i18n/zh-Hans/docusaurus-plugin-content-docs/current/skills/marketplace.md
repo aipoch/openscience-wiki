@@ -2,26 +2,26 @@
 title: Skill 市场
 description: 从 Skill 市场发现、安装、更新和管理科研方法。
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 # Skill 市场
 
-通过 **Settings → Skills → Browse Marketplace** 查找和安装科研方法，无需先自行寻找并导入仓库。你可以在安装前查看方法说明，选择要使用的方法，并在准备好后更新版本。
+从首页或项目侧栏打开 **Resource center → Skills → Marketplace**，搜索研究方法，检查包详情，再按需安装。Web 工作区也支持市场安装，安装位置是所连接的 Open-Science 主机。
 
-需要导入 ZIP、本机 Skill 或指定 GitHub 仓库时，使用[Skill 导入与管理](manage.md)。查看科研方法及输入概览，见 [Skill 目录](directory.md)。
+用 **Installed** 返回本地方法。导入 ZIP、已安装目录或 GitHub 仓库时，参阅 [Skill 导入与管理](manage.md)；在会话中选择方法则参阅[使用 Skills](overview.md)。
 
-![Skill 市场的搜索、分类筛选和 Install 入口](/img/open-science/feature-guides-2026-09/marketplace-browse.webp)
+![资源中心中的 Installed 与 Marketplace 标签](/img/open-science/v121/resource-center.webp)
 
-## 查找适合的方法
+## 找到合适的方法
 
-1. 打开 **Marketplace**，搜索或按分类筛选。
-2. 打开 Skill 详情，阅读用途、作者、来源、许可信息及可用的评估详情。
-3. 对照项目检查输入、所需工具和运行依赖，再决定是否安装。
+1. 打开 **Marketplace**，在 **Search skills** 输入名称或关键词，通过 **Filters** 缩小范围；重置筛选或清空关键词可恢复更广的列表。
+2. 选择 **View details**，阅读用途、发布者、作者、版本、许可证与 **Sources and verification**。有 **Assessment report** 时也可展开查看。
+3. 对照项目检查输入、工具和运行依赖，再点击 **Install**。等待 **Installed** 或已安装版本标记，之后检查可用状态。
 
-目录签名确认的是分发身份，不代表方法一定适合本次研究，也不能证明电脑已具备所需依赖。
+分发签名用于确认包来源，上游评估分数不能证明方法适合你的研究问题。安装 Skill 不会直接执行其工作流，也不代表所有科学计算依赖已安装。
 
-![Skill 详情中的作者、版本、许可信息和 Install 操作](/img/open-science/feature-guides-2026-09/marketplace-detail.webp)
+![通过 Web 市场安装完成的 Skill 及其版本和来源详情](/img/open-science/v121/marketplace-installed.webp)
 
 ## 安装并使用 Skill
 
@@ -34,7 +34,7 @@ last_update:
 
 ## 批量安装或更新
 
-1. 选择 **Batch manage**，再选择 **Not installed** 或 **Updates**。
+1. 选择 **More actions → Batch manage**，再选择 **Not installed** 或 **Updates**。
 2. 筛选目录并勾选目标条目。**Select all filtered results** 会选择当前筛选下的全部结果。
 3. 经过 **Review selection** 检查列表后，使用 **Install selected** 或 **Update selected**。
 4. 等待操作结束，逐项查看结果。安装按顺序进行，停止时会先完成当前项。
@@ -86,4 +86,4 @@ last_update:
 
 维护者审核并登记符合要求的提交后，再安排发布。提交文件或合并 PR 本身不代表已在应用中上架，审核与发布阶段见[作者指南](https://github.com/aipoch/openscience-skill-marketplace/blob/main/authoring/README.md)。
 
-发布后回到 **Browse Marketplace → Refresh**，搜索自己的 Skill，核对来源和版本，再安装使用。更新已发布方法时，应使用新的软件包版本和源提交重新提交；修改 GitHub 仓库内容不会自动更新别人已安装的副本。
+发布后回到 **Marketplace → Refresh**，搜索自己的 Skill，核对来源和版本，再安装使用。更新已发布方法时，应使用新的软件包版本和源提交重新提交；修改 GitHub 仓库内容不会自动更新别人已安装的副本。

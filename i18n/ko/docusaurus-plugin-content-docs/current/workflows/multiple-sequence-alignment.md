@@ -1,7 +1,7 @@
 ---
 title: "Align 다중 시퀀스와 방부된 위치를 검사합니다"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ UniProt sequences를 검토하여 원격 클러스터 오메가 서비스로 정
 연결 설정은 [과학 데이터베이스](../tools/databases.md#connect-database)에 설명됩니다.
 
 1. **Hemoglobin 소송 소송**을 만들고 연결된 모델과 새로운 대화를 엽니다. 이 예제는 **Codex subscription**을 사용했습니다.
-2. **Settings → Connectors**에서 **유전자 및 종양학** 및 **한국어 (Korean)**를 Main로 사용할 수 있습니다. 클러스터는 게놈에 속한다; 별도의 Connector이 아닙니다.
+2. **Resource center → Connectors**에서 **유전자 및 종양학** 및 **한국어 (Korean)**를 Main로 사용할 수 있습니다. 클러스터는 게놈에 속한다; 별도의 Connector이 아닙니다.
 3. **Settings → Privacy → Share contact email with research data services**의 클러스터 오메가에 의해 요청된 유효한 연구 서비스 접촉 이메일을 구성하십시오. 실제적인 접촉을 사용하여, 발명한 주소가 아닙니다. Sequence 입력은 EMBL-EBI로 전송됩니다.
 4. 아래에서 프롬프트를 보냅니다. 공공 또는 다른 권한의 순서를 사용하십시오.
 

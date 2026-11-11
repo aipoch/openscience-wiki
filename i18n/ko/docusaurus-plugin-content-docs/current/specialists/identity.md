@@ -1,7 +1,7 @@
 ---
 title: "Specialist 생성 및 지시"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Specialist 생성 및 지시 {/* #create-and-instruct-a-specialist */}
@@ -18,7 +18,7 @@ last_update:
 
 ## 역할 만들기 {/* #create-the-role */}
 
-1. **Settings → Specialists → Add specialist → Write from scratch**을 엽니다.
+1. **Resource center → Specialists → Add specialist → Write from scratch**을 엽니다.
 2. **RNA-seq QC 검토자**을 이름과 **추적 가능한 공중 생물 의학 입력을 사용하여 Raw-count 무결성과 표본 미터를 검사하십시오.**로 입력하세요.
 3. 아이콘과 색상을 선택하세요. 예는 **뇌 / 보라색**을 사용합니다. 라이브 미리보기는 list/picker 외관을 보여줍니다.
 4. **Advanced settings**을 확장하고 생성하기 전에 생성 된 ID `rna-seq-qc-reviewer`을 검사합니다.

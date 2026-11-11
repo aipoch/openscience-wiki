@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: Settings overview
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Settings overview
 
-Open **Settings** from the lower-left corner of the workspace. Its **19 panels** are organized into four groups: **System**, **Intelligence**, **Connections** and **Workspace**. Appearance and Notifications are separate panels. Choose by purpose or search from the header; **Settings → Model**, for example, opens Model inside Intelligence.
+Open **Settings** from the lower-left corner of the workspace. Its **16 panels** are organized into **System**, **Intelligence**, **Connections** and **Workspace**. Skills, Connectors and Specialists are managed in the separate [Resource center](../guides/navigation.md#resource-center). Choose a settings panel by purpose or use the header search.
 
 | Global control | Behavior |
 | --- | --- |
@@ -27,7 +27,7 @@ Open **Settings** from the lower-left corner of the workspace. Its **19 panels**
 
 This search covers representative settings across every panel, not every field or research document. If a term does not match, use the panel name or the navigation groups below. To search conversations or files, close Settings and use [global search](../guides/navigation.md).
 
-## The 19 main panels {/* #the-17-main-panels */}
+## The 16 main panels {/* #the-17-main-panels */}
 
 | Group | Panel | What it manages |
 | --- | --- | --- |
@@ -36,11 +36,8 @@ This search covers representative settings across every panel, not every field o
 |  | [Notifications](../guides/appearance.md) | Task alerts, notification content, system status and test notification |
 | Intelligence | [Model](../guides/models.md) | Provider and scenario models |
 |  | [Agent](../guides/frameworks.md) | Agent framework installation, switching and repair |
-|  | [Skills](../skills/overview.md) | Reusable research methods and their availability |
-|  | [Specialists](../specialists/overview.md) | Specialist roles and capability access |
 |  | [Memory](../guides/memory.md) | Opt-in global and project notes |
-| Connections | [Connectors](../guides/connectors.md) | Data services, custom MCP connections and imports |
-|  | [Network](../guides/network.md) | Proxy, package mirrors and Notebook domain access |
+| Connections | [Network](../guides/network.md) | Proxy, package mirrors and Notebook domain access |
 |  | [Remote](../guides/remote-access.md) | Browser access, pairing and trusted devices |
 |  | [Credentials](../tools/credentials.md) | Keys, tokens, OAuth and credential recovery |
 |  | [Compute](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |

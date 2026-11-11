@@ -2,26 +2,26 @@
 title: "Skill 市場"
 description: "從 Skill 市場發現、安裝、更新和管理科研方法。"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 # Skill 市場 {/* #skill-市场 */}
 
-透過 **Settings → Skills → Browse Marketplace** 查詢和安裝科研方法，無需先自行尋找並匯入倉庫。你可以在安裝前檢視方法說明，選擇要使用的方法，並在準備好後更新版本。
+從首頁或項目側欄打開 **Resource center → Skills → Marketplace**，搜索研究方法，檢查包詳情，再按需安裝。Web 工作區也支持市場安裝，安裝位置是所連接的 Open-Science 主機。
 
-需要匯入 ZIP、本機 Skill 或指定 GitHub 倉庫時，使用[Skill 匯入與管理](manage.md)。檢視科研方法及輸入概覽，見 [Skill 目錄](directory.md)。
+用 **Installed** 返回本地方法。導入 ZIP、已安裝目錄或 GitHub 倉庫時，參閱 [Skill 導入與管理](manage.md)；在會話中選擇方法則參閱[使用 Skills](overview.md)。
 
-![Skill 市場的搜尋、分類篩選和 Install 入口](/img/open-science/feature-guides-2026-09/marketplace-browse.webp)
+![資源中心中的 Installed 與 Marketplace 標籤](/img/open-science/v121/resource-center.webp)
 
-## 查詢適合的方法 {/* #查找适合的方法 */}
+## 找到合適的方法
 
-1. 開啟 **Marketplace**，搜尋或按分類篩選。
-2. 開啟 Skill 詳情，閱讀用途、作者、來源、許可資訊及可用的評估詳情。
-3. 對照專案檢查輸入、所需工具和執行依賴，再決定是否安裝。
+1. 打開 **Marketplace**，在 **Search skills** 輸入名稱或關鍵詞，通過 **Filters** 縮小範圍；重置篩選或清空關鍵詞可恢復更廣的列表。
+2. 選擇 **View details**，閱讀用途、發佈者、作者、版本、許可證與 **Sources and verification**。有 **Assessment report** 時也可展開查看。
+3. 對照項目檢查輸入、工具和運行依賴，再點擊 **Install**。等待 **Installed** 或已安裝版本標記，之後檢查可用狀態。
 
-目錄簽名確認的是分發身份，不代表方法一定適合本次研究，也不能證明電腦已具備所需依賴。
+分發簽名用於確認包來源，上游評估分數不能證明方法適合你的研究問題。安裝 Skill 不會直接執行其工作流，也不代表所有科學計算依賴已安裝。
 
-![Skill 詳情中的作者、版本、許可資訊和 Install 操作](/img/open-science/feature-guides-2026-09/marketplace-detail.webp)
+![通過 Web 市場安裝完成的 Skill 及其版本和來源詳情](/img/open-science/v121/marketplace-installed.webp)
 
 ## 安裝並使用 Skill {/* #安装并使用-skill */}
 
@@ -34,7 +34,7 @@ last_update:
 
 ## 批次安裝或更新 {/* #批量安装或更新 */}
 
-1. 選擇 **Batch manage**，再選擇 **Not installed** 或 **Updates**。
+1. 選擇 **More actions → Batch manage**，再選擇 **Not installed** 或 **Updates**。
 2. 篩選目錄並勾選目標條目。**Select all filtered results** 會選擇當前篩選下的全部結果。
 3. 經過 **Review selection** 檢查列表後，使用 **Install selected** 或 **Update selected**。
 4. 等待操作結束，逐項檢視結果。安裝按順序進行，停止時會先完成當前項。
@@ -86,4 +86,4 @@ last_update:
 
 維護者稽核並登記符合要求的提交後，再安排釋出。提交檔案或合併 PR 本身不代表已在應用中上架，稽核與釋出階段見[作者指南](https://github.com/aipoch/openscience-skill-marketplace/blob/main/authoring/README.md)。
 
-釋出後回到 **Browse Marketplace → Refresh**，搜尋自己的 Skill，核對來源和版本，再安裝使用。更新已釋出方法時，應使用新的軟體包版本和源提交重新提交；修改 GitHub 倉庫內容不會自動更新別人已安裝的副本。
+釋出後回到 **Marketplace → Refresh**，搜尋自己的 Skill，核對來源和版本，再安裝使用。更新已釋出方法時，應使用新的軟體包版本和源提交重新提交；修改 GitHub 倉庫內容不會自動更新別人已安裝的副本。

@@ -2,7 +2,7 @@
 title: "Проверить виды, ссылочный геном и хромосомные идентификаторы"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. Запросить организм, сборку и хромосому {/* #reference-genome */}
 
-1. Включить **геномы** в **Settings → Connectors**. Откройте сеанс с подключенной моделью и доступным временем выполнения Notebook. В этом примере v0.31.1 используется **Codex subscription**.
+1. Включить **геномы** в **Resource center → Connectors**. Откройте сеанс с подключенной моделью и доступным временем выполнения Notebook. В этом примере v0.31.1 используется **Codex subscription**.
 2. Запросите организм, сборку и последовательность **переизданный** в этом порядке. Отправить:
 
 ```text

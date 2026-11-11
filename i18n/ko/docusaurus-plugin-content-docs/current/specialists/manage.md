@@ -1,7 +1,7 @@
 ---
 title: "전문가 관리 및 공유"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -69,7 +69,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 회사 소개 {/* #browse-the-marketplace */}
 
-**Browse Marketplace**을 열고, 역할을 검색하고 **View details**을 선택합니다. 게시자, 소스, 버전, 라이센스, 다운로드 크기 및 포함 Skills/Connectors. **Refresh Marketplace** 카탈로그 업데이트; **Manage Marketplace sources**는 구성 소스를 제어합니다. All/Official/Community 필터 관심 카탈로그 원산지, 런타임 읽기.
+**Marketplace**을 열고, 역할을 검색하고 **View details**을 선택합니다. 게시자, 소스, 버전, 라이센스, 다운로드 크기 및 포함 Skills/Connectors. **Refresh Marketplace** 카탈로그 업데이트; **Manage Marketplace sources**는 구성 소스를 제어합니다. All/Official/Community 필터 관심 카탈로그 원산지, 런타임 읽기.
 
 ![실제 자동 연구 Specialist 패키지 세부 사항](/img/open-science/capabilities-walkthrough/22-marketplace-package-detail.webp)
 

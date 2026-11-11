@@ -1,7 +1,7 @@
 ---
 title: "Crear e instruir un Specialist"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Crear e instruir un Specialist {/* #create-and-instruct-a-specialist */}
@@ -18,7 +18,7 @@ El papel ahorrado fue creado, reabierto, exportado, duplicado y utilizado en una
 
 ## Crear el papel {/* #create-the-role */}
 
-1. Abre **Settings → Specialists → Add specialist → Write from scratch**.
+1. Abre **Resource center → Specialists → Add specialist → Write from scratch**.
 2. Introduzca **RNA-seq QC Revisor** como Nombre y **Comprobar la integridad de la cuenta cruda y las métricas de la muestra utilizando los insumos biomédicos públicos trazables.** como Descripción.
 3. Elige un icono y color. El ejemplo utiliza **Cerebro / Púrpura**. La vista previa en vivo muestra la lista / apariencia del palillo.
 4. Ampliar **Advanced settings** e inspeccionar el ID generado `rna-seq-qc-reviewer` antes de la creación.

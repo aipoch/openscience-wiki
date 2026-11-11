@@ -2,7 +2,7 @@
 title: "科学データベース"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # 科学データベース {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## サポートされているデータベース {/* #supported-databases */}
 
-Open-Science v1.0.8 は **48 個の組み込み Connector と 418 操作**を提供します。内訳は、47 個のデータソース Connector の 416 操作と、オフラインの Molecule Connector 1 個の 2 操作です。以下の名前は **Settings → Connectors** の項目に対応します。1 個の Connector が複数のデータベースを扱う場合があります。掲載されたデータソースの Web サイトの全機能を利用できるとは限りません。
+Open-Science v1.0.8 は **48 個の組み込み Connector と 418 操作**を提供します。内訳は、47 個のデータソース Connector の 416 操作と、オフラインの Molecule Connector 1 個の 2 操作です。以下の名前は **Resource center → Connectors** の項目に対応します。1 個の Connector が複数のデータベースを扱う場合があります。掲載されたデータソースの Web サイトの全機能を利用できるとは限りません。
 
 この数には無効なものを含む全組み込み項目が含まれます。独自に追加した MCP Connector は別途数えます。Connector 数、対象データベース数、呼び出せる操作数は異なる指標です。
 
@@ -90,7 +90,7 @@ Open-Science v1.0.8 は **48 個の組み込み Connector と 418 操作**を提
 
 ## ENCORIによるRNA規制証拠 {/* #encori */}
 
-**Settings → Connectors**で**ENCORI**を検索し、**メインエージェント**に有効化して使用可能にします。 この組み込みのソースは、カスタムMCP URLまたはAPIキーを必要としません。 選択された Main モデルを使用して、生物/アセンブリ、RNA またはターゲット遺伝子、細胞タイプおよび証拠の境界を会話で指定します。
+**Resource center → Connectors**で**ENCORI**を検索し、**メインエージェント**に有効化して使用可能にします。 この組み込みのソースは、カスタムMCP URLまたはAPIキーを必要としません。 選択された Main モデルを使用して、生物/アセンブリ、RNA またはターゲット遺伝子、細胞タイプおよび証拠の境界を会話で指定します。
 
 | タスク | 結果と境界 |
 | --- | --- |
@@ -129,7 +129,7 @@ ChEMBLページは`activity_id`で注文されます。 `has_more:false` まで�
 
 ## 単一セル、モデルオーナリズムおよび変形欠陥データ {/* #single-cell-model-organisms */}
 
-**Settings → Connectors** のエントリを検索し、**メインエージェント** の可用性を有効にします。その後、生物、研究の質問と記録を記述して、会話を維持します。 これらの新しい操作は、カスタムMCPサーバー、APIキーまたはNCBIの連絡先メールなしで公開データを読み取ります。 同じConnectorの他のサービスに異なった条件があります。
+**Resource center → Connectors** のエントリを検索し、**メインエージェント** の可用性を有効にします。その後、生物、研究の質問と記録を記述して、会話を維持します。 これらの新しい操作は、カスタムMCPサーバー、APIキーまたはNCBIの連絡先メールなしで公開データを読み取ります。 同じConnectorの他のサービスに異なった条件があります。
 
 | エントリーフォーム | できること | 結果の使い方 |
 | --- | --- | --- |
@@ -144,7 +144,7 @@ CELLxGENE フィルタリングとパジネーションは、各リクエスト�
 
 ## 細胞ライン、フェノタイプおよび免疫の証拠 {/* #cell-lines-phenotypes-immunity */}
 
-**Cellosaurus**、**Monarch Initiative**、**IEDB** を **Settings → Connectors** で有効化し、**メインエージェント** に使用可能にします。 これらの操作は、カスタムサーバーまたはAPIキーなしで公開レコードを問い合わせます。
+**Cellosaurus**、**Monarch Initiative**、**IEDB** を **Resource center → Connectors** で有効化し、**メインエージェント** に使用可能にします。 これらの操作は、カスタムサーバーまたはAPIキーなしで公開レコードを問い合わせます。
 
 | エントリーフォーム | 要求の何 | 保存するべきこと |
 | --- | --- | --- |
@@ -168,7 +168,7 @@ CELLxGENE フィルタリングとパジネーションは、各リクエスト�
 
 ### 1. 組み込みのConnectorを有効にします {/* #1-enable-the-built-in-connector */}
 
-1. **Settings → Connectors** を開き、**Omics アーカイブ** などの上記の家族を検索します。
+1. **Resource center → Connectors** を開き、**Omics アーカイブ** などの上記の家族を検索します。
 2. 細部を開け、拡大して下さい **Tools**. . . . 選択した操作の入力、結果の制限、およびサードパーティの要件をお読みください。
 3. **メインエージェント** の可用性を有効にし、**Used by** をチェックします。 Main エージェントと Specialist の関連付けを調整するリソースで **Manage access** を使用します。 可用性とパーツールの承認ポリシーは、別々の制御です。
 
@@ -182,8 +182,8 @@ CELLxGENE フィルタリングとパジネーションは、各リクエスト�
 
 | サービスまたは条件 | 設定する場所 |
 | --- | --- |
-| OpenAlex | 任意キー。 1 つを構成するには、開く **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**、それを検証し、保存します。 |
-| コンタクト情報が必要なNCBIのバリアントのクエリを直接送信する | **Settings → Connectors → Manage credentials → Literature access**に進んでください。 お問い合わせ **Contact email** 選択する **Save**に進んでください。 NCBI API キーは任意です。 |
+| OpenAlex | 任意キー。 1 つを構成するには、開く **Resource center → Connectors → Literature Graph → Manage credentials → OpenAlex**、それを検証し、保存します。 |
+| コンタクト情報が必要なNCBIのバリアントのクエリを直接送信する | **Resource center → Connectors → Manage credentials → Literature access**に進んでください。 お問い合わせ **Contact email** 選択する **Save**に進んでください。 NCBI API キーは任意です。 |
 | 資格要件の別の操作 | ツールの要件と要件に従う [認証ガイド](../guides/connectors.md)に進んでください。 意図したサービスに資格を埋めます。 |
 
 研究プロンプトや共有出力ファイルではなく、クレデンシャルフォームにキーを入力します。 選択された操作のための条件を構成して下さい; 上記の連絡先メール要件は、すべてのNCBIツールが同じ要件を持っているという意味ではありません。
@@ -284,11 +284,11 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 - **Protein Annotation → STRING**: タンパク質ネットワークが、その背景から期待されるよりも相互作用が多かったかどうかをテストします。 これは、パスウェイの過剰表現から異なる質問を要求します。 パスウェイテストではなく、ネットワークP値がパスウェイテストではありません。 [遺伝子組込み強化ワークフロー](../workflows/gene-set-enrichment.md#enrichr-string) をフォローしてください。
 - **Clinical Genomics → ClinPGx**: 薬物、遺伝子、または異種注釈、ガイドライン、規制ラベル、および人口の頻度を取得します。 識別子を最初に解決し、操作で必要なフィールドを供給し、元のソースと証拠レベルを保持します。 これにより、研究記録が取得されます。 個別治療プランを自動的に生成しません。
 
-**Settings → Connectors**の活性剤に関連したConnectorを有効にします。 これらの組み込みエントリは、カスタムMCPサーバを必要としません。 正確なフィールドと条件の要件については、[操作の参照](../reference/connector-operations.md) を参照してください。
+**Resource center → Connectors**の活性剤に関連したConnectorを有効にします。 これらの組み込みエントリは、カスタムMCPサーバを必要としません。 正確なフィールドと条件の要件については、[操作の参照](../reference/connector-operations.md) を参照してください。
 
 ## パスウェイ、式、臨床データ {/* #pathway-expression-clinical */}
 
-**Settings → Connectors** で対応する家族を有効にし、エージェントに生物、ソース、識別子、および意図したスコープを指示します。 これらの付加は作り付けのコネクターを使用します; MCP サーバは必須ではありません。
+**Resource center → Connectors** で対応する家族を有効にし、エージェントに生物、ソース、識別子、および意図したスコープを指示します。 これらの付加は作り付けのコネクターを使用します; MCP サーバは必須ではありません。
 
 | エントリーフォーム | できること | 接続と解釈 |
 | --- | --- | --- |
@@ -306,13 +306,13 @@ v0.31.0から、`get_string_network.nodes`には、返された隣人や分離�
 
 ## GWASサマリー統計ファイルを探す {/* #gwas-summary-statistics */}
 
-**Settings → Connectors**でMainで**ヒト遺伝学**を有効にします。 研究の**GCSTアクセス**で概要統計の発見を依頼し、返された元の/調和したファイルURL、メタデータ、および参照のゲノムを保持します。 パブリックルックアップはAPIキーを必要としません。
+**Resource center → Connectors**でMainで**ヒト遺伝学**を有効にします。 研究の**GCSTアクセス**で概要統計の発見を依頼し、返された元の/調和したファイルURL、メタデータ、および参照のゲノムを保持します。 パブリックルックアップはAPIキーを必要としません。
 
 `gwas_get_summary_statistics` は、学習ファイルをリストし、利用可能な YAML メタデータを読み込みます。 大規模な関連付け表をダウンロードしません。 そのGWAS-SSFカラム定義は、検査されたファイルヘッダではなく、標準を記述します。 意図したファイルを個別にダウンロードし、実際の列、ゲノムビルド、効果アレルと単位を分析する前に確認します。 著名な協会のヒットは、完全な要約統計のための代替ではありません。 [変数および出力](../reference/connector-operations.md#gwas_get_summary_statistics).
 
 ## InterProScanにタンパク質シーケンスを提出する {/* #interproscan-submit */}
 
-1. **Settings → Connectors**でMainで**インタープロスキャン**を有効にします。 **Settings → Credentials → Literature access**では、EMBL-EBIジョブに使用される有効な連絡先メールを保存します。 APIキーは必須ではありません。
+1. **Resource center → Connectors**でMainで**インタープロスキャン**を有効にします。 **Settings → Credentials → Literature access**では、EMBL-EBIジョブに使用される有効な連絡先メールを保存します。 APIキーは必須ではありません。
 2. タンパク質のシーケンスまたは一意に名前を付けたタンパク質FASTAレコードとリクエストの投稿を一度供給します。 EMBL-EBI へメールが送られてきます。 1,000 レコード、10,000 レジス/シーケンスと 4 MiB のエンコードされたリクエストボディまでのリクエストを受け付けます。
 3. 返された**job_id**を保持します。 **ready: false**と**SUBMITTED**は、アノテーションの結果ではなく、レシートです。 **ステータス** を 10 秒以上離れた状態にチェックします。 ポーリングは自動ではありません。
 4. **FINISHED** の後、**結果発表** を要求し、リモート結果が切れる前に完全な TSV を保存します。 2 MiB の検索制限に対する応答は、未読の報告を返すのではなく、失敗します。
@@ -328,7 +328,7 @@ Mainで**IEDB**を有効にし、少なくとも1つの生物学的または証�
 
 ## PDCでがんプロテオミクスを発見 {/* #pdc */}
 
-**Settings → Connectors**で**PDC**を有効にします。 パブリックメタデータ API は API キーを必要としません。 研究やバージョンを見つけるために、アッセイと標本のカウント、マップケース - サンプル - アリコ協会、および**タンパク質アセンブリ**レポートなどの定量ファイルのリストを参照してください。 処理/アウトカムデータやファイルのダウンロードは返しません。
+**Resource center → Connectors**で**PDC**を有効にします。 パブリックメタデータ API は API キーを必要としません。 研究やバージョンを見つけるために、アッセイと標本のカウント、マップケース - サンプル - アリコ協会、および**タンパク質アセンブリ**レポートなどの定量ファイルのリストを参照してください。 処理/アウトカムデータやファイルのダウンロードは返しません。
 
 `PDC000127`などの学習アクセスから、学習識別子やバージョン名を検索できます。 PDC キーワードマッチングは、臨床疾患フィルタではありません。 調査を受け取り、返された `study_id` UUID を使用して、その後の呼び出しをピン留めします。 `pdc_study_id`は最新バージョンを選択します。 これらのセレクターの1つを正確に提供します。
 
@@ -338,7 +338,7 @@ Mainで**IEDB**を有効にし、少なくとも1つの生物学的または証�
 
 ## 人口固有のLDをチェックする {/* #ensembl-ld */}
 
-**Settings → Connectors**で**ゲノム**を有効にします。 そのEnsembl LDツールは、キーなしで公開APIを使用します。 2つの variant ID をのための供給して下さい `ensembl_ld_pairwise`、またはのための1つ `ensembl_ld_proxies`、のような完全な人口の名前と共に、 `1000GENOMES:phase_3:KHV`. . . . ツールは、人口や推論を発見しません。 研究に適した参照人口を選択します。
+**Resource center → Connectors**で**ゲノム**を有効にします。 そのEnsembl LDツールは、キーなしで公開APIを使用します。 2つの variant ID をのための供給して下さい `ensembl_ld_pairwise`、またはのための1つ `ensembl_ld_proxies`、のような完全な人口の名前と共に、 `1000GENOMES:phase_3:KHV`. . . . ツールは、人口や推論を発見しません。 研究に適した参照人口を選択します。
 
 平等な結果報告 r2 と D ′. プロキシのクエリは r2 ≥ 0.8 と **500 kb合計ウィンドウ** にデフォルトで、両側で約 250 kb です。 `max_records`は、上流作業ではなく、ソート後に返されたリストをキャップします。 その結果、人口と反省のメタデータを保存します。 このエンドポイントは、参照アセンブリやEnsemblリリースを報告しません。 空の結果は、LD をゼロにしない、返されたデータの修飾を意味しません。 高いLDは、因果性および機能的な等価性を確立しません。 [ペアウェイトフィールド](../reference/connector-operations.md#ensembl_ld_pairwise)と[プロキシフィールド](../reference/connector-operations.md#ensembl_ld_proxies)を参照してください。
 
@@ -356,11 +356,11 @@ Mainで**IEDB**を有効にし、少なくとも1つの生物学的または証�
 
 ### OpenAlex 認証プロンプト {/* #openalex-prompts */}
 
-v1.0.2 は、現在のセッションで拒否した OpenAlex 認証情報の要求を記憶し、同じ要求を繰り返しません。後から利用する場合は、次の設定画面で明示的に設定してください： **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** 設定後、目的のクエリを再実行します。要求を拒否してもキーは設定されず、アクセスや利用枠も保証されません。
+v1.0.2 は、現在のセッションで拒否した OpenAlex 認証情報の要求を記憶し、同じ要求を繰り返しません。後から利用する場合は、次の設定画面で明示的に設定してください： **Resource center → Connectors → Literature Graph → Manage credentials → OpenAlex** 設定後、目的のクエリを再実行します。要求を拒否してもキーは設定されず、アクセスや利用枠も保証されません。
 
 ## 新しいデータソースを接続し、結果を正しく扱う {/* #new-source-access */}
 
-設定画面 **Settings → Connectors**で以下の項目を探し、利用を許可します。対象は **Main** または利用する Specialist です。HGNC、PubTator 3、DGIdb、RNAcentral は既存項目に含まれるツールです。 **Orphadata** は独立した項目で、既定では無効です。これらの新規ツールは公開エンドポイントを利用し、専用 API キーを必要としません。同じ項目の他のツールは別の認証要件を持つ場合があります。
+設定画面 **Resource center → Connectors**で以下の項目を探し、利用を許可します。対象は **Main** または利用する Specialist です。HGNC、PubTator 3、DGIdb、RNAcentral は既存項目に含まれるツールです。 **Orphadata** は独立した項目で、既定では無効です。これらの新規ツールは公開エンドポイントを利用し、専用 API キーを必要としません。同じ項目の他のツールは別の認証要件を持つ場合があります。
 
 | データソース | 設定項目 | 要求内容と確認点 |
 | --- | --- | --- |
@@ -383,7 +383,7 @@ v1.0.2 は、現在のセッションで拒否した OpenAlex 認証情報の要
 
 ## 画像・経路・脂質・がんモデルのデータ {/* #expanded-sources */}
 
-**Settings → Connectors** で対象を有効にし、**Main** で利用可能にします。TCIA、KEGG、RxNorm / RxNav、DailyMed、BioSamples、WikiPathways は独立した項目で、既定では無効です。以下の公開サービスには独自 MCP サーバーや API key は不要ですが、有効化してもライセンスや制限付きデータへの権限は付与されません。
+**Resource center → Connectors** で対象を有効にし、**Main** で利用可能にします。TCIA、KEGG、RxNorm / RxNav、DailyMed、BioSamples、WikiPathways は独立した項目で、既定では無効です。以下の公開サービスには独自 MCP サーバーや API key は不要ですが、有効化してもライセンスや制限付きデータへの権限は付与されません。
 
 | 項目 | 要求できる内容 | 保持すべき情報 |
 | --- | --- | --- |
@@ -400,7 +400,7 @@ v1.0.2 は、現在のセッションで拒否した OpenAlex 認証情報の要
 
 ## 公式データとファイル一覧を探す {/* #scientific-file-discovery */}
 
-**Settings → Connectors** で必要な入口だけ有効にします。Europe PMC、Research Datasets、ChEA3、bioDBnet、CTD は API キー必須ではありません。検索語、識別子、遺伝子リストは各サービスへ送信されます。[接続設定](#connect-database)。
+**Resource center → Connectors** で必要な入口だけ有効にします。Europe PMC、Research Datasets、ChEA3、bioDBnet、CTD は API キー必須ではありません。検索語、識別子、遺伝子リストは各サービスへ送信されます。[接続設定](#connect-database)。
 
 | 目的 | 入口と結果 | 次の操作 |
 | --- | --- | --- |

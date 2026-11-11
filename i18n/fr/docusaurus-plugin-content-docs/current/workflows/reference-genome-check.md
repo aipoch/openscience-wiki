@@ -2,7 +2,7 @@
 title: "Vérifier les espèces, le génome de référence et les identifiants chromosomiques"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ Avant de commencer, suivez [Bases de données scientifiques](../tools/databases.
 
 ## 1. Interroger l'organisme, l'assemblage et le chromosome {/* #reference-genome */}
 
-1. Activer **Genomes** dans **Settings → Connectors**. Ouvrez une session avec un modèle connecté et l'exécution Notebook disponible. Cet exemple v0.31.1 a utilisé **Codex subscription**.
+1. Activer **Genomes** dans **Resource center → Connectors**. Ouvrez une session avec un modèle connecté et l'exécution Notebook disponible. Cet exemple v0.31.1 a utilisé **Codex subscription**.
 2. Interroger l'organisme, l'assemblage **version anglaise** et la séquence dans cet ordre. Envoyer :
 
 ```text

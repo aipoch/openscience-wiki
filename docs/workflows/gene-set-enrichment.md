@@ -2,7 +2,7 @@
 title: "Run functional enrichment for a candidate gene set"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -19,7 +19,7 @@ The first example uses g:Profiler; the [Enrichr and STRING comparison](#enrichr-
 
 ## 1. Define the gene list and analysis settings {/* #gene-set-enrichment */}
 
-1. In **Settings → Connectors**, make **Genes & Ontologies** available to the agent. Open a session with a connected model and an available Notebook runtime.
+1. In **Resource center → Connectors**, make **Genes & Ontologies** available to the agent. Open a session with a connected model and an available Notebook runtime.
 2. Specify the organism, gene identifiers, data sources and statistical background. For real experimental data, justify the background using genes that could have been selected by the experiment. This tutorial explicitly uses all annotated genes, not a custom measured-gene universe.
 3. Send the following prompt. Keep the source-version query and enrichment call in the same session and save their actual results.
 
@@ -59,7 +59,7 @@ Open the CSV and compare it with the full JSON. This run returned **891 terms** 
 
 Enrichr asks which annotation sets are overrepresented in the submitted genes. STRING PPI enrichment asks whether the proteins have more network interactions than expected. These are different tests; agreement is not independent replication of a biological result.
 
-1. In **Settings → Connectors**, enable **Genes & Ontologies** and **Protein Annotation** for the agent.
+1. In **Resource center → Connectors**, enable **Genes & Ontologies** and **Protein Annotation** for the agent.
 2. Create a project called **DNA Damage Gene Set** and open a new session. This example uses Codex and Session Notebook.
 3. List the available Enrichr libraries before choosing one. For this comparison, use the fixed **GO_Biological_Process_2025** library so the saved results have an identifiable annotation version. A newer library can produce different results.
 4. Send this prompt and open the generated notes after the run finishes:

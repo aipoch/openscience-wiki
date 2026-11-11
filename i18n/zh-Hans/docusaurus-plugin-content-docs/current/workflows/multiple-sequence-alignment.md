@@ -1,7 +1,7 @@
 ---
 title: 多序列比对与保守位点检查
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 ## 1. 准备会话与序列来源 {/* #alignment-inputs */}
 
 1. 创建 **Hemoglobin Sequence Alignment** 项目，打开新会话并连接模型。本例使用 **Codex subscription**。
-2. 在 **Settings → Connectors** 为 Main 启用 **Genes & Ontologies** 和 **Genomes**。Clustal Omega 属于 Genomes，不是单独的 Connector。
+2. 在 **Resource center → Connectors** 为 Main 启用 **Genes & Ontologies** 和 **Genomes**。Clustal Omega 属于 Genomes，不是单独的 Connector。
 3. 在 **Settings → Privacy → Share contact email with research data services** 配置 Clustal Omega 要求的有效联系邮箱，使用真实联系方式。序列会发送到 EMBL-EBI。
 4. 发送下面的提示词，使用公开或已获授权的序列。
 

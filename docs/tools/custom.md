@@ -1,7 +1,7 @@
 ---
 title: "Connect a custom MCP tool"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -26,7 +26,7 @@ Save both files locally and note their full paths. The server uses Python's stan
 
 ## Add it in Open-Science
 
-1. Open **Settings → Connectors → Add connector → Local command**.
+1. Open **Resource center → Connectors → Add connector → Local command**.
 2. Set **Display name** to `GSE60450 QC`.
 3. Choose **python3 — script file** as **Command**, or **Other…** with the actual Python executable path on Windows.
 4. Open **Advanced settings**. Set the connector name/ID to `gse60450-qc` and describe it as read-only access to the saved QC table.

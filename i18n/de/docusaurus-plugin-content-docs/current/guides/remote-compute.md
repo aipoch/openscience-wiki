@@ -1,7 +1,7 @@
 ---
 title: "Remote Compute: SSH, Cluster und Cloud Jobs"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -279,3 +279,9 @@ Eine erfolgreiche Wiederherstellung sollte den Endzustand des beabsichtigten Job
 Geben Sie für die SSH-Schlüssel-/Konfig-Authentifizierung einen nutzbaren Schlüssel oder Host-Alias an und überprüfen Sie die Verbindung, bevor Sie sie übermitteln. Slurm Ergebnissammlung erfordert Arbeitsbuchhaltung für das ausgewählte Konto; Folgen Sie den obigen Überprüfungen, wenn die App den Job nicht erledigen kann.
 
 Quellen: [Jobcodes und Datensatzfelder berechnen](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/compute.ts), [SSH/Dateifehlerklassifizierung](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/remote-fs.ts), [Validierung der Slurm-Einreichung](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/compute/slurm-driver.ts).
+
+### Python für die Cloud-Account-Anmeldung vorbereiten {/* #cloud-account-runtime */}
+
+für **Hugging Face** und **Modal**, bereitet der Verbindungsfluss eine kompatible Python-Laufzeit vor, bevor er die Browserautorisierung öffnet. Folgen Sie dem Vorbereitungsstatus, beenden Sie die Anmeldung und warten Sie auf die Kontoprüfung. Der ausgewählte Interpreter wird ohne Installation überprüft; Autorisierung und nachfolgende SDK-Aufrufe bleiben an die vorbereitete Laufzeit gebunden.
+
+Wenn die Vorbereitung oder Autorisierung fehlschlägt, überprüfen Sie die Nachricht dieser Phase, bevor Sie ein weiteres Login starten. Die Kontoverifizierung folgt dem System-Proxy. Behandeln Sie eine Browser-Erfolgsseite nicht allein als verbundenes Rechenziel: Kehren Sie zu Compute zurück und bestätigen Sie den Kontostatus, bevor Sie ein Ziel hinzufügen oder einen Auftrag genehmigen.

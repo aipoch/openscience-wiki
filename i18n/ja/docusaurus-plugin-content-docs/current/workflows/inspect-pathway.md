@@ -1,7 +1,7 @@
 ---
 title: "パスウェイとインタラクションネットワークを調べる"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 ## 1. プロジェクトの準備 {/* #prepare */}
 
 1. **Pathway Commons 研究**という名前のプロジェクトを作成し、会話を開始します。
-2. **Settings → Connectors** では、**Pathway Commons** をアクティブなエージェントに利用できるようにします。 公共サービスを利用しています。 この例では、プライベートな研究ファイルは必要ありません。
+2. **Resource center → Connectors** では、**Pathway Commons** をアクティブなエージェントに利用できるようにします。 公共サービスを利用しています。 この例では、プライベートな研究ファイルは必要ありません。
 3. 設定したMainモデルを選択します。 この例では、**Codex subscription** を使用します。 Codexが**Update required**、[runtime を更新する](../guides/frameworks.md#update-codex)がマークされている場合は、タスクを送信する前にマークされます。
 
 ## 2. 返されたアイデンティティを検索し、保持する {/* #search */}

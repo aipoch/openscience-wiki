@@ -1,7 +1,7 @@
 ---
 title: "Обновить существующую коллекцию литературы"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. Определить и сохранить исходный уровень {/* #1-define-and-save-the-baseline */}
 
-Откройте проект с подключенной моделью. Включите **График литературы** в **Settings → Connectors** и настройте OpenAlex, если это необходимо. Отправить:
+Откройте проект с подключенной моделью. Включите **График литературы** в **Resource center → Connectors** и настройте OpenAlex, если это необходимо. Отправить:
 
 ```text
 Search OpenAlex for freshwater microplastic transport.

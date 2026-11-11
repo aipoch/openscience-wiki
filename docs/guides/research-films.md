@@ -1,7 +1,7 @@
 ---
 title: "Create and share a research film"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Create and share a research film
@@ -42,6 +42,8 @@ The completed answer gives a mean and median of **6** and explains the absence o
 ![Research-film generation from a completed teaching conversation](/img/open-science/v120/film-progress.webp)
 
 ![Ready research film with English narration and playback action](/img/open-science/v120/film-ready.webp)
+
+In v1.2.1, switching to another session does not stop film generation. Keep the app running and return to the source session's **View generation progress** or **View research film** to inspect the result. Explicitly cancelling the film job still stops generation.
 
 ## Export a reviewed film {/* #export-film */}
 

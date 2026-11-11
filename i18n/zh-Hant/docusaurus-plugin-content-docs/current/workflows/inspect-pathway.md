@@ -1,7 +1,7 @@
 ---
 title: "檢查通路及其互作網路"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 ## 1. 準備專案 {/* #prepare */}
 
 1. 建立 **Pathway Commons Research** 專案並新建會話。
-2. 在 **Settings → Connectors** 中向當前代理開放 **Pathway Commons**。它連線公共服務，本例不需要上傳私人研究檔案。
+2. 在 **Resource center → Connectors** 中向當前代理開放 **Pathway Commons**。它連線公共服務，本例不需要上傳私人研究檔案。
 3. 選擇已配置的主模型。本例使用 **Codex subscription**；若 Codex 顯示 **Update required**，先[更新執行時](../guides/frameworks.md#update-codex)，再傳送任務。
 
 ## 2. 檢索並保留返回的準確標識 {/* #search */}

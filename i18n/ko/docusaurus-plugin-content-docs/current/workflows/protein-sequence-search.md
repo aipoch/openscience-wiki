@@ -2,7 +2,7 @@
 title: "단백질 시퀀스를 찾아 BLAST 검색 완료"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -93,7 +93,7 @@ preserve actual errors or empty results. Never invent alignments.
 
 <p className="example-label"><strong>실습 예제</strong> Pfam에 대한 인간의 P69905 스캔</p>
 
-canonical P69905 단백질 시퀀싱을 재평가한 후 **Settings → Connectors**의 Main에 **HMMER의 장점**을 활성화합니다. 같은 대화에서, 요청:
+canonical P69905 단백질 시퀀싱을 재평가한 후 **Resource center → Connectors**의 Main에 **HMMER의 장점**을 활성화합니다. 같은 대화에서, 요청:
 
 ```text
 Use the HMMER Connector to scan the same human P69905 sequence against

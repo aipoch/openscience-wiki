@@ -1,7 +1,7 @@
 ---
 title: Search within specified journals and dates
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ A focused search needs explicit limits and a record of what was screened. This e
 
 ## 1. Set the question and eligibility rule
 
-Open a project and select a connected model. Confirm the **PubMed** Connector is available in **Settings → Connectors**; configure contact information there if requested. No downloaded papers are required to start this example.
+Open a project and select a connected model. Confirm the **PubMed** Connector is available in **Resource center → Connectors**; configure contact information there if requested. No downloaded papers are required to start this example.
 
 Use publication dates **2019-01-01 through 2025-12-31**, not the date on which a database record was added. Include primary randomized reports with a defined mindfulness intervention arm and reported participant outcomes. Keep a separate **uncertain** category for mixed interventions, unclear publication status or conflicting dates. Mechanistic outcomes alone do not make a report a secondary analysis.
 

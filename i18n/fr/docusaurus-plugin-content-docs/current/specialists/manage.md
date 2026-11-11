@@ -1,7 +1,7 @@
 ---
 title: "Gérer et partager les spécialistes"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -69,7 +69,7 @@ Le <ExampleDownload path="/examples/capabilities/rna-seq-qc-reviewer-with-skill.
 
 ## Parcourez le marché {/* #browse-the-marketplace */}
 
-Ouvrez **Browse Marketplace**, recherchez un rôle et choisissez **View details**. Vérifiez l'éditeur, la source, la version, la licence, la taille de téléchargement et inclus Skills/Connectors. **Refresh Marketplace** met à jour le catalogue; **Manage Marketplace sources** contrôle les sources configurées. Tous les filtres/officiels/communautaires concernent l'origine du catalogue et non l'état de préparation à l'exécution.
+Ouvrez **Marketplace**, recherchez un rôle et choisissez **View details**. Vérifiez l'éditeur, la source, la version, la licence, la taille de téléchargement et inclus Skills/Connectors. **Refresh Marketplace** met à jour le catalogue; **Manage Marketplace sources** contrôle les sources configurées. Tous les filtres/officiels/communautaires concernent l'origine du catalogue et non l'état de préparation à l'exécution.
 
 ![Le détail du paquet Auto Research Specialist](/img/open-science/capabilities-walkthrough/22-marketplace-package-detail.webp)
 

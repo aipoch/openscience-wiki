@@ -1,7 +1,7 @@
 ---
 title: "スペシャリストと利用可能な役割"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # スペシャリストと利用可能な役割 {/* #specialists-and-available-roles */}
@@ -17,11 +17,11 @@ Specialistは、アイデンティティ、指示、および許可されたSkil
 | インポート/マーケットプレイス Specialist | パッケージからインストールし、このデバイスで設定 | ローカル設定と許可された機能; パブリッシャーとパッケージのバージョンを調べる |
 | ビルトインレビュアー | アプリのレビューワークフローを実行する | 会話を通してトリガーレビュー; それは通常の編集可能/delegatable Specialistではないです |
 
-**Browse Marketplace** を開き、公開されたロールを見つけます。 オンラインカタログは、インストールされたアプリの独立して変更することができます。 インポートする前に、各ロールのパブリッシャー、指示、依存関係を調べます。
+**Marketplace** を開き、公開されたロールを見つけます。 オンラインカタログは、インストールされたアプリの独立して変更することができます。 インポートする前に、各ロールのパブリッシャー、指示、依存関係を調べます。
 
 ## 役割を見つける {/* #find-a-role */}
 
-**Settings → Specialists** を開きます。 **Installed** は、査読者を含むローカル登録ロールをカウントします。 **Search specialists**と**Filter specialists by category**を使用して、行を開き、それを検査します。 **Browse Marketplace**は別のカタログを開けます; パッケージ/セットアップフローを完了するまで、リストされた市場エントリーはインストールされません。
+**Resource center → Specialists** を開きます。 **Installed** は、査読者を含むローカル登録ロールをカウントします。 **Search specialists**と**Filters → Filter specialists by category**を使用して、行を開き、それを検査します。 **Marketplace**は別のカタログを開けます; パッケージ/セットアップフローを完了するまで、リストされた市場エントリーはインストールされません。
 
 ![RNA-seq QCの査読装置はローカルに取付けました](/img/open-science/capabilities-walkthrough/06-specialist-list.webp)
 

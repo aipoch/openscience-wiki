@@ -1,7 +1,7 @@
 ---
 title: Align multiple sequences and inspect conserved positions
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ Retrieve three reviewed UniProt sequences, align them with the remote Clustal Om
 Connection setup is described in [Scientific databases](../tools/databases.md#connect-database).
 
 1. Create **Hemoglobin Sequence Alignment** and open a new conversation with a connected model. This example used **Codex subscription**.
-2. In **Settings → Connectors**, make **Genes & Ontologies** and **Genomes** available to Main. Clustal Omega belongs to Genomes; it is not a separate Connector.
+2. In **Resource center → Connectors**, make **Genes & Ontologies** and **Genomes** available to Main. Clustal Omega belongs to Genomes; it is not a separate Connector.
 3. Configure the valid research-service contact email requested by Clustal Omega in **Settings → Privacy → Share contact email with research data services**. Use your actual contact, not an invented address. Sequence inputs are sent to EMBL-EBI.
 4. Send the prompt below. Use public or otherwise authorized sequences.
 

@@ -1,27 +1,27 @@
 ---
 title: "Skill 目录"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skill 目录
 
-应用提供 **23 个内置 Skill**。本页按工作类型分类；条目描述随应用提供的方法，不表示所有外部模型、依赖和服务已经安装。
+应用提供 **24 个内置 Skill**。本页按工作类型分类；条目描述随应用提供的方法，不表示所有外部模型、依赖和服务已经安装。
 
 安装应用分发的方法，见[市场安装说明](marketplace.md)。下方目录用于选择科研方法，不是市场版本的实时清单。
 
 ## 选择前检查可用条件
 
-1. 在 Settings 打开 Skill，阅读完整要求及第三方服务说明。
+1. 在 **Resource center → Skills → Installed** 打开 Skill，阅读完整要求及第三方服务说明。
 2. 对照真实输入类型。bulk RNA-seq 表不是单细胞 AnnData，分子绘图也不是对接结果。
 3. 检查所选运行环境和包。远程任务应先选择可用 Compute Host，核对环境后提交。
 4. 先运行小范围任务，检查实际输出并保留输入版本，再扩大规模。
 
-manifest 还有 self-awareness、skill-creator 两个内部资源，不作为用户目录条目。Personal 或 Imported 包（包括 rnaseq-count-qc）不计入这 23 个。
+manifest 还有 self-awareness、skill-creator 两个内部资源，不作为用户目录条目。Personal 或 Imported 包（包括 rnaseq-count-qc）不计入这 24 个。
 
-实现依据: [manifest.json](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/manifest.json)。
+实现依据: [manifest.json](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json)。
 
-Environment 分组的三个应用 Skills 及 Customize 始终启用，见[启用规则](overview.md)。随应用提供的方法见[内置清单](https://github.com/aipoch/open-science/blob/v0.27.0/resources/skills/manifest.json)，主机设置和结果送达见[远程计算](../guides/remote-compute.md)。
+Environment 分组的三个应用 Skills 及 Customize 始终启用，见[启用规则](overview.md)。随应用提供的方法见[内置清单](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json)，主机设置和结果送达见[远程计算](../guides/remote-compute.md)。
 
 ## 按研究任务查找
 
@@ -77,5 +77,6 @@ Environment 分组的三个应用 Skills 及 Customize 始终启用，见[启用
 | [Figure Style](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-style/SKILL.md) · `figure-style` | 真实数据及一张最终图 | Notebook 函数与绘图库 | 检查过数据与标签的图 |
 | [Figure Composer](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-composer/SKILL.md) · `figure-composer` | 一条主张与不可变数据版本引用 | Main Agent、委派、绘图与复核 | 多面板图及复核记录 |
 | [Paper Narrative](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/paper-narrative/SKILL.md) · `paper-narrative` | 稿件或摘要、图注及完整图组 | 可追溯文件版本与复核工具 | 论文简报与图组论证顺序 |
+| [DOCX Generation](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/docx-generation/SKILL.md) · `docx-generation` | Markdown 报告或已有 DOCX | Python 3.9+、Pandoc 3.12.1 与内置转换器；先准备依赖 | 包含原生标题、表格和列表的 DOCX；检查内容与排版 |
 
 按具体方法准备依赖、权重和计算资源。小型 ProteinMPNN CLI 示例见[科学工具](../tools/scientific.md)，GPU 条件见[远程计算](../guides/remote-compute.md)；这些示例不覆盖全部蛋白预测或训练方法。

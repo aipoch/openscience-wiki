@@ -1,7 +1,7 @@
 ---
 title: "Untersuchen Sie einen Pfad und sein Interaktionsnetzwerk"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ Verwenden Sie einen kuratierten Pfad, um zu untersuchen, wie **TP53**, **MDM2** 
 ## 1. Vorbereitung des Projekts {/* #prepare */}
 
 1. Erstellen Sie ein Projekt mit dem Namen **Pathway Commons Forschung** und starten Sie eine Konversation.
-2. Machen Sie in **Settings → Connectors** **Pathway Commons** für den Wirkstoff verfügbar. Es nutzt einen öffentlichen Dienst; Dieses Beispiel benötigt keine privaten Forschungsdateien.
+2. Machen Sie in **Resource center → Connectors** **Pathway Commons** für den Wirkstoff verfügbar. Es nutzt einen öffentlichen Dienst; Dieses Beispiel benötigt keine privaten Forschungsdateien.
 3. Wählen Sie ein konfiguriertes Main-Modell aus. In diesem Beispiel wurde **Codex subscription** verwendet. Wenn Codex mit **Update required**, [Update der Runtime](../guides/frameworks.md#update-codex) markiert ist, bevor Sie die Aufgabe senden.
 
 ## 2. Suchen und behalten Sie die zurückgegebene Identität {/* #search */}

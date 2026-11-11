@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skills {/* #skills */}
@@ -22,9 +22,9 @@ Commencez par [Répertoire Skill](./directory.md) pour trouver une méthode, ou 
 
 ## Trouver et inspecter un Skill {/* #find-and-inspect-a-skill */}
 
-1. Ouvrez **Settings → Skills**.
+1. Ouvrez **Resource center → Skills**.
 2. Utilisez **Search skills** pour rechercher son nom ou sa description. Saisissez `rnaseq-count-qc` après [créer l'exemple](./create.md).
-3. Narrow **Filter skills by source**, **Filter Skills by agent** ou **Filter by Tag** si la liste reste longue.
+3. Narrow **Filters → Filter skills by source**, **Filter Skills by agent** ou **Filter by Tag** si la liste reste longue.
 4. Ouvrez le résultat. Lire la description, les instructions, **Files**, licence et **Availability**. Un nom d'affichage peut différer de l'ID du paquet.
 5. Retour à la liste et inspecter **Used by**. Il identifie les agents qui peuvent utiliser le paquet; il ne liste pas les tirages effectués.
 
@@ -47,7 +47,7 @@ Les fonctions d'application de base de support **Environnement & Packages**, **C
 
 Cette règle d'activation n'installe pas les dépendances, ne fournit pas d'identifiants ou de permissions d'exploitation de subvention. L'affectation Specialist est un champ d'application distinct : inspectez **Used by** et la liste des capacités du rôle.
 
-Le répertoire contient toujours 23 public groupé Skills. La prise en charge interne Skills ne sont pas des méthodes supplémentaires à sélectionner. [Mise en œuvre du commutateur nécessaire](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
+Le répertoire contient toujours 24 public groupé Skills. La prise en charge interne Skills ne sont pas des méthodes supplémentaires à sélectionner. [Mise en œuvre du commutateur nécessaire](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
 
 La capture d'écran affiche l'explication de **Customize**. Ces Skills requis restent activés même lorsque vous désactivez d'autres méthodes optionnelles.
 

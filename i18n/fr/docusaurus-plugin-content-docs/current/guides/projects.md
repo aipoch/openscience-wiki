@@ -1,7 +1,7 @@
 ---
 title: "Projets et dossiers sources"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # Projets et dossiers sources {/* #projects-and-source-folders */}
@@ -64,3 +64,21 @@ Utilisez le menu nom de projet pour changer de projet. Commencez une session ave
 | Le dossier s'ouvre mais un écrit est refusé | L'autorisation en lecture seule permet l'inspection, et non la modification. Enregistrer un artefact dérivé ou examiner la portée d'écriture demandée. |
 | Enregistrer reste désactivé | Supprimer les noms en blanc et vérifier la longueur des champs; Attendez si une autre sauvegarde est en cours. |
 | Un projet différent est sélectionné | Vérifiez le titre du projet avant de joindre un document ou d'envoyer une demande. |
+
+## Définir un modèle d'optimisation des questions {/* #optimization-template */}
+
+Ouvrir le menu nom du projet → **Project settings → Advanced agent options → Optimization prompt**. Saisissez les instructions pour réécrire les questions dans ce projet, puis enregistrez. Laissez vide pour utiliser la valeur par défaut intégrée. Le même champ est disponible sous **New project → Advanced agent options**.
+
+Ce champ ne s'exécute que lorsque vous sélectionnez **Optimize question**. Il est séparé de **Agent Context**, qui fournit des instructions aux séances d'agent du projet, **Description**, qui est pour votre référence.
+
+<p className="example-label"><strong>Exemple</strong> Préserver les limites d'une question d'enseignement</p>
+
+```text
+Rewrite the question in clear English. Preserve the supplied numbers
+and the hypothetical scope. Ask for a concise answer with limitations;
+do not invent participants, measurements or citations.
+```
+
+![Demande d'optimisation personnalisée sous les options d'agent avancé du projet](/img/open-science/v121/optimization-template.webp)
+
+Retour au Compositeur et [optimiser un projet](composer.md#optimize-question). Examiner le texte réécrit avant d'envoyer; un modèle est une instruction écrite, et non une règle de validation scientifique.

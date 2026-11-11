@@ -1,7 +1,7 @@
 ---
 title: "Inspect a pathway and its interaction network"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ Use a curated pathway to inspect how **TP53**, **MDM2** and **CDKN1A** appear in
 ## 1. Prepare the project {/* #prepare */}
 
 1. Create a project named **Pathway Commons Research** and start a conversation.
-2. In **Settings → Connectors**, make **Pathway Commons** available to the active agent. It uses a public service; this example needs no private research files.
+2. In **Resource center → Connectors**, make **Pathway Commons** available to the active agent. It uses a public service; this example needs no private research files.
 3. Select a configured Main model. This example used **Codex subscription**. If Codex is marked **Update required**, [update its runtime](../guides/frameworks.md#update-codex) before sending the task.
 
 ## 2. Search and retain the returned identity {/* #search */}

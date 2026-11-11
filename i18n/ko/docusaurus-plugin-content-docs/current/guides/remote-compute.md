@@ -1,7 +1,7 @@
 ---
 title: "원격 컴퓨팅: SSH, 클러스터 및 클라우드 작업"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -279,3 +279,9 @@ public [1UBQ ubiquitin 구조](https://www.rcsb.org/structure/1UBQ)을 사용하
 SSH key/config 인증의 경우, 사용 가능한 키 또는 호스트 별명을 공급하고 제출하기 전에 연결을 확인합니다. Slurm 결과 수집은 선택한 계정에 대해 작업해야합니다. 앱이 작업에 정착할 수 없는 경우 위의 체크를 따르십시오.
 
 소스: [직업 부호 및 기록 분야를 compute](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/compute.ts), [SSH/file 오류 분류](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/remote-fs.ts), [Slurm 제출 검증](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/compute/slurm-driver.ts).
+
+### 클라우드 계정 로그인을위한 Python 준비 {/* #cloud-account-runtime */}
+
+제품 정보 **Hugging Face** · **Modal**, 연결 흐름은 브라우저 권한 열기 전에 호환 가능한 파이썬 런타임을 준비합니다. 준비 상태를 따르고, 서명을 완료하고 계정 확인을 기다립니다. 선택된 해석기는 설치하지 않고 검사됩니다. 승인 및 후속 SDK 호출은 준비된 실행 시간에 경계합니다.
+
+준비 또는 승인이 실패하면 다른 로그인을 시작하기 전에 단계의 메시지를 검사합니다. 계정 검증은 시스템 프록시를 따릅니다. 연결된 보상 대상으로 브라우저의 성공 페이지를 혼자 대우하지 마십시오 : Compute로 돌아가서 대상을 추가하거나 작업을 승인하기 전에 계정 상태를 확인하십시오.

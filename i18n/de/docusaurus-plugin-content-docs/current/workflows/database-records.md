@@ -1,7 +1,7 @@
 ---
 title: "Strukturierte Datensätze aus einer wissenschaftlichen Datenbank abrufen"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Beginnen Sie mit zusammengesetzten Namen und beenden Sie mit einer Tabelle mit v
 
 ## 1. Definieren Sie die Verbindungen und Eigenschaften {/* #1-define-the-compounds-and-properties */}
 
-Stellen Sie in **Settings → Connectors** sicher, dass **Chemie** verfügbar ist. Öffnen Sie ein Projekt, starten Sie ein Gespräch und wählen Sie ein verbundenes Modell aus. Dieser Versuch verwendete Open-Science 0.30.1 und die Chemie/PubChem Connector; Es war keine Input-Tabelle erforderlich.
+Stellen Sie in **Resource center → Connectors** sicher, dass **Chemie** verfügbar ist. Öffnen Sie ein Projekt, starten Sie ein Gespräch und wählen Sie ein verbundenes Modell aus. Dieser Versuch verwendete Open-Science 0.30.1 und die Chemie/PubChem Connector; Es war keine Input-Tabelle erforderlich.
 
 **neutrale, geradkettige, gesättigte Monocarbonsäuren** angeben. Ein ähnlicher Name kann sich auf ein verzweigtes Isomer, ein Salz oder eine konjugierte Base beziehen. Eine Formel allein kann all diese Strukturen nicht unterscheiden.
 

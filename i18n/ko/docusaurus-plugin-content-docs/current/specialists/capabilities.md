@@ -1,7 +1,7 @@
 ---
 title: "할당 Skills 및 커넥터"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # 할당 Skills 및 커넥터 {/* #assign-skills-and-connectors */}
@@ -12,7 +12,7 @@ Specialist의 기능 목록은 Skills 및 커넥터가 도달 할 수 있음을 
 
 <p className="example-label"><strong>예시</strong> RNA-seq QC Reviewer에 할당 기능</p>
 
-1. **Settings → Specialists**을 열고 **RNA-seq QC 검토자**을 편집합니다.
+1. **Resource center → Specialists**을 열고 **RNA-seq QC 검토자**을 편집합니다.
 2. **Full access**을 끄십시오.
 3. **Skills**에서 **기술 추가**을 선택하고 `rnaseq-count-qc`를 검색하고 저장된 개인 패키지를 추가하십시오. **Skills 1**을 확인합니다.
 4. **Connectors**에서 **연결관 추가**을 선택하고 **Omics 아카이브**를 선택하십시오. **연결관 1**을 확인합니다.
@@ -33,7 +33,7 @@ Application-required Skills은 전 세계적으로 활성화됩니다. 이것은
 
 ## 리소스에서 액세스 조정 {/* #resource-access */}
 
-**Settings → Skills** 또는 **Connectors** 아래는 Main 에이전트와 Specialist 협회를 함께 검사하기 위해 자원의 **Manage access** 팝업을 엽니 다. 선택한 역할의 바인딩을 업데이트, 역할의 활성화 상태는 아닙니다. 가득 차있 접근 역할은 per-resource exclusions가 있을 수 있습니다; 제한된 역할은 명시된 선택을 사용합니다. Marketplace 바인딩은 이 팝업에서만 읽을 수 있습니다. [illustrated 접근 제한](../guides/connectors.md#resource-access) 참조.
+**Resource center → Skills** 또는 **Connectors** 아래는 Main 에이전트와 Specialist 협회를 함께 검사하기 위해 자원의 **Manage access** 팝업을 엽니 다. 선택한 역할의 바인딩을 업데이트, 역할의 활성화 상태는 아닙니다. 가득 차있 접근 역할은 per-resource exclusions가 있을 수 있습니다; 제한된 역할은 명시된 선택을 사용합니다. Marketplace 바인딩은 이 팝업에서만 읽을 수 있습니다. [illustrated 접근 제한](../guides/connectors.md#resource-access) 참조.
 
 바인딩을 변경한 후, 역할이 활성화된 것을 확인한 후, 서비스 자격 증명이 준비되어 있고 그 의도한 가동은 허용됩니다. **Used by**은 완료된 실행보다 할당을 보여줍니다.
 

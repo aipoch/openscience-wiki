@@ -1,7 +1,7 @@
 ---
 title: "Erstellen und Anweisen eines Specialist"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Erstellen und Anweisen eines Specialist {/* #create-and-instruct-a-specialist */}
@@ -18,7 +18,7 @@ Die gespeicherte Rolle wurde erstellt, wiedereröffnet, exportiert, dupliziert u
 
 ## Erstellen Sie die Rolle {/* #create-the-role */}
 
-1. Öffnen Sie **Settings → Specialists → Add specialist → Write from scratch**.
+1. Öffnen Sie **Resource center → Specialists → Add specialist → Write from scratch**.
 2. Geben Sie **RNA-seq QC Reviewer** als Name und **Überprüfen Sie die Integrität der Rohzählung und die Stichprobenmetriken mit rückverfolgbaren öffentlichen biomedizinischen Inputs.** als Beschreibung ein.
 3. Wählen Sie ein Icon und eine Farbe. Das Beispiel verwendet **Gehirn / Purpur**. Die Live-Vorschau zeigt die Liste / Picker Aussehen.
 4. Erweitern Sie **Advanced settings** und prüfen Sie die generierte ID `rna-seq-qc-reviewer` vor der Erstellung.

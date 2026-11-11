@@ -1,7 +1,7 @@
 ---
 title: "Crear y compartir una película de investigación"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Crear y compartir una película de investigación
@@ -42,6 +42,8 @@ La respuesta completa da una mediana y mediana de **6** y explica la ausencia de
 ![Generación de investigación de una conversación docente completa](/img/open-science/v120/film-progress.webp)
 
 ![Película de investigación lista con narración en inglés y acción de reproducción](/img/open-science/v120/film-ready.webp)
+
+En v1.2.1, cambiar a otra sesión no detiene la generación de cine. Mantenga la aplicación funcionando y regresa a la sesión de origen **View generation progress** o **View research film** para inspeccionar el resultado. Cancelación explícita del trabajo de la película todavía detiene la generación.
 
 ## Exportar una película revisada {/* #export-film */}
 

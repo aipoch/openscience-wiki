@@ -2,7 +2,7 @@
 title: "Find a protein sequence and complete a BLAST search"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -93,7 +93,7 @@ To compare three or more known sequences, continue with [multiple sequence align
 
 <p className="example-label"><strong>Worked example</strong> Scan human P69905 against Pfam</p>
 
-After retrieving the canonical P69905 protein sequence, enable **HMMER** for Main in **Settings → Connectors**. In the same conversation, ask:
+After retrieving the canonical P69905 protein sequence, enable **HMMER** for Main in **Resource center → Connectors**. In the same conversation, ask:
 
 ```text
 Use the HMMER Connector to scan the same human P69905 sequence against

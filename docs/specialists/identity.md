@@ -1,7 +1,7 @@
 ---
 title: "Create and instruct a Specialist"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Create and instruct a Specialist
@@ -18,7 +18,7 @@ The saved role was created, reopened, exported, duplicated and used in a real de
 
 ## Create the role
 
-1. Open **Settings → Specialists → Add specialist → Write from scratch**.
+1. Open **Resource center → Specialists → Add specialist → Write from scratch**.
 2. Enter **RNA-seq QC Reviewer** as Name and **Check raw-count integrity and sample metrics using traceable public biomedical inputs.** as Description.
 3. Choose an icon and color. The example uses **Brain / Purple**. The live preview shows the list/picker appearance.
 4. Expand **Advanced settings** and inspect the generated ID `rna-seq-qc-reviewer` before creation.

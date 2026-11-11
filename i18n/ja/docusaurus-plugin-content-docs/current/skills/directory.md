@@ -1,7 +1,7 @@
 ---
 title: "Skillディレクトリ"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skillディレクトリ {/* #skill-directory */}
@@ -12,14 +12,14 @@ last_update:
 
 ## 方法を選択する前に、読みやすさをチェックする {/* #check-readiness-before-selecting-a-method */}
 
-1. 設定でSkillを開き、完全な要件とサードパーティの通知をお読みください。
+1. **Resource center → Skills → Installed**でSkillを開き、完全な要件とサードパーティの通知をお読みください。
 2. 実際のデータで入力タイプを比較します。 バルクRNA-seqテーブルは単一セルAnnDataオブジェクトではありません。 分子図はドッキング結果ではありません。
 3. 選択したランタイムとパッケージを調べます。 リモートワークでは、使用可能な Compute Host を選択し、送信する前に環境を検査します。
 4. 1つの境界線の実行を要求し、実際の出力を点検し、スケーリングする前に入出力/バージョンの参照を保って下さい。
 
-2つの追加のマニフェストエントリ、自己認識とスキルクレエーターは、内部フレームワークリソースです。 user-facing ディレクトリエントリではありません。 rnaseq-count-qc を含む個人または輸入 Skills は、23 のカウントとは別です。
+2つの追加のマニフェストエントリ、自己認識とスキルクレエーターは、内部フレームワークリソースです。 user-facing ディレクトリエントリではありません。 rnaseq-count-qc を含む個人または輸入 Skills は、24 のカウントとは別です。
 
-3つの環境アプリケーションSkillsとカスタマイズ可能な滞在; [活性化ルール](overview.md#why-some-switches-cannot-be-turned-off) を参照してください。 [バンドルマニフェスト](https://github.com/aipoch/open-science/blob/v0.27.0/resources/skills/manifest.json) を使用して、ホストのセットアップと結果の配信のために、出荷されたメソッドと [遠隔計算](../guides/remote-compute.md) を識別します。
+3つの環境アプリケーションSkillsとカスタマイズ可能な滞在; [活性化ルール](overview.md#why-some-switches-cannot-be-turned-off) を参照してください。 [バンドルマニフェスト](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json) を使用して、ホストのセットアップと結果の配信のために、出荷されたメソッドと [遠隔計算](../guides/remote-compute.md) を識別します。
 
 ## 研究タスクでブラウズする {/* #browse-by-research-task */}
 
@@ -75,7 +75,8 @@ last_update:
 | [図スタイル](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-style/SKILL.md) · `figure-style` | 実際のデータと1つの最終図 | Notebook機能と依存関係のプロット | 著名なラベルと忠実なデータでプロットを検査 |
 | [図コンポーザー](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-composer/SKILL.md) · `figure-composer` | 1つのクレームと不変なデータバージョンリファレンス | Main 代理店、委任、プロットおよび検討 | マルチパネル図とレビュー反復 |
 | [ペーパー ナレーション](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/paper-narrative/SKILL.md) · `paper-narrative` | 原稿/抄録、キャプション、図鑑デッキ | グラウンドアーティファクトバージョンとレビューツール | ペーパーブリーフと注文された図引数 |
+| [DOCX Generation](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/docx-generation/SKILL.md) · `docx-generation` | Markdown レポートまたは既存の DOCX | Python 3.9+、Pandoc 3.12.1、付属コンバーター。依存関係を先に準備 | ネイティブの見出し、表、リストを含む DOCX。内容とレイアウトを確認 |
 
 
 
-実装参照: [マニフェスト.json](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/manifest.json).
+実装参照: [マニフェスト.json](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json).

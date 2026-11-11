@@ -1,7 +1,7 @@
 ---
 title: "Acceso remoto al navegador"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Acceso remoto al navegador {/* #remote-browser-access */}
@@ -12,7 +12,7 @@ El acceso remoto del navegador permite que otro dispositivo opere el espacio de 
 
 El **Connect mobile device** sección en el escritorio **Settings → Remote** ofertas **WiFi** y **Internet**. Esto está separado de la Remota.Es modos descritos a continuación; la ruta QR no requiere una cuenta remota.
 
-Abrir esta sección mientras el acceso remoto está apagado comienza el flujo de conexión WiFi. Úsalo en una red de confianza cuando quieras permitir que otro dispositivo llegue al espacio de trabajo. El anfitrión debe permanecer despierto y funcionando.
+Abrir el panel de pareado deja acceso remoto **Off** hasta que elija explícitamente **WiFi** o **Internet**. Una conexión ya activa conserva su estado actual. Elija un modo sólo cuando tenga la intención de conectar otro dispositivo, y mantenga el host despierto y funcionando.
 
 1. Elija **WiFi** para dispositivos en la misma red local. Si aparecen varias direcciones de host, seleccione la dirección accesible desde el teléfono. Una red de invitados aislada puede evitar el acceso incluso cuando ambos dispositivos muestran el mismo nombre WiFi.
 2. Para el acceso fuera de la red local, elija **Internet**. Lea el aviso de conexión de Pinggy y espere hasta que aparezca un enlace de trabajo y código QR. El tráfico utiliza el túnel de terceros; revise los requisitos de contraseña y conexión mostrados.

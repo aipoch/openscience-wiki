@@ -54,10 +54,10 @@ for (const prefix of locales.map((locale) => locale === 'en' ? '' : `${locale}/`
 const currentRegistry = JSON.parse(readFileSync('static/examples/capabilities/connector-catalog-v1.0.8.json', 'utf8'));
 for (const prefix of ['', 'zh-Hans/']) {
   test(`${prefix || 'en/'} latest release belongs to the documentation sidebar`, () => {
-    const html = readFileSync(`${buildDir}/${prefix}changelog/v1-2-0/index.html`, 'utf8');
+    const html = readFileSync(`${buildDir}/${prefix}changelog/v1-2-1/index.html`, 'utf8');
     const aside = html.match(/<aside\b[\s\S]*?<\/aside>/)?.[0];
     assert.ok(aside, 'the new release must not become a standalone page without chapter navigation');
-    assert.ok(aside.includes(`/docs/${prefix}changelog/v1-2-0/`));
+    assert.ok(aside.includes(`/docs/${prefix}changelog/v1-2-1/`));
   });
 }
 const currentTools = currentRegistry.filter((c) => c.id !== 'molecule').flatMap((c) => c.tools);

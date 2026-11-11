@@ -1,7 +1,7 @@
 ---
 title: "Installing and switching agents"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Installing and switching agents
@@ -28,7 +28,7 @@ Open-Science v1.2.0 includes Open-Science Agent, Codex, Claude Agent, OpenCode, 
 
 ## Use the built-in Agent {/* #built-in-agent */}
 
-From v1.2.0, **Open-Science Agent** ships with the app and is the default for a new setup. It does not need a separate Agent download. The card labels it experimental. It needs a compatible API provider; Codex subscription remains tied to the Codex framework, and Claude subscription to Claude Agent. A ready runtime does not include model access.
+From v1.2.0, **Open-Science Agent** ships with the app and is the default for a new setup. It does not need a separate Agent download. The card labels it experimental. In v1.2.1 it accepts compatible API providers and **Codex subscription** accounts for Main and Subagent. Claude subscription remains tied to Claude Agent. A ready runtime does not include model access.
 
 1. Open **Settings → Agent** and inspect **Open-Science Agent** alongside the external frameworks.
 2. To change the active runtime, select its card and confirm the switch. The choice applies across projects to subsequent requests.

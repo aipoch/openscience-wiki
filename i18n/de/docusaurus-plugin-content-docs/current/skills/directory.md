@@ -1,25 +1,25 @@
 ---
 title: "Skill Verzeichnis"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skill Verzeichnis {/* #skill-directory */}
 
-Die Anwendung bietet **23 gebündelt Skills**. Dieses Verzeichnis gruppiert sie nach der Arbeit, die sie unterstützen. Angaben zur versandten Methode; Sie behaupten nicht, dass jedes externe Modell, jede Abhängigkeit oder jeder Dienst installiert ist.
+Die Anwendung bietet **24 gebündelt Skills**. Dieses Verzeichnis gruppiert sie nach der Arbeit, die sie unterstützen. Angaben zur versandten Methode; Sie behaupten nicht, dass jedes externe Modell, jede Abhängigkeit oder jeder Dienst installiert ist.
 
 Für Methoden, die über die App verteilt werden, verwenden Sie das [Marktplatz-Installationsleitfaden](marketplace.md). Das unten stehende Verzeichnis hilft Ihnen bei der Auswahl einer Forschungsmethode; Es ist kein Live-Inventar von Marktplatzversionen.
 
 ## Prüfung der Bereitschaft, bevor eine Methode ausgewählt wird {/* #check-readiness-before-selecting-a-method */}
 
-1. Öffnen Sie den Skill in den Einstellungen und lesen Sie die vollständigen Anforderungen und Hinweise von Drittanbietern.
+1. Öffnen Sie den Skill in den **Resource center → Skills → Installed** und lesen Sie die vollständigen Anforderungen und Hinweise von Drittanbietern.
 2. Vergleichen Sie den Eingabetyp mit Ihren tatsächlichen Daten. Eine Bulk-RNA-seq-Tabelle ist kein Einzelzellen-AnnData-Objekt; eine molekulare Zeichnung ist kein Andockergebnis.
 3. Überprüfen Sie die ausgewählte Laufzeit und die Pakete. Wählen Sie für Remote-Arbeiten einen verwendbaren Compute-Host aus und inspizieren Sie dessen Umgebung, bevor Sie einreichen.
 4. Fordern Sie einen begrenzten Durchlauf an, prüfen Sie die tatsächliche Ausgabe und behalten Sie die Eingabe- / Versionsreferenzen bei, bevor Sie hochskalieren.
 
-Zwei zusätzliche manifeste Einträge, Selbst-Bewusstsein und Skill-Creator, sind interne Rahmenressourcen. Es handelt sich nicht um benutzerseitige Verzeichniseinträge. Persönliche oder importierte Skills, einschließlich rnaseq-count-qc, sind getrennt von der Anzahl von 23.
+Zwei zusätzliche manifeste Einträge, Selbst-Bewusstsein und Skill-Creator, sind interne Rahmenressourcen. Es handelt sich nicht um benutzerseitige Verzeichniseinträge. Persönliche oder importierte Skills, einschließlich rnaseq-count-qc, sind getrennt von der Anzahl von 24.
 
-Die drei Environment-Anwendungen Skills und Customize bleiben aktiviert; siehe [Aktivierungsregeln](overview.md#why-some-switches-cannot-be-turned-off). Verwenden Sie [gebündeltes Manifest](https://github.com/aipoch/open-science/blob/v0.27.0/resources/skills/manifest.json), um versendete Methoden zu identifizieren, und [Remote Compute](../guides/remote-compute.md) für die Einrichtung des Hosts und die Auslieferung der Ergebnisse.
+Die drei Environment-Anwendungen Skills und Customize bleiben aktiviert; siehe [Aktivierungsregeln](overview.md#why-some-switches-cannot-be-turned-off). Verwenden Sie [gebündeltes Manifest](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json), um versendete Methoden zu identifizieren, und [Remote Compute](../guides/remote-compute.md) für die Einrichtung des Hosts und die Auslieferung der Ergebnisse.
 
 ## Durchsuchen nach Forschungsaufgabe {/* #browse-by-research-task */}
 
@@ -75,7 +75,8 @@ Die drei Environment-Anwendungen Skills und Customize bleiben aktiviert; siehe [
 | [Figurenstil](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-style/SKILL.md) · `figure-style` | Tatsächliche Daten und eine endgültige Zahl | Notebook Funktion und Plot Abhängigkeiten | Besichtigte Fläche mit lesbaren Etiketten und zuverlässigen Daten |
 | [Bildkomponist](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-composer/SKILL.md) · `figure-composer` | Ein Anspruch und unveränderliche Datenversionsreferenzen | Main Agent, Delegation, Plot und Review | Multi-Panel Figur und Review Iterationen |
 | [Paper Narrative](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/paper-narrative/SKILL.md) · `paper-narrative` | Manuskript/Abstract, Bildunterschriften und geordnetes Figurendeck | Geerdete Artefaktversionen und Review-Tools | Paper Brief und ein geordnetes Zahlenargument |
+| [DOCX Generation](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/docx-generation/SKILL.md) · `docx-generation` | Markdown-Bericht oder vorhandene DOCX-Datei | Python 3.9+, Pandoc 3.12.1 und mitgelieferter Konverter; Abhängigkeiten zuerst vorbereiten | DOCX mit nativen Überschriften, Tabellen und Listen; Inhalt und Layout prüfen |
 
 
 
-Bezugsnummer der Durchführung: [manifest.json](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/manifest.json).
+Bezugsnummer der Durchführung: [manifest.json](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json).

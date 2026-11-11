@@ -1,7 +1,7 @@
 ---
 title: "지정된 저널 및 날짜 내에서 검색"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 질문과 자격 규칙 설정 {/* #1-set-the-question-and-eligibility-rule */}
 
-프로젝트를 열고 연결된 모델을 선택하십시오. **팟캐스트** Connector를 **Settings → Connectors**에서 확인하십시오; 요청한 경우 연락처 정보를 구성합니다. 이 예제를 시작하려면 다운로드 된 종이가 필요하지 않습니다.
+프로젝트를 열고 연결된 모델을 선택하십시오. **팟캐스트** Connector를 **Resource center → Connectors**에서 확인하십시오; 요청한 경우 연락처 정보를 구성합니다. 이 예제를 시작하려면 다운로드 된 종이가 필요하지 않습니다.
 
 게시 날짜 **2019-01-01를 통해 2025-12-31**, 데이터베이스 레코드가 추가 된 날짜가 아닙니다. 정의된 심리적 개입 팔을 가진 1 차적인 무작위 보고를 포함하고 participant outcomes를 보고했습니다. 혼합 개입, 불분명 발행 상태 또는 충돌 날짜에 대한 별도의 **이름 &#42;** 범주를 유지하십시오. Mechanistic outcomes 혼자서는 이차 분석 보고서를 만들지 않습니다.
 

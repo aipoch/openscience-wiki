@@ -1,7 +1,7 @@
 ---
 title: "Actualizar una colección de literatura existente"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Una actualización debe conservar la regla de búsqueda original y mostrar exact
 
 ## 1. Definir y guardar la base de referencia {/* #1-define-and-save-the-baseline */}
 
-Abrir un proyecto con un modelo conectado. Activar **Gráfico de literatura** en **Settings → Connectors** y configurar OpenAlex si es necesario. Enviar:
+Abrir un proyecto con un modelo conectado. Activar **Gráfico de literatura** en **Resource center → Connectors** y configurar OpenAlex si es necesario. Enviar:
 
 ```text
 Search OpenAlex for freshwater microplastic transport.

@@ -1,7 +1,7 @@
 ---
 title: "Navigation und Suche"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # Navigation und Suche {/* #navigation-and-search */}
@@ -67,3 +67,17 @@ Deaktivieren Sie Kategorie und andere Filter, überprüfen Sie das Besitzprojekt
 Öffnen Sie das Menü des **Open-Science**-Symbols in der macOS-Menüleiste, dem Windows-Tray oder einem Linux-Desktop mit Tablett-Unterstützung. Verwenden Sie **Running sessions**, um aktive Arbeit zu finden, **Pinned sessions** für angeheftete Gespräche oder **Recent items** für aktuelle Inhalte. Längere Listen werden unter **Weitere Posten** fortgesetzt. Nachdem Sie einen Eintrag ausgewählt haben, überprüfen Sie den Projekt- und Konversationstitel, der geöffnet wird.
 
 Verwenden Sie **Pin** neben einem Gesprächstitel, um es handlich zu halten. **Show / Hide** verändert die Sichtbarkeit des Fensters; **Quit** verlässt die App. Das Wechseln von Gesprächen stoppt eine Aufgabe nicht. Die Verfügbarkeit des Linux-Symbols hängt von der Unterstützung des Tabletts ab. Siehe [Aussehen und Mitteilungen](appearance.md) für das Verhalten und die Warnungen bei Fensterschließungen.
+
+## Öffnen Sie das Resource Center {/* #resource-center */}
+
+Verwendung **Resource center** zu Hause oder in der Projektleiste. Wählen **Skills**, **Connectors**, **Specialists** oder **Use Cases**. Diese Ressourcen haben jetzt ihren eigenen Arbeitsbereich anstelle von Panels in den Einstellungen; ältere Screenshots können den vorherigen Einstellungseintrag anzeigen.
+
+1. Wählen Sie einen Ressourcentyp. Verwendung **Installed** für lokale Ressourcen und **Marketplace** für veröffentlichte Pakete, wo sie angeboten werden.
+2. Suche nach Name und offen **Filters** um die Liste einzugrenzen. Löschen Sie die Such- oder Reset-Filter, wenn ein erwartetes Element verschwindet.
+3. Offen **View details** um die Ressource zu untersuchen. Überprüfen Sie Quelle, Version, Anforderungen und Verfügbarkeit, bevor Sie sie installieren oder aktivieren.
+4. Verwendung **Manage access** oder die Verfügbarkeitskontrollen der Ressource, um zu überprüfen, welche Agenten sie verwenden können. Installation, Agentenzugriff und Genehmigung für eine bestimmte Operation sind getrennte Entscheidungen.
+5. Kehren Sie zum Projekt mit seiner intakten Konversation zurück. Durch Öffnen einer Fertigkeitsreferenz im Composer oder einer gesendeten Nachricht wird das Ressourcendetail im Projektbereich geöffnet.
+
+![Skills, Connectors, Specialists und Use Cases im Resource Center](/img/open-science/v121/resource-center.webp)
+
+Siehe [Geschickliche Installation](../skills/marketplace.md), [Verbindungsaufbau](connectors.md) und [Spezialisierte Rollen](../specialists/overview.md).

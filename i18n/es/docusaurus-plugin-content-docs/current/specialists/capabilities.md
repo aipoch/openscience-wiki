@@ -1,7 +1,7 @@
 ---
 title: "Asignar Skills y conectores"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Asignar Skills y conectores {/* #assign-skills-and-connectors */}
@@ -12,7 +12,7 @@ La lista de capacidades de Specialist determina qué Skills y Connectors puede a
 
 <p className="example-label"><strong>Ejemplo</strong> Asignar capacidades a RNA-seq QC Reviewer</p>
 
-1. Abrir **Settings → Specialists**, luego editar **RNA-seq QC Revisor**.
+1. Abrir **Resource center → Specialists**, luego editar **RNA-seq QC Revisor**.
 2. Apaga **Full access**.
 3. En **Skills**, seleccione **Añadir una habilidad**, busque `rnaseq-count-qc`, y agregue el paquete personal guardado. Confirme **Skills 1**.
 4. En **Connectors**, seleccione **Añadir un conector** y elija **Archivos de Omics**. Confirme **Conectores 1**.
@@ -33,7 +33,7 @@ Skills requerido por la aplicación se mantiene habilitado a nivel mundial. Esto
 
 ## Ajuste del acceso desde un recurso {/* #resource-access */}
 
-Bajo **Settings → Skills** o **Connectors**, abrir un recurso **Manage access** emergente para inspeccionar las asociaciones Main Agent y Specialist juntos. Actualiza la unión del papel seleccionado, no el estado habilitado del papel. Las funciones de pleno acceso pueden tener exclusiones por fuente; Las funciones restringidas utilizan selecciones explícitas. Las uniones de mercado se pueden leer solo en este popup. Vea el [controles de acceso ilustrados](../guides/connectors.md#resource-access).
+Bajo **Resource center → Skills** o **Connectors**, abrir un recurso **Manage access** emergente para inspeccionar las asociaciones Main Agent y Specialist juntos. Actualiza la unión del papel seleccionado, no el estado habilitado del papel. Las funciones de pleno acceso pueden tener exclusiones por fuente; Las funciones restringidas utilizan selecciones explícitas. Las uniones de mercado se pueden leer solo en este popup. Vea el [controles de acceso ilustrados](../guides/connectors.md#resource-access).
 
 Después de cambiar un enlace, confirme el papel que está habilitado, sus credenciales de servicio están listas y su operación prevista está permitida. **Used by** muestra asignaciones en lugar de carreras completas.
 

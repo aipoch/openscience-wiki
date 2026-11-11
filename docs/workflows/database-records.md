@@ -1,7 +1,7 @@
 ---
 title: Retrieve structured records from a scientific database
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Start with compound names and finish with a table of verified identifiers and pr
 
 ## 1. Define the compounds and properties
 
-In **Settings → Connectors**, make sure **Chemistry** is available. Open a project, start a conversation and select a connected model. This run used Open-Science 0.30.1 and the Chemistry/PubChem Connector; it did not require an input spreadsheet.
+In **Resource center → Connectors**, make sure **Chemistry** is available. Open a project, start a conversation and select a connected model. This run used Open-Science 0.30.1 and the Chemistry/PubChem Connector; it did not require an input spreadsheet.
 
 Specify **neutral, straight-chain, saturated monocarboxylic acids**. A similar name can refer to a branched isomer, a salt or a conjugate base. A formula alone cannot distinguish all those structures.
 

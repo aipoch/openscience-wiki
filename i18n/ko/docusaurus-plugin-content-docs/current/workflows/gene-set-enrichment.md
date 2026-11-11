@@ -2,7 +2,7 @@
 title: "후보 유전자 세트에 대한 기능적 enrichment 실행"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -19,7 +19,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 유전자 목록 및 분석 설정 정의 {/* #gene-set-enrichment */}
 
-1. **Settings → Connectors**에서 에이전트에 **유전자 및 종양학**을 사용. 연결된 모델과 사용할 수 있는 Notebook 실행 시간으로 세션을 엽니다.
+1. **Resource center → Connectors**에서 에이전트에 **유전자 및 종양학**을 사용. 연결된 모델과 사용할 수 있는 Notebook 실행 시간으로 세션을 엽니다.
 2. 생물, 유전자 식별자, 데이터 소스 및 통계 배경을 지정합니다. 실제 실험 데이터의 경우 실험에 의해 선택된 유전자를 사용하여 배경을 단화합니다. 이 튜토리얼은 명시적으로 모든 annotated 유전자를 사용하여 사용자 정의 측정 된 유전자 우주가 아닙니다.
 3. 다음 프롬프트를 보냅니다. 같은 세션에서 소스 버전 쿼리 및 enrichment 호출을 유지하고 실제 결과를 저장하십시오.
 
@@ -59,7 +59,7 @@ CSV을 열고 전체 JSON과 비교하십시오. 이 런은 FDR 0.05에서 **891
 
 Enrichr은 할당된 유전자에 존재한다는 것을 묻습니다. STRING PPI enrichment는 단백질이 예상보다 더 많은 네트워크 상호 작용이 있는지 묻습니다. 이들은 다른 시험입니다; 계약은 생물학적 결과의 독립적 인 복제가 아닙니다.
 
-1. **Settings → Connectors**에서 에이전트 **유전자 및 종양학** 및 **단백질 표기**를 활성화합니다.
+1. **Resource center → Connectors**에서 에이전트 **유전자 및 종양학** 및 **단백질 표기**를 활성화합니다.
 2. **DNA 손상 유전자 세트**라는 프로젝트를 만들고 새로운 세션을 엽니다. 이 예제는 Codex 및 세션 Notebook을 사용합니다.
 3. 선택하기 전에 사용할 수있는 Enrichr 라이브러리를 나열하십시오. 이 비교를 위해, 고정 된 **GO_Biological_Process_2025** 라이브러리를 사용하므로 저장된 결과에는 identifiable annotation 버전이 있습니다. 더 새로운 라이브러리는 다른 결과를 생성할 수 있습니다.
 4. 이 프롬프트를 보내고 실행 완료 후 생성 된 노트를 엽니 다 :

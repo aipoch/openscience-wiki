@@ -2,7 +2,7 @@
 title: "Kontrollarten, Referenzgenom und Chromosomenkennzeichen"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ Folgen Sie vor dem Start [Wissenschaftliche Datenbanken](../tools/databases.md#c
 
 ## 1. Abfrage des Organismus, Assemblierung und Chromosom {/* #reference-genome */}
 
-1. **Genome** in **Settings → Connectors** aktivieren. Öffnen Sie eine Sitzung mit einem verbundenen Modell und verfügbarer Notebook Laufzeit. Dieses v0.31.1-Beispiel verwendete **Codex subscription**.
+1. **Genome** in **Resource center → Connectors** aktivieren. Öffnen Sie eine Sitzung mit einem verbundenen Modell und verfügbarer Notebook Laufzeit. Dieses v0.31.1-Beispiel verwendete **Codex subscription**.
 2. Abfrage des Organismus, **versioniert** Assemblierung und Sequenz in dieser Reihenfolge. Senden:
 
 ```text

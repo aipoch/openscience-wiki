@@ -1,7 +1,7 @@
 ---
 title: "Создать и инструктировать Specialist"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Создать и инструктировать Specialist {/* #create-and-instruct-a-specialist */}
@@ -18,7 +18,7 @@ last_update:
 
 ## Создать роль {/* #create-the-role */}
 
-1. Открыть **Settings → Specialists → Add specialist → Write from scratch**.
+1. Открыть **Resource center → Specialists → Add specialist → Write from scratch**.
 2. Введите **RNA-seq QC Рецензия** как имя и **Проверяйте целостность исходного счета и метрики выборки с использованием отслеживаемых общедоступных биомедицинских входов.** как описание.
 3. Выберите иконку и цвет. В примере используется **Мозг / Purple**. Превью в прямом эфире показывает внешний вид списка / пикера.
 4. Расширьте **Advanced settings** и проверьте сгенерированный ID `rna-seq-qc-reviewer` перед созданием.

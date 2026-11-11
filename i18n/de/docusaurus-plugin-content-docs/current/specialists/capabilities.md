@@ -1,7 +1,7 @@
 ---
 title: "Skills und Konnektoren zuweisen"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skills und Konnektoren zuweisen {/* #assign-skills-and-connectors */}
@@ -12,7 +12,7 @@ Die Fähigkeitsliste eines Specialist bestimmt, welche Skills und Konnektoren es
 
 <p className="example-label"><strong>Beispiel</strong> Zuweisen von Funktionen an RNA-seq QC Reviewer</p>
 
-1. Öffnen Sie **Settings → Specialists** und bearbeiten Sie dann **RNA-seq QC Reviewer**.
+1. Öffnen Sie **Resource center → Specialists** und bearbeiten Sie dann **RNA-seq QC Reviewer**.
 2. Schalten Sie **Full access** aus.
 3. Wählen Sie in **Skills** **Hinzufügen einer Fertigkeit**, suchen Sie `rnaseq-count-qc` und fügen Sie das gespeicherte Personal-Paket hinzu. **Skills 1** bestätigen.
 4. Wählen Sie in **Connectors** **Fügen Sie einen Connector hinzu** und **Omics-Archive** aus. **Steckverbinder 1** bestätigen.
@@ -33,7 +33,7 @@ Anwendungserforderliches Skills bleibt global aktiviert. Dies ersetzt nicht die 
 
 ## Passen Sie den Zugriff aus einer Ressource {/* #resource-access */}
 
-Unter **Settings → Skills** oder **Connectors** öffnen Sie das **Manage access**-Popup einer Ressource, um Main Agent und Specialist-Zuordnungen gemeinsam zu inspizieren. Es aktualisiert die Bindung der ausgewählten Rolle, nicht den aktivierten Status der Rolle. Full-Access-Rollen können Ausschlüsse pro Ressource haben; Eingeschränkte Rollen verwenden explizite Selektionen. Marketplace-Bindungen können nur in diesem Popup gelesen werden. Siehe [illustrierte Zugangskontrollen](../guides/connectors.md#resource-access).
+Unter **Resource center → Skills** oder **Connectors** öffnen Sie das **Manage access**-Popup einer Ressource, um Main Agent und Specialist-Zuordnungen gemeinsam zu inspizieren. Es aktualisiert die Bindung der ausgewählten Rolle, nicht den aktivierten Status der Rolle. Full-Access-Rollen können Ausschlüsse pro Ressource haben; Eingeschränkte Rollen verwenden explizite Selektionen. Marketplace-Bindungen können nur in diesem Popup gelesen werden. Siehe [illustrierte Zugangskontrollen](../guides/connectors.md#resource-access).
 
 Nachdem Sie eine Bindung geändert haben, bestätigen Sie, dass die Rolle aktiviert ist, die Dienstanmeldeinformationen bereit sind und der beabsichtigte Betrieb zulässig ist. **Used by** zeigt Zuweisungen statt abgeschlossener Läufe.
 

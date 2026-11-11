@@ -1,7 +1,7 @@
 ---
 title: "分配 Skills 与 Connectors"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # 分配 Skills 与 Connectors
@@ -12,7 +12,7 @@ Specialist 的能力列表决定它能访问哪些 Skills 和 Connectors。某�
 
 <p className="example-label"><strong>示例</strong> 为 RNA-seq QC Reviewer 分配能力</p>
 
-1. 打开 **Settings → Specialists**，编辑 **RNA-seq QC Reviewer**。
+1. 打开 **Resource center → Specialists**，编辑 **RNA-seq QC Reviewer**。
 2. 关闭 **Full access**。
 3. 在 **Skills → Add a skill** 搜索并添加 Personal `rnaseq-count-qc`，确认 **Skills 1**。
 4. 在 **Connectors → Add a connector** 添加 **Omics Archives**，确认 **Connectors 1**。
@@ -33,7 +33,7 @@ Specialist 的能力列表决定它能访问哪些 Skills 和 Connectors。某�
 
 ## 从资源调整访问 {/* #resource-access */}
 
-在 **Settings → Skills** 或 **Connectors** 打开资源的 **Manage access** 弹窗，可以一起查看 Main Agent 和 Specialist 的关联。此操作更新所选角色的绑定，不会启用角色。Full access 角色可以逐项排除资源；受限角色使用明确的选择列表。市场角色绑定在此弹窗中可能只读。操作图见[资源访问控件](../guides/connectors.md#resource-access)。
+在 **Resource center → Skills** 或 **Connectors** 打开资源的 **Manage access** 弹窗，可以一起查看 Main Agent 和 Specialist 的关联。此操作更新所选角色的绑定，不会启用角色。Full access 角色可以逐项排除资源；受限角色使用明确的选择列表。市场角色绑定在此弹窗中可能只读。操作图见[资源访问控件](../guides/connectors.md#resource-access)。
 
 更改绑定后，确认角色已启用、服务凭证就绪，并允许执行所需操作。**Used by** 显示资源分配，不表示执行记录。
 

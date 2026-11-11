@@ -1,7 +1,7 @@
 ---
 title: "管理与验证 Skills"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-11'
 ---
 
 # 管理与验证 Skills
@@ -18,7 +18,7 @@ last_update:
 
 <p className="example-label"><strong>示例</strong> 导出并重新导入 RNA-seq Skill</p>
 
-1. 在 **Settings → Skills** 找到 `rnaseq-count-qc`，选择 **Actions → Export** 保存 ZIP。
+1. 在 **Resource center → Skills** 找到 `rnaseq-count-qc`，选择 **Actions → Export** 保存 ZIP。
 2. 点击 **Add skill → Upload skills → Upload skill files**，选择刚导出的包。
 3. 在 **Confirm import** 检查文件名与诊断；候选项默认未勾选。
 4. 打开 **Preview rnaseq-count-qc**，阅读 SKILL.md 与文件列表。实际导出保留了 `references/sample-metric-schema.md`。

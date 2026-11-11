@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: 设置中心总览
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # 设置中心总览
 
-从工作区左下打开 **Settings**。**19 个面板**按用途分为 **System、Intelligence、Connections、Workspace** 四组，Appearance 和 Notifications 已成为独立面板。可按用途选择或通过顶部搜索定位；例如 **Settings → Model** 指 Intelligence 分组内的 Model 面板。
+从工作区左下打开 **Settings**。**16 个面板**按用途分为 **System**、**Intelligence**、**Connections** 和 **Workspace** 四组。Skills、Connectors 和 Specialists 已移到独立的[资源中心](../guides/navigation.md#resource-center)管理。可按用途选择设置面板，或使用顶部搜索。
 
 | 全局控件 | 行为 |
 | --- | --- |
@@ -27,7 +27,7 @@ last_update:
 
 搜索覆盖各面板中的代表性设置，不包含每个字段或研究文档。找不到某个词时，改用面板名称或下方导航分组。查找对话或文件，应关闭设置后使用[全局搜索](../guides/navigation.md)。
 
-## 19 个主面板 {/* #17-个主面板 */}
+## 16 个主面板 {/* #17-个主面板 */}
 
 | 分组 | 面板 | 管理内容 |
 | --- | --- | --- |
@@ -36,11 +36,8 @@ last_update:
 |  | [Notifications](../guides/appearance.md) | 任务提醒、通知内容、系统状态和测试通知 |
 | Intelligence | [Model](../guides/models.md) | 提供商与各任务场景的模型 |
 |  | [Agent](../guides/frameworks.md) | 代理框架的安装、切换与修复 |
-|  | [Skills](../skills/overview.md) | 可复用科研方法及其可用状态 |
-|  | [Specialists](../specialists/overview.md) | 专家角色与能力访问 |
 |  | [Memory](../guides/memory.md) | 按需启用的全局与项目记忆 |
-| Connections | [Connectors](../guides/connectors.md) | 数据服务、自定义 MCP 连接及导入 |
-|  | [Network](../guides/network.md) | 代理、软件包镜像与 Notebook 域名访问 |
+| Connections | [Network](../guides/network.md) | 代理、软件包镜像与 Notebook 域名访问 |
 |  | [Remote](../guides/remote-access.md) | 浏览器访问、配对与可信设备 |
 |  | [Credentials](../tools/credentials.md) | 密钥、令牌、OAuth 与凭据恢复 |
 |  | [Compute](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |

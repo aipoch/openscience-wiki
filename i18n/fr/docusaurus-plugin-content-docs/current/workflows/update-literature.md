@@ -1,7 +1,7 @@
 ---
 title: "Mettre à jour une collection de littérature existante"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Une mise à jour devrait conserver la règle de recherche originale et montrer e
 
 ## 1. Définir et enregistrer la base de référence {/* #1-define-and-save-the-baseline */}
 
-Ouvrez un projet avec un modèle connecté. Activez **Graphique de littérature** dans **Settings → Connectors** et configurez OpenAlex si nécessaire. Envoyer :
+Ouvrez un projet avec un modèle connecté. Activez **Graphique de littérature** dans **Resource center → Connectors** et configurez OpenAlex si nécessaire. Envoyer :
 
 ```text
 Search OpenAlex for freshwater microplastic transport.

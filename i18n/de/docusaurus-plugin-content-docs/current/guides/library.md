@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -420,6 +420,24 @@ BibTeX speichert Jahr und Monat hier, so dass seine Rundreise `2009-7` zurückge
 
 
 </ToolOperationGroup>
+
+## Bibliographische Metadaten in CSV exportieren {/* #bibliography-csv */}
+
+Verwenden Sie CSV, um eine Referenzliste in einer Tabelle zu überprüfen oder zu teilen. Es exportiert nur bibliographische Felder: Anhänge, Screening-Entscheidungen und persönliche Notizen sind ausgeschlossen. Verwenden Sie BibTeX oder RIS, wenn Sie eine Citation-Manager-Austauschdatei benötigen.
+
+1. Offen **Library**, dann das beabsichtigte Projekt oder die Sammlung. Wählen Sie die erforderlichen Referenzen. Seitenübergreifende Auswahl kann mehr als die sichtbare Seite enthalten; Überprüfen Sie die ausgewählte Anzahl und schließen Sie unerwünschte Datensätze aus.
+2. Wählen **More actions → Export → CSV**. Verwenden Sie für ein ganzes Projekt oder eine Sammlung die Exportaktion und wählen Sie **CSV**.
+3. Speichern Sie die Datei über den Desktop-Speicherdialog oder den Download-Flow des Browsers. Warten Sie, bis der Export abgeschlossen ist; ein storniertes Speichern erzeugt keine Datei.
+4. Öffnen Sie den CSV als UTF-8 in einer Tabelle. Vergleichen Sie die Zeilenanzahl mit den Auswahl- und Spot-Check-Titeln, Autoren und Identifikatoren mit Bibliothek. Ein leeres Feld bedeutet fehlende Metadaten, keine verifizierte Abwesenheit.
+
+Die 16 Spaltennamen bleiben in Englisch über Schnittstellensprachen hinweg:
+
+```text
+item_id, title, authors, year, item_type, publication, volume, issue,
+pages, doi, pmid, pmcid, arxiv_id, url, abstract, language
+```
+
+![CSV-Export neben BibTeX und RIS in Bibliothek angeboten](/img/open-science/v121/library-csv.webp)
 
 ## Duplikate auflösen und Referenzen wiederherstellen {/* #resolve-duplicates-and-recover-references */}
 

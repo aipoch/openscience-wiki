@@ -1,7 +1,7 @@
 ---
 title: "Manage and share Specialists"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -69,7 +69,7 @@ The actual <ExampleDownload path="/examples/capabilities/rna-seq-qc-reviewer-wit
 
 ## Browse the marketplace
 
-Open **Browse Marketplace**, search a role and choose **View details**. Check publisher, source, version, license, download size and included Skills/Connectors. **Refresh Marketplace** updates the catalog; **Manage Marketplace sources** controls the configured sources. All/Official/Community filters concern catalog origin, not runtime readiness.
+Open **Marketplace**, search a role and choose **View details**. Check publisher, source, version, license, download size and included Skills/Connectors. **Refresh Marketplace** updates the catalog; **Manage Marketplace sources** controls the configured sources. All/Official/Community filters concern catalog origin, not runtime readiness.
 
 ![The actual Auto Research Specialist package detail](/img/open-science/capabilities-walkthrough/22-marketplace-package-detail.webp)
 

@@ -1,7 +1,7 @@
 ---
 title: "初回設定"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,18 +12,18 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformGuide />
 
-初期設定後、[エージェント設定](frameworks.md#update-codex) で古いアプリ管理 Codex のランタイムを更新できます。 モデルプロバイダを選ぶとは別々です。
+外部 Agent の管理と更新は [Agent 設定](frameworks.md) で行えます。内蔵 **Open-Science Agent** はアプリに含まれています。
 
 ## 1. 環境 {/* #1-environment */}
 
-**Prepare environment** で起動します。 アプリは、エージェントのインストールやモデルの接続を依頼する前にホストをチェックします。 各行にはステータスと説明が含まれています。 注意が必要な要件を識別するための説明を使用します。
+**Prepare environment** から始めます。アプリは Agent の選択とモデル接続の前にコンピューターを確認します。各項目の状態と説明を読み、必要な対応を確認してください。
 
 | チェックまたはコントロール | それが意味するもの | 何をすべきか |
 | --- | --- | --- |
 | システムの互換性 | オペレーティングシステムとアーキテクチャをチェックする | 検出されたプラットフォームがコンピュータと一致することを確認してください |
 | アプリのストレージ権限 | アプリのコンフィギュレーションフォルダへのアクセスを確認する | 失敗した場合は、表示されたパスへのアクセスを解決し、再度確認します。 |
 | 安全な認証情報のストレージ | オペレーティングシステムのクレデンシャルボルトが利用可能かどうかを確認します。 | 資格情報を入力する前に、ボルトの問題を解決する |
-| インストール用ネットワーク | サポートされているパッケージソースをチェックし、到達可能なソースをレポートします。 | 選択したソースとレイテンシーを読んでください。 結果はネットワークに依存します |
+| インストールネットワーク | 選択したエージェントがダウンロードが必要なかどうかを確認し、必要に応じてパッケージのソースを確認 | 内蔵エージェントでは、ダウンロードが不要であることが報告できます。モデルの接続をテストしません |
 | `Check again` | 環境チェックを繰り返します | 条件を修理した後使用して下さい; ラベルが表示される `Checking…` チェック中にボタンが無効になっています。 |
 | `Continue` | データロケーションを開く | 必要なホストがパスを点検した後利用できる; チェックが実行中は無効です |
 
@@ -35,7 +35,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformContent platform="macos">
 
-![macOS 初回設定時環境チェック完了](/img/open-science/macos/setup-environment.webp)
+![macOS 初回設定時環境チェック完了](/img/open-science/v121/onboarding-environment.webp)
 
 </PlatformContent>
 
@@ -112,56 +112,39 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 3. エージェントランタイム {/* #3-agent-runtime */}
 
-セッションを実行する Agent ランタイムを選択します。 組み込みに新しいv1.2.0セットアップデフォルト **Open-Science Agent**そのため、その選択のために別のエージェントのインストールは必要ありません。 互換性のある API プロバイダーが必要です。 ご利用の場合 **Codex subscription**、選択し、準備して下さい **コードx** 代わりに、Cordxの手順は、そのオプションを示しています。 意図したランタイムが準備完了したら続けてください。
+新規設定では、アプリに内蔵された **Open-Science Agent** が既定で選択されます。互換性のある API プロバイダーと **Codex subscription** に対応しており、この手順で別の Agent をインストールする必要はありません。
+
+1. **Installed** 内の **Open-Science Agent** を見つけ、カードに **Active** と表示されていることを確認します。
+2. **All required environment checks passed.** と表示されるまで待ちます。チェックに失敗した場合は、表示された問題を解決してから **Re-detect** を選択します。
+3. **Continue** を選択して **Model provider** に進みます。リクエストを送信する前に、次の手順でモデルに接続し、接続をテストします。
 
 <PlatformContent platform="macos">
 
-![Codexインストールソースメニュー](/img/open-science/walkthrough-2026-09-08/05-agent-install-menu.webp)
-
-</PlatformContent>
-1. **Codexのインストール** を開きます。
-2. メニューで推奨するアプリ管理インストールソースを選択します。 代替は、グローバルnpmインストールを使用します。
-3. 取付けが終了するのを待って下さい。 インストーラが実行中に別のインストールを開始しないでください。
-4. Codex がバージョンと **Active** を表示していることを確認します。
-5. **Continue** を選択してモデルプロバイダを開きます。
-
-<PlatformContent platform="macos">
-
-![Codexがインストールされ、アクティブなランタイムとして選択](/img/open-science/walkthrough-2026-09-08/06-agent-codex-ready.webp)
-
-</PlatformContent>
-バージョンラベルは、選択したモデルではなく、インストールされたエージェントまたはアダプターを識別します。 スクリーンショットの正確なバージョンを期待するのではなく、インストールされた値を調べます。
-
-<PlatformContent platform="windows">
-
-互換性のあるエージェントが既にインストールされている場合は、そのカードを選択し、継続する前に**Active**を確認してください。 下のWindowsスクリーンは既存のCodexの取付けを使用します; 再インストールは、ウィザードを通過するだけでは不要です。
-
-![Windows セットアップウィザードでアクティブに選択した既存の Codex エージェント](/img/open-science/windows/setup-agent-active.webp)
+![内蔵 Open-Science Agent が Active で、外部ランタイム五つが未インストールのまま Continue を選択できる画面](/img/open-science/v121/onboarding-builtin-agent.webp)
 
 </PlatformContent>
 
-| 制御または状態 | ビーキャビター |
-| --- | --- |
-| フレームワークカード | インストールステータス、バージョン、ランタイムパス、フレームワークがアクティブかどうかを表示します。 |
-| **Install…** | フレームワークのサポートされているインストールソースを開きます。 |
-| インストール進行状況 | レポートのセットアップ活動; 実行中にインストール制御と再検出が利用できなくなります。 |
-| **Re-detect** | インストールされたランタイム情報を更新します。 ラベルが表示される **Detecting…** チェック完了まで。 設定 → エージェントから再検出することもできます。 |
-| **Uninstall** | アクティブランタイムでは利用できません。 削除する前に別のインストールフレームワークに切り替えます。 |
-| **Back** | セットアップ操作をブロックしないと、データ位置に戻ります。 |
-| **Continue** | アクティブランタイムが準備できたら、 |
+カードのバージョン番号はランタイムやアダプターのもので、モデルのバージョンではありません。**Active** は選択中のランタイムを示し、モデルの接続状態を保証しません。次の画面で **Codex subscription** を選ぶ場合も、独立した **Codex** ランタイムをインストールする必要はありません。
 
-フレームワーク固有のインストール、スイッチ、修理、削除については、[エージェントフレームワーク](frameworks.md)を参照してください。
+<details>
+<summary>外部 Agent を選択する（任意）</summary>
+
+**Codex**、**Claude Agent**、**OpenCode**、**CodeBuddy**、**Pi** のプロバイダー対応や動作が必要な場合は、そのランタイムを選択します。インストール済みなら **Re-detect** を選んでから該当カードを選択します。未インストールなら **Install** を開き、対応する配布元を選んで完了を待ちます。**Active** の表示と必須チェックの通過を確認してから次に進みます。
+
+配布元、切り替え、修復については [Agent フレームワーク](frameworks.md) を参照してください。セットアップ後も **Settings → Agent** でランタイムを変更できます。
+
+</details>
 
 ## 4. モデルプロバイダー {/* #4-model-provider */}
 
-フォームは、**Provider type**、選択したエージェント、認証方法により変更されます。 Codex サブスクリプションでは、**Import existing Codex sign-in** は既存のローカルサインを Open-Science にコピーします。 そのアカウントを接続したい場合は、接続チェックを待ちます。
+フォームは **Provider type**、選択した Agent、認証方法によって変わります。内蔵 Agent で Codex のサブスクリプションを使うには、**Codex subscription** を選択します。このコンピューターで Codex にログイン済みなら、**Codex authentication** で **Import existing Codex sign-in** を選び、**Test & continue** を押します。利用可能なログイン情報がない場合は、対応するログイン方法を選んで案内に従います。[プロバイダー設定](providers.md#builtin-codex-subscription)も参照してください。接続チェックに成功してから次に進みます。
 
 <PlatformContent platform="macos">
 
-![認証前の英語Codexサブスクリプションフォーム](/img/open-science/walkthrough-2026-09-08/07-model-codex-subscription.webp)
+![認証前の英語Codexサブスクリプションフォーム](/img/open-science/v121/onboarding-codex-provider.webp)
 
 </PlatformContent>
-API プロバイダーでは、そのタイプを選択し、そのプロバイダーが必要とするエンドポイントとモデルの詳細を入力し、**Test & continue** を使用します。 ウィザードは、テストを送信する前に必要なフィールドを検証します。 成功したテストはウィザードを進行させます。 検証または接続エラーは、修正のために表示されません。
+API プロバイダーでは、そのタイプを選択し、そのプロバイダーが必要とするエンドポイントとモデルの詳細を入力し、**Test & continue** を使用します。 ウィザードは、テストを送信する前に必要なフィールドを検証します。 成功したテストはウィザードを進行させます。 入力検証や接続のエラーは画面に残るため、内容を確認して修正します。
 
 <PlatformContent platform="macos">
 
@@ -199,7 +182,7 @@ Windows **Notebook runtime**のページでは、**Local Shell · WSL2 Bash Prev
 | --- | --- | --- |
 | 環境 | 必須のチェックが渡されます。 | 表示された条件を解決した後再点検して下さい。 |
 | データの場所 | 最終的な管理された道は意図された位置です。 | 位置ページに戻る。 ピックア単独で最後のパスを差し込みません。 |
-| エージェント | インストールされたバージョンとアクティブ状態。 | インストールログとredetectを調べます。 |
+| Agent | 選択したランタイムが使用可能で **Active** と表示。内蔵 Agent の個別インストールは不要 | 表示された問題を解決して **Re-detect** を選択 |
 | プロバイダー | 検証された接続と選択されたメインモデル。 | サインインまたはプロバイダ固有のフィールドを再確認します。 |
 | Notebook | コードの実行が必要な場合は、準備が整いました。 | 設定する **Settings → Runtimes** 解析依頼の前に。 |
 | 最初のタスク | エージェントの応答と検査可能な保存出力。 | モデル接続とは別に権限とツールのエラーを調べます。 |

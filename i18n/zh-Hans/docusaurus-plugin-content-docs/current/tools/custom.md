@@ -1,7 +1,7 @@
 ---
 title: "连接自定义 MCP 工具"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -26,7 +26,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 在应用中添加
 
-1. **Settings → Connectors → Add connector → Local command**。
+1. **Resource center → Connectors → Add connector → Local command**。
 2. **Display name** 填 `GSE60450 QC`。
 3. **Command** 选择 **python3 — script file**；Windows 也可选择 **Other…** 并填写实际 Python 程序路径。
 4. 展开 **Advanced settings**，名称/ID 填 `gse60450-qc`，描述为只读访问 QC 表。

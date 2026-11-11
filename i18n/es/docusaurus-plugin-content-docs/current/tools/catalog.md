@@ -1,7 +1,7 @@
 ---
 title: "Catálogo de herramientas científicas"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # Catálogo de herramientas científicas {/* #scientific-tool-catalog */}
@@ -21,7 +21,7 @@ Utilice este catálogo para encontrar el punto de entrada Open-Science y requisi
 | Reproductores de archivos | Vista previa del archivo | Límites de extensión y tamaño de vista previa | Abra el archivo descargado real |
 | Software de lote remoto | Compute Host and remote-compute Skills | Acceso de host, agendador y ambiente nombrado | Sonda de acogida seguida de un trabajo atado |
 
-Vea [directorio Skill](../skills/directory.md) para la tabla completa del método 23-Skill. Esta página explica la preparación del software; no duplica cada procedimiento de Skill.
+Vea [directorio Skill](../skills/directory.md) para la tabla completa del método 24-Skill. Esta página explica la preparación del software; no duplica cada procedimiento de Skill.
 
 ## Inspeccione el entorno seleccionado {/* #inspect-the-selected-environment */}
 

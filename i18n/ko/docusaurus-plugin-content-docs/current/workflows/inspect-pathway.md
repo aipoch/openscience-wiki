@@ -1,7 +1,7 @@
 ---
 title: "경로 및 상호 작용 네트워크 검사"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 ## 1. 프로젝트 준비 {/* #prepare */}
 
 1. **Pathway Commons 연구**이라는 프로젝트를 작성하고 대화를 시작합니다.
-2. **Settings → Connectors**에서 활성 에이전트에 **Pathway Commons**을 사용할 수 있습니다. 그것은 공중 서비스를 사용합니다; 이 예제는 개인 연구 파일이 필요하지 않습니다.
+2. **Resource center → Connectors**에서 활성 에이전트에 **Pathway Commons**을 사용할 수 있습니다. 그것은 공중 서비스를 사용합니다; 이 예제는 개인 연구 파일이 필요하지 않습니다.
 3. 형성된 Main 모형을 선택하십시오. 이 예제는 **Codex subscription**을 사용했습니다. Codex이 **Update required**, [런타임 업데이트](../guides/frameworks.md#update-codex)로 표시된 경우 작업 보내기 전에 표시됩니다.
 
 ## 2. 검색 및 반환된 정체성을 유지 {/* #search */}

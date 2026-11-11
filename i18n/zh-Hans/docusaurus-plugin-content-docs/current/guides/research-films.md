@@ -1,7 +1,7 @@
 ---
 title: "制作与分享研究影片"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # 制作与分享研究影片
@@ -42,6 +42,8 @@ Keep the numerical result explicit.
 ![根据已完成的教学会话生成研究影片](/img/open-science/v120/film-progress.webp)
 
 ![已生成的英文旁白影片与播放入口](/img/open-science/v120/film-ready.webp)
+
+v1.2.1 中，切换到其他会话不会停止影片生成。保持应用运行，返回来源会话的 **View generation progress** 或 **View research film** 查看结果；主动取消影片任务仍会停止生成。
 
 ## 导出检查后的影片 {/* #export-film */}
 

@@ -1,7 +1,7 @@
 ---
 title: 更新已有文献集合
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 定义并保存基线
 
-打开项目，选择可用模型。在 **Settings → Connectors** 中启用 **Literature Graph**，按需配置 OpenAlex，发送：
+打开项目，选择可用模型。在 **Resource center → Connectors** 中启用 **Literature Graph**，按需配置 OpenAlex，发送：
 
 ```text
 Search OpenAlex for freshwater microplastic transport.

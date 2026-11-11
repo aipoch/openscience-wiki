@@ -2,7 +2,7 @@
 title: "Encuentre datos de omics públicos y construya un inventario de archivos"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ Antes de comenzar, siga [Bases de datos científicos](../tools/databases.md#conn
 
 ## 1. Resolver una ejecución conocida e inspeccionar sus archivos {/* #ena-runs */}
 
-1. Activar **Omics Archives** bajo **Settings → Connectors**. Suministrar una adhesión pública a `ena_search_runs` en el ENA/INSDC, como un estudio de PRJ o una carrera de SRR. Un identificador GEO `GSE` debe vincularse primero a su estudio INSDC; Las palabras clave no son aceptadas.
+1. Activar **Omics Archives** bajo **Resource center → Connectors**. Suministrar una adhesión pública a `ena_search_runs` en el ENA/INSDC, como un estudio de PRJ o una carrera de SRR. Un identificador GEO `GSE` debe vincularse primero a su estudio INSDC; Las palabras clave no son aceptadas.
 2. Inspeccione `run_accession`, organismo, estrategia de biblioteca/función y `truncated`. El máximo es que 1,000 corre. No hay señal de compensación o continuación; estrechar la adhesión si la respuesta es truncada.
 3. Pase una vuelta a `ena_get_run_files`. Compruebe `found`, `fastq_available` y cada entrada en `fastq_files`. El inventario proporciona URL, tamaño de archivo comprimido y MD5 de corriente avanzada; no descarga archivos ni verifica su contenido.
 4. Antes de una descarga separada, verifique el almacenamiento y mantenga el manifiesto. Verifique los bytes descargados contra la suma de comprobación lista. Una biblioteca pareada no necesita tener exactamente dos archivos; no inferir la identidad de los compañeros de lectura de `file_index`.
@@ -53,7 +53,7 @@ Use `ena_query_runs` cuando tenga un tema de investigación pero no se adhiera. 
 
 <p className="example-label"><strong>Ejemplo práctico</strong> Descubra cinco carreras de ARN-Seq humano e inspeccione un inventario de archivos ENA y PRIDE</p>
 
-1. Habilitar **Omics Archives** en **Settings → Connectors**, luego abrir una sesión con un modelo conectado y un tiempo de ejecución Notebook. Este ejemplo utiliza **Codex subscription**.
+1. Habilitar **Omics Archives** en **Resource center → Connectors**, luego abrir una sesión con un modelo conectado y un tiempo de ejecución Notebook. Este ejemplo utiliza **Codex subscription**.
 2. Utilice el siguiente mensaje para solicitar metadatos solamente. El proyecto ENA query y PRIDE son ejemplos separados; no son muestras de un estudio.
 3. Abrir `ena-discovery.json` e inspeccionar la consulta, organismo, ejecutar adhesiones y `truncated` antes de seleccionar archivos.
 

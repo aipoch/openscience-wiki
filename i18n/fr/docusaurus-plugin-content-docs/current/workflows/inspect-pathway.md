@@ -1,7 +1,7 @@
 ---
 title: "Inspecter une voie et son réseau d'interaction"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ Utilisez une voie curée pour inspecter comment **TP53**, **MDM2** et **CSKN1A**
 ## 1. Préparer le projet {/* #prepare */}
 
 1. Créez un projet nommé **Pathway Commons Recherche** et commencez une conversation.
-2. Dans **Settings → Connectors**, rendre **Pathway Commons** disponible à l'agent actif. Il fait appel à un service public; cet exemple n'a pas besoin de dossiers de recherche privés.
+2. Dans **Resource center → Connectors**, rendre **Pathway Commons** disponible à l'agent actif. Il fait appel à un service public; cet exemple n'a pas besoin de dossiers de recherche privés.
 3. Sélectionnez un modèle Main configuré. Cet exemple a utilisé **Codex subscription**. Si Codex est marqué **Update required**, [mettre à jour son runtime](../guides/frameworks.md#update-codex) avant d'envoyer la tâche.
 
 ## 2. Rechercher et conserver l'identité retournée {/* #search */}

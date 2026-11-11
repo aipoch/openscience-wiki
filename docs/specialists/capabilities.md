@@ -1,7 +1,7 @@
 ---
 title: "Assign Skills and Connectors"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Assign Skills and Connectors
@@ -12,7 +12,7 @@ A Specialist's capability list determines which Skills and Connectors it can rea
 
 <p className="example-label"><strong>Example</strong> Assign capabilities to RNA-seq QC Reviewer</p>
 
-1. Open **Settings → Specialists**, then edit **RNA-seq QC Reviewer**.
+1. Open **Resource center → Specialists**, then edit **RNA-seq QC Reviewer**.
 2. Turn **Full access** off.
 3. In **Skills**, select **Add a skill**, search `rnaseq-count-qc`, and add the saved Personal package. Confirm **Skills 1**.
 4. In **Connectors**, select **Add a connector** and choose **Omics Archives**. Confirm **Connectors 1**.
@@ -33,7 +33,7 @@ Application-required Skills stay globally enabled. This does not replace the Spe
 
 ## Adjust access from a resource {/* #resource-access */}
 
-Under **Settings → Skills** or **Connectors**, open a resource’s **Manage access** popup to inspect Main Agent and Specialist associations together. It updates the selected role’s binding, not the role’s enabled state. Full-access roles can have per-resource exclusions; restricted roles use explicit selections. Marketplace bindings can be read-only in this popup. See the [illustrated access controls](../guides/connectors.md#resource-access).
+Under **Resource center → Skills** or **Connectors**, open a resource’s **Manage access** popup to inspect Main Agent and Specialist associations together. It updates the selected role’s binding, not the role’s enabled state. Full-access roles can have per-resource exclusions; restricted roles use explicit selections. Marketplace bindings can be read-only in this popup. See the [illustrated access controls](../guides/connectors.md#resource-access).
 
 After changing a binding, confirm the role is enabled, its service credentials are ready and its intended operation is permitted. **Used by** shows assignments rather than completed runs.
 

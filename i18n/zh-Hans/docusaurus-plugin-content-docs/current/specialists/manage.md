@@ -1,7 +1,7 @@
 ---
 title: "管理与分享 Specialists"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -69,7 +69,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 使用市场
 
-打开 **Browse Marketplace**，搜索角色，选择 **View details**。检查发布者、来源、版本、许可证、下载大小、Skills 与 Connector 引用。**Refresh Marketplace** 刷新目录，**Manage Marketplace sources** 管理来源。All/Official/Community 表示来源类型，不表示运行环境已就绪。
+打开 **Marketplace**，搜索角色，选择 **View details**。检查发布者、来源、版本、许可证、下载大小、Skills 与 Connector 引用。**Refresh Marketplace** 刷新目录，**Manage Marketplace sources** 管理来源。All/Official/Community 表示来源类型，不表示运行环境已就绪。
 
 ![实际 Auto Research Specialist 包详情](/img/open-science/capabilities-walkthrough/22-marketplace-package-detail.webp)
 

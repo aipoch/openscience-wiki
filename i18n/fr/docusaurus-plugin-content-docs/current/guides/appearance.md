@@ -1,7 +1,7 @@
 ---
 title: "Comparution et notifications"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -121,7 +121,7 @@ Ouvrez **Settings → General → Help Center** pour lire les instructions de co
 | Tu veux... | Où aller |
 | --- | --- |
 | Vérifiez une mise à jour de l'application | **General → Check now**; suivre [Installation et mises à jour](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Lire les modifications de version ou obtenir de l'aide | **General → Release notes / Help Center** ouvre la page externe correspondante. Ce wiki a aussi un [Changer de journal](../changelog/v1.2.0.md). |
+| Lire les modifications de version ou obtenir de l'aide | **General → Release notes / Help Center** ouvre la page externe correspondante. Ce wiki a aussi un [Changer de journal](../changelog/v1.2.1.md). |
 | Localiser ou ouvrir le journal de diagnostic | **General → Diagnostics → Reveal / Open**; voir [Dépannage](troubleshooting.md). Les journaux restent locaux jusqu'à ce que vous les partagez. |
 | Installez l'entrée en ligne de commande | **General → Install command**; voir [Référence CLI](../reference/cli.md). L'utilisation du bureau ne nécessite pas cette commande. |
 | Gérer l'emplacement des données ou les travaux archivés | [Stockage et travaux archivés](storage.md). |

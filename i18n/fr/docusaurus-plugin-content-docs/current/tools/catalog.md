@@ -1,7 +1,7 @@
 ---
 title: "Catalogue des outils scientifiques"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # Catalogue des outils scientifiques {/* #scientific-tool-catalog */}
@@ -21,7 +21,7 @@ Utilisez ce catalogue pour trouver les exigences de point d'entrée et d'exécut
 | Types de fichiers | Aperçu du fichier | Extension supportée et limites de taille de prévisualisation | Ouvrir le fichier téléchargé |
 | Logiciel à distance par lots | Calculer l'hôte et le calcul à distance Skills | Accès à l'hôte, planificateur et environnement nommé | Sonde d'hôte suivie d'un travail limité |
 
-Voir [Répertoire Skill](../skills/directory.md) pour la table de méthode complète de 23-Skill. Cette page explique l'état de préparation du logiciel; il ne fait pas double emploi avec la procédure de chaque Skill.
+Voir [Répertoire Skill](../skills/directory.md) pour la table de méthode complète de 24-Skill. Cette page explique l'état de préparation du logiciel; il ne fait pas double emploi avec la procédure de chaque Skill.
 
 ## Inspecter l'environnement sélectionné {/* #inspect-the-selected-environment */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Erstellen eines Skill und seiner unterstützenden Dateien"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Verwenden Sie dies, nachdem eine wiederholbare Prozedur tatsächlich funktionier
 4. Das Element ändert sich in **Saving as skill…**, während der Agent arbeitet. Dies startet eine modellgestützte operation in der konversation. Es öffnet nicht den manuellen Namens-/Beschreibungseditor oder speichert sofort einen ZIP.
 5. Überprüfen Sie den vorgeschlagenen Skill-Namen, die auslösende Beschreibung, die Schritte, die unterstützenden Dateien und das Validierungsergebnis. Reagieren Sie auf Klarstellungen oder Betriebsgenehmigungen, falls vorhanden. **Customize** bleibt aktiviert; die aktive Rolle muss weiterhin über die entsprechenden Fähigkeiten verfügen.
 6. Überprüfen Sie den Entwurf, bevor Sie die Veröffentlichung annehmen. Entfernen Sie studienspezifische Pfade, temporäre IDs, Anmeldeinformationen und nicht unterstützte Schlussfolgerungen; die Anforderungen und Kontrollen an wiederverwendbare Eingaben beizubehalten. Ein vorhandenes Personal Skill darf nicht ohne explizite Ersatzentscheidung überschrieben werden.
-7. Öffnen Sie nach der Veröffentlichung **Settings → Skills**, suchen Sie den gemeldeten Namen und prüfen Sie **Files**, die gespeicherte Verfügbarkeit von SKILL.md und Main Agent. Exportieren Sie es, wenn Sie das vollständige Paket überprüfen müssen.
+7. Öffnen Sie nach der Veröffentlichung **Resource center → Skills**, suchen Sie den gemeldeten Namen und prüfen Sie **Files**, die gespeicherte Verfügbarkeit von SKILL.md und Main Agent. Exportieren Sie es, wenn Sie das vollständige Paket überprüfen müssen.
 8. Führen Sie eine separate Bounded Request mit dem gespeicherten Skill aus. Ein erfolgreich gespeichertes Paket ist kein Beweis dafür, dass ein zweiter Datensatz oder ein späterer Aufruf bestanden hat.
 
 ### Rette die Forschungsmethode {/* #save-the-research-method */}
@@ -49,7 +49,7 @@ Nachdem Sie GSE60450 QC in einer neuen Sitzung abgeschlossen haben, wählen Sie 
 
 ![Nativer Skill-Entwurf und Validierungsergebnis](/img/open-science/v0.27.0/16-native-skill-draft-validated.webp)
 
-Überprüfen Sie den Namen, die auslösende Beschreibung, Eingaben, metrischen Definitionen und Stoppbedingungen, bevor Sie die Veröffentlichung in Personal Skills bestätigen. Verwenden Sie dann **Settings → Skills → Search skills**, öffnen Sie die gespeicherten Anweisungen und inspizieren Sie **Availability** und **Files**. Laden Sie das aktuelle veröffentlichte <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.md</ExampleDownload> herunter.
+Überprüfen Sie den Namen, die auslösende Beschreibung, Eingaben, metrischen Definitionen und Stoppbedingungen, bevor Sie die Veröffentlichung in Personal Skills bestätigen. Verwenden Sie dann **Resource center → Skills → Search skills**, öffnen Sie die gespeicherten Anweisungen und inspizieren Sie **Availability** und **Files**. Laden Sie das aktuelle veröffentlichte <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.md</ExampleDownload> herunter.
 
 ![Native Publikation gefunden in Personal](/img/open-science/v0.27.0/17-native-skill-published.webp)
 
@@ -98,7 +98,7 @@ Die Referenz definiert die Stichprobenmetriken und deren Interpretation. Bewahre
 
 ### Füllen Sie die Felder aus und veröffentlichen Sie {/* #complete-the-fields-and-publish */}
 
-1. Öffnen Sie **Settings → Skills → Add skill → Write from scratch**.
+1. Öffnen Sie **Resource center → Skills → Add skill → Write from scratch**.
 2. Fügen Sie die komplett heruntergeladene SKILL.md in **Skill body** ein. Seine YAML-Frontmatter bevölkert **Name** und **Description**.
 3. Bestätigen Sie, dass der Name `rnaseq-count-qc` ist. Lesen Sie den gerenderten / Body-Inhalt vor dem Speichern; Ein gültiger Name allein bestätigt die wissenschaftliche Methode nicht.
 4. Öffnen Sie **Advanced settings → Add reference files** und wählen Sie `sample-metric-schema.md`. Der Editor platziert diese Ressource unter `references/`.

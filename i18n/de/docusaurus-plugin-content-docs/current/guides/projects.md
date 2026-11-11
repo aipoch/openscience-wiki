@@ -1,7 +1,7 @@
 ---
 title: "Projekte und Quellordner"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # Projekte und Quellordner {/* #projects-and-source-folders */}
@@ -64,3 +64,21 @@ Verwenden Sie das Menü Projektname, um Projekte zu wechseln. Beginnen Sie eine 
 | Ordner öffnet sich, aber ein Schreiben wird abgelehnt | Read-Only-Berechtigung erlaubt Inspektion, nicht Änderung. Speichern Sie ein abgeleitetes Artefakt oder überprüfen Sie den angeforderten Schreibumfang. |
 | Save bleibt deaktiviert | Nur leere Namen entfernen und Feldlängen prüfen; Warten Sie, wenn eine weitere Rettung ansteht. |
 | Ein anderes Projekt wird ausgewählt | Überprüfen Sie den Projekttitel, bevor Sie ein Dokument anhängen oder eine Anfrage senden. |
+
+## Legen Sie eine Frage-Optimierungsvorlage fest {/* #optimization-template */}
+
+Öffnen Sie das Menü Projektname → **Project settings → Advanced agent options → Optimization prompt**. Geben Sie Anweisungen zum Umschreiben von Fragen in diesem Projekt ein und speichern Sie dann. Lassen Sie es leer, um den eingebauten Standard zu verwenden. Das gleiche Feld ist verfügbar unter **New project → Advanced agent options**.
+
+Dieses Feld wird nur ausgeführt, wenn Sie **Optimize question**. Es ist getrennt von **Agent Context**, die Anweisungen für die Agentensitzungen des Projekts liefert, und von **Description**, die für Ihre Referenz ist.
+
+<p className="example-label"><strong>Beispiel</strong> Bewahren Sie die Grenzen einer Lehrfrage</p>
+
+```text
+Rewrite the question in clear English. Preserve the supplied numbers
+and the hypothetical scope. Ask for a concise answer with limitations;
+do not invent participants, measurements or citations.
+```
+
+![Custom Optimization prompt unter den erweiterten Agentenoptionen des Projekts](/img/open-science/v121/optimization-template.webp)
+
+Zurück zum Komponisten und [Optimieren eines Entwurfs](composer.md#optimize-question). Überprüfen Sie den neu geschriebenen Text vor dem Senden; eine Vorlage ist eine Schreibanweisung, keine wissenschaftliche Validierungsregel.

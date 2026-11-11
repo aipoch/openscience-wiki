@@ -1,7 +1,7 @@
 ---
 title: "Alinear múltiples secuencias e inspeccionar posiciones conservadas"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ Recuperar tres secuencias UniProt revisadas, alinearlas con el servicio remoto C
 La configuración de conexión se describe en [Bases de datos científicos](../tools/databases.md#connect-database).
 
 1. Crear **Alineación de la secuencia de hemoglobina** y abrir una nueva conversación con un modelo conectado. Este ejemplo usó **Codex subscription**.
-2. En **Settings → Connectors**, haga **Genes & Ontologies** y **Genomes** disponibles para Main. Clustal Omega pertenece a Genomes; no es un Connector separado.
+2. En **Resource center → Connectors**, haga **Genes & Ontologies** y **Genomes** disponibles para Main. Clustal Omega pertenece a Genomes; no es un Connector separado.
 3. Configure el correo electrónico de contacto válido de investigación-servicio solicitado por Clustal Omega en **Settings → Privacy → Share contact email with research data services**. Utilice su contacto real, no una dirección inventada. Las entradas de secuencia se envían a EMBL-EBI.
 4. Envíe el mensaje a continuación. Use secuencias públicas o autorizadas de otro modo.
 

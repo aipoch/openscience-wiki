@@ -1,7 +1,7 @@
 ---
 title: "スペシャリストの管理と共有"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -69,7 +69,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## マーケットプレイスをブラウズ {/* #browse-the-marketplace */}
 
-**Browse Marketplace** を開き、役割を検索し、**View details** を選択します。 出版社、ソース、バージョン、ライセンス、ダウンロードサイズをチェックし、Skills/コレクターが含まれています。 **Refresh Marketplace**はカタログを更新します; **Manage Marketplace sources** は構成されたソースを制御します。 すべての/公式/コミュニティフィルタは、ランタイムの信頼性ではなく、カタログの起源に関心を寄せます。
+**Marketplace** を開き、役割を検索し、**View details** を選択します。 出版社、ソース、バージョン、ライセンス、ダウンロードサイズをチェックし、Skills/コレクターが含まれています。 **Refresh Marketplace**はカタログを更新します; **Manage Marketplace sources** は構成されたソースを制御します。 すべての/公式/コミュニティフィルタは、ランタイムの信頼性ではなく、カタログの起源に関心を寄せます。
 
 ![実際のオートリサーチSpecialistパッケージの詳細](/img/open-science/capabilities-walkthrough/22-marketplace-package-detail.webp)
 

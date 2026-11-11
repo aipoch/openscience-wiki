@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: "설정 개요"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # 설정 개요 {/* #settings-overview */}
 
-기타 **Settings** 작업 공간의 왼쪽 모서리에서. 이름 * **19 패널** 4개 그룹으로 구성되어 있습니다: **System**, **Intelligence**, **Connections** · **Workspace**· 외관 및 알림은 별도의 패널입니다. 목적 또는 헤더에서 검색; **Settings → Model**, 예를 들면, 열린 모형 안쪽 지능.
+기타 **Settings** 작업 공간의 왼쪽 모서리에서. 이름 * **16 패널** 본문 바로가기 **System**, **Intelligence**, **Connections** · **Workspace**· 기술, 커넥터 및 전문가는 별도의 관리 [회사연혁](../guides/navigation.md#resource-center)· 목적에 따라 설정 패널을 선택하거나 헤더 검색을 사용합니다.
 
 | 글로벌 제어 | 뚱 베어 |
 | --- | --- |
@@ -27,7 +27,7 @@ last_update:
 
 이 검색은 각 패널의 대표 설정을 다루고, 모든 필드 또는 연구 문서가 아닙니다. 용어가 일치하지 않는 경우, 패널 이름 또는 내비게이션 그룹을 사용하십시오. 대화 또는 파일을 검색하려면 설정 및 [글로벌 검색](../guides/navigation.md)을 사용하십시오.
 
-## 19 메인 패널 {/* #the-17-main-panels */}
+## 16 메인 패널 {/* #the-17-main-panels */}
 
 | 이름 &#42; | 회사연혁 | 어떻게 관리합니까? |
 | --- | --- | --- |
@@ -36,11 +36,8 @@ last_update:
 |  | [Notifications](../guides/appearance.md) | 작업 알림, 알림 내용, 시스템 상태 및 테스트 알림 |
 | 인텔리전스 | [모델](../guides/models.md) | 공급자 및 시나리오 모델 |
 |  | [에이전트](../guides/frameworks.md) | Agent Framework 설치, 전환 및 수리 |
-|  | [Skills](../skills/overview.md) | 재사용 가능한 연구 방법 및 그 가용성 |
-|  | [스페셜리스트](../specialists/overview.md) | Specialist 역할 및 기능 액세스 |
 |  | [메모리](../guides/memory.md) | Opt-in 글로벌 및 프로젝트 노트 |
-| 연결 | [커넥터](../guides/connectors.md) | 데이터 서비스, 사용자 정의 MCP 연결 및 수입 |
-|  | [네트워크](../guides/network.md) | 프록시, 패키지 미러 및 Notebook 도메인 액세스 |
+| 연결 | [네트워크](../guides/network.md) | 프록시, 패키지 미러 및 Notebook 도메인 액세스 |
 |  | [원격](../guides/remote-access.md) | 브라우저 액세스, 페어링 및 신뢰할 수있는 장치 |
 |  | [자격 증명](../tools/credentials.md) | 열쇠, 토큰, OAuth 및 credential 회복 |
 |  | [컴퓨팅](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |

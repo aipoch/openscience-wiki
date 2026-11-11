@@ -1,7 +1,7 @@
 ---
 title: "Aligner plusieurs séquences et inspecter les positions conservées"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ Récupérer trois séquences UniProt examinées, les aligner avec le service Ome
 La configuration de la connexion est décrite dans [Bases de données scientifiques](../tools/databases.md#connect-database).
 
 1. Créez **Alignement de la séquence de l'hémoglobine** et ouvrez une nouvelle conversation avec un modèle connecté. Cet exemple a utilisé **Codex subscription**.
-2. Dans **Settings → Connectors**, rendre **Genes & Ontologies** et **Genomes** disponibles sur Main. Oméga clustal appartient à Génomes; ce n'est pas un Connector séparé.
+2. Dans **Resource center → Connectors**, rendre **Genes & Ontologies** et **Genomes** disponibles sur Main. Oméga clustal appartient à Génomes; ce n'est pas un Connector séparé.
 3. Configurez le courriel de contact valide de recherche-service demandé par Clustal Omega dans **Settings → Privacy → Share contact email with research data services**. Utilisez votre contact réel, pas une adresse inventée. Les entrées de séquence sont envoyées à EMBL-EBI.
 4. Envoyez l'invite ci-dessous. Utiliser des séquences publiques ou autorisées d'une autre manière.
 

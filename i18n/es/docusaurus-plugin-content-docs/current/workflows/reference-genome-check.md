@@ -2,7 +2,7 @@
 title: "Especies de verificación, genoma de referencia e identificadores cromosomas"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ Antes de comenzar, siga [Bases de datos científicos](../tools/databases.md#conn
 
 ## 1. Consultar el organismo, el ensamblaje y el cromosoma {/* #reference-genome */}
 
-1. Activar **Genomes** en **Settings → Connectors**. Abra una sesión con un modelo conectado y tiempo de ejecución Notebook disponible. Este ejemplo v0.31.1 utilizó **Codex subscription**.
+1. Activar **Genomes** en **Resource center → Connectors**. Abra una sesión con un modelo conectado y tiempo de ejecución Notebook disponible. Este ejemplo v0.31.1 utilizó **Codex subscription**.
 2. Consultar el organismo, montaje y secuencia **versionado** en ese orden. Enviar:
 
 ```text

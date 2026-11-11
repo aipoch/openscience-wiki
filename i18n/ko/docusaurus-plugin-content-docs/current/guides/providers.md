@@ -1,7 +1,7 @@
 ---
 title: "공급자 및 지역 모델 설정"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -254,3 +254,14 @@ Requesty는 `https://router.requesty.ai`를 사용합니다; Active Agent는 호
 ## Kimi K3.1 Pro 선택하기 {/* #kimi-k31 */}
 
 v1.0.3은 제공자 카탈로그에 Kimi K3.1 Pro를 추가합니다. 대상 제공자의 모델 선택에서 사용 가능한 항목을 고르고 연결을 테스트하세요. 실제 사용 가능 여부는 활성 Agent 프레임워크, 엔드포인트, 계정에 따라 달라집니다. 목록에 있다고 접근 권한이 보장되는 것은 아닙니다.
+
+## Codex 구독을 내장 에이전트로 사용 {/* #builtin-codex-subscription */}
+
+v1.2.1에서, **Open-Science Agent** 수입된 Codex 로그인 및 계정 모두 Main 및 Subagent의 Open-Science를 통해 서명했습니다. 별도의 **프로젝트** runtime는 유효합니다; 변경 가동 시간은 선택적입니다.
+
+1. 내 계정 **Settings → Model → Conversation models**, 추가 또는 열기 **Codex subscription** 로그인 및 기존 로그인 확인을 완료합니다. 로그인이 발견되지 않은 경우, 해당 공급자의 복구 작업을 통해 로그인하십시오.
+2. 활성 작업을 완료 한 후, 아래의 의도 된 프레임 워크를 선택하십시오. **Settings → Agent**· 이 설정은 프로젝트 전체에 적용됩니다.
+3. Codex 공급자 및 모델 선택 제품 정보 **Subagent**, 사용 **Same as main model** 또는 필요한 경우 호환 고정 선택.
+4. 짧은 요청을 보내고 연구 시작 전에 실제 응답을 확인합니다. Imported login detection, 저장된 구성 및 성공적인 실행은 별도의 상태입니다.
+
+Anthropic 카탈로그는 또한 포함합니다 **Claude Fable 5.2** 1M 컨텍스트 윈도우로. 카탈로그 항목은 계정 액세스를 부여하지 않거나 자동으로 메인을 대체합니다.

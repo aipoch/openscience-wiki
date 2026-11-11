@@ -1,25 +1,25 @@
 ---
 title: "Répertoire Skill"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Répertoire Skill {/* #skill-directory */}
 
-L'application fournit **23 groupé Skills**. Ce répertoire les regroupe par le travail qu'ils supportent. Les entrées décrivent la méthode expédiée; ils ne prétendent pas que chaque modèle, dépendance ou service externe est installé.
+L'application fournit **24 groupé Skills**. Ce répertoire les regroupe par le travail qu'ils supportent. Les entrées décrivent la méthode expédiée; ils ne prétendent pas que chaque modèle, dépendance ou service externe est installé.
 
 Pour les méthodes distribuées via l'application, utilisez le [Guide d'installation du marché](marketplace.md). Le répertoire ci-dessous vous aide à choisir une méthode de recherche; il n'est pas un inventaire en direct des versions du marché.
 
 ## Vérifier l'état de préparation avant de sélectionner une méthode {/* #check-readiness-before-selecting-a-method */}
 
-1. Ouvrez le Skill dans Paramètres et lisez ses exigences complètes et les avis de tiers.
+1. Ouvrez le Skill dans **Resource center → Skills → Installed** et lisez ses exigences complètes et les avis de tiers.
 2. Comparez le type d'entrée avec vos données réelles. Une table en vrac RNA-seq n'est pas un objet AnnData à cellule unique; un dessin moléculaire n'est pas un résultat d'arrimage.
 3. Inspectez le temps d'exécution et les paquets sélectionnés. Pour le travail à distance, sélectionnez un serveur de calcul utilisable et inspectez son environnement avant de soumettre.
 4. Demander une exécution limitée, inspecter la sortie réelle et conserver les références d'entrée/version avant d'augmenter l'échelle.
 
-Deux autres entrées manifestes, la conscience de soi et la création de compétences, sont des ressources du cadre interne. Ils ne sont pas des entrées de répertoire orientées vers l'utilisateur. Les Skills personnels ou importés, y compris rnaseq-count-qc, sont séparés du nombre de 23.
+Deux autres entrées manifestes, la conscience de soi et la création de compétences, sont des ressources du cadre interne. Ils ne sont pas des entrées de répertoire orientées vers l'utilisateur. Les Skills personnels ou importés, y compris rnaseq-count-qc, sont séparés du nombre de 24.
 
-L'application Environnement Skills et Personnaliser le séjour activé; Voir [règles d'activation](overview.md#why-some-switches-cannot-be-turned-off). Utilisez le [manifeste groupé](https://github.com/aipoch/open-science/blob/v0.27.0/resources/skills/manifest.json) pour identifier les méthodes expédiées et [Calcul à distance](../guides/remote-compute.md) pour la configuration de l'hôte et la livraison des résultats.
+L'application Environnement Skills et Personnaliser le séjour activé; Voir [règles d'activation](overview.md#why-some-switches-cannot-be-turned-off). Utilisez le [manifeste groupé](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json) pour identifier les méthodes expédiées et [Calcul à distance](../guides/remote-compute.md) pour la configuration de l'hôte et la livraison des résultats.
 
 ## L'innovation par tâche de recherche {/* #browse-by-research-task */}
 
@@ -75,7 +75,8 @@ L'application Environnement Skills et Personnaliser le séjour activé; Voir [r�
 | [Style de la figure](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-style/SKILL.md) · `figure-style` | Données réelles et un chiffre final | Fonction Notebook et dépendances de tracé | Emplacement inspecté avec des étiquettes lisibles et des données fidèles |
 | [Figure Compositeur](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-composer/SKILL.md) · `figure-composer` | Une revendication et des références immuables de version de données | Main Agent, délégation, tracé et examen | Chiffres à plusieurs panneaux et itérations d'examen |
 | [Exposé des motifs](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/paper-narrative/SKILL.md) · `paper-narrative` | Manuscrit/abstraction, sous-titres et jeu de figures ordonné | Versions d'artefacts au sol et outils d'examen | Un mémoire papier et un argument de figure ordonné |
+| [DOCX Generation](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/docx-generation/SKILL.md) · `docx-generation` | Rapport Markdown ou DOCX existant | Python 3.9+, Pandoc 3.12.1 et convertisseur fourni ; préparer les dépendances | DOCX avec titres, tableaux et listes natifs ; vérifier le contenu et la mise en page |
 
 
 
-Référence de mise en œuvre: [manifeste.json](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/manifest.json).
+Référence de mise en œuvre: [manifeste.json](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json).

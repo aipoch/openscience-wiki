@@ -1,7 +1,7 @@
 ---
 title: "Configuración de primera vez"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,18 +12,18 @@ El mago de primera ejecución tiene cinco páginas en este orden: Medio ambiente
 
 <PlatformGuide />
 
-Después de la configuración inicial, un tiempo de ejecución Codex gestionado por aplicaciones más antiguo puede ser actualizado en [Configuración del agente](frameworks.md#update-codex). Esto es separado de elegir un proveedor de modelos.
+Puede gestionar y actualizar un Agent externo en los [ajustes de Agent](frameworks.md). **Open-Science Agent** está integrado en la aplicación.
 
 ## 1. Entorno {/* #1-environment */}
 
-Empieza en **Prepare environment**. La aplicación comprueba el host antes de pedirle que instale un agente o conecte un modelo. Cada fila contiene un estado y una explicación; utilizar la explicación para identificar el requisito que necesita atención.
+Empiece en **Prepare environment**. La aplicación comprueba el equipo antes de elegir un Agent y conectar un modelo. Lea el estado y la explicación de cada comprobación.
 
 | Control o control | Lo que significa | Qué hacer |
 | --- | --- | --- |
 | Compatibilidad del sistema | Revisa el sistema operativo y la arquitectura | Confirme que la plataforma detectada coincide con su ordenador |
 | Permiso de almacenamiento de la aplicación | Comprueba el acceso a la carpeta de configuración de la aplicación | Si falla, resuelva el acceso a la ruta mostrada y vuelva a comprobar |
 | Almacenamiento seguro de credenciales | Comprueba si la bóveda credencial del sistema operativo está disponible | Resolver el problema de la bóveda antes de entrar en credenciales |
-| Red de instalación | Chequea fuentes de paquetes soportadas e informa una fuente accesible | Lea la fuente y latencia seleccionadas; los resultados dependen de su red |
+Silencio Red de instalación Silencio Comprueba si el agente seleccionado necesita una descarga y, cuando sea necesario, comprueba fuentes de paquetes Silencio Con el agente incorporado, esto puede informar que no se necesita ninguna descarga; no prueba su conexión modelo TEN
 | `Check again` | Repita los controles ambientales | Uso después de fijar un requisito; la etiqueta se convierte en `Checking…` y el botón está desactivado durante el cheque |
 | `Continue` | Abre la ubicación de datos | Disponible después de que pasen los cheques de host requeridos; está deshabilitado mientras los cheques se ejecutan |
 
@@ -35,7 +35,7 @@ Lea la explicación de cada cheque junto con su estado. Cuando un agente ya est�
 
 <PlatformContent platform="macos">
 
-![Comprobaciones de medio ambiente completadas durante la configuración de macOS por primera vez](/img/open-science/macos/setup-environment.webp)
+![Comprobaciones de medio ambiente completadas durante la configuración de macOS por primera vez](/img/open-science/v121/onboarding-environment.webp)
 
 </PlatformContent>
 
@@ -112,53 +112,36 @@ Si reiniciar falla antes de que cambie la ubicación, restaurar la configuració
 
 ## 3. Entorno de ejecución del agente {/* #3-agent-runtime */}
 
-Elija el tiempo de ejecución del Agente que llevará a cabo sesiones. Un nuevo v1.2.0 predeterminado de configuración para el incorporado **Open-Science Agent**, por lo que no se necesita instalación independiente del Agente para esa elección. Requiere un proveedor de API compatible. Si usas **Codex subscription**, seleccionar y preparar **Codex** en su lugar; los pasos del Codex abajo muestran esa opción. Continúe una vez que el tiempo de ejecución previsto esté listo.
+Las nuevas configuraciones utilizan **Open-Science Agent** de forma predeterminada. Está integrado en la aplicación y admite proveedores API compatibles y **Codex subscription**. No necesita instalar otro Agent para completar este paso.
+
+1. Busque **Open-Science Agent** en **Installed** y compruebe que su tarjeta indique **Active**.
+2. Espere a que aparezca **All required environment checks passed.** Si falla una comprobación, resuelva el problema indicado y seleccione **Re-detect**.
+3. Seleccione **Continue** para abrir **Model provider**. Conecte y pruebe el modelo allí antes de enviar solicitudes.
 
 <PlatformContent platform="macos">
 
-![Menú fuente de instalación Codex](/img/open-science/walkthrough-2026-09-08/05-agent-install-menu.webp)
-
-</PlatformContent>
-1. Abre **Instalar Codex**.
-2. Elija la fuente de instalación gestionada por la aplicación recomendada por el menú. La alternativa utiliza una instalación global npm.
-3. Espera a que termine la instalación. Evite iniciar otra instalación mientras el instalador está funcionando.
-4. Confirme que Codex ahora muestra su versión y **Active**.
-5. Seleccione **Continue** para abrir el proveedor de Modelo.
-
-<PlatformContent platform="macos">
-
-![Codex instalado y seleccionado como el tiempo de ejecución activo](/img/open-science/walkthrough-2026-09-08/06-agent-codex-ready.webp)
-
-</PlatformContent>
-Las etiquetas de la versión identifican al agente o adaptador instalado, no al modelo seleccionado. Inspeccione los valores instalados en lugar de esperar las versiones exactas de la captura de pantalla.
-
-<PlatformContent platform="windows">
-
-Si un agente compatible ya está instalado, seleccione su tarjeta y confirme **Active** antes de continuar. La pantalla Windows a continuación utiliza una instalación Codex existente; reinstalar es innecesario sólo para proceder a través del mago.
-
-![Un agente Codex existente seleccionado como activo en el asistente de configuración Windows](/img/open-science/windows/setup-agent-active.webp)
+![Open-Science Agent integrado y activo, con Continue disponible y los cinco entornos externos sin instalar](/img/open-science/v121/onboarding-builtin-agent.webp)
 
 </PlatformContent>
 
-| Control o estado | Comportamiento |
-| --- | --- |
-| Tarjeta marco | Muestra estado de instalación, versión, ruta de tiempo de ejecución, y si el marco está activo. |
-| **Install…** | Abre las fuentes de instalación apoyadas por ese marco. |
-| Progresos en la instalación | b) La actividad de preparación de informes; Los controles de instalación en conflicto y la re-detección no están disponibles mientras se ejecuta. |
-| **Re-detect** | Refresca la información de tiempo de ejecución instalada. La etiqueta se convierte en **Detecting…** hasta que terminen los cheques. También puede volver a detectar desde Ajustes → Agente. |
-| **Uninstall** | No disponible para el tiempo de funcionamiento activo. Cambiar a otro marco instalado antes de eliminarlo. |
-| **Back** | Volver a la ubicación de datos cuando no se está ejecutando ninguna operación de configuración de bloqueo. |
-| **Continue** | Procede una vez que un tiempo de funcionamiento activo está listo. |
+La versión de la tarjeta corresponde al entorno de ejecución o al adaptador, no al modelo. **Active** identifica el entorno seleccionado; no confirma la conexión al modelo. Elegir **Codex subscription** en la siguiente página no requiere instalar el entorno **Codex** por separado.
 
-Ver [Marcos de agentes](frameworks.md) para instalación, conmutación, reparación y eliminación específica del marco.
+<details>
+<summary>Elegir un Agent externo (opcional)</summary>
+
+Si necesita los proveedores o el funcionamiento de **Codex**, **Claude Agent**, **OpenCode**, **CodeBuddy** o **Pi**, seleccione el entorno correspondiente. Si ya está instalado, seleccione **Re-detect** y después su tarjeta. De lo contrario, abra **Install**, elija una fuente compatible y espere a que termine la instalación. Compruebe el estado **Active** y que se hayan superado las comprobaciones requeridas antes de continuar.
+
+Consulte [Frameworks Agent](frameworks.md) para conocer las fuentes de instalación, el cambio de entorno y la reparación. También puede cambiar el entorno después de la configuración en **Settings → Agent**.
+
+</details>
 
 ## 4. Proveedor de modelo {/* #4-model-provider */}
 
-El formulario cambia según **Provider type**, el agente seleccionado, y el método de autenticación. Para una suscripción a Codex, **Import existing Codex sign-in** copia un registro local existente a Open-Science. Úsalo cuando quieras conectar esa cuenta, y luego espera el cheque de conexión.
+El formulario depende de **Provider type**, del Agent seleccionado y del método de autenticación. Para usar una suscripción Codex con el Agent integrado, elija **Codex subscription**. Si el equipo ya tiene una sesión de Codex, seleccione **Import existing Codex sign-in** en **Codex authentication** y después **Test & continue**. Si no hay una sesión válida, elija un método de inicio de sesión compatible y siga las indicaciones; consulte la [configuración de proveedores](providers.md#builtin-codex-subscription). Continúe cuando la comprobación de conexión sea correcta.
 
 <PlatformContent platform="macos">
 
-![Formulario de suscripción de Codex en inglés antes de la autenticación](/img/open-science/walkthrough-2026-09-08/07-model-codex-subscription.webp)
+![Formulario de suscripción de Codex en inglés antes de la autenticación](/img/open-science/v121/onboarding-codex-provider.webp)
 
 </PlatformContent>
 Para un proveedor de API, seleccione su tipo, introduzca el punto final y los detalles del modelo requeridos por ese proveedor, y use **Test & continue**. El mago valida los campos requeridos antes de enviar una prueba. Una prueba exitosa adelanta al mago; un error de validación o conexión sigue siendo visible para la corrección.
@@ -199,8 +182,8 @@ La página Windows **Notebook runtime** también puede mostrar **Local Shell · 
 | --- | --- | --- |
 | Entorno | Los cheques obligatorios pasan. | Revise después de resolver el requisito mostrado. |
 | Ubicación de datos | La ruta final gestionada es la ubicación prevista. | Regresar a la página de ubicación; no inferir el camino final sólo del recolector. |
-| Agente | Versión instalada y estado activo. | Inspeccione los registros de instalación y redetect. |
-| Proveedor | Conexión verificada y un modelo principal seleccionado. | Revise el registro o campos específicos para proveedores. |
+Silencio Agente Silencio Tiempo de ejecución seleccionado está listo **Active**; el agente incorporado no necesita ninguna instalación separada. **Re-detect** después de resolverlo.
+| Agent | El entorno seleccionado está listo y **Active**; el Agent integrado no requiere instalación adicional. | Resuelva el problema indicado y seleccione **Re-detect**. |
 | Notebook | Listo y habilitado cuando se necesita la ejecución de código. | Configurar **Settings → Runtimes** antes de solicitar análisis. |
 | Primera tarea | Respuesta del agente y salida ahorrada inspectible. | Inspeccione los permisos y errores de herramientas separadamente de la conexión modelo. |
 

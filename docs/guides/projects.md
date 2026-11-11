@@ -1,7 +1,7 @@
 ---
 title: "Projects and source folders"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # Projects and source folders
@@ -64,3 +64,21 @@ Use the project-name menu to switch projects. Start a session with **New** when 
 | Folder opens but a write is denied | Read-only permission permits inspection, not modification. Save a derived artifact or review the requested write scope. |
 | Save remains disabled | Remove blank-only names and check field lengths; wait if another save is pending. |
 | A different project is selected | Check the project title before attaching a document or sending a request. |
+
+## Set a question-optimization template {/* #optimization-template */}
+
+Open the project-name menu → **Project settings → Advanced agent options → Optimization prompt**. Enter instructions for rewriting questions in this project, then save. Leave it empty to use the built-in default. The same field is available under **New project → Advanced agent options**.
+
+This field runs only when you select **Optimize question**. It is separate from **Agent Context**, which supplies instructions to the project's agent sessions, and from **Description**, which is for your reference.
+
+<p className="example-label"><strong>Example</strong> Preserve the limits of a teaching question</p>
+
+```text
+Rewrite the question in clear English. Preserve the supplied numbers
+and the hypothetical scope. Ask for a concise answer with limitations;
+do not invent participants, measurements or citations.
+```
+
+![Custom Optimization prompt under the project's advanced agent options](/img/open-science/v121/optimization-template.webp)
+
+Return to the Composer and [optimize a draft](composer.md#optimize-question). Review the rewritten text before sending; a template is a writing instruction, not a scientific validation rule.

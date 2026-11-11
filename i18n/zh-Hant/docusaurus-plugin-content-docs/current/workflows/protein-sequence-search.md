@@ -2,7 +2,7 @@
 title: "從基因名稱獲取蛋白序列並完成 BLAST 比對"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -93,7 +93,7 @@ preserve actual errors or empty results. Never invent alignments.
 
 <p className="example-label"><strong>案例演示</strong> 將人 P69905 與 Pfam 比對</p>
 
-取得 P69905 規範蛋白質序列後，在 **Settings → Connectors** 中向 Main 開啟 **HMMER**。在同一會話中傳送：
+取得 P69905 規範蛋白質序列後，在 **Resource center → Connectors** 中向 Main 開啟 **HMMER**。在同一會話中傳送：
 
 ```text
 Use the HMMER Connector to scan the same human P69905 sequence against

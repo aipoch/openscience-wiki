@@ -2,7 +2,7 @@
 title: "Trouvez une séquence protéique et effectuez une recherche BLAST"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -93,7 +93,7 @@ Pour comparer trois séquences ou plus connues, continuer avec [alignement de pl
 
 <p className="example-label"><strong>Exemple pratique</strong> Scanner P69905 humain contre Pfam</p>
 
-Après avoir récupéré la séquence de protéines canoniques P69905, activez **HMMER** pour Main dans **Settings → Connectors**. Dans la même conversation, demandez:
+Après avoir récupéré la séquence de protéines canoniques P69905, activez **HMMER** pour Main dans **Resource center → Connectors**. Dans la même conversation, demandez:
 
 ```text
 Use the HMMER Connector to scan the same human P69905 sequence against

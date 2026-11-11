@@ -1,7 +1,7 @@
 ---
 title: "Erstellen und Teilen eines Forschungsfilms"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Erstellen und Teilen eines Forschungsfilms
@@ -42,6 +42,8 @@ Die ausgefüllte Antwort gibt einen Mittelwert und Median von **6** und erklärt
 ![Forschungsfilmgenerierung aus einem abgeschlossenen Lehrgespräch](/img/open-science/v120/film-progress.webp)
 
 ![Bereiter Forschungsfilm mit englischer Erzählung und Wiedergabeaktion](/img/open-science/v120/film-ready.webp)
+
+In v1.2.1 stoppt der Wechsel zu einer anderen Sitzung nicht die Filmgeneration. Halten Sie die App am Laufen und kehren Sie zur Quellsitzung zurück **View generation progress** oder **View research film** um das Ergebnis zu überprüfen. Die explizite Absage des Filmjobs stoppt immer noch die Generation.
 
 ## Exportieren Sie einen überprüften Film {/* #export-film */}
 

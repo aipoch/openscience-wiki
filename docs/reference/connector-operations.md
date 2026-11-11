@@ -2,7 +2,7 @@
 title: "Connector operation reference"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -16,7 +16,7 @@ Look up exact operation names, required fields, defaults and example calls. To c
 
 The `host` object is supplied by Open-Science's agent execution environment. The JavaScript below is an **agent-side call fragment**, not a standalone Node.js program and not a method on the public Task SDK client. Ask the agent to load the relevant Connector instructions and use the matching operation. A framework may expose a Python bridge instead of this JavaScript form.
 
-First enable the Connector in [Settings → Connectors](../guides/connectors.md), configure any [required credentials](../tools/credentials.md), and grant access to the selected Specialist if applicable. The call still follows the conversation's permission policy. Public Node.js integrations can manage Connector settings with the [Task SDK](api.md), but cannot obtain this `host` by importing that client.
+First enable the Connector in [Resource center → Connectors](../guides/connectors.md), configure any [required credentials](../tools/credentials.md), and grant access to the selected Specialist if applicable. The call still follows the conversation's permission policy. Public Node.js integrations can manage Connector settings with the [Task SDK](api.md), but cannot obtain this `host` by importing that client.
 
 ### Read a result before chaining calls
 

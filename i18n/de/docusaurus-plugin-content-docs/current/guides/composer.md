@@ -1,7 +1,7 @@
 ---
 title: "Unterhaltungen und wartende Anfragen"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-11'
 ---
 
 # Unterhaltungen und wartende Anfragen {/* #conversations-and-queued-requests */}
@@ -52,6 +52,30 @@ Der Modellwähler wählt zwischen konfigurierten Modellen. Seine Argumentationsm
 | Zweigstelle | Unabhängige Fortsetzung, sofern vorhanden | Überprüfen Sie geerbte Geschichte / Dateien; siehe [Sitzungen](sessions.md) |
 | Nachricht zur Warteschlange hinzufügen | Bereiten Sie ein Follow-up während des Laufens vor | Ausstehender Antrag bleibt Nicht gespeichert, bis geliefert |
 | Ausführung abbrechen | Stop Current Execution | Warten auf Stornierung; bereits gespeicherte Ergebnisse werden nicht automatisch rückgängig gemacht |
+
+## Verfeinern eines Frageentwurfs {/* #optimize-question */}
+
+In einem Projekt schreiben Sie einen Entwurf in **Ask anything**, dann auswählen **Optimize question** Neben den Agentenkontrollen. Ein konfiguriertes, verfügbares Modell ist erforderlich. Die Aktion verwendet das Aufgabenmodell unter **Settings → Model → Conversation models → Prompt optimization**; **Same as main model** folgt Main.
+
+1. Behalten Sie die Forschungsfrage, die tatsächlichen Inputs und wichtige Einschränkungen im Entwurf. Klicken **Optimize question** zu starten; Tippen allein ruft keine Optimierung auf.
+2. Warten Sie auf den neu geschriebenen Entwurf. Verwendung **Cancel optimization** zu stoppen. Wenn Sie den Entwurf ändern, während die Anforderung ausgeführt wird, wird das verspätete Ergebnis nicht auf Ihre Bearbeitungen angewendet.
+3. Lesen Sie das Ergebnis vor dem Senden. Überprüfen Sie Nummern, Identifikatoren, Umfang und alle neu vorgeschlagenen Anforderungen. Der neu geschriebene text ersetzt den entwurf; es wurde nicht als konversationsnachricht gesendet.
+4. Wählen **Undo optimization** um den ursprünglichen Entwurf wiederherzustellen oder das Ergebnis selbst zu bearbeiten. Die manuelle Bearbeitung beendet die einstufige Undo-Chance. Entfernte eingefügte Textanhänge können als Inline-Text und nicht als fehlende Anhanglinks wiederhergestellt werden.
+5. Wählen **Send message** Nur wenn die Frage fertig ist. Wenn die Optimierung fehlschlägt, behalten Sie den ursprünglichen Entwurf bei, überprüfen Sie das ausgewählte Modell und versuchen Sie es gegebenenfalls erneut.
+
+<p className="example-label"><strong>Bearbeitetes Beispiel</strong> Halten Sie eine Lehrfrage in ihren Beweisen</p>
+
+Mit der Auswahl des Codex wurde dieser Entwurf verfeinert, wobei alle fünf Werte und der hypothetische Umfang beibehalten wurden:
+
+```text
+Explain the mean and median of 2, 4, 6, 8, 10 for a hypothetical
+teaching example. Why can we not generalize to a population?
+Keep it concise.
+```
+
+Der überarbeitete Entwurf fordert ausdrücklich Einschränkungen ohne erfundene Teilnehmer, Messungen oder Zitate. **Undo optimization** stellt die ursprüngliche Frage wieder her. Das Beispiel [Projektvorlage](projects.md#optimization-template) liefert diese Einschränkungen; die Optimierung überprüft die eventuelle Antwort nicht.
+
+![Eine verfeinerte englische Frage im Composer mit Undo Optimierung verfügbar](/img/open-science/v121/optimized-question.webp)
 
 ## Senden Sie präzises Feedback {/* #send-precise-feedback */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Modelle und Aufgabenrichtlinien"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Modelle und Aufgabenrichtlinien {/* #models-and-task-policies */}
@@ -31,6 +31,7 @@ Wählen Sie eine Szenariozeile, um sie zu erweitern. Das Öffnen einer anderen R
 | **Reviewer** | Folgen Sie dem Hauptmodell oder einem konfigurierten Reviewer-Modell | Eine Modellrichtlinie allein ermöglicht keine automatische Überprüfung oder Erstellung eines Überprüfungsprotokolls. |
 | **Vision** | Ein konfiguriertes bildfähiges Modell | Nicht konfiguriert bedeutet, dass es keine dedizierte Vision-Auswahl gibt. Ob ein Relais benötigt wird, hängt von der Bildunterstützung des aktiven Backends ab. |
 | **Session details** | Folgen Sie Main oder wählen Sie ein kompatibles Modell; ihre Bemühungen und ihre Befähigung zu prüfen | Dies generiert den Sitzungstitel / die Beschreibung mit einem eingeschränkten Aufruf. Es ist getrennt von der wissenschaftlichen Aufgabe und ihren Artefakten. |
+| **Prompt optimization** | Gleiches wie Hauptmodell oder ein kompatibles festes Modell | Läuft nur, wenn Sie wählen **Optimize question** in einem Projekt. Überprüfen Sie den neu geschriebenen Entwurf vor dem Senden; siehe [Fragestellung](composer.md#optimize-question). |
 
 ![Subagentenvererbung und Kontrolle des Aufwands für Behinderte](/img/open-science/guides-walkthrough/11-model-scenarios.webp)
 

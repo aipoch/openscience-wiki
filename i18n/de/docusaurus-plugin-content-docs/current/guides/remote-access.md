@@ -1,7 +1,7 @@
 ---
 title: "Remote-Browserzugriff"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Remote-Browserzugriff {/* #remote-browser-access */}
@@ -12,7 +12,7 @@ Der Remote-Browserzugriff ermöglicht es einem anderen Gerät, den laufenden Arb
 
 Die **Connect mobile device** Abschnitt im Desktop **Settings → Remote** Angebote **WiFi** und **Internet**. Dies ist getrennt von den unten beschriebenen Remote.It-Modi; die QR-Route erfordert kein Remote.It-Konto.
 
-Wenn Sie diesen Abschnitt öffnen, während der Fernzugriff deaktiviert ist, wird der WiFi-Verbindungsfluss gestartet. Verwenden Sie es in einem vertrauenswürdigen Netzwerk, wenn Sie beabsichtigen, ein anderes Gerät den Arbeitsbereich erreichen zu lassen. Der Gastgeber muss wach bleiben und laufen.
+Öffnen des Pairing-Panels lässt Fernzugriff **Off** bis Sie explizit wählen **WiFi** oder **Internet**. Eine bereits aktive Verbindung behält ihren aktuellen Zustand bei. Wählen Sie einen Modus nur, wenn Sie ein anderes Gerät anschließen möchten, und halten Sie den Host wach und am Laufen.
 
 1. Wählen **WiFi** für Geräte im selben lokalen Netzwerk. Wenn mehrere Hostadressen angezeigt werden, wählen Sie die vom Telefon aus erreichbare Adresse aus. Ein isoliertes Gastnetzwerk kann den Zugriff verhindern, selbst wenn beide Geräte den gleichen WiFi-Namen aufweisen.
 2. Für den Zugriff außerhalb des lokalen Netzwerks wählen Sie **Internet**. Lesen Sie die Pinggy-Verbindungsbenachrichtigung und warten Sie, bis ein funktionierender Link und QR-Code angezeigt werden. Der Verkehr nutzt den Tunnel eines Drittanbieters; Überprüfen Sie das angezeigte Passwort und die Verbindungsanforderungen.

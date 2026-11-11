@@ -1,7 +1,7 @@
 ---
 title: "Navegación y búsqueda"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # Navegación y búsqueda {/* #navigation-and-search */}
@@ -67,3 +67,17 @@ Categoría clara y otros filtros, compruebe el proyecto de propiedad y busque un
 Abra el menú del icono **Open-Science** en la barra de menú macOS, bandeja Windows o un escritorio Linux con soporte de bandeja. Utilice **Running sessions** para encontrar trabajo activo, **Pinned sessions** para conversaciones confinadas, o **Recent items** para contenido reciente. Las listas más largas continúan bajo **Más artículos**. Después de elegir una entrada, compruebe el proyecto y el título de conversación que abre.
 
 Use **Pin** junto a un título de conversación para mantenerlo útil. **Mostrar / Ocultar** cambia la visibilidad de la ventana; **Quit** sale de la aplicación. Cambiar las conversaciones no detiene una tarea. La disponibilidad de iconos Linux depende del soporte de bandeja del escritorio. Vea [comparecencia y notificaciones](appearance.md) para el comportamiento de ventana y alertas.
+
+## Abrir el centro de recursos {/* #resource-center */}
+
+Uso **Resource center** en casa o en la barra lateral del proyecto. Elija **Skills**, **Connectors**, **Specialists** o **Use Cases**. Estos recursos ahora tienen su propio espacio de trabajo en lugar de paneles dentro de Ajustes; pantallas más antiguas pueden mostrar la entrada de Ajustes anterior.
+
+1. Elige un tipo de recurso. Uso **Installed** para los recursos locales y **Marketplace** para paquetes publicados donde se ofrece.
+2. Búsqueda por nombre y abierta **Filters** para estrechar la lista. Limpiar los filtros de búsqueda o reseteo si un artículo esperado desaparece.
+3. Abierto **View details** para inspeccionar el recurso. Compruebe su fuente, versión, requisitos y disponibilidad antes de instalar o habilitarlo.
+4. Uso **Manage access** o los controles de disponibilidad del recurso para comprobar qué agentes pueden utilizarlo. La instalación, el acceso a los agentes y la aprobación para una operación en particular son decisiones separadas.
+5. Volver al proyecto con su conversación intacta. Abrir una referencia de Habilidad en el Compositor o un mensaje enviado abre el detalle de recursos en el panel del proyecto.
+
+![Habilidades, conectores, especialistas y casos de uso en el centro de recursos](/img/open-science/v121/resource-center.webp)
+
+Véase [Instalación de habilidad](../skills/marketplace.md), [Configuración del conector](connectors.md) y [Funciones especiales](../specialists/overview.md).

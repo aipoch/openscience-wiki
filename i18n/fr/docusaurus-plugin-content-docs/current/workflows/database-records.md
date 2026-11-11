@@ -1,7 +1,7 @@
 ---
 title: "Récupérer des dossiers structurés à partir d'une base de données scientifique"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Commencez par les noms des composés et terminez par une table d'identificateurs
 
 ## 1. Définir les composés et les propriétés {/* #1-define-the-compounds-and-properties */}
 
-Dans **Settings → Connectors**, assurez-vous que **Chimie** est disponible. Ouvrez un projet, commencez une conversation et sélectionnez un modèle connecté. Cette exécution a utilisé Open-Science 0.30.1 et la Chimie/PubChem Connector; il n'a pas besoin d'un tableur d'entrée.
+Dans **Resource center → Connectors**, assurez-vous que **Chimie** est disponible. Ouvrez un projet, commencez une conversation et sélectionnez un modèle connecté. Cette exécution a utilisé Open-Science 0.30.1 et la Chimie/PubChem Connector; il n'a pas besoin d'un tableur d'entrée.
 
 Spécifiez **acides monocarboxyliques saturés neutres, à chaîne droite**. Un nom similaire peut désigner un isomère ramifié, un sel ou une base conjuguée. Une formule à elle seule ne peut pas distinguer toutes ces structures.
 

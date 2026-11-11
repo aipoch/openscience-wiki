@@ -1,7 +1,7 @@
 ---
 title: "Connectors and credentials"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,7 @@ In batch management, review the selected count in the bottom action area before 
 
 ### Find tools for a gene-expression project
 
-Open **Settings → Connectors**, search **Omics Archives**, and open its detail. This built-in family includes GEO, ArrayExpress, MetaboLights, MGnify and PRIDE tools. Expand a tool row before choosing it.
+Open **Resource center → Connectors**, search **Omics Archives**, and open its detail. This built-in family includes GEO, ArrayExpress, MetaboLights, MGnify and PRIDE tools. Expand a tool row before choosing it.
 
 ![GEO metadata tool and its explicit download boundary](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -37,11 +37,11 @@ Assign a tag such as **Transcriptomics** to a Connector, then find it under **Se
 
 Use **Search connectors** to find PubMed under **Directory**; the list also contains **Featured** and **Custom** groups. Filtering applies per group, so another group can say **No connectors match your search** while a matching result remains visible below.
 
-Use **Filter connectors by group**, **Filter Connectors by agent**, and **Filter by Tag** together with search. **Manage credentials** opens the shared contact-email/credential settings. **Used by** shows availability; **Manage Tags** organizes a Connector. Use the resource’s **Manage access** control to review and adjust access for Main Agent and Specialists in one place.
+Use **Filters → Filter connectors by group**, **Filter Connectors by agent**, and **Filter by Tag** together with search. **Manage credentials** opens the shared contact-email/credential settings. **Used by** shows availability; **Manage Tags** organizes a Connector. Use the resource’s **Manage access** control to review and adjust access for Main Agent and Specialists in one place.
 
 #### Manage access for each agent {/* #resource-access */}
 
-1. Find a Connector under **Settings → Connectors** and choose its **Manage access** control.
+1. Find a Connector under **Resource center → Connectors** and choose its **Manage access** control.
 2. Review **Main Agent** and the listed Specialists. Search the role list when available. Change only the intended association; the role editor remains another way to manage its capability list.
 3. Reopen the popup and check **Used by**. A binding can remain assigned to a disabled Specialist; assigning it does not enable that role.
 
@@ -51,7 +51,7 @@ For a role with **Full access**, excluding this Connector creates a per-resource
 
 #### Enable or disable several Connectors
 
-Open **Settings → Connectors**, filter the list, choose **Select multiple** in the relevant group and select the intended Connectors. Review the selected count before enabling or disabling them, then check each returned state. Keep only the services needed for your work enabled. Bulk availability changes do not supply credentials, change per-tool approval policies or grant a Specialist access; configure those separately.
+Open **Resource center → Connectors**, filter the list, choose **Select multiple** in the relevant group and select the intended Connectors. Review the selected count before enabling or disabling them, then check each returned state. Keep only the services needed for your work enabled. Bulk availability changes do not supply credentials, change per-tool approval policies or grant a Specialist access; configure those separately.
 
 #### PubMed: availability, tools, and approval policy
 

@@ -2,7 +2,7 @@
 title: "과학 데이터베이스"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # 과학 데이터베이스 {/* #scientific-databases */}
@@ -13,7 +13,7 @@ last_update:
 
 ## 지원된 데이터베이스 {/* #supported-databases */}
 
-Open-Science v1.0.8는 **내장 Connector 48개와 작업 418개**를 제공합니다. 데이터 소스 Connector 47개가 작업 416개를, 오프라인 Molecule Connector 1개가 작업 2개를 제공합니다. 아래 이름은 **Settings → Connectors**의 항목과 일치합니다. 하나의 Connector가 여러 데이터베이스를 다룰 수 있지만, 해당 웹사이트의 모든 기능을 지원한다는 뜻은 아닙니다.
+Open-Science v1.0.8는 **내장 Connector 48개와 작업 418개**를 제공합니다. 데이터 소스 Connector 47개가 작업 416개를, 오프라인 Molecule Connector 1개가 작업 2개를 제공합니다. 아래 이름은 **Resource center → Connectors**의 항목과 일치합니다. 하나의 Connector가 여러 데이터베이스를 다룰 수 있지만, 해당 웹사이트의 모든 기능을 지원한다는 뜻은 아닙니다.
 
 이 수에는 비활성화된 항목을 포함한 모든 내장 항목이 포함됩니다. 사용자가 추가한 MCP Connector는 별도입니다. Connector 수, 연결된 데이터베이스 수, 호출 가능한 작업 수는 서로 다른 기준입니다.
 
@@ -90,7 +90,7 @@ Open-Science v1.0.8는 **내장 Connector 48개와 작업 418개**를 제공합�
 
 ## ENCORI과 RNA 규제 증거 {/* #encori */}
 
-**Settings → Connectors**에서 **ENCORI** 찾기, 활성화하고 **메인 에이전트**를 사용할 수 있습니다. 이 내장 소스는 사용자 정의 MCP URL 또는 API 키를 필요로하지 않습니다. 선택된 Main 모델과 함께, 유기체/조립, RNA 또는 대상 유전자, 세포 유형 및 증거 임계 값을 대화에 지정합니다.
+**Resource center → Connectors**에서 **ENCORI** 찾기, 활성화하고 **메인 에이전트**를 사용할 수 있습니다. 이 내장 소스는 사용자 정의 MCP URL 또는 API 키를 필요로하지 않습니다. 선택된 Main 모델과 함께, 유기체/조립, RNA 또는 대상 유전자, 세포 유형 및 증거 임계 값을 대화에 지정합니다.
 
 | 작업 | 결과 및 경계 |
 | --- | --- |
@@ -129,7 +129,7 @@ ChEMBL 페이지는 `activity_id`에 의해 주문됩니다. `has_more:false`까
 
 ## 단일 셀, 모델 조직 및 변형 효과 데이터 {/* #single-cell-model-organisms */}
 
-아래 항목 검색 **Settings → Connectors**, **메인 에이전트**에 대한 가용성을 활성화, 다음 생물을 설명, 연구 질문 및 기록 당신의 대화에 유지. 이 새로운 작업은 사용자 정의 MCP 서버, API 키 또는 NCBI 연락처 이메일없이 공공 데이터를 읽습니다. 동일한 Connector에 있는 다른 서비스는 다른 필요조건이 있을 수 있습니다.
+아래 항목 검색 **Resource center → Connectors**, **메인 에이전트**에 대한 가용성을 활성화, 다음 생물을 설명, 연구 질문 및 기록 당신의 대화에 유지. 이 새로운 작업은 사용자 정의 MCP 서버, API 키 또는 NCBI 연락처 이메일없이 공공 데이터를 읽습니다. 동일한 Connector에 있는 다른 서비스는 다른 필요조건이 있을 수 있습니다.
 
 | 이름 &#42; | 할 수 있는 것 | 결과를 사용하는 방법 |
 | --- | --- | --- |
@@ -144,7 +144,7 @@ CELLxGENE 필터링 및 pagination은 각 요청에 대한 업스트림 카탈�
 
 ## 세포 선, 페인팅 및 면역 증거 {/* #cell-lines-phenotypes-immunity */}
 
-지원하다 **Cellosaurus**· **Monarch Initiative** 또는 **IEDB** 으로 **Settings → Connectors** 그리고 그것을 사용할 수 있습니다 **메인 에이전트**... 이 작업 쿼리는 사용자 정의 서버 또는 API 키없이 공개 레코드.
+지원하다 **Cellosaurus**· **Monarch Initiative** 또는 **IEDB** 으로 **Resource center → Connectors** 그리고 그것을 사용할 수 있습니다 **메인 에이전트**... 이 작업 쿼리는 사용자 정의 서버 또는 API 키없이 공개 레코드.
 
 | 이름 &#42; | 자주 묻는 질문 | 관광 명소 |
 | --- | --- | --- |
@@ -168,7 +168,7 @@ matrix를 얻기 후에, **geo_preflight_matrix**는 이미 읽고, 8 MiB까지 
 
 ### 1. 내장 Connector 사용 {/* #1-enable-the-built-in-connector */}
 
-1. **Settings → Connectors**을 열고 **Omics Archives - 오믹스**과 같은 위에 나열된 가족을 검색합니다.
+1. **Resource center → Connectors**을 열고 **Omics Archives - 오믹스**과 같은 위에 나열된 가족을 검색합니다.
 2. 자세한 내용을 열고 **Tools**을 확장하십시오. 선택된 작업의 입력, 결과 제한 및 제 3 자 요구 사항을 읽어보십시오.
 3. **메인 에이전트** 및 **Used by**을 위한 사용 가능한 가용성. Main 에이전트와 Specialist 협회를 조정하는 자원에 **Manage access**을 사용합니다. 가용성 및 per-tool 승인 정책은 별도의 통제입니다.
 
@@ -182,8 +182,8 @@ matrix를 얻기 후에, **geo_preflight_matrix**는 이미 읽고, 8 MiB까지 
 
 | 서비스 또는 조건 | 설정할 곳 |
 | --- | --- |
-| OpenAlex | 옵션 키. 하나 구성, 열기 **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**, 그것을 유효하게 하고, 그 후에 저장하십시오. |
-| 연락처 정보를 요구하는 NCBI 변형 쿼리 | **Settings → Connectors → Manage credentials → Literature access**을 진행하세요. 제품정보 **Contact email** 을 선택해 주세요 **Save**을 진행하세요. NCBI API 열쇠는 선택적입니다. |
+| OpenAlex | 옵션 키. 하나 구성, 열기 **Resource center → Connectors → Literature Graph → Manage credentials → OpenAlex**, 그것을 유효하게 하고, 그 후에 저장하십시오. |
+| 연락처 정보를 요구하는 NCBI 변형 쿼리 | **Resource center → Connectors → Manage credentials → Literature access**을 진행하세요. 제품정보 **Contact email** 을 선택해 주세요 **Save**을 진행하세요. NCBI API 열쇠는 선택적입니다. |
 | credential 필요조건을 가진 또 다른 가동 | 그 도구의 요구 사항 및 [자격 시험](../guides/connectors.md)을 진행하세요. 의도한 서비스에 대한 자격 증명을 브랜딩합니다. |
 
 credential 형태로 키 입력, 연구 프롬프트 또는 공유된 출력 파일에 아닙니다. 선택된 가동을 위한 필요조건을 형성하십시오; 위의 연락처 - 이메일 요구 사항은 모든 NCBI 도구가 동일한 요구 사항을 가지고 있음을 의미하지 않습니다.
@@ -284,11 +284,11 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 - **Protein Annotation → STRING** : 단백질 네트워크가 배경에서 예상보다 더 많은 상호 작용을 가지고 있는지 테스트합니다. 이것은 통로의 대표로부터 다른 질문을; 네트워크 P 값은 통로 테스트가 아닙니다. [Gen-set enrichment 워크플로우](../workflows/gene-set-enrichment.md#enrichr-string)을 따르십시오.
 - **Clinical Genomics → ClinPGx** : 약물, 유전자 또는 변형 표기, 지침, 규제 라벨 및 인구 주파수. 식별자를 먼저 해결하고, 작업에 의해 필요한 필드를 공급하고 원본 소스와 증거 수준을 유지합니다. 이 연구 기록; 그것은 자동으로 개별 치료 계획을 생산하지 않습니다.
 
-**Settings → Connectors**의 활성 에이전트에 대한 관련 Connector을 활성화합니다. 이 내장 항목은 사용자 정의 MCP 서버가 필요하지 않습니다. 정확한 필드 및 조건 요구 사항에 대한 [및 다운로드 가능한 레지스트리는 이제 v0.31.1 :](../reference/connector-operations.md)을 참조하십시오.
+**Resource center → Connectors**의 활성 에이전트에 대한 관련 Connector을 활성화합니다. 이 내장 항목은 사용자 정의 MCP 서버가 필요하지 않습니다. 정확한 필드 및 조건 요구 사항에 대한 [및 다운로드 가능한 레지스트리는 이제 v0.31.1 :](../reference/connector-operations.md)을 참조하십시오.
 
 ## Pathways, 표현 및 임상 데이터 {/* #pathway-expression-clinical */}
 
-**Settings → Connectors**의 대응 가족을 활성화하고, 그 다음 유기체, 소스, 식별자 및 대상 범위를 알려줍니다. 이 추가 사용 내장 커넥터; MCP 서버가 필요하지 않습니다.
+**Resource center → Connectors**의 대응 가족을 활성화하고, 그 다음 유기체, 소스, 식별자 및 대상 범위를 알려줍니다. 이 추가 사용 내장 커넥터; MCP 서버가 필요하지 않습니다.
 
 | 이름 &#42; | 할 수 있는 것 | 연결 및 해석 |
 | --- | --- | --- |
@@ -306,13 +306,13 @@ v0.31.0에서 `get_string_network.nodes`은 이웃과 고립 된 맵핑 입력�
 
 ## GWAS 요약 통계 파일 찾기 {/* #gwas-summary-statistics */}
 
-**Settings → Connectors**에서 Main에 대한 **인간 유전학** 활성화. 연구의 **GCST 액세스**에 대한 요약 통계 조사에 대한 질문, 그리고 반환된 원본/출시된 파일 URL, 메타데이터 및 선언된 참조 게놈을 유지. 공개 조회는 API 키가 필요하지 않습니다.
+**Resource center → Connectors**에서 Main에 대한 **인간 유전학** 활성화. 연구의 **GCST 액세스**에 대한 요약 통계 조사에 대한 질문, 그리고 반환된 원본/출시된 파일 URL, 메타데이터 및 선언된 참조 게놈을 유지. 공개 조회는 API 키가 필요하지 않습니다.
 
 `gwas_get_summary_statistics` 목록 연구 파일 및 사용 가능한 YAML 메타 데이터 읽기; 그것은 큰 협회 테이블을 다운로드하지 않습니다. 그것의 GWAS-SSF 란 정의는 검열된 파일 우두머리가 아닌 표준을 설명합니다. genome build, effect allele and units를 별도로 지정하고 실제 열을 확인하여 분석하기 전에 대상 파일을 다운로드하십시오. Significant 협회는 완전한 요약 통계에 대 한 대체 되지 않습니다.. [모수와 산출](../reference/connector-operations.md#gwas_get_summary_statistics).
 
 ## InterProScan에 단백질 시퀀스 제출 {/* #interproscan-submit */}
 
-1. **Settings → Connectors**에서 Main에 대한 **InterProScan의 장점** 활성화. **Settings → Credentials → Literature access**에서 EMBL-EBI 작업에 사용되는 유효한 연락처 이메일을 저장하십시오; API 키가 필요하지 않습니다.
+1. **Resource center → Connectors**에서 Main에 대한 **InterProScan의 장점** 활성화. **Settings → Credentials → Literature access**에서 EMBL-EBI 작업에 사용되는 유효한 연락처 이메일을 저장하십시오; API 키가 필요하지 않습니다.
 2. 단백질 순서 또는 독특하게 지명된 단백질 FASTA 기록 및 요구 제출을 한 번 공급하십시오. 순서와 접촉 이메일은 EMBL-EBI에 보내집니다. 1개의 요청은 순서 당 1,000 기록, 10,000 잔류물 및 4 MiB에 의하여 인코딩된 요구 몸까지 받아들입니다.
 3. 반환된 **job_id**을 유지합니다. **SUBMITTED** 와 **ready: false** 은 영수증, 아니 annotation 결과입니다. **(주)** 적어도 10 초 떨어져 검사하십시오; 오염은 자동이 아닙니다.
 4. **FINISHED** 후, **제품정보**을 요청하고 원격 결과가 만료되기 전에 완전한 TSV를 절약하십시오. 2 MiB 리트리발 한계에 대한 응답은 truncated 보고서를 침묵적으로 돌려보다는 실패합니다.
@@ -328,7 +328,7 @@ receptor-group ID, 체인을 유지, assay ID 및 소스 출판보고. 호스트
 
 ## PDC과 함께 암 유전체학 발견 {/* #pdc */}
 
-**Settings → Connectors**에서 **PDC**을 활성화하십시오. 대중적인 메타데이터 API는 API 열쇠를 필요로 합니다. 연구 및 버전을 찾기 위해 사용, assay와 견본 조사, 지도 상자 표본 aliquot 협회를 검사하고 **단백질 회의** 보고서와 같은 quantitative 파일을 목록으로 만드십시오. 처리/outcome 자료 또는 다운로드 파일을 반환하지 않습니다.
+**Resource center → Connectors**에서 **PDC**을 활성화하십시오. 대중적인 메타데이터 API는 API 열쇠를 필요로 합니다. 연구 및 버전을 찾기 위해 사용, assay와 견본 조사, 지도 상자 표본 aliquot 협회를 검사하고 **단백질 회의** 보고서와 같은 quantitative 파일을 목록으로 만드십시오. 처리/outcome 자료 또는 다운로드 파일을 반환하지 않습니다.
 
 `PDC000127`과 같은 연구 접근을 시작하거나 연구 식별자 및 버전 이름을 검색하십시오. PDC 키워드 매칭은 임상 질병 필터가 아닙니다. 연구를 검색한 다음 `study_id` UUID를 사용하여 후속 통화를 핀으로 변환하십시오. `pdc_study_id` 최신 버전을 선택합니다. 이러한 선택자 중 하나를 정확히 제공합니다.
 
@@ -338,7 +338,7 @@ receptor-group ID, 체인을 유지, assay ID 및 소스 출판보고. 호스트
 
 ## 인구 별 LD 확인 {/* #ensembl-ld */}
 
-**Settings → Connectors**에서 **한국어 (Korean)**을 활성화하십시오. Ensembl LD 도구는 키가없는 공공 API를 사용합니다. `ensembl_ld_pairwise`에 대한 두 가지 변형 ID를 공급, 또는 `ensembl_ld_proxies`에 대한 하나, `1000GENOMES:phase_3:KHV`와 같은 전체 인구 이름과 함께. 도구는 인구 또는 인퍼 ancestry를 발견하지 않습니다; 연구에 적합한 참조 인구를 선택하십시오.
+**Resource center → Connectors**에서 **한국어 (Korean)**을 활성화하십시오. Ensembl LD 도구는 키가없는 공공 API를 사용합니다. `ensembl_ld_pairwise`에 대한 두 가지 변형 ID를 공급, 또는 `ensembl_ld_proxies`에 대한 하나, `1000GENOMES:phase_3:KHV`와 같은 전체 인구 이름과 함께. 도구는 인구 또는 인퍼 ancestry를 발견하지 않습니다; 연구에 적합한 참조 인구를 선택하십시오.
 
 쌍방향 결과 보고서 r2 및 D′. r2 ≥ 0.8 및 **500 kb 총 창**에 프록시 쿼리 기본, 어느 쪽에 250 kb. `max_records`는 정렬 후 반환된 목록을 캡, 업스트림 작업이 아닙니다. 결과를 가진 인구와 retrieval metadata 유지; 이 엔드포인트는 참고 집합 또는 Ensembl 방출을 보고하지 않습니다. 빈 결과가 반환되지 않는 자격이 없는 데이터, 제로 LD. 높은 LD는 카시니즘과 기능적인 평등도 설치하지 않습니다. [쌍방향 필드](../reference/connector-operations.md#ensembl_ld_pairwise) 및 [프록시 필드](../reference/connector-operations.md#ensembl_ld_proxies)을 참조하십시오.
 
@@ -356,11 +356,11 @@ receptor-group ID, 체인을 유지, assay ID 및 소스 출판보고. 호스트
 
 ### OpenAlex 자격 증명 {/* #openalex-prompts */}
 
-v1.0.2는 현재 세션에서 거절한 OpenAlex 인증 정보 요청을 기억하여 반복하지 않습니다. 나중에 이 소스가 필요하면 다음 설정에서 직접 구성하세요: **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** 그런 다음 원하는 조회를 다시 실행합니다. 요청을 거절해도 키가 등록되거나 접근 권한·사용량이 보장되지는 않습니다.
+v1.0.2는 현재 세션에서 거절한 OpenAlex 인증 정보 요청을 기억하여 반복하지 않습니다. 나중에 이 소스가 필요하면 다음 설정에서 직접 구성하세요: **Resource center → Connectors → Literature Graph → Manage credentials → OpenAlex** 그런 다음 원하는 조회를 다시 실행합니다. 요청을 거절해도 키가 등록되거나 접근 권한·사용량이 보장되지는 않습니다.
 
 ## 새 데이터 소스를 연결하고 결과의 의미 확인하기 {/* #new-source-access */}
 
-설정 **Settings → Connectors**에서 아래 항목을 찾아 사용을 허용하세요. 대상은 **Main** 또는 사용할 Specialist입니다. HGNC, PubTator 3, DGIdb, RNAcentral은 기존 항목 안의 도구입니다. **Orphadata** 는 별도 항목이며 기본적으로 꺼져 있습니다. 이 새 도구들은 별도 API 키 없이 공개 엔드포인트를 이용합니다. 같은 항목의 다른 도구에는 별도의 인증 요건이 있을 수 있습니다.
+설정 **Resource center → Connectors**에서 아래 항목을 찾아 사용을 허용하세요. 대상은 **Main** 또는 사용할 Specialist입니다. HGNC, PubTator 3, DGIdb, RNAcentral은 기존 항목 안의 도구입니다. **Orphadata** 는 별도 항목이며 기본적으로 꺼져 있습니다. 이 새 도구들은 별도 API 키 없이 공개 엔드포인트를 이용합니다. 같은 항목의 다른 도구에는 별도의 인증 요건이 있을 수 있습니다.
 
 | 데이터 소스 | 설정 항목 | 요청 및 확인 사항 |
 | --- | --- | --- |
@@ -383,7 +383,7 @@ v1.0.2는 현재 세션에서 거절한 OpenAlex 인증 정보 요청을 기억�
 
 ## 영상·경로·지질·암 모델 데이터 {/* #expanded-sources */}
 
-**Settings → Connectors**에서 대상을 켜고 **Main**에 제공하세요. TCIA, KEGG, RxNorm / RxNav, DailyMed, BioSamples, WikiPathways는 독립 항목이며 기본적으로 꺼져 있습니다. 아래 공개 서비스에는 별도 MCP 서버나 API key가 필요 없지만, 활성화가 데이터 라이선스나 제한 데이터 접근 권한을 부여하지는 않습니다.
+**Resource center → Connectors**에서 대상을 켜고 **Main**에 제공하세요. TCIA, KEGG, RxNorm / RxNav, DailyMed, BioSamples, WikiPathways는 독립 항목이며 기본적으로 꺼져 있습니다. 아래 공개 서비스에는 별도 MCP 서버나 API key가 필요 없지만, 활성화가 데이터 라이선스나 제한 데이터 접근 권한을 부여하지는 않습니다.
 
 | 항목 | 요청할 내용 | 보존할 정보 |
 | --- | --- | --- |
@@ -400,7 +400,7 @@ v1.0.2는 현재 세션에서 거절한 OpenAlex 인증 정보 요청을 기억�
 
 ## 공식 연구 데이터와 파일 목록 검색 {/* #scientific-file-discovery */}
 
-**Settings → Connectors**에서 필요한 항목만 활성화합니다. Europe PMC, Research Datasets, ChEA3, bioDBnet, CTD는 API 키가 필수가 아닙니다. 검색어, 식별자 또는 유전자 목록은 각 서비스로 전송됩니다. [연결 설정](#connect-database).
+**Resource center → Connectors**에서 필요한 항목만 활성화합니다. Europe PMC, Research Datasets, ChEA3, bioDBnet, CTD는 API 키가 필수가 아닙니다. 검색어, 식별자 또는 유전자 목록은 각 서비스로 전송됩니다. [연결 설정](#connect-database).
 
 | 목적 | 항목과 결과 | 다음 단계 |
 | --- | --- | --- |

@@ -1,7 +1,7 @@
 ---
 title: "Créer et partager un film de recherche"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Créer et partager un film de recherche
@@ -42,6 +42,8 @@ La réponse complète donne une moyenne et médiane de **6** et explique l'absen
 ![Recherche-production de films à partir d'une conversation d'enseignement terminée](/img/open-science/v120/film-progress.webp)
 
 ![Film de recherche prêt avec narration et lecture en anglais](/img/open-science/v120/film-ready.webp)
+
+Dans v1.2.1, passer à une autre session n'arrête pas la génération de films. Gardez l'application en cours d'exécution et retournez à la session source **View generation progress** ou **View research film** pour inspecter le résultat. L'annulation explicite du travail de film arrête toujours la génération.
 
 ## Exporter un film examiné {/* #export-film */}
 

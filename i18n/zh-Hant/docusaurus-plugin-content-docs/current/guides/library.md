@@ -1,7 +1,7 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -420,6 +420,24 @@ Citation 的四個複製按鈕寫入不同格式。貼上到目標編輯器，�
 
 
 </ToolOperationGroup>
+
+## 將書目元數據導出爲 CSV {/* #bibliography-csv */}
+
+需要在表格中檢查或分享文獻清單時，可使用 CSV。它只導出書目字段，不包含附件、篩選結論和個人筆記；與引用管理軟件交換記錄時，可選擇 BibTeX 或 RIS。
+
+1. 打開 **Library**，進入目標項目或集合，選擇需要的文獻。跨頁選擇可能多於當前可見條目，導出前檢查選中數量並排除不需要的記錄。
+2. 選擇 **More actions → Export → CSV**。導出整個項目或集合時，使用對應的導出操作並選擇 **CSV**。
+3. 通過桌面保存對話框或瀏覽器下載流程保存，等待導出結束；取消保存不會生成文件。
+4. 在表格軟件中按 UTF-8 打開 CSV，覈對行數與選擇數量，並抽查標題、作者和標識符。空單元格表示元數據缺失，不代表已經覈實該字段不存在。
+
+16 個列名在各界面語言中都保持英文：
+
+```text
+item_id, title, authors, year, item_type, publication, volume, issue,
+pages, doi, pmid, pmcid, arxiv_id, url, abstract, language
+```
+
+![文獻庫中與 BibTeX、RIS 並列的 CSV 導出選項](/img/open-science/v121/library-csv.webp)
 
 ## 去重與恢復條目 {/* #去重与恢复条目 */}
 

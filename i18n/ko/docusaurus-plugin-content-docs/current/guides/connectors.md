@@ -1,7 +1,7 @@
 ---
 title: "커넥터 및 자격"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,7 @@ A Connector은 에이전트에 사용할 수있는 서비스 도구입니다. �
 
 ### Gene-expression 프로젝트를 위한 도구 찾기 {/* #find-tools-for-a-gene-expression-project */}
 
-**Settings → Connectors**을 열고 **Omics 아카이브**을 검색하고 세부 정보를 엽니다. 이 내장 제품군에는 GEO, ArrayExpress, MetaboLights, MGnify 및 PRIDE 도구가 포함되어 있습니다. 선택하기 전에 도구 행을 확장합니다.
+**Resource center → Connectors**을 열고 **Omics 아카이브**을 검색하고 세부 정보를 엽니다. 이 내장 제품군에는 GEO, ArrayExpress, MetaboLights, MGnify 및 PRIDE 도구가 포함되어 있습니다. 선택하기 전에 도구 행을 확장합니다.
 
 ![GEO 메타데이터 도구 및 명시된 다운로드 경계](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -37,11 +37,11 @@ A Connector은 에이전트에 사용할 수있는 서비스 도구입니다. �
 
 **Search connectors**을 사용하여 PubMed를 **Directory** 아래; 목록은 또한 **Featured** 및 **Custom** 그룹을 포함합니다. 필터링 그룹 당 적용, 그래서 다른 그룹은 **연결관은 당신의 수색에 일치합니다**을 말할 수 있습니다 일치 결과 아래에서 볼 수 있습니다.
 
-**Filter connectors by group**, **Filter Connectors by agent** 및 **Filter by Tag**를 사용하여 검색합니다. **Manage credentials**은 공유 연락처-email/credential 설정을 엽니다. **Used by**는 가용성을 보여줍니다; **Manage Tags**는 Connector을 구성합니다. 리소스의 **Manage access** 제어를 사용하여 Main 에이전트 및 전문가에 대한 액세스를 검토하고 조정할 수 있습니다.
+**Filters → Filter connectors by group**, **Filter Connectors by agent** 및 **Filter by Tag**를 사용하여 검색합니다. **Manage credentials**은 공유 연락처-email/credential 설정을 엽니다. **Used by**는 가용성을 보여줍니다; **Manage Tags**는 Connector을 구성합니다. 리소스의 **Manage access** 제어를 사용하여 Main 에이전트 및 전문가에 대한 액세스를 검토하고 조정할 수 있습니다.
 
 #### 각 에이전트에 대한 액세스 관리 {/* #resource-access */}
 
-1. **Settings → Connectors** 아래 Connector을 찾아 **Manage access** 컨트롤을 선택하십시오.
+1. **Resource center → Connectors** 아래 Connector을 찾아 **Manage access** 컨트롤을 선택하십시오.
 2. **메인 에이전트** 및 나열된 전문가를 검토하십시오. 사용할 때 역할 목록을 검색합니다. 단지 의도 된 협회를 변경; 역할 편집기는 또 다른 방법을 유지하여 기능 목록을 관리합니다.
 3. 팝업을 열고 **Used by**을 확인합니다. 바인딩은 비활성화 Specialist에 할당 될 수 있습니다; 그 역할을 할 수 없습니다.
 
@@ -51,7 +51,7 @@ A Connector은 에이전트에 사용할 수있는 서비스 도구입니다. �
 
 #### 몇몇 연결관을 활성화하거나 비활성화하십시오 {/* #enable-or-disable-several-connectors */}
 
-**Settings → Connectors**을 열고, 목록을 필터링하고, 관련 그룹에서 **Select multiple**을 선택하고 대상 커넥터를 선택하십시오. 선택한 카운트를 활성화하거나 비활성화하기 전에, 다음 각 반환 상태 확인. 작업에 필요한 서비스만 유지하십시오. 대량 가용성 변화는 credentials를 공급하지 않으며, 공구 승인 정책 당 변화하거나 Specialist 접근 권한을 부여하지 않습니다; 그를 따로 설정한다.
+**Resource center → Connectors**을 열고, 목록을 필터링하고, 관련 그룹에서 **Select multiple**을 선택하고 대상 커넥터를 선택하십시오. 선택한 카운트를 활성화하거나 비활성화하기 전에, 다음 각 반환 상태 확인. 작업에 필요한 서비스만 유지하십시오. 대량 가용성 변화는 credentials를 공급하지 않으며, 공구 승인 정책 당 변화하거나 Specialist 접근 권한을 부여하지 않습니다; 그를 따로 설정한다.
 
 #### PubMed : 가용성, 도구 및 승인 정책 {/* #pubmed-availability-tools-and-approval-policy */}
 
