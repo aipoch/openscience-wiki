@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: "Aperçu des paramètres"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Aperçu des paramètres {/* #settings-overview */}
 
-Ouvrir **Settings** du coin inférieur gauche de l'espace de travail. Ses **19 panneaux** sont organisés en quatre groupes: **System**, **Intelligence**, **Connections** et **Workspace**. L'apparence et les notifications sont des panneaux distincts. Choisissez par but ou par recherche dans l'en-tête; **Settings → Model**, par exemple, ouvre Modèle à l'intérieur Intelligence.
+Ouvrir **Settings** du coin inférieur gauche de l'espace de travail. Ses **16 panneaux** sont organisés en **System**, **Intelligence**, **Connections** et **Workspace**. Les compétences, les connecteurs et les spécialistes sont gérés séparément. [Centre de ressources](../guides/navigation.md#resource-center). Choisissez un panneau de paramètres par but ou utilisez la recherche d'en-tête.
 
 | Contrôle mondial | Comportement |
 | --- | --- |
@@ -27,7 +27,7 @@ Ouvrir **Settings** du coin inférieur gauche de l'espace de travail. Ses **19 p
 
 Cette recherche couvre les paramètres représentatifs de chaque panel, pas de chaque domaine ou document de recherche. Si un terme ne correspond pas, utilisez le nom du panneau ou les groupes de navigation ci-dessous. Pour rechercher des conversations ou des fichiers, fermez Paramètres et utilisez [recherche mondiale](../guides/navigation.md).
 
-## Les panneaux principaux 19 {/* #the-17-main-panels */}
+## Les panneaux principaux 16 {/* #the-17-main-panels */}
 
 | Groupe | Groupe | Ce qu'il gère |
 | --- | --- | --- |
@@ -36,11 +36,8 @@ Cette recherche couvre les paramètres représentatifs de chaque panel, pas de c
 |  | [Notifications](../guides/appearance.md) | Alertes des tâches, contenu, état système et notification de test |
 | Intelligence | [Modèle](../guides/models.md) | Modèles de fournisseurs et de scénarios |
 |  | [Agent](../guides/frameworks.md) | Installation, commutation et réparation du cadre de l'agent |
-|  | [Skills](../skills/overview.md) | Méthodes de recherche réutilisables et leur disponibilité |
-|  | [Spécialistes](../specialists/overview.md) | Rôles et accès aux capacités de Specialist |
 |  | [Mémoire](../guides/memory.md) | Notes globales et de projet |
-| Connexions | [Connecteurs](../guides/connectors.md) | Services de données, connexions et importations personnalisées MCP |
-|  | [Réseau](../guides/network.md) | Proxy, miroirs de paquets et accès au domaine Notebook |
+| Connexions | [Réseau](../guides/network.md) | Proxy, miroirs de paquets et accès au domaine Notebook |
 |  | [À distance](../guides/remote-access.md) | Accès au navigateur, appariement et dispositifs de confiance |
 |  | [Informations d'identification](../tools/credentials.md) | Clés, jetons, OAuth et récupération des titres de compétence |
 |  | [Calculer](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |

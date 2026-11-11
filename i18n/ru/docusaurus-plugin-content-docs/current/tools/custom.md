@@ -1,7 +1,7 @@
 ---
 title: "Подключите пользовательский инструмент MCP"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -26,7 +26,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## Добавить в Open-Science {/* #add-it-in-open-science */}
 
-1. Открыть **Settings → Connectors → Add connector → Local command**.
+1. Открыть **Resource center → Connectors → Add connector → Local command**.
 2. Установите **Display name** на `GSE60450 QC`.
 3. Выберите **python3 — script file** как **Command** или **Other…** с фактическим исполняемым путем Python на Windows.
 4. Открыть **Advanced settings**. Установите имя разъема/ID на `gse60450-qc` и опишите его как доступ только для чтения к сохраненной таблице QC.

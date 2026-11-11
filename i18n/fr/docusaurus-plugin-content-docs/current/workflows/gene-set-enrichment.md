@@ -2,7 +2,7 @@
 title: "Exécuter l'enrichissement fonctionnel d'un ensemble de gènes candidats"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -19,7 +19,7 @@ Le premier exemple utilise g:Profiler; le [Comparaison entre Enrichr et STRING](
 
 ## 1. Définir la liste des gènes et les paramètres d'analyse {/* #gene-set-enrichment */}
 
-1. Dans **Settings → Connectors**, rendre **Genes & Ontologies** disponible à l'agent. Ouvrez une session avec un modèle connecté et un exécut temps Notebook disponible.
+1. Dans **Resource center → Connectors**, rendre **Genes & Ontologies** disponible à l'agent. Ouvrez une session avec un modèle connecté et un exécut temps Notebook disponible.
 2. Préciser l'organisme, les identificateurs de gènes, les sources de données et le contexte statistique. Pour de vraies données expérimentales, justifier le contexte à l'aide de gènes qui auraient pu être sélectionnés par l'expérience. Ce tutoriel utilise explicitement tous les gènes annotés, et non un univers personnalisé de gènes mesurés.
 3. Envoyez l'invite suivante. Gardez la requête source-version et l'appel d'enrichissement dans la même session et enregistrez leurs résultats réels.
 
@@ -59,7 +59,7 @@ Ouvrez le CSV et comparez-le avec le JSON complet. Cette exécution a retourné 
 
 Enrichr demande quels ensembles d'annotation sont surreprésentés dans les gènes soumis. L'enrichissement en STRING PPI demande si les protéines ont plus d'interactions réseau que prévu. Ce sont des tests différents; l'accord n'est pas une reproduction indépendante d'un résultat biologique.
 
-1. Dans **Settings → Connectors**, activez **Genes & Ontologies** et **Annotation des protéines** pour l'agent.
+1. Dans **Resource center → Connectors**, activez **Genes & Ontologies** et **Annotation des protéines** pour l'agent.
 2. Créez un projet appelé **Ensemble de gènes de dommages à l'ADN** et ouvrez une nouvelle session. Cet exemple utilise Codex et Session Notebook.
 3. Listez les bibliothèques Enrichr disponibles avant de choisir une bibliothèque. Pour cette comparaison, utilisez la bibliothèque **GO_Biological_Process_2025** fixe afin que les résultats enregistrés aient une version d'annotation identifiable. Une bibliothèque plus récente peut produire différents résultats.
 4. Envoyer cette invite et ouvrir les notes générées après la fin de l'exécution:

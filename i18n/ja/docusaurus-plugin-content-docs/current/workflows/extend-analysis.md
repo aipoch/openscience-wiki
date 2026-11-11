@@ -1,7 +1,7 @@
 ---
 title: "インストールしたSpecialistで解析を拡張する"
 last_update:
-  date: '2026-09-17'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -16,7 +16,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. Specialistのインストールと選択 {/* #1-install-and-select-the-specialist */}
 
-1. **Settings → Specialists → Browse Marketplace** を開きます。 **Pharmacometrics PK/PDの設計Specialist**を見つけ、その機能をチェックし、インストールします。 この例では、Open-Science **0.30.1** でパッケージ **1.0.0** を使用します。
+1. **Resource center → Specialists → Marketplace** を開きます。 **Pharmacometrics PK/PDの設計Specialist**を見つけ、その機能をチェックし、インストールします。 この例では、Open-Science **0.30.1** でパッケージ **1.0.0** を使用します。
 2. **Settings → Runtimes**では、Rが**Ready**で有効になっていることを確認します。 記録された実行はR **4.4.3**を使用しました。
 3. 研究プロジェクトで新しい会話を開く。 利用可能なモデルを選択し、**Agent controls → Specialist → pharmacometrics-pkpd-designer** を選択します。 記録された実行は**Codexサブスクリプション/gpt-5.6-sol**を使用しました。
 4. **各解析メッセージ** の開始時、`/pkpd` をタイプして下さい、そして提案から **pkpd モデリング** を選んで下さい。 プロンプトを貼り付ける前に Skill チップになることを確認してください。

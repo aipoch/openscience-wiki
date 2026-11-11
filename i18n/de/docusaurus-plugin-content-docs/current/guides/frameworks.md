@@ -1,7 +1,7 @@
 ---
 title: "Installations- und Vermittlungsstellen"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Installations- und Vermittlungsstellen {/* #installing-and-switching-agents */}
@@ -28,7 +28,7 @@ Open-Science v1.2.0: Open-Science Agent, Codex, Claude Agent, OpenCode, CodeBudd
 
 ## Verwenden Sie den eingebauten Agent {/* #built-in-agent */}
 
-aus v1.2.0, **Open-Science Agent** Schiffe mit der app und ist der standard für ein neues setup. Es ist kein separater Agent-Download erforderlich. Die Karte etikettiert es experimentell. Es benötigt einen kompatiblen API-Provider; das Codex-Abonnement bleibt an das Codex-Framework gebunden und das Claude-Abonnement für Claude Agent. Eine ready runtime beinhaltet keinen Modellzugriff.
+aus v1.2.0, **Open-Science Agent** Schiffe mit der app und ist der standard für ein neues setup. Es ist kein separater Agent-Download erforderlich. Die Karte etikettiert es experimentell. In v1.2.1 akzeptiert es kompatible API-Anbieter und **Codex subscription** Konten für Main und Subagent. Das Claude-Abonnement bleibt an Claude Agent gebunden. Eine ready runtime beinhaltet keinen Modellzugriff.
 
 1. Offen **Settings → Agent** und Inspektion **Open-Science Agent** neben den externen Rahmenbedingungen.
 2. Um die aktive Laufzeit zu ändern, wählen Sie die Karte aus und bestätigen Sie den Wechsel. Die Auswahl gilt projektübergreifend für nachfolgende Anfragen.

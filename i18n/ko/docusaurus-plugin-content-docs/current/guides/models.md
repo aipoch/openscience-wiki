@@ -1,7 +1,7 @@
 ---
 title: "모델 및 작업 정책"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # 모델 및 작업 정책 {/* #models-and-task-policies */}
@@ -31,6 +31,7 @@ Main, Subagent, Reviewer, Vision 또는 Session 세부 사항이 다른 모델�
 | **Reviewer** | 주요 모델을 따르거나, 구성 된 검토자 모델 | 혼자 모델 정책은 Auto-review를 활성화하거나 검토 기록을 만들 수 없습니다. |
 | **Vision** | 구성 된 이미지 캡블 모델 | 구성되지 않는 의미는 전용 Vision 선택이 없습니다. 릴레이가 필요한지 여부는 활성 백엔드의 이미지 지원에 달려 있습니다. |
 | **Session details** | Main을 따르거나 호환 모델 선택; 그 노력과 활성화를 검사 | 제한된 통화를 사용하여 세션 제목 / 구독을 생성합니다. 그것은 과학적인 작업과 그것의 artifacts에서 분리됩니다. |
+| **Prompt optimization** | 주요 모델과 호환되는 고정 모델 | 선택할 때만 실행 **Optimize question** 프로젝트 보내기 전에 rewritten 초안 검토; 참조 [질문 refinement](composer.md#optimize-question). |
 
 ![Subagent 상속 및 장애인 노력 관리](/img/open-science/guides-walkthrough/11-model-scenarios.webp)
 

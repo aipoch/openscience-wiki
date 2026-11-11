@@ -1,7 +1,7 @@
 ---
 title: "外観と通知"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -121,7 +121,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 | あなたは... | どこへ行くか |
 | --- | --- |
 | アプリの更新をチェックする | **General → Check now**; フォロー [インストールとアップデート](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| バージョン変更を読んで、ヘルプを入手 | **General → Release notes / Help Center** 対応する外部ページを開きます。 このwikiには、 [変更履歴](../changelog/v1.2.0.md). |
+| バージョン変更を読んで、ヘルプを入手 | **General → Release notes / Help Center** 対応する外部ページを開きます。 このwikiには、 [変更履歴](../changelog/v1.2.1.md). |
 | 診断ログの検索または開く | **General → Diagnostics → Reveal / Open**; 詳しくはこちら [トラブルシューティング](troubleshooting.md). ログは共有するまでローカルに滞在します。 |
 | コマンドラインエントリをインストールします。 | **General → Install command**; 詳しくはこちら [CLI リファレンス](../reference/cli.md). デスクトップの使用は、このコマンドを必要としません。 |
 | データの場所を管理するか、またはアーカイブされた仕事 | [貯蔵およびアーカイブされた仕事](storage.md). |

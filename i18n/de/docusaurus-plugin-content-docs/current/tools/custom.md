@@ -1,7 +1,7 @@
 ---
 title: "Verbinden Sie ein benutzerdefiniertes MCP Tool"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -26,7 +26,7 @@ Speichern Sie beide Dateien lokal und notieren Sie sich ihre vollständigen Pfad
 
 ## Füge es in Open-Science hinzu {/* #add-it-in-open-science */}
 
-1. Öffnen Sie **Settings → Connectors → Add connector → Local command**.
+1. Öffnen Sie **Resource center → Connectors → Add connector → Local command**.
 2. Setzen Sie **Display name** auf `GSE60450 QC`.
 3. Wählen Sie **python3 — script file** als **Command** oder **Other…** mit dem tatsächlichen Python ausführbaren Pfad auf Windows.
 4. Öffnen Sie **Advanced settings**. Setzen Sie den Connectorname/ID auf `gse60450-qc` und beschreiben Sie ihn als schreibgeschützten Zugriff auf die gespeicherte QC-Tabelle.

@@ -2,7 +2,7 @@
 title: "공공 omics 데이터를 찾아 파일 재고를 구축"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 알려진 실행을 해결하고 파일을 검사 {/* #ena-runs */}
 
-1. **Omics Archives - 오믹스**의 밑에 활성화된 **Settings → Connectors**. PRJ 연구 또는 SRR 실행과 같은 `ena_search_runs`에 대한 공공 ENA / INDC 액세스 공급. GEO `GSE` 식별자는 INSDC 연구에 처음 연결되어야 합니다. 키워드는 허용되지 않습니다.
+1. **Omics Archives - 오믹스**의 밑에 활성화된 **Resource center → Connectors**. PRJ 연구 또는 SRR 실행과 같은 `ena_search_runs`에 대한 공공 ENA / INDC 액세스 공급. GEO `GSE` 식별자는 INSDC 연구에 처음 연결되어야 합니다. 키워드는 허용되지 않습니다.
 2. `run_accession`, 생물, 도서관 전략/레이아웃 및 `truncated`를 검사하십시오. 최대는 1,000 실행입니다. 상쇄 또는 continuation 토큰이 없습니다; 응답이 truncated 경우에 접근을 좁은.
 3. `ena_get_run_files`에 반환된 한 번에 전달합니다. `found`, `fastq_available` 및 `fastq_files`의 모든 항목 확인. 재고 공급 URL, 압축 파일 크기 및 업스트림 MD5; 파일을 다운로드하지 않거나 내용을 확인하지 않습니다.
 4. 별도의 다운로드 전에 저장을 확인하고 나타날을 유지하십시오. 목록된 checksum에 대한 다운로드된 바이트를 검증합니다. 쌍의 라이브러리는 정확히 두 개의 파일이 필요하지 않습니다; `file_index`에서 읽기-메이트 ID를 사용하지 마십시오.
@@ -53,7 +53,7 @@ CSV을 열고 `ena-files.json`과 비교하십시오. 이런에는 `found: true`
 
 <p className="example-label"><strong>실습 예제</strong> 5개의 인간적인 RNA-Seq를 발견하고 ENA와 PRIDE 파일 재고를 검사하십시오</p>
 
-1. **Settings → Connectors**에서 **Omics Archives - 오믹스**을 활성화하면 연결 된 모델과 사용할 수있는 Notebook 실행 시간으로 세션을 엽니다. 이 예제는 **Codex subscription**을 사용합니다.
+1. **Resource center → Connectors**에서 **Omics Archives - 오믹스**을 활성화하면 연결 된 모델과 사용할 수있는 Notebook 실행 시간으로 세션을 엽니다. 이 예제는 **Codex subscription**을 사용합니다.
 2. 메타데이터를 요청하기 위해 아래 프롬프트를 사용하십시오. ENA 쿼리 및 PRIDE 프로젝트는 별도의 예입니다. 그들은 하나의 연구에서 일치하지 않습니다.
 3. `ena-discovery.json`을 열고 쿼리, 생물을 검사, 파일 선택하기 전에 액세스 및 `truncated`을 실행합니다.
 

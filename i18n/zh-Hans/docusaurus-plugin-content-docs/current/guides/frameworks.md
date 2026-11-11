@@ -1,7 +1,7 @@
 ---
 title: "安装与切换代理框架"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # 安装与切换代理框架
@@ -28,7 +28,7 @@ Open-Science v1.2.0 提供 Open-Science Agent、Codex、Claude Agent、OpenCode�
 
 ## 使用内置 Agent {/* #built-in-agent */}
 
-从 v1.2.0 起，**Open-Science Agent** 随应用提供，并成为全新配置的默认选择，无需单独下载 Agent。卡片标注其为实验性功能，需配置兼容的 API 提供方。Codex 订阅仍需搭配 Codex 框架，Claude 订阅需搭配 Claude Agent。运行时就绪不代表已经拥有模型访问权限。
+从 v1.2.0 起，**Open-Science Agent** 随应用提供，并成为新配置的默认选项，无需另外下载 Agent。卡片标注其为实验性功能。v1.2.1 支持兼容的 API 提供方，也支持 Main 和 Subagent 使用 **Codex subscription** 账户；Claude 订阅仍需搭配 Claude Agent。运行时就绪不代表已经拥有模型访问权限。
 
 1. 打开 **Settings → Agent**，查看 **Open-Science Agent** 及其他外部框架。
 2. 如需切换，选择对应卡片并确认。该选择跨项目生效，应用于后续请求。

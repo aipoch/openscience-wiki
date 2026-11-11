@@ -1,7 +1,7 @@
 ---
 title: "モデルとタスクポリシー"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # モデルとタスクポリシー {/* #models-and-task-policies */}
@@ -31,6 +31,7 @@ Main、Subagent、Viewer、Vision、Session の詳細は異なるモデルが必
 | **Reviewer** | メインモデル、または設定されたレビュアーモデルに従ってください | モデルポリシーは、オートレビューを有効にしたり、レビューレコードを作成したりすることはできません。 |
 | **Vision** | 構成されたイメージ可能なモデル | 設定されていないと、専用の Vision 選択はありません。 リレーが必要かどうかは、アクティブなバックエンドの画像サポートに依存します。 |
 | **Session details** | Main に従うか、または多用性があるモデルを選んで下さい; 努力と有効性を点検 | これは、制限された呼び出しを使用してセッションのタイトル/説明を生成します。 科学的なタスクとそのアーティファクトとは別々です。 |
+| **Prompt optimization** | メインモデルと同じ、または対応する固定モデル | 選択時にのみ実行 **Optimize question** プロジェクト 送信前に書き出し草案を確認する; 参照 [質問の改良](composer.md#optimize-question). |
 
 ![サブエージェントの相続と無効な労力制御](/img/open-science/guides-walkthrough/11-model-scenarios.webp)
 

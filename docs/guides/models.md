@@ -1,7 +1,7 @@
 ---
 title: "Models and task policies"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Models and task policies
@@ -31,6 +31,7 @@ Select a scenario row to expand it. Opening another row collapses the previous o
 | **Reviewer** | Follow main model, or a configured reviewer model | A model policy alone does not enable Auto-review or create a review record. |
 | **Vision** | A configured image-capable model | Not configured means there is no dedicated Vision selection. Whether a relay is needed depends on the active backend's image support. |
 | **Session details** | Follow Main or choose a compatible model; inspect its effort and enablement | This generates session title/description using a restricted call. It is separate from the scientific task and its artifacts. |
+| **Prompt optimization** | Same as main model, or a compatible fixed model | Runs only when you choose **Optimize question** in a project. Review the rewritten draft before sending; see [question refinement](composer.md#optimize-question). |
 
 ![Subagent inheritance and disabled effort control](/img/open-science/guides-walkthrough/11-model-scenarios.webp)
 

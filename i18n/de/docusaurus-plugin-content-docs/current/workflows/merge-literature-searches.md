@@ -1,7 +1,7 @@
 ---
 title: "Kombinieren Sie Literatursuche Batches"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Zwei Suchanfragen geben oft überlappende Papiere zurück. Behalten Sie die Herk
 
 ## 1. Führen und Aufzeichnen beider Suchanfragen {/* #1-run-and-record-both-searches */}
 
-Aktivieren Sie in **Settings → Connectors** **Literaturgraphik** und konfigurieren Sie die OpenAlex-Anmeldeinformationen, falls gewünscht. Öffnen Sie ein Projekt, starten Sie ein Gespräch und wählen Sie ein verbundenes Modell aus. Der aufgezeichnete Durchlauf verwendete Open-Science **0.30.1**, **Codex Abonnement / gpt-5.6-sol**. Es werden keine Quell-PDFs benötigt.
+Aktivieren Sie in **Resource center → Connectors** **Literaturgraphik** und konfigurieren Sie die OpenAlex-Anmeldeinformationen, falls gewünscht. Öffnen Sie ein Projekt, starten Sie ein Gespräch und wählen Sie ein verbundenes Modell aus. Der aufgezeichnete Durchlauf verwendete Open-Science **0.30.1**, **Codex Abonnement / gpt-5.6-sol**. Es werden keine Quell-PDFs benötigt.
 
 ```text
 Use OpenAlex through Literature Graph to build two search batches:

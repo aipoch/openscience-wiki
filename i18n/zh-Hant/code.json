@@ -1593,7 +1593,7 @@
     "message": "Skill 目录"
   },
   "docs.outline.skills.directory.scope": {
-    "message": "将全部 23 个内置 Skill 按研究用途放入一张目录表，列输入、依赖、输出和验证状态。"
+    "message": "将全部 24 个内置 Skill 按研究用途放入一张目录表，列输入、依赖、输出和验证状态。"
   },
   "docs.outline.skills.group.maintain": {
     "message": "创建与维护"
@@ -2731,5 +2731,11 @@
   },
   "docs.outline.reference.v110.scope": {
     "message": "研究影片、批量論文概覽、移動設備訪問與文獻命令。"
+  },
+  "docs.outline.reference.v121.title": {
+    "message": "v1.2.1"
+  },
+  "docs.outline.reference.v121.scope": {
+    "message": "資源中心、問題最佳化、Codex 訂閱與文獻 CSV 匯出。"
   }
 }

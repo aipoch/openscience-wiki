@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -420,6 +420,24 @@ Citation 的四个复制按钮写入不同格式。粘贴到目标编辑器，�
 
 
 </ToolOperationGroup>
+
+## 将书目元数据导出为 CSV {/* #bibliography-csv */}
+
+需要在表格中检查或分享文献清单时，可使用 CSV。它只导出书目字段，不包含附件、筛选结论和个人笔记；与引用管理软件交换记录时，可选择 BibTeX 或 RIS。
+
+1. 打开 **Library**，进入目标项目或集合，选择需要的文献。跨页选择可能多于当前可见条目，导出前检查选中数量并排除不需要的记录。
+2. 选择 **More actions → Export → CSV**。导出整个项目或集合时，使用对应的导出操作并选择 **CSV**。
+3. 通过桌面保存对话框或浏览器下载流程保存，等待导出结束；取消保存不会生成文件。
+4. 在表格软件中按 UTF-8 打开 CSV，核对行数与选择数量，并抽查标题、作者和标识符。空单元格表示元数据缺失，不代表已经核实该字段不存在。
+
+16 个列名在各界面语言中都保持英文：
+
+```text
+item_id, title, authors, year, item_type, publication, volume, issue,
+pages, doi, pmid, pmcid, arxiv_id, url, abstract, language
+```
+
+![文献库中与 BibTeX、RIS 并列的 CSV 导出选项](/img/open-science/v121/library-csv.webp)
 
 ## 去重与恢复条目
 

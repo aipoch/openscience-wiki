@@ -1,7 +1,7 @@
 ---
 title: "Modelos y políticas de tareas"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Modelos y políticas de tareas {/* #models-and-task-policies */}
@@ -31,6 +31,7 @@ Seleccione una fila de escenario para ampliarla. Abrir otra fila se derrumba el 
 | **Reviewer** | Siga el modelo principal o un modelo de revisión configurado | Una política modelo por sí sola no permite la revisión automática o crear un registro de revisión. |
 | **Vision** | Un modelo configurado de imagen | No está configurado significa que no hay una selección de Visión dedicada. Si se necesita un relé depende del soporte de imagen del backend activo. |
 | **Session details** | Siga Main o elija un modelo compatible; inspeccionar su esfuerzo y su capacidad | Esto genera el título de sesión/descripción utilizando una llamada restringida. Está separado de la tarea científica y de sus artefactos. |
+| **Prompt optimization** TENIDO Igual que el modelo principal, o un modelo fijo compatible **Optimize question** en un proyecto. Revisar el borrador reescrito antes de enviar; ver [refinamiento de la cuestión](composer.md#optimize-question). |
 
 ![Subagent inheritance and disabled effort control](/img/open-science/guides-walkthrough/11-model-scenarios.webp)
 

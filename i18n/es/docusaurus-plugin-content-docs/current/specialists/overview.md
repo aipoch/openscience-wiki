@@ -1,7 +1,7 @@
 ---
 title: "Especialistas y funciones disponibles"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Especialistas y funciones disponibles {/* #specialists-and-available-roles */}
@@ -17,11 +17,11 @@ Un Specialist es un papel de investigación guardado: identidad, instrucciones y
 | Importado / Mercado Specialist | Instalado desde un paquete, luego configurado en este dispositivo | Establecimiento local y capacidades permitidas; inspect editor y versión de paquete |
 | Revisor incorporado | Realiza el flujo de trabajo de revisión de la aplicación | Repaso a través de la conversación; no es un Specialist editable/delegable normal |
 
-Abrir **Browse Marketplace** para encontrar roles publicados. El catálogo en línea puede cambiar independientemente de su aplicación instalada. Inspeccione el editor, instrucciones y dependencias de cada rol antes de importar.
+Abrir **Marketplace** para encontrar roles publicados. El catálogo en línea puede cambiar independientemente de su aplicación instalada. Inspeccione el editor, instrucciones y dependencias de cada rol antes de importar.
 
 ## Encontrar un papel {/* #find-a-role */}
 
-Abre **Settings → Specialists**. **Installed** cuenta los roles registrados localmente, incluyendo el Revisor. Use **Search specialists** y **Filter specialists by category**, y luego abra una fila para inspeccionarlo. **Browse Marketplace** abre un catálogo diferente; una entrada de mercado lista no se instala hasta que complete su flujo de paquete/ajuste.
+Abre **Resource center → Specialists**. **Installed** cuenta los roles registrados localmente, incluyendo el Revisor. Use **Search specialists** y **Filters → Filter specialists by category**, y luego abra una fila para inspeccionarlo. **Marketplace** abre un catálogo diferente; una entrada de mercado lista no se instala hasta que complete su flujo de paquete/ajuste.
 
 ![El revisor RNA-seq QC instalado localmente](/img/open-science/capabilities-walkthrough/06-specialist-list.webp)
 

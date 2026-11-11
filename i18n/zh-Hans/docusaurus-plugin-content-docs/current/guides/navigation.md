@@ -1,7 +1,7 @@
 ---
 title: "导航与搜索"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # 导航与搜索
@@ -69,3 +69,17 @@ last_update:
 在 macOS 菜单栏或 Windows／支持托盘的 Linux 桌面，打开 **Open-Science** 图标的菜单。通过 **Running sessions** 找到正在运行的任务，通过 **Pinned sessions** 返回固定会话，或从 **Recent items** 打开近期内容；较多条目收在 **More items** 中。选择后检查打开的项目和会话标题。
 
 会话标题旁的 **Pin** 可固定常用会话。菜单里的 **Show / Hide** 控制窗口可见性，**Quit** 退出应用；切换会话不等于停止任务。Linux 图标是否显示取决于桌面的托盘支持。窗口关闭和通知设置见[外观与通知](appearance.md)。
+
+## 打开资源中心 {/* #resource-center */}
+
+从首页或项目侧栏打开 **Resource center**，选择 **Skills**、**Connectors**、**Specialists** 或 **Use Cases**。这些资源现在拥有独立工作区，不再作为 Settings 内的面板；旧截图可能仍显示设置入口。
+
+1. 选择资源类型。**Installed** 显示本地资源，提供 **Marketplace** 的类型可在该标签中浏览已发布的包。
+2. 按名称搜索，通过 **Filters** 缩小范围。找不到预期条目时，清空搜索或重置筛选。
+3. 打开 **View details**，检查来源、版本、依赖和可用状态，再决定是否安装或启用。
+4. 通过 **Manage access** 或资源的可用性控制，检查哪些 Agent 可以使用它。安装、Agent 访问范围和具体操作审批是不同的设置。
+5. 返回项目后可继续原会话。从输入框或已发送消息打开 Skill 引用时，详情显示在项目面板中。
+
+![资源中心中的 Skills、Connectors、Specialists 与 Use Cases](/img/open-science/v121/resource-center.webp)
+
+另见 [Skill 安装](../skills/marketplace.md)、[Connector 配置](connectors.md)和 [Specialist 角色](../specialists/overview.md)。

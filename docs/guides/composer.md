@@ -1,7 +1,7 @@
 ---
 title: "Conversations and queued requests"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-11'
 ---
 
 # Conversations and queued requests
@@ -52,6 +52,30 @@ The model selector chooses among configured models. Its reasoning options depend
 | Branch | Independent continuation where available | Check inherited history/files; see [Sessions](sessions.md) |
 | Add message to queue | Prepare a follow-up while running | Pending request remains Not saved until delivered |
 | Cancel run | Stop current execution | Wait for cancellation; already saved results are not automatically undone |
+
+## Refine a draft question {/* #optimize-question */}
+
+In a project, write a draft in **Ask anything**, then select **Optimize question** beside the Agent controls. A configured, available model is required. The action uses the task model under **Settings → Model → Conversation models → Prompt optimization**; **Same as main model** follows Main.
+
+1. Keep the research question, actual inputs and important constraints in the draft. Click **Optimize question** to start; typing alone does not invoke optimization.
+2. Wait for the rewritten draft. Use **Cancel optimization** to stop. If you change the draft while the request is running, its late result is not applied over your edits.
+3. Read the result before sending. Check numbers, identifiers, scope and any newly suggested requirements. The rewritten text replaces the draft; it has not been sent as a conversation message.
+4. Select **Undo optimization** to restore the original draft, or edit the result yourself. Manual editing ends the one-step Undo opportunity. Removed pasted-text attachments can be restored as inline text rather than as missing attachment links.
+5. Select **Send message** only when the question is ready. If optimization fails, retain the original draft, check the selected model and retry when appropriate.
+
+<p className="example-label"><strong>Worked example</strong> Keep a teaching question within its evidence</p>
+
+With Codex selected, this draft was refined while retaining all five values and the hypothetical scope:
+
+```text
+Explain the mean and median of 2, 4, 6, 8, 10 for a hypothetical
+teaching example. Why can we not generalize to a population?
+Keep it concise.
+```
+
+The revised draft explicitly requests limitations without invented participants, measurements or citations. **Undo optimization** restores the original question. The example's [project template](projects.md#optimization-template) supplies those constraints; optimization does not verify the eventual answer.
+
+![A refined English question in the Composer with Undo optimization available](/img/open-science/v121/optimized-question.webp)
 
 ## Send precise feedback
 

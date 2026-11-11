@@ -2,7 +2,7 @@
 title: "Finden Sie eine Proteinsequenz und vervollständigen Sie eine BLAST-Suche"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -93,7 +93,7 @@ Um drei oder mehr bekannte Sequenzen zu vergleichen, fahren Sie mit [Ausrichtung
 
 <p className="example-label"><strong>Praxisbeispiel</strong> Scannen Sie den menschlichen P69905 gegen Pfam</p>
 
-Nach dem Abrufen der kanonischen P69905-Proteinsequenz aktivieren Sie **HMMER** für Main in **Settings → Connectors**. Fragen Sie im selben Gespräch:
+Nach dem Abrufen der kanonischen P69905-Proteinsequenz aktivieren Sie **HMMER** für Main in **Resource center → Connectors**. Fragen Sie im selben Gespräch:
 
 ```text
 Use the HMMER Connector to scan the same human P69905 sequence against

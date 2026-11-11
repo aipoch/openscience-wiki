@@ -1,7 +1,7 @@
 ---
 title: "Modèles et politiques de travail"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Modèles et politiques de travail {/* #models-and-task-policies */}
@@ -31,6 +31,7 @@ Sélectionnez une ligne de scénario pour l'étendre. Ouverture d'une autre rang
 | **Reviewer** | Suivez le modèle principal ou un modèle d'examinateur configuré | Une politique modèle ne permet pas à elle seule l'examen automatique ou la création d'un dossier d'examen. |
 | **Vision** | Un modèle compatible avec l'image configuré | Non configuré signifie qu'il n'y a pas de sélection de Vision dédiée. Le fait qu'un relais soit nécessaire dépend du support d'image du moteur actif. |
 | **Session details** | Suivre Main ou choisir un modèle compatible; d'inspecter ses efforts et ses moyens | Cela génère un titre/description de session en utilisant un appel restreint. Il est séparé de la tâche scientifique et de ses artefacts. |
+| **Prompt optimization** Voir modèle principal, ou modèle fixe compatible. **Optimize question** dans un projet. Revoir le projet réécrit avant d'envoyer; voir [affinement des questions](composer.md#optimize-question). |
 
 ![Héritage du sous-agent et maîtrise de l'effort](/img/open-science/guides-walkthrough/11-model-scenarios.webp)
 

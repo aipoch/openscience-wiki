@@ -1,7 +1,7 @@
 ---
 title: "カスタムMCPツールを接続する"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -26,7 +26,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## Open-Scienceにそれを加えて下さい {/* #add-it-in-open-science */}
 
-1. **Settings → Connectors → Add connector → Local command** を開きます。
+1. **Resource center → Connectors → Add connector → Local command** を開きます。
 2. **Display name** を `GSE60450 QC` にセットします。
 3. 選択する **python3 — script file** として **Command**, または **Other…** 実際のところ Python 実行可能なパス Windows. . . .
 4. **Advanced settings** を開きます。 コネクタ名/IDを`gse60450-qc`に設定し、保存したQCテーブルへの読み取り専用アクセスとして記述します。

@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -420,6 +420,24 @@ BibTeX magasins année et mois ici, donc son voyage aller-retour retourné `2009
 
 
 </ToolOperationGroup>
+
+## Exportation de métadonnées bibliographiques vers le CSV {/* #bibliography-csv */}
+
+Utilisez CSV pour examiner ou partager une liste de références dans un tableur. Elle n'exporte que des champs bibliographiques: les pièces jointes, les décisions de présélection et les notes personnelles sont exclues. Utilisez BibTeX ou RIS lorsque vous avez besoin d'un fichier d'échange de citation-gestionnaire.
+
+1. Ouvrir **Library**, puis le projet ou la collecte prévu. Sélectionnez les références requises. La sélection de pages croisées peut inclure plus que la page visible; vérifier le nombre sélectionné et exclure les enregistrements indésirables.
+2. Sélectionner **More actions → Export → CSV**. Pour l'ensemble d'un projet ou d'une collection, utilisez son action d'exportation et choisissez **CSV**.
+3. Enregistrer le fichier dans la boîte de dialogue de sauvegarde du bureau ou le flux de téléchargement du navigateur. Attendez que l'exportation finisse; une sauvegarde annulée ne produit pas de fichier.
+4. Ouvrez le CSV comme UTF-8 dans un tableur. Comparez le nombre de lignes avec les titres de sélection et de vérification, les auteurs et les identificateurs de bibliothèque. Un champ vide signifie des métadonnées manquantes, et non une absence vérifiée.
+
+Les 16 noms de colonnes restent en anglais dans toutes les langues d'interface:
+
+```text
+item_id, title, authors, year, item_type, publication, volume, issue,
+pages, doi, pmid, pmcid, arxiv_id, url, abstract, language
+```
+
+![Exportation CSV offerte aux côtés de BibTeX et RIS en bibliothèque](/img/open-science/v121/library-csv.webp)
 
 ## Résoudre les doublons et récupérer les références {/* #resolve-duplicates-and-recover-references */}
 

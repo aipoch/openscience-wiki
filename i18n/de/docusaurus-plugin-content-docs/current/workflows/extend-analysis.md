@@ -1,7 +1,7 @@
 ---
 title: "Erweitern einer Analyse mit einem installierten Specialist"
 last_update:
-  date: '2026-09-17'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -16,7 +16,7 @@ Die Eingabe ist R öffentlichen [Theoph-Datensatz](https://www.stat.ethz.ch/R-ma
 
 ## 1. Installieren und Auswählen des Specialist {/* #1-install-and-select-the-specialist */}
 
-1. Öffnen Sie **Settings → Specialists → Browse Marketplace**. Finde **Pharmakometrie PK/PD Design Specialist**, inspiziere seine Fähigkeiten und installiere es. In diesem Beispiel wird das Paket **1.0.0** in Open-Science **0.30.1** verwendet.
+1. Öffnen Sie **Resource center → Specialists → Marketplace**. Finde **Pharmakometrie PK/PD Design Specialist**, inspiziere seine Fähigkeiten und installiere es. In diesem Beispiel wird das Paket **1.0.0** in Open-Science **0.30.1** verwendet.
 2. In **Settings → Runtimes** bestätigen Sie, dass R **Ready** ist und aktiviert ist. Der aufgezeichnete Durchlauf verwendete R **4.4.3**.
 3. Öffnen Sie ein neues Gespräch in Ihrem Forschungsprojekt. Wählen Sie ein verfügbares Modell, dann **Agent controls → Specialist → pharmacometrics-pkpd-designer**. Der aufgezeichnete Durchlauf verwendete **Codex Abonnement / gpt-5.6-sol**.
 4. Zu Beginn von **jede Analysemeldung**, Typ `/pkpd`, wählen Sie dann **pkpd-Modellierung** aus den Vorschlägen aus. Bestätigen Sie, dass es ein Skill-Chip wird, bevor Sie die Eingabeaufforderung einfügen.

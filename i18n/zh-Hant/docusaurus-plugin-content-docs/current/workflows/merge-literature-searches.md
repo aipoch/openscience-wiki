@@ -1,7 +1,7 @@
 ---
 title: "合併多批文獻檢索結果"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 執行並記錄兩批檢索 {/* #1-执行并记录两批检索 */}
 
-在 **Settings → Connectors** 中啟用 **Literature Graph**，按提示配置 OpenAlex 憑據。開啟專案，新建會話並選擇可用模型。本例使用 Open-Science **0.30.1** 和 **Codex subscription / gpt-5.6-sol**，開始時不需要準備 PDF。
+在 **Resource center → Connectors** 中啟用 **Literature Graph**，按提示配置 OpenAlex 憑據。開啟專案，新建會話並選擇可用模型。本例使用 Open-Science **0.30.1** 和 **Codex subscription / gpt-5.6-sol**，開始時不需要準備 PDF。
 
 ```text
 Use OpenAlex through Literature Graph to build two search batches:

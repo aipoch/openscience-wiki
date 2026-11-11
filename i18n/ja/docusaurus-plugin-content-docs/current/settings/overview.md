@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: "設定の概要"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # 設定の概要 {/* #settings-overview */}
 
-オープン **Settings** ワークスペースの左下隅から。 コンセプト **19パネル** 4つのグループに分かれています。 **System**, **Intelligence**, **Connections** そして、 **Workspace**。 出現および通知は別のパネルです。 目的から選択するか、ヘッダーから検索します。 **Settings → Model**たとえば、モデル内部インテリジェンスを開きます。
+オープン **Settings** ワークスペースの左下隅から。 コンセプト **16パネル** に組織される **System**, **Intelligence**, **Connections** そして、 **Workspace**お問い合わせ スキル、コネクタ、スペシャリストを別々に管理 [リソースセンター](../guides/navigation.md#resource-center)お問い合わせ 目的別に設定パネルを選択するか、ヘッダー検索を使用します。
 
 | グローバル・コントロール | ビーキャビター |
 | --- | --- |
@@ -27,7 +27,7 @@ last_update:
 
 この検索は、すべてのフィールドや研究文書ではなく、すべてのパネル全体に代表的な設定をカバーします。 用語が一致しない場合は、以下のパネル名またはナビゲーショングループを使用します。 会話やファイルを検索するには、設定を閉じて、[グローバル検索](../guides/navigation.md)を使用します。
 
-## 19メインパネル {/* #the-17-main-panels */}
+## 16メインパネル {/* #the-17-main-panels */}
 
 | グループ | パネル | それが管理するもの |
 | --- | --- | --- |
@@ -36,11 +36,8 @@ last_update:
 |  | [Notifications](../guides/appearance.md) | タスク通知、通知内容、システムの状態、テスト通知 |
 | インテリジェンス | [モデル](../guides/models.md) | プロバイダーとシナリオモデル |
 |  | [エージェント](../guides/frameworks.md) | エージェントフレームワークのインストール、スイッチおよび修理 |
-|  | [Skills](../skills/overview.md) | 再利用可能な研究方法と可用性 |
-|  | [スペシャリスト](../specialists/overview.md) | Specialistの役割と機能アクセス |
 |  | [メモリ](../guides/memory.md) | 世界のオプトインとプロジェクトノート |
-| 接続 | [コネクタ](../guides/connectors.md) | データサービス、カスタムMCP接続とインポート |
-|  | [ネットワーク](../guides/network.md) | プロキシ、パッケージミラー、Notebookドメインアクセス |
+| 接続 | [ネットワーク](../guides/network.md) | プロキシ、パッケージミラー、Notebookドメインアクセス |
 |  | [リモート](../guides/remote-access.md) | ブラウザアクセス、ペアリング、信頼できるデバイス |
 |  | [資格情報](../tools/credentials.md) | キー、トークン、OAuth、クレデンシャルリカバリ |
 |  | [コンピュート](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |

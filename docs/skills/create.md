@@ -1,7 +1,7 @@
 ---
 title: "Create a Skill and its supporting files"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Use this after a repeatable procedure has actually worked—for example, checkin
 4. The item changes to **Saving as skill…** while the agent works. This starts a model-assisted operation in the conversation; it does not open the manual Name/Description editor or instantly save a ZIP.
 5. Inspect the proposed Skill's name, triggering description, steps, supporting files and validation result. Respond to clarification or operation approvals if shown. **Customize** stays enabled; the active role must still have the appropriate capability access.
 6. Review the draft before accepting publication. Remove study-specific paths, temporary IDs, credentials and unsupported conclusions; retain reusable input requirements and checks. An existing Personal Skill must not be overwritten without an explicit replacement decision.
-7. After publication, open **Settings → Skills**, search the reported name and inspect **Files**, the saved SKILL.md and Main Agent availability. Export it if you need to check the full package.
+7. After publication, open **Resource center → Skills**, search the reported name and inspect **Files**, the saved SKILL.md and Main Agent availability. Export it if you need to check the full package.
 8. Run a separate bounded request with the saved Skill. A successfully saved package is not proof that a second dataset or a later invocation has passed.
 
 ### Save the research method
@@ -49,7 +49,7 @@ After completing GSE60450 QC in a new session, select **+ → Save as skill** an
 
 ![Native Skill draft and validation result](/img/open-science/v0.27.0/16-native-skill-draft-validated.webp)
 
-Check the name, triggering description, inputs, metric definitions and stop conditions before confirming publication to Personal Skills. Then use **Settings → Skills → Search skills**, open the saved instructions, and inspect **Availability** and **Files**. Download the actual published <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.md</ExampleDownload>.
+Check the name, triggering description, inputs, metric definitions and stop conditions before confirming publication to Personal Skills. Then use **Resource center → Skills → Search skills**, open the saved instructions, and inspect **Availability** and **Files**. Download the actual published <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.md</ExampleDownload>.
 
 ![Native publication found in Personal](/img/open-science/v0.27.0/17-native-skill-published.webp)
 
@@ -98,7 +98,7 @@ The reference defines the sample metrics and their interpretation. Keep study da
 
 ### Complete the fields and publish
 
-1. Open **Settings → Skills → Add skill → Write from scratch**.
+1. Open **Resource center → Skills → Add skill → Write from scratch**.
 2. Paste the complete downloaded SKILL.md into **Skill body**. Its YAML frontmatter populates **Name** and **Description**.
 3. Confirm the name is `rnaseq-count-qc`. Read the rendered/body content before saving; a valid name alone does not validate the scientific method.
 4. Open **Advanced settings → Add reference files** and select `sample-metric-schema.md`. The editor places this resource under `references/`.

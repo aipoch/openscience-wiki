@@ -1,7 +1,7 @@
 ---
 title: "Instalación y conmutación de agentes"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Instalación y conmutación de agentes {/* #installing-and-switching-agents */}
@@ -28,7 +28,7 @@ Open-Science v1.2.0: Open-Science Agent, Codex, Claude Agent, OpenCode, CodeBudd
 
 ## Utilice el agente incorporado {/* #built-in-agent */}
 
-De v1.2.0, **Open-Science Agent** barcos con la aplicación y es el predeterminado para una nueva configuración. No necesita una descarga separada del Agente. La tarjeta lo etiqueta experimentalmente. Necesita un proveedor de API compatible; la suscripción a Codex sigue vinculada al marco Codex y la suscripción a Claude Agent. Un tiempo de ejecución listo no incluye el acceso modelo.
+De v1.2.0, **Open-Science Agent** barcos con la aplicación y es el predeterminado para una nueva configuración. No necesita una descarga separada del Agente. La tarjeta lo etiqueta experimentalmente. En v1.2.1 acepta proveedores de API compatibles y **Codex subscription** cuentas para Main y Subagent. La suscripción a Claude sigue ligada a Claude Agent. Un tiempo de ejecución listo no incluye el acceso modelo.
 
 1. Abierto **Settings → Agent** e inspección **Open-Science Agent** junto con los marcos externos.
 2. Para cambiar el tiempo de funcionamiento activo, seleccione su tarjeta y confirme el interruptor. La elección se aplica en todos los proyectos a las solicitudes posteriores.

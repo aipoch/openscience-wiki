@@ -2,7 +2,7 @@
 title: "Finden Sie Public Omics-Daten und erstellen Sie ein Dateiinventar"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ Folgen Sie vor dem Start [Wissenschaftliche Datenbanken](../tools/databases.md#c
 
 ## 1. Beheben Sie einen bekannten Lauf und inspizieren Sie dessen Dateien {/* #ena-runs */}
 
-1. **aus.** unter **Settings → Connectors** aktivieren. Geben Sie einen öffentlichen ENA/INSDC-Beitritt an `ena_search_runs`, z. B. eine PRJ-Studie oder einen SRR-Durchlauf. Eine GEO `GSE`-Kennung muss zuerst mit ihrer INSDC-Studie verknüpft werden; Keywords werden nicht akzeptiert.
+1. **aus.** unter **Resource center → Connectors** aktivieren. Geben Sie einen öffentlichen ENA/INSDC-Beitritt an `ena_search_runs`, z. B. eine PRJ-Studie oder einen SRR-Durchlauf. Eine GEO `GSE`-Kennung muss zuerst mit ihrer INSDC-Studie verknüpft werden; Keywords werden nicht akzeptiert.
 2. Untersuchen Sie `run_accession`, Organismus, Bibliotheksstrategie/Layout und `truncated`. Das Maximum ist 1,000 läuft. Es gibt kein Offset- oder Continuation-Token; den Beitritt zu verengen, wenn die Antwort verkürzt wird.
 3. Übergeben Sie einen zurückgegebenen Lauf an `ena_get_run_files`. Überprüfen Sie `found`, `fastq_available` und jeden Eintrag in `fastq_files`. Das Inventar liefert URL, komprimierte Dateigröße und vorgelagerte MD5; Es werden keine Dateien heruntergeladen oder deren Inhalt überprüft.
 4. Vor einem separaten Download überprüfen Sie die Speicherung und behalten das Manifest auf. Überprüfen Sie die heruntergeladenen Bytes mit der aufgeführten Prüfsumme. Eine gepaarte Bibliothek muss nicht genau zwei Dateien haben; keine Read-Mate-Identität aus `file_index` ableiten.
@@ -53,7 +53,7 @@ Verwenden Sie `ena_query_runs`, wenn Sie ein Forschungsthema, aber keinen Beitri
 
 <p className="example-label"><strong>Praxisbeispiel</strong> Entdecken Sie fünf menschliche RNA-Seq-Läufe und inspizieren Sie ein ENA- und ein PRIDE-Dateiinventar</p>
 
-1. Aktivieren Sie **aus.** in **Settings → Connectors** und öffnen Sie dann eine Sitzung mit einem verbundenen Modell und einer verfügbaren Notebook-Laufzeit. In diesem Beispiel wird **Codex subscription** verwendet.
+1. Aktivieren Sie **aus.** in **Resource center → Connectors** und öffnen Sie dann eine Sitzung mit einem verbundenen Modell und einer verfügbaren Notebook-Laufzeit. In diesem Beispiel wird **Codex subscription** verwendet.
 2. Verwenden Sie die folgende Eingabeaufforderung, um nur Metadaten anzufordern. Das ENA-Abfrage- und PRIDE-Projekt sind separate Beispiele; es handelt sich nicht um übereinstimmende Proben aus einer Studie.
 3. Öffne `ena-discovery.json` und inspiziere die Abfrage, den Organismus, die Run-Zugänge und `truncated`, bevor du Dateien auswählst.
 

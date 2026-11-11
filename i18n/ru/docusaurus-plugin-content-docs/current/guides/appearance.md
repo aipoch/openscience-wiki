@@ -1,7 +1,7 @@
 ---
 title: "Внешний вид и уведомления"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -121,7 +121,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 | Вы хотите... | Куда пойти |
 | --- | --- |
 | Проверьте обновление приложения | **General → Check now**; следовать [Установка и обновления](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Прочитайте изменения в версии или получите помощь | **General → Release notes / Help Center** Открывает соответствующую внешнюю страницу. У этой вики также есть [Изменить](../changelog/v1.2.0.md). |
+| Прочитайте изменения в версии или получите помощь | **General → Release notes / Help Center** Открывает соответствующую внешнюю страницу. У этой вики также есть [Изменить](../changelog/v1.2.1.md). |
 | Найти или открыть диагностический журнал | **General → Diagnostics → Reveal / Open**; смотреть [устранение неполадок](troubleshooting.md). Логотипы остаются локальными, пока вы не поделитесь ими. |
 | Установите вход командной строки | **General → Install command**; смотреть [Ссылка на CLI](../reference/cli.md). Использование рабочего стола не требует этой команды. |
 | Управление местоположением данных или архивной работой | [Хранение и архивная работа](storage.md). |

@@ -1,7 +1,7 @@
 ---
 title: "Gestionar y validar Skills"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-11'
 ---
 
 # Gestionar y validar Skills {/* #manage-and-validate-skills */}
@@ -18,7 +18,7 @@ Para la navegación por catálogo, instalación y actualizaciones, siga el [Guí
 
 <p className="example-label"><strong>Ejemplo</strong> Exportar y reimportar un RNA-seq Skill</p>
 
-1. Encontrar `rnaseq-count-qc` en **Settings → Skills** y elegir **Actions → Export**. Guarda el ZIP.
+1. Encontrar `rnaseq-count-qc` en **Resource center → Skills** y elegir **Actions → Export**. Guarda el ZIP.
 2. Seleccione **Add skill → Upload skills → Upload skill files** y elija ese ZIP.
 3. En **Confirm import**, inspeccione el nombre de archivo fuente y el diagnóstico. Los candidatos no se controlan inicialmente.
 4. Abre **Vista previa rnaseq-count-qc**. Lea SKILL.md y la lista de archivos. La exportación real preservada `references/sample-metric-schema.md`.

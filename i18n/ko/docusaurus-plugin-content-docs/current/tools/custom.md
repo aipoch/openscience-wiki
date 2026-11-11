@@ -1,7 +1,7 @@
 ---
 title: "사용자 정의 MCP 도구를 연결"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -26,7 +26,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## Open-Science에 추가 {/* #add-it-in-open-science */}
 
-1. **Settings → Connectors → Add connector → Local command**을 엽니다.
+1. **Resource center → Connectors → Add connector → Local command**을 엽니다.
 2. **Display name**을 `GSE60450 QC`로 설정하십시오.
 3. **Command** 또는 **Other…**로 **python3 — script file**을 Windows에서 실제 Python 실행 가능한 경로로 선택하십시오.
 4. **Advanced settings**을 엽니다. `gse60450-qc`에 연결관 이름/ID를 놓고 저장한 QC 테이블에 읽기 전용 접근으로 설명하십시오.

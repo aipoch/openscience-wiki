@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skills {/* #skills */}
@@ -22,9 +22,9 @@ Beginnen Sie mit [Skill Verzeichnis](./directory.md), um eine Methode zu finden,
 
 ## Finde und inspiziere ein Skill {/* #find-and-inspect-a-skill */}
 
-1. Öffnen Sie **Settings → Skills**.
+1. Öffnen Sie **Resource center → Skills**.
 2. Verwenden Sie **Search skills**, um seinen Namen oder seine Beschreibung zu suchen. Geben Sie `rnaseq-count-qc` nach [Erstellen des Beispiels](./create.md) ein.
-3. Schmale **Filter skills by source**, **Filter Skills by agent** oder **Filter by Tag**, wenn die Liste lang bleibt.
+3. Schmale **Filters → Filter skills by source**, **Filter Skills by agent** oder **Filter by Tag**, wenn die Liste lang bleibt.
 4. Öffnen Sie das Ergebnis. Lesen Sie die Beschreibung, Anweisungen, **Files**, Lizenz und **Availability**. Ein Anzeigename kann von der Paket-ID abweichen.
 5. Kehren Sie zur Liste zurück und inspizieren Sie **Used by**. Es identifiziert, welche Agenten das Paket verwenden können; Er führt keine abgeschlossenen Läufe auf.
 
@@ -47,7 +47,7 @@ Beginnen Sie mit [Skill Verzeichnis](./directory.md), um eine Methode zu finden,
 
 Diese Aktivierungsregel installiert keine Abhängigkeiten, stellt keine Anmeldeinformationen bereit oder gewährt Betriebsberechtigungen. Die Specialist-Zuweisung ist ein separater Bereich: Überprüfen Sie **Used by** und die Fähigkeitsliste der Rolle.
 
-Das Verzeichnis enthält immer noch 23 public bundled Skills. Interne Unterstützung Skills sind keine zusätzlichen Methoden zur Auswahl. [Erforderliche Switch-Implementierung](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
+Das Verzeichnis enthält immer noch 24 public bundled Skills. Interne Unterstützung Skills sind keine zusätzlichen Methoden zur Auswahl. [Erforderliche Switch-Implementierung](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
 
 Der Screenshot zeigt die Erklärung für **Customize**. Diese erforderlichen Skills bleiben aktiviert, auch wenn Sie andere optionale Methoden deaktivieren.
 

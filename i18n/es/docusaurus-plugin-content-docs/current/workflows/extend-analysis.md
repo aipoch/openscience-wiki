@@ -1,7 +1,7 @@
 ---
 title: "Extienda un análisis con un Specialist instalado"
 last_update:
-  date: '2026-09-17'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -16,7 +16,7 @@ La entrada es el R público de [Conjunto de datos de Theoph](https://www.stat.et
 
 ## 1. Instalar y seleccionar el Specialist {/* #1-install-and-select-the-specialist */}
 
-1. Abre **Settings → Specialists → Browse Marketplace**. Encuentre **Productos farmacéuticos PK/PD Design Specialist**, inspeccione sus capacidades, e instale. Este ejemplo utiliza el paquete **1.0.0** en Open-Science **0.30.1**.
+1. Abre **Resource center → Specialists → Marketplace**. Encuentre **Productos farmacéuticos PK/PD Design Specialist**, inspeccione sus capacidades, e instale. Este ejemplo utiliza el paquete **1.0.0** en Open-Science **0.30.1**.
 2. En **Settings → Runtimes**, confirme que R es **Ready** y está habilitado. La ejecución registrada usó R **4.4.3**.
 3. Abra una nueva conversación en su proyecto de investigación. Elige un modelo disponible, luego **Agent controls → Specialist → pharmacometrics-pkpd-designer**. La carrera registrada usó **Suscripción Codex / gpt-5.6-sol**.
 4. Al comienzo de **cada mensaje de análisis**, escriba `/pkpd`, luego seleccione **pkpd-modeling** de las sugerencias. Confirme que se convierte en un chip Skill antes de pegar el impulso.

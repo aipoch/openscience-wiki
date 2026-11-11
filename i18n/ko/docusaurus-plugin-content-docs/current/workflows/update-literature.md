@@ -1,7 +1,7 @@
 ---
 title: "기존 문학 컬렉션 업데이트"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 정의하고 baseline을 저장 {/* #1-define-and-save-the-baseline */}
 
-연결된 모델로 프로젝트를 엽니다. **Settings → Connectors**에서 **문학 그래프**을 활성화하고 필요한 경우 OpenAlex를 구성합니다. 지불 조건:
+연결된 모델로 프로젝트를 엽니다. **Resource center → Connectors**에서 **문학 그래프**을 활성화하고 필요한 경우 OpenAlex를 구성합니다. 지불 조건:
 
 ```text
 Search OpenAlex for freshwater microplastic transport.

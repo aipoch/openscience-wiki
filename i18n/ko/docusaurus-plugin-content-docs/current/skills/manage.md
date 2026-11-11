@@ -1,7 +1,7 @@
 ---
 title: "Skills 관리 및 검증"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-11'
 ---
 
 # Skills 관리 및 검증 {/* #manage-and-validate-skills */}
@@ -18,7 +18,7 @@ last_update:
 
 <p className="example-label"><strong>예시</strong> RNA-seq Skill 수출 및 수입</p>
 
-1. **Settings → Skills**에서 `rnaseq-count-qc`을 찾아 **Actions → Export**를 선택하십시오. ZIP을 저장합니다.
+1. **Resource center → Skills**에서 `rnaseq-count-qc`을 찾아 **Actions → Export**를 선택하십시오. ZIP을 저장합니다.
 2. **Add skill → Upload skills → Upload skill files**을 선택하고 ZIP을 선택합니다.
 3. **Confirm import**에서 소스 파일명과 진단을 검사합니다. Candidates는 초기 검사되지 않습니다.
 4. **미리보기 rnaseq-count-qc**을 엽니다. SKILL.md 및 파일 목록 읽기. 실제 수출은 `references/sample-metric-schema.md`을 보존했습니다.

@@ -1,7 +1,7 @@
 ---
 title: "遠程計算：SSH、集羣與雲任務"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -277,3 +277,9 @@ Slurm 場景需要向叢集負責人確認賬號／分割槽、資源申請、�
 使用 SSH 金鑰/配置認證時，提供可用金鑰或主機別名，先驗證連線再提交。Slurm 結果回收需要所選賬號具備可用記賬查詢；應用無法確認作業終態時，按上方步驟檢查。
 
 原始碼：[計算錯誤碼與記錄欄位](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/compute.ts)、[SSH/檔案錯誤分類](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/remote-fs.ts)、[Slurm 提交校驗](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/compute/slurm-driver.ts)。
+
+### 先準備雲賬戶登錄所需的 Python {/* #cloud-account-runtime */}
+
+連接 **Hugging Face** 或 **Modal** 時，應用會在打開瀏覽器授權前準備兼容的 Python 運行環境。按準備狀態繼續，再完成登錄並等待賬戶檢查。所選解釋器會先接受檢查，不會在其中安裝依賴；授權和後續 SDK 調用保持使用準備好的運行環境。
+
+準備或授權失敗時，先檢查對應階段的提示，再決定是否重新登錄。賬戶驗證遵循系統代理。瀏覽器顯示成功不等於計算目標已經連接：返回 Compute 確認賬戶狀態後，再添加目標或審批任務。

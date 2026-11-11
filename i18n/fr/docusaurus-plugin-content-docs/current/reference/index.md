@@ -2,7 +2,7 @@
 title: "Référence"
 slug: /reference
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # Référence {/* #reference */}
@@ -27,4 +27,4 @@ Utilisez **Ctrl+K** pour rechercher les titres, les en-têtes et le texte du cor
 
 ## Changer de journal {/* #changelog */}
 
-[Parcourez les dernières notes de publication](../changelog/v1.2.0.md).
+[Parcourez les dernières notes de publication](../changelog/v1.2.1.md).

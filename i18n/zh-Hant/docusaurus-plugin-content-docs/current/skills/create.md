@@ -1,7 +1,7 @@
 ---
 title: "建立 Skill 與支援檔案"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 4. 執行期間選單顯示 **Saving as skill…**。它會在對話中啟動模型輔助整理，不會直接開啟手工 Name/Description 編輯器，也不是點選後立即匯出 ZIP。
 5. 檢查代理提出的名稱、觸發描述、步驟、支援檔案和校驗結果。如果出現澄清問題或操作授權，按實際內容處理。**Customize** 始終啟用，當前角色仍需具備相應能力訪問範圍。
 6. 審閱草稿，再確認釋出。移除固定研究路徑、臨時 ID、金鑰及沒有證據的結論，保留可複用的輸入要求和檢查規則。替換已有 Personal Skill 必須另行明確決定。
-7. 釋出後進入 **Settings → Skills**，搜尋實際返回的名稱，檢查 **Files**、已儲存的 SKILL.md 及 Main Agent 可用性。需要核對完整包時再匯出。
+7. 釋出後進入 **Resource center → Skills**，搜尋實際返回的名稱，檢查 **Files**、已儲存的 SKILL.md 及 Main Agent 可用性。需要核對完整包時再匯出。
 8. 用新請求測試儲存後的 Skill。儲存成功不等於已驗證第二份資料，也不等於下一次呼叫必然成功。
 
 ### 儲存研究方法 {/* #保存研究方法 */}
@@ -49,7 +49,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ![原生 Skill 草稿及校驗結果](/img/open-science/v0.27.0/16-native-skill-draft-validated.webp)
 
-檢查名稱、觸發條件、輸入要求、指標定義與停止條件，再確認釋出到 Personal Skills。釋出後透過 **Settings → Skills → Search skills** 搜尋名稱，開啟說明，核對 **Availability** 與 **Files**。該示例的檔案可下載為 <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.md</ExampleDownload>。
+檢查名稱、觸發條件、輸入要求、指標定義與停止條件，再確認釋出到 Personal Skills。釋出後透過 **Resource center → Skills → Search skills** 搜尋名稱，開啟說明，核對 **Availability** 與 **Files**。該示例的檔案可下載為 <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.md</ExampleDownload>。
 
 ![原生髮布後在 Personal 中找到 Skill](/img/open-science/v0.27.0/17-native-skill-published.webp)
 
@@ -98,7 +98,7 @@ rnaseq-count-qc/
 
 ### 填寫欄位併發布 {/* #填写字段并发布 */}
 
-1. 開啟 **Settings → Skills → Add skill → Write from scratch**。
+1. 開啟 **Resource center → Skills → Add skill → Write from scratch**。
 2. 將完整 SKILL.md 貼上到 **Skill body**，YAML 後設資料會填入 **Name** 與 **Description**。
 3. 確認名稱為 `rnaseq-count-qc`，檢查正文；名稱透過校驗不代表分析方法正確。
 4. 展開 **Advanced settings → Add reference files**，選擇 `sample-metric-schema.md`，編輯器會將其放入 `references/`。

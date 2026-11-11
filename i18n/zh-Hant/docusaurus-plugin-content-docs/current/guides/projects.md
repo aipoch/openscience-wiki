@@ -1,7 +1,7 @@
 ---
 title: "專案與原始檔夾"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # 專案與原始檔夾 {/* #项目与源文件夹 */}
@@ -66,3 +66,21 @@ Write outputs in English.
 | 資料夾可開啟但不能寫入 | 只讀權限允許檢查，不允許修改；儲存派生結果或檢查寫入請求的範圍 |
 | 儲存按鈕不可用 | 檢查名稱是否只有空白、欄位是否超長，以及是否仍有提交在進行 |
 | 當前專案與預期不符 | 附加材料或傳送訊息前先核對左上角專案名稱 |
+
+## 設置問題優化模板 {/* #optimization-template */}
+
+打開項目名稱菜單 → **Project settings → Advanced agent options → Optimization prompt**，填寫這個項目改寫問題時應遵循的要求，然後保存。留空則使用內置默認模板。**New project → Advanced agent options** 中也有同一個字段。
+
+此字段只在點擊 **Optimize question** 時使用，與提供給項目 Agent 會話的 **Agent Context** 不同，也不同於僅供自己查看的 **Description**。
+
+<p className="example-label"><strong>示例</strong> 保留教學問題的適用範圍</p>
+
+```text
+Rewrite the question in clear English. Preserve the supplied numbers
+and the hypothetical scope. Ask for a concise answer with limitations;
+do not invent participants, measurements or citations.
+```
+
+![項目高級選項中的自定義 Optimization prompt](/img/open-science/v121/optimization-template.webp)
+
+返回輸入框，[優化一段草稿](composer.md#optimize-question)，檢查改寫結果後再發送。模板提供的是寫作要求，不是科學驗證規則。

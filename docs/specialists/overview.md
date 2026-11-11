@@ -1,7 +1,7 @@
 ---
 title: "Specialists and available roles"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Specialists and available roles
@@ -17,11 +17,11 @@ A Specialist is a saved research role: identity, instructions and permitted Skil
 | Imported / Marketplace Specialist | Installed from a package, then configured on this device | Local setup and allowed capabilities; inspect publisher and package version |
 | Built-in Reviewer | Performs the app's review workflow | Trigger review through the conversation; it is not a normal editable/delegatable Specialist |
 
-Open **Browse Marketplace** to find published roles. The online catalog can change independently of your installed app. Inspect each role's publisher, instructions and dependencies before importing.
+Open **Marketplace** to find published roles. The online catalog can change independently of your installed app. Inspect each role's publisher, instructions and dependencies before importing.
 
 ## Find a role
 
-Open **Settings → Specialists**. **Installed** counts the locally registered roles, including Reviewer. Use **Search specialists** and **Filter specialists by category**, then open a row to inspect it. **Browse Marketplace** opens a different catalog; a listed market entry is not installed until you complete its package/setup flow.
+Open **Resource center → Specialists**. **Installed** counts the locally registered roles, including Reviewer. Use **Search specialists** and **Filters → Filter specialists by category**, then open a row to inspect it. **Marketplace** opens a different catalog; a listed market entry is not installed until you complete its package/setup flow.
 
 ![The RNA-seq QC Reviewer installed locally](/img/open-science/capabilities-walkthrough/06-specialist-list.webp)
 

@@ -1,25 +1,25 @@
 ---
 title: "Skill directory"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skill directory
 
-The application provides **23 bundled Skills**. This directory groups them by the work they support. Entries describe the shipped method; they do not claim that every external model, dependency or service is installed.
+The application provides **24 bundled Skills**. This directory groups them by the work they support. Entries describe the shipped method; they do not claim that every external model, dependency or service is installed.
 
 For methods distributed through the app, use the [marketplace installation guide](marketplace.md). The directory below helps you choose a research method; it is not a live inventory of marketplace versions.
 
 ## Check readiness before selecting a method
 
-1. Open the Skill in Settings and read its complete requirements and third-party notices.
+1. Open the Skill in **Resource center → Skills → Installed** and read its complete requirements and third-party notices.
 2. Compare the input type with your actual data. A bulk RNA-seq table is not a single-cell AnnData object; a molecular drawing is not a docking result.
 3. Inspect the selected runtime and packages. For remote work, select a usable Compute Host and inspect its environment before submitting.
 4. Request one bounded run, inspect the actual output, and retain the input/version references before scaling up.
 
-Two additional manifest entries, self-awareness and skill-creator, are internal framework resources. They are not user-facing directory entries. Personal or imported Skills, including rnaseq-count-qc, are separate from the count of 23.
+Two additional manifest entries, self-awareness and skill-creator, are internal framework resources. They are not user-facing directory entries. Personal or imported Skills, including rnaseq-count-qc, are separate from the count of 24.
 
-The three Environment application Skills and Customize stay enabled; see [activation rules](overview.md#why-some-switches-cannot-be-turned-off). Use the [bundled manifest](https://github.com/aipoch/open-science/blob/v0.27.0/resources/skills/manifest.json) to identify shipped methods and [Remote compute](../guides/remote-compute.md) for host setup and result delivery.
+The three Environment application Skills and Customize stay enabled; see [activation rules](overview.md#why-some-switches-cannot-be-turned-off). Use the [bundled manifest](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json) to identify shipped methods and [Remote compute](../guides/remote-compute.md) for host setup and result delivery.
 
 ## Browse by research task
 
@@ -75,7 +75,8 @@ The three Environment application Skills and Customize stay enabled; see [activa
 | [Figure Style](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-style/SKILL.md) · `figure-style` | Actual data and one final figure | Notebook function and plotting dependencies | Inspected plot with legible labels and faithful data |
 | [Figure Composer](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-composer/SKILL.md) · `figure-composer` | One claim and immutable data-version references | Main Agent, delegation, plotting and review | Multi-panel figure and review iterations |
 | [Paper Narrative](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/paper-narrative/SKILL.md) · `paper-narrative` | Manuscript/abstract, captions and ordered figure deck | Grounded artifact versions and review tools | Paper brief and an ordered figure argument |
+| [DOCX Generation](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/docx-generation/SKILL.md) · `docx-generation` | Markdown report or existing DOCX | Python 3.9+, Pandoc 3.12.1 and the bundled converter; dependencies must be prepared first | DOCX with native headings, tables and lists; inspect content and layout |
 
 
 
-Implementation reference: [manifest.json](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/manifest.json).
+Implementation reference: [manifest.json](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json).

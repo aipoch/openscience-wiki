@@ -1,7 +1,7 @@
 ---
 title: "建立 Specialist 與編寫指令"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # 建立 Specialist 與編寫指令 {/* #创建-specialist-与编写指令 */}
@@ -20,7 +20,7 @@ last_update:
 
 ## 建立步驟 {/* #创建步骤 */}
 
-1. 開啟 **Settings → Specialists → Add specialist → Write from scratch**。
+1. 開啟 **Resource center → Specialists → Add specialist → Write from scratch**。
 2. Name 填 **RNA-seq QC Reviewer**，Description 填 **Check raw-count integrity and sample metrics using traceable public biomedical inputs.**。
 3. 選擇圖示與顏色，本例為 **Brain / Purple**；實時預覽對應列表和選擇器外觀。
 4. 展開 **Advanced settings**，建立前檢查自動生成的 `rna-seq-qc-reviewer`。

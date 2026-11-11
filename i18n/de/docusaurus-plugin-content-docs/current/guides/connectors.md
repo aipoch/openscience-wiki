@@ -1,7 +1,7 @@
 ---
 title: "Steckverbinder und Anmeldeinformationen"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,7 @@ Ein Connector stellt die Tools eines Dienstes einem Agenten zur Verfügung. Ein 
 
 ### Finden Sie Werkzeuge für ein Genexpressionsprojekt {/* #find-tools-for-a-gene-expression-project */}
 
-Öffnen Sie **Settings → Connectors**, suchen Sie **Omics-Archive** und öffnen Sie seine Details. Diese integrierte Familie umfasst GEO, ArrayExpress, MetaboLights, MGnify und PRIDE Tools. Erweitern Sie eine Werkzeugzeile, bevor Sie sie auswählen.
+Öffnen Sie **Resource center → Connectors**, suchen Sie **Omics-Archive** und öffnen Sie seine Details. Diese integrierte Familie umfasst GEO, ArrayExpress, MetaboLights, MGnify und PRIDE Tools. Erweitern Sie eine Werkzeugzeile, bevor Sie sie auswählen.
 
 ![GEO Metadaten Tool und seine explizite Download-Grenze](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -37,11 +37,11 @@ Weisen Sie ein Tag wie **Transkriptomik** einem Connector zu und finden Sie es d
 
 Verwenden Sie **Search connectors**, um PubMed unter **Directory** zu finden; Die Liste enthält auch **Featured** und **Custom** Gruppen. Die Filterung gilt pro Gruppe, so dass eine andere Gruppe **Keine Connectors passen zu Ihrer Suche** sagen kann, während ein übereinstimmendes Ergebnis unten sichtbar bleibt.
 
-Verwenden Sie **Filter connectors by group**, **Filter Connectors by agent** und **Filter by Tag** zusammen mit der Suche. **Manage credentials** öffnet die gemeinsam genutzten Einstellungen für Kontakt-E-Mail/Credential. **Used by** zeigt Verfügbarkeit; **Manage Tags** organisiert ein Connector. Verwenden Sie die **Manage access**-Steuerung der Ressource, um den Zugriff für Main-Agenten und Spezialisten an einem Ort zu überprüfen und anzupassen.
+Verwenden Sie **Filters → Filter connectors by group**, **Filter Connectors by agent** und **Filter by Tag** zusammen mit der Suche. **Manage credentials** öffnet die gemeinsam genutzten Einstellungen für Kontakt-E-Mail/Credential. **Used by** zeigt Verfügbarkeit; **Manage Tags** organisiert ein Connector. Verwenden Sie die **Manage access**-Steuerung der Ressource, um den Zugriff für Main-Agenten und Spezialisten an einem Ort zu überprüfen und anzupassen.
 
 #### Verwalten Sie den Zugriff für jeden Agenten {/* #resource-access */}
 
-1. Suchen Sie ein Connector unter **Settings → Connectors** und wählen Sie das **Manage access**-Steuerelement aus.
+1. Suchen Sie ein Connector unter **Resource center → Connectors** und wählen Sie das **Manage access**-Steuerelement aus.
 2. Überprüfen Sie **Hauptagent** und die aufgeführten Spezialisten. Durchsuchen Sie die Rollenliste, wenn verfügbar. Ändern Sie nur die beabsichtigte Assoziation; Der Rollen-Editor bleibt eine weitere Möglichkeit, seine Fähigkeitsliste zu verwalten.
 3. Öffnen Sie das Popup erneut und überprüfen Sie **Used by**. Eine Bindung kann einem deaktivierten Specialist zugewiesen bleiben; Die Zuweisung ermöglicht diese Rolle nicht.
 
@@ -51,7 +51,7 @@ Für eine Rolle mit **Full access** erzeugt das Ausschließen dieser Connector e
 
 #### Mehrere Steckverbinder aktivieren oder deaktivieren {/* #enable-or-disable-several-connectors */}
 
-Öffnen Sie **Settings → Connectors**, filtern Sie die Liste, wählen Sie **Select multiple** in der entsprechenden Gruppe aus und wählen Sie die vorgesehenen Konnektoren aus. Überprüfen Sie die ausgewählte Zählung, bevor Sie sie aktivieren oder deaktivieren, und überprüfen Sie dann jeden zurückgegebenen Zustand. Halten Sie nur die für Ihre Arbeit benötigten Dienste aktiviert. Änderungen der Massenverfügbarkeit enthalten keine Anmeldeinformationen, ändern die Genehmigungsrichtlinien für die einzelnen Werkzeuge oder gewähren einen Specialist-Zugang; Konfigurieren Sie diese separat.
+Öffnen Sie **Resource center → Connectors**, filtern Sie die Liste, wählen Sie **Select multiple** in der entsprechenden Gruppe aus und wählen Sie die vorgesehenen Konnektoren aus. Überprüfen Sie die ausgewählte Zählung, bevor Sie sie aktivieren oder deaktivieren, und überprüfen Sie dann jeden zurückgegebenen Zustand. Halten Sie nur die für Ihre Arbeit benötigten Dienste aktiviert. Änderungen der Massenverfügbarkeit enthalten keine Anmeldeinformationen, ändern die Genehmigungsrichtlinien für die einzelnen Werkzeuge oder gewähren einen Specialist-Zugang; Konfigurieren Sie diese separat.
 
 #### PubMed: Verfügbarkeit, Tools und Genehmigungsrichtlinien {/* #pubmed-availability-tools-and-approval-policy */}
 

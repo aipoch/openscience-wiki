@@ -1,7 +1,7 @@
 ---
 title: "外观与通知"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -121,7 +121,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 | 你想要… | 对应入口 |
 | --- | --- |
 | 检查应用更新 | **General → Check now**；后续步骤见[安装与更新](installation.md) |
-| 阅读版本变化或获取帮助 | **General → Release notes / Help Center** 打开相应外部页面；本 Wiki 另有 [Changelog](../changelog/v1.2.0.md) |
+| 阅读版本变化或获取帮助 | **General → Release notes / Help Center** 打开相应外部页面；本 Wiki 另有 [Changelog](../changelog/v1.2.1.md) |
 | 定位或打开诊断日志 | **General → Diagnostics → Reveal / Open**；见[故障排查](troubleshooting.md)。日志在主动分享前保留于本地 |
 | 安装命令行入口 | **General → Install command**；见 [CLI 参考](../reference/cli.md)。使用桌面界面不需要安装此命令 |
 | 管理数据位置或归档工作 | [存储与归档](storage.md) |

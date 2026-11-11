@@ -2,7 +2,7 @@
 title: ".science 研究包"
 description: "將會話、檔案和證據一起匯出，再匯入專案檢視與交接研究記錄。"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -187,3 +187,9 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 通過 **Back to Project** 或 **Back to Home** 返回工作區，再次進入市場時會保留篩選條件、滾動位置等瀏覽狀態。研究案例與 [Skill 市場](../skills/marketplace.md)不同：`.science` 包保存一次研究會話的記錄，Skill 提供可複用的操作指令。
 
 研究包等待選擇目標時，點擊 **Continue** 重新打開導入窗口。開始第二次傳輸前先檢查已有任務。下載校驗檢查的是傳輸完整性，不會驗證案例的科學結論，也不會提供案例使用的模型憑據。
+
+## 導出包含重複計算的長會話 {/* #compact-evidence */}
+
+Notebook 與 Compute 運行在研究包中複用內容相同的證據，同時保留校驗摘要和運行引用。長會話多次使用同一文件時，可減少重複數據；首次導出還可能整理舊記錄中的證據。
+
+按常規 Session package 流程導出並等待完成，再導入獨立項目，檢查保留的運行記錄與文件。壓縮包變小不代表所有所需文件都已齊全，成功導入也不等於重新計算。需要檢查再次執行時，使用[可復現性檢查](reproducibility.md)。

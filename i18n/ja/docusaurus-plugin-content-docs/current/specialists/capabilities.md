@@ -1,7 +1,7 @@
 ---
 title: "Skillsおよびコネクターを割り当てて下さい"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skillsおよびコネクターを割り当てて下さい {/* #assign-skills-and-connectors */}
@@ -12,7 +12,7 @@ Specialistの機能リストは、Skillsとコネクタが到達できるかを�
 
 <p className="example-label"><strong>例</strong> RNA-seq QC Reviewer に能力を割り当てる</p>
 
-1. **Settings → Specialists** を開き、**RNA-seq QCの査読器** を編集します。
+1. **Resource center → Specialists** を開き、**RNA-seq QCの査読器** を編集します。
 2. **Full access**をオフにします。
 3. **Skills**では、**スキルの追加**を選択し、`rnaseq-count-qc`を検索し、保存されたパーソナルパッケージを追加します。 **Skills 1** を確認します。
 4. **Connectors** では、**コネクターを追加** を選択し、**Omics アーカイブ** を選択します。 **コネクター 1** を確認します。
@@ -33,7 +33,7 @@ Specialistの機能リストは、Skillsとコネクタが到達できるかを�
 
 ## リソースからのアクセスを調整する {/* #resource-access */}
 
-**Settings → Skills** または **Connectors** では、リソースの **Manage access** ポップアップを開き、Main エージェントと Specialist の関連付けを一緒に検査します。 ロールの有効状態ではなく、選択したロールのバインディングを更新します。 完全なアクセスの役割は、リソースの除外を持たせることができます。 制限されたロールは明示的な選択を使用します。 マーケットプレースバインディングは、このポップアップでのみ読み書きできます。 [アクセス制御を図示した](../guides/connectors.md#resource-access) を参照してください。
+**Resource center → Skills** または **Connectors** では、リソースの **Manage access** ポップアップを開き、Main エージェントと Specialist の関連付けを一緒に検査します。 ロールの有効状態ではなく、選択したロールのバインディングを更新します。 完全なアクセスの役割は、リソースの除外を持たせることができます。 制限されたロールは明示的な選択を使用します。 マーケットプレースバインディングは、このポップアップでのみ読み書きできます。 [アクセス制御を図示した](../guides/connectors.md#resource-access) を参照してください。
 
 結合を変更した後、ロールが有効になっていることを確認します。サービス資格は準備が整っており、意図した操作が許可されます。 **Used by**は、実行完了ではなく、割り当てを表示します。
 

@@ -1,7 +1,7 @@
 ---
 title: "First-time setup"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,18 +12,18 @@ The first-run wizard has five pages in this order: Environment, Data location, A
 
 <PlatformGuide />
 
-After initial setup, an older app-managed Codex runtime can be updated in [Agent settings](frameworks.md#update-codex). This is separate from choosing a model provider.
+If you choose an external Agent, you can manage and update it later in [Agent settings](frameworks.md). The built-in **Open-Science Agent** is included with the app.
 
 ## 1. Environment
 
-Start on **Prepare environment**. The app checks the host before asking you to install an agent or connect a model. Each row contains a status and an explanation; use the explanation to identify the requirement that needs attention.
+Start on **Prepare environment**. The app checks your computer before you choose an Agent and connect a model. Read each status and its explanation to identify any requirement that needs attention.
 
 | Check or control | What it means | What to do |
 | --- | --- | --- |
 | System compatibility | Checks the operating system and architecture | Confirm that the detected platform matches your computer |
 | App storage permission | Checks write access to the app's configuration folder | If it fails, resolve access to the displayed path and check again |
 | Secure credential storage | Checks whether the operating-system credential vault is available | Resolve the vault issue before entering credentials |
-| Installation network | Checks supported package sources and reports a reachable source | Read the selected source and latency; results depend on your network |
+| Installation network | Checks whether the selected Agent needs a download and, when needed, checks package sources | With the built-in Agent, this can report that no download is needed; it does not test your model connection |
 | `Check again` | Repeats the environment checks | Use after fixing a requirement; the label becomes `Checking…` and the button is disabled during the check |
 | `Continue` | Opens Data location | Available after the required host checks pass; it is disabled while checks are running |
 
@@ -35,7 +35,7 @@ Read each check’s explanation alongside its status. When an agent is already i
 
 <PlatformContent platform="macos">
 
-![Environment checks completed during macOS first-time setup](/img/open-science/macos/setup-environment.webp)
+![Environment checks completed during macOS first-time setup](/img/open-science/v121/onboarding-environment.webp)
 
 </PlatformContent>
 
@@ -112,53 +112,36 @@ If restart fails before the location changes, restore configuration write access
 
 ## 3. Agent runtime
 
-Choose the Agent runtime that will run sessions. A new v1.2.0 setup defaults to the built-in **Open-Science Agent**, so no separate Agent installation is needed for that choice. It requires a compatible API provider. If you use **Codex subscription**, select and prepare **Codex** instead; the Codex steps below show that option. Continue once the intended runtime is ready.
+New setups use the built-in **Open-Science Agent** by default. It is included with the app and supports compatible API providers and **Codex subscription**. You can complete this step without installing another Agent.
+
+1. Find **Open-Science Agent** under **Installed** and confirm that its card shows **Active**.
+2. Wait for **All required environment checks passed.** If a check fails, resolve the requirement shown on the page, then select **Re-detect**.
+3. Select **Continue** to open **Model provider**. Connect and test your model there before sending requests.
 
 <PlatformContent platform="macos">
 
-![Codex installation source menu](/img/open-science/walkthrough-2026-09-08/05-agent-install-menu.webp)
-
-</PlatformContent>
-1. Open **Install Codex**.
-2. Choose the app-managed installation source recommended by the menu. The alternative uses a global npm installation.
-3. Wait for installation to finish. Avoid starting another installation while the installer is running.
-4. Confirm that Codex now shows its version and **Active**.
-5. Select **Continue** to open Model provider.
-
-<PlatformContent platform="macos">
-
-![Codex installed and selected as the active runtime](/img/open-science/walkthrough-2026-09-08/06-agent-codex-ready.webp)
-
-</PlatformContent>
-The version labels identify the installed agent or adapter, not the selected model. Inspect the installed values instead of expecting the screenshot’s exact versions.
-
-<PlatformContent platform="windows">
-
-If a compatible agent is already installed, select its card and confirm **Active** before continuing. The Windows screen below uses an existing Codex installation; reinstalling it is unnecessary just to proceed through the wizard.
-
-![An existing Codex agent selected as Active in the Windows setup wizard](/img/open-science/windows/setup-agent-active.webp)
+![Built-in Open-Science Agent is active, with Continue available and the five external runtimes not installed](/img/open-science/v121/onboarding-builtin-agent.webp)
 
 </PlatformContent>
 
-| Control or state | Behavior |
-| --- | --- |
-| Framework card | Shows installation status, version, runtime path, and whether the framework is active. |
-| **Install…** | Opens that framework's supported installation sources. |
-| Installation progress | Reports setup activity; conflicting installation controls and re-detection are unavailable while it runs. |
-| **Re-detect** | Refreshes installed runtime information. The label becomes **Detecting…** until checks finish. You can also re-detect from Settings → Agent. |
-| **Uninstall** | Unavailable for the active runtime. Switch to another installed framework before removing it. |
-| **Back** | Return to Data location when no blocking setup operation is running. |
-| **Continue** | Proceed once an active runtime is ready. |
+The version on an Agent card identifies the runtime or adapter, not the model. **Active** means that this runtime is selected; it does not confirm a model connection. Choosing **Codex subscription** on the next page does not require installing the separate **Codex** runtime.
 
-See [Agent frameworks](frameworks.md) for framework-specific installation, switching, repair and removal.
+<details>
+<summary>Choose an external Agent (optional)</summary>
+
+If you need the provider support or behavior of **Codex**, **Claude Agent**, **OpenCode**, **CodeBuddy**, or **Pi**, choose that runtime instead. For an existing installation, select **Re-detect**, then select its card. Otherwise, open **Install**, choose a supported source and wait for installation to finish. Confirm **Active** and that the required checks pass before continuing.
+
+See [Agent frameworks](frameworks.md) for installation sources, switching and repair. You can also change the runtime after setup in **Settings → Agent**.
+
+</details>
 
 ## 4. Model provider
 
-The form changes according to **Provider type**, the selected agent, and the authentication method. For a Codex subscription, **Import existing Codex sign-in** copies an existing local sign-in to Open-Science. Use it when you want to connect that account, then wait for the connection check.
+The form changes according to **Provider type**, the selected Agent and the authentication method. To use a Codex subscription with the built-in Agent, choose **Codex subscription**. If this computer already has a Codex sign-in, select **Import existing Codex sign-in** under **Codex authentication**, then select **Test & continue**. If no usable sign-in is available, choose a supported sign-in method and follow the prompts; see [Provider setup](providers.md#builtin-codex-subscription). Continue after the connection check succeeds.
 
 <PlatformContent platform="macos">
 
-![English Codex subscription form before authentication](/img/open-science/walkthrough-2026-09-08/07-model-codex-subscription.webp)
+![English Codex subscription form before authentication](/img/open-science/v121/onboarding-codex-provider.webp)
 
 </PlatformContent>
 For an API provider, select its type, enter the endpoint and model details required by that provider, and use **Test & continue**. The wizard validates required fields before sending a test. A successful test advances the wizard; a validation or connection error remains visible for correction.
@@ -199,7 +182,7 @@ The Windows **Notebook runtime** page can also show **Local Shell · WSL2 Bash P
 | --- | --- | --- |
 | Environment | Required checks passed. | Recheck after resolving the displayed requirement. |
 | Data location | Final managed path is the intended location. | Return to the location page; do not infer the final path from the picker alone. |
-| Agent | Installed version and Active state. | Inspect installation logs and redetect. |
+| Agent | Selected runtime is ready and **Active**; the built-in Agent needs no separate installation. | Read the reported requirement and select **Re-detect** after resolving it. |
 | Provider | Verified connection and a selected main model. | Recheck sign-in or provider-specific fields. |
 | Notebook | Ready and enabled when code execution is needed. | Configure **Settings → Runtimes** before requesting analysis. |
 | First task | Agent response and inspectable saved output. | Inspect permissions and tool errors separately from model connection. |

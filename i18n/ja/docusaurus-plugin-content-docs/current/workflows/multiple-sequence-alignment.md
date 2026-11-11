@@ -1,7 +1,7 @@
 ---
 title: "複数のシーケンスを揃え、保存されたポジションを検査する"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ UniProt シーケンスのレビューを3つ取得し、Clustal Omegaサービ�
 [科学データベース](../tools/databases.md#connect-database) で接続設定を記述します。
 
 1. **ヘモグロビンシーケンスアライメント** を作成し、接続されたモデルで新しい会話を開きます。 この例では、**Codex subscription** を使用します。
-2. **Settings → Connectors** では、**ジャンルとオノトロジー** と **ゲノム** を Main で利用できるようにします。 残忍なオメガはゲノムに属しています。 それは別のConnectorではないです。
+2. **Resource center → Connectors** では、**ジャンルとオノトロジー** と **ゲノム** を Main で利用できるようにします。 残忍なオメガはゲノムに属しています。 それは別のConnectorではないです。
 3. **Settings → Privacy → Share contact email with research data services**のClustal Omegaによって要求される有効な研究サービス接触の電子メールを構成して下さい。 実際の連絡先は、発明されたアドレスではなく使用してください。 EMBL-EBI にシーケンス入力を送信します。
 4. 以下にプロンプトを送信してください。 公序良俗に反する、またはその他の許可されたシーケンスを使用する。
 

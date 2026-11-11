@@ -1,7 +1,7 @@
 ---
 title: "Продлить анализ с помощью установленного Specialist"
 last_update:
-  date: '2026-09-17'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -16,7 +16,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. Установить и выбрать Specialist {/* #1-install-and-select-the-specialist */}
 
-1. Открыть **Settings → Specialists → Browse Marketplace**. Найдите **Фармакометрика PK/PD Design Specialist**, проверьте его возможности и установите его. В этом примере используется пакет **1.0.0** в Open-Science **0.30.1**.
+1. Открыть **Resource center → Specialists → Marketplace**. Найдите **Фармакометрика PK/PD Design Specialist**, проверьте его возможности и установите его. В этом примере используется пакет **1.0.0** в Open-Science **0.30.1**.
 2. В **Settings → Runtimes** подтвердите, что R является **Ready** и включен. Записанный забег использовал R **4.4.3**.
 3. Откройте новый разговор в своем исследовательском проекте. Выберите доступную модель, затем **Agent controls → Specialist → pharmacometrics-pkpd-designer**. Записанный забег использовал **Подписка Codex / gpt-5.6-sol**.
 4. В начале **Каждое аналитическое сообщение**, введите `/pkpd`, затем выберите **pkpd-моделирование** из предложенных вариантов. Подтвердите, что он становится чипом Skill, прежде чем вставлять подсказку.

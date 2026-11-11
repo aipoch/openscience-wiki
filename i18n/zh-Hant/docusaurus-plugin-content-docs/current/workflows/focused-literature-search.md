@@ -1,7 +1,7 @@
 ---
 title: "限定期刊與時間範圍檢索文獻"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 確定問題與納入規則 {/* #1-确定问题与纳入规则 */}
 
-開啟專案並選擇已連線的模型。在 **Settings → Connectors** 中確認 **PubMed** 可用；如提示需要聯絡資訊，在該設定中填寫。開始本例前不需要下載論文。
+開啟專案並選擇已連線的模型。在 **Resource center → Connectors** 中確認 **PubMed** 可用；如提示需要聯絡資訊，在該設定中填寫。開始本例前不需要下載論文。
 
 日期範圍使用**發表日期 2019-01-01 至 2025-12-31**，不是資料庫收錄日期。納入設有明確正念干預組、報告參與者結果的原始隨機研究。對混合干預、原始或二次發表身份不清、日期衝突的記錄，單列為 **uncertain**。研究機制性結局本身不代表論文是二次分析。
 

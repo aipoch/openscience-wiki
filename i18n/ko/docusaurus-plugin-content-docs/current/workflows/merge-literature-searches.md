@@ -1,7 +1,7 @@
 ---
 title: "문학 검색 일괄"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 검색을 모두 실행하고 기록 {/* #1-run-and-record-both-searches */}
 
-**Settings → Connectors**에서 **문학 그래프**을 활성화하고 요청한 경우 OpenAlex 자격 증명을 구성합니다. 프로젝트를 열고 대화를 시작하고 연결된 모델을 선택하십시오. 기록 된 실행은 Open-Science **0.30.1**, **Codex 구독 / gpt-5.6-sol**를 사용했습니다. 소스 PDF가 필요하지 않습니다.
+**Resource center → Connectors**에서 **문학 그래프**을 활성화하고 요청한 경우 OpenAlex 자격 증명을 구성합니다. 프로젝트를 열고 대화를 시작하고 연결된 모델을 선택하십시오. 기록 된 실행은 Open-Science **0.30.1**, **Codex 구독 / gpt-5.6-sol**를 사용했습니다. 소스 PDF가 필요하지 않습니다.
 
 ```text
 Use OpenAlex through Literature Graph to build two search batches:

@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skills
@@ -22,9 +22,9 @@ Skill 为 Agent 提供可重复使用的方法，包括适用条件、输入要�
 
 ## 查找并检查 Skill
 
-1. 打开 **Settings → Skills**。
+1. 打开 **Resource center → Skills**。
 2. 在 **Search skills** 搜索名称或描述。[创建示例](./create.md)后可输入 `rnaseq-count-qc`。
-3. 使用 **Filter skills by source**、**Filter Skills by agent** 和 **Filter by Tag** 缩小范围。
+3. 使用 **Filters → Filter skills by source**、**Filter Skills by agent** 和 **Filter by Tag** 缩小范围。
 4. 打开结果，阅读描述、指令、**Files**、许可证和 **Availability**。显示名称可能与包 ID 不同。
 5. 返回列表查看 **Used by**。这里表示哪些 Agent 可以使用，并非已完成运行次数。
 
@@ -47,7 +47,7 @@ Skill 为 Agent 提供可重复使用的方法，包括适用条件、输入要�
 
 启用规则不会自动安装依赖、提供凭据或授权操作。Specialist 分配是独立范围，应检查 **Used by** 和角色能力列表。
 
-公开目录仍有 23 个内置 Skills，内部支持 Skill 不作为额外方法供选择。[必需开关实现](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx)。
+公开目录仍有 24 个内置 Skills，内部支持 Skill 不作为额外方法供选择。[必需开关实现](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx)。
 
 下图展示 **Customize** 的原因提示。关闭其他可选方法时，这些必需 Skill 仍保持启用。
 

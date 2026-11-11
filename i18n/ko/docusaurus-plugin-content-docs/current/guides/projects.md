@@ -1,7 +1,7 @@
 ---
 title: "프로젝트 및 소스 폴더"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # 프로젝트 및 소스 폴더 {/* #projects-and-source-folders */}
@@ -64,3 +64,21 @@ Project-name 메뉴를 사용하여 프로젝트를 전환합니다. 다음 조�
 | Folder opens 하지만 쓰기 이다 denied | Read-only permission은 검사, 수정하지 않습니다. 파생된 artifact를 저장하거나 요청한 쓰기 범위를 검토하십시오. |
 | 자주 묻는 질문 | 공백 전용 이름과 체크 필드 길이를 제거하십시오; 다른 저장이 종료되면 대기합니다. |
 | 다른 프로젝트는 선택 | 문서에 첨부하거나 요청을 보내기 전에 프로젝트 제목을 확인하십시오. |
+
+## 질문 최적화 템플릿 설정 {/* #optimization-template */}
+
+프로젝트 이름 메뉴 열기 → **Project settings → Advanced agent options → Optimization prompt**· 이 프로젝트의 질문에 대한 답변을 입력하고 저장하십시오. 내장 기본을 사용하려면 빈을 두십시오. 동일한 분야는 아래에 유효합니다 **New project → Advanced agent options**.
+
+이 필드는 선택할 때만 실행됩니다. **Optimize question**· 그것은 분리됩니다 **Agent Context**프로젝트의 에이전트 세션에 대한 지침을 공급하는 , 및 **Description**당신의 참고를 위해 인 .
+
+<p className="example-label"><strong>이름 *</strong> 교육 질문의 한계를 보존</p>
+
+```text
+Rewrite the question in clear English. Preserve the supplied numbers
+and the hypothetical scope. Ask for a concise answer with limitations;
+do not invent participants, measurements or citations.
+```
+
+![프로젝트의 고급 에이전트 옵션 아래 사용자 정의 최적화 신속한](/img/open-science/v121/optimization-template.webp)
+
+Composer로 돌아가기 [초안 최적화](composer.md#optimize-question)· 보내기 전에 rewritten 텍스트를 검토하십시오. 템플릿은 서면 지침이며 과학 검증 규칙이 아닙니다.

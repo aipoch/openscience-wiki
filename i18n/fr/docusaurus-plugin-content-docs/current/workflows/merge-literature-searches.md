@@ -1,7 +1,7 @@
 ---
 title: "Combiner des lots de recherche de littérature"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Deux recherches renvoient souvent des documents qui se chevauchent. Conserver la
 
 ## 1. Exécuter et enregistrer les deux recherches {/* #1-run-and-record-both-searches */}
 
-Dans **Settings → Connectors**, activez **Graphique de littérature** et configurez son justificatif OpenAlex si demandé. Ouvrez un projet, commencez une conversation et sélectionnez un modèle connecté. L'exécution enregistrée a utilisé Open-Science **0.30.1**, **Abonnement Codex / gpt-5.6-sol**. Aucune source PDF n'est nécessaire.
+Dans **Resource center → Connectors**, activez **Graphique de littérature** et configurez son justificatif OpenAlex si demandé. Ouvrez un projet, commencez une conversation et sélectionnez un modèle connecté. L'exécution enregistrée a utilisé Open-Science **0.30.1**, **Abonnement Codex / gpt-5.6-sol**. Aucune source PDF n'est nécessaire.
 
 ```text
 Use OpenAlex through Literature Graph to build two search batches:

@@ -1,7 +1,7 @@
 ---
 title: "首次设置"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,18 +12,18 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformGuide />
 
-首次设置完成后，较旧的应用管理 Codex 运行时可在 [Agent 设置](frameworks.md#update-codex)更新。这与选择模型提供方是两项操作。
+如果选择外部 Agent，后续可以在[代理设置](frameworks.md)中管理和更新。内置 **Open-Science Agent** 随应用提供。
 
 ## 1. Environment
 
-首次启动进入 **Prepare environment**。应用先检查电脑环境，再让你安装智能体或连接模型。每一行都有状态和解释；某项失败时，应先根据该行信息定位原因。
+从 **Prepare environment** 开始。应用会先检查本机环境，再让你选择 Agent 和连接模型。结合每项状态与说明，确认是否有需要处理的要求。
 
 | 检查项或控件 | 含义 | 操作方法 |
 | --- | --- | --- |
 | System compatibility | 检查操作系统和处理器架构 | 确认识别结果与你的电脑一致 |
 | App storage permission | 检查应用配置目录的写入权限 | 失败时处理所示路径的权限，再重新检查 |
 | Secure credential storage | 检查操作系统凭据库是否可用 | 先解决凭据库存取问题，再填写密钥 |
-| Installation network | 检查受支持的软件包来源并显示可访问来源 | 阅读来源与延迟；实际结果随网络环境变化 |
+| Installation network | 判断所选 Agent 是否需要下载；需要时检查软件包来源 | 使用内置 Agent 时可显示无需下载；这不代表模型连接已通过 |
 | `Check again` | 重新执行环境检查 | 检查期间变为 `Checking…` 并禁用，避免重复发起 |
 | `Continue` | 进入数据位置设置 | 必需检查通过后可用，检查过程中禁用 |
 
@@ -35,7 +35,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformContent platform="macos">
 
-![macOS 首次设置中的环境检查已完成](/img/open-science/macos/setup-environment.webp)
+![macOS 首次设置中的环境检查已完成](/img/open-science/v121/onboarding-environment.webp)
 
 </PlatformContent>
 
@@ -112,53 +112,36 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 3. Agent runtime
 
-选择运行会话的 Agent。全新的 v1.2.0 配置默认使用内置 **Open-Science Agent**，选择它时无需另行安装 Agent，但需要兼容的 API 提供方。如果使用 **Codex subscription**，则应选择并准备 **Codex**；下方演示的是这条路径。确认预期运行时就绪后继续。
+新配置默认使用内置 **Open-Science Agent**。它随应用提供，支持兼容的 API 提供方和 **Codex subscription**；无需再安装其他 Agent 即可完成这一步。
+
+1. 在 **Installed** 下找到 **Open-Science Agent**，确认卡片显示 **Active**。
+2. 等待页面显示 **All required environment checks passed.** 后继续。若检查未通过，先按页面提示处理，再点击 **Re-detect**。
+3. 点击 **Continue** 进入 **Model provider**，在下一步连接并测试模型后，才能发送请求。
 
 <PlatformContent platform="macos">
 
-![Codex 安装来源菜单](/img/open-science/walkthrough-2026-09-08/05-agent-install-menu.webp)
-
-</PlatformContent>
-1. 打开 **Install Codex**。
-2. 选择菜单推荐的应用管理安装来源；另一种来源使用全局 npm 安装。
-3. 等待安装完成，期间不要启动另一个安装任务。
-4. 确认 Codex 显示版本号和 **Active**。
-5. 选择 **Continue** 进入 Model provider。
-
-<PlatformContent platform="macos">
-
-![Codex 安装完成并成为活动运行时](/img/open-science/walkthrough-2026-09-08/06-agent-codex-ready.webp)
-
-</PlatformContent>
-版本标签指的是已安装代理或适配器，不是所选模型；核对实际安装值，无需与截图版本完全相同。
-
-<PlatformContent platform="windows">
-
-已有兼容代理时，选择其卡片并确认 **Active**，再继续。下方 Windows 界面使用已有 Codex 安装；无需为了完成向导而重新安装它。
-
-![Windows 设置向导中已有 Codex 代理被选为 Active](/img/open-science/windows/setup-agent-active.webp)
+![内置 Open-Science Agent 已为 Active，五个外部运行时均未安装，Continue 可用](/img/open-science/v121/onboarding-builtin-agent.webp)
 
 </PlatformContent>
 
-| 控件或状态 | 行为 |
-| --- | --- |
-| 框架卡片 | 显示安装状态、版本、运行时路径和活动状态 |
-| **Install…** | 展示该框架支持的安装来源 |
-| 安装进度 | 显示准备状态；安装期间不能启动冲突的安装操作或重新检测 |
-| **Re-detect** | 刷新运行时检测信息，检查期间变为 **Detecting…**。也可在 Settings → Agent 中重新检测 |
-| **Uninstall** | 活动运行时不可卸载；需先切换到另一个已安装框架 |
-| **Back** | 没有阻塞的安装操作时，返回 Data location |
-| **Continue** | 活动运行时就绪后进入下一步 |
+Agent 卡片上的版本号属于运行时或适配器，不是模型版本。**Active** 表示当前选中了该运行时，不代表模型已连接。下一步选择 **Codex subscription**，也不需要先安装独立的 **Codex** 运行时。
 
-各框架的安装来源、切换、修复和卸载方法见[安装与切换代理框架](frameworks.md)。
+<details>
+<summary>选择外部 Agent（可选）</summary>
+
+如果需要 **Codex**、**Claude Agent**、**OpenCode**、**CodeBuddy** 或 **Pi** 的提供方支持或运行方式，可以改选对应运行时。已有安装时，点击 **Re-detect** 后选择其卡片；尚未安装时，打开 **Install**，选择受支持的来源并等待安装完成。确认 **Active** 且必需检查通过后，再继续。
+
+安装来源、切换和修复方法见[安装与切换代理框架](frameworks.md)。完成向导后，也可以在 **Settings → Agent** 中更换运行时。
+
+</details>
 
 ## 4. Model provider
 
-表单会根据 **Provider type**、活动代理和认证方式变化。使用 Codex 订阅时，**Import existing Codex sign-in** 会将本机已有登录复制到 Open-Science。需要连接该账号时选择导入，再等待连接检查。
+表单会随 **Provider type**、所选 Agent 和认证方式变化。使用内置 Agent 连接 Codex 订阅时，选择 **Codex subscription**。如果本机已有 Codex 登录，在 **Codex authentication** 中选择 **Import existing Codex sign-in**，再点击 **Test & continue**。若没有可用登录，选择受支持的登录方式并按提示操作，详见[提供方配置](providers.md#builtin-codex-subscription)。连接检查通过后再继续。
 
 <PlatformContent platform="macos">
 
-![尚未认证的英文 Codex 订阅表单](/img/open-science/walkthrough-2026-09-08/07-model-codex-subscription.webp)
+![尚未认证的英文 Codex 订阅表单](/img/open-science/v121/onboarding-codex-provider.webp)
 
 </PlatformContent>
 使用 API 提供商时，选择类型，填写其要求的端点和模型信息，然后选择 **Test & continue**。向导先检查必填字段，再执行连接测试。测试成功后推进向导；输入或连接错误会保留在表单中供修改。
@@ -199,7 +182,7 @@ Windows 的 **Notebook runtime** 页面还可能显示 **Local Shell · WSL2 Bas
 | --- | --- | --- |
 | Environment | 必需检查通过 | 解决具体要求后重新检查 |
 | Data location | 最终托管路径符合预期 | 回到路径页检查，不能只凭选择器里的父目录判断 |
-| Agent | 已安装版本与 Active 状态 | 查看安装日志并重新检测 |
+| Agent | 所选运行时就绪且显示 **Active**；内置 Agent 无需另行安装 | 按提示处理后点击 **Re-detect** |
 | Provider | 连接已验证，主模型已选择 | 检查登录或提供方专有字段 |
 | Notebook | 需要代码执行时，运行时 Ready 且已启用 | 先配置 **Settings → Runtimes** |
 | 首个任务 | 有代理回复与可打开的保存结果 | 分别检查权限、工具错误和模型连接 |

@@ -1,7 +1,7 @@
 ---
 title: "Conversaciones y solicitudes en cola"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-11'
 ---
 
 # Conversaciones y solicitudes en cola {/* #conversations-and-queued-requests */}
@@ -52,6 +52,30 @@ El selector de modelo elige entre los modelos configurados. Sus opciones de razo
 | Subdivisión | Prosecución independiente cuando se disponga de | Comprobación de la historia o los ficheros heredados; ver [Sesiones](sessions.md) |
 | Agregar mensaje a la cola | Preparar un seguimiento mientras se ejecuta | La solicitud pendiente no se guarda hasta que se entrega |
 | Cancelar ejecución | Detener la ejecución actual | Esperar la cancelación; los resultados ya guardados no se deshacen automáticamente |
+
+## Refinar un proyecto de pregunta {/* #optimize-question */}
+
+En un proyecto, escriba un borrador **Ask anything**, entonces seleccione **Optimize question** al lado de los controles del Agente. Se requiere un modelo configurado y disponible. La acción utiliza el modelo de tarea bajo **Settings → Model → Conversation models → Prompt optimization**; **Same as main model** sigue a Main.
+
+1. Mantenga la cuestión de la investigación, los aportes reales y las limitaciones importantes en el proyecto. Haga clic **Optimize question** para empezar; escribir solo no invoca la optimización.
+2. Espera el borrador reescrito. Uso **Cancel optimization** Parar. Si cambia el borrador mientras se ejecuta la solicitud, su resultado tardío no se aplica sobre sus ediciones.
+3. Lea el resultado antes de enviar. Números de comprobación, identificadores, alcance y cualquier requisito sugerido recientemente. El texto reescrito reemplaza el borrador; no ha sido enviado como mensaje de conversación.
+4. Seleccione **Undo optimization** para restaurar el borrador original, o editar el resultado usted mismo. La edición manual termina la oportunidad de Undo de un solo paso. Los archivos adjuntos de texto extraídos pueden ser restaurados como texto en línea en lugar de como enlaces adjuntos perdidos.
+5. Seleccione **Send message** sólo cuando la pregunta está lista. Si la optimización falla, retenga el borrador original, compruebe el modelo seleccionado y reingrese cuando corresponda.
+
+<p className="example-label"><strong>Ejemplo trabajado</strong> Mantenga una pregunta docente dentro de sus pruebas</p>
+
+Con Codex seleccionado, este proyecto se refinaba manteniendo los cinco valores y el alcance hipotético:
+
+```text
+Explain the mean and median of 2, 4, 6, 8, 10 for a hypothetical
+teaching example. Why can we not generalize to a population?
+Keep it concise.
+```
+
+El proyecto revisado pide explícitamente limitaciones sin participantes inventados, mediciones o citas. **Undo optimization** restaura la pregunta original. El ejemplo [plantilla de proyecto](projects.md#optimization-template) suministra esas limitaciones; la optimización no verifica la respuesta eventual.
+
+![Una refinada pregunta en inglés en el Compositor con la optimización Undo disponible](/img/open-science/v121/optimized-question.webp)
 
 ## Enviar comentarios precisos {/* #send-precise-feedback */}
 

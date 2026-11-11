@@ -1,7 +1,7 @@
 ---
 title: "과학 데이터베이스에서 구조화 된 레코드를 검색"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 화합물 및 속성 정의 {/* #1-define-the-compounds-and-properties */}
 
-**Settings → Connectors**에서 **뚱 베어**을 사용할 수 있는지 확인하십시오. 프로젝트를 열고 대화를 시작하고 연결된 모델을 선택하십시오. 이것은 Open-Science 0.30.1와 화학/PubChem Connector를 사용했습니다; 입력 스프레드 시트가 필요하지 않았습니다.
+**Resource center → Connectors**에서 **뚱 베어**을 사용할 수 있는지 확인하십시오. 프로젝트를 열고 대화를 시작하고 연결된 모델을 선택하십시오. 이것은 Open-Science 0.30.1와 화학/PubChem Connector를 사용했습니다; 입력 스프레드 시트가 필요하지 않았습니다.
 
 **중립, 직선 체인, 포화 monocarboxylic 산**을 지정합니다. 비슷한 이름은 분지 된 이노머, 소금 또는 conjugate베이스를 참조 할 수 있습니다. 혼자 공식은 모든 그 구조를 구별 할 수 없습니다.
 

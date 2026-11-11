@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -187,3 +187,9 @@ Export requires an explicit `.science` output path. The default deadline is one 
 **Back to Project** or **Back to Home** returns to your workspace. Returning to the marketplace retains its browsing state, including filters and scroll position. Research cases are different from the [Skill marketplace](../skills/marketplace.md): a `.science` package carries a recorded research session; a Skill supplies reusable instructions.
 
 If a package is waiting for a destination, **Continue** reopens the import dialog. Check any existing transfer before starting another. Download verification checks the transfer, not the case's scientific conclusions, and does not supply its model credentials.
+
+## Export a long history with repeated computations {/* #compact-evidence */}
+
+Notebook and Compute runs reuse identical evidence content in the research package while retaining verified digests and run references. This reduces repeated bytes when a long session uses the same files many times; the first export may also prepare evidence from older records.
+
+Export through the normal Session package flow and wait for completion. Import the result into a separate project and inspect the retained runs and files. A smaller archive does not prove that every required file is present, and successful import is not a computational rerun. Use [reproducibility checks](reproducibility.md) when you need to test execution again.

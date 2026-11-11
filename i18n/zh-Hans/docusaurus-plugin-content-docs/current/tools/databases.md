@@ -2,7 +2,7 @@
 title: "科学数据库"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # 科学数据库
@@ -13,7 +13,7 @@ last_update:
 
 ## 目前支持哪些数据库 {/* #supported-databases */}
 
-Open-Science v1.0.8 内置 **48 个 Connector，共提供 418 项操作**：其中 47 个数据源 Connector 提供 416 项操作，1 个离线 Molecule Connector 提供 2 项操作。下表名称对应 **Settings → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
+Open-Science v1.0.8 内置 **48 个 Connector，共提供 418 项操作**：其中 47 个数据源 Connector 提供 416 项操作，1 个离线 Molecule Connector 提供 2 项操作。下表名称对应 **Resource center → Connectors** 中的条目，一个 Connector 可以包含多个数据库。支持某个数据源不表示覆盖其网站的全部功能。
 
 这里统计全部内置条目，包括未启用的条目；用户自行添加的 MCP Connector 另计。Connector 数量、所覆盖的数据库数量和可调用的操作数量是不同的统计口径。
 
@@ -90,7 +90,7 @@ Open-Science v1.0.8 内置 **48 个 Connector，共提供 418 项操作**：其�
 
 ## RNA 调控证据：ENCORI {/* #encori */}
 
-在 **Settings → Connectors** 搜索 **ENCORI**，启用并使其对 **Main** 可用。它是内置数据源，不需要自定义 MCP 地址或 API key。选择可用主模型，在会话中明确物种／assembly、RNA 或靶基因、细胞类型与证据阈值。
+在 **Resource center → Connectors** 搜索 **ENCORI**，启用并使其对 **Main** 可用。它是内置数据源，不需要自定义 MCP 地址或 API key。选择可用主模型，在会话中明确物种／assembly、RNA 或靶基因、细胞类型与证据阈值。
 
 | 任务 | 结果与使用边界 |
 | --- | --- |
@@ -129,7 +129,7 @@ ChEMBL 每页按 `activity_id` 排序。保持过滤条件不变，将 `next_off
 
 ## 单细胞、模式生物及变异功能数据 {/* #single-cell-model-organisms */}
 
-在 **Settings → Connectors** 搜索下表中的入口，开启 **Main** 的可用性，再向会话说明研究对象、物种及需要保存的记录。这四类新增操作读取公开数据，无需另外添加自定义 MCP 服务器、API key 或 NCBI 联系邮箱；同一 Connector 的其他服务可能有不同要求。
+在 **Resource center → Connectors** 搜索下表中的入口，开启 **Main** 的可用性，再向会话说明研究对象、物种及需要保存的记录。这四类新增操作读取公开数据，无需另外添加自定义 MCP 服务器、API key 或 NCBI 联系邮箱；同一 Connector 的其他服务可能有不同要求。
 
 | 入口 | 可以做什么 | 使用要点 |
 | --- | --- | --- |
@@ -144,7 +144,7 @@ CELLxGENE 的筛选与分页在本地对当次取得的上游目录执行，跨�
 
 ## 细胞系、表型与免疫实验证据 {/* #cell-lines-phenotypes-immunity */}
 
-在 **Settings → Connectors** 启用 **Cellosaurus**、**Monarch Initiative** 或 **IEDB**，并将其提供给 **Main**。这些操作读取公共记录，无需自建服务器或 API key。
+在 **Resource center → Connectors** 启用 **Cellosaurus**、**Monarch Initiative** 或 **IEDB**，并将其提供给 **Main**。这些操作读取公共记录，无需自建服务器或 API key。
 
 | 入口 | 可以查询什么 | 应保留和核对什么 |
 | --- | --- | --- |
@@ -168,7 +168,7 @@ CELLxGENE 的筛选与分页在本地对当次取得的上游目录执行，跨�
 
 ### 1. 启用内置 Connector
 
-1. 打开 **Settings → Connectors**，搜索上表中的名称，例如 **Omics Archives**。
+1. 打开 **Resource center → Connectors**，搜索上表中的名称，例如 **Omics Archives**。
 2. 打开详情并展开 **Tools**，阅读目标操作的输入、结果上限和第三方要求。
 3. 启用 **Main** 的访问权限，检查 **Used by**。通过资源的 **Manage access** 调整 Main Agent 和 Specialist 关联。启用 Connector 与每个工具的审批策略是独立设置。
 
@@ -182,8 +182,8 @@ CELLxGENE 的筛选与分页在本地对当次取得的上游目录执行，跨�
 
 | 服务或使用条件 | 配置位置 |
 | --- | --- |
-| OpenAlex | 密钥可选。需要配置时，打开 **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**，验证后保存 |
-| 要求联系邮箱的 NCBI 直接变异查询 | **Settings → Connectors → Manage credentials → Literature access**。填写 **Contact email** 并点击 **Save**；NCBI API key 为可选项 |
+| OpenAlex | 密钥可选。需要配置时，打开 **Resource center → Connectors → Literature Graph → Manage credentials → OpenAlex**，验证后保存 |
+| 要求联系邮箱的 NCBI 直接变异查询 | **Resource center → Connectors → Manage credentials → Literature access**。填写 **Contact email** 并点击 **Save**；NCBI API key 为可选项 |
 | 其他需要凭据的操作 | 按工具要求及[凭据指南](../guides/connectors.md)配置，并将凭据绑定到目标服务 |
 
 密钥应填写在凭据表单中，不要放进科研提示词或共享结果文件。按所选操作配置要求；上面的联系邮箱要求不表示所有 NCBI 工具都需要同样的设置。
@@ -284,11 +284,11 @@ matched records and any unmatched identifiers. Keep the response in English.
 - **Protein Annotation → STRING**：检查蛋白网络的互作数量是否超过背景预期。它与通路过度代表分析回答不同问题，不能用网络 P 值代替通路检验。参见[基因集富集工作流](../workflows/gene-set-enrichment.md#enrichr-string)。
 - **Clinical Genomics → ClinPGx**：按药物、基因或变异查阅临床注释、指南、监管标签和族群频率。先解析标识符，再按操作所需字段查询，保留原始来源和证据等级。该入口用于检索资料，不自动给出个体用药方案。
 
-在 **Settings → Connectors** 中向当前代理开启相应 Connector；这些内置入口不需要另建自定义 MCP 服务器。准确字段和条件见[操作参考](../reference/connector-operations.md)。
+在 **Resource center → Connectors** 中向当前代理开启相应 Connector；这些内置入口不需要另建自定义 MCP 服务器。准确字段和条件见[操作参考](../reference/connector-operations.md)。
 
 ## 通路、表达及临床数据 {/* #pathway-expression-clinical */}
 
-在 **Settings → Connectors** 中开启对应家族，再向代理说明物种、来源、标识符和所需范围。这些扩展沿用内置 Connector，无需另建自定义 MCP 服务器。
+在 **Resource center → Connectors** 中开启对应家族，再向代理说明物种、来源、标识符和所需范围。这些扩展沿用内置 Connector，无需另建自定义 MCP 服务器。
 
 | 入口 | 可以做什么 | 连接和解释要点 |
 | --- | --- | --- |
@@ -306,13 +306,13 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 ## 查找 GWAS 汇总统计文件 {/* #gwas-summary-statistics */}
 
-在 **Settings → Connectors** 将 **Human Genetics** 提供给 Main。用研究的 **GCST 编号**请求发现汇总统计文件，保留返回的原始／标准化文件 URL、元数据和声明的参考基因组。公开查询不需要 API key。
+在 **Resource center → Connectors** 将 **Human Genetics** 提供给 Main。用研究的 **GCST 编号**请求发现汇总统计文件，保留返回的原始／标准化文件 URL、元数据和声明的参考基因组。公开查询不需要 API key。
 
 `gwas_get_summary_statistics` 列出研究文件并读取可用的 YAML 元数据，不下载大型关联结果表。返回的 GWAS-SSF 列定义描述的是标准，不是已检查的实际文件表头。另行下载目标文件后，核对实际列名、基因组版本、效应等位基因和单位，再进行分析。显著关联位点不能代替完整汇总统计。[参数与输出](../reference/connector-operations.md#gwas_get_summary_statistics)。
 
 ## 向 InterProScan 提交蛋白序列 {/* #interproscan-submit */}
 
-1. 在 **Settings → Connectors** 将 **InterProScan** 提供给 Main。在 **Settings → Credentials → Literature access** 保存用于 EMBL-EBI 任务的有效联系邮箱，不需要 API key。
+1. 在 **Resource center → Connectors** 将 **InterProScan** 提供给 Main。在 **Settings → Credentials → Literature access** 保存用于 EMBL-EBI 任务的有效联系邮箱，不需要 API key。
 2. 提供蛋白序列或名称唯一的蛋白 FASTA 记录，请求提交一次。序列和联系邮箱会发送到 EMBL-EBI。单次最多 1,000 条记录，每条最多 10,000 个残基，编码后的请求体不超过 4 MiB。
 3. 保存返回的 **job_id**。**SUBMITTED** 且 **ready: false** 是提交回执，不是注释结果。至少间隔十秒查询一次 **status**，系统不会自动轮询。
 4. 状态为 **FINISHED** 后获取 **results**，在远端结果过期前保存完整 TSV。超过 2 MiB 获取限制时会报错，不会静默返回截断报告。
@@ -328,7 +328,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 ## 用 PDC 查找癌症蛋白组资料 {/* #pdc */}
 
-在 **Settings → Connectors** 启用 **PDC**。公开元数据 API 不需要 API key。它可查找研究及版本、查看实验类型与样本计数、关联 case—sample—aliquot，并列出 **Protein Assembly** 等定量文件。它不返回治疗／结局数据，也不下载文件。
+在 **Resource center → Connectors** 启用 **PDC**。公开元数据 API 不需要 API key。它可查找研究及版本、查看实验类型与样本计数、关联 case—sample—aliquot，并列出 **Protein Assembly** 等定量文件。它不返回治疗／结局数据，也不下载文件。
 
 可从 `PDC000127` 等研究编号开始，或搜索研究标识符和版本名称。PDC 的关键词匹配不是临床疾病筛选。取得研究记录后，使用实际返回的 `study_id` UUID 固定后续查询版本；`pdc_study_id` 选择最新版本。这两个选择字段必须且只能提供一个。
 
@@ -338,7 +338,7 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 ## 查询指定人群的连锁不平衡 {/* #ensembl-ld */}
 
-在 **Settings → Connectors** 启用 **Genomes**。Ensembl LD 工具使用公开 API，不需要密钥。`ensembl_ld_pairwise` 需要两个变异 ID，`ensembl_ld_proxies` 需要一个；两者都必须提供完整人群名，例如 `1000GENOMES:phase_3:KHV`。工具不会自动发现人群或推断祖源，应选择适合研究的参考人群。
+在 **Resource center → Connectors** 启用 **Genomes**。Ensembl LD 工具使用公开 API，不需要密钥。`ensembl_ld_pairwise` 需要两个变异 ID，`ensembl_ld_proxies` 需要一个；两者都必须提供完整人群名，例如 `1000GENOMES:phase_3:KHV`。工具不会自动发现人群或推断祖源，应选择适合研究的参考人群。
 
 两变异查询报告 r² 和 D′。代理变异查询默认 r² ≥ 0.8，窗口为 **总宽 500 kb**，即两侧各约 250 kb。`max_records` 限制排序后的返回列表，不限制上游工作量。结果应保留人群与检索元数据；该接口不报告参考基因组或 Ensembl 版本。空结果表示未返回符合条件的数据，不是零 LD；高 LD 既不证明因果，也不证明功能等价。见[两变异参数](../reference/connector-operations.md#ensembl_ld_pairwise)与[代理变异参数](../reference/connector-operations.md#ensembl_ld_proxies)。
 
@@ -356,11 +356,11 @@ matched records and any unmatched identifiers. Keep the response in English.
 
 ### OpenAlex 凭据提示 {/* #openalex-prompts */}
 
-v1.0.2 会在当前会话中记住对 OpenAlex 凭据提示的拒绝，避免重复打断。之后需要该来源时，在 **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** 主动配置，再重试目标查询。拒绝提示不等于已经提供密钥，也不保证访问权限或额度。
+v1.0.2 会在当前会话中记住对 OpenAlex 凭据提示的拒绝，避免重复打断。之后需要该来源时，在 **Resource center → Connectors → Literature Graph → Manage credentials → OpenAlex** 主动配置，再重试目标查询。拒绝提示不等于已经提供密钥，也不保证访问权限或额度。
 
 ## 连接新增数据源并正确理解结果 {/* #new-source-access */}
 
-在 **Settings → Connectors** 找到下表入口，向 **Main** 或目标 Specialist 开放。HGNC、PubTator 3、DGIdb 和 RNAcentral 属于现有入口中的工具；**Orphadata** 为独立入口，默认关闭。这些新工具使用公开接口，不需要单独的 API key；同一入口内的其他工具可能有不同凭据要求。
+在 **Resource center → Connectors** 找到下表入口，向 **Main** 或目标 Specialist 开放。HGNC、PubTator 3、DGIdb 和 RNAcentral 属于现有入口中的工具；**Orphadata** 为独立入口，默认关闭。这些新工具使用公开接口，不需要单独的 API key；同一入口内的其他工具可能有不同凭据要求。
 
 | 数据源 | 设置入口 | 请求与检查 |
 | --- | --- | --- |
@@ -383,7 +383,7 @@ v1.0.2 会在当前会话中记住对 OpenAlex 凭据提示的拒绝，避免重
 
 ## 影像、通路、脂质与癌症模型 {/* #expanded-sources */}
 
-在 **Settings → Connectors** 中启用所需来源，并设置为 **Main** 可用。TCIA、KEGG、RxNorm / RxNav、DailyMed、BioSamples 和 WikiPathways 是默认关闭的独立入口。下列操作访问公开服务，不需要自建 MCP 服务或 API key。启用 Connector 不等于取得数据许可或受限数据权限。
+在 **Resource center → Connectors** 中启用所需来源，并设置为 **Main** 可用。TCIA、KEGG、RxNorm / RxNav、DailyMed、BioSamples 和 WikiPathways 是默认关闭的独立入口。下列操作访问公开服务，不需要自建 MCP 服务或 API key。启用 Connector 不等于取得数据许可或受限数据权限。
 
 | 入口 | 可以请求什么 | 结果中要保留什么 |
 | --- | --- | --- |
@@ -400,7 +400,7 @@ v1.0.2 会在当前会话中记住对 OpenAlex 凭据提示的拒绝，避免重
 
 ## 查找官方研究数据与文件列表 {/* #scientific-file-discovery */}
 
-在 **Settings → Connectors** 中，只启用当前问题需要的入口。新增的 Europe PMC、Research Datasets、ChEA3、bioDBnet 和 CTD 使用公开服务，不要求 API Key；请求仍会将输入的检索词、标识或基因列表发送给相应服务。[连接控件](#connect-database)。
+在 **Resource center → Connectors** 中，只启用当前问题需要的入口。新增的 Europe PMC、Research Datasets、ChEA3、bioDBnet 和 CTD 使用公开服务，不要求 API Key；请求仍会将输入的检索词、标识或基因列表发送给相应服务。[连接控件](#connect-database)。
 
 | 需要做什么 | 入口与返回内容 | 下一步 |
 | --- | --- | --- |

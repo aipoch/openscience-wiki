@@ -1,7 +1,7 @@
 ---
 title: "Katalog der wissenschaftlichen Werkzeuge"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # Katalog der wissenschaftlichen Werkzeuge {/* #scientific-tool-catalog */}
@@ -21,7 +21,7 @@ Verwenden Sie diesen Katalog, um den Open-Science-Einstiegspunkt und die Laufzei
 | Datei-Rendering | Dateivorschau | Unterstützte Erweiterungs- und Preview-Größenlimits | Öffnen Sie die tatsächlich heruntergeladene Datei |
 | Remote Batch Software | Compute Host und Remote-Compute Skills | Host-Zugriff, Zeitplaner und benannte Umgebung | Host Probe gefolgt von einem begrenzten Job |
 
-Siehe [Skill Verzeichnis](../skills/directory.md) für die vollständige 23-Skill-Methodentabelle. Diese Seite erklärt die Software-Bereitschaft; Es dupliziert nicht jedes Skill-Verfahren.
+Siehe [Skill Verzeichnis](../skills/directory.md) für die vollständige 24-Skill-Methodentabelle. Diese Seite erklärt die Software-Bereitschaft; Es dupliziert nicht jedes Skill-Verfahren.
 
 ## Überprüfen Sie die ausgewählte Umgebung {/* #inspect-the-selected-environment */}
 

@@ -2,7 +2,7 @@
 title: "查詢公共組學資料並整理檔案清單"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 從已知執行編號獲取檔案清單 {/* #ena-runs */}
 
-1. 在 **Settings → Connectors** 中啟用 **Omics Archives**。向 `ena_search_runs` 提供公開的 ENA/INSDC 登入號，如 PRJ 專案或 SRR 執行。GEO 的 `GSE` 標識需要先找到關聯的 INSDC 專案；本工具不接受關鍵詞搜尋。
+1. 在 **Resource center → Connectors** 中啟用 **Omics Archives**。向 `ena_search_runs` 提供公開的 ENA/INSDC 登入號，如 PRJ 專案或 SRR 執行。GEO 的 `GSE` 標識需要先找到關聯的 INSDC 專案；本工具不接受關鍵詞搜尋。
 2. 檢查 `run_accession`、物種、文庫策略與佈局，以及 `truncated`。最多返回 1,000 個執行，沒有偏移量或續頁標記；結果截斷時應縮小登入號範圍。
 3. 將返回的某個執行傳給 `ena_get_run_files`，檢查 `found`、`fastq_available` 和全部 `fastq_files` 條目。清單提供地址、壓縮檔案大小和上游 MD5，本身不會下載或校驗檔案。
 4. 單獨下載前檢查儲存空間並儲存清單，下載後按列出的校驗值核對檔案。雙端文庫未必恰有兩個檔案，不能把 `file_index` 當作 R1/R2 標記。
@@ -53,7 +53,7 @@ English. Report actual errors or empty results; do not invent data.
 
 <p className="example-label"><strong>案例演示</strong> 查詢五個人類 RNA-Seq 執行，檢查 ENA 與 PRIDE 檔案清單</p>
 
-1. 在 **Settings → Connectors** 中啟用 **Omics Archives**，開啟已連線模型且 Notebook 執行環境可用的會話。本例使用 **Codex subscription**。
+1. 在 **Resource center → Connectors** 中啟用 **Omics Archives**，開啟已連線模型且 Notebook 執行環境可用的會話。本例使用 **Codex subscription**。
 2. 傳送下方提示詞，僅查詢後設資料。ENA 查詢與 PRIDE 專案是兩個獨立示例，不是同一研究的配對樣本。
 3. 開啟 `ena-discovery.json`，先核對查詢條件、物種、執行登入號和 `truncated`，再選擇檔案。
 

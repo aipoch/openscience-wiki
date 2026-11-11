@@ -1269,7 +1269,7 @@
     "message": "Skill directory"
   },
   "docs.outline.skills.directory.scope": {
-    "message": "One table of all 23 bundled Skills, grouped by research purpose, with inputs, dependencies, outputs and verification status."
+    "message": "One table of all 24 bundled Skills, grouped by research purpose, with inputs, dependencies, outputs and verification status."
   },
   "docs.outline.skills.recipes.title": {
     "message": "Skill recipes"
@@ -1864,5 +1864,11 @@
   },
   "docs.outline.reference.v110.scope": {
     "message": "연구 영화, 배치 종이 개요, 모바일 액세스 및 문학 명령."
+  },
+  "docs.outline.reference.v121.title": {
+    "message": "v1.2.1"
+  },
+  "docs.outline.reference.v121.scope": {
+    "message": "리소스 센터, 질문 최적화, Codex 구독 및 문헌 CSV 내보내기."
   }
 }

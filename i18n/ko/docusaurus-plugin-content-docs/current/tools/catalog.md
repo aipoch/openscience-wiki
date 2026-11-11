@@ -1,7 +1,7 @@
 ---
 title: "과학 도구 카탈로그"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # 과학 도구 카탈로그 {/* #scientific-tool-catalog */}
@@ -21,7 +21,7 @@ last_update:
 | 파일 렌더링기 | 파일 미리보기 | 지원 확장 및 미리보기 크기 제한 | 실제 다운로드 된 파일을 엽니 다 |
 | 원격 배치 소프트웨어 | Compute 호스트 및 원격 통신 Skills | 호스트 액세스, 스케줄러 및 이름 환경 | 호스트 프로브는 경계 작업에 따라 |
 
-23-Skill 방법 테이블을 완료하려면 [Skill 디렉토리](../skills/directory.md)을 참조하십시오. 이 페이지는 소프트웨어 readiness를 설명합니다; Skill의 절차마다 중복되지 않습니다.
+24-Skill 방법 테이블을 완료하려면 [Skill 디렉토리](../skills/directory.md)을 참조하십시오. 이 페이지는 소프트웨어 readiness를 설명합니다; Skill의 절차마다 중복되지 않습니다.
 
 ## 선택된 환경 검사 {/* #inspect-the-selected-environment */}
 

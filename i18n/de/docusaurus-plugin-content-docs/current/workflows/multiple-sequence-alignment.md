@@ -1,7 +1,7 @@
 ---
 title: "Mehrere Sequenzen ausrichten und konservierte Positionen untersuchen"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ Holen Sie sich drei überprüfte UniProt-Sequenzen, richten Sie sie an den entfe
 Der Verbindungsaufbau wird in [Wissenschaftliche Datenbanken](../tools/databases.md#connect-database) beschrieben.
 
 1. Erstellen Sie **Hämoglobin-Sequenz-Alignment** und öffnen Sie eine neue Konversation mit einem verbundenen Modell. In diesem Beispiel wurde **Codex subscription** verwendet.
-2. In **Settings → Connectors**, Marke **Gene & Ontologien** und **Genome** zur Verfügung stehen Main. Clustal Omega gehört zu Genomen; Es ist kein separates Connector.
+2. In **Resource center → Connectors**, Marke **Gene & Ontologien** und **Genome** zur Verfügung stehen Main. Clustal Omega gehört zu Genomen; Es ist kein separates Connector.
 3. Konfigurieren Sie die von Clustal Omega angeforderte gültige E-Mail für Forschungsdienste in **Settings → Privacy → Share contact email with research data services**. Verwenden Sie Ihren tatsächlichen Kontakt, nicht eine erfundene Adresse. Sequenzeingaben werden an EMBL-EBI gesendet.
 4. Senden Sie die Aufforderung unten. Verwenden Sie öffentliche oder anderweitig autorisierte Sequenzen.
 

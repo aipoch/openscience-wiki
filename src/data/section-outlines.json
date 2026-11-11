@@ -985,7 +985,7 @@
           {
             "id": "directory",
             "title": "Skill directory",
-            "scope": "One table of all 23 bundled Skills, grouped by research purpose, with inputs, dependencies, outputs and verification status.",
+            "scope": "One table of all 24 bundled Skills, grouped by research purpose, with inputs, dependencies, outputs and verification status.",
             "currentDoc": "skills/directory",
             "proposedUrl": "/docs/skills/directory/",
             "relatedDocs": [
@@ -1432,6 +1432,17 @@
         "id": "changelog",
         "title": "Changelog",
         "chapters": [
+          {
+            "id": "v121",
+            "title": "v1.2.1",
+            "scope": "Resource center, question refinement, Codex subscriptions and reference CSV export.",
+            "currentDoc": "changelog/v1-2-1",
+            "proposedUrl": "/docs/changelog/v1-2-1/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-2-1"
+            ]
+          },
           {
             "id": "v120",
             "title": "v1.2.0",

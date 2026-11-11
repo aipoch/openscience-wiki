@@ -2,7 +2,7 @@
 title: "Connector 操作参数参考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -16,7 +16,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 `host` 由 Open-Science 的 Agent 执行环境提供。下方 JavaScript 是 **Agent 侧调用片段**，不是独立 Node.js 程序，也不是公共 Task SDK 客户端的方法。让 Agent 加载对应 Connector 说明并使用相应操作；某些框架会使用 Python 桥接，而不是这里的 JavaScript 形式。
 
-先在 [Settings → Connectors](../guides/connectors.md) 启用连接，配置[所需凭据](../tools/credentials.md)；使用 Specialist 时还需分配该能力。调用仍遵循会话权限策略。公共 Node.js 集成可用 [Task SDK](api.md) 管理 Connector 配置，但导入该客户端不会得到这里的 `host`。
+先在 [Resource center → Connectors](../guides/connectors.md) 启用连接，配置[所需凭据](../tools/credentials.md)；使用 Specialist 时还需分配该能力。调用仍遵循会话权限策略。公共 Node.js 集成可用 [Task SDK](api.md) 管理 Connector 配置，但导入该客户端不会得到这里的 `host`。
 
 ### 先读返回结果，再串联调用
 

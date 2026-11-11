@@ -1,7 +1,7 @@
 ---
 title: "プロジェクトとソースフォルダ"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # プロジェクトとソースフォルダ {/* #projects-and-source-folders */}
@@ -64,3 +64,21 @@ Write outputs in English.
 | フォルダが開きますが、書き込みは拒否されます | 読まれた許可は点検を、変更しません許可します。 派生したアーティファクトを保存したり、要求された書き込みスコープをレビューしたりします。 |
 | 保存 残り 無効 | 空白の名前を削除し、フィールドの長さを確認します。 別の保存が保留中である場合、待ちます。 |
 | 異なるプロジェクトを選択 | ドキュメントを添付したり、リクエストを送ったりする前に、プロジェクトタイトルを確認してください。 |
+
+## 質問最適化テンプレートを設定する {/* #optimization-template */}
+
+プロジェクト名メニューを開く → **Project settings → Advanced agent options → Optimization prompt**お問い合わせ このプロジェクトで質問を書き換える手順を入力し、保存します。 組み込みのデフォルトを使用するために空にします。 同じ分野は下にあります **New project → Advanced agent options**.
+
+このフィールドは選択時にのみ実行されます **Optimize question**お問い合わせ とは別に **Agent Context**プロジェクトのエージェントセッションに指示を出す、 **Description**あなたの参照のためにあります。
+
+<p className="example-label"><strong>事例紹介</strong> 教育質問の限界を保存</p>
+
+```text
+Rewrite the question in clear English. Preserve the supplied numbers
+and the hypothetical scope. Ask for a concise answer with limitations;
+do not invent participants, measurements or citations.
+```
+
+![プロジェクトの高度なエージェントオプションに基づくカスタム最適化プロンプト](/img/open-science/v121/optimization-template.webp)
+
+コンポーザーに戻り、 [ドラフトを最適化](composer.md#optimize-question)お問い合わせ 送信前に書き込まれたテキストを確認します。テンプレートは、科学的な検証ルールではなく、文章の指示です。

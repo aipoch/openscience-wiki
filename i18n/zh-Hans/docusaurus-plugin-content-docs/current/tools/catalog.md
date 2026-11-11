@@ -1,7 +1,7 @@
 ---
 title: "科学工具目录"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # 科学工具目录
@@ -21,7 +21,7 @@ last_update:
 | 文件渲染器 | 文件预览 | 扩展名与预览大小限制 | 打开实际下载的文件 |
 | 远程批处理软件 | Compute Host 与远程 Skill | 主机、调度器、命名环境 | 主机探测后执行小任务 |
 
-完整 23 个 Skill 的方法表见 [Skill 目录](../skills/directory.md)，此处集中说明软件就绪条件。
+完整 24 个 Skill 的方法表见 [Skill 目录](../skills/directory.md)，此处集中说明软件就绪条件。
 
 ## 核对当前环境
 

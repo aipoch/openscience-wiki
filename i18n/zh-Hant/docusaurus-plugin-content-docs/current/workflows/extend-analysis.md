@@ -1,7 +1,7 @@
 ---
 title: "使用已安裝的 Specialist 擴充套件分析"
 last_update:
-  date: '2026-09-17'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -16,7 +16,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 安裝並選擇 Specialist {/* #1-安装并选择-specialist */}
 
-1. 開啟 **Settings → Specialists → Browse Marketplace**，找到 **Pharmacometrics PK/PD Design Specialist**，檢視能力後安裝。本例使用 Open-Science **0.30.1** 和專家包 **1.0.0**。
+1. 開啟 **Resource center → Specialists → Marketplace**，找到 **Pharmacometrics PK/PD Design Specialist**，檢視能力後安裝。本例使用 Open-Science **0.30.1** 和專家包 **1.0.0**。
 2. 在 **Settings → Runtimes** 確認 R 顯示 **Ready** 且已啟用。本次實際使用 R **4.4.3**。
 3. 在研究專案中新建會話，選擇可用模型，再選擇 **Agent controls → Specialist → pharmacometrics-pkpd-designer**。本次使用 **Codex subscription / gpt-5.6-sol**。
 4. 在**每條分析訊息的開頭**輸入 `/pkpd`，從候選項中選擇 **pkpd-modeling**。確認它變為 Skill 標籤後，再貼上提示詞。

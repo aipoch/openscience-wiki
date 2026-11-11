@@ -1,7 +1,7 @@
 ---
 title: "Computación remota: SSH, clusters y trabajos en la nube"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -279,3 +279,9 @@ Una recuperación exitosa debe mostrar el estado final del trabajo previsto, un 
 Para la autenticación de teclas/config SSH, provea una clave usable o alias host y verifica la conexión antes de enviar. La colección de resultados Slurm requiere contabilidad de trabajo para la cuenta seleccionada; seguir los cheques arriba si la aplicación no puede resolver el trabajo.
 
 Fuentes: [computar códigos de trabajo y campos de registro](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/compute.ts), [Clasificación de errores SSH/file](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/remote-fs.ts), [validación de la presentación de Slurm](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/compute/slurm-driver.ts).
+
+### Prepare Python para el registro de cuenta de nube {/* #cloud-account-runtime */}
+
+Para **Hugging Face** y **Modal**, el flujo de conexión prepara un tiempo de ejecución Python compatible antes de abrir la autorización del navegador. Siga el estado de preparación, luego termine el registro y espere el cheque de cuenta. El intérprete seleccionado se comprueba sin instalar en él; la autorización y las llamadas SDK posteriores permanecen vinculadas al tiempo de ejecución preparado.
+
+Si la preparación o autorización falla, inspeccione el mensaje de esa etapa antes de iniciar otro login. La verificación de la cuenta sigue el proxy del sistema. No trate una página de éxito del navegador solo como un objetivo de cálculo conectado: volver a Compute y confirmar el estado de cuenta antes de añadir un objetivo o aprobar un trabajo.

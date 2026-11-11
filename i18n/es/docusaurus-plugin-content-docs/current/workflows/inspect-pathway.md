@@ -1,7 +1,7 @@
 ---
 title: "Inspeccione una vía y su red de interacción"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ Utilice una vía curada para inspeccionar cómo **TP53**, **MDM2** y **CDKN1A** 
 ## 1. Preparar el proyecto {/* #prepare */}
 
 1. Crear un proyecto llamado **Pathway Commons Research** y comenzar una conversación.
-2. En **Settings → Connectors**, haga que **Pathway Commons** esté disponible para el agente activo. Utiliza un servicio público; este ejemplo no necesita archivos de investigación privados.
+2. En **Resource center → Connectors**, haga que **Pathway Commons** esté disponible para el agente activo. Utiliza un servicio público; este ejemplo no necesita archivos de investigación privados.
 3. Seleccione un modelo Main configurado. Este ejemplo usó **Codex subscription**. Si Codex está marcado **Update required**, [actualizar su tiempo de ejecución](../guides/frameworks.md#update-codex) antes de enviar la tarea.
 
 ## 2. Buscar y conservar la identidad devuelta {/* #search */}

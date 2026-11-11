@@ -1,7 +1,7 @@
 ---
 title: "Attribuer Skills et connecteurs"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Attribuer Skills et connecteurs {/* #assign-skills-and-connectors */}
@@ -12,7 +12,7 @@ La liste des capacités d'un Specialist détermine les Skills et les connecteurs
 
 <p className="example-label"><strong>Exemple</strong> Attribuer les capacités à RNA-seq QC Reviewer</p>
 
-1. Ouvrez **Settings → Specialists**, puis modifiez **RNA-seq QC examinateur**.
+1. Ouvrez **Resource center → Specialists**, puis modifiez **RNA-seq QC examinateur**.
 2. Éteignez **Full access**.
 3. Dans **Skills**, sélectionnez **Ajouter une compétence**, recherchez `rnaseq-count-qc` et ajoutez le paquet personnel enregistré. Confirmez **Skills 1**.
 4. Dans **Connectors**, sélectionnez **Ajouter un connecteur** et choisissez **Archives Omics**. Confirmez **Connecteurs 1**.
@@ -33,7 +33,7 @@ Application requise Skills rester activé dans le monde entier. Cela ne remplace
 
 ## Régler l'accès à partir d'une ressource {/* #resource-access */}
 
-Sous **Settings → Skills** ou **Connectors**, ouvrez une ressource **Manage access** popup pour inspecter les associations Main Agent et Specialist. Il met à jour le rôle sélectionné dans la liaison, pas le rôle dans l'état activé. Les rôles d'accès complet peuvent être exclus par ressource; Les rôles restreints utilisent des sélections explicites. Les fixations du marché peuvent être lues uniquement dans cette fenêtre. Voir le [des contrôles d'accès illustrés](../guides/connectors.md#resource-access).
+Sous **Resource center → Skills** ou **Connectors**, ouvrez une ressource **Manage access** popup pour inspecter les associations Main Agent et Specialist. Il met à jour le rôle sélectionné dans la liaison, pas le rôle dans l'état activé. Les rôles d'accès complet peuvent être exclus par ressource; Les rôles restreints utilisent des sélections explicites. Les fixations du marché peuvent être lues uniquement dans cette fenêtre. Voir le [des contrôles d'accès illustrés](../guides/connectors.md#resource-access).
 
 Après avoir modifié une obligation, confirmer que le rôle est activé, que ses justificatifs de service sont prêts et que son fonctionnement prévu est permis. **Used by** montre les affectations plutôt que les exécutions terminées.
 

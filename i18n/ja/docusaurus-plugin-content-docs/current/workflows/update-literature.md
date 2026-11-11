@@ -1,7 +1,7 @@
 ---
 title: "既存の文献コレクションを更新する"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. ベースラインを定義して保存する {/* #1-define-and-save-the-baseline */}
 
-接続されたモデルでプロジェクトを開きます。 **Settings → Connectors**で**文献グラフ**を有効にし、必要に応じてOpenAlexを設定してください。 送信:
+接続されたモデルでプロジェクトを開きます。 **Resource center → Connectors**で**文献グラフ**を有効にし、必要に応じてOpenAlexを設定してください。 送信:
 
 ```text
 Search OpenAlex for freshwater microplastic transport.

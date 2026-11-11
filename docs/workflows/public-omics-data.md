@@ -2,7 +2,7 @@
 title: "Find public omics data and build a file inventory"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ Before starting, follow [Scientific databases](../tools/databases.md#connect-dat
 
 ## 1. Resolve a known run and inspect its files {/* #ena-runs */}
 
-1. Enable **Omics Archives** under **Settings → Connectors**. Supply a public ENA/INSDC accession to `ena_search_runs`, such as a PRJ study or SRR run. A GEO `GSE` identifier must first be linked to its INSDC study; keywords are not accepted.
+1. Enable **Omics Archives** under **Resource center → Connectors**. Supply a public ENA/INSDC accession to `ena_search_runs`, such as a PRJ study or SRR run. A GEO `GSE` identifier must first be linked to its INSDC study; keywords are not accepted.
 2. Inspect `run_accession`, organism, library strategy/layout and `truncated`. The maximum is 1,000 runs. There is no offset or continuation token; narrow the accession if the response is truncated.
 3. Pass one returned run to `ena_get_run_files`. Check `found`, `fastq_available` and every entry in `fastq_files`. The inventory supplies URL, compressed-file size and upstream MD5; it does not download files or verify their contents.
 4. Before a separate download, check storage and retain the manifest. Verify the downloaded bytes against the listed checksum. A paired library need not have exactly two files; do not infer read-mate identity from `file_index`.
@@ -53,7 +53,7 @@ Use `ena_query_runs` when you have a research topic but no accession. It combine
 
 <p className="example-label"><strong>Worked example</strong> Discover five human RNA-Seq runs and inspect an ENA and a PRIDE file inventory</p>
 
-1. Enable **Omics Archives** in **Settings → Connectors**, then open a session with a connected model and an available Notebook runtime. This example uses **Codex subscription**.
+1. Enable **Omics Archives** in **Resource center → Connectors**, then open a session with a connected model and an available Notebook runtime. This example uses **Codex subscription**.
 2. Use the prompt below to request metadata only. The ENA query and PRIDE project are separate examples; they are not matched samples from one study.
 3. Open `ena-discovery.json` and inspect the query, organism, run accessions and `truncated` before selecting files.
 

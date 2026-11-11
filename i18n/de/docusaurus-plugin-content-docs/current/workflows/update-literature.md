@@ -1,7 +1,7 @@
 ---
 title: "Aktualisieren einer vorhandenen Literatursammlung"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Ein Update sollte die ursprüngliche Suchregel beibehalten und genau anzeigen, w
 
 ## 1. Definieren und Speichern der Baseline {/* #1-define-and-save-the-baseline */}
 
-Öffnen Sie ein Projekt mit einem verbundenen Modell. Aktivieren Sie **Literaturgraphik** in **Settings → Connectors** und konfigurieren Sie OpenAlex bei Bedarf. Senden:
+Öffnen Sie ein Projekt mit einem verbundenen Modell. Aktivieren Sie **Literaturgraphik** in **Resource center → Connectors** und konfigurieren Sie OpenAlex bei Bedarf. Senden:
 
 ```text
 Search OpenAlex for freshwater microplastic transport.

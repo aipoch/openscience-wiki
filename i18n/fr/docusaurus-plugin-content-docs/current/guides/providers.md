@@ -1,7 +1,7 @@
 ---
 title: "Configuration du fournisseur et du modèle local"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -254,3 +254,14 @@ Utilisez l’action de récupération affichée pour les identifiants expirés o
 ## Sélectionner Kimi K3.1 Pro {/* #kimi-k31 */}
 
 v1.0.3 adds Kimi K3.1 Pro models to the provider catalog. Open the intended provider's model picker and select an available entry, then test the connection. Model availability still depends on the active Agent framework, endpoint and account; a catalog entry alone does not establish access.
+
+## Utilisez un abonnement Codex avec l'Agent intégré {/* #builtin-codex-subscription */}
+
+Dans v1.2.1, **Open-Science Agent** prend en charge à la fois une connexion Codex importée et un compte connecté via Open-Science pour Main et Subagent. Les **Codex** l'exécution reste disponible; la modification de l'exécution est facultative.
+
+1. Dans **Settings → Model → Conversation models**, ajouter ou ouvrir **Codex subscription** et compléter l'inscription proposée ou l'enregistrement existant. Si aucune connexion n'est trouvée, connectez-vous à travers l'action de récupération de ce fournisseur.
+2. Après avoir terminé les tâches actives, choisissez le cadre prévu sous **Settings → Agent**. Ce cadre s'applique à tous les projets.
+3. Sélectionnez le fournisseur et le modèle Codex pour Main. Pour **Subagent**, utilisation **Same as main model** ou un choix fixe compatible au besoin.
+4. Envoyez une courte demande et vérifiez la réponse réelle avant de commencer la recherche. La détection de connexion importée, la configuration sauvegardée et l'exécution réussie sont des états séparés.
+
+Le catalogue anthropique comprend également **Claude Fable 5.2** avec une fenêtre contextuelle 1M. Les entrées de catalogue n'accordent pas d'accès au compte ou ne remplacent pas automatiquement Main.

@@ -2,7 +2,7 @@
 title: "分析前核对物种、参考基因组与染色体编号"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 查询物种、组装与染色体 {/* #reference-genome */}
 
-1. 在 **Settings → Connectors** 中启用 **Genomes**，打开已连接模型、Notebook 运行环境可用的会话。本例在 v0.31.1 使用 **Codex subscription**。
+1. 在 **Resource center → Connectors** 中启用 **Genomes**，打开已连接模型、Notebook 运行环境可用的会话。本例在 v0.31.1 使用 **Codex subscription**。
 2. 按物种、**带版本号**的组装、序列的顺序查询，发送：
 
 ```text

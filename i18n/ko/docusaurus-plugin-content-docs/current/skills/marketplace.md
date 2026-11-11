@@ -2,26 +2,26 @@
 title: "Skill 마켓플레이스"
 description: "Skill 마켓플레이스에서 연구 방법을 발견, 설치, 업데이트 및 관리합니다."
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 # Skill 마켓플레이스 {/* #skill-marketplace */}
 
-**Settings → Skills → Browse Marketplace**을 사용하여 연구 방법을 찾아 설치하고 자신의 저장소를 직접 가져 오기. 설치하기 전에 방법을 검사 할 수 있습니다. 사용 방법 및 사용 가능한 업데이트 적용.
+기타 **Resource center → Skills → Marketplace** 홈 또는 프로젝트 sidebar에서. 연구 방법 검색, 패키지 세부 사항을 검사하고 적절한 때 설치. Web workspace는 마켓 플레이스 설치를 지원합니다. 연결된 Open-Science 호스트에 패키지가 설치됩니다.
 
-ZIP, 로컬 Skill 또는 특정 GitHub 저장소에 가져 오기 위해 [Skill 수입 및 관리](manage.md)을 사용하십시오. 연구 방법 및 입력의 개요에 대해서는 [Skill 디렉토리](directory.md)을 참조하십시오.
+제품 정보 **Installed** 로컬로 돌아가기. ZIP, 설치 폴더 또는 GitHub 저장소를 가져오려면 다음을 따르십시오. [기술 수입 및 관리](manage.md)· 이름 * [기술 사용](overview.md) 대화의 방법을 선택합니다.
 
-![검색이있는 Skill 마켓 플레이스, 범주 필터 및 설치 버튼](/img/open-science/feature-guides-2026-09/marketplace-browse.webp)
+![설치 및 마켓 플레이스 탭이있는 리소스 센터](/img/open-science/v121/resource-center.webp)
 
-## 적당한 방법을 찾아내십시오 {/* #find-a-suitable-method */}
+## 적합한 방법 찾기
 
-1. **Marketplace** 및 검색 또는 필터를 범주로 엽니다.
-2. Skill의 세부 사항을 열고 목적, 저자, 소스, 라이센스 정보 및 평가 세부 정보를 읽으십시오.
-3. 설치하기 전에 프로젝트에 입력, 필요한 도구 및 실행 시간 의존성을 비교하십시오.
+1. 기타 **Marketplace**, 이름 또는 키워드를 입력 **Search skills**, 및 사용 **Filters** 카탈로그를 좁은. 필터를 재설정하거나 쿼리를 다시 확장합니다.
+2. 제품정보 **View details**· 목적, 출판사, 저자, 버전, 라이센스 및 읽기 **Sources and verification**· 기타 **Assessment report** 사용할 때.
+3. 선택하기 전에 입력, 필요한 도구 및 실행 시간 의존성 비교 **Install**· 오시는 길 **Installed** 또는 설치된 버전 상표는, 그 후에 가용성을 검열합니다.
 
-카탈로그 서명은 배포 정체성을 확인합니다. 그것은 방법을 설정하지 않습니다 당신의 연구 질문 또는 컴퓨터는 그것의 의존성.
+배포 서명은 패키지 소스를 식별합니다. 업스트림 평가 점수는 당신의 연구 질문에 대한 올바른 방법이 증명되지 않습니다. 기술을 설치하면 워크플로를 실행하거나 모든 과학적 의존도를 설치하지 않습니다.
 
-![작성자, 버전, 라이센스 및 설치 작업을 보여주는 Marketplace Skill 세부 사항](/img/open-science/feature-guides-2026-09/marketplace-detail.webp)
+![웹 마켓 플레이스를 통해 버전 및 소스 세부 정보 설치](/img/open-science/v121/marketplace-installed.webp)
 
 ## Skill 설치 및 사용 {/* #install-and-use-a-skill */}
 
@@ -34,7 +34,7 @@ ZIP, 로컬 Skill 또는 특정 GitHub 저장소에 가져 오기 위해 [Skill 
 
 ## 여러 Skills 설치 또는 업데이트 {/* #install-or-update-several-skills */}
 
-1. **Batch manage**, **Not installed** 또는 **Updates**를 선택하십시오.
+1. **More actions → Batch manage**, **Not installed** 또는 **Updates**를 선택하십시오.
 2. 카탈로그를 필터링하고 대상 항목을 선택하십시오. **모든 필터링 결과 선택** 필터의 전체 결과 세트를 선택합니다.
 3. **Review selection**을 열고 **Install selected** 또는 **Update selected**를 선택하기 전에 목록을 확인하십시오.
 4. 작업을 완료하고 각 결과를 검사합니다. 설치는 순차적으로 실행합니다; Stopping는 현재 품목을 완료할 수 있습니다.
@@ -86,4 +86,4 @@ Marketplace 제출은 GitHub 소스 저장소 및 유지 보수 검토를 사용
 
 유지자 검토 및 게시 전에 자격이 된 제출을 등록하십시오. 제출된 파일 또는 병합된 풀 요청은 앱에서 Skill을 사용할 수 없습니다. [인증 및 인증](https://github.com/aipoch/openscience-skill-marketplace/blob/main/authoring/README.md) 리뷰 및 출판 단계 설명.
 
-게시 후 **Browse Marketplace → Refresh**로 돌아와 Skill에 대한 검색, 소스 및 버전을 확인하고 설치하십시오. 게시된 Skill을 업데이트할 때 새로운 소스 커밋으로 새 패키지 버전을 제출하십시오. 업스트림 저장소 업데이트에 편집하지 마십시오 자동으로 복사.
+게시 후 **Marketplace → Refresh**로 돌아와 Skill에 대한 검색, 소스 및 버전을 확인하고 설치하십시오. 게시된 Skill을 업데이트할 때 새로운 소스 커밋으로 새 패키지 버전을 제출하십시오. 업스트림 저장소 업데이트에 편집하지 마십시오 자동으로 복사.

@@ -1,7 +1,7 @@
 ---
 title: "文学ライブラリと引用"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -420,6 +420,24 @@ BibTeX は、ここの年と月を格納するので、その往復は `2009-7` 
 
 
 </ToolOperationGroup>
+
+## CSV へのバイブリグラフメタデータをエクスポートする {/* #bibliography-csv */}
+
+CSV を使用して、スプレッドシートで参照リストを確認または共有します。 これは、添付ファイル、スクリーニング決定、個人的なメモのみ、バイブリグラフフィールドをエクスポートします。 引用マネージャのインターチェンジファイルが必要な場合は、BibTeXまたはRISを使用してください。
+
+1. オープン **Library**意図したプロジェクトまたはコレクション。 必要な参照を選択します。 クロスページ選択は、表示されたページよりも多く含めることができます。選択した数を確認し、不要なレコードを除外します。
+2. 選択する **More actions → Export → CSV**お問い合わせ プロジェクト全体またはコレクションについては、エクスポートアクションを使用して選択します **CSV**.
+3. デスクトップ保存ダイアログまたはブラウザのダウンロードフローでファイルを保存します。 エクスポートが終了するのを待ちます。 キャンセルされた保存はファイルを生成しません。
+4. CSVをスプレッドシートにUTF-8として開く 選択で行数を比較し、ライブラリに対するタイトル、作者、識別子をチェックします。 空のフィールドは、検証されていないメタデータが不足していることを意味します。
+
+16列の名前は、インターフェイスの言語で英語にとどまります。
+
+```text
+item_id, title, authors, year, item_type, publication, volume, issue,
+pages, doi, pmid, pmcid, arxiv_id, url, abstract, language
+```
+
+![ライブラリのBibTeXとRISと一緒に提供されるCSVエクスポート](/img/open-science/v121/library-csv.webp)
 
 ## 重複を解決し、参照を回復する {/* #resolve-duplicates-and-recover-references */}
 

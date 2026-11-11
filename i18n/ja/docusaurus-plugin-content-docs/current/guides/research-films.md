@@ -1,7 +1,7 @@
 ---
 title: "研究フィルムの作成と共有"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # 研究フィルムの作成と共有
@@ -42,6 +42,8 @@ Keep the numerical result explicit.
 ![完成した教育会話から研究映画の生成](/img/open-science/v120/film-progress.webp)
 
 ![英語でのナレーションと再生アクションで準備されたリサーチフィルム](/img/open-science/v120/film-ready.webp)
+
+v1.2.1 では、別のセッションへの切り替えは、映画の生成を停止しません。 アプリの実行を保ち、ソースセッションに戻る **View generation progress** または **View research film** 結果を点検するため。 フィルムジョブのキャンセルは、まだ生成を停止します。
 
 ## 見直しフィルムのエクスポート {/* #export-film */}
 

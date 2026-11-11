@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skills {/* #skills */}
@@ -22,9 +22,9 @@ Skill は、エージェントに反復可能なメソッドを与えます。�
 
 ## Skillの検索と検査 {/* #find-and-inspect-a-skill */}
 
-1. **Settings → Skills** を開きます。
+1. **Resource center → Skills** を開きます。
 2. **Search skills** を使用して、その名前または説明を検索します。 [例を作成する](./create.md)以降に`rnaseq-count-qc`を入力してください。
-3. リストが長く残っている場合、**Filter skills by source**、**Filter Skills by agent**、または**Filter by Tag**の矢印。
+3. リストが長く残っている場合、**Filters → Filter skills by source**、**Filter Skills by agent**、または**Filter by Tag**の矢印。
 4. 結果を開きます。 説明、指示、**Files**、ライセンス、**Availability** をお読みください。 パッケージIDとは表示名が異なります。
 5. リストに戻り、**Used by**を調べます。 どのエージェントがパッケージを使用できるかを識別します。 完了した実行はリストされません。
 
@@ -47,7 +47,7 @@ Skill は、エージェントに反復可能なメソッドを与えます。�
 
 このアクティベーションルールは、依存関係をインストールせず、資格情報や権限付与の権限を付与しません。 Specialist の割り当ては別の規模です: **Used by** を点検し、役割の機能のリスト。
 
-ディレクトリには、23 パブリックバンドル Skills が含まれています。 Skillsをサポートしている内部は、選択する余計な方法ではありません。 [必要なスイッチの実装](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
+ディレクトリには、24 パブリックバンドル Skills が含まれています。 Skillsをサポートしている内部は、選択する余計な方法ではありません。 [必要なスイッチの実装](https://github.com/aipoch/open-science/blob/v0.27.0/src/renderer/src/pages/settings/RequiredSkillToggle.tsx).
 
 スクリーンショットは、説明を説明します **Customize**. . . . これらは、他のオプションメソッドを無効にしても、Skills が有効になっている必要があります。
 

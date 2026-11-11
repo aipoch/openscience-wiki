@@ -1,7 +1,7 @@
 ---
 title: "连接器与凭据"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,7 @@ Connector 让服务工具可供 Agent 使用，Credential 在服务要求时提�
 
 ### 为基因表达项目寻找工具
 
-打开 **Settings → Connectors**，搜索 **Omics Archives** 并进入详情。该内置分类包含 GEO、ArrayExpress、MetaboLights、MGnify 和 PRIDE，使用前展开工具说明。
+打开 **Resource center → Connectors**，搜索 **Omics Archives** 并进入详情。该内置分类包含 GEO、ArrayExpress、MetaboLights、MGnify 和 PRIDE，使用前展开工具说明。
 
 ![GEO 元数据工具及明确的下载边界](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -36,11 +36,11 @@ Connector 让服务工具可供 Agent 使用，Credential 在服务要求时提�
 
 **Search connectors** 搜索 PubMed 后在 **Directory** 组找到结果；列表还包含 **Featured**、**Custom**。搜索按组显示结果，因此其他分组可能显示 **No connectors match your search**，下方仍有匹配项。
 
-组合使用 **Filter connectors by group**、**Filter Connectors by agent**、**Filter by Tag** 和搜索。**Manage credentials** 打开共享的联系邮箱与凭证设置。**Used by** 显示关联的代理；**Manage Tags** 用于整理标签。使用资源旁的 **Manage access** 统一查看和调整 Main Agent 与 Specialist 的访问。
+组合使用 **Filters → Filter connectors by group**、**Filter Connectors by agent**、**Filter by Tag** 和搜索。**Manage credentials** 打开共享的联系邮箱与凭证设置。**Used by** 显示关联的代理；**Manage Tags** 用于整理标签。使用资源旁的 **Manage access** 统一查看和调整 Main Agent 与 Specialist 的访问。
 
 #### 按代理管理资源访问 {/* #resource-access */}
 
-1. 在 **Settings → Connectors** 找到 Connector，打开它的 **Manage access** 控件。
+1. 在 **Resource center → Connectors** 找到 Connector，打开它的 **Manage access** 控件。
 2. 查看 **Main Agent** 和列出的 Specialist；列表支持搜索时，可按角色名称筛选。只调整所需关联；角色编辑器仍可管理该角色的能力列表。
 3. 重新打开弹窗并检查 **Used by**。已禁用的 Specialist 仍可能保留绑定；分配资源不会启用该角色。
 
@@ -50,7 +50,7 @@ Connector 让服务工具可供 Agent 使用，Credential 在服务要求时提�
 
 #### 批量启用或禁用 Connectors
 
-打开 **Settings → Connectors**，筛选列表，在相应组选择 **Select multiple** 并勾选需要操作的 Connector。启用或禁用前检查选中数量，完成后核对各项状态，只保留当前工作需要的服务。批量切换可用性不会补充凭据、更改各工具的审批策略，也不会授予 Specialist 访问权限，这些设置需分别配置。
+打开 **Resource center → Connectors**，筛选列表，在相应组选择 **Select multiple** 并勾选需要操作的 Connector。启用或禁用前检查选中数量，完成后核对各项状态，只保留当前工作需要的服务。批量切换可用性不会补充凭据、更改各工具的审批策略，也不会授予 Specialist 访问权限，这些设置需分别配置。
 
 #### PubMed：可用性、工具与审批
 

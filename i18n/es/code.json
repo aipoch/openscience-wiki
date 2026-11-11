@@ -1265,7 +1265,7 @@
     "message": "Skill directory"
   },
   "docs.outline.skills.directory.scope": {
-    "message": "One table of all 23 bundled Skills, grouped by research purpose, with inputs, dependencies, outputs and verification status."
+    "message": "One table of all 24 bundled Skills, grouped by research purpose, with inputs, dependencies, outputs and verification status."
   },
   "docs.outline.skills.recipes.title": {
     "message": "Skill recipes"
@@ -1860,5 +1860,11 @@
   },
   "docs.outline.reference.v110.scope": {
     "message": "Películas de investigación, resumenes de papel de lote, acceso móvil y comandos de literatura."
+  },
+  "docs.outline.reference.v121.title": {
+    "message": "v1.2.1"
+  },
+  "docs.outline.reference.v121.scope": {
+    "message": "Centro de recursos, mejora de preguntas, suscripciones Codex y exportación CSV de referencias."
   }
 }

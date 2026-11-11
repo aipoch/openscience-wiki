@@ -1,7 +1,7 @@
 ---
 title: "Provider and local model setup"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -254,3 +254,14 @@ Use the recovery action attached to an expired or invalid credential, update the
 ## Select Kimi K3.1 Pro {/* #kimi-k31 */}
 
 v1.0.3 adds Kimi K3.1 Pro models to the provider catalog. Open the intended provider's model picker and select an available entry, then test the connection. Model availability still depends on the active Agent framework, endpoint and account; a catalog entry alone does not establish access.
+
+## Use a Codex subscription with the built-in Agent {/* #builtin-codex-subscription */}
+
+In v1.2.1, **Open-Science Agent** supports both an imported Codex login and an account signed in through Open-Science for Main and Subagent. The separate **Codex** runtime remains available; changing runtime is optional.
+
+1. In **Settings → Model → Conversation models**, add or open **Codex subscription** and complete the offered sign-in or existing-login check. If no login is found, sign in through that provider's recovery action.
+2. After finishing active tasks, choose the intended framework under **Settings → Agent**. This setting applies across projects.
+3. Select the Codex provider and model for Main. For **Subagent**, use **Same as main model** or a compatible fixed choice when needed.
+4. Send a short request and check the actual response before starting research. Imported login detection, saved configuration and successful execution are separate states.
+
+The Anthropic catalog also includes **Claude Fable 5.2** with a 1M context window. Catalog entries do not grant account access or automatically replace Main.

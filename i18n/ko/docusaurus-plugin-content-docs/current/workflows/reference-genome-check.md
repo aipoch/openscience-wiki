@@ -2,7 +2,7 @@
 title: "종, 참조 genome 및 크롬 식별자 확인"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 생물, 집합 및 염색체를 조회하십시오 {/* #reference-genome */}
 
-1. **한국어 (Korean)**에서 **Settings → Connectors**을 활성화하십시오. 연결된 모델과 사용 가능한 Notebook 런타임으로 세션을 엽니다. 이 v0.31.1 예제는 **Codex subscription**을 사용했습니다.
+1. **한국어 (Korean)**에서 **Resource center → Connectors**을 활성화하십시오. 연결된 모델과 사용 가능한 Notebook 런타임으로 세션을 엽니다. 이 v0.31.1 예제는 **Codex subscription**을 사용했습니다.
 2. 생물, **이름 &#42;** 집합 및 순서에 조회하십시오. 지불 조건:
 
 ```text

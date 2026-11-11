@@ -1,7 +1,7 @@
 ---
 title: "외관 및 알림"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -121,7 +121,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 | 당신은... | 오시는 길 |
 | --- | --- |
 | 앱 업데이트 확인 | **General → Check now**; 이름 &#42; [설치 및 업데이트](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| 버전 변경을 읽거나 도움을 받으십시오 | **General → Release notes / Help Center** 해당 외부 페이지를 엽니다. 이 위키는 또한 [관련 링크](../changelog/v1.2.0.md). |
+| 버전 변경을 읽거나 도움을 받으십시오 | **General → Release notes / Help Center** 해당 외부 페이지를 엽니다. 이 위키는 또한 [관련 링크](../changelog/v1.2.1.md). |
 | 진단 로그를 찾아내거나 엽니다 | **General → Diagnostics → Reveal / Open**; 은 은 [문제 해결](troubleshooting.md). 공유 할 때까지 로컬로 이동하십시오. |
 | 명령줄 입력 설치 | **General → Install command**; 은 은 [CLI 참조](../reference/cli.md). 데스크톱 사용은이 명령을 요구하지 않습니다. |
 | 데이터 위치 또는 아카이브 작업 관리 | [저장과 아카이브 작업](storage.md). |

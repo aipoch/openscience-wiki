@@ -1,7 +1,7 @@
 ---
 title: "Connecteurs et identifiants"
 last_update:
-  date: '2026-10-30'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -16,7 +16,7 @@ Dans la gestion des lots, examiner le nombre sélectionné dans la zone d'action
 
 ### Trouver des outils pour un projet d'expression génétique {/* #find-tools-for-a-gene-expression-project */}
 
-Ouvrez **Settings → Connectors**, recherchez **Archives Omics** et ouvrez ses détails. Cette famille intégrée comprend des outils GEO, ArrayExpress, MetaboLights, MGnify et PRIDE. Élargir une rangée d'outils avant de la choisir.
+Ouvrez **Resource center → Connectors**, recherchez **Archives Omics** et ouvrez ses détails. Cette famille intégrée comprend des outils GEO, ArrayExpress, MetaboLights, MGnify et PRIDE. Élargir une rangée d'outils avant de la choisir.
 
 ![Outil de métadonnées GEO et sa limite de téléchargement explicite](/img/open-science/guides-walkthrough/36-omics-tools.webp)
 
@@ -37,11 +37,11 @@ Assignez une balise telle que **Transcriptomique** à un Connector, puis trouvez
 
 Utilisez **Search connectors** pour trouver PubMed sous **Directory**; la liste contient également les groupes **Featured** et **Custom**. Filtrage s'applique par groupe, donc un autre groupe peut dire **Aucun connecteur ne correspond à votre recherche** alors qu'un résultat correspondant reste visible ci-dessous.
 
-Utilisez **Filter connectors by group**, **Filter Connectors by agent** et **Filter by Tag** avec recherche. **Manage credentials** ouvre les paramètres de contact-email/crédentiel partagés. **Used by** montre la disponibilité; **Manage Tags** organise un Connector. Utilisez le contrôle **Manage access** de la ressource pour examiner et ajuster l'accès pour Main Agent et Spécialistes en un seul endroit.
+Utilisez **Filters → Filter connectors by group**, **Filter Connectors by agent** et **Filter by Tag** avec recherche. **Manage credentials** ouvre les paramètres de contact-email/crédentiel partagés. **Used by** montre la disponibilité; **Manage Tags** organise un Connector. Utilisez le contrôle **Manage access** de la ressource pour examiner et ajuster l'accès pour Main Agent et Spécialistes en un seul endroit.
 
 #### Gérer l'accès pour chaque agent {/* #resource-access */}
 
-1. Trouvez un Connector sous **Settings → Connectors** et choisissez son contrôle **Manage access**.
+1. Trouvez un Connector sous **Resource center → Connectors** et choisissez son contrôle **Manage access**.
 2. Examiner **Agent principal** et les spécialistes énumérés. Recherchez la liste des rôles lorsque disponible. Modifier uniquement l'association prévue; l'éditeur de rôle reste un autre moyen de gérer sa liste de capacités.
 3. Réouvrir le popup et vérifier **Used by**. Une liaison peut rester assignée à un Specialist désactivé; L'attribuer ne permet pas ce rôle.
 
@@ -51,7 +51,7 @@ Pour un rôle avec **Full access**, l'exclusion de ce Connector crée une except
 
 #### Activer ou désactiver plusieurs connecteurs {/* #enable-or-disable-several-connectors */}
 
-Ouvrez **Settings → Connectors**, filtrez la liste, choisissez **Select multiple** dans le groupe pertinent et sélectionnez les connecteurs prévus. Examinez le nombre sélectionné avant de les activer ou de les désactiver, puis vérifiez chaque état retourné. Ne conservez que les services nécessaires à votre travail. Les changements de disponibilité en vrac ne fournissent pas d'identifications, ne modifient pas les politiques d'approbation par outil ou n'accordent pas d'accès Specialist; Configurez-les séparément.
+Ouvrez **Resource center → Connectors**, filtrez la liste, choisissez **Select multiple** dans le groupe pertinent et sélectionnez les connecteurs prévus. Examinez le nombre sélectionné avant de les activer ou de les désactiver, puis vérifiez chaque état retourné. Ne conservez que les services nécessaires à votre travail. Les changements de disponibilité en vrac ne fournissent pas d'identifications, ne modifient pas les politiques d'approbation par outil ou n'accordent pas d'accès Specialist; Configurez-les séparément.
 
 #### PubMed: disponibilité, outils et politique d'approbation {/* #pubmed-availability-tools-and-approval-policy */}
 

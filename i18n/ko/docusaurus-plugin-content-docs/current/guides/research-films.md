@@ -1,7 +1,7 @@
 ---
 title: "연구 필름 만들기"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 # 연구 필름 만들기
@@ -42,6 +42,8 @@ Keep the numerical result explicit.
 ![완성된 교육 대화에서 연구 필름 생성](/img/open-science/v120/film-progress.webp)
 
 ![English narration 및 playback 액션을 가진 준비된 연구 영화](/img/open-science/v120/film-ready.webp)
+
+v1.2.1에서 다른 세션으로 전환하는 것은 영화 발생을 멈추지 않습니다. 앱 실행을 유지하고 소스 세션의 반환 **View generation progress** 또는 **View research film** 결과 검사. 영화 작업은 여전히 세대를 중지.
 
 ## 검토 된 필름 수출 {/* #export-film */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Anbieter und lokales Modell-Setup"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -254,3 +254,14 @@ Verwenden Sie die Wiederherstellungsaktion, die an eine abgelaufene oder ungült
 ## Wählen Sie Kimi K3.1 Pro {/* #kimi-k31 */}
 
 v1.0.3 adds Kimi K3.1 Pro models to the provider catalog. Open the intended provider's model picker and select an available entry, then test the connection. Model availability still depends on the active Agent framework, endpoint and account; a catalog entry alone does not establish access.
+
+## Verwenden Sie ein Codex-Abonnement mit dem eingebauten Agent {/* #builtin-codex-subscription */}
+
+In v1.2.1, **Open-Science Agent** unterstützt sowohl ein importiertes Codex-Login als auch ein über Open-Science für Main und Subagent angemeldetes Konto. Die getrennte **Codex** Laufzeit bleibt verfügbar; die Änderung der Laufzeit ist optional.
+
+1. In **Settings → Model → Conversation models**, hinzufügen oder öffnen **Codex subscription** und füllen Sie den angebotenen Anmelde- oder Existing-Login-Check aus. Wenn kein Login gefunden wird, melden Sie sich über die Wiederherstellungsaktion dieses Anbieters an.
+2. Nach Abschluss aktiver Aufgaben wählen Sie das vorgesehene Framework unter **Settings → Agent**. Diese Einstellung gilt für alle Projekte.
+3. Wählen Sie den Codex-Anbieter und das Modell für Main. für **Subagent**, Verwendung **Same as main model** oder eine kompatible feste Wahl, wenn nötig.
+4. Senden Sie eine kurze Anfrage und überprüfen Sie die tatsächliche Antwort, bevor Sie mit der Recherche beginnen. Importierte Anmeldeerkennung, gespeicherte Konfiguration und erfolgreiche Ausführung sind separate Zustände.
+
+Der Anthropische Katalog enthält auch **Claude Fable 5.2** mit einem 1M Kontextfenster. Katalogeinträge gewähren keinen Kontozugriff oder ersetzen Main automatisch.

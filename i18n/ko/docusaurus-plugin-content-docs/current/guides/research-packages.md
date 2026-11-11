@@ -2,7 +2,7 @@
 title: ".science 연구 패키지"
 description: "파일 및 증거와 함께 세션을 내보내고 다른 프로젝트에 대한 연구 기록을 검사합니다."
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -187,3 +187,9 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 **Back to Project** 또는 **Back to Home** 로 작업 화면에 돌아갑니다. 마켓에 다시 들어가면 필터와 스크롤 위치가 유지됩니다. 연구 사례는 다음과 용도가 다릅니다: [기술 시장](../skills/marketplace.md): 아 `.science` 패키지는 연구 세션 기록을 담고, Skill은 재사용할 수 있는 지침을 제공합니다.
 
 패키지가 목적지를 기다리고 있다면, **Continue** 로 가져오기 창을 다시 여세요. 새 전송을 시작하기 전에 기존 전송을 확인하세요. 다운로드 검증은 전송의 무결성을 확인하며 사례의 과학적 결론을 검증하거나 모델 자격 증명을 제공하지 않습니다.
+
+## 반복된 계산을 가진 긴 역사 수출 {/* #compact-evidence */}
+
+노트북 및 Compute는 검증 된 제스처를 유지하면서 연구 패키지에 동일한 증거 콘텐츠를 재사용하고 참조를 실행합니다. 긴 세션이 같은 파일을 여러 번 사용 할 때 반복 된 바이트를 감소시킵니다. 첫 번째 수출은 이전 레코드에서 증거를 준비 할 수도 있습니다.
+
+일반 세션 패키지 흐름을 통해 수출하고 완료를 기다립니다. 별도의 프로젝트로 결과를 가져 와서 유지 된 실행 및 파일을 검사합니다. 더 작은 아카이브는 모든 필요한 파일이 존재한다는 것을 증명하지 않으며 성공적인 수입은 computational rerun이 아닙니다. 제품 정보 [reproducibility 검사](reproducibility.md) 다시 실행을 테스트 할 때.

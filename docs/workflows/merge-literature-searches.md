@@ -1,7 +1,7 @@
 ---
 title: Combine literature search batches
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Two searches often return overlapping papers. Keep each search's provenance, scr
 
 ## 1. Run and record both searches
 
-In **Settings → Connectors**, enable **Literature Graph** and configure its OpenAlex credential if requested. Open a project, start a conversation and select a connected model. The recorded run used Open-Science **0.30.1**, **Codex subscription / gpt-5.6-sol**. No source PDFs are needed.
+In **Resource center → Connectors**, enable **Literature Graph** and configure its OpenAlex credential if requested. Open a project, start a conversation and select a connected model. The recorded run used Open-Science **0.30.1**, **Codex subscription / gpt-5.6-sol**. No source PDFs are needed.
 
 ```text
 Use OpenAlex through Literature Graph to build two search batches:

@@ -1,7 +1,7 @@
 ---
 title: "リモートコンピューティング:SSH、クラスター、クラウドジョブ"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -279,3 +279,9 @@ v1.0.6 以降、Slurm はキュー、コントローラー、ジョブ履歴を�
 SSHキー/コンフィグ認証は、使用可能なキーまたはホストエイリアスを供給し、送信前に接続を検証します。 Slurm結果の収集は、選択したアカウントの作業会計を必要とします。 アプリがジョブを解決できない場合は、上記のチェックに従ってください。
 
 ソース: [ジョブコードとレコードフィールドを計算する](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/compute.ts)、[SSH/file エラー分類](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/remote-fs.ts)、[Slurm 投稿検証](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/compute/slurm-driver.ts)。
+
+### クラウドアカウントサインイン用のPythonを用意する {/* #cloud-account-runtime */}
+
+お問い合わせ **Hugging Face** そして、 **Modal**, 接続フローは、ブラウザの認可を開く前に、互換性のあるPythonランタイムを用意します。 準備状況に従って、サインインを完了し、アカウントチェックを待ちます。 選択された通訳者は、インストールせずにチェックされます。承認とその後のSDK呼び出しは、準備されたランタイムにバインドされます。
+
+準備または承認が失敗した場合は、ステージのメッセージが別のログインを開始する前に確認します。 会計確認は、システムプロキシに従います。 接続されたコンピュートターゲットとして、ブラウザの成功ページを単独で処理しないでください。 ターゲットを追加したり、ジョブを承認する前に、Computeに戻り、アカウントの状態を確認します。

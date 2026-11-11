@@ -1,7 +1,7 @@
 ---
 title: "Поставщик и локальная настройка модели"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -254,3 +254,14 @@ Requesty использует `https://router.requesty.ai`; Активный а�
 ## Выберите Kimi K3.1 Pro {/* #kimi-k31 */}
 
 v1.0.3 adds Kimi K3.1 Pro models to the provider catalog. Open the intended provider's model picker and select an available entry, then test the connection. Model availability still depends on the active Agent framework, endpoint and account; a catalog entry alone does not establish access.
+
+## Используйте подписку Codex со встроенным агентом {/* #builtin-codex-subscription */}
+
+В пункте 1.2.1, **Open-Science Agent** Поддерживает как импортированный логин Codex, так и учетную запись, подписанную через Open-Science для Main и Subagent. Отдельный **Кодекс** Время выполнения остается доступным; изменение времени выполнения является необязательным.
+
+1. в **Settings → Model → Conversation models**Добавить или открыть **Codex subscription** и завершить предлагаемую проверку входа или существующего входа. Если логин не найден, войдите через действие восстановления этого провайдера.
+2. После завершения активных задач выберите предполагаемый фреймворк под **Settings → Agent**. Этот параметр применим ко всем проектам.
+3. Выберите поставщика Codex и модель для Main. Для **Subagent**использовать **Same as main model** Совместимый выбор при необходимости.
+4. Отправьте короткий запрос и проверьте фактический ответ перед началом исследования. Импортное обнаружение входа в систему, сохраненная конфигурация и успешное выполнение являются отдельными состояниями.
+
+Антропный каталог также включает **Claude Fable 5.2** 1М контекстное окно. Записи в каталогах не предоставляют доступ к учетной записи или автоматически заменяют Main.

@@ -2,7 +2,7 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -187,3 +187,9 @@ Der Export erfordert einen ausdrücklichen `.science`-Ausgabepfad. Das Zeitlimit
 **Back to Project** oder **Back to Home** kehrt zu Ihrem Workspace zurück. Die Rückkehr zum Markt behält seinen Browserzustand bei, einschließlich Filter und Scroll-Position. Forschungsfälle unterscheiden sich von den [Geschicklichkeitsmarkt](../skills/marketplace.md): a `.science` Paket führt eine aufgezeichnete Forschungssitzung; eine Fertigkeit liefert wiederverwendbare Anweisungen.
 
 Wenn ein Paket auf ein Ziel wartet, **Continue** öffnet den Import-Dialog erneut. Überprüfen Sie eine vorhandene Übertragung, bevor Sie eine andere starten. Die Download-Verifizierung überprüft die Übertragung, nicht die wissenschaftlichen Schlussfolgerungen des Falles, und liefert keine Modellnachweise.
+
+## Exportieren Sie eine lange Geschichte mit wiederholten Berechnungen {/* #compact-evidence */}
+
+Notebook und Compute verwenden identische Evidenzinhalte im Forschungspaket wieder, während verifizierte Digests beibehalten und Referenzen ausgeführt werden. Dies reduziert wiederholte Bytes, wenn eine lange Sitzung die gleichen Dateien viele Male verwendet; der erste Export kann auch Beweise aus älteren Datensätzen vorbereiten.
+
+Exportieren Sie durch den normalen Session-Paketfluss und warten Sie auf den Abschluss. Importieren Sie das Ergebnis in ein separates Projekt und prüfen Sie die gespeicherten Runs und Dateien. Ein kleineres Archiv beweist nicht, dass jede erforderliche Datei vorhanden ist, und ein erfolgreicher Import ist keine computergestützte Wiederholung. Verwendung [Reproduzierbarkeitsprüfungen](reproducibility.md) Wenn Sie die Ausführung erneut testen müssen.

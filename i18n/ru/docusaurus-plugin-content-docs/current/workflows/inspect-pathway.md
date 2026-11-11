@@ -1,7 +1,7 @@
 ---
 title: "Проверить путь и его сеть взаимодействия"
 last_update:
-  date: '2026-09-29'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 ## 1. Подготовить проект {/* #prepare */}
 
 1. Создайте проект под названием **Исследование Pathway Commons** и начните разговор.
-2. В **Settings → Connectors** сделать **Pathway Commons** доступным для активного агента. использует государственную услугу; Этот пример не нуждается в частных файлах исследований.
+2. В **Resource center → Connectors** сделать **Pathway Commons** доступным для активного агента. использует государственную услугу; Этот пример не нуждается в частных файлах исследований.
 3. Выберите настроенную модель Main. В данном примере используется **Codex subscription**. Если Codex помечается как **Update required**, то перед отправкой задачи [Обновление Runtime](../guides/frameworks.md#update-codex).
 
 ## 2. Поиск и сохранение возвращенной личности {/* #search */}

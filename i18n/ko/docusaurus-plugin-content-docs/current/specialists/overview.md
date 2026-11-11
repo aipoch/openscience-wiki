@@ -1,7 +1,7 @@
 ---
 title: "전문가 및 사용 가능한 역할"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # 전문가 및 사용 가능한 역할 {/* #specialists-and-available-roles */}
@@ -17,11 +17,11 @@ Specialist는 저장된 연구 역할입니다: 정체성, 지시 및 허용된 
 | 수입 / 시장 Specialist | 패키지에서 설치 한 다음이 장치에서 구성 | 로컬 설정 및 허용 기능; 출판사 및 패키지 버전 검사 |
 | 내장 리뷰어 | 앱의 검토 워크플로우 수행 | 대화를 통해 방아쇠 검토; 일반 편집 / 델가테이블 Specialist이 아닙니다. |
 
-**Browse Marketplace**을 열고 게시된 역할을 찾습니다. 온라인 카탈로그는 독립적으로 설치된 앱을 변경할 수 있습니다. 각 역할의 출판사, 지시 및 종속성을 검사합니다.
+**Marketplace**을 열고 게시된 역할을 찾습니다. 온라인 카탈로그는 독립적으로 설치된 앱을 변경할 수 있습니다. 각 역할의 출판사, 지시 및 종속성을 검사합니다.
 
 ## 자주 묻는 질문 {/* #find-a-role */}
 
-**Settings → Specialists**을 엽니다. **Installed**은 지역 등록 된 역할을 계산합니다. Reviewer를 포함한. **Search specialists** 및 **Filter specialists by category**을 사용하여 검사 할 줄을 엽니다. **Browse Marketplace**는 다른 카탈로그를 엽니다; 목록으로 만들어진 시장 입장은 패키지/setup 흐름을 완료할 때까지 설치되지 않습니다.
+**Resource center → Specialists**을 엽니다. **Installed**은 지역 등록 된 역할을 계산합니다. Reviewer를 포함한. **Search specialists** 및 **Filters → Filter specialists by category**을 사용하여 검사 할 줄을 엽니다. **Marketplace**는 다른 카탈로그를 엽니다; 목록으로 만들어진 시장 입장은 패키지/setup 흐름을 완료할 때까지 설치되지 않습니다.
 
 ![RNA-seq QC 검토자는 국부적으로 설치했습니다](/img/open-science/capabilities-walkthrough/06-specialist-list.webp)
 

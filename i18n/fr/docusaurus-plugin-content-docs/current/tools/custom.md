@@ -1,7 +1,7 @@
 ---
 title: "Connectez un outil personnalisé MCP"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -26,7 +26,7 @@ Enregistrez les deux fichiers localement et notez leurs chemins complets. Le ser
 
 ## Ajoutez-le dans Open-Science {/* #add-it-in-open-science */}
 
-1. Ouvrez **Settings → Connectors → Add connector → Local command**.
+1. Ouvrez **Resource center → Connectors → Add connector → Local command**.
 2. Définit **Display name** à `GSE60450 QC`.
 3. Choisissez **python3 — script file** comme **Command**, ou **Other…** avec le chemin exécutable réel Python sur Windows.
 4. Ouvrez **Advanced settings**. Définissez le nom/ID du connecteur à `gse60450-qc` et décrivez-le comme un accès en lecture seule à la table QC sauvegardée.

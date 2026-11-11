@@ -1,7 +1,7 @@
 ---
 title: "Skill とその対応ファイルを作成する"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 4. エージェントが動作している間、**Saving as skill…** にアイテムが変更されます。 これは、会話でモデルアシスト操作を開始します。 マニュアル名/説明エディタを開くか、ZIPを即座に保存しません。
 5. 提案したSkillの名前を調べ、説明、手順をトリガーし、ファイルと検証結果をサポート。 示された場合の明確化か操作の承認に応答して下さい。 **Customize** は有効になっています。 アクティブな役割は、依然として適切な機能アクセスを持っている必要があります。
 6. 出版を受け入れる前に草案を見直します。 学習固有のパス、一時的なID、資格情報、サポートされていない結論を削除します。 再使用可能な入力条件および点検を保って下さい。 既存の個人 Skill は、明示的な置換の決定なしに上書きされてはならない。
-7. 出版後, 開く **Settings → Skills**、報告された名前を捜し、点検して下さい **Files**、保存された SKILL.md および Main エージェントの可用性。 完全なパッケージを点検する必要がある場合それを輸出して下さい。
+7. 出版後, 開く **Resource center → Skills**、報告された名前を捜し、点検して下さい **Files**、保存された SKILL.md および Main エージェントの可用性。 完全なパッケージを点検する必要がある場合それを輸出して下さい。
 8. 保存したSkillで別の境界リクエストを実行します。 正常に保存されたパッケージは、2番目のデータセットまたは後々の呼び出しが渡されたという証拠ではありません。
 
 ### 研究方法の保存 {/* #save-the-research-method */}
@@ -49,7 +49,7 @@ GSE60450 QC を新しいセッションで完了した後、**+ → Save as skil
 
 ![ネイティブSkillドラフトと検証結果](/img/open-science/v0.27.0/16-native-skill-draft-validated.webp)
 
-個人的なSkillsに出版物を確認する前に、名前、トリガーの説明、入力、メトリック定義、および停止条件を確認してください。 それから使用して下さい **Settings → Skills → Search skills**保存された指示を開け、点検して下さい **Availability** そして、 **Files**. . . . 実際の公開された<ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.mdの特長</ExampleDownload>をダウンロードしてください。
+個人的なSkillsに出版物を確認する前に、名前、トリガーの説明、入力、メトリック定義、および停止条件を確認してください。 それから使用して下さい **Resource center → Skills → Search skills**保存された指示を開け、点検して下さい **Availability** そして、 **Files**. . . . 実際の公開された<ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.mdの特長</ExampleDownload>をダウンロードしてください。
 
 ![個人で見つけられたネイティブ出版物](/img/open-science/v0.27.0/17-native-skill-published.webp)
 
@@ -98,7 +98,7 @@ rnaseq-count-qc/
 
 ### フィールドを完了し、公開する {/* #complete-the-fields-and-publish */}
 
-1. **Settings → Skills → Add skill → Write from scratch** を開きます。
+1. **Resource center → Skills → Add skill → Write from scratch** を開きます。
 2. ダウンロードした SKILL.md を **Skill body** に貼り付けます。 YAML フロントマッターが**Name**と**Description**をポジュレートします。
 3. お名前が `rnaseq-count-qc` であることを確認してください。 保存する前にレンダーされた/body コンテンツを読み込みます。 有効な名前だけは科学的な方法を検証しません。
 4. **Advanced settings → Add reference files** を開き、`sample-metric-schema.md` を選択します。 エディタは、このリソースを`references/`の下に配置します。

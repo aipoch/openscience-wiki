@@ -1,7 +1,7 @@
 ---
 title: "Navigation and search"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # Navigation and search
@@ -67,3 +67,17 @@ Clear category and other filters, check the owning project and search a distinct
 Open the **Open-Science** icon's menu in the macOS menu bar, Windows tray or a Linux desktop with tray support. Use **Running sessions** to find active work, **Pinned sessions** for pinned conversations, or **Recent items** for recent content. Longer lists continue under **More items**. After choosing an entry, check the project and conversation title that opens.
 
 Use **Pin** beside a conversation title to keep it handy. **Show / Hide** changes window visibility; **Quit** exits the app. Switching conversations does not stop a task. Linux icon availability depends on the desktop's tray support. See [appearance and notifications](appearance.md) for window-close behavior and alerts.
+
+## Open the Resource center {/* #resource-center */}
+
+Use **Resource center** on Home or in the project sidebar. Choose **Skills**, **Connectors**, **Specialists** or **Use Cases**. These resources now have their own workspace rather than panels inside Settings; older screenshots can show the previous Settings entry.
+
+1. Choose a resource type. Use **Installed** for local resources and **Marketplace** for published packages where offered.
+2. Search by name and open **Filters** to narrow the list. Clear the search or reset filters if an expected item disappears.
+3. Open **View details** to inspect the resource. Check its source, version, requirements and availability before installing or enabling it.
+4. Use **Manage access** or the resource's availability controls to check which agents can use it. Installation, agent access and approval for a particular operation are separate decisions.
+5. Return to the project with its conversation intact. Opening a Skill reference in the Composer or a sent message opens the resource detail in the project pane.
+
+![Skills, Connectors, Specialists and Use Cases in the Resource center](/img/open-science/v121/resource-center.webp)
+
+See [Skill installation](../skills/marketplace.md), [Connector setup](connectors.md) and [Specialist roles](../specialists/overview.md).

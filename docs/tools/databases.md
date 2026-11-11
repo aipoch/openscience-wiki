@@ -2,7 +2,7 @@
 title: "Scientific databases"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # Scientific databases
@@ -13,7 +13,7 @@ Use this page to choose a data source, understand what it can return, and make i
 
 ## Supported databases {/* #supported-databases */}
 
-Open-Science v1.0.8 includes **48 built-in Connectors with 418 operations**: 47 data-source Connectors provide 416 operations, and the offline Molecule Connector provides two. Connector names below match **Settings → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
+Open-Science v1.0.8 includes **48 built-in Connectors with 418 operations**: 47 data-source Connectors provide 416 operations, and the offline Molecule Connector provides two. Connector names below match **Resource center → Connectors**; each family can expose several databases. Listing a source does not mean every feature of its website is available.
 
 The count covers all built-in entries, including disabled ones; custom MCP Connectors are additional. Connector count, underlying database count and operation count measure different things.
 
@@ -90,7 +90,7 @@ A database response can support a research step; it does not automatically downl
 
 ## RNA regulatory evidence with ENCORI {/* #encori */}
 
-Find **ENCORI** in **Settings → Connectors**, enable it and make it available to **Main**. This built-in source needs no custom MCP URL or API key. With a working Main model selected, specify the organism/assembly, RNA or target gene, cell type and evidence thresholds in the conversation.
+Find **ENCORI** in **Resource center → Connectors**, enable it and make it available to **Main**. This built-in source needs no custom MCP URL or API key. With a working Main model selected, specify the organism/assembly, RNA or target gene, cell type and evidence thresholds in the conversation.
 
 | Task | Result and boundary |
 | --- | --- |
@@ -129,7 +129,7 @@ ChEMBL pages are ordered by `activity_id`. Keep filters unchanged and pass `next
 
 ## Single-cell, model-organism and variant-effect data {/* #single-cell-model-organisms */}
 
-Search for the entries below in **Settings → Connectors**, enable availability for **Main**, then describe the organism, research question and records to retain in your conversation. These new operations read public data without a custom MCP server, API key or NCBI contact email. Other services in the same Connector can have different requirements.
+Search for the entries below in **Resource center → Connectors**, enable availability for **Main**, then describe the organism, research question and records to retain in your conversation. These new operations read public data without a custom MCP server, API key or NCBI contact email. Other services in the same Connector can have different requirements.
 
 | Entry | What it can do | How to use the results |
 | --- | --- | --- |
@@ -144,7 +144,7 @@ See exact inputs for [CELLxGENE Discover](../reference/connector-operations.md#f
 
 ## Cell lines, phenotypes and immune evidence {/* #cell-lines-phenotypes-immunity */}
 
-Enable **Cellosaurus**, **Monarch Initiative** or **IEDB** in **Settings → Connectors** and make it available to **Main**. These operations query public records without a custom server or API key.
+Enable **Cellosaurus**, **Monarch Initiative** or **IEDB** in **Resource center → Connectors** and make it available to **Main**. These operations query public records without a custom server or API key.
 
 | Entry | What to request | What to preserve |
 | --- | --- | --- |
@@ -168,7 +168,7 @@ After obtaining a matrix, **geo_preflight_matrix** checks already-read, decompre
 
 ### 1. Enable the built-in Connector
 
-1. Open **Settings → Connectors** and search for the family listed above, such as **Omics Archives**.
+1. Open **Resource center → Connectors** and search for the family listed above, such as **Omics Archives**.
 2. Open its detail and expand **Tools**. Read the chosen operation's inputs, result limits and third-party requirements.
 3. Enable availability for **Main** and check **Used by**. Use **Manage access** on the resource to adjust Main Agent and Specialist associations. Availability and per-tool approval policies are separate controls.
 
@@ -182,8 +182,8 @@ These Connectors are built in; you do not need to add a custom server for them. 
 
 | Service or condition | Where to configure it |
 | --- | --- |
-| OpenAlex | Optional key. To configure one, open **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**, validate it, then save. |
-| Direct NCBI variant queries requiring contact information | **Settings → Connectors → Manage credentials → Literature access**. Fill in **Contact email** and select **Save**. An NCBI API key is optional. |
+| OpenAlex | Optional key. To configure one, open **Resource center → Connectors → Literature Graph → Manage credentials → OpenAlex**, validate it, then save. |
+| Direct NCBI variant queries requiring contact information | **Resource center → Connectors → Manage credentials → Literature access**. Fill in **Contact email** and select **Save**. An NCBI API key is optional. |
 | Another operation with a credential requirement | Follow that tool's requirements and the [credentials guide](../guides/connectors.md). Bind the credential to the intended service. |
 
 Enter keys in the credential form, not in a research prompt or a shared output file. Configure requirements for the selected operation; the contact-email requirement above does not mean that every NCBI tool has the same requirement.
@@ -284,11 +284,11 @@ Catalog source: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.8/
 - **Protein Annotation → STRING**: test whether a protein network has more interactions than expected from its background. This asks a different question from pathway over-representation; its network P value is not a pathway test. Follow the [gene-set enrichment workflow](../workflows/gene-set-enrichment.md#enrichr-string).
 - **Clinical Genomics → ClinPGx**: retrieve drug, gene or variant annotations, guidelines, regulatory labels and population frequencies. Resolve identifiers first, supply the fields required by the operation, and retain original sources and evidence levels. This retrieves research records; it does not automatically produce an individual treatment plan.
 
-Enable the relevant Connector for the active agent in **Settings → Connectors**. These built-in entries do not require a custom MCP server. See the [operation reference](../reference/connector-operations.md) for exact fields and conditional requirements.
+Enable the relevant Connector for the active agent in **Resource center → Connectors**. These built-in entries do not require a custom MCP server. See the [operation reference](../reference/connector-operations.md) for exact fields and conditional requirements.
 
 ## Pathways, expression and clinical data {/* #pathway-expression-clinical */}
 
-Enable the corresponding family in **Settings → Connectors**, then tell the agent the organism, source, identifiers and intended scope. These additions use built-in Connectors; no custom MCP server is required.
+Enable the corresponding family in **Resource center → Connectors**, then tell the agent the organism, source, identifiers and intended scope. These additions use built-in Connectors; no custom MCP server is required.
 
 | Entry | What it can do | Connection and interpretation |
 | --- | --- | --- |
@@ -306,13 +306,13 @@ Start with `bgee_species` to identify the species. Its `taxon_id` is the organis
 
 ## Find GWAS summary-statistics files {/* #gwas-summary-statistics */}
 
-Enable **Human Genetics** for Main in **Settings → Connectors**. Ask for summary-statistics discovery with the study's **GCST accession**, and retain the returned original/harmonised file URLs, metadata and declared reference genome. The public lookup does not require an API key.
+Enable **Human Genetics** for Main in **Resource center → Connectors**. Ask for summary-statistics discovery with the study's **GCST accession**, and retain the returned original/harmonised file URLs, metadata and declared reference genome. The public lookup does not require an API key.
 
 `gwas_get_summary_statistics` lists study files and reads available YAML metadata; it does not download large association tables. Its GWAS-SSF column definitions describe the standard, not an inspected file header. Download the intended file separately and check its actual columns, genome build, effect allele and units before analysis. Significant association hits are not a substitute for complete summary statistics. [Parameters and output](../reference/connector-operations.md#gwas_get_summary_statistics).
 
 ## Submit a protein sequence to InterProScan {/* #interproscan-submit */}
 
-1. Enable **InterProScan** for Main in **Settings → Connectors**. In **Settings → Credentials → Literature access**, save the valid contact email used for EMBL-EBI jobs; no API key is required.
+1. Enable **InterProScan** for Main in **Resource center → Connectors**. In **Settings → Credentials → Literature access**, save the valid contact email used for EMBL-EBI jobs; no API key is required.
 2. Supply a protein sequence or uniquely named protein FASTA records and request submission once. The sequence and contact email are sent to EMBL-EBI. One request accepts up to 1,000 records, 10,000 residues per sequence and a 4 MiB encoded request body.
 3. Retain the returned **job_id**. **SUBMITTED** with **ready: false** is a receipt, not an annotation result. Check **status** at least ten seconds apart; polling is not automatic.
 4. After **FINISHED**, request **results** and save the complete TSV before the remote result expires. A response over the 2 MiB retrieval limit fails rather than silently returning a truncated report.
@@ -328,7 +328,7 @@ Keep the receptor-group ID, chains, reported assay IDs and source publications. 
 
 ## Discover cancer proteomics with PDC {/* #pdc */}
 
-Enable **PDC** in **Settings → Connectors**. Its public metadata API needs no API key. Use it to find studies and versions, inspect assay and specimen counts, map case–sample–aliquot associations, and list quantitative files such as **Protein Assembly** reports. It does not return treatment/outcome data or download files.
+Enable **PDC** in **Resource center → Connectors**. Its public metadata API needs no API key. Use it to find studies and versions, inspect assay and specimen counts, map case–sample–aliquot associations, and list quantitative files such as **Protein Assembly** reports. It does not return treatment/outcome data or download files.
 
 Start with a study accession such as `PDC000127`, or search study identifiers and version names. PDC keyword matching is not a clinical disease filter. Retrieve the study, then use its returned `study_id` UUID to pin subsequent calls; `pdc_study_id` selects the latest version. Provide exactly one of these selectors.
 
@@ -338,7 +338,7 @@ See [PDC operations and pagination](../reference/connector-operations.md#family-
 
 ## Check population-specific LD {/* #ensembl-ld */}
 
-Enable **Genomes** in **Settings → Connectors**. Its Ensembl LD tools use the public API without a key. Supply two variant IDs for `ensembl_ld_pairwise`, or one for `ensembl_ld_proxies`, together with the complete population name, such as `1000GENOMES:phase_3:KHV`. The tools do not discover the population or infer ancestry; choose a reference population appropriate to the study.
+Enable **Genomes** in **Resource center → Connectors**. Its Ensembl LD tools use the public API without a key. Supply two variant IDs for `ensembl_ld_pairwise`, or one for `ensembl_ld_proxies`, together with the complete population name, such as `1000GENOMES:phase_3:KHV`. The tools do not discover the population or infer ancestry; choose a reference population appropriate to the study.
 
 Pairwise results report r² and D′. Proxy queries default to r² ≥ 0.8 and a **500 kb total window**, approximately 250 kb on either side. `max_records` caps the returned list after sorting, not the upstream work. Keep the population and retrieval metadata with the result; this endpoint does not report the reference assembly or Ensembl release. Empty results mean no qualifying data returned, not zero LD. High LD establishes neither causality nor functional equivalence. See [pairwise fields](../reference/connector-operations.md#ensembl_ld_pairwise) and [proxy fields](../reference/connector-operations.md#ensembl_ld_proxies).
 
@@ -356,11 +356,11 @@ These corrections change how returned evidence should be read. Check the [operat
 
 ### OpenAlex credential prompts {/* #openalex-prompts */}
 
-v1.0.2 remembers a declined OpenAlex credential prompt for the current session, avoiding repeated prompts there. If you later need that source, configure it explicitly in **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** and retry the intended query. Declining the prompt neither supplies a key nor guarantees access or quota.
+v1.0.2 remembers a declined OpenAlex credential prompt for the current session, avoiding repeated prompts there. If you later need that source, configure it explicitly in **Resource center → Connectors → Literature Graph → Manage credentials → OpenAlex** and retry the intended query. Declining the prompt neither supplies a key nor guarantees access or quota.
 
 ## Connect the new sources and preserve their meaning {/* #new-source-access */}
 
-In **Settings → Connectors**, find the entry below and allow it for **Main** or the intended Specialist. HGNC, PubTator 3, DGIdb and RNAcentral are tools within existing entries. **Orphadata** is a separate entry and is off by default. These new tools use public endpoints without their own API key; other tools in the same entry can have different credential requirements.
+In **Resource center → Connectors**, find the entry below and allow it for **Main** or the intended Specialist. HGNC, PubTator 3, DGIdb and RNAcentral are tools within existing entries. **Orphadata** is a separate entry and is off by default. These new tools use public endpoints without their own API key; other tools in the same entry can have different credential requirements.
 
 | Source | Settings entry | Request and check |
 | --- | --- | --- |
@@ -383,7 +383,7 @@ See [PDC fields](../reference/connector-operations.md#pdc_list_clinical), [GDC f
 
 ## Imaging, pathways, lipids and cancer models {/* #expanded-sources */}
 
-In **Settings → Connectors**, enable the intended source and make it available to **Main**. TCIA, KEGG, RxNorm / RxNav, DailyMed, BioSamples and WikiPathways are separate entries, disabled by default. The operations below use public services without a custom MCP server or API key. Enabling a Connector does not grant a data license or restricted-data access.
+In **Resource center → Connectors**, enable the intended source and make it available to **Main**. TCIA, KEGG, RxNorm / RxNav, DailyMed, BioSamples and WikiPathways are separate entries, disabled by default. The operations below use public services without a custom MCP server or API key. Enabling a Connector does not grant a data license or restricted-data access.
 
 | Entry | Request | Keep with the result |
 | --- | --- | --- |
@@ -400,7 +400,7 @@ Use the [operation reference](../reference/connector-operations.md) for exact in
 
 ## Discover official research data and file lists {/* #scientific-file-discovery */}
 
-In **Settings → Connectors**, enable only the entries needed for your question. The new Europe PMC, Research Datasets, ChEA3, bioDBnet and CTD entries use public services without a required API key. Requests still send the supplied search terms, identifiers or gene lists to those services. [Connection controls](#connect-database).
+In **Resource center → Connectors**, enable only the entries needed for your question. The new Europe PMC, Research Datasets, ChEA3, bioDBnet and CTD entries use public services without a required API key. Requests still send the supplied search terms, identifiers or gene lists to those services. [Connection controls](#connect-database).
 
 | Need | Entry and result | Next step |
 | --- | --- | --- |

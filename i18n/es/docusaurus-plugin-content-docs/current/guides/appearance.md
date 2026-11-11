@@ -1,7 +1,7 @@
 ---
 title: "Apariencia y notificaciones"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -121,7 +121,7 @@ Abra **Settings → General → Help Center** para leer la orientación de confi
 | Quieres... | ¿Dónde ir? |
 | --- | --- |
 | Compruebe la actualización de la aplicación | **General → Check now**; seguir [Instalación y actualizaciones](installation.md#choose-a-reproducible-version-and-update-deliberately). |
-| Leer cambios de versión o obtener ayuda | **General → Release notes / Help Center** abre la página externa correspondiente. Este wiki también tiene un [Cambio](../changelog/v1.2.0.md). |
+| Leer cambios de versión o obtener ayuda | **General → Release notes / Help Center** abre la página externa correspondiente. Este wiki también tiene un [Cambio](../changelog/v1.2.1.md). |
 | Localizar o abrir el registro de diagnóstico | **General → Diagnostics → Reveal / Open**; ver [Solución de problemas](troubleshooting.md). Los registros permanecen locales hasta que los compartan. |
 | Instalar la entrada de línea de comandos | **General → Install command**; ver [Referencia CLI](../reference/cli.md). El uso de escritorio no requiere este comando. |
 | Gestionar la ubicación de datos o el trabajo archivado | [Almacenamiento y trabajos archivados](storage.md). |

@@ -1,7 +1,7 @@
 ---
 title: "Créer un Skill et ses fichiers support"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ Utilisez ceci après qu'une procédure répétable a effectivement fonctionné �
 4. L'élément change en **Saving as skill…** pendant que l'agent fonctionne. Cela commence une opération assistée par modèle dans la conversation; il n'ouvre pas l'éditeur manuel Nom/Description ou sauvegarde instantanément un ZIP.
 5. Inspecter le nom de Skill proposé, déclencher la description, les étapes, les fichiers à l'appui et le résultat de validation. Répondre à des éclaircissements ou à des approbations de fonctionnement s'il est indiqué. **Customize** reste activé; le rôle actif doit toujours avoir l'accès approprié aux capacités.
 6. Examiner le projet avant d'accepter sa publication. Supprimer les chemins spécifiques à l'étude, les ID temporaires, les références et les conclusions non étayées; conserver les exigences en matière d'entrée réutilisables et les vérifications. Un Skill personnel existant ne doit pas être écrasé sans une décision de remplacement explicite.
-7. Après publication, ouvrez **Settings → Skills**, recherchez le nom signalé et inspectez **Files**, la disponibilité de SKILL.md et Main Agent enregistrée. Exportez-le si vous avez besoin de vérifier le paquet complet.
+7. Après publication, ouvrez **Resource center → Skills**, recherchez le nom signalé et inspectez **Files**, la disponibilité de SKILL.md et Main Agent enregistrée. Exportez-le si vous avez besoin de vérifier le paquet complet.
 8. Exécutez une requête séparée limitée avec le Skill enregistré. Un paquet sauvegardé avec succès n'est pas la preuve qu'un deuxième jeu de données ou une invocation ultérieure est passé.
 
 ### Sauvegarder la méthode de recherche {/* #save-the-research-method */}
@@ -49,7 +49,7 @@ Après avoir terminé GSE60450 QC dans une nouvelle session, sélectionnez **+ �
 
 ![Native Skill ébauche et résultat de validation](/img/open-science/v0.27.0/16-native-skill-draft-validated.webp)
 
-Vérifiez le nom, la description de déclenchement, les entrées, les définitions métriques et les conditions d'arrêt avant de confirmer la publication à Personal Skills. Ensuite, utilisez **Settings → Skills → Search skills**, ouvrez les instructions sauvegardées et inspectez **Availability** et **Files**. Télécharger la version réelle de <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">COUVERTURE</ExampleDownload>.
+Vérifiez le nom, la description de déclenchement, les entrées, les définitions métriques et les conditions d'arrêt avant de confirmer la publication à Personal Skills. Ensuite, utilisez **Resource center → Skills → Search skills**, ouvrez les instructions sauvegardées et inspectez **Availability** et **Files**. Télécharger la version réelle de <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">COUVERTURE</ExampleDownload>.
 
 ![Publication autochtone trouvée dans Personal](/img/open-science/v0.27.0/17-native-skill-published.webp)
 
@@ -98,7 +98,7 @@ La référence définit les mesures de l'échantillon et leur interprétation. C
 
 ### Compléter les champs et publier {/* #complete-the-fields-and-publish */}
 
-1. Ouvrez **Settings → Skills → Add skill → Write from scratch**.
+1. Ouvrez **Resource center → Skills → Add skill → Write from scratch**.
 2. Coller le fichier complet SKILL.md dans **Skill body**. Sa matière première YAML peuple **Name** et **Description**.
 3. Confirmez que le nom est `rnaseq-count-qc`. Lire le contenu rendu/corps avant d'enregistrer; un nom valide à lui seul ne valide pas la méthode scientifique.
 4. Ouvrez **Advanced settings → Add reference files** et sélectionnez `sample-metric-schema.md`. L'éditeur place cette ressource sous `references/`.

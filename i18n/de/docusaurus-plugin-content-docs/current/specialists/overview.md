@@ -1,7 +1,7 @@
 ---
 title: "Spezialisten und verfügbare Rollen"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Spezialisten und verfügbare Rollen {/* #specialists-and-available-roles */}
@@ -17,11 +17,11 @@ Ein Specialist ist eine gespeicherte Forschungsrolle: Identität, Anweisungen un
 | Importiert / Marktplatz Specialist | Installiert aus einem Paket, dann auf diesem Gerät konfiguriert | Lokale Einrichtung und erlaubte Fähigkeiten; inspect Publisher und Paketversion |
 | Eingebauter Reviewer | Führt den Review-Workflow der App durch | Trigger-Überprüfung durch das Gespräch; Es ist kein normaler editierbarer / delegierbarer Specialist |
 
-Öffnen Sie **Browse Marketplace**, um veröffentlichte Rollen zu finden. Der Online-Katalog kann sich unabhängig von Ihrer installierten App ändern. Überprüfen Sie den Publisher jeder Rolle, die Anweisungen und Abhängigkeiten vor dem Import.
+Öffnen Sie **Marketplace**, um veröffentlichte Rollen zu finden. Der Online-Katalog kann sich unabhängig von Ihrer installierten App ändern. Überprüfen Sie den Publisher jeder Rolle, die Anweisungen und Abhängigkeiten vor dem Import.
 
 ## Finde eine Rolle {/* #find-a-role */}
 
-Öffnen Sie **Settings → Specialists**. **Installed** zählt die lokal registrierten Rollen, einschließlich Reviewer. Verwenden Sie **Search specialists** und **Filter specialists by category**, dann öffnen Sie eine Zeile, um es zu inspizieren. **Browse Marketplace** öffnet einen anderen Katalog; ein gelisteter Markteintrag wird erst dann installiert, wenn Sie den Paket-/Setup-Flow abgeschlossen haben.
+Öffnen Sie **Resource center → Specialists**. **Installed** zählt die lokal registrierten Rollen, einschließlich Reviewer. Verwenden Sie **Search specialists** und **Filters → Filter specialists by category**, dann öffnen Sie eine Zeile, um es zu inspizieren. **Marketplace** öffnet einen anderen Katalog; ein gelisteter Markteintrag wird erst dann installiert, wenn Sie den Paket-/Setup-Flow abgeschlossen haben.
 
 ![Der RNA-seq QC Reviewer wurde lokal installiert](/img/open-science/capabilities-walkthrough/06-specialist-list.webp)
 

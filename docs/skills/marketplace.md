@@ -2,26 +2,26 @@
 title: Skill marketplace
 description: Discover, install, update and manage research methods from the Skill marketplace.
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 # Skill marketplace
 
-Use **Settings → Skills → Browse Marketplace** to find and install research methods without locating and importing their repositories yourself. You can inspect a method before installing it, choose which methods to use and apply updates when ready.
+Open **Resource center → Skills → Marketplace** from Home or the project sidebar. Search for a research method, inspect its package details and install it when appropriate. The Web workspace also supports marketplace installation; packages are installed on the connected Open-Science host.
 
-To bring in a ZIP, local Skill or a specific GitHub repository, use [Skill import and management](manage.md). For an overview of research methods and their inputs, see the [Skill directory](directory.md).
+Use **Installed** to return to local methods. To import a ZIP, installed folder or GitHub repository, follow [Skill import and management](manage.md). See [Using Skills](overview.md) for selecting a method in a conversation.
 
-![The Skill marketplace with search, category filters and Install buttons](/img/open-science/feature-guides-2026-09/marketplace-browse.webp)
+![The Resource center with Installed and Marketplace tabs](/img/open-science/v121/resource-center.webp)
 
 ## Find a suitable method
 
-1. Open **Marketplace** and search or filter by category.
-2. Open a Skill’s details and read its purpose, author, source, license information and any assessment details.
-3. Compare its inputs, required tools and runtime dependencies with your project before installing.
+1. Open **Marketplace**, enter a name or keyword in **Search skills**, and use **Filters** to narrow the catalog. Reset filters or clear the query to broaden it again.
+2. Select **View details**. Read the purpose, publisher, author, version, license and **Sources and verification**. Open **Assessment report** when available.
+3. Compare inputs, required tools and runtime dependencies with your project before selecting **Install**. Wait for **Installed** or an installed-version label, then inspect availability.
 
-A catalog signature confirms distribution identity. It does not establish that a method suits your research question or that your computer has its dependencies.
+A distribution signature identifies the package source; an upstream assessment score is not proof that the method is correct for your research question. Installing a Skill does not run its workflow or install every scientific dependency.
 
-![Marketplace Skill details showing author, version, license and the Install action](/img/open-science/feature-guides-2026-09/marketplace-detail.webp)
+![A Skill installed through the Web marketplace with its version and source details](/img/open-science/v121/marketplace-installed.webp)
 
 ## Install and use a Skill
 
@@ -34,7 +34,7 @@ For selecting a Skill in a conversation, see [Using Skills](overview.md). Config
 
 ## Install or update several Skills
 
-1. Choose **Batch manage**, then **Not installed** or **Updates**.
+1. Choose **More actions → Batch manage**, then **Not installed** or **Updates**.
 2. Filter the catalog and select the intended entries. **Select all filtered results** selects the filter’s full result set.
 3. Open **Review selection** and check the list before choosing **Install selected** or **Update selected**.
 4. Wait for the operations to finish and inspect each result. Installation runs sequentially; stopping allows the current item to finish.
@@ -86,4 +86,4 @@ Follow the marketplace repository’s [contribution instructions](https://github
 
 Maintainers review and register eligible submissions before publication. A submitted file or merged pull request does not itself make the Skill available in the app. The [authoring guide](https://github.com/aipoch/openscience-skill-marketplace/blob/main/authoring/README.md) describes the review and publication stages.
 
-After publication, return to **Browse Marketplace → Refresh**, search for the Skill, check its source and version, and install it. When updating a published Skill, submit a new package version with the new source commit; do not assume edits to the upstream repository update installed copies automatically.
+After publication, return to **Marketplace → Refresh**, search for the Skill, check its source and version, and install it. When updating a published Skill, submit a new package version with the new source commit; do not assume edits to the upstream repository update installed copies automatically.

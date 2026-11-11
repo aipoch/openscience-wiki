@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -187,3 +187,9 @@ L’exportation exige un chemin de sortie `.science` explicite. Le délai par d�
 **Back to Project** ou **Back to Home** Retourne dans ton espace de travail. Le retour sur le marché conserve son état de navigation, y compris les filtres et la position de défilement. Les cas de recherche sont différents de [Marché des compétences](../skills/marketplace.md): a `.science` un programme comporte une session de recherche enregistrée; une compétence fournit des instructions réutilisables.
 
 Si un colis attend une destination, **Continue** rouvre la boîte de dialogue d'importation. Vérifiez tout transfert existant avant de commencer un autre. Télécharger vérification vérifie le transfert, pas les conclusions scientifiques du cas, et ne fournit pas ses modèles d'identification.
+
+## Exporter une longue histoire avec des calculs répétés {/* #compact-evidence */}
+
+Notebook and Compute réutilise le même contenu de preuves dans le dossier de recherche tout en conservant des digests vérifiés et des références. Cela réduit les octets répétés lorsqu'une longue session utilise les mêmes fichiers plusieurs fois; la première exportation peut également préparer des preuves à partir de documents plus anciens.
+
+Exporter dans le flux normal du paquet Session et attendre l'achèvement. Importer le résultat dans un projet séparé et inspecter les pistes et les fichiers conservés. Une archive plus petite ne prouve pas que chaque fichier requis est présent, et l'importation réussie n'est pas un rediffusion de calcul. Utilisation [contrôle de reproductibilité](reproducibility.md) quand vous devez tester l'exécution à nouveau.

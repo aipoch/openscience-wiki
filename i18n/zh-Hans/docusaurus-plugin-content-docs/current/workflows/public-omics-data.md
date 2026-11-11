@@ -2,7 +2,7 @@
 title: "查找公共组学数据并整理文件清单"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -15,7 +15,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 从已知运行编号获取文件清单 {/* #ena-runs */}
 
-1. 在 **Settings → Connectors** 中启用 **Omics Archives**。向 `ena_search_runs` 提供公开的 ENA/INSDC 登录号，如 PRJ 项目或 SRR 运行。GEO 的 `GSE` 标识需要先找到关联的 INSDC 项目；本工具不接受关键词搜索。
+1. 在 **Resource center → Connectors** 中启用 **Omics Archives**。向 `ena_search_runs` 提供公开的 ENA/INSDC 登录号，如 PRJ 项目或 SRR 运行。GEO 的 `GSE` 标识需要先找到关联的 INSDC 项目；本工具不接受关键词搜索。
 2. 检查 `run_accession`、物种、文库策略与布局，以及 `truncated`。最多返回 1,000 个运行，没有偏移量或续页标记；结果截断时应缩小登录号范围。
 3. 将返回的某个运行传给 `ena_get_run_files`，检查 `found`、`fastq_available` 和全部 `fastq_files` 条目。清单提供地址、压缩文件大小和上游 MD5，本身不会下载或校验文件。
 4. 单独下载前检查存储空间并保存清单，下载后按列出的校验值核对文件。双端文库未必恰有两个文件，不能把 `file_index` 当作 R1/R2 标记。
@@ -53,7 +53,7 @@ English. Report actual errors or empty results; do not invent data.
 
 <p className="example-label"><strong>案例演示</strong> 查找五个人类 RNA-Seq 运行，检查 ENA 与 PRIDE 文件清单</p>
 
-1. 在 **Settings → Connectors** 中启用 **Omics Archives**，打开已连接模型且 Notebook 运行环境可用的会话。本例使用 **Codex subscription**。
+1. 在 **Resource center → Connectors** 中启用 **Omics Archives**，打开已连接模型且 Notebook 运行环境可用的会话。本例使用 **Codex subscription**。
 2. 发送下方提示词，仅查询元数据。ENA 查询与 PRIDE 项目是两个独立示例，不是同一研究的配对样本。
 3. 打开 `ena-discovery.json`，先核对查询条件、物种、运行登录号和 `truncated`，再选择文件。
 

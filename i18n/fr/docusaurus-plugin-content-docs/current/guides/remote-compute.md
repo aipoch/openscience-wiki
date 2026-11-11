@@ -1,7 +1,7 @@
 ---
 title: "Calcul à distance : emplois SSH, clusters et cloud"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -279,3 +279,9 @@ Une récupération réussie devrait montrer l'état final de l'emploi visé, un 
 Pour l'authentification des clés/config SSH, fournissez une clé utilisable ou un alias hôte et vérifiez la connexion avant de soumettre. La collecte des résultats Slurm nécessite une comptabilité de travail pour le compte sélectionné; suivre les vérifications ci-dessus si l'application ne peut pas régler le travail.
 
 Sources: [calculer les codes d'emploi et les champs d'enregistrement](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/compute.ts), [Classification des erreurs SSH/fichier](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/remote-fs.ts), [Validation de la soumission Slurm](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/compute/slurm-driver.ts).
+
+### Préparez Python pour l'ouverture de compte en nuage {/* #cloud-account-runtime */}
+
+Pour **Hugging Face** et **Modal**, le flux de connexion prépare un runtime Python compatible avant d'ouvrir l'autorisation du navigateur. Suivez l'état de préparation, puis terminez l'inscription et attendez la vérification du compte. L'interprète sélectionné est vérifié sans l'installer; l'autorisation et les appels SDK ultérieurs restent liés à l'exécution préparée.
+
+Si la préparation ou l'autorisation échoue, inspecter le message de cette étape avant de commencer une autre connexion. La vérification des comptes suit le proxy du système. Ne traitez pas une seule page de réussite du navigateur comme une cible de calcul connectée : retournez à Calculer et confirmez l'état du compte avant d'ajouter une cible ou d'approuver un travail.

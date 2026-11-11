@@ -1,7 +1,7 @@
 ---
 title: "Búsqueda dentro de revistas y fechas especificadas"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Una búsqueda enfocada necesita límites explícitos y un registro de lo que fue
 
 ## 1. Establecer la norma de preguntas y elegibilidad {/* #1-set-the-question-and-eligibility-rule */}
 
-Abra un proyecto y seleccione un modelo conectado. Confirme que **PubMed** Connector está disponible en **Settings → Connectors**; configurar la información de contacto allí si se solicita. No se requieren documentos descargados para iniciar este ejemplo.
+Abra un proyecto y seleccione un modelo conectado. Confirme que **PubMed** Connector está disponible en **Resource center → Connectors**; configurar la información de contacto allí si se solicita. No se requieren documentos descargados para iniciar este ejemplo.
 
 Use fechas de publicación **2019-01-01 a través de 2025-12-31**, no la fecha en la que se agregó un registro de bases de datos. Incluir los informes aleatorizados primarios con un brazo de intervención mental definido y los resultados de los participantes notificados. Mantenga una categoría **incierto** separada para intervenciones mixtas, estado de publicación poco claro o fechas conflictivas. Los resultados mecanicistas por sí solos no hacen un informe un análisis secundario.
 

@@ -1,25 +1,25 @@
 ---
 title: "directorio Skill"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # directorio Skill {/* #skill-directory */}
 
-La aplicación proporciona **23 incluido Skills**. Este directorio los agrupa por el trabajo que apoyan. Las entradas describen el método enviado; no reclaman que se instale todo modelo externo, dependencia o servicio.
+La aplicación proporciona **24 incluido Skills**. Este directorio los agrupa por el trabajo que apoyan. Las entradas describen el método enviado; no reclaman que se instale todo modelo externo, dependencia o servicio.
 
 Para los métodos distribuidos a través de la aplicación, utilice el [guía de instalación de marketplace](marketplace.md). El directorio de abajo le ayuda a elegir un método de investigación; no es un inventario en vivo de versiones de mercado.
 
 ## Comprueba la preparación antes de seleccionar un método {/* #check-readiness-before-selecting-a-method */}
 
-1. Abra el Skill en Ajustes y lea sus requisitos completos y avisos de terceros.
+1. Abra el Skill en **Resource center → Skills → Installed** y lea sus requisitos completos y avisos de terceros.
 2. Compare el tipo de entrada con sus datos reales. Una tabla RNA-seq de granel no es un objeto AnnData de una sola célula; un dibujo molecular no es un resultado de atraque.
 3. Inspeccione el tiempo de ejecución seleccionado y los paquetes. Para el trabajo a distancia, seleccione un anfitrión de computación utilizable e inspeccione su entorno antes de enviar.
 4. Solicite una carrera atada, inspeccione la salida real, y retenga las referencias de entrada/versión antes de escalar.
 
-Dos entradas de manifiesto adicionales, conciencia de sí mismo y creación de aptitudes, son recursos del marco interno. No son entradas de directorios de cara al usuario. Skills personal o importado, incluyendo rnaseq-count-qc, están separados del conteo de 23.
+Dos entradas de manifiesto adicionales, conciencia de sí mismo y creación de aptitudes, son recursos del marco interno. No son entradas de directorios de cara al usuario. Skills personal o importado, incluyendo rnaseq-count-qc, están separados del conteo de 24.
 
-Las tres aplicaciones para el medio ambiente Skills y personaliza la estancia habilitada; ver [reglas de activación](overview.md#why-some-switches-cannot-be-turned-off). Utilice el [paquete de manifiesto](https://github.com/aipoch/open-science/blob/v0.27.0/resources/skills/manifest.json) para identificar los métodos enviados y [Computación remota](../guides/remote-compute.md) para la configuración de host y la entrega de resultados.
+Las tres aplicaciones para el medio ambiente Skills y personaliza la estancia habilitada; ver [reglas de activación](overview.md#why-some-switches-cannot-be-turned-off). Utilice el [paquete de manifiesto](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json) para identificar los métodos enviados y [Computación remota](../guides/remote-compute.md) para la configuración de host y la entrega de resultados.
 
 ## Buscar por tarea de investigación {/* #browse-by-research-task */}
 
@@ -75,7 +75,8 @@ Las tres aplicaciones para el medio ambiente Skills y personaliza la estancia ha
 | [Estilo de la figura](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-style/SKILL.md) · `figure-style` | Datos reales y una cifra final | Función Notebook y dependencias de trama | Parcela inspeccionada con etiquetas legibles y datos fieles |
 | [Gráfico Compositor](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-composer/SKILL.md) · `figure-composer` | Una reclamación y referencias de la conversión de datos inmutables | Main Agente, delegación, trama y revisión | Figura multipanel y iteraciones de revisión |
 | [Paper Narrative](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/paper-narrative/SKILL.md) · `paper-narrative` | Manuscrito/abstract, capciones y cubierta de figuras ordenadas | Versiones de artefactos terrestres y herramientas de revisión | Paper brief and an ordered figure argument |
+| [DOCX Generation](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/docx-generation/SKILL.md) · `docx-generation` | Informe Markdown o DOCX existente | Python 3.9+, Pandoc 3.12.1 y conversor incluido; preparar las dependencias | DOCX con títulos, tablas y listas nativos; revisar contenido y diseño |
 
 
 
-Referencia de implementación: [manifest.json](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/manifest.json).
+Referencia de implementación: [manifest.json](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json).

@@ -1,7 +1,7 @@
 ---
 title: "科学データベースから構造化されたレコードを取得する"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 化合物とプロパティを定義する {/* #1-define-the-compounds-and-properties */}
 
-**Settings → Connectors**では、**化学品**が使用可能であることを確認してください。 プロジェクトを開き、会話を開始し、コネクティッドモデルを選択します。 この実行は、Open-Science 0.30.1と化学/PubChem Connectorを使用しました。 入力スプレッドシートを必要としませんでした。
+**Resource center → Connectors**では、**化学品**が使用可能であることを確認してください。 プロジェクトを開き、会話を開始し、コネクティッドモデルを選択します。 この実行は、Open-Science 0.30.1と化学/PubChem Connectorを使用しました。 入力スプレッドシートを必要としませんでした。
 
 **中立、まっすぐな鎖、飽和モノカルボキシル酸** を指定します。 同じ名前は、分岐した異人体、塩、またはコンジュゲートベースを参照することができます。 式だけでは、これらの構造を全て区別できません。
 

@@ -1,7 +1,7 @@
 ---
 title: "提供商與本地模型配置"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -254,3 +254,14 @@ Requesty 使用 `https://router.requesty.ai`；實際可用的協議和模型取
 ## 選擇 Kimi K3.1 Pro {/* #kimi-k31 */}
 
 v1.0.3 在提供方模型目錄中加入 Kimi K3.1 Pro。打開目標提供方的模型選擇器，選擇可用條目後測試連接。模型是否可用仍取決於當前 Agent 框架、端點和賬號；列入目錄不等於賬號已取得訪問權限。
+
+## 在內置 Agent 中使用 Codex 訂閱 {/* #builtin-codex-subscription */}
+
+v1.2.1 的 **Open-Science Agent** 支持 Main 和 Subagent 使用導入的 Codex 登錄狀態，或在 Open-Science 內完成登錄的賬戶。獨立的 **Codex** 運行時仍然可用，不必爲了升級而切換。
+
+1. 在 **Settings → Model → Conversation models** 中添加或打開 **Codex subscription**，完成界面提供的登錄或現有登錄檢查。未找到登錄時，通過該提供方的恢復入口登錄。
+2. 完成正在運行的任務後，在 **Settings → Agent** 選擇預期框架。此設置跨項目生效。
+3. 爲 Main 選擇 Codex 提供方和模型。**Subagent** 可選擇 **Same as main model**，或按需選擇兼容的固定模型。
+4. 先發送一個簡短請求並檢查真實回覆，再開始研究。檢測到登錄、保存配置和成功執行是不同狀態。
+
+Anthropic 模型目錄還新增了支持 1M 上下文的 **Claude Fable 5.2**。目錄中存在模型不代表賬戶已有權限，也不會自動替換 Main。

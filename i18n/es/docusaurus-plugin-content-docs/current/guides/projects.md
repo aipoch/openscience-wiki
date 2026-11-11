@@ -1,7 +1,7 @@
 ---
 title: "Proyectos y carpetas fuente"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-11'
 ---
 
 # Proyectos y carpetas fuente {/* #projects-and-source-folders */}
@@ -64,3 +64,21 @@ Utilice el menú del nombre del proyecto para cambiar los proyectos. Iniciar una
 | La carpeta se abre pero se niega una escritura | El permiso solo permite la inspección, no la modificación. Guardar un artefacto derivado o revisar el alcance de escritura solicitado. |
 | Guardar restos mortales | Eliminar los nombres en blanco y comprobar las longitudes del campo; Espera si hay otro ahorro pendiente. |
 | Se selecciona un proyecto diferente | Verifique el título del proyecto antes de adjuntar un documento o enviar una solicitud. |
+
+## Establecer una plantilla de optimización de preguntas {/* #optimization-template */}
+
+Abrir el menú del proyecto → **Project settings → Advanced agent options → Optimization prompt**. Introduzca instrucciones para reescribir preguntas en este proyecto, a continuación, ahorre. Déjelo vacío para usar el predeterminado incorporado. El mismo campo está disponible bajo **New project → Advanced agent options**.
+
+Este campo solo funciona cuando seleccionas **Optimize question**. Está separado **Agent Context**, que proporciona instrucciones a las sesiones de agente del proyecto, y desde **Description**, que es para su referencia.
+
+<p className="example-label"><strong>Ejemplo</strong> Preserve the limits of a teaching question</p>
+
+```text
+Rewrite the question in clear English. Preserve the supplied numbers
+and the hypothetical scope. Ask for a concise answer with limitations;
+do not invent participants, measurements or citations.
+```
+
+![Previsión de optimización personalizada bajo las opciones de agente avanzado del proyecto](/img/open-science/v121/optimization-template.webp)
+
+Volver al Compositor y [optimizar un proyecto](composer.md#optimize-question). Revise el texto reescrito antes de enviar; una plantilla es una instrucción de escritura, no una regla de validación científica.

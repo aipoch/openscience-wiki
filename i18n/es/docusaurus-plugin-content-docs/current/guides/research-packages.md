@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -187,3 +187,9 @@ La exportación requiere una ruta de salida `.science` explícita. El plazo pred
 **Back to Project** o **Back to Home** regresa a su espacio de trabajo. Volver al mercado conserva su estado de navegación, incluyendo filtros y posición de desplazamiento. Los casos de investigación son diferentes de los [Mercado de habilidades](../skills/marketplace.md): a `.science` paquete lleva una sesión de investigación registrada; una Habilidad proporciona instrucciones reutilizables.
 
 Si un paquete está esperando un destino, **Continue** reabre el diálogo de importación. Revise cualquier transferencia existente antes de comenzar otra. Descargar verificación comprueba la transferencia, no las conclusiones científicas del caso, y no proporciona sus credenciales modelo.
+
+## Exportar una larga historia con repetidas computaciones {/* #compact-evidence */}
+
+Notebook y Compute ejecuta reutilizar el contenido de evidencia idéntico en el paquete de investigación al tiempo que conserva los digestes verificados y ejecuta referencias. Esto reduce los bytes repetidos cuando un largo período de sesiones utiliza los mismos archivos muchas veces; la primera exportación también puede preparar pruebas de registros antiguos.
+
+Exportar a través del flujo normal del paquete de sesión y esperar a la terminación. Importar el resultado en un proyecto separado e inspeccionar las carreras y archivos retenidos. Un archivo más pequeño no prueba que cada archivo requerido está presente, y la importación exitosa no es una repetición computacional. Uso [cheques de reproducción](reproducibility.md) cuando necesites probar la ejecución de nuevo.

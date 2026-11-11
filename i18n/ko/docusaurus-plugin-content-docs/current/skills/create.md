@@ -1,7 +1,7 @@
 ---
 title: "Skill 및 지원 파일 만들기"
 last_update:
-  date: '2026-09-15'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -38,7 +38,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 4. 에이전트가 작동하는 동안 **Saving as skill…**의 항목 변경. 이 대화에서 모델 보조 작업을 시작합니다; 수동 이름 / 설명 편집기를 열고 즉시 ZIP을 저장하지 않습니다.
 5. 제안된 Skill의 이름을 검사하고, 묘사, 단계, 지원 파일 및 검증 결과를 방아쇠를 당기. 표시된 경우 명확 또는 작업 승인에 응답합니다. **Customize**는 활성화됩니다; 활성 역할은 여전히 적절한 기능 액세스가 있어야합니다.
 6. 출판물을 받아들일 전에 초안을 검토하십시오. 연구별 경로, 임시 ID, 자격 및 지원되지 않은 결론을 제거하십시오; 재사용 가능한 입력 요구 사항 및 확인을 유지하십시오. 기존의 개인 Skill은 명시적인 교체 결정 없이 과잉하지 않아야 합니다.
-7. 출판 후 **Settings → Skills**을 열고 보고된 이름을 검색하고 **Files**을 검사하고 저장된 SKILL.md 및 Main 에이전트 가용성을 검사합니다. 전체 패키지를 확인하려면 그것을 수출하십시오.
+7. 출판 후 **Resource center → Skills**을 열고 보고된 이름을 검색하고 **Files**을 검사하고 저장된 SKILL.md 및 Main 에이전트 가용성을 검사합니다. 전체 패키지를 확인하려면 그것을 수출하십시오.
 8. 저장된 Skill과 분리된 바인딩된 요청을 실행합니다. 성공적으로 저장된 포장은 두번째 dataset 또는 나중에 invocation가 통과한 것을 증명하지 않습니다.
 
 ### 연구 방법 저장 {/* #save-the-research-method */}
@@ -49,7 +49,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ![Native Skill 초안 및 검증 결과](/img/open-science/v0.27.0/16-native-skill-draft-validated.webp)
 
-이름 확인, 설명 트리거, 입력, 미터 정의 및 개인 Skills에 게시를 확인 하기 전에 중지 조건. 그런 다음 **Settings → Skills → Search skills**을 사용하여 저장된 지침을 열고 **Availability** 및 **Files**를 검사합니다. 실제 출판 <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.md의 특징</ExampleDownload> 다운로드.
+이름 확인, 설명 트리거, 입력, 미터 정의 및 개인 Skills에 게시를 확인 하기 전에 중지 조건. 그런 다음 **Resource center → Skills → Search skills**을 사용하여 저장된 지침을 열고 **Availability** 및 **Files**를 검사합니다. 실제 출판 <ExampleDownload path="/examples/capabilities/rnaseq-descriptive-qc/SKILL.md">SKILL.md의 특징</ExampleDownload> 다운로드.
 
 ![개인 정보 보호 정책](/img/open-science/v0.27.0/17-native-skill-published.webp)
 
@@ -98,7 +98,7 @@ rnaseq-count-qc/
 
 ### 현장 및 출판 {/* #complete-the-fields-and-publish */}
 
-1. **Settings → Skills → Add skill → Write from scratch**을 엽니다.
+1. **Resource center → Skills → Add skill → Write from scratch**을 엽니다.
 2. 완전한 다운로드 SKILL.md를 **Skill body**로 붙여 넣으십시오. YAML frontmatter는 **Name**와 **Description**를 대중화합니다.
 3. 이름은 `rnaseq-count-qc`입니다. 저장하기 전에 렌더링 / 바디 콘텐츠를 읽으십시오; 유효한 이름은 혼자 과학적인 방법을 유효하지 않습니다.
 4. **Advanced settings → Add reference files**을 열고 `sample-metric-schema.md`을 선택합니다. 편집기는 `references/`의 밑에 이 리소스를 배치합니다.

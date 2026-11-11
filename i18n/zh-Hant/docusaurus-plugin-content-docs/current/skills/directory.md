@@ -1,27 +1,27 @@
 ---
 title: "Skill 目錄"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-11'
 ---
 
 # Skill 目錄 {/* #skill-目录 */}
 
-應用提供 **23 個內建 Skill**。本頁按工作型別分類；條目描述隨應用提供的方法，不表示所有外部模型、依賴和服務已經安裝。
+應用提供 **24 個內建 Skill**。本頁按工作型別分類；條目描述隨應用提供的方法，不表示所有外部模型、依賴和服務已經安裝。
 
 安裝應用分發的方法，見[市場安裝說明](marketplace.md)。下方目錄用於選擇科研方法，不是市場版本的實時清單。
 
 ## 選擇前檢查可用條件 {/* #选择前检查可用条件 */}
 
-1. 在 Settings 開啟 Skill，閱讀完整要求及第三方服務說明。
+1. 在 **Resource center → Skills → Installed** 開啟 Skill，閱讀完整要求及第三方服務說明。
 2. 對照真實輸入型別。bulk RNA-seq 表不是單細胞 AnnData，分子繪圖也不是對接結果。
 3. 檢查所選執行環境和包。遠端任務應先選擇可用 Compute Host，核對環境後提交。
 4. 先執行小範圍任務，檢查實際輸出並保留輸入版本，再擴大規模。
 
-manifest 還有 self-awareness、skill-creator 兩個內部資源，不作為使用者目錄條目。Personal 或 Imported 包（包括 rnaseq-count-qc）不計入這 23 個。
+manifest 還有 self-awareness、skill-creator 兩個內部資源，不作為使用者目錄條目。Personal 或 Imported 包（包括 rnaseq-count-qc）不計入這 24 個。
 
-實現依據: [manifest.json](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/manifest.json)。
+實現依據: [manifest.json](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json)。
 
-Environment 分組的三個應用 Skills 及 Customize 始終啟用，見[啟用規則](overview.md)。隨應用提供的方法見[內建清單](https://github.com/aipoch/open-science/blob/v0.27.0/resources/skills/manifest.json)，主機設定和結果送達見[遠端計算](../guides/remote-compute.md)。
+Environment 分組的三個應用 Skills 及 Customize 始終啟用，見[啟用規則](overview.md)。隨應用提供的方法見[內建清單](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/manifest.json)，主機設定和結果送達見[遠端計算](../guides/remote-compute.md)。
 
 ## 按研究任務查詢 {/* #按研究任务查找 */}
 
@@ -77,5 +77,6 @@ Environment 分組的三個應用 Skills 及 Customize 始終啟用，見[啟用
 | [Figure Style](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-style/SKILL.md) · `figure-style` | 真實資料及一張最終圖 | Notebook 函式與繪相簿 | 檢查過資料與標籤的圖 |
 | [Figure Composer](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/figure-composer/SKILL.md) · `figure-composer` | 一條主張與不可變資料版本引用 | Main Agent、委派、繪圖與複核 | 多面板圖及複核記錄 |
 | [Paper Narrative](https://github.com/aipoch/open-science/blob/v0.26.0/resources/skills/paper-narrative/SKILL.md) · `paper-narrative` | 稿件或摘要、圖注及完整圖組 | 可追溯檔案版本與複核工具 | 論文簡報與圖組論證順序 |
+| [DOCX Generation](https://github.com/aipoch/open-science/blob/v1.2.1/resources/skills/docx-generation/SKILL.md) · `docx-generation` | Markdown 報告或既有 DOCX | Python 3.9+、Pandoc 3.12.1 與內建轉換器；先準備依賴 | 包含原生標題、表格和清單的 DOCX；檢查內容與版面 |
 
 按具體方法準備依賴、權重和計算資源。小型 ProteinMPNN CLI 示例見[科學工具](../tools/scientific.md)，GPU 條件見[遠端計算](../guides/remote-compute.md)；這些示例不覆蓋全部蛋白預測或訓練方法。

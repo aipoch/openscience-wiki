@@ -2,7 +2,7 @@
 title: "Найдите последовательность белка и заполните поиск BLAST"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-10-08'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -93,7 +93,7 @@ preserve actual errors or empty results. Never invent alignments.
 
 <p className="example-label"><strong>Практический пример</strong> Сканирование P69905 против Pfam</p>
 
-После извлечения канонической белковой последовательности P69905 включить **ГММЕР** для Main в **Settings → Connectors**. В том же разговоре спросите:
+После извлечения канонической белковой последовательности P69905 включить **ГММЕР** для Main в **Resource center → Connectors**. В том же разговоре спросите:
 
 ```text
 Use the HMMER Connector to scan the same human P69905 sequence against

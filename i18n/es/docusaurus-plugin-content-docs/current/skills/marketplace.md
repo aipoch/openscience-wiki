@@ -2,26 +2,26 @@
 title: "Catálogo de Skills"
 description: "Descubre, instala, actualiza y gestiona métodos de investigación desde el mercado Skill."
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 # Catálogo de Skills {/* #skill-marketplace */}
 
-Utilice **Settings → Skills → Browse Marketplace** para encontrar e instalar métodos de investigación sin localizar e importar sus repositorios usted mismo. Puede inspeccionar un método antes de instalarlo, elegir qué métodos utilizar y aplicar actualizaciones cuando esté listo.
+Abierto **Resource center → Skills → Marketplace** desde Home o la barra lateral del proyecto. Buscar un método de investigación, inspeccionar los detalles del paquete e instalarlo cuando sea apropiado. El espacio de trabajo Web también admite la instalación de marketplace; los paquetes se instalan en el host Open-Science conectado.
 
-Para traer un ZIP, Skill local o un repositorio GitHub específico, use [Importación y gestión de Skill](manage.md). Para una visión general de los métodos de investigación y sus insumos, vea el [directorio Skill](directory.md).
+Uso **Installed** para volver a los métodos locales. Para importar un ZIP, carpeta instalada o repositorio GitHub, siga [Importación y gestión de la capacidad](manage.md). Véase [Usando Habilidades](overview.md) para seleccionar un método en una conversación.
 
-![El mercado Skill con búsqueda, filtros de categoría y botones de instalación](/img/open-science/feature-guides-2026-09/marketplace-browse.webp)
+![El centro de recursos con pestañas instaladas y Marketplace](/img/open-science/v121/resource-center.webp)
 
-## Encontrar un método adecuado {/* #find-a-suitable-method */}
+## Encontrar un método adecuado
 
-1. Abrir **Marketplace** y buscar o filtrar por categoría.
-2. Abra los detalles de Skill y lea su propósito, autor, fuente, información de licencia y cualquier detalle de evaluación.
-3. Compare sus entradas, las herramientas necesarias y las dependencias de tiempo de ejecución con su proyecto antes de instalar.
+1. Abierto **Marketplace**, introducir un nombre o palabra clave en **Search skills**, y uso **Filters** para estrechar el catálogo. Reiniciar filtros o aclarar la consulta para ampliarlo de nuevo.
+2. Seleccione **View details**. Lea el propósito, editor, autor, versión, licencia y **Sources and verification**. Abierto **Assessment report** cuando esté disponible.
+3. Compare entradas, herramientas necesarias y dependencias de tiempo de ejecución con su proyecto antes de seleccionar **Install**. Espera. **Installed** o una etiqueta de versión instalada, entonces inspeccione la disponibilidad.
 
-Una firma de catálogo confirma la identidad de distribución. No establece que un método se adapte a su pregunta de investigación o que su computadora tiene sus dependencias.
+Una firma de distribución identifica la fuente del paquete; una puntuación de evaluación de arriba no es prueba de que el método es correcto para su pregunta de investigación. Instalar una Habilidad no ejecuta su flujo de trabajo o instala cada dependencia científica.
 
-![Marketplace Skill detalles mostrando autor, versión, licencia y la acción Install](/img/open-science/feature-guides-2026-09/marketplace-detail.webp)
+![Una Habilidad instalada a través del mercado web con su versión y detalles de fuente](/img/open-science/v121/marketplace-installed.webp)
 
 ## Instalar y utilizar un Skill {/* #install-and-use-a-skill */}
 
@@ -34,7 +34,7 @@ Para seleccionar un Skill en una conversación, consulte [Utilizando Skills](ove
 
 ## Instalar o actualizar varios Skills {/* #install-or-update-several-skills */}
 
-1. Elija **Batch manage**, luego **Not installed** o **Updates**.
+1. Elija **More actions → Batch manage**, luego **Not installed** o **Updates**.
 2. Filtrar el catálogo y seleccionar las entradas previstas. **Seleccione todos los resultados filtrados** selecciona el conjunto de resultados completos del filtro.
 3. Abra **Review selection** y compruebe la lista antes de elegir **Install selected** o **Update selected**.
 4. Espere a que las operaciones terminen e inspeccionen cada resultado. La instalación funciona secuencialmente; parar permite que el elemento actual termine.
@@ -86,4 +86,4 @@ Siga el [Instrucciones de contribución](https://github.com/aipoch/openscience-s
 
 Los usuarios examinan y registran las comunicaciones que reúnen los requisitos antes de su publicación. Un archivo presentado o una solicitud de tirada fusionada no hace que el Skill esté disponible en la aplicación. El [Guía de autor](https://github.com/aipoch/openscience-skill-marketplace/blob/main/authoring/README.md) describe las etapas de revisión y publicación.
 
-Después de la publicación, vuelva a **Browse Marketplace → Refresh**, busque el Skill, compruebe su fuente y versión, e instálelo. Al actualizar un Skill publicado, envíe una nueva versión de paquete con el nuevo commit fuente; no asuma ediciones a la actualización del repositorio upstream copias instaladas automáticamente.
+Después de la publicación, vuelva a **Marketplace → Refresh**, busque el Skill, compruebe su fuente y versión, e instálelo. Al actualizar un Skill publicado, envíe una nueva versión de paquete con el nuevo commit fuente; no asuma ediciones a la actualización del repositorio upstream copias instaladas automáticamente.

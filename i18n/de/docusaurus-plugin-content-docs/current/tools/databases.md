@@ -2,7 +2,7 @@
 title: "Wissenschaftliche Datenbanken"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # Wissenschaftliche Datenbanken {/* #scientific-databases */}
@@ -13,7 +13,7 @@ Verwenden Sie diese Seite, um eine Datenquelle auszuwählen, zu verstehen, was s
 
 ## Unterstützte Datenbanken {/* #supported-databases */}
 
-Open-Science v1.0.8 bietet **48 integrierte Connectors mit 418 Operationen**: 47 Datenquellen-Connectors stellen 416 Operationen bereit, ein Offline-Connector für Molecule zwei weitere. Die Namen unten entsprechen den Einträgen unter **Settings → Connectors**. Ein Connector kann mehrere Datenbanken abdecken. Ein aufgeführter Dienst stellt nicht automatisch alle Funktionen seiner Website bereit.
+Open-Science v1.0.8 bietet **48 integrierte Connectors mit 418 Operationen**: 47 Datenquellen-Connectors stellen 416 Operationen bereit, ein Offline-Connector für Molecule zwei weitere. Die Namen unten entsprechen den Einträgen unter **Resource center → Connectors**. Ein Connector kann mehrere Datenbanken abdecken. Ein aufgeführter Dienst stellt nicht automatisch alle Funktionen seiner Website bereit.
 
 Die Anzahl umfasst alle integrierten Einträge, auch deaktivierte. Selbst hinzugefügte MCP-Connectors werden zusätzlich gezählt. Die Anzahl der Connectors, der abgedeckten Datenbanken und der aufrufbaren Operationen sind unterschiedliche Größen.
 
@@ -90,7 +90,7 @@ Eine Datenbankantwort kann einen Forschungsschritt unterstützen; Es werden nich
 
 ## RNA-Regulierungsnachweis mit ENCORI {/* #encori */}
 
-Finden Sie **ENCORI** in **Settings → Connectors**, aktivieren Sie es und stellen Sie es **Hauptagent** zur Verfügung. Diese integrierte Quelle benötigt keine benutzerdefinierte MCP URL oder API Schlüssel. Mit einem funktionierenden Main-Modell ausgewählt, geben Sie den Organismus/Assembly, RNA oder Zielgen, Zelltyp und Evidenzschwellen im Gespräch.
+Finden Sie **ENCORI** in **Resource center → Connectors**, aktivieren Sie es und stellen Sie es **Hauptagent** zur Verfügung. Diese integrierte Quelle benötigt keine benutzerdefinierte MCP URL oder API Schlüssel. Mit einem funktionierenden Main-Modell ausgewählt, geben Sie den Organismus/Assembly, RNA oder Zielgen, Zelltyp und Evidenzschwellen im Gespräch.
 
 | Aufgabe | Ergebnis und Grenze |
 | --- | --- |
@@ -129,7 +129,7 @@ ChEMBL Seiten werden von `activity_id` bestellt. Filter unverändert halten und 
 
 ## Einzelzell-, Modell-Organismus- und Varianten-Effekt-Daten {/* #single-cell-model-organisms */}
 
-Suchen Sie nach den Einträgen unten in **Settings → Connectors**, aktivieren Sie die Verfügbarkeit für **Hauptagent**, beschreiben Sie dann den Organismus, die Forschungsfrage und die Aufzeichnungen, die Sie in Ihrem Gespräch behalten müssen. Diese neuen Operationen lesen öffentliche Daten ohne einen benutzerdefinierten MCP-Server, API Schlüssel oder NCBI Kontakt-E-Mail. Andere Dienste im selben Connector können unterschiedliche Anforderungen haben.
+Suchen Sie nach den Einträgen unten in **Resource center → Connectors**, aktivieren Sie die Verfügbarkeit für **Hauptagent**, beschreiben Sie dann den Organismus, die Forschungsfrage und die Aufzeichnungen, die Sie in Ihrem Gespräch behalten müssen. Diese neuen Operationen lesen öffentliche Daten ohne einen benutzerdefinierten MCP-Server, API Schlüssel oder NCBI Kontakt-E-Mail. Andere Dienste im selben Connector können unterschiedliche Anforderungen haben.
 
 | Eingang | Was sie tun kann | Wie man die Ergebnisse verwendet |
 | --- | --- | --- |
@@ -144,7 +144,7 @@ Siehe genaue Eingaben für [CELLxGENE Discover](../reference/connector-operation
 
 ## Zelllinien, Phänotypen und Immunnachweise {/* #cell-lines-phenotypes-immunity */}
 
-Aktivieren Sie **Cellosaurus**, **Monarch Initiative** oder **IEDB** in **Settings → Connectors** und stellen Sie es **Hauptagent** zur Verfügung. Diese Operationen stellen öffentliche Datensätze ohne einen benutzerdefinierten Server oder API-Schlüssel ab.
+Aktivieren Sie **Cellosaurus**, **Monarch Initiative** oder **IEDB** in **Resource center → Connectors** und stellen Sie es **Hauptagent** zur Verfügung. Diese Operationen stellen öffentliche Datensätze ohne einen benutzerdefinierten Server oder API-Schlüssel ab.
 
 | Eingang | Was zu verlangen ist | Was zu bewahren ist |
 | --- | --- | --- |
@@ -168,7 +168,7 @@ Nach Erhalt einer Matrix überprüft **geo_preflight_matrix** bereits gelesenen,
 
 ### 1. Aktivieren Sie das eingebaute Connector {/* #1-enable-the-built-in-connector */}
 
-1. Öffnen Sie **Settings → Connectors** und suchen Sie nach der oben aufgeführten Familie, z. B. **aus.**.
+1. Öffnen Sie **Resource center → Connectors** und suchen Sie nach der oben aufgeführten Familie, z. B. **aus.**.
 2. Öffnen Sie seine Details und erweitern Sie **Tools**. Lesen Sie die Eingaben der ausgewählten Operation, Ergebnisgrenzen und Anforderungen von Drittanbietern.
 3. Aktivieren Sie die Verfügbarkeit für **Hauptagent** und überprüfen Sie **Used by**. Verwenden Sie **Manage access** in der Ressource, um Main-Agenten- und Specialist-Zuordnungen anzupassen. Verfügbarkeits- und Genehmigungsrichtlinien pro Werkzeug sind separate Kontrollen.
 
@@ -182,8 +182,8 @@ Diese Steckverbinder sind eingebaut; Sie müssen keinen benutzerdefinierten serv
 
 | Service oder Bedingung | Wo Sie es konfigurieren |
 | --- | --- |
-| OpenAlex | Optionaler Schlüssel. Um einen zu konfigurieren, offen **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex**und es zu validieren, dann zu retten. |
-| Direkte NCBI-Variantenabfragen, die Kontaktdaten erfordern | **Settings → Connectors → Manage credentials → Literature access**fort. Füllen Sie ein **Contact email** und wählen **Save**fort. Ein NCBI API-Schlüssel ist optional. |
+| OpenAlex | Optionaler Schlüssel. Um einen zu konfigurieren, offen **Resource center → Connectors → Literature Graph → Manage credentials → OpenAlex**und es zu validieren, dann zu retten. |
+| Direkte NCBI-Variantenabfragen, die Kontaktdaten erfordern | **Resource center → Connectors → Manage credentials → Literature access**fort. Füllen Sie ein **Contact email** und wählen **Save**fort. Ein NCBI API-Schlüssel ist optional. |
 | Eine weitere Operation mit Anmeldepflicht | Befolgen Sie die Anforderungen dieses Tools und [Anmeldeinformationen](../guides/connectors.md)fort. Binden Sie den Nachweis an den beabsichtigten Dienst. |
 
 Geben Sie Schlüssel in der Anmeldeformular, nicht in einer Forschungsaufforderung oder eine freigegebene Ausgabedatei. Anforderungen für den ausgewählten Vorgang konfigurieren; die oben genannte Anforderung an die Kontakt-E-Mail bedeutet nicht, dass jedes NCBI-Tool dieselbe Anforderung hat.
@@ -284,11 +284,11 @@ Katalogquelle: [catalog.ts](https://github.com/aipoch/open-science/blob/v1.0.8/s
 - **Protein Annotation → STRING**: Testen Sie, ob ein Proteinnetzwerk mehr Interaktionen hat als von seinem Hintergrund erwartet. Dies stellt eine andere Frage als die Pathway-Überrepräsentation; Der P-Wert des Netzwerks ist kein Pfadtest. Folgen Sie dem [Workflow für Gen-Set-Anreicherung](../workflows/gene-set-enrichment.md#enrichr-string).
 - **Clinical Genomics → ClinPGx**: Arzneimittel, Gen- oder Variantenanmerkungen, Richtlinien, regulatorische Etiketten und Populationsfrequenzen abrufen. Lösen Sie zuerst die Identifikatoren, liefern Sie die für die Operation erforderlichen Felder und behalten Sie die ursprünglichen Quellen und Evidenzniveaus bei. Dies ruft Forschungsaufzeichnungen ab; Es wird nicht automatisch ein individueller Behandlungsplan erstellt.
 
-Aktivieren Sie die entsprechende Connector für den Wirkstoff in **Settings → Connectors**. Diese eingebauten Einträge erfordern keinen benutzerdefinierten MCP-Server. Siehe [Operationsreferenz](../reference/connector-operations.md) für genaue Felder und bedingte Anforderungen.
+Aktivieren Sie die entsprechende Connector für den Wirkstoff in **Resource center → Connectors**. Diese eingebauten Einträge erfordern keinen benutzerdefinierten MCP-Server. Siehe [Operationsreferenz](../reference/connector-operations.md) für genaue Felder und bedingte Anforderungen.
 
 ## Pathways, Expression und klinische Daten {/* #pathway-expression-clinical */}
 
-Aktivieren Sie die entsprechende Familie in **Settings → Connectors** und teilen Sie dem Agenten dann den Organismus, die Quelle, die Identifikatoren und den beabsichtigten Umfang mit. Diese Ergänzungen verwenden eingebaute Konnektoren; Es ist kein benutzerdefinierter MCP Server erforderlich.
+Aktivieren Sie die entsprechende Familie in **Resource center → Connectors** und teilen Sie dem Agenten dann den Organismus, die Quelle, die Identifikatoren und den beabsichtigten Umfang mit. Diese Ergänzungen verwenden eingebaute Konnektoren; Es ist kein benutzerdefinierter MCP Server erforderlich.
 
 | Eingang | Was sie tun kann | Verbindung und Interpretation |
 | --- | --- | --- |
@@ -306,13 +306,13 @@ Beginnen Sie mit `bgee_species`, um die Arten zu identifizieren. Sein `taxon_id`
 
 ## GWAS Zusammenfassungsstatistiken finden {/* #gwas-summary-statistics */}
 
-**Ganzzahl** für Main in **Settings → Connectors** aktivieren. Bitten Sie um eine Zusammenfassung der Statistik mit dem **GCST Beitritt** der Studie und behalten Sie die zurückgegebenen URLs der Original- / harmonisierten Dateien, Metadaten und das deklarierte Referenzgenom bei. Die öffentliche Suche erfordert keinen API-Schlüssel.
+**Ganzzahl** für Main in **Resource center → Connectors** aktivieren. Bitten Sie um eine Zusammenfassung der Statistik mit dem **GCST Beitritt** der Studie und behalten Sie die zurückgegebenen URLs der Original- / harmonisierten Dateien, Metadaten und das deklarierte Referenzgenom bei. Die öffentliche Suche erfordert keinen API-Schlüssel.
 
 `gwas_get_summary_statistics` listet Studiendateien auf und liest verfügbare YAML-Metadaten; Es werden keine großen Assoziationstabellen heruntergeladen. Seine GWAS-SSF-Spaltendefinitionen beschreiben den Standard, keinen inspizierten Dateikopf. Laden Sie die beabsichtigte Datei separat herunter und überprüfen Sie die tatsächlichen Spalten, den Genomaufbau, das Effektallel und die Einheiten vor der Analyse. Signifikante Assoziationstreffer sind kein Ersatz für vollständige zusammenfassende Statistiken. [Parameter und Output](../reference/connector-operations.md#gwas_get_summary_statistics).
 
 ## Einreichen einer Proteinsequenz an InterProScan {/* #interproscan-submit */}
 
-1. **InterProScan** für Main in **Settings → Connectors** aktivieren. Speichern Sie in **Settings → Credentials → Literature access** die gültige Kontakt-E-Mail, die für EMBL-EBI-Jobs verwendet wird; Es ist kein API-Schlüssel erforderlich.
+1. **InterProScan** für Main in **Resource center → Connectors** aktivieren. Speichern Sie in **Settings → Credentials → Literature access** die gültige Kontakt-E-Mail, die für EMBL-EBI-Jobs verwendet wird; Es ist kein API-Schlüssel erforderlich.
 2. Geben Sie eine Proteinsequenz oder eindeutig benannte Protein-FASTA-Datensätze an und fordern Sie einmal die Einreichung an. Die Sequenz und die Kontakt-E-Mail werden an EMBL-EBI gesendet. Eine Anfrage akzeptiert bis zu 1,000-Datensätze, 10,000-Reste pro Sequenz und einen 4 MiB-kodierten Anfragekörper.
 3. Behalten Sie die zurückgegebene **job_id**. **SUBMITTED** mit **ready: false** ist eine Quittung, kein Annotationsergebnis. **Statusstatus** im Abstand von mindestens zehn Sekunden überprüfen; Polling ist nicht automatisch.
 4. Fordern Sie nach **FINISHED** **Ergebnisse** an und speichern Sie das vollständige TSV, bevor das Remote-Ergebnis abläuft. Eine Antwort über das 2 MiB-Abruflimit schlägt fehl, anstatt stillschweigend einen verkürzten Bericht zurückzugeben.
@@ -328,7 +328,7 @@ Bewahren Sie die Rezeptorgruppen-ID, Ketten, gemeldete Assay-IDs und Quellenpubl
 
 ## Entdecken Sie Krebsproteomik mit PDC {/* #pdc */}
 
-**PDC** in **Settings → Connectors** aktivieren. Seine öffentlichen Metadaten API benötigen keinen API-Schlüssel. Verwenden Sie es, um Studien und Versionen zu finden, Assays und Probenzahlen zu untersuchen, Fall-Probe-Aliquot-Assoziationen zu kartieren und quantitative Dateien wie **Proteinanordnung**-Berichte aufzulisten. Es gibt keine Behandlungs- / Ergebnisdaten zurück oder lädt Dateien herunter.
+**PDC** in **Resource center → Connectors** aktivieren. Seine öffentlichen Metadaten API benötigen keinen API-Schlüssel. Verwenden Sie es, um Studien und Versionen zu finden, Assays und Probenzahlen zu untersuchen, Fall-Probe-Aliquot-Assoziationen zu kartieren und quantitative Dateien wie **Proteinanordnung**-Berichte aufzulisten. Es gibt keine Behandlungs- / Ergebnisdaten zurück oder lädt Dateien herunter.
 
 Beginnen Sie mit einem Studienzugang wie `PDC000127` oder suchen Sie Studienbezeichner und Versionsnamen. PDC Keyword Matching ist kein klinischer Krankheitsfilter. Holen Sie die Studie ab und verwenden Sie dann die zurückgegebene `study_id`-UUID, um nachfolgende Aufrufe anzuheften; `pdc_study_id` wählt die neueste Version aus. Geben Sie genau einen dieser Selektoren an.
 
@@ -338,7 +338,7 @@ Siehe [PDC-Operationen und Paginierung](../reference/connector-operations.md#fam
 
 ## Bevölkerungsspezifisches LD überprüfen {/* #ensembl-ld */}
 
-**Genome** in **Settings → Connectors** aktivieren. Seine Ensembl LD-Tools verwenden das öffentliche API ohne Schlüssel. Geben Sie zwei Varianten-IDs für `ensembl_ld_pairwise` oder eine für `ensembl_ld_proxies` zusammen mit dem vollständigen Populationsnamen wie `1000GENOMES:phase_3:KHV` an. Die Werkzeuge entdecken nicht die Bevölkerung oder schließen Abstammung; eine für die Studie geeignete Referenzpopulation auswählen.
+**Genome** in **Resource center → Connectors** aktivieren. Seine Ensembl LD-Tools verwenden das öffentliche API ohne Schlüssel. Geben Sie zwei Varianten-IDs für `ensembl_ld_pairwise` oder eine für `ensembl_ld_proxies` zusammen mit dem vollständigen Populationsnamen wie `1000GENOMES:phase_3:KHV` an. Die Werkzeuge entdecken nicht die Bevölkerung oder schließen Abstammung; eine für die Studie geeignete Referenzpopulation auswählen.
 
 Paarweise Ergebnisse berichten r2 und D′. Proxy-Abfragen standardmäßig zu r2 ≥ 0.8 und einem **500 kb Gesamtfenster**, ungefähr 250 kb auf beiden Seiten. `max_records` begrenzt die zurückgegebene Liste nach dem Sortieren, nicht die vorgelagerte Arbeit. Behalten Sie die Population und Abrufen von Metadaten mit dem Ergebnis; Dieser Endpunkt meldet die Referenzbaugruppe oder Ensembl-Freigabe nicht. Leere Ergebnisse bedeuten, dass keine qualifizierenden Daten zurückgegeben werden, nicht Null LD. Hohes LD stellt weder Kausalität noch funktionale Äquivalenz fest. Siehe [paarweise Felder](../reference/connector-operations.md#ensembl_ld_pairwise) und [Proxyfelder](../reference/connector-operations.md#ensembl_ld_proxies).
 
@@ -356,11 +356,11 @@ Diese Korrekturen ändern, wie zurückgegebene Beweise gelesen werden sollten. �
 
 ### OpenAlex-Anmeldeaufforderungen {/* #openalex-prompts */}
 
-v1.0.2 erinnert sich an eine abgelehnte OpenAlex-Anmeldeaufforderung für die aktuelle Sitzung, wodurch wiederholte Eingabeaufforderungen vermieden werden. Wenn Sie diese Quelle später benötigen, konfigurieren Sie sie explizit in **Settings → Connectors → Literature Graph → Manage credentials → OpenAlex** und die beabsichtigte Abfrage wiederholen. Sinkende Eingabeaufforderung liefert weder einen Schlüssel noch garantiert Zugang oder Kontingent.
+v1.0.2 erinnert sich an eine abgelehnte OpenAlex-Anmeldeaufforderung für die aktuelle Sitzung, wodurch wiederholte Eingabeaufforderungen vermieden werden. Wenn Sie diese Quelle später benötigen, konfigurieren Sie sie explizit in **Resource center → Connectors → Literature Graph → Manage credentials → OpenAlex** und die beabsichtigte Abfrage wiederholen. Sinkende Eingabeaufforderung liefert weder einen Schlüssel noch garantiert Zugang oder Kontingent.
 
 ## Verbinden Sie die neuen Quellen und bewahren Sie ihre Bedeutung {/* #new-source-access */}
 
-In **Settings → Connectors**, finden Sie den Eintrag unten und erlauben Sie es für **Main** oder den beabsichtigten Spezialisten. HGNC, PubTator 3, DGIdb und RNAcentral sind Werkzeuge innerhalb bestehender Einträge. **Orphadata** ist ein separater Eintrag und ist standardmäßig deaktiviert. Diese neuen Tools verwenden öffentliche Endpunkte ohne eigenen API-Schlüssel; andere Tools im selben Eintrag können unterschiedliche Anmeldeanforderungen haben.
+In **Resource center → Connectors**, finden Sie den Eintrag unten und erlauben Sie es für **Main** oder den beabsichtigten Spezialisten. HGNC, PubTator 3, DGIdb und RNAcentral sind Werkzeuge innerhalb bestehender Einträge. **Orphadata** ist ein separater Eintrag und ist standardmäßig deaktiviert. Diese neuen Tools verwenden öffentliche Endpunkte ohne eigenen API-Schlüssel; andere Tools im selben Eintrag können unterschiedliche Anmeldeanforderungen haben.
 
 | Quelle | Einstellungseintrag | Antrag und Prüfung |
 | --- | --- | --- |
@@ -383,7 +383,7 @@ Siehe [PDC-Felder](../reference/connector-operations.md#pdc_list_clinical), [GDC
 
 ## Imaging, Pathways, Lipide und Krebsmodelle {/* #expanded-sources */}
 
-In **Settings → Connectors**, aktivieren Sie die vorgesehene Quelle und stellen Sie sie zur Verfügung **Main**. TCIA, KEGG, RxNorm / RxNav, DailyMed, BioSamples und WikiPathways sind separate Einträge, standardmäßig deaktiviert. Die folgenden Operationen verwenden öffentliche Dienste ohne einen benutzerdefinierten MCP-Server oder API-Schlüssel. Durch die Aktivierung eines Connectors wird keine Datenlizenz oder ein eingeschränkter Datenzugriff gewährt.
+In **Resource center → Connectors**, aktivieren Sie die vorgesehene Quelle und stellen Sie sie zur Verfügung **Main**. TCIA, KEGG, RxNorm / RxNav, DailyMed, BioSamples und WikiPathways sind separate Einträge, standardmäßig deaktiviert. Die folgenden Operationen verwenden öffentliche Dienste ohne einen benutzerdefinierten MCP-Server oder API-Schlüssel. Durch die Aktivierung eines Connectors wird keine Datenlizenz oder ein eingeschränkter Datenzugriff gewährt.
 
 | Eingang | Antrag | Behalten Sie mit dem Ergebnis |
 | --- | --- | --- |
@@ -400,7 +400,7 @@ Verwendung der [Operationsreferenz](../reference/connector-operations.md) für g
 
 ## Entdecken Sie offizielle Forschungsdaten und Dateilisten {/* #scientific-file-discovery */}
 
-In **Settings → Connectors**, aktivieren Sie nur die Einträge, die für Ihre Frage erforderlich sind. Die neuen Einträge Europe PMC, Research Datasets, ChEA3, bioDBnet und CTD verwenden öffentliche Dienste ohne einen erforderlichen API-Schlüssel. Anfragen senden weiterhin die bereitgestellten Suchbegriffe, Identifikatoren oder Genlisten an diese Dienste. [Verbindungssteuerung](#connect-database).
+In **Resource center → Connectors**, aktivieren Sie nur die Einträge, die für Ihre Frage erforderlich sind. Die neuen Einträge Europe PMC, Research Datasets, ChEA3, bioDBnet und CTD verwenden öffentliche Dienste ohne einen erforderlichen API-Schlüssel. Anfragen senden weiterhin die bereitgestellten Suchbegriffe, Identifikatoren oder Genlisten an diese Dienste. [Verbindungssteuerung](#connect-database).
 
 | Bedarf | Eingabe und Ergebnis | Nächster Schritt |
 | --- | --- | --- |

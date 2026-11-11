@@ -2,7 +2,7 @@
 title: "Connector 操作引數參考"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -16,7 +16,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 
 `host` 由 Open-Science 的 Agent 執行環境提供。下方 JavaScript 是 **Agent 側呼叫片段**，不是獨立 Node.js 程式，也不是公共 Task SDK 客戶端的方法。讓 Agent 載入對應 Connector 說明並使用相應操作；某些框架會使用 Python 橋接，而不是這裡的 JavaScript 形式。
 
-先在 [Settings → Connectors](../guides/connectors.md) 啟用連線，配置[所需憑據](../tools/credentials.md)；使用 Specialist 時還需分配該能力。呼叫仍遵循會話權限策略。公共 Node.js 整合可用 [Task SDK](api.md) 管理 Connector 配置，但匯入該客戶端不會得到這裡的 `host`。
+先在 [Resource center → Connectors](../guides/connectors.md) 啟用連線，配置[所需憑據](../tools/credentials.md)；使用 Specialist 時還需分配該能力。呼叫仍遵循會話權限策略。公共 Node.js 整合可用 [Task SDK](api.md) 管理 Connector 配置，但匯入該客戶端不會得到這裡的 `host`。
 
 ### 先讀返回結果，再串聯呼叫 {/* #先读返回结果再串联调用 */}
 

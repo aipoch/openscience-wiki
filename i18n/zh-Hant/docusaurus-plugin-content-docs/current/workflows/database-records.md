@@ -1,7 +1,7 @@
 ---
 title: "檢索科學資料庫並下載結構化記錄"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 明確化合物範圍和所需屬性 {/* #1-明确化合物范围和所需属性 */}
 
-在 **Settings → Connectors** 中確認 **Chemistry** 可用。開啟專案，新建會話並選擇已連線的模型。本例使用 Open-Science 0.30.1 的 Chemistry/PubChem Connector，不需要預先準備輸入表格。
+在 **Resource center → Connectors** 中確認 **Chemistry** 可用。開啟專案，新建會話並選擇已連線的模型。本例使用 Open-Science 0.30.1 的 Chemistry/PubChem Connector，不需要預先準備輸入表格。
 
 明確限定為**中性、直鏈、飽和一元羧酸**。相近名稱可能指向支鏈異構體、鹽或共軛鹼，僅憑分子式不能區分所有結構。
 

@@ -2,7 +2,7 @@
 title: "Ejecutar el enriquecimiento funcional para un conjunto de genes candidato"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-28'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -19,7 +19,7 @@ El primer ejemplo utiliza g:Profiler; el [Comparación de Enrichr y STRING](#enr
 
 ## 1. Define la lista de genes y los ajustes de análisis {/* #gene-set-enrichment */}
 
-1. En **Settings → Connectors**, haga que **Genes & Ontologies** esté disponible para el agente. Abra una sesión con un modelo conectado y un tiempo de ejecución Notebook disponible.
+1. En **Resource center → Connectors**, haga que **Genes & Ontologies** esté disponible para el agente. Abra una sesión con un modelo conectado y un tiempo de ejecución Notebook disponible.
 2. Especifique el organismo, identificadores de genes, fuentes de datos y antecedentes estadísticos. Para datos experimentales reales, justifique el fondo usando genes que podrían haber sido seleccionados por el experimento. Este tutorial utiliza explícitamente todos los genes anotados, no un universo personalizado de genes medidos.
 3. Envíe el siguiente aviso. Mantenga la llamada de búsqueda y enriquecimiento de la fuente en el mismo período de sesiones y ahorre sus resultados reales.
 
@@ -59,7 +59,7 @@ Abra el CSV y compare con el JSON. Esta carrera devolvió **891 términos** en F
 
 Enrichr pregunta qué conjuntos de anotación están sobrerepresentados en los genes presentados. El enriquecimiento PPI STRING pregunta si las proteínas tienen más interacciones de red de lo esperado. Estas son diferentes pruebas; el acuerdo no es una réplica independiente de un resultado biológico.
 
-1. En **Settings → Connectors**, active **Genes & Ontologies** y **Anotación de proteínas** para el agente.
+1. En **Resource center → Connectors**, active **Genes & Ontologies** y **Anotación de proteínas** para el agente.
 2. Crear un proyecto llamado **DNA Damage Gene Set** y abrir una nueva sesión. Este ejemplo utiliza Codex y Session Notebook.
 3. Lista las bibliotecas Enrichr disponibles antes de elegir una. Para esta comparación, utilice la biblioteca fija **GO_Biological_Process_2025** para que los resultados guardados tengan una versión de anotación identificable. Una biblioteca más nueva puede producir diferentes resultados.
 4. Envíe este aviso y abra las notas generadas después de que la carrera termine:

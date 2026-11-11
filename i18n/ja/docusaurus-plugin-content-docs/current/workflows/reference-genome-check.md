@@ -2,7 +2,7 @@
 title: "種、参照のゲノムおよび染色体識別子をチェックして下さい"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. 生物、アセンブリおよび染色体を照会して下さい {/* #reference-genome */}
 
-1. **ゲノム**で**Settings → Connectors**を有効にします。 接続されたモデルと利用可能なNotebookランタイムでセッションを開きます。 このv0.31.1の例では、**Codex subscription**が使われています。
+1. **ゲノム**で**Resource center → Connectors**を有効にします。 接続されたモデルと利用可能なNotebookランタイムでセッションを開きます。 このv0.31.1の例では、**Codex subscription**が使われています。
 2. その順序で生物、**バージョンアップ**アセンブリおよび順序を照会して下さい。 送信:
 
 ```text

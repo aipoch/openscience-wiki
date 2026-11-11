@@ -1,7 +1,7 @@
 ---
 title: "導航與搜尋"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-11'
 ---
 
 # 導航與搜尋 {/* #导航与搜索 */}
@@ -69,3 +69,17 @@ last_update:
 在 macOS 選單欄或 Windows／支援托盤的 Linux 桌面，開啟 **Open-Science** 圖示的選單。透過 **Running sessions** 找到正在執行的任務，透過 **Pinned sessions** 返回固定會話，或從 **Recent items** 開啟近期內容；較多條目收在 **More items** 中。選擇後檢查開啟的專案和會話標題。
 
 會話標題旁的 **Pin** 可固定常用會話。選單裡的 **Show / Hide** 控制視窗可見性，**Quit** 退出應用；切換會話不等於停止任務。Linux 圖示是否顯示取決於桌面的托盤支援。視窗關閉和通知設定見[外觀與通知](appearance.md)。
+
+## 打開資源中心 {/* #resource-center */}
+
+從首頁或項目側欄打開 **Resource center**，選擇 **Skills**、**Connectors**、**Specialists** 或 **Use Cases**。這些資源現在擁有獨立工作區，不再作爲 Settings 內的面板；舊截圖可能仍顯示設置入口。
+
+1. 選擇資源類型。**Installed** 顯示本地資源，提供 **Marketplace** 的類型可在該標籤中瀏覽已發佈的包。
+2. 按名稱搜索，通過 **Filters** 縮小範圍。找不到預期條目時，清空搜索或重置篩選。
+3. 打開 **View details**，檢查來源、版本、依賴和可用狀態，再決定是否安裝或啓用。
+4. 通過 **Manage access** 或資源的可用性控制，檢查哪些 Agent 可以使用它。安裝、Agent 訪問範圍和具體操作審批是不同的設置。
+5. 返回項目後可繼續原會話。從輸入框或已發送消息打開 Skill 引用時，詳情顯示在項目面板中。
+
+![資源中心中的 Skills、Connectors、Specialists 與 Use Cases](/img/open-science/v121/resource-center.webp)
+
+另見 [Skill 安裝](../skills/marketplace.md)、[Connector 配置](connectors.md)和 [Specialist 角色](../specialists/overview.md)。

@@ -2,7 +2,7 @@
 title: "Check species, reference genome and chromosome identifiers"
 toc_max_heading_level: 2
 last_update:
-  date: '2026-09-22'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -17,7 +17,7 @@ Before starting, follow [Scientific databases](../tools/databases.md#connect-dat
 
 ## 1. Query the organism, assembly and chromosome {/* #reference-genome */}
 
-1. Enable **Genomes** in **Settings → Connectors**. Open a session with a connected model and available Notebook runtime. This v0.31.1 example used **Codex subscription**.
+1. Enable **Genomes** in **Resource center → Connectors**. Open a session with a connected model and available Notebook runtime. This v0.31.1 example used **Codex subscription**.
 2. Query the organism, **versioned** assembly and sequence in that order. Send:
 
 ```text

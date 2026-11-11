@@ -1,7 +1,7 @@
 ---
 title: "Combinar los murciélagos de búsqueda de literatura"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ Dos búsquedas a menudo regresan documentos superpuestos. Mantenga la procedenci
 
 ## 1. Ejecutar y grabar ambas búsquedas {/* #1-run-and-record-both-searches */}
 
-En **Settings → Connectors**, active **Gráfico de literatura** y configure su credencial OpenAlex si se solicita. Abrir un proyecto, iniciar una conversación y seleccionar un modelo conectado. La ejecución registrada usó Open-Science **0.30.1**, **Suscripción Codex / gpt-5.6-sol**. No se necesitan archivos PDF de origen.
+En **Resource center → Connectors**, active **Gráfico de literatura** y configure su credencial OpenAlex si se solicita. Abrir un proyecto, iniciar una conversación y seleccionar un modelo conectado. La ejecución registrada usó Open-Science **0.30.1**, **Suscripción Codex / gpt-5.6-sol**. No se necesitan archivos PDF de origen.
 
 ```text
 Use OpenAlex through Literature Graph to build two search batches:

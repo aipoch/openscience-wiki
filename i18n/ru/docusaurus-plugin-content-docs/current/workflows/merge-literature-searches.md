@@ -1,7 +1,7 @@
 ---
 title: "Объединить литературные поисковые партии"
 last_update:
-  date: '2026-09-16'
+  date: '2026-11-11'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -14,7 +14,7 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 ## 1. Запустите и запишите оба поиска {/* #1-run-and-record-both-searches */}
 
-В **Settings → Connectors** включите **График литературы** и настройте его учетные данные OpenAlex по запросу. Откройте проект, начните разговор и выберите подключенную модель. Записанный прогон использовал Open-Science **0.30.1**, **Подписка Codex / gpt-5.6-sol**. Источник PDF не требуется.
+В **Resource center → Connectors** включите **График литературы** и настройте его учетные данные OpenAlex по запросу. Откройте проект, начните разговор и выберите подключенную модель. Записанный прогон использовал Open-Science **0.30.1**, **Подписка Codex / gpt-5.6-sol**. Источник PDF не требуется.
 
 ```text
 Use OpenAlex through Literature Graph to build two search batches:

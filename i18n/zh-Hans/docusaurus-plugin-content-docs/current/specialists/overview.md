@@ -1,7 +1,7 @@
 ---
 title: "Specialists 与可用角色"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-11'
 ---
 
 # Specialists 与可用角色
@@ -17,11 +17,11 @@ Specialist 是保存下来的研究角色，包含身份、指令和可用 Skill
 | Imported / Marketplace Specialist | 从包安装，再完成本机设置 | 本地能力范围；检查发布者与版本 |
 | 内置 Reviewer | 执行应用复核流程 | 从对话触发复核；不是普通可编辑、可委派的角色 |
 
-打开 **Browse Marketplace** 查找已发布角色。在线目录可独立于已安装应用变化。导入前检查发布者、指令与依赖。
+打开 **Marketplace** 查找已发布角色。在线目录可独立于已安装应用变化。导入前检查发布者、指令与依赖。
 
 ## 查找角色
 
-打开 **Settings → Specialists**。**Installed** 表示本地注册数量，包含 Reviewer。使用 **Search specialists**、**Filter specialists by category**，再打开条目检查。**Browse Marketplace** 是另一份目录；市场列出角色不代表已安装，必须完成包和本地设置流程。
+打开 **Resource center → Specialists**。**Installed** 表示本地注册数量，包含 Reviewer。使用 **Search specialists**、**Filters → Filter specialists by category**，再打开条目检查。**Marketplace** 是另一份目录；市场列出角色不代表已安装，必须完成包和本地设置流程。
 
 ![本地已安装的 RNA-seq QC Reviewer](/img/open-science/capabilities-walkthrough/06-specialist-list.webp)
 
