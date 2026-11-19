@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Sinopsis de la configuración"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Sinopsis de la configuración {/* #settings-overview */}
@@ -31,21 +31,21 @@ Esta búsqueda cubre los ajustes representativos en cada panel, no en cada campo
 
 | Grupo | Panel | Lo que maneja |
 | --- | --- | --- |
-| System | [General](../guides/appearance.md#help-center) | Versión, actualizaciones, diagnóstico, instalación CLI, ventanas y ayuda |
-|  | [Appearance](../guides/appearance.md) | Tema, idioma, escala de la interfaz e iconos compatibles |
-|  | [Notifications](../guides/appearance.md) | Avisos de tareas, contenido, estado del sistema y notificación de prueba |
-| Inteligencia | [Modelo](../guides/models.md) | Proveedor y modelos de escenarios |
-|  | [Agente](../guides/frameworks.md) | Instalación, conmutación y reparación del marco del agente |
+| Sistema | [General](../guides/appearance.md#help-center) | App versión, actualizaciones, diagnóstico, instalación CLI, comportamiento de ventana y ayuda |
+|  | [Apariencia](../guides/appearance.md) | Tema, idioma, escala de interfaz de escritorio y opciones de uso compatible |
+|  | [Notificaciones](../guides/appearance.md) | Alertas de tareas, contenido de notificación, estado del sistema y notificación de pruebas |
+| Inteligencia | [Modelo](../guides/models.md) | Proveedor y modelos de escenario, incluyendo [servicios de imagen](../guides/image-generation.md) |
+|  | [Agente](../guides/frameworks.md) | Instalación de marco de agente, conmutación y reparación |
 |  | [Memoria](../guides/memory.md) | Notas globales y de proyectos |
-| Conexiones | [Red](../guides/network.md) | Proxy, espejos de paquete y acceso de dominio Notebook |
+| Conexiones | [Red](../guides/network.md) | Proxy, espejos de paquete y reglas de acceso Relajado/Stricto |
 |  | [Remoto](../guides/remote-access.md) | Acceso del navegador, emparejamiento y dispositivos de confianza |
-|  | [Credenciales](../tools/credentials.md) | Llaves, fichas, OAuth y recuperación credencial |
-|  | [Cálculo](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
+|  | [Credenciales](../tools/credentials.md) | Keys, tokens, OAuth y recuperación credencial |
+|  | [Computación](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Espacio de trabajo | [Etiquetas](../guides/tags.md) | Etiquetas y Favoritos Ordenación |
-|  | [Permisos](../guides/approval-modes.md) | Modo predeterminado y subsidios guardados |
-|  | [Entornos de ejecución](../guides/runtimes.md) | entornos y paquetes Python/R |
+|  | [Permisos](../guides/approval-modes.md) | Modo predeterminado y subvenciones guardadas |
+|  | [Horas de ejecución](../guides/runtimes.md) | Medio ambientes y paquetes Python/R |
 |  | [Almacenamiento](../guides/storage.md) | Localización de datos, acceso de escritura y uso de disco |
-|  | [Uso](../guides/usage.md) | Estadísticas de actividad de investigación, llamadas e investigación |
+|  | [Usage](../guides/usage.md) | Estadísticas de las actividades de investigación y seguimiento |
 |  | [Archivado](../guides/storage.md) | Restaurar o eliminar permanentemente el trabajo archivado |
 
 **Feedback** sigue siendo una entrada separada en la parte inferior de Ajustes.

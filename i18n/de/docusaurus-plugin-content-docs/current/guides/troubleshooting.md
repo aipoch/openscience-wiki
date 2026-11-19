@@ -1,7 +1,7 @@
 ---
 title: "Fehlerbehebung und häufige Fragen"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-19'
 ---
 
 # Fehlerbehebung und häufige Fragen {/* #troubleshooting-and-common-questions */}
@@ -259,3 +259,8 @@ Wenn Sie **Der installierte Codex CLI ist inkompatibel oder seine Version konnte
 Wenn der Volltextabruf auf einem Host mit Mihomo, Clash oder einem anderen Proxy mit Fake-IP-DNS fehlschlägt, aktualisieren Sie auf v1.0.7 oder höher und versuchen Sie die gleiche Quelle mit der beabsichtigten Einstellung in **Settings → Network**. Wenn alle lokalen DNS-Antworten Platzhalter sind, lässt die App den konfigurierten Proxy das Ziel auflösen.
 
 Dies gewährt keinen Zugriff auf ein Paywalled-Papier oder eine institutionelle Authentifizierung. Bestätigen Sie, dass die Quelle eine Kopie bietet, auf die Sie zugreifen können, und überprüfen Sie dann, ob sich der heruntergeladene Anhang als erwartetes PDF öffnet. Wenn es immer noch fehlschlägt, behalten Sie die Quell-URL und den angezeigten Fehler bei und überprüfen Sie [Netzwerkkonfiguration](network.md) bevor Duplikate hinzugefügt werden.
+
+
+## Wiederherstellen, nachdem der lokale Dienst getrennt wurde {/* #local-service-recovery */}
+
+Wenn der Arbeitsbereich die Wiederherstellung des lokalen Dienstes anzeigt, warten Sie auf die Rückkehr der Verbindung, bevor Sie eine Aktion wiederholen. Der Composer-Entwurf wird beibehalten, während nicht verfügbare Aktionen blockiert bleiben. Überprüfen Sie nach der Wiederverbindung die Konversation oder führen Sie die Aufzeichnung aus, um zu sehen, ob die vorherige Anfrage akzeptiert wurde. Resume aus dem tatsächlichen Zustand, anstatt die gleiche Aufgabe zweimal zu senden.

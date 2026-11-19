@@ -1,7 +1,7 @@
 ---
 title: "Ouverture et prévisualisation des fichiers"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -64,12 +64,12 @@ Les <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-reading.docx">R
 
 | Format | Étapes et que vérifier |
 | --- | --- |
-| DOCX | Ouvrez le rapport. Utilisation **Précédent / Suivant** pour visiter les deux pages ou **Plan** pour sauter sur un cap. Appuyez sur шF (macOS) ou Ctrl+F (Windows/Linux), recherchez `raw-count` et vérifier ses allumettes et les méthodes. L'aperçu plein écran donne plus de place; il n'y a pas de ruban d'édition de Word. |
-| XLSX | Ouvrir le cahier, puis choisir **Résumé** ou **Échantillons** en bas. Faites défiler horizontalement pour la dernière colonne. Les échantillons contiennent des lignes de données 12 plus ses notes d'en-tête, d'espacement et de source; le spectateur rapporte les lignes utilisées de 17, et non les échantillons biologiques de 17. Les valeurs sont un aperçu du cahier de travail enregistré, pas la preuve d'un nouveau calcul. |
-| PPTX | Ouvrez les diapositives, choisissez le **Page 2** vignette ou **Suivant**, et vérifier **2 / 2**. Utilisez **Trouvez** pour rechercher `normalization` sur le glissement des méthodes. **Notes** affiche les notes de haut-parleurs intégrées; c'est une surface de lecture, pas un éditeur de présentation. |
-| TIFF | Ouvrir la figure et utiliser **Page suivante / Page précédente**. Les deux pages montrent les tailles brutes de la bibliothèque et les médianes des gènes détectés. **Zoom vers / Zoom vers / Réinitialiser le zoom** modifie la vue; contrôle **Page 1 de 2** ou **Page 2 de 2** avant d'interpréter le chiffre. |
-| JSON | Ouvrez <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">Résumé</ExampleDownload> pour inspecter le texte source, les identifiants et les valeurs. Il s'affiche comme un code plutôt qu'un arbre d'objets extensible. |
-| HTML | Ouvrez <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">le tableau de lecture</ExampleDownload>. **Source** indique le HTML; **Render** restaure le document formaté. Aucun des deux modes ne réexécute le QC. |
+| DOCX | Ouvrez le rapport. Utilisation **Précédent / Suivant** pour visiter les deux pages ou **Aperçu** pour sauter sur un cap. Appuyez sur ↓F (macOS) ou Ctrl+F (Windows/Linux), recherchez `raw-count` et vérifier ses allumettes et les méthodes. L'aperçu plein écran donne plus de place ; il n'y a pas de ruban d'édition Word. |
+| XLSX | Ouvrir le cahier, puis choisir **Résumé** ou **Échantillons** en bas. Faites défiler horizontalement pour la dernière colonne. Les échantillons contiennent 12 lignes de données, plus l'en-tête, l'espacement et les notes sources; le téléspectateur rapporte 17 lignes utilisées et non 17 échantillons biologiques. Les valeurs sont un aperçu du cahier de travail enregistré, pas la preuve d'un nouveau calcul. |
+| PPTX | Ouvrir les diapositives, choisir **Annexe** vignette ou **Suivant**, et vérifier **2 / 2**. Utilisation **Rechercher** pour rechercher `normalization` sur le glissement des méthodes. **Notes** affiche les notes de haut-parleurs intégrées; [éditeur de présentation](presentation-editing.md) modifier le texte de la diapositive et le formatage. |
+| TIFF | Ouvrir la figure et utiliser **Page suivante / Page précédente**. Les deux pages montrent les tailles brutes de la bibliothèque et les médianes des gènes détectés. **Zoom vers / Zoom vers / Réinitialiser le zoom** modifie la vue; vérifier **Page 1 sur 2** ou **Page 2 de 2** avant d'interpréter le chiffre. |
+| JSON | Ouvrir <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">Résumé</ExampleDownload> pour inspecter le texte source, les identifiants et les valeurs. Il s'affiche comme un code plutôt qu'un arbre d'objets extensible. |
+| HTML | Ouvrir <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">le tableau de lecture</ExampleDownload>. **Source** affiche le HTML; **Render** restaure le document formaté. Aucun des deux modes ne réexécute le QC. |
 
 ![Contrôles de page et correspondances de texte réelles dans la copie de lecture Word](/img/open-science/v0333/word-search.webp)
 
@@ -85,15 +85,15 @@ Si **Preview unavailable → Open this Office file in your default app to view i
 
 Le tableau suivant énumère les modes d'aperçu et les contrôles pour les types de fichiers pris en charge.
 
-| Famille | Quoi inspecter? | Contrôles et limites |
+| Famille | Quoi inspecter | Contrôles et limites |
 | --- | --- | --- |
-| PDF | Numéro de page, texte lisible, source PDF | Les vignettes, les contours, la recherche de documents, la navigation sur les pages, le zoom et les régions sélectionnables; les pages numérisées peuvent manquer de texte consultable |
-| Code / texte clair | Compléter le bloc et la langue pertinents | Numéros de ligne, affichage syntaxique, copie/téléchargement; un contenu surdimensionné peut être limité |
+| PDF | Numéro de page, texte lisible, source PDF | Thumbnails, contours, recherche de documents, navigation sur les pages, zoom et régions sélectionnables; les pages numérisées peuvent manquer de texte consultable |
+| Code / texte clair | Compléter le bloc et la langue pertinents | Numéros de ligne, affichage syntaxique, copie/téléchargement; le contenu surdimensionné peut être limité |
 | JSON / HTML | Structure ou document rendu | Rendu n'est pas la permission d'exécuter du code avec des privilèges d'application |
-| Images / TIFF | Résolution et image sélectionnée | zoom/pannage de l'image; TIFF a un chemin de rendu dédié |
-| Dossiers bureautiques | Indique si le rendu géré réussit | Télécharger/ouvrir de l'extérieur si DOCX/XLSX/PPTX prévisualiser n'est pas disponible; prévisualiser n'est pas complet |
-| Séquences biologiques | Identité et étendue des séquences | Vue séquentielle pour les intrants FASTA pris en charge |
-| Structures moléculaires | Modèle parsé et représentation choisie | Rotation, zoom, panoramique et prises en charge Représentations Cartoon/Stick/Sphere/Surface/Line; les données structurelles manquantes peuvent désactiver une représentation |
+| Images / TIFF | Résolution et image sélectionnée | Zoom/pan; TIFF a un chemin de rendu dédié |
+| Fichiers bureautiques | Indique si le rendu géré réussit | Téléchargement/ouverture externe si l'aperçu DOCX/XLSX/PPTX n'est pas disponible; PPTX prend en charge [Édition de diapositives](presentation-editing.md); DOCX/XLSX prévisualiser n'est pas un éditeur de bureau complet |
+| Séquences biologiques | Identité et étendue de la séquence | Vue séquentielle pour les intrants FASTA soutenus |
+| Structures moléculaires | Modèle parsé et représentation choisie | Rotation, zoom, panoramique et prise en charge Représentations Cartoon/Stick/Sphere/Surface/Line; les données structurelles manquantes peuvent désactiver une représentation |
 | Fichier inconnu ou non pris en charge | Nom, taille et message de repli | Télécharger pour un visionneur externe approprié; ne pas déduire le contenu valide de l'extension |
 
 Pour le contexte PDF, liez uniquement les documents pertinents à la tâche actuelle et déconnectez-les lorsque la tâche suivante ne devrait pas les utiliser. L'application prend en charge jusqu'à trois PDF liés par session. Un enregistrement documentaire sans PDF joint fournit des métadonnées, et non une preuve que le texte complet a été lu; Voir [Bibliothèque](library.md).

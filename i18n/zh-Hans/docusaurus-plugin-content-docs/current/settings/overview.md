@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: 设置中心总览
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # 设置中心总览
@@ -34,10 +34,10 @@ last_update:
 | System | [General](../guides/appearance.md#help-center) | 版本、更新、诊断、CLI 安装、窗口行为和帮助 |
 |  | [Appearance](../guides/appearance.md) | 主题、语言、桌面界面缩放和支持的应用图标选项 |
 |  | [Notifications](../guides/appearance.md) | 任务提醒、通知内容、系统状态和测试通知 |
-| Intelligence | [Model](../guides/models.md) | 提供商与各任务场景的模型 |
+| Intelligence | [Model](../guides/models.md) | 提供商、各任务场景模型与[图像服务](../guides/image-generation.md) |
 |  | [Agent](../guides/frameworks.md) | 代理框架的安装、切换与修复 |
 |  | [Memory](../guides/memory.md) | 按需启用的全局与项目记忆 |
-| Connections | [Network](../guides/network.md) | 代理、软件包镜像与 Notebook 域名访问 |
+| Connections | [Network](../guides/network.md) | 代理、软件包镜像与 Notebook Relaxed/Strict 访问规则 |
 |  | [Remote](../guides/remote-access.md) | 浏览器访问、配对与可信设备 |
 |  | [Credentials](../tools/credentials.md) | 密钥、令牌、OAuth 与凭据恢复 |
 |  | [Compute](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |

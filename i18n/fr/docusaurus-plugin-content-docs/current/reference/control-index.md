@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Index de la page et du contrôle"
 description: "Trouvez chaque bouton Open-Science documenté, entrée, commutateur et résultat par page."
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 # Index de la page et du contrôle {/* #page-and-control-index */}
@@ -49,11 +49,12 @@ Voir [Configuration pour la première fois](../guides/onboarding.md) et [Configu
 | Nom du projet | Ouvrir le point d'entrée ou le menu du projet |
 | Réduire la barre latérale | Réduire ou étendre la barre latérale gauche |
 | Nouveau | Créer une session |
-| Personnaliser | Démarrer une conversation de personnalisation Skill/Specialist |
+| Personnaliser | Démarrer une conversation de personnalisation des compétences/spécialistes |
 | Fichiers | Afficher le panneau des fichiers du projet à droite |
-| Bibliothèque | Références ouvertes liées à un projet dans la bibliothèque de littérature |
-| Ligne de session | Sessions de commutation; rapports d'état Idle, Courant, Permission, ou un autre état |
-| Actions de session | Pin/Unpin, Éditer..., Télécharger tous les artefacts, Afficher le carnet, Exporter la conversation..., Archive, Supprimer |
+| Tableau | [Créer et inspecter des messages ou des scripts timed](../guides/scheduled-tasks.md) |
+| Bibliothèque | Références ouvertes liées au projet dans la bibliothèque de littérature |
+| Ligne de session | Switch sessions; rapports d'état Idle, Running, Permission, ou un autre état |
+| Sessions | Pin/Unpin, Éditer..., Télécharger tous les artefacts, Afficher le carnet, Exporter la conversation..., Archive, Supprimer |
 | Messages, paramètres, GitHub | Ouvrez les notifications, les paramètres ou le dépôt officiel |
 | Redimensionner gauche/droite, Aperçu d'effondrement | Redimensionner un panneau ou effondrement Aperçu |
 
@@ -72,6 +73,10 @@ Voir [Configuration pour la première fois](../guides/onboarding.md) et [Configu
 | Modèle | Modèle actif, effort de raisonnement | Modifier le modèle ou l'effort pour les demandes ultérieures |
 | Queue/Envoyer | Queue edit/delete/reorder, Envoyer, Envoyer, Planifier d'abord, Clavardage latéral, Branche, Arrêt | Étape ou soumettre des suivis, choisir un mode, ou arrêter l'exécution en cours |
 | Faire défiler pour terminer | Aller au dernier message |
+
+## Édition d'images et de présentations {/* #creation-editors */}
+
+Utilisez [Services d'images](../guides/image-generation.md#configure) pour l'API image et le modèle. Ouvrez une image générée pour modifier et inspecter ses versions. Dans l'aperçu PPTX du bureau, **Edit**, **Apply**, **Save**, **Historique des versions** et **Comparer avec la version précédente** gèrent [changement de présentation](../guides/presentation-editing.md).
 
 ## Permission, planification et questions structurées {/* #permission-plan-and-structured-questions */}
 
@@ -162,15 +167,15 @@ Ajouter host, Host card/activable, Sonde/Retry, Detail/Edit/Supprimer, Ressource
 
 ### Réseau {/* #network */}
 
-Vérifiez à nouveau; Système de proxy/Manuel/Direct; liste d'autorisation de domaine Notebook; Rétroviseur de paquet Configurer/Modifier; Coda canal, indice de pip et faisceau CA; Afficher les miroirs, Annuler et Enregistrer.
+Vérifiez à nouveau; Proxy System/Manual/Direct; Notebook Relaxed/Strict mode, protocol/host/port rules and groups; Package miroir Configure/Edit; Conda canal, index pip et CA bundle; View miroirs, Cancel et Save.
 
 ### Modèle {/* #model */}
 
-Modèle actif, Raisonnement des radios et politiques du modèle de sous-agent/examinateur/vision/session-détails; Test/Édition/Supprimer/Ajouter. Le formulaire Fournisseur contient tous les champs de la page Modèle d'embarquement plus Annuler et Enregistrer.
+Modèle actif, Raisonnement des radios, Subagent/Reviewer/Vision/Session-details politiques, et [Modèle de génération d'images / Services d'images](../guides/image-generation.md); Provider Test/Edit/Supprimer/Add. Le formulaire Fournisseur contient tous les champs de la page Modèle d'embarquement plus Annuler et Enregistrer.
 
 ### Agent {/* #agent */}
 
-OpenCode/Claude/Codex/CodeBuddy/Pi framework card, Switch, Installer source, Installer/Annuler/Réessayer, Installer journal, Réparation, Se connecter/auth, Importer config/home, et Désinstaller confirmation.
+Open-Science Agent intégré; option OpenCode/Claude/Codex/CodeBuddy/Pi framework cards, Switch, Installer source, Installer/Annuler/Réessayer, Installer journal, Réparation, Se connecter/auth, Importer config/home, et Désinstaller confirmation.
 
 ### Autorisations {/* #permissions */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Fichiers, artefacts et versions"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -153,3 +153,8 @@ Ouvrir un fichier depuis un dossier autorisé sous **This computer**. Dans son a
 Après la publication ou la restauration d'un artefact, rouvrez-le et vérifiez la version et le contenu sélectionnés. v1.0.7 apporte la dernière version publiée; un ancien aperçu historique est encore une version différente. Utilisez les commandes de la version et le panneau de provenance pour inspecter la relation entre la version sélectionnée et les versions précédentes avant de la citer, de la télécharger ou de l'éditer.
 
 Lorsqu'un ancien artefact Markdown s'ouvre avec une tête de provenance stale, v1.0.8 répare ce pointeur historique. Vérifiez à nouveau la version affichée et tout avertissement d'exécution incomplète avant de partager le fichier. La réparation d'un pointeur d'historique ne recourt pas à une analyse.
+
+
+## Modifier le contenu de l'image et de la présentation {/* #visual-editing */}
+
+L'éditeur de texte est séparé du [Éditeur d'images](image-generation.md#edit) et du [Éditeur PPTX](presentation-editing.md). Utilisez ces outils spécifiques au format pour les variantes d'image ou le texte de diapositive et le formatage. Un aperçu CSV en lecture seule ne devient toujours pas un éditeur de tableur.

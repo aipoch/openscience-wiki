@@ -1,7 +1,7 @@
 ---
 title: "Capabilities and supported inputs"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-19'
 ---
 
 # Capabilities and supported inputs
@@ -23,6 +23,8 @@ Open-Science brings a research project's conversations, source files, literature
 For figures and tables in a paper, use [local PDF extraction](previews.md#pdf-extraction). Find reusable methods through the [Skill marketplace](../skills/marketplace.md). Check a captured result with [Reproducibility](reproducibility.md), or share its conversation and evidence through a [.science package](research-packages.md).
 
 A viewer opening a file does not show that the model has read it. Attaching a file gives the session a source to work with; inspect the recorded reads, tool calls and output evidence to establish how the agent used it. Exact extensions and size limits are in [File formats and limits](../reference/formats.md).
+
+For recurring work, [schedule a message or script](scheduled-tasks.md). For presentation preparation, [generate an illustration with a separate image service](image-generation.md) or [edit an existing PPTX](presentation-editing.md). Image generation needs its own service credentials and quota; desktop PPTX editing works on the selected file version.
 
 ## Understand the workspace objects
 

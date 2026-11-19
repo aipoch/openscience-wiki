@@ -1880,5 +1880,35 @@
   },
   "docs.outline.reference.v121.scope": {
     "message": "Центр ресурсов, уточнение вопросов, подписки Codex и экспорт библиографии в CSV."
+  },
+  "docs.guides.outline.scheduled-tasks.title": {
+    "message": "Планирование исследовательских задач"
+  },
+  "docs.guides.outline.scheduled-tasks.scope": {
+    "message": "Планирование исследовательских задач."
+  },
+  "docs.guides.outline.image-generation.title": {
+    "message": "Создание и редактирование изображений"
+  },
+  "docs.guides.outline.image-generation.scope": {
+    "message": "Создание и редактирование изображений."
+  },
+  "docs.guides.outline.presentation-editing.title": {
+    "message": "Редактирование презентации PowerPoint"
+  },
+  "docs.guides.outline.presentation-editing.scope": {
+    "message": "Редактирование презентации PowerPoint."
+  },
+  "docs.outline.reference.v130.title": {
+    "message": "v1.3.0"
+  },
+  "docs.outline.reference.v130.scope": {
+    "message": "v1.3.0 — Планирование исследовательских задач / Создание и редактирование изображений / Редактирование презентации PowerPoint"
+  },
+  "docs.outline.reference.v122.title": {
+    "message": "v1.2.2"
+  },
+  "docs.outline.reference.v122.scope": {
+    "message": "v1.2.2 — v1.2.2"
   }
 }

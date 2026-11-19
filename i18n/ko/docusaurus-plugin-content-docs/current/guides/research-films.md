@@ -1,7 +1,7 @@
 ---
 title: "연구 필름 만들기"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # 연구 필름 만들기
@@ -19,11 +19,15 @@ last_update:
 
 ## 생성 및 시계 {/* #generate-film */}
 
-1. 기타 **Session actions → Generate research film**· 재생에서, 같은 활동은 아래에서 사용할 수 있습니다. **더 많은 작업**.
-2. 모든 준비 메시지를 읽으십시오. 재발급하기 전에 누락된 모델, 자격 또는 재발급 리소스를 해결합니다. narration가 준비되면, 세대는이 작업을 시작합니다.
-3. 글과 미디어 세대를 따르십시오. 계속되는 동안 대화 상자를 닫을 수 있습니다. **View generation progress**. **Cancel** 영화 작업을 중지, 소스 대화.
-4. 시간 : **Research film ready** 표시, 제목 및 기간을 검사, 다음 선택 **Play research film**.
+1. **Session actions → Generate research film**를 엽니다. 재생에서는, 동일한 활동은 **더 많은 작업**의 밑에 유효합니다.
+2. **Film mode → Research explanation**를 선택하여 문제, 방법 및 발견, 또는 **Operation replay**를 설명하여 대화 행동과 결과를 순서로 표시합니다. 모델 사용 설명, 어떤 누락 된 모델, 자격 또는 narration 리소스를 해결, 다음 **Start generation**를 선택.
+3. 글과 미디어 세대를 따르십시오. 당신은 계속 세대 동안 대화를 닫을 수 있습니다, 다음 **View generation progress**를 다시 열 수 있습니다. **Cancel**는 영화 작업을 중지, 소스 대화.
+4. **Research film ready**가 나타나면 제목과 기간을 검사하고 **Play research film**를 선택하십시오.
 5. 전체 영화보기. 번호, 단위, 설명, 시각, 문헌 및 소스 세션에 대한 명시된 한계를 확인합니다. 갑상선 예제 또는 예비 결과가 여전히 같은 것과 같이 설명되는지 여부에 대한 특정주의를 지불하십시오.
+
+![시작하기 전에 연구 설명 또는 가동 재생을 선택하십시오](/img/open-science/v130/film-mode.webp)
+
+각 대화 지점은 자체 필름 출력을 유지합니다. 필름을 생성하거나보고하기 전에 의도 된 지점을 엽니 다. 한 분기에 필름은 다른 필름을 자동으로하지 않습니다. narration가 로컬로 실행되는 경우에도 모델 토큰을 소모합니다.
 
 <p className="example-label"><strong>작업 예</strong> 다섯 숫자 가르침 예제 설명</p>
 
@@ -54,6 +58,8 @@ v1.2.1에서 다른 세션으로 전환하는 것은 영화 발생을 멈추지 
 ![연구 영화 선수와 MP4 수출 통제](/img/open-science/v120/film-player.webp)
 
 ## 재생 또는 복구 {/* #film-recovery */}
+
+영화가 중단되고 대화 상자가 **Retry**를 제공 할 때, 유효 장면을 재사용하기 위해 이력서, narration 및 타이밍. Checkpoints는 프로세스를 재시작합니다. **Generate again**는 대신 신선한 시도를 시작합니다. 의도한 내용을 변경하거나 이전 시도를 무시할 때 사용하십시오. 진행 상황을 검사하고 완료 한 후 영화.
 
 - 세대가 모델을 선택하거나 자격 증명을 확인하려면, 그 요구 사항을 수정 **Settings → Model**, 다음 세션에 반환.
 - narration 다운로드가 실패한 경우, 사용 **Retry** 자주 묻는 질문 **Installed** 다시 생성하기 전에.

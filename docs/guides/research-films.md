@@ -1,7 +1,7 @@
 ---
 title: "Create and share a research film"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Create and share a research film
@@ -20,10 +20,14 @@ The speech engine runs locally after installation, but model-based film authorin
 ## Generate and watch {/* #generate-film */}
 
 1. Open **Session actions → Generate research film**. In replay, the same action is available under **More actions**.
-2. Read any preparation message. Resolve a missing model, credential or narration resource before retrying. If narration is ready, generation starts from this action.
+2. Choose **Film mode → Research explanation** to explain the question, methods and findings, or **Operation replay** to show conversation actions and results in order. Read the model-usage explanation, resolve any missing model, credential or narration resource, then select **Start generation**.
 3. Follow the writing and media-generation stages. You can close the dialog while generation continues, then reopen **View generation progress**. **Cancel** stops the film job, not the source conversation.
 4. When **Research film ready** appears, inspect the title and duration, then choose **Play research film**.
 5. Watch the entire film. Check numbers, units, explanations, visuals, narration and the stated limits against the source session. Pay particular attention to whether hypothetical examples or preliminary results are still described as such.
+
+![Choose Research explanation or Operation replay before starting generation](/img/open-science/v130/film-mode.webp)
+
+Each conversation branch keeps its own film output. Open the intended branch before generating or viewing a film; a film on one branch is not automatically the film for another. Film authoring consumes model tokens even though narration runs locally.
 
 <p className="example-label"><strong>Worked example</strong> Explain a five-number teaching example</p>
 
@@ -54,6 +58,8 @@ Wait for export to finish, then reopen the saved file outside Open-Science. Chec
 ![Research-film player and MP4 export control](/img/open-science/v120/film-player.webp)
 
 ## Regenerate or recover {/* #film-recovery */}
+
+When a film is interrupted and the dialog offers **Retry**, resume to reuse validated scenes, narration and timings. Checkpoints survive a process restart. **Generate again** starts a fresh attempt instead; use it when changing the intended content or deliberately discarding the previous attempt. Inspect the progress and completed film after either action.
 
 - If generation asks you to select a model or check credentials, fix that requirement in **Settings → Model**, then return to the session.
 - If the narration download fails, use **Retry** and wait for **Installed** before generating again.

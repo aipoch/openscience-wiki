@@ -1,7 +1,7 @@
 ---
 title: "Dateiformate und Limits"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-19'
 ---
 
 # Dateiformate und Limits {/* #file-formats-and-limits */}
@@ -18,22 +18,22 @@ Schauen Sie sich das Datei-Routing und die Limits hier an. Das Hochladen einer D
 
 | Inhalt | Anerkannte Erweiterungen | Verhalten und Grenze |
 | --- | --- | --- |
-| Raster/Vektorbild | `avif`, `gif`, `jpeg`, `jpg`, `png`, `svg`, `webp` | Bildvorschau; Modelleingabe hängt weiterhin von der Bildunterstützung ab |
+| Raster/Vektorbild | `avif`, `gif`, `jpeg`, `jpg`, `png`, `svg`, `webp` | Bildvorschau; Modelleingabe hängt weiterhin von Bildunterstützung ab |
 | TIFF | `tif`, `tiff` | Dedizierter Decoder mit Datei-, Pixel- und Speichergrenzen |
-| Begrenzte Tabelle | `csv`, `tsv` | Die erste Zeile wird als Kopfzeile behandelt; begrenzte Zeilen/Spalten |
+| Begrenzte Tabelle | `csv`, `tsv` | Erste Zeile wird wie Kopfzeilen behandelt; begrenzte Zeilen/Spalten |
 | Sequenz | `fa`, `faa`, `fasta`, `ffn`, `fna`, `frn` | FASTA-Inspektion; Viewing validiert keine Analysemethode |
-| Struktur | `pdb` | Strukturbetrachter; Keine Qualitätsbewertung einer Vorhersage |
+| Struktur | `pdb` | Structure Viewer; keine Qualitätsbewertung einer Vorhersage |
 | Molekül/Reaktion | `mol`, `sdf`, `smi`, `smiles`, `rxn` | Dedizierte molekulare Vorschau; nicht annehmen `mol2` hat das gleiche Routing |
 | PDF | `pdf` | Dedizierter Dokumentenleser mit Seitensteuerung |
-| Wort | `docx` | Bürorender; Altlast `doc` ist nicht auf DOCX Parsing geroutet |
-| Tabelle mit den Daten | `xls`, `xlsx` | Office Spreadsheet Preview; Modellausführung ist eine separate Operation |
-| Aufmachung | `pptx` | Renderer für Büropräsentationen; Altlast `ppt` ist nicht auf PPTX Parsing geroutet |
+| Wort | `docx` | Bürorender; Legacy `doc` ist nicht auf DOCX Parsing geroutet |
+| Tabelle 1 | `xls`, `xlsx` | Office Spreadsheet Preview; Modellausführung ist eine separate Operation |
+| Aufmachung | `pptx` | Präsentationsvorschau und [Schieberbearbeitung](../guides/presentation-editing.md); Vermächtnis `ppt` ist nicht auf PPTX Parsing geroutet |
 | Markdown | `md`, `markdown` | Gerendertes Dokument mit unterstützten Textversionsaktionen |
-| HTML | `htm`, `html` | isolierte HTML-Vorschau; keine Anwendungsprivilegien erhält |
-| JSON | `json` | Strukturierte Vorschau, inklusive erkanntem Plan JSON |
-| Code | `bash`, `bib`, `bibtex`, `css`, `js`, `jsx`, `py`, `r`, `sh`, `tex`, `ts`, `tsx` | Hervorgehobene Quelle; Das Öffnen eines Skripts führt es nicht aus |
+| HTML | `htm`, `html` | Isolierte HTML-Vorschau; erhält keine Anwendungsprivilegien |
+| JSON | `json` | Strukturierte Vorschau, inklusive anerkanntem Plan JSON |
+| Code | `bash`, `bib`, `bibtex`, `css`, `js`, `jsx`, `py`, `r`, `sh`, `tex`, `ts`, `tsx` | Hervorgehobene Quelle; Öffnen eines Skripts führt es nicht aus |
 | Klartext | `conf`, `config`, `ini`, `iqtree`, `log`, `nwk`, `state`, `toml`, `tree`, `treefile`, `txt`, `xml`, `yaml`, `yml` | Gebundene Textvorschau |
-| Weitere Dateien | Nicht anerkannte Erweiterung/Inhalt | Fallback/Download, soweit verfügbar; `.ipynb` Exportieren bedeutet keinen dedizierten File-Preview-Editor |
+| Sonstige Dateien | Nicht anerkannte Erweiterung/Inhalt | Fallback/Download, soweit verfügbar; `.ipynb` Exportieren bedeutet keinen dedizierten File-Preview-Editor |
 
 Der Router hat auch ein enges MIME-Fallback für geeignete erweiterungslose Dateien. Irreführende Office MIME-Metadaten machen ein Legacy-Format nicht kompatibel mit einem OOXML-Renderer.
 

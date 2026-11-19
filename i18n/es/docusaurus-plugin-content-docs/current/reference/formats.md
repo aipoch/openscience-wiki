@@ -1,7 +1,7 @@
 ---
 title: "Formatos y límites de archivo"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-19'
 ---
 
 # Formatos y límites de archivo {/* #file-formats-and-limits */}
@@ -16,24 +16,24 @@ Mira los límites y el enrutamiento de archivos aquí. Subir un archivo, previsu
 
 ## Previsualización de la ruta {/* #preview-routing */}
 
-| Contenido | Extensiones reconocidas | Comportamiento y límite |
+| Índice | Extensiones reconocidas | Comportamiento y límite |
 | --- | --- | --- |
-| Imagen de mapa/vector | `avif`, `gif`, `jpeg`, `jpg`, `png`, `svg`, `webp` | Vista previa de imagen; entrada modelo todavía depende de soporte de imagen |
-| TIFF | `tif`, `tiff` | Decodificador decodificador dedicado con límites de archivo, píxeles y memoria |
-| Tabla delimitada | `csv`, `tsv` | La primera fila es tratada como cabeceras; filas/columnas atadas |
-| Secuencia | `fa`, `faa`, `fasta`, `ffn`, `fna`, `frn` | Inspección de FASTA; visualización no valida un método de análisis |
-| Estructura | `pdb` | Visor de estructura; no una evaluación de calidad de una predicción |
-| Molécula/reacción | `mol`, `sdf`, `smi`, `smiles`, `rxn` | Previsión molecular dedicada; no asume `mol2` tiene la misma routing |
+| Imagen de mapa/vector | `avif`, `gif`, `jpeg`, `jpg`, `png`, `svg`, `webp` | vista previa de imagen; entrada de modelo todavía depende de soporte de imagen |
+| TIFF | `tif`, `tiff` | Decodificador dedicado con límite de archivo, píxel y memoria |
+| Tabla delimitada | `csv`, `tsv` | Primera fila es tratada como cabeceras; filas atadas / columnas |
+| Secuencia | `fa`, `faa`, `fasta`, `ffn`, `fna`, `frn` | Inspección de FASTA; la visualización no valida un método de análisis |
+| Estructura | `pdb` | Visualizador de estructura; no una evaluación de calidad de una predicción |
+| Molécula/reacción | `mol`, `sdf`, `smi`, `smiles`, `rxn` | Previsualización molecular dedicada; no asuma `mol2` tiene la misma routa |
 | PDF | `pdf` | Lector de documento dedicado con controles de página |
 | Palabra | `docx` | Rendidor de oficinas; legado `doc` no se encamina a DOCX paresing |
-| hoja de cálculo | `xls`, `xlsx` | Previsualización de la hoja de cálculo de la oficina; modelo de ejecución es una operación separada |
-| Presentación | `pptx` | Presentador de la presentación de la oficina; legado `ppt` no se encamina a PPTX persing |
-| Markdown | `md`, `markdown` | Documento presentado, con medidas de conversión de texto apoyadas |
-| HTML | `htm`, `html` | Isolated HTML vista previa; no recibe privilegios de solicitud |
+| hoja de cálculo | `xls`, `xlsx` | Previsualización de la hoja de cálculo de la oficina; la ejecución del modelo es una operación separada |
+| Presentación | `pptx` | Presentación vista previa y [edición de diapositivas](../guides/presentation-editing.md); legado `ppt` no se encamina a PPTX persing |
+| Markdown | `md`, `markdown` | Documento remitido, con acciones de conversión de texto apoyadas |
+| HTML | `htm`, `html` | Previsualización HTML aislada; no recibe privilegios de aplicación |
 | JSON | `json` | Previsualización estructurada, incluyendo el plan reconocido JSON |
 | Código | `bash`, `bib`, `bibtex`, `css`, `js`, `jsx`, `py`, `r`, `sh`, `tex`, `ts`, `tsx` | Fuente destacada; abrir un script no lo ejecuta |
-| Texto de la traducción | `conf`, `config`, `ini`, `iqtree`, `log`, `nwk`, `state`, `toml`, `tree`, `treefile`, `txt`, `xml`, `yaml`, `yml` | Previsualización de texto escrito |
-| Otros archivos | Extensión no reconocida/contenido | Fallback/download donde esté disponible; `.ipynb` export no implica un editor dedicado de archivos-preview |
+| Texto del texto | `conf`, `config`, `ini`, `iqtree`, `log`, `nwk`, `state`, `toml`, `tree`, `treefile`, `txt`, `xml`, `yaml`, `yml` | Visualización de texto escrito |
+| Otros archivos | Extensión no reconocida/contenido | Fallback/download donde esté disponible; `.ipynb` la exportación no implica un editor de archivos-preview dedicado |
 
 El router también tiene un retroceso MIME estrecho para archivos extensivos adecuados. Los metadatos MIME de la Oficina de Misleading no hacen un formato legado compatible con un renderizador OOXML.
 

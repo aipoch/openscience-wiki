@@ -2,7 +2,7 @@
 title: ".science 연구 패키지"
 description: "파일 및 증거와 함께 세션을 내보내고 다른 프로젝트에 대한 연구 기록을 검사합니다."
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -193,3 +193,8 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 노트북 및 Compute는 검증 된 제스처를 유지하면서 연구 패키지에 동일한 증거 콘텐츠를 재사용하고 참조를 실행합니다. 긴 세션이 같은 파일을 여러 번 사용 할 때 반복 된 바이트를 감소시킵니다. 첫 번째 수출은 이전 레코드에서 증거를 준비 할 수도 있습니다.
 
 일반 세션 패키지 흐름을 통해 수출하고 완료를 기다립니다. 별도의 프로젝트로 결과를 가져 와서 유지 된 실행 및 파일을 검사합니다. 더 작은 아카이브는 모든 필요한 파일이 존재한다는 것을 증명하지 않으며 성공적인 수입은 computational rerun이 아닙니다. 제품 정보 [reproducibility 검사](reproducibility.md) 다시 실행을 테스트 할 때.
+
+
+## 자주 묻는 질문 {/* #import-recovery */}
+
+수입이 취소되면 완료된대로 취급하지 마십시오. 타임 아웃이 확정되지 않은 경우, 다른 수입을 시작하기 전에 대상 프로젝트 및 수입 세션을 찾습니다. 어떤 결과 세션을 열고 파일을 검사합니다. 누락되거나 잘못된 패키지를 위해, intact `.science` 파일을 선택하고 도움을 요청할 때 표시된 오류 또는 상관 관계 식별자를 유지합니다. 이전 시도가 이미 세션을 생성했는지 검사하지 않고 동일한 패키지를 반복하지 마십시오.

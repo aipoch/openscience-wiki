@@ -1,7 +1,7 @@
 ---
 title: "Notebook und Ausführungsnachweise"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-19'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -301,3 +301,12 @@ Nachdem Sie eine CSV gelesen, transformiert und eine neue Datei in Python oder R
 ## Überprüfen Sie den lokalen Ordnerzugriff {/* #folder-access */}
 
 Wenn eine lokale Eingabe nicht gelesen werden kann, überprüfen Sie [Berechtigungen für Notebook- und Shell-Ordner](../reference/permissions.md#notebook-folder-restrictions). Das Ändern der Einschränkung stoppt Live-Prozesse und löscht Variablen. Speichern Sie zuerst die Ergebnisse, gewähren Sie den erforderlichen Ordner und führen Sie dann nur die Zellen erneut aus, die zum Wiederaufbau des Arbeitszustands erforderlich sind.
+
+
+## Überprüfen und Stoppen eines eigenen Prozesses {/* #process-monitor */}
+
+Öffnen Sie die Compute-Ansicht des Projekts und prüfen Sie den lokalen Prozessmonitor. Passen Sie den Prozess an seine Konversation und Laufzeit an, bevor Sie handeln; CPU, Speicher und verstrichene Zeit helfen, aktive Arbeit von einem untätigen Kernel zu unterscheiden. Einige Prozessmetriken sind plattformabhängig.
+
+Verwenden Sie **Process tree** für Details und **Terminate** nur für eine eigene Aufgabe, die Sie beenden möchten. Dies kann die Ausführung unterbrechen und die Variablen des Live-Kernels verwerfen. Ein gespeicherter Notebook-Eintrag wird nicht durch das Stoppen eines Prozesses gelöscht, aber eine unfertige Ausgabe ist kein abgeschlossenes Ergebnis. Wenn die Bereinigung ein Problem meldet und **Retry cleanup** anbietet, inspizieren Sie den Zustand, bevor Sie erneut versuchen. Laden Sie die erforderlichen Eingaben neu, bevor Sie den Code in einem neuen Kernel erneut ausführen.
+
+Verwenden Sie für wiederholte Ausführung [geplante Aufgaben](scheduled-tasks.md) nach Abschluss eines manuellen Durchlaufs.

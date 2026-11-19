@@ -1,7 +1,7 @@
 ---
 title: "模型与任务策略"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # 模型与任务策略
@@ -146,3 +146,7 @@ PDF 阅读器提供独立的 **Translation method** 和 **Model** 控件。**Age
 | Research narration | 为研究影片生成英文旁白 | 安装语音引擎和模型，等待显示 **Installed** |
 
 按任务需要安装资源。查看下载进度；**Cancel download** 停止下载，**Retry** 按下载源的支持情况续传或重新下载。重新打开标签页确认安装状态。资源正在使用时不能 **Uninstall**。另见[研究影片](research-films.md)和 [PDF 提取](previews.md#pdf-extraction)。
+
+## 选择图像生成模型 {/* #image-generation */}
+
+**Settings → Model** 中的 **Image generation** 单独选择服务与模型，用于生成或编辑图片；**Vision** 用于分析图片输入。Main 继续负责会话任务，图像服务另行配置。凭据、首次请求与版本历史见[图像生成与编辑](image-generation.md)。

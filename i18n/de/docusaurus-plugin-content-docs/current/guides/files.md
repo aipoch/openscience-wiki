@@ -1,7 +1,7 @@
 ---
 title: "Dateien, Artefakte und Versionen"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -153,3 +153,8 @@ Quellen: [Projektdateibibliothek](https://github.com/aipoch/open-science/blob/v0
 Nach der Veröffentlichung oder Wiederherstellung eines Artefakts öffnen Sie es erneut und überprüfen Sie die ausgewählte Version und den Inhalt. v1.0.7 bringt die neueste veröffentlichte Version voran; eine ältere historische Vorschau ist immer noch eine andere Version. Verwenden Sie die Versionssteuerelemente und das Provenienzfeld, um zu prüfen, wie sich die ausgewählte Version auf frühere bezieht, bevor Sie sie zitieren, herunterladen oder bearbeiten.
 
 Wenn sich ein älteres Markdown-Artefakt mit einem abgestandenen Provenienzkopf öffnet, repariert v1.0.8 diesen Geschichtszeiger. Überprüfen Sie erneut die angezeigte Version und eine Warnung vor unvollständiger Ausführung, bevor Sie die Datei freigeben. Das Reparieren eines Historienzeigers führt keine Wiederholung oder Überprüfung einer Analyse durch.
+
+
+## Bild bearbeiten und Präsentationsinhalte {/* #visual-editing */}
+
+Der Texteditor ist getrennt von [Bildbearbeitung](image-generation.md#edit) und [PPTX Editor](presentation-editing.md). Verwenden Sie diese formatspezifischen Werkzeuge für Bildvarianten oder Diatext und Formatierung. Eine schreibgeschützte CSV-Vorschau wird immer noch kein Tabellenkalkulationseditor.

@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -193,3 +193,7 @@ If a package is waiting for a destination, **Continue** reopens the import dialo
 Notebook and Compute runs reuse identical evidence content in the research package while retaining verified digests and run references. This reduces repeated bytes when a long session uses the same files many times; the first export may also prepare evidence from older records.
 
 Export through the normal Session package flow and wait for completion. Import the result into a separate project and inspect the retained runs and files. A smaller archive does not prove that every required file is present, and successful import is not a computational rerun. Use [reproducibility checks](reproducibility.md) when you need to test execution again.
+
+## Check an interrupted import {/* #import-recovery */}
+
+If an import is cancelled, do not treat it as completed. If a timeout leaves the outcome unconfirmed, look for the destination project and imported session before starting another import. Open any resulting session and inspect its files. For a missing or invalid package, select the intact `.science` file and keep the displayed error or correlation identifier when requesting help. Do not repeatedly import the same package without checking whether a previous attempt already created the session.

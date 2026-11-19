@@ -1,7 +1,7 @@
 ---
 title: "網路、代理與包映象"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-19'
 ---
 
 # 網路、代理與包映象 {/* #网络代理与包镜像 */}
@@ -18,33 +18,45 @@ Network 顯示 **Ready** 但工具失敗時，展開該工具的錯誤。狀態�
 
 | 現象 | 下一項檢查 | 不應據此得出的結論 |
 | --- | --- | --- |
-| 模型登入失敗 | 提供方認證和模型連線檢查 | Notebook 域名設定會提供模型憑據 |
-| 單個研究域名被拒絕 | **Manage access** 中的精確域名 | 新增無關的大範圍域名就能修復 |
-| 軟體源已允許但 CONNECT 失敗 | 安裝日誌、代理和 DNS 解析 | 再點一次相同授權就能解決所有連線問題 |
-| 證書校驗失敗 | CA bundle 和組織信任要求 | 必須關閉證書校驗 |
-| 連線報錯後顯示找不到包版本 | 更早的網路錯誤、Python 與平臺 | 該軟體包一定不存在 |
+| 模型登錄失敗 | 提供方認證和模型連接檢查 | Notebook 域名設置會提供模型憑據 |
+| 單個研究域名被拒絕 | **Manage access** 中的![Strict 規則的協議、主機和端口填寫示例](/img/open-science/v130/network-rule.webp)
+
+精確域名 &#124; 添加無關的大範圍域名就能修復 &#124;
+&#124; 軟件源已允許但 CONNECT 失敗 &#124; 安裝日誌、代理和 DNS 解析 &#124; 再點一次相同授權就能解決所有連接問題 &#124;
+&#124; 證書校驗失敗 &#124; CA bundle 和組織信任要求 &#124; 必須關閉證書校驗 &#124;
+&#124; 連接報錯後顯示找不到包版本 &#124; 更早的網絡錯誤、Python 與平臺 &#124; 該軟件包一定不存在 &#124;
 
 <span id="配置-notebook-域名" />
 
-## 配置公網訪問規則 {/* #public-network-rules */}
+## 選擇 Relaxed 或 Strict 網絡模式 {/* #public-network-rules */}
 
-1. 打開 **Settings → Network → Manage access**，閱讀 **Public internet access** 並檢查 **Built-in services**；標爲 **Required** 的分組保持啓用。
-2. 在 **Custom public domains** 的 **Domain hostname** 中輸入主機名、HTTP(S) URL 或以通配符開頭的規則，然後選擇 **Add to list**。
-3. 檢查規範化後的規則，再選擇 **Save changes**，重試原請求。已保存的批准會在重啓後保留。
+打開 **Settings → Network → Manage access**。模式適用於各項目中受保護的 Notebook 連接。編輯前先看 **Current: Relaxed** 或 **Current: Strict**，確認當前模式。
 
-精確主機名不包含子域名。`*.example.org` 覆蓋其子域名，但不包含 `example.org` 本身。`https://example.org/path` 這樣的 URL 會轉換爲主機名規則，路徑和端口不會限制訪問範圍。規則允許向匹配的主機發送數據。輸入不接受 IP 字面值、localhost 或嵌有賬號密碼的 URL。主機名若解析到私有地址，仍需經過私有服務審覈，公網規則不會授予該權限。
+| 模式 | 允許的連接 | 目標未獲允許時 |
+| --- | --- | --- |
+| **Relaxed**（默認） | HTTPS 域名，包括指向私有或迴環服務的域名；已保存例外按協議、域名/IP 和端口匹配 | HTTP 與直接 IP 連接需要授權 |
+| **Strict** | 僅允許手動白名單中匹配協議、域名或 IP、端口的目標 | 直接阻止，不彈出授權請求；需要的規則必須手動添加 |
 
+切換時選擇 **Strict** 或 **Relaxed**，閱讀說明，再使用 **Switch to Strict mode** 或 **Switch to Relaxed mode**。只選擇標爲 **Not yet applied** 的選項，並不會改變當前生效模式。
 
-## 信任私有服務 {/* #trusted-private-services */}
+![Strict 模式說明與白名單分組](/img/open-science/v130/network-strict.webp)
 
-僅在研究程式碼確實需要訪問已知內網服務時使用此項。該控制元件位於桌面應用中。僅支援私有服務地址；localhost、本機和保留地址仍會被阻止。輸入框不接受原始 IP 地址或萬用字元。
+### 添加 Strict 白名單規則 {/* #strict-whitelist */}
 
-1. 在 **Trusted private services** 中選擇 **Add service**，填寫 **Hostname** 和 **Port**。核對具體服務，預設埠為 443。
-2. 選擇 **Review service**，檢查解析得到的 **Approved addresses**，確認後選擇 **Add to trusted services**。
-3. 檢查列表並選擇 **Save changes**。儲存前會再次檢查 DNS；地址變化後需要重新稽核。
-4. 向該服務發起一個小請求並檢查實際響應。地址稽核本身不驗證登入憑據或服務是否可用。
+1. 在 **Strict whitelist** 中選擇 **Add rule**。
+2. 按實際服務填寫 **Network protocol**、**Hostname, IP or pattern** 和 **Port**。填寫主機名或 IP，不填寫 URL 路徑。
+3. 選擇 **Group**；需要新分組時選擇 **New group…** 並填寫 **Group name**，然後選擇 **Confirm**。
+4. 檢查保存的規則及當前模式，再發起目標服務的小請求，檢查實際響應。
 
-授權繫結完整的主機名、埠和已稽核地址，允許所有專案中的受保護 Notebook 和 Shell 程式碼向該服務傳送資料。只新增任務需要的權限。儲存網路規則會重置受保護連線，可能中斷正在進行的傳輸，請在傳輸結束後應用變更。
+精確域名不包含子域名。`*.example.org` 匹配子域名，但不匹配 `example.org`。協議和端口都是規則的一部分：443 端口的 HTTPS 規則不會授予 HTTP 或其他端口訪問。Strict 匹配請求中的主機名，不檢查其 DNS 結果屬於公網、私有還是迴環地址；只添加確實希望代碼訪問的目標。
+
+**Built-in** 和 **Manual** 表示規則來源。內置分組只在初次準備時加入，後續編輯會保留。已記住的授權與 Full access 都不會繞過 Strict。保存網絡規則會重置受保護連接，可能中斷傳輸，請在正在進行的傳輸結束後修改。
+
+## 保存 Relaxed 模式的訪問例外 {/* #trusted-private-services */}
+
+在 **Trusted unsafe networks** 下選擇 **Add address**，填寫 **Network protocol**、**Hostname** 或 IP、**Port** 及對應分組。確認後檢查保存範圍，再重試請求。例外可以避免 Relaxed 模式下重複授權匹配的目標，但不會在 Strict 模式下授予訪問。選擇 Relaxed 時，Strict 白名單不生效。
+
+規則允許建立連接，不等於登錄成功或響應有效，還應檢查服務憑據和實際結果。這些設置替代了舊的公網域名與私有服務表單；參考舊截圖時，請以當前模式和規則字段爲準。
 
 ## 選擇代理模式 {/* #选择代理模式 */}
 
@@ -66,21 +78,11 @@ Manual 支援 HTTP、HTTPS、SOCKS、SOCKS4、SOCKS5 URL，不支援 URL 內嵌�
 
 Manual 模式提示 **Enter a proxy server URL** 時，填寫可用代理地址，或透過 **Done** 放棄草稿。儲存有效地址本身不能證明該代理能完成原來失敗的請求。
 
-### 域名解析為非公網地址時 {/* #本次遇到的-fake-ip-问题 */}
+### 檢查 DNS 或代理故障 {/* #本次遇到的-fake-ip-问题 */}
 
-安裝提示 `destination resolves to a non-public network address` 時，即使短錯誤只有 `conda install failed` 或 `pip install failed`，也要開啟詳細安裝日誌。
+保留失敗請求的完整錯誤。即使規則允許目標，仍可能出現超時、證書錯誤或代理拒絕。覈對實際服務的域名、協議、端口和代理路徑。不要把舊版本的非公網地址錯誤當成當前 Strict 的匹配規則：Strict 檢查請求中的名稱/IP 與端口，不檢查 DNS 地址類別。
 
-```text
-deny network-outbound pypi.org:443
-(destination resolves to a non-public network address)
-```
-
-1. 檢查受影響域名及其解析地址。`198.18.*` 等地址不屬於公網目的地。
-2. 區分域名名單與目標地址檢查。`alreadyAllowed` 不表示解析出的地址符合要求。
-3. 與網路維護者檢查公網 DNS 解析和預期代理路徑，再重試原來的小型請求。保持域名防護開啟。
-4. 分別驗證安裝結果和實際匯入。代理已儲存、直譯器 Ready 或已有包能執行，都不足以證明新包安裝成功。
-
-如果同一錯誤持續出現，保留域名、解析地址、代理模式和安裝日誌，按[故障排查](troubleshooting.md)反饋。設定儲存成功不等於下載成功。
+修正原因後重試小請求。安裝軟件包時應分別確認安裝與導入；設置保存成功或解釋器 Ready 都不能證明下載已完成。共享日誌前去掉憑據，持續失敗時參見[故障排查](troubleshooting.md)。
 
 
 ## 軟體包映象與證書 {/* #软件包镜像与证书 */}
@@ -100,7 +102,7 @@ deny network-outbound pypi.org:443
 
 包映象改變軟體包來源。核對映象所需的根地址或索引格式，儲存後在所選環境中重試小規模安裝。模型提供方代理需單獨配置。
 
-已配置的 Conda、PyPI 和 CRAN 映象主機會在本次包管理操作中獲得臨時訪問權限。這不會將其加入永久 Notebook 域名列表，也不會授予普通 Notebook 程式碼相同權限。跳轉到其他主機時仍按網路審批流程處理。
+已配置的 Conda、PyPI 和 CRAN 鏡像主機會在本次包管理操作中獲得臨時訪問權限。這不會將其加入永久 Notebook 域名列表，也不會授予普通 Notebook 代碼相同權限。跳轉到其他主機時，Strict 模式要求實際協議、主機和端口仍符合白名單；臨時包安裝授權不會繞過 Strict 規則。
 
 填寫受支援的 HTTP(S) 映象地址，不包含內嵌憑據、空白字元、localhost 或純 IP 地址。映象設定被接受，不代表伺服器可用，也不會修復域名解析到保留地址的問題。安裝失敗時先檢視該操作真正訪問的目標和錯誤，再重試。遠端**模型**端點另外遵循[HTTPS 要求](providers.md)。
 
@@ -110,7 +112,7 @@ deny network-outbound pypi.org:443
 
 網路已連通但 Python 仍缺模組時，繼續檢視[執行時與軟體包](./runtimes.md)。遠端主機配置單獨見 [Compute](remote-compute.md)。
 
-[網路設定原始碼](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/NetworkPanel.tsx)、[Notebook 網路邊界](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/network-sandbox-owner.ts)。
+[網絡設置源碼](https://github.com/aipoch/open-science/blob/v1.3.0/src/renderer/src/pages/settings/NetworkPanel.tsx)、[Notebook 網絡邊界](https://github.com/aipoch/open-science/blob/v1.3.0/src/main/notebook/network-sandbox-owner.ts)。
 
 ## 查詢 HTTP 報錯 {/* #查询-http-报错 */}
 
@@ -122,6 +124,6 @@ v0.31.1 中，網路保護阻止 R 執行時，Notebook 會顯示行內提示。
 
 ## 切換授權模式後的網絡訪問 {/* #network-mode-changes */}
 
-從 v1.0.5 起，**Full access** 對公開網絡目標不再逐項彈出授權卡片，但身份驗證、來源限制和私有服務檢查仍然適用。切換爲更嚴格的模式會關閉已有連接，避免繼續沿用舊權限。請在新模式下重試目標請求，並檢查出現的授權卡片。
+**Full access** 可以省去適用的 Agent 手動權限卡，但不會繞過 Strict Notebook 白名單。請求被拒絕時，檢查 **Settings → Network → Manage access**。Relaxed 模式下，協議與目標決定是否需要授權或已保存的例外。提供商憑據和服務限制仍然適用。
 
-全局網絡授權會立即反映到 **Settings → Network**。添加新規則前先檢查現有域名或私有服務列表。全局授權範圍大於單次批准，只保留你需要的範圍。另見[授權模式](approval-modes.md)。
+修改網絡規則可能關閉已有受保護連接。按最終生效模式重試，並檢查實際響應。會話權限見[審批模式](approval-modes.md)。

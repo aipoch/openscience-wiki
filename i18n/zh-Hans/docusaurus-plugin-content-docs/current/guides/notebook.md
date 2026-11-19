@@ -1,7 +1,7 @@
 ---
 title: "Notebook 与执行证据"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-19'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -291,3 +291,11 @@ Runtimes 的包清单描述已安装环境，Provenance 描述某个文件所捕
 ## 检查本地文件夹权限 {/* #folder-access */}
 
 无法读取本地输入时，检查 [Notebook 与 Shell 文件夹权限](../reference/permissions.md#notebook-folder-restrictions)。更改限制会停止正在运行的进程并清空变量。先保存结果，授权所需文件夹，再重跑恢复工作状态所需的单元格。
+
+## 检查并停止所属进程 {/* #process-monitor */}
+
+打开项目的 Compute 视图，查看本地进程监控。操作前核对进程对应的会话与运行环境；CPU、内存和运行时长可以帮助区分正在执行的任务与空闲内核。部分进程指标因平台而异。
+
+通过 **Process tree** 查看详情，只对确实准备停止的所属任务使用 **Terminate**。这会中断执行，并可能丢失内核中的变量。停止进程不会删除已经保存的 Notebook 记录，但未完成输出不属于完整结果。清理报错并提供 **Retry cleanup** 时，先检查状态再重试。在新内核中重跑代码前，应重新加载所需输入。
+
+需要重复执行时，先完成一次手动运行，再使用[定时任务](scheduled-tasks.md)。

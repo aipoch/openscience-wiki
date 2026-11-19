@@ -1,7 +1,7 @@
 ---
 title: "Proveedor y configuración del modelo local"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -265,3 +265,12 @@ En v1.2.1, **Open-Science Agent** soporta tanto una entrada de Codex importada c
 4. Enviar una solicitud corta y comprobar la respuesta real antes de iniciar la investigación. Detección de entrada importada, configuración guardada y ejecución exitosa son estados separados.
 
 El catálogo Antrópico también incluye **Claude Fable 5.2** con una ventana de contexto 1M. Las entradas del catálogo no conceden acceso a la cuenta o reemplazan automáticamente a Main.
+
+
+## Conectar una suscripción a CodeBuddy regional {/* #codebuddy-subscription */}
+
+Utilice el tiempo de ejecución CodeBuddy al elegir una suscripción a CodeBuddy. En **Settings → Model**, seleccione la cuenta **CodeBuddy (China)** o **CodeBuddy (International)**. La elección regional debe coincidir con la suscripción que pretende utilizar.
+
+Elija la conexión de inicio existente compatible o el flujo de registro del navegador mostrado por el formulario. Para un login existente, accede al sitio seleccionado en CodeBuddy CLI y luego usa **Connect**. Un perfil de WorkBuddy solo no es el registro obligatorio de CodeBuddy CLI. Para el registro del navegador, termine el flujo de cuenta y vuelva a Open-Science.
+
+Espera la verificación de conexión y los modelos descubiertos de la cuenta. Seleccione un modelo disponible y envíe una solicitud corta antes de una tarea más larga. Si el sitio o el registro es incorrecto, corregir esa conexión de cuenta y refrescarlo; una fila de proveedor ahorrado no prueba que un modelo es accesible.

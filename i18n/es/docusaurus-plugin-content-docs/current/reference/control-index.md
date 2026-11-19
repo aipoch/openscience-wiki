@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Índice de página y control"
 description: "Encontrar cada botón Open-Science documentado, entrada, cambio y resultado por página."
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 # Índice de página y control {/* #page-and-control-index */}
@@ -45,17 +45,18 @@ Vea [Configuración de primera vez](../guides/onboarding.md) y [Configuración d
 
 | Control | Resultado |
 | --- | --- |
-| Todos los proyectos | Regresa a casa |
+| Todos los proyectos | Volver a casa |
 | Nombre del proyecto | Abrir el punto de entrada o menú del proyecto |
-| Barra lateral de colapso | Colapso o ampliación de la barra lateral izquierda |
+| Collapse sidebar | Colapso o ampliación de la barra lateral izquierda |
 | Nuevo | Crear una sesión |
-| Personalizar | Iniciar una conversación de personalización Skill/Specialist |
+| Personalizar | Iniciar una conversación de personalización de Habilidad/Especialista |
 | Archivos | Mostrar el panel de archivos del proyecto a la derecha |
+| Cuadro | [Crear e inspeccionar mensajes de tiempo o scripts](../guides/scheduled-tasks.md) |
 | Biblioteca | Referencias abiertas relacionadas con proyectos en la biblioteca de literatura |
-| Período de sesiones | Interruptores de sesiones; informes de estado Idle, Running, Permission, u otro estado |
-| Acciones de sesión | Pin/Unpin, Editar..., Descargar todos los artefactos, Ver libreta, Exportar conversación..., Archivo, Eliminar |
-| Mensajes, Ajustes, GitHub | Notificaciones abiertas, ajustes o el repositorio oficial |
-| Redimensionar izquierda/derecha, Collapse vista previa | Redimensionar un panel o colapsar Vista previa |
+| Reunión | sesiones de cambio; informes de estado Idle, Running, Permission, u otro estado |
+| Medidas de la sesión | Pin/Unpin, Editar..., Descargar todos los artefactos, Ver libreta, Exportar conversación..., Archivo, Eliminar |
+| Mensajes, Ajustes, GitHub | Notificaciones, ajustes o el repositorio oficial |
+| Resize izquierda/derecha, Collapse vista previa | Redimensionar un panel o colapsar Vista previa |
 
 ## Conversación y Compositor {/* #conversation-and-composer */}
 
@@ -72,6 +73,10 @@ Vea [Configuración de primera vez](../guides/onboarding.md) y [Configuración d
 | Modelo | Modelo activo, esfuerzo de racionalización | Cambiar el modelo o el esfuerzo para las solicitudes posteriores |
 | Queue/Send | Queue edit/delete/reorder, Enviar ahora, Enviar, Plan primero, chat lateral, Branch, Stop | Etapa o envíe seguimientos, elija un modo o detenga el funcionamiento actual |
 | Desplazarse hasta el final | Saltar al último mensaje |
+
+## Edición de imagen y presentación {/* #creation-editors */}
+
+Utilice [Servicios de imagen](../guides/image-generation.md#configure) para la API de imagen y el modelo. Abra una imagen generada para editar e inspeccionar sus versiones. En el escritorio PPTX vista previa, **Edit**, **Apply**, **Save**, **Historia de la versión** y **Comparar con la versión anterior** administran [Cambios de presentación](../guides/presentation-editing.md).
 
 ## Permiso, plan y cuestiones estructuradas {/* #permission-plan-and-structured-questions */}
 
@@ -162,15 +167,15 @@ Añadir host, tarjeta host/enable, Probe/Retry, Detalle/Edit/Remove, Recursos, m
 
 ### Red {/* #network */}
 
-Revise de nuevo; Proxy System/Manual/Direct; Notebook dominio allowlist; Espejo del paquete Configurar/Editar; Canal de Conda, índice de pip, y paquete CA; Ver espejos, Cancelar y Guardar.
+Revise de nuevo; Sistema Proxy/Manual/Direct; Notebook Modo Relaxed/Strict, protocolo/host/port rules and groups; Espejo del paquete Configurar/Editar; Canal Conda, índice de pip y paquete CA; Vista espejos, Cancelar y Guardar.
 
 ### Modelo {/* #model */}
 
-Modelo activo, radios de resonancia y políticas modelo Subagent/Revisor/Vision/Session-details; Proveedor Test/Edit/Delete/Add. El formulario de Proveedor contiene todos los campos de la página de Modelo de A bordo más Cancelar y Guardar.
+Modelo activo, radios de resonancia, políticas Subagent/Reviewer/Vision/Session-details, y [Modelo de generación de imagen / Servicios de imagen](../guides/image-generation.md); Test/Edit/Delete/Add. El formulario del Proveedor contiene todos los campos de la página Modelo de A bordo más Cancelar y Guardar.
 
 ### Agente {/* #agent */}
 
-OpenCode/Claude/Codex/CodeBuddy/Pi framework card, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Uninstall confirmation.
+Agente de Open-Science incorporado; tarjetas opcionales OpenCode/Claude/Codex/CodeBuddy/Pi framework, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Uninstall confirmation.
 
 ### Permisos {/* #permissions */}
 

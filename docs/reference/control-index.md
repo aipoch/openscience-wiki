@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Page and control index
 description: Find every documented Open-Science button, input, switch, and result by page.
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 # Page and control index
@@ -51,6 +51,7 @@ See [First-time setup](../guides/onboarding.md) and [Provider configuration](../
 | New | Create a session |
 | Customize | Start a Skill/Specialist customization conversation |
 | Files | Show the project files panel on the right |
+| Schedule | [Create and inspect timed messages or scripts](../guides/scheduled-tasks.md) |
 | Library | Open project-linked references in the literature library |
 | Session row | Switch sessions; status reports Idle, Running, Permission, or another state |
 | Session actions | Pin/Unpin, Edit…, Download all artifacts, View notebook, Export conversation…, Archive, Delete |
@@ -72,6 +73,10 @@ See [First-time setup](../guides/onboarding.md) and [Provider configuration](../
 | Model | Active model, Reasoning effort | Change the model or effort for later requests |
 | Queue/Send | Queue edit/delete/reorder, Send now, Send, Plan first, Side chat, Branch, Stop | Stage or submit follow-ups, choose a mode, or stop the current run |
 | Scroll to end | Jump to the latest message |
+
+## Image and presentation editing {/* #creation-editors */}
+
+Use [Image services](../guides/image-generation.md#configure) for the image API and model. Open a generated image to edit and inspect its versions. In the desktop PPTX preview, **Edit**, **Apply**, **Save**, **Version history** and **Compare with previous version** manage [presentation changes](../guides/presentation-editing.md).
 
 ## Permission, plan, and structured questions
 
@@ -162,15 +167,15 @@ Add host, Host card/enable, Probe/Retry, Detail/Edit/Remove, Resources, Direct S
 
 ### Network
 
-Check again; Proxy System/Manual/Direct; Notebook domain allowlist; Package mirror Configure/Edit; Conda channel, pip index, and CA bundle; View mirrors, Cancel, and Save.
+Check again; Proxy System/Manual/Direct; Notebook Relaxed/Strict mode, protocol/host/port rules and groups; Package mirror Configure/Edit; Conda channel, pip index, and CA bundle; View mirrors, Cancel, and Save.
 
 ### Model
 
-Active model, Reasoning radios, and Subagent/Reviewer/Vision/Session-details model policies; Provider Test/Edit/Delete/Add. The Provider form contains all fields from the Onboarding Model page plus Cancel and Save.
+Active model, Reasoning radios, Subagent/Reviewer/Vision/Session-details policies, and [Image generation model / Image services](../guides/image-generation.md); Provider Test/Edit/Delete/Add. The Provider form contains all fields from the Onboarding Model page plus Cancel and Save.
 
 ### Agent
 
-OpenCode/Claude/Codex/CodeBuddy/Pi framework card, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Uninstall confirmation.
+Built-in Open-Science Agent; optional OpenCode/Claude/Codex/CodeBuddy/Pi framework cards, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Uninstall confirmation.
 
 ### Permissions
 

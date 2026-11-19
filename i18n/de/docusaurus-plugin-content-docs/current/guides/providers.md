@@ -1,7 +1,7 @@
 ---
 title: "Anbieter und lokales Modell-Setup"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -265,3 +265,12 @@ In v1.2.1, **Open-Science Agent** unterstützt sowohl ein importiertes Codex-Log
 4. Senden Sie eine kurze Anfrage und überprüfen Sie die tatsächliche Antwort, bevor Sie mit der Recherche beginnen. Importierte Anmeldeerkennung, gespeicherte Konfiguration und erfolgreiche Ausführung sind separate Zustände.
 
 Der Anthropische Katalog enthält auch **Claude Fable 5.2** mit einem 1M Kontextfenster. Katalogeinträge gewähren keinen Kontozugriff oder ersetzen Main automatisch.
+
+
+## Verbinden eines regionalen CodeBuddy-Abonnements {/* #codebuddy-subscription */}
+
+Verwenden Sie die CodeBuddy-Laufzeit, wenn Sie ein CodeBuddy-Abonnement auswählen. Wählen Sie in **Settings → Model** das passende **CodeBuddy (China)**- oder **CodeBuddy (International)**-Konto aus. Die regionale Auswahl muss mit dem Abonnement übereinstimmen, das Sie verwenden möchten.
+
+Wählen Sie den unterstützten vorhandenen Login-Verbindung oder Browser-Anmeldefluss durch das Formular angezeigt. Melden Sie sich für eine vorhandene Anmeldung bei der ausgewählten Site in CodeBuddy CLI an und verwenden Sie dann **Connect**. Ein WorkBuddy-Profil allein ist nicht die erforderliche CodeBuddy CLI Anmeldung. Für die Browser-Anmeldung beenden Sie den Kontofluss und kehren zu Open-Science zurück.
+
+Warten Sie auf die Verbindungsüberprüfung und die entdeckten Modelle des Kontos. Wählen Sie ein verfügbares Modell aus und senden Sie eine kurze Anfrage vor einer längeren Aufgabe. Wenn die Website oder die Anmeldung falsch ist, korrigieren Sie diese Kontoverbindung und aktualisieren Sie sie; eine gespeicherte Anbieterzeile beweist nicht, dass ein Modell zugänglich ist.

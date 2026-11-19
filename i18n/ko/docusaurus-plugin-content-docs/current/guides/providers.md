@@ -1,7 +1,7 @@
 ---
 title: "공급자 및 지역 모델 설정"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -265,3 +265,12 @@ v1.2.1에서, **Open-Science Agent** 수입된 Codex 로그인 및 계정 모두
 4. 짧은 요청을 보내고 연구 시작 전에 실제 응답을 확인합니다. Imported login detection, 저장된 구성 및 성공적인 실행은 별도의 상태입니다.
 
 Anthropic 카탈로그는 또한 포함합니다 **Claude Fable 5.2** 1M 컨텍스트 윈도우로. 카탈로그 항목은 계정 액세스를 부여하지 않거나 자동으로 메인을 대체합니다.
+
+
+## 지역 CodeBuddy 구독 연결 {/* #codebuddy-subscription */}
+
+CodeBuddy 구독을 선택할 때 CodeBuddy 실행 시간을 사용하십시오. **Settings → Model**에서 **CodeBuddy (China)** 또는 **CodeBuddy (International)** 계정과 일치하는 것을 선택하십시오. 지역 선택은 사용하려는 구독과 일치해야합니다.
+
+지원되는 기존 로그인 연결 또는 브라우저 로그인 흐름을 양식으로 선택하십시오. 기존 로그인을 위해 CodeBuddy CLI에서 선택한 사이트에 로그인한 다음 **Connect**를 사용합니다. WorkBuddy 프로필은 필수 CodeBuddy CLI 로그인이 아닙니다. 브라우저에서 계정 흐름을 완료하고 Open-Science로 돌아갑니다.
+
+연결 검증 및 계정의 발견 모델에 대한 대기. 가능한 모델을 선택하고 더 긴 작업 전에 짧은 요청을 보냅니다. 사이트 또는 로그인이 잘못되면 계정 연결과 새로 고침하십시오. 저장된 공급자 행은 모델이 접근 할 수 없다는 것을 증명하지 않습니다.

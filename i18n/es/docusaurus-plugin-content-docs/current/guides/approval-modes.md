@@ -1,7 +1,7 @@
 ---
 title: "Permisos y aprobaciones"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-19'
 ---
 
 # Permisos y aprobaciones {/* #permissions-and-approvals */}
@@ -107,3 +107,8 @@ Fuente: [Subvenciones y deshacer](https://github.com/aipoch/open-science/commit/
 Con **Auto-approve edits**, un conjunto definido de operaciones de la Biblioteca incorporada puede pasar la aprobación del agente por llamada automáticamente. Estos incluyen referencias de búsqueda y lectura, ahorro a Inbox, adquisición de PDFs, formateo de referencias y preparación de documentos de citación. Esto reduce los impulsos repetidos durante el trabajo rutinario de la Biblioteca.
 
 La regla se aplica a las herramientas reconocidas de literatura propiedad de la aplicación, no todas las llamadas MCP, comando o operación de red. Las propias reglas de archivo, red y recursos de las herramientas siguen vigentes, y esta decisión no crea una subvención permanente. Elija **Ask for approval** cuando desee inspeccionar las solicitudes de agente individualmente. Revisar los candidatos de la bandeja de entrada antes de aceptarlos.
+
+
+## Mantenga el modo de red separado {/* #strict-network */}
+
+**Full access** no pasa por la lista blanca de **Strict** Notebook. Un destino sin lista está bloqueado sin una oferta de autorización, incluso cuando la conversación permite acciones automáticas. Agregue sólo el protocolo requerido, el nombre de host/IP y el puerto en [Configuración de redes](network.md#public-network-rules).

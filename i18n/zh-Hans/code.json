@@ -2814,5 +2814,35 @@
   },
   "docs.outline.reference.v121.scope": {
     "message": "资源中心、问题优化、Codex 订阅与文献 CSV 导出。"
+  },
+  "docs.guides.outline.scheduled-tasks.title": {
+    "message": "安排定时研究任务"
+  },
+  "docs.guides.outline.scheduled-tasks.scope": {
+    "message": "一次性或重复的消息与脚本任务，权限、时间和运行历史。"
+  },
+  "docs.guides.outline.image-generation.title": {
+    "message": "生成与编辑图片"
+  },
+  "docs.guides.outline.image-generation.scope": {
+    "message": "配置图像服务、生成图片、比较编辑版本。"
+  },
+  "docs.guides.outline.presentation-editing.title": {
+    "message": "编辑 PowerPoint 演示文稿"
+  },
+  "docs.guides.outline.presentation-editing.scope": {
+    "message": "编辑幻灯片文字与格式、检查版本并导出 PPTX。"
+  },
+  "docs.outline.reference.v130.title": {
+    "message": "v1.3.0"
+  },
+  "docs.outline.reference.v130.scope": {
+    "message": "定时任务、图像生成、演示文稿编辑与影片模式。"
+  },
+  "docs.outline.reference.v122.title": {
+    "message": "v1.2.2"
+  },
+  "docs.outline.reference.v122.scope": {
+    "message": "严格网络模式、影片检查点、PDF 内容保留与恢复。"
   }
 }

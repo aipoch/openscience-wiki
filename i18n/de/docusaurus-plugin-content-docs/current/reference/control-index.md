@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Seite und Kontrollindex"
 description: "Finden Sie jede dokumentierte Open-Science-Taste, Eingabe, Switch und Ergebnis nach Seite."
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 # Seite und Kontrollindex {/* #page-and-control-index */}
@@ -46,14 +46,15 @@ Siehe [Ersteinrichtung](../guides/onboarding.md) und [Anbieterkonfiguration](../
 | Kontrolle | Ergebnis |
 | --- | --- |
 | Alle Projekte | Rückkehr nach Hause |
-| Projektname | Öffnen Sie den Projekteinstiegspunkt oder das Menü |
+| Projektbezeichnung | Öffnen Sie den Projekteinstiegspunkt oder das Menü |
 | Absturz-Seitenleiste | Collapse oder erweitern Sie die linke Sidebar |
 | Neu | Erstellen einer Sitzung |
-| Anpassen | Starten Sie eine Skill/Specialist-Anpassungskonversation |
-| Dateien | Zeigen Sie das Projektdateienfeld rechts |
+| Customize | Starten Sie eine Skill / Specialist Anpassung Konversation |
+| Akten | Zeigen Sie das Project Files Panel rechts |
+| Zeitplan | [Erstellen und Überprüfen von zeitgesteuerten Nachrichten oder Skripten](../guides/scheduled-tasks.md) |
 | Bibliothek | Offene projektverknüpfte Referenzen in der Literaturbibliothek |
-| Sitzungsreihe | Switch-Sitzungen; Statusmeldungen Idle, Running, Permission oder ein anderer Status |
-| Sitzungsaktionen | Pin/Unpin, Edit..., Download aller Artefakte, View notebook, Export conversation..., Archive, Delete |
+| Sitzungsreihe | Wechselsitzungen; Statusmeldungen Idle, Running, Permission oder ein anderer Status |
+| Sitzungen | Pin/Unpin, Edit..., Download aller Artefakte, View notebook, Export conversation..., Archive, Delete |
 | Nachrichten, Einstellungen, GitHub | Offene Benachrichtigungen, Einstellungen oder das offizielle Repository |
 | Größe nach links/rechts, Collapse Preview | Größe eines Panels ändern oder Preview zusammenklappen |
 
@@ -72,6 +73,10 @@ Siehe [Ersteinrichtung](../guides/onboarding.md) und [Anbieterkonfiguration](../
 | Modell | Aktives Modell, Reasoning effort | Ändern des Modells oder des Aufwands für spätere Anforderungen |
 | Warteschlange/Send | Warteschlangen bearbeiten/löschen/neu bestellen, Jetzt senden, Zuerst planen, Nebenchat, Zweigstellen, Stoppen | Folgemaßnahmen durchführen oder einreichen, einen Modus auswählen oder den aktuellen Lauf stoppen |
 | Zum Ende scrollen | Springen Sie zur neuesten Nachricht |
+
+## Bild- und Präsentationsbearbeitung {/* #creation-editors */}
+
+Verwenden Sie [Bilddienste](../guides/image-generation.md#configure) für die Image API und das Modell. Öffnen Sie ein generiertes Bild zum Bearbeiten und Überprüfen seiner Versionen. In der Desktop-PPTX-Vorschau verwalten **Edit**, **Apply**, **Save**, **Versionsgeschichte** und **Vergleichen Sie mit der vorherigen Version** [Präsentationsänderungen](../guides/presentation-editing.md).
 
 ## Permission, Plan und strukturierte Fragen {/* #permission-plan-and-structured-questions */}
 
@@ -162,15 +167,15 @@ Hinzufügen von Host, Hostkarte/-enable, Probe/Retry, Detail/Edit/Remove, Resour
 
 ### Netzwerk {/* #network */}
 
-erneut prüfen; Proxy System/Manual/Direct; Notebook-Domänenzulassungsliste; Gehäusespiegel Konfigurieren/Bearbeiten Conda-Kanal, Pip-Index und CA-Bundle Spiegel anzeigen, abbrechen und speichern.
+Überprüfen Sie erneut; Proxy System/Manual/Direct; Notebook Relaxed/Strict mode, protocol/host/port rules and groups; Package mirror Configure/Edit; Conda channel, pip index, and CA bundle; View mirrors, Cancel, and Save.
 
 ### Modell {/* #model */}
 
-Aktives Modell, Reasoning Radios und Subagent/Reviewer/Vision/Session-Details Modellrichtlinien; Provider Test/Edit/Delete/Add. Das Provider-Formular enthält alle Felder der Onboarding-Modellseite sowie Cancel und Save.
+Aktives Modell, Reasoning Radios, Subagent/Reviewer/Vision/Session-Details Richtlinien und [Bilderzeugungsmodell / Bilddienste](../guides/image-generation.md); Provider Test/Edit/Delete/Add. Das Provider-Formular enthält alle Felder der Onboarding Model Seite sowie Cancel and Save.
 
 ### Agent {/* #agent */}
 
-OpenCode/Claude/Codex/CodeBuddy/Pi-Rahmenkarte, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Deinstall confirmation.
+Eingebauter Open-Science-Agent; optionale OpenCode/Claude/Codex/CodeBuddy/Pi-Rahmenkarten, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, and Deinstall confirmation.
 
 ### Berechtigungen {/* #permissions */}
 

@@ -2,7 +2,7 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -193,3 +193,8 @@ Wenn ein Paket auf ein Ziel wartet, **Continue** öffnet den Import-Dialog erneu
 Notebook und Compute verwenden identische Evidenzinhalte im Forschungspaket wieder, während verifizierte Digests beibehalten und Referenzen ausgeführt werden. Dies reduziert wiederholte Bytes, wenn eine lange Sitzung die gleichen Dateien viele Male verwendet; der erste Export kann auch Beweise aus älteren Datensätzen vorbereiten.
 
 Exportieren Sie durch den normalen Session-Paketfluss und warten Sie auf den Abschluss. Importieren Sie das Ergebnis in ein separates Projekt und prüfen Sie die gespeicherten Runs und Dateien. Ein kleineres Archiv beweist nicht, dass jede erforderliche Datei vorhanden ist, und ein erfolgreicher Import ist keine computergestützte Wiederholung. Verwendung [Reproduzierbarkeitsprüfungen](reproducibility.md) Wenn Sie die Ausführung erneut testen müssen.
+
+
+## Überprüfen Sie einen unterbrochenen Import {/* #import-recovery */}
+
+Wenn ein Import storniert wird, behandeln Sie ihn nicht als abgeschlossen. Wenn ein Timeout das Ergebnis unbestätigt lässt, suchen Sie nach dem Zielprojekt und der importierten Sitzung, bevor Sie einen weiteren Import starten. Öffnen Sie jede resultierende Sitzung und überprüfen Sie ihre Dateien. Wählen Sie für ein fehlendes oder ungültiges Paket die intakte `.science`-Datei aus und behalten Sie die angezeigte Fehler- oder Korrelationskennung bei, wenn Sie Hilfe anfordern. Importieren Sie nicht wiederholt dasselbe Paket, ohne zu prüfen, ob bereits ein vorheriger Versuch die Sitzung erstellt hat.

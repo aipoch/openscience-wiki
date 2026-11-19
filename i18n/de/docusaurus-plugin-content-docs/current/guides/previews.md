@@ -1,7 +1,7 @@
 ---
 title: "Öffnen und Vorschauen von Dateien"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -62,14 +62,14 @@ Verwenden Sie **Provenance**, um den Code, das Ausführungsprotokoll, die Nachri
 
 Die <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-reading.docx">Word-Bericht</ExampleDownload>, <ExampleDownload path="/examples/gse60450/office/GSE60450-sample-qc.xlsx">Excel Arbeitsmappe</ExampleDownload>, <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-overview.pptx">PowerPoint Slides</ExampleDownload> und <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-figures.tiff">zweiseitige TIFF</ExampleDownload> zeigen die gleichen gespeicherten GSE60450 QC-Ergebnisse. Es geht um das Lesen von Kopien, nicht um neue Analysen.
 
-| Format | Schritte und was zu überprüfen ist |
+| Format | Schritte und was zu überprüfen |
 | --- | --- |
-| DOCX | Öffnen Sie den Bericht. Verwendung **Previous / Next** um beide Seiten zu besuchen oder **Gliederung** zu einer Überschrift springen. Drücken Sie &lt;0xE2>&lt;0x8C>&lt;0x98>F (macOS) oder Strg+F (Windows/Linux), suchen Sie nach `raw-count` und überprüfen Sie seine Übereinstimmungen und die Methoden. Full-Screen-Vorschau gibt mehr Platz; Es gibt kein Word Editing Ribbon. |
-| XLSX | Öffnen Sie die Arbeitsmappe und wählen Sie **Zusammenfassung** oder **Proben** unten. Scrollen Sie horizontal für die letzte Spalte. Samples enthält 12-Datenzeilen plus Kopfzeile, Abstand und Quellnotizen; Der Viewer meldet 17 verwendete Zeilen, nicht 17 biologische Proben. Werte sind eine Vorschau der gespeicherten Arbeitsmappe, kein Beweis für eine neue Berechnung. |
-| PPTX | Öffnen Sie die Folien, wählen Sie die **Seite 2** Thumbnail oder **Weiter**, und Kontrolle **2 / 2**. Verwenden Sie **Finden Sie** um zu suchen nach `normalization` auf dem Methodenträger. **Notes** zeigt eingebettete Lautsprechernotizen an; Dies ist eine Lesefläche, kein Präsentationseditor. |
-| TIFF | Öffnen Sie die Figur und verwenden Sie **Nächste Seite / Vorherige Seite**. Die beiden Seiten zeigen rohe Bibliotheksgrößen und detektierte Genmediane. **Zoom in / Zoom out / Zoom zurücksetzen** die Ansicht ändert; Überprüfung **Seite 1 von 2** oder **Seite 2 von 2** bevor die Figur interpretiert wird. |
-| JSON | Öffnen Sie <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">Zusammenfassung</ExampleDownload> um Quelltext, Identifikatoren und Werte zu überprüfen. Es wird als Code und nicht als erweiterbarer Objektbaum angezeigt. |
-| HTML | Öffnen Sie <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">der Lesetisch</ExampleDownload>. **Source** zeigt die HTML; **Render** stellt das formatierte Dokument wieder her. Kein Modus wiederholt den QC. |
+| DOCX | Öffnen Sie den Bericht. Verwendung **Previous / Next** um beide Seiten zu besuchen oder **Gliederung** zu einer Überschrift springen. Drücken Sie &lt;0xE2>&lt;0x8C>&lt;0x98>F (macOS) oder Ctrl+F (Windows/Linux), suchen Sie `raw-count` und überprüfen Sie seine Übereinstimmungen und die Methoden. Vollbildvorschau gibt mehr Platz; Es gibt kein Word-Bearbeitungsband. |
+| XLSX | Öffnen Sie die Arbeitsmappe und wählen Sie **Zusammenfassung** oder **Proben** unten. Scrollen Sie horizontal für die letzte Spalte. Samples enthält 12 Datenzeilen plus Kopfzeile, Abstand und Quellnotizen; der Betrachter meldet 17 verwendete Zeilen, nicht 17 biologische Proben. Werte sind eine Vorschau der gespeicherten Arbeitsmappe, kein Beweis für eine neue Berechnung. |
+| PPTX | Öffnen Sie die Folien, wählen Sie die **Seite 2** Thumbnail oder **Nächster Artikel**, und Kontrolle **2 / 2**. Verwendung **Finde** Suche nach `normalization` auf dem Methodenträger. **Notes** zeigt eingebettete Lautsprechernotizen; verwenden Sie die [Presentation Editor](presentation-editing.md) Slide-Text und Formatierung zu ändern. |
+| TIFF | Öffnen Sie die Figur und verwenden Sie **Nächste Seite / Vorherige Seite**. Die beiden Seiten zeigen rohe Bibliotheksgrößen und detektierte Genmediane. **Zoom in / Zoom out / Zoom zurücksetzen** Ändert die Ansicht; check **Seite 1 von 2** oder **Seite 2 von 2** Vor der Interpretation der Figur. |
+| JSON | Offen <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">Zusammenfassung</ExampleDownload> Quelltext, Identifikatoren und Werte zu prüfen. Es wird als Code und nicht als erweiterbarer Objektbaum angezeigt. |
+| HTML | Offen <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">der Lesetisch</ExampleDownload>. **Source** zeigt das HTML; **Render** stellt das formatierte Dokument wieder her. Kein Modus wiederholt den QC. |
 
 ![Seitensteuerung und tatsächliche Textübereinstimmungen in der Word-Lesekopie](/img/open-science/v0333/word-search.webp)
 
@@ -87,14 +87,14 @@ In der folgenden Tabelle sind Vorschaumodi und Steuerelemente für unterstützte
 
 | Familie | Was zu inspizieren | Kontrollen und Grenzen |
 | --- | --- | --- |
-| PDF | Seitenzahl, lesbarer Text, Quelle PDF | Thumbnails, Skizzen, Dokumentensuche, Seitennavigation, Zoom und wählbare Regionen; Gescannte Seiten haben möglicherweise keinen durchsuchbaren Text |
-| Code/Klartext | Betreffender Block und Sprache vollständig | Zeilennummern, Syntaxanzeige, Kopie/Download; Übergroße Inhalte können begrenzt werden |
-| JSON / HTML | Struktur oder gerendertes Dokument | Rendering ist keine Berechtigung, Code mit Anwendungsprivilegien auszuführen. |
-| Bilder / TIFF | Auflösung und ausgewähltes Bild | Bildzoom/-blende; TIFF hat einen dedizierten Rendering-Pfad |
-| Bürodateien | Ob der Managed Renderer erfolgreich ist | Herunterladen/Öffnen von außen, wenn die Vorschau von DOCX/XLSX/PPTX nicht verfügbar ist; Preview ist keine vollständige Office-Bearbeitung |
+| PDF | Seitenzahl, lesbarer Text, Quelle PDF | Thumbnails, Gliederung, Dokumentensuche, Seitennavigation, Zoom und auswählbare Regionen; gescannte Seiten haben möglicherweise keinen durchsuchbaren Text |
+| Code/Klartext | Vollständiger relevanter Block und Sprache | Zeilennummern, Syntax-Display, Copy/Download; übergroße Inhalte können eingeschränkt werden |
+| JSON / HTML | Struktur oder gerendertes Dokument | Rendering ist keine Berechtigung zum Ausführen von Code mit Anwendungsprivilegien |
+| Bilder / TIFF | Auflösung und ausgewähltes Bild | Bildzoom/Pan; TIFF hat einen dedizierten Renderpfad |
+| Bürodateien | Ob der Managed Renderer erfolgreich ist | Herunterladen/Öffnen extern, wenn die Vorschau von DOCX/XLSX/PPTX nicht verfügbar ist; PPTX unterstützt [Schieberbearbeitung](presentation-editing.md)DOCX/XLSX Preview ist kein Full Office Editor |
 | Biologische Sequenzen | Sequenzidentität und Umfang | Sequenzorientierte Ansicht für unterstützte FASTA-Eingaben |
-| Molekularstrukturen | Parsed Modell und gewählte Darstellung | Drehen, Zoomen, Schwenken und unterstützte Darstellungen von Cartoon/Stick/Sphere/Surface/Line Fehlende Strukturdaten können eine Darstellung deaktivieren |
-| Unbekannte oder nicht unterstützte Datei | Name, Größe und Fallback-Nachricht | Download für einen geeigneten externen Viewer; keinen gültigen Inhalt aus der Erweiterung ableiten |
+| Molekülstrukturen | Parsed Modell und gewählte Darstellung | Drehen, Zoomen, Schwenken und unterstützte Cartoon/Stick/Sphere/Surface/Line Darstellungen; fehlende Strukturdaten können eine Darstellung deaktivieren |
+| Unbekannte oder nicht unterstützte Datei | Name, Größe und Fallback-Meldung | Download für einen geeigneten externen Viewer; keine gültigen Inhalte aus der Erweiterung ableiten |
 
 Verknüpfen Sie für den PDF-Kontext nur die für die aktuelle Aufgabe relevanten Papiere und trennen Sie sie, wenn die nächste Aufgabe sie nicht verwenden soll. Die App unterstützt bis zu drei verknüpfte PDFs pro Sitzung. Eine Literaturaufzeichnung ohne angehängtes PDF liefert Metadaten, nicht den Nachweis, dass Volltext gelesen wurde; siehe [Bibliothek](library.md).
 

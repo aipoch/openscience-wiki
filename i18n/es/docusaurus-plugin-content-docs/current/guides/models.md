@@ -1,7 +1,7 @@
 ---
 title: "Modelos y políticas de tareas"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Modelos y políticas de tareas {/* #models-and-task-policies */}
@@ -145,3 +145,8 @@ Abierto **Settings → Model → Local capabilities**. En v1.2.0 esto reemplaza 
 | La narración de investigación | Producir el discurso inglés para películas de investigación | Instalar el motor del discurso y el modelo; esperar **Installed** |
 
 Instale sólo los recursos necesarios para su tarea. Seguir el progreso de la descarga; **Cancelar descarga** detiene la transferencia, y **Retry** reanudar o repetir una descarga fallida como compatible. Abra la pestaña para confirmar el estado instalado. **Uninstall** no está disponible mientras un recurso está en uso. Véase [películas de investigación](research-films.md) y [Extracción en PDF](previews.md#pdf-extraction).
+
+
+## Elija un modelo de generación de imágenes {/* #image-generation */}
+
+**Image generation** tiene su propio servicio y selección de modelos en **Settings → Model**. Crea o edita imágenes; **Vision** analiza las entradas de imagen. Mantenga Main configurado para el trabajo de conversación y seleccione el servicio de imagen por separado. Vea [generación de imágenes y edición](image-generation.md) para credenciales, una primera solicitud y la historia de la versión.

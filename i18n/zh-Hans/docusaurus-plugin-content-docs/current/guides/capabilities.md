@@ -1,7 +1,7 @@
 ---
 title: "功能与支持的输入"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-19'
 ---
 
 # 功能与支持的输入
@@ -23,6 +23,8 @@ Open-Science 将研究项目的对话、原始文件、文献记录和生成结�
 论文中的图片和表格可用[本地 PDF 提取](previews.md#pdf-extraction)；复用方法可从 [Skill 市场](../skills/marketplace.md)查找。需要核对捕获的结果时使用[复现检查](reproducibility.md)，需要交接会话和证据时使用 [.science 研究包](research-packages.md)。
 
 文件能在预览器打开，不代表模型已经读取。附加文件后，会话可以使用这一来源；还需要检查读取记录、工具调用和输出证据，确认实际使用情况。扩展名和大小限制见[文件格式与限制](../reference/formats.md)。
+
+需要重复执行的工作，可以[定时运行消息或脚本](scheduled-tasks.md)。准备汇报时，可以[通过独立图像服务生成示意配图](image-generation.md)，或[编辑已有 PPTX](presentation-editing.md)。图像生成需要单独的服务凭据与额度；PPTX 编辑在桌面应用中针对选定文件版本进行。
 
 ## 理解工作区里的对象
 

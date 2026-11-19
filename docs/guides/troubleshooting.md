@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting and common questions"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-19'
 ---
 
 # Troubleshooting and common questions
@@ -260,3 +260,7 @@ If you see **The installed Codex CLI is incompatible or its version could not be
 If full-text retrieval fails on a host using Mihomo, Clash or another proxy with Fake-IP DNS, update to v1.0.7 or later and retry the same source using the intended setting in **Settings → Network**. When all local DNS answers are placeholders, the app lets the configured proxy resolve the destination.
 
 This does not grant access to a paywalled paper or supply institutional authentication. Confirm that the source offers a copy you may access, then check that the downloaded attachment opens as the expected PDF. If it still fails, retain the source URL and displayed error and check [network configuration](network.md) before adding duplicate references.
+
+## Recover after the local service disconnects {/* #local-service-recovery */}
+
+When the workspace shows local-service recovery, wait for the connection to return before repeating an action. The Composer draft is retained, while unavailable actions remain blocked. After reconnection, inspect the conversation or run record to see whether the previous request was accepted. Resume from the actual state rather than sending the same task twice.

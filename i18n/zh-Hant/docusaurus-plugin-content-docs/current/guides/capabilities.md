@@ -1,7 +1,7 @@
 ---
 title: "功能與支援的輸入"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-19'
 ---
 
 # 功能與支援的輸入 {/* #功能与支持的输入 */}
@@ -23,6 +23,8 @@ Open-Science 將研究專案的對話、原始檔案、文獻記錄和生成結�
 論文中的圖片和表格可用[本地 PDF 提取](previews.md#pdf-extraction)；複用方法可從 [Skill 市場](../skills/marketplace.md)查詢。需要核對捕獲的結果時使用[復現檢查](reproducibility.md)，需要交接會話和證據時使用 [.science 研究包](research-packages.md)。
 
 檔案能在預覽器開啟，不代表模型已經讀取。附加檔案後，會話可以使用這一來源；還需要檢查讀取記錄、工具呼叫和輸出證據，確認實際使用情況。副檔名和大小限制見[檔案格式與限制](../reference/formats.md)。
+
+需要重複執行的工作，可以[定時運行消息或腳本](scheduled-tasks.md)。準備彙報時，可以[通過獨立圖像服務生成示意配圖](image-generation.md)，或[編輯已有 PPTX](presentation-editing.md)。圖像生成需要單獨的服務憑據與額度；PPTX 編輯在桌面應用中針對選定文件版本進行。
 
 ## 理解工作區裡的物件 {/* #理解工作区里的对象 */}
 

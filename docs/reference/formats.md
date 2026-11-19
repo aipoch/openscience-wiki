@@ -1,7 +1,7 @@
 ---
 title: "File formats and limits"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-19'
 ---
 
 # File formats and limits
@@ -27,7 +27,7 @@ Look up file routing and limits here. Uploading a file, previewing it, parsing i
 | PDF | `pdf` | Dedicated document reader with page controls |
 | Word | `docx` | Office renderer; legacy `doc` is not routed to DOCX parsing |
 | Spreadsheet | `xls`, `xlsx` | Office spreadsheet preview; model execution is a separate operation |
-| Presentation | `pptx` | Office presentation renderer; legacy `ppt` is not routed to PPTX parsing |
+| Presentation | `pptx` | Presentation preview and [slide editing](../guides/presentation-editing.md); legacy `ppt` is not routed to PPTX parsing |
 | Markdown | `md`, `markdown` | Rendered document, with supported text-version actions |
 | HTML | `htm`, `html` | Isolated HTML preview; does not receive application privileges |
 | JSON | `json` | Structured preview, including recognized plan JSON |

@@ -1,7 +1,7 @@
 ---
 title: "Capacités et intrants pris en charge"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-19'
 ---
 
 # Capacités et intrants pris en charge {/* #capabilities-and-supported-inputs */}
@@ -23,6 +23,8 @@ Open-Science apporte les conversations d'un projet de recherche, les fichiers so
 Pour les figures et les tableaux dans un papier, utilisez [extraction locale PDF](previews.md#pdf-extraction). Trouvez des méthodes réutilisables via le [Catalogue de Skills](../skills/marketplace.md). Vérifiez un résultat capturé avec [Reproductibilité](reproducibility.md), ou partagez sa conversation et ses preuves via un [Paquet .science](research-packages.md).
 
 Un visionneur qui ouvre un fichier ne montre pas que le modèle l'a lu. L'annexion d'un fichier donne à la session une source avec laquelle travailler; inspecter les lectures enregistrées, les appels d'outils et les preuves de sortie pour établir comment l'agent l'a utilisé. Les extensions exactes et les limites de taille sont en [Formats et limites des fichiers](../reference/formats.md).
+
+Pour un travail récurrent, [programmer un message ou un script](scheduled-tasks.md). Pour préparer une présentation, [générer une illustration avec un service d'image séparé](image-generation.md) ou [modifier un PPTX existant](presentation-editing.md). La génération d’images nécessite ses propres identifiants de service et son quota. L’édition PPTX dans l’application de bureau porte sur la version du fichier sélectionnée.
 
 ## Comprendre les objets de l'espace de travail {/* #understand-the-workspace-objects */}
 

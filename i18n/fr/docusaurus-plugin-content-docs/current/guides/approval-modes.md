@@ -1,7 +1,7 @@
 ---
 title: "Autorisations et agréments"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-19'
 ---
 
 # Autorisations et agréments {/* #permissions-and-approvals */}
@@ -107,3 +107,8 @@ Source: [Subventions sauvegardées et annulation](https://github.com/aipoch/open
 Avec **Auto-approve edits**, un ensemble défini d'opérations de bibliothèque intégrées peut passer automatiquement l'approbation de l'agent par appel. Il s'agit notamment de la recherche et de la lecture de références, de l'enregistrement dans la boîte de réception, de l'acquisition de PDF, de la mise en forme de références et de la préparation de documents de citation. Cela réduit les appels répétés pendant les travaux de routine de la Bibliothèque.
 
 La règle s'applique aux outils de littérature reconnus, et non à tous les appels, commandes ou opérations réseau MCP. Les propres règles relatives aux fichiers, aux réseaux et aux ressources des outils s'appliquent toujours, et cette décision ne crée aucune subvention permanente. Choisissez **Ask for approval** lorsque vous voulez inspecter les demandes d'agents individuellement. Passez en revue les candidats et candidates avant de les accepter.
+
+
+## Gardez le mode réseau séparé {/* #strict-network */}
+
+**Full access** ne contourne pas la liste blanche des carnets **Strict**. Une destination non inscrite est bloquée sans offre d'autorisation, même lorsque la conversation permet des actions automatiques. Ajouter seulement le protocole, le nom d'hôte/IP et le port requis dans [Paramètres du réseau](network.md#public-network-rules).

@@ -2737,5 +2737,35 @@
   },
   "docs.outline.reference.v121.scope": {
     "message": "資源中心、問題最佳化、Codex 訂閱與文獻 CSV 匯出。"
+  },
+  "docs.guides.outline.scheduled-tasks.title": {
+    "message": "安排定時研究任務"
+  },
+  "docs.guides.outline.scheduled-tasks.scope": {
+    "message": "一次性或重複的消息與腳本任務，權限、時間和運行歷史。"
+  },
+  "docs.guides.outline.image-generation.title": {
+    "message": "生成與編輯圖片"
+  },
+  "docs.guides.outline.image-generation.scope": {
+    "message": "配置圖像服務、生成圖片、比較編輯版本。"
+  },
+  "docs.guides.outline.presentation-editing.title": {
+    "message": "編輯 PowerPoint 簡報"
+  },
+  "docs.guides.outline.presentation-editing.scope": {
+    "message": "編輯幻燈片文字與格式、檢查版本並導出 PPTX。"
+  },
+  "docs.outline.reference.v130.title": {
+    "message": "v1.3.0"
+  },
+  "docs.outline.reference.v130.scope": {
+    "message": "定時任務、圖像生成、演示文稿編輯與影片模式。"
+  },
+  "docs.outline.reference.v122.title": {
+    "message": "v1.2.2"
+  },
+  "docs.outline.reference.v122.scope": {
+    "message": "嚴格網絡模式、影片檢查點、PDF 內容保留與恢復。"
   }
 }

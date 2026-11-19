@@ -1,7 +1,7 @@
 ---
 title: "Erstellen und Teilen eines Forschungsfilms"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Erstellen und Teilen eines Forschungsfilms
@@ -19,11 +19,15 @@ Die Sprachmaschine läuft lokal nach der Installation, aber das modellbasierte F
 
 ## Generieren und Watch {/* #generate-film */}
 
-1. Offen **Session actions → Generate research film**. Im Replay ist die gleiche Aktion unter **Mehr Maßnahmen**.
-2. Lesen Sie eine Vorbereitungsnachricht. Beheben Sie eine fehlende Modell-, Anmelde- oder Narrationsressource, bevor Sie erneut versuchen. Wenn die Erzählung bereit ist, beginnt die Generation mit dieser Aktion.
-3. Folgen Sie den Phasen des Schreibens und der Mediengeneration. Sie können den Dialog schließen, während die Generation fortgesetzt wird, und dann wieder öffnen **View generation progress**. **Cancel** Stoppt den filmjob, nicht das quellengespräch.
-4. Wann **Research film ready** erscheint, prüfen Sie den Titel und die Dauer, dann wählen **Play research film**.
+1. Öffnen Sie **Session actions → Generate research film**. In der Wiederholung ist die gleiche Aktion unter **Mehr Maßnahmen** verfügbar.
+2. Wählen Sie **Film mode → Research explanation**, um die Frage, Methoden und Ergebnisse zu erklären, oder **Operation replay**, um Gesprächsaktionen und Ergebnisse in der Reihenfolge anzuzeigen. Lesen Sie die Erklärung zur Modellnutzung, beheben Sie fehlende Modell-, Anmelde- oder Narrationsressourcen und wählen Sie dann **Start generation** aus.
+3. Folgen Sie den Phasen des Schreibens und der Mediengeneration. Sie können den Dialog schließen, während die Generation fortgesetzt wird, und dann **View generation progress** wieder öffnen. **Cancel** stoppt den Filmjob, nicht das Ausgangsgespräch.
+4. Wenn **Research film ready** erscheint, prüfen Sie den Titel und die Dauer und wählen Sie dann **Play research film**.
 5. Sehen Sie sich den ganzen Film an. Überprüfen Sie Zahlen, Einheiten, Erklärungen, Visuals, Narration und die angegebenen Grenzen gegenüber der Quellsitzung. Achten Sie besonders darauf, ob hypothetische Beispiele oder vorläufige Ergebnisse noch als solche beschrieben werden.
+
+![Wählen Sie Forschungserklärung oder Operation Replay vor dem Starten der Generation](/img/open-science/v130/film-mode.webp)
+
+Jeder konversationszweig behält seine eigene filmausgabe. Öffnen Sie den beabsichtigten Branch, bevor Sie einen Film erzeugen oder ansehen; ein Film auf einem Branch ist nicht automatisch der Film für einen anderen. Film-Authoring verbraucht Modell-Token, obwohl Narration lokal läuft.
 
 <p className="example-label"><strong>Bearbeitetes Beispiel</strong> Erklären Sie ein fünfstelliges Unterrichtsbeispiel</p>
 
@@ -54,6 +58,8 @@ Warten Sie, bis der Export abgeschlossen ist, und öffnen Sie die gespeicherte D
 ![Research-Film-Player und MP4-Exportkontrolle](/img/open-science/v120/film-player.webp)
 
 ## Regenerieren oder Rückgewinnung {/* #film-recovery */}
+
+Wenn ein Film unterbrochen wird und der Dialog **Retry** anbietet, fahren Sie fort, validierte Szenen, Erzählungen und Timings wiederzuverwenden. Checkpoints überleben einen Prozessneustart. **Generate again** startet stattdessen einen neuen Versuch; verwenden Sie ihn, wenn Sie den beabsichtigten Inhalt ändern oder den vorherigen Versuch absichtlich verwerfen. Überprüfen Sie den Fortschritt und den abgeschlossenen Film nach beiden Aktionen.
 
 - Wenn Generation Sie auffordert, ein Modell auszuwählen oder Anmeldeinformationen zu überprüfen, beheben Sie diese Anforderung in **Settings → Model**und dann zurück zur Sitzung.
 - Wenn der Download der Erzählung fehlschlägt, verwenden Sie **Retry** und warten auf **Installed** Bevor wir wieder erzeugen.

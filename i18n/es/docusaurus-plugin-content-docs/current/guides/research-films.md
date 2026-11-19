@@ -1,7 +1,7 @@
 ---
 title: "Crear y compartir una película de investigación"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Crear y compartir una película de investigación
@@ -19,11 +19,15 @@ El motor del habla funciona localmente después de la instalación, pero el auto
 
 ## Generar y ver {/* #generate-film */}
 
-1. Abierto **Session actions → Generate research film**. En la repetición, la misma acción está disponible bajo **Más acciones**.
-2. Lea cualquier mensaje de preparación. Resolver un modelo perdido, un recurso creíble o narrativo antes de reintentar. Si la narración está lista, la generación comienza de esta acción.
-3. Siga las etapas de escritura y generación de medios. Puede cerrar el diálogo mientras la generación continúa, luego reabrir **View generation progress**. **Cancel** Para el trabajo de la película, no la conversación de origen.
-4. Cuando **Research film ready** aparece, inspeccionar el título y la duración, luego elegir **Play research film**.
+1. Abre **Session actions → Generate research film**. En la repetición, la misma acción está disponible bajo **Más acciones**.
+2. Elija **Film mode → Research explanation** para explicar la pregunta, métodos y hallazgos, o **Operation replay** para mostrar acciones y resultados de conversación en orden. Lea la explicación de uso modelo, resuelva cualquier modelo perdido, recurso de credenciales o narración, y luego seleccione **Start generation**.
+3. Siga las etapas de escritura y generación de medios. Puede cerrar el diálogo mientras la generación continúa, luego reabrir **View generation progress**. **Cancel** detiene el trabajo cinematográfico, no la conversación fuente.
+4. Cuando aparezca **Research film ready**, inspeccione el título y la duración, luego elija **Play research film**.
 5. Mira toda la película. Compruebe los números, unidades, explicaciones, imágenes, narración y los límites declarados contra la sesión de origen. Preste especial atención a si los ejemplos hipotéticos o los resultados preliminares todavía se describen como tales.
+
+![Elija la explicación de investigación o la repetición de Operación antes de la generación inicial](/img/open-science/v130/film-mode.webp)
+
+Cada rama de conversación mantiene su propia salida de película. Abra la rama prevista antes de generar o ver una película; una película en una rama no es automáticamente la película para otra. El autor de la película consume tokens modelo aunque la narración funciona localmente.
 
 <p className="example-label"><strong>Ejemplo trabajado</strong> Explicar un ejemplo de enseñanza de cinco números</p>
 
@@ -54,6 +58,8 @@ Espera a que la exportación termine, y luego vuelve a abrir el archivo guardado
 ![Reproductor de perfiles de investigación y control de exportación MP4](/img/open-science/v120/film-player.webp)
 
 ## Regenerar o recuperarse {/* #film-recovery */}
+
+Cuando se interrumpe una película y el diálogo ofrece **Retry**, vuelva a utilizar escenas validadas, narración y fechas. Los puntos de control sobreviven a un reinicio de proceso. **Generate again** inicia un nuevo intento en su lugar; utilizarlo al cambiar el contenido previsto o descartar deliberadamente el intento anterior. Inspeccione el progreso y la película completa después de cualquier acción.
 
 - Si la generación le pide que seleccione un modelo o ver las credenciales, fijar ese requisito en **Settings → Model**, luego volver al período de sesiones.
 - Si la descarga de la narración falla, use **Retry** y esperar **Installed** antes de generar de nuevo.

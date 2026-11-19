@@ -1,7 +1,7 @@
 ---
 title: "文件格式与限制"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-19'
 ---
 
 # 文件格式与限制
@@ -29,7 +29,7 @@ last_update:
 | PDF | `pdf` | 独立文档阅读器与分页控件 |
 | Word | `docx` | Office 渲染器；旧 `doc` 不交给 DOCX 解析 |
 | 电子表格 | `xls`、`xlsx` | Office 预览；执行分析是另一动作 |
-| 演示文稿 | `pptx` | Office 预览；旧 `ppt` 不交给 PPTX 解析 |
+| 演示文稿 | `pptx` | 演示预览与[幻灯片编辑](../guides/presentation-editing.md)；旧 `ppt` 不交给 PPTX 解析 |
 | Markdown | `md`、`markdown` | 渲染文档，并提供适用的文本版本操作 |
 | HTML | `htm`、`html` | 隔离预览，不授予应用权限 |
 | JSON | `json` | 结构化预览，也识别对应计划格式 |

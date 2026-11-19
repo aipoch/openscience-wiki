@@ -2,7 +2,7 @@
 title: .science 研究包
 description: 将会话、文件和证据一起导出，再导入项目查看与交接研究记录。
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -193,3 +193,7 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 Notebook 与 Compute 运行在研究包中复用内容相同的证据，同时保留校验摘要和运行引用。长会话多次使用同一文件时，可减少重复数据；首次导出还可能整理旧记录中的证据。
 
 按常规 Session package 流程导出并等待完成，再导入独立项目，检查保留的运行记录与文件。压缩包变小不代表所有所需文件都已齐全，成功导入也不等于重新计算。需要检查再次执行时，使用[可复现性检查](reproducibility.md)。
+
+## 检查中断的导入 {/* #import-recovery */}
+
+取消导入不代表导入完成。超时使结果未确认时，先查找目标项目与导入会话，再决定是否重新导入；找到会话后，打开检查文件。研究包缺失或无效时，重新选择完整的 `.science` 文件，求助时保留界面错误或关联标识。不要在未检查前次结果的情况下反复导入同一个研究包。

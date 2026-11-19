@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "完整頁面與控制元件索引"
 description: "按頁面查詢 Open-Science 的按鈕、輸入、開關和結果。"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 # 完整頁面與控制元件索引 {/* #完整页面与控件索引 */}
@@ -43,18 +43,19 @@ last_update:
 
 ## Workspace 左欄與佈局 {/* #workspace-左栏与布局 */}
 
-| 控制元件 | 結果 |
+| 控件 | 結果 |
 | --- | --- |
 | All projects | 返回 Home |
-| Project name | 專案入口/選單 |
+| Project name | 項目入口/菜單 |
 | Collapse sidebar | 收起/展開左欄 |
 | New | 新 session |
-| Customize | 啟動 Skill/Specialist 定製對話 |
-| Files | 切換右側專案檔案面板 |
-| Library | 開啟與專案關聯的資料庫文獻 |
+| Customize | 啓動 Skill/Specialist 定製對話 |
+| Files | 切換右側項目文件面板 |
+| Schedule | [創建並檢查定時消息或腳本](../guides/scheduled-tasks.md) |
+| Library | 打開與項目關聯的資料庫文獻 |
 | Session row | 切換 session；狀態顯示 Idle/Running/Permission 等 |
 | Session actions | Pin/Unpin、Rename、View notebook、Archive、Delete |
-| Messages、Settings、GitHub | 通知、設定、官方倉庫 |
+| Messages、Settings、GitHub | 通知、設置、官方倉庫 |
 | Resize left/right、Collapse preview | 拖動面板或收起預覽 |
 
 ## Conversation 與 Composer {/* #conversation-与-composer */}
@@ -72,6 +73,10 @@ last_update:
 | Model | Active model、Reasoning effort | 改變後續 request 的模型/強度 |
 | Queue/Send | Queue edit/delete/reorder、Send now、Send、Plan first、Side chat、Branch、Stop | 暫存或傳送 follow-up、選擇模式、停止執行 |
 | Scroll to end | 回到最新訊息 |
+
+## 圖片與演示文稿編輯 {/* #creation-editors */}
+
+通過 [Image services](../guides/image-generation.md#configure) 配置圖像 API 與模型；打開生成圖片後可編輯並查看版本。桌面 PPTX 預覽使用 **Edit**、**Apply**、**Save**、**Version history** 和 **Compare with previous version** 管理[演示文稿修改](../guides/presentation-editing.md)。
 
 ## 權限、計劃與結構化追問 {/* #权限计划与结构化追问 */}
 
@@ -162,15 +167,15 @@ Add host、Host card/enable、Probe/Retry、Detail/Edit/Remove、Resources、Dir
 
 ### Network {/* #network */}
 
-Check again；Proxy System/Manual/Direct；Notebook domain allowlist；Package mirror Configure/Edit；Conda channel、pip index、CA bundle；View mirrors、Cancel、Save。
+Check again；Proxy System/Manual/Direct；Notebook Relaxed/Strict 模式、協議/主機/端口規則與分組；Package mirror Configure/Edit；Conda channel、pip index、CA bundle；View mirrors、Cancel、Save。
 
 ### Model {/* #model */}
 
-Active model、Reasoning radios、Subagent/Reviewer/Vision/Session-details model policy；Provider Test/Edit/Delete/Add；Provider 表單所有 Onboarding Model 欄位以及 Cancel/Save。
+Active model、Reasoning radios、Subagent/Reviewer/Vision/Session-details model policy、[Image generation model / Image services](../guides/image-generation.md)；Provider Test/Edit/Delete/Add；Provider 表單所有 Onboarding Model 字段以及 Cancel/Save。
 
 ### Agent {/* #agent */}
 
-OpenCode/Claude/Codex/CodeBuddy/Pi framework card、Switch、Install source、Install/Cancel/Retry、Install log、Repair、Sign in/auth、Import config/home、Uninstall confirmation。
+內置 Open-Science Agent；可選 OpenCode/Claude/Codex/CodeBuddy/Pi framework card、Switch、Install source、Install/Cancel/Retry、Install log、Repair、Sign in/auth、Import config/home、Uninstall confirmation。
 
 ### Permissions {/* #permissions */}
 

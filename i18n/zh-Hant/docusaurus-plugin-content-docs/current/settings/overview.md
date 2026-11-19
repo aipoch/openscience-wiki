@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "設定中心總覽"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # 設定中心總覽 {/* #设置中心总览 */}
@@ -34,18 +34,18 @@ last_update:
 | System | [General](../guides/appearance.md#help-center) | 版本、更新、診斷、CLI 安裝、窗口行爲和幫助 |
 |  | [Appearance](../guides/appearance.md) | 主題、語言、桌面界面縮放和支持的應用圖標選項 |
 |  | [Notifications](../guides/appearance.md) | 任務提醒、通知內容、系統狀態和測試通知 |
-| Intelligence | [Model](../guides/models.md) | 提供商與各任務場景的模型 |
+| Intelligence | [Model](../guides/models.md) | 提供商、各任務場景模型與[圖像服務](../guides/image-generation.md) |
 |  | [Agent](../guides/frameworks.md) | 代理框架的安裝、切換與修復 |
-|  | [Memory](../guides/memory.md) | 按需啟用的全域與專案記憶 |
-| Connections | [Network](../guides/network.md) | 代理、軟體包映象與 Notebook 域名訪問 |
-|  | [Remote](../guides/remote-access.md) | 瀏覽器訪問、配對與可信裝置 |
-|  | [Credentials](../tools/credentials.md) | 金鑰、令牌、OAuth 與憑據恢復 |
+|  | [Memory](../guides/memory.md) | 按需啓用的全局與項目記憶 |
+| Connections | [Network](../guides/network.md) | 代理、軟件包鏡像與 Notebook Relaxed/Strict 訪問規則 |
+|  | [Remote](../guides/remote-access.md) | 瀏覽器訪問、配對與可信設備 |
+|  | [Credentials](../tools/credentials.md) | 密鑰、令牌、OAuth 與憑據恢復 |
 |  | [Compute](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Workspace | [Tags](../guides/tags.md) | 標籤與收藏排序 |
-|  | [Permissions](../guides/approval-modes.md) | 預設模式與已儲存授權 |
-|  | [Runtimes](../guides/runtimes.md) | Python/R 環境與軟體包 |
-|  | [Storage](../guides/storage.md) | 資料位置、寫入權限與磁碟用量 |
-|  | [Usage](../guides/usage.md) | Token、呼叫與研究活動統計 |
+|  | [Permissions](../guides/approval-modes.md) | 默認模式與已保存授權 |
+|  | [Runtimes](../guides/runtimes.md) | Python/R 環境與軟件包 |
+|  | [Storage](../guides/storage.md) | 數據位置、寫入權限與磁盤用量 |
+|  | [Usage](../guides/usage.md) | Token、調用與研究活動統計 |
 |  | [Archived](../guides/storage.md) | 恢復或永久刪除歸檔內容 |
 
 **Feedback** 保留在設定底部，作為獨立反饋入口。

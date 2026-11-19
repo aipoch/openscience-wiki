@@ -1,7 +1,7 @@
 ---
 title: "네트워크, 프록시 및 패키지 미러"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-19'
 ---
 
 # 네트워크, 프록시 및 패키지 미러 {/* #network-proxies-and-package-mirrors */}
@@ -26,25 +26,37 @@ last_update:
 
 <span id="configure-notebook-domains" />
 
-## 공용 네트워크 규칙 설정하기 {/* #public-network-rules */}
+## Relaxed 또는 Strict 네트워킹 선택 {/* #public-network-rules */}
 
-1. **Settings → Network → Manage access**에서 **Public internet access**와 **Built-in services**를 확인합니다. **Required** 그룹은 계속 활성화됩니다.
-2. **Custom public domains**의 **Domain hostname**에 호스트명, HTTP(S) URL 또는 앞에 와일드카드가 붙은 규칙을 입력한 뒤 **Add to list**를 선택합니다.
-3. 정규화된 규칙을 확인하고 **Save changes**를 선택한 뒤 원래 요청을 재시도합니다. 저장된 승인은 재시작 후에도 유지됩니다.
+**Settings → Network → Manage access**를 엽니다. 모드는 프로젝트 전반에 걸쳐 보호된 노트북 연결에 적용됩니다. 편집 규칙의 앞에 **Current: Relaxed** 또는 **Current: Strict**를 읽으십시오.
 
-정확한 호스트명 규칙에는 하위 도메인이 포함되지 않습니다. `*.example.org`는 하위 도메인을 포함하지만 `example.org` 자체는 포함하지 않습니다. `https://example.org/path`는 호스트명 규칙으로 변환되므로 경로나 포트가 접근 범위를 제한하지 않습니다. 규칙은 일치하는 호스트로 데이터 전송을 허용합니다. IP 주소, localhost, 자격 증명이 들어간 URL은 거부됩니다. 사설 주소로 해석되는 호스트는 별도의 사설 서비스 검토가 필요합니다.
+| 주요 특징 | 관련 링크 | 목적지가 허용되지 않을 때 |
+| --- | --- | --- |
+| **Relaxed** (과태) | HTTPS hostnames, 개인 또는 루프백 서비스에 대한 hostnames를 포함; 저장된 예외는 프로토콜, host/IP 및 포트와 일치 | HTTP 및 직접 IP 연결은 허가를 요구합니다 |
+| **Strict** | 프로토콜, 호스트명 또는 IP, 포트로 수동 백리스트와 일치하는 대상 | 권한없이 차단; 수동으로 필요한 규칙을 추가 |
 
+모드를 변경하려면 **Strict** 또는 **Relaxed**를 선택한 다음 설명을 읽고 **Switch to Strict mode** 또는 **Switch to Relaxed mode**를 사용하십시오. 옵션 선택 **Not yet applied** 활성 모드를 변경하지 않습니다.
 
-## 개인 서비스 신뢰 {/* #trusted-private-services */}
+![엄격한 형태 설명 및 whitelist 그룹](/img/open-science/v130/network-strict.webp)
 
-연구 코드가 접근해야 하는 알려진 내부 서비스에만 사용하십시오. 이 컨트롤은 데스크톱 앱에서 사용할 수 있습니다. 전용 서비스 주소만 지원됩니다. localhost, 이 컴퓨터 및 예약 주소는 차단됩니다. 이 필드는 원료 IP 주소 또는 와일드카드를 허용하지 않습니다.
+### Strict 화이트리스트 규칙 추가 {/* #strict-whitelist */}
 
-1. **Trusted private services**에서 **Add service**을 선택하고 **Hostname** 및 **Port**를 입력하십시오. 정확한 서비스를 확인; 기본 포트는 443입니다.
-2. **Review service**을 선택합니다. **Add to trusted services**을 선택하기 전에 해결 된 **Approved addresses**을 검사합니다.
-3. 목록을 검토하고 **Save changes**을 선택합니다. DNS는 저장하기 전에 다시 검사됩니다; 주소 변경은 또 다른 검토가 필요합니다.
-4. 특정 서비스에 대한 작은 요청을 복원하고 응답을 검사합니다. 주소 검토는 혼자 인증 또는 서비스 가용성을 테스트하지 않습니다.
+1. **Strict whitelist**에서 **Add rule**를 선택하십시오.
+2. **Network protocol**, **Hostname, IP or pattern** 및 **Port**를 실제 서비스로 설정합니다. 호스트 이름 또는 IP를 사용하여 URL 경로가 아닙니다.
+3. **Group**, 또는 **New group…** 및 **Group name**를 선택하고, 다음 **Confirm**를 선택하십시오.
+4. 저장된 규칙과 활성 모드를 검사합니다. 예정된 작은 요청을 복원하고 응답을 검사합니다.
 
-보조금은 정확한 hostname, 포트 및 검토 된 주소를 포함합니다. 그것은 보호된 Notebook 및 포탄 부호는 모든 프로젝트의 맞은편에 그 서비스에 자료를 보냅니다. 작업에 대한 접근 권한을 추가합니다. 네트워크 규칙은 보호된 연결을 재설정하고 활동적인 이동을 중단할 수 있습니다; 변경하기 전에 전송을 완료합니다.
+![Strict 규칙에 대한 프로토콜, 호스트 및 포트 필드의 예](/img/open-science/v130/network-rule.webp)
+
+정확한 hostname은 subdomains를 포함하지 않습니다. `*.example.org` 경기 하위 도메인 하지만 `example.org` 하지. 프로토콜 및 포트는 규칙의 일부입니다. 포트 443의 HTTPS 규칙은 HTTP 또는 다른 포트를 부여하지 않습니다. Strict는 요청된 hostname과 일치합니다. DNS 결과가 공개, 개인 또는 루프백인지 확인하지 않습니다. 룰을 추가하는 대상에 대한 당신은 코드를 접촉합니다.
+
+**Built-in**와 **Manual**는 규칙 입증을 확인합니다. 내장 그룹은 한 번에 씨앗을 내고, 나중에 편집이 유지됩니다. Neither는 승인 또는 전체 액세스 우회 엄격한 모드를 기억. 네트워크 규칙은 보호된 연결을 재설정하고 전송을 중단할 수 있습니다; 활동적인 이동 끝 후에 변화를 적용합니다.
+
+## Relaxed-mode 예외 저장 {/* #trusted-private-services */}
+
+**Trusted unsafe networks**의 밑에, **Add address**를, 그 후에 **Network protocol**, **Hostname** 또는 IP, **Port** 및 적당한 그룹을 지정하십시오. retrying 전에 저장된 범위를 확인하십시오. 이 예외는 Relaxed 모드에서 일치하는 목적지에 대한 반복 된 허가를 피합니다. 그들은 Strict 모드에서 액세스 권한을 부여하지 않습니다. Strict whitelist는 Relaxed가 선택된 동안 비활성입니다.
+
+규칙은 연결, 성공적인 로그인 또는 유효한 응답을 허용한다. 서비스 자격 및 실제 결과를 별도로 확인합니다. 이 설정은 이전의 public-domain/private-service 형태를 대체합니다. 이전 스크린 샷을 따라 현재 모드와 규칙 필드를 사용합니다.
 
 ## 프록시 모드 선택 {/* #choose-a-proxy-mode */}
 
@@ -66,21 +78,11 @@ last_update:
 
 수동 모드가 **프록시 서버 URL을 입력하십시오.**을 보고하면, 작업 프록시 주소를 입력하거나 **Done**과 함께 초안을 디카운트합니다. 유효한 주소를 저장하는 것은 자체가 프록시가 실패 요청을 수행 할 수 있다는 것을 확인하지 않습니다.
 
-### 도메인이 비공개 주소로 해결될 때 {/* #observed-fake-ip-failure */}
+### DNS 또는 프록시 실패 확인 {/* #observed-fake-ip-failure */}
 
-설치가 `destination resolves to a non-public network address`을 보고하면 짧은 오류가 `conda install failed` 또는 `pip install failed`라고 할 때도 상세한 설치 로그를 검사합니다.
+실패 요청에서 정확한 오류를 유지하십시오. timeout, 인증서 오류 또는 프록시 거부는 규칙이 목적지를 허용 한 후 여전히 발생할 수 있습니다. 사용하려는 서비스에 대한 hostname, Protocol, port 및 프록시 경로 확인. 이전 버전의 비-public-address 오류를 현재 Strict-mode matching 규칙으로 치료하지 마십시오. 엄격한 요청된 이름 / IP 및 포트를 확인하고 DNS 주소 클래스가 아닙니다.
 
-```text
-deny network-outbound pypi.org:443
-(destination resolves to a non-public network address)
-```
-
-1. 영향을받는 호스트 이름과 그 해결 된 주소를 확인합니다. `198.18.*`과 같은 주소는 공공 대상이 아닙니다.
-2. 대상 체크에서 도메인 목록 결정 분산. `alreadyAllowed`은 해결된 주소를 허용하지 않습니다.
-3. 공용 DNS 해상도를 확인하고 네트워크 소유자와 함께 프록시 루트를 확인 한 다음 원래의 작은 요청을 다시합니다. 도메인 보호 기능을 유지하십시오.
-4. 설치를 검증하고 별도로 가져올 수 있습니다. 저장된 프록시, Ready 해석기 또는 기존 패키지의 성공적인 사용은 충분합니다.
-
-같은 오류가 발생하면 호스트명을 유지하고, 설치자 로그와 주소와 프록시 모드를 해결하고 [문제 해결](troubleshooting.md)을 따르십시오. 성공적인 설정 저장은 성공적인 다운로드가 아닙니다.
+원인을 수정 한 후 작은 요청을 복원합니다. 패키지 작업에 대해 설치 및 가져 오기를 확인합니다. 저장된 설정 또는 준비 해석기는 혼자 다운로드가 성공하지 않습니다. 공유 로그에서 자격 증명을 유지하고 지속적 실패를 위해 [문제 해결](troubleshooting.md)를 사용합니다.
 
 
 ## 패키지 미러 및 인증서 신뢰 구성 {/* #configure-package-mirrors-and-certificate-trust */}
@@ -100,7 +102,7 @@ deny network-outbound pypi.org:443
 
 패키지 미러는 패키지 소스를 변경합니다. 미러의 필수 루트 / 인덱스 형식을 확인, 저장, 선택한 실행 시간에 작은 패키지 작동을 복원. Model-provider 프록시 설정은 별도입니다.
 
-구성 Conda, PyPI 및 CRAN 미러 호스트 이름은 패키지 관리 작업에 대한 임시 액세스를받습니다. 이것은 영구적인 Notebook 도메인 목록에 추가하거나 일반 Notebook 코드를 동일한 액세스를 부여하지 않습니다. 다른 호스트에 Redirects는 여전히 네트워크 승인 흐름을 따릅니다.
+구성 Conda, PyPI 및 CRAN 미러 호스트 이름은 패키지 관리 작업에 대한 임시 액세스를받습니다. 이것은 영구 노트북 도메인 목록에 추가하거나 일반 노트북 코드를 동일한 액세스 권한을 부여하지 않습니다. Redirects는 실제 목적지에 액세스해야합니다. 엄격한 모드에서는 모든 필수 프로토콜 / 호스트 / 포트를 화이트리스트에 추가하십시오. 임시 패키지 운영 보조금은 우회하지 않습니다.
 
 지원된 HTTP(S) 미러 URL을 사용하여 임베디드 크리덴셜, 화이트스페이스, 로컬 호스트 또는 원시 IP 주소를 사용하지 않습니다. 허용 된 미러 설정은 사용할 수없는 서버 또는 예약 된 주소로 호스트 이름의 해결을 수정하지 않습니다. 설치가 실패하면 가동의 실제 목적지 및 오류가 재발하기 전에 검사합니다. 원격 **model** 엔드포인트는 별도의 [HTTPS 필요조건](providers.md#custom-gateway-every-visible-field)을 가지고 있습니다.
 
@@ -110,7 +112,7 @@ deny network-outbound pypi.org:443
 
 성공적인 연결 후 누락 된 Python 모듈을 위해 [런타임 및 패키지 체크](./runtimes.md)을 계속하십시오. 원격 호스트 설정은 [컴퓨팅](remote-compute.md)에서 별도로 적용됩니다.
 
-[Network 설정 소스](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/NetworkPanel.tsx), [Notebook 네트워크 경계](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/network-sandbox-owner.ts).
+[Network 설정 소스](https://github.com/aipoch/open-science/blob/v1.3.0/src/renderer/src/pages/settings/NetworkPanel.tsx), [노트북 네트워크 경계](https://github.com/aipoch/open-science/blob/v1.3.0/src/main/notebook/network-sandbox-owner.ts).
 
 ## HTTP 오류 조회 {/* #http-error-lookup */}
 
@@ -124,6 +126,6 @@ v0.31.1에서, Notebook는 네트워크 보호가 R를 실행할 때 인라인 �
 
 ## 승인 모드 변경 후 네트워크 접근 {/* #network-mode-changes */}
 
-v1.0.5의 **Full access**는 공개 대상의 개별 승인을 생략합니다. 인증, 소스 제한 및 비공개 서비스 확인은 계속 적용됩니다. 더 제한적인 모드로 바꾸면 기존 연결을 닫아 이전 권한으로 계속 실행하지 못하게 합니다. 새 모드에서 요청을 다시 시도하고 표시되는 승인을 검토합니다.
+**Full access**는 적용 가능한 수동 대리인 허가 카드를 제거합니다, 그러나 Strict 노트북 whitelist를 우회하지 않습니다. 요청이 거부 될 때 **Settings → Network → Manage access** 확인. Relaxed Mode에서, 프로토콜 및 대상은 허가 또는 저장된 예외가 필요한지 결정합니다. 공급자 자격 및 서비스 제한은 여전히 적용됩니다.
 
-전역 네트워크 허용은 **Settings → Network**에 즉시 반영됩니다. 새 규칙을 추가하기 전에 기존 도메인과 비공개 서비스 목록을 확인합니다. 전역 허용은 일회 승인보다 범위가 넓으므로 필요한 범위만 남깁니다. [승인 모드](approval-modes.md)를 참고하세요.
+네트워크 규칙은 기존의 보호 연결을 닫을 수 있습니다. 결과 모드 아래에서, 다음 실제 응답을 검사합니다. [승인 모드](approval-modes.md)의 대화 허가를 참조하십시오.

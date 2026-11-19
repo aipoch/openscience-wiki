@@ -1,7 +1,7 @@
 ---
 title: "网络、代理与包镜像"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-19'
 ---
 
 # 网络、代理与包镜像
@@ -19,32 +19,44 @@ Network 显示 **Ready** 但工具失败时，展开该工具的错误。状态�
 | 现象 | 下一项检查 | 不应据此得出的结论 |
 | --- | --- | --- |
 | 模型登录失败 | 提供方认证和模型连接检查 | Notebook 域名设置会提供模型凭据 |
-| 单个研究域名被拒绝 | **Manage access** 中的精确域名 | 添加无关的大范围域名就能修复 |
+| 单个研究域名被拒绝 | **Manage access** 中的![Strict 规则的协议、主机和端口填写示例](/img/open-science/v130/network-rule.webp)
+
+精确域名 | 添加无关的大范围域名就能修复 |
 | 软件源已允许但 CONNECT 失败 | 安装日志、代理和 DNS 解析 | 再点一次相同授权就能解决所有连接问题 |
 | 证书校验失败 | CA bundle 和组织信任要求 | 必须关闭证书校验 |
 | 连接报错后显示找不到包版本 | 更早的网络错误、Python 与平台 | 该软件包一定不存在 |
 
 <span id="配置-notebook-域名" />
 
-## 配置公网访问规则 {/* #public-network-rules */}
+## 选择 Relaxed 或 Strict 网络模式 {/* #public-network-rules */}
 
-1. 打开 **Settings → Network → Manage access**，阅读 **Public internet access** 并检查 **Built-in services**；标为 **Required** 的分组保持启用。
-2. 在 **Custom public domains** 的 **Domain hostname** 中输入主机名、HTTP(S) URL 或以通配符开头的规则，然后选择 **Add to list**。
-3. 检查规范化后的规则，再选择 **Save changes**，重试原请求。已保存的批准会在重启后保留。
+打开 **Settings → Network → Manage access**。模式适用于各项目中受保护的 Notebook 连接。编辑前先看 **Current: Relaxed** 或 **Current: Strict**，确认当前模式。
 
-精确主机名不包含子域名。`*.example.org` 覆盖其子域名，但不包含 `example.org` 本身。`https://example.org/path` 这样的 URL 会转换为主机名规则，路径和端口不会限制访问范围。规则允许向匹配的主机发送数据。输入不接受 IP 字面值、localhost 或嵌有账号密码的 URL。主机名若解析到私有地址，仍需经过私有服务审核，公网规则不会授予该权限。
+| 模式 | 允许的连接 | 目标未获允许时 |
+| --- | --- | --- |
+| **Relaxed**（默认） | HTTPS 域名，包括指向私有或回环服务的域名；已保存例外按协议、域名/IP 和端口匹配 | HTTP 与直接 IP 连接需要授权 |
+| **Strict** | 仅允许手动白名单中匹配协议、域名或 IP、端口的目标 | 直接阻止，不弹出授权请求；需要的规则必须手动添加 |
 
+切换时选择 **Strict** 或 **Relaxed**，阅读说明，再使用 **Switch to Strict mode** 或 **Switch to Relaxed mode**。只选择标为 **Not yet applied** 的选项，并不会改变当前生效模式。
 
-## 信任私有服务 {/* #trusted-private-services */}
+![Strict 模式说明与白名单分组](/img/open-science/v130/network-strict.webp)
 
-仅在研究代码确实需要访问已知内网服务时使用此项。该控件位于桌面应用中。仅支持私有服务地址；localhost、本机和保留地址仍会被阻止。输入框不接受原始 IP 地址或通配符。
+### 添加 Strict 白名单规则 {/* #strict-whitelist */}
 
-1. 在 **Trusted private services** 中选择 **Add service**，填写 **Hostname** 和 **Port**。核对具体服务，默认端口为 443。
-2. 选择 **Review service**，检查解析得到的 **Approved addresses**，确认后选择 **Add to trusted services**。
-3. 检查列表并选择 **Save changes**。保存前会再次检查 DNS；地址变化后需要重新审核。
-4. 向该服务发起一个小请求并检查实际响应。地址审核本身不验证登录凭据或服务是否可用。
+1. 在 **Strict whitelist** 中选择 **Add rule**。
+2. 按实际服务填写 **Network protocol**、**Hostname, IP or pattern** 和 **Port**。填写主机名或 IP，不填写 URL 路径。
+3. 选择 **Group**；需要新分组时选择 **New group…** 并填写 **Group name**，然后选择 **Confirm**。
+4. 检查保存的规则及当前模式，再发起目标服务的小请求，检查实际响应。
 
-授权绑定完整的主机名、端口和已审核地址，允许所有项目中的受保护 Notebook 和 Shell 代码向该服务发送数据。只添加任务需要的权限。保存网络规则会重置受保护连接，可能中断正在进行的传输，请在传输结束后应用变更。
+精确域名不包含子域名。`*.example.org` 匹配子域名，但不匹配 `example.org`。协议和端口都是规则的一部分：443 端口的 HTTPS 规则不会授予 HTTP 或其他端口访问。Strict 匹配请求中的主机名，不检查其 DNS 结果属于公网、私有还是回环地址；只添加确实希望代码访问的目标。
+
+**Built-in** 和 **Manual** 表示规则来源。内置分组只在初次准备时加入，后续编辑会保留。已记住的授权与 Full access 都不会绕过 Strict。保存网络规则会重置受保护连接，可能中断传输，请在正在进行的传输结束后修改。
+
+## 保存 Relaxed 模式的访问例外 {/* #trusted-private-services */}
+
+在 **Trusted unsafe networks** 下选择 **Add address**，填写 **Network protocol**、**Hostname** 或 IP、**Port** 及对应分组。确认后检查保存范围，再重试请求。例外可以避免 Relaxed 模式下重复授权匹配的目标，但不会在 Strict 模式下授予访问。选择 Relaxed 时，Strict 白名单不生效。
+
+规则允许建立连接，不等于登录成功或响应有效，还应检查服务凭据和实际结果。这些设置替代了旧的公网域名与私有服务表单；参考旧截图时，请以当前模式和规则字段为准。
 
 ## 选择代理模式
 
@@ -66,22 +78,11 @@ Manual 支持 HTTP、HTTPS、SOCKS、SOCKS4、SOCKS5 URL，不支持 URL 内嵌�
 
 Manual 模式提示 **Enter a proxy server URL** 时，填写可用代理地址，或通过 **Done** 放弃草稿。保存有效地址本身不能证明该代理能完成原来失败的请求。
 
-### 域名解析为非公网地址时 {/* #本次遇到的-fake-ip-问题 */}
+### 检查 DNS 或代理故障 {/* #本次遇到的-fake-ip-问题 */}
 
-安装提示 `destination resolves to a non-public network address` 时，即使短错误只有 `conda install failed` 或 `pip install failed`，也要打开详细安装日志。
+保留失败请求的完整错误。即使规则允许目标，仍可能出现超时、证书错误或代理拒绝。核对实际服务的域名、协议、端口和代理路径。不要把旧版本的非公网地址错误当成当前 Strict 的匹配规则：Strict 检查请求中的名称/IP 与端口，不检查 DNS 地址类别。
 
-```text
-deny network-outbound pypi.org:443
-(destination resolves to a non-public network address)
-```
-
-1. 检查受影响域名及其解析地址。`198.18.*` 等地址不属于公网目的地。
-2. 区分域名名单与目标地址检查。`alreadyAllowed` 不表示解析出的地址符合要求。
-3. 与网络维护者检查公网 DNS 解析和预期代理路径，再重试原来的小型请求。保持域名防护开启。
-4. 分别验证安装结果和实际导入。代理已保存、解释器 Ready 或已有包能运行，都不足以证明新包安装成功。
-
-如果同一错误持续出现，保留域名、解析地址、代理模式和安装日志，按[故障排查](troubleshooting.md)反馈。设置保存成功不等于下载成功。
-
+修正原因后重试小请求。安装软件包时应分别确认安装与导入；设置保存成功或解释器 Ready 都不能证明下载已完成。共享日志前去掉凭据，持续失败时参见[故障排查](troubleshooting.md)。
 
 ## 软件包镜像与证书
 
@@ -100,7 +101,7 @@ deny network-outbound pypi.org:443
 
 包镜像改变软件包来源。核对镜像所需的根地址或索引格式，保存后在所选环境中重试小规模安装。模型提供方代理需单独配置。
 
-已配置的 Conda、PyPI 和 CRAN 镜像主机会在本次包管理操作中获得临时访问权限。这不会将其加入永久 Notebook 域名列表，也不会授予普通 Notebook 代码相同权限。跳转到其他主机时仍按网络审批流程处理。
+已配置的 Conda、PyPI 和 CRAN 镜像主机会在本次包管理操作中获得临时访问权限。这不会将其加入永久 Notebook 域名列表，也不会授予普通 Notebook 代码相同权限。跳转到其他主机时，Strict 模式要求实际协议、主机和端口仍符合白名单；临时包安装授权不会绕过 Strict 规则。
 
 填写受支持的 HTTP(S) 镜像地址，不包含内嵌凭据、空白字符、localhost 或纯 IP 地址。镜像设置被接受，不代表服务器可用，也不会修复域名解析到保留地址的问题。安装失败时先查看该操作真正访问的目标和错误，再重试。远程**模型**端点另外遵循[HTTPS 要求](providers.md)。
 
@@ -110,7 +111,7 @@ deny network-outbound pypi.org:443
 
 网络已连通但 Python 仍缺模块时，继续查看[运行时与软件包](./runtimes.md)。远程主机配置单独见 [Compute](remote-compute.md)。
 
-[网络设置源码](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/NetworkPanel.tsx)、[Notebook 网络边界](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/network-sandbox-owner.ts)。
+[网络设置源码](https://github.com/aipoch/open-science/blob/v1.3.0/src/renderer/src/pages/settings/NetworkPanel.tsx)、[Notebook 网络边界](https://github.com/aipoch/open-science/blob/v1.3.0/src/main/notebook/network-sandbox-owner.ts)。
 
 ## 查询 HTTP 报错
 
@@ -122,6 +123,6 @@ v0.31.1 中，网络保护阻止 R 运行时，Notebook 会显示行内提示。
 
 ## 切换授权模式后的网络访问 {/* #network-mode-changes */}
 
-从 v1.0.5 起，**Full access** 对公开网络目标不再逐项弹出授权卡片，但身份验证、来源限制和私有服务检查仍然适用。切换为更严格的模式会关闭已有连接，避免继续沿用旧权限。请在新模式下重试目标请求，并检查出现的授权卡片。
+**Full access** 可以省去适用的 Agent 手动权限卡，但不会绕过 Strict Notebook 白名单。请求被拒绝时，检查 **Settings → Network → Manage access**。Relaxed 模式下，协议与目标决定是否需要授权或已保存的例外。提供商凭据和服务限制仍然适用。
 
-全局网络授权会立即反映到 **Settings → Network**。添加新规则前先检查现有域名或私有服务列表。全局授权范围大于单次批准，只保留你需要的范围。另见[授权模式](approval-modes.md)。
+修改网络规则可能关闭已有受保护连接。按最终生效模式重试，并检查实际响应。会话权限见[审批模式](approval-modes.md)。

@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "設定の概要"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # 設定の概要 {/* #settings-overview */}
@@ -31,22 +31,22 @@ last_update:
 
 | グループ | パネル | それが管理するもの |
 | --- | --- | --- |
-| System | [General](../guides/appearance.md#help-center) | バージョン、更新、診断、CLI のインストール、ウィンドウの動作、ヘルプ |
-|  | [Appearance](../guides/appearance.md) | テーマ、言語、デスクトップの表示倍率、対応するアプリアイコン |
-|  | [Notifications](../guides/appearance.md) | タスク通知、通知内容、システムの状態、テスト通知 |
-| インテリジェンス | [モデル](../guides/models.md) | プロバイダーとシナリオモデル |
-|  | [エージェント](../guides/frameworks.md) | エージェントフレームワークのインストール、スイッチおよび修理 |
+| システム | [インフォメーション](../guides/appearance.md#help-center) | App版、更新、診断、CLIの取付け、窓の行動および助け |
+|  | [インフォメーション](../guides/appearance.md) | テーマ、言語、デスクトップインターフェイスのスケールおよびサポートされたアプリ アイコンの選択 |
+|  | [お知らせ](../guides/appearance.md) | タスクアラート、通知コンテンツ、システムステータス、テスト通知 |
+| インフォメーション | [モデル](../guides/models.md) | 提供者およびシナリオモデル、を含む [画像サービス](../guides/image-generation.md) |
+|  | [エージェント](../guides/frameworks.md) | エージェントフレームワークのインストール、切り替え、修理 |
 |  | [メモリ](../guides/memory.md) | 世界のオプトインとプロジェクトノート |
-| 接続 | [ネットワーク](../guides/network.md) | プロキシ、パッケージミラー、Notebookドメインアクセス |
+| コネクション | [ネットワーク](../guides/network.md) | プロキシ、パッケージミラー、ノートブックリラックス/厳格なアクセスルール |
 |  | [リモート](../guides/remote-access.md) | ブラウザアクセス、ペアリング、信頼できるデバイス |
 |  | [資格情報](../tools/credentials.md) | キー、トークン、OAuth、クレデンシャルリカバリ |
-|  | [コンピュート](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
-| ワークスペース | [タグ](../guides/tags.md) | タグとお気に入り 注文 |
-|  | [権限](../guides/approval-modes.md) | デフォルトモードと保存された付与 |
-|  | [ランタイム](../guides/runtimes.md) | Python/R環境とパッケージ |
+|  | [コンピューティング](../guides/remote-compute.md) | SSH・Slurm・Kubernetes・ハッギング・フェイス・ジョブズ・モーダル・レイ |
+| ワークスペース | [ニュース](../guides/tags.md) | タグとお気に入り 注文 |
+|  | [パーミッション](../guides/approval-modes.md) | デフォルトモードと保存された付与 |
+|  | [ランタイム](../guides/runtimes.md) | Python/R 環境とパッケージ |
 |  | [ストレージ](../guides/storage.md) | データの場所、書き込みアクセスおよびディスク使用 |
-|  | [使用量](../guides/usage.md) | トークン、コールおよび研究活動統計 |
-|  | [アーカイブ済み](../guides/storage.md) | アーカイブされた作品の復元または永久削除 |
+|  | [使用方法](../guides/usage.md) | トークン、コールおよび研究活動統計 |
+|  | [アーカイブ](../guides/storage.md) | アーカイブされた作品の復元または永久削除 |
 
 **Feedback** は、設定の下部にある別のエントリのままです。
 
