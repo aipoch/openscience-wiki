@@ -1,7 +1,7 @@
 ---
 title: "파일 형식 및 제한"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-19'
 ---
 
 # 파일 형식 및 제한 {/* #file-formats-and-limits */}
@@ -16,24 +16,24 @@ last_update:
 
 ## 미리보기 routing {/* #preview-routing */}
 
-| 내용 | 인식된 확장 | Behavior와 경계 |
+| 이름 &#42; | 인식된 확장 | Behavior와 경계 |
 | --- | --- | --- |
 | Raster/vector 이미지 | `avif`, `gif`, `jpeg`, `jpg`, `png`, `svg`, `webp` | 이미지 미리보기; 모델 입력은 여전히 이미지 지원에 달려 있습니다. |
 | 공지사항 | `tif`, `tiff` | 파일, 픽셀 및 메모리 제한이있는 전용 디코더 |
-| 한정된 테이블 | `csv`, `tsv` | 첫번째 줄은 우두머리로 대우됩니다; 고정된 줄/경사 |
-| 이름 &#42; | `fa`, `faa`, `fasta`, `ffn`, `fna`, `frn` | FASTA 검사; 관찰은 분석 방법을 검증하지 않습니다. |
-| 회사연혁 | `pdb` | 구조 구경꾼; 예측의 품질 평가 |
-| Molecule/작동 | `mol`, `sdf`, `smi`, `smiles`, `rxn` | 전용 분자 미리보기; 가정하지 않음 `mol2` 같은 여정이 있습니다. |
-| PDF | `pdf` | Dedicated 문서 리더 페이지 제어 |
-| 이름 &#42; | `docx` | 사무실 연출자; 이름 &#42; `doc` DOCX 파싱에 대한 경로가 없습니다. |
-| 스프레드시트 | `xls`, `xlsx` | 사무실 스프레드 시트 미리보기; 모델 실행은 별도의 작업입니다 |
-| 주요연혁 | `pptx` | 사무실 발표 연출자; 이름 &#42; `ppt` PPTX 파싱에 대한 경로가 없습니다. |
-| Markdown | `md`, `markdown` | 문서 렌더링, 지원된 텍스트 버전 작업 |
-| HTML | `htm`, `html` | 고립 된 HTML 미리보기; 적용 권한은받지 않습니다. |
-| JSON | `json` | 지정된 플랜 JSON을 포함한 구조 미리보기 |
-| 코드 | `bash`, `bib`, `bibtex`, `css`, `js`, `jsx`, `py`, `r`, `sh`, `tex`, `ts`, `tsx` | 높은 광원; 스크립트를 실행하지 않습니다. |
+| 한정된 테이블 | `csv`, `tsv` | 첫번째 줄은 우두머리로 대우됩니다; 결합된 줄/columns |
+| 이름 &#42; | `fa`, `faa`, `fasta`, `ffn`, `fna`, `frn` | FASTA 검사; 보기는 분석 방법을 검증하지 않습니다 |
+| 회사연혁 | `pdb` | 구조 구경꾼; 예측의 질 평가 없음 |
+| Molecule / 반응 | `mol`, `sdf`, `smi`, `smiles`, `rxn` | 전용 분자 미리보기; 가정하지 마십시오 `mol2` 같은 여정이 있습니다. |
+| PDF 파일 | `pdf` | Dedicated 문서 리더 페이지 제어 |
+| 이름 &#42; | `docx` | 사무실 연출자; 유산 `doc` DOCX 파싱에 대한 경로가 없습니다. |
+| 스프레드시트 | `xls`, `xlsx` | Office spreadsheet 미리보기; 모델 실행은 별도의 작업입니다 |
+| 주요연혁 | `pptx` | 발표 미리보기 및 [슬라이드 편집](../guides/presentation-editing.md); 유산 `ppt` PPTX 파싱에 대한 경로가 없습니다. |
+| 옵션 정보 | `md`, `markdown` | 문서 렌더링, 지원된 텍스트 버전 작업 |
+| 사이트맵 | `htm`, `html` | 고립 된 HTML 미리보기; 응용 권한을받지 않습니다 |
+| JSON 파일 | `json` | 지정된 플랜 JSON을 포함한 구조 미리보기 |
+| 이름 &#42; | `bash`, `bib`, `bibtex`, `css`, `js`, `jsx`, `py`, `r`, `sh`, `tex`, `ts`, `tsx` | Highlighted 소스; 스크립트를 열고 실행하지 않습니다. |
 | 일반 텍스트 | `conf`, `config`, `ini`, `iqtree`, `log`, `nwk`, `state`, `toml`, `tree`, `treefile`, `txt`, `xml`, `yaml`, `yml` | Bounded 텍스트 미리보기 |
-| 기타 파일 | 인식된 확장/content | 사용할 수 있는 Fallback/download; `.ipynb` 수출은 전용 파일-preview 편집기를 imply하지 않습니다 |
+| 다른 파일 | 인식된 확장/content | 사용할 수있는 Fallback/download; `.ipynb` 수출은 전용 파일-preview 편집기가 아닙니다. |
 
 라우터는 또한 적당한 extensionless 파일을 위한 좁은 MIME fallback가 있습니다. Misleading Office MIME metadata는 OOXML 렌더링기와 호환되는 유산 형식을하지 않습니다.
 

@@ -1,7 +1,7 @@
 ---
 title: "Notebook y pruebas de ejecución"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-19'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -301,3 +301,12 @@ Después de leer un CSV, transformándolo y exportando un nuevo archivo en Pytho
 ## Consultar acceso a la carpeta local {/* #folder-access */}
 
 Si no se puede leer una entrada local, compruebe [Permisos de la carpeta Notebook y Shell](../reference/permissions.md#notebook-folder-restrictions). Cambiar la restricción detiene los procesos en vivo y aclara las variables. Guarde los resultados primero, conceda la carpeta requerida, luego vuelva a administrar sólo las células necesarias para reconstruir el estado de trabajo.
+
+
+## Inspeccionar y detener un proceso de propiedad {/* #process-monitor */}
+
+Abra la vista Compute del proyecto e inspeccione el monitor de proceso local. Coincide con el proceso a su conversación y tiempo de funcionamiento antes de actuar; CPU, memoria y tiempo transcurrido ayudan a distinguir el trabajo activo de un núcleo ocioso. Algunas métricas de proceso dependen de la plataforma.
+
+Utilice **Process tree** para obtener detalles y **Terminate** sólo para una tarea de propiedad que se pretende detener. Esto puede interrumpir la ejecución y descartar las variables del kernel en vivo. Un registro de Notebook guardado no es borrado por detener un proceso, pero la salida sin terminar no es un resultado completado. Si la limpieza reporta un problema y ofrece **Retry cleanup**, inspeccione el estado antes de reintentar. Reload the required inputs before rerunning code in a fresh kernel.
+
+Para ejecuciones repetidas, utilice [Tareas programadas](scheduled-tasks.md) después de completar una ejecución manual.

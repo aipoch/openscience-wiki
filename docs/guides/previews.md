@@ -1,7 +1,7 @@
 ---
 title: "Opening and previewing files"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -66,7 +66,7 @@ The <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-reading.docx">W
 | --- | --- |
 | DOCX | Open the report. Use **Previous / Next** to visit both pages or **Outline** to jump to a heading. Press ⌘F (macOS) or Ctrl+F (Windows/Linux), search for `raw-count` and check its matches and the methods. Full-screen preview gives more room; there is no Word editing ribbon. |
 | XLSX | Open the workbook, then choose **Summary** or **Samples** at the bottom. Scroll horizontally for the last column. Samples contains 12 data rows plus its header, spacing and source notes; the viewer reports 17 used rows, not 17 biological samples. Values are a preview of the saved workbook, not evidence of a fresh calculation. |
-| PPTX | Open the slides, choose the **Page 2** thumbnail or **Next**, and check **2 / 2**. Use **Find** to search for `normalization` on the methods slide. **Notes** displays embedded speaker notes; this is a reading surface, not a presentation editor. |
+| PPTX | Open the slides, choose the **Page 2** thumbnail or **Next**, and check **2 / 2**. Use **Find** to search for `normalization` on the methods slide. **Notes** displays embedded speaker notes; use the [presentation editor](presentation-editing.md) to change slide text and formatting. |
 | TIFF | Open the figure and use **Next page / Previous page**. The two pages show raw library sizes and detected-gene medians. **Zoom in / Zoom out / Reset zoom** changes the view; check **Page 1 of 2** or **Page 2 of 2** before interpreting the figure. |
 | JSON | Open <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">the summary</ExampleDownload> to inspect source text, identifiers and values. It displays as code rather than an expandable object tree. |
 | HTML | Open <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">the reading table</ExampleDownload>. **Source** shows the HTML; **Render** restores the formatted document. Neither mode reruns the QC. |
@@ -91,7 +91,7 @@ The following table lists preview modes and controls for supported file types.
 | Code / plain text | Complete relevant block and language | Line numbers, syntax display, copy/download; oversized content can be limited |
 | JSON / HTML | Structure or rendered document | Rendering is not permission to execute code with application privileges |
 | Images / TIFF | Resolution and selected image | Image zoom/pan; TIFF has a dedicated rendering path |
-| Office files | Whether the managed renderer succeeds | Download/open externally if DOCX/XLSX/PPTX preview is unavailable; preview is not full Office editing |
+| Office files | Whether the managed renderer succeeds | Download/open externally if DOCX/XLSX/PPTX preview is unavailable; PPTX supports [slide editing](presentation-editing.md); DOCX/XLSX preview is not a full Office editor |
 | Biological sequences | Sequence identity and extent | Sequence-oriented view for supported FASTA inputs |
 | Molecular structures | Parsed model and chosen representation | Rotate, zoom, pan and supported Cartoon/Stick/Sphere/Surface/Line representations; missing structural data can disable a representation |
 | Unknown or unsupported file | Name, size and fallback message | Download for a suitable external viewer; do not infer valid content from the extension |

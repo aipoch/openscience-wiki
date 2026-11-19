@@ -1947,5 +1947,35 @@
   },
   "docs.outline.reference.v121.scope": {
     "message": "Resource center, question refinement, Codex subscriptions and reference CSV export."
+  },
+  "docs.guides.outline.scheduled-tasks.title": {
+    "message": "Schedule a research task"
+  },
+  "docs.guides.outline.scheduled-tasks.scope": {
+    "message": "Once or recurring messages and scripts, permissions, timing and run history."
+  },
+  "docs.guides.outline.image-generation.title": {
+    "message": "Generate and edit images"
+  },
+  "docs.guides.outline.image-generation.scope": {
+    "message": "Configure an image service, generate images and compare edited versions."
+  },
+  "docs.guides.outline.presentation-editing.title": {
+    "message": "Edit a PowerPoint presentation"
+  },
+  "docs.guides.outline.presentation-editing.scope": {
+    "message": "Edit slide text and formatting, review versions and export a PPTX."
+  },
+  "docs.outline.reference.v130.title": {
+    "message": "v1.3.0"
+  },
+  "docs.outline.reference.v130.scope": {
+    "message": "Scheduled tasks, image generation, presentation editing and film modes."
+  },
+  "docs.outline.reference.v122.title": {
+    "message": "v1.2.2"
+  },
+  "docs.outline.reference.v122.scope": {
+    "message": "Strict networking, film checkpoints, PDF fidelity and recovery."
   }
 }

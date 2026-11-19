@@ -1,7 +1,7 @@
 ---
 title: "Formats et limites des fichiers"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-19'
 ---
 
 # Formats et limites des fichiers {/* #file-formats-and-limits */}
@@ -20,20 +20,20 @@ Regardez le routage des fichiers et les limites ici. Télécharger un fichier, l
 | --- | --- | --- |
 | Image rasoir/vecteur | `avif`, `gif`, `jpeg`, `jpg`, `png`, `svg`, `webp` | Aperçu de l'image; l'entrée du modèle dépend toujours du support de l'image |
 | TIFF | `tif`, `tiff` | Décodeur dédié avec limites de fichiers, pixel et mémoire |
-| Tableau délimité | `csv`, `tsv` | La première ligne est traitée comme des en-têtes; rangées/colonnes délimitées |
-| Séquence | `fa`, `faa`, `fasta`, `ffn`, `fna`, `frn` | Inspection FASTA; visionnement ne valide pas une méthode d'analyse |
-| Structure | `pdb` | Visualiseur de structure; pas une évaluation de la qualité d'une prédiction |
-| Molécule/réaction | `mol`, `sdf`, `smi`, `smiles`, `rxn` | Aperçu moléculaire dédié; ne supposent pas `mol2` a le même routage |
+| Tableau délimité | `csv`, `tsv` | La première ligne est traitée comme des en-têtes; lignes/colonnes délimitées |
+| Séquence | `fa`, `faa`, `fasta`, `ffn`, `fna`, `frn` | Inspection FASTA; l'observation ne valide pas une méthode d'analyse |
+| Structure | `pdb` | Visionneuse de structure; pas une évaluation de la qualité d'une prédiction |
+| Molécule/réaction | `mol`, `sdf`, `smi`, `smiles`, `rxn` | Aperçu moléculaire dédié; ne pas supposer `mol2` a le même routage |
 | PDF | `pdf` | Lecteur de document dédié avec contrôle de page |
-| Mots | `docx` | Le mandataire; héritage `doc` n'est pas acheminé vers DOCX analyse |
-| Feuille de calcul | `xls`, `xlsx` | Prévisualisation du tableur de bureau; l'exécution du modèle est une opération séparée |
-| Présentation | `pptx` | Le responsable de la présentation de l'office; héritage `ppt` n'est pas acheminé vers l'analyse PPTX |
-| Markdown | `md`, `markdown` | Document rendu, avec des actions de version de texte supportées |
-| HTML | `htm`, `html` | Aperçu isolé de HTML; ne reçoit pas de privilèges d'application |
+| Mots | `docx` | Lecteur de bureau; héritage `doc` n'est pas acheminé vers DOCX analyse |
+| Feuille de calcul | `xls`, `xlsx` | Aperçu du tableur de bureau; l'exécution du modèle est une opération séparée |
+| Présentation | `pptx` | Aperçu et présentation [Édition de diapositives](../guides/presentation-editing.md); héritage `ppt` n'est pas acheminé vers l'analyse PPTX |
+| Marquage | `md`, `markdown` | Document rendu, avec des actions de version de texte supportées |
+| HTML | `htm`, `html` | Aperçu HTML isolé; ne reçoit pas de privilèges d'application |
 | JSON | `json` | Aperçu structuré, y compris le plan reconnu JSON |
-| Coder | `bash`, `bib`, `bibtex`, `css`, `js`, `jsx`, `py`, `r`, `sh`, `tex`, `ts`, `tsx` | Source mise en évidence; ouvrir un script ne l'exécute pas |
+| Code | `bash`, `bib`, `bibtex`, `css`, `js`, `jsx`, `py`, `r`, `sh`, `tex`, `ts`, `tsx` | Source mise en évidence; l'ouverture d'un script ne l'exécute pas |
 | Texte simple | `conf`, `config`, `ini`, `iqtree`, `log`, `nwk`, `state`, `toml`, `tree`, `treefile`, `txt`, `xml`, `yaml`, `yml` | Aperçu du texte bombé |
-| Autres fichiers | Extension/contenu non reconnu | Retour/téléchargement le cas échéant; `.ipynb` export n'implique pas d'éditeur dédié de prévisualisation de fichiers |
+| Autres fichiers | Extension/contenu non reconnu | Retour/téléchargement le cas échéant; `.ipynb` export n'implique pas un éditeur dédié de prévisualisation de fichiers |
 
 Le routeur dispose également d'un repli MIME étroit pour les fichiers sans extension appropriés. Les métadonnées Office MIME erronées ne rendent pas un format d'héritage compatible avec un rendu OOXML.
 

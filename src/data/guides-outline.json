@@ -213,6 +213,17 @@
             "guides/composer"
           ],
           "contentStatus": "written"
+        },
+        {
+          "id": "scheduled-tasks",
+          "title": "Schedule a research task",
+          "scope": "Once or recurring messages and scripts, permissions, timing and run history.",
+          "currentDoc": "guides/scheduled-tasks",
+          "proposedUrl": "/docs/guides/scheduled-tasks/",
+          "relatedDocs": [
+            "guides/scheduled-tasks"
+          ],
+          "contentStatus": "written"
         }
       ]
     },
@@ -353,6 +364,28 @@
           "proposedUrl": "/docs/guides/research-films/",
           "relatedDocs": [
             "guides/research-films"
+          ],
+          "contentStatus": "written"
+        },
+        {
+          "id": "image-generation",
+          "title": "Generate and edit images",
+          "scope": "Configure an image service, generate images and compare edited versions.",
+          "currentDoc": "guides/image-generation",
+          "proposedUrl": "/docs/guides/image-generation/",
+          "relatedDocs": [
+            "guides/image-generation"
+          ],
+          "contentStatus": "written"
+        },
+        {
+          "id": "presentation-editing",
+          "title": "Edit a PowerPoint presentation",
+          "scope": "Edit slide text and formatting, review versions and export a PPTX.",
+          "currentDoc": "guides/presentation-editing",
+          "proposedUrl": "/docs/guides/presentation-editing/",
+          "relatedDocs": [
+            "guides/presentation-editing"
           ],
           "contentStatus": "written"
         }

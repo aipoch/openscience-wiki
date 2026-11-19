@@ -1,7 +1,7 @@
 ---
 title: "기능 및 지원된 입력"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-19'
 ---
 
 # 기능 및 지원된 입력 {/* #capabilities-and-supported-inputs */}
@@ -23,6 +23,8 @@ Open-Science은 연구 프로젝트의 대화, 소스 파일, 문학 기록 및 
 종이에 그림과 테이블을 위해, 사용 [로컬 PDF 추출](previews.md#pdf-extraction). [Skill 마켓플레이스](../skills/marketplace.md)을 통해 재사용 가능한 방법을 찾으십시오. [재현성](reproducibility.md)과 캡처 된 결과를 확인하거나 [.science 패키지](research-packages.md)을 통해 대화 및 증거를 공유하십시오.
 
 파일을 여는 뷰어는 모델이 읽을 수 없다는 것을 보여주지 않습니다. 파일 첨부는 세션을 사용하여 작업 할 수있는 소스; 기록 된 읽기, 도구 통화 및 출력 증거를 검사하여 에이전트가 어떻게 사용했는지 설정하십시오. 정확한 확장 및 크기 제한은 [파일 형식 및 제한](../reference/formats.md)에 있습니다.
+
+반복 작업의 경우, [메시지 또는 스크립트](scheduled-tasks.md). 발표 준비를 위해, [별도의 이미지 서비스로 일러스트 생성](image-generation.md) 또는 [기존 PPTX 편집](presentation-editing.md). 이미지 생성은 자체 서비스 자격 및 할당량을 필요로 합니다. 데스크톱 PPTX 편집은 선택한 파일 버젼에서 작동합니다.
 
 ## 작업 공간 객체를 이해 {/* #understand-the-workspace-objects */}
 

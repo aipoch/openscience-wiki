@@ -1,7 +1,7 @@
 ---
 title: "Capacidades y insumos compatibles"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-19'
 ---
 
 # Capacidades y insumos compatibles {/* #capabilities-and-supported-inputs */}
@@ -23,6 +23,8 @@ Open-Science trae conversaciones de un proyecto de investigación, archivos fuen
 Para figuras y tablas en un papel, utilice [extracción local PDF](previews.md#pdf-extraction). Encontrar métodos reutilizables a través del [Catálogo de Skills](../skills/marketplace.md). Revise un resultado capturado con [Reproducibilidad](reproducibility.md), o comparta su conversación y evidencia a través de un [Paquete .science](research-packages.md).
 
 Un espectador que abre un archivo no muestra que el modelo lo ha leído. Adjuntar un archivo da a la sesión una fuente con la que trabajar; inspeccionar las lecturas registradas, las llamadas de herramientas y las pruebas de salida para establecer cómo el agente lo usó. Las extensiones de salida y los límites de tamaño están en [Formatos y límites de archivo](../reference/formats.md).
+
+Para el trabajo recurrente, [programar un mensaje o script](scheduled-tasks.md). Para la preparación de la presentación, [generar una ilustración con un servicio de imagen separado](image-generation.md) o [editar un PPTX existente](presentation-editing.md). La generación de imágenes necesita sus propias credenciales de servicio y cuota; la edición de escritorio PPTX funciona en la versión de archivo seleccionada.
 
 ## Comprender los objetos del espacio de trabajo {/* #understand-the-workspace-objects */}
 

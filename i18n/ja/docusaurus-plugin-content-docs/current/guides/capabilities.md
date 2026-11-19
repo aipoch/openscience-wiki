@@ -1,7 +1,7 @@
 ---
 title: "能力とサポートされた入力"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-19'
 ---
 
 # 能力とサポートされた入力 {/* #capabilities-and-supported-inputs */}
@@ -23,6 +23,8 @@ Open-Scienceは、研究プロジェクトの会話、ソースファイル、�
 紙の図表や表については、[ローカルPDF抽出物](previews.md#pdf-extraction)を使用してください。 [Skill マーケットプレイス](../skills/marketplace.md)で再利用可能な方法を見つけます。 [再現性](reproducibility.md)で撮影した結果をチェックするか、[.scienceパッケージ](research-packages.md)で会話や証拠を共有してください。
 
 ファイルを開いたビューアは、モデルが読み込まれていないことを示すものではありません。 ファイルが作成されると、セッションをソースに与えます。 記録された読み取り値、ツールコール、出力証拠を調べて、エージェントが使用した方法を確立します。 [ファイルフォーマットと制限](../reference/formats.md)では、拡張子とサイズ制限が有効です。
+
+再発工事のため、[メッセージやスクリプトをスケジュールする](scheduled-tasks.md)。 プレゼンテーションの準備のため、[別のイメージサービスでイラストを生成](image-generation.md)または[既存のPPTXを編集する](presentation-editing.md)。 画像生成は、独自のサービス資格情報とクォータを必要とします。デスクトップPPTX編集は、選択したファイルバージョンで動作します。
 
 ## ワークスペースオブジェクトを理解する {/* #understand-the-workspace-objects */}
 

@@ -1,7 +1,7 @@
 ---
 title: "提供商與本地模型配置"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -265,3 +265,12 @@ v1.2.1 的 **Open-Science Agent** 支持 Main 和 Subagent 使用導入的 Codex
 4. 先發送一個簡短請求並檢查真實回覆，再開始研究。檢測到登錄、保存配置和成功執行是不同狀態。
 
 Anthropic 模型目錄還新增了支持 1M 上下文的 **Claude Fable 5.2**。目錄中存在模型不代表賬戶已有權限，也不會自動替換 Main。
+
+
+## 連接對應區域的 CodeBuddy 訂閱 {/* #codebuddy-subscription */}
+
+選擇 CodeBuddy 訂閱時使用 CodeBuddy 運行時。在 **Settings → Model** 中選擇對應的 **CodeBuddy (China)** 或 **CodeBuddy (International)** 賬戶，區域應與準備使用的訂閱一致。
+
+按表單提供的入口連接已有登錄，或通過瀏覽器登錄。使用已有登錄時，先在 CodeBuddy CLI 登錄所選站點，再選擇 **Connect**；只有 WorkBuddy 配置不等於已經完成 CodeBuddy CLI 登錄。選擇瀏覽器登錄時，完成賬戶流程後返回 Open-Science。
+
+等待連接驗證和賬戶可用模型列表，再選擇可用模型發送一個簡短請求。如果站點或登錄不匹配，修正該賬戶連接並刷新；提供商條目保存成功不代表模型一定可以調用。

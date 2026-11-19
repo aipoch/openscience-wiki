@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "페이지 및 제어 색인"
 description: "모든 문서화 된 Open-Science 버튼, 입력, 스위치 및 페이지에 의해 결과."
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 # 페이지 및 제어 색인 {/* #page-and-control-index */}
@@ -43,19 +43,20 @@ last_update:
 
 ## 작업 공간 사이드 바 및 레이아웃 {/* #workspace-sidebar-and-layout */}
 
-| (주) | 결과 |
+| 제품정보 | 제품정보 |
 | --- | --- |
 | 모든 프로젝트 | 홈으로 돌아가기 |
 | 프로젝트 이름 | 프로젝트 입력점 또는 메뉴 열기 |
-| 콜랩 사이드바 | 붕괴 또는 왼쪽 sidebar 확장 |
-| 새로운 | 세션 만들기 |
+| 연락처 | 붕괴 또는 왼쪽 sidebar 확장 |
+| - 한국어 | 세션 만들기 |
 | 사용자 정의 | Skill/Specialist 맞춤 대화 시작 |
-| 파일 | 프로젝트 파일 패널을 오른쪽에 표시 |
-| 라이브러리 | 문학 도서관에서 프로젝트 링크 된 참조 |
-| 세션 행 | 스위치 세션; 상태는 Idle, Running, Permission 또는 다른 국가를 보고합니다 |
-| 세션 작업 | Pin/Unpin, Edit..., 모든 artifacts 다운로드, 노트북보기, 내보내기 대화 ..., Archive, Delete |
+| 파일 형식 | 프로젝트 파일 패널을 오른쪽에 표시 |
+| 일정표 | [Timed 메시지 또는 스크립트 생성 및 검사](../guides/scheduled-tasks.md) |
+| 관련 기사 | 문학 도서관에서 프로젝트 링크 된 참조 |
+| 세션 행 | 전환 세션; 상태 보고서 Idle, 실행, 권한, 또는 다른 상태 |
+| 세션 작업 | Pin/Unpin, Edit..., 모든 artifacts 다운로드, 노트북보기, 수출 대화 ..., Archive, Delete |
 | 메시지, 설정, GitHub | 알림, 설정, 또는 공식 저장소 열기 |
-| Resize 왼쪽 / 오른쪽, 붕괴 미리보기 | 패널 또는 붕괴 미리보기를 Resize |
+| 왼쪽 / 오른쪽, 붕괴 미리보기 | 패널 또는 붕괴 미리보기를 조정 |
 
 ## 대화 및 작곡 {/* #conversation-and-composer */}
 
@@ -72,6 +73,10 @@ last_update:
 | 모델 | 능동태 모델, Reasoning 노력 | 나중에 요청을 위해 모델 또는 노력 변경 |
 | 큐 / 종료 | Queue edit/delete/reorder, 지금, 보내기, 계획 먼저, 사이드 채팅, 지점, 정지 | 단계 또는 후속 제출, 모드를 선택, 또는 현재 실행 중지 |
 | 끝까지 스크롤 | 최신 메시지로 이동 |
+
+## 이미지 및 발표 편집 {/* #creation-editors */}
+
+이미지 API 및 모델에 대한 [이미지 서비스](../guides/image-generation.md#configure)를 사용합니다. 생성 된 이미지를 열고 버전 검사합니다. 데스크톱 PPTX 미리보기에서 **Edit**, **Apply**, **Save**, **버전 역사** 및 **이전 버전과 비교**는 [발표 변경](../guides/presentation-editing.md)를 관리합니다.
 
 ## 제출, 계획 및 구조화 된 질문 {/* #permission-plan-and-structured-questions */}
 
@@ -162,15 +167,15 @@ Filter/Search, Add/Import, Enable, Detail, Test/Reconnect, Edit, Export 및 제�
 
 ### 네트워크 {/* #network */}
 
-다시 확인; 프록시 시스템 / 수동 / 직접; Notebook 도메인 수당; 포장 거울 Configure/Edit; Conda 수로, pip 색인 및 CA 뭉치; 거울, 취소 및 저장.
+다시 확인; 프록시 시스템 / 수동 / 직접; 노트북 Relaxed / 엄격한 모드, 프로토콜 / 호스트 / 포트 규칙 및 그룹; 패키지 미러 구성 / Edit; Conda 채널, pip 색인 및 CA 번들; 거울, 취소 및 저장.
 
 ### 모델 {/* #model */}
 
-능동태 모델, 충전 라디오, Subagent/Reviewer/Vision/Session-details 모델 정책; 공급자 시험/Edit/Delete/Add. 공급자 양식은 Onboarding Model page에서 모든 필드를 추가하고 취소 및 저장합니다.
+Active model, Reasoning radios, Subagent/Reviewer/Vision/Session-details policy, 및 [Image Generation 모델 / 이미지 서비스](../guides/image-generation.md); 공급자 Test/Edit/Delete/Add. 공급자 양식은 Onboarding Model page에서 모든 필드를 추가하고 취소 및 저장합니다.
 
 ### 에이전트 {/* #agent */}
 
-OpenCode/Claude/Codex/CodeBuddy/Pi 프레임 워크 카드, 스위치, 설치 소스, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home, 그리고 제거 확인.
+내장 Open-Science 에이전트; 옵션 OpenCode/Claude/Codex/CodeBuddy/Pi 프레임 워크 카드, 스위치, 설치 소스, Install/Cancel/Retry, 설치 로그, 수리, 로그인/auth, 가져오기 config/home, 그리고 제거 확인.
 
 ### 권한 {/* #permissions */}
 

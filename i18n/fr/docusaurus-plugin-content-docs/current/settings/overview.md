@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Aperçu des paramètres"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Aperçu des paramètres {/* #settings-overview */}
@@ -31,19 +31,19 @@ Cette recherche couvre les paramètres représentatifs de chaque panel, pas de c
 
 | Groupe | Groupe | Ce qu'il gère |
 | --- | --- | --- |
-| System | [General](../guides/appearance.md#help-center) | Version, mises à jour, diagnostics, installation CLI, fenêtres et aide |
-|  | [Appearance](../guides/appearance.md) | Thème, langue, taille de l’interface du bureau et icône de l’application |
-|  | [Notifications](../guides/appearance.md) | Alertes des tâches, contenu, état système et notification de test |
-| Intelligence | [Modèle](../guides/models.md) | Modèles de fournisseurs et de scénarios |
-|  | [Agent](../guides/frameworks.md) | Installation, commutation et réparation du cadre de l'agent |
+| Système | [Généralités](../guides/appearance.md#help-center) | Version de l'application, mises à jour, diagnostics, installation CLI, comportement de la fenêtre et aide |
+|  | [Apparence](../guides/appearance.md) | Thème, langue, échelle d'interface de bureau et les choix app-icon pris en charge |
+|  | [Notifications](../guides/appearance.md) | Alertes de tâches, contenu de la notification, état du système et notification des essais |
+| Renseignements | [Modèle](../guides/models.md) | Modèles de fournisseurs et de scénarios, y compris [services d'image](../guides/image-generation.md) |
+|  | [Agent](../guides/frameworks.md) | Installation, commutation et réparation du cadre d'agent |
 |  | [Mémoire](../guides/memory.md) | Notes globales et de projet |
-| Connexions | [Réseau](../guides/network.md) | Proxy, miroirs de paquets et accès au domaine Notebook |
-|  | [À distance](../guides/remote-access.md) | Accès au navigateur, appariement et dispositifs de confiance |
-|  | [Informations d'identification](../tools/credentials.md) | Clés, jetons, OAuth et récupération des titres de compétence |
-|  | [Calculer](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
-| Espace de travail | [Balises](../guides/tags.md) | Mots-clés et Favoris commande |
+| Connexions | [Réseau](../guides/network.md) | Proxy, miroirs de paquet et règles d'accès détendue/strict |
+|  | [Télécommande](../guides/remote-access.md) | Accès au navigateur, appariement et dispositifs de confiance |
+|  | [Pouvoirs](../tools/credentials.md) | Clés, jetons, OAuth et récupération des justificatifs |
+|  | [Calculer](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Offres d'emploi face au brouillage · Modal · Rayon |
+| Espace de travail | [Étiquettes](../guides/tags.md) | Mots-clés et Favoris commande |
 |  | [Autorisations](../guides/approval-modes.md) | Mode par défaut et subventions enregistrées |
-|  | [Environnements d'exécution](../guides/runtimes.md) | Environnements et paquets Python/R |
+|  | [Durées d'exécution](../guides/runtimes.md) | Environnements et paquets Python/R |
 |  | [Stockage](../guides/storage.md) | Emplacement des données, accès écrit et utilisation du disque |
 |  | [Utilisation](../guides/usage.md) | Statistiques des activités de recherche et d'appel |
 |  | [Archivé](../guides/storage.md) | Restaurer ou supprimer définitivement les travaux archivés |

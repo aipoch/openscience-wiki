@@ -1,7 +1,7 @@
 ---
 title: "Créer et partager un film de recherche"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Créer et partager un film de recherche
@@ -19,11 +19,15 @@ Le moteur de parole fonctionne localement après l'installation, mais l'auteur d
 
 ## Générer et regarder {/* #generate-film */}
 
-1. Ouvrir **Session actions → Generate research film**. En replay, la même action est disponible sous **Autres actions**.
-2. Lisez tout message de préparation. Résoudre un modèle manquant, un certificat ou une ressource de narration avant de réessayer. Si la narration est prête, la génération part de cette action.
-3. Suivez les étapes de l'écriture et de la génération des médias. Vous pouvez fermer le dialogue pendant que la génération continue, puis rouvrir **View generation progress**. **Cancel** arrête le travail de film, pas la conversation source.
-4. Quand **Research film ready** apparaît, vérifie le titre et la durée, puis choisit **Play research film**.
-5. Regardez tout le film. Vérifiez les nombres, les unités, les explications, les visuels, la narration et les limites indiquées par rapport à la session source. Porter une attention particulière à la question de savoir si des exemples hypothétiques ou des résultats préliminaires sont encore décrits comme tels.
+1. Ouvrez **Session actions → Generate research film**. La même action est disponible sous **Autres actions**.
+2. Choisissez **Film mode → Research explanation** pour expliquer la question, les méthodes et les résultats, ou **Operation replay** pour montrer les actions de conversation et les résultats dans l'ordre. Lisez l'explication d'utilisation du modèle, résolvez tout modèle manquant, toute ressource de reconnaissance ou de narration, puis sélectionnez **Start generation**.
+3. Suivez les étapes de l'écriture et de la génération des médias. Vous pouvez fermer le dialogue pendant que la génération continue, puis rouvrir **View generation progress**. **Cancel** arrête le film, pas la conversation source.
+4. Lorsque **Research film ready** apparaît, vérifiez le titre et la durée, puis choisissez **Play research film**.
+5. Regardez tout le film. Vérifiez les numéros, les unités, les explications, les visuels, la narration et les limites indiquées par rapport à la session source. Porter une attention particulière à la question de savoir si des exemples hypothétiques ou des résultats préliminaires sont encore décrits comme tels.
+
+![Choisir l'explication de recherche ou Opération rejouer avant de commencer la génération](/img/open-science/v130/film-mode.webp)
+
+Chaque branche de conversation conserve sa propre sortie de film. Ouvrez la branche prévue avant de générer ou de visionner un film; un film sur une branche n'est pas automatiquement le film pour une autre. L'auteur du film consomme des jetons de modèle même si la narration fonctionne localement.
 
 <p className="example-label"><strong>Exemple travaillé</strong> Expliquez un exemple d'enseignement à cinq chiffres</p>
 
@@ -54,6 +58,8 @@ Attendez que l'exportation finisse, puis rouvrez le fichier sauvegardé en dehor
 ![Lecteur de films de recherche et contrôle des exportations de MP4](/img/open-science/v120/film-player.webp)
 
 ## Régénérer ou récupérer {/* #film-recovery */}
+
+Lorsqu'un film est interrompu et que le dialogue offre **Retry**, reprendre pour réutiliser des scènes validées, narration et timings. Les points de contrôle survivent à un redémarrage du processus. **Generate again** commence une nouvelle tentative à la place; l'utiliser pour changer le contenu prévu ou délibérément rejeter la tentative précédente. Inspectez les progrès et le film terminé après chaque action.
 
 - Si la génération vous demande de sélectionner un modèle ou de vérifier les identifiants, corrigez cette exigence dans **Settings → Model**, puis revenir à la session.
 - Si le téléchargement de narration échoue, utilisez **Retry** et attendre **Installed** avant de générer à nouveau.

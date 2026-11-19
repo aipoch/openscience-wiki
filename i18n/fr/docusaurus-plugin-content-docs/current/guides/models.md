@@ -1,7 +1,7 @@
 ---
 title: "Modèles et politiques de travail"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Modèles et politiques de travail {/* #models-and-task-policies */}
@@ -145,3 +145,8 @@ Ouvrir **Settings → Model → Local capabilities**. Dans v1.2.0, ceci remplace
 | Narration de recherche | Produire un discours anglais pour des films de recherche | Installez le moteur de parole et le modèle; attendez **Installed** |
 
 Installez seulement les ressources nécessaires à votre tâche. Suivre les progrès de téléchargement; **Annuler le téléchargement** arrête le transfert, et **Retry** reprend ou répète un téléchargement échoué comme pris en charge. Réouvrir l'onglet pour confirmer l'état installé. **Uninstall** est indisponible pendant qu'une ressource est utilisée. Voir [films de recherche](research-films.md) et [Extraction PDF](previews.md#pdf-extraction).
+
+
+## Choisir un modèle de génération d'images {/* #image-generation */}
+
+**Image generation** a sa propre sélection de services et de modèles à **Settings → Model**. Il crée ou modifie des images; **Vision** analyse les entrées d'images. Gardez Main configuré pour le travail de conversation et sélectionnez le service image séparément. Voir [génération et édition d'images](image-generation.md) pour les références, une première demande et l'historique de la version.

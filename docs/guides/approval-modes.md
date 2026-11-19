@@ -1,7 +1,7 @@
 ---
 title: "Permissions and approvals"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-19'
 ---
 
 # Permissions and approvals
@@ -107,3 +107,7 @@ Source: [Saved grants and undo](https://github.com/aipoch/open-science/commit/46
 With **Auto-approve edits**, a defined set of built-in Library operations can pass the agent's per-call approval automatically. These include searching and reading references, saving to Inbox, acquiring PDFs, formatting references and preparing citation documents. This reduces repeated prompts during routine Library work.
 
 The rule applies to recognized app-owned literature tools, not every MCP call, command or network operation. The tools' own file, network and resource rules still apply, and this decision creates no permanent grant. Choose **Ask for approval** when you want to inspect agent requests individually. Review Inbox candidates before accepting them.
+
+## Keep the network mode separate {/* #strict-network */}
+
+**Full access** does not bypass the **Strict** Notebook whitelist. An unlisted destination is blocked without an authorization offer, even when the conversation permits automatic actions. Add only the required protocol, hostname/IP and port in [Network settings](network.md#public-network-rules).

@@ -1,7 +1,7 @@
 ---
 title: "開啟與預覽檔案"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -64,12 +64,12 @@ Markdown 渲染標題、列表、程式碼和連結。接受圖表前檢查校�
 
 | 格式 | 操作與檢查重點 |
 | --- | --- |
-| DOCX | 開啟報告，使用 **Previous / Next** 檢視兩頁，或從 **Outline** 跳到標題。使用 ⌘F（macOS）或 Ctrl+F（Windows/Linux）查詢 `raw-count`，核對匹配位置和方法說明。可全屏閱讀；此處沒有 Word 編輯工具欄 |
-| XLSX | 開啟工作簿，在底部選擇 **Summary** 或 **Samples**。橫向滾動檢視最後一列。Samples 有 12 行樣本，加上表頭、間隔和來源說明共 17 個已用行；預覽顯示 17 行不表示有 17 個生物樣本。已儲存的單元格數值也不證明重新計算過公式 |
-| PPTX | 開啟幻燈片，選擇左側 **Page 2** 縮圖或 **Next**，檢查 **2 / 2**。使用 **Find** 搜尋 `normalization`，核對方法頁的匹配。**Notes** 顯示檔案自帶的講者備註；此處不是簡報編輯器 |
-| TIFF | 用 **Next page / Previous page** 切換。兩頁分別顯示原始文庫大小和有計數基因的中位數。**Zoom in / Zoom out / Reset zoom** 只改變檢視；解釋影象前確認 **Page 1 of 2** 或 **Page 2 of 2** |
-| JSON | 開啟<ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">摘要檔案</ExampleDownload>檢查原始碼、識別符號和數值。它以程式碼顯示，不是可展開的物件樹 |
-| HTML | 開啟<ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">閱讀表格</ExampleDownload>，**Source** 檢視 HTML，**Render** 返回排版檢視，兩者都不會重跑 QC |
+| DOCX | 打開報告，使用 **Previous / Next** 查看兩頁，或從 **Outline** 跳到標題。使用 ⌘F（macOS）或 Ctrl+F（Windows/Linux）查找 `raw-count`，覈對匹配位置和方法說明。可全屏閱讀；此處沒有 Word 編輯工具欄 |
+| XLSX | 打開工作簿，在底部選擇 **Summary** 或 **Samples**。橫向滾動查看最後一列。Samples 有 12 行樣本，加上表頭、間隔和來源說明共 17 個已用行；預覽顯示 17 行不表示有 17 個生物樣本。已保存的單元格數值也不證明重新計算過公式 |
+| PPTX | 打開幻燈片，選擇左側 **Page 2** 縮略圖或 **Next**，檢查 **2 / 2**。使用 **Find** 搜索 `normalization`，覈對方法頁的匹配。**Notes** 顯示文件自帶的講者備註；修改幻燈片文字與格式，使用[演示文稿編輯](presentation-editing.md) |
+| TIFF | 用 **Next page / Previous page** 切換。兩頁分別顯示原始文庫大小和有計數基因的中位數。**Zoom in / Zoom out / Reset zoom** 只改變視圖；解釋圖像前確認 **Page 1 of 2** 或 **Page 2 of 2** |
+| JSON | 打開<ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">摘要文件</ExampleDownload>檢查源碼、標識符和數值。它以代碼顯示，不是可展開的對象樹 |
+| HTML | 打開<ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">閱讀表格</ExampleDownload>，**Source** 查看 HTML，**Render** 返回排版視圖，兩者都不會重跑 QC |
 
 ![Word 中的分頁控制元件和正文搜尋結果](/img/open-science/v0333/word-search.webp)
 
@@ -85,16 +85,16 @@ Markdown 渲染標題、列表、程式碼和連結。接受圖表前檢查校�
 
 下表列出各類檔案可用的預覽方式與控制入口。
 
-| 型別 | 檢查重點 | 控制元件與邊界 |
+| 類型 | 檢查重點 | 控件與邊界 |
 | --- | --- | --- |
-| PDF | 頁碼、可讀文字、原始檔 | 縮圖、目錄、文件搜尋、翻頁、縮放、文字/區域選擇；掃描頁可能沒有可搜尋文字 |
-| 程式碼/文字 | 所需程式碼塊是否完整、語言 | 行號、語法顯示、複製/下載；超大內容可能受限 |
-| JSON / HTML | 結構或渲染內容 | 渲染不代表允許以應用權限執行程式碼 |
-| 影象 / TIFF | 解析度與目標圖 | 縮放/平移；TIFF 使用專用渲染流程 |
-| Office | 託管渲染是否成功 | DOCX/XLSX/PPTX 不可預覽時下載後外部開啟；不等於完整 Office 編輯 |
-| 生物序列 | 序列身份和範圍 | 支援的 FASTA 使用序列檢視 |
-| 分子結構 | 解析模型和表現方式 | 旋轉、縮放、平移及支援的 Cartoon/Stick/Sphere/Surface/Line；缺少結構資訊可能禁用某種表現 |
-| 未知格式 | 檔名、大小、回退提示 | 下載到合適軟體檢視；副檔名不證明內容有效 |
+| PDF | 頁碼、可讀文字、源文件 | 縮略圖、目錄、文檔搜索、翻頁、縮放、文字/區域選擇；掃描頁可能沒有可搜索文字 |
+| 代碼/文本 | 所需代碼塊是否完整、語言 | 行號、語法顯示、複製/下載；超大內容可能受限 |
+| JSON / HTML | 結構或渲染內容 | 渲染不代表允許以應用權限執行代碼 |
+| 圖像 / TIFF | 分辨率與目標圖 | 縮放/平移；TIFF 使用專用渲染流程 |
+| Office | 託管渲染是否成功 | DOCX/XLSX/PPTX 不可預覽時下載後外部打開；PPTX 支持[幻燈片編輯](presentation-editing.md)，DOCX/XLSX 預覽不等於完整 Office 編輯器 |
+| 生物序列 | 序列身份和範圍 | 支持的 FASTA 使用序列視圖 |
+| 分子結構 | 解析模型和表現方式 | 旋轉、縮放、平移及支持的 Cartoon/Stick/Sphere/Surface/Line；缺少結構信息可能禁用某種表現 |
+| 未知格式 | 文件名、大小、回退提示 | 下載到合適軟件查看；擴展名不證明內容有效 |
 
 PDF 上下文只關聯當前任務需要的論文，後續不應使用時取消關聯。每會話最多關聯三份 PDF。沒有附全文的文獻條目提供後設資料，不代表模型已閱讀全文，見[文獻庫](library.md)。
 

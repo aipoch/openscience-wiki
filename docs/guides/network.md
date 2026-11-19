@@ -1,7 +1,7 @@
 ---
 title: "Network, proxies, and package mirrors"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-19'
 ---
 
 # Network, proxies, and package mirrors
@@ -26,25 +26,37 @@ If Network reports **Ready** but a tool fails, expand that tool's error. The sta
 
 <span id="configure-notebook-domains" />
 
-## Configure public network rules {/* #public-network-rules */}
+## Choose Relaxed or Strict networking {/* #public-network-rules */}
 
-1. Open **Settings → Network → Manage access**. Read **Public internet access** and inspect **Built-in services**; groups marked **Required** stay enabled.
-2. Under **Custom public domains**, enter a hostname, an HTTP(S) URL or a leading-wildcard rule in **Domain hostname**, then choose **Add to list**.
-3. Inspect the normalized rule before **Save changes**, then retry the intended request. Saved approvals persist across restarts.
+Open **Settings → Network → Manage access**. The mode applies to protected Notebook connections across projects. Read **Current: Relaxed** or **Current: Strict** before editing rules.
 
-An exact hostname does not include subdomains. `*.example.org` covers its subdomains but not `example.org` itself. A URL such as `https://example.org/path` becomes a hostname rule: its path and port do not limit access. Rules allow sending data to their matching hosts. IP literals, localhost and credentials embedded in URLs are rejected. A hostname resolving to a private address still needs private-service review; a public rule does not grant that access.
+| Mode | Allowed connections | When a destination is not allowed |
+| --- | --- | --- |
+| **Relaxed** (default) | HTTPS hostnames, including hostnames for private or loopback services; saved exceptions match their protocol, host/IP and port | HTTP and direct IP connections require authorization |
+| **Strict** | Only destinations matching the manual whitelist by protocol, hostname or IP, and port | Blocked without an authorization request; add a needed rule manually |
 
+To change modes, select **Strict** or **Relaxed**, read the explanation, then use **Switch to Strict mode** or **Switch to Relaxed mode**. Selecting an option marked **Not yet applied** does not change the active mode.
 
-## Trust a private service {/* #trusted-private-services */}
+![Strict mode explanation and whitelist groups](/img/open-science/v130/network-strict.webp)
 
-Use this only for a known internal service that your research code should access. This control is available in the desktop app. Only private service addresses are supported; localhost, this computer and reserved addresses remain blocked. The field does not accept raw IP addresses or wildcards.
+### Add a Strict whitelist rule {/* #strict-whitelist */}
 
-1. In **Trusted private services**, choose **Add service** and enter **Hostname** and **Port**. Confirm the exact service; the default port is 443.
-2. Select **Review service**. Inspect the resolved **Approved addresses** before choosing **Add to trusted services**.
-3. Review the list and select **Save changes**. DNS is checked again before saving; an address change requires another review.
-4. Retry a small request to that specific service and inspect its response. Address review alone does not test authentication or service availability.
+1. In **Strict whitelist**, select **Add rule**.
+2. Set **Network protocol**, **Hostname, IP or pattern**, and **Port** for the actual service. Use a hostname or IP, not a URL path.
+3. Choose a **Group**, or **New group…** and a **Group name**, then choose **Confirm**.
+4. Inspect the saved rule and the active mode. Retry the intended small request and inspect the response.
 
-A grant covers the exact hostname, port and reviewed addresses. It lets protected Notebook and Shell code send data to that service across all projects. Add only the access the task needs. Saving network rules resets protected connections and can interrupt an active transfer; finish that transfer before applying changes.
+![Example of the protocol, host and port fields for a Strict rule](/img/open-science/v130/network-rule.webp)
+
+An exact hostname does not include subdomains. `*.example.org` matches subdomains but not `example.org`. Protocol and port are part of the rule: an HTTPS rule for port 443 does not grant HTTP or another port. Strict matches the requested hostname; it does not check whether its DNS result is public, private or loopback. Add a rule only for a destination you intend the code to contact.
+
+**Built-in** and **Manual** identify rule provenance. Built-in groups are seeded once, so later edits are retained. Neither remembered approvals nor Full access bypass Strict mode. Saving network rules resets protected connections and can interrupt transfers; apply changes after active transfers finish.
+
+## Save a Relaxed-mode exception {/* #trusted-private-services */}
+
+Under **Trusted unsafe networks**, choose **Add address**, then specify **Network protocol**, **Hostname** or IP, **Port** and the appropriate group. Confirm and check the saved scope before retrying. These exceptions avoid repeated authorization for the matching destination in Relaxed mode; they do not grant access in Strict mode. The Strict whitelist is inactive while Relaxed is selected.
+
+The rule permits a connection, not a successful login or a valid response. Check service credentials and the actual result separately. These settings replace the older public-domain/private-service forms; use the current mode and rule fields when following an older screenshot.
 
 ## Choose a proxy mode
 
@@ -66,22 +78,11 @@ Manual mode accepts HTTP, HTTPS, SOCKS, SOCKS4 and SOCKS5 URLs. Embedded credent
 
 If Manual mode reports **Enter a proxy server URL**, enter a working proxy address or discard the draft with **Done**. Saving a valid address does not itself confirm that the proxy can carry the failing request.
 
-### When a domain resolves to a non-public address {/* #observed-fake-ip-failure */}
+### Check a DNS or proxy failure {/* #observed-fake-ip-failure */}
 
-If installation reports `destination resolves to a non-public network address`, inspect the detailed installer log even when the short error only says `conda install failed` or `pip install failed`.
+Keep the exact error from the failing request. A timeout, certificate error or proxy refusal can still occur after a rule permits the destination. Check the hostname, protocol, port and proxy route against the service you intend to use. Do not treat an older version's non-public-address error as the current Strict-mode matching rule: Strict checks the requested name/IP and port, not its DNS address class.
 
-```text
-deny network-outbound pypi.org:443
-(destination resolves to a non-public network address)
-```
-
-1. Check the affected hostname and its resolved address. Addresses such as `198.18.*` are not public destinations.
-2. Distinguish a domain-list decision from the destination check. `alreadyAllowed` does not establish that the resolved address is acceptable.
-3. Check public DNS resolution and the intended proxy route with the network owner, then retry the original small request. Keep domain protection enabled.
-4. Verify installation and import separately. A saved proxy, Ready interpreter or successful use of existing packages is insufficient.
-
-If the same error persists, keep the hostname, resolved address and proxy mode with the installer log and follow [Troubleshooting](troubleshooting.md). A successful settings save is not a successful download.
-
+Retry a small request after correcting the cause. For package work, confirm both installation and import; a saved setting or Ready interpreter alone does not prove a download succeeded. Keep credentials out of shared logs and use [Troubleshooting](troubleshooting.md) for persistent failures.
 
 ## Configure package mirrors and certificate trust
 
@@ -100,7 +101,7 @@ Select **Configure** or **Edit** under Package mirror.
 
 A package mirror changes the package source. Confirm the mirror's required root/index format, save, and retry a small package operation in the selected runtime. Model-provider proxy settings are separate.
 
-Configured Conda, PyPI and CRAN mirror hostnames receive temporary access for the package-management operation. This does not add them to the permanent Notebook domain list or grant ordinary Notebook code the same access. Redirects to other hosts still follow the network approval flow.
+Configured Conda, PyPI and CRAN mirror hostnames receive temporary access for the package-management operation. This does not add them to the permanent Notebook domain list or grant ordinary Notebook code the same access. Redirects need access to their actual destinations. In Strict mode, add every required protocol/host/port to the whitelist; a temporary package-operation grant does not bypass it.
 
 Use a supported HTTP(S) mirror URL without embedded credentials, whitespace, localhost or a raw IP address. An accepted mirror setting does not fix an unavailable server or a hostname resolving to a reserved address. If installation fails, inspect that operation’s actual destination and error before retrying. Remote **model** endpoints have a separate [HTTPS requirement](providers.md#custom-gateway-every-visible-field).
 
@@ -110,7 +111,7 @@ Record the app version, operation, runtime/environment, package or hostname, pro
 
 For a missing Python module after a successful connection, continue with [runtime and package checks](./runtimes.md). Remote host setup is covered separately in [Compute](remote-compute.md).
 
-[Network settings source](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/NetworkPanel.tsx), [Notebook network boundary](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/network-sandbox-owner.ts).
+[Network settings source](https://github.com/aipoch/open-science/blob/v1.3.0/src/renderer/src/pages/settings/NetworkPanel.tsx), [Notebook network boundary](https://github.com/aipoch/open-science/blob/v1.3.0/src/main/notebook/network-sandbox-owner.ts).
 
 ## HTTP error lookup
 
@@ -124,6 +125,6 @@ In v0.31.1, Notebook shows an inline warning when network protection blocks an R
 
 ## Network access when the approval mode changes {/* #network-mode-changes */}
 
-From v1.0.5, **Full access** allows public network destinations without individual permission cards. Other authentication, source restrictions and private-service checks still apply. Changing to a more restrictive mode closes existing connections so they cannot continue under the old permission. Retry the intended request under the new mode and review any permission card it presents.
+**Full access** removes applicable manual Agent permission cards, but does not bypass the Strict Notebook whitelist. Check **Settings → Network → Manage access** when a request is denied. In Relaxed mode, the protocol and destination determine whether authorization or a saved exception is needed. Provider credentials and service restrictions still apply.
 
-Global network grants are reflected in **Settings → Network** immediately. Inspect the current domain or private-service list before adding another rule. A global grant is broader than a one-time approval; keep only the scope you intend. See [approval modes](approval-modes.md).
+Changing network rules can close existing protected connections. Retry under the resulting mode, then inspect the actual response. See [approval modes](approval-modes.md) for conversation permissions.

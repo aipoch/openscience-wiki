@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: Settings overview
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Settings overview
@@ -34,10 +34,10 @@ This search covers representative settings across every panel, not every field o
 | System | [General](../guides/appearance.md#help-center) | App version, updates, diagnostics, CLI installation, window behavior and help |
 |  | [Appearance](../guides/appearance.md) | Theme, language, desktop interface scale and supported app-icon choices |
 |  | [Notifications](../guides/appearance.md) | Task alerts, notification content, system status and test notification |
-| Intelligence | [Model](../guides/models.md) | Provider and scenario models |
+| Intelligence | [Model](../guides/models.md) | Provider and scenario models, including [image services](../guides/image-generation.md) |
 |  | [Agent](../guides/frameworks.md) | Agent framework installation, switching and repair |
 |  | [Memory](../guides/memory.md) | Opt-in global and project notes |
-| Connections | [Network](../guides/network.md) | Proxy, package mirrors and Notebook domain access |
+| Connections | [Network](../guides/network.md) | Proxy, package mirrors and Notebook Relaxed/Strict access rules |
 |  | [Remote](../guides/remote-access.md) | Browser access, pairing and trusted devices |
 |  | [Credentials](../tools/credentials.md) | Keys, tokens, OAuth and credential recovery |
 |  | [Compute](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |

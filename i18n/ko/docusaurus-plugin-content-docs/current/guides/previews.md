@@ -1,7 +1,7 @@
 ---
 title: "파일 열기 및 미리보기"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -62,14 +62,14 @@ Markdown는 headings, 목록, 코드 및 링크를 렌더링합니다. 보고서
 
 <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-reading.docx">Word 보고서</ExampleDownload>, <ExampleDownload path="/examples/gse60450/office/GSE60450-sample-qc.xlsx">Excel 작업 책</ExampleDownload>, <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-overview.pptx">PowerPoint 슬라이드</ExampleDownload> 및 <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-figures.tiff">2 페이지 TIFF</ExampleDownload>는 동일한 저장된 GSE60450 QC 결과를 선물합니다. 이 글은 새 분석이 아닙니다.
 
-| 단일 페이지 PDF | 첨부 및 보고서를 엽니 다. 두 페이지를 통해 스크롤; 첫 번째 샘플 행과 방법 / 해석 텍스트를 확인합니다. 풀 스크린 미리보기는 긴 줄을 더 공간을 제공합니다. Word 편집 리본이 없습니다. |
+| 지원하다 | 단계와 확인하는 것 |
 | --- | --- |
-| XLSX의 장점 | 자주 묻는 질문 제품 정보 **이전 / 다음** 두 페이지 또는 둘 다 방문하기 위하여 **개요** 맨 위로 이동하기. ⌘F (macOS) 또는 Ctrl+F (Windows/Linux)를 눌러 검색 `raw-count` 그리고 그 경기와 방법을 확인. 풀 스크린 미리보기는 더 많은 방을 제공합니다; Word 편집 리본이 없습니다. |
-| 의논하기 | 또는 **제품 설명** 또는 **PPTX 파일** 슬라이드를 열고 QC 요약에서 방법 및 해석에 수직으로 스크롤하십시오. 두 슬라이드는 로컬 예제에서 렌더링. 이 판독 표면은 프리젠 테이션 편집기 또는 슬라이드 쇼 컨트롤러가 아닙니다. |
-| 공지사항 | 슬라이드를 열고, 선택 **페이지 2** 엄지나일 또는 **다음**, 및 체크 **2 / 2**및 **찾기** 관련 기사 `normalization` 방법 슬라이드에. **Notes** 표시 임베디드 스피커 노트; 이것은 판독 표면, 발표 편집기가 아닙니다. |
-| 공지사항 | . 두 페이지는 원시 라이브러리 크기와 감지 된 생성 된 미디어를 보여줍니다. **/ Zoom 아웃 / 리셋 줌**전망 변경; .... **의논문 1 의 특징 2** 또는 **의논문 2 의 특징 2** 또는 **JSON** 열기 |
-| JSON | 말한다. 라인은 측정만 연결한다; 300 K가 눈에 띄는 후에 AZO 전도도에 있는 복각. <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">HTML</ExampleDownload> 열기 |
-| HTML | 말한다. 라인은 측정만 연결한다; 300 K가 눈에 띄는 후에 AZO 전도도에 있는 복각. <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">포맷 된 문서를 복원합니다. Neither 형태는 QC를 재회합니다.</ExampleDownload>. **Source** 실제 작업 책 미리보기에서 샘플 선택 **Render** 실제 TIFF의 두 번째 페이지 |
+| 사이트맵 | 자주 묻는 질문 제품 정보 **이전 / 다음** 두 페이지를 방문하거나 **기타 제품** 머리에 점프. 프레스 ⌘F (macOS) 또는 Ctrl + F (Windows / Linux), 검색 `raw-count` 그리고 그 경기와 방법을 확인합니다. 풀 스크린 미리보기는 더 많은 공간을 제공합니다; 단어 편집 리본이 없습니다. |
+| 사이트맵 | workbook을 열고, 다음 선택 **제품정보** 또는 **샘플** 하단에. 마지막 열을 위해 수평으로 스크롤하십시오. 표본은 12의 자료 줄 플러스 그것의 우두머리, 간격 및 근원 주를 포함합니다; 구경꾼은 17의 사용한 줄, 17의 생물학 견본을 보고합니다. 값은 저장된 작업 책의 미리보기이며 신선한 계산의 증거가 아닙니다. |
+| 사이트맵 | 슬라이드를 열고, 선택 **페이지 2** thumbnail 또는 **이름 &#42;**, 및 체크 **2 / 2**. 제품 정보 **제품정보** 관련 기사 `normalization` 방법 슬라이드에. **Notes** 표시 임베디드 스피커 노트; 사용 [관련 기사](presentation-editing.md) 슬라이드 텍스트 및 포맷을 변경합니다. |
+| 공지사항 | 그림과 사용 열기 **다음 페이지 / 이전 페이지**. 두 페이지는 원시 라이브러리 크기와 검출 된 생성 미디어를 보여줍니다. **/ Zoom 아웃 / 리셋 줌** 전망 변경; 체크 **페이지 1 의 2** 또는 **2 페이지 2** 그림 해석하기 전에. |
+| JSON 파일 | 기타 <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">자주 묻는 질문</ExampleDownload> 소스 텍스트, 식별자 및 값을 검사합니다. 확장 가능한 객체 트리보다는 코드로 표시됩니다. |
+| 사이트맵 | 기타 <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">독서 테이블</ExampleDownload>. **Source** HTML을 보여줍니다; **Render** 포맷 된 문서를 복원합니다. Neither 형태는 QC를 재회합니다. |
 
 ![페이지 제어 및 실제 텍스트 일치 Word 독서 복사](/img/open-science/v0333/word-search.webp)
 
@@ -87,14 +87,14 @@ Markdown는 headings, 목록, 코드 및 링크를 렌더링합니다. 보고서
 
 | 이름 &#42; | 검사하는 방법 | 제어 및 경계 |
 | --- | --- | --- |
-| PDF | 페이지 번호, 읽기 쉬운 텍스트, 소스 PDF | Thumbnails, 개요, 문서 검색, 페이지 탐색, 급상승 및 선택 영역; 스캔된 페이지는 검색 텍스트가 부족할 수 있습니다. |
-| 코드 / 일반 텍스트 | 관련 블록 및 언어 | 라인 번호, 구문 표시, 복사 / 다운로드; 대형 콘텐츠는 제한될 수 있습니다 |
-| JSON / HTML | 구조 또는 렌더링 된 문서 | Rendering은 애플리케이션 권한으로 코드를 실행하는 권한이 없습니다. |
-| 이미지 / TIFF | 해결 및 선택된 이미지 | 이미지 급상승/팬; TIFF는 전용 렌더링 경로가 있습니다. |
-| Office 파일 | 관리 렌더링자가 성공 여부 | DOCX / XLSX / PPTX 미리보기가 사용되지 않는 경우 외부로 다운로드 / 오픈; 미리보기는 풀 오피스 편집이 아닙니다. |
+| PDF 파일 | 페이지 번호, 읽기 쉬운 텍스트, 소스 PDF | Thumbnails, 개요, 문서 검색, 페이지 탐색, 급상승 및 선택 영역; 스캔 된 페이지는 검색 가능한 텍스트가 부족할 수 있습니다 |
+| 코드 / 일반 텍스트 | 관련 블록 및 언어 | 라인 번호, 구문 표시, 복사 / 다운로드; 대형 콘텐츠 제한 될 수 있습니다 |
+| JSON / HTML을 | 구조 또는 렌더링 된 문서 | Rendering은 애플리케이션 권한으로 코드를 실행하는 권한이 없습니다. |
+| 이미지 / TIFF | 해결 및 선택된 이미지 | 이미지 급상승/팬; TIFF에는 전용 연출 경로가 있습니다 |
+| Office 파일 | 관리 렌더링자가 성공 여부 | DOCX / XLSX / PPTX 미리보기가 사용할 수없는 경우 외부로 다운로드 / 오픈; PPTX 지원 [슬라이드 편집](presentation-editing.md); DOCX / XLSX 미리보기는 전체 오피스 편집기가 아닙니다. |
 | 생물학적 순서 | 정체성 및 범위 | 지원되는 FASTA 입력을 위한 Sequence 지향적인 전망 |
-| 분자 구조 | Parsed 모델 및 선택된 표현 | 자전, 급상승, 팬 및 지원되는 만화/Stick/Sphere/Surface/Line 표현; 누락된 구조상 자료는 표현할 수 있습니다 |
-| Unknown 또는 지원되지 않은 파일 | 이름, 크기 및 fallback 메시지 | 적당한 외부 구경꾼을 위한 다운로드; 확장에서 유효하지 마십시오. |
+| 분자 구조 | Parsed 모델 및 선택된 표현 | 회전, 급상승, 팬 및 지원되는 만화/Stick/Sphere/Surface/Line 표현; 누락된 구조상 자료는 표현할 수 있습니다 |
+| Unknown 또는 지원되지 않은 파일 | 이름, 크기 및 fallback 메시지 | 적당한 외부 구경꾼을 위한 다운로드; 연장에서 유효한 내용을 infer하지 마십시오 |
 
 PDF 컨텍스트의 경우 현재 작업과 관련된 종이만 연결하여 다음 작업을 사용하지 않아야 합니다. 앱은 세션당 3개의 연결된 PDF를 지원합니다. 첨부 된 PDF없이 문학 기록은 metadata를 제공하지 않으며 전체 텍스트가 읽지 않은 증거는 없습니다. [라이브러리](library.md) 참조.
 

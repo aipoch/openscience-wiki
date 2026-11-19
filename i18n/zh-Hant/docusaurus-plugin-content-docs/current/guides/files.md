@@ -1,7 +1,7 @@
 ---
 title: "檔案、產物與版本"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -155,3 +155,8 @@ import Screenshot from '@site/src/components/Screenshot';
 發佈或恢復產物後，重新打開文件，檢查當前選中的版本及其內容。v1.0.7 會把最新已發佈版本帶到前臺；之前打開的歷史預覽仍是另一個版本。引用、下載或編輯前，通過版本控件和溯源面板覈對當前版本與早期版本的關係。
 
 舊 Markdown 產物的溯源歷史指向過期時，v1.0.8 會在打開時修復。分享前仍應檢查顯示的版本和執行證據不完整提示；修復歷史指向不等於重新運行或驗證了分析。
+
+
+## 編輯圖片與演示內容 {/* #visual-editing */}
+
+文本編輯器與[圖片編輯器](image-generation.md#edit)、[PPTX 編輯器](presentation-editing.md)是不同入口。圖片變體、幻燈片文字與格式應使用對應工具；只讀 CSV 預覽仍不是電子表格編輯器。

@@ -1,7 +1,7 @@
 ---
 title: "Genehmigungen und Genehmigungen"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-19'
 ---
 
 # Genehmigungen und Genehmigungen {/* #permissions-and-approvals */}
@@ -107,3 +107,8 @@ Quelle: [Gesparte Zuschüsse und Rückgängigmachung](https://github.com/aipoch/
 Mit **Auto-approve edits** kann ein definierter Satz integrierter Bibliotheksoperationen die Per-Call-Genehmigung des Agenten automatisch passieren. Dazu gehören das Suchen und Lesen von Referenzen, das Speichern in Inbox, das Erwerben von PDFs, das Formatieren von Referenzen und das Vorbereiten von Zitierdokumenten. Dies reduziert wiederholte Eingabeaufforderungen während der routinemäßigen Bibliotheksarbeit.
 
 Die Regel gilt für anerkannte app-eigene Literatur-Tools, nicht für jeden MCP-Aufruf, Befehl oder Netzwerkbetrieb. Die eigenen datei-, netzwerk- und ressourcenregeln der tools gelten weiterhin, und diese entscheidung schafft keine dauerhafte bewilligung. Wählen Sie **Ask for approval**, wenn Sie Agent-Anfragen einzeln prüfen möchten. Überprüfen Sie Inbox-Kandidaten, bevor Sie sie akzeptieren.
+
+
+## Halten Sie den Netzwerkmodus getrennt {/* #strict-network */}
+
+**Full access** umgeht die **Strict** Notebook Whitelist nicht. Ein nicht gelistetes Ziel wird ohne Autorisierungsangebot blockiert, auch wenn das Gespräch automatische Aktionen erlaubt. Fügen Sie nur das erforderliche Protokoll, Hostname/IP und Port in [Netzeinstellungen](network.md#public-network-rules) hinzu.

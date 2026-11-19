@@ -1,7 +1,7 @@
 ---
 title: "Netzwerk, Proxies und Paketspiegel"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-19'
 ---
 
 # Netzwerk, Proxies und Paketspiegel {/* #network-proxies-and-package-mirrors */}
@@ -26,25 +26,37 @@ Wenn Network **Ready** meldet, aber ein Tool ausfällt, erweitern Sie den Fehler
 
 <span id="configure-notebook-domains" />
 
-## Regeln für öffentliche Netzwerke konfigurieren {/* #public-network-rules */}
+## Wählen Sie entspanntes oder striktes Netzwerk {/* #public-network-rules */}
 
-1. Öffnen Sie **Settings → Network → Manage access**. Prüfen Sie **Public internet access** und **Built-in services**; Gruppen mit **Required** bleiben aktiviert.
-2. Geben Sie unter **Custom public domains** in **Domain hostname** einen Hostnamen, eine HTTP(S)-URL oder eine Regel mit führendem Platzhalter ein und wählen Sie **Add to list**.
-3. Prüfen Sie die normalisierte Regel vor **Save changes** und wiederholen Sie die Anfrage. Gespeicherte Freigaben bleiben nach Neustarts erhalten.
+Öffnen Sie **Settings → Network → Manage access**. Der Modus gilt für geschützte Notebook-Verbindungen über Projekte hinweg. Lesen Sie **Current: Relaxed** oder **Current: Strict**, bevor Sie Regeln bearbeiten.
 
-Ein exakter Hostname umfasst keine Subdomains. `*.example.org` umfasst Subdomains, aber nicht `example.org` selbst. Eine URL wie `https://example.org/path` wird zur Hostnamenregel; Pfad und Port begrenzen den Zugriff nicht. Regeln erlauben das Senden von Daten an passende Hosts. IP-Adressen, localhost und URLs mit Zugangsdaten werden abgelehnt. Bei Auflösung in eine private Adresse ist weiterhin eine Prüfung des privaten Dienstes nötig.
+| Modus | Erlaubte Verbindungen | Wenn ein Ziel nicht erlaubt ist |
+| --- | --- | --- |
+| **Relaxed** (Standard) | HTTPS-Hostnamen, einschließlich Hostnamen für private oder Loopback-Dienste; gespeicherte Ausnahmen passen zu Protokoll, Host/IP und Port | HTTP und direkte IP-Verbindungen erfordern eine Autorisierung |
+| **Strict** | Nur Destinationen, die mit der manuellen Whitelist nach Protokoll, Hostname oder IP und Port übereinstimmen | Blockiert ohne Autorisierungsanfrage; manuelles Hinzufügen einer benötigten Regel |
 
+Um die Modi zu ändern, wählen Sie **Strict** oder **Relaxed**, lesen Sie die Erklärung und verwenden Sie dann **Switch to Strict mode** oder **Switch to Relaxed mode**. Durch die Auswahl einer Option mit der Kennzeichnung **Not yet applied** wird der aktive Modus nicht geändert.
 
-## Vertrauen Sie einem privaten Service {/* #trusted-private-services */}
+![Strenge Modus Erklärung und Whitelist-Gruppen](/img/open-science/v130/network-strict.webp)
 
-Verwenden Sie dies nur für einen bekannten internen Dienst, auf den Ihr Forschungscode zugreifen sollte. Dieses Steuerelement ist in der Desktop-App verfügbar. Es werden nur private Serviceadressen unterstützt; localhost, dieser Computer und reservierte Adressen bleiben blockiert. Das Feld akzeptiert keine rohen IP-Adressen oder Platzhalter.
+### Hinzufügen einer strikten Whitelist-Regel {/* #strict-whitelist */}
 
-1. Wählen Sie in **Trusted private services** **Add service** und geben Sie **Hostname** und **Port** ein. Bestätigen Sie den genauen Service; Der Standard-Port ist 443.
-2. Wählen Sie **Review service**. Überprüfen Sie das aufgelöste **Approved addresses**, bevor Sie **Add to trusted services** auswählen.
-3. Überprüfen Sie die Liste und wählen Sie **Save changes**. DNS wird vor dem Speichern erneut überprüft; Eine Adressänderung erfordert eine weitere Überprüfung.
-4. Reproduzieren Sie eine kleine Anfrage an diesen bestimmten Dienst und überprüfen Sie seine Antwort. Die Adressüberprüfung allein testet nicht die Authentifizierung oder die Verfügbarkeit des Dienstes.
+1. Wählen Sie in **Strict whitelist** **Add rule**.
+2. Setzen Sie **Network protocol**, **Hostname, IP or pattern** und **Port** für den eigentlichen Dienst. Verwenden Sie einen Hostnamen oder eine IP, keinen URL-Pfad.
+3. Wählen Sie einen **Group** oder **New group…** und einen **Group name** und dann **Confirm**.
+4. Überprüfen Sie die gespeicherte Regel und den aktiven Modus. Wiederholen Sie die beabsichtigte kleine Anfrage und prüfen Sie die Antwort.
 
-Ein Zuschuss deckt den genauen Hostnamen, Port und überprüfte Adressen ab. Es ermöglicht geschützten Notebook und Shell-Code, Daten über alle Projekte hinweg an diesen Dienst zu senden. Fügen Sie nur den Zugriff hinzu, den die Aufgabe benötigt. Das Speichern von Netzwerkregeln setzt geschützte Verbindungen zurück und kann eine aktive Übertragung unterbrechen; Beenden Sie diese Übertragung, bevor Sie Änderungen vornehmen.
+![Beispiel für Protokoll-, Host- und Portfelder für eine strenge Regel](/img/open-science/v130/network-rule.webp)
+
+Ein genauer Hostname enthält keine Subdomains. `*.example.org` passt zu Subdomains, aber nicht zu `example.org`. Protokoll und Port sind Teil der Regel: Eine HTTPS-Regel für Port 443 gewährt weder HTTP noch einen anderen Port. Strict stimmt mit dem angeforderten hostnamen überein; es überprüft nicht, ob sein dns-ergebnis öffentlich, privat oder loopback ist. Fügen Sie eine Regel nur für ein Ziel hinzu, an das Sie den Code kontaktieren möchten.
+
+**Built-in** und **Manual** identifizieren die Regelprovenienz. Eingebaute Gruppen werden einmal ausgesät, so dass spätere Änderungen beibehalten werden. Weder erinnerte sich an Genehmigungen noch Full Access Bypass Strict Modus. Das Speichern von Netzwerkregeln setzt geschützte Verbindungen zurück und kann Übertragungen unterbrechen; Änderungen nach Abschluss aktiver Übertragungen anwenden.
+
+## Speichern Sie eine Relaxed-Mode-Ausnahme {/* #trusted-private-services */}
+
+Wählen Sie unter **Trusted unsafe networks** **Add address**, geben Sie dann **Network protocol**, **Hostname** oder IP, **Port** und die entsprechende Gruppe an. Bestätigen und überprüfen Sie den gespeicherten Bereich, bevor Sie erneut versuchen. Diese Ausnahmen vermeiden eine wiederholte Autorisierung für das übereinstimmende Ziel im entspannten Modus; sie gewähren keinen Zugriff im strikten Modus. Die strikte Whitelist ist inaktiv, während Relaxed ausgewählt ist.
+
+Die Regel erlaubt eine Verbindung, nicht eine erfolgreiche Anmeldung oder eine gültige Antwort. Überprüfen Sie die Service-Anmeldeinformationen und das tatsächliche Ergebnis separat. Diese Einstellungen ersetzen die älteren Public-Domain / Private-Service-Formulare; Verwenden Sie die aktuellen Modus- und Regelfelder, wenn Sie einem älteren Screenshot folgen.
 
 ## Wählen Sie einen Proxy-Modus {/* #choose-a-proxy-mode */}
 
@@ -66,21 +78,11 @@ Der manuelle Modus akzeptiert die URLs HTTP, HTTPS, SOCKS, SOCKS4 und SOCKS5. Ei
 
 Wenn der manuelle Modus **Geben Sie eine Proxy Server URL ein** meldet, geben Sie eine Arbeits-Proxy-Adresse ein oder verwerfen Sie den Entwurf mit **Done**. Das Speichern einer gültigen Adresse bestätigt nicht selbst, dass der Proxy die fehlgeschlagene Anforderung tragen kann.
 
-### Wenn eine Domain in eine nicht öffentliche Adresse aufgelöst wird {/* #observed-fake-ip-failure */}
+### Überprüfen Sie einen DNS- oder Proxyfehler {/* #observed-fake-ip-failure */}
 
-Wenn die Installation `destination resolves to a non-public network address` meldet, überprüfen Sie das detaillierte Installationsprotokoll, auch wenn der kurze Fehler nur `conda install failed` oder `pip install failed` sagt.
+Behalten Sie den genauen Fehler von der fehlgeschlagenen Anforderung. Ein Timeout, ein Zertifikatsfehler oder eine Proxy-Verweigerung kann immer noch auftreten, nachdem eine Regel das Ziel zulässt. Überprüfen Sie den Hostnamen, das Protokoll, den Port und die Proxy-Route mit dem Dienst, den Sie verwenden möchten. Behandeln Sie den Nicht-Public-Address-Fehler einer älteren Version nicht als die aktuelle Strict-Mode-Matching-Regel: Strict überprüft den gewünschten Namen/IP und Port, nicht die DNS-Adressklasse.
 
-```text
-deny network-outbound pypi.org:443
-(destination resolves to a non-public network address)
-```
-
-1. Überprüfen Sie den betroffenen Hostnamen und seine aufgelöste Adresse. Adressen wie `198.18.*` sind keine öffentlichen Ziele.
-2. Unterscheiden Sie eine Domainlistenentscheidung von der Zielüberprüfung. `alreadyAllowed` stellt nicht fest, dass die aufgelöste Adresse akzeptabel ist.
-3. Überprüfen Sie die öffentliche DNS-Auflösung und die beabsichtigte Proxy-Route mit dem Netzwerkbesitzer und wiederholen Sie dann die ursprüngliche kleine Anforderung. Halten Sie den Domain-Schutz aktiviert.
-4. Überprüfen Sie die Installation und den Import separat. Ein gespeicherter Proxy, Ready Interpreter oder eine erfolgreiche Nutzung vorhandener Pakete ist unzureichend.
-
-Wenn der gleiche Fehler weiterhin besteht, behalten Sie den Hostnamen, die aufgelöste Adresse und den Proxy-Modus mit dem Installationsprotokoll bei und folgen Sie [Fehlerbehebung](troubleshooting.md). Ein erfolgreiches Settings Save ist kein erfolgreicher Download.
+Wiederholen Sie eine kleine Anfrage, nachdem Sie die Ursache behoben haben. Bestätigen Sie bei Paketarbeiten sowohl die Installation als auch den Import; eine gespeicherte Einstellung oder ein Ready-Interpreter allein beweist nicht, dass ein Download erfolgreich war. Halten Sie Anmeldeinformationen aus freigegebenen Protokollen fern und verwenden Sie [Fehlerbehebung](troubleshooting.md) für anhaltende Fehler.
 
 
 ## Konfigurieren von Paketspiegeln und Zertifikatsvertrauen {/* #configure-package-mirrors-and-certificate-trust */}
@@ -100,7 +102,7 @@ Wählen Sie **Configure** oder **Edit** unter Paketspiegel.
 
 Ein Paketspiegel ändert die Paketquelle. Bestätigen Sie das erforderliche Root/Index-Format des Spiegels, speichern und wiederholen Sie eine kleine Paketoperation in der ausgewählten Laufzeit. Die Proxy-Einstellungen von Model-Provider sind getrennt.
 
-Konfigurierte Conda-, PyPI- und CRAN-Spiegel-Hostnamen erhalten temporären Zugriff für den Paketverwaltungsvorgang. Dies fügt sie nicht zur permanenten Notebook-Domainliste hinzu oder gewährt dem gewöhnlichen Notebook-Code den gleichen Zugriff. Weiterleitungen zu anderen Hosts folgen immer noch dem Netzwerkgenehmigungsfluss.
+Konfigurierte Conda-, PyPI- und CRAN-Spiegel-Hostnamen erhalten temporären Zugriff für die Paketverwaltung. Dies fügt sie nicht zur permanenten Notebook-Domänenliste hinzu oder gewährt dem gewöhnlichen Notebook-Code denselben Zugriff. Umleitungen benötigen Zugang zu ihren tatsächlichen Zielen. Fügen Sie im strikten Modus jedes erforderliche Protokoll / Host / Port zur Whitelist hinzu; ein temporäres Paketoperations-Grant umgeht es nicht.
 
 Verwenden Sie eine unterstützte HTTP(S)-Spiegel-URL ohne eingebettete Anmeldeinformationen, Whitespace, Localhost oder eine rohe IP-Adresse. Eine akzeptierte Spiegeleinstellung behebt keinen nicht verfügbaren Server oder einen Hostnamen, der auf eine reservierte Adresse aufgelöst wird. Wenn die Installation fehlschlägt, überprüfen Sie den tatsächlichen Zielort und den Fehler dieser Operation, bevor Sie erneut versuchen. Remote **model**-Endpunkte haben einen separaten [HTTPS Anforderung](providers.md#custom-gateway-every-visible-field).
 
@@ -110,7 +112,7 @@ Notieren Sie die App-Version, den Betrieb, die Laufzeit/Umgebung, den Paket- ode
 
 Für ein fehlendes Python-Modul nach einer erfolgreichen Verbindung fahren Sie mit [Laufzeit- und Paketprüfungen](./runtimes.md) fort. Remote-Host-Setup wird separat in [Rechenressourcen](remote-compute.md) abgedeckt.
 
-[Quelle für Netzwerkeinstellungen](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/NetworkPanel.tsx), [Notebook-Netzwerkgrenze](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/network-sandbox-owner.ts).
+[Quelle für Netzwerkeinstellungen](https://github.com/aipoch/open-science/blob/v1.3.0/src/renderer/src/pages/settings/NetworkPanel.tsx), [Notebook-Netzwerkgrenze](https://github.com/aipoch/open-science/blob/v1.3.0/src/main/notebook/network-sandbox-owner.ts).
 
 ## HTTP Fehlersuche {/* #http-error-lookup */}
 
@@ -124,6 +126,6 @@ In v0.31.1 zeigt Notebook eine Inline-Warnung an, wenn der Netzwerkschutz einen 
 
 ## Netzwerkzugriff, wenn sich der Genehmigungsmodus ändert {/* #network-mode-changes */}
 
-Aus v1.0.5, **Full access** erlaubt öffentliche Netzwerkziele ohne individuelle Erlaubniskarten. Andere Authentifizierungs-, Quellenbeschränkungen und private Service-Checks gelten weiterhin. Der Wechsel in einen restriktiveren Modus schließt bestehende Verbindungen, so dass sie unter der alten Berechtigung nicht fortgesetzt werden können. Wiederholen Sie die beabsichtigte Anforderung im neuen Modus und überprüfen Sie die von ihr präsentierte Berechtigungskarte.
+**Full access** entfernt anwendbare manuelle Agentenberechtigungskarten, umgeht jedoch nicht die Strict Notebook Whitelist. Überprüfen Sie **Settings → Network → Manage access**, wenn eine Anfrage abgelehnt wird. Im entspannten Modus bestimmen Protokoll und Ziel, ob eine Autorisierung oder eine gespeicherte Ausnahme erforderlich ist. Anmeldeinformationen und Servicebeschränkungen des Anbieters gelten weiterhin.
 
-Globale Netzwerkfreigaben erscheinen in **Settings → Network** sofort. Überprüfen Sie die aktuelle Domain- oder Private-Service-Liste, bevor Sie eine andere Regel hinzufügen. Ein globaler Zuschuss ist breiter als eine einmalige Genehmigung; halten Sie nur den Umfang, den Sie beabsichtigen. Siehe [Genehmigungsarten](approval-modes.md).
+Ändern von Netzwerkregeln können bestehende geschützte Verbindungen schließen. Versuchen Sie es erneut unter dem resultierenden Modus und überprüfen Sie dann die tatsächliche Antwort. Siehe [Genehmigungsarten](approval-modes.md) für Konversationsberechtigungen.

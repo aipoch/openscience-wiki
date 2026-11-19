@@ -1,7 +1,7 @@
 ---
 title: "Dépannage et questions communes"
 last_update:
-  date: '2026-11-04'
+  date: '2026-11-19'
 ---
 
 # Dépannage et questions communes {/* #troubleshooting-and-common-questions */}
@@ -259,3 +259,8 @@ Si vous voyez **Le Codex CLI installé est incompatible ou sa version n'a pas pu
 Si la récupération de texte complet échoue sur un hôte en utilisant Mihomo, Clash ou un autre proxy avec Fake-IP DNS, mettre à jour vers v1.0.7 ou une version ultérieure et réessayer la même source en utilisant le réglage prévu dans **Settings → Network**. Lorsque toutes les réponses DNS locales sont des placeholders, l'application permet au proxy configuré de résoudre la destination.
 
 Cela n'accorde pas l'accès à un papier payant ou ne fournit pas d'authentification institutionnelle. Confirmez que la source vous offre une copie que vous pouvez accéder, puis vérifiez que la pièce jointe téléchargée s'ouvre comme le PDF attendu. Si elle échoue toujours, conservez l'URL source et affichez l'erreur et vérifiez [configuration du réseau](network.md) avant d'ajouter des références en double.
+
+
+## Récupérer après la déconnexion du service local {/* #local-service-recovery */}
+
+Lorsque l'espace de travail affiche la récupération du service local, attendez que la connexion revienne avant de répéter une action. Le brouillon Compositeur est conservé, tandis que les actions non disponibles restent bloquées. Après la reconnexion, inspectez la conversation ou lancez un enregistrement pour voir si la demande précédente a été acceptée. Reprendre de l'état réel plutôt que d'envoyer la même tâche deux fois.

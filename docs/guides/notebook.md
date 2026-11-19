@@ -1,7 +1,7 @@
 ---
 title: "Notebook and execution evidence"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-19'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -301,3 +301,11 @@ After reading a CSV, transforming it and exporting a new file in Python or R, op
 ## Check local folder access {/* #folder-access */}
 
 If a local input cannot be read, check [Notebook and Shell folder permissions](../reference/permissions.md#notebook-folder-restrictions). Changing the restriction stops live processes and clears variables. Save results first, grant the required folder, then rerun only the cells needed to rebuild the working state.
+
+## Inspect and stop an owned process {/* #process-monitor */}
+
+Open the project's Compute view and inspect the local process monitor. Match the process to its conversation and runtime before acting; CPU, memory and elapsed time help distinguish active work from an idle kernel. Some process metrics are platform-dependent.
+
+Use **Process tree** for details and **Terminate** only for an owned task you intend to stop. This can interrupt execution and discard the live kernel's variables. A saved Notebook record is not erased by stopping a process, but unfinished output is not a completed result. If cleanup reports a problem and offers **Retry cleanup**, inspect the state before retrying. Reload the required inputs before rerunning code in a fresh kernel.
+
+For repeated executions, use [scheduled tasks](scheduled-tasks.md) after completing a manual run.

@@ -1866,5 +1866,35 @@
   },
   "docs.outline.reference.v121.scope": {
     "message": "Centro de recursos, mejora de preguntas, suscripciones Codex y exportación CSV de referencias."
+  },
+  "docs.guides.outline.scheduled-tasks.title": {
+    "message": "Programar una tarea de investigación"
+  },
+  "docs.guides.outline.scheduled-tasks.scope": {
+    "message": "Programar una tarea de investigación."
+  },
+  "docs.guides.outline.image-generation.title": {
+    "message": "Generar y editar imágenes"
+  },
+  "docs.guides.outline.image-generation.scope": {
+    "message": "Generar y editar imágenes."
+  },
+  "docs.guides.outline.presentation-editing.title": {
+    "message": "Editar una presentación de PowerPoint"
+  },
+  "docs.guides.outline.presentation-editing.scope": {
+    "message": "Editar una presentación de PowerPoint."
+  },
+  "docs.outline.reference.v130.title": {
+    "message": "v1.3.0"
+  },
+  "docs.outline.reference.v130.scope": {
+    "message": "v1.3.0 — Programar una tarea de investigación / Generar y editar imágenes / Editar una presentación de PowerPoint"
+  },
+  "docs.outline.reference.v122.title": {
+    "message": "v1.2.2"
+  },
+  "docs.outline.reference.v122.scope": {
+    "message": "v1.2.2 — v1.2.2"
   }
 }

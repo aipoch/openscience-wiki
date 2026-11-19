@@ -1,7 +1,7 @@
 ---
 title: "Notebook 및 실행 증거"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-19'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -301,3 +301,12 @@ Python 또는 R로 CSV를 읽고 변환해 새 파일을 내보낸 뒤, 출력�
 ## 로컬 폴더 접근 확인하기 {/* #folder-access */}
 
 로컬 입력을 읽을 수 없으면 [Notebook과 Shell의 폴더 권한](../reference/permissions.md#notebook-folder-restrictions)을 확인합니다. 제한 변경은 실행 중인 프로세스를 중지하고 변수를 지웁니다. 결과를 저장하고 필요한 폴더를 승인한 뒤 작업 상태 복구에 필요한 셀만 다시 실행하세요.
+
+
+## Inspect 및 소유 프로세스 중지 {/* #process-monitor */}
+
+프로젝트의 컴퓨터보기를 열고 로컬 프로세스 모니터를 검사합니다. 행동하기 전에 대화와 런타임에 프로세스를 일치; CPU, 메모리 및 탈출 된 시간은 idle 커널에서 활성 작업을 구별하는 데 도움이됩니다. 몇몇 과정 미터는 플랫폼 의존합니다.
+
+정보 및 **Terminate**에 대한 **Process tree**를 사용하면 중지 할 수 있습니다. 이것은 실행을 중단하고 라이브 커널의 변수를 디버깅 할 수 있습니다. 저장된 노트북 기록은 프로세스를 멈추지 않고 출력이 완료되지 않습니다. 청소가 문제를 보고 **Retry cleanup**를 제안하는 경우에, retrying의 앞에 국가를 검사하십시오. 신선한 커널의 리런닝 코드 앞에 필요한 입력을 다시로드합니다.
+
+반복된 실행을 위해, 수동 실행을 완료한 후에 [계획된 작업](scheduled-tasks.md)를 사용하십시오.

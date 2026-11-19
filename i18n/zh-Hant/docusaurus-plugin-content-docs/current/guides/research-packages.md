@@ -2,7 +2,7 @@
 title: ".science 研究包"
 description: "將會話、檔案和證據一起匯出，再匯入專案檢視與交接研究記錄。"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -193,3 +193,8 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 Notebook 與 Compute 運行在研究包中複用內容相同的證據，同時保留校驗摘要和運行引用。長會話多次使用同一文件時，可減少重複數據；首次導出還可能整理舊記錄中的證據。
 
 按常規 Session package 流程導出並等待完成，再導入獨立項目，檢查保留的運行記錄與文件。壓縮包變小不代表所有所需文件都已齊全，成功導入也不等於重新計算。需要檢查再次執行時，使用[可復現性檢查](reproducibility.md)。
+
+
+## 檢查中斷的導入 {/* #import-recovery */}
+
+取消導入不代表導入完成。超時使結果未確認時，先查找目標項目與導入會話，再決定是否重新導入；找到會話後，打開檢查文件。研究包缺失或無效時，重新選擇完整的 `.science` 文件，求助時保留界面錯誤或關聯標識。不要在未檢查前次結果的情況下反覆導入同一個研究包。

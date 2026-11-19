@@ -1,7 +1,7 @@
 ---
 title: "Fähigkeiten und unterstützte Inputs"
 last_update:
-  date: '2026-09-14'
+  date: '2026-11-19'
 ---
 
 # Fähigkeiten und unterstützte Inputs {/* #capabilities-and-supported-inputs */}
@@ -23,6 +23,8 @@ Open-Science bringt die Gespräche, Quelldateien, Literaturaufzeichnungen und ge
 Verwenden Sie für Zahlen und Tabellen in einem Papier [lokale PDF-Extraktion](previews.md#pdf-extraction). Finden Sie wiederverwendbare Methoden über den [Skill-Marktplatz](../skills/marketplace.md). Überprüfen Sie ein erfasstes Ergebnis mit [Reproduzierbarkeit](reproducibility.md) oder teilen Sie seine Konversation und Beweise über ein [.science Paket](research-packages.md).
 
 Ein Viewer, der eine Datei öffnet, zeigt nicht an, dass das Modell sie gelesen hat. Das Anfügen einer Datei gibt der Sitzung eine Quelle, mit der sie arbeiten kann; Überprüfen Sie die aufgezeichneten Lesevorgänge, Toolaufrufe und Ausgabenachweise, um festzustellen, wie der Agent sie verwendet hat. Genaue Erweiterungen und Größenbegrenzungen sind in [Dateiformate und Limits](../reference/formats.md).
+
+Für wiederkehrende Arbeiten, [Planen Sie eine Nachricht oder ein Skript](scheduled-tasks.md). Zur Vorbereitung der Aufmachung [Erzeugen einer Illustration mit einem separaten Bilddienst](image-generation.md) oder [Bearbeiten eines vorhandenen PPTX](presentation-editing.md). Die Bilderzeugung benötigt eigene Service-Anmeldeinformationen und ein eigenes Kontingent; die Desktop-PTX-Bearbeitung funktioniert mit der ausgewählten Dateiversion.
 
 ## Verstehen Sie die Workspace-Objekte {/* #understand-the-workspace-objects */}
 

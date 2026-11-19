@@ -3,7 +3,7 @@ sidebar_position: 1
 title: "Страница и контрольный индекс"
 description: "Найдите каждую задокументированную кнопку Open-Science, ввод, переключение и результат по странице."
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 # Страница и контрольный индекс {/* #page-and-control-index */}
@@ -49,13 +49,14 @@ last_update:
 | Название проекта | Откройте точку входа в проект или меню |
 | сбоку от обрушения | Коллапс или расширение левой боковой панели |
 | Новый | Создайте сессию |
-| Настройка | Запустите разговор по настройке Skill/Specialist |
+| настраивать | Начните разговор по настройке Skill / Specialist |
 | Файлы | Показать панель файлов проекта справа |
+| Расписание | [Создавать и проверять временные сообщения или сценарии](../guides/scheduled-tasks.md) |
 | Библиотека | Открытые проектные ссылки в библиотеке литературы |
-| Заседание | сеансы коммутации; Отчеты о статусе Idle, Running, Permission или другое государство |
-| Действия сессии | Pin/Unpin, Edit..., Download all artifacts, View notebook, Export conversation..., Archive, Delete |
+| Заседание | Переключение сессий; отчеты о состоянии Idle, Running, Permission или другое состояние |
+| Сессионные действия | Pin/Unpin, Edit..., Download all artifacts, View notebook, Export conversation..., Archive, Delete |
 | Сообщения, настройки, GitHub | Открытые уведомления, настройки или официальный репозиторий |
-| Размер слева/справа, Collapse preview | Размер панели или коллапс Preview |
+| Размер слева / справа, Collapse preview | Размер панели или коллапс Preview |
 
 ## Беседа и композитор {/* #conversation-and-composer */}
 
@@ -72,6 +73,10 @@ last_update:
 | Модель | Активная модель, разумные усилия | Измените модель или усилие для последующих запросов |
 | Очередь/Отправить | Редактирование/удаление/заказ, Отправить сейчас, Отправить, Планировать сначала, Побочный чат, Отделение/Остановить | Стадия или отправка последующих действий, выберите режим или остановите текущий запуск |
 | Прокрутка до конца | Перейти к последнему сообщению |
+
+## Редактирование изображений и презентаций {/* #creation-editors */}
+
+Используйте [Изображение](../guides/image-generation.md#configure) для API изображения и модели. Откройте созданное изображение для редактирования и проверки его версий. В предварительном просмотре ПК PPTX **Edit**, **Apply**, **Save**, **История версий** и **Сравнение с предыдущей версией** управляют [Изменения в представлении](../guides/presentation-editing.md).
 
 ## Разрешение, план и структурированные вопросы {/* #permission-plan-and-structured-questions */}
 
@@ -162,15 +167,15 @@ last_update:
 
 ### Сеть {/* #network */}
 
-Проверьте еще раз; Прокси-система/ручная/прямая; Разрешенный список доменов Notebook; Зеркало пакета Configure/Edit; Канал Conda, индекс pip и пакет CA; Посмотреть зеркала, отменить и сохранить.
+Проверьте еще раз; Proxy System/Manual/Direct; Notebook Relaxed/Strict mode, Protocol/host/port rules and groups; Package mirror Configure/Edit; Conda channel, pip index, and CA bundle; View mirrors, Cancel, and Save.
 
 ### Модель {/* #model */}
 
-Активная модель, радиоприемники и политики моделей Subagent/Reviewer/Vision/Session-details; Провайдерский тест / Редактировать / Удалить / Добавить. Форма Поставщика содержит все поля со страницы модели Onboarding, а также Отменить и Сохранить.
+Active model, Reasoning radios, Subagent/Reviewer/Vision/Session-details policies и [Модель генерации изображений / Image Services](../guides/image-generation.md); Provider Test/Edit/Delete/Add. Форма Поставщика содержит все поля со страницы модели Onboarding, а также отмену и сохранение.
 
 ### Агент {/* #agent */}
 
-Карта фреймворка OpenCode/Claude/Codex/CodeBuddy/Pi, Switch, источник установки, Install/Cancel/Retry, журнал установки, ремонт, вход/авт, импорт конфигураций/дома и подтверждение удаления.
+Встроенный Open-Science Agent; дополнительные фреймворки OpenCode/Claude/Codex/CodeBuddy/Pi, Switch, Install source, Install/Cancel/Retry, Install log, Repair, Sign in/auth, Import config/home и Uninstall.
 
 ### Разрешения {/* #permissions */}
 

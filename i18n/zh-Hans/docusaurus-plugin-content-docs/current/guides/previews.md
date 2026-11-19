@@ -1,7 +1,7 @@
 ---
 title: "打开与预览文件"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -66,7 +66,7 @@ Markdown 渲染标题、列表、代码和链接。接受图表前检查校验�
 | --- | --- |
 | DOCX | 打开报告，使用 **Previous / Next** 查看两页，或从 **Outline** 跳到标题。使用 ⌘F（macOS）或 Ctrl+F（Windows/Linux）查找 `raw-count`，核对匹配位置和方法说明。可全屏阅读；此处没有 Word 编辑工具栏 |
 | XLSX | 打开工作簿，在底部选择 **Summary** 或 **Samples**。横向滚动查看最后一列。Samples 有 12 行样本，加上表头、间隔和来源说明共 17 个已用行；预览显示 17 行不表示有 17 个生物样本。已保存的单元格数值也不证明重新计算过公式 |
-| PPTX | 打开幻灯片，选择左侧 **Page 2** 缩略图或 **Next**，检查 **2 / 2**。使用 **Find** 搜索 `normalization`，核对方法页的匹配。**Notes** 显示文件自带的讲者备注；此处不是演示文稿编辑器 |
+| PPTX | 打开幻灯片，选择左侧 **Page 2** 缩略图或 **Next**，检查 **2 / 2**。使用 **Find** 搜索 `normalization`，核对方法页的匹配。**Notes** 显示文件自带的讲者备注；修改幻灯片文字与格式，使用[演示文稿编辑](presentation-editing.md) |
 | TIFF | 用 **Next page / Previous page** 切换。两页分别显示原始文库大小和有计数基因的中位数。**Zoom in / Zoom out / Reset zoom** 只改变视图；解释图像前确认 **Page 1 of 2** 或 **Page 2 of 2** |
 | JSON | 打开<ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">摘要文件</ExampleDownload>检查源码、标识符和数值。它以代码显示，不是可展开的对象树 |
 | HTML | 打开<ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">阅读表格</ExampleDownload>，**Source** 查看 HTML，**Render** 返回排版视图，两者都不会重跑 QC |
@@ -91,7 +91,7 @@ Markdown 渲染标题、列表、代码和链接。接受图表前检查校验�
 | 代码/文本 | 所需代码块是否完整、语言 | 行号、语法显示、复制/下载；超大内容可能受限 |
 | JSON / HTML | 结构或渲染内容 | 渲染不代表允许以应用权限执行代码 |
 | 图像 / TIFF | 分辨率与目标图 | 缩放/平移；TIFF 使用专用渲染流程 |
-| Office | 托管渲染是否成功 | DOCX/XLSX/PPTX 不可预览时下载后外部打开；不等于完整 Office 编辑 |
+| Office | 托管渲染是否成功 | DOCX/XLSX/PPTX 不可预览时下载后外部打开；PPTX 支持[幻灯片编辑](presentation-editing.md)，DOCX/XLSX 预览不等于完整 Office 编辑器 |
 | 生物序列 | 序列身份和范围 | 支持的 FASTA 使用序列视图 |
 | 分子结构 | 解析模型和表现方式 | 旋转、缩放、平移及支持的 Cartoon/Stick/Sphere/Surface/Line；缺少结构信息可能禁用某种表现 |
 | 未知格式 | 文件名、大小、回退提示 | 下载到合适软件查看；扩展名不证明内容有效 |

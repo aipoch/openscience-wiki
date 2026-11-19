@@ -1,7 +1,7 @@
 ---
 title: "Files, artifacts, and versions"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -153,3 +153,7 @@ Open a file from an authorized folder under **This computer**. In its preview, u
 After publishing or restoring an artifact, reopen it and check the selected version and contents. v1.0.7 brings the latest published version forward; an older historical preview is still a different version. Use the version controls and provenance panel to inspect how the selected version relates to earlier ones before quoting, downloading or editing it.
 
 When an older Markdown artifact opens with a stale provenance head, v1.0.8 repairs that history pointer. Recheck the displayed version and any incomplete-execution warning before sharing the file. Repairing a history pointer does not rerun or verify an analysis.
+
+## Edit image and presentation content {/* #visual-editing */}
+
+The text editor is separate from the [image editor](image-generation.md#edit) and [PPTX editor](presentation-editing.md). Use those format-specific tools for image variants or slide text and formatting. A read-only CSV preview still does not become a spreadsheet editor.

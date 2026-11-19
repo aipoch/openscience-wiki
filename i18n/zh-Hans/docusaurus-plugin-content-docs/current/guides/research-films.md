@@ -1,7 +1,7 @@
 ---
 title: "制作与分享研究影片"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # 制作与分享研究影片
@@ -20,10 +20,14 @@ last_update:
 ## 生成并播放 {/* #generate-film */}
 
 1. 打开 **Session actions → Generate research film**。回放中也可以从 **More actions** 找到该操作。
-2. 阅读准备提示。模型、凭据或旁白资源缺失时，先解决对应要求再重试。旁白已就绪时，点击该操作会开始生成。
+2. 在 **Film mode** 中选择 **Research explanation** 讲解问题、方法与发现，或选择 **Operation replay** 按顺序展示会话操作与结果。阅读模型用量说明，补齐需要的模型、凭据或旁白资源后，再选择 **Start generation**。
 3. 查看编写及媒体生成阶段。可以关闭对话框让任务继续，再通过 **View generation progress** 返回。**Cancel** 停止影片任务，不会停止或删除原会话。
 4. 出现 **Research film ready** 后，检查标题和时长，选择 **Play research film**。
 5. 完整播放一次，对照源会话检查数值、单位、解释、画面、旁白与限制说明，尤其确认假设案例和初步结果仍被准确标明。
+
+![开始生成前选择研究讲解或操作回放](/img/open-science/v130/film-mode.webp)
+
+每个会话分支分别保存自己的影片。生成或观看前先打开目标分支，一个分支的影片不会自动代表另一个分支。旁白虽然在本地生成，影片编写仍会消耗模型 Token。
 
 <p className="example-label"><strong>案例演示</strong> 解释五个数的教学示例</p>
 
@@ -54,6 +58,8 @@ v1.2.1 中，切换到其他会话不会停止影片生成。保持应用运行�
 ![研究影片播放器与 MP4 导出控件](/img/open-science/v120/film-player.webp)
 
 ## 重新生成或恢复 {/* #film-recovery */}
+
+影片中断后，如果对话框提供 **Retry**，可继续复用已验证的场景、旁白和时间安排；检查点可跨进程重启保留。**Generate again** 则重新开始一次生成，适用于需要改变内容或明确放弃上次尝试的情况。两种操作都应继续检查进度与最终影片。
 
 - 提示选择模型或检查凭据时，先在 **Settings → Model** 修复对应要求，再回到会话。
 - 旁白下载失败时，选择 **Retry**，等待 **Installed** 后再生成。

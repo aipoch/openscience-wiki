@@ -1,7 +1,7 @@
 ---
 title: "Redes, proxies y espejos de paquete"
 last_update:
-  date: '2026-10-29'
+  date: '2026-11-19'
 ---
 
 # Redes, proxies y espejos de paquete {/* #network-proxies-and-package-mirrors */}
@@ -26,25 +26,37 @@ Si Network informa **Ready** pero una herramienta falla, expanda el error de esa
 
 <span id="configure-notebook-domains" />
 
-## Configurar reglas de red pública {/* #public-network-rules */}
+## Elija Redes relajadas o estrictas {/* #public-network-rules */}
 
-1. Abra **Settings → Network → Manage access**. Revise **Public internet access** y **Built-in services**; los grupos **Required** permanecen activados.
-2. En **Custom public domains**, introduzca un nombre de host, una URL HTTP(S) o una regla con comodín inicial en **Domain hostname** y seleccione **Add to list**.
-3. Revise la regla normalizada antes de **Save changes** y repita la solicitud. Las autorizaciones guardadas persisten tras reiniciar.
+Abre **Settings → Network → Manage access**. El modo se aplica a las conexiones de Notebook protegidas a través de proyectos. Lea **Current: Relaxed** o **Current: Strict** antes de editar reglas.
 
-Un nombre exacto no incluye subdominios. `*.example.org` cubre sus subdominios, pero no `example.org` en sí. Una URL como `https://example.org/path` se convierte en una regla de host: la ruta y el puerto no limitan el acceso. Las reglas permiten enviar datos a los hosts coincidentes. Se rechazan las direcciones IP, localhost y las URL con credenciales. Si el host se resuelve a una dirección privada, sigue siendo necesaria la revisión del servicio privado.
+| Modo | Conexións permitidas | Cuando no se permite un destino |
+| --- | --- | --- |
+| **Relaxed** (por defecto) | Nombres de host HTTPS, incluyendo nombres de host para servicios privados o loopback; excepciones guardadas coinciden con su protocolo, host/IP y puerto | HTTP y conexiones IP directas requieren autorización |
+| **Strict** | Sólo los destinos coinciden con la lista blanca manual por protocolo, nombre de host o IP, y puerto | Bloqueado sin una solicitud de autorización; añadir una regla necesaria manualmente |
 
+Para cambiar los modos, seleccione **Strict** o **Relaxed**, lea la explicación, luego utilice **Switch to Strict mode** o **Switch to Relaxed mode**. Seleccionar una opción marcada **Not yet applied** no cambia el modo activo.
 
-## Confía en un servicio privado {/* #trusted-private-services */}
+![Explicación de modo estricto y grupos de lista blanca](/img/open-science/v130/network-strict.webp)
 
-Utilice esto sólo para un servicio interno conocido que su código de investigación debe acceder. Este control está disponible en la aplicación de escritorio. Sólo se admiten direcciones de servicio privado; localhost, esta computadora y las direcciones reservadas permanecen bloqueadas. El campo no acepta direcciones IP crudas o comodines.
+### Añadir una regla de la lista blanca estricta {/* #strict-whitelist */}
 
-1. En **Trusted private services**, elija **Add service** e ingrese **Hostname** y **Port**. Confirme el servicio exacto; el puerto predeterminado es 443.
-2. Seleccione **Review service**. Inspeccione el **Approved addresses** resuelto antes de elegir **Add to trusted services**.
-3. Revise la lista y seleccione **Save changes**. El DNS se revisa de nuevo antes de ahorrar; un cambio de dirección requiere otro examen.
-4. Retira una pequeña solicitud a ese servicio específico e inspecciona su respuesta. La revisión de direcciones por sí sola no prueba la autenticación o disponibilidad de servicio.
+1. En **Strict whitelist**, seleccione **Add rule**.
+2. Establecer **Network protocol**, **Hostname, IP or pattern** y **Port** para el servicio real. Utilice un nombre de host o IP, no una ruta URL.
+3. Elija un **Group**, o **New group…** y un **Group name**, luego elija **Confirm**.
+4. Inspeccione la regla guardada y el modo activo. Retratar la pequeña solicitud prevista e inspeccionar la respuesta.
 
-Una subvención cubre el nombre de host exacto, el puerto y las direcciones revisadas. Permite que el código Notebook y Shell protegido envíen datos a ese servicio en todos los proyectos. Agregue sólo el acceso a las necesidades de la tarea. Las reglas de la red de ahorro restablecen las conexiones protegidas y pueden interrumpir una transferencia activa; terminar esa transferencia antes de aplicar cambios.
+![Ejemplo del protocolo, el host y los campos portuarios para una regla estricta](/img/open-science/v130/network-rule.webp)
+
+Un nombre de host exacto no incluye subdominios. `*.example.org` coincide con subdominios pero no con `example.org`. Protocolo y puerto son parte de la regla: una regla HTTPS para el puerto 443 no otorga HTTP u otro puerto. Strict coincide con el nombre de host solicitado; no comprueba si su resultado DNS es público, privado o loopback. Agregue una regla sólo para un destino que se propone el código para contactar.
+
+**Built-in** y **Manual** identifican la procedencia de la regla. Los grupos incorporados son sembrados una vez, por lo que las ediciones posteriores se mantienen. Ni las aprobaciones recordadas ni el modo Full access bypass Strict. Las reglas de la red de ahorro restablecen las conexiones protegidas y pueden interrumpir las transferencias; aplicar cambios después de que terminen las transferencias activas.
+
+## Guardar una excepción de movimiento relajado {/* #trusted-private-services */}
+
+Bajo **Trusted unsafe networks**, elija **Add address**, especifique **Network protocol**, **Hostname** o IP, **Port** y el grupo apropiado. Confirme y compruebe el alcance guardado antes de reintentar. Estas excepciones evitan la autorización repetida para el destino concordante en modo Relaxed; no otorgan acceso en modo Strict. La lista blanca estricta es inactiva mientras se selecciona Relaxed.
+
+La regla permite una conexión, no un acceso exitoso o una respuesta válida. Compruebe las credenciales del servicio y el resultado real por separado. Estos ajustes reemplazan los formularios de dominio público/servicio privado más antiguos; usan el modo actual y los campos de reglas cuando se sigue una captura de pantalla más antigua.
 
 ## Elija un modo proxy {/* #choose-a-proxy-mode */}
 
@@ -66,21 +78,11 @@ El modo manual acepta URLs HTTP, HTTPS, SOCKS, SOCKS4 y SOCKS5. No se admiten la
 
 Si el modo manual informa **Introduzca una URL del servidor proxy**, introduzca una dirección de proxy de trabajo o descarte el borrador con **Done**. Salvar una dirección válida no confirma en sí mismo que el proxy puede llevar la solicitud de fallo.
 
-### Cuando un dominio se resuelve a una dirección no pública {/* #observed-fake-ip-failure */}
+### Revise un DNS o fallo proxy {/* #observed-fake-ip-failure */}
 
-Si la instalación informa `destination resolves to a non-public network address`, inspeccione el registro detallado del instalador incluso cuando el error corto sólo dice `conda install failed` o `pip install failed`.
+Mantenga el error exacto de la solicitud de fallo. Un timeout, error de certificado o rechazo proxy todavía puede ocurrir después de una regla permite el destino. Revise el nombre de host, protocolo, puerto y ruta proxy contra el servicio que desee utilizar. No trate el error de dirección no pública de una versión anterior como la actual regla de juego del modo Strict: Controla el nombre/IP y el puerto solicitados, no su clase de dirección DNS.
 
-```text
-deny network-outbound pypi.org:443
-(destination resolves to a non-public network address)
-```
-
-1. Revise el nombre de host afectado y su dirección resuelta. Direcciones como `198.18.*` no son destinos públicos.
-2. Destinguir una decisión de la lista de dominio del cheque de destino. `alreadyAllowed` no establece que la dirección resuelta es aceptable.
-3. Compruebe la resolución DNS pública y la ruta proxy prevista con el propietario de la red, a continuación, retratar la pequeña petición original. Mantenga la protección de dominio habilitada.
-4. Verificar la instalación e importar por separado. Un proxy guardado, intérprete listo o el uso exitoso de los paquetes existentes es insuficiente.
-
-Si el mismo error persiste, mantenga el nombre de host, dirección resuelta y modo proxy con el registro del instalador y siga [Solución de problemas](troubleshooting.md). Un ahorro de configuración exitoso no es una descarga exitosa.
+Retratar una pequeña solicitud después de corregir la causa. Para el trabajo de paquetes, confirme tanto la instalación como la importación; un ajuste guardado o intérprete Listo por sí solo no prueba que una descarga se logró. Mantener las credenciales fuera de los registros compartidos y utilizar [Solución de problemas](troubleshooting.md) para fallos persistentes.
 
 
 ## Configurar espejos de paquete y fideicomiso de certificado {/* #configure-package-mirrors-and-certificate-trust */}
@@ -100,7 +102,7 @@ Seleccione **Configure** o **Edit** bajo el espejo del paquete.
 
 Un espejo de paquete cambia la fuente del paquete. Confirme el formato de root/index requerido del espejo, ahorre y vuelva a introducir una pequeña operación de paquete en el tiempo de ejecución seleccionado. Los ajustes de proxy del modelo son separados.
 
-Los nombres de host Conda, PyPI y CRAN de espejo reciben acceso temporal para la operación de gestión de paquetes. Esto no los añade a la lista de dominio Notebook permanente o otorga el código Notebook ordinario el mismo acceso. Las redirecciones a otros anfitriones siguen el flujo de aprobación de la red.
+Configured Conda, PyPI y CRAN espejo hostnames reciben acceso temporal para la operación de gestión de paquetes. Esto no los añade a la lista de dominio de Notebook permanente o otorga el mismo acceso al código de Notebook ordinario. Los redirigidos necesitan acceso a sus destinos reales. En modo Strict, agregue todos los protocolos/host/port requeridos a la lista blanca; una beca temporal de operaciones de paquetes no lo pasa.
 
 Utilice una URL de espejo compatible HTTP(S) sin credenciales incrustadas, espacio blanco, localhost o una dirección IP cruda. Un ajuste de espejo aceptado no fija un servidor no disponible o un nombre de host que se resuelva a una dirección reservada. Si la instalación falla, inspeccione el destino y error real de la operación antes de reintentar. Los puntos finales remotos **model** tienen un [Requisitos HTTPS](providers.md#custom-gateway-every-visible-field).
 
@@ -110,7 +112,7 @@ Grabar la versión, operación, tiempo de ejecución/ambiente, paquete o nombre 
 
 Para un módulo Python perdido después de una conexión exitosa, continúe con [tiempo de ejecución y cheques de paquete](./runtimes.md). La instalación de host remoto está cubierta por separado en [Cálculo](remote-compute.md).
 
-[Fuente de configuración de la red](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/settings/NetworkPanel.tsx), [Límite de red Notebook](https://github.com/aipoch/open-science/blob/v0.26.0/src/main/notebook/network-sandbox-owner.ts).
+[Fuente de configuración de redes](https://github.com/aipoch/open-science/blob/v1.3.0/src/renderer/src/pages/settings/NetworkPanel.tsx), [Límite de red portátil](https://github.com/aipoch/open-science/blob/v1.3.0/src/main/notebook/network-sandbox-owner.ts).
 
 ## Búsqueda de error HTTP {/* #http-error-lookup */}
 
@@ -124,6 +126,6 @@ En v0.31.1, Notebook muestra una advertencia en línea cuando la protección de 
 
 ## Acceso a la red cuando el modo de aprobación cambia {/* #network-mode-changes */}
 
-De v1.0.5, **Full access** permite destinos de red pública sin tarjetas de permiso individuales. Todavía se aplican otras autenticaciones, restricciones de origen y cheques de servicio privado. Cambiar a un modo más restrictivo cierra las conexiones existentes para que no puedan continuar bajo el viejo permiso. Retrocede la solicitud prevista bajo el nuevo modo y revise cualquier tarjeta de permiso que presente.
+**Full access** elimina las tarjetas de permiso manual aplicables del agente, pero no pasa por la lista blanca Strict Notebook. Chequee **Settings → Network → Manage access** cuando se niega una solicitud. En modo Relajado, el protocolo y el destino determinan si se necesita autorización o una excepción guardada. Todavía se aplican credenciales de proveedor y restricciones de servicio.
 
-Los permisos globales de red se reflejan en **Settings → Network** inmediatamente. Inspeccione el dominio actual o la lista de servicios privados antes de añadir otra regla. Una subvención global es más amplia que una aprobación única; mantener sólo el alcance que se propone. Véase [modos de aprobación](approval-modes.md).
+Cambiar las reglas de red puede cerrar las conexiones protegidas existentes. Retroceder bajo el modo resultante, luego inspeccionar la respuesta real. Vea [modos de aprobación](approval-modes.md) para permisos de conversación.

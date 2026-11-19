@@ -1433,6 +1433,28 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v130",
+            "title": "v1.3.0",
+            "scope": "Scheduled tasks, image generation, presentation editing and film modes.",
+            "currentDoc": "changelog/v1-3-0",
+            "proposedUrl": "/docs/changelog/v1-3-0/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-3-0"
+            ]
+          },
+          {
+            "id": "v122",
+            "title": "v1.2.2",
+            "scope": "Strict networking, film checkpoints, PDF fidelity and recovery.",
+            "currentDoc": "changelog/v1-2-2",
+            "proposedUrl": "/docs/changelog/v1-2-2/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-2-2"
+            ]
+          },
+          {
             "id": "v121",
             "title": "v1.2.1",
             "scope": "Resource center, question refinement, Codex subscriptions and reference CSV export.",

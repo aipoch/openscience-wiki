@@ -1,7 +1,7 @@
 ---
 title: "Configuration du fournisseur et du modèle local"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -265,3 +265,12 @@ Dans v1.2.1, **Open-Science Agent** prend en charge à la fois une connexion Cod
 4. Envoyez une courte demande et vérifiez la réponse réelle avant de commencer la recherche. La détection de connexion importée, la configuration sauvegardée et l'exécution réussie sont des états séparés.
 
 Le catalogue anthropique comprend également **Claude Fable 5.2** avec une fenêtre contextuelle 1M. Les entrées de catalogue n'accordent pas d'accès au compte ou ne remplacent pas automatiquement Main.
+
+
+## Connectez un abonnement régional CodeBuddy {/* #codebuddy-subscription */}
+
+Utilisez le codeBuddy runtime lors du choix d'un abonnement CodeBuddy. Dans **Settings → Model**, sélectionnez le compte **CodeBuddy (China)** ou **CodeBuddy (International)** correspondant. Le choix régional doit correspondre à l'abonnement que vous comptez utiliser.
+
+Choisissez la connexion de connexion existante ou le flux de connexion du navigateur indiqué par le formulaire. Pour une connexion existante, connectez-vous au site sélectionné dans CodeBuddy CLI, puis utilisez **Connect**. Un profil WorkBuddy seul n'est pas la signature obligatoire CodeBuddy CLI. Pour la connexion du navigateur, terminer le flux de compte et revenir à Open-Science.
+
+Attendez la vérification de la connexion et les modèles découverts du compte. Sélectionnez un modèle disponible et envoyez une courte demande avant une tâche plus longue. Si le site ou la connexion est incorrecte, corrigez cette connexion de compte et rafraîchissez-la; une ligne de fournisseur enregistrée ne prouve pas qu'un modèle est accessible.

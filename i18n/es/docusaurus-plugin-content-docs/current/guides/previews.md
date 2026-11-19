@@ -1,7 +1,7 @@
 ---
 title: "Abrir y previsualizar archivos"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -64,12 +64,12 @@ El <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-reading.docx">In
 
 | Formato | Pasos y qué revisar |
 | --- | --- |
-| DOCX | Abre el informe. Uso **Anterior / Siguiente** para visitar ambas páginas o **Índice** para saltar a una partida. Presione solubleF (macOS) o Ctrl+F (Windows/Linux), busque `raw-count` y comprobar sus partidos y los métodos. La vista previa de pantalla completa da más habitación; no hay cinta de edición de Word. |
-| XLSX | Abra el libro de trabajo, luego elija **Resumen** o **Muestras** en el fondo. Desplazarse horizontalmente para la última columna. Las muestras contienen hileras de datos 12 más su cabecera, espaciamiento y notas de origen; el espectador informa que 17 usó filas, no muestras biológicas 17. Los valores son una vista previa del libro de trabajo guardado, no evidencia de un cálculo fresco. |
-| PPTX | Abra las diapositivas, elija las **Página 2** miniatura o **Siguiente**, y comprobar **2 / 2**. Utilice **Encontrar** para buscar `normalization` en los métodos deslizarse. **Notes** muestra notas de altavoz incrustadas; es una superficie de lectura, no un editor de presentación. |
-| TIFF | Abrir la figura y utilizar **Página siguiente / Página anterior**. Las dos páginas muestran tamaños de bibliotecas crudas y medianas de genes detectados. **Zoom / Zoom out / Reset zoom** modificar la opinión; cheque **Página 1 de 2** o **Página 2 de 2** antes de interpretar la figura. |
-| JSON | Abrir <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">el resumen</ExampleDownload> para inspeccionar el texto fuente, identificadores y valores. Se muestra como código en lugar de un árbol de objeto expandible. |
-| HTML | Abrir <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">la tabla de lectura</ExampleDownload>. **Source** muestra el HTML; **Render** restaura el documento formateado. Ninguno de los modos vuelve a funcionar el QC. |
+| DOCX | Abre el informe. Uso **Anterior / Siguiente** para visitar ambas páginas o **Esquema** para saltar a una partida. Pulse solubleF (macOS) o Ctrl+F (Windows/Linux), busque `raw-count` y comprobar sus partidos y los métodos. La vista previa de pantalla completa da más habitación; no hay cinta de edición de Word. |
+| XLSX | Abra el libro de trabajo, luego elija **Resumen** o **Muestras** en el fondo. Desplazarse horizontalmente para la última columna. Muestras contiene 12 hileras de datos más su cabecera, espaciamiento y notas de origen; el espectador reporta 17 hileras usadas, no 17 muestras biológicas. Los valores son una vista previa del libro de trabajo guardado, no evidencia de un cálculo fresco. |
+| PPTX | Abre las diapositivas, elige las **Página 2** miniatura o **Siguiente**, y comprobar **2 / 2**. Uso **Encontrar** para buscar `normalization` en los métodos deslizarse. **Notes** pantallas de altavoces embebidos; utilizar el [editor de presentación](presentation-editing.md) para cambiar el texto de diapositivas y el formato. |
+| TIFF | Abrir la figura y utilizar **Página siguiente / Página anterior**. Las dos páginas muestran tamaños de bibliotecas crudas y medianas de genes detectados. **Zoom / Zoom out / Reset zoom** cambiar la vista; comprobar **Página 1 de 2** o **Página 2 de 2** antes de interpretar la figura. |
+| JSON | Abierto <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.json">el resumen</ExampleDownload> para inspeccionar el texto fuente, identificadores y valores. Se muestra como código en lugar de un árbol de objeto expandible. |
+| HTML | Abierto <ExampleDownload path="/examples/gse60450/office/GSE60450-qc-summary.html">la tabla de lectura</ExampleDownload>. **Source** muestra el HTML; **Render** restaura el documento formateado. Ninguno de los dos modos vuelve al QC. |
 
 ![Controles de página y partidos de texto reales en la copia de lectura de Word](/img/open-science/v0333/word-search.webp)
 
@@ -87,14 +87,14 @@ Las siguientes listas de tablas previsualizan modos y controles para los tipos d
 
 | Familia | Qué inspeccionar | Controles y límites |
 | --- | --- | --- |
-| PDF | Número de página, texto legible, fuente PDF | Thumbnails, esquema, búsqueda de documentos, navegación por página, zoom y regiones seleccionables; Las páginas escaneadas pueden carecer de texto |
+| PDF | Número de página, texto legible, fuente PDF | Thumbnails, esquema, búsqueda de documentos, navegación de páginas, zoom y regiones seleccionables; las páginas escaneadas pueden carecer de texto |
 | Código / texto llano | Completo bloque y idioma relevantes | Números de línea, visualización de sintaxis, copia/descarga; el contenido sobresize puede ser limitado |
-| JSON / HTML | Estructura o documento renderizado | Rendering no es el permiso para ejecutar código con privilegios de aplicación |
+| JSON / HTML | Estructura o documento renderizado | Rendering no es permiso para ejecutar código con privilegios de aplicación |
 | Imágenes / TIFF | Resolución y imagen seleccionada | Ampliar imagen/pan; TIFF tiene una ruta de renderización dedicada |
-| Archivos de oficina | Si el renderizador gestionado tiene éxito | Descargar / abrir externamente si DOCX/XLSX/PPTX vista previa no está disponible; vista previa no es la edición completa de Office |
+| Archivos de oficina | Si el renderizador gestionado tiene éxito | Descargar / abrir externamente si la vista previa DOCX/XLSX/PPTX no está disponible; soportes PPTX [edición de diapositivas](presentation-editing.md); DOCX/XLSX vista previa no es un editor de Office completo |
 | Secuencias biológicas | Identidad y alcance de la secuencia | Vista orientada hacia la secuencia para los insumos de FASTA soportados |
-| Estructuras moleculares | Modelo pareado y representación elegida | Rotar, ampliar, pan y apoyar las representaciones Cartoon/Stick/Sphere/Surface/Line; datos estructurales perdidos pueden desactivar una representación |
-| Archivo desconocido o no soportado | Nombre, tamaño y mensaje de retroceso | Descarga para un visor externo adecuado; no inferir contenido válido de la extensión |
+| Estructuras moleculares | Modelo pareado y representación elegida | Rotación, zoom, sartén y apoyo Cartoon/Stick/Sphere/Surface/Line representaciones; datos estructurales faltantes pueden deshabilitar una representación |
+| Archivo desconocido o no compatible | Nombre, tamaño y mensaje de retroceso | Descarga para un visor externo adecuado; no inferir contenido válido de la extensión |
 
 Para el contexto PDF, vincule únicamente los documentos pertinentes a la tarea actual y desvincularlos cuando la próxima tarea no debe utilizarlos. La aplicación soporta hasta tres PDFs enlazados por sesión. Un registro de literatura sin un PDF adjunto proporciona metadatos, no prueba de que se leyó el texto completo; ver [Biblioteca](library.md).
 

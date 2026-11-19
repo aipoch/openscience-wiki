@@ -1,7 +1,7 @@
 ---
 title: "Notebook et preuves d'exécution"
 last_update:
-  date: '2026-10-27'
+  date: '2026-11-19'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -301,3 +301,12 @@ Après avoir lu un CSV, le transformer et exporter un nouveau fichier en Python 
 ## Vérifier l'accès au dossier local {/* #folder-access */}
 
 Si une entrée locale ne peut pas être lue, vérifiez [Autorisations des carnets et des dossiers Shell](../reference/permissions.md#notebook-folder-restrictions). Changer la restriction arrête les processus en direct et efface les variables. Enregistrer les résultats d'abord, accorder le dossier requis, puis réexécuter seulement les cellules nécessaires pour reconstruire l'état de travail.
+
+
+## Inspecter et arrêter un processus propre {/* #process-monitor */}
+
+Ouvrez la vue de calcul du projet et inspectez le moniteur de processus local. Faire correspondre le processus à sa conversation et à son exécution avant d'agir; CPU, mémoire et temps écoulé aident à distinguer le travail actif d'un noyau inactif. Certaines mesures du processus dépendent de la plate-forme.
+
+Utilisez **Process tree** pour les détails et **Terminate** seulement pour une tâche que vous avez l'intention d'arrêter. Cela peut interrompre l'exécution et jeter les variables du noyau en direct. Un enregistrement enregistré de carnet de notes n'est pas effacé en arrêtant un processus, mais la sortie inachevée n'est pas un résultat terminé. Si le nettoyage signale un problème et offre **Retry cleanup**, inspecter l'état avant de réessayer. Rechargez les entrées nécessaires avant de réutiliser le code dans un nouveau noyau.
+
+Pour les exécutions répétées, utilisez [tâches prévues](scheduled-tasks.md) après avoir terminé un essai manuel.

@@ -1,7 +1,7 @@
 ---
 title: "모델 및 작업 정책"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # 모델 및 작업 정책 {/* #models-and-task-policies */}
@@ -145,3 +145,8 @@ PDF 번역은 독자에서 자체 **Translation method** 및 **Model** 제어를
 | 연구 narration | 연구용 영화 제작 | 연설 엔진 및 모델 설치; 대기 **Installed** |
 
 작업에 필요한 리소스 만 설치하십시오. 다운로드 진행 상황을 따르십시오; **다운로드** 전송을 중지하고, **Retry** 지원되는 실패한 다운로드를 재개하거나 반복합니다. 설치 상태를 확인하려면 탭을 엽니다. **Uninstall** 리소스가 사용중인 동안 사용할 수 없습니다. 이름 * [연구 필름](research-films.md) · [PDF 추출](previews.md#pdf-extraction).
+
+
+## 이미지 생성 모델을 선택하십시오. {/* #image-generation */}
+
+**Image generation**는 **Settings → Model**의 자체 서비스 및 모델 선택이 있습니다. 이미지를 생성하거나 편집합니다. **Vision**는 이미지 입력을 분석합니다. 대화 작업에 대한 메인 구성을 유지하고 이미지 서비스를 별도로 선택합니다. credentials, 첫번째 요청 및 버전 역사를 위한 [이미지 생성 및 편집](image-generation.md)를 보십시오.

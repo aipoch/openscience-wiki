@@ -1,7 +1,7 @@
 ---
 title: "檔案格式與限制"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-19'
 ---
 
 # 檔案格式與限制 {/* #文件格式与限制 */}
@@ -18,24 +18,24 @@ last_update:
 
 ## 預覽格式 {/* #预览格式 */}
 
-| 內容 | 識別副檔名 | 行為與邊界 |
+| 內容 | 識別擴展名 | 行爲與邊界 |
 | --- | --- | --- |
-| 普通影象 | `avif`、`gif`、`jpeg`、`jpg`、`png`、`svg`、`webp` | 影象預覽；模型輸入另受影象能力限制 |
-| TIFF | `tif`、`tiff` | 獨立解碼器，有檔案、畫素和記憶體限制 |
-| 分隔表格 | `csv`、`tsv` | 第一行作為表頭，顯示行列受限 |
+| 普通圖像 | `avif`、`gif`、`jpeg`、`jpg`、`png`、`svg`、`webp` | 圖像預覽；模型輸入另受圖像能力限制 |
+| TIFF | `tif`、`tiff` | 獨立解碼器，有文件、像素和內存限制 |
+| 分隔表格 | `csv`、`tsv` | 第一行作爲表頭，顯示行列受限 |
 | 序列 | `fa`、`faa`、`fasta`、`ffn`、`fna`、`frn` | FASTA 檢查，不驗證分析方法 |
-| 結構 | `pdb` | 結構檢視，不評價預測質量 |
+| 結構 | `pdb` | 結構查看，不評價預測質量 |
 | 分子/反應 | `mol`、`sdf`、`smi`、`smiles`、`rxn` | 專用分子預覽；不能推斷 `mol2` 也有相同路由 |
-| PDF | `pdf` | 獨立文件閱讀器與分頁控制元件 |
+| PDF | `pdf` | 獨立文檔閱讀器與分頁控件 |
 | Word | `docx` | Office 渲染器；舊 `doc` 不交給 DOCX 解析 |
 | 電子表格 | `xls`、`xlsx` | Office 預覽；執行分析是另一動作 |
-| 簡報 | `pptx` | Office 預覽；舊 `ppt` 不交給 PPTX 解析 |
-| Markdown | `md`、`markdown` | 渲染文件，並提供適用的文字版本操作 |
+| 演示文稿 | `pptx` | 演示預覽與[幻燈片編輯](../guides/presentation-editing.md)；舊 `ppt` 不交給 PPTX 解析 |
+| Markdown | `md`、`markdown` | 渲染文檔，並提供適用的文本版本操作 |
 | HTML | `htm`、`html` | 隔離預覽，不授予應用權限 |
 | JSON | `json` | 結構化預覽，也識別對應計劃格式 |
-| 程式碼 | `bash`、`bib`、`bibtex`、`css`、`js`、`jsx`、`py`、`r`、`sh`、`tex`、`ts`、`tsx` | 高亮原始碼，開啟不會執行 |
-| 純文字 | `conf`、`config`、`ini`、`iqtree`、`log`、`nwk`、`state`、`toml`、`tree`、`treefile`、`txt`、`xml`、`yaml`、`yml` | 有讀取上限的文字預覽 |
-| 其他檔案 | 未識別格式 | 使用適用的回退/下載；可匯出 `.ipynb` 不代表有對應檔案編輯器 |
+| 代碼 | `bash`、`bib`、`bibtex`、`css`、`js`、`jsx`、`py`、`r`、`sh`、`tex`、`ts`、`tsx` | 高亮源代碼，打開不會執行 |
+| 純文本 | `conf`、`config`、`ini`、`iqtree`、`log`、`nwk`、`state`、`toml`、`tree`、`treefile`、`txt`、`xml`、`yaml`、`yml` | 有讀取上限的文本預覽 |
+| 其他文件 | 未識別格式 | 使用適用的回退/下載；可導出 `.ipynb` 不代表有對應文件編輯器 |
 
 無副檔名檔案還可能使用有限的 MIME 回退。誤導性的 Office MIME 不會讓舊格式相容 OOXML 渲染器。
 

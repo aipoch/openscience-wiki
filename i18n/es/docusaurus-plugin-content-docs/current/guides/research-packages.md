@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -193,3 +193,8 @@ Si un paquete está esperando un destino, **Continue** reabre el diálogo de imp
 Notebook y Compute ejecuta reutilizar el contenido de evidencia idéntico en el paquete de investigación al tiempo que conserva los digestes verificados y ejecuta referencias. Esto reduce los bytes repetidos cuando un largo período de sesiones utiliza los mismos archivos muchas veces; la primera exportación también puede preparar pruebas de registros antiguos.
 
 Exportar a través del flujo normal del paquete de sesión y esperar a la terminación. Importar el resultado en un proyecto separado e inspeccionar las carreras y archivos retenidos. Un archivo más pequeño no prueba que cada archivo requerido está presente, y la importación exitosa no es una repetición computacional. Uso [cheques de reproducción](reproducibility.md) cuando necesites probar la ejecución de nuevo.
+
+
+## Comprobar una importación interrumpida {/* #import-recovery */}
+
+Si se cancela una importación, no la trate como completada. Si un tiempo deja sin confirmar el resultado, busque el proyecto de destino y la sesión importada antes de comenzar otra importación. Abrir cualquier sesión resultante e inspeccionar sus archivos. Para un paquete perdido o inválido, seleccione el archivo `.science` intacto y mantenga el identificador de error o correlación mostrado al solicitar ayuda. No importa en repetidas ocasiones el mismo paquete sin comprobar si un intento anterior ya creó la sesión.

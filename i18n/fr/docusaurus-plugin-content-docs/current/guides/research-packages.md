@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -193,3 +193,8 @@ Si un colis attend une destination, **Continue** rouvre la boîte de dialogue d'
 Notebook and Compute réutilise le même contenu de preuves dans le dossier de recherche tout en conservant des digests vérifiés et des références. Cela réduit les octets répétés lorsqu'une longue session utilise les mêmes fichiers plusieurs fois; la première exportation peut également préparer des preuves à partir de documents plus anciens.
 
 Exporter dans le flux normal du paquet Session et attendre l'achèvement. Importer le résultat dans un projet séparé et inspecter les pistes et les fichiers conservés. Une archive plus petite ne prouve pas que chaque fichier requis est présent, et l'importation réussie n'est pas un rediffusion de calcul. Utilisation [contrôle de reproductibilité](reproducibility.md) quand vous devez tester l'exécution à nouveau.
+
+
+## Vérifier une importation interrompue {/* #import-recovery */}
+
+Si une importation est annulée, ne la traitez pas comme terminée. Si un timeout laisse le résultat non confirmé, recherchez le projet de destination et la session importée avant de commencer une autre importation. Ouvrez toute session résultante et inspectez ses fichiers. Pour un paquet manquant ou invalide, sélectionnez le fichier `.science` intact et conservez l'identificateur d'erreur ou de corrélation affiché lors de la demande d'aide. Ne pas importer le même paquet à plusieurs reprises sans vérifier si une tentative précédente a déjà créé la session.

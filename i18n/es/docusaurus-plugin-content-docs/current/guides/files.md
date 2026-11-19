@@ -1,7 +1,7 @@
 ---
 title: "Archivos, artefactos y versiones"
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -153,3 +153,8 @@ Abra un archivo de una carpeta autorizada bajo **This computer**. En su vista pr
 Después de publicar o restaurar un artefacto, vuelva a abrirlo y compruebe la versión y el contenido seleccionados. v1.0.7 trae la última versión publicada hacia adelante; una vista previa histórica anterior sigue siendo una versión diferente. Utilice los controles de versión y el panel de procedencia para inspeccionar cómo se relaciona la versión seleccionada con los anteriores antes de citar, descargar o editarla.
 
 Cuando un artefacto de Markdown más viejo se abre con una cabeza de probabilidad fija, v1.0.8 repara ese puntero de historia. Revise la versión mostrada y cualquier advertencia de ejecución incompleta antes de compartir el archivo. Reparar un puntero de historia no reimprime ni verifica un análisis.
+
+
+## Editar contenido de imagen y presentación {/* #visual-editing */}
+
+El editor de texto está separado de la [editor de imágenes](image-generation.md#edit) y [PPTX editor](presentation-editing.md). Use esas herramientas específicas para las variantes de imagen o el texto de diapositivas y el formato. Una vista previa de sólo lectura CSV todavía no se convierte en un editor de hojas de cálculo.

@@ -3,7 +3,7 @@ sidebar_position: 1
 title: 完整页面与控件索引
 description: 按页面查找 Open-Science 的按钮、输入、开关和结果。
 last_update:
-  date: '2026-11-05'
+  date: '2026-11-19'
 ---
 
 # 完整页面与控件索引
@@ -51,6 +51,7 @@ last_update:
 | New | 新 session |
 | Customize | 启动 Skill/Specialist 定制对话 |
 | Files | 切换右侧项目文件面板 |
+| Schedule | [创建并检查定时消息或脚本](../guides/scheduled-tasks.md) |
 | Library | 打开与项目关联的资料库文献 |
 | Session row | 切换 session；状态显示 Idle/Running/Permission 等 |
 | Session actions | Pin/Unpin、Rename、View notebook、Archive、Delete |
@@ -72,6 +73,10 @@ last_update:
 | Model | Active model、Reasoning effort | 改变后续 request 的模型/强度 |
 | Queue/Send | Queue edit/delete/reorder、Send now、Send、Plan first、Side chat、Branch、Stop | 暂存或发送 follow-up、选择模式、停止运行 |
 | Scroll to end | 回到最新消息 |
+
+## 图片与演示文稿编辑 {/* #creation-editors */}
+
+通过 [Image services](../guides/image-generation.md#configure) 配置图像 API 与模型；打开生成图片后可编辑并查看版本。桌面 PPTX 预览使用 **Edit**、**Apply**、**Save**、**Version history** 和 **Compare with previous version** 管理[演示文稿修改](../guides/presentation-editing.md)。
 
 ## 权限、计划与结构化追问
 
@@ -162,15 +167,15 @@ Add host、Host card/enable、Probe/Retry、Detail/Edit/Remove、Resources、Dir
 
 ### Network
 
-Check again；Proxy System/Manual/Direct；Notebook domain allowlist；Package mirror Configure/Edit；Conda channel、pip index、CA bundle；View mirrors、Cancel、Save。
+Check again；Proxy System/Manual/Direct；Notebook Relaxed/Strict 模式、协议/主机/端口规则与分组；Package mirror Configure/Edit；Conda channel、pip index、CA bundle；View mirrors、Cancel、Save。
 
 ### Model
 
-Active model、Reasoning radios、Subagent/Reviewer/Vision/Session-details model policy；Provider Test/Edit/Delete/Add；Provider 表单所有 Onboarding Model 字段以及 Cancel/Save。
+Active model、Reasoning radios、Subagent/Reviewer/Vision/Session-details model policy、[Image generation model / Image services](../guides/image-generation.md)；Provider Test/Edit/Delete/Add；Provider 表单所有 Onboarding Model 字段以及 Cancel/Save。
 
 ### Agent
 
-OpenCode/Claude/Codex/CodeBuddy/Pi framework card、Switch、Install source、Install/Cancel/Retry、Install log、Repair、Sign in/auth、Import config/home、Uninstall confirmation。
+内置 Open-Science Agent；可选 OpenCode/Claude/Codex/CodeBuddy/Pi framework card、Switch、Install source、Install/Cancel/Retry、Install log、Repair、Sign in/auth、Import config/home、Uninstall confirmation。
 
 ### Permissions
 

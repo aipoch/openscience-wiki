@@ -1,7 +1,7 @@
 ---
 title: "Provider and local model setup"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -265,3 +265,11 @@ In v1.2.1, **Open-Science Agent** supports both an imported Codex login and an a
 4. Send a short request and check the actual response before starting research. Imported login detection, saved configuration and successful execution are separate states.
 
 The Anthropic catalog also includes **Claude Fable 5.2** with a 1M context window. Catalog entries do not grant account access or automatically replace Main.
+
+## Connect a regional CodeBuddy subscription {/* #codebuddy-subscription */}
+
+Use the CodeBuddy runtime when choosing a CodeBuddy subscription. In **Settings → Model**, select the matching **CodeBuddy (China)** or **CodeBuddy (International)** account. The regional choice must match the subscription you intend to use.
+
+Choose the supported existing-login connection or browser sign-in flow shown by the form. For an existing login, sign in to the selected site in CodeBuddy CLI, then use **Connect**. A WorkBuddy profile alone is not the required CodeBuddy CLI sign-in. For browser sign-in, finish the account flow and return to Open-Science.
+
+Wait for connection verification and the account's discovered models. Select an available model and send a short request before a longer task. If the site or sign-in is wrong, correct that account connection and refresh it; a saved provider row does not prove that a model is accessible.

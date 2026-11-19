@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Einstellungen Übersicht"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Einstellungen Übersicht {/* #settings-overview */}
@@ -31,20 +31,20 @@ Diese Suche umfasst repräsentative Einstellungen in jedem Panel, nicht in jedem
 
 | Gruppe | Panel | Was sie verwaltet |
 | --- | --- | --- |
-| System | [General](../guides/appearance.md#help-center) | Version, Updates, Diagnose, CLI-Installation, Fensterverhalten und Hilfe |
-|  | [Appearance](../guides/appearance.md) | Design, Sprache, Desktop-Skalierung und unterstützte App-Symbole |
-|  | [Notifications](../guides/appearance.md) | Aufgabenmeldungen, Benachrichtigungsinhalt, Systemstatus und Testmeldung |
-| Intelligenz | [Modell](../guides/models.md) | Anbieter und Szenariomodelle |
-|  | [Agent](../guides/frameworks.md) | Installation, Umschaltung und Reparatur von Agenten-Frameworks |
-|  | [Erinnerungen](../guides/memory.md) | Opt-in Global- und Projektnotizen |
-| Verbindungen | [Netzwerk](../guides/network.md) | Proxy, Paketspiegel und Notebook-Domänenzugriff |
+| System | [Generalmajor](../guides/appearance.md#help-center) | App-Version, Updates, Diagnose, CLI-Installation, Fensterverhalten und Hilfe |
+|  | [Aussehen](../guides/appearance.md) | Thema, Sprache, Desktop-Interface-Skala und unterstützte App-Icon-Auswahl |
+|  | [Meldungen](../guides/appearance.md) | Aufgabenwarnungen, Benachrichtigungsinhalt, Systemstatus und Testbenachrichtigung |
+| Intelligenz | [Modell](../guides/models.md) | Anbieter- und Szenariomodelle, einschließlich [Bilddienste](../guides/image-generation.md) |
+|  | [Agent](../guides/frameworks.md) | Installation, Umschaltung und Reparatur von Agentenrahmen |
+|  | [Speicher](../guides/memory.md) | Opt-in Global und Project Notes |
+| Anschlüsse | [Netzwerk](../guides/network.md) | Proxy, Paketspiegel und Notebook Entspannte / strenge Zugangsregeln |
 |  | [Remote](../guides/remote-access.md) | Browserzugriff, Kopplung und vertrauenswürdige Geräte |
 |  | [Anmeldeinformationen](../tools/credentials.md) | Schlüssel, Token, OAuth und Credential Recovery |
-|  | [Rechenressourcen](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
+|  | [Berechnung](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Arbeitsbereich | [Tags](../guides/tags.md) | Tags und Favoriten bestellen |
-|  | [Berechtigungen](../guides/approval-modes.md) | Default-Modus und eingesparte Zuschüsse |
-|  | [Laufzeiten](../guides/runtimes.md) | Python/R Umgebungen und Pakete |
-|  | [Speicher](../guides/storage.md) | Datenortung, Schreibzugriff und Festplattennutzung |
+|  | [Genehmigungen](../guides/approval-modes.md) | Ausfallmodus und eingesparte Zuschüsse |
+|  | [Laufzeiten](../guides/runtimes.md) | Python/R-Umgebungen und Pakete |
+|  | [Lagerung](../guides/storage.md) | Datenortung, Schreibzugriff und Festplattennutzung |
 |  | [Verwendung](../guides/usage.md) | Token-, Call- und Research-Statistiken |
 |  | [Archiviert](../guides/storage.md) | Archivierte Arbeit wiederherstellen oder dauerhaft löschen |
 

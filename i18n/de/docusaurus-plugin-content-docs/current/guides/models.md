@@ -1,7 +1,7 @@
 ---
 title: "Modelle und Aufgabenrichtlinien"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Modelle und Aufgabenrichtlinien {/* #models-and-task-policies */}
@@ -145,3 +145,8 @@ Offen **Settings → Model → Local capabilities**. In v1.2.0 ersetzt dies die 
 | Forschungsnarrativ | Englische Rede für Forschungsfilme produzieren | Installieren Sie die Sprachmaschine und das Modell; warten Sie **Installed** |
 
 Installieren Sie nur die Ressourcen, die für Ihre Aufgabe benötigt werden. Folgen Sie dem Download-Fortschritt; **Download abbrechen** die Übertragung stoppt und **Retry** Wiederholt oder wiederholt einen fehlgeschlagenen Download, wie unterstützt. Öffnen Sie die Registerkarte erneut, um den installierten Zustand zu bestätigen. **Uninstall** ist nicht verfügbar, während eine Ressource verwendet wird. Siehe [Forschungsfilme](research-films.md) und [PDF-Extraktion](previews.md#pdf-extraction).
+
+
+## Wählen Sie ein Image-Generierungsmodell {/* #image-generation */}
+
+**Image generation** verfügt über einen eigenen Service und eine eigene Modellauswahl in **Settings → Model**. Es erstellt oder bearbeitet Bilder; **Vision** analysiert Bildeingaben. Halten Sie Main für die Konversationsarbeit konfiguriert und wählen Sie den Bilddienst separat aus. Siehe [Bilderzeugung und -bearbeitung](image-generation.md) für Anmeldeinformationen, eine erste Anfrage und den Versionsverlauf.

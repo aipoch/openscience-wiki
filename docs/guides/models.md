@@ -1,7 +1,7 @@
 ---
 title: "Models and task policies"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-19'
 ---
 
 # Models and task policies
@@ -145,3 +145,7 @@ Open **Settings → Model → Local capabilities**. In v1.2.0 this replaces the 
 | Research narration | Produce English speech for research films | Install the speech engine and model; wait for **Installed** |
 
 Install only the resources needed for your task. Follow download progress; **Cancel download** stops the transfer, and **Retry** resumes or repeats a failed download as supported. Reopen the tab to confirm the installed state. **Uninstall** is unavailable while a resource is in use. See [research films](research-films.md) and [PDF extraction](previews.md#pdf-extraction).
+
+## Choose an image-generation model {/* #image-generation */}
+
+**Image generation** has its own service and model selection in **Settings → Model**. It creates or edits images; **Vision** analyzes image inputs. Keep Main configured for conversation work and select the image service separately. See [image generation and editing](image-generation.md) for credentials, a first request and version history.
