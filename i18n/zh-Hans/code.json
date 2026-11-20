@@ -2844,5 +2844,17 @@
   },
   "docs.outline.reference.v122.scope": {
     "message": "严格网络模式、影片检查点、PDF 内容保留与恢复。"
+  },
+  "docs.outline.tools.web-search.title": {
+    "message": "网页搜索与来源阅读"
+  },
+  "docs.outline.tools.web-search.scope": {
+    "message": "查找公开网页、阅读正文并核对来源证据。"
+  },
+  "docs.outline.reference.v131.title": {
+    "message": "v1.3.1"
+  },
+  "docs.outline.reference.v131.scope": {
+    "message": "网页搜索、引用图、Lab 分享与资源恢复。"
   }
 }

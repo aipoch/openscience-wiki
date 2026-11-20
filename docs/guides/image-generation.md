@@ -1,7 +1,7 @@
 ---
 title: "Generate and edit images"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # Generate and edit images
@@ -42,3 +42,11 @@ Open the image's editing action, select the source version and describe a focuse
 Compare the candidate with the source: check the requested region and the parts that should stay unchanged. Use the image history to revisit a version or continue editing from it. Download the intended final version and reopen the file before placing it in a presentation. Keep an accurate caption identifying illustrative content.
 
 For existing plots that need numerical checking, use [Notebook](notebook.md) and [Provenance](reproducibility.md). For slide text and formatting, see [presentation editing](presentation-editing.md).
+
+## Test an image service before saving {/* #test-service */}
+
+In v1.3.1, the image-service form offers **Test generation** after the required fields and a model are filled. Review the confirmation: it generates one image and the provider may charge for the request. A passed test applies to that exact configuration; changing the model, endpoint or credential requires a new test. You can also save without running it.
+
+After saving a new service, its first model becomes the default only when no Image generation model is already selected. Inspect that selection before your first request. Main remains separately configured.
+
+![Test an image service before saving](/img/open-science/v1.3.1/image-service-test.webp)

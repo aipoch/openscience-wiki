@@ -1,7 +1,7 @@
 ---
 title: "Literature library and citations"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-20'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -512,11 +512,17 @@ When additional matching Library records exist, a separate **Select all matching
 
 When a smart-collection evaluation stops on a failed batch, inspect its error and the remaining progress before using the offered retry. From v0.37.0, retry resumes the failed batch while preserving completed evaluation work. Keep the scope and criteria unchanged for that retry, then review Included, Needs review and Excluded results. Do not create a duplicate collection to recover an interrupted evaluation.
 
-## Trace references and citing papers {/* #citation-discovery */}
+## Explore the citation graph {/* #citation-discovery */}
 
-Open a reference's details and choose **References** or **Cited by**. Semantic Scholar supplies these relationships. If lookup matches by title alone, compare the proposed paper's title, authors and year before confirming it. Use **Load more** for later results, select the papers you need, then **Add selected to Inbox**. Review them in Inbox before accepting them into the Library; discovering a citation does not retrieve its full text.
+1. Open a paper in **Library**. Under **Citation discovery**, choose **References** or **Cited by**, then switch from **List** to **Citation graph**. Check the original paper's title and identifiers.
+2. Choose the source: **Europe PMC**, **OpenCitations · Index v2** or **OpenCitations · SKG-IF**. The default is Europe PMC; coverage and available relationships differ between sources.
+3. Use **All**, **References** or **Cited by** to filter the graph. Arrows point from the citing paper to the paper it cites. Select a node or a row in **Paper list** to inspect its details.
+4. Choose **Set as center** to explore a related paper. **Back** retraces your exploration; **Original paper** returns to the starting record. Changing the graph center does not replace the Library record.
+5. Use **Add to Inbox** for a candidate you want to keep, then review it in Inbox before accepting it. This saves a candidate record, not its full text.
 
-An API key is optional. If requests are rate limited, wait or use **Configure API key** in the local desktop app. A missing result can reflect source coverage or access limits; it does not establish that the paper has no references or citations.
+The graph represents loaded results, not a complete citation census. Use the displayed source and coverage notices when interpreting an empty or partial graph. If a lookup is unavailable, retry later or select another appropriate source. A citation link does not establish that one paper supports the other's claim.
+
+![Explore the citation graph](/img/open-science/v1.3.1/citation-graph.webp)
 
 ## Import files and supplementary materials {/* #supplementary-materials */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Anbieter und lokales Modell-Setup"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -274,3 +274,18 @@ Verwenden Sie die CodeBuddy-Laufzeit, wenn Sie ein CodeBuddy-Abonnement auswähl
 Wählen Sie den unterstützten vorhandenen Login-Verbindung oder Browser-Anmeldefluss durch das Formular angezeigt. Melden Sie sich für eine vorhandene Anmeldung bei der ausgewählten Site in CodeBuddy CLI an und verwenden Sie dann **Connect**. Ein WorkBuddy-Profil allein ist nicht die erforderliche CodeBuddy CLI Anmeldung. Für die Browser-Anmeldung beenden Sie den Kontofluss und kehren zu Open-Science zurück.
 
 Warten Sie auf die Verbindungsüberprüfung und die entdeckten Modelle des Kontos. Wählen Sie ein verfügbares Modell aus und senden Sie eine kurze Anfrage vor einer längeren Aufgabe. Wenn die Website oder die Anmeldung falsch ist, korrigieren Sie diese Kontoverbindung und aktualisieren Sie sie; eine gespeicherte Anbieterzeile beweist nicht, dass ein Modell zugänglich ist.
+## Verbinden Sie ein Lab-Konto {/* #lab-account */}
+
+Verwenden Sie die Desktop-App und die Lab-Server-Adresse, die von Ihrer Organisation bereitgestellt wird. Geben Sie in **Settings → Lab → Connection** **Server address** ein, verwenden Sie **Test connection**, dann **Save**. Wählen Sie **Sign in with browser**, schließen Sie die Anmeldung Ihrer Organisation ab und kehren Sie zu Open-Science zurück. Der Autorisierungs-Tab wird geschlossen, wenn die Anmeldung abgeschlossen ist.
+
+Überprüfen Sie das Konto, **Modelle** und **Verwendung** zugewiesen. Wählen Sie in den Modellsteuerelementen ein verfügbares Lab-Modell aus und senden Sie eine kleine Anfrage. **Refresh models** aktualisiert die zugewiesene Liste; eine leere Liste bedeutet, dass dieses Konto keine zugewiesenen Lab-Modelle hat, nicht dass Ihre anderen Anbieter verschwunden sind.
+
+Anfragen mit einem Lab-Modell gehen über den konfigurierten Lab-Server. Die Browserversion bietet keine Lab-Anmeldung. Die Organisations-Case-Sharing wird in [Forschungspakete](research-packages.md#organization-cases) beschrieben.
+
+## Erfrischen Sie die Modelle eines Anbieters {/* #refresh-models */}
+
+In **Settings → Model** fügen oder bearbeiten Sie einen offiziellen Anbieter. Wählen Sie unter **Supported models** **Refresh model list**, wenn Sie angeboten werden. Geben Sie zuerst den erforderlichen API-Schlüssel, die Region und alle Katalogparameter ein. Überprüfen Sie die zurückgegebene Liste, speichern Sie die vorgesehene Provider-Konfiguration, wählen Sie dann ein verfügbares Main-Modell aus und senden Sie eine kleine Anfrage.
+
+Ein fehlgeschlagener Refresh behält die vorherige Liste. Lesen Sie den spezifischen Fehler: Der Katalogzugriff erfordert möglicherweise eine andere Berechtigung, einen gültigen Regionalschlüssel, einen vollständigen Arbeitsbereichsparameter oder eine spätere Wiederholung nach einem Tariflimit. Die Katalogerkennung bestätigt nicht, dass jedes aufgelistete Modell Anfragen beantworten kann. Wenn der Anbieter keine Online-Aktualisierung unterstützt, verwenden Sie die gebündelte Liste oder einen korrekt konfigurierten benutzerdefinierten Endpunkt.
+
+![Erfrischen Sie die Modelle eines Anbieters](/img/open-science/v1.3.1/provider-model-refresh.webp)

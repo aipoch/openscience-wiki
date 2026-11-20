@@ -2767,5 +2767,17 @@
   },
   "docs.outline.reference.v122.scope": {
     "message": "嚴格網絡模式、影片檢查點、PDF 內容保留與恢復。"
+  },
+  "docs.outline.tools.web-search.title": {
+    "message": "網頁搜尋與來源閱讀"
+  },
+  "docs.outline.tools.web-search.scope": {
+    "message": "尋找公開網頁、閱讀內文並核對來源證據。"
+  },
+  "docs.outline.reference.v131.title": {
+    "message": "v1.3.1"
+  },
+  "docs.outline.reference.v131.scope": {
+    "message": "網頁搜尋、引用圖、Lab 分享與資源恢復。"
   }
 }

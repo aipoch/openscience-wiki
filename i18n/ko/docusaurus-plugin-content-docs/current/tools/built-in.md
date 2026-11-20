@@ -1,7 +1,7 @@
 ---
 title: "내장 연구 도구"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -51,8 +51,10 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 
 업로드된 파일, Notebook 작업 파일 및 artifact 버전은 관련이 있지만 명백합니다. 한 목록에서 볼 수있는 파일은 아직 아이 커널에 장착되지 않을 수 있습니다. 현재 신청 입증된 참고를 사용하십시오; 경로를 추측하거나 파일 이름과 artifact 버전 ID를 대체하여 사용할 수없는 입력을 복구하지 마십시오.
 
-Connector-created 파일은 캡처 된 Python 프로듀서 블록이 없습니다. **생산 블록 없음**, **No review for this version**, **partial** 환경 및 **뚱 베어** 증거는 의미있는 상태이며, 생성 된 번식을 채우기 위해 공백이 없습니다. 정확한 오류 및 복구 단계에 대한 [문제 해결](../guides/troubleshooting.md)을 사용하십시오.
+Connector-created 파일에는 캡처되지 않은 Python 프로듀서 블록이 없습니다. **생산 블록 없음**, **No review for this version**, **partial** 환경 및 **뚱 베어** 증거는 의미있는 상태이며, 생성 된 번식을 채우기 위해 공백이 없습니다. 정확한 오류 및 복구 단계에 대한 [관련 링크](../guides/troubleshooting.md)을 사용하십시오.
 
 구현 참조 : [노트북.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/notebook.ts), [팟캐스트](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/artifacts.ts), [작업 공간MessageItem.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/WorkspaceMessageItem.tsx).
 
-지원되는 장시간 일을 위해, [배경 작업 및 결과 납품](../guides/notebook.md#background-tasks-and-result-delivery)를 따르십시오. 납품 후에 실제적인 뛰기 및 저장된 산출을 검열하십시오. 환경 및 패키지, Compute Environment Setup 및 Remote Compute (SSH)가 활성화되었지만, 런타임, 네트워크 및 호스트 요구 사항이 여전히 적용됩니다.
+지원되는 장시간 일을 위해, [배경 작업 및 결과 납품](../guides/notebook.md#background-tasks-and-result-delivery)를 따르십시오. 납품 후에 실제적인 뛰기 및 저장된 산출을 검열하십시오. 환경 및 패키지, Compute Environment Setup 및 Remote Compute (SSH)가 활성화되었지만 런타임, 네트워크 및 호스트 요구 사항이 여전히 적용됩니다.
+
+공공 웹 페이지의 경우, 내장 Open-Science 에이전트와 [웹 검색 및 소스 읽기](web-search.md)을 사용하십시오.

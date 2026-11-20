@@ -1,7 +1,7 @@
 ---
 title: "生成與編輯圖片"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # 生成與編輯圖片 {/* #生成与编辑图片 */}
@@ -42,3 +42,10 @@ Save the image so I can review it in the project.
 將候選圖片與源圖對比，既檢查要求修改的區域，也檢查應該保持不變的部分。通過圖片歷史返回舊版本，或從舊版本繼續編輯。下載最終選定的版本，在放入演示文稿前重新打開檢查；圖注應準確說明它屬於示意內容。
 
 覈對已有圖表中的數值，使用 [Notebook](notebook.md) 和 [Provenance](reproducibility.md)；修改幻燈片文字與格式，參見[演示文稿編輯](presentation-editing.md)。
+## 儲存前測試影象服務 {/* #test-service */}
+
+v1.3.1 的影象服務表單在必填欄位和模型填寫完成後，提供 **Test generation**。先閱讀確認提示：測試會生成一張圖片，提供商可能收取費用。測試透過只對應當前這組配置；修改模型、端點或憑據後，需要重新測試。也可以直接儲存，不執行測試。
+
+儲存新服務後，只有尚未選定 Image generation 模型時，才會自動把首個模型設為預設。第一次請求前檢查當前選擇；Main 模型仍單獨配置。
+
+![儲存前測試影象服務](/img/open-science/v1.3.1/image-service-test.webp)

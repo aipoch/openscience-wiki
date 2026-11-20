@@ -1,7 +1,7 @@
 ---
 title: "内置研究工具"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -56,3 +56,5 @@ Connector 生成的文件可能没有 Python 生产代码。**No producer block*
 实现依据: [notebook.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/notebook.ts), [artifacts.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/artifacts.ts), [WorkspaceMessageItem.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/WorkspaceMessageItem.tsx)。
 
 适用的长时间运行操作见[后台任务与结果送达](../guides/notebook.md)。结果送达后检查实际运行和保存输出。Environment & Packages、Compute Environment Setup、Remote Compute (SSH) 保持启用，但运行时、网络和主机要求仍然有效。
+
+查找公开网页时，使用内置 Open-Science Agent 的[网页搜索与来源阅读](web-search.md)。

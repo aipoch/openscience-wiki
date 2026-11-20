@@ -2,7 +2,7 @@
 title: "Справочник"
 slug: /reference
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # Справочник {/* #reference */}
@@ -27,4 +27,4 @@ last_update:
 
 ## Изменить {/* #changelog */}
 
-[Просмотреть последние выпуски Notes](../changelog/v1.3.0.md).
+[Просмотр последних выпусков заметок](../changelog/v1.3.1.md).

@@ -1,7 +1,7 @@
 ---
 title: "Headless Service und Browserzugriff"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 # Headless Service und Browserzugriff {/* #headless-service-and-browser-access */}
@@ -126,4 +126,4 @@ Der Standalone Web Workspace zeigt **Compute** wenn sein Backend die erforderlic
 
 ## Pakete und externe Tool-Clients {/* #local-research-tools */}
 
-Authentifizierte lokale Web-Sitzungen können [Forschungspakete hoch- und herunterladen](../guides/research-packages.md#local-package-transfer)Remote-Web-Sitzungen erhalten diese Übertragungsfähigkeit nicht. Um einen externen Werkzeugclient an derselben Maschine anzuschließen, konfigurieren Sie die [Stdio MCP Adapter](cli.md#external-mcp). Es verwendet einen bereits laufenden lokalen Dienst und die Berechtigungen dieses Profils; es erstellt keine entfernte MCP-URL.
+Authentifizierte lokale Web-Sitzungen können [Hochladen und Herunterladen von Forschungspaketen](../guides/research-packages.md#local-package-transfer); Remote-Web-Sitzungen erhalten diese Übertragungsfähigkeit nicht. Um einen externen Tool-Client an derselben Maschine anzuschließen, konfigurieren Sie den [stdio MCP Adapter](cli.md#external-mcp). Von v1.3.1 aus startet oder verwendet es den Dienst des ausgewählten Profils wieder und behält einen anhaltenden Halt, nachdem der Client die Verbindung getrennt hat. Es verwendet die Berechtigungen dieses Profils; Es wird keine entfernte MCP-URL erstellt.

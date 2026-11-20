@@ -1,7 +1,7 @@
 ---
 title: "공급자 및 지역 모델 설정"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -274,3 +274,18 @@ CodeBuddy 구독을 선택할 때 CodeBuddy 실행 시간을 사용하십시오.
 지원되는 기존 로그인 연결 또는 브라우저 로그인 흐름을 양식으로 선택하십시오. 기존 로그인을 위해 CodeBuddy CLI에서 선택한 사이트에 로그인한 다음 **Connect**를 사용합니다. WorkBuddy 프로필은 필수 CodeBuddy CLI 로그인이 아닙니다. 브라우저에서 계정 흐름을 완료하고 Open-Science로 돌아갑니다.
 
 연결 검증 및 계정의 발견 모델에 대한 대기. 가능한 모델을 선택하고 더 긴 작업 전에 짧은 요청을 보냅니다. 사이트 또는 로그인이 잘못되면 계정 연결과 새로 고침하십시오. 저장된 공급자 행은 모델이 접근 할 수 없다는 것을 증명하지 않습니다.
+## Lab 계정 연결 {/* #lab-account */}
+
+데스크탑 앱과 실험실 서버 주소를 사용하여 조직에 의해 공급됩니다. **Settings → Lab → Connection**에서 **Server address**을 입력하면 **Test connection**를 사용하며 **Save**를 사용하십시오. **Sign in with browser**을 선택하고 조직의 서명을 완료하고 Open-Science로 돌아갑니다. sign-in 끝이 있을 때 허가 탭 닫습니다.
+
+**모델** 및 **사용량**을 할당한 계정을 확인합니다. 모델 컨트롤에서 사용할 수 있는 Lab 모델을 선택하고 작은 요청을 보냅니다. **Refresh models**는 할당된 명부를 업데이트합니다; 빈 목록은이 계정이 할당 된 실험실 모델이 없다는 것을 의미합니다. 다른 공급자가 사라지지 않습니다.
+
+Lab 모델을 사용하여 요청은 구성 된 Lab 서버를 통해 이동합니다. 브라우저 버전은 Lab sign-in을 제공하지 않습니다. 조직의 경우 공유는 [연구 패키지](research-packages.md#organization-cases)에 설명됩니다.
+
+## 공급자의 모델을 새로 고침 {/* #refresh-models */}
+
+**Settings → Model**에서 공식 공급자를 추가하거나 편집하십시오. **Supported models**의 밑에, 제안될 때 **Refresh model list**를 선택합니다. 필요한 API 열쇠, 지역 및 어떤 카탈로그 모수를 첫째로 입력하십시오. 반환된 목록을 확인, 의도 된 공급자 구성을 저장, 다음 사용할 수 Main 모델을 선택하고 작은 요청을 보냅니다.
+
+실패한 새로 고침은 이전 목록을 유지합니다. 특정 오류를 읽으십시오 : 카탈로그 액세스는 다른 권한을 필요로 할 수 있습니다, 유효한 지역 키, 완전한 작업 공간 매개 변수, 또는 속도 제한 후 나중에 다시. 카탈로그 discovery는 모든 목록 모델이 요청에 응답 할 수 있다는 것을 확인하지 않습니다. 공급자가 온라인 새로 고침을 지원하지 않는 경우, 번들 목록 또는 제대로 구성된 사용자 정의 엔드포인트를 사용하십시오.
+
+![공급자의 모델을 새로 고침](/img/open-science/v1.3.1/provider-model-refresh.webp)

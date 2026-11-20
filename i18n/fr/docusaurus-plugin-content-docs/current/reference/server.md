@@ -1,7 +1,7 @@
 ---
 title: "Service sans tête et accès au navigateur"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 # Service sans tête et accès au navigateur {/* #headless-service-and-browser-access */}
@@ -126,4 +126,4 @@ L'espace de travail web autonome expose **Compute** lorsque son moteur fournit l
 
 ## Paquets et clients d'outils externes {/* #local-research-tools */}
 
-Les sessions Web locales authentifiées peuvent [envoyer et télécharger des paquets de recherche](../guides/research-packages.md#local-package-transfer); les sessions Web distantes ne gagnent pas cette capacité de transfert. Pour connecter un client d'outil externe sur la même machine, configurez [adaptateur MCP stdio](cli.md#external-mcp). Il utilise un service local déjà lancé et les permissions de ce profil; il ne crée pas une URL MCP distante.
+Les sessions Web locales authentifiées peuvent [télécharger et télécharger des paquets de recherche](../guides/research-packages.md#local-package-transfer); Les sessions Web à distance n'ont pas cette capacité de transfert. Pour connecter un client d'outil externe sur la même machine, configurez le [adaptateur stdio MCP](cli.md#external-mcp). À partir de v1.3.1, il démarre ou réutilise le service du profilé sélectionné et maintient une rétention persistante après la déconnexion du client. Il utilise les permissions de ce profil; il ne crée pas une URL MCP distante.

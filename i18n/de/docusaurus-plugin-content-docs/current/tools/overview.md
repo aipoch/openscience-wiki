@@ -1,7 +1,7 @@
 ---
 title: "Werkzeuge entdecken"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-20'
 ---
 
 # Werkzeuge entdecken {/* #explore-tools */}
@@ -10,17 +10,18 @@ Wählen Sie ein Tool nach dem Ergebnis, das Sie benötigen: einen Datensatz abru
 
 ## Wählen Sie eine Werkzeugfamilie {/* #choose-a-tool-family */}
 
-| Bedarf | Beginnen Sie hier | Was muss bereit sein | Was zu inspizieren danach |
+| Bedarf | Beginnen Sie hier | Was muss bereit sein | Was danach zu inspizieren |
 | --- | --- | --- | --- |
 | Dateien lesen, Arbeit planen, Ergebnisse berechnen oder veröffentlichen | [Integrierte Forschungswerkzeuge](./built-in.md) | Zugängliche Projekteingabe- und Betriebsberechtigungen | Tool Response, Ausgabedatei und Ausführungsprotokoll |
-| Finden Sie heraus, welche wissenschaftliche Software eine Methode verwendet | [Katalog der wissenschaftlichen Werkzeuge](./catalog.md) | Prüfen Sie Verpackungen/Gewichte separat von der Skill-Installation | Aktuale ausführbare Datei/Import und Version |
+| Öffentliche Webseiten finden und Quelltext lesen | [Web-Suche](./web-search.md) | Eingebauter Open-Science Agent, Main-Modell und Netzwerk | Source URLs, abgerufener Text und jede Abkürzung |
+| Finden Sie heraus, welche wissenschaftliche Software eine Methode verwendet | [Wissenschaftlicher Werkzeugkatalog](./catalog.md) | Prüfen Sie Verpackungen/Gewichte separat von der Skill-Installation | Aktuale ausführbare Datei/Import und Version |
 | Führen Sie Python, R oder einen wissenschaftlichen Workload aus | [Wissenschaftliche Instrumente](./scientific.md) | Ausgewählte Laufzeit, Pakete oder Compute Host | Code, Fehler, Output-Checks und Herkunft |
 | Abfrage biomedizinischer/wissenschaftlicher Aufzeichnungen | [Wissenschaftliche Datenbanken](./databases.md) | Aktiviert Connector, Netzwerk und alle erforderlichen Anmeldeinformationen | Source IDs, zurückgegebene Felder und Abkürzung |
 | CSV, TSV oder Tabellenkalkulationsdaten prüfen | [Tabellen und Datensätze](./tables.md) | Unterstützte Datei und aktuelle Eingabe | Sichtbare Zeilen/Spalten, Trennzeichen und Volldatendimensionen |
 | Lesen Sie Papiere, Sequenzen, Strukturen und andere Ausgaben | [Wissenschaftliche Zuschauer](./viewers.md) | Unterstütztes Format | Rendered Content und jegliche Vorschau-Einschränkung |
 | Verbinden Sie einen MCP-Server | [Konnektoren und MCP](./mcp.md) | Server-Konfiguration und Vertrauen | Verbundener Zustand und eine echte Tool-Antwort |
 | Konfigurieren einer Service-Identität/eines Dienstschlüssels | [Dienstanmeldeinformationen](./credentials.md) | Korrekter Service und nutzbares Konto | Validierungsergebnis oder eine begrenzte Live-Abfrage |
-| Enthüllen Sie Ihre eigenen lokalen Daten durch ein Tool | [Custom MCP Tool](./custom.md) | Ein Arbeitsserver mit einem Eingabeschema | Discovery, erfolgreicher Call und tatsächliches Ausfallverhalten |
+| Enthüllen Sie Ihre eigenen lokalen Daten durch ein Tool | [Benutzerdefiniertes MCP-Tool](./custom.md) | Ein Arbeitsserver mit einem Eingabeschema | Discovery, erfolgreicher Call und tatsächliches Ausfallverhalten |
 
 ## Verfügbarkeit hat mehrere Bedeutungen {/* #availability-has-several-meanings */}
 

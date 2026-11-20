@@ -1,7 +1,7 @@
 ---
 title: "Proveedor y configuración del modelo local"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -274,3 +274,18 @@ Utilice el tiempo de ejecución CodeBuddy al elegir una suscripción a CodeBuddy
 Elija la conexión de inicio existente compatible o el flujo de registro del navegador mostrado por el formulario. Para un login existente, accede al sitio seleccionado en CodeBuddy CLI y luego usa **Connect**. Un perfil de WorkBuddy solo no es el registro obligatorio de CodeBuddy CLI. Para el registro del navegador, termine el flujo de cuenta y vuelva a Open-Science.
 
 Espera la verificación de conexión y los modelos descubiertos de la cuenta. Seleccione un modelo disponible y envíe una solicitud corta antes de una tarea más larga. Si el sitio o el registro es incorrecto, corregir esa conexión de cuenta y refrescarlo; una fila de proveedor ahorrado no prueba que un modelo es accesible.
+## Conectar una cuenta de laboratorio {/* #lab-account */}
+
+Utilice la aplicación de escritorio y la dirección del servidor Lab suministrada por su organización. En **Settings → Lab → Connection**, introduzca **Server address**, utilice **Test connection**, luego **Save**. Elija **Sign in with browser**, complete el registro de su organización y vuelva a Open-Science. La ficha de autorización se cierra cuando el registro termina.
+
+Compruebe la cuenta, asignado **Modelos** y **Uso**. Seleccione un modelo de laboratorio disponible en los controles del modelo y envíe una pequeña solicitud. **Refresh models** actualiza la lista asignada; una lista vacía significa que esta cuenta no tiene modelos asignados de laboratorio, no que sus otros proveedores desaparecieron.
+
+Las solicitudes utilizando un modelo Lab pasan por el servidor Lab configurado. La versión del navegador no proporciona Lab sign-in. El intercambio de casos de organización se describe en [paquetes de investigación](research-packages.md#organization-cases).
+
+## Refrescar los modelos de un proveedor {/* #refresh-models */}
+
+En **Settings → Model**, agregue o edite un proveedor oficial. Bajo **Supported models**, elija **Refresh model list** cuando se ofrezca. Introduzca la tecla API requerida, región y cualquier parámetro de catálogo primero. Compruebe la lista devuelta, ahorre la configuración del proveedor previsto, a continuación, seleccione un modelo Main disponible y enviar una pequeña solicitud.
+
+Un refresco fallido mantiene la lista anterior. Lea el error específico: el acceso al catálogo puede necesitar un permiso diferente, una clave regional válida, un parámetro completo del espacio de trabajo, o una reingresación posterior después de un límite de tarifas. El descubrimiento del catálogo no confirma que cada modelo listado puede responder a las solicitudes. Si el proveedor no admite la actualización en línea, utilice su lista de paquetes o un punto final personalizado correctamente configurado.
+
+![Refrescar los modelos de un proveedor](/img/open-science/v1.3.1/provider-model-refresh.webp)

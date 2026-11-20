@@ -1,7 +1,7 @@
 ---
 title: "文献库与引用"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-20'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -512,11 +512,17 @@ Library 中还有更多匹配记录时，独立的 **Select all matching referen
 
 智能集合评估停在失败批次时，先检查错误与剩余进度，再使用界面提供的重试操作。v0.37.0 起，重试继续失败批次并保留已完成的评估。此次重试保持范围和规则不变，完成后检查 Included、Needs review 与 Excluded 的结果。不要通过创建重复集合来恢复中断评估。
 
-## 追踪参考文献与引用论文 {/* #citation-discovery */}
+## 探索文献引用图 {/* #citation-discovery */}
 
-打开一条文献的详情，选择 **References** 或 **Cited by**，查看 Semantic Scholar 提供的参考文献或引用关系。如果仅通过标题匹配，请核对候选论文的标题、作者和年份后再确认。使用 **Load more** 加载后续结果，勾选需要的论文，选择 **Add selected to Inbox**。在 Inbox 审阅后再接受到文献库；找到引用关系不代表已经取得全文。
+1. 在 **Library** 打开论文，在 **Citation discovery** 下点 **References** 或 **Cited by**，再从 **List** 切换到 **Citation graph**，先核对原始论文标题和标识符。
+2. 选择来源：**Europe PMC**、**OpenCitations · Index v2** 或 **OpenCitations · SKG-IF**。默认是 Europe PMC，不同来源的覆盖范围和可用引用关系不同。
+3. 用 **All**、**References** 或 **Cited by** 筛选图中的关系。箭头由施引论文指向被引用论文。选择节点或 **Paper list** 中的条目，查看论文详情。
+4. 选择 **Set as center**，围绕相关论文继续探索。**Back** 返回上一步，**Original paper** 回到最初的论文。切换图中心不会替换文献库中的原始记录。
+5. 对需要保留的候选选择 **Add to Inbox**，再到 Inbox 审核接收。这一步保存候选题录，不会取得论文全文。
 
-API key 为可选项。遇到限流时可以稍后重试，或在本地桌面应用中通过 **Configure API key** 配置。没有结果可能与数据覆盖或访问限制有关，不能据此认定论文没有参考文献或引用。
+引用图展示的是已加载结果，不是完整的引用统计。空图或部分结果需要结合当前来源及覆盖提示理解；查询不可用时，稍后重试或选择合适的其他来源。存在引用关系，不代表一篇论文支持另一篇的具体论断。
+
+![探索文献引用图](/img/open-science/v1.3.1/citation-graph.webp)
 
 ## 导入文件与补充材料 {/* #supplementary-materials */}
 

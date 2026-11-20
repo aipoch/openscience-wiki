@@ -696,6 +696,14 @@
             "contentStatus": "written"
           },
           {
+            "id": "web-search",
+            "title": "Search the web and read sources",
+            "scope": "Find public webpages, read their text and inspect source evidence.",
+            "currentDoc": "tools/web-search",
+            "proposedUrl": "/docs/tools/web-search/",
+            "contentStatus": "written"
+          },
+          {
             "id": "catalog",
             "title": "Scientific tool catalog",
             "scope": "A documentation table of software referenced by bundled Skills and inspected runtime packages, with purpose, dependencies and availability. Catalog entries are not all preinstalled software or a separate in-app catalog.",
@@ -1432,6 +1440,17 @@
         "id": "changelog",
         "title": "Changelog",
         "chapters": [
+          {
+            "id": "v131",
+            "title": "v1.3.1",
+            "scope": "Web search, citation graphs, Lab sharing and resource recovery.",
+            "currentDoc": "changelog/v1-3-1",
+            "proposedUrl": "/docs/changelog/v1-3-1/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-3-0"
+            ]
+          },
           {
             "id": "v130",
             "title": "v1.3.0",

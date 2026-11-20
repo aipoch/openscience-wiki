@@ -1,7 +1,7 @@
 ---
 title: "서비스 및 브라우저 액세스"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 # 서비스 및 브라우저 액세스 {/* #headless-service-and-browser-access */}
@@ -126,4 +126,4 @@ CLI 앱 업데이터는 제거된 상태입니다. `open-science update --json` 
 
 ## 패키지 및 외부 도구 클라이언트 {/* #local-research-tools */}
 
-인증된 로컬 Web에서는 [연구 패키지를 업로드 및 다운로드](../guides/research-packages.md#local-package-transfer)할 수 있습니다. 원격 Web에는 이 기능이 추가되지 않습니다. 같은 컴퓨터의 외부 클라이언트에는 [stdio MCP 어댑터](cli.md#external-mcp)를 설정합니다. 이미 실행 중인 로컬 서비스와 프로필 권한을 사용하며 원격 MCP URL을 생성하지 않습니다.
+정통 로컬 웹 세션은 [업로드 및 다운로드 연구 패키지](../guides/research-packages.md#local-package-transfer); 원격 웹 세션은이 전송 기능을 얻을 수 없습니다. 동일한 기계에 외부 공구 클라이언트를 연결하기 위하여는, [stdio MCP 접합기](cli.md#external-mcp)를 구성합니다. v1.3.1에서 선택한 프로필의 서비스를 재사용하고 클라이언트가 차단한 후 지속되는 홀을 유지하십시오. 그것은 프로파일의 권한을 사용합니다; 원격 MCP URL을 만들지 않습니다.

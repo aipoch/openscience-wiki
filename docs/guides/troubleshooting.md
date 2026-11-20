@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting and common questions"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # Troubleshooting and common questions
@@ -264,3 +264,7 @@ This does not grant access to a paywalled paper or supply institutional authenti
 ## Recover after the local service disconnects {/* #local-service-recovery */}
 
 When the workspace shows local-service recovery, wait for the connection to return before repeating an action. The Composer draft is retained, while unavailable actions remain blocked. After reconnection, inspect the conversation or run record to see whether the previous request was accepted. Resume from the actual state rather than sending the same task twice.
+
+## Respond to a model-provider error {/* #provider-errors */}
+
+Read the cause shown with the failed response. For authentication or account permission errors, check the provider connection; for exhausted quota, inspect that account's usage; for rate limits, wait before retrying. For an unavailable model, refresh the supported list and choose an accessible model. A lost connection or interrupted response requires checking the current session and completed tool work before resubmitting. For a context limit, reduce the supplied material or start an appropriately scoped continuation. Changing providers is not necessary for every error.

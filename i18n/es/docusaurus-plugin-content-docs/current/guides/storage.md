@@ -1,7 +1,7 @@
 ---
 title: "Almacenamiento y trabajos archivados"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-20'
 ---
 
 # Almacenamiento y trabajos archivados {/* #storage-and-archived-work */}
@@ -140,3 +140,6 @@ Fuentes: [Panel de almacenamiento](https://github.com/aipoch/open-science/blob/v
 ## Recuperar datos después de una actualización {/* #historical-data-location */}
 
 Una ubicación de datos guardados existente tiene precedencia. Para una instalación más antigua completa sin una ubicación explícita guardada, Open-Science conserva la ubicación histórica y ahorra esa opción. Si esa carpeta guardada no está disponible, vuelva a conectarla antes de reiniciar. Si múltiples ubicaciones históricas contienen datos de investigación, la aplicación le pide que seleccione o recupere la carpeta original en lugar de elegir silenciosamente uno. Mantenga ambas copias hasta que haya comprobado sus proyectos y archivos; no crear una nueva ubicación vacía para resolver una pérdida aparente de datos.
+## Reconectar una unidad de investigación perdida {/* #missing-drive */}
+
+Si la recuperación de arranque dice que la carpeta de investigación guardada falta, lea la ruta en el diálogo y vuelva a conectar esa unidad o restaurar el acceso a la misma carpeta antes de reiniciar. No cree una carpeta sustitutiva vacía sobre la ubicación esperada o mueva archivos gestionados a mano. Después de que la aplicación se abra, compruebe la ubicación guardada y los archivos de un proyecto existente.

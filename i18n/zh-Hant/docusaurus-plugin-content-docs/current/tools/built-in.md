@@ -1,7 +1,7 @@
 ---
 title: "內建研究工具"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -56,3 +56,5 @@ Connector 生成的檔案可能沒有 Python 生產程式碼。**No producer blo
 實現依據: [notebook.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/notebook.ts), [artifacts.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/artifacts.ts), [WorkspaceMessageItem.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/WorkspaceMessageItem.tsx)。
 
 適用的長時間執行操作見[後臺任務與結果送達](../guides/notebook.md)。結果送達後檢查實際執行和儲存輸出。Environment & Packages、Compute Environment Setup、Remote Compute (SSH) 保持啟用，但執行時、網路和主機要求仍然有效。
+
+查詢公開網頁時，使用內建 Open-Science Agent 的[網頁搜尋與來源閱讀](web-search.md)。

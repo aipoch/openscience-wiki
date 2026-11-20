@@ -1,7 +1,7 @@
 ---
 title: "Bibliothèque de littérature et citations"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-20'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -512,11 +512,17 @@ Lorsqu'il existe des enregistrements de bibliothèque supplémentaires, une acti
 
 Lorsque l'évaluation de la collection intelligente s'arrête sur un lot échoué, inspectez son erreur et les progrès restants avant d'utiliser la réessayer proposée. À partir de v0.37.0, réessayer reprend le lot échoué tout en préservant le travail d'évaluation terminé. Maintenir la portée et les critères inchangés pour cette nouvelle tentative, puis passer en revue Inclus, Examen des besoins et résultats exclus. Ne créez pas de collection de duplicata pour récupérer une évaluation interrompue.
 
-## Références et citations {/* #citation-discovery */}
+## Explorer le graphique de citation {/* #citation-discovery */}
 
-Ouvrir les détails d'une référence et choisir **References** ou **Cited by**. Semantic Scholar fournit ces relations. Si la recherche correspond au seul titre, comparez le titre de l'article proposé, les auteurs et l'année avant de le confirmer. Utilisation **Load more** pour les résultats ultérieurs, sélectionnez les documents dont vous avez besoin, puis **Add selected to Inbox**. Examinez-les dans la boîte de réception avant de les accepter dans la Bibliothèque; découvrir une citation ne récupère pas son texte complet.
+1. Ouvrez un papier en **Library**. Sous **Recherche de citations**, choisissez **Références** ou **Cité par**, puis passez de **Liste** à **Citation graph**. Vérifiez le titre et les identifiants du papier original.
+2. Choisissez la source : **Europe PMC**, **OpenCitations · Index v2** ou **OpenCitations · SKG-IF**. La valeur par défaut est Europe PMC; La couverture et les relations disponibles diffèrent selon les sources.
+3. Utilisez **All**, **Références** ou **Cité par** pour filtrer le graphique. Les flèches pointent du papier citant au papier qu'il cite. Sélectionnez un noeud ou une ligne dans **Liste des publications** pour inspecter ses détails.
+4. Choisissez **Set as center** pour explorer un article connexe. **Back** retrace votre exploration; **Original paper** retourne à l'enregistrement de départ. Changer le centre graphique ne remplace pas l'enregistrement de la Bibliothèque.
+5. Utilisez **Ajouter à la boîte de réception** pour un candidat que vous voulez conserver, puis examinez-le dans la boîte de réception avant de l'accepter. Cela permet d'enregistrer un dossier de candidat, et non son texte intégral.
 
-Une clé API est optionnelle. Si les demandes sont limitées, attendez ou utilisez **Configure API key** dans l'application de bureau local. Un résultat manquant peut refléter la couverture des sources ou les limites d'accès; il n'établit pas que le document n'a pas de références ou de citations.
+Le graphique représente les résultats chargés, et non un recensement complet des citations. Utilisez la source affichée et les avis de couverture lors de l'interprétation d'un graphique vide ou partiel. Si une recherche n'est pas disponible, réessayez plus tard ou sélectionnez une autre source appropriée. Un lien de citation n'établit pas qu'un document appuie la revendication de l'autre.
+
+![Explorer le graphique de citation](/img/open-science/v1.3.1/citation-graph.webp)
 
 ## Importer des fichiers et des documents supplémentaires {/* #supplementary-materials */}
 

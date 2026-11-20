@@ -1,7 +1,7 @@
 ---
 title: "无界面服务与浏览器访问"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 # 无界面服务与浏览器访问
@@ -126,4 +126,4 @@ CLI 应用更新命令仍已移除，不要使用 `open-science update --json`�
 
 ## 研究包与外部工具客户端 {/* #local-research-tools */}
 
-经过身份验证的本地 Web 会话可以[上传和下载研究包](../guides/research-packages.md#local-package-transfer)；远程 Web 会话不因此获得传输能力。同一台机器上的外部工具客户端可配置 [stdio MCP 适配器](cli.md#external-mcp)。它使用已运行的本地服务及该配置的权限，不会建立远程 MCP 地址。
+经过身份验证的本地 Web 会话可以[上传和下载研究包](../guides/research-packages.md#local-package-transfer)；远程 Web 会话不因此获得传输能力。同一台机器上的外部工具客户端可配置 [stdio MCP 适配器](cli.md#external-mcp)。从 v1.3.1 起，它会启动或复用所选配置的服务，并在客户端断开后保留持续运行状态。它使用该配置的权限，不会建立远程 MCP 地址。

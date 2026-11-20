@@ -1,7 +1,7 @@
 ---
 title: "Stockage et travaux archivés"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-20'
 ---
 
 # Stockage et travaux archivés {/* #storage-and-archived-work */}
@@ -140,3 +140,6 @@ Sources: [Panneau de stockage](https://github.com/aipoch/open-science/blob/v0.26
 ## Réouvrir les données après une mise à jour {/* #historical-data-location */}
 
 Un emplacement de données sauvegardées existant a priorité. Pour une installation ancienne terminée sans emplacement explicitement enregistré, Open-Science conserve l'emplacement historique et enregistre ce choix. Si ce dossier sauvegardé n'est pas disponible, reconnectez-le avant de redémarrer. Si plusieurs emplacements historiques contiennent des données de recherche, l'application vous demande de sélectionner ou de récupérer le dossier original au lieu de choisir silencieusement un. Conservez les deux copies jusqu'à ce que vous ayez vérifié leurs projets et fichiers; ne pas créer un nouvel emplacement vide pour résoudre une perte apparente de données.
+## Reconnecter un lecteur de recherche manquant {/* #missing-drive */}
+
+Si la récupération de démarrage indique que le dossier de recherche sauvegardé est manquant, lisez le chemin dans la boîte de dialogue et reconnectez ce lecteur ou rétablissez l'accès au même dossier avant de redémarrer. Ne créez pas de dossier de remplacement vide sur l'emplacement prévu ou déplacez les fichiers gérés à la main. Après l'ouverture de l'application, vérifiez l'emplacement sauvegardé et les fichiers d'un projet existant.

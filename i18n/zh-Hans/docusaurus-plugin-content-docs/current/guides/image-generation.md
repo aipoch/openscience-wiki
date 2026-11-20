@@ -1,7 +1,7 @@
 ---
 title: "生成与编辑图片"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # 生成与编辑图片
@@ -42,3 +42,11 @@ Save the image so I can review it in the project.
 将候选图片与源图对比，既检查要求修改的区域，也检查应该保持不变的部分。通过图片历史返回旧版本，或从旧版本继续编辑。下载最终选定的版本，在放入演示文稿前重新打开检查；图注应准确说明它属于示意内容。
 
 核对已有图表中的数值，使用 [Notebook](notebook.md) 和 [Provenance](reproducibility.md)；修改幻灯片文字与格式，参见[演示文稿编辑](presentation-editing.md)。
+
+## 保存前测试图像服务 {/* #test-service */}
+
+v1.3.1 的图像服务表单在必填字段和模型填写完成后，提供 **Test generation**。先阅读确认提示：测试会生成一张图片，提供商可能收取费用。测试通过只对应当前这组配置；修改模型、端点或凭据后，需要重新测试。也可以直接保存，不执行测试。
+
+保存新服务后，只有尚未选定 Image generation 模型时，才会自动把首个模型设为默认。第一次请求前检查当前选择；Main 模型仍单独配置。
+
+![保存前测试图像服务](/img/open-science/v1.3.1/image-service-test.webp)

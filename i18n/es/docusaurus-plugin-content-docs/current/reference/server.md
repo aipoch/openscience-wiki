@@ -1,7 +1,7 @@
 ---
 title: "Servicio sin cabeza y acceso al navegador"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 # Servicio sin cabeza y acceso al navegador {/* #headless-service-and-browser-access */}
@@ -126,4 +126,4 @@ El espacio de trabajo web independiente expone **Compute** cuando su backend pro
 
 ## Paquetes y clientes de herramientas externas {/* #local-research-tools */}
 
-Authenticated local Web sesiones puede [subir y descargar paquetes de investigación](../guides/research-packages.md#local-package-transfer); las sesiones web remotas no obtienen esta capacidad de transferencia. Para conectar un cliente de herramienta externo en la misma máquina, configure el [adaptador stdio MCP](cli.md#external-mcp). Utiliza un servicio local ya gestionado y los permisos de ese perfil; no crea una URL remota de MCP.
+Authenticated local Web sessions can [cargar y descargar paquetes de investigación](../guides/research-packages.md#local-package-transfer); remotas sesiones Web no ganan esta capacidad de transferencia. Para conectar un cliente de herramienta externo en la misma máquina, configura el [adaptador MCP stdio](cli.md#external-mcp). Desde v1.3.1, comienza o reutiliza el servicio del perfil seleccionado y mantiene una retención persistente después de que el cliente se desconecte. Utiliza los permisos de ese perfil; no crea una URL remota MCP.

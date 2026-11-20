@@ -1,7 +1,7 @@
 ---
 title: "提供商与本地模型配置"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -273,3 +273,19 @@ Anthropic 模型目录还新增了支持 1M 上下文的 **Claude Fable 5.2**。
 按表单提供的入口连接已有登录，或通过浏览器登录。使用已有登录时，先在 CodeBuddy CLI 登录所选站点，再选择 **Connect**；只有 WorkBuddy 配置不等于已经完成 CodeBuddy CLI 登录。选择浏览器登录时，完成账户流程后返回 Open-Science。
 
 等待连接验证和账户可用模型列表，再选择可用模型发送一个简短请求。如果站点或登录不匹配，修正该账户连接并刷新；提供商条目保存成功不代表模型一定可以调用。
+
+## 连接 Lab 账户 {/* #lab-account */}
+
+使用桌面版，以及组织提供的 Lab 服务器地址。在 **Settings → Lab → Connection** 的 **Server address** 输入地址，选择 **Test connection**，再 **Save**。点击 **Sign in with browser**，完成组织登录后返回 Open-Science。授权完成时，登录标签页会自动关闭。
+
+检查账户、分配的 **Models** 和 **Usage**，在模型控件中选用可用的 Lab 模型，并发送一个小请求。**Refresh models** 更新分配列表；列表为空表示该账户没有分配到 Lab 模型，不代表其他提供商消失。
+
+使用 Lab 模型的请求会经过配置的 Lab 服务器。浏览器版不提供 Lab 登录。组织案例分享见[研究包教程](research-packages.md#organization-cases)。
+
+## 刷新提供商模型列表 {/* #refresh-models */}
+
+在 **Settings → Model** 添加或编辑官方提供商。在 **Supported models** 下，使用可用的 **Refresh model list**。先填写所需 API 密钥、地区和模型目录参数，检查返回列表，保存目标提供商配置，再选择可用的 Main 模型并发送一个小请求。
+
+刷新失败会保留旧列表。根据具体错误处理：可能需要模型目录读取权限、正确地区的密钥、完整的工作区参数，或在限流结束后再试。查到模型列表不代表每个模型都能成功响应。如果提供商不支持在线刷新，使用随应用提供的列表，或正确配置自定义端点。
+
+![刷新提供商模型列表](/img/open-science/v1.3.1/provider-model-refresh.webp)

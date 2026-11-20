@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -197,3 +197,9 @@ Export through the normal Session package flow and wait for completion. Import t
 ## Check an interrupted import {/* #import-recovery */}
 
 If an import is cancelled, do not treat it as completed. If a timeout leaves the outcome unconfirmed, look for the destination project and imported session before starting another import. Open any resulting session and inspect its files. For a missing or invalid package, select the intact `.science` file and keep the displayed error or correlation identifier when requesting help. Do not repeatedly import the same package without checking whether a previous attempt already created the session.
+
+## Share and import organization cases {/* #organization-cases */}
+
+First [sign in to Lab](providers.md#lab-account) in the desktop app and confirm your organization. In the home page's **Use Cases**, choose **Organization**. Search by case name or its eight-character share code. Open the case, inspect its author, package summary, included files and omissions, then choose **Import** and review the destination project. Wait for import to finish before opening the received record; use **Fork to continue** for new analysis.
+
+To share your own session, open its research-package export dialog and review the selected contents. Choose **Export and upload**, enter **Case name** and **Description**, then **Confirm and upload**. This sends the selected package directly to the configured Lab server for your organization. Wait for **Session package uploaded** before copying its **Share code**. Check the package for material you should not share before confirming; signing in alone does not upload a session.

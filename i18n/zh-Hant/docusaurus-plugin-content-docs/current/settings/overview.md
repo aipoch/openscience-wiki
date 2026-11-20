@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: "設定中心總覽"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # 設定中心總覽 {/* #设置中心总览 */}
 
-從工作區左下打開 **Settings**。**16 個面板**按用途分爲 **System**、**Intelligence**、**Connections** 和 **Workspace** 四組。Skills、Connectors 和 Specialists 已移到獨立的[資源中心](../guides/navigation.md#resource-center)管理。可按用途選擇設置面板，或使用頂部搜索。
+從工作區左下開啟 **Settings**。**17 個面板**按用途分為 **System**、**Intelligence**、**Connections** 和 **Workspace** 四組。Skills、Connectors 和 Specialists 已移到獨立的[資源中心](../guides/navigation.md#resource-center)管理。可按用途選擇設定面板，或使用頂部搜尋。
 
 | 全域控制元件 | 行為 |
 | --- | --- |
@@ -27,25 +27,26 @@ last_update:
 
 搜尋覆蓋各面板中的代表性設定，不包含每個欄位或研究文件。找不到某個詞時，改用面板名稱或下方導航分組。查詢對話或檔案，應關閉設定後使用[全域搜尋](../guides/navigation.md)。
 
-## 16 個主面板 {/* #17-个主面板 */}
+## 17 個主面板 {/* #17-个主面板 */}
 
 | 分組 | 面板 | 管理內容 |
 | --- | --- | --- |
-| System | [General](../guides/appearance.md#help-center) | 版本、更新、診斷、CLI 安裝、窗口行爲和幫助 |
-|  | [Appearance](../guides/appearance.md) | 主題、語言、桌面界面縮放和支持的應用圖標選項 |
+| System | [General](../guides/appearance.md#help-center) | 版本、更新、診斷、CLI 安裝、視窗行為和幫助 |
+|  | [Appearance](../guides/appearance.md) | 主題、語言、桌面介面縮放和支援的應用圖示選項 |
 |  | [Notifications](../guides/appearance.md) | 任務提醒、通知內容、系統狀態和測試通知 |
-| Intelligence | [Model](../guides/models.md) | 提供商、各任務場景模型與[圖像服務](../guides/image-generation.md) |
+| Intelligence | [Model](../guides/models.md) | 提供商、各任務場景模型與[影象服務](../guides/image-generation.md) |
 |  | [Agent](../guides/frameworks.md) | 代理框架的安裝、切換與修復 |
-|  | [Memory](../guides/memory.md) | 按需啓用的全局與項目記憶 |
-| Connections | [Network](../guides/network.md) | 代理、軟件包鏡像與 Notebook Relaxed/Strict 訪問規則 |
-|  | [Remote](../guides/remote-access.md) | 瀏覽器訪問、配對與可信設備 |
-|  | [Credentials](../tools/credentials.md) | 密鑰、令牌、OAuth 與憑據恢復 |
+|  | [Memory](../guides/memory.md) | 按需啟用的全域與專案記憶 |
+| Connections | [Network](../guides/network.md) | 代理、軟體包映象與 Notebook Relaxed/Strict 訪問規則 |
+|  | [Remote](../guides/remote-access.md) | 瀏覽器訪問、配對與可信裝置 |
+|  | [Lab](../guides/providers.md#lab-account) | 桌面版組織登入、分配模型和用量 |
+|  | [Credentials](../tools/credentials.md) | 金鑰、令牌、OAuth 與憑據恢復 |
 |  | [Compute](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Workspace | [Tags](../guides/tags.md) | 標籤與收藏排序 |
-|  | [Permissions](../guides/approval-modes.md) | 默認模式與已保存授權 |
-|  | [Runtimes](../guides/runtimes.md) | Python/R 環境與軟件包 |
-|  | [Storage](../guides/storage.md) | 數據位置、寫入權限與磁盤用量 |
-|  | [Usage](../guides/usage.md) | Token、調用與研究活動統計 |
+|  | [Permissions](../guides/approval-modes.md) | 預設模式與已儲存授權 |
+|  | [Runtimes](../guides/runtimes.md) | Python/R 環境與軟體包 |
+|  | [Storage](../guides/storage.md) | 資料位置、寫入權限與磁碟用量 |
+|  | [Usage](../guides/usage.md) | Token、呼叫與研究活動統計 |
 |  | [Archived](../guides/storage.md) | 恢復或永久刪除歸檔內容 |
 
 **Feedback** 保留在設定底部，作為獨立反饋入口。

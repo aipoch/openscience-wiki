@@ -1,7 +1,7 @@
 ---
 title: "Explore tools"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-20'
 ---
 
 # Explore tools
@@ -13,6 +13,7 @@ Choose a tool by the result you need: retrieve a record, inspect a file, execute
 | Need | Start here | What must be ready | What to inspect afterward |
 | --- | --- | --- | --- |
 | Read files, plan work, calculate or publish results | [Built-in research tools](./built-in.md) | Accessible project input and operation permissions | Tool response, output file and execution record |
+| Find public webpages and read source text | [Web search](./web-search.md) | Built-in Open-Science Agent, Main model and network | Source URLs, retrieved text and any truncation |
 | Find which scientific software a method uses | [Scientific tool catalog](./catalog.md) | Check packages/weights separately from Skill installation | Actual executable/import and version |
 | Run Python, R or a scientific workload | [Scientific tools](./scientific.md) | Selected runtime, packages or Compute Host | Code, errors, output checks and provenance |
 | Query biomedical/scientific records | [Scientific databases](./databases.md) | Enabled Connector, network and any required credentials | Source IDs, returned fields and truncation |

@@ -1896,5 +1896,17 @@
   },
   "docs.outline.reference.v122.scope": {
     "message": "v1.2.2 — v1.2.2"
+  },
+  "docs.outline.tools.web-search.title": {
+    "message": "Buscar en la web y leer fuentes"
+  },
+  "docs.outline.tools.web-search.scope": {
+    "message": "Encuentre páginas web públicas, lea su texto e inspeccione evidencia fuente."
+  },
+  "docs.outline.reference.v131.title": {
+    "message": "v1.3.1"
+  },
+  "docs.outline.reference.v131.scope": {
+    "message": "Búsqueda web, gráficos de citación, compartir laboratorio y recuperación de recursos."
   }
 }

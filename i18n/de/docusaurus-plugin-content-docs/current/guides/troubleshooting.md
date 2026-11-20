@@ -1,7 +1,7 @@
 ---
 title: "Fehlerbehebung und häufige Fragen"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # Fehlerbehebung und häufige Fragen {/* #troubleshooting-and-common-questions */}
@@ -264,3 +264,6 @@ Dies gewährt keinen Zugriff auf ein Paywalled-Papier oder eine institutionelle 
 ## Wiederherstellen, nachdem der lokale Dienst getrennt wurde {/* #local-service-recovery */}
 
 Wenn der Arbeitsbereich die Wiederherstellung des lokalen Dienstes anzeigt, warten Sie auf die Rückkehr der Verbindung, bevor Sie eine Aktion wiederholen. Der Composer-Entwurf wird beibehalten, während nicht verfügbare Aktionen blockiert bleiben. Überprüfen Sie nach der Wiederverbindung die Konversation oder führen Sie die Aufzeichnung aus, um zu sehen, ob die vorherige Anfrage akzeptiert wurde. Resume aus dem tatsächlichen Zustand, anstatt die gleiche Aufgabe zweimal zu senden.
+## Reagieren Sie auf einen Model-Provider-Fehler {/* #provider-errors */}
+
+Lesen Sie die Ursache, die mit der fehlgeschlagenen Antwort gezeigt wurde. Überprüfen Sie bei Authentifizierungs- oder Kontoberechtigungsfehlern die Providerverbindung; bei ausgeschöpfter Quote die Nutzung dieses Kontos überprüfen; für Tariflimits, warten Sie, bevor Sie es erneut versuchen. Für ein nicht verfügbares Modell aktualisieren Sie die unterstützte Liste und wählen Sie ein zugängliches Modell aus. Eine verlorene Verbindung oder eine unterbrochene Antwort erfordert die Überprüfung der aktuellen Sitzung und der abgeschlossenen Werkzeugarbeit vor dem erneuten Einreichen. Reduzieren Sie für eine Kontextbegrenzung das gelieferte Material oder starten Sie eine entsprechend umfangreiche Fortsetzung. Der Anbieterwechsel ist nicht bei jedem Fehler notwendig.

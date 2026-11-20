@@ -1,7 +1,7 @@
 ---
 title: "Integrierte Forschungswerkzeuge"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -56,3 +56,5 @@ Eine Connector-erstellte Datei hat möglicherweise keinen erfassten Python-Produ
 Bezugsnummer der Durchführung: [notebook.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/notebook.ts), [artefakte.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/artifacts.ts), [WorkspaceMessageItem.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/WorkspaceMessageItem.tsx).
 
 Für unterstützte Langzeitarbeit folgen Sie [Hintergrundaufgaben und Ergebnislieferung](../guides/notebook.md#background-tasks-and-result-delivery). Überprüfen Sie den tatsächlichen Lauf und die gespeicherten Ausgaben nach der Lieferung. Environment & Packages, Compute Environment Setup und Remote Compute (SSH) bleiben aktiviert, aber ihre Laufzeit-, Netzwerk- und Hostanforderungen gelten weiterhin.
+
+Verwenden Sie für öffentliche Webseiten [Web-Suche und Source Reading](web-search.md) mit dem eingebauten Open-Science-Agenten.

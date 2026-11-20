@@ -1,7 +1,7 @@
 ---
 title: "Literaturbibliothek und Zitate"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-20'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -512,11 +512,17 @@ Wenn zusätzliche übereinstimmende Bibliotheksdatensätze vorhanden sind, kann 
 
 Wenn eine Smart-Collection-Auswertung bei einem fehlgeschlagenen Batch stoppt, überprüfen Sie dessen Fehler und den verbleibenden Fortschritt, bevor Sie den angebotenen Wiederholungsversuch verwenden. Von v0.37.0 aus wird der fehlgeschlagene Batch wieder aufgenommen, während die abgeschlossene Bewertungsarbeit erhalten bleibt. Behalten Sie den Umfang und die Kriterien für diesen Wiederholungsversuch unverändert bei, dann überprüfen Sie Included, Needs review und Excluded results. Erstellen Sie keine doppelte Sammlung, um eine unterbrochene Auswertung wiederherzustellen.
 
-## Trace Referenzen und zitierte Papiere {/* #citation-discovery */}
+## Erkunden Sie den Citation Graphen {/* #citation-discovery */}
 
-Öffnen Sie die Details einer Referenz und wählen Sie **References** oder **Cited by**. Semantic Scholar liefert diese Beziehungen. Wenn Lookup allein nach Titel übereinstimmt, vergleichen Sie den Titel, die Autoren und das Jahr des vorgeschlagenen Papiers, bevor Sie es bestätigen. Verwendung **Load more** für spätere Ergebnisse, wählen Sie die Papiere, die Sie benötigen, dann **Add selected to Inbox**. Überprüfen sie sie im posteingang, bevor sie sie in die bibliothek akzeptieren; das entdecken eines zitats ruft seinen vollen text nicht ab.
+1. Öffnen Sie ein Papier in **Library**. Wählen Sie unter **Zitationssuche** **Referenzen** oder **Zitiert von** und wechseln Sie dann von **Liste** zu **Citation graph**. Überprüfen Sie den Titel und die Identifikatoren des Originalpapiers.
+2. Wählen Sie die Quelle: **Europe PMC**, **OpenCitations · Index v2** oder **OpenCitations · SKG-IF**. Der Standard ist Europe PMC; Abdeckung und verfügbare Beziehungen unterscheiden sich zwischen den Quellen.
+3. Verwenden Sie **All**, **Referenzen** oder **Zitiert von**, um das Diagramm zu filtern. Pfeile zeigen von dem zitierten Papier zu dem Papier, das es zitiert. Wählen Sie einen Knoten oder eine Zeile in **Publikationsliste** aus, um die Details zu überprüfen.
+4. Wählen Sie **Set as center**, um ein verwandtes Papier zu untersuchen. **Back** verfolgt Ihre Erkundung; **Original paper** kehrt zum Startrekord zurück. Das Ändern des Graphenzentrums ersetzt nicht den Bibliotheksdatensatz.
+5. Verwenden Sie **Zum Posteingang hinzufügen** für einen Kandidaten, den Sie behalten möchten, und überprüfen Sie ihn dann im Posteingang, bevor Sie ihn annehmen. Dies speichert einen Kandidatendatensatz, nicht seinen vollständigen Text.
 
-Ein API-Schlüssel ist optional. Wenn Anfragen begrenzt sind, warten oder verwenden **Configure API key** In der lokalen Desktop-App. Ein fehlendes Ergebnis kann die Quellenabdeckung oder Zugangsbeschränkungen widerspiegeln; es stellt nicht fest, dass das Papier keine Referenzen oder Zitate hat.
+Der Graph stellt geladene Ergebnisse dar, nicht eine vollständige Zitierzählung. Verwenden Sie die angezeigten Quellen- und Abdeckungshinweise, wenn Sie einen leeren oder teilweisen Graphen interpretieren. Wenn ein Lookup nicht verfügbar ist, versuchen Sie es später oder wählen Sie eine andere geeignete Quelle aus. Ein Zitierlink stellt nicht fest, dass ein Papier den Anspruch des anderen unterstützt.
+
+![Erkunden Sie den Citation Graphen](/img/open-science/v1.3.1/citation-graph.webp)
 
 ## Einfuhrdateien und ergänzendes Material {/* #supplementary-materials */}
 

@@ -1,7 +1,7 @@
 ---
 title: "Notebook and execution evidence"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -309,3 +309,11 @@ Open the project's Compute view and inspect the local process monitor. Match the
 Use **Process tree** for details and **Terminate** only for an owned task you intend to stop. This can interrupt execution and discard the live kernel's variables. A saved Notebook record is not erased by stopping a process, but unfinished output is not a completed result. If cleanup reports a problem and offers **Retry cleanup**, inspect the state before retrying. Reload the required inputs before rerunning code in a fresh kernel.
 
 For repeated executions, use [scheduled tasks](scheduled-tasks.md) after completing a manual run.
+
+## Manage Notebook memory and resources {/* #memory-resources */}
+
+Before execution, Open-Science checks system memory. If a request is stopped for memory pressure, review the notice and finish or release work you no longer need. Memory becoming available does not automatically retry the request; choose **Recheck and retry** when offered. For a manual Notebook terminal, return to that terminal and review its current contents before running again.
+
+Open **Compute → Notebook resources**, refresh the list and locate the intended session. Choose **Stop and release Notebook** and inspect the listed local tasks before confirming **Stop and release**. This can stop those tasks and discards live variables and connections. History, saved outputs, files and installed environments remain; earlier file writes are not undone, and independent remote Compute jobs are not stopped.
+
+Wait for **Notebook resources released**. If cleanup is incomplete, inspect its progress and use **Retry cleanup** when available. Export, environment changes or other active operations can block release; finish them and refresh the list. A memory estimate is not a promise of how much RAM will be freed.

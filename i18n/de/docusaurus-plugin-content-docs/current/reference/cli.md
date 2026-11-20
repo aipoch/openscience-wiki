@@ -1,11 +1,10 @@
 ---
 title: "CLI und strukturierter Output"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
-
 
 # CLI und strukturierter Output {/* #cli-and-structured-output */}
 
@@ -248,10 +247,9 @@ Diese Befehle funktionieren ohne ein laufendes Backend. `version` meldet die auf
 
 ## Verbinden Sie einen externen MCP-Client {/* #external-mcp */}
 
-Die eigenständige CLI in v1.0.4 zeigt Forschungswerkzeuge über **stdio**. Starten Sie zuerst den Dienst des vorgesehenen Profils; der Adapter startet ihn nicht automatisch. Ersetzen Sie beide absoluten Pfade in dieser Client-Konfiguration:
+Der v1.3.1 CLI stellt Forschungswerkzeuge gegenüber **Stunt** zur Verfügung. Der Adapter startet oder verwendet einen kompatiblen lokalen Dienst für das ausgewählte Profil wieder; ein separater manueller Start ist nicht mehr erforderlich. Ersetzen Sie beide absoluten Pfade in dieser Clientkonfiguration:
 
 ```bash
-open-science start --no-open --config-root /absolute/path/to/profile
 open-science mcp --help
 ```
 
@@ -266,11 +264,23 @@ open-science mcp --help
 }
 ```
 
-Lassen Sie den Client den Adapter starten. Entdecken Sie Projekte mit **list_projects**, einreichen **start_run** mit der zurückgegebenen Projekt-ID, folgen **get_run**, und prüfen Sie **list_artifacts**. Tool Discovery allein beweist nicht, dass der Dienst verfügbar ist. Anrufe erfordern den laufenden authentifizierten lokalen Dienst; dies ist kein Remote-HTTP-MCP-Endpunkt.
+Lassen Sie den Client den Adapter starten Entdecken Sie Projekte mit **list_projects**, senden Sie **start_run** mit der zurückgegebenen Projekt-ID ein, folgen Sie **get_run** und prüfen Sie **list_artifacts**. Tool Discovery kann abgeschlossen werden, während das Startup im Gange ist; Der erste Tool Call wartet auf den Service. Anrufe nutzen den authentifizierten lokalen Dienst; Dies ist kein entfernter HTTP MCP-Endpunkt.
 
-Der Client handelt unter den vorhandenen Berechtigungen des Profils. Es kann persistente Projekte erstellen, die Konfiguration ändern und Arbeiten starten, die Dateien schreiben, oder Modellkosten verursachen. Genehmigungen erfordern möglicherweise noch Maßnahmen in Open-Science. Überprüfen Sie den aktuellen Zustand nach einem Timeout, bevor Sie ein Schreiben wiederholen. Das Schließen des Clients oder das Stornieren seiner Anfrage storniert nicht die akzeptierte Recherche: verwenden **cancel_run** ausdrücklich. Siehe: [offizielles MCP-Tool und Berechtigungsreferenz](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp).
+Der Client handelt unter den vorhandenen Berechtigungen des Profils. Es kann persistente Projekte erstellen, die Konfiguration ändern und mit der Arbeit beginnen, die Dateien schreibt, oder Modellkosten verursachen. Genehmigungen erfordern möglicherweise weiterhin Maßnahmen in Open-Science. Überprüfen Sie den aktuellen Zustand nach einem Timeout, bevor Sie ein Schreiben wiederholen. Das Schließen des Clients oder das Stornieren seiner Anfrage storniert nicht die akzeptierte Recherche: Verwenden Sie **cancel_run** explizit. Siehe [offizielles MCP-Tool und Berechtigungsreferenz](https://github.com/aipoch/open-science/blob/v1.3.1/packages/open-science/CLI.md#external-agents-through-mcp).
 
-Für Paketbefehle, folgen [CLI Import und Export](../guides/research-packages.md#local-package-transfer).
+Für Paketbefehle folgen Sie [CLI Import und Export](../guides/research-packages.md#local-package-transfer).
+
+Der Dienst behält einen anhaltenden Halt, nachdem der MCP-Client getrennt wurde. Verwenden Sie `open-science stop --config-root /absolute/path/to/profile --json`, um diesen Hold freizugeben, wenn die Arbeit abgeschlossen ist; Connected Apps halten es möglicherweise noch am Laufen. Siehe [Dienstleistungen](server.md#backend-ownership).
+
+### CLI-Installation reparieren {/* #mcp-installation-recovery */}
+
+Wenn `mcp` mit `Cannot find package '@modelcontextprotocol/sdk'` endet, fehlt eine Installationsabhängigkeit; die Serveradresse ist nicht die Ursache. Installieren Sie für das macOS-ARM64-Archiv v1.3.1 den offiziellen npm-Client mit `npm install -g @aipoch/open-science@1.3.1` und setzen Sie `command` in der MCP-Konfiguration auf diesen Client. Meldet dessen Backend `database_runtime_unavailable`, starten Sie zuerst das Backend aus dem vollständigen eigenständigen Archiv mit demselben Profil:
+
+```bash
+/absolute/path/to/standalone/open-science start --no-open --config-root /absolute/path/to/profile
+```
+
+Verbinden Sie anschließend den npm-MCP-Client mit diesem Profil und rufen Sie **list_projects** auf. Prüfen Sie nach einem Startfehler zunächst `status --json`. Die Erkennung von Tools allein bestätigt kein funktionsfähiges Backend.
 
 ## Halten Sie einen Dienst für die Automatisierung am Laufen {/* #persistent-service */}
 

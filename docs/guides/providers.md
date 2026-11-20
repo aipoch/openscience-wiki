@@ -1,7 +1,7 @@
 ---
 title: "Provider and local model setup"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -273,3 +273,19 @@ Use the CodeBuddy runtime when choosing a CodeBuddy subscription. In **Settings 
 Choose the supported existing-login connection or browser sign-in flow shown by the form. For an existing login, sign in to the selected site in CodeBuddy CLI, then use **Connect**. A WorkBuddy profile alone is not the required CodeBuddy CLI sign-in. For browser sign-in, finish the account flow and return to Open-Science.
 
 Wait for connection verification and the account's discovered models. Select an available model and send a short request before a longer task. If the site or sign-in is wrong, correct that account connection and refresh it; a saved provider row does not prove that a model is accessible.
+
+## Connect a Lab account {/* #lab-account */}
+
+Use the desktop app and the Lab server address supplied by your organization. In **Settings → Lab → Connection**, enter **Server address**, use **Test connection**, then **Save**. Choose **Sign in with browser**, complete your organization's sign-in and return to Open-Science. The authorization tab closes when sign-in finishes.
+
+Check the account, assigned **Models** and **Usage**. Select an available Lab model in the model controls and send a small request. **Refresh models** updates the assigned list; an empty list means this account has no assigned Lab models, not that your other providers disappeared.
+
+Requests using a Lab model go through the configured Lab server. The browser version does not provide Lab sign-in. Organization case sharing is described in [research packages](research-packages.md#organization-cases).
+
+## Refresh a provider's models {/* #refresh-models */}
+
+In **Settings → Model**, add or edit an official provider. Under **Supported models**, choose **Refresh model list** when offered. Enter the required API key, region and any catalog parameters first. Check the returned list, save the intended provider configuration, then select an available Main model and send a small request.
+
+A failed refresh keeps the previous list. Read the specific error: catalog access may need a different permission, a valid regional key, a complete workspace parameter, or a later retry after a rate limit. Catalog discovery does not confirm that every listed model can answer requests. If the provider does not support online refresh, use its bundled list or a correctly configured custom endpoint.
+
+![Refresh a provider's models](/img/open-science/v1.3.1/provider-model-refresh.webp)

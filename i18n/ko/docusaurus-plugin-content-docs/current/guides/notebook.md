@@ -1,7 +1,7 @@
 ---
 title: "Notebook 및 실행 증거"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -310,3 +310,10 @@ Python 또는 R로 CSV를 읽고 변환해 새 파일을 내보낸 뒤, 출력�
 정보 및 **Terminate**에 대한 **Process tree**를 사용하면 중지 할 수 있습니다. 이것은 실행을 중단하고 라이브 커널의 변수를 디버깅 할 수 있습니다. 저장된 노트북 기록은 프로세스를 멈추지 않고 출력이 완료되지 않습니다. 청소가 문제를 보고 **Retry cleanup**를 제안하는 경우에, retrying의 앞에 국가를 검사하십시오. 신선한 커널의 리런닝 코드 앞에 필요한 입력을 다시로드합니다.
 
 반복된 실행을 위해, 수동 실행을 완료한 후에 [계획된 작업](scheduled-tasks.md)를 사용하십시오.
+## Notebook 메모리 및 리소스 관리 {/* #memory-resources */}
+
+실행 전에 Open-Science가 시스템 메모리를 확인합니다. 메모리 부족으로 요청이 중단되면 알림을 읽고 더 이상 필요하지 않은 작업을 종료하거나 리소스를 해제하세요. 메모리가 확보되어도 요청은 자동으로 재시도되지 않습니다. **Recheck and retry**가 표시되면 선택하세요. 수동 Notebook 터미널에서는 해당 터미널로 돌아가 현재 코드를 확인한 뒤 다시 실행하세요.
+
+**Compute → Notebook resources**을 열고, 목록을 새로 고침하고 의도한 세션을 찾습니다. **Stop and release Notebook**을 선택하고 **Stop and release**을 확인하기 전에 나열된 로컬 작업을 검사합니다. 이 작업을 중지하고 라이브 변수와 연결을 discards. 기록, 저장된 산출, 파일 및 설치된 환경은 남아 있습니다; 이전 파일 쓰기는 undone이 아니며 독립적 인 원격 컴퓨터 작업은 멈추지 않습니다.
+
+**Notebook 리소스가 해제되었습니다**에 대한 대기. 클린업이 불완전한 경우에, 그것의 진전을 검사하고 사용할 때 **Retry cleanup**를 사용하십시오. 수출, 환경 변화 또는 다른 활동 가동은 방출을 막을 수 있습니다; 완료하고 목록을 새로 고침합니다. 메모리 견적은 얼마나 많은 RAM이 자유로울 것이라고 약속하지 않습니다.

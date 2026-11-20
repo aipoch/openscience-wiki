@@ -1,7 +1,7 @@
 ---
 title: "Solución de problemas y preguntas comunes"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # Solución de problemas y preguntas comunes {/* #troubleshooting-and-common-questions */}
@@ -264,3 +264,6 @@ Esto no otorga acceso a un papel recortado o proporciona autenticación instituc
 ## Recover after the local service disconnects {/* #local-service-recovery */}
 
 Cuando el espacio de trabajo muestra la recuperación del servicio local, espere la conexión para regresar antes de repetir una acción. El borrador del Compositor se mantiene, mientras que las acciones no disponibles permanecen bloqueadas. Después de la reconexión, inspeccione la conversación o haga un registro para ver si la solicitud anterior fue aceptada. Resuma del estado real en lugar de enviar la misma tarea dos veces.
+## Responder a un error modelo-providente {/* #provider-errors */}
+
+Lea la causa mostrada con la respuesta fallida. Para los errores de autenticación o permiso de cuenta, compruebe la conexión del proveedor; para la cuota agotada, inspeccionar el uso de esa cuenta; para los límites de tarifas, espera antes de volver a intentarlo. Para un modelo indisponible, refresque la lista soportada y elija un modelo accesible. Una conexión perdida o respuesta interrumpida requiere revisar el actual período de sesiones y completar el trabajo de herramientas antes de volver a presentar. Para un límite de contexto, reduzca el material suministrado o inicie una continuación apropiadamente ampliada. Los proveedores cambiantes no son necesarios para cada error.
