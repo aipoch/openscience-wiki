@@ -1,7 +1,7 @@
 ---
 title: "提供商與本地模型配置"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -274,3 +274,18 @@ Anthropic 模型目錄還新增了支持 1M 上下文的 **Claude Fable 5.2**。
 按表單提供的入口連接已有登錄，或通過瀏覽器登錄。使用已有登錄時，先在 CodeBuddy CLI 登錄所選站點，再選擇 **Connect**；只有 WorkBuddy 配置不等於已經完成 CodeBuddy CLI 登錄。選擇瀏覽器登錄時，完成賬戶流程後返回 Open-Science。
 
 等待連接驗證和賬戶可用模型列表，再選擇可用模型發送一個簡短請求。如果站點或登錄不匹配，修正該賬戶連接並刷新；提供商條目保存成功不代表模型一定可以調用。
+## 連線 Lab 賬戶 {/* #lab-account */}
+
+使用桌面版，以及組織提供的 Lab 伺服器地址。在 **Settings → Lab → Connection** 的 **Server address** 輸入地址，選擇 **Test connection**，再 **Save**。點選 **Sign in with browser**，完成組織登入後返回 Open-Science。授權完成時，登入標籤頁會自動關閉。
+
+檢查賬戶、分配的 **Models** 和 **Usage**，在模型控制元件中選用可用的 Lab 模型，併傳送一個小請求。**Refresh models** 更新分配列表；列表為空表示該賬戶沒有分配到 Lab 模型，不代表其他提供商消失。
+
+使用 Lab 模型的請求會經過配置的 Lab 伺服器。瀏覽器版不提供 Lab 登入。組織案例分享見[研究包教程](research-packages.md#organization-cases)。
+
+## 重新整理提供商模型列表 {/* #refresh-models */}
+
+在 **Settings → Model** 新增或編輯官方提供商。在 **Supported models** 下，使用可用的 **Refresh model list**。先填寫所需 API 金鑰、地區和模型目錄引數，檢查返回列表，儲存目標提供商配置，再選擇可用的 Main 模型併傳送一個小請求。
+
+重新整理失敗會保留舊列表。根據具體錯誤處理：可能需要模型目錄讀取權限、正確地區的金鑰、完整的工作區引數，或在限流結束後再試。查到模型列表不代表每個模型都能成功響應。如果提供商不支援線上重新整理，使用隨應用提供的列表，或正確配置自定義端點。
+
+![重新整理提供商模型列表](/img/open-science/v1.3.1/provider-model-refresh.webp)

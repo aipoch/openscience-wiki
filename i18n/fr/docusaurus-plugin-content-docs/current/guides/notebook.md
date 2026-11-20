@@ -1,7 +1,7 @@
 ---
 title: "Notebook et preuves d'exécution"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -310,3 +310,10 @@ Ouvrez la vue de calcul du projet et inspectez le moniteur de processus local. F
 Utilisez **Process tree** pour les détails et **Terminate** seulement pour une tâche que vous avez l'intention d'arrêter. Cela peut interrompre l'exécution et jeter les variables du noyau en direct. Un enregistrement enregistré de carnet de notes n'est pas effacé en arrêtant un processus, mais la sortie inachevée n'est pas un résultat terminé. Si le nettoyage signale un problème et offre **Retry cleanup**, inspecter l'état avant de réessayer. Rechargez les entrées nécessaires avant de réutiliser le code dans un nouveau noyau.
 
 Pour les exécutions répétées, utilisez [tâches prévues](scheduled-tasks.md) après avoir terminé un essai manuel.
+## Gérer la mémoire et les ressources Notebook {/* #memory-resources */}
+
+Avant l’exécution, Open-Science vérifie la mémoire système. Si une demande est arrêtée faute de mémoire, lisez la notification et terminez les tâches devenues inutiles ou libérez leurs ressources. Le retour de mémoire disponible ne relance pas automatiquement la demande : choisissez **Recheck and retry** lorsque cette option apparaît. Dans un terminal Notebook manuel, revenez au terminal et vérifiez le code actuel avant de le relancer.
+
+Ouvrez **Compute → Notebook resources**, rafraîchissez la liste et localisez la session prévue. Choisissez **Stop and release Notebook** et inspectez les tâches locales énumérées avant de confirmer **Stop and release**. Cela peut arrêter ces tâches et éliminer les variables et connexions en direct. L'historique, les sorties sauvegardées, les fichiers et les environnements installés restent; Les écritures de fichiers antérieures ne sont pas annulées, et les travaux indépendants de calcul à distance ne sont pas arrêtés.
+
+Attendez **Ressources Notebook libérées**. Si le nettoyage est incomplet, inspecter ses progrès et utiliser **Retry cleanup** lorsque disponible. L'exportation, les changements environnementaux ou d'autres opérations actives peuvent bloquer la libération; Finissez-les et rafraîchissez la liste. Une estimation de mémoire n'est pas une promesse de combien de RAM sera libéré.

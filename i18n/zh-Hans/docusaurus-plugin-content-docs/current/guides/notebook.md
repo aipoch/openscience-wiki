@@ -1,7 +1,7 @@
 ---
 title: "Notebook 与执行证据"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -299,3 +299,11 @@ Runtimes 的包清单描述已安装环境，Provenance 描述某个文件所捕
 通过 **Process tree** 查看详情，只对确实准备停止的所属任务使用 **Terminate**。这会中断执行，并可能丢失内核中的变量。停止进程不会删除已经保存的 Notebook 记录，但未完成输出不属于完整结果。清理报错并提供 **Retry cleanup** 时，先检查状态再重试。在新内核中重跑代码前，应重新加载所需输入。
 
 需要重复执行时，先完成一次手动运行，再使用[定时任务](scheduled-tasks.md)。
+
+## 管理 Notebook 内存与资源 {/* #memory-resources */}
+
+Open-Science 会在执行前检查系统内存。如果请求因内存压力被停止，先阅读提示，完成或释放不再需要的任务。内存恢复后不会自动重试；在提供该操作时，选择 **Recheck and retry**。手动 Notebook 终端需要返回原终端，核对当前代码后再执行。
+
+打开 **Compute → Notebook resources**，刷新列表，找到目标会话。选择 **Stop and release Notebook**，检查列出的本地任务后，再确认 **Stop and release**。这会停止列出的任务，丢失内存中的变量和连接；历史、已保存结果、文件和已安装环境会保留。之前写入的文件不会回滚，独立的远程 Compute 任务也不会停止。
+
+等待 **Notebook resources released**。清理不完整时，查看进度，并在可用时选择 **Retry cleanup**。导出、环境变更等正在进行的操作可能阻止释放，需要完成后刷新列表。界面的内存估计不代表一定能释放同等大小的 RAM。

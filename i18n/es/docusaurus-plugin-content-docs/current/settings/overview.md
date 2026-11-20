@@ -2,17 +2,17 @@
 sidebar_position: 1
 title: "Sinopsis de la configuración"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # Sinopsis de la configuración {/* #settings-overview */}
 
-Abierto **Settings** desde la esquina inferior izquierda del espacio de trabajo. Es... **16 paneles** se organizan **System**, **Intelligence**, **Connections** y **Workspace**. Habilidades, Conectores y Especialistas se gestionan en el separado [Centro de recursos](../guides/navigation.md#resource-center). Elija un panel de configuración por propósito o utilice la búsqueda del encabezado.
+Abra **Settings** desde la esquina inferior izquierda del espacio de trabajo. Su **Paneles 17** se organizan en **System**, **Intelligence**, **Connections** y **Workspace**. Skills, Connectors and Specialists se gestionan en el [Centro de recursos](../guides/navigation.md#resource-center). Elija un panel de configuración por propósito o utilice la búsqueda del encabezado.
 
 | Fiscalización mundial | Comportamiento |
 | --- | --- |
 | `Back` / `Forward` | Mover entre un panel de configuración principal y sus subviews de Detail, Add, o Importar |
-| Breadcrumb botón trasero | Regreso de una subvisión a su panel principal |
+| Botón trasero de menta | Regreso de una subvisión a su panel principal |
 | `Maximize` / `Restore` | Interruptor entre un diálogo grande y Ajustes de pantalla completa |
 | `Close settings` | Volver al proyecto original y sesión sin perder los ajustes que se guardaron con éxito |
 | `Dismiss settings error` | Cierre el banner de error; la operación fallida no se retrata automáticamente |
@@ -27,25 +27,26 @@ Abierto **Settings** desde la esquina inferior izquierda del espacio de trabajo.
 
 Esta búsqueda cubre los ajustes representativos en cada panel, no en cada campo o documento de investigación. Si un término no coincide, utilice el nombre del panel o los grupos de navegación a continuación. Para buscar conversaciones o archivos, cerrar Ajustes y utilizar [búsqueda mundial](../guides/navigation.md).
 
-## Los paneles principales 16 {/* #the-17-main-panels */}
+## Los paneles principales 17 {/* #the-17-main-panels */}
 
 | Grupo | Panel | Lo que maneja |
 | --- | --- | --- |
-| Sistema | [General](../guides/appearance.md#help-center) | App versión, actualizaciones, diagnóstico, instalación CLI, comportamiento de ventana y ayuda |
+| Sistema | [General](../guides/appearance.md#help-center) | Versión de aplicación, actualizaciones, diagnóstico, instalación CLI, comportamiento de ventana y ayuda |
 |  | [Apariencia](../guides/appearance.md) | Tema, idioma, escala de interfaz de escritorio y opciones de uso compatible |
 |  | [Notificaciones](../guides/appearance.md) | Alertas de tareas, contenido de notificación, estado del sistema y notificación de pruebas |
-| Inteligencia | [Modelo](../guides/models.md) | Proveedor y modelos de escenario, incluyendo [servicios de imagen](../guides/image-generation.md) |
-|  | [Agente](../guides/frameworks.md) | Instalación de marco de agente, conmutación y reparación |
-|  | [Memoria](../guides/memory.md) | Notas globales y de proyectos |
-| Conexiones | [Red](../guides/network.md) | Proxy, espejos de paquete y reglas de acceso Relajado/Stricto |
+| Inteligencia | [Modelo](../guides/models.md) | Proveedor y modelos de escenarios, incluyendo [servicios de imagen](../guides/image-generation.md) |
+|  | [Agente](../guides/frameworks.md) | Instalación, conmutación y reparación del marco del agente |
+|  | [Memoria](../guides/memory.md) | Notas de los proyectos y mundiales |
+| Conexiones | [Red](../guides/network.md) | Proxy, espejos de paquete y Notebook Reglas de acceso relajado / estricto |
 |  | [Remoto](../guides/remote-access.md) | Acceso del navegador, emparejamiento y dispositivos de confianza |
-|  | [Credenciales](../tools/credentials.md) | Keys, tokens, OAuth y recuperación credencial |
-|  | [Computación](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
+|  | [Lab](../guides/providers.md#lab-account) | Inscripción de la organización de escritorio, modelos asignados y uso |
+|  | [Credenciales](../tools/credentials.md) | Llaves, fichas, OAuth y recuperación credencial |
+|  | [Cálculo](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Espacio de trabajo | [Etiquetas](../guides/tags.md) | Etiquetas y Favoritos Ordenación |
-|  | [Permisos](../guides/approval-modes.md) | Modo predeterminado y subvenciones guardadas |
-|  | [Horas de ejecución](../guides/runtimes.md) | Medio ambientes y paquetes Python/R |
+|  | [Permisos](../guides/approval-modes.md) | Modo predeterminado y subsidios guardados |
+|  | [Entornos de ejecución](../guides/runtimes.md) | entornos y paquetes Python/R |
 |  | [Almacenamiento](../guides/storage.md) | Localización de datos, acceso de escritura y uso de disco |
-|  | [Usage](../guides/usage.md) | Estadísticas de las actividades de investigación y seguimiento |
+|  | [Uso](../guides/usage.md) | Estadísticas de actividad de investigación, llamadas e investigación |
 |  | [Archivado](../guides/storage.md) | Restaurar o eliminar permanentemente el trabajo archivado |
 
 **Feedback** sigue siendo una entrada separada en la parte inferior de Ajustes.

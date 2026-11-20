@@ -1,7 +1,7 @@
 ---
 title: "Outils de recherche intégrés"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -47,12 +47,14 @@ Le [flux de travail de qualité des données](../workflows/data-quality.md) four
 | Ouvrir Notebook | Ouvre les enregistrements d'exécution de session et les variables. |
 | puce de tâche enfant | Ouvre une véritable tâche déléguée; Inspecter son propre compte rendu. |
 
-## Éviter toute confusion fréquente entre entrées et sorties {/* #avoid-common-inputoutput-confusion */}
+## Éviter toute confusion fréquente entre les entrées et les sorties {/* #avoid-common-inputoutput-confusion */}
 
 Un fichier téléchargé, un fichier de travail Notebook et une version d'artefact sont liés mais distincts. Un fichier visible dans une liste ne peut pas encore être monté dans un noyau d'enfant. Utiliser la référence actuelle fournie par l'application; ne pas réparer une entrée non disponible en devinant un chemin ou en remplaçant un ID de version d'artefact par son nom de fichier.
 
-Un fichier Connector créé peut n'avoir aucun bloc de producteur de Python capturé. **Pas de bloc producteur**, **No review for this version**, environnement **partial** et preuves **limité** sont des états significatifs, pas des blancs à remplir avec la prose générée. Utilisez [Dépannage](../guides/troubleshooting.md) pour les erreurs exactes et les étapes de récupération.
+Un fichier Connector créé peut n'avoir pas de bloc de producteur capturé Python. **Pas de bloc producteur**, **No review for this version**, environnement **partial** et preuves **limité** sont des états significatifs, pas des blancs à remplir avec la prose générée. Utilisez [Dépannage](../guides/troubleshooting.md) pour les erreurs exactes et les étapes de récupération.
 
-Référence de mise en œuvre: [cahiers.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/notebook.ts), [artefacts.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/artifacts.ts), [Espace de travailMessageItem.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/WorkspaceMessageItem.tsx).
+Référence de mise en œuvre: [carnet.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/notebook.ts), [artefacts.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/artifacts.ts), [Espace de travailMessageItem.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/WorkspaceMessageItem.tsx).
 
-Pour les travaux à long terme soutenus, suivez [Tâches de base et réalisation des résultats](../guides/notebook.md#background-tasks-and-result-delivery). Inspecter les sorties réelles et enregistrées après la livraison. Environnement & Packages, Configuration de l'environnement de calcul et calcul à distance (SSH) restent activés, mais leurs exigences d'exécution, de réseau et d'hôte s'appliquent toujours.
+Pour les travaux à long terme soutenus, suivez [Tâches de base et réalisation des résultats](../guides/notebook.md#background-tasks-and-result-delivery). Inspecter les sorties réelles et enregistrées après la livraison. Environnement & Packages, Configuration de l'environnement de calcul et calcul à distance (SSH) restent activés, mais leurs exigences d'exécution, réseau et hôte s'appliquent toujours.
+
+Pour les pages web publiques, utilisez [recherche sur le Web et lecture des sources](web-search.md) avec l'agent Open-Science intégré.

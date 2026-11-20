@@ -1,7 +1,7 @@
 ---
 title: "作り付けの研究用具"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -47,12 +47,14 @@ import ExampleDownload from '@site/src/components/ExampleDownload';
 | Notebook を開く | セッションの実行レコードと変数を開きます。 |
 | チャイルドタスクチップ | 実際の委任されたタスクを開きます。 独自のトランスクリプトを検査します。 |
 
-## 一般的な入力/出力の混乱を避けて下さい {/* #avoid-common-inputoutput-confusion */}
+## 一般的な入出力混入を避ける {/* #avoid-common-inputoutput-confusion */}
 
-アップロードされたファイル、Notebook 作業ファイル、およびアーティファクトバージョンは関連していますが、異なる。 1つのリストで表示されているファイルは、まだ子カーネルにマウントされていない可能性があります。 現行のアプリケーション認証の参照を使用してください。 パスを推測したり、そのファイル名でアーティファクトバージョンIDを置き換えたりすることで、使用不能な入力を修復しません。
+アップロードされたファイル、Notebook の作業ファイル、およびアーティファクトバージョンは関連していますが、異なる。 1つのリストで表示されているファイルは、まだ子カーネルにマウントされていない可能性があります。 現行のアプリケーション認証の参照を使用してください。 パスを推測したり、そのファイル名でアーティファクトバージョンIDを交換することで、使用不能な入力を修復しません。
 
-Connector-createdファイルは、Pythonプロデューサーブロックをキャプチャしていない可能性があります。 **プロデューサーブロックなし**、**No review for this version**、**partial**環境および**バウンディング**の証拠は、生成された偽物に記入する空白ではなく、有意義な状態です。 正確なエラーと回復手順で[トラブルシューティング](../guides/troubleshooting.md)を使用してください。
+Connector-createdファイルには、Pythonプロデューサーブロックをキャプチャしていない可能性があります。 **プロデューサーブロックなし**、**No review for this version**、**partial**環境および**バウンディング**の証拠は、生成された偽物に記入する空白ではなく、有意義な状態です。 正確なエラーと回復手順で[トラブルシューティング](../guides/troubleshooting.md)を使用してください。
 
-実装参照: [ノートパソコン](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/notebook.ts)、[artifacts.ts(アーティファクト)](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/artifacts.ts)、[ワークスペースMessageItem.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/WorkspaceMessageItem.tsx)。
+実装参照: [ノートパソコン](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/notebook.ts)、[artifacts.ts の検索結果](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/artifacts.ts)、[ワークスペースMessageItem.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/WorkspaceMessageItem.tsx)。
 
 [背景タスクと結果配信](../guides/notebook.md#background-tasks-and-result-delivery) をフォローして、長時間の作業に対応しました。 納品後、実際の実行と保存した出力を調べます。 環境とパッケージ、環境設定とリモートコンピューティング(SSH)が有効になっていますが、ランタイム、ネットワーク、ホストの要件も適用されます。
+
+公開ページでは、[ウェブ検索とソースの読み込み](web-search.md) を内蔵した Open-Science エージェントで使用してください。

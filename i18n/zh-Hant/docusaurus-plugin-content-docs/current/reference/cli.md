@@ -1,11 +1,10 @@
 ---
 title: "CLI 與結構化輸出"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
-
 
 # CLI 與結構化輸出 {/* #cli-与结构化输出 */}
 
@@ -244,12 +243,11 @@ open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
 
 這些命令不要求後端運行。`version` 顯示實際調用的安裝版本，不是已連接服務的版本。`paths` 返回 `cliPath`、`nodePath`、`startupConfigRoot` 和 `discoveryConfigRoots`；它不代表活動服務或研究數據目錄。顯式指定配置目錄會選擇啓動／發現位置，但不會創建該目錄。路徑可能包含本機用戶名，分享前先檢查輸出。
 
-## 連接外部 MCP 客戶端 {/* #external-mcp */}
+## 連線外部 MCP 客戶端 {/* #external-mcp */}
 
-v1.0.4 的獨立 CLI 通過 **stdio** 提供科研工具。先啓動目標配置對應的服務；適配器不會自動啓動服務。將客戶端配置中的兩個絕對路徑替換爲實際路徑：
+v1.3.1 CLI 透過 **stdio** 提供研究工具。介面卡會為所選配置啟動或複用相容的本地服務，無需再單獨手動啟動。替換客戶端配置中的兩個絕對路徑：
 
 ```bash
-open-science start --no-open --config-root /absolute/path/to/profile
 open-science mcp --help
 ```
 
@@ -264,11 +262,23 @@ open-science mcp --help
 }
 ```
 
-由客戶端啓動適配器。先用 **list_projects** 獲取項目 ID，再交給 **start_run** 提交任務，通過 **get_run** 查看進度，使用 **list_artifacts** 查看文件。僅能發現工具不代表服務可用；實際調用需要運行中的已認證本地服務，這不是遠程 HTTP MCP 入口。
+由客戶端啟動介面卡。先用 **list_projects** 獲取專案 ID，再交給 **start_run** 提交任務，透過 **get_run** 檢視進度，使用 **list_artifacts** 檢視檔案。工具發現可能在服務啟動期間先完成，第一次工具呼叫會等待服務就緒。實際呼叫使用已認證的本地服務，這不是遠端 HTTP MCP 入口。
 
-客戶端沿用該配置已有的權限，可以創建持久項目、修改配置，併發起會寫文件或產生模型費用的任務。審批仍可能需要你在 Open-Science 中處理。請求超時後，先檢查當前狀態再重複寫操作。關閉客戶端或取消請求不會取消已接受的研究任務；需要停止任務時明確調用 **cancel_run**。詳見[官方 MCP 工具與權限說明](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp)。
+客戶端沿用該配置已有的權限，可以建立持久專案、修改配置，併發起會寫檔案或產生模型費用的任務。審批仍可能需要你在 Open-Science 中處理。請求超時後，先檢查當前狀態再重複寫操作。關閉客戶端或取消請求不會取消已接受的研究任務；需要停止任務時明確呼叫 **cancel_run**。詳見[官方 MCP 工具與權限說明](https://github.com/aipoch/open-science/blob/v1.3.1/packages/open-science/CLI.md#external-agents-through-mcp)。
 
-研究包命令見 [CLI 導入與導出](../guides/research-packages.md#local-package-transfer)。
+研究包命令見 [CLI 匯入與匯出](../guides/research-packages.md#local-package-transfer)。
+
+MCP 客戶端斷開後，服務會保留持續執行狀態。工作結束後，使用 `open-science stop --config-root /absolute/path/to/profile --json` 解除該狀態；仍有 App 連線時服務可能繼續執行。詳見[服務歸屬](server.md#backend-ownership)。
+
+### CLI 安裝恢復 {/* #mcp-installation-recovery */}
+
+如果 `mcp` 啟動時提示 `Cannot find package '@modelcontextprotocol/sdk'`，這是安裝相依項目問題，不是伺服器位址錯誤。對 v1.3.1 macOS ARM64 壓縮包，可用 `npm install -g @aipoch/open-science@1.3.1` 安裝官方 npm 用戶端，並把 MCP 設定的 `command` 指向該用戶端。如果它的後端提示 `database_runtime_unavailable`，先使用完整獨立壓縮包中的程式啟動同一設定的後端：
+
+```bash
+/absolute/path/to/standalone/open-science start --no-open --config-root /absolute/path/to/profile
+```
+
+再讓 npm MCP 用戶端連線該設定，並呼叫 **list_projects**。啟動報錯後先查看 `status --json` 再重試；僅能發現工具不代表後端已可用。
 
 ## 讓服務持續運行以完成自動化 {/* #persistent-service */}
 

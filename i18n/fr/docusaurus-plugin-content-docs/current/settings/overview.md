@@ -2,19 +2,19 @@
 sidebar_position: 1
 title: "Aperçu des paramètres"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # Aperçu des paramètres {/* #settings-overview */}
 
-Ouvrir **Settings** du coin inférieur gauche de l'espace de travail. Ses **16 panneaux** sont organisés en **System**, **Intelligence**, **Connections** et **Workspace**. Les compétences, les connecteurs et les spécialistes sont gérés séparément. [Centre de ressources](../guides/navigation.md#resource-center). Choisissez un panneau de paramètres par but ou utilisez la recherche d'en-tête.
+Ouvrez **Settings** à partir du coin inférieur gauche de l'espace de travail. Ses **Panneaux 17** sont organisés en **System**, **Intelligence**, **Connections** et **Workspace**. Skills, Connecteurs et Spécialistes sont gérés dans le [Centre de ressources](../guides/navigation.md#resource-center) séparé. Choisissez un panneau de paramètres par but ou utilisez la recherche d'en-tête.
 
 | Contrôle mondial | Comportement |
 | --- | --- |
 | `Back` / `Forward` | Déplacer entre un panneau de paramètres principaux et ses sous-vues de détails, d'ajouts ou d'importations |
 | Breadcrumb retour bouton | Retour d'une vue d'ensemble à son panneau principal |
 | `Maximize` / `Restore` | Basculer entre une grande boîte de dialogue et des paramètres en plein écran |
-| `Close settings` | Retour à l'original du projet et de la session sans perdre les paramètres qui ont été enregistrés avec succès |
+| `Close settings` | Retour à l'original du projet et de la session sans perdre les paramètres qui ont été sauvegardés avec succès |
 | `Dismiss settings error` | Fermez la bannière d'erreur; l'opération échouée n'est pas réévaluée automatiquement |
 | Bouton de navigation mobile | Ouvrez ou fermez le tiroir de navigation Paramètres |
 
@@ -27,23 +27,24 @@ Ouvrir **Settings** du coin inférieur gauche de l'espace de travail. Ses **16 p
 
 Cette recherche couvre les paramètres représentatifs de chaque panel, pas de chaque domaine ou document de recherche. Si un terme ne correspond pas, utilisez le nom du panneau ou les groupes de navigation ci-dessous. Pour rechercher des conversations ou des fichiers, fermez Paramètres et utilisez [recherche mondiale](../guides/navigation.md).
 
-## Les panneaux principaux 16 {/* #the-17-main-panels */}
+## Les panneaux principaux 17 {/* #the-17-main-panels */}
 
 | Groupe | Groupe | Ce qu'il gère |
 | --- | --- | --- |
-| Système | [Généralités](../guides/appearance.md#help-center) | Version de l'application, mises à jour, diagnostics, installation CLI, comportement de la fenêtre et aide |
+| Système | [Général](../guides/appearance.md#help-center) | Version de l'application, mises à jour, diagnostics, installation CLI, comportement de la fenêtre et aide |
 |  | [Apparence](../guides/appearance.md) | Thème, langue, échelle d'interface de bureau et les choix app-icon pris en charge |
 |  | [Notifications](../guides/appearance.md) | Alertes de tâches, contenu de la notification, état du système et notification des essais |
-| Renseignements | [Modèle](../guides/models.md) | Modèles de fournisseurs et de scénarios, y compris [services d'image](../guides/image-generation.md) |
-|  | [Agent](../guides/frameworks.md) | Installation, commutation et réparation du cadre d'agent |
-|  | [Mémoire](../guides/memory.md) | Notes globales et de projet |
-| Connexions | [Réseau](../guides/network.md) | Proxy, miroirs de paquet et règles d'accès détendue/strict |
-|  | [Télécommande](../guides/remote-access.md) | Accès au navigateur, appariement et dispositifs de confiance |
-|  | [Pouvoirs](../tools/credentials.md) | Clés, jetons, OAuth et récupération des justificatifs |
-|  | [Calculer](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Offres d'emploi face au brouillage · Modal · Rayon |
-| Espace de travail | [Étiquettes](../guides/tags.md) | Mots-clés et Favoris commande |
+| Intelligence | [Modèle](../guides/models.md) | Modèles de fournisseurs et de scénarios, y compris [services d'image](../guides/image-generation.md) |
+|  | [Agent](../guides/frameworks.md) | Installation, commutation et réparation du cadre de l'agent |
+|  | [Mémoire](../guides/memory.md) | Notes de projet et notes globales d'acceptation |
+| Connexions | [Réseau](../guides/network.md) | Proxy, miroirs de paquet et règles d'accès détendue/strict Notebook |
+|  | [À distance](../guides/remote-access.md) | Accès au navigateur, appariement et dispositifs de confiance |
+|  | [Lab](../guides/providers.md#lab-account) | Organisation de bureau signature, modèles assignés et utilisation |
+|  | [Informations d'identification](../tools/credentials.md) | Clés, jetons, OAuth et récupération des titres de compétence |
+|  | [Calculer](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Câblage des emplois face · Modal · Ray |
+| Espace de travail | [Balises](../guides/tags.md) | Mots-clés et Favoris commande |
 |  | [Autorisations](../guides/approval-modes.md) | Mode par défaut et subventions enregistrées |
-|  | [Durées d'exécution](../guides/runtimes.md) | Environnements et paquets Python/R |
+|  | [Environnements d'exécution](../guides/runtimes.md) | Environnements et paquets Python/R |
 |  | [Stockage](../guides/storage.md) | Emplacement des données, accès écrit et utilisation du disque |
 |  | [Utilisation](../guides/usage.md) | Statistiques des activités de recherche et d'appel |
 |  | [Archivé](../guides/storage.md) | Restaurer ou supprimer définitivement les travaux archivés |

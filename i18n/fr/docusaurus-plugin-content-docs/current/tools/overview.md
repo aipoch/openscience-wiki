@@ -1,7 +1,7 @@
 ---
 title: "Explorer les outils"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-20'
 ---
 
 # Explorer les outils {/* #explore-tools */}
@@ -13,14 +13,15 @@ Choisissez un outil par le résultat dont vous avez besoin : récupérer un enre
 | Besoin | Commencez ici. | Ce qui doit être prêt | Que faire après inspection |
 | --- | --- | --- | --- |
 | Lire les fichiers, planifier le travail, calculer ou publier les résultats | [Outils de recherche intégrés](./built-in.md) | Entrées de projet et autorisations d'exploitation accessibles | Réponse de l'outil, fichier de sortie et enregistrement d'exécution |
-| Trouver quel logiciel scientifique une méthode utilise | [Catalogue des outils scientifiques](./catalog.md) | Vérifiez les paquets/poids séparément de l'installation Skill | Exécutable/import et version réelle |
-| Exécuter Python, R ou une charge de travail scientifique | [Outils scientifiques](./scientific.md) | Durée d'exécution sélectionnée, paquets ou ordinateur Host | Code, erreurs, contrôles de sortie et provenance |
+| Trouvez les pages Web publiques et lisez le texte source | [Recherche sur le Web](./web-search.md) | Open-Science Agent intégré, modèle et réseau Main | URL source, texte récupéré et toute troncation |
+| Trouver quel logiciel scientifique une méthode utilise | [Catalogue des outils scientifiques](./catalog.md) | Vérifiez les paquets/poids séparément de l'installation Skill | exécutable/import et version |
+| Exécuter Python, R ou une charge de travail scientifique | [Outils scientifiques](./scientific.md) | Durée d'exécution, paquets ou ordinateur d'hôte sélectionné | Code, erreurs, contrôles de sortie et provenance |
 | Enquête sur les dossiers biomédicaux/scientifiques | [Bases de données scientifiques](./databases.md) | Activé Connector, réseau et toutes les identifiants requis | ID source, champs retournés et troncation |
 | Inspecter les données CSV, TSV ou tableur | [Tableaux et ensembles de données](./tables.md) | Fichier pris en charge et entrée courante | Lignes/colonnes visibles, dimensions délimiteurs et données complètes |
-| Lire les documents, séquences, structures et autres sorties | [Vérificateurs scientifiques](./viewers.md) | Format pris en charge | Contenu rendu et toute limitation d'aperçu |
-| Connectez un serveur MCP | [Connecteurs et MCP](./mcp.md) | Configuration du serveur et confiance | État connecté et réponse d'un véritable outil |
+| Lire des articles, séquences, structures et autres sorties | [Vérificateurs scientifiques](./viewers.md) | Format pris en charge | Contenu rendu et toute limitation d'aperçu |
+| Connectez un serveur MCP | [Connecteurs et MCP](./mcp.md) | Configuration du serveur et confiance | État connecté et véritable réponse à l'outil |
 | Configurer une identité/clé de service | [Pouvoirs de service](./credentials.md) | Service correct et compte utilisable | Résultat de validation ou requête live limitée |
-| Exposer vos propres données locales à l'aide d'un outil | [Outil personnalisé MCP](./custom.md) | Un serveur de travail avec un schéma d'entrée | Découverte, appel réussi et comportement d'échec réel |
+| Exposez vos propres données locales à travers un outil | [Outil personnalisé MCP](./custom.md) | Un serveur de travail avec un schéma d'entrée | Découverte, appel réussi et comportement d'échec réel |
 
 ## La disponibilité a plusieurs significations {/* #availability-has-several-meanings */}
 

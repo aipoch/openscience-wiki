@@ -2,7 +2,7 @@
 title: "Paquets de recherche .science"
 description: "Exporter une séance avec ses dossiers et ses preuves, puis importer et inspecter le dossier de recherche dans un autre projet."
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -198,3 +198,8 @@ Exporter dans le flux normal du paquet Session et attendre l'achèvement. Import
 ## Vérifier une importation interrompue {/* #import-recovery */}
 
 Si une importation est annulée, ne la traitez pas comme terminée. Si un timeout laisse le résultat non confirmé, recherchez le projet de destination et la session importée avant de commencer une autre importation. Ouvrez toute session résultante et inspectez ses fichiers. Pour un paquet manquant ou invalide, sélectionnez le fichier `.science` intact et conservez l'identificateur d'erreur ou de corrélation affiché lors de la demande d'aide. Ne pas importer le même paquet à plusieurs reprises sans vérifier si une tentative précédente a déjà créé la session.
+## Cas d'organisations de partage et d'importation {/* #organization-cases */}
+
+D'abord [connectez-vous à Lab](providers.md#lab-account) dans l'application de bureau et de confirmer votre organisation. Dans le **Cas d’utilisation** de la page d'accueil, choisissez **Organization**. Recherche par nom de cas ou son code de partage de huit caractères. Ouvrez le dossier, inspectez son auteur, le résumé du paquet, les fichiers inclus et les omissions, puis choisissez **Importer** et examinez le projet de destination. Attendez que l'importation se termine avant d'ouvrir le dossier reçu; utilisez **Fork to continue** pour une nouvelle analyse.
+
+Pour partager votre propre session, ouvrez sa boîte de dialogue d'exportation recherche-paquet et examinez le contenu sélectionné. Choisissez **Export and upload**, entrez **Case name** et **Description**, puis **Confirm and upload**. Cela envoie le paquet sélectionné directement au serveur Lab configuré pour votre organisation. Attendez **Session package uploaded** avant de copier son **Share code**. Vérifiez le paquet pour le matériel que vous ne devriez pas partager avant de confirmer; se connecter seul ne télécharge pas une session.

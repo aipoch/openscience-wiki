@@ -1,7 +1,7 @@
 ---
 title: "Storage and archived work"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-20'
 ---
 
 # Storage and archived work
@@ -140,3 +140,7 @@ Sources: [Storage panel](https://github.com/aipoch/open-science/blob/v0.26.0/src
 ## Reopen data after an upgrade {/* #historical-data-location */}
 
 An existing saved data location takes precedence. For a completed older installation without an explicit saved location, Open-Science retains the historical location and saves that choice. If that saved folder is unavailable, reconnect it before restarting. If multiple historical locations contain research data, the app asks you to select or recover the original folder instead of silently choosing one. Keep both copies until you have checked their projects and files; do not create a new empty location to resolve an apparent loss of data.
+
+## Reconnect a missing research drive {/* #missing-drive */}
+
+If startup recovery says the saved research folder is missing, read the path in the dialog and reconnect that drive or restore access to the same folder before restarting. Do not create an empty substitute folder over the expected location or move managed files by hand. After the app opens, check the saved location and an existing project's files.

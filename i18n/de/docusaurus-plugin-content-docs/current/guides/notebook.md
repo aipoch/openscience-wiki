@@ -1,7 +1,7 @@
 ---
 title: "Notebook und Ausführungsnachweise"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -310,3 +310,10 @@ Wenn eine lokale Eingabe nicht gelesen werden kann, überprüfen Sie [Berechtigu
 Verwenden Sie **Process tree** für Details und **Terminate** nur für eine eigene Aufgabe, die Sie beenden möchten. Dies kann die Ausführung unterbrechen und die Variablen des Live-Kernels verwerfen. Ein gespeicherter Notebook-Eintrag wird nicht durch das Stoppen eines Prozesses gelöscht, aber eine unfertige Ausgabe ist kein abgeschlossenes Ergebnis. Wenn die Bereinigung ein Problem meldet und **Retry cleanup** anbietet, inspizieren Sie den Zustand, bevor Sie erneut versuchen. Laden Sie die erforderlichen Eingaben neu, bevor Sie den Code in einem neuen Kernel erneut ausführen.
 
 Verwenden Sie für wiederholte Ausführung [geplante Aufgaben](scheduled-tasks.md) nach Abschluss eines manuellen Durchlaufs.
+## Verwalten von Notebook Speicher und Ressourcen {/* #memory-resources */}
+
+Vor der Ausführung prüft Open-Science den Systemspeicher. Wird eine Anfrage wegen Speichermangels angehalten, lesen Sie den Hinweis und beenden Sie nicht mehr benötigte Aufgaben oder geben Sie deren Ressourcen frei. Wieder verfügbarer Speicher löst keinen automatischen Neuversuch aus. Wählen Sie **Recheck and retry**, wenn die Option erscheint. Kehren Sie bei einem manuellen Notebook-Terminal dorthin zurück und prüfen Sie den aktuellen Code vor dem erneuten Ausführen.
+
+Öffnen Sie **Compute → Notebook resources**, aktualisieren Sie die Liste und suchen Sie die beabsichtigte Sitzung. Wählen Sie **Stop and release Notebook** und prüfen Sie die aufgeführten lokalen Aufgaben, bevor Sie **Stop and release** bestätigen. Dies kann diese Aufgaben stoppen und lebende Variablen und Verbindungen verwerfen. Geschichte, gespeicherte Ausgaben, Dateien und installierte Umgebungen bleiben erhalten; Frühere Dateischreibvorgänge werden nicht rückgängig gemacht und unabhängige Remote-Compute-Jobs werden nicht gestoppt.
+
+Warten Sie auf **Notebook-Ressourcen freigegeben**. Wenn die Bereinigung unvollständig ist, überprüfen Sie den Fortschritt und verwenden Sie **Retry cleanup**, wenn verfügbar. Export, Umgebungsänderungen oder andere aktive Operationen können die Freigabe blockieren; Beenden Sie sie und aktualisieren Sie die Liste. Eine Speicherschätzung ist kein Versprechen, wie viel RAM freigesetzt wird.

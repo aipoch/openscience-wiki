@@ -1,11 +1,10 @@
 ---
 title: "CLI and structured output"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
-
 
 # CLI and structured output
 
@@ -248,10 +247,9 @@ These commands work without a running backend. `version` reports the invoked ins
 
 ## Connect an external MCP client {/* #external-mcp */}
 
-The standalone CLI in v1.0.4 exposes research tools over **stdio**. Start the intended profile's service first; the adapter does not start it automatically. Replace both absolute paths in this client configuration:
+The v1.3.1 CLI exposes research tools over **stdio**. The adapter starts or reuses a compatible local service for the selected profile; a separate manual start is no longer required. Replace both absolute paths in this client configuration:
 
 ```bash
-open-science start --no-open --config-root /absolute/path/to/profile
 open-science mcp --help
 ```
 
@@ -266,11 +264,23 @@ open-science mcp --help
 }
 ```
 
-Let the client launch the adapter. Discover projects with **list_projects**, submit **start_run** with the returned project ID, follow **get_run**, and inspect **list_artifacts**. Tool discovery alone does not prove that the service is available. Calls require the running authenticated local service; this is not a remote HTTP MCP endpoint.
+Let the client launch the adapter. Discover projects with **list_projects**, submit **start_run** with the returned project ID, follow **get_run**, and inspect **list_artifacts**. Tool discovery can finish while startup is in progress; the first tool call waits for the service. Calls use the authenticated local service; this is not a remote HTTP MCP endpoint.
 
-The client acts under the profile's existing permissions. It can create persistent projects, change configuration and start work that writes files or incurs model costs. Approvals may still require action in Open-Science. Inspect current state after a timeout before repeating a write. Closing the client or cancelling its request does not cancel accepted research: use **cancel_run** explicitly. See the [official MCP tool and permission reference](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp).
+The client acts under the profile's existing permissions. It can create persistent projects, change configuration and start work that writes files or incurs model costs. Approvals may still require action in Open-Science. Inspect current state after a timeout before repeating a write. Closing the client or cancelling its request does not cancel accepted research: use **cancel_run** explicitly. See the [official MCP tool and permission reference](https://github.com/aipoch/open-science/blob/v1.3.1/packages/open-science/CLI.md#external-agents-through-mcp).
 
 For package commands, follow [CLI import and export](../guides/research-packages.md#local-package-transfer).
+
+The service retains a persistent hold after the MCP client disconnects. Use `open-science stop --config-root /absolute/path/to/profile --json` to release that hold when work is finished; connected Apps may still keep it running. See [service ownership](server.md#backend-ownership).
+
+### CLI package recovery {/* #mcp-installation-recovery */}
+
+If `mcp` exits with `Cannot find package '@modelcontextprotocol/sdk'`, it is an installation dependency error, not a server-address problem. For the v1.3.1 macOS ARM64 archive, install the official npm client with `npm install -g @aipoch/open-science@1.3.1` and point the MCP configuration's `command` to that client. If its backend reports `database_runtime_unavailable`, start the complete standalone archive's backend first using the same profile:
+
+```bash
+/absolute/path/to/standalone/open-science start --no-open --config-root /absolute/path/to/profile
+```
+
+Then connect the npm MCP client to that profile and call **list_projects**. Check `status --json` after a startup error before trying again; discovering tools alone does not confirm a working backend.
 
 ## Keep a service running for automation {/* #persistent-service */}
 

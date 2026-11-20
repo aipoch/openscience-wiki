@@ -1911,5 +1911,17 @@
   },
   "docs.outline.reference.v122.scope": {
     "message": "v1.2.2 — v1.2.2"
+  },
+  "docs.outline.tools.web-search.title": {
+    "message": "Rechercher sur le Web et lire les sources"
+  },
+  "docs.outline.tools.web-search.scope": {
+    "message": "Trouvez des pages Web publiques, lisez leur texte et consultez les sources."
+  },
+  "docs.outline.reference.v131.title": {
+    "message": "v1.3.1"
+  },
+  "docs.outline.reference.v131.scope": {
+    "message": "Recherche Web, graphiques de citation, partage de laboratoires et récupération des ressources."
   }
 }

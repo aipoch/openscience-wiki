@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: Settings overview
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # Settings overview
 
-Open **Settings** from the lower-left corner of the workspace. Its **16 panels** are organized into **System**, **Intelligence**, **Connections** and **Workspace**. Skills, Connectors and Specialists are managed in the separate [Resource center](../guides/navigation.md#resource-center). Choose a settings panel by purpose or use the header search.
+Open **Settings** from the lower-left corner of the workspace. Its **17 panels** are organized into **System**, **Intelligence**, **Connections** and **Workspace**. Skills, Connectors and Specialists are managed in the separate [Resource center](../guides/navigation.md#resource-center). Choose a settings panel by purpose or use the header search.
 
 | Global control | Behavior |
 | --- | --- |
@@ -27,7 +27,7 @@ Open **Settings** from the lower-left corner of the workspace. Its **16 panels**
 
 This search covers representative settings across every panel, not every field or research document. If a term does not match, use the panel name or the navigation groups below. To search conversations or files, close Settings and use [global search](../guides/navigation.md).
 
-## The 16 main panels {/* #the-17-main-panels */}
+## The 17 main panels {/* #the-17-main-panels */}
 
 | Group | Panel | What it manages |
 | --- | --- | --- |
@@ -39,6 +39,7 @@ This search covers representative settings across every panel, not every field o
 |  | [Memory](../guides/memory.md) | Opt-in global and project notes |
 | Connections | [Network](../guides/network.md) | Proxy, package mirrors and Notebook Relaxed/Strict access rules |
 |  | [Remote](../guides/remote-access.md) | Browser access, pairing and trusted devices |
+|  | [Lab](../guides/providers.md#lab-account) | Desktop organization sign-in, assigned models and usage |
 |  | [Credentials](../tools/credentials.md) | Keys, tokens, OAuth and credential recovery |
 |  | [Compute](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Workspace | [Tags](../guides/tags.md) | Tags and Favorites ordering |

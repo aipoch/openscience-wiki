@@ -1,7 +1,7 @@
 ---
 title: "Herramientas de investigación integradas"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -51,8 +51,10 @@ El [flujo de trabajo de calidad de los datos](../workflows/data-quality.md) prop
 
 Un archivo cargado, un archivo de trabajo Notebook y una versión de artefacto están relacionados pero distintos. Un archivo visible en una lista puede no ser montado todavía en un núcleo infantil. Utilice la referencia actual proporcionada por la aplicación; no reparar una entrada no disponible adivinando una ruta o reemplazando una versión de artefacto ID con su nombre de archivo.
 
-Un archivo Connector creado puede no tener bloque de productor Python capturado. **Sin bloque de productor**, **No review for this version**, **partial** y **atado** evidencia son estados significativos, no blancos para llenar con prosa generada. Utilice [Solución de problemas](../guides/troubleshooting.md) para errores exactos y pasos de recuperación.
+Un archivo Connector creado puede no tener bloque de productor Python capturado. **No hay bloque de productor**, **No review for this version**, **partial** y **atado** evidencia son estados significativos, no blancos para llenar con prosa generada. Utilice [Solución de problemas](../guides/troubleshooting.md) para errores exactos y pasos de recuperación.
 
 Referencia de implementación: [notebook.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/notebook.ts), [artefactos.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/artifacts.ts), [WorkspaceMessageItem.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/WorkspaceMessageItem.tsx).
 
 Para el trabajo de larga duración, siga [Tareas de antecedentes y ejecución de los resultados](../guides/notebook.md#background-tasks-and-result-delivery). Inspeccione las salidas de funcionamiento y guardadas después de la entrega. Entorno & Paquetes, Configuración de Medio Ambiente Compute y Compute Remoto (SSH) permanecen habilitados, pero sus requisitos de tiempo de funcionamiento, red y host todavía se aplican.
+
+Para páginas web públicas, utilice [búsqueda web y lectura de fuentes](web-search.md) con el agente Open-Science incorporado.

@@ -1,7 +1,7 @@
 ---
 title: "Built-in research tools"
 last_update:
-  date: '2026-09-10'
+  date: '2026-11-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -56,3 +56,5 @@ A Connector-created file may have no captured Python producer block. **No produc
 Implementation reference: [notebook.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/notebook.ts), [artifacts.ts](https://github.com/aipoch/open-science/blob/v0.26.0/src/shared/artifacts.ts), [WorkspaceMessageItem.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/workspace/WorkspaceMessageItem.tsx).
 
 For supported long-running work, follow [Background tasks and result delivery](../guides/notebook.md#background-tasks-and-result-delivery). Inspect the actual run and saved outputs after delivery. Environment & Packages, Compute Environment Setup and Remote Compute (SSH) stay enabled, but their runtime, network and host requirements still apply.
+
+For public webpages, use [web search and source reading](web-search.md) with the built-in Open-Science Agent.

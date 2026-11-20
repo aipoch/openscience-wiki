@@ -1,7 +1,7 @@
 ---
 title: "Explorar herramientas"
 last_update:
-  date: "2026-09-09"
+  date: '2026-11-20'
 ---
 
 # Explorar herramientas {/* #explore-tools */}
@@ -10,16 +10,17 @@ Elija una herramienta por el resultado que necesita: recuperar un registro, insp
 
 ## Elija una familia de herramientas {/* #choose-a-tool-family */}
 
-| Necesidad | Empieza aquí. | Lo que debe estar listo | Qué inspeccionar después |
+| Necesidad | Empieza aquí. | ¿Qué debe estar listo? | Qué inspeccionar después |
 | --- | --- | --- | --- |
 | Leer archivos, planificar el trabajo, calcular o publicar resultados | [Herramientas de investigación integradas](./built-in.md) | Autorizaciones de entrada y operación accesibles para proyectos | Respuesta de la herramienta, archivo de salida y registro de ejecución |
+| Encontrar páginas web públicas y leer texto fuente | [Búsqueda web](./web-search.md) | Agente Open-Science incorporado, modelo Main y red | URLs de origen, texto recuperado y cualquier truncación |
 | Encontrar qué software científico utiliza un método | [Catálogo de herramientas científicas](./catalog.md) | Compruebe los paquetes/pesos por separado de la instalación Skill | Real ejecutable/importación y versión |
 | Ejecute Python, R o una carga de trabajo científica | [Instrumentos científicos](./scientific.md) | Tiempo de ejecución seleccionado, paquetes o Compute Host | Código, errores, cheques de salida y procedencia |
-| Query biomedical/scientific records | [Bases de datos científicos](./databases.md) | Habilitado Connector, red y cualquier credenciales requeridas | IDs de origen, campos devueltos y truncación |
+| Registros biomédicos/científicos | [Bases de datos científicas](./databases.md) | Habilitado Connector, red y cualquier credenciales requeridas | IDs de origen, campos devueltos y truncación |
 | Inspeccione los datos de CSV, TSV o hoja de cálculo | [Cuadros y conjuntos de datos](./tables.md) | Archivo compatible y entrada actual | Visibles hileras/columnas, delimitador y dimensiones de datos completos |
-| Leer documentos, secuencias, estructuras y otras salidas | [Visores científicos](./viewers.md) | Formato compatible | Contenido reducido y cualquier limitación de previsualización |
-| Conecte un servidor MCP | [Conectores y MCP](./mcp.md) | Configuración y confianza del servidor | Estado conectado y una respuesta real de la herramienta |
-| Configurar una identidad de servicio/key | [Cátedras de servicio](./credentials.md) | Servicio correcto y cuenta usable | Resultado de validación o una consulta en vivo |
+| Leer documentos, secuencias, estructuras y otras salidas | [Científicos](./viewers.md) | Formato compatible | Contenido reducido y cualquier limitación de previsualización |
+| Conectar un servidor MCP | [Conectores y MCP](./mcp.md) | Configuración y confianza del servidor | Estado conectado y una respuesta real de la herramienta |
+| Configurar una identidad de servicio/key | [C. credenciales de servicio](./credentials.md) | Servicio correcto y cuenta usable | Resultado de validación o una consulta en vivo |
 | Exponga sus propios datos locales a través de una herramienta | [Herramienta MCP personalizada](./custom.md) | Un servidor de trabajo con un esquema de entrada | Descubrir, llamar con éxito y comportamiento de fracaso real |
 
 ## Disponibilidad tiene varios significados {/* #availability-has-several-meanings */}

@@ -1,7 +1,7 @@
 ---
 title: "安裝與更新"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,7 +12,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformGuide />
 
-**當前安裝包：** [v1.3.0 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.0) 提供桌面安裝器、獨立 CLI 壓縮包及 Linux CLI `.deb`／`.rpm`。先選擇安裝類型和 CPU 架構，再使用同一發行頁的校驗值覈對文件。桌面版仍可通過 **Settings → General → Command line tool → Install command** 安裝命令入口。
+**當前安裝包：** [v1.3.1 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.1) 提供桌面安裝器、獨立 CLI 壓縮包及 Linux CLI `.deb`／`.rpm`。先選擇安裝型別和 CPU 架構，再使用同一發行頁的校驗值核對檔案。桌面版仍可透過 **Settings → General → Command line tool → Install command** 安裝命令入口。
 
 ## 選擇安裝方式 {/* #选择安装方式 */}
 
@@ -62,12 +62,12 @@ Homebrew 自動選擇 Apple Silicon 或 Intel。安裝後在 **Settings → Gene
 
 <PlatformContent platform="linux">
 
-| 電腦 | 確認架構 | 文件選擇與安裝 |
+| 電腦 | 確認架構 | 檔案選擇與安裝 |
 | --- | --- | --- |
-| Ubuntu / Debian | `uname -m`：`x86_64` 對應 x64，`aarch64` 對應 ARM64 | 選擇匹配的 `.deb`，用系統軟件安裝器打開，再從應用菜單啓動 |
-| 其他受支持的 Linux 發行版 | 查看 `uname -m` | 選擇匹配的 `.AppImage`，在文件權限中允許執行，再打開；若系統提示缺少依賴，按報錯補齊 |
+| Ubuntu / Debian | `uname -m`：`x86_64` 對應 x64，`aarch64` 對應 ARM64 | 選擇匹配的 `.deb`，用系統軟體安裝器開啟，再從應用選單啟動 |
+| 其他受支援的 Linux 發行版 | 檢視 `uname -m` | 選擇匹配的 `.AppImage`，在檔案權限中允許執行，再開啟；若系統提示缺少依賴，按報錯補齊 |
 
-v1.3.0 提供 Linux **x64 和 ARM64** 安裝包。ARM64 選擇 `aipoch-open-science-1.3.0-linux-arm64.AppImage` 或 `aipoch-open-science_1.3.0_arm64.deb`；x64 對應 `aipoch-open-science-1.3.0-linux-x86_64.AppImage` 或 `aipoch-open-science_1.3.0_amd64.deb`。從所選版本的官方 Assets 下載，與 `uname -m` 的結果對應。
+v1.3.1 提供 Linux **x64 和 ARM64** 安裝包。ARM64 選擇 `aipoch-open-science-1.3.1-linux-arm64.AppImage` 或 `aipoch-open-science_1.3.1_arm64.deb`；x64 對應 `aipoch-open-science-1.3.1-linux-x86_64.AppImage` 或 `aipoch-open-science_1.3.1_amd64.deb`。從所選版本的官方 Assets 下載，與 `uname -m` 的結果對應。
 
 </PlatformContent>
 
@@ -75,43 +75,43 @@ v1.3.0 提供 Linux **x64 和 ARM64** 安裝包。ARM64 選擇 `aipoch-open-scie
 
 ### 使用獨立 CLI {/* #standalone-cli */}
 
-需要終端／瀏覽器安裝時，從 [v1.3.0](https://github.com/aipoch/open-science/releases/tag/v1.3.0) 下載與平臺匹配的獨立 CLI 壓縮包。其中包含 Node、後端和 Web UI；完整解壓後按 [CLI 設置](../reference/cli.md#terminal-setup)操作。保留同一安裝中的 CLI 與後端，不混用不同版本。
+需要終端／瀏覽器安裝時，從 [v1.3.1](https://github.com/aipoch/open-science/releases/tag/v1.3.1) 下載與平臺匹配的獨立 CLI 壓縮包。其中包含 Node、後端和 Web UI；完整解壓後按 [CLI 設定](../reference/cli.md#terminal-setup)操作。保留同一安裝中的 CLI 與後端，不混用不同版本。
 
 #### Homebrew CLI {/* #homebrew-cli */}
 
-通過 Homebrew formula 安裝或管理 CLI：`brew install aipoch/tap/open-science`，與桌面 cask 不同。先查看 Homebrew 實際提供的版本，GitHub 發佈新版本不代表 formula 已同步。安裝不會啓動系統服務。命令衝突時用 `type -a open-science` 檢查，並使用 `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"` 指定該安裝。
+透過 Homebrew formula 安裝或管理 CLI：`brew install aipoch/tap/open-science`，與桌面 cask 不同。先檢視 Homebrew 實際提供的版本，GitHub 釋出新版本不代表 formula 已同步。安裝不會啟動系統服務。命令衝突時用 `type -a open-science` 檢查，並使用 `"$(brew --prefix aipoch/tap/open-science)/bin/open-science"` 指定該安裝。
 
 #### Linux CLI 安裝包 {/* #linux-cli-packages */}
 
-Linux 終端／瀏覽器安裝選擇 **open-science-cli**，與 **aipoch-open-science** 桌面安裝包分開。從 [v1.3.0 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.0) 下載匹配的包和 `CLI-PACKAGE-SHA256SUMS.txt`，校驗後再安裝。
+Linux 終端／瀏覽器安裝選擇 **open-science-cli**，與 **aipoch-open-science** 桌面安裝包分開。從 [v1.3.1 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.1) 下載匹配的包和 `CLI-PACKAGE-SHA256SUMS.txt`，校驗後再安裝。
 
-| 發行版／架構 | v1.3.0 CLI 安裝包 |
+| 發行版／架構 | v1.3.1 CLI 安裝包 |
 | --- | --- |
-| Debian / Ubuntu，x64 | `open-science-cli_1.3.0_amd64.deb` |
-| Debian / Ubuntu，ARM64 | `open-science-cli_1.3.0_arm64.deb` |
-| Fedora，x64 | `open-science-cli-1.3.0-1.x86_64.rpm` |
-| Fedora，ARM64 | `open-science-cli-1.3.0-1.aarch64.rpm` |
+| Debian / Ubuntu，x64 | `open-science-cli_1.3.1_amd64.deb` |
+| Debian / Ubuntu，ARM64 | `open-science-cli_1.3.1_arm64.deb` |
+| Fedora，x64 | `open-science-cli-1.3.1-1.x86_64.rpm` |
+| Fedora，ARM64 | `open-science-cli-1.3.1-1.aarch64.rpm` |
 
 透過對應的包管理器安裝已下載的檔案。下例使用 x64；ARM64 裝置應替換為表中的相應檔名。
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ./open-science-cli_1.3.0_amd64.deb
+sudo apt install ./open-science-cli_1.3.1_amd64.deb
 # Fedora: use this instead of the apt command
-sudo dnf install ./open-science-cli-1.3.0-1.x86_64.rpm
+sudo dnf install ./open-science-cli-1.3.1-1.x86_64.rpm
 ```
 
 執行 `open-science-cli start --no-open`，再執行 `open-science-cli status --json`。確認執行後，用 `open-science-cli url` 開啟帶認證的本地 Web 介面；不要公開此地址。繼續按 [CLI 首次設定](../reference/cli.md#terminal-setup)配置模型並執行 `doctor` 檢查，將其中的 `open-science` 替換為 `open-science-cli`。
 
 安裝包包含 Node、後端和 Web UI，不會安裝 Python／R，也不會建立自動啟動的系統服務。系統憑據儲存和沙箱前提仍適用，參見[無介面 Linux 的憑據儲存](../reference/server.md)。同時安裝了桌面啟動器時，明確使用 `open-science-cli`。
 
-升級或卸載前，結束工作並停止**所有由該安裝包啓動的配置實例**。下載下一版安裝包後再通過 apt／dnf 安裝；此安裝方式不會配置 AIPOCH apt／dnf 軟件源。卸載保留研究數據和憑據。命令衝突與平臺要求見[官方安裝包說明](https://github.com/aipoch/open-science/blob/v1.3.0/docs/standalone-runtime.md#linux-cli-distribution-packages)。
+升級或解除安裝前，結束工作並停止**所有由該安裝包啟動的配置例項**。下載下一版安裝包後再透過 apt／dnf 安裝；此安裝方式不會配置 AIPOCH apt／dnf 軟體源。解除安裝保留研究資料和憑據。命令衝突與平臺要求見[官方安裝包說明](https://github.com/aipoch/open-science/blob/v1.3.1/docs/standalone-runtime.md#linux-cli-distribution-packages)。
 
 ### 從原始碼執行 {/* #从源码运行 */}
 
 要求：Git、Node.js 24、npm，以及 Electron 在當前平臺的構建前提。代理框架可在應用中安裝或選擇。倉庫會在安裝階段生成 Prisma Client、應用補丁並準備 Electron 原生依賴。
 
-需要復現源碼安裝時，先從 [Changelog](../changelog/v1.3.0.md) 確定目標發佈標籤，再安裝依賴。默認克隆跟隨分支，不會固定到某個發佈版本。記錄所選標籤、源碼提交及運行時版本，便於他人復現環境。
+需要復現原始碼安裝時，先從 [Changelog](../changelog/v1.3.1.md) 確定目標釋出標籤，再安裝依賴。預設克隆跟隨分支，不會固定到某個釋出版本。記錄所選標籤、原始碼提交及執行時版本，便於他人復現環境。
 
 將下方 `RELEASE_TAG` 替換為所選發行頁的完整標籤（包括開頭的 `v`）。如果需要跟隨開發分支，省略 `--branch RELEASE_TAG --depth 1`；這條路線會使用預設分支。
 
@@ -128,7 +128,7 @@ npm run dev
 npm run build
 ```
 
-構建目標與依賴應以所選標籤的 package.json 和[獨立運行說明](https://github.com/aipoch/open-science/blob/v1.3.0/docs/standalone-runtime.md)爲準。僅開發 Node 與 Web 入口可使用 `npm run dev:web`；`npm run dev` 同時準備桌面客戶端。使用獨立配置目錄，避免測試數據進入日常配置。
+構建目標與依賴應以所選標籤的 package.json 和[獨立執行說明](https://github.com/aipoch/open-science/blob/v1.3.1/docs/standalone-runtime.md)為準。僅開發 Node 與 Web 入口可使用 `npm run dev:web`；`npm run dev` 同時準備桌面客戶端。使用獨立配置目錄，避免測試資料進入日常配置。
 
 ## 完成首次配置 {/* #完成首次配置 */}
 
@@ -234,3 +234,8 @@ v1.0.6 Windows 安裝程序會保留應用目錄旁的研究數據，並修復�
 ### macOS 差分下載 {/* #differential-updates */}
 
 從 v1.2.0 起，支持的 macOS 更新可以只下載應用鏡像中變化的數據塊。如果差分方式不可用或無法通過校驗，更新器會回退到完整安裝包，因此下載量較大本身不代表失敗。等待下載結束、完成更新準備，並在重新啓動後確認安裝版本。原有分發渠道對自動安裝的限制仍然適用。
+## 從 v1.3.0 更新時遇到安裝阻塞 {/* #update-from-130 */}
+
+如果已經完成當前任務，v1.3.0 仍提示另一個程序正在使用安裝目錄，可能是舊更新程式把應用自身的後臺程序誤判成外部佔用。下載適合本平臺的官方 v1.3.1 安裝包，徹底退出 Open-Science 並停止後臺服務，再按照[手動安裝步驟](#manual-update)更新。對於 CLI 管理的配置例項，替換檔案前先核對[服務狀態與停止結果](../reference/server.md#lifecycle-commands)。
+
+重新開啟應用，在 **Settings → General** 確認版本為 v1.3.1，並檢查原專案和資料位置。配置與研究資料會保留。修復作用於從 v1.3.1 發起的後續更新，剛下載的安裝包無法改變仍在執行的 v1.3.0 更新程式。

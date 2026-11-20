@@ -1910,5 +1910,17 @@
   },
   "docs.outline.reference.v122.scope": {
     "message": "v1.2.2 — v1.2.2"
+  },
+  "docs.outline.tools.web-search.title": {
+    "message": "Поиск в Интернете и чтение источников"
+  },
+  "docs.outline.tools.web-search.scope": {
+    "message": "Найдите общедоступные веб-страницы, прочитайте их текст и проверьте доказательства источника."
+  },
+  "docs.outline.reference.v131.title": {
+    "message": "v1.3.1"
+  },
+  "docs.outline.reference.v131.scope": {
+    "message": "Веб-поиск, графики цитирования, обмен лабораторией и восстановление ресурсов."
   }
 }

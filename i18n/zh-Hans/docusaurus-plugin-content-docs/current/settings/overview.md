@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: 设置中心总览
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # 设置中心总览
 
-从工作区左下打开 **Settings**。**16 个面板**按用途分为 **System**、**Intelligence**、**Connections** 和 **Workspace** 四组。Skills、Connectors 和 Specialists 已移到独立的[资源中心](../guides/navigation.md#resource-center)管理。可按用途选择设置面板，或使用顶部搜索。
+从工作区左下打开 **Settings**。**17 个面板**按用途分为 **System**、**Intelligence**、**Connections** 和 **Workspace** 四组。Skills、Connectors 和 Specialists 已移到独立的[资源中心](../guides/navigation.md#resource-center)管理。可按用途选择设置面板，或使用顶部搜索。
 
 | 全局控件 | 行为 |
 | --- | --- |
@@ -27,7 +27,7 @@ last_update:
 
 搜索覆盖各面板中的代表性设置，不包含每个字段或研究文档。找不到某个词时，改用面板名称或下方导航分组。查找对话或文件，应关闭设置后使用[全局搜索](../guides/navigation.md)。
 
-## 16 个主面板 {/* #17-个主面板 */}
+## 17 个主面板 {/* #17-个主面板 */}
 
 | 分组 | 面板 | 管理内容 |
 | --- | --- | --- |
@@ -39,6 +39,7 @@ last_update:
 |  | [Memory](../guides/memory.md) | 按需启用的全局与项目记忆 |
 | Connections | [Network](../guides/network.md) | 代理、软件包镜像与 Notebook Relaxed/Strict 访问规则 |
 |  | [Remote](../guides/remote-access.md) | 浏览器访问、配对与可信设备 |
+|  | [Lab](../guides/providers.md#lab-account) | 桌面版组织登录、分配模型和用量 |
 |  | [Credentials](../tools/credentials.md) | 密钥、令牌、OAuth 与凭据恢复 |
 |  | [Compute](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Workspace | [Tags](../guides/tags.md) | 标签与收藏排序 |

@@ -1,7 +1,7 @@
 ---
 title: "Headless service and browser access"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 # Headless service and browser access
@@ -126,4 +126,4 @@ The standalone web workspace exposes **Compute** when its backend provides the r
 
 ## Packages and external tool clients {/* #local-research-tools */}
 
-Authenticated local Web sessions can [upload and download research packages](../guides/research-packages.md#local-package-transfer); remote Web sessions do not gain this transfer capability. To connect an external tool client on the same machine, configure the [stdio MCP adapter](cli.md#external-mcp). It uses an already-running local service and that profile's permissions; it does not create a remote MCP URL.
+Authenticated local Web sessions can [upload and download research packages](../guides/research-packages.md#local-package-transfer); remote Web sessions do not gain this transfer capability. To connect an external tool client on the same machine, configure the [stdio MCP adapter](cli.md#external-mcp). From v1.3.1, it starts or reuses the selected profile's service and keeps a persistent hold after the client disconnects. It uses that profile's permissions; it does not create a remote MCP URL.

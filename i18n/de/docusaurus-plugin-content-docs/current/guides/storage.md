@@ -1,7 +1,7 @@
 ---
 title: "Lagerung und archivierte Arbeiten"
 last_update:
-  date: '2026-09-24'
+  date: '2026-11-20'
 ---
 
 # Lagerung und archivierte Arbeiten {/* #storage-and-archived-work */}
@@ -140,3 +140,6 @@ Quellen: [Speicherpaneel](https://github.com/aipoch/open-science/blob/v0.26.0/sr
 ## Daten nach einem Upgrade wieder öffnen {/* #historical-data-location */}
 
 Eine vorhandene gespeicherte Datenposition hat Vorrang. Bei einer abgeschlossenen älteren Installation ohne explizit gespeicherten Speicherort behält Open-Science den historischen Speicherort bei und speichert diese Option. Wenn dieser gespeicherte Ordner nicht verfügbar ist, verbinden Sie ihn erneut, bevor Sie ihn neu starten. Wenn mehrere historische Standorte Forschungsdaten enthalten, werden Sie von der App aufgefordert, den ursprünglichen Ordner auszuwählen oder wiederherzustellen, anstatt ihn stillschweigend auszuwählen. Bewahren Sie beide Kopien auf, bis Sie ihre Projekte und Dateien überprüft haben; Erstellen Sie keinen neuen leeren Speicherort, um einen offensichtlichen Datenverlust zu beheben.
+## Reconnect ein fehlendes Forschungs-Laufwerk {/* #missing-drive */}
+
+Wenn die Startwiederherstellung besagt, dass der gespeicherte Forschungsordner fehlt, lesen Sie den Pfad im Dialog und verbinden Sie das Laufwerk neu oder stellen Sie den Zugriff auf denselben Ordner wieder her, bevor Sie neu starten. Erstellen Sie keinen leeren Ersatzordner über dem erwarteten Speicherort oder verschieben Sie verwaltete Dateien von Hand. Überprüfen Sie nach dem Öffnen der App den gespeicherten Speicherort und die Dateien eines vorhandenen Projekts.

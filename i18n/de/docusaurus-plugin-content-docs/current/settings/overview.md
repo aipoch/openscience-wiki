@@ -1,13 +1,13 @@
 ---
 sidebar_position: 1
-title: "Einstellungen Übersicht"
+title: "Einstellungsübersicht"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
-# Einstellungen Übersicht {/* #settings-overview */}
+# Einstellungsübersicht {/* #settings-overview */}
 
-Offen **Settings** aus der unteren linken Ecke des Arbeitsbereichs. Seine **16 Tafeln** organisiert in **System**, **Intelligence**, **Connections** und **Workspace**. Fähigkeiten, Konnektoren und Spezialisten werden getrennt verwaltet [Ressourcenzentrum](../guides/navigation.md#resource-center). Wählen Sie ein Einstellungsfeld nach Zweck oder verwenden Sie die Header-Suche.
+Öffnen Sie **Settings** in der unteren linken Ecke des Arbeitsbereichs. Seine **17-Panels** sind in **System**, **Intelligence**, **Connections** und **Workspace** organisiert. Skills, Konnektoren und Spezialisten werden im separaten [Ressourcenzentrum](../guides/navigation.md#resource-center) verwaltet. Wählen Sie ein Einstellungsfeld nach Zweck oder verwenden Sie die Header-Suche.
 
 | Globale Kontrolle | Verhalten |
 | --- | --- |
@@ -16,7 +16,7 @@ Offen **Settings** aus der unteren linken Ecke des Arbeitsbereichs. Seine **16 T
 | `Maximize` / `Restore` | Wechsel zwischen einem großen Dialog und Vollbildeinstellungen |
 | `Close settings` | Kehren Sie zu dem ursprünglichen Projekt und der ursprünglichen Sitzung zurück, ohne die Einstellungen zu verlieren, die erfolgreich gespeichert wurden |
 | `Dismiss settings error` | Schließen Sie das Fehlerbanner; die fehlgeschlagene Operation wird nicht automatisch wiederholt |
-| Mobiler Navigationsbutton | Öffnen oder Schließen der Einstellungen Navigationsschublade |
+| Mobiler Navigations-Button | Öffnen oder Schließen der Einstellungen Navigationsschublade |
 
 ## Finde eine Einstellung {/* #find-a-setting */}
 
@@ -27,24 +27,25 @@ Offen **Settings** aus der unteren linken Ecke des Arbeitsbereichs. Seine **16 T
 
 Diese Suche umfasst repräsentative Einstellungen in jedem Panel, nicht in jedem Feld oder Forschungsdokument. Wenn ein Begriff nicht übereinstimmt, verwenden Sie den Panelnamen oder die Navigationsgruppen unten. Um Gespräche oder Dateien zu durchsuchen, schließen Sie Einstellungen und verwenden Sie [Globale Suche](../guides/navigation.md).
 
-## Die 16 Hauptpanels {/* #the-17-main-panels */}
+## Die 17 Hauptpanels {/* #the-17-main-panels */}
 
 | Gruppe | Panel | Was sie verwaltet |
 | --- | --- | --- |
-| System | [Generalmajor](../guides/appearance.md#help-center) | App-Version, Updates, Diagnose, CLI-Installation, Fensterverhalten und Hilfe |
-|  | [Aussehen](../guides/appearance.md) | Thema, Sprache, Desktop-Interface-Skala und unterstützte App-Icon-Auswahl |
-|  | [Meldungen](../guides/appearance.md) | Aufgabenwarnungen, Benachrichtigungsinhalt, Systemstatus und Testbenachrichtigung |
+| System | [Allgemein](../guides/appearance.md#help-center) | App-Version, Updates, Diagnose, CLI-Installation, Fensterverhalten und Hilfe |
+|  | [Darstellung](../guides/appearance.md) | Thema, Sprache, Desktop-Oberfläche und unterstützte App-Icon-Auswahl |
+|  | [Benachrichtigungen](../guides/appearance.md) | Aufgabenwarnungen, Benachrichtigungsinhalt, Systemstatus und Testbenachrichtigung |
 | Intelligenz | [Modell](../guides/models.md) | Anbieter- und Szenariomodelle, einschließlich [Bilddienste](../guides/image-generation.md) |
-|  | [Agent](../guides/frameworks.md) | Installation, Umschaltung und Reparatur von Agentenrahmen |
-|  | [Speicher](../guides/memory.md) | Opt-in Global und Project Notes |
-| Anschlüsse | [Netzwerk](../guides/network.md) | Proxy, Paketspiegel und Notebook Entspannte / strenge Zugangsregeln |
+|  | [Agent](../guides/frameworks.md) | Installation, Umschaltung und Reparatur von Agenten-Frameworks |
+|  | [Erinnerungen](../guides/memory.md) | Opt-in Global- und Projektnotizen |
+| Verbindungen | [Netzwerk](../guides/network.md) | Proxy, Paketspiegel und Notebook Entspannte / strenge Zugangsregeln |
 |  | [Remote](../guides/remote-access.md) | Browserzugriff, Kopplung und vertrauenswürdige Geräte |
+|  | [Lab](../guides/providers.md#lab-account) | Desktop-Organisationsanmeldung, zugewiesene Modelle und Nutzung |
 |  | [Anmeldeinformationen](../tools/credentials.md) | Schlüssel, Token, OAuth und Credential Recovery |
-|  | [Berechnung](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
+|  | [Rechenressourcen](../guides/remote-compute.md) | SSH · Slurm · Kubernetes · Hugging Face Jobs · Modal · Ray |
 | Arbeitsbereich | [Tags](../guides/tags.md) | Tags und Favoriten bestellen |
-|  | [Genehmigungen](../guides/approval-modes.md) | Ausfallmodus und eingesparte Zuschüsse |
-|  | [Laufzeiten](../guides/runtimes.md) | Python/R-Umgebungen und Pakete |
-|  | [Lagerung](../guides/storage.md) | Datenortung, Schreibzugriff und Festplattennutzung |
+|  | [Berechtigungen](../guides/approval-modes.md) | Default-Modus und eingesparte Zuschüsse |
+|  | [Laufzeiten](../guides/runtimes.md) | Python/R Umgebungen und Pakete |
+|  | [Speicher](../guides/storage.md) | Datenortung, Schreibzugriff und Festplattennutzung |
 |  | [Verwendung](../guides/usage.md) | Token-, Call- und Research-Statistiken |
 |  | [Archiviert](../guides/storage.md) | Archivierte Arbeit wiederherstellen oder dauerhaft löschen |
 

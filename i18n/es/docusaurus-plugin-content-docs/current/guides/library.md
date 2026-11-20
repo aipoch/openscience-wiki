@@ -1,7 +1,7 @@
 ---
 title: "Biblioteca de literatura y citas"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-20'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -512,11 +512,17 @@ Cuando existen registros adicionales de la Biblioteca, una acción **Select all 
 
 Cuando una evaluación de recopilación inteligente se detiene en un lote fallido, inspeccione su error y el progreso restante antes de utilizar la reingresación ofrecida. Desde v0.37.0, la reingresación reanuda el lote fallido al tiempo que preserva el trabajo de evaluación completado. Mantenga el alcance y los criterios inalterados para esa reingresación, a continuación, revise Incluido, Repaso de las necesidades y resultados no incluidos. No cree una colección duplicada para recuperar una evaluación interrumpida.
 
-## Trace references and citing papers {/* #citation-discovery */}
+## Explore el gráfico de citas {/* #citation-discovery */}
 
-Abra los detalles de una referencia y elija **References** o **Cited by**. Semántica Scholar suministra estas relaciones. Si la búsqueda coincide solo por título, compare el título de papel propuesto, autores y año antes de confirmarlo. Uso **Load more** para resultados posteriores, seleccione los papeles que necesita, luego **Add selected to Inbox**. Reviselos en Inbox antes de aceptarlos en la Biblioteca; descubrir una cita no recupera su texto completo.
+1. Abre un papel en **Library**. Bajo **Explorar citas**, elija **Referencias** o **Citado por**, luego cambie de **Lista** a **Citation graph**. Revise el título y los identificadores del papel original.
+2. Elija la fuente: **Europe PMC**, **OpenCitations · Index v2** o **OpenCitations · SKG-IF**. El defecto es Europa PMC; la cobertura y las relaciones disponibles difieren entre las fuentes.
+3. Utilice **All**, **Referencias** o **Citado por** para filtrar el gráfico. Arrows señala desde el papel citante hasta el papel que cita. Seleccione un nodo o una fila en **Lista de artículos** para inspeccionar sus detalles.
+4. Elija **Set as center** para explorar un papel relacionado. **Back** retrata su exploración; **Original paper** vuelve al registro inicial. Cambiar el centro de gráficos no reemplaza el registro de la Biblioteca.
+5. Utilice **Añadir a la bandeja de entrada** para un candidato que desee mantener, luego revise en Inbox antes de aceptarlo. Esto ahorra un registro de candidatos, no su texto completo.
 
-Una clave de API es opcional. Si las solicitudes son limitadas, espere o use **Configure API key** en la aplicación de escritorio local. Un resultado perdido puede reflejar la cobertura de la fuente o los límites de acceso; no establece que el documento no tiene referencias ni citas.
+El gráfico representa los resultados cargados, no un censo completo de citas. Utilice la fuente mostrada y los avisos de cobertura al interpretar un gráfico vacío o parcial. Si una búsqueda no está disponible, vuelva a entrar más tarde o seleccione otra fuente apropiada. Un enlace de citación no establece que un papel apoye la reclamación del otro.
+
+![Explore el gráfico de citas](/img/open-science/v1.3.1/citation-graph.webp)
 
 ## Importar archivos y materiales complementarios {/* #supplementary-materials */}
 

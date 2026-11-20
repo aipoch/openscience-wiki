@@ -1,7 +1,7 @@
 ---
 title: "Dépannage et questions communes"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # Dépannage et questions communes {/* #troubleshooting-and-common-questions */}
@@ -264,3 +264,6 @@ Cela n'accorde pas l'accès à un papier payant ou ne fournit pas d'authentifica
 ## Récupérer après la déconnexion du service local {/* #local-service-recovery */}
 
 Lorsque l'espace de travail affiche la récupération du service local, attendez que la connexion revienne avant de répéter une action. Le brouillon Compositeur est conservé, tandis que les actions non disponibles restent bloquées. Après la reconnexion, inspectez la conversation ou lancez un enregistrement pour voir si la demande précédente a été acceptée. Reprendre de l'état réel plutôt que d'envoyer la même tâche deux fois.
+## Répondre à une erreur de fournisseur de modèle {/* #provider-errors */}
+
+Lisez la cause indiquée avec la réponse ratée. Pour les erreurs d'authentification ou d'autorisation de compte, vérifiez la connexion du fournisseur; pour les quotas épuisés, inspecter l'utilisation de ce compte; pour les limites de tarifs, attendez avant de réessayer. Pour un modèle non disponible, rafraîchir la liste prise en charge et choisir un modèle accessible. Une connexion perdue ou une réponse interrompue nécessite une vérification de la session en cours et un travail d'outil terminé avant de soumettre à nouveau. Pour une limite de contexte, réduisez le matériel fourni ou commencez une continuation bien ciblée. Changer de fournisseur n'est pas nécessaire pour chaque erreur.

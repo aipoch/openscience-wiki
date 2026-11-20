@@ -2,12 +2,12 @@
 sidebar_position: 1
 title: "설정 개요"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # 설정 개요 {/* #settings-overview */}
 
-기타 **Settings** 작업 공간의 왼쪽 모서리에서. 이름 * **16 패널** 본문 바로가기 **System**, **Intelligence**, **Connections** · **Workspace**· 기술, 커넥터 및 전문가는 별도의 관리 [회사연혁](../guides/navigation.md#resource-center)· 목적에 따라 설정 패널을 선택하거나 헤더 검색을 사용합니다.
+작업 공간의 왼쪽 모서리에서 **Settings**을 엽니 다. **17 패널**은 **System**, **Intelligence**, **Connections** 및 **Workspace**로 구성됩니다. Skills, 커넥터 및 전문가는 별도의 [리소스 센터](../guides/navigation.md#resource-center)에서 관리됩니다. 설정 패널을 선택하거나 헤더 검색을 사용합니다.
 
 | 글로벌 제어 | 뚱 베어 |
 | --- | --- |
@@ -27,26 +27,27 @@ last_update:
 
 이 검색은 각 패널의 대표 설정을 다루고, 모든 필드 또는 연구 문서가 아닙니다. 용어가 일치하지 않는 경우, 패널 이름 또는 내비게이션 그룹을 사용하십시오. 대화 또는 파일을 검색하려면 설정 및 [글로벌 검색](../guides/navigation.md)을 사용하십시오.
 
-## 16 메인 패널 {/* #the-17-main-panels */}
+## 17 메인 패널 {/* #the-17-main-panels */}
 
-| 이름 &#42; | 회사연혁 | 어떻게 관리합니까? |
+| 그룹 | (주) | 어떤 관리 |
 | --- | --- | --- |
-| 시스템 | [주요사업](../guides/appearance.md#help-center) | 앱 버전, 업데이트, 진단, CLI 설치, 창 동작 및 도움 |
-|  | [이름 &#42;](../guides/appearance.md) | 테마, 언어, 데스크탑 인터페이스 규모 및 지원되는 앱 아이콘 선택 |
-|  | [공지사항](../guides/appearance.md) | 작업 경고, 알림 내용, 시스템 상태 및 테스트 알림 |
-| - 연혁 | [모델 번호:](../guides/models.md) | 공급자 및 시나리오 모델, 포함 [이미지 서비스](../guides/image-generation.md) |
-|  | [이름 &#42;](../guides/frameworks.md) | Agent Framework 설치, 전환 및 수리 |
-|  | [기억하기](../guides/memory.md) | 글로벌 프로젝트 노트 |
-| 연결하기 | [네트워크](../guides/network.md) | 프록시, 패키지 미러 및 노트북 Relaxed/Strict 액세스 규칙 |
-|  | [원격 제어](../guides/remote-access.md) | 브라우저 액세스, 페어링 및 신뢰할 수있는 장치 |
-|  | [회사 소개](../tools/credentials.md) | 키, 토큰, OAuth 및 자격 복구 |
-|  | [회사 소개](../guides/remote-compute.md) | SSH · Slurm · 쿠버네티스 · Hugging Face Jobs · Modal · Ray |
-| 작업 공간 | [이름 &#42;](../guides/tags.md) | 태그 및 즐겨찾기 주문 |
-|  | [제출](../guides/approval-modes.md) | 기본 모드 및 저장된 보조금 |
+| 시스템 | [일반](../guides/appearance.md#help-center) | 앱 버전, 업데이트, 진단, CLI 설치, 창 동작 및 도움 |
+|  | [외관](../guides/appearance.md) | 테마, 언어, 데스크탑 인터페이스 규모 및 지원되는 앱 아이콘 선택 |
+|  | [알림](../guides/appearance.md) | 작업 경고, 알림 내용, 시스템 상태 및 테스트 알림 |
+| 인텔리전스 | [모델](../guides/models.md) | 공급자와 시나리오 모델, 포함 [이미지 서비스](../guides/image-generation.md) |
+|  | [에이전트](../guides/frameworks.md) | Agent Framework 설치, 전환 및 수리 |
+|  | [메모리](../guides/memory.md) | 글로벌 및 프로젝트 노트 |
+| 연결 | [네트워크](../guides/network.md) | 프록시, 패키지 미러 및 Notebook Relaxed/Strict 액세스 규칙 |
+|  | [원격](../guides/remote-access.md) | 브라우저 액세스, 페어링 및 신뢰할 수있는 장치 |
+|  | [Lab](../guides/providers.md#lab-account) | 데스크톱 조직 로그인, 할당 된 모델 및 사용 |
+|  | [자격 증명](../tools/credentials.md) | 키, 토큰, OAuth 및 자격 복구 |
+|  | [컴퓨팅](../guides/remote-compute.md) | SSH · Slurm · 쿠버네티스 · Hugging Face Jobs · Modal · Ray |
+| 워크스페이스 | [태그](../guides/tags.md) | 태그 및 즐겨찾기 주문 |
+|  | [권한](../guides/approval-modes.md) | 기본 모드 및 저장된 보조금 |
 |  | [런타임](../guides/runtimes.md) | Python/R 환경 및 패키지 |
-|  | [제품 정보](../guides/storage.md) | 데이터 위치, 액세스 및 디스크 사용 쓰기 |
-|  | [제품 정보](../guides/usage.md) | 토큰, 통화 및 연구 활동 통계 |
-|  | [관련 기사](../guides/storage.md) | 저장소 또는 영구적으로 아카이브 작업을 삭제 |
+|  | [저장소](../guides/storage.md) | 데이터 위치, 액세스 및 디스크 사용 쓰기 |
+|  | [사용량](../guides/usage.md) | 토큰, 통화 및 연구 활동 통계 |
+|  | [보관됨](../guides/storage.md) | 저장소 또는 영구적으로 archived 작업을 삭제 |
 
 **Feedback**은 설정의 하단에 별도의 항목이 남아 있습니다.
 

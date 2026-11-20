@@ -1910,5 +1910,17 @@
   },
   "docs.outline.reference.v122.scope": {
     "message": "v1.2.2 — v1.2.2"
+  },
+  "docs.outline.tools.web-search.title": {
+    "message": "Durchsuchen Sie das Internet und lesen Sie Quellen"
+  },
+  "docs.outline.tools.web-search.scope": {
+    "message": "Finden sie öffentliche webseiten, lesen sie ihren text und inspizieren sie quellennachweise."
+  },
+  "docs.outline.reference.v131.title": {
+    "message": "v1.3.1"
+  },
+  "docs.outline.reference.v131.scope": {
+    "message": "Web-Suche, Zitationsgraphen, Lab-Sharing und Ressourcenwiederherstellung."
   }
 }

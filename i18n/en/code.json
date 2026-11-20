@@ -1977,5 +1977,17 @@
   },
   "docs.outline.reference.v122.scope": {
     "message": "Strict networking, film checkpoints, PDF fidelity and recovery."
+  },
+  "docs.outline.tools.web-search.title": {
+    "message": "Search the web and read sources"
+  },
+  "docs.outline.tools.web-search.scope": {
+    "message": "Find public webpages, read their text and inspect source evidence."
+  },
+  "docs.outline.reference.v131.title": {
+    "message": "v1.3.1"
+  },
+  "docs.outline.reference.v131.scope": {
+    "message": "Web search, citation graphs, Lab sharing and resource recovery."
   }
 }

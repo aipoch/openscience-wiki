@@ -1,7 +1,7 @@
 ---
 title: "Générer et modifier des images"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # Générer et modifier des images {/* #generate-and-edit-images */}
@@ -42,3 +42,10 @@ Ouvrez l'action d'édition de l'image, sélectionnez la version source et décri
 Comparez le candidat avec la source : vérifiez la région demandée et les parties qui devraient rester inchangées. Utilisez l'historique de l'image pour revisiter une version ou continuer à l'éditer. Téléchargez la version finale prévue et rouvrez le fichier avant de le placer dans une présentation. Conserver une légende précise identifiant le contenu illustratif.
 
 Pour les placettes existantes qui nécessitent une vérification numérique, utilisez [Notebook](notebook.md) et [Provenance](reproducibility.md). Pour le texte de diapositives et le formatage, voir [édition de la présentation](presentation-editing.md).
+## Tester un service d'image avant d'enregistrer {/* #test-service */}
+
+En v1.3.1, le formulaire de service d'image offre **Test generation** après que les champs requis et un modèle ont été remplis. Revoir la confirmation : elle génère une image et le fournisseur peut facturer la demande. Un essai réussi s'applique à cette configuration exacte; modifier le modèle, le point de terminaison ou les identifiants nécessite un nouveau test. Vous pouvez aussi enregistrer la configuration sans lancer le test.
+
+Après l'enregistrement d'un nouveau service, son premier modèle devient par défaut seulement lorsqu'aucun modèle de génération d'images n'est déjà sélectionné. Inspectez cette sélection avant votre première demande. Main reste configuré séparément.
+
+![Tester un service d'image avant d'enregistrer](/img/open-science/v1.3.1/image-service-test.webp)

@@ -1,11 +1,10 @@
 ---
 title: "CLIと構造化された出力"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
-
 
 # CLIと構造化された出力 {/* #cli-and-structured-output */}
 
@@ -246,12 +245,11 @@ open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
 
 これらのコマンドはバックエンドが停止していても使えます。 `version` が表示するのは実行したインストールのバージョンであり、接続先サービスのバージョンではありません。 `paths` が表示するのは `cliPath`, `nodePath`, `startupConfigRoot` および `discoveryConfigRoots`です。実行中のサービスや研究データの保存先を特定するものではありません。プロファイルの明示指定は起動・検出先を選びますが、作成はしません。パスにはローカルユーザー名が含まれる場合があるので、共有前に確認してください。
 
-## 外部 MCP クライアントを接続する {/* #external-mcp */}
+## 外部のMCPクライアントを接続 {/* #external-mcp */}
 
-v1.0.4 の独立 CLI は **stdio** で研究ツールを提供します。対象プロファイルのサービスを先に起動してください。アダプターは自動起動しません。設定内の二つの絶対パスを実際のパスに置き換えます。
+v1.3.1 CLIは、**スティーディオ**上の研究ツールを公開しています。 アダプターは、選択したプロファイルの互換性のあるローカルサービスを開始または再利用します。 別の手動開始は要求しません。 このクライアント設定で絶対パスを置換します。
 
 ```bash
-open-science start --no-open --config-root /absolute/path/to/profile
 open-science mcp --help
 ```
 
@@ -266,11 +264,23 @@ open-science mcp --help
 }
 ```
 
-クライアントからアダプターを起動します。**list_projects** で得たプロジェクト ID を **start_run** に渡し、**get_run** で進捗を確認して **list_artifacts** でファイルを調べます。ツール一覧を取得できてもサービスへの接続成功とは限りません。実行には稼働中の認証済みローカルサービスが必要で、リモート HTTP MCP 入口ではありません。
+クライアントがアダプターを起動してみましょう。 **list_projects**でプロジェクトを発見し、返されたプロジェクトIDで**start_run**を提出し、**get_run**に従うし、**list_artifacts**を点検して下さい。 スタートアップが進行中、ツールの発見は終了できます。 最初のツールコールは、サービスが待ちます。 コールは認証されたローカルサービスを使用します。 これは、リモートHTTP MCPエンドポイントではありません。
 
-クライアントはプロファイルの既存権限で動作し、プロジェクトの保存、設定変更、ファイル書込みやモデル利用料を伴う研究を開始できます。Open-Science で承認が必要な場合もあります。タイムアウト後は状態を確認してから書込みを再試行します。クライアント終了や要求の取消しでは受理済み研究は止まりません。明示的に **cancel_run** を使ってください。[公式 MCP ツール・権限リファレンス](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp)も参照してください。
+クライアントは、プロフィールの既存の権限の下で動作します。 永続的なプロジェクトを作成したり、設定を変更したり、ファイルやインカーモデルのコストを記述する作業を開始したりできます。 Open-Science では、承認がまだアクションを必要とする場合があります。 書き込みを繰り返す前にタイムアウト後の現在の状態を調べます。 クライアントを閉じたり、リクエストをキャンセルしても、承認された研究をキャンセルしません。**cancel_run**は明示的に使用してください。 [公式MCPツールと権限の参照](https://github.com/aipoch/open-science/blob/v1.3.1/packages/open-science/CLI.md#external-agents-through-mcp) を参照してください。
 
-パッケージの操作は [CLI インポート・エクスポート](../guides/research-packages.md#local-package-transfer)を参照してください。
+パッケージのコマンドは、[CLI の輸入および輸出](../guides/research-packages.md#local-package-transfer) に従って下さい。
+
+MCPクライアントが切断した後、サービスは永続的な保持を保持します。 `open-science stop --config-root /absolute/path/to/profile --json` を使用して、作業が終了したときに保持するリリース。 接続されたアプリは、まだ実行し続けることがあります。 [サービスオーナーシップ](server.md#backend-ownership) を参照してください。
+
+### CLI のインストールを修復する {/* #mcp-installation-recovery */}
+
+`mcp` が `Cannot find package '@modelcontextprotocol/sdk'` で終了する場合は、サーバーのアドレスではなく依存パッケージの問題です。v1.3.1 の macOS ARM64 アーカイブでは、`npm install -g @aipoch/open-science@1.3.1` で公式 npm クライアントをインストールし、MCP 設定の `command` をそのクライアントに向けます。バックエンドが `database_runtime_unavailable` を返す場合は、完全なスタンドアロンアーカイブから同じプロファイルのバックエンドを先に起動します。
+
+```bash
+/absolute/path/to/standalone/open-science start --no-open --config-root /absolute/path/to/profile
+```
+
+その後、npm MCP クライアントを同じプロファイルに接続し、**list_projects** を呼び出します。起動エラー後は再試行する前に `status --json` を確認してください。ツールを検出できても、バックエンドが動作するとは限りません。
 
 ## 自動処理のためにサービスを維持する {/* #persistent-service */}
 

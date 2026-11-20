@@ -1,7 +1,7 @@
 ---
 title: "無介面服務與瀏覽器訪問"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 # 無介面服務與瀏覽器訪問 {/* #无界面服务与浏览器访问 */}
@@ -126,4 +126,4 @@ CLI 應用更新命令仍已移除，不要使用 `open-science update --json`�
 
 ## 研究包與外部工具客戶端 {/* #local-research-tools */}
 
-經過身份驗證的本地 Web 會話可以[上傳和下載研究包](../guides/research-packages.md#local-package-transfer)；遠程 Web 會話不因此獲得傳輸能力。同一臺機器上的外部工具客戶端可配置 [stdio MCP 適配器](cli.md#external-mcp)。它使用已運行的本地服務及該配置的權限，不會建立遠程 MCP 地址。
+經過身份驗證的本地 Web 會話可以[上傳和下載研究包](../guides/research-packages.md#local-package-transfer)；遠端 Web 會話不因此獲得傳輸能力。同一臺機器上的外部工具客戶端可配置 [stdio MCP 介面卡](cli.md#external-mcp)。從 v1.3.1 起，它會啟動或複用所選配置的服務，並在客戶端斷開後保留持續執行狀態。它使用該配置的權限，不會建立遠端 MCP 地址。

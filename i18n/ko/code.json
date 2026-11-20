@@ -1900,5 +1900,17 @@
   },
   "docs.outline.reference.v122.scope": {
     "message": "v1.2.2 — v1.2.2"
+  },
+  "docs.outline.tools.web-search.title": {
+    "message": "웹을 검색하고 소스를 읽으십시오"
+  },
+  "docs.outline.tools.web-search.scope": {
+    "message": "공공 웹 페이지를 찾아, 자신의 텍스트를 읽고 소스 증거를 검사."
+  },
+  "docs.outline.reference.v131.title": {
+    "message": "v1.3.1"
+  },
+  "docs.outline.reference.v131.scope": {
+    "message": "웹 검색, 인용 그래프, 실험실 공유 및 리소스 복구."
   }
 }

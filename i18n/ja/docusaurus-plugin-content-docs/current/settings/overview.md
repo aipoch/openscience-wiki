@@ -2,17 +2,17 @@
 sidebar_position: 1
 title: "設定の概要"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # 設定の概要 {/* #settings-overview */}
 
-オープン **Settings** ワークスペースの左下隅から。 コンセプト **16パネル** に組織される **System**, **Intelligence**, **Connections** そして、 **Workspace**お問い合わせ スキル、コネクタ、スペシャリストを別々に管理 [リソースセンター](../guides/navigation.md#resource-center)お問い合わせ 目的別に設定パネルを選択するか、ヘッダー検索を使用します。
+ワークスペースの左下隅から **Settings** を開きます。 **17パネル**は**System**、**Intelligence**、**Connections**および**Workspace**に組織されます。 Skills、コネクターおよびスペシャリストは別の[リソースセンター](../guides/navigation.md#resource-center)で管理されます。 目的別に設定パネルを選択するか、ヘッダ検索を使用してください。
 
 | グローバル・コントロール | ビーキャビター |
 | --- | --- |
-| `Back` / `Forward` | メイン設定パネルと詳細、追加、またはインポートのサブビュー間を移動する |
-| Breadcrumb バックボタン | サブビューからメインパネルへ戻ります |
+| `Back` / `Forward` | メイン設定パネルと詳細、追加、またはインポートサブビュー間で移動 |
+| パン粉の背部ボタン | サブビューからメインパネルへ戻ります |
 | `Maximize` / `Restore` | 大きいダイアログとフルスクリーン設定間の切り替え |
 | `Close settings` | 正常に保存された設定を失うことなく、元のプロジェクトとセッションに戻る |
 | `Dismiss settings error` | エラーバナーを閉じます。 失敗した操作は自動的に引き付けられません |
@@ -27,26 +27,27 @@ last_update:
 
 この検索は、すべてのフィールドや研究文書ではなく、すべてのパネル全体に代表的な設定をカバーします。 用語が一致しない場合は、以下のパネル名またはナビゲーショングループを使用します。 会話やファイルを検索するには、設定を閉じて、[グローバル検索](../guides/navigation.md)を使用します。
 
-## 16メインパネル {/* #the-17-main-panels */}
+## 17メインパネル {/* #the-17-main-panels */}
 
 | グループ | パネル | それが管理するもの |
 | --- | --- | --- |
-| システム | [インフォメーション](../guides/appearance.md#help-center) | App版、更新、診断、CLIの取付け、窓の行動および助け |
-|  | [インフォメーション](../guides/appearance.md) | テーマ、言語、デスクトップインターフェイスのスケールおよびサポートされたアプリ アイコンの選択 |
-|  | [お知らせ](../guides/appearance.md) | タスクアラート、通知コンテンツ、システムステータス、テスト通知 |
-| インフォメーション | [モデル](../guides/models.md) | 提供者およびシナリオモデル、を含む [画像サービス](../guides/image-generation.md) |
+| システム | [一般](../guides/appearance.md#help-center) | アプリのバージョン、アップデート、診断、CLIインストール、ウィンドウの動作とヘルプ |
+|  | [外観](../guides/appearance.md) | テーマ、言語、デスクトップインターフェイスのスケールとサポートされたアプリ - アイコンの選択 |
+|  | [通知](../guides/appearance.md) | タスクアラート、通知コンテンツ、システムステータス、テスト通知 |
+| インテリジェンス | [モデル](../guides/models.md) | 提供者およびシナリオモデル、を含む [映像サービス](../guides/image-generation.md) |
 |  | [エージェント](../guides/frameworks.md) | エージェントフレームワークのインストール、切り替え、修理 |
-|  | [メモリ](../guides/memory.md) | 世界のオプトインとプロジェクトノート |
-| コネクション | [ネットワーク](../guides/network.md) | プロキシ、パッケージミラー、ノートブックリラックス/厳格なアクセスルール |
+|  | [メモリ](../guides/memory.md) | オプトイン・グローバルとプロジェクトノート |
+| 接続 | [ネットワーク](../guides/network.md) | プロキシ、パッケージミラー、Notebookリラックス/厳格なアクセスルール |
 |  | [リモート](../guides/remote-access.md) | ブラウザアクセス、ペアリング、信頼できるデバイス |
+|  | [Lab](../guides/providers.md#lab-account) | デスクトップの組織のサインイン、割り当てられたモデルおよび使用法 |
 |  | [資格情報](../tools/credentials.md) | キー、トークン、OAuth、クレデンシャルリカバリ |
-|  | [コンピューティング](../guides/remote-compute.md) | SSH・Slurm・Kubernetes・ハッギング・フェイス・ジョブズ・モーダル・レイ |
-| ワークスペース | [ニュース](../guides/tags.md) | タグとお気に入り 注文 |
-|  | [パーミッション](../guides/approval-modes.md) | デフォルトモードと保存された付与 |
-|  | [ランタイム](../guides/runtimes.md) | Python/R 環境とパッケージ |
+|  | [コンピュート](../guides/remote-compute.md) | SSH・Slurm・Kubernetes・ハッギングフェイスジョブ・モーダル・レイ |
+| ワークスペース | [タグ](../guides/tags.md) | タグとお気に入り 注文 |
+|  | [権限](../guides/approval-modes.md) | デフォルトモードと保存された付与 |
+|  | [ランタイム](../guides/runtimes.md) | Python/R環境とパッケージ |
 |  | [ストレージ](../guides/storage.md) | データの場所、書き込みアクセスおよびディスク使用 |
-|  | [使用方法](../guides/usage.md) | トークン、コールおよび研究活動統計 |
-|  | [アーカイブ](../guides/storage.md) | アーカイブされた作品の復元または永久削除 |
+|  | [使用量](../guides/usage.md) | トークン、コールおよび研究活動統計 |
+|  | [アーカイブ済み](../guides/storage.md) | アーカイブされた作品の復元または永久削除 |
 
 **Feedback** は、設定の下部にある別のエントリのままです。
 

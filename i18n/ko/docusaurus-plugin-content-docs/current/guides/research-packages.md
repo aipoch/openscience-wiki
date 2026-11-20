@@ -2,7 +2,7 @@
 title: ".science 연구 패키지"
 description: "파일 및 증거와 함께 세션을 내보내고 다른 프로젝트에 대한 연구 기록을 검사합니다."
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -198,3 +198,8 @@ open-science session export SESSION_ID --project PROJECT_ID --output ./session.s
 ## 자주 묻는 질문 {/* #import-recovery */}
 
 수입이 취소되면 완료된대로 취급하지 마십시오. 타임 아웃이 확정되지 않은 경우, 다른 수입을 시작하기 전에 대상 프로젝트 및 수입 세션을 찾습니다. 어떤 결과 세션을 열고 파일을 검사합니다. 누락되거나 잘못된 패키지를 위해, intact `.science` 파일을 선택하고 도움을 요청할 때 표시된 오류 또는 상관 관계 식별자를 유지합니다. 이전 시도가 이미 세션을 생성했는지 검사하지 않고 동일한 패키지를 반복하지 마십시오.
+## 공유 및 수입 조직 사례 {/* #organization-cases */}
+
+데스크탑 앱에서 첫 번째 [Lab에 로그인](providers.md#lab-account) 및 조직 확인. 홈 페이지의 **사용 사례**에서 **Organization**을 선택하십시오. 케이스 이름 또는 8문자 공유 코드로 검색합니다. 케이스를 열고, 저자, 패키지 요약, 포함 된 파일 및 배출을 검사, 다음 **가져오기**을 선택하고 대상 프로젝트를 검토합니다. 주어진 기록을 열기 전에 끝내기 위하여 수입품을 기다리십시오; 새로운 분석에 **Fork to continue**을 사용합니다.
+
+자신의 세션을 공유하려면 연구 패키지 내보내기 대화 상자를 열고 선택한 내용을 검토하십시오. **Export and upload**을 선택하면 **Case name** 및 **Description**를 입력하고 **Confirm and upload**를 입력합니다. 선택된 패키지를 직접 구성한 실험실 서버에 전달합니다. **Share code**을 복사하기 전에 **Session package uploaded**에 대한 대기. 확인하기 전에 자료를 위한 포장을 검사하십시오; 혼자서 가입은 세션을 업로드하지 않습니다.

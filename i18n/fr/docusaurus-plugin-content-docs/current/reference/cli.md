@@ -1,11 +1,10 @@
 ---
 title: "CLI et sortie structurée"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
-
 
 # CLI et sortie structurée {/* #cli-and-structured-output */}
 
@@ -246,12 +245,11 @@ open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
 
 Ces commandes fonctionnent sans backend courant. `version` rapporte l'installation invoquée, et non la version d'un service connecté. `paths` Rapports `cliPath`, `nodePath`, `startupConfigRoot` et `discoveryConfigRoots`; elle n'identifie pas un service actif ni le répertoire de données de recherche. Un profil explicite sélectionne l'emplacement de démarrage/découverte sans le créer. Les chemins peuvent révéler des noms d'utilisateur locaux, alors examinez la sortie avant de la partager.
 
-## Connecter un client externe MCP {/* #external-mcp */}
+## Connectez un client externe MCP {/* #external-mcp */}
 
-Le CLI autonome dans v1.0.4 expose les outils de recherche sur **stdio**. Commencez d'abord le service du profil prévu; l'adaptateur ne le démarre pas automatiquement. Remplacer les deux chemins absolus dans cette configuration client :
+Le v1.3.1 CLI expose les outils de recherche sur **Stdio**. L'adaptateur démarre ou réutilise un service local compatible pour le profil sélectionné; un démarrage manuel séparé n'est plus nécessaire. Remplacer les deux chemins absolus dans cette configuration client :
 
 ```bash
-open-science start --no-open --config-root /absolute/path/to/profile
 open-science mcp --help
 ```
 
@@ -266,11 +264,23 @@ open-science mcp --help
 }
 ```
 
-Laissez le client lancer l'adaptateur. Découvrir des projets avec **list_projects**, soumettre **start_run** avec l'ID du projet retourné, suivez **get_run**, et inspecter **list_artifacts**. La seule découverte d'outils ne prouve pas que le service est disponible. Les appels nécessitent le service local authentifié en cours d'exécution; ce n’est pas un point de terminaison HTTP MCP distant.
+Laissez le client lancer l'adaptateur. Découvrez les projets avec **list_projects**, soumettez **start_run** avec l'ID du projet retourné, suivez **get_run** et inspectez **list_artifacts**. La découverte d'outils peut se terminer pendant que le démarrage est en cours; le premier appel à outils attend le service. Les appels utilisent le service local authentifié; ce n'est pas un paramètre HTTP MCP distant.
 
-Le client agit sous les autorisations existantes du profil. Il peut créer des projets persistants, modifier la configuration et commencer à travailler qui écrit des fichiers ou engage des coûts de modèle. Les approbations peuvent encore nécessiter une action en Open-Science. Inspectez l'état actuel après un délai avant de répéter une écriture. Fermer le client ou annuler sa demande n'annule pas la recherche acceptée : utilisation **cancel_run** explicitement. Voir [outil MCP officiel et référence d'autorisation](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp).
+Le client agit en vertu des autorisations existantes du profil. Il peut créer des projets persistants, modifier la configuration et commencer à travailler qui écrit des fichiers ou supporte des coûts de modèle. Les approbations peuvent encore nécessiter une action en Open-Science. Inspectez l'état actuel après un délai avant de répéter une écriture. Fermer le client ou annuler sa demande n'annule pas la recherche acceptée : utilisez **cancel_run** explicitement. Voir le [outil officiel MCP et référence de permission](https://github.com/aipoch/open-science/blob/v1.3.1/packages/open-science/CLI.md#external-agents-through-mcp).
 
 Pour les commandes de paquets, suivez [Importation et exportation de CLI](../guides/research-packages.md#local-package-transfer).
+
+Le service conserve une tenue persistante après la déconnexion du client MCP. Utilisez `open-science stop --config-root /absolute/path/to/profile --json` pour libérer cette cale lorsque le travail est terminé; Les applications connectées peuvent toujours continuer à fonctionner. Voir [propriété des services](server.md#backend-ownership).
+
+### Réparer une installation CLI {/* #mcp-installation-recovery */}
+
+Si `mcp` s’arrête avec `Cannot find package '@modelcontextprotocol/sdk'`, il s’agit d’une dépendance manquante, pas d’une adresse de serveur incorrecte. Pour l’archive macOS ARM64 v1.3.1, installez le client npm officiel avec `npm install -g @aipoch/open-science@1.3.1` et faites pointer `command` dans la configuration MCP vers ce client. Si son backend renvoie `database_runtime_unavailable`, démarrez d’abord le backend de l’archive autonome complète avec le même profil :
+
+```bash
+/absolute/path/to/standalone/open-science start --no-open --config-root /absolute/path/to/profile
+```
+
+Connectez ensuite le client MCP npm à ce profil et appelez **list_projects**. Après une erreur de démarrage, consultez `status --json` avant de réessayer. La découverte des outils ne suffit pas à confirmer le fonctionnement du backend.
 
 ## Gardez un service en marche pour l'automatisation {/* #persistent-service */}
 

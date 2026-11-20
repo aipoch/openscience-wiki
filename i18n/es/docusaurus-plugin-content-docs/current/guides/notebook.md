@@ -1,7 +1,7 @@
 ---
 title: "Notebook y pruebas de ejecución"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -310,3 +310,10 @@ Abra la vista Compute del proyecto e inspeccione el monitor de proceso local. Co
 Utilice **Process tree** para obtener detalles y **Terminate** sólo para una tarea de propiedad que se pretende detener. Esto puede interrumpir la ejecución y descartar las variables del kernel en vivo. Un registro de Notebook guardado no es borrado por detener un proceso, pero la salida sin terminar no es un resultado completado. Si la limpieza reporta un problema y ofrece **Retry cleanup**, inspeccione el estado antes de reintentar. Reload the required inputs before rerunning code in a fresh kernel.
 
 Para ejecuciones repetidas, utilice [Tareas programadas](scheduled-tasks.md) después de completar una ejecución manual.
+## Administrar la memoria y los recursos Notebook {/* #memory-resources */}
+
+Antes de ejecutar, Open-Science comprueba la memoria del sistema. Si una solicitud se detiene por falta de memoria, lea el aviso y finalice las tareas que ya no necesita o libere sus recursos. Recuperar memoria no vuelve a ejecutar la solicitud automáticamente: seleccione **Recheck and retry** cuando aparezca. En un terminal Notebook manual, vuelva al terminal y revise el código actual antes de ejecutarlo otra vez.
+
+Abrir **Compute → Notebook resources**, refrescar la lista y localizar la sesión prevista. Elija **Stop and release Notebook** e inspeccione las tareas locales listadas antes de confirmar **Stop and release**. Esto puede detener esas tareas y descartar variables y conexiones en vivo. La historia, las salidas guardadas, los archivos y los entornos instalados permanecen; Los escritos anteriores no son deshechos, y los trabajos independientes de Compute remoto no se detienen.
+
+Espera a **Recursos de Notebook liberados**. Si la limpieza es incompleta, inspeccione su progreso y utilice **Retry cleanup** cuando esté disponible. La exportación, los cambios ambientales u otras operaciones activas pueden bloquear la liberación; terminarlos y actualizar la lista. Una estimación de memoria no es una promesa de cuánto RAM será liberada.

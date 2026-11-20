@@ -1,7 +1,7 @@
 ---
 title: "Generar y editar imágenes"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-20'
 ---
 
 # Generar y editar imágenes {/* #generate-and-edit-images */}
@@ -42,3 +42,10 @@ Abra la acción de edición de la imagen, seleccione la versión fuente y descri
 Compare el candidato con la fuente: compruebe la región solicitada y las partes que deben permanecer inalteradas. Utilice la historia de la imagen para revisar una versión o continuar editando de ella. Descargue la versión final prevista y vuelva a abrir el archivo antes de colocarlo en una presentación. Mantenga una capción precisa identificando contenido ilustrativo.
 
 Para las parcelas existentes que necesitan comprobación numérica, use [Notebook](notebook.md) y [Provenencia](reproducibility.md). Para el texto de diapositivas y el formato, vea [edición de presentación](presentation-editing.md).
+## Pruebe un servicio de imagen antes de guardar {/* #test-service */}
+
+En v1.3.1, el formulario de servicio de imagen ofrece **Test generation** después de que los campos requeridos y un modelo estén llenos. Revise la confirmación: genera una imagen y el proveedor puede cargar por la solicitud. Una prueba aprobada se aplica a esa configuración exacta; cambiar el modelo, el punto final o la credenciales requiere una nueva prueba. También puede guardar la configuración sin ejecutar la prueba.
+
+Después de guardar un nuevo servicio, su primer modelo se convierte en el predeterminado sólo cuando ningún modelo de generación de imagen ya está seleccionado. Inspeccione esa selección antes de su primera solicitud. Main permanece configurado por separado.
+
+![Pruebe un servicio de imagen antes de guardar](/img/open-science/v1.3.1/image-service-test.webp)

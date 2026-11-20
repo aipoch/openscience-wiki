@@ -1,7 +1,7 @@
 ---
 title: "文獻庫與引用"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-20'
 ---
 
 import Screenshot from '@site/src/components/Screenshot';
@@ -512,11 +512,17 @@ Library 中還有更多匹配記錄時，獨立的 **Select all matching referen
 
 智慧集合評估停在失敗批次時，先檢查錯誤與剩餘進度，再使用介面提供的重試操作。v0.37.0 起，重試繼續失敗批次並保留已完成的評估。此次重試保持範圍和規則不變，完成後檢查 Included、Needs review 與 Excluded 的結果。不要透過建立重複集合來恢復中斷評估。
 
-## 追蹤參考文獻與引用論文 {/* #citation-discovery */}
+## 探索文獻引用圖 {/* #citation-discovery */}
 
-打開一條文獻的詳情，選擇 **References** 或 **Cited by**，查看 Semantic Scholar 提供的參考文獻或引用關係。如果僅通過標題匹配，請覈對候選論文的標題、作者和年份後再確認。使用 **Load more** 加載後續結果，勾選需要的論文，選擇 **Add selected to Inbox**。在 Inbox 審閱後再接受到文獻庫；找到引用關係不代表已經取得全文。
+1. 在 **Library** 開啟論文，在 **Citation discovery** 下點 **References** 或 **Cited by**，再從 **List** 切換到 **Citation graph**，先核對原始論文標題和識別符號。
+2. 選擇來源：**Europe PMC**、**OpenCitations · Index v2** 或 **OpenCitations · SKG-IF**。預設是 Europe PMC，不同來源的覆蓋範圍和可用引用關係不同。
+3. 用 **All**、**References** 或 **Cited by** 篩選圖中的關係。箭頭由施引論文指向被引用論文。選擇節點或 **Paper list** 中的條目，檢視論文詳情。
+4. 選擇 **Set as center**，圍繞相關論文繼續探索。**Back** 返回上一步，**Original paper** 回到最初的論文。切換圖中心不會替換文獻庫中的原始記錄。
+5. 對需要保留的候選選擇 **Add to Inbox**，再到 Inbox 稽核接收。這一步儲存候選題錄，不會取得論文全文。
 
-API key 爲可選項。遇到限流時可以稍後重試，或在本地桌面應用中通過 **Configure API key** 配置。沒有結果可能與數據覆蓋或訪問限制有關，不能據此認定論文沒有參考文獻或引用。
+引用圖展示的是已載入結果，不是完整的引用統計。空圖或部分結果需要結合當前來源及覆蓋提示理解；查詢不可用時，稍後重試或選擇合適的其他來源。存在引用關係，不代表一篇論文支援另一篇的具體論斷。
+
+![探索文獻引用圖](/img/open-science/v1.3.1/citation-graph.webp)
 
 ## 導入文件與補充材料 {/* #supplementary-materials */}
 

@@ -1,11 +1,10 @@
 ---
 title: "CLI 与结构化输出"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-20'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
-
 
 # CLI 与结构化输出
 
@@ -246,10 +245,9 @@ open-science paths --profile /ABSOLUTE/PATH/TO/PROFILE --json
 
 ## 连接外部 MCP 客户端 {/* #external-mcp */}
 
-v1.0.4 的独立 CLI 通过 **stdio** 提供科研工具。先启动目标配置对应的服务；适配器不会自动启动服务。将客户端配置中的两个绝对路径替换为实际路径：
+v1.3.1 CLI 通过 **stdio** 提供研究工具。适配器会为所选配置启动或复用兼容的本地服务，无需再单独手动启动。替换客户端配置中的两个绝对路径：
 
 ```bash
-open-science start --no-open --config-root /absolute/path/to/profile
 open-science mcp --help
 ```
 
@@ -264,11 +262,23 @@ open-science mcp --help
 }
 ```
 
-由客户端启动适配器。先用 **list_projects** 获取项目 ID，再交给 **start_run** 提交任务，通过 **get_run** 查看进度，使用 **list_artifacts** 查看文件。仅能发现工具不代表服务可用；实际调用需要运行中的已认证本地服务，这不是远程 HTTP MCP 入口。
+由客户端启动适配器。先用 **list_projects** 获取项目 ID，再交给 **start_run** 提交任务，通过 **get_run** 查看进度，使用 **list_artifacts** 查看文件。工具发现可能在服务启动期间先完成，第一次工具调用会等待服务就绪。实际调用使用已认证的本地服务，这不是远程 HTTP MCP 入口。
 
-客户端沿用该配置已有的权限，可以创建持久项目、修改配置，并发起会写文件或产生模型费用的任务。审批仍可能需要你在 Open-Science 中处理。请求超时后，先检查当前状态再重复写操作。关闭客户端或取消请求不会取消已接受的研究任务；需要停止任务时明确调用 **cancel_run**。详见[官方 MCP 工具与权限说明](https://github.com/aipoch/open-science/blob/v1.0.4/packages/open-science/CLI.md#external-agents-through-mcp)。
+客户端沿用该配置已有的权限，可以创建持久项目、修改配置，并发起会写文件或产生模型费用的任务。审批仍可能需要你在 Open-Science 中处理。请求超时后，先检查当前状态再重复写操作。关闭客户端或取消请求不会取消已接受的研究任务；需要停止任务时明确调用 **cancel_run**。详见[官方 MCP 工具与权限说明](https://github.com/aipoch/open-science/blob/v1.3.1/packages/open-science/CLI.md#external-agents-through-mcp)。
 
 研究包命令见 [CLI 导入与导出](../guides/research-packages.md#local-package-transfer)。
+
+MCP 客户端断开后，服务会保留持续运行状态。工作结束后，使用 `open-science stop --config-root /absolute/path/to/profile --json` 解除该状态；仍有 App 连接时服务可能继续运行。详见[服务归属](server.md#backend-ownership)。
+
+### CLI 安装恢复 {/* #mcp-installation-recovery */}
+
+如果 `mcp` 启动时提示 `Cannot find package '@modelcontextprotocol/sdk'`，这是安装依赖问题，不是服务器地址错误。对 v1.3.1 macOS ARM64 压缩包，可用 `npm install -g @aipoch/open-science@1.3.1` 安装官方 npm 客户端，并把 MCP 配置的 `command` 指向该客户端。如果它的后端提示 `database_runtime_unavailable`，先使用完整独立压缩包中的程序启动同一配置的后端：
+
+```bash
+/absolute/path/to/standalone/open-science start --no-open --config-root /absolute/path/to/profile
+```
+
+再让 npm MCP 客户端连接该配置，并调用 **list_projects**。启动报错后先查看 `status --json` 再重试；仅能发现工具不代表后端已可用。
 
 ## 让服务持续运行以完成自动化 {/* #persistent-service */}
 

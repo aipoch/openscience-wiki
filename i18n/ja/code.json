@@ -1895,5 +1895,17 @@
   },
   "docs.outline.reference.v122.scope": {
     "message": "v1.2.2 — v1.2.2"
+  },
+  "docs.outline.tools.web-search.title": {
+    "message": "ウェブを検索し、ソースを読みます"
+  },
+  "docs.outline.tools.web-search.scope": {
+    "message": "パブリックウェブページを検索し、テキストを読んで、ソースの証拠を調べます。"
+  },
+  "docs.outline.reference.v131.title": {
+    "message": "v1.3.1"
+  },
+  "docs.outline.reference.v131.scope": {
+    "message": "Web検索、引用グラフ、ラボ共有およびリソースの回復。"
   }
 }
