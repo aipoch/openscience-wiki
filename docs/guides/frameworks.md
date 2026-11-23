@@ -1,12 +1,12 @@
 ---
 title: "Installing and switching agents"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 # Installing and switching agents
 
-Choose an Agent framework to execute conversations and tools. After installing it, configure a compatible [model provider](providers.md). You can keep several frameworks installed. The active framework in **Settings → Agent** is an application-wide setting shared across projects; it applies to subsequent turns and workflows.
+The built-in Open-Science Agent executes conversations and tools without a separate runtime installation. Configure a compatible [model provider](providers.md); install an external Agent only if you choose to use it. You can keep several frameworks installed. The active framework in **Settings → Agent** is an application-wide setting shared across projects; it applies to subsequent turns and workflows.
 
 ## Read the Agent page
 
@@ -106,3 +106,11 @@ Pi is available from v1.0.7 in first-time setup and **Settings → Agent**. It i
 5. Select the intended Main model and send a small request. Check the response and an actual tool result before starting a long task.
 
 Pi supports compatible Responses, Chat Completions and Messages endpoints. Available providers, subscription options and models are filtered by the active framework. You can keep Codex active while installing Pi; switching is a separate choice. See [provider setup](providers.md).
+
+## Start with the included runtime {/* #default-runtime */}
+
+From v1.3.3, clean desktop, CLI and SDK installations use the built-in Open-Science Agent for new projects and sessions. You do not need to install Codex, Claude Agent or another external SDK just to start the service. Configure a compatible provider before sending a request; **Active** alone is not model readiness.
+
+Choosing an external framework uses its managed installer and downloads from the displayed npm source or supported mirror. Some runtimes resolve a current published version; others use pinned versions or a lockfile tied to the application release. Inspect the installed version and do not assume every framework updates independently. An installation failure does not require replacing a working built-in Agent.
+
+![Open-Science Agent active without an external runtime](/img/open-science/v1.3.3/builtin-agent.webp)

@@ -1,7 +1,7 @@
 ---
 title: "Instalación y actualizaciones"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,7 +12,7 @@ La mayoría de los usuarios deben instalar el paquete de escritorio de GitHub Re
 
 <PlatformGuide />
 
-**Paquetes actuales:** [v1.3.1 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.1) incluye instaladores de escritorio, archivos CLI independientes y paquetes Linux CLI `.deb`/`.rpm`. Elija el tipo de instalación y la arquitectura previstos, a continuación, verifique la suma de comprobación de la misma versión. El lanzador de escritorio sigue disponible a través de **Settings → General → Command line tool → Install command**.
+**Paquetes actuales:** [v1.3.3 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.3) incluye instaladores de escritorio, archivos CLI independientes y paquetes Linux CLI `.deb`/`.rpm`. Elija el tipo de instalación y la arquitectura previstos, a continuación, verifique la suma de comprobación de la misma versión. El lanzador de escritorio sigue disponible a través de **Settings → General → Command line tool → Install command**.
 
 ## Elija un método de instalación {/* #choose-an-installation-method */}
 
@@ -67,7 +67,7 @@ Los instaladores oficiales de Windows se firman con código desde v0.33.2; v0.33
 | Ubuntu / Debian | `uname -m`: `x86_64` significa x64, `aarch64` significa ARM64 | Elija la coincidencia `.deb`, abrirlo con el instalador de paquetes del sistema, luego lanzar desde el menú de aplicación |
 | Otras distribuciones Linux apoyadas | Check `uname -m` | Elija la coincidencia `.AppImage`, permitir la ejecución en los permisos del archivo, y luego abrirlo; resolver cualquier error de dependencia reportado por la distribución |
 
-v1.3.1 proporciona paquetes Linux **x64 y ARM64** . Para ARM64, seleccione `aipoch-open-science-1.3.1-linux-arm64.AppImage` o `aipoch-open-science_1.3.1_arm64.deb`. Los contrapartes x64 son `aipoch-open-science-1.3.1-linux-x86_64.AppImage` y `aipoch-open-science_1.3.1_amd64.deb`. Descarga de los activos oficiales de la versión seleccionada y coincide con el resultado de `uname -m`.
+v1.3.3 proporciona paquetes Linux **x64 y ARM64** . Para ARM64, seleccione `aipoch-open-science-1.3.3-linux-arm64.AppImage` o `aipoch-open-science_1.3.3_arm64.deb`. Los contrapartes x64 son `aipoch-open-science-1.3.3-linux-x86_64.AppImage` y `aipoch-open-science_1.3.3_amd64.deb`. Descarga de los activos oficiales de la versión seleccionada y coincide con el resultado de `uname -m`.
 
 </PlatformContent>
 
@@ -75,7 +75,7 @@ La carpeta de instalación contiene la aplicación; **Data location**, en el asi
 
 ### Use el CLI independiente {/* #standalone-cli */}
 
-Para una instalación terminal/browser, descargar un standalone que coincida CLI archivo desde [v1.3.1](https://github.com/aipoch/open-science/releases/tag/v1.3.1). It packs Node, the backend and Web UI. Extraiga el directorio completo, luego siga [CLI setup](../reference/cli.md#terminal-setup). Mantenga el CLI y backend de la misma instalación juntos.
+Para una instalación terminal/browser, descargar un standalone que coincida CLI archivo desde [v1.3.3](https://github.com/aipoch/open-science/releases/tag/v1.3.3). It packs Node, the backend and Web UI. Extraiga el directorio completo, luego siga [CLI setup](../reference/cli.md#terminal-setup). Mantenga el CLI y backend de la misma instalación juntos.
 
 #### Homebrew CLI {/* #homebrew-cli */}
 
@@ -83,35 +83,35 @@ Instala o administra el Homebrew CLI con `brew install aipoch/tap/open-science`,
 
 #### Paquetes Linux CLI {/* #linux-cli-packages */}
 
-Para el uso de terminal/browser Linux, elija **open-science-cli**, por separado del paquete de escritorio **aipoch-open-science**. Descargue el paquete de coincidencia y `CLI-PACKAGE-SHA256SUMS.txt` de [v1.3.1 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.1), a continuación, verifique antes de instalar.
+Para el uso de terminal/browser Linux, elija **open-science-cli**, por separado del paquete de escritorio **aipoch-open-science**. Descargue el paquete de coincidencia y `CLI-PACKAGE-SHA256SUMS.txt` de [v1.3.3 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.3), a continuación, verifique antes de instalar.
 
-| Distribución / arquitectura | Activo v1.3.1 CLI |
+| Distribución / arquitectura | Activo v1.3.3 CLI |
 | --- | --- |
-| Debian / Ubuntu, x64 | `open-science-cli_1.3.1_amd64.deb` |
-| Debian / Ubuntu, ARM64 | `open-science-cli_1.3.1_arm64.deb` |
-| Fedora, x64 | `open-science-cli-1.3.1-1.x86_64.rpm` |
-| Fedora, ARM64 | `open-science-cli-1.3.1-1.aarch64.rpm` |
+| Debian / Ubuntu, x64 | `open-science-cli_1.3.3_amd64.deb` |
+| Debian / Ubuntu, ARM64 | `open-science-cli_1.3.3_arm64.deb` |
+| Fedora, x64 | `open-science-cli-1.3.3-1.x86_64.rpm` |
+| Fedora, ARM64 | `open-science-cli-1.3.3-1.aarch64.rpm` |
 
 Instala el archivo descargado con el administrador de paquetes adecuado. Estos ejemplos utilizan x64; utilice el nombre de archivo ARM64 cuando corresponda.
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ./open-science-cli_1.3.1_amd64.deb
+sudo apt install ./open-science-cli_1.3.3_amd64.deb
 # Fedora: use this instead of the apt command
-sudo dnf install ./open-science-cli-1.3.1-1.x86_64.rpm
+sudo dnf install ./open-science-cli-1.3.3-1.x86_64.rpm
 ```
 
 Corre `open-science-cli start --no-open`, luego `open-science-cli status --json`. Una vez que se ejecuta, utilice `open-science-cli url` para abrir la interfaz web local autenticada; mantener esa URL privada. Continúe con [CLI setup](../reference/cli.md#terminal-setup) para la configuración del modelo y los cheques `doctor`, reemplazando `open-science` con `open-science-cli` en esos comandos.
 
 Los paquetes Node, el backend y Web UI. No instala Python/R ni crea un servicio de sistema iniciado automáticamente. Los requisitos de la tienda y de la caja de arena de OS todavía se aplican; ver [credenciales de Linux sin cabeza](../reference/server.md). Utilice `open-science-cli` explícitamente cuando un lanzador de escritorio también está instalado.
 
-Antes de actualizar o eliminar el paquete, terminar el trabajo y detener **cada perfil iniciado por ese paquete**. Instalar el siguiente paquete descargado a través de apt/dnf; no hay un repositorio AIPOCH apt/dnf configurado por esta instalación. La eliminación de paquetes preserva datos de investigación y credenciales. El [guía oficial del paquete](https://github.com/aipoch/open-science/blob/v1.3.1/docs/standalone-runtime.md#linux-cli-distribution-packages) describe conflictos de comandos y requisitos de plataforma.
+Antes de actualizar o eliminar el paquete, terminar el trabajo y detener **cada perfil iniciado por ese paquete**. Instalar el siguiente paquete descargado a través de apt/dnf; no hay un repositorio AIPOCH apt/dnf configurado por esta instalación. La eliminación de paquetes preserva datos de investigación y credenciales. El [guía oficial del paquete](https://github.com/aipoch/open-science/blob/v1.3.3/docs/standalone-runtime.md#linux-cli-distribution-packages) describe conflictos de comandos y requisitos de plataforma.
 
 ### Huir de la fuente {/* #run-from-source */}
 
 Necesitas Git, Node.js 24, npm, y la plataforma construye requisitos para Electron. Instala o selecciona un marco de agente en la aplicación. Durante la instalación, el repositorio genera el Cliente Prisma, aplica parches de aplicaciones y prepara dependencias nativas de Electron.
 
-Para una instalación de fuente reproducible, elija la etiqueta de lanzamiento prevista de [Cambio](../changelog/v1.3.1.md) antes de instalar dependencias. Un clon predeterminado sigue la rama en lugar de una liberación fija. Grabar las versiones seleccionadas de etiqueta, fuente commit y tiempo de ejecución para que otra persona pueda reproducir el ambiente.
+Para una instalación de fuente reproducible, elija la etiqueta de lanzamiento prevista de [Cambio](../changelog/v1.3.3.md) antes de instalar dependencias. Un clon predeterminado sigue la rama en lugar de una liberación fija. Grabar las versiones seleccionadas de etiqueta, fuente commit y tiempo de ejecución para que otra persona pueda reproducir el ambiente.
 
 Reemplazar `RELEASE_TAG` abajo con la etiqueta exacta mostrada en la versión seleccionada (incluyendo su `v`) líder. Para seguir el desarrollo en curso, omitir `--branch RELEASE_TAG --depth 1`; que el checkout seguirá la rama predeterminada.
 
@@ -128,7 +128,7 @@ Antes de empaquetar una producción, ejecute:
 npm run build
 ```
 
-Utilice el paquete de la etiqueta seleccionada.json y [guía de tiempo libre](https://github.com/aipoch/open-science/blob/v1.3.1/docs/standalone-runtime.md) para sus objetivos de construcción y dependencias. `npm run dev:web` desarrolla el punto de entrada Node/Web; `npm run dev` también prepara al cliente de escritorio. Utilice un directorio de configuración aislado para mantener los datos de prueba separados.
+Utilice el paquete de la etiqueta seleccionada.json y [guía de tiempo libre](https://github.com/aipoch/open-science/blob/v1.3.3/docs/standalone-runtime.md) para sus objetivos de construcción y dependencias. `npm run dev:web` desarrolla el punto de entrada Node/Web; `npm run dev` también prepara al cliente de escritorio. Utilice un directorio de configuración aislado para mantener los datos de prueba separados.
 
 ## Configuración completa por primera vez {/* #complete-first-time-setup */}
 
@@ -191,23 +191,33 @@ La interfaz actual y los nuevos paquetes utilizan **Open-Science** de forma cons
 
 1.0 conserva las rutas históricas de actualización e importación existentes; el número de versión no requiere un reajuste de perfil. El [1.x política de compatibilidad](https://github.com/aipoch/open-science/blob/v1.3.0/docs/compatibility.md) cubre las interfaces documentadas de CLI/SDK y de automatización de tareas, las importaciones de paquetes válidos de `.science` y las actualizaciones de perfiles compatibles. No garantiza respuestas modelo idénticas, disponibilidad de terceros o reproducción determinista de toda una sesión de investigación, o transferencia multiplataforma de credenciales protegidas por el sistema operativo. Seguridad fija el objetivo de la última liberación estable.
 
-## Instala el CLI con npm {/* #npm-cli */}
+## Instalar el CLI con Npm {/* #npm-cli */}
 
 Use Node.js **22.13 o más tarde** para el paquete CLI/backend publicado. En un terminal, instalar e inspeccionar la versión invocada:
 
 ```bash
-npm install --global @aipoch/open-science@1.3.0
+npm install --global --include=optional @aipoch/open-science@1.3.3
 open-science version --json
 open-science help
 ```
 
-Entonces sigue. [terminal setup](../reference/cli.md#terminal-setup) para inicializar un perfil, iniciar su backend y configurar un modelo. La instalación por sí sola no lo registra ni instala Python/R. Si un lanzador de escritorio o Homebrew ya utiliza el mismo nombre de comando, inspeccione qué ejecutable su shell selecciona antes de continuar. Detener todos los backend que posean una instalación antes de actualizar esa instalación; conservar su perfil y actualizar a través de su original gestor de paquetes.
+Luego siga [terminal setup](../reference/cli.md#terminal-setup) para inicializar un perfil, inicie su backend y configure un modelo. La instalación por sí sola no lo inicia ni instala Python/R. Si un lanzador de escritorio o de Homebrew ya utiliza el mismo nombre de comando, inspeccione lo ejecutable que su shell selecciona antes de continuar. Detener todos los backend que posean una instalación antes de actualizar esa instalación; conservar su perfil y actualizar a través de su gestor original de paquetes.
 
 ## Siga una actualización hasta la instalación {/* #update-progress */}
 
-In **Settings → General**, elegir **Check now** y revisar la liberación ofrecida. El diálogo de actualización mantiene el progreso de descarga, notas de lanzamiento y preparación de la instalación juntos. La finalización de la descarga no es la terminación de la instalación: verifique la versión instalada después del relanzamiento.
+En **Settings → General**, lee la versión instalada y elija **Check now**. Revise la versión ofrecida y el estado de descarga y preparación del diálogo de actualización. La terminación de la descarga no es la terminación de la instalación; verifique la versión instalada después de relanzamiento.
 
-Si la aplicación dice que la instalación automática no está disponible para este canal, mantenga el paquete descargado y utilice el instalador oficial después de terminar el trabajo activo. Los canales de instalación v1.3.0 todavía restringen el reemplazo automático; un diálogo mejorado de progreso de Windows no elimina esa restricción. No obligue a la aplicación cerrada mientras la limpieza de cuadernos está en progreso.
+En las instalaciones estables compatibles, **Automatically download updates** controla la preparación en segundo plano y está activado de forma predeterminada. Puede desactivarlo y seguir comprobando y descargando manualmente. La descarga automática exige confirmar que la conexión no tiene restricciones ni cobro por volumen de datos, y que hay suficiente espacio libre. Si no se puede clasificar la red, falta espacio o no se puede escribir en la ubicación, use el método manual.
+
+| Plataforma | Comportamiento automático eligible | Cuándo utilizar la instalación manual |
+| --- | --- | --- |
+| macOS | Una actualización preparada elegible puede instalarse cuando deje la aplicación | Solo volúmenes de lectura, Translocación de aplicaciones, instalaciones inequívocas o canales no compatibles |
+| Windows | Preparar una actualización para el próximo lanzamiento una vez que el espacio de trabajo esté listo y el escritorio está ocioso en el fondo | La preparación está bloqueada, el canal no está soportado o el instalador se ofrece en su lugar |
+| Aplicación LinuxImage | Preparar la actualización del próximo lanzamiento en el fondo; mantener el camino de AppImage existente | El caché de actualización es inequívoco, el espacio es insuficiente o el formato del paquete no es compatible |
+
+Terminar el trabajo activo y permitir la limpieza Notebook para completar antes de dejar o reiniciar. Utilice **Restart to update** o **Open installer** según el diálogo, a continuación, verifique la versión y los proyectos originales. Linux DEB y las instalaciones independientes CLI siguen su propio [canal de instalación](#manual-update); un espacio de trabajo web no es un equipo de escritorio.
+
+Si la preparación falla o la instalación automática no está disponible, use **Installation instructions** y el paquete oficial. No obligue a la aplicación cerrada durante la limpieza.
 
 ## Instalar una actualización manualmente {/* #manual-update */}
 
@@ -223,15 +233,16 @@ El instalador de Windows v1.0.6 preserva los datos de investigación almacenados
 
 La solución de conservación no es una copia de seguridad o permiso para mover datos gestionados a mano. Usar el [Controles de almacenamiento](storage.md) al cambiar su ubicación.
 
-## Mando de preparación de actualización manual {/* #update-preparation */}
+## Manejas bloqueadores de preparación de actualización {/* #update-preparation */}
 
-Terminar el trabajo activo antes de instalar una actualización. Si la preparación nombra un proceso de bloqueo, cierre el programa pertinente normalmente y vuelva a entrar. Evite forzar procesos no relacionados a renunciar. v1.0.8 corrige varios controles de ocupación de macOS y Windows; el bloqueador restante del diálogo todavía necesita atención.
+Terminar el trabajo activo antes de instalar una actualización. Si la preparación nombra un proceso de bloqueo, cierre el programa pertinente normalmente y vuelva a entrar. Evite obligar a los procesos no relacionados a dejar de fumar. v1.0.8 corrige varios cheques de ocupación macOS y Windows; el bloqueador restante del diálogo todavía necesita atención.
 
-Si la instalación automática no está disponible, utilice el enlace de ayuda de instalación manual en **Settings → General**, descargar el paquete oficial y comprobar su chequesum. Después del relanzamiento, confirme la versión instalada y los proyectos originales. Si la recuperación falla, recoger el registro de diagnóstico de General; retiene el error subyacente para la solución de problemas.
+Si la instalación automática no está disponible, utilice el enlace de ayuda manual de instalación en **Settings → General**, descargue el paquete oficial de coincidencia y compruebe su chequesum. Después del relanzamiento, confirme la versión instalada y los proyectos originales. Si la recuperación falla, recoger el registro de diagnóstico de General; retiene el error subyacente para la solución de problemas.
 
-### descargas diferenciales macOS {/* #differential-updates */}
+### macOS descargas diferenciales {/* #differential-updates */}
 
-Desde v1.2.0, una actualización compatible de macOS puede descargar sólo bloques cambiados de la imagen de la aplicación. Si ese camino no está disponible o no puede ser validado, el actualizador vuelve al paquete completo. Una descarga más grande no es por sí misma un fracaso. Deja que la descarga termine, completa preparación de actualización y confirma la versión instalada después de relanzamiento. Todavía se aplican restricciones de canales existentes en la instalación automática.
+Desde v1.2.0, una actualización compatible macOS puede descargar sólo bloques cambiados de la imagen de la aplicación. Si ese camino no está disponible o no puede ser validado, el actualizador se vuelve al paquete completo. Por lo tanto, una descarga más grande no es por sí misma un fracaso. Deja que la descarga termine, completa preparación de actualización y confirma la versión instalada después de relanzamiento. La instalación automática sigue el [plataforma y condiciones de canal](#update-progress).
+
 ## Actualización desde v1.3.0 cuando la instalación está bloqueada {/* #update-from-130 */}
 
 Si v1.3.0 dice que otro proceso está utilizando la instalación incluso después de que el trabajo activo haya terminado, su actualizador puede haber confundido un proceso de fondo de propiedad de la aplicación para un bloqueador externo. Descargue el paquete oficial v1.3.1 para su plataforma, deje completamente Open-Science y detenga su servicio de fondo, luego siga el [Pasos de instalación manual](#manual-update). Para un perfil gestionado por CLI, compruebe [estado de servicio y parar](../reference/server.md#lifecycle-commands) antes de reemplazar los archivos.

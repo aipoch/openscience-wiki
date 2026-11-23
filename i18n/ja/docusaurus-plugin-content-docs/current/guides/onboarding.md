@@ -1,7 +1,7 @@
 ---
 title: "初回設定"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -137,14 +137,16 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 4. モデルプロバイダー {/* #4-model-provider */}
 
-フォームは **Provider type**、選択した Agent、認証方法によって変わります。内蔵 Agent で Codex のサブスクリプションを使うには、**Codex subscription** を選択します。このコンピューターで Codex にログイン済みなら、**Codex authentication** で **Import existing Codex sign-in** を選び、**Test & continue** を押します。利用可能なログイン情報がない場合は、対応するログイン方法を選んで案内に従います。[プロバイダー設定](providers.md#builtin-codex-subscription)も参照してください。接続チェックに成功してから次に進みます。
+後でモデルを選択するには、**Skip** を使用し、[推論モデルのセットアップ](#skip-provider) に従う。 今すぐ接続するには、以下の手順を使用します。
+
+フォームは、**Provider type**、選択したエージェント、認証方法により変更されます。 Codex サブスクリプションを内蔵エージェントで使用するには、**Codex subscription** を選択します。 このコンピュータにCodexのサインインが既にある場合は、**Codex authentication**の下の**Import existing Codex sign-in**を選択し、**Test & continue**を選択します。 使用可能な記号インがない場合は、サポートされている記号インメソッドを選択し、プロンプトに従ってください。 [プロバイダーのセットアップ](providers.md#builtin-codex-subscription) を参照してください。 接続チェックが成功した後に続行します。
 
 <PlatformContent platform="macos">
 
 ![認証前の英語Codexサブスクリプションフォーム](/img/open-science/v121/onboarding-codex-provider.webp)
 
 </PlatformContent>
-API プロバイダーでは、そのタイプを選択し、そのプロバイダーが必要とするエンドポイントとモデルの詳細を入力し、**Test & continue** を使用します。 ウィザードは、テストを送信する前に必要なフィールドを検証します。 成功したテストはウィザードを進行させます。 入力検証や接続のエラーは画面に残るため、内容を確認して修正します。
+API プロバイダーでは、そのタイプを選択し、そのプロバイダーが必要とするエンドポイントとモデルの詳細を入力し、**Test & continue** を使用します。 ウィザードは、テストを送信する前に必要なフィールドを検証します。 成功したテストはウィザードを進行させます。 検証または接続エラーは、修正のために表示されません。
 
 <PlatformContent platform="macos">
 
@@ -153,7 +155,7 @@ API プロバイダーでは、そのタイプを選択し、そのプロバイ�
 </PlatformContent>
 認証選択、高度なフィールド、接続エラーから回復するための[プロバイダーのセットアップ](providers.md)を参照してください。
 
-専用のクレデンシャルフィールドにAPIキーを保持します。 スクリーンショット、プロジェクトの指示、または会話メッセージに含めないでください。
+専用のクレデンシャルフィールドにAPIキーをキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキーキー スクリーンショット、プロジェクトの指示、または会話メッセージには含まれていません。
 
 ## 5. Notebook ランタイム {/* #5-notebook-runtime */}
 
@@ -198,3 +200,7 @@ Windows **Notebook runtime**のページでは、**Local Shell · WSL2 Bash Prev
 ## ソース参照 {/* #source-reference */}
 
 [オンボーディングWizard.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/OnboardingWizard.tsx), [環境ステップ.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/EnvironmentStep.tsx), [ロケーションStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/LocationStep.tsx).
+
+## Skip の後にモデルを確認する {/* #skip-provider */}
+
+**Model provider** で **Skip** を選ぶと、API key なしの Kilo Gateway が追加され、Notebook runtime に進みます。設定後の **Main model** に `kilo-auto/free` が表示される場合があります。最初のメッセージを送る前に **Settings → Model** でプロバイダーとモデルを確認し、Codex subscription など、使いたい接続に切り替えてください。Skip は推論の動作をテストしません。 [Kilo Gateway](providers.md#kilo).

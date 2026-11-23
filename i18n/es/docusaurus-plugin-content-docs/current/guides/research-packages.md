@@ -2,7 +2,7 @@
 title: "Paquetes de investigación .science"
 description: "Exportar una sesión con sus archivos y pruebas, luego importar e inspeccionar el registro de investigación en otro proyecto."
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -198,8 +198,15 @@ Exportar a través del flujo normal del paquete de sesión y esperar a la termin
 ## Comprobar una importación interrumpida {/* #import-recovery */}
 
 Si se cancela una importación, no la trate como completada. Si un tiempo deja sin confirmar el resultado, busque el proyecto de destino y la sesión importada antes de comenzar otra importación. Abrir cualquier sesión resultante e inspeccionar sus archivos. Para un paquete perdido o inválido, seleccione el archivo `.science` intacto y mantenga el identificador de error o correlación mostrado al solicitar ayuda. No importa en repetidas ocasiones el mismo paquete sin comprobar si un intento anterior ya creó la sesión.
+
 ## Casos de organizaciones de importación y distribución {/* #organization-cases */}
 
 Primero [ingrese a Lab](providers.md#lab-account) en la aplicación de escritorio y confirmar su organización. En la página de inicio **Casos de uso**, elija **Organization**. Búsqueda por nombre de caso o su código de participación de ocho caracteres. Abra el caso, inspeccione a su autor, resumen de paquetes, incluye archivos y omisiones, luego elija **Importar** y revise el proyecto de destino. Esperar a que la importación termine antes de abrir el registro recibido; use **Fork to continue** para un nuevo análisis.
 
 Para compartir su propia sesión, abra su diálogo de exportación de paquetes de investigación y revise el contenido seleccionado. Elija **Export and upload**, entre **Case name** y **Description**, luego **Confirm and upload**. Esto envía el paquete seleccionado directamente al servidor Lab configurado para su organización. Espera a **Session package uploaded** antes de copiar su **Share code**. Revise el paquete para el material que no debe compartir antes de confirmar; Firmar solo no sube una sesión.
+
+## Recuperar una descarga casera {/* #case-download-recovery */}
+
+Lea el fallo específico antes de reintentar **Use Cases → Import**. Un paquete que falta de manifiesto o no está disponible necesita un paquete de fuente válido; descargas repetidas no crean una. Para un tiempo de salida, error de red o servidor, revise la conexión y vuelva a entrar más tarde. Una falla de verificación requiere un paquete oficial nuevo. Para errores de disco-full o almacenamiento, consulte el espacio libre y el acceso al destino mostrado.
+
+Después de una importación interrumpida, inspeccione la lista de proyectos antes de importar de nuevo. Abra la sesión recibida y sus archivos después de su terminación. Para un fracaso de exportación, espere a que Notebook lea u otro trabajo llamado para establecerse, y luego vuelva a entrar en la exportación; un archivo parcial no es un paquete de investigación completado.

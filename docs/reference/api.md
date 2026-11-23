@@ -1,7 +1,7 @@
 ---
 title: "Task SDK and local API"
 last_update:
-  date: '2026-10-22'
+  date: '2026-11-23'
 ---
 
 # Task SDK and local API
@@ -199,3 +199,7 @@ The host must declare capability `permission-prompts-none`; otherwise the client
 ## Public interface compatibility in 1.x {/* #public-compatibility */}
 
 The [compatibility policy](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md) covers the matching SDK's public root exports/types and documented Task requests, responses and events. It does not make arbitrary local HTTP routes, internal imports or Electron IPC public APIs. Parse documented error codes, tolerate unknown object fields and avoid matching diagnostic prose. Application, independently published package and research-package schema versions are separate.
+
+## Built-in runtime on first use {/* #builtin-default */}
+
+In v1.3.3, a clean SDK/backend installation defaults new projects and sessions to the built-in Open-Science Agent. Missing optional external Agent SDKs no longer prevent service startup. Model authentication and the selected model's capabilities are still required for a run; service availability alone does not verify inference or tool execution. Install an external runtime only when selecting it. See [CLI setup](cli.md#terminal-setup) and [Agent settings](../guides/frameworks.md#default-runtime).

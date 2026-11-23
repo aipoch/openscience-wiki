@@ -1,7 +1,7 @@
 ---
 title: "Dépannage et questions communes"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Dépannage et questions communes {/* #troubleshooting-and-common-questions */}
@@ -46,6 +46,7 @@ Lorsque **Desktop connection lost** apparaît, attendez le rétablissement de l�
 4. Avant de quitter, conservez les éléments non enregistrés encore accessibles et lisez la confirmation. Quitter pendant une déconnexion ne confirme pas l’arrêt du backend. Pour une instance lancée par la CLI, vérifiez le même profil avec `open-science status --json` ; consultez [la gestion et l’arrêt du backend](../reference/server.md#backend-ownership).
 
 L’interface du navigateur suspend les commandes pendant la récupération des mises à jour manquées. Si **Reload required** apparaît, copiez les brouillons non envoyés avant de sélectionner **Reload**. Si leur stockage a échoué, confirmez d’abord que vous avez enregistré une copie. Les mentions sont restaurées sous forme de texte ; vérifiez aussi les pièces jointes avant l’envoi. **Pairing required** signifie que l’autorisation d’accès a expiré : rouvrez le lien Web de l’hôte ou suivez [la procédure d’association à distance](remote-access.md), au lieu de soumettre la tâche plusieurs fois.
+
 ## Récupérer une panne de démarrage {/* #startup-recovery */}
 
 | Avis | Décision |
@@ -264,6 +265,13 @@ Cela n'accorde pas l'accès à un papier payant ou ne fournit pas d'authentifica
 ## Récupérer après la déconnexion du service local {/* #local-service-recovery */}
 
 Lorsque l'espace de travail affiche la récupération du service local, attendez que la connexion revienne avant de répéter une action. Le brouillon Compositeur est conservé, tandis que les actions non disponibles restent bloquées. Après la reconnexion, inspectez la conversation ou lancez un enregistrement pour voir si la demande précédente a été acceptée. Reprendre de l'état réel plutôt que d'envoyer la même tâche deux fois.
+
 ## Répondre à une erreur de fournisseur de modèle {/* #provider-errors */}
 
 Lisez la cause indiquée avec la réponse ratée. Pour les erreurs d'authentification ou d'autorisation de compte, vérifiez la connexion du fournisseur; pour les quotas épuisés, inspecter l'utilisation de ce compte; pour les limites de tarifs, attendez avant de réessayer. Pour un modèle non disponible, rafraîchir la liste prise en charge et choisir un modèle accessible. Une connexion perdue ou une réponse interrompue nécessite une vérification de la session en cours et un travail d'outil terminé avant de soumettre à nouveau. Pour une limite de contexte, réduisez le matériel fourni ou commencez une continuation bien ciblée. Changer de fournisseur n'est pas nécessaire pour chaque erreur.
+
+## Distinguer une tâche arrêtée d'une requête manquée {/* #request-details */}
+
+Pour une réponse défaillante, ouvrez **Error details** et conservez la classification des défaillances et demandez l'identifiant quand vous êtes présent. L'authentification, le quota, l'indisponibilité du fournisseur et une réponse malformée exigent des remèdes différents. Supprimer le contenu privé avant de partager les diagnostics.
+
+Si vous avez choisi Stop, attendez le nettoyage et inspectez les sorties sauvegardées. Une tâche arrêtée est différente d'une suite qui n'a jamais reçu de réponse. Pour les erreurs de livraison en file d'attente, de chargement des pièces jointes ou de lecture de l'historique, inspectez la conversation originale avant de reprendre la conversation; Le travail d'outil accepté peut déjà avoir produit des fichiers. Sur Windows, une question Agent intégrée en attente de votre réponse peut survivre redémarrer : rouvrir la session et répondre à la question conservée au lieu de créer une tâche dupliquée.

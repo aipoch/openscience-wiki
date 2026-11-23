@@ -2,7 +2,7 @@
 title: .science research packages
 description: Export a session with its files and evidence, then import and inspect the research record in another project.
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -203,3 +203,9 @@ If an import is cancelled, do not treat it as completed. If a timeout leaves the
 First [sign in to Lab](providers.md#lab-account) in the desktop app and confirm your organization. In the home page's **Use Cases**, choose **Organization**. Search by case name or its eight-character share code. Open the case, inspect its author, package summary, included files and omissions, then choose **Import** and review the destination project. Wait for import to finish before opening the received record; use **Fork to continue** for new analysis.
 
 To share your own session, open its research-package export dialog and review the selected contents. Choose **Export and upload**, enter **Case name** and **Description**, then **Confirm and upload**. This sends the selected package directly to the configured Lab server for your organization. Wait for **Session package uploaded** before copying its **Share code**. Check the package for material you should not share before confirming; signing in alone does not upload a session.
+
+## Recover a home-page case download {/* #case-download-recovery */}
+
+Read the specific failure before retrying **Use Cases → Import**. A missing manifest or unavailable package needs a valid source package; repeated downloads do not create one. For a timeout, network or server error, check the connection and retry later. A verification failure requires a fresh official package. For disk-full or storage errors, check free space and access to the displayed destination.
+
+After an interrupted import, inspect the project list before importing again. Open the received session and its files after completion. For an export failure, wait for Notebook reads or other named work to settle, then retry the export; a partial file is not a completed research package.

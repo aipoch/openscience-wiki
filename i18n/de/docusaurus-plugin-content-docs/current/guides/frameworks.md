@@ -1,12 +1,12 @@
 ---
 title: "Installations- und Vermittlungsstellen"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 # Installations- und Vermittlungsstellen {/* #installing-and-switching-agents */}
 
-Wählen Sie ein Agent-Framework für Gespräche und Werkzeuge und richten Sie anschließend einen kompatiblen [Modellanbieter](providers.md) ein. Mehrere Frameworks können installiert bleiben. Das aktive Framework unter **Settings → Agent** ist eine anwendungsweite Einstellung für alle Projekte und gilt für nachfolgende Gesprächsrunden und Workflows.
+Der integrierte Open-Science Agent führt Gespräche und Tools ohne separate Laufzeitinstallation aus. Konfigurieren eines kompatiblen [Modellanbieter](providers.md); Installieren Sie einen externen Agent nur, wenn Sie ihn verwenden möchten. Sie können mehrere Frameworks installiert halten. Das aktive Framework in **Settings → Agent** ist eine anwendungsweite Einstellung, die über Projekte hinweg geteilt wird; Es gilt für nachfolgende Turns und Workflows.
 
 ## Lesen Sie die Agentenseite {/* #read-the-agent-page */}
 
@@ -106,3 +106,11 @@ Pi ist ab v1.0.7 in der Ersteinrichtung und **Settings → Agent**. Es wird übe
 5. Wählen Sie das beabsichtigte Hauptmodell aus und senden Sie eine kleine Anfrage. Überprüfen Sie die Antwort und ein tatsächliches Werkzeugergebnis, bevor Sie eine lange Aufgabe beginnen.
 
 Pi unterstützt kompatible antworten, chat-abschlüsse und nachrichten-endpunkte. Verfügbare Anbieter, Abonnementoptionen und Modelle werden vom aktiven Framework gefiltert. Sie können Codex während der Installation von Pi aktiv halten; Der Wechsel ist eine separate Option. Siehe [Provider Setup](providers.md).
+
+## Beginnen Sie mit der inkludierten Laufzeit {/* #default-runtime */}
+
+Von v1.3.3 aus verwenden saubere Desktop-, CLI- und SDK-Installationen den integrierten Open-Science-Agenten für neue Projekte und Sitzungen. Sie müssen Codex, Claude Agent oder ein anderes externes SDK nicht installieren, nur um den Dienst zu starten. Konfigurieren Sie einen kompatiblen Anbieter, bevor Sie eine Anfrage senden; **Active** allein ist keine Modellbereitschaft.
+
+Das Auswählen eines externen Frameworks verwendet das verwaltete Installationsprogramm und Downloads von der angezeigten npm-Quelle oder dem unterstützten Spiegel. Einige Laufzeiten lösen eine aktuelle veröffentlichte Version auf; Andere verwenden gepinnte Versionen oder eine Lockfile, die an die Anwendungsfreigabe gebunden ist. Überprüfen Sie die installierte Version und übernehmen Sie nicht jedes Framework-Update unabhängig. Ein Installationsfehler erfordert keinen Austausch eines funktionierenden integrierten Agenten.
+
+![Open-Science Agent active without an external runtime](/img/open-science/v1.3.3/builtin-agent.webp)

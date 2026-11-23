@@ -1,7 +1,7 @@
 ---
 title: "작업 SDK 및 로컬 API"
 last_update:
-  date: '2026-10-22'
+  date: '2026-11-23'
 ---
 
 # 작업 SDK 및 로컬 API {/* #task-sdk-and-local-api */}
@@ -199,3 +199,7 @@ CLI `--permission-prompts none`에 대응하는 `startRun` 입력에 `permission
 ## 1.x의 공용 인터페이스 호환성 {/* #public-compatibility */}
 
 [의 호환성 정책](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md)은 SDK의 공개 루트 수출 / 유형 및 문서화 작업 요청, 응답 및 이벤트와 일치합니다. 임의 로컬 HTTP 경로, 내부 수입 또는 전자 IPC 공개 API를 만들지 않습니다. 문서화 오류 코드, tolerate unknown object 필드 및 일치하는 진단 prose 방지. 응용 프로그램, 독립적으로 출판 된 패키지 및 연구 패키지 스키마 버전은 별도입니다.
+
+## 내장 런타임 첫 사용 {/* #builtin-default */}
+
+v1.3.3에서, 깨끗한 SDK/backend 설치는 새로운 프로젝트와 세션을 내장 Open-Science 에이전트에 기본으로 합니다. 옵션 외부 에이전트 SDK를 더 이상 방지 서비스 시작. 모델 인증 및 선택한 모델의 기능은 여전히 실행에 필요한 것입니다; 서비스 가용성은 방해 또는 도구 실행을 확인하지 않습니다. 선택할 때만 외부 런타임을 설치합니다. [CLI 설정](cli.md#terminal-setup) 및 [에이전트 설정](../guides/frameworks.md#default-runtime)을 참조하십시오.

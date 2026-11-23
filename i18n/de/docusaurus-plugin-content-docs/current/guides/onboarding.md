@@ -1,7 +1,7 @@
 ---
 title: "Ersteinrichtung"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -137,7 +137,9 @@ Installationsquellen, Wechsel und Reparatur sind unter [Agent-Frameworks](framew
 
 ## 4. Modellanbieter {/* #4-model-provider */}
 
-Das Formular hängt von **Provider type**, dem gewählten Agent und der Authentifizierungsmethode ab. Für ein Codex-Abonnement mit dem integrierten Agent wählen Sie **Codex subscription**. Ist auf diesem Computer bereits eine Codex-Anmeldung vorhanden, wählen Sie unter **Codex authentication** die Option **Import existing Codex sign-in** und anschließend **Test & continue**. Andernfalls wählen Sie eine unterstützte Anmeldemethode und folgen den Anweisungen; siehe [Anbietereinrichtung](providers.md#builtin-codex-subscription). Fahren Sie nach erfolgreicher Verbindungsprüfung fort.
+Um ein Modell später auszuwählen, verwenden Sie **Skip** und folgen Sie [Aufgeschobene Modelleinrichtung](#skip-provider). Um jetzt eine Verbindung herzustellen, verwenden Sie die folgenden Schritte.
+
+Das Formular ändert sich gemäß **Provider type**, dem ausgewählten Agenten und der Authentifizierungsmethode. Um ein Codex-Abonnement mit dem eingebauten Agent zu verwenden, wählen Sie **Codex subscription**. Wenn dieser Computer bereits über eine Codex-Anmeldung verfügt, wählen Sie **Import existing Codex sign-in** unter **Codex authentication** und dann **Test & continue** aus. Wenn keine brauchbare Anmeldung verfügbar ist, wählen Sie eine unterstützte Anmeldemethode und folgen Sie den Anweisungen; siehe [Provider-Einrichtung](providers.md#builtin-codex-subscription). Fahren Sie fort, nachdem die Verbindungsüberprüfung erfolgreich ist.
 
 <PlatformContent platform="macos">
 
@@ -198,3 +200,7 @@ Du musst den Zauberer nicht wiederholen. Model, Agent, Runtimes und Storage-Map 
 ## Quelle: {/* #source-reference */}
 
 [OnboardingWizard.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/OnboardingWizard.tsx), [EnvironmentStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/EnvironmentStep.tsx), [LocationStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/LocationStep.tsx).
+
+## Modell nach Skip prüfen {/* #skip-provider */}
+
+Unter **Model provider** fügt **Skip** Kilo Gateway ohne API key hinzu und wechselt zu Notebook runtime. Danach kann **Main model** `kilo-auto/free` anzeigen. Öffnen Sie vor der ersten Nachricht **Settings → Model**, prüfen Sie Anbieter und Modell und wählen Sie die gewünschte Verbindung, etwa Codex subscription. Skip testet keine Inferenz. [Kilo Gateway](providers.md#kilo).

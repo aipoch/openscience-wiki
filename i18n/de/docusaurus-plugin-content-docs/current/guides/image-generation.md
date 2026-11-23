@@ -1,7 +1,7 @@
 ---
 title: "Bilder erzeugen und bearbeiten"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Bilder erzeugen und bearbeiten {/* #generate-and-edit-images */}
@@ -35,13 +35,16 @@ Save the image so I can review it in the project.
 
 Überprüfen Sie die tatsächlichen Etiketten, die Reihenfolge und die Pfeilrichtung. Wenn eine Anfrage fehlschlägt, überprüfen Sie den Bilddienst, das Modell und den Fehler, anstatt Main in einen nicht verwandten Anbieter zu ändern. Eingabeaufforderungen und Quellbilder, die für die Erzeugung oder Bearbeitung verwendet werden, werden an den ausgewählten Bilddienst gesendet. Die Stornierung kann bereits gesendete Daten nicht zurückziehen.
 
-## Bearbeiten, Vergleichen und Wiederverwenden {/* #edit */}
+## Edit, Vergleich und Wiederverwendung {/* #edit */}
 
-Öffnen Sie die Bearbeitungsaktion des Bildes, wählen Sie die Quellversion aus und beschreiben Sie eine fokussierte Änderung. Verwenden Sie die verfügbaren Regions- und Parametersteuerelemente nur, wenn der ausgewählte Dienst sie unterstützt. Reichen Sie die Bearbeitung ein und warten Sie auf die neue Ausgabe. Das Bearbeiten erstellt eine neue Version, sodass frühere Varianten verfügbar bleiben.
+1. Öffnen Sie das beabsichtigte Bild in der Vorschau. Bewegen Sie darüber oder verschieben Sie den Tastaturfokus auf die Steuerung und wählen Sie dann **Edit image**. Bestätigen Sie das Quellbild und die Version, bevor Sie Anweisungen eingeben.
+2. Beschreiben Sie im Gespräch Komponisten eine fokussierte Veränderung. Halten Sie die Anforderung an die angezeigte Quelle gebunden; Die Eingabe Editing sendet sie nicht. Wenn Sie eine Region auswählen, überprüfen Sie den hervorgehobenen Bereich und seine Anweisung. Verfügbare Tools und Parameter hängen vom Bild und Service ab.
+3. Wählen Sie **Send image edit** und warten Sie auf den neuen Ausgang. Wenn das Steuerelement nicht verfügbar ist, überprüfen Sie den angezeigten Grund und [Bilddienstkonfiguration](#configure). Eine fehlgeschlagene Anforderung ist keine neue abgeschlossene Version.
+4. Verwenden Sie **Compare with input image** oder **Compare**, wenn Sie angeboten werden, und prüfen Sie sowohl den geänderten Bereich als auch den Inhalt, der unverändert bleiben soll. Verwenden Sie **Image history**, um frühere Versionen erneut zu besuchen, oder **Continue editing** für eine andere Überarbeitung.
+5. Laden Sie die gewählte Version herunter, öffnen Sie sie erneut und überprüfen Sie Etiketten und wissenschaftliche Behauptungen, bevor Sie sie teilen. Bilddetails können den Notebook-Kernel identifizieren, der eine Bearbeitung erzeugt hat; diese Aufzeichnungen keine wissenschaftliche Genauigkeit belegen.
 
-Vergleichen Sie den Kandidaten mit der Quelle: Überprüfen Sie die angeforderte Region und die Teile, die unverändert bleiben sollen. Verwenden Sie den Bildverlauf, um eine Version erneut zu besuchen oder die Bearbeitung fortzusetzen. Laden Sie die beabsichtigte endgültige Version herunter und öffnen Sie die Datei erneut, bevor Sie sie in einer Präsentation ablegen. Behalten Sie eine genaue Beschriftung, die illustrative Inhalte identifiziert.
+Das Gespräch bleibt an Ort und Stelle, während die Editing-Steuerelemente seinen Komponisten verwenden. Behalten Sie eine genaue Beschriftung, die illustrative Inhalte identifiziert. Für numerische Kontrollen auf Flächen sind [Notebook](notebook.md) und [Provenienz](reproducibility.md) zu verwenden. für Diatext siehe [Präsentationsbearbeitung](presentation-editing.md).
 
-Für vorhandene Flächen, die einer numerischen Überprüfung bedürfen, verwenden Sie [Notizbuch](notebook.md) und [Herkunft](reproducibility.md). Für Folientext und Formatierung siehe [Präsentationsbearbeitung](presentation-editing.md).
 ## Testen Sie einen Image-Service vor dem Speichern {/* #test-service */}
 
 In v1.3.1 bietet das Bilddienstformular **Test generation** an, nachdem die erforderlichen Felder und ein Modell ausgefüllt wurden. Überprüfen Sie die Bestätigung: Sie erzeugt ein Bild und der Anbieter kann die Anfrage in Rechnung stellen. Ein bestandener Test gilt für genau diese Konfiguration; Um das Modell, den Endpunkt oder die Anmeldeinformationen zu ändern, ist ein neuer Test erforderlich. Sie können die Konfiguration auch ohne diesen Test speichern.
@@ -49,3 +52,13 @@ In v1.3.1 bietet das Bilddienstformular **Test generation** an, nachdem die erfo
 Nach dem Speichern eines neuen Dienstes wird dessen erstes Modell erst dann zum Standard, wenn bereits kein Modell zur Bilderzeugung ausgewählt ist. Überprüfen Sie diese Auswahl vor Ihrer ersten Anfrage. Main bleibt separat konfiguriert.
 
 ![Testen Sie einen Image-Service vor dem Speichern](/img/open-science/v1.3.1/image-service-test.webp)
+
+## Aktualisieren Sie einen Image-Modell-Katalog {/* #image-model-catalog */}
+
+Fügen Sie in **Settings → Model → Image services** einen offiziellen **OpenAI**-, **Minimax**-, **Bailian**- oder **Volcengine Ark**-Dienst hinzu oder bearbeiten Sie ihn. Füllen Sie die Verbindungsfelder aus und wählen Sie dann **Refresh model list** aus, bevor Sie speichern. Eine Aktualisierung sendet die konfigurierten Anmeldeinformationen an diesen Anbieter; Es erzeugt kein Bild.
+
+Die aktualisierte Liste stimmt mit den Anbieterergebnissen mit den von Open-Science unterstützten Bildmodellen überein, so dass es nicht jedes Modell ist, das der Anbieter anbietet. Der aktuelle Standard wird beibehalten, mit einem Marker, wenn er im zurückgegebenen Katalog fehlt. Überprüfen Sie diesen Marker, bevor Sie sich auf das Modell verlassen. Ein fehlgeschlagener Refresh behält die vorherige Liste; Überprüfen Sie die angezeigte Ursache und versuchen Sie es erneut. **Save** verpflichtet das Formular, während [Bilderzeugung testen](#test-service) eine separate, potenziell abrechenbare Bildanforderung ist.
+
+Verwenden Sie für Bailian die Workspace-URL und die Region, die dem Anmelder entsprechen. China-verbundene Anmeldeinformationen verwenden den China-Katalog. Das Ändern einer Verbindung oder eines Arbeitsbereichs erfordert eine erneute Überprüfung des Katalogs; ein in einer anderen Region sichtbares Modell ist hier kein Zugangsnachweis.
+
+![OpenAI image service: supported models and Refresh model list](/img/open-science/v1.3.3/image-catalog.webp)

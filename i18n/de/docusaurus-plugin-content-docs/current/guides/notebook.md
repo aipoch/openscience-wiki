@@ -1,7 +1,7 @@
 ---
 title: "Notebook und Ausführungsnachweise"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -310,9 +310,10 @@ Wenn eine lokale Eingabe nicht gelesen werden kann, überprüfen Sie [Berechtigu
 Verwenden Sie **Process tree** für Details und **Terminate** nur für eine eigene Aufgabe, die Sie beenden möchten. Dies kann die Ausführung unterbrechen und die Variablen des Live-Kernels verwerfen. Ein gespeicherter Notebook-Eintrag wird nicht durch das Stoppen eines Prozesses gelöscht, aber eine unfertige Ausgabe ist kein abgeschlossenes Ergebnis. Wenn die Bereinigung ein Problem meldet und **Retry cleanup** anbietet, inspizieren Sie den Zustand, bevor Sie erneut versuchen. Laden Sie die erforderlichen Eingaben neu, bevor Sie den Code in einem neuen Kernel erneut ausführen.
 
 Verwenden Sie für wiederholte Ausführung [geplante Aufgaben](scheduled-tasks.md) nach Abschluss eines manuellen Durchlaufs.
+
 ## Verwalten von Notebook Speicher und Ressourcen {/* #memory-resources */}
 
-Vor der Ausführung prüft Open-Science den Systemspeicher. Wird eine Anfrage wegen Speichermangels angehalten, lesen Sie den Hinweis und beenden Sie nicht mehr benötigte Aufgaben oder geben Sie deren Ressourcen frei. Wieder verfügbarer Speicher löst keinen automatischen Neuversuch aus. Wählen Sie **Recheck and retry**, wenn die Option erscheint. Kehren Sie bei einem manuellen Notebook-Terminal dorthin zurück und prüfen Sie den aktuellen Code vor dem erneuten Ausführen.
+Vor der Ausführung überprüft Open-Science den Systemspeicher. Gedächtnisdruckanzeigen sind absetzbar und verfallen nach sechs Sekunden; Ihr verschwinden wiederholt oder vervollständigt keine blockierte anfrage. Die Ausführungsentscheidung, nicht die Benachrichtigung allein, bestimmt, ob ein Lauf beginnt. Windows-Prüfungen werden auf den physischen RAM begrenzt; macOS Speicherdruck und Linux Containergrenzen werden ebenfalls berücksichtigt. Wenn eine Anfrage wegen Speicherdrucks gestoppt wird, überprüfen Sie die Benachrichtigung und beenden oder lösen Sie die Arbeit, die Sie nicht mehr benötigen. Das Verfügbare Speichern wiederholt die Anforderung nicht automatisch; Wählen Sie **Recheck and retry**, wenn angeboten. Bei einem manuellen Notebook-Terminal kehren Sie zu diesem Terminal zurück und überprüfen den aktuellen Inhalt, bevor Sie erneut ausgeführt werden.
 
 Öffnen Sie **Compute → Notebook resources**, aktualisieren Sie die Liste und suchen Sie die beabsichtigte Sitzung. Wählen Sie **Stop and release Notebook** und prüfen Sie die aufgeführten lokalen Aufgaben, bevor Sie **Stop and release** bestätigen. Dies kann diese Aufgaben stoppen und lebende Variablen und Verbindungen verwerfen. Geschichte, gespeicherte Ausgaben, Dateien und installierte Umgebungen bleiben erhalten; Frühere Dateischreibvorgänge werden nicht rückgängig gemacht und unabhängige Remote-Compute-Jobs werden nicht gestoppt.
 

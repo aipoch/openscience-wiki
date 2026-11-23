@@ -2,7 +2,7 @@
 title: "リファレンス"
 slug: /reference
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # リファレンス {/* #reference */}
@@ -27,4 +27,4 @@ last_update:
 
 ## 変更履歴 {/* #changelog */}
 
-[最新のリリースノートを参照](../changelog/v1.3.1.md).
+[最新のリリースノートを参照](../changelog/v1.3.3.md).

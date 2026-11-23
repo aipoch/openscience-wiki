@@ -1,7 +1,7 @@
 ---
 title: "Translate a full PDF"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-23'
 ---
 
 # Translate a full PDF
@@ -67,3 +67,9 @@ This layout reflows translated body text and captions while preserving original 
 ### When one page cannot be rendered {/* #partial-page-recovery */}
 
 Fixed-layout translation in v1.2.0 keeps successfully rendered pages when another page fails. Review **Translation issues**, identify the affected page and compare it with the original. Keep any untranslated text visible as such; do not describe a partially rendered PDF as a complete translation. Retry the affected work when the reader offers it, then reopen the exported file and check that page again. A healthy page being retained does not verify its terminology or scientific interpretation.
+
+## Recheck older fixed-layout exports {/* #native-boundaries */}
+
+v1.3.2 and v1.3.3 improve native text reconstruction around line breaks, column boundaries, captions and inline formulas. They also keep translated text from displacing native notation, form labels and adjacent graphics. For an older problematic export, keep the original PDF and saved translation, update the app, then export and compare the affected pages again. If the extracted source itself is incomplete, use **New translation** for fresh preparation; this can make new model requests.
+
+Check reading order across columns, figure/caption pairs, mathematical symbols and clickable references. A repaired layout does not validate the translation or the underlying scientific claim.

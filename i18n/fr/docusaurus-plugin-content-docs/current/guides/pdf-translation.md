@@ -1,7 +1,7 @@
 ---
 title: "Traduire un PDF complet"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-23'
 ---
 
 # Traduire un PDF complet {/* #translate-a-full-pdf */}
@@ -67,3 +67,9 @@ Cette mise en page retransmet le texte du corps traduit et les légendes tout en
 ### Quand une page ne peut pas être rendue {/* #partial-page-recovery */}
 
 La traduction fixe dans v1.2.0 conserve les pages rendues avec succès quand une autre page échoue. Révision **Translation issues**, identifiez la page touchée et comparez-la à l'original. Garder tout texte non traduit visible en tant que tel; ne pas décrire un PDF partiellement rendu comme une traduction complète. Essayez de nouveau le travail affecté lorsque le lecteur l'offre, puis rouvrez le fichier exporté et vérifiez à nouveau cette page. Une page saine conservée ne vérifie pas sa terminologie ou son interprétation scientifique.
+
+## Revérifier les anciennes exportations de services fixes {/* #native-boundaries */}
+
+v1.3.2 et v1.3.3 améliorent la reconstruction du texte natif autour des ruptures de lignes, des limites des colonnes, des légendes et des formules inline. Ils gardent également le texte traduit de la mention native déplacée, des étiquettes de forme et des graphiques adjacents. Pour une exportation problématique plus ancienne, conservez la traduction originale PDF et sauvegardée, mettez à jour l'application, puis exportez et comparez à nouveau les pages touchées. Si la source extraite elle-même est incomplète, utiliser **New translation** pour la préparation fraîche; cela peut faire de nouvelles demandes de modèle.
+
+Vérifiez l'ordre de lecture des colonnes, des paires de figures/captions, des symboles mathématiques et des références cliquables. Une mise en page réparée ne valide pas la traduction ou l'allégation scientifique sous-jacente.

@@ -1,7 +1,7 @@
 ---
 title: "CLI and structured output"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -16,7 +16,7 @@ Use `open-science` to inspect application status, run tasks, manage Connectors a
 
 ## Set up from a terminal {/* #terminal-setup */}
 
-Install the desktop launcher, use a v1.0.8 standalone archive, or follow the [npm installation steps](../guides/installation.md#npm-cli). Standalone archives bundle Node, the backend and Web UI; the extraction steps below apply to those archives.
+Install the desktop launcher, use a v1.3.3 standalone archive, or follow the [npm installation steps](../guides/installation.md#npm-cli). Standalone archives bundle Node, the backend and Web UI; the extraction steps below apply to those archives.
 
 1. Choose macOS or Linux arm64/x64, or Windows x64, matching the host.
 2. Extract the complete archive into a writable location. Keep the launcher, `backend` and `node-runtime` together; copying only the launcher will break startup.
@@ -32,7 +32,7 @@ open-science doctor --json
 
 `init` creates the configuration directory without starting the application. `--profile` aliases `--config-root` for a portable CLI profile. Use the same absolute configuration directory for init, start and subsequent commands; a separate profile has its own setup. `runtime list` shows detected framework readiness, version and managed/external source without exposing executable paths.
 
-For an unconfigured Codex setup:
+Optional: to use the separate Codex runtime:
 
 ```bash
 open-science runtime install codex --json
@@ -40,7 +40,7 @@ open-science codex login
 open-science doctor --json
 ```
 
-Follow the login flow. This prepares or repairs the managed Codex runtime and registers the subscription through the application; it does not import external Codex login files. First-run bootstrap currently targets Codex, even though runtime listing includes other frameworks. Existing conflicting configuration is reported rather than silently replaced.
+Follow the login flow. These optional commands prepare or repair the managed Codex runtime and register its subscription; they do not import external Codex login files. The built-in Agent remains the clean-install default and does not require this external runtime. To use a Codex subscription with the built-in Agent, keep it selected and configure the subscription in **Settings → Model**. Conflicting existing configuration is reported rather than silently replaced.
 
 If using an OpenAI API key instead, use `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`, with a supported model ID and the key already supplied through your secret-management environment. For OpenAlex, use `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`. Prefix both commands with `open-science`. Never put the key itself in command arguments. A successful credential check does not establish that a research query completed or that quota remains.
 
@@ -214,9 +214,9 @@ The following invalid-option response was reproduced locally:
 
 JSONL can include `run.progress` and `stream.resync-required`. If replay is unavailable after reconnection, reread authoritative run state; do not assume the event stream is a permanent history. Lifecycle commands have separate flag restrictions described in [Headless service](./server.md).
 
-[CLI implementation](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/cli.mjs), [upstream command guide](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md).
+[CLI implementation](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/cli.mjs), [upstream command guide](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
 
-Technical reference: [CLI contract](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md).
+Technical reference: [CLI contract](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
 
 ## Unattended runs {/* #unattended-runs */}
 
@@ -266,7 +266,7 @@ open-science mcp --help
 
 Let the client launch the adapter. Discover projects with **list_projects**, submit **start_run** with the returned project ID, follow **get_run**, and inspect **list_artifacts**. Tool discovery can finish while startup is in progress; the first tool call waits for the service. Calls use the authenticated local service; this is not a remote HTTP MCP endpoint.
 
-The client acts under the profile's existing permissions. It can create persistent projects, change configuration and start work that writes files or incurs model costs. Approvals may still require action in Open-Science. Inspect current state after a timeout before repeating a write. Closing the client or cancelling its request does not cancel accepted research: use **cancel_run** explicitly. See the [official MCP tool and permission reference](https://github.com/aipoch/open-science/blob/v1.3.1/packages/open-science/CLI.md#external-agents-through-mcp).
+The client acts under the profile's existing permissions. It can create persistent projects, change configuration and start work that writes files or incurs model costs. Approvals may still require action in Open-Science. Inspect current state after a timeout before repeating a write. Closing the client or cancelling its request does not cancel accepted research: use **cancel_run** explicitly. See the [official MCP tool and permission reference](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md#external-agents-through-mcp).
 
 For package commands, follow [CLI import and export](../guides/research-packages.md#local-package-transfer).
 
@@ -274,13 +274,13 @@ The service retains a persistent hold after the MCP client disconnects. Use `ope
 
 ### CLI package recovery {/* #mcp-installation-recovery */}
 
-If `mcp` exits with `Cannot find package '@modelcontextprotocol/sdk'`, it is an installation dependency error, not a server-address problem. For the v1.3.1 macOS ARM64 archive, install the official npm client with `npm install -g @aipoch/open-science@1.3.1` and point the MCP configuration's `command` to that client. If its backend reports `database_runtime_unavailable`, start the complete standalone archive's backend first using the same profile:
+If MCP exits with `Cannot find package '@modelcontextprotocol/sdk'`, or the CLI reports `Missing @aipoch/open-science-<platform>`, repair the client and its platform package. Install the matching current release with optional dependencies included:
 
 ```bash
-/absolute/path/to/standalone/open-science start --no-open --config-root /absolute/path/to/profile
+npm install --global --include=optional @aipoch/open-science@1.3.3
 ```
 
-Then connect the npm MCP client to that profile and call **list_projects**. Check `status --json` after a startup error before trying again; discovering tools alone does not confirm a working backend.
+For `startup_unconfirmed`, inspect `open-science status --config-root /absolute/path/to/profile --json`, then run `open-science start --no-open --config-root /absolute/path/to/profile` to read the actual startup error. If the port is already occupied, check which profile owns it before stopping anything. Retry **list_projects** after resolving the reported cause. Tool discovery alone does not confirm a working backend.
 
 ## Keep a service running for automation {/* #persistent-service */}
 
@@ -310,3 +310,7 @@ open-science literature status read <item-id>
 Without **--commit**, `import` only previews. Supported files include BibTeX, RIS and NBIB. The duplicate policies are `reuse`, `separate` and `fill-missing`. `link` associates an existing reference with a project; it does not copy its PDF. If an import saves references but project linking fails, use the returned IDs to retry linking instead of importing again.
 
 Use `literature collection create`, `collection add` and `collection remove` to organize records. `literature trash` moves references to Trash; `literature restore` recovers them. Check the selected IDs before a write. Read/write library tools are also exposed through [MCP](#external-mcp); their permissions and input schemas still apply.
+
+## Default Agent in a clean installation {/* #default-agent */}
+
+v1.3.3 starts a clean CLI installation with the built-in Open-Science Agent. Initialize the profile, start the service and inspect **Settings → Agent** in its local web workspace; an external Agent SDK is optional. Connect a model before running a task. Existing configured runtime choices remain separate from this clean-install default. [Agent choices](../guides/frameworks.md#default-runtime).

@@ -1,7 +1,7 @@
 ---
 title: "Anbieter und lokales Modell-Setup"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -17,7 +17,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | Wahlmöglichkeit | Was Sie brauchen | Prüfung vor Fortführung |
 | --- | --- | --- |
 | Codex-Abonnement | Eine kompatible Codex-Anmeldung | Inspektion der `Codex authentication` Auswahl; Importieren bestehender Zugriffskopien Authentifizierung in Open-Science |
-| Offizielle API | Zugang zu diesem Anbieter und dem angeforderten Modell | Bestätigen Sie den Anbieter, die Region, falls zutreffend, und die API-Anmeldeinformationen |
+| Offizielle API | Zugriff auf den Anbieter und das gewählte Modell | Prüfen Sie Anbieter, Region und einen gegebenenfalls erforderlichen API-Schlüssel; Kilo unterstützt auch anonymen Zugriff |
 | Benutzerdefiniertes Gateway | Ein kompatibler Endpunkt, genaue Modell-ID und bei Bedarf ein API-Schlüssel | Bestätigen Sie das API-Format und die unterstützten Modellfunktionen mit dem Gateway-Operator |
 
 Wählen Sie **Import existing Codex sign-in**, um eine funktionierende lokale Anmeldung in Open-Science zu kopieren. Der Import kann eine kompatible nicht geheime Loopback-Route umfassen; andere globale Konfiguration, Skills und Sitzungen bleiben getrennt. Behalten Sie unter **Advanced settings → Transport** **Auto (recommended)** bei, es sei denn, Ihre Verbindung erfordert einen anderen Transport.
@@ -274,6 +274,7 @@ Verwenden Sie die CodeBuddy-Laufzeit, wenn Sie ein CodeBuddy-Abonnement auswähl
 Wählen Sie den unterstützten vorhandenen Login-Verbindung oder Browser-Anmeldefluss durch das Formular angezeigt. Melden Sie sich für eine vorhandene Anmeldung bei der ausgewählten Site in CodeBuddy CLI an und verwenden Sie dann **Connect**. Ein WorkBuddy-Profil allein ist nicht die erforderliche CodeBuddy CLI Anmeldung. Für die Browser-Anmeldung beenden Sie den Kontofluss und kehren zu Open-Science zurück.
 
 Warten Sie auf die Verbindungsüberprüfung und die entdeckten Modelle des Kontos. Wählen Sie ein verfügbares Modell aus und senden Sie eine kurze Anfrage vor einer längeren Aufgabe. Wenn die Website oder die Anmeldung falsch ist, korrigieren Sie diese Kontoverbindung und aktualisieren Sie sie; eine gespeicherte Anbieterzeile beweist nicht, dass ein Modell zugänglich ist.
+
 ## Verbinden Sie ein Lab-Konto {/* #lab-account */}
 
 Verwenden Sie die Desktop-App und die Lab-Server-Adresse, die von Ihrer Organisation bereitgestellt wird. Geben Sie in **Settings → Lab → Connection** **Server address** ein, verwenden Sie **Test connection**, dann **Save**. Wählen Sie **Sign in with browser**, schließen Sie die Anmeldung Ihrer Organisation ab und kehren Sie zu Open-Science zurück. Der Autorisierungs-Tab wird geschlossen, wenn die Anmeldung abgeschlossen ist.
@@ -289,3 +290,16 @@ In **Settings → Model** fügen oder bearbeiten Sie einen offiziellen Anbieter.
 Ein fehlgeschlagener Refresh behält die vorherige Liste. Lesen Sie den spezifischen Fehler: Der Katalogzugriff erfordert möglicherweise eine andere Berechtigung, einen gültigen Regionalschlüssel, einen vollständigen Arbeitsbereichsparameter oder eine spätere Wiederholung nach einem Tariflimit. Die Katalogerkennung bestätigt nicht, dass jedes aufgelistete Modell Anfragen beantworten kann. Wenn der Anbieter keine Online-Aktualisierung unterstützt, verwenden Sie die gebündelte Liste oder einen korrekt konfigurierten benutzerdefinierten Endpunkt.
 
 ![Erfrischen Sie die Modelle eines Anbieters](/img/open-science/v1.3.1/provider-model-refresh.webp)
+
+## Verbinden Sie Kilo Gateway mit oder ohne Schlüssel {/* #kilo */}
+
+1. Öffnen Sie **Settings → Model → Add provider** und wählen Sie **Kilo Gateway**.
+2. Geben Sie Ihren API key ein, um Ihr Kilo-Konto zu verwenden. Für anonymen Zugriff lassen Sie das Feld leer und wählen **Refresh model list**. Die Anfrage kontaktiert Kilo ohne Konto-Zugangsdaten und zeigt die für diese Verbindung verfügbaren Modelle. Verfügbarkeit und Nutzungslimits können sich ändern.
+3. Prüfen Sie **Supported models** und wählen Sie **Save**. Prüfen Sie **Main model** und wählen Sie den gewünschten Anbieter und das Modell.
+4. Senden Sie vor der Forschung eine kurze Anfrage und prüfen Sie deren Abschluss. Die Katalogaktualisierung testet keine Inferenz und garantiert weder Werkzeuge noch Bildeingaben oder unbegrenzte kostenlose Nutzung.
+
+Unter **Model provider** fügt **Skip** Kilo Gateway ohne API key hinzu und wechselt zu Notebook runtime. Danach kann **Main model** `kilo-auto/free` anzeigen. Öffnen Sie vor der ersten Nachricht **Settings → Model**, prüfen Sie Anbieter und Modell und wählen Sie die gewünschte Verbindung, etwa Codex subscription. Skip testet keine Inferenz. Ein Upgrade erhält vorhandene Zugangsdaten und die Main-Auswahl.
+
+An Kilo-Modelle gesendete Fragen und Gesprächsmaterialien gehen an den Kilo-Dienst. Auch eine Kataloganfrage ohne Schlüssel nutzt das Netzwerk. Bei einem Fehler bleibt die vorherige Liste erhalten. Prüfen Sie den Fehler und versuchen Sie es erneut; erfinden Sie keine Modell-ID.
+
+![Kilo Gateway: API key optional and refreshed model catalog](/img/open-science/v1.3.3/kilo-catalog.webp)

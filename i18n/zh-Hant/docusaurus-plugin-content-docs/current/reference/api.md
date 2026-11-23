@@ -1,7 +1,7 @@
 ---
 title: "Task SDK 與本地 API"
 last_update:
-  date: '2026-10-22'
+  date: '2026-11-23'
 ---
 
 # Task SDK 與本地 API {/* #task-sdk-与本地-api */}
@@ -199,3 +199,7 @@ console.log(state);
 ## 1.x 公共介面相容性 {/* #public-compatibility */}
 
 [官方相容政策](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md)覆蓋匹配版本 SDK 的公開根匯出和型別，以及文件化的 Task 請求、響應與事件。它不把任意本地 HTTP 路由、內部模組或 Electron IPC 都變成公共 API。程式應按文件化錯誤碼判斷，忽略未知物件欄位，不要依賴診斷文字。應用、獨立包和研究包 schema 的版本號彼此獨立。
+
+## 首次使用的內建執行時 {/* #builtin-default */}
+
+v1.3.3 的全新 SDK/後端安裝在新專案與會話中預設使用內建 Open-Science Agent。缺少可選的外部 Agent SDK 不再阻止服務啟動。執行任務仍需要模型認證和所選模型的相應能力；服務可用不等於推理或工具執行已經驗證。只有選用外部執行時時才需要安裝它。見 [CLI 設定](cli.md#terminal-setup)及 [Agent 設定](../guides/frameworks.md#default-runtime)。

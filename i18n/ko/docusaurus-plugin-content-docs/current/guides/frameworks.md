@@ -1,12 +1,12 @@
 ---
 title: "설치 및 전환 에이전트"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 # 설치 및 전환 에이전트 {/* #installing-and-switching-agents */}
 
-대화와 도구 실행에 사용할 Agent 프레임워크를 선택하고, 설치 후 호환되는 [모델 제공자](providers.md)를 설정하세요. 여러 프레임워크를 설치할 수 있습니다. **Settings → Agent**의 활성 프레임워크는 모든 프로젝트가 공유하는 앱 전체 설정이며, 변경 사항은 이후 대화와 워크플로에 적용됩니다.
+내장된 Open-Science Agent는 별도의 런타임 설치 없이 대화와 도구를 실행합니다. 호환 [모델 공급자](providers.md) 구성; 사용하려면 외부 에이전트를 설치하십시오. 여러 가지 프레임 워크를 설치 할 수 있습니다. **Settings → Agent**의 활성 프레임 워크는 프로젝트 전반에 걸쳐 공유되는 응용 프로그램입니다. 그것은 후속 회전 및 작업 흐름에 적용.
 
 ## 에이전트 페이지를 읽으십시오 {/* #read-the-agent-page */}
 
@@ -106,3 +106,11 @@ Pi는 첫 번째 설정에서 v1.0.7에서 사용할 수 있습니다 **Settings
 5. 사용할 Main 모델을 선택하고 짧은 요청을 보내세요. 긴 작업을 시작하기 전에 응답과 실제 도구 결과를 확인하세요.
 
 Pi는 호환 Responses, Chat Completions 및 Messages 엔드포인트를 지원합니다. 제공업체, 구독 방식 및 모델 목록은 활성 프레임워크에 따라 필터링됩니다. Pi를 설치하면서 Codex를 계속 사용할 수 있으며 전환은 별도 작업입니다. 참고: [공급자 설정](providers.md).
+
+## 포함 된 실행 시간으로 시작 {/* #default-runtime */}
+
+v1.3.3에서, 청결한 탁상용, CLI 및 SDK 임명은 새로운 프로젝트와 회의를 위한 붙박이 Open-Science 대리인을 이용합니다. Codex, Claude Agent 또는 다른 외부 SDK를 설치하지 않아도 서비스를 시작할 수 있습니다. 요청을 보내기 전에 호환되는 공급자를 구성하십시오; **Active** 혼자는 모형 readiness가 아닙니다.
+
+외부 프레임 워크를 선택하면 해당 관리 설치자와 다운로드가 표시된 npm 소스 또는 지원되는 미러를 사용합니다. 몇몇 runtimes는 현재 출판된 버전을 해결합니다; 다른 사람은 pinned 버전 또는 lockfile 묶인 신청 방출을 사용합니다. 설치 된 버전을 검사하고 독립적으로 모든 프레임 워크 업데이트를 가정하지 마십시오. 설치 실패는 작업 내장 에이전트를 대체 할 필요가 없습니다.
+
+![Open-Science Agent active without an external runtime](/img/open-science/v1.3.3/builtin-agent.webp)

@@ -1,7 +1,7 @@
 ---
 title: "Fehlerbehebung und häufige Fragen"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Fehlerbehebung und häufige Fragen {/* #troubleshooting-and-common-questions */}
@@ -46,6 +46,7 @@ Wenn **Desktop connection lost** erscheint, warten Sie mit neuen Vorgängen, bis
 4. Sichern Sie vor dem Beenden noch zugängliche, ungespeicherte Inhalte und lesen Sie die Bestätigung. Das Beenden bei unterbrochener Verbindung bestätigt nicht, dass das Backend angehalten wurde. Prüfen Sie bei einer CLI-Instanz dasselbe Profil mit `open-science status --json`; siehe [Backend-Zuordnung und Beenden](../reference/server.md#backend-ownership).
 
 Die Browseroberfläche pausiert die Bedienelemente, während fehlende Aktualisierungen wiederhergestellt werden. Bei **Reload required** sichern Sie eine Kopie nicht gesendeter Entwürfe, bevor Sie **Reload** wählen. Falls die Entwurfsspeicherung fehlgeschlagen ist, bestätigen Sie zuerst, dass Sie eine Kopie gesichert haben. Erwähnungen werden als Text wiederhergestellt; prüfen Sie vor dem Senden auch die Anhänge. **Pairing required** bedeutet, dass die Zugriffsberechtigung abgelaufen ist: Öffnen Sie den Weblink des Hosts erneut oder führen Sie die [Remote-Kopplung](remote-access.md) durch, statt die Aufgabe wiederholt zu senden.
+
 ## Wiederherstellen eines Startfehlers {/* #startup-recovery */}
 
 | Bekanntmachung | Aktion |
@@ -264,6 +265,13 @@ Dies gewährt keinen Zugriff auf ein Paywalled-Papier oder eine institutionelle 
 ## Wiederherstellen, nachdem der lokale Dienst getrennt wurde {/* #local-service-recovery */}
 
 Wenn der Arbeitsbereich die Wiederherstellung des lokalen Dienstes anzeigt, warten Sie auf die Rückkehr der Verbindung, bevor Sie eine Aktion wiederholen. Der Composer-Entwurf wird beibehalten, während nicht verfügbare Aktionen blockiert bleiben. Überprüfen Sie nach der Wiederverbindung die Konversation oder führen Sie die Aufzeichnung aus, um zu sehen, ob die vorherige Anfrage akzeptiert wurde. Resume aus dem tatsächlichen Zustand, anstatt die gleiche Aufgabe zweimal zu senden.
+
 ## Reagieren Sie auf einen Model-Provider-Fehler {/* #provider-errors */}
 
 Lesen Sie die Ursache, die mit der fehlgeschlagenen Antwort gezeigt wurde. Überprüfen Sie bei Authentifizierungs- oder Kontoberechtigungsfehlern die Providerverbindung; bei ausgeschöpfter Quote die Nutzung dieses Kontos überprüfen; für Tariflimits, warten Sie, bevor Sie es erneut versuchen. Für ein nicht verfügbares Modell aktualisieren Sie die unterstützte Liste und wählen Sie ein zugängliches Modell aus. Eine verlorene Verbindung oder eine unterbrochene Antwort erfordert die Überprüfung der aktuellen Sitzung und der abgeschlossenen Werkzeugarbeit vor dem erneuten Einreichen. Reduzieren Sie für eine Kontextbegrenzung das gelieferte Material oder starten Sie eine entsprechend umfangreiche Fortsetzung. Der Anbieterwechsel ist nicht bei jedem Fehler notwendig.
+
+## Unterscheiden einer gestoppten Aufgabe von einer fehlgeschlagenen Anforderung {/* #request-details */}
+
+Bei einer fehlgeschlagenen Antwort öffnen Sie **Error details** und behalten die Fehlerklassifizierung und die Anforderungs-ID bei, wenn sie vorhanden sind. Authentifizierung, Quote, Nichtverfügbarkeit des Anbieters und eine fehlerhafte Antwort erfordern unterschiedliche Abhilfemaßnahmen. Entfernen Sie private Inhalte, bevor Sie Diagnosen teilen.
+
+Wenn Sie Stop gewählt haben, warten Sie auf die Bereinigung und prüfen Sie die gespeicherten Ausgaben. Eine gestoppte Aufgabe unterscheidet sich von einer Fortsetzung, die nie eine Antwort erhalten hat. Für die Lieferung von Nachrichten in der Warteschlange, das Laden von Anhängen oder Fehler beim Lesen der Historie, überprüfen Sie die ursprüngliche Konversation vor dem erneuten Senden; Akzeptierte Werkzeugarbeit hat möglicherweise bereits Dateien produziert. In Windows kann eine integrierte Agent-Frage, die auf Ihre Antwort wartet, den Neustart überleben: Öffnen Sie die Sitzung erneut und beantworten Sie die beibehaltene Frage, anstatt eine doppelte Aufgabe zu erstellen.

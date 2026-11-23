@@ -1,12 +1,12 @@
 ---
 title: "Installation et commutation d'agents"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 # Installation et commutation d'agents {/* #installing-and-switching-agents */}
 
-Choisissez un framework Agent pour exécuter les conversations et les outils. Après l’installation, configurez un [fournisseur de modèles](providers.md) compatible. Plusieurs frameworks peuvent rester installés. Le framework actif dans **Settings → Agent** est un réglage global de l’application, commun à tous les projets ; il s’applique aux prochains tours de conversation et workflows.
+Le Open-Science Agent intégré exécute des conversations et des outils sans installation séparée. Configurer un [modèle fournisseur](providers.md) compatible; installez un Agent externe seulement si vous choisissez de l'utiliser. Vous pouvez garder plusieurs cadres installés. Le cadre actif de **Settings → Agent** est un cadre d'application partagé dans l'ensemble des projets; il s'applique aux tours et aux workflows ultérieurs.
 
 ## Lire la page Agent {/* #read-the-agent-page */}
 
@@ -106,3 +106,11 @@ Pi est disponible à partir de v1.0.7 pour la première fois **Settings → Agen
 5. Sélectionnez le modèle principal prévu et envoyez une petite demande. Vérifiez la réponse et un résultat d'outil réel avant de commencer une longue tâche.
 
 Pi prend en charge les paramètres de réponse, de fin de discussion et de messages compatibles. Les fournisseurs disponibles, les options d'abonnement et les modèles sont filtrés par le cadre actif. Vous pouvez garder Codex actif lors de l'installation de Pi; la commutation est un choix séparé. Voir [configuration du fournisseur](providers.md).
+
+## Commencez par l'exécution incluse {/* #default-runtime */}
+
+Depuis v1.3.3, des installations de bureau propres, CLI et SDK utilisent l'Agent Open-Science intégré pour de nouveaux projets et sessions. Vous n'avez pas besoin d'installer Codex, Claude Agent ou un autre SDK externe juste pour démarrer le service. Configurer un fournisseur compatible avant d'envoyer une demande; **Active** seul n'est pas la préparation du modèle.
+
+Le choix d'un framework externe utilise son installateur géré et les téléchargements à partir de la source npm affichée ou miroir pris en charge. Certains runtimes résolvent une version publiée; d'autres utilisent des versions épinglées ou un fichier de verrouillage lié à la version de l'application. Inspecter la version installée et ne pas prendre en compte toutes les mises à jour du framework de manière indépendante. Une défaillance d'installation n'exige pas le remplacement d'un Agent intégré qui fonctionne.
+
+![Open-Science Agent active without an external runtime](/img/open-science/v1.3.3/builtin-agent.webp)

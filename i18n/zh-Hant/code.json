@@ -2779,5 +2779,17 @@
   },
   "docs.outline.reference.v131.scope": {
     "message": "網頁搜尋、引用圖、Lab 分享與資源恢復。"
+  },
+  "docs.outline.reference.v132.title": {
+    "message": "v1.3.2"
+  },
+  "docs.outline.reference.v132.scope": {
+    "message": "Kilo Gateway、影象目錄、會話記憶體與 PDF 翻譯。"
+  },
+  "docs.outline.reference.v133.title": {
+    "message": "v1.3.3"
+  },
+  "docs.outline.reference.v133.scope": {
+    "message": "後臺更新、內建 Agent 預設配置、圖片編輯與錯誤說明。"
   }
 }

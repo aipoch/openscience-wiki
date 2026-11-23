@@ -1,7 +1,7 @@
 ---
 title: "Tarea SDK y API local"
 last_update:
-  date: '2026-10-22'
+  date: '2026-11-23'
 ---
 
 # Tarea SDK y API local {/* #task-sdk-and-local-api */}
@@ -199,3 +199,7 @@ El anfitrión debe declarar la capacidad `permission-prompts-none`; de lo contra
 ## Compatibilidad de interfaz pública en 1.x {/* #public-compatibility */}
 
 El [Política de compatibilidad](https://github.com/aipoch/open-science/blob/v1.0.0/docs/compatibility.md) cubre las exportaciones/tipos de raíz pública de SDK y las solicitudes de tareas documentadas, respuestas y eventos. No hace rutas arbitrarias locales HTTP, importaciones internas o API públicas Electron IPC. Parse documentado códigos de error, tolerar campos de objetos desconocidos y evitar que coincida con la prosa de diagnóstico. Aplicación, versión de paquete y esquemas de empaquetado de investigación publicada independientemente son independientes.
+
+## Tiempo de ejecución incorporado en el primer uso {/* #builtin-default */}
+
+En v1.3.3, una instalación limpia SDK/backend predetermina nuevos proyectos y sesiones al agente Open-Science incorporado. Desapareciendo los SDKs de los agentes externos opcionales ya no previenen la puesta en marcha del servicio. La autenticación modelo y las capacidades del modelo seleccionado todavía son necesarias para una ejecución; la disponibilidad de servicio por sí sola no verifica la inferencia o la ejecución de herramientas. Instalar un tiempo de ejecución externo sólo cuando se selecciona. Ver [CLI setup](cli.md#terminal-setup) y [Configuración del agente](../guides/frameworks.md#default-runtime).

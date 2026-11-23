@@ -1,7 +1,7 @@
 ---
 title: "Первый раз установка"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -137,21 +137,23 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 4. Поставщик моделей {/* #4-model-provider */}
 
-Форма зависит от **Provider type**, выбранного Agent и способа аутентификации. Для подписки Codex со встроенным Agent выберите **Codex subscription**. Если на компьютере уже выполнен вход в Codex, выберите **Import existing Codex sign-in** в **Codex authentication**, затем нажмите **Test & continue**. Если подходящего входа нет, выберите поддерживаемый способ и следуйте подсказкам; см. [Настройка провайдеров](providers.md#builtin-codex-subscription). Продолжайте после успешной проверки подключения.
+Чтобы выбрать модель позже, используйте **Skip** и следуйте [Отложенная настройка модели](#skip-provider). Чтобы подключиться сейчас, используйте шаги ниже.
+
+Форма изменяется в соответствии с **Provider type**, выбранным Агентом и методом аутентификации. Чтобы использовать подписку Codex со встроенным агентом, выберите **Codex subscription**. Если на этом компьютере уже есть вход Codex, выберите **Import existing Codex sign-in** под **Codex authentication**, затем выберите **Test & continue**. Если недоступна полезная регистрация, выберите поддерживаемый метод входа и следуйте подсказкам; См. [Настройка провайдера](providers.md#builtin-codex-subscription). Продолжить после того, как проверка соединения удалась.
 
 <PlatformContent platform="macos">
 
-![Английская форма подписки Codex перед аутентификацией](/img/open-science/v121/onboarding-codex-provider.webp)
+![Английская форма подписки Codex до аутентификации](/img/open-science/v121/onboarding-codex-provider.webp)
 
 </PlatformContent>
-Для поставщика API выберите его тип, введите конечную точку и детали модели, требуемые этим поставщиком, и используйте **Test & continue**. Мастер проверяет требуемые поля перед отправкой теста. Успешный тест продвигает волшебника. Ошибка проверки или соединения остается видимой для исправления.
+Для поставщика API выберите его тип, введите конечную точку и детали модели, требуемые этим поставщиком, и используйте **Test & continue**. Мастер проверяет требуемые поля перед отправкой теста. Успешный тест продвигает волшебника. Ошибка валидации или соединения остается видимой для коррекции.
 
 <PlatformContent platform="macos">
 
 ![Пользовательский шлюз, показывающий ошибки требуемого поля](/img/open-science/walkthrough-2026-09-08/08-model-required-fields.webp)
 
 </PlatformContent>
-[Настройка поставщика](providers.md) для выбора аутентификации, расширенных полей и восстановления после ошибок подключения.
+[Настройка провайдера](providers.md) для выбора аутентификации, расширенных полей и восстановления после ошибок подключения.
 
 Храните ключи API в специальном поле учетных данных. Не включайте их в скриншоты, инструкции по проекту или сообщения для разговора.
 
@@ -198,3 +200,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 ## Источник ссылки {/* #source-reference */}
 
 [Разработчик:Wizard.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/OnboardingWizard.tsx), [Обсуждение EnvironmentStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/EnvironmentStep.tsx), [РасположениеStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/LocationStep.tsx).
+
+## Проверить модель после Skip {/* #skip-provider */}
+
+На этапе **Model provider** кнопка **Skip** добавляет Kilo Gateway без API key и переходит к Notebook runtime. После настройки в **Main model** может отображаться `kilo-auto/free`. До первого сообщения откройте **Settings → Model**, проверьте выбранного провайдера и модель и переключитесь на нужное подключение, например Codex subscription. Skip не проверяет выполнение запросов моделью. [Kilo Gateway](providers.md#kilo).

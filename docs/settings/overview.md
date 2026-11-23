@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: Settings overview
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Settings overview
@@ -60,3 +60,7 @@ Some switches are saved immediately. Longer forms use `Save`, `Add`, or `Import`
 Within **Model**, use **Conversation models** for providers and task models, **Classification models** for optional capability selection and Smart collections, and **Local capabilities** for PDF extraction, OCR and research narration. These are tabs within Model, not additional Settings panels. See [local resources](../guides/models.md#local-capabilities).
 
 The header search uses **⌘K / Ctrl+K**. To focus the current panel or dialog's own search, use **⌘⌥K / Ctrl+Alt+K** when that field is available. See [search shortcuts](../guides/shortcuts.md#local-settings-search).
+
+## Open installed resources from Settings {/* #resource-shortcuts */}
+
+Use the **Skills**, **Specialists** or **Connectors** shortcut in Settings to open that installed category in the Resource center. Return to resume your previous Settings position. These are shortcuts to resource management, not three additional settings panels. Marketplace discovery and installed-resource configuration remain separate views.

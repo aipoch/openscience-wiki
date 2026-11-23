@@ -1,7 +1,7 @@
 ---
 title: "첫 번째 시간 설정"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -137,18 +137,20 @@ runtimes를 설치하기 전에 큰 파일에 대한 위치를 선택하십시�
 
 ## 4. 모델 제공업체 {/* #4-model-provider */}
 
-양식은 **Provider type**, 선택한 Agent 및 인증 방식에 따라 달라집니다. 내장 Agent에서 Codex 구독을 사용하려면 **Codex subscription**을 선택합니다. 이 컴퓨터에 기존 Codex 로그인이 있으면 **Codex authentication**에서 **Import existing Codex sign-in**을 선택하고 **Test & continue**를 누릅니다. 사용할 수 있는 로그인이 없으면 지원되는 로그인 방식을 선택하고 안내를 따릅니다. [제공자 설정](providers.md#builtin-codex-subscription)도 참조하세요. 연결 검사를 통과한 후 계속합니다.
+나중에 모델을 선택하려면 **Skip**을 사용하며 [deferred 모델 설정](#skip-provider)을 따르십시오. 지금 연결하려면 아래 단계를 사용하십시오.
+
+**Provider type**, 선택한 에이전트 및 인증 방법에 따라 형태 변경. 내장 에이전트와 Codex 구독을 사용하려면 **Codex subscription**을 선택하십시오. 이 컴퓨터가 이미 Codex 서명인 경우 **Codex authentication** 아래 **Import existing Codex sign-in**을 선택하고 **Test & continue**를 선택합니다. 사용할 수 없는 경우, 지원되는 sign-in 방법을 선택하고 신속한을 따르십시오; [공급자 설정](providers.md#builtin-codex-subscription) 참조. 연결 체크가 성공한 후에 계속.
 
 <PlatformContent platform="macos">
 
 ![인증하기 전에 영어 Codex 구독 양식](/img/open-science/v121/onboarding-codex-provider.webp)
 
 </PlatformContent>
-API 공급자를 위해, 그것의 유형을 선정하고, 그 공급자에 의해 요구된 endpoint와 모형 세부사항을 입력하고, **Test & continue**를 이용합니다. 테스트 보내기 전에 wizard validates 필수 필드. 성공적인 시험은 마법사를 전진합니다; 유효성 또는 연결 오류가 보정을 위해 볼 수 있습니다.
+API 공급자를 위해, 그것의 유형을 선정하고, 그 공급자에 의해 요구된 endpoint와 모형 세부사항을 입력하고, **Test & continue**를 이용합니다. 테스트 보내기 전에 마법사가 필요한 필드를 검증합니다. 성공적인 시험은 마법사를 전진합니다; 유효성 또는 연결 오류가 보정을 위해 볼 수 있습니다.
 
 <PlatformContent platform="macos">
 
-![필요한 현장 오류를 보여주는 Custom Gateway](/img/open-science/walkthrough-2026-09-08/08-model-required-fields.webp)
+![필요한 필드 오류를 보여주는 사용자 정의 게이트웨이](/img/open-science/walkthrough-2026-09-08/08-model-required-fields.webp)
 
 </PlatformContent>
 [공급자 설정](providers.md) 인증 선택, 고급 필드 및 연결 오류에서 복구를 참조하십시오.
@@ -198,3 +200,7 @@ Windows **Notebook runtime** 페이지는 **Local Shell · WSL2 Bash Preview**�
 ## 소스 참조 {/* #source-reference */}
 
 [온보딩Wizard.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/OnboardingWizard.tsx), [환경Step.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/EnvironmentStep.tsx), [위치Step.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/LocationStep.tsx).
+
+## Skip 후 모델 선택 확인 {/* #skip-provider */}
+
+**Model provider**에서 **Skip**을 선택하면 API key 없는 Kilo Gateway가 추가되고 Notebook runtime으로 넘어갑니다. 설정 후 **Main model**에 `kilo-auto/free`가 표시될 수 있습니다. 첫 메시지를 보내기 전에 **Settings → Model**에서 선택된 제공업체와 모델을 확인하고, Codex subscription 등 원하는 연결로 바꾸세요. Skip은 모델의 요청 처리 기능을 테스트하지 않습니다. [Kilo Gateway](providers.md#kilo).

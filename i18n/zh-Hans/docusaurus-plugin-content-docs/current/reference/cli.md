@@ -1,7 +1,7 @@
 ---
 title: "CLI 与结构化输出"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -16,7 +16,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 从终端完成首次设置 {/* #terminal-setup */}
 
-可安装桌面版命令入口、使用 v1.0.8 独立压缩包，或按 [npm 安装步骤](../guides/installation.md#npm-cli)操作。独立压缩包包含 Node、后端和 Web UI；下面的解压步骤适用于这些压缩包。
+可安装桌面版命令入口、使用 v1.3.3 独立压缩包，或按 [npm 安装步骤](../guides/installation.md#npm-cli)操作。独立压缩包包含 Node、后端和 Web UI；下面的解压步骤适用于这些压缩包。
 
 1. 选择与主机匹配的 macOS／Linux arm64 或 x64 包，或 Windows x64 包。
 2. 完整解压到可写目录，保留启动器、`backend` 与 `node-runtime` 的相对位置；只复制启动器会导致无法启动。
@@ -32,7 +32,7 @@ open-science doctor --json
 
 `init` 只创建配置目录，不启动应用。`--profile` 是 `--config-root` 的别名，可为 CLI 指定独立配置。init、start 与后续命令应始终使用同一绝对配置目录；独立配置需要各自完成设置。`runtime list` 显示检测到的框架就绪状态、版本和应用管理/外部来源，不暴露可执行文件路径。
 
-尚未配置 Codex 时：
+可选：需要使用独立 Codex 运行时时：
 
 ```bash
 open-science runtime install codex --json
@@ -40,7 +40,7 @@ open-science codex login
 open-science doctor --json
 ```
 
-按提示完成登录。此流程准备或修复应用管理的 Codex 运行时，并通过应用登记订阅，不会导入外部 Codex 登录文件。首次设置目前针对 Codex，即使运行时列表还显示其他框架。已有配置发生冲突时会报错，不会直接覆盖。
+按提示完成登录。这组可选命令准备或修复应用管理的 Codex 运行时，并登记其订阅，不导入外部 Codex 登录文件。全新安装默认使用内置 Agent，无需安装该外部运行时。若希望内置 Agent 使用 Codex 订阅，保持内置 Agent 选中，在 **Settings → Model** 配置订阅即可。已有配置冲突时会报错，不会直接覆盖。
 
 改用 OpenAI API key 时，使用 `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`，填入受支持的模型 ID，并通过已有密钥管理方式提供环境变量。配置 OpenAlex 时使用 `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`。这两条命令前均加 `open-science`。不要把密钥本身放进命令参数。凭据检查成功不代表科研查询已完成，也不保证仍有配额。
 
@@ -212,9 +212,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL 可能包含 `run.progress` 和 `stream.resync-required`。重连后无法重放时，重新读取权威 Run 状态，不把事件流当作永久历史。服务命令另有参数限制，见[无界面服务](./server.md)。
 
-[CLI 实现](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md)。
+[CLI 实现](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md)。
 
-技术参考：[CLI 约定](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md).
+技术参考：[CLI 约定](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
 
 ## 无人值守运行 {/* #unattended-runs */}
 
@@ -264,7 +264,7 @@ open-science mcp --help
 
 由客户端启动适配器。先用 **list_projects** 获取项目 ID，再交给 **start_run** 提交任务，通过 **get_run** 查看进度，使用 **list_artifacts** 查看文件。工具发现可能在服务启动期间先完成，第一次工具调用会等待服务就绪。实际调用使用已认证的本地服务，这不是远程 HTTP MCP 入口。
 
-客户端沿用该配置已有的权限，可以创建持久项目、修改配置，并发起会写文件或产生模型费用的任务。审批仍可能需要你在 Open-Science 中处理。请求超时后，先检查当前状态再重复写操作。关闭客户端或取消请求不会取消已接受的研究任务；需要停止任务时明确调用 **cancel_run**。详见[官方 MCP 工具与权限说明](https://github.com/aipoch/open-science/blob/v1.3.1/packages/open-science/CLI.md#external-agents-through-mcp)。
+客户端沿用该配置已有的权限，可以创建持久项目、修改配置，并发起会写文件或产生模型费用的任务。审批仍可能需要你在 Open-Science 中处理。请求超时后，先检查当前状态再重复写操作。关闭客户端或取消请求不会取消已接受的研究任务；需要停止任务时明确调用 **cancel_run**。详见[官方 MCP 工具与权限说明](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md#external-agents-through-mcp)。
 
 研究包命令见 [CLI 导入与导出](../guides/research-packages.md#local-package-transfer)。
 
@@ -272,13 +272,13 @@ MCP 客户端断开后，服务会保留持续运行状态。工作结束后，�
 
 ### CLI 安装恢复 {/* #mcp-installation-recovery */}
 
-如果 `mcp` 启动时提示 `Cannot find package '@modelcontextprotocol/sdk'`，这是安装依赖问题，不是服务器地址错误。对 v1.3.1 macOS ARM64 压缩包，可用 `npm install -g @aipoch/open-science@1.3.1` 安装官方 npm 客户端，并把 MCP 配置的 `command` 指向该客户端。如果它的后端提示 `database_runtime_unavailable`，先使用完整独立压缩包中的程序启动同一配置的后端：
+如果 MCP 退出并提示 `Cannot find package '@modelcontextprotocol/sdk'`，或 CLI 提示 `Missing @aipoch/open-science-<platform>`，应修复客户端及对应平台运行包。安装匹配的当前版本，并明确包含可选依赖：
 
 ```bash
-/absolute/path/to/standalone/open-science start --no-open --config-root /absolute/path/to/profile
+npm install --global --include=optional @aipoch/open-science@1.3.3
 ```
 
-再让 npm MCP 客户端连接该配置，并调用 **list_projects**。启动报错后先查看 `status --json` 再重试；仅能发现工具不代表后端已可用。
+遇到 `startup_unconfirmed`，先检查 `open-science status --config-root /absolute/path/to/profile --json`，再运行 `open-science start --no-open --config-root /absolute/path/to/profile`，读取具体启动错误。若端口已占用，先确认归属哪个配置目录，再决定是否停止该服务。解决实际原因后重试 **list_projects**；能列出工具不等于后端已可用。
 
 ## 让服务持续运行以完成自动化 {/* #persistent-service */}
 
@@ -308,3 +308,7 @@ open-science literature status read <item-id>
 不加 **--commit** 时，`import` 只预览。支持 BibTeX、RIS 和 NBIB；重复处理策略为 `reuse`、`separate`、`fill-missing`。`link` 把已有文献关联到项目，不会复制 PDF。如果导入已保存文献但项目关联失败，使用返回的 ID 重试关联，不要重复导入。
 
 使用 `literature collection create`、`collection add`、`collection remove` 管理集合。`literature trash` 将文献移入回收站，`literature restore` 恢复记录。写入前检查选中的 ID。文献读写工具也通过 [MCP](#external-mcp) 提供，仍需遵循相应权限和输入参数。
+
+## 全新安装中的默认 Agent {/* #default-agent */}
+
+v1.3.3 的全新 CLI 安装使用内置 Open-Science Agent。初始化配置、启动服务后，可在本地 Web 工作区的 **Settings → Agent** 检查；外部 Agent SDK 是可选项。运行任务前仍要连接模型。已有配置中的运行时选择与这个全新安装默认值分开处理。见 [Agent 选择](../guides/frameworks.md#default-runtime)。

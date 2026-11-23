@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Aperçu des paramètres"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Aperçu des paramètres {/* #settings-overview */}
@@ -58,3 +58,7 @@ Cette recherche couvre les paramètres représentatifs de chaque panel, pas de c
 Dans **Model**, utilisation **Conversation models** pour les fournisseurs et les modèles de tâches, **Classification models** pour la sélection des capacités optionnelles et les collections intelligentes, **Local capabilities** pour l'extraction de PDF, le ROC et la narration de recherche. Ce sont des onglets dans Model, pas des panneaux de paramètres supplémentaires. Voir [ressources locales](../guides/models.md#local-capabilities).
 
 La recherche d'en-tête utilise **Ctrl+K**. Pour focaliser la recherche du panneau ou de la boîte de dialogue, utilisez **Ctrl+Alt+K** lorsque ce champ est disponible. Voir [raccourcis de recherche](../guides/shortcuts.md#local-settings-search).
+
+## Ouvrir les ressources installées depuis les paramètres {/* #resource-shortcuts */}
+
+Utilisez le raccourci **Skills**, **Spécialistes** ou **Connectors** dans Paramètres pour ouvrir cette catégorie installée dans le centre de ressources. Retournez à la reprise de votre position de paramètres précédente. Ce sont des raccourcis vers la gestion des ressources, pas trois panneaux de paramètres supplémentaires. La découverte du marché et la configuration des ressources installées restent des vues séparées.

@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting and common questions"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Troubleshooting and common questions
@@ -268,3 +268,9 @@ When the workspace shows local-service recovery, wait for the connection to retu
 ## Respond to a model-provider error {/* #provider-errors */}
 
 Read the cause shown with the failed response. For authentication or account permission errors, check the provider connection; for exhausted quota, inspect that account's usage; for rate limits, wait before retrying. For an unavailable model, refresh the supported list and choose an accessible model. A lost connection or interrupted response requires checking the current session and completed tool work before resubmitting. For a context limit, reduce the supplied material or start an appropriately scoped continuation. Changing providers is not necessary for every error.
+
+## Distinguish a stopped task from a failed request {/* #request-details */}
+
+For a failed response, open **Error details** and retain the failure classification and request ID when present. Authentication, quota, provider unavailability and a malformed response require different remedies. Remove private content before sharing diagnostics.
+
+If you chose Stop, wait for cleanup and inspect the saved outputs. A stopped task is different from a continuation that never received a reply. For queued-message delivery, attachment loading or history-read errors, inspect the original conversation before resending; accepted tool work may already have produced files. On Windows, a built-in Agent question waiting for your answer can survive restart: reopen the session and answer the retained question instead of creating a duplicate task.

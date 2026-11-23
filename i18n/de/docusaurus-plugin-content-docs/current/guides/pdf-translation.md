@@ -1,7 +1,7 @@
 ---
 title: "Übersetzen eines vollständigen PDF"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-23'
 ---
 
 # Übersetzen eines vollständigen PDF {/* #translate-a-full-pdf */}
@@ -67,3 +67,9 @@ In diesem Layout werden übersetzte Texttexte und Bildunterschriften wiedergegeb
 ### Wenn eine Seite nicht dargestellt werden kann {/* #partial-page-recovery */}
 
 Fixed-Layout-Übersetzung in v1.2.0 hält erfolgreich gerenderte Seiten, wenn eine andere Seite ausfällt. Überprüfung **Translation issues**Identifizieren Sie die betroffene Seite und vergleichen Sie sie mit dem Original. Halten Sie unübersetzten Text als solchen sichtbar; beschreiben Sie ein teilweise gerendertes PDF nicht als vollständige Übersetzung. Versuchen Sie die betroffene Arbeit erneut, wenn der Leser sie anbietet, öffnen Sie dann die exportierte Datei erneut und überprüfen Sie diese Seite erneut. Eine gesunde Seite, die beibehalten wird, überprüft nicht ihre Terminologie oder wissenschaftliche Interpretation.
+
+## Alte Fixed-Layout-Exporte erneut prüfen {/* #native-boundaries */}
+
+v1.3.2 und v1.3.3 verbessern die native Textrekonstruktion um Zeilenumbrüche, Spaltengrenzen, Beschriftungen und Inline-Formeln. Sie halten auch übersetzten Text davon ab, native Notation, Formularbeschriftungen und angrenzende Grafiken zu verdrängen. Für einen älteren problematischen Export behalten Sie das ursprüngliche PDF und die gespeicherte Übersetzung bei, aktualisieren die App, exportieren und vergleichen die betroffenen Seiten erneut. Wenn die extrahierte Quelle selbst unvollständig ist, verwenden Sie **New translation** für die frische Zubereitung; Dies kann neue Modellanforderungen stellen.
+
+Überprüfen Sie die Lesereihenfolge über Spalten, Abbildungs-/Beschriftungspaare, mathematische Symbole und anklickbare Referenzen. Ein repariertes Layout bestätigt nicht die Übersetzung oder den zugrunde liegenden wissenschaftlichen Anspruch.

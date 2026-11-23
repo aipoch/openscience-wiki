@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "設定の概要"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # 設定の概要 {/* #settings-overview */}
@@ -58,3 +58,7 @@ last_update:
 内径 **Model**, 使用 **Conversation models** 提供者およびタスク モデルのため、 **Classification models** 任意機能選択およびスマートなコレクションのために、および **Local capabilities** PDF抽出、OCRおよび研究のナレーションのため。 これらは、追加の設定パネルではなく、モデル内のタブです。 お問い合わせ [ローカルリソース](../guides/models.md#local-capabilities).
 
 ヘッダ検索では、**⌘K / Ctrl+K** を使用します。 現在のパネルやダイアログの検索を集中するには、そのフィールドが利用可能になったときに **&lt;unk>K / Ctrl+Alt+K** を使用します。 [検索ショートカット](../guides/shortcuts.md#local-settings-search) を参照してください。
+
+## 設定からインストールされたリソースを開く {/* #resource-shortcuts */}
+
+設定の**Skills**、**スペシャリスト**、**Connectors**ショートカットを使用して、リソースセンターにインストールされたカテゴリを開きます。 以前の設定位置を再開します。 これらは、リソース管理のショートカットであり、追加の3つの設定パネルではありません。 マーケットプレイスの発見とインストールリソースの設定は、別のビューのままです。
