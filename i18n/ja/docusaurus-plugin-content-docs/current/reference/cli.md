@@ -1,7 +1,7 @@
 ---
 title: "CLIと構造化された出力"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -16,7 +16,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## ターミナルからセットアップ {/* #terminal-setup */}
 
-デスクトップランチャーをインストールし、v1.0.8スタンドアローンのアーカイブを使用して、またはフォローしてください。 [npmインストール手順](../guides/installation.md#npm-cli)お問い合わせ スタンドアローンは、バンドルノード、バックエンド、Web UI をアーカイブします。以下の抽出手順は、これらのアーカイブに適用されます。
+デスクトップランチャーをインストールし、v1.3.3スタンドアローンのアーカイブを使用して、またはフォローしてください。 [npmインストール手順](../guides/installation.md#npm-cli)お問い合わせ スタンドアローンは、バンドルノード、バックエンド、Web UI をアーカイブします。以下の抽出手順は、これらのアーカイブに適用されます。
 
 1. macOS または Linux アーム64/x64 または Windows x64 を選択し、ホストにマッチします。
 2. 完全なアーカイブを書き込み可能な場所に抽出します。 `backend`と`node-runtime`を一緒に保持してください。 起動者のみをコピーすると起動が解除されます。
@@ -32,7 +32,7 @@ open-science doctor --json
 
 `init` は、アプリケーションを起動せずに設定ディレクトリを作成します。 `--profile` は `--config-root` をポータブル CLI プロファイルにエイリアスします。 init、start、およびその後のコマンドと同じ絶対設定ディレクトリを使用します。 別のプロファイルは、独自のセットアップを持っています。 `runtime list`は、実行可能パスを提示することなく、検出されたフレームワークの信頼性、バージョンおよび管理/外部ソースを示しています。
 
-未設定のCodex設定の場合:
+任意：独立した Codex ランタイムを使う場合：
 
 ```bash
 open-science runtime install codex --json
@@ -40,7 +40,7 @@ open-science codex login
 open-science doctor --json
 ```
 
-ログインフローに従ってください。 これは、管理されたCodexランタイムを準備または修理し、アプリケーションを介してサブスクリプションを登録します。 外部のCodexログインファイルをインポートしません。 実行中のブートストラップは現在、実行中のリストには他のフレームワークが含まれているにもかかわらず、Codexをターゲットにします。 不正なコンフィギュレーションをサイレントに置換するのではなく、既存のコンフィギュレーションが報告されます。
+表示される手順でログインします。この任意のコマンドは管理対象の Codex ランタイムを準備・修復し、サブスクリプションを登録します。外部の Codex ログインファイルは取り込みません。新規インストールの既定は内蔵 Agent であり、この外部ランタイムは不要です。内蔵 Agent で Codex subscription を使う場合は、内蔵 Agent を選んだまま **Settings → Model** で設定します。既存設定との競合は報告され、黙って上書きされません。
 
 代わりにOpenAI APIキーを使用する場合は、`provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`を使用して、サポートされているモデルIDと、既に秘密管理環境によって供給されたキーを使用します。 OpenAlex では、`connector configure literature --openalex-key-env OPENALEX_API_KEY --json` を使用します。 `open-science` で両方のコマンドをプレフィックスします。 コマンド引数にキー自体を置かないでください。 巧妙なクレデンシャルチェックは、研究クエリが完了したか、そのクオータが残っていることを確立しません。
 
@@ -214,9 +214,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 `run.progress` と `stream.resync-required` を含むことができます。 再接続後再再生が利用できなくなった場合、権限のある実行状態を再読み込みします。 イベントストリームは永続的な歴史であると仮定しません。 ライフサイクルコマンドは、[ヘッドレスサービス](./server.md) で説明されている別のフラグ制限を持っています。
 
-[CLI実装](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/cli.mjs), [上流コマンドガイド](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md).
+[CLI実装](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/cli.mjs), [上流コマンドガイド](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
 
-技術的な参照: [CLI契約](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md).
+技術的な参照: [CLI契約](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
 
 ## 無人走行 {/* #unattended-runs */}
 
@@ -266,7 +266,7 @@ open-science mcp --help
 
 クライアントがアダプターを起動してみましょう。 **list_projects**でプロジェクトを発見し、返されたプロジェクトIDで**start_run**を提出し、**get_run**に従うし、**list_artifacts**を点検して下さい。 スタートアップが進行中、ツールの発見は終了できます。 最初のツールコールは、サービスが待ちます。 コールは認証されたローカルサービスを使用します。 これは、リモートHTTP MCPエンドポイントではありません。
 
-クライアントは、プロフィールの既存の権限の下で動作します。 永続的なプロジェクトを作成したり、設定を変更したり、ファイルやインカーモデルのコストを記述する作業を開始したりできます。 Open-Science では、承認がまだアクションを必要とする場合があります。 書き込みを繰り返す前にタイムアウト後の現在の状態を調べます。 クライアントを閉じたり、リクエストをキャンセルしても、承認された研究をキャンセルしません。**cancel_run**は明示的に使用してください。 [公式MCPツールと権限の参照](https://github.com/aipoch/open-science/blob/v1.3.1/packages/open-science/CLI.md#external-agents-through-mcp) を参照してください。
+クライアントは、プロフィールの既存の権限の下で動作します。 永続的なプロジェクトを作成したり、設定を変更したり、ファイルやインカーモデルのコストを記述する作業を開始したりできます。 Open-Science では、承認がまだアクションを必要とする場合があります。 書き込みを繰り返す前にタイムアウト後の現在の状態を調べます。 クライアントを閉じたり、リクエストをキャンセルしても、承認された研究をキャンセルしません。**cancel_run**は明示的に使用してください。 [公式MCPツールと権限の参照](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md#external-agents-through-mcp) を参照してください。
 
 パッケージのコマンドは、[CLI の輸入および輸出](../guides/research-packages.md#local-package-transfer) に従って下さい。
 
@@ -274,13 +274,13 @@ MCPクライアントが切断した後、サービスは永続的な保持を�
 
 ### CLI のインストールを修復する {/* #mcp-installation-recovery */}
 
-`mcp` が `Cannot find package '@modelcontextprotocol/sdk'` で終了する場合は、サーバーのアドレスではなく依存パッケージの問題です。v1.3.1 の macOS ARM64 アーカイブでは、`npm install -g @aipoch/open-science@1.3.1` で公式 npm クライアントをインストールし、MCP 設定の `command` をそのクライアントに向けます。バックエンドが `database_runtime_unavailable` を返す場合は、完全なスタンドアロンアーカイブから同じプロファイルのバックエンドを先に起動します。
+MCP が `Cannot find package '@modelcontextprotocol/sdk'` で終了する場合や、CLI が `Missing @aipoch/open-science-<platform>` を表示する場合は、クライアントとプラットフォーム用パッケージを修復します。オプション依存関係を含めて、対応する最新リリースをインストールします：
 
 ```bash
-/absolute/path/to/standalone/open-science start --no-open --config-root /absolute/path/to/profile
+npm install --global --include=optional @aipoch/open-science@1.3.3
 ```
 
-その後、npm MCP クライアントを同じプロファイルに接続し、**list_projects** を呼び出します。起動エラー後は再試行する前に `status --json` を確認してください。ツールを検出できても、バックエンドが動作するとは限りません。
+`startup_unconfirmed` では、まず `open-science status --config-root /absolute/path/to/profile --json` を確認し、`open-science start --no-open --config-root /absolute/path/to/profile` で実際の起動エラーを読みます。ポートが使用中なら、停止する前にどのプロファイルが使用しているか確認します。原因を解消してから **list_projects** を再試行します。ツール一覧の取得だけではバックエンドの動作を確認できません。
 
 ## 自動処理のためにサービスを維持する {/* #persistent-service */}
 
@@ -310,3 +310,7 @@ open-science literature status read <item-id>
 なし **コンテンツ**, `import` プレビューのみ。 サポートされているファイルは、BibTeX、RIS、NBIB を含む。 重複ポリシーは `reuse`, `separate` そして、 `fill-missing`. `link` プロジェクトの既存の参照を関連付ける。PDFをコピーしない。 インポートが参照を保存しますが、プロジェクト linking が失敗した場合は、再度インポートするのではなく、返された ID をリトライしてください。
 
 使用条件 `literature collection create`, `collection add` そして、 `collection remove` レコードを整理する。 `literature trash` 参照をゴミ箱に移動します。 `literature restore` それらを回復. 選択したIDを書き込み前にチェックします。 ライブラリツールの読み込み/書き込みも [MCPの特長](#external-mcp); 権限と入力スキーマはまだ適用されます。
+
+## クリーンなインストールでデフォルトエージェント {/* #default-agent */}
+
+v1.3.3 クリーンなスタート CLI ビルトインとの取付け Open-Science エージェント。 プロファイルを初期化し、サービスを開始し、ローカルWebワークスペースで**Settings → Agent**を検査します。 外部エージェント SDK はオプションです。 タスクを実行する前にモデルを接続します。 設定されたランタイムの選択肢は、このクリーンインストールのデフォルトとは別々に残ります。 [エージェントの選択肢](../guides/frameworks.md#default-runtime).

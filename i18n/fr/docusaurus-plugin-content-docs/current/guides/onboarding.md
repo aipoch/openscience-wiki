@@ -1,7 +1,7 @@
 ---
 title: "Configuration pour la première fois"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -137,7 +137,9 @@ Consultez les [frameworks Agent](frameworks.md) pour les sources d’installatio
 
 ## 4. Fournisseur de modèles {/* #4-model-provider */}
 
-Le formulaire dépend de **Provider type**, de l’Agent choisi et du mode d’authentification. Pour utiliser un abonnement Codex avec l’Agent intégré, choisissez **Codex subscription**. Si cet ordinateur dispose déjà d’une connexion Codex, sélectionnez **Import existing Codex sign-in** dans **Codex authentication**, puis **Test & continue**. Sinon, choisissez un mode de connexion pris en charge et suivez les instructions ; consultez la [configuration des fournisseurs](providers.md#builtin-codex-subscription). Continuez après la réussite du test de connexion.
+Pour choisir un modèle plus tard, utilisez **Skip** et suivez [configuration différée du modèle](#skip-provider). Pour vous connecter maintenant, utilisez les étapes ci-dessous.
+
+Le formulaire change selon **Provider type**, l'Agent sélectionné et la méthode d'authentification. Pour utiliser un abonnement Codex avec l'Agent intégré, choisissez **Codex subscription**. Si cet ordinateur a déjà une connexion Codex, sélectionnez **Import existing Codex sign-in** sous **Codex authentication**, puis sélectionnez **Test & continue**. Si aucune connexion utilisable n'est disponible, choisissez une méthode de connexion supportée et suivez les instructions; Voir [Configuration du fournisseur](providers.md#builtin-codex-subscription). Continuez après que la vérification de connexion réussisse.
 
 <PlatformContent platform="macos">
 
@@ -153,7 +155,7 @@ Pour un fournisseur de API, sélectionnez son type, entrez les détails du param
 </PlatformContent>
 Voir [Configuration du fournisseur](providers.md) pour les choix d'authentification, les champs avancés et la récupération à partir d'erreurs de connexion.
 
-Gardez les touches API dans le champ d'identification dédié. Ne les incluez pas dans les captures d'écran, les instructions du projet ou les messages de conversation.
+Gardez les clés API dans le champ de reconnaissance dédié. Ne les incluez pas dans les captures d'écran, les instructions du projet ou les messages de conversation.
 
 ## 5. Environnement d'exécution Notebook {/* #5-notebook-runtime */}
 
@@ -198,3 +200,7 @@ Tu n'as pas besoin de relancer le magicien. Modèle, Agent, Runtimes et Carte de
 ## Référence des sources {/* #source-reference */}
 
 [À bordWizard.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/OnboardingWizard.tsx), [EnvironnementStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/EnvironmentStep.tsx), [EmplacementStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/LocationStep.tsx).
+
+## Vérifier le modèle après Skip {/* #skip-provider */}
+
+Dans **Model provider**, **Skip** ajoute Kilo Gateway sans API key et passe à Notebook runtime. Après la configuration, **Main model** peut afficher `kilo-auto/free`. Avant le premier message, ouvrez **Settings → Model**, vérifiez le fournisseur et le modèle sélectionnés, puis choisissez la connexion voulue, par exemple Codex subscription. Skip ne teste pas l’inférence. [Kilo Gateway](providers.md#kilo).

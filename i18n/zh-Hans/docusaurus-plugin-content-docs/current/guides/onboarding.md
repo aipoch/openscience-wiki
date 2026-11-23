@@ -1,7 +1,7 @@
 ---
 title: "首次设置"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -137,6 +137,8 @@ Agent 卡片上的版本号属于运行时或适配器，不是模型版本。**
 
 ## 4. Model provider
 
+希望稍后再选择模型时，使用 **Skip**，并按[稍后配置模型](#skip-provider)继续。需要现在连接时，按下面的步骤操作。
+
 表单会随 **Provider type**、所选 Agent 和认证方式变化。使用内置 Agent 连接 Codex 订阅时，选择 **Codex subscription**。如果本机已有 Codex 登录，在 **Codex authentication** 中选择 **Import existing Codex sign-in**，再点击 **Test & continue**。若没有可用登录，选择受支持的登录方式并按提示操作，详见[提供方配置](providers.md#builtin-codex-subscription)。连接检查通过后再继续。
 
 <PlatformContent platform="macos">
@@ -196,3 +198,7 @@ Windows 的 **Notebook runtime** 页面还可能显示 **Local Shell · WSL2 Bas
 ## 源码依据
 
 [OnboardingWizard.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/OnboardingWizard.tsx), [EnvironmentStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/EnvironmentStep.tsx), [LocationStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/LocationStep.tsx).
+
+## 跳过后检查模型选择 {/* #skip-provider */}
+
+在 **Model provider** 点 **Skip**，会添加不带 API key 的 Kilo Gateway，并继续到 Notebook runtime。完成后，**Main model** 可能显示 `kilo-auto/free`。发送第一条消息前，打开 **Settings → Model**，检查实际选中的提供商与模型；如果打算使用 Codex 订阅，就切换到对应连接。Skip 不会验证模型能否完成请求。 [Kilo Gateway](providers.md#kilo).

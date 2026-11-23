@@ -1,7 +1,7 @@
 ---
 title: "Notebook and execution evidence"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -312,7 +312,7 @@ For repeated executions, use [scheduled tasks](scheduled-tasks.md) after complet
 
 ## Manage Notebook memory and resources {/* #memory-resources */}
 
-Before execution, Open-Science checks system memory. If a request is stopped for memory pressure, review the notice and finish or release work you no longer need. Memory becoming available does not automatically retry the request; choose **Recheck and retry** when offered. For a manual Notebook terminal, return to that terminal and review its current contents before running again.
+Before execution, Open-Science checks system memory. Memory-pressure notices are dismissible and expire after six seconds; their disappearance does not retry or complete a blocked request. The execution decision, rather than the notice alone, determines whether a run starts. Windows checks are capped to physical RAM; macOS memory pressure and Linux container limits are also considered. If a request is stopped for memory pressure, review the notice and finish or release work you no longer need. Memory becoming available does not automatically retry the request; choose **Recheck and retry** when offered. For a manual Notebook terminal, return to that terminal and review its current contents before running again.
 
 Open **Compute → Notebook resources**, refresh the list and locate the intended session. Choose **Stop and release Notebook** and inspect the listed local tasks before confirming **Stop and release**. This can stop those tasks and discards live variables and connections. History, saved outputs, files and installed environments remain; earlier file writes are not undone, and independent remote Compute jobs are not stopped.
 

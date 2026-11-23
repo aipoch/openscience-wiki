@@ -1,7 +1,7 @@
 ---
 title: "Generate and edit images"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Generate and edit images
@@ -37,11 +37,13 @@ Inspect the actual labels, order and arrow direction. If a request fails, check 
 
 ## Edit, compare and reuse {/* #edit */}
 
-Open the image's editing action, select the source version and describe a focused change. Use the available region and parameter controls only when the selected service supports them. Submit the edit and wait for its new output. Editing creates a new version so earlier variants remain available.
+1. Open the intended image in the preview. Hover over it or move keyboard focus to its controls, then choose **Edit image**. Confirm the source image and version before entering instructions.
+2. In the conversation composer, describe a focused change. Keep the request tied to the displayed source; entering editing does not send it. If you select a region, check the highlighted area and its instruction. Available tools and parameters depend on the image and service.
+3. Select **Send image edit** and wait for the new output. If the control is unavailable, check the displayed reason and [image-service configuration](#configure). A failed request is not a new completed version.
+4. Use **Compare with input image** or **Compare** when offered, and inspect both the changed area and content that should remain unchanged. Use **Image history** to revisit earlier versions, or **Continue editing** for another revision.
+5. Download the chosen version, reopen it, and check labels and scientific claims before sharing. Image details can identify the Notebook kernel that produced an edit; that record does not establish scientific accuracy.
 
-Compare the candidate with the source: check the requested region and the parts that should stay unchanged. Use the image history to revisit a version or continue editing from it. Download the intended final version and reopen the file before placing it in a presentation. Keep an accurate caption identifying illustrative content.
-
-For existing plots that need numerical checking, use [Notebook](notebook.md) and [Provenance](reproducibility.md). For slide text and formatting, see [presentation editing](presentation-editing.md).
+The conversation remains in place while the editing controls use its composer. Keep an accurate caption identifying illustrative content. For numerical checks on plots, use [Notebook](notebook.md) and [Provenance](reproducibility.md); for slide text, see [presentation editing](presentation-editing.md).
 
 ## Test an image service before saving {/* #test-service */}
 
@@ -50,3 +52,13 @@ In v1.3.1, the image-service form offers **Test generation** after the required 
 After saving a new service, its first model becomes the default only when no Image generation model is already selected. Inspect that selection before your first request. Main remains separately configured.
 
 ![Test an image service before saving](/img/open-science/v1.3.1/image-service-test.webp)
+
+## Refresh an image-model catalog {/* #image-model-catalog */}
+
+In **Settings → Model → Image services**, add or edit an official **OpenAI**, **MiniMax**, **Bailian** or **Volcengine Ark** service. Fill the connection fields, then choose **Refresh model list** before saving. A refresh sends the configured credentials to that provider; it does not generate an image.
+
+The refreshed list matches provider results against the image models supported by Open-Science, so it is not every model the provider offers. The current default is retained, with a marker when it is missing from the returned catalog. Review that marker before relying on the model. A failed refresh keeps the previous list; check the displayed cause and retry. **Save** commits the form, while [Test generation](#test-service) is a separate, potentially billable image request.
+
+For Bailian, use the workspace URL and region matching the credential. China-linked credentials use the China catalog. Changing a connection or workspace requires checking its catalog again; a model visible in another region is not proof of access here.
+
+![OpenAI image service: supported models and Refresh model list](/img/open-science/v1.3.3/image-catalog.webp)

@@ -1,7 +1,7 @@
 ---
 title: "生成与编辑图片"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # 生成与编辑图片
@@ -37,11 +37,13 @@ Save the image so I can review it in the project.
 
 ## 编辑、比较与复用 {/* #edit */}
 
-打开图片的编辑入口，选择源版本，描述一次明确的修改。仅在所选服务支持时使用相应区域和参数控制。提交后等待新结果；编辑会创建新版本，旧变体仍可访问。
+1. 在预览中打开目标图片。悬停或用键盘聚焦其控件，再选择 **Edit image**。输入要求前先核对源图片与版本。
+2. 在会话输入框中写清本次修改。让要求对应当前显示的源图；进入编辑并不会发送请求。选择局部区域后，检查高亮范围和该区域的要求。可用工具与参数取决于图片及服务。
+3. 点 **Send image edit**，等待新结果。如果按钮不可用，查看显示的原因并检查[图像服务配置](#configure)。请求失败不代表产生了一个已完成的新版本。
+4. 使用提供的 **Compare with input image** 或 **Compare**，同时检查修改区域和应保持不变的内容。通过 **Image history** 回看历史版本，或点 **Continue editing** 继续修改。
+5. 下载选定版本，重新打开，核对标签和科学表述后再分享。图片详情可标识产生该次编辑的 Notebook 内核，但这条记录不等于科学准确性验证。
 
-将候选图片与源图对比，既检查要求修改的区域，也检查应该保持不变的部分。通过图片历史返回旧版本，或从旧版本继续编辑。下载最终选定的版本，在放入演示文稿前重新打开检查；图注应准确说明它属于示意内容。
-
-核对已有图表中的数值，使用 [Notebook](notebook.md) 和 [Provenance](reproducibility.md)；修改幻灯片文字与格式，参见[演示文稿编辑](presentation-editing.md)。
+编辑控件使用会话输入框，会话消息仍留在原位置。图注应准确说明示意内容。需要核对图表数值时，使用 [Notebook](notebook.md) 和[来源与复现](reproducibility.md)；幻灯片文字见[演示文稿编辑](presentation-editing.md)。
 
 ## 保存前测试图像服务 {/* #test-service */}
 
@@ -50,3 +52,13 @@ v1.3.1 的图像服务表单在必填字段和模型填写完成后，提供 **T
 保存新服务后，只有尚未选定 Image generation 模型时，才会自动把首个模型设为默认。第一次请求前检查当前选择；Main 模型仍单独配置。
 
 ![保存前测试图像服务](/img/open-science/v1.3.1/image-service-test.webp)
+
+## 刷新图像模型目录 {/* #image-model-catalog */}
+
+在 **Settings → Model → Image services** 中添加或编辑官方 **OpenAI**、**MiniMax**、**Bailian** 或 **Volcengine Ark** 服务。填写连接字段后，保存前点 **Refresh model list**。刷新会携带配置的凭据访问对应提供商，不会生成图片。
+
+刷新结果按 Open-Science 支持的图像模型筛选，并不是提供商的全部模型。当前默认模型会保留；如果返回目录中没有它，会显示相应标记，使用前应先检查。刷新失败保留原列表，按显示的原因修正后重试。**Save** 保存表单；[Test generation](#test-service) 则是另一项可能计费的图像请求。
+
+百炼应使用与凭据对应的工作空间 URL 和区域；中国区凭据使用中国区目录。改变连接或工作空间后，应重新检查目录；其他区域能看到某个模型，不代表这里也有权限。
+
+![OpenAI image service: supported models and Refresh model list](/img/open-science/v1.3.3/image-catalog.webp)

@@ -1,12 +1,12 @@
 ---
 title: "Instalación y conmutación de agentes"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 # Instalación y conmutación de agentes {/* #installing-and-switching-agents */}
 
-Elija un framework Agent para ejecutar conversaciones y herramientas y configure un [proveedor de modelos](providers.md) compatible. Puede mantener varios frameworks instalados. El framework activo en **Settings → Agent** es un ajuste de toda la aplicación, compartido por todos los proyectos; se aplica a los siguientes turnos de conversación y flujos de trabajo.
+El agente Open-Science incorporado ejecuta conversaciones y herramientas sin una instalación de tiempo de ejecución independiente. Configurar un [proveedor de modelos](providers.md) compatible; instalar un agente externo sólo si usted decide utilizarlo. Puede mantener varios marcos instalados. El marco activo en **Settings → Agent** es un entorno de aplicación compartido en todos los proyectos; se aplica a giros posteriores y flujos de trabajo.
 
 ## Lea la página del agente {/* #read-the-agent-page */}
 
@@ -106,3 +106,11 @@ Pi está disponible desde v1.0.7 en configuración y **Settings → Agent**. Se 
 5. Seleccione el modelo principal previsto y envíe una pequeña solicitud. Revise la respuesta y un resultado real de la herramienta antes de comenzar una tarea larga.
 
 Pi soporta los puntos finales de Respuestas, Compleciones de Chat y Mensajes compatibles. Los proveedores disponibles, las opciones de suscripción y los modelos son filtrados por el marco activo. Puede mantener a Codex activo mientras se instala Pi; cambiar es una opción separada. Véase [Configuración del proveedor](providers.md).
+
+## Comience con el tiempo de ejecución incluido {/* #default-runtime */}
+
+Desde v1.3.3, escritorio limpio, CLI y SDK las instalaciones utilizan el agente Open-Science incorporado para nuevos proyectos y sesiones. Usted no necesita instalar Codex, Claude Agent u otro SDK externo sólo para iniciar el servicio. Configurar un proveedor compatible antes de enviar una solicitud; **Active** solo no es la preparación modelo.
+
+Elegir un marco externo utiliza su instalador gestionado y descargas de la fuente npm mostrada o el espejo soportado. Algunos tiempos de ejecución resuelven una versión publicada actual; otros usan versiones enfiladas o un archivo de bloqueo atado a la versión de la aplicación. Inspeccione la versión instalada y no asuma cada actualización de marco de forma independiente. Un fallo de instalación no requiere reemplazar a un agente incorporado de trabajo.
+
+![Open-Science Agent active without an external runtime](/img/open-science/v1.3.3/builtin-agent.webp)

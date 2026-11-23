@@ -1441,6 +1441,28 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v133",
+            "title": "v1.3.3",
+            "scope": "Background updates, built-in Agent defaults, image editing and clearer errors.",
+            "currentDoc": "changelog/v1-3-3",
+            "proposedUrl": "/docs/changelog/v1-3-3/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-3-2"
+            ]
+          },
+          {
+            "id": "v132",
+            "title": "v1.3.2",
+            "scope": "Kilo Gateway, image catalogs, lighter sessions and PDF translation.",
+            "currentDoc": "changelog/v1-3-2",
+            "proposedUrl": "/docs/changelog/v1-3-2/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-3-1"
+            ]
+          },
+          {
             "id": "v131",
             "title": "v1.3.1",
             "scope": "Web search, citation graphs, Lab sharing and resource recovery.",

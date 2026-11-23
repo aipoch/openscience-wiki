@@ -1,7 +1,7 @@
 ---
 title: "공급자 및 지역 모델 설정"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -17,7 +17,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | 제품 정보 | 당신이 필요로 하는 무엇을 | 자주 묻는 질문 |
 | --- | --- | --- |
 | Codex 구독 | 호환 Codex 로그인 | 검사하기 `Codex authentication` 선택; 기존의 액세스 복사 인증 Open-Science로 가져 오기 |
-| 공식 API | 그 공급자와 요청한 모형에 접근 | 적용 가능한 경우 제공 업체, 지역 및 API 자격 |
+| 공식 API | 제공자와 선택한 모델에 대한 이용 권한 | 제공자, 해당 지역, 필요한 API key를 확인합니다. Kilo는 익명 접속도 지원합니다 |
 | 커스텀 게이트웨이 | 호환 엔드포인트, 정확한 모델 ID 및 API 키 필요시 | 게이트웨이 운영자와 API 형식 및 지원 모델 기능 확인 |
 
 **Import existing Codex sign-in**을 선택하여 Open-Science로 작업 로컬 서명을 복사합니다. 수입은 호환되지 않는 비 secret 루프백 노선을 포함 할 수 있습니다; 다른 글로벌 구성, Skills 및 세션은 별도 유지. **Advanced settings → Transport**의 밑에, 당신의 연결이 다른 수송을 필요로 하지 않는 한 **Auto (recommended)**를 지킵니다.
@@ -274,6 +274,7 @@ CodeBuddy 구독을 선택할 때 CodeBuddy 실행 시간을 사용하십시오.
 지원되는 기존 로그인 연결 또는 브라우저 로그인 흐름을 양식으로 선택하십시오. 기존 로그인을 위해 CodeBuddy CLI에서 선택한 사이트에 로그인한 다음 **Connect**를 사용합니다. WorkBuddy 프로필은 필수 CodeBuddy CLI 로그인이 아닙니다. 브라우저에서 계정 흐름을 완료하고 Open-Science로 돌아갑니다.
 
 연결 검증 및 계정의 발견 모델에 대한 대기. 가능한 모델을 선택하고 더 긴 작업 전에 짧은 요청을 보냅니다. 사이트 또는 로그인이 잘못되면 계정 연결과 새로 고침하십시오. 저장된 공급자 행은 모델이 접근 할 수 없다는 것을 증명하지 않습니다.
+
 ## Lab 계정 연결 {/* #lab-account */}
 
 데스크탑 앱과 실험실 서버 주소를 사용하여 조직에 의해 공급됩니다. **Settings → Lab → Connection**에서 **Server address**을 입력하면 **Test connection**를 사용하며 **Save**를 사용하십시오. **Sign in with browser**을 선택하고 조직의 서명을 완료하고 Open-Science로 돌아갑니다. sign-in 끝이 있을 때 허가 탭 닫습니다.
@@ -289,3 +290,16 @@ Lab 모델을 사용하여 요청은 구성 된 Lab 서버를 통해 이동합�
 실패한 새로 고침은 이전 목록을 유지합니다. 특정 오류를 읽으십시오 : 카탈로그 액세스는 다른 권한을 필요로 할 수 있습니다, 유효한 지역 키, 완전한 작업 공간 매개 변수, 또는 속도 제한 후 나중에 다시. 카탈로그 discovery는 모든 목록 모델이 요청에 응답 할 수 있다는 것을 확인하지 않습니다. 공급자가 온라인 새로 고침을 지원하지 않는 경우, 번들 목록 또는 제대로 구성된 사용자 정의 엔드포인트를 사용하십시오.
 
 ![공급자의 모델을 새로 고침](/img/open-science/v1.3.1/provider-model-refresh.webp)
+
+## Kilo Gateway를 키 없이 연결 {/* #kilo */}
+
+1. **Settings → Model → Add provider**를 열고 **Kilo Gateway**를 선택합니다.
+2. Kilo 계정을 사용할 경우 API key를 입력합니다. 익명으로 접속하려면 비워 두고 **Refresh model list**를 선택합니다. 계정 인증 정보 없이 Kilo에 접속하여 해당 연결에서 사용할 수 있는 모델을 가져옵니다. 모델과 사용 제한은 변경될 수 있습니다.
+3. **Supported models**를 확인한 뒤 **Save**를 선택합니다. **Main model**을 확인하고 사용할 제공업체와 모델을 선택합니다.
+4. 연구를 시작하기 전에 짧은 요청을 보내 완료되는지 확인합니다. 모델 목록 갱신은 추론 테스트가 아니며, 도구나 이미지 입력 또는 무제한 무료 사용을 보장하지 않습니다.
+
+**Model provider**에서 **Skip**을 선택하면 API key 없는 Kilo Gateway가 추가되고 Notebook runtime으로 넘어갑니다. 설정 후 **Main model**에 `kilo-auto/free`가 표시될 수 있습니다. 첫 메시지를 보내기 전에 **Settings → Model**에서 선택된 제공업체와 모델을 확인하고, Codex subscription 등 원하는 연결로 바꾸세요. Skip은 모델의 요청 처리 기능을 테스트하지 않습니다. 업그레이드는 기존 인증 정보와 Main 선택을 유지합니다。
+
+Kilo 모델에 보내는 질문과 대화 자료는 Kilo 서비스로 전송됩니다. 키 없는 목록 조회도 네트워크 요청입니다. 갱신 실패 시 이전 목록을 유지합니다. 오류를 확인한 후 다시 시도하고 모델 ID를 임의로 만들지 마세요.
+
+![Kilo Gateway: API key optional and refreshed model catalog](/img/open-science/v1.3.3/kilo-catalog.webp)

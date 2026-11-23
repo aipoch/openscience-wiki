@@ -1,7 +1,7 @@
 ---
 title: "Traducir un PDF completo"
 last_update:
-  date: '2026-11-09'
+  date: '2026-11-23'
 ---
 
 # Traducir un PDF completo {/* #translate-a-full-pdf */}
@@ -67,3 +67,9 @@ Este diseño refluye texto corporal traducido y capciones preservando imágenes 
 ### Cuando una página no puede ser renderizada {/* #partial-page-recovery */}
 
 La traducción de la copia fija en v1.2.0 se mantiene con éxito en las páginas cuando otra página falla. Examen **Translation issues**, identificar la página afectada y compararla con el original. Mantenga cualquier texto no traducido visible como tal; no describir un PDF parcialmente renderizado como una traducción completa. Retratar el trabajo afectado cuando el lector lo ofrece, luego volver a abrir el archivo exportado y volver a comprobar esa página. Una página sana que se mantiene no verifica su terminología o interpretación científica.
+
+## Recheck older fixed-layout exports {/* #native-boundaries */}
+
+v1.3.2 y v1.3.3 mejoran la reconstrucción de texto nativo en torno a las roturas de línea, los límites de columna, las subtítulos y las fórmulas de inline. También mantienen el texto traducido del desplazamiento de notación nativa, etiquetas de formularios y gráficos adyacentes. Para una exportación problemática más antigua, mantenga el PDF original y guarde la traducción, actualice la aplicación, luego exporte y compare las páginas afectadas de nuevo. Si la fuente extraída en sí misma es incompleta, utilice **New translation** para la preparación fresca; esto puede hacer nuevas solicitudes de modelo.
+
+Verifique el orden de lectura a través de columnas, pares de figura/capción, símbolos matemáticos y referencias clicables. Un diseño reparado no valida la traducción o la reclamación científica subyacente.

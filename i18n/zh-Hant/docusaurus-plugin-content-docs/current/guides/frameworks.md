@@ -1,12 +1,12 @@
 ---
 title: "安裝與切換代理框架"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 # 安裝與切換代理框架 {/* #安装与切换代理框架 */}
 
-選擇 Agent 框架來執行對話和工具。安裝後配置相容的[模型提供方](providers.md)。可以同時保留多個框架。**Settings → Agent** 中的活動框架是所有專案共享的應用級設定，影響後續對話輪次和工作流。
+內建 Open-Science Agent 用於執行會話和工具，無需另裝執行時。配置相容的[模型提供方](providers.md)即可；只有選擇外部 Agent 時才需要安裝它。可以同時保留多個框架。**Settings → Agent** 中的活動框架是跨專案共享的應用級設定，作用於後續請求和工作流。
 
 ## 讀懂 Agent 頁面 {/* #读懂-agent-页面 */}
 
@@ -106,3 +106,11 @@ v0.33.0 的 **Claude Agent** 要求 Claude CLI **2.1.118 或更高版本**。若
 5. 選擇所需 Main 模型，發送一個小請求；開始長任務前，檢查實際回覆和一次工具結果。
 
 Pi 支持兼容的 Responses、Chat Completions 和 Messages 接口。可選提供商、訂閱方式和模型會根據活動框架篩選。安裝 Pi 時可以繼續讓 Codex 保持 Active，切換是另一步操作。參見[提供商設置](providers.md)。
+
+## 從內建執行時開始 {/* #default-runtime */}
+
+從 v1.3.3 起，全新的桌面、CLI 和 SDK 安裝在新專案與會話中預設使用內建 Open-Science Agent。僅啟動服務不需要先安裝 Codex、Claude Agent 或其他外部 SDK。發請求前仍需配置相容的提供商；**Active** 不等於模型已就緒。
+
+選擇外部框架時，透過其託管安裝器從顯示的 npm 源或受支援的映象下載。有些執行時獲取當前釋出版本，有些使用固定版本或隨應用版本更新的鎖檔案。檢查實際安裝版本，不要假設每種框架都能獨立升級。外部安裝失敗不需要替換已經可用的內建 Agent。
+
+![Open-Science Agent active without an external runtime](/img/open-science/v1.3.3/builtin-agent.webp)

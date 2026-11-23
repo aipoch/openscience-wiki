@@ -1,7 +1,7 @@
 ---
 title: "Provider and local model setup"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -17,7 +17,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | Choice | What you need | Check before continuing |
 | --- | --- | --- |
 | Codex subscription | A compatible Codex sign-in | Inspect the `Codex authentication` choice; importing existing access copies authentication into Open-Science |
-| Official API | Access to that provider and the requested model | Confirm provider, region when applicable, and API credential |
+| Official API | Access to the provider and requested model | Confirm the provider, applicable region and any required API key; Kilo also supports anonymous access |
 | Custom Gateway | A compatible endpoint, exact model ID, and an API key when required | Confirm the API format and supported model features with the gateway operator |
 
 Choose **Import existing Codex sign-in** to copy a working local sign-in into Open-Science. The import can include a compatible non-secret loopback route; other global configuration, Skills and sessions stay separate. Under **Advanced settings → Transport**, keep **Auto (recommended)** unless your connection requires a different transport.
@@ -289,3 +289,16 @@ In **Settings → Model**, add or edit an official provider. Under **Supported m
 A failed refresh keeps the previous list. Read the specific error: catalog access may need a different permission, a valid regional key, a complete workspace parameter, or a later retry after a rate limit. Catalog discovery does not confirm that every listed model can answer requests. If the provider does not support online refresh, use its bundled list or a correctly configured custom endpoint.
 
 ![Refresh a provider's models](/img/open-science/v1.3.1/provider-model-refresh.webp)
+
+## Connect Kilo Gateway with or without a key {/* #kilo */}
+
+1. Open **Settings → Model → Add provider**, then select **Kilo Gateway**.
+2. Enter your Kilo API key if you want to use that account. For anonymous access, leave it blank and select **Refresh model list**. This contacts Kilo without an account credential and lists models eligible for that connection; availability and limits can change.
+3. Inspect **Supported models**, then select **Save**. Check **Main model** and choose the provider and model you intend to use.
+4. Send a small request and check that it completes before starting research. A catalog refresh does not test inference or guarantee tools, image input or unlimited free usage.
+
+On **Model provider**, **Skip** adds Kilo Gateway without an API key and continues to Notebook runtime. After setup, **Main model** may display `kilo-auto/free`. Before your first message, open **Settings → Model**, check the selected provider and model, and switch to your intended connection, such as Codex subscription. Skip does not test inference. Upgrading preserves existing credentials and Main choices.
+
+Queries and conversation material sent to a Kilo model go to Kilo's service. A catalog request without a key is still a network request. A failed refresh keeps the previous list; inspect the error and retry without inventing a model ID.
+
+![Kilo Gateway: API key optional and refreshed model catalog](/img/open-science/v1.3.3/kilo-catalog.webp)

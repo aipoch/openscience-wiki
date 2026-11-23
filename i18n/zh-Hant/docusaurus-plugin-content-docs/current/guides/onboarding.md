@@ -1,7 +1,7 @@
 ---
 title: "首次設定"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -137,7 +137,9 @@ Agent 卡片上的版本號屬於運行時或適配器，不是模型版本。**
 
 ## 4. Model provider {/* #4-model-provider */}
 
-表單會隨 **Provider type**、所選 Agent 和認證方式變化。使用內置 Agent 連接 Codex 訂閱時，選擇 **Codex subscription**。如果本機已有 Codex 登錄，在 **Codex authentication** 中選擇 **Import existing Codex sign-in**，再點擊 **Test & continue**。若沒有可用登錄，選擇受支持的登錄方式並按提示操作，詳見[提供方配置](providers.md#builtin-codex-subscription)。連接檢查通過後再繼續。
+希望稍後再選擇模型時，使用 **Skip**，並按[稍後配置模型](#skip-provider)繼續。需要現在連線時，按下面的步驟操作。
+
+表單會隨 **Provider type**、所選 Agent 和認證方式變化。使用內建 Agent 連線 Codex 訂閱時，選擇 **Codex subscription**。如果本機已有 Codex 登入，在 **Codex authentication** 中選擇 **Import existing Codex sign-in**，再點選 **Test & continue**。若沒有可用登入，選擇受支援的登入方式並按提示操作，詳見[提供方配置](providers.md#builtin-codex-subscription)。連線檢查透過後再繼續。
 
 <PlatformContent platform="macos">
 
@@ -196,3 +198,7 @@ Windows 的 **Notebook runtime** 頁面還可能顯示 **Local Shell · WSL2 Bas
 ## 原始碼依據 {/* #源码依据 */}
 
 [OnboardingWizard.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/OnboardingWizard.tsx), [EnvironmentStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/EnvironmentStep.tsx), [LocationStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/LocationStep.tsx).
+
+## 略過後檢查模型選擇 {/* #skip-provider */}
+
+在 **Model provider** 點 **Skip**，會新增不帶 API key 的 Kilo Gateway，並繼續到 Notebook runtime。完成後，**Main model** 可能顯示 `kilo-auto/free`。傳送第一則訊息前，開啟 **Settings → Model**，檢查實際選中的提供商與模型；如果打算使用 Codex 訂閱，就切換到對應連線。Skip 不會驗證模型能否完成請求。 [Kilo Gateway](providers.md#kilo).

@@ -1,7 +1,7 @@
 ---
 title: "プロバイダーとローカルモデルのセットアップ"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -17,7 +17,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | おすすめ商品 | 必要なもの | 続行前のチェック |
 | --- | --- | --- |
 | Codex サブスクリプション | 互換性のある Codex サインイン | インスペクト `Codex authentication` 選択; 既存のアクセスコピー認証をOpen-Scienceにインポート |
-| 公式 API | その提供者および要求されたモデルへのアクセス | 該当する場合のプロバイダ、地域、およびAPIクレデンシャルの確認 |
+| 公式 API | 提供者と対象モデルへのアクセス | 提供者、適用地域、必要な API key を確認します。Kilo は匿名アクセスにも対応します |
 | カスタムゲートウェイ | 必要なとき多用性があるエンドポイント、厳密なモデルIDおよびAPIのキー | API 形式とサポートされているモデルの機能をゲートウェイ演算子で確認する |
 
 **Import existing Codex sign-in** を選択して、作業中のローカルサインを Open-Science にコピーします。 インポートには、互換性のない非シークレットループバックルートを含めることができます。 他のグローバル構成、Skillsおよびセッションは別々にとどまります。 **Advanced settings → Transport**では、接続が異なる輸送を必要とする場合を除き、**Auto (recommended)**を保ちます。
@@ -274,6 +274,7 @@ CodeBuddy サブスクリプションを選択する際に、CodeBuddy ランタ
 フォームに表示されているサポート済みの既存のログイン接続またはブラウザのサインインフローを選択します。 既存のログインのために、CodeBuddy CLIで選択したサイトにサインインし、**Connect**を使用します。 WorkBuddyプロファイルだけでは、必要なCodeBuddy CLIサインインではありません。 ブラウザのサインインでは、アカウントフローを終了し、オープンサイエンスに戻ります。
 
 接続検証とアカウントの発見されたモデルを待ちます。 利用可能なモデルを選択し、長いタスクの前にリクエストを送信します。 サイトまたはサインインが間違っている場合は、アカウントの接続とリフレッシュを修正します。保存されたプロバイダの行は、モデルがアクセス可能であることを証明しません。
+
 ## ラボアカウントを接続する {/* #lab-account */}
 
 デスクトップアプリとラボサーバーアドレスを組織が供給しています。 **Settings → Lab → Connection** では、**Server address** を、**Test connection** を使用して、**Save** を書き入れて下さい。 **Sign in with browser**を選択し、組織のサインインを完了し、Open-Scienceに戻ります。 認証タブは、署名完了時に閉じます。
@@ -289,3 +290,16 @@ CodeBuddy サブスクリプションを選択する際に、CodeBuddy ランタ
 失敗したリフレッシュは、以前のリストを保持します。 特定のエラーを読む:カタログアクセスには、異なる権限、有効な地域のキー、完全なワークスペースパラメータ、またはレート制限後に再試行が必要な場合があります。 カタログの発見は、すべてのリストされたモデルが要求に答えることができることを確認しません。 プロバイダがオンラインリフレッシュをサポートしていない場合は、バンドルされたリストまたは正しく設定されたカスタムエンドポイントを使用します。
 
 ![プロバイダーのモデルをリフレッシュ](/img/open-science/v1.3.1/provider-model-refresh.webp)
+
+## キーなしで Kilo Gateway を接続して下さい {/* #kilo */}
+
+1. **Settings → Model → Add provider** を開き、**Kilo Gateway** を選びます。
+2. Kilo アカウントを使う場合は API key を入力します。匿名で利用する場合は空欄にし、**Refresh model list** を選びます。アカウントの認証情報を送らずに Kilo に接続し、その接続で利用可能なモデルを取得します。モデルや利用制限は変わる場合があります。
+3. **Supported models** を確認して **Save** を選びます。**Main model** を確認し、使用するプロバイダーとモデルを選択します。
+4. 研究を始める前に短いリクエストを送り、完了を確認します。モデル一覧の更新は推論のテストではなく、ツール、画像入力、無制限の無料利用を保証しません。
+
+**Model provider** で **Skip** を選ぶと、API key なしの Kilo Gateway が追加され、Notebook runtime に進みます。設定後の **Main model** に `kilo-auto/free` が表示される場合があります。最初のメッセージを送る前に **Settings → Model** でプロバイダーとモデルを確認し、Codex subscription など、使いたい接続に切り替えてください。Skip は推論の動作をテストしません。 アップグレードでは既存の認証情報と Main の選択が保持されます。
+
+Kilo モデルに送る質問や会話資料は Kilo のサービスに渡ります。キーなしの一覧取得もネットワーク通信です。更新に失敗した場合は以前の一覧が保持されます。エラーを確認して再試行し、モデル ID を推測して入力しないでください。
+
+![Kilo Gateway: API key optional and refreshed model catalog](/img/open-science/v1.3.3/kilo-catalog.webp)

@@ -2,7 +2,7 @@
 title: Reference
 slug: /reference
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Reference
@@ -27,4 +27,4 @@ Use **⌘K / Ctrl+K** to search titles, headings and body text in the current do
 
 ## Changelog
 
-[Browse the latest release notes](../changelog/v1.3.1.md).
+[Browse the latest release notes](../changelog/v1.3.3.md).

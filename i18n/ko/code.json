@@ -1912,5 +1912,17 @@
   },
   "docs.outline.reference.v131.scope": {
     "message": "웹 검색, 인용 그래프, 실험실 공유 및 리소스 복구."
+  },
+  "docs.outline.reference.v133.title": {
+    "message": "v1.3.3"
+  },
+  "docs.outline.reference.v133.scope": {
+    "message": "배경 업데이트, 내장 에이전트 기본, 이미지 편집 및 clearer 오류."
+  },
+  "docs.outline.reference.v132.title": {
+    "message": "v1.3.2"
+  },
+  "docs.outline.reference.v132.scope": {
+    "message": "Kilo Gateway, 이미지 카탈로그, 라이터 세션 및 PDF 번역."
   }
 }

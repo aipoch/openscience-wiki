@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Sinopsis de la configuración"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Sinopsis de la configuración {/* #settings-overview */}
@@ -58,3 +58,7 @@ Esta búsqueda cubre los ajustes representativos en cada panel, no en cada campo
 Dentro **Model**, uso **Conversation models** para proveedores y modelos de tareas, **Classification models** para la selección de capacidades opcionales y colecciones inteligentes, y **Local capabilities** para extracción de PDF, OCR y narración de investigación. Estas son pestañas dentro de los paneles Modelo, no de Ajustes adicionales. Véase [recursos locales](../guides/models.md#local-capabilities).
 
 La búsqueda del encabezado utiliza **XXXK / Ctrl+K**. Para enfocar el panel actual o la propia búsqueda del diálogo, utilice **XXXK / Ctrl+Alt+K** cuando ese campo esté disponible. Ver [búsqueda atajos](../guides/shortcuts.md#local-settings-search).
+
+## Abrir recursos instalados desde Ajustes {/* #resource-shortcuts */}
+
+Utilice el acceso directo **Skills**, **Especialistas** o **Connectors** en Ajustes para abrir esa categoría instalada en el centro de recursos. Regrese para reanudar su posición de configuración anterior. Estos son atajos para la gestión de recursos, no tres paneles de configuración adicionales. El descubrimiento del mercado y la configuración de recursos instalados siguen siendo vistas separadas.

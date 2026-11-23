@@ -1,7 +1,7 @@
 ---
 title: "First-time setup"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -137,6 +137,8 @@ See [Agent frameworks](frameworks.md) for installation sources, switching and re
 
 ## 4. Model provider
 
+To choose a model later, use **Skip** and follow [deferred model setup](#skip-provider). To connect now, use the steps below.
+
 The form changes according to **Provider type**, the selected Agent and the authentication method. To use a Codex subscription with the built-in Agent, choose **Codex subscription**. If this computer already has a Codex sign-in, select **Import existing Codex sign-in** under **Codex authentication**, then select **Test & continue**. If no usable sign-in is available, choose a supported sign-in method and follow the prompts; see [Provider setup](providers.md#builtin-codex-subscription). Continue after the connection check succeeds.
 
 <PlatformContent platform="macos">
@@ -198,3 +200,7 @@ You don't need to rerun the wizard. Model, Agent, Runtimes, and Storage map to t
 ## Source reference
 
 [OnboardingWizard.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/OnboardingWizard.tsx), [EnvironmentStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/EnvironmentStep.tsx), [LocationStep.tsx](https://github.com/aipoch/open-science/blob/v0.26.0/src/renderer/src/pages/onboarding/LocationStep.tsx).
+
+## Check the model after Skip {/* #skip-provider */}
+
+On **Model provider**, **Skip** adds Kilo Gateway without an API key and continues to Notebook runtime. After setup, **Main model** may display `kilo-auto/free`. Before your first message, open **Settings → Model**, check the selected provider and model, and switch to your intended connection, such as Codex subscription. Skip does not test inference. [Kilo Gateway](providers.md#kilo).

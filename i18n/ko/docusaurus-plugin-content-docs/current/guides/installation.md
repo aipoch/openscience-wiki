@@ -1,7 +1,7 @@
 ---
 title: "설치 및 업데이트"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,7 +12,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 <PlatformGuide />
 
-**현재 포장:** [v1.3.1 자산](https://github.com/aipoch/open-science/releases/tag/v1.3.1)에는 데스크탑 설치, 독립 CLI 아카이브 및 Linux CLI `.deb`/`.rpm` 패키지가 포함되어 있습니다. 예정된 설치 유형과 아키텍처를 선택하고, 같은 릴리스에서 체크섬을 확인합니다. 데스크톱 발사기는 **Settings → General → Command line tool → Install command**을 통해 사용할 수 있습니다.
+**현재 포장:** [v1.3.3 자산](https://github.com/aipoch/open-science/releases/tag/v1.3.3)에는 데스크탑 설치, 독립 CLI 아카이브 및 Linux CLI `.deb`/`.rpm` 패키지가 포함되어 있습니다. 예정된 설치 유형과 아키텍처를 선택하고, 같은 릴리스에서 체크섬을 확인합니다. 데스크톱 발사기는 **Settings → General → Command line tool → Install command**을 통해 사용할 수 있습니다.
 
 ## 설치방법 선택 {/* #choose-an-installation-method */}
 
@@ -67,7 +67,7 @@ Homebrew는 Apple Silicon 또는 Intel을 자동으로 선택합니다. 설치 �
 | 우분투 / 데비안 | `uname -m`: `x86_64` x64를 의미한다. `aarch64` 의미 ARM64 | 일치하는 것을 선택하십시오 `.deb`, 시스템 패키지 설치 프로그램으로 열고, 응용 프로그램 메뉴에서 실행 |
 | 다른 지원 Linux 배급 | 【특전】 `uname -m` | 일치하는 것을 선택하십시오 `.AppImage`, 파일의 권한에서 실행을 허용, 다음 그것을 엽니 다; 배포에 의해보고 된 모든 의존성 오류를 해결 |
 
-v1.3.1는 Linux **x64와 ARM64** 패키지를 제공합니다. ARM64의 경우 `aipoch-open-science-1.3.1-linux-arm64.AppImage` 또는 `aipoch-open-science_1.3.1_arm64.deb`을 선택하십시오. x64는 `aipoch-open-science-1.3.1-linux-x86_64.AppImage` 및 `aipoch-open-science_1.3.1_amd64.deb`입니다. 선택한 릴리스의 공식 자산에서 다운로드하고 `uname -m`의 결과를 일치합니다.
+v1.3.3는 Linux **x64와 ARM64** 패키지를 제공합니다. ARM64의 경우 `aipoch-open-science-1.3.3-linux-arm64.AppImage` 또는 `aipoch-open-science_1.3.3_arm64.deb`을 선택하십시오. x64는 `aipoch-open-science-1.3.3-linux-x86_64.AppImage` 및 `aipoch-open-science_1.3.3_amd64.deb`입니다. 선택한 릴리스의 공식 자산에서 다운로드하고 `uname -m`의 결과를 일치합니다.
 
 </PlatformContent>
 
@@ -75,7 +75,7 @@ v1.3.1는 Linux **x64와 ARM64** 패키지를 제공합니다. ARM64의 경우 `
 
 ### 독립 CLI 사용 {/* #standalone-cli */}
 
-터미널/브라우저 설치를 위해, [v1.3.1](https://github.com/aipoch/open-science/releases/tag/v1.3.1)에서 일치 독립 CLI 아카이브를 다운로드하십시오. 노드, 백엔드 및 웹 UI를 묶습니다. 완전한 디렉토리를 추출 한 다음 [CLI 설정](../reference/cli.md#terminal-setup)을 따르십시오. CLI을 유지하고 같은 설치에서 백엔드를 함께 유지합니다.
+터미널/브라우저 설치를 위해, [v1.3.3](https://github.com/aipoch/open-science/releases/tag/v1.3.3)에서 일치 독립 CLI 아카이브를 다운로드하십시오. 노드, 백엔드 및 웹 UI를 묶습니다. 완전한 디렉토리를 추출 한 다음 [CLI 설정](../reference/cli.md#terminal-setup)을 따르십시오. CLI을 유지하고 같은 설치에서 백엔드를 함께 유지합니다.
 
 #### 홈 양조장 CLI {/* #homebrew-cli */}
 
@@ -83,35 +83,35 @@ v1.3.1는 Linux **x64와 ARM64** 패키지를 제공합니다. ARM64의 경우 `
 
 #### Linux CLI 패키지 {/* #linux-cli-packages */}
 
-Linux 단자/브로셔 사용을 위해, **개방 과학 - cli**를, **aipoch-open-과학** 탁상용 포장에서 따로따로 선택하십시오. [v1.3.1 자산](https://github.com/aipoch/open-science/releases/tag/v1.3.1)에서 일치하는 패키지 및 `CLI-PACKAGE-SHA256SUMS.txt`을 다운로드하고 설치하기 전에 확인하십시오.
+Linux 단자/브로셔 사용을 위해, **개방 과학 - cli**를, **aipoch-open-과학** 탁상용 포장에서 따로따로 선택하십시오. [v1.3.3 자산](https://github.com/aipoch/open-science/releases/tag/v1.3.3)에서 일치하는 패키지 및 `CLI-PACKAGE-SHA256SUMS.txt`을 다운로드하고 설치하기 전에 확인하십시오.
 
-| 유통/건축 | v1.3.1 CLI 자산 |
+| 유통/건축 | v1.3.3 CLI 자산 |
 | --- | --- |
-| 데비안 / 우분투, x64 | `open-science-cli_1.3.1_amd64.deb` |
-| 데비안 / 우분투, ARM64 | `open-science-cli_1.3.1_arm64.deb` |
-| 페도라, x64 | `open-science-cli-1.3.1-1.x86_64.rpm` |
-| 페도라, ARM64 | `open-science-cli-1.3.1-1.aarch64.rpm` |
+| 데비안 / 우분투, x64 | `open-science-cli_1.3.3_amd64.deb` |
+| 데비안 / 우분투, ARM64 | `open-science-cli_1.3.3_arm64.deb` |
+| 페도라, x64 | `open-science-cli-1.3.3-1.x86_64.rpm` |
+| 페도라, ARM64 | `open-science-cli-1.3.3-1.aarch64.rpm` |
 
 적절한 패키지 관리자로 다운로드 된 파일을 설치합니다. 이 예제는 x64를 사용합니다. 적절한 경우 ARM64 파일명을 사용합니다.
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ./open-science-cli_1.3.1_amd64.deb
+sudo apt install ./open-science-cli_1.3.3_amd64.deb
 # Fedora: use this instead of the apt command
-sudo dnf install ./open-science-cli-1.3.1-1.x86_64.rpm
+sudo dnf install ./open-science-cli-1.3.3-1.x86_64.rpm
 ```
 
 `open-science-cli start --no-open`을 실행하고 `open-science-cli status --json`을 실행합니다. 일단 실행되면, 정통 로컬 웹 인터페이스를 열려면 `open-science-cli url`을 사용하십시오. URL을 개인적으로 유지하십시오. [CLI 설정](../reference/cli.md#terminal-setup) 모델 구성 및 `doctor` 체크를 위해 계속하여 `open-science`를 `open-science-cli`로 대체합니다.
 
 패키지 번들 노드, 백엔드 및 웹 UI. Python/R을 설치하지 않거나 자동으로 시스템 서비스를 시작하지 않습니다. OS credential 상점과 sandbox prerequisites는 아직도 적용합니다; [헤드리스 Linux 자격](../reference/server.md) 참조. 데스크톱 발사기가 설치되면 `open-science-cli`을 명시적으로 사용하십시오.
 
-격상시키기 전에 또는 포장을 제거하기 전에, 끝 일 및 정지 **모든 프로파일은 그 패키지에 의해 시작**. apt/dnf를 통해 다음 다운로드 패키지를 설치; 이 설치에 의해 구성 된 AIPOCH apt/dnf 저장소가 없습니다. 포장 제거는 연구 자료와 credentials를 보존합니다. [공식 패키지 가이드](https://github.com/aipoch/open-science/blob/v1.3.1/docs/standalone-runtime.md#linux-cli-distribution-packages)은 명령 충돌과 플랫폼 요구 사항을 설명합니다.
+격상시키기 전에 또는 포장을 제거하기 전에, 끝 일 및 정지 **모든 프로파일은 그 패키지에 의해 시작**. apt/dnf를 통해 다음 다운로드 패키지를 설치; 이 설치에 의해 구성 된 AIPOCH apt/dnf 저장소가 없습니다. 포장 제거는 연구 자료와 credentials를 보존합니다. [공식 패키지 가이드](https://github.com/aipoch/open-science/blob/v1.3.3/docs/standalone-runtime.md#linux-cli-distribution-packages)은 명령 충돌과 플랫폼 요구 사항을 설명합니다.
 
 ### 소스에서 실행 {/* #run-from-source */}
 
 Git, Node.js 24, npm 및 Electron을 위한 플랫폼 빌드가 필요합니다. 응용 프로그램에서 에이전트 프레임 워크를 설치 또는 선택. 설치 중에 저장소는 Prisma Client를 생성하고 앱 패치를 적용하고 Electron native Dependencies를 준비합니다.
 
-재현 가능한 소스 설치를 위해, 의존성을 설치하기 전에 [관련 링크](../changelog/v1.3.1.md)에서 의도한 릴리스 태그를 선택하십시오. 기본적으로 clone은 고정 릴리스보다는 분기를 따릅니다. 선택된 태그, 소스 커밋 및 런타임 버전을 기록하므로 다른 사람이 환경을 재현 할 수 있습니다.
+재현 가능한 소스 설치를 위해, 의존성을 설치하기 전에 [관련 링크](../changelog/v1.3.3.md)에서 의도한 릴리스 태그를 선택하십시오. 기본적으로 clone은 고정 릴리스보다는 분기를 따릅니다. 선택된 태그, 소스 커밋 및 런타임 버전을 기록하므로 다른 사람이 환경을 재현 할 수 있습니다.
 
 선택된 릴리즈에 표시된 정확한 태그로 아래 `RELEASE_TAG`을 대체하십시오. (`v`)를 포함합니다. 지속적인 개발을 따르기 위하여 대신, omit `--branch RELEASE_TAG --depth 1`; 체크 아웃은 기본 지점을 따라합니다.
 
@@ -128,7 +128,7 @@ npm run dev
 npm run build
 ```
 
-선택한 태그의 package.json 및 [독립 실행 시간 안내](https://github.com/aipoch/open-science/blob/v1.3.1/docs/standalone-runtime.md)을 사용하여 빌드 대상과 종속성을 제공합니다. `npm run dev:web`은 Node/Web 항목 포인트를 개발합니다. `npm run dev`은 데스크톱 클라이언트를 준비합니다. 격리된 구성 디렉토리를 사용하여 테스트 데이터를 분리합니다.
+선택한 태그의 package.json 및 [독립 실행 시간 안내](https://github.com/aipoch/open-science/blob/v1.3.3/docs/standalone-runtime.md)을 사용하여 빌드 대상과 종속성을 제공합니다. `npm run dev:web`은 Node/Web 항목 포인트를 개발합니다. `npm run dev`은 데스크톱 클라이언트를 준비합니다. 격리된 구성 디렉토리를 사용하여 테스트 데이터를 분리합니다.
 
 ## 첫 번째 시간 설정 완료 {/* #complete-first-time-setup */}
 
@@ -191,23 +191,33 @@ Reinstalling은 기존 데이터를 유지합니다. 데이터 문제 후 신선
 
 1.0 기존의 역사적인 업그레이드 및 수입 경로 유지; 버전 번호는 프로필 재설정이 필요하지 않습니다. [1.x 호환성 정책](https://github.com/aipoch/open-science/blob/v1.3.0/docs/compatibility.md)는 CLI/SDK 및 작업 자동화 인터페이스를 문서화하고, 유효한 `.science` 패키지의 수입을 전달하며, 지원된 프로파일 업그레이드를 제공합니다. OS-protected credentials의 동일한 모형 대답, 제삼자 가용성 또는 deterministic 재생산을 보장하지 않습니다. Security Fixes는 최신 안정된 출시를 목표로 합니다.
 
-## npm으로 CLI 설치 {/* #npm-cli */}
+## npm에 CLI 설치 {/* #npm-cli */}
 
-Node.js 사용 **22.13 이상** 을 공개 CLI·백엔드 패키지에 사용합니다. 터미널에서 설치하고 호출된 버전을 확인하세요:
+게시된 CLI/backend 패키지에 Node.js **22.13 이상**을 사용하십시오. 맨끝에서, 설치하고 invoked 버전을 검열하십시오:
 
 ```bash
-npm install --global @aipoch/open-science@1.3.0
+npm install --global --include=optional @aipoch/open-science@1.3.3
 open-science version --json
 open-science help
 ```
 
-그런 다음 [터미널 설정](../reference/cli.md#terminal-setup) 절차에 따라 프로필을 초기화하고 백엔드를 시작한 뒤 모델을 설정하세요. 설치만으로 로그인하거나 Python/R이 설치되지는 않습니다. 데스크톱·Homebrew 실행기가 같은 명령을 사용하면 셸이 선택한 실행 파일부터 확인하세요. 업데이트 전에 해당 설치본의 모든 백엔드를 중지하고, 프로필을 유지한 채 원래 패키지 관리자로 업데이트합니다.
+그런 다음 [터미널 설정](../reference/cli.md#terminal-setup)을 사용하여 프로필을 초기화하고, 백엔드를 시작하고 모델을 구성하십시오. 혼자 설치는 Python/R에 로그인하거나 설치하지 않습니다. 데스크탑 또는 홈 양조장 발사기가 이미 동일한 명령명을 사용한다면, 쉘을 계속 실행할 수 있는지 검사합니다. 설치 전에 설치에 의해 소유 된 모든 백엔드를 중지; 원본 패키지 관리자를 통해 프로필 및 업데이트를 유지합니다.
 
-## 다운로드부터 설치 완료까지 확인 {/* #update-progress */}
+## 설치를 통한 업데이트 {/* #update-progress */}
 
-설정 **Settings → General**, 선택 **Check now** 그리고 제안된 출시를 검토합니다. 업데이트 대화 상자는 다운로드 진행 상황을 유지, 메모 및 설치 준비를 함께 해제. 다운로드 완료는 설치 완료되지 않습니다 : relaunch 후 설치된 버전을 확인합니다.
+**Settings → General**에서 설치 된 버전을 읽고 **Check now**을 선택합니다. 제안 된 릴리스 및 업데이트 대화 상자의 다운로드 및 준비 상태를 검토하십시오. 다운로드 완료는 설치 완료되지 않습니다; relaunch 후에 설치된 버전을 확인합니다.
 
-앱이 자동 설치가 사용할 수없는 경우 다운로드 된 패키지를 유지하고 활성 작업을 완료 한 후 공식 설치 프로그램을 사용합니다. v1.3.0 설치 채널은 여전히 자동 교체를 제한; 향상된 Windows 진행 대화 상자는 제한을 제거하지 않습니다. 노트북 정리가 진행중인 동안 앱을 닫지 마십시오.
+지원되는 안정판 패키지에서는 **Automatically download updates**가 백그라운드 준비를 제어하며 기본적으로 켜져 있습니다. 끄고 수동 확인과 다운로드를 계속 사용할 수도 있습니다. 자동 다운로드에는 데이터 사용량에 따른 과금이나 제한이 없는 연결임을 확인할 수 있어야 하며, 충분한 저장 공간도 필요합니다. 네트워크 상태를 확인할 수 없거나 공간이 부족하거나 위치에 쓸 수 없으면 수동으로 업데이트합니다.
+
+| 회사연혁 | Eligible 자동 동작 | 수동 설치를 사용할 때 |
+| --- | --- | --- |
+| macOS | 앱을 종료할 때만 제공되는 앱을 설치할 수 있습니다. | 읽기 전용 볼륨, 앱 전환, 비독성 설치 또는 지원되지 않은 채널 |
+| Windows | 작업공간이 준비되면 다음 실행에 대한 업데이트를 준비하고 바탕 화면은 배경에 속합니다. | 준비는 차단되고, 수로는 지원되지 않거나 설치자는 대신 제안됩니다 |
+| Linux 앱이미지 | 배경에 다음 발사 업데이트 준비; AppImage 경로 유지 | 업데이트 캐시는 충분하지 않습니다, 공간은 충분하거나 패키지 형식은 지원되지 않습니다 |
+
+Notebook을 제거하거나 재시작하기 전에 완료하기 전에 정리할 수 있습니다. 대화 상자에 따라 **Restart to update** 또는 **Open installer**을 사용하여 버전과 원래 프로젝트를 확인합니다. Linux DEB와 독립 CLI 임명은 그들의 자신의 [설치 수로](#manual-update)를 따릅니다; 웹 작업 공간은 데스크탑 자동 업데이트가 아닙니다.
+
+준비가 실패하거나 자동 설치가 불가능한 경우 **Installation instructions** 및 공식 패키지를 사용하십시오. 앱이 정리 중에 닫히지 마십시오.
 
 ## 업데이트 수동 설치 {/* #manual-update */}
 
@@ -225,13 +235,14 @@ v1.0.6 Windows 설치 프로그램은 앱 옆에 저장된 연구 데이터를 �
 
 ## 핸들 업데이트 준비 차단기 {/* #update-preparation */}
 
-업데이트 설치 전에 작업 완료. 블록 프로세스를 작성하면 관련 프로그램을 일반적으로 닫고 재시동합니다. 종료할 관련 프로세스를 강제하지 마십시오. v1.0.8은 여러 macOS 및 Windows 점령 검사를 수정합니다. 대화 상자의 나머지 차단제는 여전히주의해야합니다.
+업데이트 설치하기 전에 작업 완료. 프로덕션이 블록 프로세스를 이름을 지정하면, 관련 프로그램을 일반적으로 닫고 재스트를 닫습니다. 실패를 방지하기 위해 관련 프로세스를 피하십시오. v1.0.8는 몇몇 macOS와 Windows 점령 체크를 정정합니다; 대화 상자의 나머지 차단제는 여전히주의해야합니다.
 
-자동 설치가 허용되지 않은 경우 수동 설치 도움말 링크를 사용하십시오. **Settings → General**, 공식 패키지를 다운로드하고 체크섬을 확인하십시오. relaunch 후에, 설치된 버전 및 본래 프로젝트를 확인합니다. 복구가 실패하면, 일반에서 진단 로그를 수집; 그것은 문제 해결을위한 underlying 오류를 유지합니다.
+자동 설치가 사용할 수없는 경우 **Settings → General**의 수동 설치 도움말 링크를 사용하여 공식 패키지를 다운로드하고 체크섬을 확인하십시오. relaunch 후에, 설치된 버전 및 본래 프로젝트를 확인합니다. 복구가 실패하면 일반에서 진단 로그를 수집합니다. 문제 해결을 위한 underlying 오류를 유지합니다.
 
-### macOS 차별 다운로드 {/* #differential-updates */}
+### macOS 차동 다운로드 {/* #differential-updates */}
 
-v1.2.0에서 지원되는 macOS 업데이트는 앱 이미지의 블록만 변경할 수 있습니다. 해당 경로가 유효하지 않거나 유효하지 않는 경우, 업데이트자는 전체 패키지로 돌아갑니다. 더 큰 다운로드는 따라서 실패 자체에 의해 아닙니다. 다운로드 완료하자, 전체 업데이트 준비를 완료하고 relaunch 후 설치된 버전을 확인합니다. 자동 설치에 대한 기존 채널 제한은 여전히 적용됩니다.
+v1.2.0에서 지원되는 macOS 업데이트는 앱 이미지의 블록만 변경할 수 있습니다. 해당 경로가 유효하지 않거나 유효하지 않는 경우, 업데이트자는 전체 패키지로 돌아갑니다. 더 큰 다운로드는 실패 자체에 의해 그렇게하지 않습니다. 다운로드 완료를하자, 완전한 업데이트 준비를 완료하고 relaunch 후에 설치된 버전을 확인합니다. 자동 설치는 [플랫폼 및 채널 조건](#update-progress)을 따릅니다.
+
 ## 설치가 차단될 때 v1.3.0에서 갱신 {/* #update-from-130 */}
 
 v1.3.0이 또 다른 프로세스가 활성화 된 작업이 완료 된 후에도 설치를 사용하고 있다면, 업데이트자는 외부 차단제에 대한 앱 소유 배경 프로세스를 실수로 할 수 있습니다. 플랫폼을위한 공식 v1.3.1 패키지를 다운로드하고 Open-Science을 완전히 종료하고 배경 서비스를 중지 한 다음 [수동 설치 단계](#manual-update)를 따르십시오. CLI 관리 프로파일의 경우, 파일을 교체하기 전에 [서비스 상태 및 중지](../reference/server.md#lifecycle-commands)을 확인하십시오.

@@ -1,7 +1,7 @@
 ---
 title: "CLI 및 구조 출력"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -16,7 +16,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 터미널에서 설정 {/* #terminal-setup */}
 
-데스크톱 실행기를 설치하고 v1.0.8 독립 아카이브를 사용하거나 따라 [npm 설치 단계](../guides/installation.md#npm-cli)· 독립 아카이브 번들 노드, 백엔드 및 웹 UI; 아래의 추출 단계는 해당 아카이브에 적용됩니다.
+데스크톱 실행기를 설치하고 v1.3.3 독립 아카이브를 사용하거나 따라 [npm 설치 단계](../guides/installation.md#npm-cli)· 독립 아카이브 번들 노드, 백엔드 및 웹 UI; 아래의 추출 단계는 해당 아카이브에 적용됩니다.
 
 1. macOS 또는 Linux arm64/x64 또는 Windows x64를 선택하여 호스트와 일치합니다.
 2. 완전한 아카이브를 writable 위치로 추출하십시오. 발사기, `backend` 및 `node-runtime`를 함께 유지하십시오; 시작자만 복사하면 스타트가 시작됩니다.
@@ -32,7 +32,7 @@ open-science doctor --json
 
 `init`은 응용 프로그램을 시작하지 않고 구성 디렉토리를 만듭니다. `--profile` aliases `--config-root` 휴대용 CLI 프로파일. init, start 및 then commands에 대한 동일한 절대 구성 디렉토리를 사용하십시오. 별도의 프로파일은 자체 설정이 있습니다. `runtime list`는 실행 실행 가능한 경로 없이 프레임 워크 읽기, 버전 및 관리/외부 소스를 검출합니다.
 
-unconfigured Codex 설정을 위해:
+선택 사항: 별도의 Codex 런타임을 사용하려면:
 
 ```bash
 open-science runtime install codex --json
@@ -40,7 +40,7 @@ open-science codex login
 open-science doctor --json
 ```
 
-로그인 흐름을 따르십시오. 관리된 Codex 런타임을 준비하거나 수리하고 응용 프로그램을 통해 구독을 등록합니다. 외부 Codex 로그인 파일을 가져올 수 없습니다. First-run bootstrap은 현재 Codex을 대상으로 하며, 실행시간 목록에는 다른 프레임워크가 포함되어 있습니다. 기존의 충돌 구성은 침묵적으로 대체된 것보다 오히려 보고됩니다.
+안내에 따라 로그인합니다. 이 선택적 명령은 앱이 관리하는 Codex 런타임을 준비하거나 복구하고 구독을 등록하며, 외부 Codex 로그인 파일을 가져오지는 않습니다. 새 설치의 기본값은 내장 Agent이며 이 외부 런타임은 필요하지 않습니다. 내장 Agent에서 Codex subscription을 사용하려면 내장 Agent를 선택한 상태로 **Settings → Model**에서 구독을 설정합니다. 기존 설정과 충돌하면 오류를 표시하며 자동으로 덮어쓰지 않습니다.
 
 대신 OpenAI API 키를 사용하는 경우, 지원된 모델 ID와 함께 `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`을 사용하며, 비밀 관리 환경을 통해 이미 공급된 키입니다. OpenAlex를 위해, `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`를 사용하십시오. `open-science`과 명령을 모두 접목합니다. 명령의 인수에서 키 자체를 넣지 마십시오. 성공적인 자격 검사는 연구 쿼리 완료 또는 할당량은 유지되지 않습니다.
 
@@ -214,9 +214,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL은 `run.progress` 및 `stream.resync-required`을 포함 할 수 있습니다. 재전송 후 재전송이 불가능한 경우, 재전송이 실행 상태; 이벤트 스트림은 영구적 인 역사를 가정하지 마십시오. Lifecycle 명령은 [Headless 서비스](./server.md)에 설명된 별도의 플래그 제한이 있습니다.
 
-[CLI 구현](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/cli.mjs), [upstream 명령 가이드](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md).
+[CLI 구현](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/cli.mjs), [upstream 명령 가이드](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
 
-기술적인 참고: [CLI 계약](https://github.com/aipoch/open-science/blob/v1.0.8/packages/open-science/CLI.md).
+기술적인 참고: [CLI 계약](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
 
 ## 무력한 실행 {/* #unattended-runs */}
 
@@ -266,7 +266,7 @@ open-science mcp --help
 
 클라이언트가 어댑터를 시작합니다. **list_projects**과 함께 프로젝트를 발견하고 **start_run**을 반환 프로젝트 ID로 제출하고 **get_run**를 따르고 **list_artifacts**를 검사합니다. Tool discovery can finish while Startup is in progress; 첫 번째 도구 호출은 서비스를 기다립니다. Calls는 정통 로컬 서비스를 사용합니다. 이것은 원격 HTTP MCP 엔드포인트가 아닙니다.
 
-클라이언트는 프로파일의 기존 허가를 수행한다. 그것은 지속적 프로젝트를 만들 수 있습니다, 구성 변경 및 파일을 작성하는 작업을 시작 또는 incurs 모델 비용. 승인은 여전히 Open-Science에서 동작을 필요로 할 수 있습니다. 쓰기 반복하기 전에 timeout 후에 현재 국가를 검열하십시오. 클라이언트를 닫거나 요청을 취소하지 않는 것은 허용되지 않습니다 연구 : **cancel_run**을 명시적으로 사용합니다. [공식 MCP 도구 및 권한 참조](https://github.com/aipoch/open-science/blob/v1.3.1/packages/open-science/CLI.md#external-agents-through-mcp) 참조.
+클라이언트는 프로파일의 기존 허가를 수행한다. 그것은 지속적 프로젝트를 만들 수 있습니다, 구성 변경 및 파일을 작성하는 작업을 시작 또는 incurs 모델 비용. 승인은 여전히 Open-Science에서 동작을 필요로 할 수 있습니다. 쓰기 반복하기 전에 timeout 후에 현재 국가를 검열하십시오. 클라이언트를 닫거나 요청을 취소하지 않는 것은 허용되지 않습니다 연구 : **cancel_run**을 명시적으로 사용합니다. [공식 MCP 도구 및 권한 참조](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md#external-agents-through-mcp) 참조.
 
 패키지 명령의 경우 [CLI 수입 및 수출](../guides/research-packages.md#local-package-transfer)을 따르십시오.
 
@@ -274,13 +274,13 @@ MCP 클라이언트가 차단한 후 지속적인 보유를 유지한다. `open-
 
 ### CLI 설치 복구 {/* #mcp-installation-recovery */}
 
-`mcp`가 `Cannot find package '@modelcontextprotocol/sdk'` 오류로 종료되면 서버 주소가 아닌 설치 의존성 문제입니다. v1.3.1 macOS ARM64 압축 파일의 경우 `npm install -g @aipoch/open-science@1.3.1`로 공식 npm 클라이언트를 설치하고 MCP 설정의 `command`를 해당 클라이언트로 지정하세요. 백엔드에서 `database_runtime_unavailable` 오류가 발생하면 전체 독립 실행형 압축 파일에 포함된 프로그램으로 같은 프로필의 백엔드를 먼저 시작하세요.
+MCP가 `Cannot find package '@modelcontextprotocol/sdk'` 오류로 종료되거나 CLI에 `Missing @aipoch/open-science-<platform>`이 표시되면 클라이언트와 플랫폼 패키지를 복구합니다. 선택적 의존성을 포함하여 일치하는 최신 릴리스를 설치합니다:
 
 ```bash
-/absolute/path/to/standalone/open-science start --no-open --config-root /absolute/path/to/profile
+npm install --global --include=optional @aipoch/open-science@1.3.3
 ```
 
-그런 다음 npm MCP 클라이언트를 같은 프로필에 연결하고 **list_projects**를 호출하세요. 시작 오류 후에는 재시도하기 전에 `status --json`을 확인하세요. 도구 검색 성공만으로 백엔드 작동이 확인되지는 않습니다.
+`startup_unconfirmed`가 표시되면 `open-science status --config-root /absolute/path/to/profile --json`을 확인한 다음 `open-science start --no-open --config-root /absolute/path/to/profile`을 실행해 실제 시작 오류를 읽습니다. 포트가 사용 중이면 서비스를 중지하기 전에 어떤 프로필이 사용하는지 확인하세요. 원인을 해결한 뒤 **list_projects**를 다시 호출합니다. 도구 목록을 가져온 것만으로 백엔드가 작동한다고 판단할 수는 없습니다.
 
 ## 자동화를 위해 서비스 유지 {/* #persistent-service */}
 
@@ -310,3 +310,7 @@ open-science literature status read <item-id>
 없음 **--조금**, `import` 단지 미리보기. 지원된 파일은 BibTeX, RIS 및 NBIB를 포함합니다. 중복 정책은 `reuse`, `separate` · `fill-missing`. `link` 프로젝트와 기존 참조를 연결; 그것은 PDF를 복사하지 않습니다. 수입은 참고를 저장하지만 프로젝트 연결이 실패하면 다시 수입 대신 다시 링크하는 반환 ID를 사용합니다.
 
 제품 정보 `literature collection create`, `collection add` · `collection remove` 레코드를 구성합니다. `literature trash` 쓰레기에 참조 이동; `literature restore` 그들을 복구. 작성하기 전에 선택한 ID를 확인합니다. 읽기 / 쓰기 라이브러리 도구도 통해 노출 [사이트맵](#external-mcp); 그들의 권한 및 입력 schemas 여전히 적용.
+
+## 깨끗한 임명에 있는 과태 대리인 {/* #default-agent */}
+
+v1.3.3는 내장 Open-Science 에이전트와 깨끗한 CLI 설치를 시작합니다. 프로필을 초기화하고 서비스를 시작하고 로컬 웹 작업 공간에서 **Settings → Agent**을 검사; 외부 대리인 SDK는 선택적입니다. 작업을 실행하기 전에 모델을 연결합니다. 기존의 런타임 선택은 이 Clean-install 디폴트에서 분리됩니다. [에이전트 선택](../guides/frameworks.md#default-runtime).

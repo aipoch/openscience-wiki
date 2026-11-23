@@ -1,7 +1,7 @@
 ---
 title: "Solución de problemas y preguntas comunes"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Solución de problemas y preguntas comunes {/* #troubleshooting-and-common-questions */}
@@ -46,6 +46,7 @@ Cuando aparezca **Desktop connection lost**, espere a que se restaure el estado 
 4. Antes de cerrar la aplicación, conserve el trabajo sin guardar al que aún tenga acceso y lea la confirmación. Salir durante una desconexión no confirma que el backend se haya detenido. Para una instancia iniciada con la CLI, compruebe el mismo perfil con `open-science status --json`; consulte [propiedad y cierre del backend](../reference/server.md#backend-ownership).
 
 La interfaz del navegador pausa los controles mientras recupera las actualizaciones pendientes. Si aparece **Reload required**, guarde una copia de los borradores no enviados antes de seleccionar **Reload**. Si falló el almacenamiento de borradores, confirme primero que guardó la copia. Las menciones se restauran como texto; revise también los archivos adjuntos antes de enviar. **Pairing required** indica que la autorización de acceso ha caducado: vuelva a abrir el enlace Web del equipo anfitrión o siga el [emparejamiento remoto](remote-access.md), en lugar de enviar la tarea repetidamente.
+
 ## Recuperar una falla de arranque {/* #startup-recovery */}
 
 | Aviso | Medida |
@@ -264,6 +265,13 @@ Esto no otorga acceso a un papel recortado o proporciona autenticación instituc
 ## Recover after the local service disconnects {/* #local-service-recovery */}
 
 Cuando el espacio de trabajo muestra la recuperación del servicio local, espere la conexión para regresar antes de repetir una acción. El borrador del Compositor se mantiene, mientras que las acciones no disponibles permanecen bloqueadas. Después de la reconexión, inspeccione la conversación o haga un registro para ver si la solicitud anterior fue aceptada. Resuma del estado real en lugar de enviar la misma tarea dos veces.
+
 ## Responder a un error modelo-providente {/* #provider-errors */}
 
 Lea la causa mostrada con la respuesta fallida. Para los errores de autenticación o permiso de cuenta, compruebe la conexión del proveedor; para la cuota agotada, inspeccionar el uso de esa cuenta; para los límites de tarifas, espera antes de volver a intentarlo. Para un modelo indisponible, refresque la lista soportada y elija un modelo accesible. Una conexión perdida o respuesta interrumpida requiere revisar el actual período de sesiones y completar el trabajo de herramientas antes de volver a presentar. Para un límite de contexto, reduzca el material suministrado o inicie una continuación apropiadamente ampliada. Los proveedores cambiantes no son necesarios para cada error.
+
+## Destinguir una tarea parada de una solicitud fallida {/* #request-details */}
+
+Para una respuesta fallida, abra **Error details** y mantenga la clasificación de fallos y solicite ID cuando esté presente. Autenticación, cuota, falta de disponibilidad del proveedor y una respuesta malformada requieren diferentes remedios. Eliminar el contenido privado antes de compartir el diagnóstico.
+
+Si elegiste Stop, espera a limpiar e inspeccionar las salidas guardadas. Una tarea parada es diferente de una continuación que nunca recibió una respuesta. Para la entrega de mensajes de consulta, carga de apego o errores de lectura de historia, inspeccione la conversación original antes de reenviar; el trabajo de herramientas aceptado puede haber producido archivos. En Windows, una pregunta integrada del Agente esperando su respuesta puede sobrevivir reiniciar: reabrir la sesión y responder la pregunta retenida en lugar de crear una tarea duplicada.

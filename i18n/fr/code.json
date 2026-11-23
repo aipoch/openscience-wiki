@@ -1923,5 +1923,17 @@
   },
   "docs.outline.reference.v131.scope": {
     "message": "Recherche Web, graphiques de citation, partage de laboratoires et récupération des ressources."
+  },
+  "docs.outline.reference.v133.title": {
+    "message": "v1.3.3"
+  },
+  "docs.outline.reference.v133.scope": {
+    "message": "Mises à jour du fond, par défaut de l'Agent intégré, édition d'image et erreurs plus claires."
+  },
+  "docs.outline.reference.v132.title": {
+    "message": "v1.3.2"
+  },
+  "docs.outline.reference.v132.scope": {
+    "message": "Kilo Gateway, catalogues d'images, sessions allégées et traduction PDF."
   }
 }

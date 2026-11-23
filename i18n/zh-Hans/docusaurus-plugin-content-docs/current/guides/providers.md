@@ -1,7 +1,7 @@
 ---
 title: "提供商与本地模型配置"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -17,7 +17,7 @@ import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
 | 选择 | 需要准备 | 继续前检查 |
 | --- | --- | --- |
 | Codex subscription | 兼容的 Codex 登录 | 检查 `Codex authentication`；导入现有登录会将认证复制到 Open-Science |
-| 官方 API | 提供方账号及具体模型访问权限 | 确认提供方、适用区域和 API 凭据 |
+| 官方 API | 提供方及所选模型的使用权限 | 确认提供方、适用区域和所需 API key；Kilo 也支持匿名接入 |
 | Custom Gateway | 兼容端点、准确的模型标识，以及服务要求的 API key | 向网关维护者确认 API 格式及模型能力 |
 
 选择 **Import existing Codex sign-in**，将本机可用的登录复制到 Open-Science。导入可包含兼容的非秘密本地回环路由，其他全局配置、Skills 和会话保持独立。在 **Advanced settings → Transport** 保留 **Auto (recommended)**，除非连接需要其他传输方式。
@@ -289,3 +289,16 @@ Anthropic 模型目录还新增了支持 1M 上下文的 **Claude Fable 5.2**。
 刷新失败会保留旧列表。根据具体错误处理：可能需要模型目录读取权限、正确地区的密钥、完整的工作区参数，或在限流结束后再试。查到模型列表不代表每个模型都能成功响应。如果提供商不支持在线刷新，使用随应用提供的列表，或正确配置自定义端点。
 
 ![刷新提供商模型列表](/img/open-science/v1.3.1/provider-model-refresh.webp)
+
+## 连接 Kilo Gateway，密钥可选 {/* #kilo */}
+
+1. 打开 **Settings → Model → Add provider**，选择 **Kilo Gateway**。
+2. 需要使用 Kilo 账户时填写其 API key。使用匿名接入时留空，再点 **Refresh model list**。它会不带账户凭据访问 Kilo，列出该连接有资格使用的模型；可用模型和限制可能变化。
+3. 检查 **Supported models**，然后点 **Save**。检查 **Main model**，选择你打算使用的提供商与模型。
+4. 先发一个小请求并确认完成，再开展研究。目录刷新不等于推理测试，也不保证工具、图像输入或不限量免费使用。
+
+在 **Model provider** 点 **Skip**，会添加不带 API key 的 Kilo Gateway，并继续到 Notebook runtime。完成后，**Main model** 可能显示 `kilo-auto/free`。发送第一条消息前，打开 **Settings → Model**，检查实际选中的提供商与模型；如果打算使用 Codex 订阅，就切换到对应连接。Skip 不会验证模型能否完成请求。 升级会保留已有凭据和 Main 模型选择。
+
+发送给 Kilo 模型的查询和会话材料会交给 Kilo 服务。无密钥的目录查询仍是联网请求。刷新失败保留原列表；检查错误后重试，不要自行猜造模型 ID。
+
+![Kilo Gateway: API key optional and refreshed model catalog](/img/open-science/v1.3.3/kilo-catalog.webp)

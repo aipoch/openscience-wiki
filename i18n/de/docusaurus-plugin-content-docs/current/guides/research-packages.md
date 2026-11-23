@@ -2,7 +2,7 @@
 title: ".science-Forschungspakete"
 description: "Exportieren Sie eine Sitzung mit ihren Dateien und Beweisen, importieren und inspizieren Sie dann die Forschungsaufzeichnungen in einem anderen Projekt."
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -198,8 +198,15 @@ Exportieren Sie durch den normalen Session-Paketfluss und warten Sie auf den Abs
 ## Überprüfen Sie einen unterbrochenen Import {/* #import-recovery */}
 
 Wenn ein Import storniert wird, behandeln Sie ihn nicht als abgeschlossen. Wenn ein Timeout das Ergebnis unbestätigt lässt, suchen Sie nach dem Zielprojekt und der importierten Sitzung, bevor Sie einen weiteren Import starten. Öffnen Sie jede resultierende Sitzung und überprüfen Sie ihre Dateien. Wählen Sie für ein fehlendes oder ungültiges Paket die intakte `.science`-Datei aus und behalten Sie die angezeigte Fehler- oder Korrelationskennung bei, wenn Sie Hilfe anfordern. Importieren Sie nicht wiederholt dasselbe Paket, ohne zu prüfen, ob bereits ein vorheriger Versuch die Sitzung erstellt hat.
+
 ## Fälle von Aktien- und Importorganisationen {/* #organization-cases */}
 
 Zuerst [Melden Sie sich in Lab an](providers.md#lab-account) in der Desktop-App und bestätigen Sie Ihre Organisation. Wählen Sie im **Anwendungsfälle** der Startseite **Organization** aus. Suchen Sie nach dem Fallnamen oder seinem achtstelligen Share-Code. Öffnen Sie den Fall, prüfen Sie den Autor, die Paketzusammenfassung, enthaltene Dateien und Auslassungen, wählen Sie dann **Importieren** und überprüfen Sie das Zielprojekt. Warten Sie, bis der Import abgeschlossen ist, bevor Sie den empfangenen Datensatz öffnen; Verwenden Sie **Fork to continue** für neue Analysen.
 
 Um Ihre eigene Sitzung zu teilen, öffnen Sie den Exportdialog des Forschungspakets und überprüfen Sie die ausgewählten Inhalte. Wählen Sie **Export and upload**, geben Sie **Case name** und **Description** ein, dann **Confirm and upload**. Dies sendet das ausgewählte Paket direkt an den konfigurierten Lab-Server für Ihre Organisation. Warten Sie auf **Session package uploaded**, bevor Sie seinen **Share code** kopieren. Überprüfen Sie das Paket auf Material, das Sie nicht teilen sollten, bevor Sie es bestätigen; Die Anmeldung allein lädt keine Sitzung hoch.
+
+## Wiederherstellen eines Home Page Case Download {/* #case-download-recovery */}
+
+Lesen Sie den spezifischen Fehler, bevor Sie **Use Cases → Import** erneut versuchen. Für ein fehlendes Manifest oder ein nicht verfügbares Paket ist ein gültiges Quellpaket erforderlich; Wiederholte Downloads erzeugen keinen. Für einen Timeout-, Netzwerk- oder Serverfehler überprüfen Sie die Verbindung und versuchen Sie es später erneut. Ein Verifizierungsfehler erfordert ein neues offizielles Paket. Bei Festplatten-Full- oder Speicherfehlern überprüfen Sie den freien Speicherplatz und den Zugriff auf das angezeigte Ziel.
+
+Überprüfen Sie nach einem unterbrochenen Import die Projektliste, bevor Sie erneut importieren. Öffnen Sie die empfangene Sitzung und ihre Dateien nach Abschluss. Warten Sie bei einem Exportfehler, bis Notebook-Reads oder andere benannte Arbeiten erledigt sind, und wiederholen Sie dann den Export; Eine Teildatei ist kein abgeschlossenes Forschungspaket.

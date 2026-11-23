@@ -1907,5 +1907,17 @@
   },
   "docs.outline.reference.v131.scope": {
     "message": "Web検索、引用グラフ、ラボ共有およびリソースの回復。"
+  },
+  "docs.outline.reference.v133.title": {
+    "message": "v1.3.3"
+  },
+  "docs.outline.reference.v133.scope": {
+    "message": "背景の更新、組み込みのエージェントのデフォルト、画像の編集、エラーをクリアします。"
+  },
+  "docs.outline.reference.v132.title": {
+    "message": "v1.3.2"
+  },
+  "docs.outline.reference.v132.scope": {
+    "message": "Kilo Gateway、画像カタログ、ライターセッション、PDF 翻訳。"
   }
 }

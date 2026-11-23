@@ -1,7 +1,7 @@
 ---
 title: "Notebook 与执行证据"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -303,6 +303,8 @@ Runtimes 的包清单描述已安装环境，Provenance 描述某个文件所捕
 ## 管理 Notebook 内存与资源 {/* #memory-resources */}
 
 Open-Science 会在执行前检查系统内存。如果请求因内存压力被停止，先阅读提示，完成或释放不再需要的任务。内存恢复后不会自动重试；在提供该操作时，选择 **Recheck and retry**。手动 Notebook 终端需要返回原终端，核对当前代码后再执行。
+
+内存压力通知可以关闭，并在六秒后消失；通知消失不会重试或完成被阻止的请求。是否开始执行取决于实际执行检查，而不只是通知。Windows 阈值不超过物理内存，检查也考虑 macOS 内存压力和 Linux 容器限制。
 
 打开 **Compute → Notebook resources**，刷新列表，找到目标会话。选择 **Stop and release Notebook**，检查列出的本地任务后，再确认 **Stop and release**。这会停止列出的任务，丢失内存中的变量和连接；历史、已保存结果、文件和已安装环境会保留。之前写入的文件不会回滚，独立的远程 Compute 任务也不会停止。
 

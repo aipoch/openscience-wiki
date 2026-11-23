@@ -2,7 +2,7 @@
 title: .science 研究包
 description: 将会话、文件和证据一起导出，再导入项目查看与交接研究记录。
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 import ExampleDownload from '@site/src/components/ExampleDownload';
@@ -203,3 +203,9 @@ Notebook 与 Compute 运行在研究包中复用内容相同的证据，同时�
 先在桌面版[登录 Lab](providers.md#lab-account)，确认所属组织。在首页 **Use Cases** 选择 **Organization**，按案例名称或八位分享码搜索。打开案例，检查作者、研究包摘要、包含文件和省略项，再选择 **Import** 并核对目标项目。等待导入完成后打开收到的记录；要继续分析，使用 **Fork to continue**。
 
 分享自己的会话时，打开研究包导出对话框，检查所选内容。选择 **Export and upload**，填写 **Case name** 和 **Description**，再点 **Confirm and upload**。这会把所选研究包直接发送到配置的 Lab 服务器，供组织使用。等待 **Session package uploaded** 后再复制 **Share code**。确认上传前，检查包内是否有不应共享的内容；仅登录账户不会自动上传会话。
+
+## 恢复首页案例下载 {/* #case-download-recovery */}
+
+重试 **Use Cases → Import** 前先读具体错误。清单缺失或包不可用时，需要有效的源包，重复下载不会生成缺失内容。超时、网络或服务器错误应先检查连接，稍后重试；校验失败应重新获取官方包；磁盘已满或存储错误则检查空间和提示的目标位置权限。
+
+导入中断后，先检查项目列表，再决定是否重新导入。完成后打开收到的会话及文件。导出失败时，等待 Notebook 读取或提示的其他工作结束，再重试导出；部分写入的文件不是完整研究包。

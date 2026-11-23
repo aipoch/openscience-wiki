@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "Einstellungsübersicht"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Einstellungsübersicht {/* #settings-overview */}
@@ -58,3 +58,7 @@ Diese Suche umfasst repräsentative Einstellungen in jedem Panel, nicht in jedem
 innerhalb **Model**, Verwendung **Conversation models** für Anbieter und Aufgabenmodelle, **Classification models** für optionale Fähigkeitsauswahl und intelligente Sammlungen und **Local capabilities** für PDF-Extraktion, OCR und Research Narration. Dies sind Registerkarten in Modell, nicht zusätzliche Einstellungen Panels. Siehe [Lokale Ressourcen](../guides/models.md#local-capabilities).
 
 Die Header-Suche verwendet **&lt;0xE2>&lt;0x8C>&lt;0x98>K / Strg + K**. Um die Suche des aktuellen Panels oder Dialogs zu fokussieren, verwenden Sie **&lt;0xE2>&lt;0x8C>&lt;0x98>&lt;0xE2>&lt;0x8C>&lt;0xA5>K / Strg + Alt + K**, wenn dieses Feld verfügbar ist. Siehe [Suchabkürzungen](../guides/shortcuts.md#local-settings-search).
+
+## Installierte Ressourcen aus Einstellungen öffnen {/* #resource-shortcuts */}
+
+Verwenden Sie die Verknüpfung **Skills**, **Spezialisten** oder **Connectors** in den Einstellungen, um diese installierte Kategorie im Ressourcencenter zu öffnen. Kehren Sie zurück, um Ihre vorherige Einstellungsposition wieder aufzunehmen. Dies sind Abkürzungen zum Ressourcenmanagement, nicht drei zusätzliche Einstellungsfelder. Marketplace Discovery und Installed-Ressource-Konfiguration bleiben getrennte Ansichten.

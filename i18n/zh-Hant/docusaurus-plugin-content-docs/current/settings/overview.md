@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "設定中心總覽"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # 設定中心總覽 {/* #设置中心总览 */}
@@ -60,3 +60,7 @@ last_update:
 在 **Model** 中，**Conversation models** 管理提供方和任務模型，**Classification models** 管理可選的能力選擇與智能集合，**Local capabilities** 管理 PDF 提取、OCR 和研究旁白。它們都是 Model 內部的標籤頁，不是額外的設置面板。參閱[本地資源](../guides/models.md#local-capabilities)。
 
 頁頭搜尋使用 **⌘K / Ctrl+K**。當前面板或對話方塊內有區域性搜尋框時，使用 **⌘⌥K / Ctrl+Alt+K** 聚焦該框，見[搜尋快捷鍵](../guides/shortcuts.md#local-settings-search)。
+
+## 從 Settings 開啟已安裝資源 {/* #resource-shortcuts */}
+
+使用 Settings 中的 **Skills**、**Specialists** 或 **Connectors** 快捷入口，開啟資源中心對應的已安裝分類。返回時繼續原來的 Settings 位置。這些是資源管理快捷入口，不是新增的三個設定面板；市場發現與已安裝資源配置仍是不同檢視。

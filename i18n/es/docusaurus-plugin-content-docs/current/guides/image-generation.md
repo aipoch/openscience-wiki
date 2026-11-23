@@ -1,7 +1,7 @@
 ---
 title: "Generar y editar imágenes"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # Generar y editar imágenes {/* #generate-and-edit-images */}
@@ -37,11 +37,14 @@ Inspeccione las etiquetas, orden y dirección de flecha. Si una solicitud falla,
 
 ## Editar, comparar y reutilizar {/* #edit */}
 
-Abra la acción de edición de la imagen, seleccione la versión fuente y describa un cambio enfocado. Utilice los controles de región y parámetro disponibles sólo cuando el servicio seleccionado los apoye. Presentar la edición y esperar su nueva salida. Editar crea una nueva versión para que las variantes anteriores permanezcan disponibles.
+1. Abra la imagen prevista en la vista previa. Ajustar sobre él o mover el enfoque del teclado a sus controles, a continuación, elegir **Edit image**. Confirme la imagen y la versión de origen antes de introducir instrucciones.
+2. En el compositor de conversaciones, describir un cambio enfocado. Mantenga la solicitud atada a la fuente mostrada; entrar en edición no lo envía. Si selecciona una región, compruebe el área resaltada y su instrucción. Las herramientas y parámetros disponibles dependen de la imagen y el servicio.
+3. Seleccione **Send image edit** y espere la nueva salida. Si el control no está disponible, compruebe la razón mostrada y [configuración del servicio de imagen](#configure). Una solicitud fallida no es una nueva versión completa.
+4. Use **Compare with input image** o **Compare** cuando se ofrezca, e inspeccione tanto el área modificada como el contenido que debe permanecer invariable. Utilice **Image history** para revisitar versiones anteriores, o **Continue editing** para otra revisión.
+5. Descargue la versión elegida, vuelva a abrirla, y compruebe etiquetas y reclamaciones científicas antes de compartir. Los detalles de la imagen pueden identificar el kernel Notebook que produjo una edición; ese registro no establece la precisión científica.
 
-Compare el candidato con la fuente: compruebe la región solicitada y las partes que deben permanecer inalteradas. Utilice la historia de la imagen para revisar una versión o continuar editando de ella. Descargue la versión final prevista y vuelva a abrir el archivo antes de colocarlo en una presentación. Mantenga una capción precisa identificando contenido ilustrativo.
+La conversación permanece en su lugar mientras los controles de edición utilizan su compositor. Mantenga una capción precisa identificando contenido ilustrativo. Para los cheques numéricos en las parcelas, utilice [Notebook](notebook.md) y [Procedencia](reproducibility.md); para el texto de diapositivas, vea [edición de la presentación](presentation-editing.md).
 
-Para las parcelas existentes que necesitan comprobación numérica, use [Notebook](notebook.md) y [Provenencia](reproducibility.md). Para el texto de diapositivas y el formato, vea [edición de presentación](presentation-editing.md).
 ## Pruebe un servicio de imagen antes de guardar {/* #test-service */}
 
 En v1.3.1, el formulario de servicio de imagen ofrece **Test generation** después de que los campos requeridos y un modelo estén llenos. Revise la confirmación: genera una imagen y el proveedor puede cargar por la solicitud. Una prueba aprobada se aplica a esa configuración exacta; cambiar el modelo, el punto final o la credenciales requiere una nueva prueba. También puede guardar la configuración sin ejecutar la prueba.
@@ -49,3 +52,13 @@ En v1.3.1, el formulario de servicio de imagen ofrece **Test generation** despu�
 Después de guardar un nuevo servicio, su primer modelo se convierte en el predeterminado sólo cuando ningún modelo de generación de imagen ya está seleccionado. Inspeccione esa selección antes de su primera solicitud. Main permanece configurado por separado.
 
 ![Pruebe un servicio de imagen antes de guardar](/img/open-science/v1.3.1/image-service-test.webp)
+
+## Refrescar un catálogo de imagen-model {/* #image-model-catalog */}
+
+En **Settings → Model → Image services**, añadir o editar un servicio oficial **OpenAI**, **MiniMax**, **Bailian** o **Volcengine Ark**. Rellene los campos de conexión, luego elija **Refresh model list** antes de guardar. Un refresco envía las credenciales configuradas a ese proveedor; no genera una imagen.
+
+La lista refrescada coincide con los resultados del proveedor en los modelos de imagen soportados por Open-Science, por lo que no es cada modelo que el proveedor ofrece. El defecto actual se mantiene, con un marcador cuando falta del catálogo devuelto. Revise ese marcador antes de confiar en el modelo. Un refresco fallido mantiene la lista anterior; comprobar la causa mostrada y volver a entrar. **Save** compromete el formulario, mientras que [Probar generación](#test-service) es una solicitud de imagen independiente y potencialmente facturable.
+
+Para Bailian, utilice la URL del espacio de trabajo y la región que coincida con la credencial. Las credenciales vinculadas a China utilizan el catálogo de China. Cambiar una conexión o espacio de trabajo requiere revisar su catálogo de nuevo; un modelo visible en otra región no es prueba de acceso aquí.
+
+![OpenAI image service: supported models and Refresh model list](/img/open-science/v1.3.3/image-catalog.webp)

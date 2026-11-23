@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: "설정 개요"
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # 설정 개요 {/* #settings-overview */}
@@ -58,3 +58,7 @@ last_update:
 내 계정 **Model**, 사용 **Conversation models** 공급자와 업무 모형을 위해, **Classification models** 옵션 기능 선택 및 스마트 컬렉션 및 **Local capabilities** PDF 추출, OCR 및 연구 narration에 대 한. 이 모델 내에서 탭, 추가 설정 패널이 없습니다. 이름 * [지역 자원](../guides/models.md#local-capabilities).
 
 헤더 검색은 **⌘K / Ctrl + K**을 사용합니다. 현재 패널 또는 대화 상자의 자신의 검색에 초점을 맞추려면 필드가 사용할 때 **&lt;unk>K/Ctrl+Alt+K**을 사용하십시오. [검색 단축키](../guides/shortcuts.md#local-settings-search) 참조.
+
+## 설정에서 설치 된 리소스 {/* #resource-shortcuts */}
+
+설정에서 **Skills**, **스페셜리스트** 또는 **Connectors** 단축키를 사용하여 리소스 센터에 설치된 범주를 엽니다. 이전 설정 위치를 다시 시작합니다. 이것은 자원 관리에 단축, 3 개의 추가 설정 패널이 아닙니다. Marketplace discovery 및 설치 리소스 구성은 별도의 레이아웃을 유지.

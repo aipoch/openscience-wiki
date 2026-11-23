@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: 设置中心总览
 last_update:
-  date: '2026-11-20'
+  date: '2026-11-23'
 ---
 
 # 设置中心总览
@@ -60,3 +60,7 @@ last_update:
 在 **Model** 中，**Conversation models** 管理提供方和任务模型，**Classification models** 管理可选的能力选择与智能集合，**Local capabilities** 管理 PDF 提取、OCR 和研究旁白。它们都是 Model 内部的标签页，不是额外的设置面板。参阅[本地资源](../guides/models.md#local-capabilities)。
 
 页头搜索使用 **⌘K / Ctrl+K**。当前面板或对话框内有局部搜索框时，使用 **⌘⌥K / Ctrl+Alt+K** 聚焦该框，见[搜索快捷键](../guides/shortcuts.md#local-settings-search)。
+
+## 从 Settings 打开已安装资源 {/* #resource-shortcuts */}
+
+使用 Settings 中的 **Skills**、**Specialists** 或 **Connectors** 快捷入口，打开资源中心对应的已安装分类。返回时继续原来的 Settings 位置。这些是资源管理快捷入口，不是新增的三个设置面板；市场发现与已安装资源配置仍是不同视图。
