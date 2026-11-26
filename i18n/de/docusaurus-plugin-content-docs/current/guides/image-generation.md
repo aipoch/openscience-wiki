@@ -1,7 +1,7 @@
 ---
 title: "Bilder erzeugen und bearbeiten"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # Bilder erzeugen und bearbeiten {/* #generate-and-edit-images */}
@@ -40,10 +40,10 @@ Save the image so I can review it in the project.
 1. Öffnen Sie das beabsichtigte Bild in der Vorschau. Bewegen Sie darüber oder verschieben Sie den Tastaturfokus auf die Steuerung und wählen Sie dann **Edit image**. Bestätigen Sie das Quellbild und die Version, bevor Sie Anweisungen eingeben.
 2. Beschreiben Sie im Gespräch Komponisten eine fokussierte Veränderung. Halten Sie die Anforderung an die angezeigte Quelle gebunden; Die Eingabe Editing sendet sie nicht. Wenn Sie eine Region auswählen, überprüfen Sie den hervorgehobenen Bereich und seine Anweisung. Verfügbare Tools und Parameter hängen vom Bild und Service ab.
 3. Wählen Sie **Send image edit** und warten Sie auf den neuen Ausgang. Wenn das Steuerelement nicht verfügbar ist, überprüfen Sie den angezeigten Grund und [Bilddienstkonfiguration](#configure). Eine fehlgeschlagene Anforderung ist keine neue abgeschlossene Version.
-4. Verwenden Sie **Compare with input image** oder **Compare**, wenn Sie angeboten werden, und prüfen Sie sowohl den geänderten Bereich als auch den Inhalt, der unverändert bleiben soll. Verwenden Sie **Image history**, um frühere Versionen erneut zu besuchen, oder **Continue editing** für eine andere Überarbeitung.
+4. Öffnen Sie die neue Version in der vollständigen Vorschau und bestätigen Sie ihre Identität; v1.3.4 behebt das Öffnen einer Bearbeitung, während die Version veröffentlicht wird. Verwenden Sie **Compare with input image** oder **Compare**, wenn Sie angeboten werden, und prüfen Sie sowohl den geänderten Bereich als auch den Inhalt, der unverändert bleiben soll. Verwenden Sie **Image history**, um frühere Versionen erneut zu besuchen, oder **Continue editing** für eine andere Überarbeitung.
 5. Laden Sie die gewählte Version herunter, öffnen Sie sie erneut und überprüfen Sie Etiketten und wissenschaftliche Behauptungen, bevor Sie sie teilen. Bilddetails können den Notebook-Kernel identifizieren, der eine Bearbeitung erzeugt hat; diese Aufzeichnungen keine wissenschaftliche Genauigkeit belegen.
 
-Das Gespräch bleibt an Ort und Stelle, während die Editing-Steuerelemente seinen Komponisten verwenden. Behalten Sie eine genaue Beschriftung, die illustrative Inhalte identifiziert. Für numerische Kontrollen auf Flächen sind [Notebook](notebook.md) und [Provenienz](reproducibility.md) zu verwenden. für Diatext siehe [Präsentationsbearbeitung](presentation-editing.md).
+Das Gespräch bleibt an Ort und Stelle, während die Editing-Steuerelemente seinen Komponisten verwenden. Sie können auch **Provenance**-Historie öffnen, während ein Bildentwurf aktiv ist; Überprüfen Sie, welche gespeicherte Version Sie ansehen. Behalten Sie eine genaue Beschriftung, die illustrative Inhalte identifiziert. Für numerische Kontrollen auf Flächen sind [Notebook](notebook.md) und [Provenienz](reproducibility.md) zu verwenden. für Diatext siehe [Präsentationsbearbeitung](presentation-editing.md).
 
 ## Testen Sie einen Image-Service vor dem Speichern {/* #test-service */}
 

@@ -1,7 +1,7 @@
 ---
 title: "프로젝트 및 소스 폴더"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-25'
 ---
 
 # 프로젝트 및 소스 폴더 {/* #projects-and-source-folders */}
@@ -82,3 +82,15 @@ do not invent participants, measurements or citations.
 ![프로젝트의 고급 에이전트 옵션 아래 사용자 정의 최적화 신속한](/img/open-science/v121/optimization-template.webp)
 
 Composer로 돌아가기 [초안 최적화](composer.md#optimize-question)· 보내기 전에 rewritten 텍스트를 검토하십시오. 템플릿은 서면 지침이며 과학 검증 규칙이 아닙니다.
+## 프로젝트를 위한 Enable Agent 추적 {/* #agent-tracing */}
+
+Agent tracing 레코드 내장 에이전트의 회전, 모델 요청 및 MCP 도구 호출 수신기에 의해 설정된 사람에 의해 구동 Open-Science. 기본적으로 꺼져 있습니다. 별도의 Codex 런타임과 같은 외부 프레임워크를 추적하지 않습니다.
+
+1. 수신기를 구성하고 [캡처 설정](../reference/diagnostics.md#agent-tracing)을 검토합니다. 프로젝트 스위치를 혼자서 설정하지 않습니다.
+2. 프로젝트 이름 메뉴 → **Project settings → Advanced agent options**을 엽니다.
+3. **Agent tracing**을 켜면 **Save**을 선택합니다. 설정은 이 프로젝트의 내장 에이전트 세션에서 후속 전송에 적용됩니다.
+4. 작은, 비 과민한 요청을 보내고 서비스 `open-science-agent`에 대한 수신기를 검사합니다. 에이전트가 답한지 여부에 별도로 배송을 확인합니다.
+
+스위치를 끄고 저장하면 이후 프로젝트 요청의 추적이 중지됩니다. 이미 전송된 데이터는 수신 대상의 보존 정책을 따릅니다.[CLI 또는 SDK의 Run별 활성화](../reference/cli.md#otel-traces)는 이 프로젝트 설정과 별개입니다.
+
+![프로젝트의 고급 옵션에 tracing 에이전트](/img/open-science/v1.3.4/agent-tracing.webp)

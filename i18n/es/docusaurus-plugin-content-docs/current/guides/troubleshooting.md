@@ -1,7 +1,7 @@
 ---
 title: "Solución de problemas y preguntas comunes"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # Solución de problemas y preguntas comunes {/* #troubleshooting-and-common-questions */}
@@ -275,3 +275,8 @@ Lea la causa mostrada con la respuesta fallida. Para los errores de autenticaci�
 Para una respuesta fallida, abra **Error details** y mantenga la clasificación de fallos y solicite ID cuando esté presente. Autenticación, cuota, falta de disponibilidad del proveedor y una respuesta malformada requieren diferentes remedios. Eliminar el contenido privado antes de compartir el diagnóstico.
 
 Si elegiste Stop, espera a limpiar e inspeccionar las salidas guardadas. Una tarea parada es diferente de una continuación que nunca recibió una respuesta. Para la entrega de mensajes de consulta, carga de apego o errores de lectura de historia, inspeccione la conversación original antes de reenviar; el trabajo de herramientas aceptado puede haber producido archivos. En Windows, una pregunta integrada del Agente esperando su respuesta puede sobrevivir reiniciar: reabrir la sesión y responder la pregunta retenida en lugar de crear una tarea duplicada.
+## Un proveedor informa de Equilibrio insuficiente {/* #provider-balance */}
+
+Cuando un proveedor de corriente avanzada devuelve explícitamente HTTP **402** con **Saldo insuficiente**, Open-Science preserva ese estado y detalles de proveedores seguros y explica el problema de facturación. Compruebe el proveedor, cuenta y modelo seleccionados, a continuación, inspeccione el acceso de balance o facturación del proveedor antes de reintentar. Un saldo API y un subsidio de suscripción pueden ser separados.
+
+Mantenga el mensaje y solicite identificador al ponerse en contacto con el proveedor. El número 402 por sí solo no establece la causa; use los detalles de respuesta reales. Ver [Consulta de estado HTTP](#http-errors-400-403-429-and-5xx).

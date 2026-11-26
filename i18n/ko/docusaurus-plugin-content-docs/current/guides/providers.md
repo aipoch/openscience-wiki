@@ -1,7 +1,7 @@
 ---
 title: "공급자 및 지역 모델 설정"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -303,3 +303,8 @@ Lab 모델을 사용하여 요청은 구성 된 Lab 서버를 통해 이동합�
 Kilo 모델에 보내는 질문과 대화 자료는 Kilo 서비스로 전송됩니다. 키 없는 목록 조회도 네트워크 요청입니다. 갱신 실패 시 이전 목록을 유지합니다. 오류를 확인한 후 다시 시도하고 모델 ID를 임의로 만들지 마세요.
 
 ![Kilo Gateway: API key optional and refreshed model catalog](/img/open-science/v1.3.3/kilo-catalog.webp)
+## CodeBuddy 이유 선택 새로 고침 {/* #codebuddy-reasoning */}
+
+CodeBuddy은 Sign-in 및 model-catalog 상쾌한 동안 각 모델의 지원되는 이유를 발견합니다. **Settings → Model**에 연결된 공급자를 열고, **Refresh model list**을 사용하며, 그 후 의도한 모델을 선택하십시오. 그것의 노력 피커는 그 모형을 위해 보고된 수준만 제안합니다; 변화 모형은 유효한 선택을 바꿀 수 있습니다. 예상된 선택이 결석되면 연결과 새로 고침을 체크하십시오. 모든 모델은 동일한 수준을 지원합니다.
+
+공식 Zhipu 카탈로그는 또한 포함합니다 **GLM-5.4에** 으로 v1.3.4... 공급자의 카탈로그를 새로 고침하고 귀하의 계정에 사용할 수있는 모델을 확인하십시오. 나열된 모델은 여전히 호환 액세스 및 성공적인 요청을 필요로합니다.

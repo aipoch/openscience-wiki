@@ -1,7 +1,7 @@
 ---
 title: "專案與原始檔夾"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-25'
 ---
 
 # 專案與原始檔夾 {/* #项目与源文件夹 */}
@@ -84,3 +84,15 @@ do not invent participants, measurements or citations.
 ![項目高級選項中的自定義 Optimization prompt](/img/open-science/v121/optimization-template.webp)
 
 返回輸入框，[優化一段草稿](composer.md#optimize-question)，檢查改寫結果後再發送。模板提供的是寫作要求，不是科學驗證規則。
+## 為專案啟用 Agent tracing {/* #agent-tracing */}
+
+Agent tracing 將內建 Agent 的輪次、模型請求和 MCP 工具呼叫記錄傳送到由 Open-Science 執行者配置的接收端。專案預設關閉此功能；獨立 Codex 等外部框架不在其範圍內。
+
+1. 先配置接收端，檢查[採集設定](../reference/diagnostics.md#agent-tracing)。僅開啟專案開關不會自動建立接收服務。
+2. 開啟專案名稱選單 → **Project settings → Advanced agent options**。
+3. 開啟 **Agent tracing**，選擇 **Save**。設定對該專案內建 Agent 會話後續傳送的請求生效。
+4. 傳送一條不含敏感內容的小請求，在接收端查詢服務 `open-science-agent`。Agent 成功回覆與追蹤資料送達需要分別檢查。
+
+關閉開關並儲存後，後續專案請求停止追蹤。已經送達的資料按接收端的保留規則處理。[CLI 或 SDK 的單次執行開關](../reference/cli.md#otel-traces)與專案設定相互獨立。
+
+![專案高階選項中的 Agent tracing 開關](/img/open-science/v1.3.4/agent-tracing.webp)

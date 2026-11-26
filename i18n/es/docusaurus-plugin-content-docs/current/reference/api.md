@@ -1,7 +1,7 @@
 ---
 title: "Tarea SDK y API local"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # Tarea SDK y API local {/* #task-sdk-and-local-api */}
@@ -203,3 +203,8 @@ El [Política de compatibilidad](https://github.com/aipoch/open-science/blob/v1.
 ## Tiempo de ejecución incorporado en el primer uso {/* #builtin-default */}
 
 En v1.3.3, una instalación limpia SDK/backend predetermina nuevos proyectos y sesiones al agente Open-Science incorporado. Desapareciendo los SDKs de los agentes externos opcionales ya no previenen la puesta en marcha del servicio. La autenticación modelo y las capacidades del modelo seleccionado todavía son necesarias para una ejecución; la disponibilidad de servicio por sí sola no verifica la inferencia o la ejecución de herramientas. Instalar un tiempo de ejecución externo sólo cuando se selecciona. Ver [CLI setup](cli.md#terminal-setup) y [Configuración del agente](../guides/frameworks.md#default-runtime).
+## Trace one Run through the SDK {/* #otel-traces */}
+
+Incluya `otelTraces: true` en la solicitud Run enviada a `submitRun(requestId, request)` o `startRun(request, {requestId})`. Esto activa explícitamente el trazado para ese Run, aunque el interruptor del proyecto esté apagado, sin modificar las preferencias guardadas del proyecto ni de la sesión. Si se omite el campo, se aplica el ajuste del proyecto en el momento del envío.
+
+Compruebe que el host admite `run-otel-traces`, seleccione el Agent integrado y configure primero el [receptor y la captura](diagnostics.md#agent-tracing). Una configuración no válida impide preparar el Run; un fallo de transferencia asíncrono tras el envío se trata por separado de la ejecución de la tarea. Mantenga el identificador de solicitud y la identidad de los reintentos. Consulte el [equivalente en CLI](cli.md#otel-traces).

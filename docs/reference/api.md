@@ -1,7 +1,7 @@
 ---
 title: "Task SDK and local API"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # Task SDK and local API
@@ -203,3 +203,9 @@ The [compatibility policy](https://github.com/aipoch/open-science/blob/v1.0.0/do
 ## Built-in runtime on first use {/* #builtin-default */}
 
 In v1.3.3, a clean SDK/backend installation defaults new projects and sessions to the built-in Open-Science Agent. Missing optional external Agent SDKs no longer prevent service startup. Model authentication and the selected model's capabilities are still required for a run; service availability alone does not verify inference or tool execution. Install an external runtime only when selecting it. See [CLI setup](cli.md#terminal-setup) and [Agent settings](../guides/frameworks.md#default-runtime).
+
+## Trace one Run through the SDK {/* #otel-traces */}
+
+Pass `otelTraces: true` in the Run request supplied to `submitRun(requestId, request)` or `startRun(request, {requestId})`. This is an explicit per-run opt-in, including when the project switch is off. It does not persist a project or session preference. Omitting the field uses the project's tracing setting at dispatch.
+
+Check the host capability `run-otel-traces`, select the built-in Agent and configure the host's [receiver and capture settings](diagnostics.md#agent-tracing) first. Invalid setup prevents Run preparation; asynchronous upload failure after dispatch is separate from task execution. Preserve your normal request ID and retry identity. See the [CLI equivalent](cli.md#otel-traces).

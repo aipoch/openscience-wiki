@@ -1,7 +1,7 @@
 ---
 title: "Arquitectura y diagnósticos"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-25'
 ---
 
 # Arquitectura y diagnósticos {/* #architecture-and-diagnostics */}
@@ -84,3 +84,40 @@ Las fuentes ordinarias de metadatos excluyen los campos de contenido privado. De
 ## El escritorio y el backend son procesos separados {/* #node-backend */}
 
 Desde v0.37.0, Electron posee la cáscara de escritorio nativa mientras que un backend Node común posee servicios compartidos. El escritorio, Web UI, CLI y SDK pueden conectarse a ese mismo backend. Identificar el directorio de configuración, versión y puerto real con `status --json` cuando un cliente no puede conectarse. Una ventana de escritorio visible por sí sola no prueba que el backend es saludable. Siga a [propiedad de backend](server.md#backend-ownership) antes de detenerlo.
+## Configurar el rastreo del agente {/* #agent-tracing */}
+
+Usa esto cuando necesites inspeccionar un agente incorporado girar las solicitudes de modelos y las herramientas MCP. Suministrar un receptor OTLP/HTTP JSON como un coleccionista de OpenTelemetry o Langfuse. Open-Science no proporciona un servicio de recogida operado por la aplicación. El punto final debe ser la URL de la ingestión completa; un coleccionista genérico utiliza `/v1/traces`, mientras que Langfuse utiliza `/api/public/otel/v1/traces`.
+
+La persona que opera el backend configura los interruptores de endpoint, autenticación y captura en su configuración de lanzamiento. Para una aplicación instalada, el `.env` del directorio activo es compatible (generalmente `~/.open-science/.env`). Terminar el trabajo activo y reiniciar ese backend después de cambiar su configuración de lanzamiento. Esto es separado de guardar un ajuste de proyecto.
+
+<p className="example-label"><strong>Ejemplo</strong> Un receptor local con captura de contenido deshabilitado</p>
+
+```dotenv
+OPEN_SCIENCE_AGENT_OTLP_TRACES_ENDPOINT=http://127.0.0.1:4318/v1/traces
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_CONTENT=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_API_REQUEST=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_ARGUMENTS=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_RESULTS=0
+OPEN_SCIENCE_AGENT_OTLP_DIAGNOSTICS=1
+```
+
+Este ejemplo asume un receptor que ya escucha en la dirección de vuelta del backend. No instala uno. Para otro host, utilice su URL de ingestión real y la autenticación necesaria; ver el [configuración oficial del receptor](https://github.com/aipoch/open-science/blob/v1.3.4/docs/development-quick-reference.md#open-science-agent-traces) y [ejemplos de medio ambiente](https://github.com/aipoch/open-science/blob/v1.3.4/.env.example). Mantenga secretos de receptor fuera de los avisos y capturas de pantalla compartida.
+
+### Elija el detalle de captura {/* #choose-capture-detail */}
+
+El trazado del proyecto está **desactivado por defecto**. Sin embargo, cada uno de los cuatro ajustes de captura siguientes vale **`1` (activado)** cuando se omite. Establezca los cuatro explícitamente en `0` para capturar solo metadatos. Son ajustes de inicio, no interruptores adicionales en el diálogo del proyecto.
+
+| Ajuste sufijo después `OPEN_SCIENCE_AGENT_OTLP_` | Contenido incluido cuando se establece `1` |
+| --- | --- |
+| `CAPTURE_CONTENT` | Extractos de la instrucción y de la respuesta final |
+| `CAPTURE_API_REQUEST` | Solicitud de modelo JSON, incluyendo potencialmente instrucciones, historia, datos de herramientas y archivos adjuntos |
+| `CAPTURE_TOOL_ARGUMENTS` | MCP herramienta de entrada previsualizaciones |
+| `CAPTURE_TOOL_RESULTS` | MCP herramienta de salida previsualizaciones |
+
+Los rastros sólo de metadatos todavía describen las operaciones. Revise el receptor y sus reglas de acceso antes de permitir un proyecto con datos de investigación privados.
+
+### Activar y comprobar la entrega {/* #enable-and-check-delivery */}
+
+Abrir [Configuración del proyecto](../guides/projects.md#agent-tracing), activar **Agent tracing** y guardar. Utilice el **Open-Science Agent** incorporado para una pequeña solicitud. Busque el servicio `open-science-agent` en el receptor e inspeccione el giro, solicitud y los lados de herramientas correlativos que la tarea realmente produjo.
+
+Con diagnóstico habilitado para la configuración `.env`, inspeccionar el `.env.otel-status.json` adyacente para el estado de carga. Si no llegan rastros, compruebe el perfil activo, el interruptor de proyecto, el tiempo de ejecución, el punto final completo, la disponibilidad del receptor y las credenciales. La entrega es asincrónica: una respuesta completa del Agente no prueba la carga exitosa. Desactivar el rastreo deja de capturar el futuro; no elimina los registros ya en el receptor.

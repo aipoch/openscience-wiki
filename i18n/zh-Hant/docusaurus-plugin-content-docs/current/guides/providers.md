@@ -1,7 +1,7 @@
 ---
 title: "提供商與本地模型配置"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -303,3 +303,8 @@ Anthropic 模型目錄還新增了支持 1M 上下文的 **Claude Fable 5.2**。
 傳送給 Kilo 模型的查詢和會話材料會交給 Kilo 服務。無金鑰的目錄查詢仍是聯網請求。重新整理失敗保留原列表；檢查錯誤後重試，不要自行猜造模型 ID。
 
 ![Kilo Gateway: API key optional and refreshed model catalog](/img/open-science/v1.3.3/kilo-catalog.webp)
+## 重新整理 CodeBuddy 推理強度選項 {/* #codebuddy-reasoning */}
+
+CodeBuddy 在登入和重新整理模型目錄時發現各模型支援的推理強度。在 **Settings → Model** 開啟已連線的提供方，選擇 **Refresh model list**，再選擇目標模型。強度選擇器僅提供該模型報告支援的級別，切換模型後可用選項可能變化。如果缺少預期選項，檢查連線並重新整理，不要假設所有模型都支援相同級別。
+
+v1.3.4 的智譜官方目錄也加入 **GLM-5.4**。重新整理對應提供方目錄，檢查賬號實際可用的模型。目錄中出現模型仍不代表已經獲得相容的訪問權限或完成請求。

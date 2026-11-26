@@ -1,7 +1,7 @@
 ---
 title: "Projekte und Quellordner"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-25'
 ---
 
 # Projekte und Quellordner {/* #projects-and-source-folders */}
@@ -82,3 +82,15 @@ do not invent participants, measurements or citations.
 ![Custom Optimization prompt unter den erweiterten Agentenoptionen des Projekts](/img/open-science/v121/optimization-template.webp)
 
 Zurück zum Komponisten und [Optimieren eines Entwurfs](composer.md#optimize-question). Überprüfen Sie den neu geschriebenen Text vor dem Senden; eine Vorlage ist eine Schreibanweisung, keine wissenschaftliche Validierungsregel.
+## Agent-Tracing für ein Projekt aktivieren {/* #agent-tracing */}
+
+Agent Tracing zeichnet die integrierten Agent-Wends, Modellanforderungen und MCP-Toolaufrufe an einem Empfänger auf, der von der Person konfiguriert wurde, die Open-Science ausführt. Es ist standardmäßig ausgeschaltet. Es verfolgt keine externen Frameworks wie die separate Codex-Laufzeit.
+
+1. Konfigurieren Sie den Empfänger und überprüfen Sie den [Erfassungseinstellungen](../reference/diagnostics.md#agent-tracing). Durch das Aktivieren des Projektschalters allein wird kein Empfänger eingerichtet.
+2. Öffnen Sie das Projektnamenmenü → **Project settings → Advanced agent options**.
+3. Schalten Sie **Agent tracing** ein und wählen Sie dann **Save**. Die Einstellung gilt für nachfolgende Sendungen in den eingebauten Agent-Sitzungen dieses Projekts.
+4. Senden Sie eine kleine, nicht sensible Anfrage und inspizieren Sie den Empfänger auf den Dienst `open-science-agent`. Überprüfen Sie die Lieferung getrennt davon, ob der Agent geantwortet hat.
+
+Schalten Sie die Funktion aus und speichern Sie, um das Tracing weiterer Projektanfragen zu beenden. Bereits empfangene Daten unterliegen weiterhin den Aufbewahrungsregeln des Empfängers. Die [Aktivierung pro Run über CLI oder SDK](../reference/cli.md#otel-traces) ist von dieser Projekteinstellung unabhängig.
+
+![Agent Tracing in den erweiterten Optionen des Projekts](/img/open-science/v1.3.4/agent-tracing.webp)

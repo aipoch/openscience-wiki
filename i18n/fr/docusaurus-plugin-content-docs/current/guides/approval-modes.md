@@ -1,7 +1,7 @@
 ---
 title: "Autorisations et agréments"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-25'
 ---
 
 # Autorisations et agréments {/* #permissions-and-approvals */}
@@ -112,3 +112,8 @@ La règle s'applique aux outils de littérature reconnus, et non à tous les app
 ## Gardez le mode réseau séparé {/* #strict-network */}
 
 **Full access** ne contourne pas la liste blanche des carnets **Strict**. Une destination non inscrite est bloquée sans offre d'autorisation, même lorsque la conversation permet des actions automatiques. Ajouter seulement le protocole, le nom d'hôte/IP et le port requis dans [Paramètres du réseau](network.md#public-network-rules).
+## Après avoir nié une action d'outil {/* #denied-action */}
+
+Choisissez **Deny** lorsque vous ne voulez pas que l'action présentée s'exécute. L'Agent intégré conserve une explication à la fin du tour au lieu de laisser une réponse silencieuse. Examen des mesures qui ont été refusées et des mesures antérieures effectivement prises. Les appels refusés sont comptés séparément du travail accompli; un virage terminé ne signifie pas que l'opération demandée a réussi.
+
+Pour continuer, décrire une solution de rechange ou faire une nouvelle demande plus étroite. Ne pas passer à **Full access** simplement pour cacher un déni.

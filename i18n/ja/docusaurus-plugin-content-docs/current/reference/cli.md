@@ -1,7 +1,7 @@
 ---
 title: "CLIと構造化された出力"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -16,7 +16,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## ターミナルからセットアップ {/* #terminal-setup */}
 
-デスクトップランチャーをインストールし、v1.3.3スタンドアローンのアーカイブを使用して、またはフォローしてください。 [npmインストール手順](../guides/installation.md#npm-cli)お問い合わせ スタンドアローンは、バンドルノード、バックエンド、Web UI をアーカイブします。以下の抽出手順は、これらのアーカイブに適用されます。
+デスクトップランチャーをインストールし、v1.3.4スタンドアローンのアーカイブを使用するか、[npmインストール手順](../guides/installation.md#npm-cli)に従う。 スタンドアローンは、バンドルノード、バックエンド、Web UI をアーカイブします。 抽出手順は、これらのアーカイブに適用されます。
 
 1. macOS または Linux アーム64/x64 または Windows x64 を選択し、ホストにマッチします。
 2. 完全なアーカイブを書き込み可能な場所に抽出します。 `backend`と`node-runtime`を一緒に保持してください。 起動者のみをコピーすると起動が解除されます。
@@ -32,7 +32,7 @@ open-science doctor --json
 
 `init` は、アプリケーションを起動せずに設定ディレクトリを作成します。 `--profile` は `--config-root` をポータブル CLI プロファイルにエイリアスします。 init、start、およびその後のコマンドと同じ絶対設定ディレクトリを使用します。 別のプロファイルは、独自のセットアップを持っています。 `runtime list`は、実行可能パスを提示することなく、検出されたフレームワークの信頼性、バージョンおよび管理/外部ソースを示しています。
 
-任意：独立した Codex ランタイムを使う場合：
+オプション: 別の Codex のランタイムを使用するには:
 
 ```bash
 open-science runtime install codex --json
@@ -40,11 +40,11 @@ open-science codex login
 open-science doctor --json
 ```
 
-表示される手順でログインします。この任意のコマンドは管理対象の Codex ランタイムを準備・修復し、サブスクリプションを登録します。外部の Codex ログインファイルは取り込みません。新規インストールの既定は内蔵 Agent であり、この外部ランタイムは不要です。内蔵 Agent で Codex subscription を使う場合は、内蔵 Agent を選んだまま **Settings → Model** で設定します。既存設定との競合は報告され、黙って上書きされません。
+ログインフローに従ってください。 これらのオプションのコマンドは、管理されたCodexランタイムを準備または修復し、サブスクリプションを登録します。 外部のCodexログインファイルをインポートしません。 組み込みのエージェントは、クリーンインストールのデフォルトのままであり、この外部のランタイムを必要としません。 Codex サブスクリプションを組み込み Agent で使用するには、**Settings → Model** でサブスクリプションを選択して設定します。 既存の構成を黙って置き換えるのではなく、既存のコンフィグが報告されます。
 
-代わりにOpenAI APIキーを使用する場合は、`provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`を使用して、サポートされているモデルIDと、既に秘密管理環境によって供給されたキーを使用します。 OpenAlex では、`connector configure literature --openalex-key-env OPENALEX_API_KEY --json` を使用します。 `open-science` で両方のコマンドをプレフィックスします。 コマンド引数にキー自体を置かないでください。 巧妙なクレデンシャルチェックは、研究クエリが完了したか、そのクオータが残っていることを確立しません。
+代わりにOpenAI APIキーを使用する場合は、`provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`を使用して、サポートされているモデルIDと、既に秘密管理環境によって供給されたキーを使用します。 OpenAlex では、`connector configure literature --openalex-key-env OPENALEX_API_KEY --json` を使用します。 `open-science` で両方のコマンドをプレフィックスします。 コマンド引数にキー自体を置かないでください。 成功した認証チェックは、研究クエリが完成したか、そのクォータが残っていることを確立しません。
 
-**準備完了**、個々の**チェック**を読んで、`doctor`から**次へ**アクションを提案しました。 `ready` が false である間、レポートは正常に終了できます。 バックエンドが不在の場合、医師はそれを報告し、3を終了します。 報告された前提条件を完成させ、再度確認し、意図したプロジェクトで[タスクを実行する](#run-input-and-control-flags)を検証します。
+**準備が整いました**、個々の**チェック**を読んで、`doctor`から**次のページ**アクションを提案しました。 `ready` が false である間、レポートは正常に終了できます。 バックエンドが不在の場合、医師はそれを報告し、3を終了します。 報告された前提条件を完成させ、再度確認し、意図したプロジェクトで[タスクを実行する](#run-input-and-control-flags)を検証します。
 
 Homebrew または Linux `.deb`/`.rpm` のインストールは、[パッケージの指示](../guides/installation.md#standalone-cli) に従って下さい。 Linuxの配電パッケージは`open-science-cli`を提供します; 別のデスクトップランチャーを選択することを避けるために、このページ上の例でそのコマンドを置換します。
 
@@ -207,16 +207,16 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 | 終了コード | 意味する |
 | ---: | --- |
 | 0 | コマンドが成功しました。 該当する場合、返された実行/保持状態を調べます。 |
-| 1 | 一般/実行障害、タイムアウト、競合、またはステータスレポートの実行サービスなし |
+| 1 | 一般/実行障害、タイムアウト、競合、ステータスレポートの実行サービスなし |
 | 2 | 無効な CLI の使用 |
 | 3 | ローカルデーモンは利用できません |
 | 4 | リクエストされたプロジェクト/実行/セッション/アーティファクト/Specialistが見つかりませんでした |
 
-`run.progress` と `stream.resync-required` を含むことができます。 再接続後再再生が利用できなくなった場合、権限のある実行状態を再読み込みします。 イベントストリームは永続的な歴史であると仮定しません。 ライフサイクルコマンドは、[ヘッドレスサービス](./server.md) で説明されている別のフラグ制限を持っています。
+`run.progress` と `stream.resync-required` を含むことができます。 再接続後再再生が利用できなくなった場合、権限のある実行状態を再読み込みします。 イベントストリームは永続的な歴史であると仮定しません。 ライフサイクルコマンドは、[ヘッドレスサービス](./server.md) で説明するフラグの制限を分離しています。
 
-[CLI実装](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/cli.mjs), [上流コマンドガイド](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
+[CLI実装](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/cli.mjs), [上流コマンドガイド](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md).
 
-技術的な参照: [CLI契約](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
+技術的な参照: [CLI契約](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md)。
 
 ## 無人走行 {/* #unattended-runs */}
 
@@ -266,21 +266,21 @@ open-science mcp --help
 
 クライアントがアダプターを起動してみましょう。 **list_projects**でプロジェクトを発見し、返されたプロジェクトIDで**start_run**を提出し、**get_run**に従うし、**list_artifacts**を点検して下さい。 スタートアップが進行中、ツールの発見は終了できます。 最初のツールコールは、サービスが待ちます。 コールは認証されたローカルサービスを使用します。 これは、リモートHTTP MCPエンドポイントではありません。
 
-クライアントは、プロフィールの既存の権限の下で動作します。 永続的なプロジェクトを作成したり、設定を変更したり、ファイルやインカーモデルのコストを記述する作業を開始したりできます。 Open-Science では、承認がまだアクションを必要とする場合があります。 書き込みを繰り返す前にタイムアウト後の現在の状態を調べます。 クライアントを閉じたり、リクエストをキャンセルしても、承認された研究をキャンセルしません。**cancel_run**は明示的に使用してください。 [公式MCPツールと権限の参照](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md#external-agents-through-mcp) を参照してください。
+クライアントは、プロフィールの既存の権限の下で動作します。 永続的なプロジェクトを作成したり、設定を変更したり、ファイルやインカーモデルのコストを記述する作業を開始したりできます。 Open-Science では、承認がまだアクションを必要とする場合があります。 書き込みを繰り返す前にタイムアウト後の現在の状態を調べます。 クライアントを閉じたり、リクエストをキャンセルしても、承認された研究をキャンセルしません。**cancel_run**は明示的に使用してください。 [公式MCPツールと権限の参照](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md#external-agents-through-mcp) を参照してください。
 
 パッケージのコマンドは、[CLI の輸入および輸出](../guides/research-packages.md#local-package-transfer) に従って下さい。
 
 MCPクライアントが切断した後、サービスは永続的な保持を保持します。 `open-science stop --config-root /absolute/path/to/profile --json` を使用して、作業が終了したときに保持するリリース。 接続されたアプリは、まだ実行し続けることがあります。 [サービスオーナーシップ](server.md#backend-ownership) を参照してください。
 
-### CLI のインストールを修復する {/* #mcp-installation-recovery */}
+### CLIパッケージの回復 {/* #mcp-installation-recovery */}
 
-MCP が `Cannot find package '@modelcontextprotocol/sdk'` で終了する場合や、CLI が `Missing @aipoch/open-science-<platform>` を表示する場合は、クライアントとプラットフォーム用パッケージを修復します。オプション依存関係を含めて、対応する最新リリースをインストールします：
+MCP が `Cannot find package '@modelcontextprotocol/sdk'` で終了した場合、CLI は `Missing @aipoch/open-science-<platform>` を報告し、クライアントとそのプラットフォームパッケージを修復します。 マッチした現在のリリースをオプションの依存関係にインストールします。
 
 ```bash
-npm install --global --include=optional @aipoch/open-science@1.3.3
+npm install --global --include=optional @aipoch/open-science@1.3.4
 ```
 
-`startup_unconfirmed` では、まず `open-science status --config-root /absolute/path/to/profile --json` を確認し、`open-science start --no-open --config-root /absolute/path/to/profile` で実際の起動エラーを読みます。ポートが使用中なら、停止する前にどのプロファイルが使用しているか確認します。原因を解消してから **list_projects** を再試行します。ツール一覧の取得だけではバックエンドの動作を確認できません。
+`startup_unconfirmed` では、`open-science status --config-root /absolute/path/to/profile --json` を調べて、実際の起動エラーを読み取り、`open-science start --no-open --config-root /absolute/path/to/profile` を実行します。 ポートが既に占有されている場合は、どのプロファイルが何かを停止する前にそれを所有しているかを確認してください。 報告された原因を解決した後、**list_projects**をリトリートします。 ツールの発見だけでは、作業バックエンドが確認されません。
 
 ## 自動処理のためにサービスを維持する {/* #persistent-service */}
 
@@ -314,3 +314,14 @@ open-science literature status read <item-id>
 ## クリーンなインストールでデフォルトエージェント {/* #default-agent */}
 
 v1.3.3 クリーンなスタート CLI ビルトインとの取付け Open-Science エージェント。 プロファイルを初期化し、サービスを開始し、ローカルWebワークスペースで**Settings → Agent**を検査します。 外部エージェント SDK はオプションです。 タスクを実行する前にモデルを接続します。 設定されたランタイムの選択肢は、このクリーンインストールのデフォルトとは別々に残ります。 [エージェントの選択肢](../guides/frameworks.md#default-runtime).
+## 1つの組み込みのエージェント・ランをトレース {/* #otel-traces */}
+
+バックエンドの [OTLP 受信機および捕獲の細部](diagnostics.md#agent-tracing) を構成し、1 つの実行に対して明示的にオプトインします。
+
+```bash
+open-science run --project <project-id> --prompt-file ./task.md --otel-traces --wait
+```
+
+`--otel-traces` は `--session <session-id>` で会話を再開する場合にも使えます。プロジェクトのスイッチが無効でも、この Run だけトレースを有効にします。保存済みのプロジェクトやセッション設定は変更しません。フラグを省略すると、実行を開始する時点のプロジェクト設定を使います。
+
+ホストが `run-otel-traces` に対応し、内蔵 Agent と有効なエクスポーター設定を使用している必要があります。外部フレームワークを選択している場合や接続先が未設定の場合は、Run の準備に失敗します。開始後の送信失敗はアップロード診断に記録されますが、Run は続行できます。Run の結果とは別に接続先への到達を確認してください。

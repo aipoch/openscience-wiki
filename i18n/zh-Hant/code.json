@@ -2791,5 +2791,11 @@
   },
   "docs.outline.reference.v133.scope": {
     "message": "後臺更新、內建 Agent 預設配置、圖片編輯與錯誤說明。"
+  },
+  "docs.outline.reference.v134.title": {
+    "message": "v1.3.4"
+  },
+  "docs.outline.reference.v134.scope": {
+    "message": "Agent tracing、Windows 更新恢復、Notebook 歷史與各平臺記憶體顯示。"
   }
 }

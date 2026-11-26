@@ -1,7 +1,7 @@
 ---
 title: "Generate and edit images"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # Generate and edit images
@@ -40,10 +40,10 @@ Inspect the actual labels, order and arrow direction. If a request fails, check 
 1. Open the intended image in the preview. Hover over it or move keyboard focus to its controls, then choose **Edit image**. Confirm the source image and version before entering instructions.
 2. In the conversation composer, describe a focused change. Keep the request tied to the displayed source; entering editing does not send it. If you select a region, check the highlighted area and its instruction. Available tools and parameters depend on the image and service.
 3. Select **Send image edit** and wait for the new output. If the control is unavailable, check the displayed reason and [image-service configuration](#configure). A failed request is not a new completed version.
-4. Use **Compare with input image** or **Compare** when offered, and inspect both the changed area and content that should remain unchanged. Use **Image history** to revisit earlier versions, or **Continue editing** for another revision.
+4. Open the new version in the full preview and confirm its identity; v1.3.4 fixes opening an edit while its version is being published. Use **Compare with input image** or **Compare** when offered, and inspect both the changed area and content that should remain unchanged. Use **Image history** to revisit earlier versions, or **Continue editing** for another revision.
 5. Download the chosen version, reopen it, and check labels and scientific claims before sharing. Image details can identify the Notebook kernel that produced an edit; that record does not establish scientific accuracy.
 
-The conversation remains in place while the editing controls use its composer. Keep an accurate caption identifying illustrative content. For numerical checks on plots, use [Notebook](notebook.md) and [Provenance](reproducibility.md); for slide text, see [presentation editing](presentation-editing.md).
+The conversation remains in place while the editing controls use its composer. You can also open **Provenance** history while an image draft is active; check which saved version you are viewing. Keep an accurate caption identifying illustrative content. For numerical checks on plots, use [Notebook](notebook.md) and [Provenance](reproducibility.md); for slide text, see [presentation editing](presentation-editing.md).
 
 ## Test an image service before saving {/* #test-service */}
 

@@ -2001,5 +2001,11 @@
   },
   "docs.outline.reference.v132.scope": {
     "message": "Kilo Gateway, image catalogs, lighter sessions and PDF translation."
+  },
+  "docs.outline.reference.v134.title": {
+    "message": "v1.3.4"
+  },
+  "docs.outline.reference.v134.scope": {
+    "message": "Agent tracing, Windows update recovery, Notebook history and platform memory readings."
   }
 }

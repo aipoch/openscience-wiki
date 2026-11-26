@@ -1,7 +1,7 @@
 ---
 title: "タスクSDKとローカルAPI"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # タスクSDKとローカルAPI {/* #task-sdk-and-local-api */}
@@ -203,3 +203,8 @@ console.log(state);
 ## 最初の使用時に内蔵ランタイム {/* #builtin-default */}
 
 v1.3.3 では、SDK/バックエンドのインストールは、新しいプロジェクトとセッションをビルドイン Open-Science エージェントにインストールします。 オプションの外部エージェント SDK がサービス起動を防止しなくなった場合 モデル認証と選択したモデルの機能は、まだ実行に必要です。 サービスの可用性は、単なる推論やツールの実行を検証しません。 選択時にのみ外部のランタイムをインストールします。 [CLI セットアップ](cli.md#terminal-setup)と[エージェント設定](../guides/frameworks.md#default-runtime)を参照してください。
+## SDK で 1 つの実行を追跡します。 {/* #otel-traces */}
+
+`submitRun(requestId, request)` または `startRun(request, {requestId})` に渡す Run リクエストに `otelTraces: true` を指定します。プロジェクトのスイッチが無効でも、その Run に限ってトレースを有効にします。保存済みのプロジェクトやセッション設定は変更しません。フィールドを省略すると、開始時点のプロジェクト設定を使います。
+
+ホストの `run-otel-traces` 対応を確認し、内蔵 Agent を選択して、[接続先と収集設定](diagnostics.md#agent-tracing)を先に構成してください。無効な設定では Run の準備に失敗します。開始後の非同期送信エラーはタスクの実行とは別に扱われます。通常のリクエスト ID と再試行の識別情報を維持してください。[CLI の対応操作](cli.md#otel-traces)も参照してください。

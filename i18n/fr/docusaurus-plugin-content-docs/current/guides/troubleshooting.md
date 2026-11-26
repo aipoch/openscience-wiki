@@ -1,7 +1,7 @@
 ---
 title: "Dépannage et questions communes"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # Dépannage et questions communes {/* #troubleshooting-and-common-questions */}
@@ -275,3 +275,8 @@ Lisez la cause indiquée avec la réponse ratée. Pour les erreurs d'authentific
 Pour une réponse défaillante, ouvrez **Error details** et conservez la classification des défaillances et demandez l'identifiant quand vous êtes présent. L'authentification, le quota, l'indisponibilité du fournisseur et une réponse malformée exigent des remèdes différents. Supprimer le contenu privé avant de partager les diagnostics.
 
 Si vous avez choisi Stop, attendez le nettoyage et inspectez les sorties sauvegardées. Une tâche arrêtée est différente d'une suite qui n'a jamais reçu de réponse. Pour les erreurs de livraison en file d'attente, de chargement des pièces jointes ou de lecture de l'historique, inspectez la conversation originale avant de reprendre la conversation; Le travail d'outil accepté peut déjà avoir produit des fichiers. Sur Windows, une question Agent intégrée en attente de votre réponse peut survivre redémarrer : rouvrir la session et répondre à la question conservée au lieu de créer une tâche dupliquée.
+## Un fournisseur signale un solde insuffisant {/* #provider-balance */}
+
+Lorsqu'un fournisseur en amont retourne explicitement HTTP **402** avec **Insuffisance de l'équilibre**, Open-Science conserve ce statut et les détails du fournisseur en toute sécurité et explique le problème de facturation. Vérifiez le fournisseur, le compte et le modèle sélectionnés, puis inspectez le solde ou l'accès à la facturation du fournisseur avant de réessayer. Un solde API et une allocation d'abonnement peuvent être séparés.
+
+Gardez le message et l'identificateur de demande lorsque vous contactez le fournisseur. Le numéro 402 seul n'établit pas la cause; utiliser les détails de la réponse réelle. Voir [Recherche d'état HTTP](#http-errors-400-403-429-and-5xx).

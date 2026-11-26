@@ -1,7 +1,7 @@
 ---
 title: "Permisos y aprobaciones"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-25'
 ---
 
 # Permisos y aprobaciones {/* #permissions-and-approvals */}
@@ -112,3 +112,8 @@ La regla se aplica a las herramientas reconocidas de literatura propiedad de la 
 ## Mantenga el modo de red separado {/* #strict-network */}
 
 **Full access** no pasa por la lista blanca de **Strict** Notebook. Un destino sin lista está bloqueado sin una oferta de autorización, incluso cuando la conversación permite acciones automáticas. Agregue sólo el protocolo requerido, el nombre de host/IP y el puerto en [Configuración de redes](network.md#public-network-rules).
+## Después de negar una acción de herramienta {/* #denied-action */}
+
+Elige **Deny** cuando no quieras que la acción presentada funcione. El agente incorporado conserva una explicación al final del turno en lugar de dejar una respuesta silenciosa. Examinar qué medidas se negaron y qué medidas anteriores se completaron efectivamente. Las llamadas denegadas se contabilizan por separado del trabajo terminado; un giro terminado no significa que la operación solicitada haya tenido éxito.
+
+Para continuar, describir una alternativa o hacer una nueva solicitud más estrecha. No cambie a **Full access** simplemente para ocultar una negación.

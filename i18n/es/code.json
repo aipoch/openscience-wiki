@@ -1920,5 +1920,11 @@
   },
   "docs.outline.reference.v132.scope": {
     "message": "Kilo Gateway, catálogos de imágenes, sesiones más ligeras y traducción PDF."
+  },
+  "docs.outline.reference.v134.title": {
+    "message": "v1.3.4"
+  },
+  "docs.outline.reference.v134.scope": {
+    "message": "Localización de agentes, recuperación de actualización Windows, historia de Notebook y lecturas de memoria de plataforma."
   }
 }

@@ -1441,6 +1441,17 @@
         "title": "Changelog",
         "chapters": [
           {
+            "id": "v134",
+            "title": "v1.3.4",
+            "scope": "Agent tracing, Windows update recovery, Notebook history and platform memory readings.",
+            "currentDoc": "changelog/v1-3-4",
+            "proposedUrl": "/docs/changelog/v1-3-4/",
+            "kind": "existing",
+            "relatedDocs": [
+              "changelog/v1-3-3"
+            ]
+          },
+          {
             "id": "v133",
             "title": "v1.3.3",
             "scope": "Background updates, built-in Agent defaults, image editing and clearer errors.",

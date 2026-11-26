@@ -1,7 +1,7 @@
 ---
 title: "架構與診斷"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-25'
 ---
 
 # 架構與診斷 {/* #架构与诊断 */}
@@ -84,3 +84,40 @@ flowchart LR
 ## 桌面與後端是不同程序 {/* #node-backend */}
 
 v0.37.0 起，Electron 負責原生桌面外殼，共享服務由普通 Node 後端負責。桌面、Web UI、CLI 與 SDK 可以連線同一後端。客戶端連線失敗時，用 `status --json` 核對配置目錄、版本與實際埠；視窗可見不代表後端健康。停止前先了解[服務歸屬](server.md#backend-ownership)。
+## 配置 Agent tracing {/* #agent-tracing */}
+
+需要把內建 Agent 的一次互動與模型請求、MCP 工具呼叫關聯起來排查時，可以配置 OTLP/HTTP JSON 接收端，例如 OpenTelemetry Collector 或 Langfuse。Open-Science 不提供代為收集資料的服務。端點必須是完整的資料接收地址：通用 Collector 通常使用 `/v1/traces`，Langfuse 使用 `/api/public/otel/v1/traces`。
+
+由後端執行者在啟動配置中設定端點、認證和採集開關。已安裝應用支援讀取當前配置目錄的 `.env`，通常為 `~/.open-science/.env`。修改啟動配置後，先結束正在進行的工作，再重啟對應後端；這與儲存專案設定是兩件事。
+
+<p className="example-label"><strong>示例</strong> 關閉內容採集的本地接收配置</p>
+
+```dotenv
+OPEN_SCIENCE_AGENT_OTLP_TRACES_ENDPOINT=http://127.0.0.1:4318/v1/traces
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_CONTENT=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_API_REQUEST=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_ARGUMENTS=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_RESULTS=0
+OPEN_SCIENCE_AGENT_OTLP_DIAGNOSTICS=1
+```
+
+此示例要求接收服務已監聽後端所在機器的迴環地址，不會安裝接收服務。使用其他主機時，填寫其實際接收地址與所需認證，參見[官方配置說明](https://github.com/aipoch/open-science/blob/v1.3.4/docs/development-quick-reference.md#open-science-agent-traces)和[環境配置示例](https://github.com/aipoch/open-science/blob/v1.3.4/.env.example)。不要將接收端金鑰寫進提示詞或共享截圖。
+
+### 選擇採集範圍 {/* #选择采集范围 */}
+
+專案追蹤**預設關閉**，但以下內容開關在未填寫時均預設為 **`1`**。僅採集後設資料時，應明確將四項都設為 `0`。它們屬於啟動設定，不是專案對話方塊中的額外開關。
+
+| `OPEN_SCIENCE_AGENT_OTLP_` 後的設定名 | 設為 `1` 時包含的內容 |
+| --- | --- |
+| `CAPTURE_CONTENT` | 提示詞與最終回覆的摘錄 |
+| `CAPTURE_API_REQUEST` | 模型請求 JSON，可能包含指令、歷史、工具資料與附件 |
+| `CAPTURE_TOOL_ARGUMENTS` | MCP 工具輸入預覽 |
+| `CAPTURE_TOOL_RESULTS` | MCP 工具輸出預覽 |
+
+僅採集後設資料仍會記錄操作資訊。為含私有研究資料的專案開啟追蹤前，檢查接收端及其訪問權限。
+
+### 啟用並檢查送達 {/* #启用并检查送达 */}
+
+開啟[專案設定](../guides/projects.md#agent-tracing)，啟用 **Agent tracing** 後儲存。使用內建 **Open-Science Agent** 傳送一條小請求。在接收端查詢服務 `open-science-agent`，檢視該任務實際產生的輪次、請求及工具呼叫記錄。
+
+為 `.env` 配置啟用診斷後，可在同目錄的 `.env.otel-status.json` 檢視上傳狀態。沒有收到記錄時，檢查當前配置例項、專案開關、執行框架、完整端點、接收服務和憑據。傳送是非同步的，Agent 完成回覆不代表上傳成功。關閉追蹤只停止後續採集，不會刪除接收端已有記錄。

@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting and common questions"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # Troubleshooting and common questions
@@ -274,3 +274,9 @@ Read the cause shown with the failed response. For authentication or account per
 For a failed response, open **Error details** and retain the failure classification and request ID when present. Authentication, quota, provider unavailability and a malformed response require different remedies. Remove private content before sharing diagnostics.
 
 If you chose Stop, wait for cleanup and inspect the saved outputs. A stopped task is different from a continuation that never received a reply. For queued-message delivery, attachment loading or history-read errors, inspect the original conversation before resending; accepted tool work may already have produced files. On Windows, a built-in Agent question waiting for your answer can survive restart: reopen the session and answer the retained question instead of creating a duplicate task.
+
+## A provider reports Insufficient Balance {/* #provider-balance */}
+
+When an upstream provider explicitly returns HTTP **402** with **Insufficient Balance**, Open-Science preserves that status and safe provider details and explains the billing problem. Check the selected provider, account and model, then inspect that provider's balance or billing access before retrying. An API balance and a subscription allowance can be separate.
+
+Keep the message and request identifier when contacting the provider. The number 402 alone does not establish the cause; use the actual response details. See [HTTP status lookup](#http-errors-400-403-429-and-5xx).

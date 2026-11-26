@@ -1,7 +1,7 @@
 ---
 title: "Notebook y pruebas de ejecución"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -313,8 +313,14 @@ Para ejecuciones repetidas, utilice [Tareas programadas](scheduled-tasks.md) des
 
 ## Administrar la memoria y los recursos Notebook {/* #memory-resources */}
 
-Antes de la ejecución, Open-Science revisa la memoria del sistema. Los avisos de presión de memoria son descartables y expiran después de seis segundos; su desaparición no retrata o completa una solicitud bloqueada. La decisión de ejecución, en lugar de la notificación por sí sola, determina si una carrera comienza. Los cheques Windows están tapados a la memoria RAM física; También se consideran la presión de memoria macOS y los límites de contenedores Linux. Si se detiene una solicitud para la presión de memoria, revise el aviso y termine o libere el trabajo que ya no necesita. La memoria disponible no vuelve automáticamente la solicitud; elegir **Recheck and retry** cuando se ofrece. Para una terminal manual Notebook, vuelva a esa terminal y revise su contenido actual antes de volver a funcionar.
+Antes de la ejecución, Open-Science revisa la memoria del sistema. Los avisos de presión de memoria son descartables y expiran después de seis segundos; su desaparición no retrata o completa una solicitud bloqueada. La decisión de ejecución, en lugar de la notificación por sí sola, determina si una carrera comienza. Los controles de ejecución consideran los umbrales de memoria física Windows, la presión de memoria macOS y los límites de contenedores Linux. Estos cheques están separados de los valores sumarios que aparecen a continuación. Si se detiene una solicitud para la presión de memoria, revise el aviso y termine o libere el trabajo que ya no necesita. La memoria disponible no vuelve automáticamente la solicitud; elegir **Recheck and retry** cuando se ofrece. Para una terminal manual Notebook, vuelva a esa terminal y revise su contenido actual antes de volver a funcionar.
 
 Abrir **Compute → Notebook resources**, refrescar la lista y localizar la sesión prevista. Elija **Stop and release Notebook** e inspeccione las tareas locales listadas antes de confirmar **Stop and release**. Esto puede detener esas tareas y descartar variables y conexiones en vivo. La historia, las salidas guardadas, los archivos y los entornos instalados permanecen; Los escritos anteriores no son deshechos, y los trabajos independientes de Compute remoto no se detienen.
 
 Espera a **Recursos de Notebook liberados**. Si la limpieza es incompleta, inspeccione su progreso y utilice **Retry cleanup** cuando esté disponible. La exportación, los cambios ambientales u otras operaciones activas pueden bloquear la liberación; terminarlos y actualizar la lista. Una estimación de memoria no es una promesa de cuánto RAM será liberada.
+
+## Leer el resumen de memoria Compute {/* #memory-summary */}
+
+Abra **Compute** para inspeccionar el resumen del host. En macOS, **Memory usage** excluye la memoria caché y sigue la contabilidad del Monitor de Actividad. En Windows, lee **Memory usage** físico junto con **Committed / limit**. La memoria cometida no es la cantidad de memoria RAM actualmente ocupada; un alto porcentaje en una medida no significa que el otro tenga el mismo valor. Refresque el resumen antes de decidir qué trabajo poner en libertad.
+
+v1.3.4 también reduce repetidas lecturas de largas historias Notebook y lotes elegibles Ejecutar transiciones en puntos de control duraderos. Continuar seleccionando la Ejecución prevista y comprueba su salida registrada o vista previa. La navegación de la historia más rápida no reimprime el código antiguo o verifica un resultado científico.

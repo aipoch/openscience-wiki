@@ -1,7 +1,7 @@
 ---
 title: "CLI 및 구조 출력"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -16,7 +16,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 터미널에서 설정 {/* #terminal-setup */}
 
-데스크톱 실행기를 설치하고 v1.3.3 독립 아카이브를 사용하거나 따라 [npm 설치 단계](../guides/installation.md#npm-cli)· 독립 아카이브 번들 노드, 백엔드 및 웹 UI; 아래의 추출 단계는 해당 아카이브에 적용됩니다.
+데스크톱 실행기를 설치하고 v1.3.4 독립 아카이브를 사용하거나 [npm 설치 단계](../guides/installation.md#npm-cli)을 따르십시오. 독립 아카이브 번들 노드, 백엔드 및 웹 UI; 아래 추출 단계는 그 아카이브에 적용.
 
 1. macOS 또는 Linux arm64/x64 또는 Windows x64를 선택하여 호스트와 일치합니다.
 2. 완전한 아카이브를 writable 위치로 추출하십시오. 발사기, `backend` 및 `node-runtime`를 함께 유지하십시오; 시작자만 복사하면 스타트가 시작됩니다.
@@ -40,11 +40,11 @@ open-science codex login
 open-science doctor --json
 ```
 
-안내에 따라 로그인합니다. 이 선택적 명령은 앱이 관리하는 Codex 런타임을 준비하거나 복구하고 구독을 등록하며, 외부 Codex 로그인 파일을 가져오지는 않습니다. 새 설치의 기본값은 내장 Agent이며 이 외부 런타임은 필요하지 않습니다. 내장 Agent에서 Codex subscription을 사용하려면 내장 Agent를 선택한 상태로 **Settings → Model**에서 구독을 설정합니다. 기존 설정과 충돌하면 오류를 표시하며 자동으로 덮어쓰지 않습니다.
+로그인 흐름을 따르십시오. 이 옵션 명령은 관리 된 Codex 실행 시간을 준비하거나 복구하고 구독을 등록합니다. 외부 Codex 로그인 파일을 가져올 수 없습니다. 내장 에이전트는 청소 설치 기본 유지 하 고이 외부 실행 시간을 요구 하지 않습니다. 내장 에이전트와 Codex 구독을 사용하려면 **Settings → Model**에서 구독을 선택하고 구성하십시오. 기존 구성을 대체하는 것은 오히려 보고됩니다.
 
 대신 OpenAI API 키를 사용하는 경우, 지원된 모델 ID와 함께 `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`을 사용하며, 비밀 관리 환경을 통해 이미 공급된 키입니다. OpenAlex를 위해, `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`를 사용하십시오. `open-science`과 명령을 모두 접목합니다. 명령의 인수에서 키 자체를 넣지 마십시오. 성공적인 자격 검사는 연구 쿼리 완료 또는 할당량은 유지되지 않습니다.
 
-**뚱 베어**, 개별 **기타 제품**을 읽고 `doctor`에서 **이름 &#42;** 작업을 제안했습니다. `ready`이 false인 경우 보고서를 성공적으로 종료할 수 있습니다. 백엔드가 복부되면 의사가 3을 종료합니다. 보고된 우선권을 완료하고, 다시 확인한 후, [작업 실행](#run-input-and-control-flags)은 예정된 프로젝트에서 확인할 수 있습니다.
+**뚱 베어**, 개별 **....**을 읽고 `doctor`에서 **이름 &#42;** 작업을 제안했습니다. `ready`이 false인 경우 보고서를 성공적으로 종료할 수 있습니다. 백엔드가 복부되면 의사가 3을 종료합니다. 보고된 우선권을 완료하고, 다시 확인한 후, [작업 실행](#run-input-and-control-flags)은 예정된 프로젝트에서 확인할 수 있습니다.
 
 Homebrew 또는 Linux `.deb`/`.rpm` 임명을 위해, [포장 지침](../guides/installation.md#standalone-cli)를 따르십시오. Linux 배급 포장은 `open-science-cli`를 제공합니다; 이 페이지의 예제에서 명령을 대체하여 다른 데스크탑 실행기를 선택하지 않도록합니다.
 
@@ -198,7 +198,7 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 `--json`는 1개의 결과를 방출합니다. `--jsonl`는 `run --wait`, 스트림 이벤트와 실행 결과와 함께 사용할 수 있습니다. 두 가지를 결합하지 마십시오. 오류는 요청할 때 stderr에 구조화됩니다. `error.code`을 파고, 프로세스 종료 코드가 아닌.
 
-다음 invalid-option 응답은 로컬로 재제작되었다:
+다음과 같은 잘못된 옵션 응답은 로컬로 재현되었습니다.
 
 ```json
 {"error":{"code":"invalid_cli_usage","message":"Use only one of --json or --jsonl."},"exitCode":2}
@@ -207,16 +207,16 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 | 종료 코드 | 이름 &#42; |
 | ---: | --- |
 | 0 | 명령은 성공; 반환된 run/attention 상태를 검사합니다. |
-| 1 | General/run 실패, timeout, 분쟁, 또는 상태 보고 달리는 서비스 없음 |
+| 1 | 일반/실행 실패, 타임아웃, 충돌, 또는 상태 보고 없음 실행 서비스 |
 | 2 | 잘못된 CLI 사용 |
 | 3 | 지역 daemon 사용 가능 |
-| 4 | 요청된 프로젝트/런/session/artifact/Specialist 찾을 수 없습니다 |
+| 4 | 프로젝트/런/session/artifact/Specialist는 찾을 수 없습니다 |
 
-JSONL은 `run.progress` 및 `stream.resync-required`을 포함 할 수 있습니다. 재전송 후 재전송이 불가능한 경우, 재전송이 실행 상태; 이벤트 스트림은 영구적 인 역사를 가정하지 마십시오. Lifecycle 명령은 [Headless 서비스](./server.md)에 설명된 별도의 플래그 제한이 있습니다.
+JSONL은 `run.progress` 및 `stream.resync-required`을 포함 할 수 있습니다. 재전송 후 재전송이 불가능한 경우, 재전송이 실행 상태; 이벤트 스트림은 영구적 인 역사를 가정하지 마십시오. Lifecycle 명령은 [헤드리스 서비스](./server.md)에 설명된 별도의 플래그 제한이 있습니다.
 
-[CLI 구현](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/cli.mjs), [upstream 명령 가이드](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
+[CLI 구현](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/cli.mjs), [upstream 명령 가이드](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md).
 
-기술적인 참고: [CLI 계약](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
+기술적인 참고: [CLI 계약](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md).
 
 ## 무력한 실행 {/* #unattended-runs */}
 
@@ -266,21 +266,21 @@ open-science mcp --help
 
 클라이언트가 어댑터를 시작합니다. **list_projects**과 함께 프로젝트를 발견하고 **start_run**을 반환 프로젝트 ID로 제출하고 **get_run**를 따르고 **list_artifacts**를 검사합니다. Tool discovery can finish while Startup is in progress; 첫 번째 도구 호출은 서비스를 기다립니다. Calls는 정통 로컬 서비스를 사용합니다. 이것은 원격 HTTP MCP 엔드포인트가 아닙니다.
 
-클라이언트는 프로파일의 기존 허가를 수행한다. 그것은 지속적 프로젝트를 만들 수 있습니다, 구성 변경 및 파일을 작성하는 작업을 시작 또는 incurs 모델 비용. 승인은 여전히 Open-Science에서 동작을 필요로 할 수 있습니다. 쓰기 반복하기 전에 timeout 후에 현재 국가를 검열하십시오. 클라이언트를 닫거나 요청을 취소하지 않는 것은 허용되지 않습니다 연구 : **cancel_run**을 명시적으로 사용합니다. [공식 MCP 도구 및 권한 참조](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md#external-agents-through-mcp) 참조.
+클라이언트는 프로파일의 기존 허가를 수행한다. 그것은 지속적 프로젝트를 만들 수 있습니다, 구성 변경 및 파일을 작성하는 작업을 시작 또는 incurs 모델 비용. 승인은 여전히 Open-Science에서 동작을 필요로 할 수 있습니다. 쓰기 반복하기 전에 timeout 후에 현재 국가를 검열하십시오. 클라이언트를 닫거나 요청을 취소하지 않는 것은 허용되지 않습니다 연구 : **cancel_run**을 명시적으로 사용합니다. [공식 MCP 도구 및 권한 참조](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md#external-agents-through-mcp) 참조.
 
 패키지 명령의 경우 [CLI 수입 및 수출](../guides/research-packages.md#local-package-transfer)을 따르십시오.
 
 MCP 클라이언트가 차단한 후 지속적인 보유를 유지한다. `open-science stop --config-root /absolute/path/to/profile --json`을 사용하여 작업이 완료 될 때 보류를 해제하십시오. 연결된 앱은 여전히 실행할 수 있습니다. [회사연혁](server.md#backend-ownership) 참조.
 
-### CLI 설치 복구 {/* #mcp-installation-recovery */}
+### CLI 패키지 복구 {/* #mcp-installation-recovery */}
 
-MCP가 `Cannot find package '@modelcontextprotocol/sdk'` 오류로 종료되거나 CLI에 `Missing @aipoch/open-science-<platform>`이 표시되면 클라이언트와 플랫폼 패키지를 복구합니다. 선택적 의존성을 포함하여 일치하는 최신 릴리스를 설치합니다:
+MCP이 `Cannot find package '@modelcontextprotocol/sdk'`로 종료되거나 CLI는 `Missing @aipoch/open-science-<platform>`를 보고하고 클라이언트와 플랫폼 패키지를 수리합니다. 일치하는 현재 방출을 옵션 의존성 포함:
 
 ```bash
-npm install --global --include=optional @aipoch/open-science@1.3.3
+npm install --global --include=optional @aipoch/open-science@1.3.4
 ```
 
-`startup_unconfirmed`가 표시되면 `open-science status --config-root /absolute/path/to/profile --json`을 확인한 다음 `open-science start --no-open --config-root /absolute/path/to/profile`을 실행해 실제 시작 오류를 읽습니다. 포트가 사용 중이면 서비스를 중지하기 전에 어떤 프로필이 사용하는지 확인하세요. 원인을 해결한 뒤 **list_projects**를 다시 호출합니다. 도구 목록을 가져온 것만으로 백엔드가 작동한다고 판단할 수는 없습니다.
+`startup_unconfirmed`의 경우 `open-science status --config-root /absolute/path/to/profile --json`을 검사하고 `open-science start --no-open --config-root /absolute/path/to/profile`를 실행하여 실제 시작 오류를 읽습니다. 포트가 이미 점유된 경우, 프로파일이 모든 것을 중지하기 전에 그것을 소유 한 체크. 보고된 원인을 해결한 후 재량 **list_projects**. Tool discovery alone는 작업 백엔드를 확인하지 않습니다.
 
 ## 자동화를 위해 서비스 유지 {/* #persistent-service */}
 
@@ -314,3 +314,14 @@ open-science literature status read <item-id>
 ## 깨끗한 임명에 있는 과태 대리인 {/* #default-agent */}
 
 v1.3.3는 내장 Open-Science 에이전트와 깨끗한 CLI 설치를 시작합니다. 프로필을 초기화하고 서비스를 시작하고 로컬 웹 작업 공간에서 **Settings → Agent**을 검사; 외부 대리인 SDK는 선택적입니다. 작업을 실행하기 전에 모델을 연결합니다. 기존의 런타임 선택은 이 Clean-install 디폴트에서 분리됩니다. [에이전트 선택](../guides/frameworks.md#default-runtime).
+## Trace 한 내장 에이전트 실행 {/* #otel-traces */}
+
+백엔드의 [OTLP 수신기 및 캡처 세부 사항](diagnostics.md#agent-tracing)을 구성하고, 한 번의 실행을 위해 명시적으로 선택:
+
+```bash
+open-science run --project <project-id> --prompt-file ./task.md --otel-traces --wait
+```
+
+`--otel-traces`는 `--session <session-id>`로 대화를 이어갈 때도 사용할 수 있습니다. 프로젝트 스위치가 꺼져 있어도 해당 Run에만 추적을 켭니다. 저장된 프로젝트나 세션 설정은 바꾸지 않습니다. 이 플래그를 생략하면 실행을 전달하는 시점의 프로젝트 설정을 따릅니다.
+
+호스트가 `run-otel-traces` 기능을 지원하고, 내장 Agent와 유효한 내보내기 설정을 사용해야 합니다. 외부 프레임워크를 선택했거나 수신 대상 설정이 없으면 Run 준비가 실패합니다. 실행 시작 후 전송에 실패하면 업로드 진단에 기록되며, Run은 계속될 수 있습니다. 실행 결과와 별도로 수신 대상에서 데이터 도착 여부를 확인하세요.

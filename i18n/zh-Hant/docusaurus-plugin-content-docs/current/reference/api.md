@@ -1,7 +1,7 @@
 ---
 title: "Task SDK 與本地 API"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # Task SDK 與本地 API {/* #task-sdk-与本地-api */}
@@ -203,3 +203,8 @@ console.log(state);
 ## 首次使用的內建執行時 {/* #builtin-default */}
 
 v1.3.3 的全新 SDK/後端安裝在新專案與會話中預設使用內建 Open-Science Agent。缺少可選的外部 Agent SDK 不再阻止服務啟動。執行任務仍需要模型認證和所選模型的相應能力；服務可用不等於推理或工具執行已經驗證。只有選用外部執行時時才需要安裝它。見 [CLI 設定](cli.md#terminal-setup)及 [Agent 設定](../guides/frameworks.md#default-runtime)。
+## 透過 SDK 追蹤單次 Run {/* #otel-traces */}
+
+在傳給 `submitRun(requestId, request)` 或 `startRun(request, {requestId})` 的 Run 請求中設定 `otelTraces: true`。這是明確的單次執行授權，即使專案開關關閉也會生效，不會儲存為專案或會話偏好。省略該欄位時，使用派發時的專案追蹤設定。
+
+先檢查主機能力 `run-otel-traces`，選擇內建 Agent，並配置主機的[接收端與採集範圍](diagnostics.md#agent-tracing)。配置無效會使 Run 準備失敗；派發後的非同步上傳失敗與任務執行分別處理。繼續保留正常的請求 ID 與重試身份。另見 [CLI 對應操作](cli.md#otel-traces)。
