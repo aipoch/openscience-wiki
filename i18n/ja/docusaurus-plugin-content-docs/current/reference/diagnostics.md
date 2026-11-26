@@ -1,7 +1,7 @@
 ---
 title: "建築および診断"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-25'
 ---
 
 # 建築および診断 {/* #architecture-and-diagnostics */}
@@ -84,3 +84,40 @@ flowchart LR
 ## デスクトップとバックエンドは別のプロセスです {/* #node-backend */}
 
 v0.37.0から、電子は、通常のNodeバックエンドが共有サービスを所有している間に、ネイティブデスクトップシェルを所有しています。 デスクトップ、Web UI、CLI、SDK は同じバックエンドに接続できます。 クライアントが接続できないとき、設定ディレクトリ、バージョン、実際のポートを `status --json` で識別します。 見えるデスクトップウィンドウだけでは、バックエンドが健康であることを証明しません。 [バックエンドの所有権](server.md#backend-ownership)をフォローして、停止します。
+## エージェントのトレースの設定 {/* #agent-tracing */}
+
+組み込みの Agent がモデルリクエストと MCP ツールを横断するかどうかを調べる必要があるときにこれを使用します。 OpenTelemetry Collector や Langfuse などの OTLP/HTTP JSON 受信機を供給します。 Open-Scienceは、アプリ運用の収集サービスを提供していません。 エンドポイントは、完全なインジェクションURLでなければなりません。 Langfuse は `/api/public/otel/v1/traces` を使用しますが、一般的なコレクタは `/v1/traces` を使用します。
+
+バックエンドを操作する人は、起動設定でエンドポイント、認証、およびキャプチャスイッチを設定します。 インストールされたアプリでは、アクティブな設定ディレクトリの `.env` がサポートされています(通常は `~/.open-science/.env`)。 起動設定を変更した後、アクティブな作業を終了し、そのバックエンドを再起動します。 プロジェクトの設定を保存して分離します。
+
+<p className="example-label"><strong>例</strong> コンテンツキャプチャが無効なローカル受信機</p>
+
+```dotenv
+OPEN_SCIENCE_AGENT_OTLP_TRACES_ENDPOINT=http://127.0.0.1:4318/v1/traces
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_CONTENT=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_API_REQUEST=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_ARGUMENTS=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_RESULTS=0
+OPEN_SCIENCE_AGENT_OTLP_DIAGNOSTICS=1
+```
+
+この例では、バックエンドのループバックアドレスで既にリスニングしている受信機を想定しています。 インストールしない。 別のホストでは、実際のインジェクションURLと必須認証を使用します。 [オフィシャルレシーバー構成](https://github.com/aipoch/open-science/blob/v1.3.4/docs/development-quick-reference.md#open-science-agent-traces) と [環境事例](https://github.com/aipoch/open-science/blob/v1.3.4/.env.example) を参照してください。 プロンプトと共有スクリーンショットから受信機の秘密を保持します。
+
+### キャプチャの詳細を選択 {/* #choose-capture-detail */}
+
+プロジェクトのトレースは**既定では無効**です。ただし、以下の内容収集設定は、省略するとそれぞれ **`1`（有効）** になります。メタデータのみを記録するには、4 項目すべてを明示的に `0` にしてください。これらは起動設定であり、プロジェクトのダイアログにある追加スイッチではありません。
+
+| 後にサフィックスを設定する `OPEN_SCIENCE_AGENT_OTLP_` | 設定時に含まれているコンテンツ `1` |
+| --- | --- |
+| `CAPTURE_CONTENT` | プロンプトと最終回答の抜粋 |
+| `CAPTURE_API_REQUEST` | モデル JSON、指示、歴史、ツールデータおよび添付ファイルを含む潜在的に |
+| `CAPTURE_TOOL_ARGUMENTS` | MCPツール入力プレビュー |
+| `CAPTURE_TOOL_RESULTS` | MCPツール出力プレビュー |
+
+メタデータのみのトレースは、操作を記述します。 個人調査データでプロジェクトを有効にする前に、受信機とそのアクセスルールを確認します。
+
+### 配達を有効にし、チェック {/* #enable-and-check-delivery */}
+
+[プロジェクト設定](../guides/projects.md#agent-tracing) を開き、**Agent tracing** を有効にして保存します。 **Open-Science Agent** の組み込みは小さい要求のために使用します。 受信機でサービス`open-science-agent`を探して、実際に生成したタスクの相関的なターン、要求、ツールスパンを調べます。
+
+`.env` の設定で診断機能が有効になっているため、アップロード状態の隣接する `.env.otel-status.json` を検査します。 トレースが到着しない場合は、アクティブなプロファイル、プロジェクトスイッチ、ランタイム、フルエンドポイント、受信機の可用性と資格情報を確認してください。 配信は非同期です: 完了したエージェントの回答は、アップロードを成功させません。 切断を回すと、将来のキャプチャを停止します。 受信機で既にレコードを削除していません。

@@ -2,7 +2,7 @@
 title: 参考
 slug: /reference
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # 参考
@@ -27,4 +27,4 @@ last_update:
 
 ## Changelog
 
-[查看最新版本更新](../changelog/v1.3.3.md)。
+[查看最新版本更新](../changelog/v1.3.4.md)。

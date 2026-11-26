@@ -1,7 +1,7 @@
 ---
 title: "Générer et modifier des images"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # Générer et modifier des images {/* #generate-and-edit-images */}
@@ -40,10 +40,10 @@ Inspectez les étiquettes, l'ordre et la direction de la flèche. Si une demande
 1. Ouvrez l'image prévue dans l'aperçu. Déplacez-le ou déplacez la focalisation du clavier vers ses commandes, puis choisissez **Edit image**. Confirmez l'image source et la version avant de saisir les instructions.
 2. Dans le compositeur de conversation, décrivez un changement ciblé. Conserver la requête liée à la source affichée; ne l'envoie pas. Si vous sélectionnez une région, vérifiez la zone surlignée et ses instructions. Les outils et paramètres disponibles dépendent de l'image et du service.
 3. Sélectionnez **Send image edit** et attendez la nouvelle sortie. Si le contrôle n'est pas disponible, vérifiez la raison affichée et [configuration du service d'image](#configure). Une demande rejetée n'est pas une nouvelle version complétée.
-4. Utilisez **Compare with input image** ou **Compare** lorsqu'il est offert, et vérifiez à la fois la zone modifiée et le contenu qui devrait rester inchangé. Utilisez **Image history** pour revoir les versions antérieures, ou **Continue editing** pour une autre révision.
+4. Ouvrir la nouvelle version dans l'aperçu complet et confirmer son identité; v1.3.4 corrige l'ouverture d'une édition pendant que sa version est en cours de publication. Utilisez **Compare with input image** ou **Compare** lorsqu'il est offert, et vérifiez à la fois la zone modifiée et le contenu qui devrait rester inchangé. Utilisez **Image history** pour revoir les versions antérieures, ou **Continue editing** pour une autre révision.
 5. Téléchargez la version choisie, rouvrez-la et vérifiez les étiquettes et les revendications scientifiques avant de partager. Les détails de l'image peuvent identifier le noyau Notebook qui a produit une modification; que l'enregistrement n'établit pas l'exactitude scientifique.
 
-La conversation reste en place pendant que les contrôles d'édition utilisent son compositeur. Conservez une légende précise identifiant le contenu illustratif. Pour les vérifications numériques des placettes, utiliser [Notebook](notebook.md) et [Provenance](reproducibility.md); pour le texte de diapositive, voir [édition de la présentation](presentation-editing.md).
+La conversation reste en place pendant que les contrôles d'édition utilisent son compositeur. Vous pouvez également ouvrir l'historique de **Provenance** pendant qu'un brouillon d'image est actif; vérifier la version sauvegardée que vous consultez. Conservez une légende précise identifiant le contenu illustratif. Pour les vérifications numériques des placettes, utiliser [Notebook](notebook.md) et [Provenance](reproducibility.md); pour le texte de diapositive, voir [édition de la présentation](presentation-editing.md).
 
 ## Tester un service d'image avant d'enregistrer {/* #test-service */}
 

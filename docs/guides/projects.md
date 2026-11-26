@@ -1,7 +1,7 @@
 ---
 title: "Projects and source folders"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-25'
 ---
 
 # Projects and source folders
@@ -82,3 +82,16 @@ do not invent participants, measurements or citations.
 ![Custom Optimization prompt under the project's advanced agent options](/img/open-science/v121/optimization-template.webp)
 
 Return to the Composer and [optimize a draft](composer.md#optimize-question). Review the rewritten text before sending; a template is a writing instruction, not a scientific validation rule.
+
+## Enable Agent tracing for a project {/* #agent-tracing */}
+
+Agent tracing records the built-in Agent's turns, model requests and MCP tool calls at a receiver configured by the person running Open-Science. It is off by default. It does not trace external frameworks such as the separate Codex runtime.
+
+1. Configure the receiver and review the [capture settings](../reference/diagnostics.md#agent-tracing). Enabling the project switch alone does not set up a receiver.
+2. Open the project-name menu → **Project settings → Advanced agent options**.
+3. Turn on **Agent tracing**, then select **Save**. The setting applies to subsequent sends in this project's built-in Agent sessions.
+4. Send a small, non-sensitive request and inspect the receiver for service `open-science-agent`. Check delivery separately from whether the Agent answered.
+
+Turn the switch off and save to stop tracing subsequent project sends. Data already received remains subject to the receiver's retention policy. A [CLI or SDK per-run opt-in](../reference/cli.md#otel-traces) is separate from this project setting.
+
+![Agent tracing in the project’s advanced options](/img/open-science/v1.3.4/agent-tracing.webp)

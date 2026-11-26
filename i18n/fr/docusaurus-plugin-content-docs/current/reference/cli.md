@@ -1,7 +1,7 @@
 ---
 title: "CLI et sortie structurée"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -16,7 +16,7 @@ Utilisez `open-science` pour inspecter l'état de l'application, exécuter les t
 
 ## Mise en place depuis un terminal {/* #terminal-setup */}
 
-Installez le lanceur de bureau, utilisez une archive autonome v1.3.3 ou suivez le [npm étapes d'installation](../guides/installation.md#npm-cli). Les archives autonomes regroupent Node, le moteur et l'interface utilisateur Web; les étapes d'extraction ci-dessous s'appliquent à ces archives.
+Installez le lanceur de bureau, utilisez une archive autonome v1.3.4 ou suivez le [npm étapes d'installation](../guides/installation.md#npm-cli). Les archives autonomes regroupent le nœud, le moteur et l'interface utilisateur Web; les étapes d'extraction ci-dessous s'appliquent à ces archives.
 
 1. Choisissez macOS ou Linux arm64/x64, ou Windows x64, correspondant à l'hôte.
 2. Extraire l'archive complète dans un emplacement enregistrable. Conserver le lanceur, `backend` et `node-runtime` ensemble; copier seulement le lanceur va casser le démarrage.
@@ -32,7 +32,7 @@ open-science doctor --json
 
 `init` crée le répertoire de configuration sans démarrer l'application. `--profile` alias `--config-root` pour un profil CLI portable. Utiliser le même répertoire de configuration absolue pour les commandes init, start et suivantes; un profil séparé a sa propre configuration. `runtime list` montre la disponibilité, la version et la source externe du framework détectés sans exposer les chemins exécutables.
 
-Facultatif : pour utiliser le runtime Codex séparé :
+Optionnel : pour utiliser le temps d'exécution Codex séparé :
 
 ```bash
 open-science runtime install codex --json
@@ -40,13 +40,13 @@ open-science codex login
 open-science doctor --json
 ```
 
-Suivez la procédure de connexion. Ces commandes facultatives préparent ou réparent le runtime Codex géré et enregistrent son abonnement ; elles n’importent pas les fichiers de connexion Codex externes. L’Agent intégré reste le choix par défaut d’une installation neuve et n’exige pas ce runtime externe. Pour utiliser un abonnement Codex avec l’Agent intégré, gardez celui-ci sélectionné et configurez l’abonnement dans **Settings → Model**. Un conflit de configuration est signalé sans remplacement silencieux.
+Suivez le flux de connexion. Ces commandes optionnelles préparent ou réparent le temps d'exécution de Codex géré et enregistrent son abonnement; ils n'importent pas les fichiers de connexion externes Codex. L'Agent intégré reste la valeur par défaut de l'installation propre et n'exige pas ce temps d'exécution externe. Pour utiliser un abonnement Codex avec l'Agent intégré, conservez-le sélectionné et configurez l'abonnement dans **Settings → Model**. La configuration existante en conflit est signalée plutôt que remplacée silencieusement.
 
-Si vous utilisez plutôt une clé OpenAI API, utilisez `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`, avec un ID de modèle supporté et la clé déjà fournie par votre environnement de gestion secrète. Pour OpenAlex, utilisez `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`. Préfixez les deux commandes avec `open-science`. Ne jamais mettre la clé elle-même dans les arguments de commande. Une vérification des titres de compétence réussie n'établit pas qu'une demande de recherche a été remplie ou qu'il reste un quota.
+Si vous utilisez plutôt une clé OpenAI API, utilisez `provider add --type official --vendor openai --model MODEL_ID --api-key-env OPENAI_API_KEY --json`, avec un ID de modèle supporté et la clé déjà fournie par votre environnement de gestion secrète. Pour OpenAlex, utilisez `connector configure literature --openalex-key-env OPENALEX_API_KEY --json`. Préfixez les deux commandes avec `open-science`. Ne jamais mettre la clé elle-même dans les arguments de commande. Une vérification des titres de compétence réussie ne permet pas d'établir qu'une recherche est terminée ou que le quota demeure.
 
-Lire **Prêt**, l'action individuelle **Contrôles** et suggère des actions **suivant** de `doctor`. Un rapport peut sortir avec succès alors que `ready` est faux; Si le moteur est absent, le docteur le signale et quitte 3. Complétez la condition préalable rapportée, vérifiez à nouveau, puis [exécuter une tâche](#run-input-and-control-flags) dans le projet prévu.
+Lire **Prêt**, l'action individuelle **contrôles** et suggère des actions **suivant** de `doctor`. Un rapport peut sortir avec succès alors que `ready` est faux; Si le moteur est absent, le docteur le signale et quitte 3. Complétez la condition préalable rapportée, vérifiez à nouveau, puis [exécuter une tâche](#run-input-and-control-flags) dans le projet prévu.
 
-Pour l'installation Homebrew ou Linux `.deb`/`.rpm`, suivez le [instructions pour le colis](../guides/installation.md#standalone-cli). Les paquets de distribution Linux fournissent `open-science-cli`; remplacer cette commande dans les exemples de cette page pour éviter de sélectionner un lanceur de bureau différent.
+Pour l'installation de Homebrew ou Linux `.deb`/`.rpm`, suivez le [instructions pour le colis](../guides/installation.md#standalone-cli). Les paquets de distribution Linux fournissent `open-science-cli`; remplacer cette commande dans les exemples de cette page pour éviter de sélectionner un lanceur de bureau différent.
 
 ## Points d'entrée {/* #entry-points */}
 
@@ -207,16 +207,16 @@ La réponse ci-après a été reproduite localement :
 | Code de sortie | Signification |
 | ---: | --- |
 | 0 | Le commandement a réussi; inspecter l'état d'exécution/d'attention retourné, le cas échéant |
-| 1 | Défaillance générale ou d'exécution, délai d'exécution, conflit ou état ne signalant aucun service d'exécution |
+| 1 | Défaillance générale/course, délai d'exécution, conflit ou état de fonctionnement sans service de fonctionnement |
 | 2 | Utilisation non valide de CLI |
 | 3 | démon local non disponible |
 | 4 | Projet/exécution/session/artefact/Specialist non trouvé |
 
 JSONL peut inclure `run.progress` et `stream.resync-required`. Si le replay n'est pas disponible après la reconnection, relisez l'état d'exécution faisant autorité; ne présumez pas que le flux d'événements est une histoire permanente. Les commandes du cycle de vie ont des restrictions de drapeau distinctes décrites dans [Service sans tête](./server.md).
 
-[Mise en œuvre de la CLI](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/cli.mjs), [guide de commande en amont](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
+[Mise en œuvre de CLI](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/cli.mjs), [guide de commande en amont](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md).
 
-Référence technique: [Contrat CLI](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
+Référence technique: [Contrat CLI](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md).
 
 ## Courses sans surveillance {/* #unattended-runs */}
 
@@ -266,21 +266,21 @@ open-science mcp --help
 
 Laissez le client lancer l'adaptateur. Découvrez les projets avec **list_projects**, soumettez **start_run** avec l'ID du projet retourné, suivez **get_run** et inspectez **list_artifacts**. La découverte d'outils peut se terminer pendant que le démarrage est en cours; le premier appel à outils attend le service. Les appels utilisent le service local authentifié; ce n'est pas un paramètre HTTP MCP distant.
 
-Le client agit en vertu des autorisations existantes du profil. Il peut créer des projets persistants, modifier la configuration et commencer à travailler qui écrit des fichiers ou supporte des coûts de modèle. Les approbations peuvent encore nécessiter une action en Open-Science. Inspectez l'état actuel après un délai avant de répéter une écriture. Fermer le client ou annuler sa demande n'annule pas la recherche acceptée : utilisez **cancel_run** explicitement. Voir le [outil officiel MCP et référence de permission](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md#external-agents-through-mcp).
+Le client agit en vertu des autorisations existantes du profil. Il peut créer des projets persistants, modifier la configuration et commencer à travailler qui écrit des fichiers ou supporte des coûts de modèle. Les approbations peuvent encore nécessiter une action en Open-Science. Inspectez l'état actuel après un délai avant de répéter une écriture. Fermer le client ou annuler sa demande n'annule pas la recherche acceptée : utilisez **cancel_run** explicitement. Voir le [outil officiel MCP et référence de permission](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md#external-agents-through-mcp).
 
 Pour les commandes de paquets, suivez [Importation et exportation de CLI](../guides/research-packages.md#local-package-transfer).
 
 Le service conserve une tenue persistante après la déconnexion du client MCP. Utilisez `open-science stop --config-root /absolute/path/to/profile --json` pour libérer cette cale lorsque le travail est terminé; Les applications connectées peuvent toujours continuer à fonctionner. Voir [propriété des services](server.md#backend-ownership).
 
-### Réparer une installation CLI {/* #mcp-installation-recovery */}
+### Récupération du paquet CLI {/* #mcp-installation-recovery */}
 
-Si MCP se ferme avec `Cannot find package '@modelcontextprotocol/sdk'`, ou si la CLI signale `Missing @aipoch/open-science-<platform>`, réparez le client et son paquet de plateforme. Installez la version actuelle correspondante avec ses dépendances facultatives :
+Si MCP sort avec `Cannot find package '@modelcontextprotocol/sdk'`, ou si le CLI signale `Missing @aipoch/open-science-<platform>`, réparez le client et son paquet plateforme. Installez la version courante correspondante avec des dépendances optionnelles incluses :
 
 ```bash
-npm install --global --include=optional @aipoch/open-science@1.3.3
+npm install --global --include=optional @aipoch/open-science@1.3.4
 ```
 
-Pour `startup_unconfirmed`, consultez `open-science status --config-root /absolute/path/to/profile --json`, puis lancez `open-science start --no-open --config-root /absolute/path/to/profile` pour lire la cause précise. Si le port est occupé, identifiez le profil qui l’utilise avant d’arrêter un service. Corrigez la cause, puis réessayez **list_projects**. La découverte des outils ne confirme pas à elle seule le fonctionnement du serveur.
+Pour `startup_unconfirmed`, inspectez `open-science status --config-root /absolute/path/to/profile --json`, puis exécutez `open-science start --no-open --config-root /absolute/path/to/profile` pour lire l'erreur de démarrage réelle. Si le port est déjà occupé, vérifiez quel profil le possède avant d'arrêter quoi que ce soit. Réessayer **list_projects** après avoir résolu la cause signalée. La découverte d'outils à elle seule ne confirme pas un moteur de travail.
 
 ## Gardez un service en marche pour l'automatisation {/* #persistent-service */}
 
@@ -314,3 +314,14 @@ Utilisation `literature collection create`, `collection add` et `collection remo
 ## Agent par défaut dans une installation propre {/* #default-agent */}
 
 v1.3.3 démarre une installation CLI propre avec l'agent Open-Science intégré. Initialiser le profil, démarrer le service et inspecter **Settings → Agent** dans son espace de travail web local; un agent externe SDK est facultatif. Connectez un modèle avant d'exécuter une tâche. Les choix d'exécution configurés existants restent séparés de cette installation propre par défaut. [Choix des agents](../guides/frameworks.md#default-runtime).
+## Tracez un Agent Run intégré {/* #otel-traces */}
+
+Configurez le [Récepteur OTLP et détails de capture](diagnostics.md#agent-tracing) du moteur, puis optez explicitement pour un Run:
+
+```bash
+open-science run --project <project-id> --prompt-file ./task.md --otel-traces --wait
+```
+
+`--otel-traces` fonctionne aussi avec `--session <session-id>`. Il active le traçage pour ce Run même si le réglage du projet est désactivé, sans modifier les préférences enregistrées du projet ou de la session. Sans ce paramètre, le réglage du projet au moment du lancement s’applique.
+
+L’hôte doit prendre en charge `run-otel-traces`, utiliser l’Agent intégré et disposer d’une configuration d’exportation valide. Un framework externe ou une configuration de réception absente fait échouer la préparation du Run. Après le lancement, un échec d’envoi est signalé dans les diagnostics de transfert, tandis que le Run peut continuer. Vérifiez la réception séparément du résultat du Run.

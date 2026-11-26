@@ -1,7 +1,7 @@
 ---
 title: "Architektur und Diagnostik"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-25'
 ---
 
 # Architektur und Diagnostik {/* #architecture-and-diagnostics */}
@@ -84,3 +84,40 @@ Gewöhnliche Metadatenquellen schließen private Inhaltsfelder aus. Nach einem f
 ## Desktop und Backend sind getrennte Prozesse {/* #node-backend */}
 
 Von v0.37.0 aus besitzt Electron die native Desktop-Shell, während ein gewöhnliches Node-Backend Shared Services besitzt. Der Desktop, die Web-Benutzeroberfläche, CLI und SDK können sich mit demselben Backend verbinden. Identifizieren Sie das Konfigurationsverzeichnis, die Version und den tatsächlichen Port mit `status --json`, wenn ein Client keine Verbindung herstellen kann. Ein sichtbares Desktop-Fenster allein beweist nicht, dass das Backend gesund ist. Folgen Sie [Backend-Besitz](server.md#backend-ownership), bevor Sie es stoppen.
+## Konfigurieren von Agent Tracing {/* #agent-tracing */}
+
+Verwenden Sie dies, wenn Sie eine integrierte Agent-Umdrehung über Modellanforderungen und MCP-Tools überprüfen müssen. Liefern Sie einen OTLP/HTTP JSON-Empfänger, z. B. einen OpenTelemetry Collector oder Langfuse. Open-Science bietet keinen App-gesteuerten Sammeldienst an. Der Endpunkt muss die URL der vollständigen Aufnahme sein; Ein generischer Kollektor verwendet üblicherweise `/v1/traces`, während Langfuse `/api/public/otel/v1/traces` verwendet.
+
+Die Person, die das Backend bedient, konfiguriert die Endpunkt-, Authentifizierungs- und Capture-Schalter in ihrer Startkonfiguration. Bei einer installierten App wird der `.env` des aktiven Konfigurationsverzeichnisses unterstützt (normalerweise `~/.open-science/.env`). Beenden Sie die aktive Arbeit und starten Sie dieses Backend neu, nachdem Sie die Startkonfiguration geändert haben. Dies ist getrennt vom Speichern einer Projekteinstellung.
+
+<p className="example-label"><strong>Beispiel</strong> Ein lokaler Empfänger mit deaktivierter Inhaltserfassung</p>
+
+```dotenv
+OPEN_SCIENCE_AGENT_OTLP_TRACES_ENDPOINT=http://127.0.0.1:4318/v1/traces
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_CONTENT=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_API_REQUEST=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_ARGUMENTS=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_RESULTS=0
+OPEN_SCIENCE_AGENT_OTLP_DIAGNOSTICS=1
+```
+
+In diesem Beispiel wird von einem Empfänger ausgegangen, der bereits auf die eigene Loopback-Adresse des Backends hört. Es installiert keine. Verwenden Sie für einen anderen Host die URL der tatsächlichen Aufnahme und die erforderliche Authentifizierung; Siehe [Offizielle Empfängerkonfiguration](https://github.com/aipoch/open-science/blob/v1.3.4/docs/development-quick-reference.md#open-science-agent-traces) und [Umweltbeispiele](https://github.com/aipoch/open-science/blob/v1.3.4/.env.example). Halten Sie Empfängergeheimnisse aus Eingabeaufforderungen und geteilten Screenshots heraus.
+
+### Wählen Sie Capture Details {/* #choose-capture-detail */}
+
+Das Tracing eines Projekts ist **standardmäßig ausgeschaltet**. Die vier folgenden Einstellungen zur Inhaltserfassung haben jedoch jeweils den Standardwert **`1` (aktiviert)**, wenn sie fehlen. Setzen Sie alle vier ausdrücklich auf `0`, um nur Metadaten zu erfassen. Dies sind Starteinstellungen, keine zusätzlichen Schalter im Projektdialog.
+
+| Setzen des Suffix nach `OPEN_SCIENCE_AGENT_OTLP_` | Inhalt enthalten, wenn auf `1` |
+| --- | --- |
+| `CAPTURE_CONTENT` | Auszüge aus der Eingabe und der abschließenden Antwort |
+| `CAPTURE_API_REQUEST` | Modellanforderung JSON, möglicherweise einschließlich Anweisungen, Historie, Werkzeugdaten und Anlagen |
+| `CAPTURE_TOOL_ARGUMENTS` | MCP Tool Input Previews |
+| `CAPTURE_TOOL_RESULTS` | MCP Tool Output Previews |
+
+Nur Metadaten-Traces beschreiben immer noch Operationen. Überprüfen Sie den Empfänger und seine Zugangsregeln, bevor Sie ein Projekt mit privaten Forschungsdaten aktivieren.
+
+### Ermöglichen und Überprüfen der Lieferung {/* #enable-and-check-delivery */}
+
+Öffnen Sie [Projekteinstellungen](../guides/projects.md#agent-tracing), aktivieren Sie **Agent tracing** und speichern Sie. Verwenden Sie das eingebaute **Open-Science Agent** für eine kleine Anfrage. Suchen Sie nach Service `open-science-agent` im Empfänger und prüfen Sie die korrelierte Wende, Anforderung und Werkzeugspannweite, die die Aufgabe tatsächlich erzeugt hat.
+
+Wenn die Diagnose für die `.env`-Konfiguration aktiviert ist, überprüfen Sie den benachbarten `.env.otel-status.json` auf den Upload-Status. Wenn keine Spuren ankommen, überprüfen Sie das aktive Profil, den Projektwechsel, die Laufzeit, den vollständigen Endpunkt, die Empfängerverfügbarkeit und die Anmeldeinformationen. Die Lieferung erfolgt asynchron: Eine abgeschlossene Agent-Antwort beweist keinen erfolgreichen Upload. Das Abschalten der Rückverfolgung stoppt die zukünftige Erfassung; Es löscht keine Datensätze bereits am Empfänger.

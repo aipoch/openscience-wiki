@@ -1,7 +1,7 @@
 ---
 title: "CLI 与结构化输出"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -16,7 +16,7 @@ import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide
 
 ## 从终端完成首次设置 {/* #terminal-setup */}
 
-可安装桌面版命令入口、使用 v1.3.3 独立压缩包，或按 [npm 安装步骤](../guides/installation.md#npm-cli)操作。独立压缩包包含 Node、后端和 Web UI；下面的解压步骤适用于这些压缩包。
+可安装桌面版命令入口、使用 v1.3.4 独立压缩包，或按 [npm 安装步骤](../guides/installation.md#npm-cli)操作。独立压缩包包含 Node、后端和 Web UI；下面的解压步骤适用于这些压缩包。
 
 1. 选择与主机匹配的 macOS／Linux arm64 或 x64 包，或 Windows x64 包。
 2. 完整解压到可写目录，保留启动器、`backend` 与 `node-runtime` 的相对位置；只复制启动器会导致无法启动。
@@ -212,9 +212,9 @@ open-science artifacts download ARTIFACT_ID --output ./result.csv --json
 
 JSONL 可能包含 `run.progress` 和 `stream.resync-required`。重连后无法重放时，重新读取权威 Run 状态，不把事件流当作永久历史。服务命令另有参数限制，见[无界面服务](./server.md)。
 
-[CLI 实现](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md)。
+[CLI 实现](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/cli.mjs)、[上游命令指南](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md)。
 
-技术参考：[CLI 约定](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md).
+技术参考：[CLI 约定](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md).
 
 ## 无人值守运行 {/* #unattended-runs */}
 
@@ -264,7 +264,7 @@ open-science mcp --help
 
 由客户端启动适配器。先用 **list_projects** 获取项目 ID，再交给 **start_run** 提交任务，通过 **get_run** 查看进度，使用 **list_artifacts** 查看文件。工具发现可能在服务启动期间先完成，第一次工具调用会等待服务就绪。实际调用使用已认证的本地服务，这不是远程 HTTP MCP 入口。
 
-客户端沿用该配置已有的权限，可以创建持久项目、修改配置，并发起会写文件或产生模型费用的任务。审批仍可能需要你在 Open-Science 中处理。请求超时后，先检查当前状态再重复写操作。关闭客户端或取消请求不会取消已接受的研究任务；需要停止任务时明确调用 **cancel_run**。详见[官方 MCP 工具与权限说明](https://github.com/aipoch/open-science/blob/v1.3.3/packages/open-science/CLI.md#external-agents-through-mcp)。
+客户端沿用该配置已有的权限，可以创建持久项目、修改配置，并发起会写文件或产生模型费用的任务。审批仍可能需要你在 Open-Science 中处理。请求超时后，先检查当前状态再重复写操作。关闭客户端或取消请求不会取消已接受的研究任务；需要停止任务时明确调用 **cancel_run**。详见[官方 MCP 工具与权限说明](https://github.com/aipoch/open-science/blob/v1.3.4/packages/open-science/CLI.md#external-agents-through-mcp)。
 
 研究包命令见 [CLI 导入与导出](../guides/research-packages.md#local-package-transfer)。
 
@@ -275,7 +275,7 @@ MCP 客户端断开后，服务会保留持续运行状态。工作结束后，�
 如果 MCP 退出并提示 `Cannot find package '@modelcontextprotocol/sdk'`，或 CLI 提示 `Missing @aipoch/open-science-<platform>`，应修复客户端及对应平台运行包。安装匹配的当前版本，并明确包含可选依赖：
 
 ```bash
-npm install --global --include=optional @aipoch/open-science@1.3.3
+npm install --global --include=optional @aipoch/open-science@1.3.4
 ```
 
 遇到 `startup_unconfirmed`，先检查 `open-science status --config-root /absolute/path/to/profile --json`，再运行 `open-science start --no-open --config-root /absolute/path/to/profile`，读取具体启动错误。若端口已占用，先确认归属哪个配置目录，再决定是否停止该服务。解决实际原因后重试 **list_projects**；能列出工具不等于后端已可用。
@@ -312,3 +312,15 @@ open-science literature status read <item-id>
 ## 全新安装中的默认 Agent {/* #default-agent */}
 
 v1.3.3 的全新 CLI 安装使用内置 Open-Science Agent。初始化配置、启动服务后，可在本地 Web 工作区的 **Settings → Agent** 检查；外部 Agent SDK 是可选项。运行任务前仍要连接模型。已有配置中的运行时选择与这个全新安装默认值分开处理。见 [Agent 选择](../guides/frameworks.md#default-runtime)。
+
+## 追踪内置 Agent 的单次 Run {/* #otel-traces */}
+
+先配置后端的 [OTLP 接收端与采集范围](diagnostics.md#agent-tracing)，再为单次 Run 明确开启追踪：
+
+```bash
+open-science run --project <project-id> --prompt-file ./task.md --otel-traces --wait
+```
+
+通过 `--session <session-id>` 继续会话时也可使用 `--otel-traces`。即使项目开关关闭，此参数也会为本次 Run 启用追踪，但不会修改已保存的项目或会话。省略参数则使用派发时的项目设置。
+
+主机需要声明 `run-otel-traces` 能力，使用内置 Agent，并具有有效的导出配置。外部框架或缺少接收端配置会使 Run 准备失败。派发后的上传失败通过诊断记录报告，Run 可以继续；需要分别检查接收端和运行结果。

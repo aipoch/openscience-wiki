@@ -1,7 +1,7 @@
 ---
 title: "Permissions and approvals"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-25'
 ---
 
 # Permissions and approvals
@@ -111,3 +111,9 @@ The rule applies to recognized app-owned literature tools, not every MCP call, c
 ## Keep the network mode separate {/* #strict-network */}
 
 **Full access** does not bypass the **Strict** Notebook whitelist. An unlisted destination is blocked without an authorization offer, even when the conversation permits automatic actions. Add only the required protocol, hostname/IP and port in [Network settings](network.md#public-network-rules).
+
+## After denying a tool action {/* #denied-action */}
+
+Choose **Deny** when you do not want the presented action to run. The built-in Agent retains an explanation at the end of the turn instead of leaving a silent response. Review which action was denied and which earlier actions actually completed. Denied calls are counted separately from completed work; an ended turn does not mean the requested operation succeeded.
+
+To continue, describe an alternative or make a new, narrower request. Do not switch to **Full access** merely to hide a denial.

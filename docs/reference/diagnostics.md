@@ -1,7 +1,7 @@
 ---
 title: "Architecture and diagnostics"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-25'
 ---
 
 # Architecture and diagnostics
@@ -84,3 +84,41 @@ Ordinary metadata sources exclude private content fields. After a sensitive-cont
 ## Desktop and backend are separate processes {/* #node-backend */}
 
 From v0.37.0, Electron owns the native desktop shell while an ordinary Node backend owns shared services. The desktop, Web UI, CLI and SDK can connect to that same backend. Identify the configuration directory, version and actual port with `status --json` when a client cannot connect. A visible desktop window alone does not prove the backend is healthy. Follow [backend ownership](server.md#backend-ownership) before stopping it.
+
+## Configure Agent tracing {/* #agent-tracing */}
+
+Use this when you need to inspect a built-in Agent turn across model requests and MCP tools. Supply an OTLP/HTTP JSON receiver, such as an OpenTelemetry Collector or Langfuse. Open-Science does not supply an app-operated collection service. The endpoint must be the full ingestion URL; a generic collector commonly uses `/v1/traces`, while Langfuse uses `/api/public/otel/v1/traces`.
+
+The person operating the backend configures the endpoint, authentication and capture switches in its launch configuration. For an installed app, the active configuration directory's `.env` is supported (usually `~/.open-science/.env`). Finish active work and restart that backend after changing its launch configuration. This is separate from saving a project setting.
+
+<p className="example-label"><strong>Example</strong> A local receiver with content capture disabled</p>
+
+```dotenv
+OPEN_SCIENCE_AGENT_OTLP_TRACES_ENDPOINT=http://127.0.0.1:4318/v1/traces
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_CONTENT=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_API_REQUEST=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_ARGUMENTS=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_RESULTS=0
+OPEN_SCIENCE_AGENT_OTLP_DIAGNOSTICS=1
+```
+
+This example assumes a receiver already listening on the backend's own loopback address. It does not install one. For another host, use its actual ingestion URL and required authentication; see the [official receiver configuration](https://github.com/aipoch/open-science/blob/v1.3.4/docs/development-quick-reference.md#open-science-agent-traces) and [environment examples](https://github.com/aipoch/open-science/blob/v1.3.4/.env.example). Keep receiver secrets out of prompts and shared screenshots.
+
+### Choose capture detail
+
+Project tracing is **off by default**, but each of these content switches defaults to **`1`** when omitted. Set them to `0` explicitly for metadata-only tracing. These are launch settings, not additional project-dialog switches.
+
+| Setting suffix after `OPEN_SCIENCE_AGENT_OTLP_` | Content included when set to `1` |
+| --- | --- |
+| `CAPTURE_CONTENT` | Prompt and final-reply excerpts |
+| `CAPTURE_API_REQUEST` | Model request JSON, potentially including instructions, history, tool data and attachments |
+| `CAPTURE_TOOL_ARGUMENTS` | MCP tool input previews |
+| `CAPTURE_TOOL_RESULTS` | MCP tool output previews |
+
+Metadata-only traces still describe operations. Review the receiver and its access rules before enabling a project with private research data.
+
+### Enable and check delivery
+
+Open [Project settings](../guides/projects.md#agent-tracing), enable **Agent tracing** and save. Use the built-in **Open-Science Agent** for a small request. Look for service `open-science-agent` in the receiver and inspect the correlated turn, request and tool spans that the task actually produced.
+
+With diagnostics enabled for the `.env` configuration, inspect the adjacent `.env.otel-status.json` for upload status. If no traces arrive, check the active profile, project switch, runtime, full endpoint, receiver availability and credentials. Delivery is asynchronous: a completed Agent answer does not prove successful upload. Turning tracing off stops future capture; it does not delete records already at the receiver.

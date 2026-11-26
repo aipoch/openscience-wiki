@@ -1,7 +1,7 @@
 ---
 title: "Crear y compartir una película de investigación"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-25'
 ---
 
 # Crear y compartir una película de investigación
@@ -59,11 +59,13 @@ Espera a que la exportación termine, y luego vuelve a abrir el archivo guardado
 
 ## Regenerar o recuperarse {/* #film-recovery */}
 
-Cuando se interrumpe una película y el diálogo ofrece **Retry**, vuelva a utilizar escenas validadas, narración y fechas. Los puntos de control sobreviven a un reinicio de proceso. **Generate again** inicia un nuevo intento en su lugar; utilizarlo al cambiar el contenido previsto o descartar deliberadamente el intento anterior. Inspeccione el progreso y la película completa después de cualquier acción.
+Mientras una película de investigación está generando, su conversación permanece en **Active** con el estado de la película visible. Si un diálogo de película está bloqueado por la generación de otra conversación, seleccione **Go to conversation** para abrir ese propietario e inspeccionar el progreso antes de comenzar otro trabajo.
 
-- Si la generación le pide que seleccione un modelo o ver las credenciales, fijar ese requisito en **Settings → Model**, luego volver al período de sesiones.
-- Si la descarga de la narración falla, use **Retry** y esperar **Installed** antes de generar de nuevo.
-- Uso **View research film → Generate again** después de cambiar la sesión o cuando el resultado necesita otro intento. Confirme la nueva generación; puede tardar varios minutos y utilizar la capacidad del modelo de nuevo.
-- Utilice el diálogo de la película **More actions → Delete research film** sólo cuando desea eliminar los archivos locales de esta rama. La confirmación explica que el contenido de conversación y copias guardadas por separado se guardan.
+Cuando se interrumpe una película y el diálogo ofrece **Retry**, vuelva a usar escenas validadas, narración y fechas. Los puntos de control sobreviven a un reinicio de proceso. **Generate again** comienza un nuevo intento en su lugar; utilizarlo al cambiar el contenido previsto o descartar deliberadamente el intento anterior. Inspeccione el progreso y la película completa después de cualquier acción.
 
-Véase [sesión de reproducción](session-replay.md) para inspeccionar las medidas retenidas y [reproducibilidad](reproducibility.md) para ejecutar una verificación separada.
+- Si la generación le pide que seleccione un modelo o verifique las credenciales, corrija ese requisito en **Settings → Model**, luego vuelva a la sesión.
+- Si la descarga de la narración falla, use **Retry** y espere a **Installed** antes de generar de nuevo.
+- Use **View research film → Generate again** después de cambiar la sesión o cuando el resultado necesite otro intento. Confirma la nueva generación; puede tardar varios minutos y utilizar la capacidad del modelo de nuevo.
+- Utilice el cuadro de diálogo de la película **More actions → Delete research film** sólo cuando desea eliminar los archivos de la película local de esta rama. La confirmación explica que el contenido de la conversación y copias guardadas por separado se guardan.
+
+Véase [sesión de reproducción](session-replay.md) para inspeccionar los pasos retenidos y [reproducibilidad](reproducibility.md) para ejecutar una verificación separada.

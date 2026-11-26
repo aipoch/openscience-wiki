@@ -1,7 +1,7 @@
 ---
 title: "Installation and updates"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -12,7 +12,7 @@ Most users should install the desktop package from GitHub Releases. Contributors
 
 <PlatformGuide />
 
-**Current packages:** [v1.3.3 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.3) include desktop installers, standalone CLI archives and Linux CLI `.deb`/`.rpm` packages. Choose the intended installation type and architecture, then verify the checksum from the same release. The desktop launcher remains available through **Settings → General → Command line tool → Install command**.
+**Current packages:** [v1.3.4 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.4) include desktop installers, standalone CLI archives and Linux CLI `.deb`/`.rpm` packages. Choose the intended installation type and architecture, then verify the checksum from the same release. The desktop launcher remains available through **Settings → General → Command line tool → Install command**.
 
 ## Choose an installation method
 
@@ -67,7 +67,7 @@ Official Windows installers are code-signed from v0.33.2; v0.33.3 extends signin
 | Ubuntu / Debian | `uname -m`: `x86_64` means x64, `aarch64` means ARM64 | Choose the matching `.deb`, open it with the system package installer, then launch from the application menu |
 | Other supported Linux distributions | Check `uname -m` | Choose the matching `.AppImage`, allow execution in the file's permissions, then open it; resolve any dependency error reported by the distribution |
 
-v1.3.3 provides Linux **x64 and ARM64** packages. For ARM64, select `aipoch-open-science-1.3.3-linux-arm64.AppImage` or `aipoch-open-science_1.3.3_arm64.deb`. The x64 counterparts are `aipoch-open-science-1.3.3-linux-x86_64.AppImage` and `aipoch-open-science_1.3.3_amd64.deb`. Download from the selected release's official Assets and match the result of `uname -m`.
+v1.3.4 provides Linux **x64 and ARM64** packages. For ARM64, select `aipoch-open-science-1.3.4-linux-arm64.AppImage` or `aipoch-open-science_1.3.4_arm64.deb`. The x64 counterparts are `aipoch-open-science-1.3.4-linux-x86_64.AppImage` and `aipoch-open-science_1.3.4_amd64.deb`. Download from the selected release's official Assets and match the result of `uname -m`.
 
 </PlatformContent>
 
@@ -75,7 +75,7 @@ The installation location stores the application; **Data location** in the setup
 
 ### Use the standalone CLI {/* #standalone-cli */}
 
-For a terminal/browser installation, download a matching standalone CLI archive from [v1.3.3](https://github.com/aipoch/open-science/releases/tag/v1.3.3). It bundles Node, the backend and Web UI. Extract the complete directory, then follow [CLI setup](../reference/cli.md#terminal-setup). Keep the CLI and backend from the same installation together.
+For a terminal/browser installation, download a matching standalone CLI archive from [v1.3.4](https://github.com/aipoch/open-science/releases/tag/v1.3.4). It bundles Node, the backend and Web UI. Extract the complete directory, then follow [CLI setup](../reference/cli.md#terminal-setup). Keep the CLI and backend from the same installation together.
 
 #### Homebrew CLI {/* #homebrew-cli */}
 
@@ -83,35 +83,35 @@ Install or manage the Homebrew CLI with `brew install aipoch/tap/open-science`, 
 
 #### Linux CLI packages {/* #linux-cli-packages */}
 
-For Linux terminal/browser use, choose **open-science-cli**, separately from the **aipoch-open-science** desktop package. Download the matching package and `CLI-PACKAGE-SHA256SUMS.txt` from [v1.3.3 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.3), then verify before installing.
+For Linux terminal/browser use, choose **open-science-cli**, separately from the **aipoch-open-science** desktop package. Download the matching package and `CLI-PACKAGE-SHA256SUMS.txt` from [v1.3.4 Assets](https://github.com/aipoch/open-science/releases/tag/v1.3.4), then verify before installing.
 
-| Distribution / architecture | v1.3.3 CLI asset |
+| Distribution / architecture | v1.3.4 CLI asset |
 | --- | --- |
-| Debian / Ubuntu, x64 | `open-science-cli_1.3.3_amd64.deb` |
-| Debian / Ubuntu, ARM64 | `open-science-cli_1.3.3_arm64.deb` |
-| Fedora, x64 | `open-science-cli-1.3.3-1.x86_64.rpm` |
-| Fedora, ARM64 | `open-science-cli-1.3.3-1.aarch64.rpm` |
+| Debian / Ubuntu, x64 | `open-science-cli_1.3.4_amd64.deb` |
+| Debian / Ubuntu, ARM64 | `open-science-cli_1.3.4_arm64.deb` |
+| Fedora, x64 | `open-science-cli-1.3.4-1.x86_64.rpm` |
+| Fedora, ARM64 | `open-science-cli-1.3.4-1.aarch64.rpm` |
 
 Install the downloaded file with the appropriate package manager. These examples use x64; use the ARM64 filename when appropriate.
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ./open-science-cli_1.3.3_amd64.deb
+sudo apt install ./open-science-cli_1.3.4_amd64.deb
 # Fedora: use this instead of the apt command
-sudo dnf install ./open-science-cli-1.3.3-1.x86_64.rpm
+sudo dnf install ./open-science-cli-1.3.4-1.x86_64.rpm
 ```
 
 Run `open-science-cli start --no-open`, then `open-science-cli status --json`. Once running, use `open-science-cli url` to open the authenticated local Web interface; keep that URL private. Continue with [CLI setup](../reference/cli.md#terminal-setup) for model configuration and `doctor` checks, replacing `open-science` with `open-science-cli` in those commands.
 
 The package bundles Node, the backend and Web UI. It does not install Python/R or create an automatically started system service. The OS credential store and sandbox prerequisites still apply; see [headless Linux credentials](../reference/server.md). Use `open-science-cli` explicitly when a desktop launcher is also installed.
 
-Before upgrading or removing the package, finish work and stop **every profile started by that package**. Install the next downloaded package through apt/dnf; there is no AIPOCH apt/dnf repository configured by this installation. Package removal preserves research data and credentials. The [official package guide](https://github.com/aipoch/open-science/blob/v1.3.3/docs/standalone-runtime.md#linux-cli-distribution-packages) describes command conflicts and platform requirements.
+Before upgrading or removing the package, finish work and stop **every profile started by that package**. Install the next downloaded package through apt/dnf; there is no AIPOCH apt/dnf repository configured by this installation. Package removal preserves research data and credentials. The [official package guide](https://github.com/aipoch/open-science/blob/v1.3.4/docs/standalone-runtime.md#linux-cli-distribution-packages) describes command conflicts and platform requirements.
 
 ### Run from source
 
 You need Git, Node.js 24, npm, and the platform build prerequisites for Electron. Install or select an agent framework in the application. During installation, the repository generates the Prisma Client, applies app patches, and prepares Electron native dependencies.
 
-For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v1.3.3.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
+For a reproducible source installation, choose the intended release tag from [Changelog](../changelog/v1.3.4.md) before installing dependencies. A default clone follows the branch rather than a fixed release. Record the selected tag, source commit and runtime versions so another person can reproduce the environment.
 
 Replace `RELEASE_TAG` below with the exact tag shown on the selected release (including its leading `v`). To follow ongoing development instead, omit `--branch RELEASE_TAG --depth 1`; that checkout will follow the default branch.
 
@@ -128,7 +128,7 @@ Before packaging a production build, run:
 npm run build
 ```
 
-Use the selected tag's package.json and [standalone runtime guide](https://github.com/aipoch/open-science/blob/v1.3.3/docs/standalone-runtime.md) for its build targets and dependencies. `npm run dev:web` develops the Node/Web entry point; `npm run dev` also prepares the desktop client. Use an isolated configuration directory to keep test data separate.
+Use the selected tag's package.json and [standalone runtime guide](https://github.com/aipoch/open-science/blob/v1.3.4/docs/standalone-runtime.md) for its build targets and dependencies. `npm run dev:web` develops the Node/Web entry point; `npm run dev` also prepares the desktop client. Use an isolated configuration directory to keep test data separate.
 
 ## Complete first-time setup
 
@@ -196,7 +196,7 @@ The current interface and new packages use **Open-Science** consistently. Upgrad
 Use Node.js **22.13 or later** for the published CLI/backend package. In a terminal, install and inspect the invoked version:
 
 ```bash
-npm install --global --include=optional @aipoch/open-science@1.3.3
+npm install --global --include=optional @aipoch/open-science@1.3.4
 open-science version --json
 open-science help
 ```
@@ -248,3 +248,9 @@ From v1.2.0, a supported macOS update can download only changed blocks of the ap
 If v1.3.0 says another process is using the installation even after active work has finished, its updater may have mistaken an app-owned background process for an external blocker. Download the official v1.3.1 package for your platform, fully quit Open-Science and stop its background service, then follow the [manual installation steps](#manual-update). For a CLI-managed profile, check [service status and stopping](../reference/server.md#lifecycle-commands) before replacing files.
 
 Reopen the app, confirm v1.3.1 in **Settings → General**, and check your original projects and data location. Profiles and research data are retained. This fix applies to updates started from v1.3.1; a newly downloaded package cannot change the updater still running in v1.3.0.
+
+## Windows updates from v1.3.4 {/* #windows-134 */}
+
+v1.3.4 recognizes the built-in Agent and image helper as app-owned processes during update preparation. If an older updater still reports one of these as a blocker after work finishes, use the [official manual installer](#manual-update) rather than repeatedly forcing processes to quit. Confirm the version and original projects after relaunch; the new package cannot repair an updater still running in an older version.
+
+Stable Windows updates restore compact installer deltas in v1.3.4. v1.3.3 used a full installer. A full-package download can still be a fallback and does not by itself indicate failure.

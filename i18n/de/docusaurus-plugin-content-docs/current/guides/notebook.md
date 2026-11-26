@@ -1,7 +1,7 @@
 ---
 title: "Notebook und Ausführungsnachweise"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -313,8 +313,14 @@ Verwenden Sie für wiederholte Ausführung [geplante Aufgaben](scheduled-tasks.m
 
 ## Verwalten von Notebook Speicher und Ressourcen {/* #memory-resources */}
 
-Vor der Ausführung überprüft Open-Science den Systemspeicher. Gedächtnisdruckanzeigen sind absetzbar und verfallen nach sechs Sekunden; Ihr verschwinden wiederholt oder vervollständigt keine blockierte anfrage. Die Ausführungsentscheidung, nicht die Benachrichtigung allein, bestimmt, ob ein Lauf beginnt. Windows-Prüfungen werden auf den physischen RAM begrenzt; macOS Speicherdruck und Linux Containergrenzen werden ebenfalls berücksichtigt. Wenn eine Anfrage wegen Speicherdrucks gestoppt wird, überprüfen Sie die Benachrichtigung und beenden oder lösen Sie die Arbeit, die Sie nicht mehr benötigen. Das Verfügbare Speichern wiederholt die Anforderung nicht automatisch; Wählen Sie **Recheck and retry**, wenn angeboten. Bei einem manuellen Notebook-Terminal kehren Sie zu diesem Terminal zurück und überprüfen den aktuellen Inhalt, bevor Sie erneut ausgeführt werden.
+Vor der Ausführung überprüft Open-Science den Systemspeicher. Gedächtnisdruckanzeigen sind absetzbar und verfallen nach sechs Sekunden; Ihr verschwinden wiederholt oder vervollständigt keine blockierte anfrage. Die Ausführungsentscheidung, nicht die Benachrichtigung allein, bestimmt, ob ein Lauf beginnt. Die Ausführungsprüfungen berücksichtigen die Windows-Schwellenwerte für den physikalischen Speicher, den macOS-Speicherdruck und die Linux-Containergrenzen. Diese Prüfungen sind von den nachstehenden Summenwerten getrennt. Wenn eine Anfrage wegen Speicherdrucks gestoppt wird, überprüfen Sie die Benachrichtigung und beenden oder lösen Sie die Arbeit, die Sie nicht mehr benötigen. Das Verfügbare Speichern wiederholt die Anforderung nicht automatisch; Wählen Sie **Recheck and retry**, wenn angeboten. Bei einem manuellen Notebook-Terminal kehren Sie zu diesem Terminal zurück und überprüfen den aktuellen Inhalt, bevor Sie erneut ausgeführt werden.
 
 Öffnen Sie **Compute → Notebook resources**, aktualisieren Sie die Liste und suchen Sie die beabsichtigte Sitzung. Wählen Sie **Stop and release Notebook** und prüfen Sie die aufgeführten lokalen Aufgaben, bevor Sie **Stop and release** bestätigen. Dies kann diese Aufgaben stoppen und lebende Variablen und Verbindungen verwerfen. Geschichte, gespeicherte Ausgaben, Dateien und installierte Umgebungen bleiben erhalten; Frühere Dateischreibvorgänge werden nicht rückgängig gemacht und unabhängige Remote-Compute-Jobs werden nicht gestoppt.
 
 Warten Sie auf **Notebook-Ressourcen freigegeben**. Wenn die Bereinigung unvollständig ist, überprüfen Sie den Fortschritt und verwenden Sie **Retry cleanup**, wenn verfügbar. Export, Umgebungsänderungen oder andere aktive Operationen können die Freigabe blockieren; Beenden Sie sie und aktualisieren Sie die Liste. Eine Speicherschätzung ist kein Versprechen, wie viel RAM freigesetzt wird.
+
+## Lesen Sie die Compute Memory Zusammenfassung {/* #memory-summary */}
+
+Öffnen Sie **Compute**, um die Host-Zusammenfassung zu überprüfen. Unter macOS schließt **Memory usage** den zwischengespeicherten Speicher aus und folgt der Buchhaltung des Activity Monitors. Lesen Sie auf Windows das physische **Memory usage** zusammen mit **Committed / limit**. Committed Memory ist nicht die Menge an RAM, die derzeit belegt ist; Ein hoher Prozentsatz in einem Maß bedeutet nicht, dass das andere den gleichen Wert hat. Aktualisieren Sie die Zusammenfassung, bevor Sie entscheiden, welche Arbeit freigegeben werden soll.
+
+v1.3.4 reduziert auch wiederholte Lesevorgänge von langen Notebook-Historien und Batches, die für den Run in dauerhafte Checkpoints übergehen können. Wählen Sie den beabsichtigten Run weiter aus und überprüfen Sie die aufgezeichnete Ausgabe oder Vorschau. Die schnellere Historiennavigation führt keinen alten Code erneut aus oder überprüft ein wissenschaftliches Ergebnis.

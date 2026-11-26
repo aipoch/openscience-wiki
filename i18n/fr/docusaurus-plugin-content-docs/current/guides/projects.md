@@ -1,7 +1,7 @@
 ---
 title: "Projets et dossiers sources"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-25'
 ---
 
 # Projets et dossiers sources {/* #projects-and-source-folders */}
@@ -82,3 +82,15 @@ do not invent participants, measurements or citations.
 ![Demande d'optimisation personnalisée sous les options d'agent avancé du projet](/img/open-science/v121/optimization-template.webp)
 
 Retour au Compositeur et [optimiser un projet](composer.md#optimize-question). Examiner le texte réécrit avant d'envoyer; un modèle est une instruction écrite, et non une règle de validation scientifique.
+## Activer la recherche d'agent pour un projet {/* #agent-tracing */}
+
+Agent tracing enregistre les tours, les requêtes de modèle et les appels d'outil MCP intégrés à un récepteur configuré par la personne exécutant Open-Science. Il est désactivé par défaut. Il ne trace pas les cadres externes tels que le Codex d'exécution séparé.
+
+1. Configurez le récepteur et examinez le [paramètres de capture](../reference/diagnostics.md#agent-tracing). Activer seul le commutateur de projet ne met pas en place un récepteur.
+2. Ouvrez le menu nom du projet → **Project settings → Advanced agent options**.
+3. Activez **Agent tracing**, puis sélectionnez **Save**. Le réglage s'applique aux envois subséquents dans les sessions Agent intégrées de ce projet.
+4. Envoyer une petite demande non sensible et inspecter le récepteur pour le service `open-science-agent`. Vérifier la livraison séparément de la réponse de l'agent.
+
+Désactivez le réglage et enregistrez pour arrêter le traçage des prochains envois du projet. Les données déjà reçues restent soumises à la politique de conservation du récepteur. L’[activation par Run via CLI ou SDK](../reference/cli.md#otel-traces) est indépendante de ce réglage.
+
+![Recherche d'agents dans le projet Options avancées](/img/open-science/v1.3.4/agent-tracing.webp)

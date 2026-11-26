@@ -1,7 +1,7 @@
 ---
 title: "プロバイダーとローカルモデルのセットアップ"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -303,3 +303,8 @@ CodeBuddy サブスクリプションを選択する際に、CodeBuddy ランタ
 Kilo モデルに送る質問や会話資料は Kilo のサービスに渡ります。キーなしの一覧取得もネットワーク通信です。更新に失敗した場合は以前の一覧が保持されます。エラーを確認して再試行し、モデル ID を推測して入力しないでください。
 
 ![Kilo Gateway: API key optional and refreshed model catalog](/img/open-science/v1.3.3/kilo-catalog.webp)
+## CodeBuddyの理由の選択を新たにして下さい {/* #codebuddy-reasoning */}
+
+CodeBuddyは、各モデルの対応する推論の取り組みをサインインとモデルカタログリフレッシュ中に発見します。 **Settings → Model** で接続されたプロバイダを開き、**Refresh model list** を使用して、意図したモデルを選択します。 その努力ピッカーは、そのモデルのために報告されたレベルだけを提供しています。 モデルは、利用可能な選択肢を変更することができます。 想定される選択肢が不在の場合、各モデルが同じレベルをサポートするのではなく、接続とリフレッシュをチェックしてください。
+
+公式Zhipuカタログも含まれています **GLM-5.4の特長** でん v1.3.4. . . . プロバイダーのカタログを刷新し、アカウントに利用可能なモデルを確認してください。 リストされたモデルは、互換性のあるアクセスと成功したリクエストを必要とします。

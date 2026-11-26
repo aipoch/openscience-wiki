@@ -1,7 +1,7 @@
 ---
 title: "Créer et partager un film de recherche"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-25'
 ---
 
 # Créer et partager un film de recherche
@@ -59,11 +59,13 @@ Attendez que l'exportation finisse, puis rouvrez le fichier sauvegardé en dehor
 
 ## Régénérer ou récupérer {/* #film-recovery */}
 
-Lorsqu'un film est interrompu et que le dialogue offre **Retry**, reprendre pour réutiliser des scènes validées, narration et timings. Les points de contrôle survivent à un redémarrage du processus. **Generate again** commence une nouvelle tentative à la place; l'utiliser pour changer le contenu prévu ou délibérément rejeter la tentative précédente. Inspectez les progrès et le film terminé après chaque action.
+Alors qu'un film de recherche est généré, sa conversation reste en **Active** avec le statut du film visible. Si une boîte de dialogue film est bloquée par une autre génération de conversation, sélectionnez **Go to conversation** pour ouvrir ce propriétaire et inspecter les progrès avant de commencer une autre tâche.
 
-- Si la génération vous demande de sélectionner un modèle ou de vérifier les identifiants, corrigez cette exigence dans **Settings → Model**, puis revenir à la session.
-- Si le téléchargement de narration échoue, utilisez **Retry** et attendre **Installed** avant de générer à nouveau.
-- Utilisation **View research film → Generate again** après avoir modifié la session ou lorsque le résultat nécessite une autre tentative. Confirmer la nouvelle génération; elle peut prendre plusieurs minutes et utiliser à nouveau la capacité du modèle.
-- Utilisez la boîte de dialogue du film **More actions → Delete research film** Seulement quand vous voulez supprimer les fichiers de films locaux de cette branche. La confirmation explique que le contenu de la conversation et les copies enregistrées séparément sont conservés.
+Lorsqu'un film est interrompu et que le dialogue offre **Retry**, reprendre pour réutiliser des scènes validées, narration et timings. Les points de contrôle survivent à un redémarrage du processus. **Generate again** commence une nouvelle tentative à la place; l'utiliser lors de la modification du contenu prévu ou en rejetant délibérément la tentative précédente. Inspecter le progrès et le film terminé après chaque action.
 
-Voir [replay de session](session-replay.md) pour inspecter les étapes retenues et [reproductibilité](reproducibility.md) pour effectuer une vérification séparée.
+- Si la génération vous demande de sélectionner un modèle ou de vérifier les identifiants, corrigez cette exigence dans **Settings → Model**, puis retournez à la session.
+- Si le téléchargement de narration échoue, utilisez **Retry** et attendez **Installed** avant de générer à nouveau.
+- Utilisez **View research film → Generate again** après avoir modifié la session ou lorsque le résultat nécessite une autre tentative. Confirmer la nouvelle génération; il peut prendre plusieurs minutes et utiliser à nouveau la capacité du modèle.
+- Utilisez la boîte de dialogue de film **More actions → Delete research film** seulement lorsque vous voulez supprimer les fichiers de film locaux de cette branche. La confirmation explique que le contenu de la conversation et les copies enregistrées séparément sont conservés.
+
+Voir [rejouer la session](session-replay.md) pour inspecter les étapes retenues et [reproductibilité](reproducibility.md) pour effectuer une vérification séparée.

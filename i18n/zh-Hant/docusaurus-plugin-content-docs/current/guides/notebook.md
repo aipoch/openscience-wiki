@@ -1,7 +1,7 @@
 ---
 title: "Notebook 與執行證據"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -305,8 +305,14 @@ Runtimes 的包清單描述已安裝環境，Provenance 描述某個檔案所捕
 
 Open-Science 會在執行前檢查系統記憶體。如果請求因記憶體壓力被停止，先閱讀提示，完成或釋放不再需要的任務。記憶體恢復後不會自動重試；在提供該操作時，選擇 **Recheck and retry**。手動 Notebook 終端需要返回原終端，核對當前程式碼後再執行。
 
-記憶體壓力通知可以關閉，並在六秒後消失；通知消失不會重試或完成被阻止的請求。是否開始執行取決於實際執行檢查，而不只是通知。Windows 閾值不超過實體記憶體，檢查也考慮 macOS 記憶體壓力和 Linux 容器限制。
+記憶體壓力通知可以關閉，並在六秒後消失；通知消失不會重試或完成被阻止的請求。是否開始執行取決於實際執行檢查，而不只是通知。執行檢查考慮 Windows 實體記憶體閾值、macOS 記憶體壓力與 Linux 容器限制，與下方的彙總顯示口徑分別處理。
 
 開啟 **Compute → Notebook resources**，重新整理列表，找到目標會話。選擇 **Stop and release Notebook**，檢查列出的本地任務後，再確認 **Stop and release**。這會停止列出的任務，丟失記憶體中的變數和連線；歷史、已儲存結果、檔案和已安裝環境會保留。之前寫入的檔案不會回滾，獨立的遠端 Compute 任務也不會停止。
 
 等待 **Notebook resources released**。清理不完整時，檢視進度，並在可用時選擇 **Retry cleanup**。匯出、環境變更等正在進行的操作可能阻止釋放，需要完成後重新整理列表。介面的記憶體估計不代表一定能釋放同等大小的 RAM。
+
+## 閱讀 Compute 記憶體彙總 {/* #memory-summary */}
+
+開啟 **Compute** 檢視主機彙總。macOS 的 **Memory usage** 排除快取，採用與 Activity Monitor 一致的統計口徑。Windows 同時顯示物理 **Memory usage** 和 **Committed / limit**。提交記憶體不是當前佔用的 RAM，其中一項比例較高不代表另一項也相同。決定釋放哪些任務前，先重新整理彙總。
+
+v1.3.4 也減少了讀取較長 Notebook 歷史時的重複操作，並將符合條件的 Run 狀態變更批次寫入持久檢查點。仍需選擇目標 Run，檢查其輸出或預覽。歷史瀏覽變快不會重新執行舊程式碼，也不代表科研結果已經驗證。

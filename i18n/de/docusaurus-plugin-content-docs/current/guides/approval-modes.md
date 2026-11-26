@@ -1,7 +1,7 @@
 ---
 title: "Genehmigungen und Genehmigungen"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-25'
 ---
 
 # Genehmigungen und Genehmigungen {/* #permissions-and-approvals */}
@@ -112,3 +112,8 @@ Die Regel gilt für anerkannte app-eigene Literatur-Tools, nicht für jeden MCP-
 ## Halten Sie den Netzwerkmodus getrennt {/* #strict-network */}
 
 **Full access** umgeht die **Strict** Notebook Whitelist nicht. Ein nicht gelistetes Ziel wird ohne Autorisierungsangebot blockiert, auch wenn das Gespräch automatische Aktionen erlaubt. Fügen Sie nur das erforderliche Protokoll, Hostname/IP und Port in [Netzeinstellungen](network.md#public-network-rules) hinzu.
+## Nachdem Sie eine Tool-Aktion abgelehnt haben {/* #denied-action */}
+
+Wählen Sie **Deny**, wenn Sie nicht möchten, dass die dargestellte Aktion ausgeführt wird. Der eingebaute Agent behält eine Erklärung am Ende des Zuges, anstatt eine stille Antwort zu hinterlassen. Überprüfen Sie, welche Aktion abgelehnt wurde und welche früheren Aktionen tatsächlich abgeschlossen wurden. Abgewiesene Anrufe werden getrennt von abgeschlossenen Arbeiten gezählt; ein Endzug bedeutet nicht, dass die angeforderte Operation erfolgreich war.
+
+Um fortzufahren, beschreiben Sie eine Alternative oder stellen Sie eine neue, engere Anfrage. Wechseln Sie nicht zu **Full access**, nur um eine Verweigerung zu verbergen.

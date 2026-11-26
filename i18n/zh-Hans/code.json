@@ -2868,5 +2868,11 @@
   },
   "docs.outline.reference.v133.scope": {
     "message": "后台更新、内置 Agent 默认配置、图片编辑与错误说明。"
+  },
+  "docs.outline.reference.v134.title": {
+    "message": "v1.3.4"
+  },
+  "docs.outline.reference.v134.scope": {
+    "message": "Agent tracing、Windows 更新恢复、Notebook 历史与各平台内存显示。"
   }
 }

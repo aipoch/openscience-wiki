@@ -1924,5 +1924,11 @@
   },
   "docs.outline.reference.v132.scope": {
     "message": "Kilo Gateway, 이미지 카탈로그, 라이터 세션 및 PDF 번역."
+  },
+  "docs.outline.reference.v134.title": {
+    "message": "v1.3.4"
+  },
+  "docs.outline.reference.v134.scope": {
+    "message": "에이전트 추적, Windows 업데이트 복구, Notebook 역사와 플랫폼 메모리 읽기."
   }
 }

@@ -1,7 +1,7 @@
 ---
 title: "架构与诊断"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-25'
 ---
 
 # 架构与诊断
@@ -84,3 +84,41 @@ flowchart LR
 ## 桌面与后端是不同进程 {/* #node-backend */}
 
 v0.37.0 起，Electron 负责原生桌面外壳，共享服务由普通 Node 后端负责。桌面、Web UI、CLI 与 SDK 可以连接同一后端。客户端连接失败时，用 `status --json` 核对配置目录、版本与实际端口；窗口可见不代表后端健康。停止前先了解[服务归属](server.md#backend-ownership)。
+
+## 配置 Agent tracing {/* #agent-tracing */}
+
+需要把内置 Agent 的一次交互与模型请求、MCP 工具调用关联起来排查时，可以配置 OTLP/HTTP JSON 接收端，例如 OpenTelemetry Collector 或 Langfuse。Open-Science 不提供代为收集数据的服务。端点必须是完整的数据接收地址：通用 Collector 通常使用 `/v1/traces`，Langfuse 使用 `/api/public/otel/v1/traces`。
+
+由后端运行者在启动配置中设置端点、认证和采集开关。已安装应用支持读取当前配置目录的 `.env`，通常为 `~/.open-science/.env`。修改启动配置后，先结束正在进行的工作，再重启对应后端；这与保存项目设置是两件事。
+
+<p className="example-label"><strong>示例</strong> 关闭内容采集的本地接收配置</p>
+
+```dotenv
+OPEN_SCIENCE_AGENT_OTLP_TRACES_ENDPOINT=http://127.0.0.1:4318/v1/traces
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_CONTENT=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_API_REQUEST=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_ARGUMENTS=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_RESULTS=0
+OPEN_SCIENCE_AGENT_OTLP_DIAGNOSTICS=1
+```
+
+此示例要求接收服务已监听后端所在机器的回环地址，不会安装接收服务。使用其他主机时，填写其实际接收地址与所需认证，参见[官方配置说明](https://github.com/aipoch/open-science/blob/v1.3.4/docs/development-quick-reference.md#open-science-agent-traces)和[环境配置示例](https://github.com/aipoch/open-science/blob/v1.3.4/.env.example)。不要将接收端密钥写进提示词或共享截图。
+
+### 选择采集范围
+
+项目追踪**默认关闭**，但以下内容开关在未填写时均默认为 **`1`**。仅采集元数据时，应明确将四项都设为 `0`。它们属于启动设置，不是项目对话框中的额外开关。
+
+| `OPEN_SCIENCE_AGENT_OTLP_` 后的设置名 | 设为 `1` 时包含的内容 |
+| --- | --- |
+| `CAPTURE_CONTENT` | 提示词与最终回复的摘录 |
+| `CAPTURE_API_REQUEST` | 模型请求 JSON，可能包含指令、历史、工具数据与附件 |
+| `CAPTURE_TOOL_ARGUMENTS` | MCP 工具输入预览 |
+| `CAPTURE_TOOL_RESULTS` | MCP 工具输出预览 |
+
+仅采集元数据仍会记录操作信息。为含私有研究数据的项目开启追踪前，检查接收端及其访问权限。
+
+### 启用并检查送达
+
+打开[项目设置](../guides/projects.md#agent-tracing)，启用 **Agent tracing** 后保存。使用内置 **Open-Science Agent** 发送一条小请求。在接收端查找服务 `open-science-agent`，查看该任务实际产生的轮次、请求及工具调用记录。
+
+为 `.env` 配置启用诊断后，可在同目录的 `.env.otel-status.json` 查看上传状态。没有收到记录时，检查当前配置实例、项目开关、运行框架、完整端点、接收服务和凭据。发送是异步的，Agent 完成回复不代表上传成功。关闭追踪只停止后续采集，不会删除接收端已有记录。

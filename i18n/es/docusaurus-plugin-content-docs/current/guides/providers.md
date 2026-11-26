@@ -1,7 +1,7 @@
 ---
 title: "Proveedor y configuración del modelo local"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import ToolOperationGroup from '@site/src/components/ToolOperationGroup';
@@ -303,3 +303,8 @@ En **Model provider**, **Skip** añade Kilo Gateway sin API key y continúa a No
 Las consultas y los materiales enviados a un modelo Kilo llegan al servicio de Kilo. Una consulta de catálogo sin clave también utiliza la red. Si falla la actualización, se conserva la lista anterior. Revise el error y vuelva a intentarlo; no invente identificadores de modelo.
 
 ![Kilo Gateway: API key optional and refreshed model catalog](/img/open-science/v1.3.3/kilo-catalog.webp)
+## Opciones de razonamiento CodeBuddy Refresh {/* #codebuddy-reasoning */}
+
+CodeBuddy descubre los esfuerzos de razonamiento apoyados por cada modelo durante el inicio de sesión y el actualización de modelo-catalog. Abra el proveedor conectado en **Settings → Model**, utilice **Refresh model list**, luego seleccione el modelo indicado. Su recolector de esfuerzo ofrece sólo los niveles reportados para ese modelo; cambiar modelos puede cambiar las opciones disponibles. Si las opciones esperadas están ausentes, compruebe la conexión y refresque en lugar de asumir que cada modelo soporta el mismo nivel.
+
+El catálogo oficial Zhipu también incluye **GLM-5.4** en v1.3.4. Refrescar el catálogo de ese proveedor y comprobar el modelo disponible en su cuenta. Un modelo listado todavía necesita acceso compatible y una solicitud exitosa.

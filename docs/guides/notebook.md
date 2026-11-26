@@ -1,7 +1,7 @@
 ---
 title: "Notebook and execution evidence"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 import PlatformGuide, {PlatformContent} from '@site/src/components/PlatformGuide';
@@ -312,8 +312,14 @@ For repeated executions, use [scheduled tasks](scheduled-tasks.md) after complet
 
 ## Manage Notebook memory and resources {/* #memory-resources */}
 
-Before execution, Open-Science checks system memory. Memory-pressure notices are dismissible and expire after six seconds; their disappearance does not retry or complete a blocked request. The execution decision, rather than the notice alone, determines whether a run starts. Windows checks are capped to physical RAM; macOS memory pressure and Linux container limits are also considered. If a request is stopped for memory pressure, review the notice and finish or release work you no longer need. Memory becoming available does not automatically retry the request; choose **Recheck and retry** when offered. For a manual Notebook terminal, return to that terminal and review its current contents before running again.
+Before execution, Open-Science checks system memory. Memory-pressure notices are dismissible and expire after six seconds; their disappearance does not retry or complete a blocked request. The execution decision, rather than the notice alone, determines whether a run starts. Execution checks consider Windows physical-memory thresholds, macOS memory pressure and Linux container limits. These checks are separate from the summary values below. If a request is stopped for memory pressure, review the notice and finish or release work you no longer need. Memory becoming available does not automatically retry the request; choose **Recheck and retry** when offered. For a manual Notebook terminal, return to that terminal and review its current contents before running again.
 
 Open **Compute → Notebook resources**, refresh the list and locate the intended session. Choose **Stop and release Notebook** and inspect the listed local tasks before confirming **Stop and release**. This can stop those tasks and discards live variables and connections. History, saved outputs, files and installed environments remain; earlier file writes are not undone, and independent remote Compute jobs are not stopped.
 
 Wait for **Notebook resources released**. If cleanup is incomplete, inspect its progress and use **Retry cleanup** when available. Export, environment changes or other active operations can block release; finish them and refresh the list. A memory estimate is not a promise of how much RAM will be freed.
+
+## Read the Compute memory summary {/* #memory-summary */}
+
+Open **Compute** to inspect the host summary. On macOS, **Memory usage** excludes cached memory and follows Activity Monitor's accounting. On Windows, read physical **Memory usage** together with **Committed / limit**. Committed memory is not the amount of RAM currently occupied; a high percentage in one measure does not mean the other has the same value. Refresh the summary before deciding which work to release.
+
+v1.3.4 also reduces repeated reads of long Notebook histories and batches eligible Run transitions into durable checkpoints. Continue selecting the intended Run and checking its recorded output or preview. Faster history navigation does not rerun old code or verify a scientific result.

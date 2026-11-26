@@ -1,7 +1,7 @@
 ---
 title: "건축과 진단"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-25'
 ---
 
 # 건축과 진단 {/* #architecture-and-diagnostics */}
@@ -84,3 +84,40 @@ Ordinary metadata 소스는 개인 콘텐츠 필드를 제외합니다. 민감�
 ## 데스크톱 및 백엔드는 별도의 프로세스입니다. {/* #node-backend */}
 
 v0.37.0에서 Electron은 일반 Node 백엔드가 공유 서비스를 소유하면서 기본 데스크탑 쉘을 소유합니다. 데스크탑, 웹 UI, CLI 및 SDK은 동일한 백엔드에 연결할 수 있습니다. 구성 디렉토리, 버전 및 실제 포트 식별 `status --json` 클라이언트가 연결할 수 없을 때. 눈에 보이는 데스크탑 창은 혼자는 backend를 증명하지 않습니다 건강합니다. 그것을 멈추기 전에 [백엔드 소유권](server.md#backend-ownership)를 따르십시오.
+## 에이전트 추적 {/* #agent-tracing */}
+
+내장 에이전트가 모델 요청과 MCP 도구를 통해 턴을 검사해야 할 때 이것을 사용하십시오. OpenTelemetry Collector Collector 또는 Langfuse와 같은 OTLP/HTTP JSON 수신기를 공급합니다. Open-Science은 앱 운영 컬렉션 서비스를 제공하지 않습니다. 엔드포인트는 전체 ingestion URL이어야 합니다. 일반적인 수집가 일반적으로 `/v1/traces`을 사용하지만, Langfuse는 `/api/public/otel/v1/traces`을 사용합니다.
+
+백엔드를 운영하는 사람은 시작 설정에서 엔드포인트, 인증 및 캡처 스위치를 구성합니다. 설치된 앱의 경우 활성 구성 디렉토리의 `.env`이 지원됩니다 (보통 `~/.open-science/.env`). 종료 활성 작업 및 시작 그 출시 구성을 변경 한 후 백엔드. 이것은 프로젝트 설정 저장에서 분리됩니다.
+
+<p className="example-label"><strong>예시</strong> 콘텐츠 캡처가 비활성화 된 로컬 수신기</p>
+
+```dotenv
+OPEN_SCIENCE_AGENT_OTLP_TRACES_ENDPOINT=http://127.0.0.1:4318/v1/traces
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_CONTENT=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_API_REQUEST=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_ARGUMENTS=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_RESULTS=0
+OPEN_SCIENCE_AGENT_OTLP_DIAGNOSTICS=1
+```
+
+이 예제는 백엔드의 자신의 루프백 주소를 이미 듣는 수신기를 가정한다. 그것은 하나 설치하지 않습니다. 다른 호스트의 경우 실제 ingestion URL과 필수 인증; [공식 수신기 구성](https://github.com/aipoch/open-science/blob/v1.3.4/docs/development-quick-reference.md#open-science-agent-traces) 및 [환경 예제](https://github.com/aipoch/open-science/blob/v1.3.4/.env.example)을 참조하십시오. 수신자 비밀을 프롬프트 및 공유 스크린샷에서 유지합니다.
+
+### 캡처 세부 정보 {/* #choose-capture-detail */}
+
+프로젝트 추적은 **기본적으로 꺼져 있습니다**. 다만 아래의 콘텐츠 수집 설정은 생략하면 각각 **`1`(켜짐)** 로 적용됩니다. 메타데이터만 기록하려면 네 항목을 모두 명시적으로 `0`으로 설정하세요. 이는 시작 설정이며, 프로젝트 대화상자의 추가 스위치가 아닙니다.
+
+| 후에 suffix를 놓으십시오 `OPEN_SCIENCE_AGENT_OTLP_` | 설정할 때 입력된 내용 `1` |
+| --- | --- |
+| `CAPTURE_CONTENT` | 프롬프트와 최종 응답의 발췌 |
+| `CAPTURE_API_REQUEST` | 모델 요청 JSON, 잠재적으로 지침, 역사, 도구 데이터 및 첨부 파일을 포함 |
+| `CAPTURE_TOOL_ARGUMENTS` | MCP 도구 입력 미리보기 |
+| `CAPTURE_TOOL_RESULTS` | MCP 도구 출력 미리보기 |
+
+Metadata-only 추적은 여전히 작업을 설명합니다. 개인 연구 데이터로 프로젝트를 활성화하기 전에 수신자 및 액세스 규칙을 검토하십시오.
+
+### 결제 및 결제 {/* #enable-and-check-delivery */}
+
+[프로젝트 설정](../guides/projects.md#agent-tracing)을 열고 **Agent tracing**을 저장합니다. 작은 요청에 대한 내장 **Open-Science Agent**을 사용하십시오. 수신기에서 서비스 `open-science-agent`을 찾고 관련 턴을 검사, 요청 및 도구는 작업이 실제로 생산하는 경향이.
+
+`.env` 구성을 위해 활성화된 진단으로, 업로드 상태를 위해 인접한 `.env.otel-status.json`를 검사합니다. 추적이 도착하지 않은 경우, 활성 프로필, 프로젝트 스위치, 실행 시간, 전체 엔드포인트, 수신기 가용성 및 자격 증명을 확인하십시오. 납품은 비동기입니다: 완료된 대리인 대답은 성공적인 올려주기를 증명하지 않습니다. 정지 미래 캡처를 추적; 그것은 수신기에서 이미 레코드를 삭제하지 않습니다.

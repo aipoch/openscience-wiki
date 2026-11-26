@@ -1919,5 +1919,11 @@
   },
   "docs.outline.reference.v132.scope": {
     "message": "Kilo Gateway、画像カタログ、ライターセッション、PDF 翻訳。"
+  },
+  "docs.outline.reference.v134.title": {
+    "message": "v1.3.4"
+  },
+  "docs.outline.reference.v134.scope": {
+    "message": "エージェントのトレース、Windows更新回復、Notebook歴史とプラットフォームのメモリ読書。"
   }
 }

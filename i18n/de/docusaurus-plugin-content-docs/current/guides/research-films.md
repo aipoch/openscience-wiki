@@ -1,7 +1,7 @@
 ---
 title: "Erstellen und Teilen eines Forschungsfilms"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-25'
 ---
 
 # Erstellen und Teilen eines Forschungsfilms
@@ -59,11 +59,13 @@ Warten Sie, bis der Export abgeschlossen ist, und öffnen Sie die gespeicherte D
 
 ## Regenerieren oder Rückgewinnung {/* #film-recovery */}
 
-Wenn ein Film unterbrochen wird und der Dialog **Retry** anbietet, fahren Sie fort, validierte Szenen, Erzählungen und Timings wiederzuverwenden. Checkpoints überleben einen Prozessneustart. **Generate again** startet stattdessen einen neuen Versuch; verwenden Sie ihn, wenn Sie den beabsichtigten Inhalt ändern oder den vorherigen Versuch absichtlich verwerfen. Überprüfen Sie den Fortschritt und den abgeschlossenen Film nach beiden Aktionen.
+Während ein Forschungsfilm generiert, bleibt seine Konversation in **Active** mit dem sichtbaren Filmstatus. Wenn ein Filmdialog von der Generation einer anderen Konversation blockiert wird, wählen Sie **Go to conversation** aus, um diesen Besitzer zu öffnen und den Fortschritt zu überprüfen, bevor Sie einen anderen Job beginnen.
 
-- Wenn Generation Sie auffordert, ein Modell auszuwählen oder Anmeldeinformationen zu überprüfen, beheben Sie diese Anforderung in **Settings → Model**und dann zurück zur Sitzung.
-- Wenn der Download der Erzählung fehlschlägt, verwenden Sie **Retry** und warten auf **Installed** Bevor wir wieder erzeugen.
-- Verwendung **View research film → Generate again** nach Änderung der Sitzung oder wenn das Ergebnis einen weiteren Versuch erfordert. Bestätigen Sie die neue Generation; es kann mehrere Minuten dauern und die Modellkapazität wieder verwenden.
-- Verwenden Sie den Filmdialog **More actions → Delete research film** nur wenn Sie die lokalen Filmdateien dieser Branche entfernen möchten. Die Bestätigung erklärt, dass Konversationsinhalte und separat gespeicherte Kopien aufbewahrt werden.
+Wenn ein Film unterbrochen wird und der Dialog **Retry** anbietet, setzen Sie fort, um validierte Szenen, Erzählungen und Timings wiederzuverwenden. Checkpoints überleben einen Prozessneustart. **Generate again** startet stattdessen einen neuen Versuch; verwenden, wenn Sie den beabsichtigten Inhalt ändern oder den vorherigen Versuch absichtlich verwerfen. Überprüfen Sie den Fortschritt und den abgeschlossenen Film nach beiden Aktionen.
 
-Siehe [Session Replay](session-replay.md) zur Überprüfung der zurückgehaltenen Schritte und [Vergleichbarkeit](reproducibility.md) zur Durchführung einer separaten Überprüfung.
+- Wenn Generation Sie auffordert, ein Modell auszuwählen oder Anmeldeinformationen zu überprüfen, beheben Sie diese Anforderung in **Settings → Model** und kehren Sie dann zur Sitzung zurück.
+- Wenn der Download der Erzählung fehlschlägt, verwenden Sie **Retry** und warten Sie auf **Installed**, bevor Sie erneut generieren.
+- Verwenden Sie **View research film → Generate again**, nachdem Sie die Sitzung geändert haben oder wenn das Ergebnis einen weiteren Versuch erfordert. Bestätige die neue Generation; Es kann mehrere Minuten dauern und die Modellkapazität wieder verwenden.
+- Verwenden Sie das **More actions → Delete research film** des Filmdialogs nur, wenn Sie die lokalen Filmdateien dieses Zweigs entfernen möchten. Die Bestätigung erklärt, dass Konversationsinhalte und separat gespeicherte Kopien aufbewahrt werden.
+
+Siehe [Session Replay](session-replay.md) zum Überprüfen der beibehaltenen Schritte und [Vergleichbarkeit](reproducibility.md) zum Ausführen einer separaten Überprüfung.

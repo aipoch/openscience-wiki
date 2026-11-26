@@ -1,7 +1,7 @@
 ---
 title: "Proyectos y carpetas fuente"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-25'
 ---
 
 # Proyectos y carpetas fuente {/* #projects-and-source-folders */}
@@ -82,3 +82,15 @@ do not invent participants, measurements or citations.
 ![Previsión de optimización personalizada bajo las opciones de agente avanzado del proyecto](/img/open-science/v121/optimization-template.webp)
 
 Volver al Compositor y [optimizar un proyecto](composer.md#optimize-question). Revise el texto reescrito antes de enviar; una plantilla es una instrucción de escritura, no una regla de validación científica.
+## Permitir rastreo de agentes para un proyecto {/* #agent-tracing */}
+
+El rastreo del agente registra los turnos, las solicitudes de modelo y las llamadas de herramienta MCP en un receptor configurado por la persona que ejecuta Open-Science. Está apagado por defecto. No rastrea marcos externos como el tiempo de ejecución Codex separado.
+
+1. Configure el receptor y revise el [Configuración de captura](../reference/diagnostics.md#agent-tracing). Habilitar el interruptor del proyecto por sí solo no establece un receptor.
+2. Abrir el menú de nombre de proyecto → **Project settings → Advanced agent options**.
+3. Enciende **Agent tracing**, y luego seleccione **Save**. El ajuste se aplica a los envíos posteriores en las sesiones integradas de este proyecto.
+4. Envíe una solicitud pequeña y no sensible e inspeccione al receptor para el servicio `open-science-agent`. Comprueba la entrega separadamente de si el Agente respondió.
+
+Desactive el interruptor y guarde para detener el trazado de las siguientes solicitudes del proyecto. Los datos ya recibidos siguen sujetos a la política de conservación del receptor. La [activación por Run mediante CLI o SDK](../reference/cli.md#otel-traces) es independiente de este ajuste.
+
+![Localización de agentes en las opciones avanzadas del proyecto](/img/open-science/v1.3.4/agent-tracing.webp)

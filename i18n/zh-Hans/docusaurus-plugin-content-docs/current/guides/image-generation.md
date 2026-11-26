@@ -1,7 +1,7 @@
 ---
 title: "生成与编辑图片"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # 生成与编辑图片
@@ -44,6 +44,8 @@ Save the image so I can review it in the project.
 5. 下载选定版本，重新打开，核对标签和科学表述后再分享。图片详情可标识产生该次编辑的 Notebook 内核，但这条记录不等于科学准确性验证。
 
 编辑控件使用会话输入框，会话消息仍留在原位置。图注应准确说明示意内容。需要核对图表数值时，使用 [Notebook](notebook.md) 和[来源与复现](reproducibility.md)；幻灯片文字见[演示文稿编辑](presentation-editing.md)。
+
+v1.3.4 修复了编辑版本发布期间打开完整图片预览的问题。打开新版本后，先确认版本身份，再比较结果。图片草稿仍在编辑时也可以浏览 **Provenance** 历史；留意当前查看的是哪个已保存版本。
 
 ## 保存前测试图像服务 {/* #test-service */}
 

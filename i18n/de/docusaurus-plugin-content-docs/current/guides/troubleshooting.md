@@ -1,7 +1,7 @@
 ---
 title: "Fehlerbehebung und häufige Fragen"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # Fehlerbehebung und häufige Fragen {/* #troubleshooting-and-common-questions */}
@@ -275,3 +275,8 @@ Lesen Sie die Ursache, die mit der fehlgeschlagenen Antwort gezeigt wurde. Über
 Bei einer fehlgeschlagenen Antwort öffnen Sie **Error details** und behalten die Fehlerklassifizierung und die Anforderungs-ID bei, wenn sie vorhanden sind. Authentifizierung, Quote, Nichtverfügbarkeit des Anbieters und eine fehlerhafte Antwort erfordern unterschiedliche Abhilfemaßnahmen. Entfernen Sie private Inhalte, bevor Sie Diagnosen teilen.
 
 Wenn Sie Stop gewählt haben, warten Sie auf die Bereinigung und prüfen Sie die gespeicherten Ausgaben. Eine gestoppte Aufgabe unterscheidet sich von einer Fortsetzung, die nie eine Antwort erhalten hat. Für die Lieferung von Nachrichten in der Warteschlange, das Laden von Anhängen oder Fehler beim Lesen der Historie, überprüfen Sie die ursprüngliche Konversation vor dem erneuten Senden; Akzeptierte Werkzeugarbeit hat möglicherweise bereits Dateien produziert. In Windows kann eine integrierte Agent-Frage, die auf Ihre Antwort wartet, den Neustart überleben: Öffnen Sie die Sitzung erneut und beantworten Sie die beibehaltene Frage, anstatt eine doppelte Aufgabe zu erstellen.
+## Ein Anbieter meldet unzureichendes Guthaben {/* #provider-balance */}
+
+Wenn ein Upstream-Anbieter HTTP **402** explizit mit **Unzureichender Saldo** zurückgibt, behält Open-Science diesen Status und sichere Provider-Details bei und erklärt das Abrechnungsproblem. Überprüfen Sie den ausgewählten Anbieter, das Konto und das Modell und überprüfen Sie dann den Kontostand oder den Abrechnungszugriff dieses Anbieters, bevor Sie erneut versuchen. Ein API-Guthaben und ein Abonnementgeld können getrennt sein.
+
+Behalten Sie die Nachricht und die Anforderungskennung bei der Kontaktaufnahme mit dem Anbieter. Die Zahl 402 allein stellt die Ursache nicht fest; Verwenden Sie die tatsächlichen Antwortdetails. Siehe [HTTP Status Lookup](#http-errors-400-403-429-and-5xx).

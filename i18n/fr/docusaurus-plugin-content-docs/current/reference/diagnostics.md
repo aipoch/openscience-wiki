@@ -1,7 +1,7 @@
 ---
 title: "Architecture et diagnostic"
 last_update:
-  date: '2026-10-12'
+  date: '2026-11-25'
 ---
 
 # Architecture et diagnostic {/* #architecture-and-diagnostics */}
@@ -84,3 +84,40 @@ Les sources de métadonnées ordinaires excluent les champs de contenu privé. A
 ## Le bureau et le moteur sont des processus séparés {/* #node-backend */}
 
 De v0.37.0, Electron possède le shell de bureau natif tandis qu'un moteur Node ordinaire possède des services partagés. Le bureau, l'interface utilisateur Web, CLI et SDK peuvent se connecter à ce même moteur. Identifiez le répertoire de configuration, la version et le port réel avec `status --json` lorsqu'un client ne peut pas se connecter. Une fenêtre de bureau visible à elle seule ne prouve pas que le moteur est sain. Suivez [propriétaire du moteur](server.md#backend-ownership) avant de l'arrêter.
+## Configurer le tracé de l'agent {/* #agent-tracing */}
+
+Utilisez ceci lorsque vous avez besoin d'inspecter un Agent intégré transformer les requêtes de modèle et les outils MCP. Fournissez un récepteur OTLP/HTTP JSON, tel qu'un collecteur OpenTelemetry ou Langfuse. Open-Science ne fournit pas de service de collecte d'applications. Le paramètre doit être l'URL complète de l'ingestion; un collecteur générique utilise généralement `/v1/traces`, tandis que Langfuse utilise `/api/public/otel/v1/traces`.
+
+La personne qui actionne le moteur configure les interrupteurs d'extrémité, d'authentification et de capture dans sa configuration de lancement. Pour une application installée, `.env` du répertoire de configuration active est pris en charge (habituellement `~/.open-science/.env`). Terminer le travail actif et redémarrer ce moteur après avoir changé sa configuration de lancement. Ceci est séparé de l'enregistrement d'un réglage de projet.
+
+<p className="example-label"><strong>Exemple</strong> Un récepteur local avec capture de contenu désactivé</p>
+
+```dotenv
+OPEN_SCIENCE_AGENT_OTLP_TRACES_ENDPOINT=http://127.0.0.1:4318/v1/traces
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_CONTENT=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_API_REQUEST=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_ARGUMENTS=0
+OPEN_SCIENCE_AGENT_OTLP_CAPTURE_TOOL_RESULTS=0
+OPEN_SCIENCE_AGENT_OTLP_DIAGNOSTICS=1
+```
+
+Cet exemple suppose qu'un récepteur écoute déjà sur la propre adresse loopback du moteur. Il ne l'installe pas. Pour un autre hôte, utilisez son URL d'ingestion et l'authentification requise; voir [configuration officielle du récepteur](https://github.com/aipoch/open-science/blob/v1.3.4/docs/development-quick-reference.md#open-science-agent-traces) et [exemples d'environnement](https://github.com/aipoch/open-science/blob/v1.3.4/.env.example). Garder les secrets du récepteur hors des instructions et des captures d'écran partagées.
+
+### Choisir le détail de la capture {/* #choose-capture-detail */}
+
+Le traçage du projet est **désactivé par défaut**. En revanche, chacun des quatre réglages de capture ci-dessous vaut **`1` (activé)** lorsqu’il est omis. Définissez explicitement les quatre valeurs à `0` pour ne capturer que les métadonnées. Ce sont des paramètres de démarrage, pas des interrupteurs supplémentaires dans la fenêtre du projet.
+
+| Réglage du suffixe après `OPEN_SCIENCE_AGENT_OTLP_` | Contenu inclus lors de la mise à `1` |
+| --- | --- |
+| `CAPTURE_CONTENT` | Extraits de l’instruction et de la réponse finale |
+| `CAPTURE_API_REQUEST` | Demande de modèle JSON, incluant éventuellement des instructions, l'historique, les données d'outil et les pièces jointes |
+| `CAPTURE_TOOL_ARGUMENTS` | Aperçus des entrées de l'outil MCP |
+| `CAPTURE_TOOL_RESULTS` | Aperçus des sorties des outils MCP |
+
+Les traces de métadonnées décrivent encore les opérations. Examiner le récepteur et ses règles d'accès avant de permettre un projet avec des données de recherche privées.
+
+### Activer et vérifier la livraison {/* #enable-and-check-delivery */}
+
+Ouvrez [Paramètres du projet](../guides/projects.md#agent-tracing), activez **Agent tracing** et enregistrez. Utilisez le **Open-Science Agent** intégré pour une petite requête. Recherchez le service `open-science-agent` dans le récepteur et inspectez le tour, la requête et les spans d'outils corrélés que la tâche a effectivement produit.
+
+Avec les diagnostics activés pour la configuration `.env`, inspectez le `.env.otel-status.json` adjacent pour vérifier l'état de téléchargement. Si aucune trace n'arrive, vérifiez le profil actif, le changement de projet, l'exécution, le point final complet, la disponibilité du récepteur et les références. La livraison est asynchrone: une réponse d'Agent complétée ne prouve pas que le téléchargement est réussi. La mise hors circuit stoppe la capture future; il ne supprime pas les enregistrements déjà au récepteur.

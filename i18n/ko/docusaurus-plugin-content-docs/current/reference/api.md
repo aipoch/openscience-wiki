@@ -1,7 +1,7 @@
 ---
 title: "작업 SDK 및 로컬 API"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # 작업 SDK 및 로컬 API {/* #task-sdk-and-local-api */}
@@ -203,3 +203,8 @@ CLI `--permission-prompts none`에 대응하는 `startRun` 입력에 `permission
 ## 내장 런타임 첫 사용 {/* #builtin-default */}
 
 v1.3.3에서, 깨끗한 SDK/backend 설치는 새로운 프로젝트와 세션을 내장 Open-Science 에이전트에 기본으로 합니다. 옵션 외부 에이전트 SDK를 더 이상 방지 서비스 시작. 모델 인증 및 선택한 모델의 기능은 여전히 실행에 필요한 것입니다; 서비스 가용성은 방해 또는 도구 실행을 확인하지 않습니다. 선택할 때만 외부 런타임을 설치합니다. [CLI 설정](cli.md#terminal-setup) 및 [에이전트 설정](../guides/frameworks.md#default-runtime)을 참조하십시오.
+## SDK을 통해 한 번의 실행 {/* #otel-traces */}
+
+`submitRun(requestId, request)` 또는 `startRun(request, {requestId})`에 전달하는 Run 요청에 `otelTraces: true`를 지정하세요. 프로젝트 스위치가 꺼져 있어도 해당 Run에만 추적을 켭니다. 저장된 프로젝트나 세션 설정은 변경하지 않습니다. 이 필드를 생략하면 실행 전달 시점의 프로젝트 설정을 따릅니다.
+
+호스트의 `run-otel-traces` 지원을 확인하고 내장 Agent를 선택한 뒤, 먼저 [수신 대상 및 수집 설정](diagnostics.md#agent-tracing)을 구성하세요. 설정이 유효하지 않으면 Run 준비가 실패합니다. 실행 시작 후 비동기 전송 오류는 작업 실행과 별도로 처리됩니다. 정상적인 요청 ID와 재시도 식별 정보를 유지하세요.[CLI의 해당 기능](cli.md#otel-traces)도 참고하세요.

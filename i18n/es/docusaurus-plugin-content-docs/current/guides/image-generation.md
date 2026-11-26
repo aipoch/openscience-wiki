@@ -1,7 +1,7 @@
 ---
 title: "Generar y editar imágenes"
 last_update:
-  date: '2026-11-23'
+  date: '2026-11-25'
 ---
 
 # Generar y editar imágenes {/* #generate-and-edit-images */}
@@ -40,10 +40,10 @@ Inspeccione las etiquetas, orden y dirección de flecha. Si una solicitud falla,
 1. Abra la imagen prevista en la vista previa. Ajustar sobre él o mover el enfoque del teclado a sus controles, a continuación, elegir **Edit image**. Confirme la imagen y la versión de origen antes de introducir instrucciones.
 2. En el compositor de conversaciones, describir un cambio enfocado. Mantenga la solicitud atada a la fuente mostrada; entrar en edición no lo envía. Si selecciona una región, compruebe el área resaltada y su instrucción. Las herramientas y parámetros disponibles dependen de la imagen y el servicio.
 3. Seleccione **Send image edit** y espere la nueva salida. Si el control no está disponible, compruebe la razón mostrada y [configuración del servicio de imagen](#configure). Una solicitud fallida no es una nueva versión completa.
-4. Use **Compare with input image** o **Compare** cuando se ofrezca, e inspeccione tanto el área modificada como el contenido que debe permanecer invariable. Utilice **Image history** para revisitar versiones anteriores, o **Continue editing** para otra revisión.
+4. Abra la nueva versión en la vista previa completa y confirme su identidad; v1.3.4 corrige la apertura de una edición mientras se publica su versión. Use **Compare with input image** o **Compare** cuando se ofrezca, e inspeccione tanto el área modificada como el contenido que debe permanecer invariable. Utilice **Image history** para revisitar versiones anteriores, o **Continue editing** para otra revisión.
 5. Descargue la versión elegida, vuelva a abrirla, y compruebe etiquetas y reclamaciones científicas antes de compartir. Los detalles de la imagen pueden identificar el kernel Notebook que produjo una edición; ese registro no establece la precisión científica.
 
-La conversación permanece en su lugar mientras los controles de edición utilizan su compositor. Mantenga una capción precisa identificando contenido ilustrativo. Para los cheques numéricos en las parcelas, utilice [Notebook](notebook.md) y [Procedencia](reproducibility.md); para el texto de diapositivas, vea [edición de la presentación](presentation-editing.md).
+La conversación permanece en su lugar mientras los controles de edición utilizan su compositor. También puede abrir la historia de **Provenance** mientras que un borrador de imagen está activo; comprobar qué versión guardada está viendo. Mantenga una capción precisa identificando contenido ilustrativo. Para los cheques numéricos en las parcelas, utilice [Notebook](notebook.md) y [Procedencia](reproducibility.md); para el texto de diapositivas, vea [edición de la presentación](presentation-editing.md).
 
 ## Pruebe un servicio de imagen antes de guardar {/* #test-service */}
 

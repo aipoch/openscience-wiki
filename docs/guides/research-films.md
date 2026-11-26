@@ -1,7 +1,7 @@
 ---
 title: "Create and share a research film"
 last_update:
-  date: '2026-11-19'
+  date: '2026-11-25'
 ---
 
 # Create and share a research film
@@ -58,6 +58,8 @@ Wait for export to finish, then reopen the saved file outside Open-Science. Chec
 ![Research-film player and MP4 export control](/img/open-science/v120/film-player.webp)
 
 ## Regenerate or recover {/* #film-recovery */}
+
+While a research film is generating, its conversation stays in **Active** with the film status visible. If a film dialog is blocked by another conversation's generation, select **Go to conversation** to open that owner and inspect progress before starting another job.
 
 When a film is interrupted and the dialog offers **Retry**, resume to reuse validated scenes, narration and timings. Checkpoints survive a process restart. **Generate again** starts a fresh attempt instead; use it when changing the intended content or deliberately discarding the previous attempt. Inspect the progress and completed film after either action.
 

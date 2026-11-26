@@ -1,7 +1,7 @@
 ---
 title: "プロジェクトとソースフォルダ"
 last_update:
-  date: '2026-11-11'
+  date: '2026-11-25'
 ---
 
 # プロジェクトとソースフォルダ {/* #projects-and-source-folders */}
@@ -82,3 +82,15 @@ do not invent participants, measurements or citations.
 ![プロジェクトの高度なエージェントオプションに基づくカスタム最適化プロンプト](/img/open-science/v121/optimization-template.webp)
 
 コンポーザーに戻り、 [ドラフトを最適化](composer.md#optimize-question)お問い合わせ 送信前に書き込まれたテキストを確認します。テンプレートは、科学的な検証ルールではなく、文章の指示です。
+## プロジェクトの Agent のトレースを有効にする {/* #agent-tracing */}
+
+エージェントのトレースは、Open-Scienceを実行している人によって構成された受信機で、組み込みのエージェントのターン、モデルのリクエスト、MCP ツールコールを記録します。 デフォルトではオフです。 Codex の実行時間などの外部フレームワークをトレースしません。
+
+1. 受信機を構成し、[キャプチャ設定](../reference/diagnostics.md#agent-tracing)を見直して下さい。 プロジェクトスイッチを単独で有効化することは受信機をセットアップしません。
+2. プロジェクト名メニュー → **Project settings → Advanced agent options** を開きます。
+3. **Agent tracing** をオンにし、**Save** を選択します。 設定は、このプロジェクトの組み込みのエージェントセッションで、その後の送信に適用されます。
+4. 小さい、非敏感な要求を送って、サービス `open-science-agent` の受信機を点検して下さい。 エージェントが回答したかどうかを別に配信をチェックしてください。
+
+スイッチを無効にして保存すると、以降のプロジェクト送信のトレースが停止します。既に送信されたデータは接続先の保持ポリシーに従います。[CLI または SDK の Run 単位の有効化](../reference/cli.md#otel-traces)は、このプロジェクト設定とは独立しています。
+
+![プロジェクトの高度なオプションでエージェントのトレース](/img/open-science/v1.3.4/agent-tracing.webp)
